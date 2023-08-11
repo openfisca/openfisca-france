@@ -10,17 +10,17 @@ log = logging.getLogger(__name__)
 # Pour connaître le plafonnement d'un dispositif il faut se référer non pas à l'année de déclaration mais à l'année de la dépense. Les
 # réductions pour lesquelles le plafond est approximé sont celles pour lesquelles la réduction s'étend sur plusieurs années :
 #  - les investissements dans les PME (cappme),
-#  - Censi-Bouvard (locmeu),
+#  - Censi-Bouvard (location_meublee),
 #  - Scellier (scelli),
 #  - l'investissement pour le logement touristique (invlst),
-#  - la préservation du patrimoine naturel (patnat).
+#  - la préservation du patrimoine naturel (protection_patrimoine_naturel).
 # Tous ces dispostifs ont été introduits avant 2013, or si le montant du plafonnement global est le même
 # depuis 2013, il a été revu à la baisse à plusieurs occasions entre 2009 et 2013. Les dépenses réalisées avant 2013 donnent donc droit à des réductions
 # d'impôts, pour les déclarations après 2013, supérieures au plafond en vigueur l'année de la déclaration. Pour le moment on leur applique le montant en vigueur
 # l'année de la déclaration. L'approximation qui est faite est donc une approximation qui sousestime le montant global de ces réductions d'impôt.
 
 # TODO: le plafonnement global des réductions d'impôts avant 2013 (et la prise en compte du plafonnement des investissements d'outremer avant 2016)
-# TODO: La formule ci_invfor est à améliorer, l'ordre de priorité des variables est chronologique (en cas de dépassement du plafond, il
+# TODO: La formule ci_investissement_forestier est à améliorer, l'ordre de priorité des variables est chronologique (en cas de dépassement du plafond, il
 # faut prendre en compte les variables les plus anciennes)
 # TODO: prendre en compte le plafond global en vigueur au moment de l'investisement, et non le plafond en vigueur à la date de déclaration
 # TODO: Améliorer la prise en compte des plafonds pour les investissements d'outremer
@@ -36,27 +36,27 @@ class reductions_plafonnees(Variable):
         reductions_plafonnees = [
             'ri_saldom',
             'cappme',  # Approximation
-            'deffor',  # fait partie de inv. for. ?
-            'garext',
-            'ri_invfor',
-            'locmeu',  # Censi-Bouvard, plafonnement approximatif
+            'defense_forets_contre_incendies',  # fait partie de inv. for. ?
+            'gardenf',
+            'ri_investissement_forestier',
+            'location_meublee',  # Censi-Bouvard, plafonnement approximatif
             'invlst',  # Approximation
             'invrev',
-            'patnat',  # Approximation
+            'protection_patrimoine_naturel',  # Approximation
             'rehab',
             'mohist',
-            'spfcpi',
+            'souscriptions_parts_fcpi_fip',
             'duflot_pinel_denormandie_metropole',
 
             # Pas clair, dans le doute compté parmi les plafonnées :
             'reduction_impot_exceptionnelle',
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.credits_impots.plaf_nich
 
         # Step 1: Apply ceiling to general reductions
         montants_plaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees])
-        red_plaf = min_(P.plafond_1, montants_plaf)
+        red_plaf = min_(P.plafond, montants_plaf)
 
         return red_plaf
 
@@ -75,15 +75,15 @@ class reductions_plafonnees_om_sofica(Variable):
             'scelli',  # Approximation (dispositif qui se termine en 2012, soumis à des plafonds supérieurs à 18 000€)
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.credits_impots.plaf_nich
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
-        reste_gen = P.plafond_1 - red_plaf
+        reste_gen = P.plafond - red_plaf
 
         # Step 2: Get additional reductions DOM-TOM and SOFICA
         # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
         montants_om_sofica = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_om_sofica])
-        red_om_sofica = min_(P.majoration_om + reste_gen, montants_om_sofica)
+        red_om_sofica = min_(P.plafonnement_des_niches.majoration_om + reste_gen, montants_om_sofica)
 
         return red_om_sofica
 
@@ -101,16 +101,16 @@ class reductions_plafonnees_esus_sfs(Variable):
             'cappme_esus_sfs'
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.credits_impots.plaf_nich
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
-        reste_gen = P.plafond_1 - red_plaf - max_(0, red_plaf_om - P.majoration_om)
+        reste_gen = P.plafond - red_plaf - max_(0, red_plaf_om - P.plafonnement_des_niches.majoration_om)
 
         # Step 3: Get additional reductions ESUS and SFS
         # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
         montants_esus_sfs = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_esus_sfs])
-        red_esus_sfs = min_(P.majoration_esus_sfs + reste_gen, montants_esus_sfs)
+        red_esus_sfs = min_(P.plafonnement_des_niches.majoration_esus_sfs + reste_gen, montants_esus_sfs)
 
         return red_esus_sfs
 
@@ -164,26 +164,26 @@ class reductions(Variable):
         '''
         reductions = [
             # Depuis 2002
-            'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
+            'accult', 'frais_de_comptabilite', 'assvie', 'cappme', 'cappme_esus_sfs',
             'reduction_cotisations_syndicales',
-            'daepad', 'dfppce', 'doment', 'domlog',
-            'ecpess', 'garext', 'intemp', 'ri_invfor', 'invrev',
-            'prcomp', 'rsceha', 'ri_saldom', 'spfcpi',
+            'accueil_dans_etablissement_personnes_agees', 'dfppce', 'doment', 'domlog',
+            'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_investissement_forestier', 'invrev',
+            'prestations_compensatoires', 'rente_survie', 'ri_saldom', 'souscriptions_parts_fcpi_fip',
             # Introduites en 2003
-            'mecena', 'repsoc',
+            'mecena', 'interets_emprunt_reprise_societe',
             # Introduites en 2004
-            'intcon', 'invlst',
+            'interets_prets_consommation', 'invlst',
             # Introduites en 2005
-            'intagr',
+            'interets_paiements_differes_agriculteurs',
             # Introduites en 2006
-            'creaen', 'deffor', 'sofica',
+            'creaen', 'defense_forets_contre_incendies', 'sofica',
             # Introduites en 2008
             'mohist',
             # Introduites en 2009
-            'domsoc', 'ecodev', 'locmeu', 'resimm', 'scelli',
+            'domsoc', 'codev', 'location_meublee', 'restauration_patrimoine_bati', 'scelli',
             'sofipe',
             # Introduites en 2010
-            'patnat',
+            'protection_patrimoine_naturel',
             # Introduites en 2013
             'reduction_impot_exceptionnelle',
             'duflot_pinel_denormandie_metropole',
@@ -208,7 +208,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
@@ -228,7 +228,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         even though they may contain OM investments as well (only relevant after 2015,
         but since there are no separate cases, nothing one can potentially do).
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
@@ -266,7 +266,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         Investissement locatif privé - Dispositif Pinel
         De 2015 à 2018
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
@@ -355,7 +355,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -426,7 +426,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         NB: it is not clear whether the extension of the Pinel investment should also
         count towards the ceiling of € 300K. I will assume it does.
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qp', 9, 'outremer'),  # Pinel 2017
@@ -505,7 +505,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qu', 9, 'outremer'),
@@ -602,7 +602,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
@@ -620,7 +620,7 @@ class duflot_pinel_denormandie_om(Variable):
         even though they may contain OM investments as well (only relevant after 2015,
         but since there are no separate cases, nothing one can potentially do).
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
@@ -648,7 +648,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot + Pinel
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
@@ -724,7 +724,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -787,7 +787,7 @@ class duflot_pinel_denormandie_om(Variable):
         NB: it is not clear whether the extension of the Pinel investment should also
         count towards the ceiling of € 300K. I will assume it does.
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -858,7 +858,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -949,7 +949,7 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7cf = foyer_fiscal('f7cf', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -963,7 +963,7 @@ class cappme(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7cf = foyer_fiscal('f7cf', period)
         f7cl = foyer_fiscal('f7cl', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -978,7 +978,7 @@ class cappme(Variable):
         f7cf = foyer_fiscal('f7cf', period)
         f7cl = foyer_fiscal('f7cl', period)
         f7cm = foyer_fiscal('f7cm', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -994,7 +994,7 @@ class cappme(Variable):
         f7cl = foyer_fiscal('f7cl', period)
         f7cm = foyer_fiscal('f7cm', period)
         f7cn = foyer_fiscal('f7cn', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm + f7cn
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -1011,7 +1011,7 @@ class cappme(Variable):
         f7cm = foyer_fiscal('f7cm', period)
         f7cn = foyer_fiscal('f7cn', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm + f7cn + f7cu
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -1030,7 +1030,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cl + f7cm + f7cn + f7cq
         seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
@@ -1049,7 +1049,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         # TODO: gérer les changements de situation familiale
         base = f7cl + f7cm + f7cn
@@ -1076,7 +1076,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cl + f7cm
         seuil1 = P.seuil * (maries_ou_pacses + 1)
@@ -1104,7 +1104,7 @@ class cappme(Variable):
         f7cr = foyer_fiscal('f7cr', period)
         f7cu = foyer_fiscal('f7cu', period)
         report_cappme_2013_plaf_general = foyer_fiscal('f7cy', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1156,7 +1156,7 @@ class cappme(Variable):
         f7cv = foyer_fiscal('f7cv', period)
         f7cy = foyer_fiscal('f7cy', period)
         f7dy = foyer_fiscal('f7dy', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1220,7 +1220,7 @@ class cappme(Variable):
         f7dy = foyer_fiscal('f7dy', period)
         f7ey = foyer_fiscal('f7ey', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1279,7 +1279,7 @@ class cappme(Variable):
         f7ey = foyer_fiscal('f7ey', period)
         f7fy = foyer_fiscal('f7fy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1338,7 +1338,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1394,7 +1394,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1449,7 +1449,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1507,7 +1507,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
 
@@ -1565,7 +1565,7 @@ class cappme_esus_sfs(Variable):
         f7cs = foyer_fiscal('f7cs', period)
         f7bs = foyer_fiscal('f7bs', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
 
@@ -1591,10 +1591,10 @@ class cappme_esus_sfs(Variable):
         return base_esus_sfs
 
 
-class deffor(Variable):
+class defense_forets_contre_incendies(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'deffor'
+    label = 'defense_forets_contre_incendies'
     definition_period = YEAR
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -1603,17 +1603,18 @@ class deffor(Variable):
         2006-
         '''
         f7uc = foyer_fiscal('f7uc', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.deffor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.defense_forets_contre_incendies
 
-        return P.taux * min_(f7uc, P.max)
+        return P.taux * min_(f7uc, P.plafond)
 
 
-class ecodev(Variable):
+class codev(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'ecodev'
+    label = 'codev'
     end = '2009-12-31'
     definition_period = YEAR
+    # Avant 2009, il s'agissait d'un montant déductible : voir charges_deductibles.py
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1622,12 +1623,12 @@ class ecodev(Variable):
         '''
         f7uh = foyer_fiscal('f7uh_2009', period)
         rbg_int = foyer_fiscal('rbg_int', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.ecodev
+        P = parameters(period).impot_revenu.calcul_reductions_impots.compte_epargne_co_developpement
 
-        return min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
+        return min_(f7uh * P.taux, min_(P.plafond_en_revenu_net_global * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 
 
-class garext(Variable):
+class gardenf(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur des dépenses de frais de garde des jeunes enfants"
@@ -1644,7 +1645,7 @@ class garext(Variable):
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.garext
+        P = parameters(period).impot_revenu.credits_impots.gardenf
 
         max1 = P.plafond
         return P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
@@ -1661,7 +1662,7 @@ class garext(Variable):
         f7ge = foyer_fiscal('f7ge', period)
         f7gf = foyer_fiscal('f7gf', period)
         f7gg = foyer_fiscal('f7gg', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.garext
+        P = parameters(period).impot_revenu.credits_impots.gardenf
 
         max1 = P.plafond
         max2 = P.plafond / 2
@@ -1676,10 +1677,10 @@ class garext(Variable):
             )
 
 
-class intcon(Variable):
+class interets_prets_consommation(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'intcon'
+    label = 'Intérêts prêts consommation'
     end = '2005-12-31'
     definition_period = YEAR
 
@@ -1689,9 +1690,9 @@ class intcon(Variable):
         2004-2005
         '''
         f7uh = foyer_fiscal('f7uh_2004', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.intcon
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_prets_consommation
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7uh, max1)
 
 
@@ -1709,13 +1710,13 @@ class intemp(Variable):
         '''
         nb_pac = foyer_fiscal('nb_pac', period)
         f7wg = foyer_fiscal('f7wg_2003', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.intemp
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intemp
 
         max1 = P.max + P.pac * nb_pac
         return P.taux * min_(f7wg, max1)
 
 
-class ri_invfor(Variable):
+class ri_investissement_forestier(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Crédit d'impôt au titre des investissements forestiers"
@@ -1727,19 +1728,19 @@ class ri_invfor(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7un = foyer_fiscal('f7un', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        seuil = P.plafond_ri_acquisition * (maries_ou_pacses + 1)
-        return P.taux_ri_acquisition * min_(f7un, seuil)
+        seuil = P.acquisition.plafond * (maries_ou_pacses + 1)
+        return P.acquisition.taux * min_(f7un, seuil)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2006-2008
         '''
         f7un = foyer_fiscal('f7un', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        return P.taux_ri_acquisition * f7un
+        return P.acquisition.taux * f7un
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1749,11 +1750,11 @@ class ri_invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        return P.taux_ri_acquisition * (
-            min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
-            + min_(f7up, P.plafond_travaux * (maries_ou_pacses + 1))
+        return P.acquisition.taux * (
+            min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
+            + min_(f7up, P.travaux.plafond * (maries_ou_pacses + 1))
             + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
             )
 
@@ -1767,11 +1768,11 @@ class ri_invfor(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
         f7uu = foyer_fiscal('f7uu_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        return P.taux_ri_acquisition * (
-            min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
-            + min_(f7up + f7uu + f7te, P.plafond_travaux * (maries_ou_pacses + 1))
+        return P.acquisition.taux * (
+            min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
+            + min_(f7up + f7uu + f7te, P.travaux.plafond * (maries_ou_pacses + 1))
             + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
             )
 
@@ -1788,20 +1789,20 @@ class ri_invfor(Variable):
         f7uq = foyer_fiscal('f7uq', period)
         f7uu = foyer_fiscal('f7uu_2017', period)
         f7uv = foyer_fiscal('f7uv_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max0 = max_(0, P.travaux.plafond * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
         return (
-            P.taux_ri_acquisition * (
-                min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
+            P.acquisition.taux * (
+                min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
                 + min_(f7up, max1)
                 + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 )
-            + P10.taux_ri_acquisition * min_(f7uu + f7te + f7uv + f7tf, max0)
-            + P.taux_ri_ass * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P10.acquisition.taux * min_(f7uu + f7te + f7uv + f7tf, max0)
+            + P.assurance.taux * min_(f7ul, P.travaux.plafond * (maries_ou_pacses + 1))
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1819,28 +1820,28 @@ class ri_invfor(Variable):
         f7uu = foyer_fiscal('f7uu_2017', period)
         f7uv = foyer_fiscal('f7uv_2016', period)
         f7uw = foyer_fiscal('f7uw_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         report_depenses_2009 = f7uu + f7te
         report_depenses_2010 = f7uv + f7tf
         report_depenses_2011 = f7uw + f7tg
 
-        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max0 = max_(0, P.travaux.plafond * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
         max2 = max_(0, max1 - report_depenses_2011)
 
         return (
-            P.taux_ri_acquisition * (
-                min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
+            P.acquisition.taux * (
+                min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
                 + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 + min_(f7up, max2)
                 )
-            + P.taux_ri_ass * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
-            + P10.taux_ri_acquisition * min_(report_depenses_2009 + report_depenses_2010, max0) +
-            + P11.taux_ri_acquisition * min_(report_depenses_2011, max1)
+            + P.assurance.taux * min_(f7ul, P.travaux.plafond * (maries_ou_pacses + 1))
+            + P10.acquisition.taux * min_(report_depenses_2009 + report_depenses_2010, max0) +
+            + P11.acquisition.taux * min_(report_depenses_2011, max1)
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1860,32 +1861,32 @@ class ri_invfor(Variable):
         f7uv = foyer_fiscal('f7uv_2016', period)
         f7uw = foyer_fiscal('f7uw_2015', period)
         f7ux = foyer_fiscal('f7ux_2018', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         report_depenses_2009 = f7uu + f7te
         report_depenses_2010 = f7uv + f7tf
         report_depenses_2011 = f7uw + f7tg
         report_depenses_2012 = f7ux + f7th
 
-        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max0 = max_(0, P.travaux.plafond * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
         max2 = max_(0, max1 - report_depenses_2011)
         max3 = max_(0, max2 - report_depenses_2012)
 
         return (
-            P.taux_ri_acquisition * (
-                min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
+            P.acquisition.taux * (
+                min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
                 + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 + min_(f7up, max3)
                 )
-            + P.taux_ri_ass * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
-            + P10.taux_ri_acquisition * min_(report_depenses_2009 + report_depenses_2010, max0)
-            + P11.taux_ri_acquisition * min_(report_depenses_2011, max1)
-            + P12.taux_ri_acquisition * min_(report_depenses_2012, max2)
+            + P.assurance.taux * min_(f7ul, P.travaux.plafond * (maries_ou_pacses + 1))
+            + P10.acquisition.taux * min_(report_depenses_2009 + report_depenses_2010, max0)
+            + P11.acquisition.taux * min_(report_depenses_2011, max1)
+            + P12.acquisition.taux * min_(report_depenses_2012, max2)
             )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -1906,21 +1907,21 @@ class ri_invfor(Variable):
         f7ux = foyer_fiscal('f7ux_2018', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7te + f7tf + f7uu)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7uv + f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uw + f7th + f7ux + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7te + f7tf + f7uu)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7uv + f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uw + f7th + f7ux + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -1941,21 +1942,21 @@ class ri_invfor(Variable):
         f7uw = foyer_fiscal('f7uw_2015', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7te + f7tf)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7uu + f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uv + f7th + f7uw + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7te + f7tf)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7uu + f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uv + f7th + f7uw + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -1975,21 +1976,21 @@ class ri_invfor(Variable):
         f7uv = foyer_fiscal('f7uv_2016', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7te + f7tf)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7uv + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7te + f7tf)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7uv + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -2008,21 +2009,21 @@ class ri_invfor(Variable):
         f7uu = foyer_fiscal('f7uu_2017', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7te + f7tf)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7te + f7tf)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -2039,21 +2040,21 @@ class ri_invfor(Variable):
         f7th = foyer_fiscal('f7th', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7tf)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7th + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7tf)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7th + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -2069,18 +2070,18 @@ class ri_invfor(Variable):
         f7th = foyer_fiscal('f7th', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_2011, f7ul + f7th + f7ti)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_2011, f7ul + f7th + f7ti)
 
-        ri_ass_rep = (rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -2095,14 +2096,14 @@ class ri_invfor(Variable):
         f7th = foyer_fiscal('f7th', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7ul + f7th + f7ti)
-        ri_ass_rep = ass_rep_2012 * P.taux_ri_acquisition
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7ul + f7th + f7ti)
+        ri_ass_rep = ass_rep_2012 * P.acquisition.taux
 
         return ri_acq + ri_ass_rep
 
@@ -2116,14 +2117,14 @@ class ri_invfor(Variable):
         f7ul = foyer_fiscal('f7ul', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7ul + f7ti)
-        ri_ass_rep = ass_rep_2012 * P.taux_ri_acquisition
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7ul + f7ti)
+        ri_ass_rep = ass_rep_2012 * P.acquisition.taux
 
         return ri_acq + ri_ass_rep
 
@@ -2154,7 +2155,7 @@ class invlst(Variable):
         f7xm = foyer_fiscal('f7xm_2013', period)
         f7xn = foyer_fiscal('f7xn_2017', period)
         f7xo = foyer_fiscal('f7xo_2013', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
@@ -2195,7 +2196,7 @@ class invlst(Variable):
         f7xm = foyer_fiscal('f7xm_2013', period)
         f7xn = foyer_fiscal('f7xn_2017', period)
         f7xo = foyer_fiscal('f7xo_2013', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
@@ -2237,7 +2238,7 @@ class invlst(Variable):
         f7xp = foyer_fiscal('f7xp_2016', period)
         f7xq = foyer_fiscal('f7xq_2016', period)
         f7xr = foyer_fiscal('f7xr', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
@@ -2279,7 +2280,7 @@ class invlst(Variable):
         f7xv = foyer_fiscal('f7xv', period)
         f7xx = foyer_fiscal('f7xx_2012', period)
         f7xz = foyer_fiscal('f7xz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
@@ -2316,7 +2317,7 @@ class invlst(Variable):
         f7xq = foyer_fiscal('f7xq_2016', period)
         f7xr = foyer_fiscal('f7xr', period)
         f7xv = foyer_fiscal('f7xv', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         xi = P.taux_xi * (f7xf + f7xi + f7xp + f7xn + f7uy)
         xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv + f7uz)
@@ -2340,7 +2341,7 @@ class invlst(Variable):
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
         report_residence_sociale_2009 = foyer_fiscal('f7xk_2014', period)
         report_residence_sociale_2010 = foyer_fiscal('f7xr', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2009 + report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2009 + report_rehabilitation_2010 + report_rehabilitation_2011 + report_rehabilitation_2012)
@@ -2368,7 +2369,7 @@ class invlst(Variable):
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
         report_residence_sociale_2010 = foyer_fiscal('f7xr', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2009 + report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2009 + report_rehabilitation_2010 + report_rehabilitation_2011 + report_rehabilitation_2012)
@@ -2392,7 +2393,7 @@ class invlst(Variable):
         report_rehabilitation_2010 = foyer_fiscal('f7xq_2016', period)
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2010 + report_rehabilitation_2011 + report_rehabilitation_2012)
@@ -2412,7 +2413,7 @@ class invlst(Variable):
         report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2011 + report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2011 + report_rehabilitation_2012)
@@ -2430,7 +2431,7 @@ class invlst(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)  # noqa F841
         report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2012)
@@ -2464,7 +2465,7 @@ class invrev(Variable):
         f7xg = foyer_fiscal('f7xg_2002', period)
         f7gu = foyer_fiscal('f7gu_2003', period)
         f7gv = foyer_fiscal('f7gv_2003', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invrev
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invrev
 
         return (
             P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4
@@ -2474,7 +2475,7 @@ class invrev(Variable):
             )
 
 
-class locmeu(Variable):
+class location_meublee(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle - Dispositif Censi-Bouvard"
@@ -2487,9 +2488,9 @@ class locmeu(Variable):
         2009
         '''
         f7ij = foyer_fiscal('f7ij', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
-        return P.taux * min_(P.max, f7ij) / 9
+        return P.taux * min_(P.plafond, f7ij) / 9
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2501,9 +2502,9 @@ class locmeu(Variable):
         f7il = foyer_fiscal('f7il', period)
         f7im = foyer_fiscal('f7im', period)
         f7is = foyer_fiscal('f7is_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
-        return ((min_(P.max, max_(f7ij, f7il)) + min_(P.max, f7im)) / 9 + f7ik) * P.taux + f7is
+        return ((min_(P.plafond, max_(f7ij, f7il)) + min_(P.plafond, f7im)) / 9 + f7ik) * P.taux + f7is
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2524,7 +2525,7 @@ class locmeu(Variable):
         f7iu = foyer_fiscal('f7iu_2016', period)
         f7iv = foyer_fiscal('f7iv_2016', period)
         f7iw = foyer_fiscal('f7iw_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
         majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
         taux_reduc_2009_2010 = P.taux
@@ -2533,8 +2534,8 @@ class locmeu(Variable):
 
         return (
             (
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
+                (min_(P.plafond, max_(f7im, f7iw)) + min_(P.plafond, f7io)) * taux_reduc_2009_2010
+                + min_(P.plafond, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
                 ) / 9
             + report
             )
@@ -2568,7 +2569,7 @@ class locmeu(Variable):
         f7iw = foyer_fiscal('f7iw_2016', period)
         f7ix = foyer_fiscal('f7ix_2017', period)
         f7iz = foyer_fiscal('f7iz_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
         majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
         majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
@@ -2579,9 +2580,9 @@ class locmeu(Variable):
 
         return (
             (
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
-                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
+                (min_(P.plafond, max_(f7im, f7iw)) + min_(P.plafond, f7io)) * taux_reduc_2009_2010
+                + min_(P.plafond, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
+                + min_(P.plafond, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
                 ) / 9
             + report
             )
@@ -2625,7 +2626,7 @@ class locmeu(Variable):
         f7jw = foyer_fiscal('f7jw', period)
         f7jx = foyer_fiscal('f7jx', period)
         f7jy = foyer_fiscal('f7jy', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
         majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
         majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
@@ -2642,10 +2643,10 @@ class locmeu(Variable):
 
         return (
             (
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
-                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
-                + min_(P.max, f7jt + f7ju) * taux_reduc_2013
+                (min_(P.plafond, max_(f7im, f7iw)) + min_(P.plafond, f7io)) * taux_reduc_2009_2010
+                + min_(P.plafond, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
+                + min_(P.plafond, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
+                + min_(P.plafond, f7jt + f7ju) * taux_reduc_2013
                 ) / 9
             + report
             )
@@ -2701,18 +2702,18 @@ class locmeu(Variable):
         f7pd = foyer_fiscal('f7pd_2019', period)
         f7pe = foyer_fiscal('f7pe_2019', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
-        reduction_investissements_acheve_2014_realise_2009 = P.taux * min_(P.max, f7io)
-        reduction_investissements_acheve_2014_realise_2010 = P.taux * min_(P.max, f7im + f7iw)
-        reduction_investissements_acheve_2014_realise_2011 = P.taux20 * min_(P.max, f7il + f7in) + P.taux18 * min_(max_(0, P.max - f7il - f7in), f7ij + f7iv)
-        reduction_investissements_acheve_2014_realise_2012 = P.taux18 * min_(P.max, f7ie + f7if) + P.taux11 * min_(max_(0, P.max - f7ie - f7if), f7id + f7ig)
-        reduction_investissements_acheve_2014_realise_2013 = P.taux11 * min_(P.max, f7jt + f7ju)
-        reduction_investissements_acheve_2014_realise_2014 = P.taux11 * min_(P.max, f7ou)
+        reduction_investissements_acheve_2014_realise_2009 = P.taux * min_(P.plafond, f7io)
+        reduction_investissements_acheve_2014_realise_2010 = P.taux * min_(P.plafond, f7im + f7iw)
+        reduction_investissements_acheve_2014_realise_2011 = P.taux20 * min_(P.plafond, f7il + f7in) + P.taux18 * min_(max_(0, P.plafond - f7il - f7in), f7ij + f7iv)
+        reduction_investissements_acheve_2014_realise_2012 = P.taux18 * min_(P.plafond, f7ie + f7if) + P.taux11 * min_(max_(0, P.plafond - f7ie - f7if), f7id + f7ig)
+        reduction_investissements_acheve_2014_realise_2013 = P.taux11 * min_(P.plafond, f7jt + f7ju)
+        reduction_investissements_acheve_2014_realise_2014 = P.taux11 * min_(P.plafond, f7ou)
 
         report_invest_anterieur = (
-            P.taux * min_(P.max, f7ik)
-            + P.taux * min_(P.max, f7ip + f7ir + f7iq)
+            P.taux * min_(P.plafond, f7ik)
+            + P.taux * min_(P.plafond, f7ip + f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
@@ -2801,19 +2802,19 @@ class locmeu(Variable):
         f7pi = foyer_fiscal('f7pi', period)
         f7pj = foyer_fiscal('f7pj', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
-        reduction_investissements_acheve_2015_realise_2009 = P.taux * min_(P.max, f7io)
-        reduction_investissements_acheve_2015_realise_2010 = P.taux * min_(P.max, f7im + f7iw)
-        reduction_investissements_acheve_2015_realise_2011 = P.taux20 * min_(P.max, f7il + f7in) + P.taux18 * min_(max_(0, P.max - f7il - f7in), f7ij + f7iv)
-        reduction_investissements_acheve_2015_realise_2012 = P.taux18 * min_(P.max, f7ie + f7if) + P.taux11 * min_(max_(0, P.max - f7ie - f7if), f7id + f7ig)
-        reduction_investissements_acheve_2015_realise_2013 = P.taux11 * min_(P.max, f7jt + f7ju)
-        reduction_investissements_acheve_2015_realise_2014 = P.taux11 * min_(P.max, f7ou)
-        reduction_investissements_acheve_2015_realise_2015 = P.taux11 * min_(P.max, f7ov)
+        reduction_investissements_acheve_2015_realise_2009 = P.taux * min_(P.plafond, f7io)
+        reduction_investissements_acheve_2015_realise_2010 = P.taux * min_(P.plafond, f7im + f7iw)
+        reduction_investissements_acheve_2015_realise_2011 = P.taux20 * min_(P.plafond, f7il + f7in) + P.taux18 * min_(max_(0, P.plafond - f7il - f7in), f7ij + f7iv)
+        reduction_investissements_acheve_2015_realise_2012 = P.taux18 * min_(P.plafond, f7ie + f7if) + P.taux11 * min_(max_(0, P.plafond - f7ie - f7if), f7id + f7ig)
+        reduction_investissements_acheve_2015_realise_2013 = P.taux11 * min_(P.plafond, f7jt + f7ju)
+        reduction_investissements_acheve_2015_realise_2014 = P.taux11 * min_(P.plafond, f7ou)
+        reduction_investissements_acheve_2015_realise_2015 = P.taux11 * min_(P.plafond, f7ov)
 
         report_invest_anterieur = (
-            P.taux * min_(P.max, f7ik)
-            + P.taux * min_(P.max, f7ip + f7ir + f7iq)
+            P.taux * min_(P.plafond, f7ik)
+            + P.taux * min_(P.plafond, f7ip + f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
@@ -2913,19 +2914,19 @@ class locmeu(Variable):
         f7pn = foyer_fiscal('f7pn', period)
         f7po = foyer_fiscal('f7po', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
-        reduction_investissements_acheve_2016_realise_2010 = P.taux * min_(P.max, f7im + f7iw)
-        reduction_investissements_acheve_2016_realise_2011 = P.taux20 * min_(P.max, f7il + f7in) + P.taux18 * min_(max_(0, P.max - f7il - f7in), f7ij + f7iv)
-        reduction_investissements_acheve_2016_realise_2012 = P.taux18 * min_(P.max, f7ie + f7if) + P.taux11 * min_(max_(0, P.max - f7ie - f7if), f7id + f7ig)
-        reduction_investissements_acheve_2016_realise_2013 = P.taux11 * min_(P.max, f7jt + f7ju)
-        reduction_investissements_acheve_2016_realise_2014 = P.taux11 * min_(P.max, f7ou)
-        reduction_investissements_acheve_2016_realise_2015 = P.taux11 * min_(P.max, f7ov)
-        reduction_investissements_acheve_2016_realise_2016 = P.taux11 * min_(P.max, f7ow)
+        reduction_investissements_acheve_2016_realise_2010 = P.taux * min_(P.plafond, f7im + f7iw)
+        reduction_investissements_acheve_2016_realise_2011 = P.taux20 * min_(P.plafond, f7il + f7in) + P.taux18 * min_(max_(0, P.plafond - f7il - f7in), f7ij + f7iv)
+        reduction_investissements_acheve_2016_realise_2012 = P.taux18 * min_(P.plafond, f7ie + f7if) + P.taux11 * min_(max_(0, P.plafond - f7ie - f7if), f7id + f7ig)
+        reduction_investissements_acheve_2016_realise_2013 = P.taux11 * min_(P.plafond, f7jt + f7ju)
+        reduction_investissements_acheve_2016_realise_2014 = P.taux11 * min_(P.plafond, f7ou)
+        reduction_investissements_acheve_2016_realise_2015 = P.taux11 * min_(P.plafond, f7ov)
+        reduction_investissements_acheve_2016_realise_2016 = P.taux11 * min_(P.plafond, f7ow)
 
         report_invest_anterieur = (
-            P.taux * min_(P.max, f7ik)
-            + P.taux * min_(P.max, f7ip + f7ir + f7iq)
+            P.taux * min_(P.plafond, f7ik)
+            + P.taux * min_(P.plafond, f7ip + f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
@@ -3026,12 +3027,12 @@ class locmeu(Variable):
         invest_2016_acheves_2017 = foyer_fiscal('f7ow', period)
         invest_2017_acheves_2017 = foyer_fiscal('f7ox', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
         # Calcul de la réduction sur investissements antérieurs non imputés (si dépassement du plafond de la base)
 
-        report_reduc_invest_2009 = P.taux * min_(P.max, f7ik)  # avant 2011, report de l'investissement et non de la réduction
-        report_reduc_invest_2010 = P.taux * min_(P.max, f7ip + f7ir + f7iq)  # avant 2011, report de l'investissement et non de la réduction
+        report_reduc_invest_2009 = P.taux * min_(P.plafond, f7ik)  # avant 2011, report de l'investissement et non de la réduction
+        report_reduc_invest_2010 = P.taux * min_(P.plafond, f7ip + f7ir + f7iq)  # avant 2011, report de l'investissement et non de la réduction
         report_reduc_invest_2011 = f7ia + f7ib + f7ic
         report_reduc_invest_2012 = f7jv + f7jw + f7jx + f7jy
         report_reduc_invest_2013 = f7oa + f7ob + f7oc + f7od + f7oe
@@ -3071,13 +3072,13 @@ class locmeu(Variable):
         # Calcul de la réduction concernant les investissements achevés ou réalisés l'année courante
 
         reduc_invest_acheves_2017 = (
-            around(P.taux18 * min_(P.max, invest_2011_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2012_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2013_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2014_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2015_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2016_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2017_acheves_2017) / 9)
+            around(P.taux18 * min_(P.plafond, invest_2011_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2012_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2013_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2014_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2015_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2016_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2017_acheves_2017) / 9)
             )
 
         return (
@@ -3161,11 +3162,11 @@ class locmeu(Variable):
         invest_2017_acheves_2017 = foyer_fiscal('f7ox', period)
         invest_2018_acheves_2018 = foyer_fiscal('f7oy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
         # Calcul de la réduction sur investissements antérieurs non imputés (si dépassement du plafond de la base)
 
-        report_reduc_invest_2010 = P.taux * min_(P.max, f7ip + f7ir + f7iq)  # avant 2011, report de l'investissement et non de la réduction
+        report_reduc_invest_2010 = P.taux * min_(P.plafond, f7ip + f7ir + f7iq)  # avant 2011, report de l'investissement et non de la réduction
         report_reduc_invest_2011 = f7ia + f7ib + f7ic
         report_reduc_invest_2012 = f7jv + f7jw + f7jx + f7jy
         report_reduc_invest_2013 = f7oa + f7ob + f7oc + f7od + f7oe
@@ -3206,13 +3207,13 @@ class locmeu(Variable):
         # Calcul de la réduction concernant les investissements achevés ou réalisés l'année courante
 
         reduc_invest_acheves_2018 = (
-            around(P.taux11 * min_(P.max, invest_2012_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2013_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2014_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2015_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2016_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2017_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2018_acheves_2018) / 9)
+            around(P.taux11 * min_(P.plafond, invest_2012_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2013_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2014_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2015_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2016_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2017_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2018_acheves_2018) / 9)
             )
 
         return (
@@ -3296,7 +3297,7 @@ class locmeu(Variable):
         invest_2018_acheves_2019 = foyer_fiscal('f7oz', period)
         invest_2019_acheves_2019 = foyer_fiscal('f7pz', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
         # Calcul de la réduction sur investissements antérieurs non imputés (si dépassement du plafond de la base)
 
@@ -3341,13 +3342,13 @@ class locmeu(Variable):
         # Calcul de la réduction concernant les investissements achevés ou réalisés l'année courante
 
         reduc_invest_acheves_2019 = (
-            around(P.taux11 * min_(P.max, invest_2013_acheves_2019) / 9)
-            + around(P.taux11 * min_(P.max, invest_2014_acheves_2019) / 9)
-            + around(P.taux11 * min_(P.max, invest_2015_acheves_2019) / 9)
-            + around(P.taux11 * min_(P.max, invest_2016_acheves_2019) / 9)
-            + around(P.taux11 * min_(P.max, invest_2017_acheves_2019) / 9)
-            + around(P.taux11 * min_(P.max, invest_2018_acheves_2019) / 9)
-            + around(P.taux11 * min_(P.max, invest_2019_acheves_2019) / 9)
+            around(P.taux11 * min_(P.plafond, invest_2013_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2014_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2015_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2016_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2017_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2018_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.plafond, invest_2019_acheves_2019) / 9)
             )
 
         return (
@@ -3361,7 +3362,7 @@ class locmeu(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2020
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
         inv = ['f7ou',
             'f7ov',
@@ -3388,7 +3389,7 @@ class locmeu(Variable):
             'f7hu', 'f7hv', 'f7hw', 'f7hx']
 
         rep_ri = sum([foyer_fiscal(r, period) for r in rep])
-        inv_ri = sum([(P.taux11 * min_(P.max, foyer_fiscal(r, period)) / 9) for r in inv])
+        inv_ri = sum([(P.taux11 * min_(P.plafond, foyer_fiscal(r, period)) / 9) for r in inv])
 
         return rep_ri + inv_ri
 
@@ -3397,7 +3398,7 @@ class locmeu(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2021
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
         inv = ['f7ov',
             'f7ow',
@@ -3424,7 +3425,7 @@ class locmeu(Variable):
             'f7hu', 'f7hv', 'f7hw', 'f7hx']
 
         rep_ri = sum([foyer_fiscal(r, period) for r in rep])
-        inv_ri = sum([(P.taux11 * min_(P.max, foyer_fiscal(r, period)) / 9) for r in inv])
+        inv_ri = sum([(P.taux11 * min_(P.plafond, foyer_fiscal(r, period)) / 9) for r in inv])
 
         return rep_ri + inv_ri
 
@@ -3441,12 +3442,12 @@ class mohist(Variable):
         2008-
         '''
         f7nz = foyer_fiscal('f7nz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.mohist
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_monuments_historiques
 
-        return P.taux * min_(f7nz, P.max)
+        return P.taux * min_(f7nz, P.plafond)
 
 
-class patnat(Variable):
+class protection_patrimoine_naturel(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur des dépenses de préservation du patrimoine naturel"
@@ -3460,9 +3461,9 @@ class patnat(Variable):
         2010
         '''
         f7ka = foyer_fiscal('f7ka_2013', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.protection_patrimoine_naturel
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7ka, max1)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -3472,9 +3473,9 @@ class patnat(Variable):
         '''
         f7ka = foyer_fiscal('f7ka_2013', period)
         f7kb = foyer_fiscal('f7kb_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.protection_patrimoine_naturel
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7ka, max1) + f7kb
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -3485,9 +3486,9 @@ class patnat(Variable):
         f7ka = foyer_fiscal('f7ka_2013', period)
         f7kb = foyer_fiscal('f7kb_2016', period)
         f7kc = foyer_fiscal('f7kc_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.protection_patrimoine_naturel
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7ka, max1) + f7kb + f7kc
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -3499,9 +3500,9 @@ class patnat(Variable):
         f7kb = foyer_fiscal('f7kb_2016', period)
         f7kc = foyer_fiscal('f7kc_2017', period)
         f7kd = foyer_fiscal('f7kd_2018', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.protection_patrimoine_naturel
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -3578,8 +3579,8 @@ class rehab(Variable):
         '''
         f7xx = foyer_fiscal('f7xx', period)  # TO DO: Coder le plafond glissant sur 3 années
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rehab
-        depenses_2017 = min_(P.max, f7xx)
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.rehabilitation_residences_touristiques
+        depenses_2017 = min_(P.plafond, f7xx)
 
         return (P.taux * depenses_2017)
 
@@ -3599,10 +3600,10 @@ class ri_saldom(Variable):
         '''
         f7df = foyer_fiscal('f7df', period)
         invalide = foyer_fiscal('f7dg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
-        max1 = P.max1 * not_(invalide) + P.max3 * invalide
-        return P.taux * min_(f7df, max1)
+        plafond = P.plafond * not_(invalide) + P.plafond_invalides * invalide
+        return P.taux * min_(f7df, plafond)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3613,14 +3614,14 @@ class ri_saldom(Variable):
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
         invalide = foyer_fiscal('f7dg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1
-        max_du_max_non_inv = P.max2
-        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
-        max1 = max_non_inv * not_(invalide) + P.max3 * invalide
-        return P.taux * min_(f7df, max1)
+        max_base = P.plafond
+        max_du_max_non_inv = P.plafond_maximum
+        max_non_inv = min_(max_base + P.increment_plafond * nbpacmin, max_du_max_non_inv)
+        plafond = max_non_inv * not_(invalide) + P.plafond_invalides * invalide
+        return P.taux * min_(f7df, plafond)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3632,15 +3633,15 @@ class ri_saldom(Variable):
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
         invalide = foyer_fiscal('f7dg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1
-        max_du_max_non_inv = P.max2
-        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
-        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        max1 = max_effectif - min_(f7db, max_effectif)
-        return P.taux * min_(f7df, max1)
+        max_base = P.plafond
+        max_du_max_non_inv = P.plafond_maximum
+        max_non_inv = min_(max_base + P.increment_plafond * nbpacmin, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.plafond_invalides * invalide
+        plafond = max_effectif - min_(f7db, max_effectif)
+        return P.taux * min_(f7df, plafond)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3653,17 +3654,17 @@ class ri_saldom(Variable):
         f7dl = foyer_fiscal('f7dl', period)
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
-        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
-        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
-        max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
-        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        max_effectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
-        max1 = max_effectif - min_(f7db, max_effectif2)
-        return P.taux * min_(f7df, max1)
+        max_base = P.plafond * not_(annee1) + P.plafond_1ere_annee * annee1
+        max_du_max_non_inv = P.plafond_maximum * not_(annee1) + P.plafond_invalides_1ere_annee * annee1
+        max_non_inv = min_(max_base + P.increment_plafond * nbpacmin, max_du_max_non_inv)
+        max_non_inv2 = min_(max_base + P.increment_plafond * nb_pac_majoration_plafond, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.plafond_invalides * invalide
+        max_effectif2 = max_non_inv2 * not_(invalide) + P.plafond_invalides * invalide
+        plafond = max_effectif - min_(f7db, max_effectif2)
+        return P.taux * min_(f7df, plafond)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3684,17 +3685,17 @@ class ri_saldom(Variable):
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         # détérminer le plafond
 
         if invalide.any():
-            plaf = P.max3
+            plaf = P.plafond_invalides
         else:
             if annee1.any():
-                plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_invalides_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
             else:
-                plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
 
         # calcul de la RI et du CI
 
@@ -3720,7 +3721,7 @@ class scelli(Variable):
         '''
         f7hj = foyer_fiscal('f7hj', period)
         f7hk = foyer_fiscal('f7hk', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         return max_(P.taux25 * min_(P.max, f7hj), P.taux40 * min_(P.max, f7hk)) / 9
 
@@ -3738,7 +3739,7 @@ class scelli(Variable):
         f7hr = foyer_fiscal('f7hr_2017', period)
         f7hs = foyer_fiscal('f7hs_2017', period)
         f7la = foyer_fiscal('f7la', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         return (
             max_(
@@ -3794,7 +3795,7 @@ class scelli(Variable):
         f7nr = foyer_fiscal('f7nr', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         return (
             min_(P.max, maxi(
@@ -3881,8 +3882,8 @@ class scelli(Variable):
         f7nr = foyer_fiscal('f7nr', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         return (
             min_(P.max, maxi(
@@ -3995,8 +3996,8 @@ class scelli(Variable):
         f7nr = foyer_fiscal('f7nr', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         reductions = (min_(P.max, maxi(
             P.taux13 * max_(f7nf, f7nj) / 9,
@@ -4129,8 +4130,8 @@ class scelli(Variable):
         f7yk = foyer_fiscal('f7yk', period)
         f7yl = foyer_fiscal('f7yl', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln
 
@@ -4286,8 +4287,8 @@ class scelli(Variable):
         f7yr = foyer_fiscal('f7yr', period)
         f7ys = foyer_fiscal('f7ys', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj
 
@@ -4394,9 +4395,9 @@ class scelli(Variable):
         inv_3_6 = ['f7zb', 'f7zc']
         inv_3_5 = ['f7za', 'f7zd']
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
@@ -4482,10 +4483,10 @@ class scelli(Variable):
         inv_3_5 = ['f7za', 'f7zd', 'f7ze', 'f7zh', 'f7zj', 'f7zk']
         inv_3_4 = ['f7zi', 'f7zl']
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
@@ -4590,10 +4591,10 @@ class scelli(Variable):
             'f7sl', 'f7sm_2019',
             ]
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
@@ -4618,10 +4619,10 @@ class scelli(Variable):
         2019
         '''
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         reports = [
             'f7rt', 'f7ru', 'f7rv', 'f7rw',
@@ -4694,10 +4695,10 @@ class scelli(Variable):
         2020
         '''
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         reports = [
             'f7rt', 'f7ru', 'f7rv', 'f7rw',
@@ -4770,10 +4771,10 @@ class scelli(Variable):
         2021
         '''
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.scelli
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
 
         reports = [
             'f7rt', 'f7ru', 'f7rv', 'f7rw',
@@ -4868,10 +4869,10 @@ class sofica(Variable):
         rng = foyer_fiscal('rng', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.sofica
 
-        max0 = min_(P.taux_plafond * max_(rng, 0), P.max)
+        max0 = min_(P.plafond_revenu_net_global * max_(rng, 0), P.plafond)
         max1 = max_(0, max0 - f7gn)
 
-        return P.taux36 * min_(f7gn, max0) + P.taux30 * min_(f7fn, max1)
+        return P.taux_1 * min_(f7gn, max0) + P.taux_2 * min_(f7fn, max1)
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4884,14 +4885,14 @@ class sofica(Variable):
         rng = foyer_fiscal('rng', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.sofica
 
-        max0 = min_(P.taux_plafond * max_(rng, 0), P.max)
+        max0 = min_(P.plafond_revenu_net_global * max_(rng, 0), P.plafond)
         max1 = max_(0, max0 - f7en)
         max2 = max_(0, max0 - f7gn)
 
         return (
-            P.taux48 * min_(f7en, max0)
-            + P.taux36 * min_(f7gn, max1)
-            + P.taux30 * min_(f7fn, max2)
+            P.taux_3 * min_(f7en, max0)
+            + P.taux_1 * min_(f7gn, max1)
+            + P.taux_2 * min_(f7fn, max2)
             )
 
 
@@ -4912,14 +4913,14 @@ class sofipe(Variable):
         f7gs = foyer_fiscal('f7gs_2009', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.sofipeche
 
-        max1 = min_(P.max * (maries_ou_pacses + 1), P.base * rbg_int)  # page3 ligne 18
+        max1 = min_(P.plafond * (maries_ou_pacses + 1), P.plafond_revenu_net_global * rbg_int)  # page3 ligne 18
         return P.taux * min_(f7gs, max1)
 
 
-class spfcpi(Variable):
+class souscriptions_parts_fcpi_fip(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'spfcpi'
+    label = 'souscriptions_parts_fcpi_fip'
     reference = 'http://bofip.impots.gouv.fr/bofip/5321-PGP'
     definition_period = YEAR
 
@@ -4931,10 +4932,10 @@ class spfcpi(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7gq = foyer_fiscal('f7gq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
-        return P.taux1 * min_(f7gq, max1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
+        return P.taux * min_(f7gq, max1)
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4945,10 +4946,10 @@ class spfcpi(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7gq = foyer_fiscal('f7gq', period)
         f7fq = foyer_fiscal('f7fq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
-        return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
+        return (P.taux * min_(f7gq, max1) + P.taux * min_(f7fq, max1))
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4960,13 +4961,13 @@ class spfcpi(Variable):
         f7gq = foyer_fiscal('f7gq', period)
         f7fq = foyer_fiscal('f7fq', period)
         f7fm = foyer_fiscal('f7fm', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
-        return (P.taux1 * min_(f7gq, max1)
-            + P.taux1 * min_(f7fq, max1)
-            + P.taux2 * min_(f7fm, max1))
+        return (P.taux * min_(f7gq, max1)
+            + P.taux * min_(f7fq, max1)
+            + P.taux_corse * min_(f7fm, max1))
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4979,16 +4980,16 @@ class spfcpi(Variable):
         f7fq = foyer_fiscal('f7fq', period)
         f7fm = foyer_fiscal('f7fm', period)
         f7fl = foyer_fiscal('f7fl', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
-        return (P.taux1 * min_(f7gq, max1)
-            + P.taux1 * min_(f7fq, max1)
-            + P.taux2 * min_(f7fm, max1)
-            + P.taux3 * min_(f7fl, max1))
+        return (P.taux * min_(f7gq, max1)
+            + P.taux * min_(f7fq, max1)
+            + P.taux_corse * min_(f7fm, max1)
+            + P.taux_outre_mer * min_(f7fl, max1))
 
-    def formula_2020_01_01(foyer_fiscal, period, parameters):
+    def formula_2020_08_01(foyer_fiscal, period, parameters):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
@@ -5004,11 +5005,11 @@ class spfcpi(Variable):
         f7fl = foyer_fiscal('f7fl', period)
         f7hl = foyer_fiscal('f7hl', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
-        P1 = parameters('2020-08-01').impot_revenu.calcul_reductions_impots.spfcpi
-        P2 = parameters('2020-08-31').impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
+        P1 = parameters('2020-08-01').impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
+        P2 = parameters('2020-08-31').impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
         mon_7gr = min_(max1, f7gr)
         mon_7gq = min_(max1 - mon_7gr, f7gq)
@@ -5022,11 +5023,11 @@ class spfcpi(Variable):
         mon_7fl = min_(max1, f7fl)
         mon_7hl = min_(max1 - mon_7fl, f7hl)
 
-        return (P.taux1 * (mon_7gq + mon_7fq)
-            + P1.taux2 * mon_7fm
-            + P1.taux3 * mon_7fl
-            + P.taux_fcp_fip_special * (mon_7gr + mon_7ft)
-            + P2.taux2 * mon_7hm + P2.taux3 * mon_7hl)
+        return (P.taux * (mon_7gq + mon_7fq)
+            + P1.taux_corse * mon_7fm
+            + P1.taux_outre_mer * mon_7fl
+            + P.taux_special * (mon_7gr + mon_7ft)
+            + P2.taux_corse * mon_7hm + P2.taux_outre_mer * mon_7hl)
 
     def formula_2021_01_01(foyer_fiscal, period, parameters):
         '''
@@ -5042,9 +5043,9 @@ class spfcpi(Variable):
         f7fm = foyer_fiscal('f7fm', period)
         f7fl = foyer_fiscal('f7fl', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
         mon_7gr = min_(max1, f7gr)
         mon_7gq = min_(max1 - mon_7gr, f7gq)
@@ -5056,10 +5057,10 @@ class spfcpi(Variable):
 
         mon_7fl = min_(max1, f7fl)
 
-        return (P.taux1 * (mon_7gq + mon_7fq)
-            + P.taux2 * mon_7fm
-            + P.taux3 * mon_7fl
-            + P.taux_fcp_fip_special * (mon_7gr + mon_7ft))
+        return (P.taux * (mon_7gq + mon_7fq)
+            + P.taux_corse * mon_7fm
+            + P.taux_outre_mer * mon_7fl
+            + P.taux_special * (mon_7gr + mon_7ft))
 
 
 def mini(a, b, *args):

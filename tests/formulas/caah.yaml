@@ -9,6 +9,7 @@
     taux_incapacite: 0.8
   output:
     caah: 179.3  # 1 * max(922.93 - 743.62, 0)
+
 - name: Complément d'AAH - cas 2
   description: Montant du complément d AAH au niveau de l individu
   period: 2008-09
@@ -19,6 +20,7 @@
     taux_incapacite: 0.8
   output:
     caah: 179  # 831.91 - 652.60
+
 - name: Complément d'AAH - cas 3
   description: Montant du complément d AAH au niveau de l individu
   period: 2004-11
@@ -49,6 +51,7 @@
     aah: 540
     aide_logement_montant: 310
     taux_incapacite: 0.8
+    taux_capacite_travail: 0
   output:
     caah: 95.9  # 16% * 1 * 599.49
 

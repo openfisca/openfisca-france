@@ -17,8 +17,8 @@ values:
   2021-01-01:
     value: 8424
 metadata:
-  ux_name: Biactifs et parents isolés
-  description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  short_label: Biactifs et parents isolés
+  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_paje_bi_abplein_entre_20140401_20180331
   unit: currency
   reference:

@@ -38,7 +38,7 @@ class complement_are_plafond(Variable):
         # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE
         # et représente la notion de salaire de reprise d'emploi
         gain_brut = individu('salaire_de_base', period)
-        plafond = salaire_journalier_reference * parameters(period).chomage.complement_are.coefficient_plafond_global
+        plafond = salaire_journalier_reference * parameters(period).chomage.allocations_assurance_chomage.complement_are.coefficient_plafond_global
 
         return max_(0, (plafond - gain_brut))
 
@@ -92,7 +92,7 @@ class complement_are_salaire_retenu(Variable):
         # et représente la notion de salaire de reprise d'emploi
         gain_brut = individu('salaire_de_base', period)
 
-        return round_(gain_brut * parameters(period).chomage.complement_are.taux_remuneration_retenue, 1)
+        return round_(gain_brut * parameters(period).chomage.allocations_assurance_chomage.complement_are.taux_remuneration_retenue, 1)
 
 
 class complement_are_base(Variable):
@@ -225,7 +225,7 @@ class complement_are_cotisation_retraite_complementaire(Variable):
 class complement_are_csg_journaliere(Variable):
     value_type = float
     entity = Individu
-    label = 'Contribution Sociale Généralisée (CSG) journalière sur le Complément ARE'
+    label = 'Contribution sociale généralisée (CSG) journalière sur le Complément ARE'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
@@ -275,7 +275,7 @@ class complement_are_csg_journaliere(Variable):
 class complement_are_csg(Variable):
     value_type = float
     entity = Individu
-    label = 'Contribution Sociale Généralisée (CSG) mensuelle sur Complément ARE'
+    label = 'Contribution sociale généralisée (CSG) mensuelle sur Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'

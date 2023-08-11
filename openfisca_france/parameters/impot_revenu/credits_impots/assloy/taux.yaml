@@ -1,0 +1,11 @@
+description: Taux pour les Primes d'assurances pour loyers impayés
+values:
+  2005-01-01:
+    value: 0.5
+  2011-01-01:
+    value: 0.45
+  2012-01-01:
+    value: 0.38
+metadata:
+  short_label: Taux
+  unit: /1

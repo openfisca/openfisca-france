@@ -79,8 +79,8 @@ values:
   2022-07-01:
     value: 17.90
 metadata:
-  ux_name: Montant journalier (Taux plein)
-  description_en: Special UI scheme
+  short_label: Montant journalier (Taux plein)
+  label_en: Special UI scheme
   ipp_csv_id: ass_base
   unit: currency
   reference:

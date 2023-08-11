@@ -11,8 +11,8 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: Moins de 11 salariés
-  description_en: Employer's participation to lifelong professional training
+  short_label: Moins de 11 salariés
+  label_en: Employer's participation to lifelong professional training
   reference:
     1972-01-01:
       title: Loi 71-575 du 16/07/1971

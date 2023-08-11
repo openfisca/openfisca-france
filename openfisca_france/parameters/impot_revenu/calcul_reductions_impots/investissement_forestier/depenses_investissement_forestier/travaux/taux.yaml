@@ -1,0 +1,13 @@
+description: Taux de réduction d'impôt pour les travaux réguliers
+values:
+  2014-01-01:
+    value: 0.18
+metadata:
+  last_value_still_valid_on: "2022-10-11"
+  unit: /1
+  reference:
+    2014-01-01:
+    - title: Loi 2013-1279 du 29/12/2013 - art. 32 (créé art. 200 quindecies du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000028428523/2013-12-31/
+    - title: Art. 200 quindecies, 5. du CGI
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000028439825/2014-01-01/

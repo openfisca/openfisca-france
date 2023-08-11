@@ -1,0 +1,19 @@
+description: Plafond du prix de revient du logement pour la réduction d'impôt "Censi-Bouvard"
+values:
+  2009-01-01:
+    value: 300000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_locmeu
+  unit: currency
+  reference:
+    2009-01-01:
+      title: Loi n° 2008-1425 du 27 décembre 2008 (LF pour 2009), art.90
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000019995721&idArticle=LEGIARTI000020000213&dateTexte=20090409&categorieLien=id#LEGIARTI000020000213
+documentation: |-
+  Notes :
+  (1) Réduction codifiée à l'article 199 sexvicies du Code général des impôts
+  (2) Le prix de revient du logement correspond généralement au prix d'acquisition du bien, auquel est soustrait la TVA, majoré des éventuels coûts de réhabilitation et d'intermédiaires.
+  (3) Les résidences concernées sont les résidences avec services pour étudiants, les résidences de tourisme (plus éligible à partir du 1er janvier 2017), les résidences qui dispensent des soins de longue durée à des personnes n'ayant pas leur autonomie de vie et dont l'état nécessite une surveillance médicale constante et des traitements d'entretien ainsi que les résidences destinées à accueillir des personnes âgées ou des adultes handicapés et qui sont habilitées à leur apporter des prestations de soins relevant d'acte médicaux ou paramédicaux (les EHPAD ou les EHPA par exemple).
+  (4) Le propriétaire doit s’engager à louer le logement meublé pour une durée minimale de neuf ans à l’exploitant de l’établissement ou de la résidence. Les produits tirés de la location du logement concerné doivent être imposés dans la catégorie des BIC.
+  L'article 186 de la loi n° 2018-1317 du 28 décembre 2018 (LF pour 2019) proroge le dispositif pour 3 ans, jusqu'au 31 décembre 2021. L'article 74 de la loi n° 2021-1900 du 30 décembre 2021 (LF pour 2022) proroge le dispositif pour 1 an, jusqu'au 31 décembre 2022.

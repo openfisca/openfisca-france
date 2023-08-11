@@ -1,0 +1,8 @@
+description: Part fixe du supplément familial de traitement
+metadata:
+  short_label: Part fixe
+  label_en: Fixed share
+  order:
+  - un_enfant
+  - deux_enfants
+  - enfant_supplementaire

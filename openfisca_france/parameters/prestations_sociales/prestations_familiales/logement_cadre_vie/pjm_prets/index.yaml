@@ -1,7 +1,7 @@
 description: Montant des prêts susceptibles d'être accordés dans le cadre du Prêt aux jeunes ménages (PJM)
 metadata:
-  ux_name: Montant PJM
-  description_en: "Loans to young household (PJM): Amount of loans"
+  short_label: Montant PJM
+  label_en: "Loans to young household (PJM): Amount of loans"
   order:
   - pret_maximum
   - cumul_prets

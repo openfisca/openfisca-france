@@ -1,0 +1,642 @@
+description: Barème marginal de l'Impôt général sur le revenu (IGR, 1919-1935)
+brackets:
+- threshold:
+    1919-01-01:
+      value: 0
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 6000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.02
+    1923-01-01:
+      value: 0.024
+    1924-01-01:
+      value: 0.0288
+    1925-01-01:
+      value: 0.024
+    1926-01-01:
+      value: 0.012
+    1928-01-01:
+      value: 0.013332
+    1932-01-01:
+      value: 0.014668
+    1934-01-01:
+      value: 0.0096
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 20000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.04
+    1923-01-01:
+      value: 0.048
+    1924-01-01:
+      value: 0.0576
+    1925-01-01:
+      value: 0.048
+    1926-01-01:
+      value: 0.024
+    1928-01-01:
+      value: 0.026664
+    1932-01-01:
+      value: 0.029336
+    1934-01-01:
+      value: 0.0192
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 30000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.06
+    1923-01-01:
+      value: 0.072
+    1924-01-01:
+      value: 0.0864
+    1925-01-01:
+      value: 0.072
+    1926-01-01:
+      value: 0.036
+    1928-01-01:
+      value: 0.039996
+    1932-01-01:
+      value: 0.044004
+    1934-01-01:
+      value: 0.0288
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 40000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.08
+    1923-01-01:
+      value: 0.096
+    1924-01-01:
+      value: 0.1152
+    1925-01-01:
+      value: 0.096
+    1926-01-01:
+      value: 0.048
+    1928-01-01:
+      value: 0.053328
+    1932-01-01:
+      value: 0.058672
+    1934-01-01:
+      value: 0.0384
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 50000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.1
+    1923-01-01:
+      value: 0.12
+    1924-01-01:
+      value: 0.144
+    1925-01-01:
+      value: 0.12
+    1926-01-01:
+      value: 0.06
+    1928-01-01:
+      value: 0.06666
+    1932-01-01:
+      value: 0.07334
+    1934-01-01:
+      value: 0.048
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 60000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.12
+    1923-01-01:
+      value: 0.144
+    1924-01-01:
+      value: 0.1728
+    1925-01-01:
+      value: 0.144
+    1926-01-01:
+      value: 0.072
+    1928-01-01:
+      value: 0.07999200000000001
+    1932-01-01:
+      value: 0.088008
+    1934-01-01:
+      value: 0.0576
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 70000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.14
+    1923-01-01:
+      value: 0.168
+    1924-01-01:
+      value: 0.2016
+    1925-01-01:
+      value: 0.168
+    1926-01-01:
+      value: 0.084
+    1928-01-01:
+      value: 0.093324
+    1932-01-01:
+      value: 0.102676
+    1934-01-01:
+      value: 0.0672
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 80000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.16
+    1923-01-01:
+      value: 0.192
+    1924-01-01:
+      value: 0.2304
+    1925-01-01:
+      value: 0.192
+    1926-01-01:
+      value: 0.096
+    1928-01-01:
+      value: 0.106656
+    1932-01-01:
+      value: 0.117344
+    1934-01-01:
+      value: 0.0768
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 90000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.18
+    1923-01-01:
+      value: 0.216
+    1924-01-01:
+      value: 0.2592
+    1925-01-01:
+      value: 0.216
+    1926-01-01:
+      value: 0.108
+    1928-01-01:
+      value: 0.119988
+    1932-01-01:
+      value: 0.132012
+    1934-01-01:
+      value: 0.0864
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 100000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.2
+    1923-01-01:
+      value: 0.24
+    1924-01-01:
+      value: 0.288
+    1925-01-01:
+      value: 0.24
+    1926-01-01:
+      value: 0.12
+    1928-01-01:
+      value: 0.13332
+    1932-01-01:
+      value: 0.14668
+    1934-01-01:
+      value: 0.096
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 125000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.22
+    1923-01-01:
+      value: 0.264
+    1924-01-01:
+      value: 0.3168
+    1925-01-01:
+      value: 0.264
+    1926-01-01:
+      value: 0.132
+    1928-01-01:
+      value: 0.146652
+    1932-01-01:
+      value: 0.161348
+    1934-01-01:
+      value: 0.1056
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 150000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.24
+    1923-01-01:
+      value: 0.288
+    1924-01-01:
+      value: 0.3456
+    1925-01-01:
+      value: 0.288
+    1926-01-01:
+      value: 0.144
+    1928-01-01:
+      value: 0.159984
+    1932-01-01:
+      value: 0.176016
+    1934-01-01:
+      value: 0.1152
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 175000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.26
+    1923-01-01:
+      value: 0.312
+    1924-01-01:
+      value: 0.3744
+    1925-01-01:
+      value: 0.312
+    1926-01-01:
+      value: 0.156
+    1928-01-01:
+      value: 0.173316
+    1932-01-01:
+      value: 0.190684
+    1934-01-01:
+      value: 0.1248
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 200000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.28
+    1923-01-01:
+      value: 0.336
+    1924-01-01:
+      value: 0.4032
+    1925-01-01:
+      value: 0.336
+    1926-01-01:
+      value: 0.168
+    1928-01-01:
+      value: 0.186648
+    1932-01-01:
+      value: 0.205352
+    1934-01-01:
+      value: 0.1344
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 225000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.3
+    1923-01-01:
+      value: 0.36
+    1924-01-01:
+      value: 0.4319999999999999
+    1925-01-01:
+      value: 0.36
+    1926-01-01:
+      value: 0.18
+    1928-01-01:
+      value: 0.19998
+    1932-01-01:
+      value: 0.22002
+    1934-01-01:
+      value: 0.144
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 250000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.32
+    1923-01-01:
+      value: 0.384
+    1924-01-01:
+      value: 0.4608
+    1925-01-01:
+      value: 0.384
+    1926-01-01:
+      value: 0.192
+    1928-01-01:
+      value: 0.213312
+    1932-01-01:
+      value: 0.234688
+    1934-01-01:
+      value: 0.1536
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 275000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.34
+    1923-01-01:
+      value: 0.408
+    1924-01-01:
+      value: 0.4896
+    1925-01-01:
+      value: 0.408
+    1926-01-01:
+      value: 0.204
+    1928-01-01:
+      value: 0.226644
+    1932-01-01:
+      value: 0.249356
+    1934-01-01:
+      value: 0.1632
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 300000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.36
+    1923-01-01:
+      value: 0.4319999999999999
+    1924-01-01:
+      value: 0.5184
+    1925-01-01:
+      value: 0.4319999999999999
+    1926-01-01:
+      value: 0.216
+    1928-01-01:
+      value: 0.239976
+    1932-01-01:
+      value: 0.264024
+    1934-01-01:
+      value: 0.1728
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 325000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.38
+    1923-01-01:
+      value: 0.456
+    1924-01-01:
+      value: 0.5472
+    1925-01-01:
+      value: 0.456
+    1926-01-01:
+      value: 0.228
+    1928-01-01:
+      value: 0.253308
+    1932-01-01:
+      value: 0.2786920000000001
+    1934-01-01:
+      value: 0.1824
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 350000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.4
+    1923-01-01:
+      value: 0.48
+    1924-01-01:
+      value: 0.576
+    1925-01-01:
+      value: 0.48
+    1926-01-01:
+      value: 0.24
+    1928-01-01:
+      value: 0.26664
+    1932-01-01:
+      value: 0.29336
+    1934-01-01:
+      value: 0.192
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 375000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.42
+    1923-01-01:
+      value: 0.504
+    1924-01-01:
+      value: 0.6048
+    1925-01-01:
+      value: 0.504
+    1926-01-01:
+      value: 0.252
+    1928-01-01:
+      value: 0.279972
+    1932-01-01:
+      value: 0.308028
+    1934-01-01:
+      value: 0.2016
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 400000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.44
+    1923-01-01:
+      value: 0.528
+    1924-01-01:
+      value: 0.6335999999999999
+    1925-01-01:
+      value: 0.528
+    1926-01-01:
+      value: 0.264
+    1928-01-01:
+      value: 0.293304
+    1932-01-01:
+      value: 0.322696
+    1934-01-01:
+      value: 0.2112
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 450000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.46
+    1923-01-01:
+      value: 0.5519999999999999
+    1924-01-01:
+      value: 0.6624
+    1925-01-01:
+      value: 0.5519999999999999
+    1926-01-01:
+      value: 0.276
+    1928-01-01:
+      value: 0.306636
+    1932-01-01:
+      value: 0.3373640000000001
+    1934-01-01:
+      value: 0.2208
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 500000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.48
+    1923-01-01:
+      value: 0.576
+    1924-01-01:
+      value: 0.6912
+    1925-01-01:
+      value: 0.576
+    1926-01-01:
+      value: 0.288
+    1928-01-01:
+      value: 0.319968
+    1932-01-01:
+      value: 0.352032
+    1934-01-01:
+      value: 0.2304
+    1936-01-01:
+      value: null
+- threshold:
+    1919-01-01:
+      value: 550000
+    1936-01-01:
+      value: null
+  rate:
+    1919-01-01:
+      value: 0.5
+    1923-01-01:
+      value: 0.6
+    1924-01-01:
+      value: 0.72
+    1925-01-01:
+      value: 0.6
+    1926-01-01:
+      value: 0.3
+    1928-01-01:
+      value: 0.3333
+    1932-01-01:
+      value: 0.3667
+    1934-01-01:
+      value: 0.24
+    1936-01-01:
+      value: null
+metadata:
+  short_label: Barème 1919-35
+  label_en: Thresholds and marginal tax rates of the IGR tax (1919-1935)
+  reference:
+    1919-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+    1923-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+    1924-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+    1925-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+    1926-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+    1928-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+    1932-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+    1934-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+  rate_unit: /1
+  threshold_unit: currency
+documentation: |-
+  Notes :
+  Les revenus des années 1919-1935 étaient soumis à des barèmes exprimés en taux marginal et l'échelle des revenus découpées en 25 tranches :
+  La fraction de revenu imposable comprise entre 6000 et 20000 francs était retenue pour 1/25ème de son montant
+  La fraction comprise entre 20000 et 30000 francs est retenue pour 2/25èmes de son montant, etc.
+  La fraction supérieure à 550000 francs est retenue pour 25/25èmes
+  Le taux appliqué au revenu ainsi obtenu était de 50% pour les revenus des années 1919-1922, 60% pour les revenus de 1923, 72 % pour les revenus de 1924, 60% pour les revenus de 1925, etc. (valeur du taux de la dernière tranche)
+  Ces taux incluent les majorations applicables lors de l'imposition des années 1923-1925 et 1932-1933 indiquées sur le tableau 4-6 de Piketty (2001). Les revalorisations de l'abattement général sont indiquées dans le tableau C-1 (Piketty 2001)

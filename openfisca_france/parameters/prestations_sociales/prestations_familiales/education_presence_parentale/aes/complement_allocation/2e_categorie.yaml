@@ -9,8 +9,8 @@ values:
   2006-01-01:
     value: null
 metadata:
-  ux_name: 2e catégorie
-  description_en: "Special education allowance (AES): Conditions and amounts"
+  short_label: 2e catégorie
+  label_en: "Special education allowance (AES): Conditions and amounts"
   ipp_csv_id: aes_cplt2
   unit: /1
   reference:

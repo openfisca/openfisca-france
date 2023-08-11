@@ -15,8 +15,8 @@ values:
   1982-07-01:
     value: null
 metadata:
-  ux_name: Équipement mobilier et ménager
-  description_en: "Loans to young household (PJM): Amount of loans"
+  short_label: Équipement mobilier et ménager
+  label_en: "Loans to young household (PJM): Amount of loans"
   ipp_csv_id: pret_max_equipement
   unit: currency
   reference:

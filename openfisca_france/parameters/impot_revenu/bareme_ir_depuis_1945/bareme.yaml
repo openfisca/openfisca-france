@@ -127,6 +127,8 @@ brackets:
       value: 10084
     2021-01-01:
       value: 10225
+    2022-01-01:
+      value: 10777
   rate:
     1945-01-01:
       value: 0.12
@@ -275,6 +277,8 @@ brackets:
       value: 25710
     2021-01-01:
       value: 26070
+    2022-01-01:
+      value: 27478
   rate:
     1945-01-01:
       value: 0.3
@@ -425,6 +429,8 @@ brackets:
       value: 73516
     2021-01-01:
       value: 74545
+    2022-01-01:
+      value: 78570
   rate:
     1945-01-01:
       value: 0.45
@@ -577,6 +583,8 @@ brackets:
       value: 158122
     2021-01-01:
       value: 160336
+    2022-01-01:
+      value: 168994
   rate:
     1945-01-01:
       value: 0.6
@@ -1207,8 +1215,9 @@ brackets:
     1986-01-01:
       value: null
 metadata:
-  ux_name: Barème de l'impôt sur le revenu
-  description_en: Thresholds and marginal tax rates (1945-)
+  short_label: Barème de l'impôt sur le revenu
+  last_value_still_valid_on: "2023-01-05"
+  label_en: Thresholds and marginal tax rates (1945-)
   reference:
     1945-01-01:
       title: Loi 48-24 du 06/01/1948
@@ -1415,7 +1424,12 @@ metadata:
     - title: Loi 2021-1900, art. 2 du 30/12/2021 (LF pour 2022)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
     - title: Article 197, I.1. du Code général des impôts
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01/
+    2022-01-01:
+    - title: Article 197, I.1. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2023-01-01/
+    - title: LOI n° 2022-1726, art. 2 du 30/12/2022 (LF pour 2023)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845640
   official_journal_date:
     1946-01-01: "1949-01-01"
     1959-01-01: "1959-12-31"
@@ -1480,6 +1494,7 @@ metadata:
     2018-01-01: "2018-12-30"
     2019-01-01: "2019-12-29"
     2020-01-01: 2020-12-30; 2019-12-29
+    2022-01-01: "2022-12-31"
   notes:
     1947-01-01:
     - title: Coexistence IGR et impôts cédulaires (voir notes 1 à 4). Ces barèmes concernent l'IGR jusqu'en 1948. En 1948, un « prélèvement exceptionnel de lutte contre l'inflation » sur les revenus 1946 est instauré dans le cadre du « plan Mayer » (intégré dans le barème); les contribuables ayant le choix d'échapper à cette majoration du barème s'ils souscrivent à un « emprunt obligatoire » rémunéré à 3 % sur 10 ans.
@@ -1503,7 +1518,6 @@ metadata:
     - title: Intégration de l'abattement de 20 % au barème de l'impôt sur le revenu et diminution du nombre de tranches de 7 à 5.
     2020-01-01:
     - title: La modification du taux est codifiée par la LF 2019 (le A. du IV. de l'art. 2 précise que l'application se fait au titre des revenus perçus ou réalisés en 2020). Les seuils d'entrée des troisièmes et quatrièmes tranches sont abaissés en compensation de la baisse du taux d'imposition dans la deuxième tranche, afin que la baisse d'impôt profite en priorité aux contribuables des deux premières tranches.
-  last_review: "2022-08-08"
   rate_unit: /1
   threshold_unit: currency
 documentation: |-

@@ -17,7 +17,8 @@ values:
   2023-01-01:
     value: 83029
 metadata:
-  ux_name: Plafond nº2
+  short_label: Plafond nº2
+  last_value_still_valid_on: "2021-12-31"
   unit: currency
   reference:
     2016-01-01:

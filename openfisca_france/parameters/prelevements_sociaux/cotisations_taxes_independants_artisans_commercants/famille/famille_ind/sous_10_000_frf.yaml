@@ -7,8 +7,8 @@ values:
   1983-01-01:
     value: null
 metadata:
-  ux_name: Sous 10 000 FRF
-  description_en: SSCs for family benefits (independent workers)
+  short_label: Sous 10 000 FRF
+  label_en: SSCs for family benefits (independent workers)
   ipp_csv_id: fam_inde_0_10000
   unit: /1
   reference:

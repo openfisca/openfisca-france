@@ -1,6 +1,6 @@
 description: Niveaux des contributions additionnelles dues par les redevables de l'impôt sur les sociétés
 metadata:
-  description_en: Levels of additional contributions due from corporate taxpayers
+  label_en: Levels of additional contributions due from corporate taxpayers
   order:
   - taux_contribution_exceptionnelle
   - taux_contribution_is

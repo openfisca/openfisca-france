@@ -1,4 +1,4 @@
-description: Taux sur les produits de placement de la Contribution Sociale Généralisée (CSG) sur les revenus du capital
+description: Taux sur les produits de placement de la contribution sociale généralisée (CSG) sur les revenus du capital
 values:
   1990-01-01:
     value: null
@@ -17,8 +17,9 @@ values:
   2019-01-01:
     value: 0.092
 metadata:
-  ux_name: Produits de placement
-  description_en: CSG on financial income
+  short_label: Produits de placement
+  last_value_still_valid_on: "2019-01-01"
+  label_en: CSG on financial income
   ipp_csv_id: tx_csg_rk_plac
   unit: /1
   reference:
@@ -59,7 +60,6 @@ metadata:
     2005-01-01: "2004-08-17"
     2018-01-01: "2017-12-31"
     2019-01-01: "2018-12-23"
-  last_review: "2019-01-01"
 documentation: |-
   Notes: Ici (4) et (5)
   En ce qui concerne l'assiette CSG, l'abattement sur l'impôt sur le revenu est appliqué, jusqu'à sa suppression en 1997.

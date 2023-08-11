@@ -1,0 +1,10 @@
+description: Réduction pour enfant à charge avec garde alternée de l'impôt de solidarité sur la fortune
+values:
+  2002-01-01:
+    value: 75
+  2012-01-01:
+    value: 150
+  2013-01-01:
+    value: 0
+metadata:
+  unit: currency

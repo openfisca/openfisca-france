@@ -9,5 +9,5 @@ values:
   2021-09-30:
     value: 200
 metadata:
-  ux_name: Montant maximum
+  short_label: Montant maximum
   unit: currency

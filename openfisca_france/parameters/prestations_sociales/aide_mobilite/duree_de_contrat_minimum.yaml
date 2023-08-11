@@ -1,0 +1,10 @@
+description: La durée (en mois) minimale de contrat pour être éligible à l'aide mobilité de Pôle Emploi.
+values:
+  2021-06-09:
+    value: 3
+metadata:
+  short_label: Durée contrat min.
+  reference:
+    2021-06-09:
+      title: Délibération n° 2021-42 du 8 juin 2021
+      href: http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#

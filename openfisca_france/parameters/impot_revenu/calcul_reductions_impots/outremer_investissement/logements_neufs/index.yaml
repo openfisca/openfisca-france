@@ -1,0 +1,8 @@
+description: Réductions d'impôt pour les particuliers concernant les investissements d'acquisition ou construction de logements neufs réalisés en Outre-Mer (2003-2021)
+metadata:
+  short_label: Logements neufs
+  order:
+  - principale
+  - rehabilitation
+  - location_nue
+  - location_intermediaire

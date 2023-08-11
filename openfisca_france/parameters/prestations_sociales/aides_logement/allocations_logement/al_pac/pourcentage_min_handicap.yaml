@@ -1,12 +1,13 @@
-description: Pourcentage minimal de handicap pour les ascendants ou descendants - Définition des personnes à charge pour les Allocations logement (AL)
+description: Pourcentage minimal de handicap pour les ascendants, descendants, collatéraux au deuxième ou troisième degré, du bénéficiaire ou de son conjoint, pour être considéré comme personne à charge pour les allocations logement (AL)
 values:
   1991-11-11:
     value: null
   2000-01-01:
     value: 0.8
 metadata:
-  ux_name: Pourcentage minimal de handicap pour les ascendants ou descendants
-  description_en: Definition of dependants
+  short_label: Pourcentage minimal de handicap pour un ascendant, descendant ou collatéral invalide
+  last_value_still_valid_on: "2023-02-09"
+  label_en: Definition of dependants
   ipp_csv_id: pct_handicap
   unit: /1
   reference:
@@ -14,7 +15,9 @@ metadata:
       title: Décret 91-1159 du 08/11/1991, art. 1 (modif art. D542-4 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776071&cidTexte=JORFTEXT000000701067
     2000-01-01:
-      title: Décret 2000-72 du 28/01/2000, art. 1 (modif art. D542-4 du CSS)
+    - title: Article R823-4, 3° du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878933
+    - title: Décret 2000-72 du 28/01/2000, art. 1 (modif art. D542-4 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779257&cidTexte=JORFTEXT000000749997
   official_journal_date:
     1991-11-11: "1991-11-10"
@@ -22,3 +25,4 @@ metadata:
   notes:
     2000-01-01:
     - title: Instaure un nouvel âge limite pour les enfants
+    - title: En 2019, l'article est désormais codifié dans le Code de la construction et de l'habitation.

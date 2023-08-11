@@ -9,7 +9,7 @@ values:
   2008-05-01:
     value: null
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: altern_m10_p_0_
   unit: /1
   reference:

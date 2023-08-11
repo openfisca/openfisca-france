@@ -1,10 +1,10 @@
-description: Contribution à la formation professionnelle de la CUFPA, pour moins de 11 salariés - Autres taxes et participations assises sur les salaires
+description: Taux de la contribution à la formation professionnelle pour les employeurs de moins de 11 salariés
 values:
   2019-01-01:
     value: 0.0055
 metadata:
-  ux_name: Moins de 11 salariés
-  description_en: Unique employer's participation to lifelong professional training and apprenticeship
+  short_label: Employeur de moins de 11 salariés
+  label_en: Unique employer's participation to lifelong professional training and apprenticeship
   unit: /1
   reference:
     2019-01-01:

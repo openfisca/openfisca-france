@@ -4,7 +4,7 @@ values:
     value: 0.6
   2015-01-01: expected
 metadata:
-  ux_name: Taux maximum
+  short_label: Taux maximum
+  last_value_still_valid_on: "2015-01-01"
   unit: /1
-  last_review: "2015-01-01"
 documentation: ""

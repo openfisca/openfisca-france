@@ -1,0 +1,198 @@
+description: Traitement minimum dans la fonction publique, en points d'indice majoré
+values:
+  1985-07-01:
+    value: 217
+  1985-11-01:
+    value: 215
+  1988-10-01:
+    value: 219
+  1989-02-01:
+    value: 220
+  1990-01-01:
+    value: 221
+  1990-12-01:
+    value: 224
+  1991-08-01:
+    value: 226
+  1998-04-01:
+    value: 247
+  1998-07-01:
+    value: 249
+  1999-04-01:
+    value: 250
+  1999-07-01:
+    value: 252
+  1999-12-01:
+    value: 253
+  2001-05-01:
+    value: 258
+  2001-07-01:
+    value: 261
+  2004-07-01:
+    value: 263
+  2005-07-01:
+    value: 275
+  2006-07-01:
+    value: 279
+  2006-11-01:
+    value: 280
+  2007-07-01:
+    value: 283
+  2008-05-01:
+    value: 288
+  2008-07-01:
+    value: 290
+  2009-07-01:
+    value: 292
+  2011-01-01:
+    value: 295
+  2012-01-01:
+    value: 302
+  2012-07-07:
+    value: 308
+  2013-01-01:
+    value: 309
+  2021-10-01:
+    value: 340
+  2022-01-01:
+    value: 343
+  2022-05-01:
+    value: 352
+  2023-01-01:
+    value: 353
+  2023-05-01:
+    value: 361
+metadata:
+  short_label: Traitement minimal dans la FP
+  last_value_still_valid_on: "2023-05-25"
+  label_en: Minimum wage, civil servants
+  unit: /1
+  reference:
+    1985-07-01:
+      title: Décret n° 86-167 du 31 janvier 1986 modifiant le décret n° 85-1148 du 24 octobre 1985 relatif à la rémunération des personnels civils et militaires de l’État et des personnels des collectivités territoriales
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000518259
+    1985-11-01:
+      title: Décret n° 85-1148 du 24 octobre 1985 relatif à la rémunération des personnels civils et militaires de ‎l'Etat et des personnels des collectivités territoriales
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000872483
+    1987-08-01:
+      title: Décret n° 87-589 du 30 juillet 1987 portant modification du décret n° 85-1148 du 24 octobre 1985 et majoration de la rémunération des personnels civils et militaires de l’État et des personnels des collectivités territoriales à compter du 1er août 1987
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000333235
+    1988-10-01:
+      title: Décret n° 88-1067 du 23 novembre 1988 portant attribution, à compter du 1er octobre 1988, de deux points d'Indice majoré aux personnels de l’État, des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000504298
+    1989-02-01:
+      title: Décret n° 89-64 du 4 février 1989 portant attribution à compter du 1er février 1989 d'un point d'indice majoré aux personnels de l’État. des collectivités territoriales et des établissements publics d'hospitalisation à et majoration à compter du 1er mars 1989 du traitement afférent à l'indice de base de la fonction publique
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000882942
+    1990-01-01:
+      title: Décret n° 90-321 du 5 avril 1990 portant attribution à compter du 1er janvier 1990 d'un point d'indice majoré aux personnels de l’État des collectivités territoriales et des établissements publics d'hospitalisation et majoration du traitement afférent à l'indice de base de la fonction publique
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000166950
+    1990-12-01:
+      title: Décret n° 90-1058 du 22 novembre 1990 portant majoration de la rémunération des personnels civils et militaires de l’État, des personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000352399
+    1991-08-01:
+      title: Décret n° 91-1191 du 18 novembre 1991 portant attribution à compter du 1er août 1991 de deux points d'indice majoré aux personnels de l’État, des collectivités territoriales et des établissements publics d'hospitalisation et majoration du traitement afférent à l'indice de base de la fonction publique à compter du 1er août 1991 et du 1er novembre 1991
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000538342
+    1998-04-01:
+      title: Décret n° 98-143 du 4 mars 1998 modifiant le décret n° 85-1148 du 24 octobre 1985 et portant majoration de la rémunération des personnels civils et militaires de l’État, des personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000556219
+    1998-07-01:
+      title: Décret n° 98-462 du 10 juin 1998 portant attribution à compter du 1er juillet 1998 de points d'indice majoré à certains personnels civils et militaires de l’État, des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000740811
+    1999-04-01:
+      title: Décret n° 99-208 du 17 mars 1999 portant majoration à compter du 1er avril 1999 du traitement afférent à l'indice de base de la fonction publique et attribution à compter du 1er avril 1999 d'un point d'indice majoré uniforme aux personnels civils et militaires de l’État, aux personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000393446
+    1999-07-01:
+      title: Décret n° 99-491 du 10 juin 1999 portant attribution à compter du 1er juillet 1999 de points d'indice majoré à certains personnels civils et militaires de l’État et à certains personnels des collectivités territoriales et des établissements publics d'hospitalisation et fixant les modalités de calcul du supplément familial de traitement
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000394805
+    1999-12-01:
+      title: Décret n° 99-943 du 12 novembre 1999 portant majoration à compter du 1er décembre 1999 du traitement afférent à l'indice de base de la fonction publique et attribution à compter du 1er décembre 1999 d'un point d'indice majoré uniforme aux personnels civils et militaires de l’État et aux personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000397436
+    2001-05-01:
+      title: Décret no 2001-370 du 25 avril 2001 portant majoration à compter du 1er mai 2001 de la rémunération des personnels civils et militaires de l'Etat, des personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000210853
+    2001-07-01:
+      title: Décret n° 2001-559 du 28 juin 2001 portant attribution à compter du 1er juillet 2001 de points d'indice majoré à certains personnels civils et militaires de l’État, des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000579944
+    2004-07-01:
+      title: Décret n° 2004-679 du 9 juillet 2004 portant attribution à compter du 1er juillet 2004 de points d'indice majoré à certains personnels civils et militaires de l’État, des personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000620605
+    2005-07-01:
+      title: Décret n° 2005-726 du 29 juin 2005 portant majoration, à compter du 1er juillet 2005, des rémunérations de la fonction publique et attribution de points d'indice majoré à certains personnels civils et militaires de l’État, personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000810890
+    2006-07-01:
+      title: Décret n° 2006-759 du 29 juin 2006 portant majoration à compter du 1er juillet 2006 des rémunérations de la fonction publique et attribution de points d'indice majoré à certains personnels civils et militaires de l’État, personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000422923
+    2006-11-01:
+      title: Décret n° 2006-1283 du 19 octobre 2006 portant attribution à compter du 1er novembre 2006 d'un point d'indice majoré uniforme à l'ensemble des personnels civils et militaires de l’État, des personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000615828
+    2007-07-01:
+      title: Décret n° 2007-1054 du 28 juin 2007 portant attribution de points d'indice majoré à certains personnels civils et militaires de l’État, personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000649573
+    2008-05-01:
+      title: Décret n° 2008-400 du 24 avril 2008 portant attribution de points d'indice majoré à certains personnels civils et militaires de l’État, personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000018693706
+    2008-07-01:
+      title: Décret n° 2008-622 du 27 juin 2008 portant attribution de points d'indice majoré à certains personnels civils et militaires de l’État, personnels des collectivités territoriales et des établissements publics d'hospitalisation
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000019108374
+    2009-07-01:
+      title: Décret n° 2009-824 du 3 juillet 2009 portant majoration à compter du 1er juillet 2009 de la rémunération des personnels civils et militaires de l’État, des personnels des collectivités territoriales et des établissements publics d’hospitalisation et portant attribution de points d’indice majoré
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000020815910
+    2011-01-01:
+      title: Décret n° 2011-51 du 13 janvier 2011 portant relèvement du minimum de traitement dans la fonction publique et attribution de points d'indice majoré à certains personnels civils et militaires de l’État, personnels des collectivités territoriales et des établissements publics de santé
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023417934
+    2012-01-01:
+      title: Décret n° 2012-37 du 11 janvier 2012 portant relèvement du minimum de traitement dans la fonction publique et attribution de points d'indice majoré à certains personnels civils et militaires de l’État, personnels des collectivités territoriales et des établissements publics de santé
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025135486
+    2012-07-01:
+      title: Décret n° 2012-853 du 5 juillet 2012 portant relèvement du minimum de traitement dans la fonction publique et attribution de points d'indice majoré à certains personnels civils et militaires de l’État, personnels des collectivités territoriales et des établissements publics de santé
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000026149212
+    2013-01-01:
+      title: Décret n° 2013-33 du 10 janvier 2013 portant relèvement du minimum de traitement dans la fonction publique et attribution de points d'indice majoré à certains personnels civils et militaires de l’État, personnels des collectivités territoriales et des établissements publics de santé
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000026924624
+    2021-10-01:
+      title: Décret n° 2021-1270 du 29 septembre 2021 portant relèvement du minimum de traitement dans la fonction publique
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044126795
+    2022-01-01:
+      title: Décret n° 2021-1749 du 22 décembre 2021 portant relèvement du minimum de traitement dans la fonction publique
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044547466
+    2022-05-01:
+      title: Décret n° 2022-586 du 20 avril 2022 portant relèvement du minimum de traitement dans la fonction publique
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045614970
+    2023-01-01:
+      title: Décret n° 2022-1615 du 22 décembre 2022 portant relèvement du minimum de traitement dans la fonction publique
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046780644
+    2023-05-01:
+      title: Décret n° 2023-312 du 26 avril 2023 portant relèvement du minimum de traitement dans la fonction publique
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047496223
+  official_journal_date:
+    1985-07-01: "1986-02-07"
+    1985-11-01: "1985-11-05"
+    1988-10-01: "1988-11-29"
+    1989-02-01: "1989-02-05"
+    1990-01-01: "1990-04-11"
+    1990-12-01: "1990-11-30"
+    1991-08-01: "1991-11-27"
+    1998-04-01: "1998-03-08"
+    1998-07-01: "1998-06-14"
+    1999-04-01: "1999-03-20"
+    1999-07-01: "1999-06-13"
+    1999-12-01: "1999-11-14"
+    2001-05-01: "2001-04-28"
+    2001-07-01: "2001-06-29"
+    2004-07-01: "2004-07-10"
+    2005-07-01: "2005-06-30"
+    2006-07-01: "2006-06-30"
+    2006-11-01: "2006-10-20"
+    2007-07-01: "2007-06-29"
+    2008-05-01: "2008-04-25"
+    2008-07-01: "2008-06-28"
+    2009-07-01: "2009-07-04"
+    2011-01-01: "2011-01-14"
+    2012-01-01: "2012-01-12"
+    2012-07-07: "2012-07-06"
+    2013-01-01: "2013-01-11"
+    2021-10-01: "2021-09-30"
+    2022-01-01: "2021-12-23"
+    2022-05-01: "2022-04-21"
+    2023-01-01: "2022-12-23"
+    2023-05-01: "2023-04-27"

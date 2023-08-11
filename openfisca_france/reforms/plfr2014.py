@@ -32,38 +32,38 @@ class plfr2014(Reform):
 
         def formula_2013_01_01(foyer_fiscal, period, parameters):
             accult = foyer_fiscal('accult', period)
-            adhcga = foyer_fiscal('adhcga', period)
+            frais_de_comptabilite = foyer_fiscal('frais_de_comptabilite', period)
             cappme = foyer_fiscal('cappme', period)
             creaen = foyer_fiscal('creaen', period)
-            daepad = foyer_fiscal('daepad', period)
-            deffor = foyer_fiscal('deffor', period)
+            accueil_dans_etablissement_personnes_agees = foyer_fiscal('accueil_dans_etablissement_personnes_agees', period)
+            defense_forets_contre_incendies = foyer_fiscal('defense_forets_contre_incendies', period)
             dfppce = foyer_fiscal('dfppce', period)
             doment = foyer_fiscal('doment', period)
             domlog = foyer_fiscal('domlog', period)
             duflot = foyer_fiscal('duflot_pinel_denormandie_metropole', period)
             duflot_om = foyer_fiscal('duflot_pinel_denormandie_om', period)
-            ecpess = foyer_fiscal('ecpess', period)
-            garext = foyer_fiscal('garext', period)
-            intagr = foyer_fiscal('intagr', period)
-            invfor = foyer_fiscal('ri_invfor', period)
+            reduction_enfants_scolarises = foyer_fiscal('reduction_enfants_scolarises', period)
+            gardenf = foyer_fiscal('gardenf', period)
+            interets_paiements_differes_agriculteurs = foyer_fiscal('interets_paiements_differes_agriculteurs', period)
+            investissement_forestier = foyer_fiscal('ri_investissement_forestier', period)
             invlst = foyer_fiscal('invlst', period)
             ip_net = foyer_fiscal('ip_net', period)
-            locmeu = foyer_fiscal('locmeu', period)
+            location_meublee = foyer_fiscal('location_meublee', period)
             mecena = foyer_fiscal('mecena', period)
             mohist = foyer_fiscal('mohist', period)
-            patnat = foyer_fiscal('patnat', period)
-            prcomp = foyer_fiscal('prcomp', period)
+            protection_patrimoine_naturel = foyer_fiscal('protection_patrimoine_naturel', period)
+            prestations_compensatoires = foyer_fiscal('prestations_compensatoires', period)
             reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
-            repsoc = foyer_fiscal('repsoc', period)
-            resimm = foyer_fiscal('resimm', period)
-            rsceha = foyer_fiscal('rsceha', period)
+            interets_emprunt_reprise_societe = foyer_fiscal('interets_emprunt_reprise_societe', period)
+            restauration_patrimoine_bati = foyer_fiscal('restauration_patrimoine_bati', period)
+            rente_survie = foyer_fiscal('rente_survie', period)
             saldom = foyer_fiscal('ri_saldom', period)
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
-            spfcpi = foyer_fiscal('spfcpi', period)
-            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
-                duflot + duflot_om + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
-                prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
+            souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
+            total_reductions = accult + frais_de_comptabilite + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
+                duflot + duflot_om + reduction_enfants_scolarises + gardenf + interets_paiements_differes_agriculteurs + investissement_forestier + invlst + location_meublee + mecena + mohist + protection_patrimoine_naturel +\
+                prestations_compensatoires + interets_emprunt_reprise_societe + restauration_patrimoine_bati + rente_survie + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
             return min_(ip_net, total_reductions)
 
     def apply(self):

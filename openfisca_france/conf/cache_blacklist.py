@@ -48,4 +48,5 @@ cache_blacklist = set([
     'ppa_forfait_logement',
     'ppa_plancher_revenu_activite_etudiant',
     'unites_consommation_cheque_energie',
+    'rsa_revenus_determination_enfant_a_charge',
     ])

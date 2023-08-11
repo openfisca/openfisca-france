@@ -1,0 +1,12 @@
+description: Plafond annuel d'exonération PPV (sous condition de rémunération)
+values:
+  2022-07-01:
+    value: 3000
+metadata:
+  short_label: Premier plafond d'exonération
+  unit: currency
+  reference:
+    2022-07-01:
+      title: LOI n° 2022-1158 du 16 août 2022 portant mesures d'urgence pour la protection du pouvoir d'achat (18 août 2022) Article 1.V
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18
+documentation: La PPV s'inspire de la PEPA où le plafond annuel sous condition de rémunération a atteint 1000€.

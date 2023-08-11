@@ -1,0 +1,33 @@
+description: Taux de rémunération de reprise d'activité retenue pour le Complément d'Aide au Retour à l'Emploi (ARE)
+values:
+  2001-07-01:
+    value: 0.7
+metadata:
+  short_label: Taux rémunération
+  last_value_still_valid_on: "2022-08-08"
+  reference:
+    2001-07-01:
+    - title: Arrêté du 4 décembre 2000 portant agrément de la convention du 1er janvier 2001 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage et du règlement annexé à cette convention
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002221609
+    - title: Règlement annexé à la Convention du 1er janvier 2001 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage
+      href: https://www.unedic.org/sites/default/files/regulations/RglACh01.pdf
+    - title: Arrêté du 28 mai 2004 portant agrément de la convention du 1er janvier 2004 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage et de son règlement annexé
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000437737
+    - title: Règlement annexé à la Convention du 1er janvier 2004 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage
+      href: https://www.unedic.org/sites/default/files/regulations/RglACh04.pdf
+    - title: Circulaire Unédic n°2006-19 du 21 août 2006
+      href: https://www.unedic.org/sites/default/files/circulaires/ci200619.pdf
+    - title: Circulaire Unédic n°2009-12 du 6 mai 2009
+      href: https://www.unedic.org/sites/default/files/circulaires/ci200912.pdf
+    - title: Circulaire Unédic n°2011-25 du 7 juillet 2011
+      href: https://www.unedic.org/sites/default/files/circulaires/ci201125.pdf
+    - title: Circulaire Unédic n°2014-26 du 30 septembre 2014
+      href: https://www.unedic.org/sites/default/files/circulaires/ci201426.pdf
+    - title: Circulaire Unédic n°2017-20 du 24 juillet 2017
+      href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Ci2017-20.pdf
+    - title: Article 31 du Décret n° 2019-797 du 26 juillet 2019 relatif au régime d'assurance chômage
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038869252
+    - title: Circulaire Unédic n°2019-12 du 1er novembre 2019
+      href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n2019-12_du_1er_novembre_2019.pdf
+    - title: Circulaire Unédic n°2021-13 du 19 octobre 2021
+      href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf

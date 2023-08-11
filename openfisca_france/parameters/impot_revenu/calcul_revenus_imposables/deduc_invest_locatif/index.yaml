@@ -1,0 +1,42 @@
+description: Déduction de l'investissement locatif dans l'immobilier neuf au revenu imposable (1996-2009)
+metadata:
+  label_en: Deductions for real estate investments (1996-)
+  notes:
+    1998-01-01:
+    - title: Prévu initialement jusqu'au 31 Décembre 1998, le dispositif Périssol a été prorogé jusqu'au 31 Août 1999.
+  order:
+  - plafond
+  - amortissement_perissol
+  - dispositif_besson_neuf
+  - dispositif_robien
+  - dispositif_robien_recentre
+documentation: |-
+  (1) Le plafond des déficits fonciers imputables aux autres
+  revenus est prévu depuis 1993 et est codifié au 3° du I de l'article 156 du code
+  général des impôts (CGI).
+  (2) Les logements éligibles au disposiif Périssol sont ceux ayant été achetés neufs
+  ou réhabilités entre le 1er Janvier 1996 et
+  le 31 août 1999, à la condition d'être loué nu (non-meublé) à titre de résidence
+  principale du locataire pour une durée minimale de 9 ans. Il n'y a pas de contraintes
+  de loyer ou de ressources des locataires. CGI - art. 31 I-1°
+  (3) Les logements éligibles au dispositif Besson neuf sont ceux ayant été achetés neufs ou réhabilités
+  entre le 1er Janvier 1999 et le 02 avril 2003, à la condition d'être loué nu à
+  titre de résidence principale du locataire pour une durée minimale de 9 ans, avec
+  des plafonnements de loyer en fonction de la zone géographique et de la superficie
+  du bien. Les particuliers éligibles à ces locations doivent avoir des revenus
+  en dessous d'un certain plafond et ne peuvent être des ascendants ou descendants
+  du propriétaire. CGI - art 31 I-1°
+  (4) Les logements éligibles au dispositif
+  Robien "classique" sont ceux ayant été achetés neufs ou réhabilités entre le
+  03 avril 2003 et le 31 août 2006, à la condition d'être loué nu à titre de résidence
+  principale du locataire pour une durée minimale de 9 ans, avec des plafonnements
+  de loyer en fonction de la zone géographique et de la superficie du bien. Tous
+  les contribuables sont éligibles à l'amortissement, indépendamment de leur taux
+  d'imposition. CGI - art.31 I-1°
+  (5) Le dispositif Robien "recentré" s'applique
+  pour les opérations survenues entre le 1er Septembre 2006 et le 31 Décembre 2009
+  selon les mêmes conditions que le Robien "classique". Le dispositif additionnel
+  Borloo neuf permet s'applique si les conditions de plafonnement des loyers sont
+  plus restrictives et avec des locataires éligibles selon leurs revenus. CGI -
+  art. 31 I-1° h et CGI - art. 31 I-1° l pour l'application du dispositif Borloo
+  neuf.

@@ -1,0 +1,7 @@
+description: Part imposable des droits sociaux détenus par les salariés, les mandataires sociaux ou avec engagement de durée
+metadata:
+  short_label: Part imposable de certains droits sociaux
+  label_en: Taxable share of shares handled by employees, corporate officer or with duration commitment
+  order:
+  - taux_salaries_mandataires_sociaux
+  - taux_actions_conservees_6_ans

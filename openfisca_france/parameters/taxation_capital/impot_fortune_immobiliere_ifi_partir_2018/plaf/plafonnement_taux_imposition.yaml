@@ -1,10 +1,11 @@
-description: Plafonnement de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+description: Plafonnement de l'Impôt sur la fortune immobilière
 values:
   2018-01-01:
     value: 0.75
 metadata:
-  ux_name: Plafonnement
-  description_en: Wealth tax ceiling
+  short_label: Plafonnement
+  last_value_still_valid_on: "2022-04-28"
+  label_en: Wealth tax ceiling
   ipp_csv_id: tx_plaf_ifi
   unit: /1
   reference:
@@ -18,4 +19,3 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_review: "2022-04-28"

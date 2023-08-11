@@ -12,19 +12,6 @@ log = logging.getLogger(__name__)
 
 
 # TODO: 8ti et 8tk (cerfa 2047)
-# TODO: CSG, CRDS et prélèvements sociaux sur revenu du patrimione, d'activité et de remplacement
-# TODO: finir RPNS (prise en compte des plafonds / cases non codées : codées pour certaines années mais pas pour
-# d'autres - car des cases sont réutilisées pour des variables différentes suivant les années)
-
-# zetrf = zeros(taille)
-# jeune_veuf = zeros(taille, dtype = bool)
-# Reprise du crédit d'impôt en faveur des jeunes, des accomptes et des versements mensues de prime pour l'emploi
-# reprise = zeros(taille) # TODO : reprise=J80
-# Pcredit = P.calcul_credits_impotss
-# if hasattr(P.calcul_reductions_impots,'saldom'): Pcredit.saldom = P.calcul_reductions_impots.saldom
-# credits_impot = Credits(Pcredit, table)
-# Réduction d'impôt
-# reductions = Reductions(IPnet, P.calcul_reductions_impots)
 
 # def mcirra():
 #    # impôt sur le revenu
@@ -55,7 +42,7 @@ class jour_xyz(Variable):
 class age(Variable):
     unit = 'years'
     value_type = int
-    default_value = -9999
+    default_value = AGE_INT_MINIMUM
     entity = Individu
     label = 'Âge (en années) au premier jour du mois'
     definition_period = MONTH
@@ -94,7 +81,7 @@ class age(Variable):
 
 class age_en_mois(Variable):
     value_type = int
-    default_value = -9999
+    default_value = AGE_INT_MINIMUM
     unit = 'months'
     entity = Individu
     label = 'Âge (en mois)'
@@ -416,10 +403,10 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
         chomeur_longue_duree = individu('chomeur_longue_duree', period)
         frais_reels = individu('frais_reels', period)
-        abatpro = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpro
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+        abattement_minimum = where(chomeur_longue_duree, P.abatpro.min2, P.abatpro.min)
+        abatfor = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, abattement_minimum), P.abatpro.max))
         return (
             (frais_reels > abatfor)
             * (revenu_assimile_salaire - frais_reels)
@@ -430,9 +417,9 @@ class revenu_assimile_salaire_apres_abattements(Variable):
     def formula_2018_01_01(individu, period, parameters):
         revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
         frais_reels = individu('frais_reels', period)
-        abatpro = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpro
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abatpro.min), abatpro.max))
+        abatfor = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
         return (
             (frais_reels > abatfor)
             * (revenu_assimile_salaire - frais_reels)
@@ -464,17 +451,17 @@ class revenu_assimile_pension_apres_abattements(Variable):
 
     def formula(individu, period, parameters):
         revenu_assimile_pension = individu('revenu_assimile_pension', period)
-        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpen
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
         #    TODO: problème car les pensions sont majorées au niveau du foyer
     #    d11 = ( AS + BS + CS + DS + ES +
     #            AO + BO + CO + DO + EO )
     #    penv2 = (d11-f11> abatpen.max)*(penv + (d11-f11-abatpen.max)) + (d11-f11<= abatpen.max)*penv
     #    Plus d'abatement de 20% en 2006
-        return max_(0, revenu_assimile_pension - round_(max_(abatpen.taux * revenu_assimile_pension, abatpen.min)))
+        return max_(0, revenu_assimile_pension - round_(max_(P.taux_salaires_pensions * revenu_assimile_pension, P.abatpen.min)))
 
 
-#    return max_(0, revenu_assimile_pension - min_(round_(max_(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
+#    return max_(0, revenu_assimile_pension - min_(round_(max_(P.taux_salaires_pensions*revenu_assimile_pension , P.abatpen.min)), P.abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
     value_type = float
@@ -485,13 +472,13 @@ class indu_plaf_abat_pen(Variable):
     def formula(foyer_fiscal, period, parameters):
         rev_pen_i = foyer_fiscal.members('revenu_assimile_pension', period)
         pen_net_i = foyer_fiscal.members('revenu_assimile_pension_apres_abattements', period)
-        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpen
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
         revenu_assimile_pension = foyer_fiscal.sum(rev_pen_i)
 
         abat = revenu_assimile_pension - revenu_assimile_pension_apres_abattements
-        return abat - min_(abat, abatpen.max)
+        return abat - min_(abat, P.abatpen.max)
 
 
 class abattement_salaires_pensions(Variable):
@@ -504,9 +491,9 @@ class abattement_salaires_pensions(Variable):
     def formula(individu, period, parameters):
         revenu_assimile_salaire_apres_abattements = individu('revenu_assimile_salaire_apres_abattements', period)
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
-        abatsalpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatsalpen
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        return min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
+        return min_(P.abat_supp.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), P.abat_supp.max)
 
 
 class rente_viagere_titre_onereux(Variable):
@@ -549,7 +536,7 @@ class rente_viagere_titre_onereux_net(Variable):
         f1bw = foyer_fiscal('f1bw', period)
         f1cw = foyer_fiscal('f1cw', period)
         f1dw = foyer_fiscal('f1dw', period)
-        abatviag = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatviag
+        abatviag = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatviag
 
         return round_(
             + abatviag.taux1 * f1aw
@@ -570,7 +557,7 @@ class traitements_salaires_pensions_rentes(Variable):
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
         abattement_salaires_pensions = individu('abattement_salaires_pensions', period)
 
-        # Quand tspr est calculé sur une année glissante, rente_viagere_titre_onereux_net est calculé sur l'année légale
+        # Quand deductions est calculé sur une année glissante, rente_viagere_titre_onereux_net est calculé sur l'année légale
         # correspondante.
         rente_viagere_titre_onereux_net = individu.foyer_fiscal('rente_viagere_titre_onereux_net', period.offset('first-of'))
         rente_viagere_titre_onereux_net_declarant1 = rente_viagere_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -619,7 +606,7 @@ class revenu_categoriel_plus_values(Variable):
         return f3wb
 
 
-class revenu_categoriel_tspr(Variable):
+class revenu_categoriel_deductions(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Revenu catégoriel - Traitements, salaires, pensions et rentes'
@@ -627,10 +614,10 @@ class revenu_categoriel_tspr(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        tspr_i = foyer_fiscal.members('traitements_salaires_pensions_rentes', period)
+        deductions_i = foyer_fiscal.members('traitements_salaires_pensions_rentes', period)
         indu_plaf_abat_pen = foyer_fiscal('indu_plaf_abat_pen', period)
 
-        traitements_salaires_pensions_rentes = foyer_fiscal.sum(tspr_i)
+        traitements_salaires_pensions_rentes = foyer_fiscal.sum(deductions_i)
 
         return traitements_salaires_pensions_rentes + indu_plaf_abat_pen
 
@@ -680,20 +667,20 @@ class revenu_categoriel_capital(Variable):
         f2tr_bis = f2tr
         # # Calcul du revenu catégoriel
         # 1.2 Revenus des valeurs et capitaux mobiliers
-        b12 = min_(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
+        b12 = min_(f2ch, rvcm.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses))
         TOT1 = f2ch - b12  # c12
         # Part des frais s'imputant sur les revenus déclarés case DC
         den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
+        g12b = max_(f2dc_bis * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -722,17 +709,17 @@ class revenu_categoriel_capital(Variable):
         parameter_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         part_frais_imputes_sur_f2dc = f2ca / max_(1, f2dc + f2ts) * f2dc
-        part_frais_restant_a_imputer = -min_(f2dc * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        part_frais_restant_a_imputer = -min_(f2dc * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
 
-        dividendes_apres_abattements = max_(f2dc * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
-        revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, parameter_rvcm.abat_assvie * (1 + maries_ou_pacses))
+        dividendes_apres_abattements = max_(f2dc * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, parameter_rvcm.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses))
         rvcm_apres_abattements_proportionnels = (
             revenus_assurance_vie_apres_abattements
             + dividendes_apres_abattements
             + f2gr
-            + f2fu * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
+            + f2fu * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
             )
-        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameter_rvcm.abatmob * (1 + maries_ou_pacses))
+        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses))
         autres_rvcm_sans_abattements = (
             f2ts - (f2ca - part_frais_imputes_sur_f2dc)
             + f2go * parameter_rvcm.majoration_revenus_reputes_distribues
@@ -757,8 +744,8 @@ class revenu_categoriel_capital(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
-        abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -785,8 +772,8 @@ class revenu_categoriel_capital(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
-        abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -820,8 +807,8 @@ class revenu_categoriel_capital(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
-        abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -843,7 +830,7 @@ class revenu_categoriel_capital(Variable):
         f2yy = foyer_fiscal('f2yy', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -875,20 +862,20 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         F1 = f2ca / den * f2dc  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie positive
-        g12b = max_(f2dc * (1 - rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
+        g12b = max_(f2dc * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
+        return max_((rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2dc = foyer_fiscal('f2dc', period)
         f2fu = foyer_fiscal('f2fu', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
 
         return abattement_dividende
 
@@ -907,7 +894,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         abattement_assurance_vie = (
-            (f2ch < P.abat_assvie * (1 + maries_ou_pacses)) * max_(0, min_(f2vv + f2ww, P.abat_assvie * (1 + maries_ou_pacses) - f2ch - f2dh))
+            (f2ch < P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)) * max_(0, min_(f2vv + f2ww, P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch - f2dh))
             )
 
         return - abattement_assurance_vie
@@ -936,10 +923,10 @@ class revenu_categoriel_foncier(Variable):
             log.error(('Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba) et de déficits (f4bb, f4bc)'))
         if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
             log.error(('Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)'))
-        if (f4be > microfoncier.max).any():
+        if (f4be > microfoncier.plafond_recettes).any():
             log.error(('Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal'))
 
-        micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        micro = min_(f4be, microfoncier.plafond_recettes) * (1 - microfoncier.taux)
 
         # Conditions
         deficit = (f4bc > 0) | (f4bb > 0)
@@ -947,7 +934,7 @@ class revenu_categoriel_foncier(Variable):
 
         # Calculs
         si_deficit = -f4bc
-        si_micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        si_micro = min_(f4be, microfoncier.plafond_recettes) * (1 - microfoncier.taux)
         sinon = max_(0, f4ba - f4bd)
 
         return select([deficit, micro],
@@ -993,13 +980,13 @@ class revenu_categoriel(Variable):
         '''
         Revenus Categoriels
         '''
-        rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
+        rev_cat_deductions = foyer_fiscal('revenu_categoriel_deductions', period)
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rev_cat_rpns = foyer_fiscal('revenu_categoriel_non_salarial', period)
         rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
 
-        return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
+        return rev_cat_deductions + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
 
 ###############################################################################
@@ -1221,9 +1208,9 @@ class ir_plaf_qf(Variable):
         aa0 = (nb_parts - nb_adult) * 2  # nombre de demi part excédant nbadult
         aa1 = min_((nb_parts - 1) * 2, 2)  # deux première demi part excédants une part
 
-        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.general * (aa0 - aa1)
-        B2 = plafond_qf.general * aa0
-        B3 = plafond_qf.celib
+        B1 = plafond_qf.plafond_avantages_procures_par_demi_part.celib_enf * aa1 / 2 + plafond_qf.plafond_avantages_procures_par_demi_part.general * (aa0 - aa1)
+        B2 = plafond_qf.plafond_avantages_procures_par_demi_part.general * aa0
+        B3 = plafond_qf.plafond_avantages_procures_par_demi_part.celib
 
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (annee_naissance_pac_alterne < int(period.start.year) - 25)
@@ -1253,7 +1240,7 @@ class ir_plaf_qf(Variable):
 
         # plus de 590 euros si on a des plus de
         condition62cb = ((nbG + nbR + nbI) > 0) | caseP | caseF
-        D = plafond_qf.reduc_postplafond * (condition62ca + ~condition62ca * condition62cb * (
+        D = plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * (condition62ca + ~condition62ca * condition62cb * (
             1 * caseP + 1 * caseF + nbG + nbR + nbI / 2))
 
         E = max_(0, A - I - B)
@@ -1314,9 +1301,9 @@ class ir_plaf_qf(Variable):
 
         aa0 = (nb_parts - nb_adult) * 2
         aa1 = min_((nb_parts - 1) * 2, 2)
-        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.general * (aa0 - aa1)
-        B2 = plafond_qf.general * aa0
-        B3 = plafond_qf.celib
+        B1 = plafond_qf.plafond_avantages_procures_par_demi_part.celib_enf * aa1 / 2 + plafond_qf.plafond_avantages_procures_par_demi_part.general * (aa0 - aa1)
+        B2 = plafond_qf.plafond_avantages_procures_par_demi_part.general * aa0
+        B3 = plafond_qf.plafond_avantages_procures_par_demi_part.celib
 
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | veuf) & (nb_pac == 0) & caseL
@@ -1344,12 +1331,12 @@ class ir_plaf_qf(Variable):
         condition62d = (nb_pac > 0) & (veuf)
 
         E = condition62b * condition62c * (
-            plafond_qf.reduc_postplafond * condition62c0 * not_(condition62c1)
-            + plafond_qf.reduc_postplafond * 2 * condition62c1
-            + plafond_qf.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2
+            plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * condition62c0 * not_(condition62c1)
+            + plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * 2 * condition62c1
+            + plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2
             )
 
-        D = condition62b * condition62d * plafond_qf.reduc_postplafond_veuf
+        D = condition62b * condition62d * plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond_veuf
 
         F = D + E
         G = max_(0, A - I - B)
@@ -1454,8 +1441,8 @@ class reduction_ss_condition_revenus(Variable):
         P = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.reduction_ss_condition_revenus
 
         ir_apres_plaf_qf_et_decote = ir_plaf_qf - decote
-        plafond1 = P.seuil1 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
-        plafond2 = P.seuil2 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
+        plafond1 = P.plafond_rfr_celib * nb_adult + P.majoration_plafond_par_demi_parts_supp * 2 * (nb_parts - nb_adult)
+        plafond2 = P.plafond_rfr_couple * nb_adult + P.majoration_plafond_par_demi_parts_supp * 2 * (nb_parts - nb_adult)
         reduction1 = P.taux * ir_apres_plaf_qf_et_decote
         reduction2 = P.taux * ir_apres_plaf_qf_et_decote * (plafond2 - rfr) / (plafond2 - plafond1)
 
@@ -1479,11 +1466,11 @@ class nat_imp(Variable):
         '''
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
-        cehr = foyer_fiscal('cehr', period)
+        contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
 
         # def _nat_imp(rni, nbptr, non_imposable = law.impot_revenu.calcul_impot_revenu.non_imposable):
         # seuil = non_imposable.seuil + (nbptr - 1)*non_imposable.supp
-        return (iai - credits_impot + cehr) > 0
+        return (iai - credits_impot + contribution_exceptionnelle_hauts_revenus) > 0
 
 
 class ip_net(Variable):
@@ -1496,14 +1483,12 @@ class ip_net(Variable):
         '''
         Impôt net avant réductions
         '''
-        cncn_info_i = foyer_fiscal.members('cncn_info', period)
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        taux = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.taux16
         # N'est pas véritablement une 'réduction', cf. la définition de cette variable
         reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
 
-        return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus))
+        return around(max_(0, ir_plaf_qf - decote - reduction_ss_condition_revenus))
 
 
 class iaidrdi(Variable):
@@ -1533,12 +1518,12 @@ class cont_rev_loc(Variable):
         Contribution sur les revenus locatifs
         '''
         f4bl = foyer_fiscal('f4bl', period)
-        crl = parameters(period).impot_revenu.contributions_exceptionnelles.crl
+        contribution_revenus_locatifs = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_revenus_locatifs
 
-        return round_(crl.taux * (f4bl >= crl.seuil) * f4bl)
+        return round_(contribution_revenus_locatifs.taux * (f4bl >= contribution_revenus_locatifs.seuil) * f4bl)
 
 
-class teicaa(Variable):  # f5rm
+class indemnite_compensatrice_agents_assurance(Variable):  # f5rm
     value_type = float
     entity = FoyerFiscal
     label = "Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance"
@@ -1548,7 +1533,7 @@ class teicaa(Variable):  # f5rm
         '''
         Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
         '''
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.teicaa
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.indemnite_compensatrice_agents_assurance
 
         f5qm = foyer_fiscal.declarant_principal('f5qm', period)
         f5rm = foyer_fiscal.conjoint('f5qm', period)
@@ -1559,12 +1544,12 @@ class teicaa(Variable):  # f5rm
 class assiette_vente(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Assiette régime microsociale pour les ventes'
+    label = 'Assiette régime microsocial avec versement libératoire pour les ventes'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
-        Assiette régime microsociale pour les ventes
+        Assiette régime microsocial avec versement libératoire pour les ventes
         '''
         ebic_impv_i = foyer_fiscal.members('ebic_impv', period)
 
@@ -1574,12 +1559,12 @@ class assiette_vente(Variable):
 class assiette_service(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Assiette régime microsociale pour les prestations et services'
+    label = 'Assiette régime microsocial avec versement libératoire pour les prestations et services'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
-        Assiette régime microsociale pour les prestations et services
+        Assiette régime microsocial avec versement libératoire pour les prestations et services
         '''
         ebic_imps_i = foyer_fiscal.members('ebic_imps', period)
 
@@ -1592,27 +1577,26 @@ class assiette_service(Variable):
 class assiette_proflib(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Assiette régime microsociale pour les professions libérales'
+    label = 'Assiette régime microsocial avec versement libératoire pour les professions libérales'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
-        Assiette régime microsocial pour les professions libérales
+        Assiette régime microsocial avec versement libératoire pour les professions libérales
         '''
         ebnc_impo_i = foyer_fiscal.members('ebnc_impo', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro  # noqa F841
 
         # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
         # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
         return foyer_fiscal.sum(ebnc_impo_i)
 
-    # assert (ebnc_impo <= P.specialbnc.max)
+    # assert (ebnc_impo <= P.microentreprise.regime_micro_bnc.services.plafond)
 
 
 class microsocial(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Assiette régime microsociale totale'
+    label = 'Impot libératoire régime microfiscal'
     reference = 'http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social'
     definition_period = YEAR
 
@@ -1632,7 +1616,7 @@ class microsocial(Variable):
 class microentreprise(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'microentreprise'
+    label = 'microentreprise bénéfices versement libératoire'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -1644,9 +1628,9 @@ class microentreprise(Variable):
         ebic_imps = foyer_fiscal.sum(ebic_imps_i)
         ebic_impv = foyer_fiscal.sum(ebic_impv_i)
         return (
-            max_(0, ebnc_impo - max_(micro.microentreprise.montant_minimum, micro.specialbnc.taux * ebnc_impo))
-            + max_(0, ebic_imps - max_(micro.microentreprise.montant_minimum, micro.microentreprise.taux_prestations_de_services * ebic_imps))
-            + max_(0, ebic_impv - max_(micro.microentreprise.montant_minimum, micro.microentreprise.taux_ventes_de_marchandises * ebic_impv))
+            max_(0, ebnc_impo - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bnc.taux * ebnc_impo))
+            + max_(0, ebic_imps - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bnc.services.taux * ebic_imps))
+            + max_(0, ebic_impv - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bnc.marchandises.taux * ebic_impv))
             )
 
 
@@ -1684,7 +1668,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.declarant_principal('f3vd', period)  # noqa F841
@@ -1697,12 +1681,12 @@ class taxation_plus_values_hors_bareme(Variable):
         # revenus taxés à un taux proportionnel
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux1 * max_(0, f3vg - f3vh)
-            + plus_values.taux_pv_mob_pro * f3vl
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            pv.plus_values.pvce * rpns_pvce
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * max_(0, f3vg - f3vh)
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * f3vl
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
             )
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
@@ -1714,7 +1698,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.declarant_principal('f3vd', period)
@@ -1727,13 +1711,13 @@ class taxation_plus_values_hors_bareme(Variable):
         # revenus taxés à un taux proportionnel
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux1 * max_(0, f3vg - f3vh)
-            + plus_values.taux_pv_mob_pro * f3vl
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux2 * f3vd
+            pv.plus_values.pvce * rpns_pvce
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * max_(0, f3vg - f3vh)
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * f3vl
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * f3vd
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1752,7 +1736,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vi_i = foyer_fiscal.members('f3vi', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
@@ -1760,17 +1744,17 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux1 * max_(0, f3vg - f3vh)
-            + plus_values.taux2 * f3vd
-            + plus_values.taux_pv_mob_pro * f3vl
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux_pv_entrep * f3sa_2012
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
+            pv.plus_values.pvce * rpns_pvce
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * max_(0, f3vg - f3vh)
+            + pv.actions_gratuites.taux2 * f3vd
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * f3vl
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_posterieur * f3vt
+            + pv.plus_values.taux_pv_entrep * f3sa_2012
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.moins_3ans * f3sk
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1790,17 +1774,17 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
+            pv.plus_values.pvce * rpns_pvce
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_posterieur * f3vt
+            + pv.actions_gratuites.taux2 * f3vd
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.moins_3ans * f3sk
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1822,19 +1806,19 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
-            + plus_values.taux_plus_values_report * f3wi
-            + plus_values.taux_plus_values_report_conditionnel * f3wj
+            pv.plus_values.pvce * rpns_pvce
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_posterieur * f3vt
+            + pv.actions_gratuites.taux2 * f3vd
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.moins_3ans * f3sk
+            + pv.plus_values.taux_plus_values_report * f3wi
+            + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -1858,25 +1842,25 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux_plus_values_report * f3wi
-            + plus_values.taux_plus_values_report_conditionnel * f3wj
-            + plus_values.taux_plus_values_entc * f3pi
+            pv.plus_values.pvce * rpns_pvce
+            + pv.actions_gratuites.taux2 * f3vd
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.moins_3ans * f3sk
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_posterieur * f3vt
+            + pv.plus_values.taux_plus_values_report * f3wi
+            + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
+            + pv.plus_values.taux_plus_values_entc * f3pi
             )
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
-        Taxation des plus-values (hors imposition au barÃ¨me), en excluant celles imposées au PFU
+        Taxation des plus-values (hors imposition au barème), en excluant celles imposées au PFU
         (qui sont à impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py)
         '''
         f3vd_i = foyer_fiscal.members('f3vd', period)
@@ -1896,20 +1880,20 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rpns
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            pv.plus_values.pvce * rpns_pvce
+            + pv.actions_gratuites.taux2 * f3vd
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
             + P.taux10 * rpns_info
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
-            + plus_values.taux_plus_values_report * f3wi
-            + plus_values.taux_plus_values_report_conditionnel * f3wj
-            + plus_values.taux_plus_values_entc * f3pi
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.moins_3ans * f3sk
+            + pv.plus_values.taux_plus_values_report * f3wi
+            + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
+            + pv.plus_values.taux_plus_values_entc * f3pi
             )
 
 
@@ -2141,9 +2125,9 @@ class iai(Variable):
         iaidrdi = foyer_fiscal('iaidrdi', period)
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
-        teicaa = foyer_fiscal('teicaa', period)
+        indemnite_compensatrice_agents_assurance = foyer_fiscal('indemnite_compensatrice_agents_assurance', period)
 
-        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + indemnite_compensatrice_agents_assurance
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2153,12 +2137,12 @@ class iai(Variable):
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
-        teicaa = foyer_fiscal('teicaa', period)
+        indemnite_compensatrice_agents_assurance = foyer_fiscal('indemnite_compensatrice_agents_assurance', period)
 
-        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + indemnite_compensatrice_agents_assurance
 
 
-class cehr(Variable):
+class contribution_exceptionnelle_hauts_revenus(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Contribution exceptionnelle sur les hauts revenus'
@@ -2172,7 +2156,7 @@ class cehr(Variable):
         '''
         rfr = foyer_fiscal('rfr', period)
         nb_adult = foyer_fiscal('nb_adult', period)
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.cehr
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_exceptionnelle_hauts_revenus
 
         return bareme.calc(rfr / nb_adult) * nb_adult
         # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
@@ -2196,10 +2180,10 @@ class irpp(Variable):
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
-        cehr = foyer_fiscal('cehr', period)
+        contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         P = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
 
-        pre_result = iai - credits_impot - acomptes_ir + cehr
+        pre_result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus
 
         return (
             (iai > P.seuil) * (
@@ -2476,20 +2460,43 @@ class defrag(Variable):
         mrag_impo_i = foyer_fiscal.members('mrag_impo', period)
         nrag_impg_i = foyer_fiscal.members('nrag_impg', period)
         frag_fore_i = foyer_fiscal.members('frag_fore', period)
-        coupe_bois_i = foyer_fiscal.members('coupe_bois', period)
         frag_pvct_i = foyer_fiscal.members('frag_pvct', period)
         arag_impg_i = foyer_fiscal.members('arag_impg', period)
         cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         frag_fore = foyer_fiscal.sum(frag_fore_i)
-        coupe_bois = foyer_fiscal.sum(coupe_bois_i)
         frag_impo = foyer_fiscal.sum(frag_impo_i)
         mrag_impo = foyer_fiscal.sum(mrag_impo_i)
         arag_impg = foyer_fiscal.sum(arag_impg_i)
         nrag_impg = foyer_fiscal.sum(nrag_impg_i)
         frag_pvct = foyer_fiscal.sum(frag_pvct_i)
         return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + frag_pvct)
-                    + arag_impg + frag_fore + coupe_bois + mrag_impo)
+                    + arag_impg + frag_fore + mrag_impo)
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        # frag_fore est remplacé par coupe_bois, frag_pvct par mrag_pvct
+        f5qf = foyer_fiscal('f5qf', period)
+        f5qg = foyer_fiscal('f5qg', period)
+        f5qn = foyer_fiscal('f5qn', period)
+        f5qo = foyer_fiscal('f5qo', period)
+        f5qp = foyer_fiscal('f5qp', period)
+        f5qq = foyer_fiscal('f5qq', period)
+        frag_impo_i = foyer_fiscal.members('frag_impo', period)
+        mrag_impo_i = foyer_fiscal.members('mrag_impo', period)
+        nrag_impg_i = foyer_fiscal.members('nrag_impg', period)
+        coupe_bois_i = foyer_fiscal.members('coupe_bois', period)
+        mrag_pvct_i = foyer_fiscal.members('mrag_pvct', period)
+        arag_impg_i = foyer_fiscal.members('arag_impg', period)
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+
+        coupe_bois = foyer_fiscal.sum(coupe_bois_i)
+        frag_impo = foyer_fiscal.sum(frag_impo_i)
+        mrag_impo = foyer_fiscal.sum(mrag_impo_i)
+        arag_impg = foyer_fiscal.sum(arag_impg_i)
+        nrag_impg = foyer_fiscal.sum(nrag_impg_i)
+        mrag_pvct = foyer_fiscal.sum(mrag_pvct_i)
+        return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + mrag_pvct)
+                    + arag_impg + coupe_bois + mrag_impo)
 
 
 class defacc(Variable):
@@ -2514,14 +2521,14 @@ class defacc(Variable):
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         def abat_rpns(rev, P):
-            return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
 
         nacc_impn = foyer_fiscal.sum(nacc_impn_i)
         macc_pvct = foyer_fiscal.sum(macc_pvct_i)
         macc_impv = foyer_fiscal.sum(macc_impv_i)
         macc_imps = foyer_fiscal.sum(macc_imps_i)
         aacc_impn = foyer_fiscal.sum(aacc_impn_i)
-        macc_timp = abat_rpns(macc_impv, micro.specialbnc.marchandises) + abat_rpns(macc_imps, micro.specialbnc.services)
+        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
         return (
             min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
             )
@@ -2545,10 +2552,11 @@ class defncn(Variable):
         cncn_aimp_i = foyer_fiscal.members('cncn_aimp', period)
         cncn_bene_i = foyer_fiscal.members('cncn_bene', period)
         cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
-        specialbnc = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.specialbnc
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+        specialbnc = micro.microentreprise.regime_micro_bnc
 
         def abat_rpns(rev, P):
-            return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
         cncn_bene = foyer_fiscal.sum(cncn_bene_i)
         mncn_impo = foyer_fiscal.sum(mncn_impo_i)
         mncn_pvct = foyer_fiscal.sum(mncn_pvct_i)
@@ -2556,7 +2564,7 @@ class defncn(Variable):
         return min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
             abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
-            )  #  TODO check !
+            )  # TODO check !
 
 
 class defmeu(Variable):
@@ -2597,6 +2605,25 @@ class rag(Variable):
         '''
         frag_exon = individu('frag_exon', period)
         frag_impo = individu('frag_impo', period)
+        arag_exon = individu('arag_exon', period)
+        arag_impg = individu('arag_impg', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_exon = individu('nrag_exon', period)
+        nrag_impg = individu('nrag_impg', period)
+        nrag_defi = individu('nrag_defi', period)
+        nrag_ajag = individu('nrag_ajag', period)
+
+        return (
+            frag_exon + frag_impo
+            + arag_exon + arag_impg - arag_defi
+            + nrag_exon + nrag_impg - nrag_defi
+            + nrag_ajag
+            )
+
+    def formula_2016_01_01(individu, period, parameters):
+        '''
+        Revenus agricoles
+        '''
         mrag_exon = individu('mrag_exon', period)
         mrag_impo = individu('mrag_impo', period)
         arag_exon = individu('arag_exon', period)
@@ -2608,7 +2635,7 @@ class rag(Variable):
         nrag_ajag = individu('nrag_ajag', period)
 
         return (
-            frag_exon + frag_impo + mrag_exon + mrag_impo
+            mrag_exon + mrag_impo
             + arag_exon + arag_impg - arag_defi
             + nrag_exon + nrag_impg - nrag_defi
             + nrag_ajag
@@ -2653,14 +2680,14 @@ class ric(Variable):
             )
 
         cond = (mbic_impv > 0) & (mbic_imps == 0)
-        taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * not_(cond)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
 
         cbic = min_(
             mbic_impv + mbic_imps + mbic_exon,
             max_(
-                micro.specialbnc.marchandises.min,
+                micro.microentreprise.montant_minimum,
                 round_(
-                    mbic_impv * micro.specialbnc.marchandises.taux + mbic_imps * micro.specialbnc.services.taux + mbic_exon * taux
+                    mbic_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux + mbic_imps * micro.microentreprise.regime_micro_bnc.services.taux + mbic_exon * taux
                     )
                 )
             )
@@ -2704,12 +2731,12 @@ class rac(Variable):
 
     # TODO: aacc_imps aacc_defs
         cond = (macc_impv > 0) & (macc_imps == 0)
-        taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * not_(cond)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
 
-        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.specialbnc.marchandises.min, round_(
-            macc_impv * micro.specialbnc.marchandises.taux
-            + macc_imps * micro.specialbnc.services.taux + macc_exon * taux
-            + mncn_impo * micro.specialbnc.taux)))
+        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.microentreprise.montant_minimum, round_(
+            macc_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux
+            + macc_imps * micro.microentreprise.regime_micro_bnc.services.taux + macc_exon * taux
+            + mncn_impo * micro.microentreprise.regime_micro_bnc.taux)))
 
         return zacc - cacc
 
@@ -2733,7 +2760,7 @@ class rnc(Variable):
         nbnc_impo = individu('nbnc_impo', period)
         abnc_defi = individu('abnc_defi', period)
         nbnc_defi = individu('nbnc_defi', period)
-        specialbnc = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.specialbnc
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.microentreprise
 
         zbnc = (
             mbnc_exon + mbnc_impo
@@ -2745,8 +2772,8 @@ class rnc(Variable):
         cbnc = min_(
             mbnc_exon + mbnc_impo,
             max_(
-                specialbnc.services.min,
-                round_((mbnc_exon + mbnc_impo) * specialbnc.taux)
+                micro.montant_minimum,
+                round_((mbnc_exon + mbnc_impo) * micro.regime_micro_bnc.taux)
                 )
             )
 
@@ -2764,13 +2791,24 @@ class rpns_pvct(Variable):
         Plus values de court terme
         '''
         frag_pvct = individu('frag_pvct', period)
+        mbic_pvct = individu('mbic_pvct', period)
+        macc_pvct = individu('macc_pvct', period)
+        mbnc_pvct = individu('mbnc_pvct', period)
+        mncn_pvct = individu('mncn_pvct', period)
+
+        return frag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
+
+    def formula_2016_01_01(individu, period, parameters):
+        '''
+        Plus values de court terme
+        '''
         mrag_pvct = individu('mrag_pvct', period)
         mbic_pvct = individu('mbic_pvct', period)
         macc_pvct = individu('macc_pvct', period)
         mbnc_pvct = individu('mbnc_pvct', period)
         mncn_pvct = individu('mncn_pvct', period)
 
-        return frag_pvct + mrag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
+        return mrag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
 
 
 class moins_values_court_terme_nonpro(Variable):
@@ -2877,8 +2915,8 @@ class rpns_revenus_microBA_agricole(Variable):
         date_creation = individu('date_creation', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
-        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.maj_frag)
-        frag_impo_n1_maj = frag_impo_n1 * (1 + micro.maj_frag)
+        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.microentreprise.regime_micro_ba.maj_frag)
+        frag_impo_n1_maj = frag_impo_n1 * (1 + micro.microentreprise.regime_micro_ba.maj_frag)
         benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1_maj + arag_impo_n1) / 3
         benefices_estimes_2 = (mrag_impo + frag_impo_n1_maj + arag_impo_n1) / 2
 
@@ -2888,7 +2926,7 @@ class rpns_revenus_microBA_agricole(Variable):
             + (date_creation == 2016) * mrag_impo
             )
 
-        return montant_benef * (1 - micro.taux_mBA)
+        return montant_benef * (1 - micro.microentreprise.regime_micro_ba.taux)
 
     def formula_2017_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
@@ -2898,7 +2936,7 @@ class rpns_revenus_microBA_agricole(Variable):
         date_creation = individu('date_creation', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
-        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.maj_frag)
+        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.microentreprise.regime_micro_ba.maj_frag)
         benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1) / 3
         benefices_estimes_2 = (mrag_impo + frag_impo_n1) / 2
 
@@ -2908,185 +2946,363 @@ class rpns_revenus_microBA_agricole(Variable):
             + (date_creation == 2017) * mrag_impo
             )
 
-        return montant_benef * (1 - micro.taux_mBA)
+        return montant_benef * (1 - micro.microentreprise.regime_micro_ba.taux)
 
     def formula_2018_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
-        return mrag_impo * (1 - micro.taux_mBA)
+        return mrag_impo * (1 - micro.microentreprise.regime_micro_ba.taux)
+
+
+class aacc_timp(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus des professions non salariées individuels avec abattement CGA'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        aacc_impn = individu('aacc_impn', period)
+        aacc_defn = individu('aacc_defn', period)
+        aacc_defs = individu('aacc_defs', period)
+        aacc_timp = max_(0, aacc_impn - aacc_defn - aacc_defs)
+        return aacc_timp
+
+    def formula_2009_01_01(individu, period, parameters):
+        aacc_impn = individu('aacc_impn', period)
+        alnp_defs = individu('alnp_defs', period)
+        aacc_defn = individu('aacc_defn', period)
+        aacc_defs = individu('aacc_defs', period)
+        aacc_timp = max_(0, aacc_impn + max_(0, - alnp_defs) - aacc_defn - aacc_defs)
+        return aacc_timp
+
+    def formula_2010_01_01(individu, period, parameters):
+        aacc_impn = individu('aacc_impn', period)
+        alnp_defs = individu('alnp_defs', period)
+        aacc_defn = individu('aacc_defn', period)
+        aacc_timp = max_(0, aacc_impn + max_(0, - alnp_defs) - aacc_defn)
+        return aacc_timp
+
+    def formula_2011_01_01(individu, period, parameters):
+        aacc_impn = individu('aacc_impn', period)
+        aacc_gits = individu('aacc_gits', period)
+        aacc_imps = individu('aacc_imps', period)
+        alnp_defs = individu('alnp_defs', period)
+        aacc_defn = individu('aacc_defn', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+        aacc_timp = (
+            max_(
+                0,
+                (aacc_impn + (aacc_gits > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    aacc_gits * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    ))
+                + (aacc_imps > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    aacc_imps * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
+                    )
+                + max_(0, - alnp_defs) - aacc_defn
+                )
+            )
+        return aacc_timp
+
+    def formula_2012_01_01(individu, period, parameters):
+        aacc_impn = individu('aacc_impn', period)
+        aacc_gits = individu('aacc_gits', period)
+        aacc_imps = individu('aacc_imps', period)
+        nacc_meup = individu('nacc_meup', period)
+        nacc_defs = individu('nacc_defs', period)
+        alnp_defs = individu('alnp_defs', period)
+        aacc_defn = individu('aacc_defn', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+        aacc_timp = (
+            max_(
+                0,
+                (aacc_impn + (aacc_gits > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    aacc_gits * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    ))
+                + (aacc_imps > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    aacc_imps * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
+                    )
+                + (nacc_meup > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    nacc_meup * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    )
+                + max_(0, nacc_defs - alnp_defs) - aacc_defn
+                )
+            )
+        return aacc_timp
+
+    def formula_2017_01_01(individu, period, parameters):
+        aacc_impn = individu('aacc_impn', period)
+        aacc_gits = individu('aacc_gits', period)
+        aacc_imps = individu('aacc_imps', period)
+        nacc_meup = individu('nacc_meup', period)
+        nacc_meuc = individu('nacc_meuc', period)
+        nacc_defs = individu('nacc_defs', period)
+        alnp_defs = individu('alnp_defs', period)
+        aacc_defn = individu('aacc_defn', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+        aacc_timp = (
+            max_(
+                0,
+                (aacc_impn + (aacc_gits > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    aacc_gits * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    ))
+                + (aacc_imps > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    aacc_imps * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
+                    )
+                + (nacc_meup > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    nacc_meup * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    )
+                + (nacc_meuc > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    nacc_meuc * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
+                    )
+                + max_(0, nacc_defs - alnp_defs) - aacc_defn
+                )
+            )
+        return aacc_timp
+
+
+class atimp(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus des professions non salariées individuels avec abattement'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        abic_impn = individu('abic_impn', period)
+        abic_imps = individu('abic_imps', period)
+        abic_defn = individu('abic_defn', period)
+        abic_defs = individu('abic_defs', period)
+        arag_impg = individu('arag_impg', period)
+        abnc_impo = individu('abnc_impo', period)
+        abnc_defi = individu('abnc_defi', period)
+        # Régime du bénéfice réel bénéficiant de l'abattement CGA
+        aacc_timp = individu('aacc_timp', period)
+        # Régime du bénéfice réel bénéficiant de l'abattement CGA
+        abic_timp = abic_impn + abic_imps - (abic_defn + abic_defs)
+        # regime de la déclaration contrôlée bénéficiant de l'abattement association agréée
+        abnc_timp = abnc_impo - abnc_defi
+        # Total
+        atimp = arag_impg + abic_timp + aacc_timp + abnc_timp
+        return atimp
+
+    def formula_2010_01_01(individu, period, parameters):
+        abic_impn = individu('abic_impn', period)
+        abic_defn = individu('abic_defn', period)
+        arag_impg = individu('arag_impg', period)
+        abnc_impo = individu('abnc_impo', period)
+        abnc_defi = individu('abnc_defi', period)
+        # Régime du bénéfice réel bénéficiant de l'abattement CGA
+        aacc_timp = individu('aacc_timp', period)
+        # Régime du bénéfice réel bénéficiant de l'abattement CGA
+        abic_timp = abic_impn - abic_defn
+        # regime de la déclaration contrôlée bénéficiant de l'abattement association agréée
+        abnc_timp = abnc_impo - abnc_defi
+        # Total
+        atimp = arag_impg + abic_timp + aacc_timp + abnc_timp
+        return atimp
+
+
+class nbnc_timp(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus des professions non salariées individuels sans abattement association'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        nbnc_impo = individu('nbnc_impo', period)
+        nbnc_defi = individu('nbnc_defi', period)
+        # regime de la déclaration contrôlée ne bénéficiant pas de l'abattement association agréée
+        nbnc_timp = nbnc_impo - nbnc_defi
+        return nbnc_timp
+
+
+class nacc_timp(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus des professions non salariées individuels sans abattement CGA'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        nacc_impn = individu('nacc_impn', period)
+        nacc_defn = individu('nacc_defn', period)
+        # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
+        nacc_timp = max_(0, nacc_impn - nacc_defn)
+        return nacc_timp
+
+
+class ntimp(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus des professions non salariées individuels sans abattement'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        nbic_impn = individu('nbic_impn', period)
+        nbic_imps = individu('nbic_imps', period)
+        nbic_defn = individu('nbic_defn', period)
+        nbic_defs = individu('nbic_defs', period)
+        nacc_timp = individu('nacc_timp', period)
+        nbnc_timp = individu('nbnc_timp', period)
+        # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
+        nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
+        ntimp = nacc_timp + nbnc_timp + nbic_timp
+        return ntimp
+
+    def formula_2006_01_01(individu, period, parameters):
+        nbic_impn = individu('nbic_impn', period)
+        nbic_imps = individu('nbic_imps', period)
+        nbic_defn = individu('nbic_defn', period)
+        nbic_defs = individu('nbic_defs', period)
+        nacc_timp = individu('nacc_timp', period)
+        nbnc_timp = individu('nbnc_timp', period)
+        cncn_bene = individu('cncn_bene', period)
+        cncn_defi = individu('cncn_defi', period)
+        # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
+        nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
+        cncn_timp = max_(0, cncn_bene - cncn_defi)
+        ntimp = nbic_timp + nacc_timp + nbnc_timp + cncn_timp
+        return ntimp
+
+    def formula_2007_01_01(individu, period, parameters):
+        # Moyenne triennale
+        nrag_impg = individu('nrag_impg', period)
+        nbic_impn = individu('nbic_impn', period)
+        nbic_imps = individu('nbic_imps', period)
+        nbic_defn = individu('nbic_defn', period)
+        nbic_defs = individu('nbic_defs', period)
+        nacc_timp = individu('nacc_timp', period)
+        nbnc_timp = individu('nbnc_timp', period)
+        cncn_bene = individu('cncn_bene', period)
+        cncn_defi = individu('cncn_defi', period)
+        # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
+        nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
+        cncn_timp = max_(0, cncn_bene - cncn_defi)
+        ntimp = nrag_impg + nbic_timp + nacc_timp + cncn_timp + nbnc_timp
+        return ntimp
+
+    def formula_2010_01_01(individu, period, parameters):
+        nrag_impg = individu('nrag_impg', period)
+        nbic_impn = individu('nbic_impn', period)
+        nbic_defn = individu('nbic_defn', period)
+        nacc_timp = individu('nacc_timp', period)
+        nbnc_timp = individu('nbnc_timp', period)
+        cncn_bene = individu('cncn_bene', period)
+        cncn_defi = individu('cncn_defi', period)
+        # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
+        nbic_timp = nbic_impn - nbic_defn
+        cncn_timp = max_(0, cncn_bene - cncn_defi)
+        ntimp = nrag_impg + nbic_timp + nacc_timp + cncn_timp + nbnc_timp
+        return ntimp
+
+
+class revenu_non_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus des professions non salariées individuels'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        rpns_frag = individu('rpns_revenus_forfait_agricole', period)
+        frag_fore = individu('frag_fore', period)
+        f5sq = individu('f5sq', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_defi = individu('nrag_defi', period)
+        atimp = individu('atimp', period)
+        ntimp = individu('ntimp', period)
+        cga_taux2 = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+        majo_cga = max_(0, cga_taux2 * (ntimp + rpns_frag))  # Pour ne pas avoir à majorer les déficits
+        def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
+        revenus_non_salaries = rpns_frag + frag_fore + atimp + ntimp + majo_cga - def_agri
+        return revenus_non_salaries
+
+    def formula_2016_01_01(individu, period, parameters):
+        rpns_mrag = individu('rpns_revenus_microBA_agricole', period)
+        coupe_bois = individu('coupe_bois', period)
+        f5sq = individu('f5sq', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_defi = individu('nrag_defi', period)
+        atimp = individu('atimp', period)
+        ntimp = individu('ntimp', period)
+        cga_taux2 = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+        majo_cga = max_(0, cga_taux2 * ntimp)  # Pour ne pas avoir à majorer les déficits
+        def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
+        revenus_non_salaries = rpns_mrag + coupe_bois + atimp + ntimp + majo_cga - def_agri
+        return revenus_non_salaries
+
+
+class locations_pro(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus des locations meublées'
+    definition_period = YEAR
+
+    def formula_2009_01_01(individu, period, parameters):
+        abic_impm = individu('abic_impm', period)
+        abic_defm = individu('abic_defm', period)
+        alnp_imps = individu('alnp_imps', period)
+        return abic_impm - abic_defm + alnp_imps
+
+    def formula_2016_01_01(individu, period, parameters):
+        alnp_imps = individu('alnp_imps', period)
+        return alnp_imps
 
 
 class rpns_imposables(Variable):
     value_type = float
     entity = Individu
-    label = 'Revenus imposables des professions non salariées individuels'
+    label = 'Revenus imposable des professions non salariées individuels'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-        '''
-        Revenus des professions non salariées individuels
-        '''
-        arag_impg = individu('arag_impg', period)
-        nrag_impg = individu('nrag_impg', period)
-        arag_defi = individu('arag_defi', period)
-        nrag_defi = individu('nrag_defi', period)
+        revenu_non_salarie = individu('revenu_non_salarie', period)
+        nacc_timp = individu('nacc_timp', period)
         mbic_impv = individu('mbic_impv', period)
+        rpns_pvct = individu('rpns_pvct', period)
         mbic_imps = individu('mbic_imps', period)
-        abic_impn = individu('abic_impn', period)
-        abic_imps = individu('abic_imps', period)
-        abic_defn = individu('abic_defn', period)
-        abic_defs = individu('abic_defs', period)
-        nbic_impn = individu('nbic_impn', period)
-        nbic_imps = individu('nbic_imps', period)
-        nbic_defn = individu('nbic_defn', period)
-        nbic_defs = individu('nbic_defs', period)
         macc_impv = individu('macc_impv', period)
         macc_imps = individu('macc_imps', period)
-        aacc_impn = individu('aacc_impn', period)
-        aacc_defn = individu('aacc_defn', period)
-        aacc_defs = individu('aacc_defs', period)
-        aacc_gits = individu('aacc_gits', period)
-        nacc_impn = individu('nacc_impn', period)
-        nacc_defn = individu('nacc_defn', period)
-        nacc_defs = individu('nacc_defs', period)
-        aacc_imps = individu('aacc_imps', period)
         mbnc_impo = individu('mbnc_impo', period)
-        nacc_meup = individu('nacc_meup', period)
-        nacc_meuc = individu('nacc_meuc', period)
-        abic_impm = individu('abic_impm', period)
-        abic_defm = individu('abic_defm', period)
-        abnc_impo = individu('abnc_impo', period)
-        abnc_defi = individu('abnc_defi', period)
-        alnp_imps = individu('alnp_imps', period)
-        nbnc_impo = individu('nbnc_impo', period)
-        nbnc_defi = individu('nbnc_defi', period)
-        alnp_defs = individu('alnp_defs', period)
-        cbnc_assc = individu('f5qm', period)      # noqa F841
         mncn_impo = individu('mncn_impo', period)
-        cncn_bene = individu('cncn_bene', period)
-        cncn_defi = individu('cncn_defi', period)
-        abnc_proc = individu('abnc_proc', period)  # noqa F841
-        frag_fore = individu('frag_fore', period)
-        coupe_bois = individu('coupe_bois', period)
-        f5sq = individu('f5sq', period)
-        mncn_exon = individu('mncn_exon', period)  # noqa F841
-        cncn_exon = individu('cncn_exon', period)  # noqa F841
         cncn_aimp = individu('cncn_aimp', period)
-        cncn_adef = individu('cncn_adef', period)  # noqa F841
-        cncn_info = individu('cncn_info', period)  # noqa F841
-        cncn_jcre = individu('cncn_jcre', period)  # noqa F841
-        revimpres = individu('revimpres', period)  # noqa F841
-        rpns_frag = individu('rpns_revenus_forfait_agricole', period)
-        rpns_mrag = individu('rpns_revenus_microBA_agricole', period)
-        rpns_pvct = individu('rpns_pvct', period)
         rpns_mvct_pro = individu('moins_values_court_terme_pro', period)
         rpns_mvct_agr = individu('moins_values_court_terme_agr', period)
         rpns_mvct_nonpro = individu('moins_values_court_terme_nonpro', period)  # noqa F841
-        macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        nbnc_proc = individu('nbnc_proc', period)  # noqa F841
-        pveximpres = individu('pveximpres', period)  # noqa F841
-        pvtaimpres = individu('pvtaimpres', period)  # noqa F841
-        cga_taux2 = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+        locations_pro = individu('locations_pro', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         def abat_rpns(rev, P):
-            return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
-
-        # Jeunes agriculteurs montant de l'abattement de 50% ou 100%
-        # nrag_ajag = f5hm + f5im + f5jm
-
-    #    # déficits agricole des années antérieurs (imputables uniquement
-    #    # sur des revenus agricoles)
-    #    rag_timp = frag_impo + frag_pvct + arag_impg + nrag_impg
-    #    cond = (AUTRE <= microentreprise.def_agri_seuil)
-    #    def_agri = cond*(arag_defi + nrag_defi) + not_(cond)*min_(rag_timp, arag_defi + nrag_defi)
-    #    # TODO : check 2006 cf art 156 du CGI pour 2006
-    #    def_agri_ant    = min_(max_(0,rag_timp - def_agri), f5sq)
-
-        def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
 
         # # B revenus industriels et commerciaux professionnels
         # regime micro entreprise
-        mbic_timp = abat_rpns(mbic_impv, micro.specialbnc.marchandises) + abat_rpns(mbic_imps, micro.specialbnc.services)
-
-        # Régime du bénéfice réel bénéficiant de l'abattement CGA
-        abic_timp = abic_impn + abic_imps - (abic_defn + abic_defs)
-
-        # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
-        nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
-
-        # Abatemment artisant pécheur
-        # nbic_apch = f5ks + f5ls + f5ms # TODO : à intégrer qqpart
-
-        # # C revenus industriels et commerciaux non professionnels
-        # (revenus accesoires du foyers en nomenclature INSEE)
-
+        mbic_timp = abat_rpns(mbic_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(mbic_imps, micro.microentreprise.regime_micro_bnc.services)
         # regime micro entreprise
-        macc_timp = abat_rpns(macc_impv, micro.specialbnc.marchandises) + abat_rpns(macc_imps, micro.specialbnc.services)
-        # Régime du bénéfice réel bénéficiant de l'abattement CGA
-        aacc_timp = (
-            max_(
-                0,
-                (aacc_impn + (aacc_gits > 0) * max_(
-                    micro.specialbnc.services.min,
-                    aacc_gits * (1 - micro.specialbnc.marchandises.taux)
-                    ))
-                + (aacc_imps > 0) * max_(
-                    micro.specialbnc.marchandises.min,
-                    aacc_imps * (1 - micro.specialbnc.services.taux)
-                    )
-                + (nacc_meup > 0) * max_(
-                    micro.specialbnc.services.min,
-                    nacc_meup * (1 - micro.specialbnc.marchandises.taux)
-                    )
-                + (nacc_meuc > 0) * max_(
-                    micro.specialbnc.services.min,
-                    nacc_meuc * (1 - micro.specialbnc.services.taux)
-                    )
-                + max_(0, nacc_defs - alnp_defs) - aacc_defn - aacc_defs
-                )
-            )
-        # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
-        nacc_timp = max_(0, nacc_impn - nacc_defn)
-
-        # # E revenus non commerciaux non professionnels
-        # regime déclaratif special ou micro-bnc
-        mncn_timp = abat_rpns(mncn_impo, micro.specialbnc)
-
-        # régime de la déclaration controlée
-        # total 11
-        cncn_timp = max_(0, cncn_bene - cncn_defi)
-        # Abatement jeunes créateurs
-
+        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
         # # D revenus non commerciaux professionnels
         # regime déclaratif special ou micro-bnc
-        mbnc_timp = abat_rpns(mbnc_impo, micro.specialbnc)
+        mbnc_timp = abat_rpns(mbnc_impo, micro.microentreprise.regime_micro_bnc.services)
+        # # E revenus non commerciaux non professionnels
+        # regime déclaratif special ou micro-bnc
+        mncn_timp = abat_rpns(mncn_impo, micro.microentreprise.regime_micro_bnc.services)
+        macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        # regime de la déclaration contrôlée bénéficiant de l'abattement association agréée
-        abnc_timp = abnc_impo - abnc_defi
-
-        # regime de la déclaration contrôlée ne bénéficiant pas de l'abattement association agréée
-        nbnc_timp = nbnc_impo - nbnc_defi
-
-        # # Totaux
-        atimp = arag_impg + abic_timp + aacc_timp + abnc_timp
-        ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp + cncn_timp
-
-        majo_cga = max_(0, cga_taux2 * (ntimp + rpns_frag))  # Pour ne pas avoir à majorer les déficits
-        # total 6
-        revenus_non_salaries = rpns_frag + rpns_mrag + frag_fore + coupe_bois + atimp + ntimp + majo_cga - def_agri
-
-        # revenu net après abatement
-        # total 7
         rev_ns_mi = mbic_timp + max_(0, macc_timp) + mbnc_timp + mncn_timp
         exon_acc = max_(0, macc_timp + nacc_timp - macc_mvct) - macc_timp - nacc_timp  # ajout artificiel
-        exon_ncn = max_(0, mncn_timp - mncn_mvct) - mncn_timp  # ajout artificiel
+        exon_ncn = max_(0, mncn_timp - mncn_mvct) - mncn_timp
 
         return (
-            revenus_non_salaries + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn
-            + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro - rpns_mvct_agr - rpns_mvct_nonpro
+            revenu_non_salarie + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn
+            + locations_pro + cncn_aimp - rpns_mvct_pro - rpns_mvct_agr - rpns_mvct_nonpro
             )
 
 
@@ -3223,6 +3439,86 @@ class nbptr(Variable):
     reference = 'http://vosdroits.service-public.fr/particuliers/F2705.xhtml'
     definition_period = YEAR
 
+    def formula_2008_01_01(foyer_fiscal, period, parameters):
+        '''
+        Modification de la prise en compte des enfants à charge du conjoint décédé et du veuf.
+        '''
+        nb_pac = foyer_fiscal('nb_pac', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
+        nbG = foyer_fiscal('nbG', period)
+        nbH = foyer_fiscal('nbH', period)
+        nbI = foyer_fiscal('nbI', period)
+        nbR = foyer_fiscal('nbR', period)
+        nbN = foyer_fiscal('nbN', period)  # noqa F841
+        caseP = foyer_fiscal('caseP', period)
+        caseW = foyer_fiscal('caseW', period)
+        caseG = foyer_fiscal('caseG', period)
+        caseE = foyer_fiscal('caseE', period)
+        caseK = foyer_fiscal('caseK', period)
+        caseN = foyer_fiscal('caseN', period)
+        caseF = foyer_fiscal('caseF', period)
+        caseS = foyer_fiscal('caseS', period)
+        caseL = foyer_fiscal('caseL', period)
+        caseT = foyer_fiscal('caseT', period.first_month)
+        quotient_familial = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial
+
+        no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
+        has_pac = not_(no_pac)
+        no_alt = nbH == 0  # Aucun enfant à charge en garde alternée
+        has_alt = not_(no_alt)
+
+        # # nombre de parts liées aux enfants à charge
+        # que des enfants en résidence alternée
+        enf1 = (no_pac & has_alt) * (quotient_familial.enf1 * min_(nbH, 2) * 0.5
+                                     + quotient_familial.enf2 * max_(nbH - 2, 0) * 0.5)
+        # pas que des enfants en résidence alternée
+        enf2 = (has_pac & has_alt) * ((nb_pac == 1) * (quotient_familial.enf1 * min_(nbH, 1) * 0.5
+            + quotient_familial.enf2 * max_(nbH - 1, 0) * 0.5) + (nb_pac > 1) * (quotient_familial.enf2 * nbH * 0.5))
+        # pas d'enfant en résidence alternée
+        enf3 = quotient_familial.enf1 * min_(nb_pac, 2) + quotient_familial.enf2 * max_((nb_pac - 2), 0)
+
+        enf = enf1 + enf2 + enf3
+        # # note 2 : nombre de parts liées aux invalides (enfant + adulte)
+        n2 = quotient_familial.inv1 * (nbG + nbI / 2) + quotient_familial.inv2 * nbR
+
+        # # note 3 : Pas de personne à charge
+        # - invalide
+
+        n31a = quotient_familial.not31a * (no_pac & no_alt & caseP)
+        # - ancien combatant
+        n31b = quotient_familial.not31b * (no_pac & no_alt & (caseW | caseG))
+        n31 = max_(n31a, n31b)
+        # - personne seule ayant élevé des enfants
+        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & not_(caseN)))
+        n3 = max_(n31, n32)
+        # # note 4 Invalidité de la personne ou du conjoint pour les mariés ou
+        # # jeunes veuf(ve)s
+        n4 = max_(quotient_familial.not41 * (1 * caseP + 1 * caseF), quotient_familial.not42 * (caseW | caseS))
+
+        # # note 5
+        #  - enfant autre et parent isolé
+        n5 = quotient_familial.isol * caseT * (((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2))) + 1 * has_pac)
+
+        # # note 6 invalide avec personne à charge
+        n6 = quotient_familial.not6 * (caseP & (has_pac | has_alt))
+
+        # # note 7 Parent isolé
+        n7 = quotient_familial.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
+
+        # # Régime des mariés ou pacsés
+        nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
+
+        # # veufs  hors jeune_veuf
+        nb_parts_veuf = 1 + quotient_familial.veuf * (has_pac | has_alt) + enf + n2 + n3 + n5 + n6
+
+        # # celib div
+        nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
+
+        return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & not_(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
+
     def formula(foyer_fiscal, period, parameters):
         '''
         Nombre de parts du foyer fiscal
@@ -3316,7 +3612,7 @@ class nbptr(Variable):
         nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
 
         # # veufs  hors jeune_veuf
-        nb_parts_veuf = 1 + quotient_familial.veuf * (has_pac | has_alt) + enf + n2 + n3 + n5 + n6
+        nb_parts_veuf = 1 + enf + n2 + n3 + n5 + n6
 
         # # celib div
         nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
@@ -3364,11 +3660,11 @@ class ppe_elig(Variable):
         veuf = foyer_fiscal('veuf', period)
         celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
         nbptr = foyer_fiscal('nbptr', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe = parameters(period).impot_revenu.credits_impots.ppe
 
         seuil = (
-            (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3)
-            + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
+            (veuf | celibataire_ou_divorce) * (ppe.seuils_rfr_eligibilite.personne_seule + 2 * max_(nbptr - 1, 0) * ppe.seuils_rfr_eligibilite.increment_par_demi_part)
+            + maries_ou_pacses * (ppe.seuils_rfr_eligibilite.couple_marie_pacse + 2 * max_(nbptr - 2, 0) * ppe.seuils_rfr_eligibilite.increment_par_demi_part)
             )
 
         return (rfr * ppe_coef) <= seuil
@@ -3385,7 +3681,7 @@ class ppe_rev(Variable):
         salaire_imposable = individu('salaire_imposable', period, options = [ADD])
         hsup = individu('hsup', period, options = [ADD])
         rpns = individu('rpns_imposables', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe = parameters(period).impot_revenu.credits_impots.ppe
 
         # Revenu d'activité salarié
         rev_sa = salaire_imposable + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
@@ -3407,7 +3703,7 @@ class ppe_coef_tp(Variable):
         ppe_du_ns = individu('ppe_du_ns', period)
         ppe_tp_sa = individu('ppe_tp_sa', period)
         ppe_tp_ns = individu('ppe_tp_ns', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe = parameters(period).impot_revenu.credits_impots.ppe
 
         frac_sa = ppe_du_sa / ppe.TP_nbh
         frac_ns = ppe_du_ns / ppe.TP_nbj
@@ -3444,9 +3740,9 @@ class ppe_elig_individu(Variable):
         '''
         ppe_rev = individu('ppe_rev', period)
         ppe_coef_tp = individu('ppe_coef_tp', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe_seuils = parameters(period).impot_revenu.credits_impots.ppe.seuils_revenu_activite
 
-        return (ppe_rev >= ppe.seuil1) & (ppe_coef_tp != 0)
+        return (ppe_rev >= ppe_seuils.minimum) & (ppe_coef_tp != 0)
 
 
 class ppe_brute(Variable):
@@ -3470,7 +3766,8 @@ class ppe_brute(Variable):
         caseT = foyer_fiscal('caseT', period.first_month)
         caseL = foyer_fiscal('caseL', period)
         nbH = foyer_fiscal('nbH', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe = parameters(period).impot_revenu.credits_impots.ppe
+        ppe_seuils = parameters(period).impot_revenu.credits_impots.ppe.seuils_revenu_activite
 
         eliv = foyer_fiscal.declarant_principal('ppe_elig_individu', period)
         elic = foyer_fiscal.conjoint('ppe_elig_individu', period)
@@ -3489,7 +3786,7 @@ class ppe_brute(Variable):
 
         nb_pac_ppe = max_(0, nb_pac - foyer_fiscal.sum(eligible_i, role = FoyerFiscal.PERSONNE_A_CHARGE))
 
-        ligne2 = maries_ou_pacses & xor_(basevi >= ppe.seuil1, baseci >= ppe.seuil1)
+        ligne2 = maries_ou_pacses & xor_(basevi >= ppe_seuils.minimum, baseci >= ppe_seuils.minimum)
         ligne3 = (celibataire_ou_divorce | veuf) & caseT & not_(veuf & caseT & caseL)
         ligne1 = not_(ligne2) & not_(ligne3)
 
@@ -3499,21 +3796,21 @@ class ppe_brute(Variable):
         def ppe_bar1(base):
             # cond1 = ligne1 | ligne3
             # cond2 = ligne2
-            # return 1 / ppe_coef * ((cond1 & (base <= ppe.seuil2)) * (base) * ppe.taux1 +
-            #     (cond1 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base) * ppe.taux2 +
-            #     (cond2 & (base <= ppe.seuil2)) * (base * ppe.taux1) +
-            #     (cond2 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * ((ppe.seuil3 - base) * ppe.taux2) +
-            #     (cond2 & (base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
+            # return 1 / ppe_coef * ((cond1 & (base <= ppe_seuils.pour_taux_plein_cas_general)) * (base) * ppe.taux.phase_in +
+            #     (cond1 & (base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general +
+            #     (cond2 & (base <= ppe_seuils.pour_taux_plein_cas_general)) * (base * ppe.taux.phase_in) +
+            #     (cond2 & (base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * ((ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general) +
+            #     (cond2 & (base > ppe_seuils.pour_taux_plein_couples_mono_revenus) & (base <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * (ppe_seuils.max_couples_mono_emploi_parents_isoles - base) * ppe.taux.phase_out_couples_mono_emploi)
             return (
-                (base <= ppe.seuil2) * (base) * ppe.taux1
-                + (base > ppe.seuil2) * (base <= ppe.seuil3) * (ppe.seuil3 - base) * ppe.taux2
-                + ligne2 * (base > ppe.seuil4) * (base <= ppe.seuil5) * (ppe.seuil5 - base) * ppe.taux3
+                (base <= ppe_seuils.pour_taux_plein_cas_general) * (base) * ppe.taux.phase_in
+                + (base > ppe_seuils.pour_taux_plein_cas_general) * (base <= ppe_seuils.maximum_cas_general) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general
+                + ligne2 * (base > ppe_seuils.pour_taux_plein_couples_mono_revenus) * (base <= ppe_seuils.max_couples_mono_emploi_parents_isoles) * (ppe_seuils.max_couples_mono_emploi_parents_isoles - base) * ppe.taux.phase_out_couples_mono_emploi
                 )
 
         def ppe_bar2(base):
             return (
-                (base <= ppe.seuil2) * (base) * ppe.taux1
-                + ((base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base) * ppe.taux2)
+                (base <= ppe_seuils.pour_taux_plein_cas_general) * (base) * ppe.taux.phase_in
+                + ((base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general)
 
         # calcul des primes individuelles.
 
@@ -3521,21 +3818,21 @@ class ppe_brute(Variable):
         ppec = elic * (1 / ppe_coef) * ppe_bar1(basec)
 
         # Primes de monoactivité
-        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe.seuil1) & (basev <= ppe.seuil4)) * ppe.monact
-        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe.seuil1) & (basec <= ppe.seuil4)) * ppe.monact
+        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe_seuils.minimum) & (basev <= ppe_seuils.pour_taux_plein_couples_mono_revenus)) * ppe.supplements.couples_mono_emploi
+        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe_seuils.minimum) & (basec <= ppe_seuils.pour_taux_plein_couples_mono_revenus)) * ppe.supplements.couples_mono_emploi
 
         # Primes pour enfants à charge
         maj_pac = ppe_elig * (eliv | elic) * (
-            (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe.seuil3)) * ppe.pac
+            (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe_seuils.maximum_cas_general)) * ppe.supplements.par_personne_charge
             * (nb_pac_ppe + nbH * 0.5)
-            + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
-            + (ligne2 & (base_monacti >= ppe.seuil1) & (base_monact <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
-            + (ligne2 & (base_monact > ppe.seuil3) & (base_monact <= ppe.seuil5)) * ppe.pac
+            + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe_seuils.maximum_cas_general)) * ppe.supplements.par_personne_charge * (nb_pac_ppe + nbH * 0.5)
+            + (ligne2 & (base_monacti >= ppe_seuils.minimum) & (base_monact <= ppe_seuils.maximum_cas_general)) * ppe.supplements.par_personne_charge * (nb_pac_ppe + nbH * 0.5)
+            + (ligne2 & (base_monact > ppe_seuils.maximum_cas_general) & (base_monact <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * ppe.supplements.par_personne_charge
             * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))
-            + (ligne3 & (basevi >= ppe.seuil1) & (basev <= ppe.seuil3)) * (
-                (min_(nb_pac_ppe, 1) * 2 * ppe.pac + max_(nb_pac_ppe - 1, 0) * ppe.pac)
-                + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.pac + max_(nbH - 2, 0) * ppe.pac * 0.5))
-            + (ligne3 & (basev > ppe.seuil3) & (basev <= ppe.seuil5)) * ppe.pac
+            + (ligne3 & (basevi >= ppe_seuils.minimum) & (basev <= ppe_seuils.maximum_cas_general)) * (
+                (min_(nb_pac_ppe, 1) * 2 * ppe.supplements.par_personne_charge + max_(nb_pac_ppe - 1, 0) * ppe.supplements.par_personne_charge)
+                + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.supplements.par_personne_charge + max_(nbH - 2, 0) * ppe.supplements.par_personne_charge * 0.5))
+            + (ligne3 & (basev > ppe_seuils.maximum_cas_general) & (basev <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * ppe.supplements.par_personne_charge
             * ((nb_pac_ppe != 0) * 2 + ((nb_pac_ppe == 0) & (nbH != 0))))
 
         def coef(coef_tp):
@@ -3550,7 +3847,7 @@ class ppe_brute(Variable):
 
         ppe_tot = ppe_vous + ppe_conj + ppe_pac + maj_pac
 
-        ppe_tot = (ppe_tot != 0) * max_(ppe.versmin, ppe_tot)
+        ppe_tot = (ppe_tot != 0) * max_(ppe.montant_minimum, ppe_tot)
 
         return ppe_tot
 

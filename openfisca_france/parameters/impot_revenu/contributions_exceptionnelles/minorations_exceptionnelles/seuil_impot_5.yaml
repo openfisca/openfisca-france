@@ -1,0 +1,30 @@
+description: Seuil d'impôt 5 des minorations exceptionnelles d'impôt (1965-1992)
+values:
+  1965-01-01:
+    value: null
+  1986-01-01:
+    value: 41060
+  1988-01-01:
+    value: 42120
+  1989-01-01:
+    value: 43510
+  1990-01-01:
+    value: 44910
+  1991-01-01:
+    value: 46260
+  1992-01-01:
+    value: 47560
+  1993-01-01:
+    value: null
+metadata:
+  short_label: Seuil 5
+  ipp_csv_id: seuil_min5
+  unit: currency
+  reference:
+    1993-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+  official_journal_date:
+    1993-01-01: "1993-12-31"
+  notes:
+    1992-01-01:
+    - title: "Application de la formule des minorations de 1986 à 1992 (année revenus); Exemple pour 1989: ; 11 % si l'impot est inférieur ou égal à 26 480 Fr; Entre 11 et 6 % si l'impot est supérieur à 26 480 Fr et inférieur ou égal à 30 840 Fr = Difference entre 6 170 Fr et 14 % de l'impôt; 6 % si l'impot est supérieur à 30 840 Fr et inférieur ou égal à 37 010 FR; Entre 6 % et 3 % si l'impot est supérieur à 37 010 Fr et inférieur ou égal à 43 510 Fr = Difference entre 7 400 Fr et 14% de l'impôt; 3 % si l'impot est supérieur à 43 510 Fr et si le revenu imposable par part est inferieur ou egal a 312 660 Fr"

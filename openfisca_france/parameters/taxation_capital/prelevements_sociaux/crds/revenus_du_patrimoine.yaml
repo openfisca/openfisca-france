@@ -7,14 +7,14 @@ values:
   1996-02-01:
     value: 0.005
 metadata:
-  ux_name: Taux CRDS capital revenus du patrimoine
-  description_en: CRDS on financial income
+  short_label: Taux CRDS capital revenus du patrimoine
+  last_value_still_valid_on: "1996-01-01"
+  label_en: CRDS on financial income
   ipp_csv_id: tx_crds_rk_patr
   unit: /1
   reference:
     1996-02-01:
       title: Ordonnance 96-50 du 24/01/1996, art. 15, 16 et 19
-  last_review: "1996-01-01"
 documentation: |-
   Référence dans les codes législatifs :
   Pour le taux de CRDS : l'ordonnance 96-50 du 24/01/1996 est codifiée aux articles 1600-0 G à 1600-0 J du CGI.

@@ -1,0 +1,7 @@
+description: Prime de partage de la valeur (PPV)
+metadata:
+  short_label: PPV
+  order:
+  - plafond_salaire
+  - plafond_exoneration
+  - plafond_exoneration_avec_accord_interessement

@@ -1,7 +1,7 @@
-description: Zone 3 -Plafonds de loyer (après la réforme de 2001) des Allocations Logement (AL)
+description: Plafonds de loyers en zone 3 pris en compte dans le calcul des allocations logement (AL) après la réforme de 2001
 metadata:
-  ux_name: Zone 3
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  short_label: Zone 3
+  label_en: Parameters for the rental sector (after the 2001 reform)
   order:
   - personnes_seules
   - couples

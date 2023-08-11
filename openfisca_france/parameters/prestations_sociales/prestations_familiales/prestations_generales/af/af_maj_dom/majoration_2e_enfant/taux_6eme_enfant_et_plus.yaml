@@ -11,8 +11,9 @@ values:
   1999-01-01:
     value: null
 metadata:
-  ux_name: 6e enfant et plus
-  description_en: "Family allowances (AF): Extra allowances for oversea territories"
+  short_label: 6e enfant et plus
+  last_value_still_valid_on: "2022-02-21"
+  label_en: "Family allowances (AF): Extra allowances for oversea territories"
   unit: BMAF
   reference:
     1991-08-06:
@@ -45,7 +46,6 @@ metadata:
     - href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006738573&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=19930630
     1999-01-01:
     - title: "Modifie : Code de la sécurité sociale - Article D521-1"
-  last_review: "2022-02-21"
 documentation: |-
   Notes :
   A partir du 01/01/1993, les taux et majorations à partir du 2ème enfant sont les mêmes qu'en métropôle (cf article D. 521-1)

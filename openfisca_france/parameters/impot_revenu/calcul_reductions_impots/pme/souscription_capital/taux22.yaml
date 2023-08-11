@@ -1,0 +1,12 @@
+description: Taux 22%
+values:
+  2011-01-01:
+    value: 0.22
+metadata:
+  unit: /1
+  reference:
+    2011-01-01:
+    - title: Décret n° 2011-520 du 13/05/2011, Art 1, F, 1°
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023995355
+    - title: Article 199 terdecies-0 A, I du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024020726/2011-05-16/

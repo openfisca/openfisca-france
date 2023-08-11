@@ -1,0 +1,18 @@
+description: Liste des départements membre de la région Nouvelle Aquitaine
+values:
+  2015-01-16:
+    value:
+    - "16"
+    - "17"
+    - "19"
+    - "23"
+    - "24"
+    - "33"
+    - "40"
+    - "47"
+    - "64"
+    - "79"
+    - "86"
+    - "87"
+metadata:
+  unit: codes départements

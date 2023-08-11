@@ -1,0 +1,7 @@
+description: Abattement exceptionnel pour le calcul du revenu imposable (1978)
+metadata:
+  short_label: Abattement exceptionnel
+  label_en: Temporary tax exemption (1978)
+  order:
+  - en_faveur_certains_contribuables_seuls_1
+  - en_faveur_personnes_agees_invalides_2

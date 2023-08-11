@@ -31,8 +31,9 @@ brackets:
     1984-04-01:
       value: 0
 metadata:
-  ux_name: Barème employeur
-  description_en: Contributions to the financial structure ASF (1984-2001)
+  short_label: Barème employeur
+  last_value_still_valid_on: "2021-12-07"
+  label_en: Contributions to the financial structure ASF (1984-2001)
   ipp_csv_id:
     rate: asf_p_0_1, asf_p_1_4
   reference:
@@ -51,7 +52,6 @@ metadata:
   notes:
     2001-04-01:
     - title: Le taux AGFF se substitute à l'ASF.
-  last_review: "2021-12-07"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

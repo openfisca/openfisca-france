@@ -1,0 +1,12 @@
+description: Taux effectifs d'imposition au titre du barème de l'impôt général sur le revenu (IGR, 1917-1918)
+metadata:
+  short_label: Taux effectifs
+  label_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
+  order:
+  - taux_tranche_1
+  - taux_tranche_2
+  - taux_minimal_tranche_3
+  - taux_maximal_tranche_3
+  - taux_minimal_tranche_4
+  - taux_maximal_tranche_4
+  - taux_tranche_5

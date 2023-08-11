@@ -5,8 +5,8 @@ values:
   1976-07-01:
     value: null
 metadata:
-  ux_name: 1 enfant (<5 ans)
-  description_en: "Single earner allowance (ASU): Monthly amount"
+  short_label: 1 enfant (<5 ans)
+  label_en: "Single earner allowance (ASU): Monthly amount"
   ipp_csv_id: tx_asu_1_enf_5ans_inf
   unit: /1
   reference:

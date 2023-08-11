@@ -21,7 +21,7 @@ input:
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   primes_salaires: 0
   prise_en_charge_employeur_retraite_complementaire: 0
-  prise_en_charge_employeur_prevoyance_complementaire: 0
+  prevoyance_complementaire_employeur: 0
   prise_en_charge_employeur_retraite_supplementaire: 0
   ratio_alternants: 0
   redevable_taxe_apprentissage: 0
@@ -102,7 +102,6 @@ output:
   mmid_salarie: 0
   contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: 0
-  mhsup: 0
   salaire_net: 0
 
   # salaire imposable

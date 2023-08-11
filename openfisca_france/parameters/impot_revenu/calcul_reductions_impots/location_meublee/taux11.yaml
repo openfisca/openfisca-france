@@ -1,0 +1,7 @@
+description: Taux 11% de la réduction d'impôt "Censi-Bouvard" pour l'investissement locatif meublé exercé à titre non professionnel dans certaines résidences (2009-)
+values:
+  2012-01-01:
+    value: 0.11
+metadata:
+  short_label: Taux 11%
+  unit: /1

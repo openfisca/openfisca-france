@@ -7,7 +7,7 @@ values:
   2012-01-01:
     value: 2.5
 metadata:
-  ux_name: PACA
+  short_label: PACA
   ipp_csv_id: maj_ticpe_super_paca
   unit: currency
 documentation: |-

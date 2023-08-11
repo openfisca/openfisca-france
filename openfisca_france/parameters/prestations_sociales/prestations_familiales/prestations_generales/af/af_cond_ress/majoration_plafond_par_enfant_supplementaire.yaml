@@ -17,8 +17,9 @@ values:
   2023-01-01:
     value: 5932
 metadata:
-  ux_name: Majoration ressource par enfant supplémentaire
-  description_en: "Family allowances (AF): Thresholds for means-testing"
+  short_label: Majoration ressource par enfant supplémentaire
+  last_value_still_valid_on: "2022-02-25"
+  label_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: plaf_enf_sup
   unit: currency
   reference:

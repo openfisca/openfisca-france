@@ -1,11 +1,12 @@
-description: Personne isolée - Plafond de ressources (zone 1) de la Réduction de loyer de solidarité (RLS)
+description: Bénéficiaire isolé - Plafond de ressources (zone 1) de la Réduction de loyer de solidarité (RLS)
 values:
   2018-01-01:
     value: 906
   2019-01-01:
     value: 915
 metadata:
-  ux_name: Personne isolée
+  short_label: Bénéficiaire isolé
+  last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: plafond_ressources_rls_z1_personne_isolee
   unit: currency
   reference:

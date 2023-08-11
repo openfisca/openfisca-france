@@ -5,8 +5,8 @@ values:
   2013-01-01:
     value: 0.24
 metadata:
-  ux_name: Émis entre le 01/01/90 et le 31/12/94 sans anonymat
-  description_en: Levy in discharge on capital income (1965 - 2012)
+  short_label: Émis entre le 01/01/90 et le 31/12/94 sans anonymat
+  label_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: bons_9094
   unit: /1
   reference:

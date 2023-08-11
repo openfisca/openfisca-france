@@ -3,9 +3,11 @@ values:
   2004-01-01:
     value: 5
 metadata:
-  ux_name: 3 enfants ou plus
-  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
+  short_label: 3 enfants ou plus
+  last_value_still_valid_on: "2023-05-09"
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
   ipp_csv_id: periode_ref_cotisations_vieillesse_prepare_3plenf
+  unit: year
   reference:
     2004-01-01:
     - title: Loi 2003-1199 du 18/12/2003, art. 60 II (crée art. L531-3 du CSS)

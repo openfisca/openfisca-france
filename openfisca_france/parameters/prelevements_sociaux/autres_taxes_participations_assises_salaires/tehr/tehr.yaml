@@ -11,8 +11,9 @@ brackets:
     2015-01-01:
       value: null
 metadata:
-  ux_name: Taux
-  description_en: Exceptional solidarity tax on high wages ("75% tax")
+  short_label: Taux
+  last_value_still_valid_on: "2021-12-27"
+  label_en: Exceptional solidarity tax on high wages ("75% tax")
   ipp_csv_id:
     threshold: tehr_seuil
     rate: tehr_tx
@@ -26,7 +27,6 @@ metadata:
   official_journal_date:
     2013-01-01: "2013-12-30"
     2015-01-01: "2013-12-30"
-  last_review: "2021-12-27"
   rate_unit: /1
   threshold_unit: currency
 documentation: |-

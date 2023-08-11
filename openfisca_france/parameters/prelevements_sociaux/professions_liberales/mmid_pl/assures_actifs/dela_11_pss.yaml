@@ -1,0 +1,111 @@
+description: Taux (au-delà de 1,1 PSS) de cotisation de sécurité sociale (SS) pour les assurés actifs, branche maladie, maternité, invalidité, décès, Professions libérales
+values:
+  1970-04-01:
+    value: null
+  1981-10-01:
+    value: 0.0795
+  1984-01-01:
+    value: 0.0845
+  1987-07-01:
+    value: 0.0865
+  1989-04-01:
+    value: 0.0885
+  1991-08-01:
+    value: 0.0915
+  1991-10-01:
+    value: 0.0975
+  1992-04-01:
+    value: 0.0945
+  1995-04-01:
+    value: 0.098
+  1997-01-01:
+    value: 0.09
+  1998-01-01:
+    value: 0.053
+  2001-01-01:
+    value: 0.059
+  2013-01-01:
+    value: null
+  2018-01-01:
+    value: 0.065
+metadata:
+  short_label: Au-delà de 1,1 PSS
+  label_en: SSCs for sickness and maternity benefits (professionals)
+  unit: /1
+  reference:
+    1970-04-01:
+      title: Arrêté du 26/03/1971
+    1981-10-01:
+      title: Décret 81-813 du 27/08/1981
+    1984-01-01:
+      title: Décret 84-817 du 03/09/1984 - art. 1
+    1986-01-01:
+      title: Décret 85-1354 du 17/12/1985 - art. 1
+    1987-07-01:
+      title: Décret 87-483 du 1/07/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700929
+    1988-10-01:
+      title: Décret 88-913 du 5/09/1988 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006773293&cidTexte=JORFTEXT000000512343
+    1989-04-01:
+      title: Décret 89-143 du 3/03/1989 - art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774335&cidTexte=JORFTEXT000000881840
+    1991-08-01:
+      title: Décret 91-745 du 31/07/1991 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775818&cidTexte=JORFTEXT000000571495
+    1991-10-01:
+      title: Décret 91-745 du 31/07/1991 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775818&cidTexte=JORFTEXT000000571495
+    1992-04-01:
+      title: Décret 92-295 du 30/03/1992 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776239&cidTexte=JORFTEXT000000722788
+    1995-04-01:
+      title: Décret 95-337 du 30/03/1995 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006778145&cidTexte=JORFTEXT000000553219
+    1997-01-01:
+      title: Décret 96-1167 du 26/12/1996 - art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771607&cidTexte=JORFTEXT000000197223
+    1998-01-01:
+      title: Décret 97-1252 du 29/121997 - art. 3
+    2001-01-01:
+      title: Décret 2000-1285 du 26/12/2000 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779708&cidTexte=JORFTEXT000000219610
+    2013-01-01:
+      title: Décret 2012-1551 du 28/12/2012 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026881533&cidTexte=JORFTEXT000026864962
+    2018-01-01:
+      title: Décret 2017-1894 du 30/12/2017, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036456544&cidTexte=JORFTEXT000036342439
+  official_journal_date:
+    1970-04-01: "1971-04-14"
+    1981-10-01: "1981-08-30"
+    1984-01-01: "1984-09-05"
+    1987-07-01: "1987-07-03"
+    1988-10-01: "1988-09-08"
+    1989-04-01: "1989-03-04"
+    1991-08-01: "1991-08-01"
+    1991-10-01: "1991-08-01"
+    1992-04-01: "1992-03-31"
+    1995-04-01: "1995-03-31"
+    1997-01-01: "1996-12-29"
+    1998-01-01: "1997-12-30"
+    2001-01-01: "2000-12-29"
+    2013-01-01: "2012-12-30"
+    2018-01-01: "2017-12-31"
+  notes:
+    1998-01-01:
+    - title: Cotisations sur pension seulement pour les bénéficiaires fiscalement domiciliés à l'étranger
+    2018-01-01:
+    - title: Progressivité du taux de cotisation (voir Note, (3)).
+documentation: |-
+  Sources :
+  Loi 66-509 du 12/07/1966, JO 1966-07-13
+  Pour les années récentes, art. D. 621-3 du CSS
+  Notes :
+  (1) La cotisation à l'assurance Maladie-Maternité ne finance pas les prestations d'invalidité décès. Les cotisations ID sont prélevées par différentes caisses et le taux varie selon les professions.
+  (2) Les assurés ayant des revenus professionnels inférieurs à 13 % du PSS sont totalement exonérés de cotisations ainsi que les assurés à partir de 65 ans (60 ans pour les femmes) ayant élevé au moins 4 enfants jusqu'à l'âge de 14 ans.
+  (3) A partir de 2018, en-dessous de 110 % du PSS, le taux de cotisation est calculé comme suit :
+          taux = [(6,5% - 1,5%)/ (1,1 PSS)] × revenu + 1,5%
+  Cotisation minimale :
+  Pour les affiliés percevant un revenu professionnel inférieur à 40 % du PSS par an, une cotisation minimale annuelle est due.
+  Cotisation minimale = 0,45*PSS annuel*taux de cotisation

@@ -17,6 +17,7 @@ values:
   2023-01-01:
     value: 59330
 metadata:
+  last_value_still_valid_on: "2022-02-24"
   reference:
     2016-01-01:
       title: Arrêté du 08/12/2015, art. 1

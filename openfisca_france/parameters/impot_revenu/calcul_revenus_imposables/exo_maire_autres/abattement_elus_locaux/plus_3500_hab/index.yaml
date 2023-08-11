@@ -1,0 +1,13 @@
+description: Communes de plus de 3500 habitants
+metadata:
+  order:
+  - mandat_unique
+  - mandats
+documentation: |-
+  L'abattement pour les élus locaux s’applique à toutes
+  les indemnités de fonction perçues par les élus communaux et intercommunaux (maires,
+  adjoints, conseillers municipaux, présidents et vice-présidents d’EPCI et conseillers
+  intercommunaux) et est dénommée comme la fraction représentative de frais d’emploi.
+  Cet abattement n'est appliqué que si l'élu n'a pas bénéficié de remboursement
+  de frais de séjour et de transport par la commune (pour l'imposition de 2018 sur
+  les revenus de 2019, il le percevrait de manière réduite seulement). CGI art.81 1°

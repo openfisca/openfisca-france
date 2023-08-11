@@ -1,4 +1,4 @@
-description: Taux plein de la Contribution Sociale Généralisée (CSG) déductible sur les allocations chômage
+description: Taux plein de la contribution sociale généralisée (CSG) déductible sur les allocations chômage
 values:
   1991-02-01:
     value: null
@@ -7,8 +7,9 @@ values:
   1998-01-01:
     value: 0.038
 metadata:
-  ux_name: Taux plein
-  description_en: CSG - rates on unemployment incomes
+  short_label: Taux plein
+  last_value_still_valid_on: "2023-07-05"
+  label_en: CSG - rates on unemployment incomes
   ipp_csv_id: csg_cho_ded
   unit: /1
   reference:
@@ -27,7 +28,6 @@ metadata:
     1991-02-01: "1990-12-30"
     1997-01-01: "1996-12-29"
     1998-01-01: "1997-12-23"
-  last_review: "2021-12-15"
 documentation: |-
   Référence du Codes général des impôts :
   La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.

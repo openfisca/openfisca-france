@@ -1,0 +1,43 @@
+description: Seuil minimum d'imposition pour être éligible
+values:
+  1996-01-01:
+    value: null
+  1999-01-01:
+    value: 0.3
+  2003-01-01:
+    value: null
+metadata:
+  short_label: Seuil minimum
+  ipp_csv_id: seuil_eligibilite_besson_neuf
+  unit: /1
+  reference:
+    1996-01-01:
+      title: Loi n° 96-314 du 12 avril 1996 (DDOEF), art. 29
+    1999-01-01:
+      title: Loi n° 98-1266 du 30 décembre 1998 (LF pour 1999), art.38
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044&dateTexte=20000330&categorieLien=id#JORFTEXT000000209044
+    2003-01-01:
+      title: Loi n° 2003-590 du 2 juillet 2003 urbanisme et habitat, art. 91
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006826490&cidTexte=LEGITEXT000005634649&dateTexte=20031230
+  official_journal_date:
+    1996-01-01: "1996-04-13"
+    1999-01-01: "1998-12-31"
+    2003-01-01: "2003-07-03"
+  notes:
+    1996-01-01:
+    - title: Pour le dispositif Périssol, le plafond de déficit foncier imputable sur le revenu imposable est relevé de 70,000 F (10,700 E) à 100,000 F (15,300 E). Avec ce dispositif, 80% de l'investissement est déduit des revenus imposables au bout de 24 ans.
+    1999-01-01:
+    - title: La déduction totale du coût de l'investissement du revenu imposable avec le dispositif Besson neuf est de 50% sur 9 ans, 57.5% sur 12 ans et 65% sur 15 ans.
+    2003-01-01:
+    - title: La déduction totale du coût de l'investissement du revenu imposable avec le dispositif Robien "classique" est de 50% sur 9 ans, 57.5% sur 12 ans et 65% sur 15 ans.
+documentation: |-
+  Le plafond des déficits fonciers imputables aux autres
+  revenus est prévu depuis 1993 et est codifié au 3° du I de l'article 156 du code
+  général des impôts (CGI).
+  Les logements éligibles au dispositif Besson neuf sont ceux ayant été achetés neufs ou réhabilités
+  entre le 1er Janvier 1999 et le 02 avril 2003, à la condition d'être loué nu à
+  titre de résidence principale du locataire pour une durée minimale de 9 ans, avec
+  des plafonnements de loyer en fonction de la zone géographique et de la superficie
+  du bien. Les particuliers éligibles à ces locations doivent avoir des revenus
+  en dessous d'un certain plafond et ne peuvent être des ascendants ou descendants
+  du propriétaire. CGI - art 31 I-1°

@@ -1,0 +1,19 @@
+description: Logement situé en zone A, A bis ou B1
+values:
+  1984-01-01:
+    value: null
+  2017-01-01:
+    value: 0.3
+metadata:
+  ipp_csv_id: cosse_intermediaire_A
+  unit: /1
+  reference:
+    1984-01-01:
+      title: Loi n° 84-1208 du 29 décembre 1984 (LF pour 1985), art. 82
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000880778&idArticle=LEGIARTI000006274284&dateTexte=19861231&categorieLien=id#LEGIARTI000006274284
+    2017-01-01:
+      title: Loi n° 2016-1918 du 29 décembre 2016 (LF pour 2016), art. 46
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=JORFARTI000033734399&cidTexte=JORFTEXT000033734341&dateTexte=29990101&categorieLien=id
+  official_journal_date:
+    1984-01-01: "1984-12-30"
+    2017-01-01: "2016-12-30"

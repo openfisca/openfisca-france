@@ -1,0 +1,12 @@
+description: seuil
+values:
+  1947-01-01:
+    value: null
+  1948-01-01:
+    value: 200000
+  1952-01-01:
+    value: 440000
+  1959-01-01:
+    value: null
+metadata:
+  ipp_csv_id: tp_seuil_nonsal_autre

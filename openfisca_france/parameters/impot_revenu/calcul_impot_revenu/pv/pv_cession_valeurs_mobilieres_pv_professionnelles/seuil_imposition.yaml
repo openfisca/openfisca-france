@@ -1,0 +1,72 @@
+description: Seuil d'imposition des plus-values de cession de valeurs mobilières et des plus-values professionnelles
+values:
+  1977-01-01:
+    value: null
+  1978-01-01:
+    value: 150000
+  1980-01-01:
+    value: 168000
+  1981-01-01:
+    value: 190700
+  1982-01-01:
+    value: null
+  1984-01-01:
+    value: 265000
+  1985-01-01:
+    value: 272000
+  1986-01-01:
+    value: 281000
+  1988-01-01:
+    value: 298000
+  1989-01-01:
+    value: 307600
+  1990-01-01:
+    value: 316900
+  1991-01-01:
+    value: 325800
+  1992-01-01:
+    value: null
+  1994-01-01:
+    value: 336700
+  1995-01-01:
+    value: 342800
+  1996-01-01:
+    value: 200000
+  1997-01-01:
+    value: 100000
+  1998-01-01:
+    value: 50000
+  2001-01-01:
+    value: 7650
+  2002-01-01:
+    value: 15000
+  2007-01-01:
+    value: 20000
+  2008-01-01:
+    value: 25000
+  2009-01-01:
+    value: 25730
+  2010-01-01:
+    value: 25830
+  2011-01-01:
+    value: null
+metadata:
+  short_label: Seuil
+  ipp_csv_id: seuil_pv
+  unit: currency
+  reference:
+    2002-01-01:
+      title: BOI 5 C-1-03; n°51 du 18/03/2003
+    2007-01-01:
+      title: BOI 5 C-2-08; n°50 du 14/05/2008
+    2008-01-01:
+      title: BOI 5 C-1-09 n°9 du 23/01/2009
+  notes:
+    1995-01-01:
+    - title: Pour les options attribuées à compter du 20/09/95, création de la variable tx_pv2
+    2001-01-01:
+    - title: "Avant 2001 : art 92 B du CGI"
+    2008-01-01:
+    - title: À compter du 1er janvier 2009, le seuil de cession est actualisé chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l’impôt sur le revenu de l’année précédant celle de la cession.
+    2011-01-01:
+    - title: "Seuil d'imposition des plus-values : art 150-0 A du CGI supprimé par LF 2011"

@@ -1,0 +1,6 @@
+description: Imposition des gains de cession de titres souscrits en exercice de bons de souscription de parts de créateur d’entreprise (BSPCE)
+metadata:
+  short_label: BSPCE
+  order:
+  - moins_3ans
+  - plus_3ans

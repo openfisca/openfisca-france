@@ -1,4 +1,4 @@
-description: Zone abattement maximale du SMIG horaire brut (Salaire minimum garanti - 1950-1969) - Marché du travail
+description: Zone abattement maximale
 values:
   1950-09-01:
     value: 64
@@ -51,17 +51,10 @@ values:
   1966-10-01:
     value: null
 metadata:
-  ux_name: Zone abattement maximale
-  description_en: Minimum wage - SMIG (1950-1969)
+  short_label: Zone abattement maximale
+  label_en: Minimum wage - SMIG
   ipp_csv_id: smig_h_ab_max
   unit: currency
   notes:
     1959-11-01:
     - title: Les montants sont exprimés en anciens Francs de 1950 à 1959.
-documentation: |-
-  Sources de la législation:
-  Annuaire Statistique de la France 1971 de 1966 à 1970; Annuaire Statistique de la France 1966 de 1950 à 1966
-  Notes:
-  Entre 1950 et 1968 il existe des abattements par zone géographique (20 zones, Paris 0 abattement);
-  Entre 1950 et 1968, il existe un SMAG qui est limité à l'agriculture et dont le montant est inférieur au SMIG.
-  Les montants des DOM-TOM ne sont pas indiqués

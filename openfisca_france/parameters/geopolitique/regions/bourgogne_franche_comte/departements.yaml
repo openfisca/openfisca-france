@@ -1,0 +1,14 @@
+description: Liste des départements membre de la région Bourgogne Franche Comte
+values:
+  2015-01-16:
+    value:
+    - "21"
+    - "25"
+    - "39"
+    - "58"
+    - "70"
+    - "71"
+    - "89"
+    - "90"
+metadata:
+  unit: codes départements

@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur les intérêts de paiements différés accordés aux agriculteurs
+metadata:
+  short_label: Intérêts paiements différés agriculteurs
+  order:
+  - taux
+  - plafond

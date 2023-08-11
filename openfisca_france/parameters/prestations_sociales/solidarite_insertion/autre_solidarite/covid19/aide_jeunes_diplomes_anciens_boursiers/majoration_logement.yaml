@@ -3,7 +3,7 @@ values:
   2021-02-05:
     value: 100
 metadata:
-  ux_name: Montant supp. logement
+  short_label: Montant supp. logement
   unit: currency
   reference:
     2021-02-05:

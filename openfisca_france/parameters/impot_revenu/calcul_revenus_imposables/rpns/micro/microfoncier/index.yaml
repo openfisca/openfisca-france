@@ -1,4 +1,6 @@
-description: Microfoncier
+description: Abattement pour le régime microfoncier
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  short_label: Microfoncier
+  order:
+  - plafond_recettes
+  - taux

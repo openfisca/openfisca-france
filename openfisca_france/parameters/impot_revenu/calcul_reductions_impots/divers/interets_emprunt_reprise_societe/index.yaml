@@ -1,0 +1,6 @@
+description: Réduction d'impôts sur les intérêts d'emprunt pour reprise de société
+metadata:
+  short_label: Intérêts emprunt reprise société
+  order:
+  - taux
+  - plafond

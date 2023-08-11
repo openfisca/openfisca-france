@@ -1,0 +1,10 @@
+description: Taux 25%
+values:
+  1994-01-01:
+    value: 0.25
+metadata:
+  unit: /1
+  reference:
+    1994-01-01:
+      title: Article 199 terdecies-0 A, I du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303135/1996-05-12/

@@ -1,0 +1,6 @@
+description: Cotisation (sous 3,5 PSS) des Médecins pour la retraite complémentaire, Professions libérales
+metadata:
+  short_label: Sous 3,5 PSS
+  label_en: Contribution for complementary pension scheme (professionals)
+  order:
+  - retraite_complementaire

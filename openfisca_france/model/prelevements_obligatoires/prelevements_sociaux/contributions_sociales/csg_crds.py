@@ -42,7 +42,10 @@ class crds(Variable):
     value_type = float
     entity = Individu
     label = 'Contributions au remboursement de la dette sociale'
-    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000190291/2021-10-06/'
+    reference = [
+        'Ordonnance n° 96-50 du 24 janvier 1996 relative au remboursement de la dette sociale, art. 14',
+        'https://www.legifrance.gouv.fr/loda/id/LEGISCTA000006106400'
+        ]
     definition_period = YEAR
 
     def formula(individu, period):

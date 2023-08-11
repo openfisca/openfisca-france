@@ -1,0 +1,19 @@
+description: Taux de la réduction d'impôt pour la défense des forêts contre les incendies
+values:
+  2006-01-01:
+    value: 0.5
+metadata:
+  short_label: Taux
+  unit: /1
+  reference:
+    2006-01-01:
+      title: Loi 2006-11, art. 66 du 05/01/2006
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006601284&cidTexte=JORFTEXT000000264992
+  notes:
+    2006-01-01:
+    - title: Création d'une réduction d'impôt pour la défense des forêts contre l'incendie
+documentation: |-
+  Notes :
+  (1) En 2007, investissements forestiers renommés en investissements et travaux forestiers
+  (2) Réduction pour dépenses d'investissement forestier : art. 199 decies H du CGI
+  (3) Réduction pour la défense des fôrets contre les incendies : art. 200 decies A du CGI

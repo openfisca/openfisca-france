@@ -21,8 +21,9 @@ values:
   1967-09-01:
     value: null
 metadata:
-  ux_name: Cotisation patronale
-  description_en: SSC (1930-1966)
+  short_label: Cotisation patronale
+  last_value_still_valid_on: "1967-01-01"
+  label_en: SSC (1930-1966)
   ipp_csv_id: css_p_0_1
   unit: /1
   reference:
@@ -64,7 +65,6 @@ metadata:
     - title: 4% sont dues au titre de la contribution spéciale instaurée par l'ordonnance du 30/12/1944
     1967-09-01:
     - title: En 1967 la cotisation globale de Sécurité sociale est remplacée par des cotisations différenciées par branches
-  last_review: "1967-01-01"
 documentation: |-
   Sources :
   www.legislation.cnav.fr et Journal Officiel via www.legifrance.gouv.fr

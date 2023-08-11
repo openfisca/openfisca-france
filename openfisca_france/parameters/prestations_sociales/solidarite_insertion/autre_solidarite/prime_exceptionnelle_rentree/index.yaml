@@ -1,0 +1,11 @@
+description: Prime exceptionnelle de rentrée
+metadata:
+  short_label: PER
+  label_en: Exceptional financial aid
+  order:
+  - per
+  - per_enfant
+  - per_etudiant
+  - per_etudiant_enfant
+  - per_ppa
+  - per_ppa_enfant

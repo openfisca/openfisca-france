@@ -2,6 +2,8 @@ description: Majoration par personne à charge du pourcentage plafond de la vale
 values:
   2017-01-01:
     value: 0.1
+  2023-01-01:
+    value: null
 metadata:
   unit: /1
   reference:

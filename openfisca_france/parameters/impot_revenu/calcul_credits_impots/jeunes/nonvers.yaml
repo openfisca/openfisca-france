@@ -1,8 +1,0 @@
-description: Seuil de non versement
-values:
-  2005-01-01:
-    value: 25
-  2009-01-01:
-    value: null
-metadata:
-  unit: /1

@@ -1,0 +1,32 @@
+description: Premier taux de réduction d'impôt sur les souscriptions de parts de fonds communs de placement dans l'innovation (1997 -)
+values:
+  1997-01-01:
+    value: 0.25
+  2011-01-01:
+    value: 0.22
+  2012-01-01:
+    value: 0.18
+metadata:
+  short_label: 1er Taux
+  ipp_csv_id: txfcp_1
+  unit: /1
+  reference:
+    2012-01-01:
+      title: BOI-IR-RICI-110
+    2020-08-10:
+    - title: Loi 2021-953 du 19/07/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043805899
+    - title: Décret 2020-1014 du 07/08/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042220908
+    - title: Loi 2020-1721 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753590
+  notes:
+    2013-01-01:
+    - title: Concerne les versements jusqu'au 31 décembre 2012 (et non 2013)
+    2020-08-10:
+    - title: Le taux de 25 % (30 %) s'applique aux versements effectués entre le 10 août et le 31 décembre 2020. Avant le 10 août c'est le taux de 18 % (38 %) qui s'applique. La loi de finances pour 2021 proroge le taux majoré de 25 % pour les versements effectués au titre d'une souscription aux parts de FCPI et FIP, jusqu'au 31 décembre 2021. Ce taux majoré a été de nouveau prorogé jusqu'au 31 décembre 2022.
+documentation: |-
+  Notes :
+  (1) Souscriptions de parts de fonds communs de placement dans l'innovation (FCPI) ou de fonds d'investissements de proximité (FIP)
+  (2) Art. 199 terdecies-0-A CGI. Pour les FIP en Corse voir BOI-IR-RICI-120
+  (3) Plafond à doubler pour couples mariés ou pacsés pour fonds d'investissement de proximité (FIP)

@@ -1,12 +1,12 @@
-description: Taux de la décotede l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Taux de la décotede l'impôt de solidarité sur la fortune
 values:
   2013-01-01:
     value: 0.0125
   2018-01-01:
     value: null
 metadata:
-  ux_name: Taux de la décote
-  description_en: "\"Décote\" computation"
+  short_label: Taux de la décote
+  label_en: "\"Décote\" computation"
   ipp_csv_id: tx_decote_isf
   unit: /1
   reference:

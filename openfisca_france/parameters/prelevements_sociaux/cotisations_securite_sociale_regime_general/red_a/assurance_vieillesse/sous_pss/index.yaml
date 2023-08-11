@@ -1,7 +1,7 @@
 description: Cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974) pour l'assurance vieillesse, sous le plafond de la sécurité sociale (PSS)
 metadata:
-  ux_name: Branche assurance vieillesse
-  description_en: SSCs for artists (1960-1974)
+  short_label: Branche assurance vieillesse
+  label_en: SSCs for artists (1960-1974)
   order:
   - employeur
   - employes

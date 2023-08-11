@@ -3,7 +3,7 @@ values:
   2005-01-01:
     value: 110
 metadata:
-  ux_name: Multiple couple
-  description_en: Special UI scheme
+  short_label: Multiple couple
+  label_en: Special UI scheme
   unit: /1
 documentation: ""

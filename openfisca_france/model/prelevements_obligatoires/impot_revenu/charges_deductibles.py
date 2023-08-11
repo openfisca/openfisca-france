@@ -508,9 +508,9 @@ class cd2(Variable):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        epargne_codeveloppement = foyer_fiscal('epargne_codeveloppement', period)
+        epargne_codeveloppement_deduc = foyer_fiscal('epargne_codeveloppement_deduc', period)
 
-        niches2 = epargne_codeveloppement
+        niches2 = epargne_codeveloppement_deduc
         return niches2
 
 
@@ -548,7 +548,7 @@ class pensions_alimentaires_deduites(Variable):
     reference = 'http://frederic.anne.free.fr/Cours/ITV.htm'
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
+    def formula_2006_01_01(foyer_fiscal, period, parameters):
         f6gi = foyer_fiscal('f6gi', period)
         f6gj = foyer_fiscal('f6gj', period)
         f6gp = foyer_fiscal('f6gp', period)
@@ -689,7 +689,7 @@ class cd_sofipe(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         sofipeche = parameters(period).impot_revenu.calcul_reductions_impots.sofipeche
 
-        plafond = min_(sofipeche.plafond_pct_rng * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
+        plafond = min_(sofipeche.plafond_revenu_net_global * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
         return min_(f6cc, plafond)
 
 
@@ -709,15 +709,16 @@ class souscriptions_cinema_audiovisuel(Variable):
         rbg_int = foyer_fiscal('rbg_int', period)
         cinema = parameters(period).impot_revenu.calcul_revenus_imposables.charges_deductibles.cinema
 
-        max1 = min_(cinema.taux * rbg_int, cinema.max)
+        max1 = min_(cinema.taux * rbg_int, cinema.plafond)
         return min_(f6aa, max1)
 
 
-class epargne_codeveloppement(Variable):
+class epargne_codeveloppement_deduc(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Versements sur un compte épargne codéveloppement'
     end = '2008-12-31'
+    # En 2009, on passe d'un montant déductible à une réduction d'impôt : voir reductions_impot_plafonnees.py
     definition_period = YEAR
 
     def formula_2007(foyer_fiscal, period, parameters):
@@ -727,9 +728,9 @@ class epargne_codeveloppement(Variable):
         '''
         f6eh = foyer_fiscal('f6eh', period)
         rbg_int = foyer_fiscal('rbg_int', period)
-        ecodev = parameters(period).impot_revenu.calcul_revenus_imposables.charges_deductibles.compte_epargne_codev
+        codev = parameters(period).impot_revenu.calcul_reductions_impots.compte_epargne_co_developpement
 
-        plafond = min_(ecodev.plafond_pct_rng * rbg_int, ecodev.plafond)
+        plafond = min_(codev.plafond_en_revenu_net_global * rbg_int, codev.plafond_par_personne)
         return min_(f6eh, plafond)
 
 

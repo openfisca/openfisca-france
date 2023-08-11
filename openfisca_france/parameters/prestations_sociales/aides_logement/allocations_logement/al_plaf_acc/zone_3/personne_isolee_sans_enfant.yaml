@@ -31,8 +31,9 @@ values:
   2019-10-01:
     value: 259.04
 metadata:
-  ux_name: Personne isolée sans enfant
-  description_en: Annual ceiling of reimbursement for new homebuyers
+  short_label: Personne isolée sans enfant
+  last_value_still_valid_on: "2022-01-05"
+  label_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_isol_z3_al
   unit: currency
   reference:
@@ -90,7 +91,6 @@ metadata:
   notes:
     2015-10-01:
     - title: Idem en 2016
-  last_review: "2022-01-05"
 documentation: |-
   Notes :
   Il s'agit du montant des mensualités plafonds en AL pour des contrats de prêts signés à compter du 1e janvier 2013.

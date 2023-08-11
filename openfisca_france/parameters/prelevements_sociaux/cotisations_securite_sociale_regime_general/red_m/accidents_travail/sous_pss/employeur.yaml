@@ -13,8 +13,9 @@ values:
   1973-01-01:
     value: 0.0147
 metadata:
-  ux_name: Taux employeur
-  description_en: SSCs for physicians working part-time (1961-1974)
+  short_label: Taux employeur
+  last_value_still_valid_on: "1974-01-01"
+  label_en: SSCs for physicians working part-time (1961-1974)
   ipp_csv_id: acc_m_p_0_1
   unit: /1
   reference:
@@ -37,7 +38,6 @@ metadata:
     1971-01-01: "1971-01-15"
     1972-01-01: "1972-03-16"
     1973-01-01: "1973-03-17"
-  last_review: "1974-01-01"
 documentation: |-
   Note générale :
   Les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1961 et 1974.

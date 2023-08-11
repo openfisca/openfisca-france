@@ -5,8 +5,8 @@ values:
   1994-07-01:
     value: 2
 metadata:
-  ux_name: Nb min enfants pris en charge
-  description_en: "Parental leave allowance (APE): Conditions and amounts"
+  short_label: Nb min enfants pris en charge
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
   ipp_csv_id: ape_nenf_min
   reference:
     1985-01-01:

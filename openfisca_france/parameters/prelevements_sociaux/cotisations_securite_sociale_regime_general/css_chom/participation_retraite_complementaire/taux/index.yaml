@@ -1,7 +1,7 @@
 description: Taux des Cotisations de retraite complémentaire des Cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
 metadata:
-  ux_name: Taux
-  description_en: SSCs on unemployment benefits
+  short_label: Taux
+  label_en: SSCs on unemployment benefits
   order:
   - affiliation_3_6_mois
   - affiliation_6_mois

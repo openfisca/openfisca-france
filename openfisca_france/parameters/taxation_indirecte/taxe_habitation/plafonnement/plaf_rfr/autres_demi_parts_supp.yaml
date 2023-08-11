@@ -9,6 +9,6 @@ values:
   2020-01-01:
     value: null
 metadata:
-  ux_name: Majoration demi-parts supp.
+  short_label: Majoration demi-parts supp.
   unit: currency
 documentation: Voir II de l'art. 1417 du CGI

@@ -1,12 +1,13 @@
-description: Plafond pour la somme des trois réductions (PME, FCIP/FIP sur PME et dons) de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+description: Plafond pour la somme des trois réductions (PME, FCIP/FIP sur PME et dons) de l'Impôt sur la fortune immobilière
 values:
   2018-01-01:
     value: 45000
   2019-01-01:
     value: 50000
 metadata:
-  ux_name: Plafond pour la somme des trois réductions (PME, FCIP/FIP sur PME et dons)
-  description_en: Tax reductions for investment and donations
+  short_label: Plafond pour la somme des trois réductions (PME, FCIP/FIP sur PME et dons)
+  last_value_still_valid_on: "2022-05-16"
+  label_en: Tax reductions for investment and donations
   unit: currency
   reference:
     2018-01-01:
@@ -22,7 +23,6 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_review: "2022-05-16"
 documentation: |-
   (1) Fonds commun de placement dans l'innovation
   (2) Fonds d'investissement de proximité

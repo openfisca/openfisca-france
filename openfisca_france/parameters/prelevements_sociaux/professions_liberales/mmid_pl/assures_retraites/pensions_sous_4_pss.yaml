@@ -1,0 +1,55 @@
+description: Taux sur pension sous 4 PSS de cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès, Professions libérales
+values:
+  1974-10-01:
+    value: 0.025
+  1976-10-01:
+    value: 0.035
+  1977-10-01:
+    value: 0.04
+  1979-04-01:
+    value: 0.07
+  1981-10-01:
+    value: null
+metadata:
+  short_label: Taux sur pensions sous 4 PSS
+  label_en: SSCs for sickness and maternity benefits (professionals)
+  ipp_csv_id: mmid_plib_pens_0_4
+  unit: /1
+  reference:
+    1974-10-01:
+    - title: Décret 74-810 du 28/09/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000857732
+    - title: Loi 73-1193 du 27/12/1973
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509757
+    1976-10-01:
+      title: Décret 76-641 du 15/07/1976
+    1977-10-01:
+      title: Décret 77-857 du 26/07/1977
+    1979-04-01:
+      title: Décret 79-203 du 12/03/1979
+    1981-10-01:
+      title: Décret 81-813 du 27/08/1981
+    1986-01-01:
+      title: Décret 85-1354 du 17/12/1985 - art. 1
+    1988-10-01:
+      title: Décret 88-913 du 5/09/1988 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006773293&cidTexte=JORFTEXT000000512343
+  official_journal_date:
+    1974-10-01: 1975-08-08; 1973-12-30
+    1976-10-01: "1976-07-16"
+    1977-10-01: "1977-07-28"
+    1979-04-01: "1979-03-14"
+    1981-10-01: "1981-08-30"
+    1988-10-01: "1988-09-08"
+documentation: |-
+  Sources :
+  Loi 66-509 du 12/07/1966, JO 1966-07-13
+  Pour les années récentes, art. D. 621-3 du CSS
+  Notes :
+  (1) La cotisation à l'assurance Maladie-Maternité ne finance pas les prestations d'invalidité décès. Les cotisations ID sont prélevées par différentes caisses et le taux varie selon les professions.
+  (2) Les assurés ayant des revenus professionnels inférieurs à 13 % du PSS sont totalement exonérés de cotisations ainsi que les assurés à partir de 65 ans (60 ans pour les femmes) ayant élevé au moins 4 enfants jusqu'à l'âge de 14 ans.
+  (3) A partir de 2018, en-dessous de 110 % du PSS, le taux de cotisation est calculé comme suit :
+          taux = [(6,5% - 1,5%)/ (1,1 PSS)] × revenu + 1,5%
+  Cotisation minimale :
+  Pour les affiliés percevant un revenu professionnel inférieur à 40 % du PSS par an, une cotisation minimale annuelle est due.
+  Cotisation minimale = 0,45*PSS annuel*taux de cotisation

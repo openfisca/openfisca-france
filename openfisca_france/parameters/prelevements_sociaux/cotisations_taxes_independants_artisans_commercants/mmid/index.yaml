@@ -1,6 +1,6 @@
 description: Cotisation de sécurité sociale (SS), branche maladie, maternité, invalidité, décès, Artisans-Commerçants
 metadata:
-  ux_name: Branche Maladie Maternité Invalidité Décès
-  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  short_label: Branche Maladie Maternité Invalidité Décès
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   order:
   - mmid_ac

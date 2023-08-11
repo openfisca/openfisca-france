@@ -7,8 +7,9 @@ values:
   1993-04-01:
     value: null
 metadata:
-  ux_name: Sous PSS
-  description_en: Transport tax (VT) (contribution to public transports)
+  short_label: Sous PSS
+  last_value_still_valid_on: "2021-12-07"
+  label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_p_0_1
   unit: /1
   reference:
@@ -24,7 +25,6 @@ metadata:
     - title: La loi 73-640 autorise les communes de plus de 300 000 habitants à instaurer un VT, dont le taux (au maximum de 1,5%) sera fixé par décret.
     1993-04-01:
     - title: Déplafonnement du versement transport
-  last_review: "2021-12-07"
 documentation: |-
   Notes :
   (i) Le versement transport est recouvré par les URSSAF comme les cotisations de Sécurité sociale, et reversé aux collectivités locales.

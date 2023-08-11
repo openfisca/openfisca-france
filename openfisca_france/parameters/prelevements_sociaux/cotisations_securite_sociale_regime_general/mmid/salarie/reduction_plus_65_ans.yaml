@@ -7,8 +7,9 @@ values:
   1977-07-01:
     value: null
 metadata:
-  ux_name: Réduction > 65 ans
-  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  short_label: Réduction > 65 ans
+  last_value_still_valid_on: "1977-01-01"
+  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   ipp_csv_id: mmid_red65_s_0_1
   unit: /1
   reference:
@@ -51,7 +52,6 @@ metadata:
     - title: Voir la note (ii) sur la date d'effet du nouveau taux.
     2018-01-01:
     - title: Suppression des cotisations salariales MMID.
-  last_review: "1977-01-01"
 documentation: |-
   Sources :
   Barème social périodique, Législation Cnav et Légifrance.

@@ -1,0 +1,35 @@
+description: Taux d'imposition des plus-values de cession (RPNS) de valeurs mobilières et des plus-values professionnelles
+values:
+  1977-01-01:
+    value: null
+  1978-01-01:
+    value: 0.15
+  1984-01-01:
+    value: 0.16
+  2008-01-01:
+    value: 0.18
+  2011-01-01:
+    value: 0.19
+  2012-01-01:
+    value: 0.24
+  2018-01-01:
+    value: 0.128
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_pv
+  unit: /1
+  reference:
+    2008-01-01:
+      title: BOI 5 C-1-09 n°9 du 23/01/2009
+    2018-01-01:
+    - title: Loi n° 2017-1837 du 30 décembre 2017 (LF 2018), art. 28
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000036339197&idArticle=LEGIARTI000036377422&dateTexte=20181230&categorieLien=id#LEGIARTI000036377422
+    - title: Loi 2017-1837 du 30/12/2017, art. 29
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036339237
+  notes:
+    2008-01-01:
+    - title: À compter du 1er janvier 2009, le seuil de cession est actualisé chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l’impôt sur le revenu de l’année précédant celle de la cession.
+    2011-01-01:
+    - title: "Seuil d'imposition des plus-values : art 150-0 A du CGI supprimé par LF 2011"
+    2012-01-01:
+    - title: Taux d'imposition des plus-values mobilières de 2012 (imposées en 2013) majoré à 24% par la loi de finances pour 2013 (Loi 2012-1509 du 29/12/2012 de finances pour 2013 art. 10)

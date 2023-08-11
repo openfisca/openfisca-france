@@ -1,0 +1,21 @@
+description: "Indemnité de résidence : plancher (en indice majoré de la fonction publique)"
+values:
+  1999-06-13:
+    value: 294
+  1999-11-14:
+    value: 295
+  2001-05-01:
+    value: 297
+  2006-11-01:
+    value: 298
+  2011-01-01:
+    value: 299
+  2012-01-01:
+    value: 306
+  2012-07-07:
+    value: 312
+  2013-01-01:
+    value: 313
+  2014-07-01: expected
+metadata:
+  short_label: Montant plancher

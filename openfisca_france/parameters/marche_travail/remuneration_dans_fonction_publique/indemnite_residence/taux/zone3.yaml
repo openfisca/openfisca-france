@@ -1,0 +1,7 @@
+description: "Indemnité de résidence zone 3 : taux"
+values:
+  1999-07-01:
+    value: 0
+metadata:
+  short_label: Taux zone 3
+  unit: /1

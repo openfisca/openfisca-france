@@ -1,0 +1,8 @@
+description: Réduction d'impôt des dispositifs d'encouragement à l'investissement locatif (1984 -)
+metadata:
+  short_label: Investissements immobiliers
+  label_en: Tax reductions for new real estate investments (1984 -)
+  order:
+  - logements_neufs
+  - logements_anciens
+  - plafond

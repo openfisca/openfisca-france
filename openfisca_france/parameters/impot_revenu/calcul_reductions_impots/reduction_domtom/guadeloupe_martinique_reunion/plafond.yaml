@@ -1,0 +1,70 @@
+description: Montant maximal de la réduction d'impôt sur le revenu pour les DOM en Guadeloupe, Martinique et à la Réunion (1979-)
+values:
+  1978-01-01:
+    value: null
+  1980-01-01:
+    value: 18000
+  1981-01-01:
+    value: 20500
+  1982-01-01:
+    value: 23100
+  1983-01-01:
+    value: 25300
+  1984-01-01:
+    value: 27230
+  1985-01-01:
+    value: 28760
+  1986-01-01:
+    value: 29450
+  1987-01-01:
+    value: 30430
+  1988-01-01:
+    value: 31230
+  1989-01-01:
+    value: 32270
+  1990-01-01:
+    value: 33303
+  1991-01-01:
+    value: 34301
+  1992-01-01:
+    value: 35261
+  1993-01-01:
+    value: 33310
+  2001-01-01:
+    value: 5100
+  2018-01-01:
+    value: 2450
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_reduction_ir_guadmartreunion
+  unit: currency
+  reference:
+    1978-01-01:
+      title: Loi n° 77-1467 du 30 décembre 1977 (LF pour 1978), art. 2
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000704549&dateTexte=19771231&categorieLien=id#JORFTEXT000000704549
+    1980-01-01:
+      title: Loi n° 80-30 du 18 janvier 1980 (LF pour 1980), art. 79
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000705191&idArticle=LEGIARTI000006273429&dateTexte=19820831&categorieLien=id#LEGIARTI000006273429
+    1993-01-01:
+      title: Loi n° 93-1352 du 30 décembre 1993 (LF 1994), art.2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000509319&idArticle=LEGIARTI000006318839&dateTexte=19951026&categorieLien=id#LEGIARTI000006318839
+    2001-01-01:
+      title: Loi n° 2001-1275 du 28 décembre 2001 (LF pour 2002), art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000592233&idArticle=LEGIARTI000006321113&dateTexte=20020830&categorieLien=id#LEGIARTI000006321113
+    2018-01-01:
+      title: Loi n° 2018-1317 du 28 décembre 2018 (LF 2019), art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000037882341&idArticle=LEGIARTI000037935215&dateTexte=20190607&categorieLien=id#LEGIARTI000037935215
+  official_journal_date:
+    1978-01-01: "1977-12-31"
+    1980-01-01: "1980-01-19"
+    1993-01-01: "1993-12-31"
+    2001-01-01: "2001-12-22"
+    2018-01-01: "2018-12-29"
+  notes:
+    2018-01-01:
+    - title: L'abaissement du plafond maximal de la réfaction ne concernera en pratique que les 4% des foyers fiscaux les plus élevés dans les DOM.
+documentation: |-
+  (1) Le contribuable doit être domicilé au titre de résidence principale dans le DOM pour bénéficier de la réfaction d'impôt.
+  (2) En cas de transfert de résidence d'un contribuable au cours de l'année depuis un DOM vers la métropole, seul le montant de l'imposition des revenus perçus durant la période en DOM bénéficie de la réfaction d'impôt.
+  (3) Les plafonds de réduction d'impôt ont été fixé à respectivement 18000F et 24000F pour les revenus de 1980 mais l'article de loi prévoit une augmentation annuelle sur le même rythme de croissance que la limite supérieure de la dixième tranche d'imposition de l'impôt sur le revenu. Pour les valeurs des années d'imposition 1982 à 1990, les valeurs exactes sont sur les notes des versions antérieures de l'article 197. Pour les années 1990, 1992 et 1993 les plafonds actualisés n'apparaissent plus dans les notes de l'article et donc ont été calculés manuellement.
+  (4) Référence dans le Code Général des Impôts à l'article 197-I-3.

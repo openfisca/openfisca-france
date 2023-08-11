@@ -1,0 +1,9 @@
+description: Impôt sur le revenu
+metadata:
+  short_label: Taxes exceptionnelles
+  label_en: Exceptional contributions
+  order:
+  - contribution_exceptionnelle_hauts_revenus
+  - majorations_exceptionnelles
+  - minorations_exceptionnelles
+  - taxe_prop

@@ -1,0 +1,6 @@
+description: Abattement exceptionnel en faveur de certains contribuables seuls pour le calcul du revenu imposable
+metadata:
+  short_label: Contribuables seuls
+  order:
+  - abattement
+  - maximum_revenu_net_global

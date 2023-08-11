@@ -3,8 +3,9 @@ values:
   2009-06-01:
     value: 5
 metadata:
-  ux_name: Ressortissant hors EEE
-  description_en: "Active solidarity income (RSA): General conditions"
+  short_label: Ressortissant hors EEE
+  last_value_still_valid_on: "2022-03-28"
+  label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: duree_min_titre_sejour
   unit: year
   reference:
@@ -20,4 +21,3 @@ metadata:
   notes:
     2009-06-01:
     - title: 3/12 (3 mois)
-  last_review: "2022-03-28"

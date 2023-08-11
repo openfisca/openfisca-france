@@ -1,0 +1,113 @@
+description: Réduction d'impôt complémentaire pour les veufs ayant des enfants à charge, si le plafond général de leur demi-part supplémentaire a été atteint.
+values:
+  2012-01-01:
+    value: 672
+  2013-01-01:
+    value: 1672
+  2014-01-01:
+    value: 1680
+  2015-01-01:
+    value: 1682
+  2016-01-01:
+    value: 1684
+  2017-01-01:
+    value: 1701
+  2018-01-01:
+    value: 1728
+  2019-01-01:
+    value: 1745
+  2020-01-01:
+    value: 1748
+  2021-01-01:
+    value: 1772
+  2022-01-01:
+    value: 1868
+metadata:
+  short_label: Réduction supp. veuf avec enfants à charge
+  last_value_still_valid_on: "2023-01-05"
+  label_en: Family quotient ceiling and "decote" (1978 - )
+  ipp_csv_id: plaf_qf_persseule
+  unit: currency
+  reference:
+    2012-01-01:
+      title: Loi 2012-1509 du 29/12/2012 (LF pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026856853
+    2013-01-01:
+    - title: Loi 2013-1278 du 29/12/2013 (LF pour 2014)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028399511
+    - title: BOI-IR-LIQ-20 du 13/06/2013
+    2014-01-01:
+      title: Loi 2014-1654 du 29/12/2014 (LF pour 2015)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029988857
+    2015-01-01:
+      title: Loi 2015-1785 du 29/12/2015 (LF pour 2016)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031732865
+    2016-01-01:
+    - title: Loi 2016-1917, art. 2 du 29/12/2016 (LF pour 2017)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033760564&cidTexte=JORFTEXT000033734169
+    - title: BOI-IR-LIQ-20-20-30 du 06/04/2017
+    2017-01-01:
+    - title: Loi 2017-1837, art. 2 du 31/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377702&cidTexte=JORFTEXT000036339197
+    - title: BOI-IR-LIQ-20-20-30 du 26/01/2018
+    2018-01-01:
+    - title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
+    - title: Décret 2019-559, art. 1 du 06/06/2019
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038559363&categorieLien=id
+    2019-01-01:
+      title: Loi 2019-1479 du 28/12/2019 (LF pour 2020)
+      href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
+    2020-01-01:
+      title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+    2021-01-01:
+    - title: Loi 2021-1900, art. 2 du 30/12/2021 (LF pour 2022)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
+    - title: Article 197, I.2.§5 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01
+    2022-01-01:
+    - title: Article 197, I.2.§5 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
+    - title: Article 2, b) de la Loi n° 2022-1726 du 30/12/2022 (LF pour 2023)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845640
+  official_journal_date:
+    2012-01-01: "2012-12-29"
+    2013-01-01: "2013-12-30"
+    2014-01-01: "2014-12-30"
+    2015-01-01: "2015-12-30"
+    2016-01-01: "2016-12-30"
+    2017-01-01: "2017-12-31"
+    2018-01-01: "2018-12-30"
+    2019-01-01: "2019-12-29"
+    2020-01-01: "2020-12-30"
+    2021-01-01: "2021-12-31"
+    2022-01-01: "2022-12-31"
+  notes:
+    2012-01-01:
+    - title: Création de la réduction d'impôt complémentaire pour veuf avec un ou plusieurs enfants à charge. Cette réduction ne s'applique qu'aux veufs concernés par le plafonnement du quotient familial.
+    2013-01-01:
+    - title: Voir notes (1) et (2) pour la fin du régime transitoire pour certains contribuables
+    2014-01-01:
+    - title: La formule de calcul de la décote change
+    2016-01-01:
+    - title: Introduction d'une réduction d'impôt sous conditon de revenus qui s'impute après la décote mais avant les réductions d'impôt classiques (art. 197-I-4 (b) du CGI)
+    2019-01-01:
+    - title: La réduction d'impôt sous condition de revenus est supprimée. La décote est étendue à l'ensemble des contribuables de la première tranche.
+documentation: |-
+  Notes :
+  > Création du quotient familial en 1945 (Loi 45-0195 du 31/02/1945).
+  (1) Les montants des plafonnements de quotient familial et de la décote se trouvent à l'article 197-2 du CGI.
+  (2) Dispositif transitoire entre 2008 et 2010 : pour les personnes vivant seules qui n'ont pas élevé seules leurs enfants pendant 5 ans et qui ont bénéficié de la demi-part
+  > Voir B.O.I. N° 27 DU 25/02/2010 [BOI 5B-15-10]
+  Entre 1915 et 1947, des réductions d'impôt pour charges de famille ont été appliquées pour le calcul de l'imposition des revenus.
+  > Voir Annexes C-2 et C-7 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001)
+  Entre 1951 et 1981, la décote est décrite à l'aide de deux paramètres quand elle existe : un montant d'impôt seuil en dessous duquel les contribuables sont exonérés (décote qui sera conservée) et une réduction d'impôt jusqu'à un certain montant d'impôt (égale à la différence entre ce montant seuil et l'impôt par part).
+  Lors de l'imposition des revenus des années 1964-1966 et 1969-1972, les pramètres x-y sont plus élevés pour les contribuables ayant un faible nombre de parts.
+  Lorsqu'il n'y a qu'un seul paramètre, les contribuables dont l'impôt est inférieur à x bénéficient d'une réduction d'impôt égale à la différence entre x et leur impôt (les contribuables dont l'impôt est inférieur à x/2 sont donc exonérés).
+  Lors de l'imposition des revenus des années 1981-1985, la décote s'applique uniquement aux contribuables ayant 1 part ou 1,5 parts, avant d'être généralisée à tous les contribuables à compter de l'imposition des revenus de 1986.
+  > Voir Annexe C-4 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset 2001)
+  Pour la définition de la notion d'"enfant majeur", voir art. 6-II bis du CGI (en vigueur au 01/01/1982).
+
+  Ref http://bofip.impots.gouv.fr/bofip/2494-PGP
+  Ref https://www.economie.gouv.fr/particuliers/quotient-familial

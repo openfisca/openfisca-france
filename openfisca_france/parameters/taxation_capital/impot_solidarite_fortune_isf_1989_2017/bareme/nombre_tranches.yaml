@@ -1,4 +1,4 @@
-description: Nombre de tranches du barème de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Nombre de tranches du barème de l'impôt de solidarité sur la fortune (ISF, 1989-2017)
 values:
   1989-01-01:
     value: 4
@@ -11,8 +11,8 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Nombre de tranches
-  description_en: Wealth tax schedule
+  short_label: Nombre de tranches
+  label_en: Wealth tax schedule
   ipp_csv_id: nbtranches_isf
   reference:
     1989-01-01:

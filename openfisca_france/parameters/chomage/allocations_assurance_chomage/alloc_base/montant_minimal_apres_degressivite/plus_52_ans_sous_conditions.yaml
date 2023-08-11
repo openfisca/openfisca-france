@@ -21,8 +21,8 @@ values:
   2000-07-01:
     value: null
 metadata:
-  ux_name: Plus de 52 ans sous conditions
-  description_en: "UI scheme: lump-sum and minimum"
+  short_label: Plus de 52 ans sous conditions
+  label_en: "UI scheme: lump-sum and minimum"
   unit: currency
   reference:
     1968-07-22:

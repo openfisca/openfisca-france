@@ -1,0 +1,6 @@
+description: Dépenses d’accueil dans un établissement pour personnes dépendantes (1990 -)
+metadata:
+  label_en: Expenditures in a host Establishment for Dependent Persons (1990 -)
+  order:
+  - taux
+  - plafond

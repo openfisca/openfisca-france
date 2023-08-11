@@ -5,8 +5,9 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Coefficient multiplicateur pour poly-exposés
-  description_en: SSCs for arduous working conditions
+  short_label: Coefficient multiplicateur pour poly-exposés
+  last_value_still_valid_on: "2028-01-01"
+  label_en: SSCs for arduous working conditions
   unit: /1
   reference:
     2015-01-01:
@@ -32,7 +33,6 @@ metadata:
   notes:
     2018-01-01:
     - title: Suppression des cotisations pénibilité (voir Notes pour les dates d'effet)
-  last_review: "2028-01-01"
 documentation: |-
   Notes :
   L'article 10 de la Loi 2014-40 du 20/01/2014 créé l'article L4162-19 du Code du travail, qui institue la cotisation pour pénibilité, et l'article L4162-20 du même Code, précisant ses modalités.

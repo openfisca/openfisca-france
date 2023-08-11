@@ -1,0 +1,11 @@
+description: Taux de la contribution sur les revenus locatifs
+values:
+  2001-04-01:
+    value: 0.025
+metadata:
+  short_label: Taux
+  unit: /1
+  reference:
+    2001-04-01:
+    - href: http://bofip.impots.gouv.fr/bofip/9660-PGP.html?identifiant=BOI-RFPI-CTRL-20-20-20140808
+    - href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020465322&cidTexte=LEGITEXT000006069577

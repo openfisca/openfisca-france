@@ -3,8 +3,8 @@ values:
   2004-01-01:
     value: 2
 metadata:
-  ux_name: 1 enfant
-  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
+  short_label: 1 enfant
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
   ipp_csv_id: periode_ref_cotisations_vieillesse_clca_1enf
   reference:
     2004-01-01:

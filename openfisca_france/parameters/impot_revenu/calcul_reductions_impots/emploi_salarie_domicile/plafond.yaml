@@ -1,0 +1,82 @@
+description: Plafond (cas géneral) de la réduction d'impôts pour emploi d'un salarié à domicile (1992 - 2017)
+values:
+  1990-01-01:
+    value: null
+  1991-01-01:
+    value: 25000
+  1993-01-01:
+    value: 26000
+  1995-01-01:
+    value: 90000
+  1997-01-01:
+    value: 45000
+  2001-01-01:
+    value: 6900
+  2002-01-01:
+    value: 7400
+  2003-01-01:
+    value: 10000
+  2005-01-01:
+    value: 12000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plafsaldomicile
+  unit: currency
+  reference:
+    1991-01-01:
+      title: Loi 91-1322 du 30/12/1991 (LF pour 1992)
+    1993-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+    1995-01-01:
+      title: Loi 95-1346 du 30/12/1995 (LF pour 1996)
+    1997-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+    2001-01-01:
+      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+    2003-01-01:
+    - title: Loi 2002-1575 du 30/12/2002 (LF pour 2003) - art. 8
+    - title: BOI 5 B-8-03; n°34 du 21/02/2003
+    2004-01-01:
+      title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)
+    2005-01-01:
+    - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005) - art. 87
+    - title: BOI 5 B-20-05; n°121 du 15/07/2005
+    2007-01-01:
+    - title: Loi n° 2006-1771 du 30 décembre 2006 (LFR pour 2006) - art. 70
+    - title: BOI 5 B-1-08; n°6 du 14/01/2008
+    2009-01-01:
+    - title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
+    - title: BOI 5 B-6-10; n°9 du 19/01/2010
+    2010-01-01:
+      title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
+    2011-01-01:
+      title: Loi 2011-1977 du 28/12/2011 (LF pour 2012)
+  official_journal_date:
+    1991-01-01: "1991-12-31"
+    1993-01-01: "1993-12-31"
+    1995-01-01: "1995-12-31"
+    1997-01-01: "1997-12-31"
+    2001-01-01: "2001-12-29"
+    2003-01-01: "2003-12-31"
+    2005-01-01: "2005-12-31"
+  notes:
+    1991-01-01:
+    - title: Création du dispositif pour l'imposition des revenus de 1991. ; Le contribuable doit choisir entre la réduction d'impôt pour l'emploi d'un salarié travaillant à la résidence d'un ascendant et le bénéfice des dispositions relatives aux pensions alimentaires, pour la pension versée à ce même ascendant. Le choix effectué en faveur de la réduction d'impôt entraîne renonciation à la déduction de l'ensemble des sommes versées à titre de pension alimentaire pour un même ascendant et non pas seulement à la fraction relative aux frais d'emploi du salarié à domicile.
+    1997-01-01:
+    - title: Création d'un plafond supérieur pour les invalides
+    2007-01-01:
+    - title: Depuis le 01/01/2008, la réduction d'impôt peut également devenir un crédit d'impôt
+    2009-01-01:
+    - title: Depuis le 01/01/2010, pour la première utilisation du dispositif, les limites du plafonnementpassent de 12 000 € à 15 000 € et de 15 000 € à 18 000 €.
+    2011-01-01:
+    - title: "Méthode de calcul : en 2011, les dépenses sont retenues dans la limite d'un plafond annuel de 12 000 € , majorée de 1 500 € par enfant à charge et par membre du foyer âgé de plus de 65 ans, sans toutefois dépasser 15 000 € .Le plafond est porté à 20 000 € en cas d'invalidité"
+    2017-01-01:
+    - title: L'emploi d'un salarié à domicile ouvre droit à un crédit d'impôt désormais pour l'ensemble des contribuables. Avant cela, seuls les contribuables salariés pouvaient bénéficier d'un crédit tandis que les contribuables retraités bénéficiaient d'une réduction. Voir article 82 de la LF pour 2017.
+documentation: |-
+  Notes :
+  (1) Dépenses de services à la personne à domicile : art. 199 sexdecies du CGI
+  (2) Le travail peut être effectué par un salarié directement employé à domicile, une association, une entreprise ou un organisme spécialisé ou encore un organisme à but non lucratif ayant pour objet l'aide à domicile et habilité au titre de l'aide sociale ou conventionné par un organisme de sécurité sociale.
+  (3) Si les contribuables bénéficiaires bénéficient aussi de l'allocation personnalisée d'autonomie (APA), le montant perçu au titre de cette allocation doit être retranché aux dépenses servant de base pour le calcul de la réduction d'impôt.
+  (4) Certains services à domicile rentrent dans le calcul des dépenses annuelles jusqu'à un certain plafond. Ainsi, les dépenses en petit bricolage ne peuvent dépasser 500 euros par an, les petits travaux de jardinage 5000 euros et l'assistance informatique ou Internet est plafonnée à 3000 euros annuels.
+  (5) Les invalides ouvrant droit au plafond unique (90000F en 1998) sont définis au 3°) de l'article L. 341-4 du code de la sécurité sociale comme "invalides qui, étant absolument incapables d'exercer une profession, sont, en outre, dans l'obligation d'avoir recours à l'assistance d'une tierce personne pour effectuer les actes ordinaires de la vie". Ce plafond est également utilisé si le foyer fiscal a à charge un enfant donnant droit au complément d'allocation d'éducation spéciale de l'enfant handicapé défini comme "atteint d'un handicap dont la nature ou la gravité exige des dépenses particulièrement coûteuses ou nécessite le recours fréquent à l'aide d'une tierce personne" à l'article L541-1 du code de la sécurité sociale ou encore un titulaire de la carte d'invalide à plus de 80%.
+  (6) Certains bénéficiaires de ce dispositif le percoivent comme un crédit d'impôt, à savoir le contribuable célibataire, veuf ou divorcé qui exerce une activité professionnelle ou est inscrit sur la liste des demandeurs d'emplois. S'il s'agit d'un foyer à imposition commune, il faut que les 2 déclarants soient dans cette situation pour bénéficier du crédit d'impôt. Pour les autres bénéficiaires, l'avantage fiscal prend la forme d'une réduction d'impôt.

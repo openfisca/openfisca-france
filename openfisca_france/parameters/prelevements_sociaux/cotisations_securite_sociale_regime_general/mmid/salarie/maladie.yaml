@@ -43,8 +43,9 @@ brackets:
     2018-01-01:
       value: null
 metadata:
-  ux_name: Barème salarié
-  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  short_label: Barème salarié
+  last_value_still_valid_on: "2021-10-29"
+  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   ipp_csv_id:
     rate: mmid_s_0_1, mmid_s_0_
   reference:
@@ -116,7 +117,6 @@ metadata:
     - title: Suppression des cotisations salariales MMID.
     2019-01-01:
     - title: Taux réduit pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
-  last_review: "2021-10-29"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

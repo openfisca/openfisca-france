@@ -1,0 +1,43 @@
+description: Cotisation (% du chiffre d'affaires) pour formation professionnelle (Professions libérales) - Régimes des auto-entrepreneurs
+values:
+  2009-01-01:
+    value: null
+  2011-01-01:
+    value: 0.002
+metadata:
+  short_label: Taux - Professions libérales
+  last_value_still_valid_on: "2022-04-07"
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
+  ipp_csv_id: auto_plib_form_ca
+  unit: /1
+  reference:
+    2009-01-01:
+    - title: Décret 2008-1348 du 18/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951795
+    - title: Décret 2008-1349 du 18/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951825
+    2011-01-01:
+    - title: Loi 2010-1657 du 29/12/2010 de finances pour 2011, art. 137
+    - title: Article L6331-48 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023382168/2011-01-01/
+    - title: LOI n°2021-1900 du 30 décembre 2021 - art. 121
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000044794656/2022-01-01/
+    - title: Article L6331-48 du code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044981898/2022-01-01
+  official_journal_date:
+    2009-01-01: "2008-12-19"
+    2011-01-01: "2010-12-30"
+documentation: |-
+  Notes :
+  (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.
+  Chaque mois ou chaque trimestre, selon son choix, il doit calculer et payer l’ensemble de ses charges sociales personnelles en fonction de son chiffre d’affaires réalisé au cours de cette période selon les pourcentages indiqués
+  Les charges sociales ainsi calculées sont définitives et ne feront pas l’objet de régularisation contrairement aux modalités de calcul classiques.
+  Le forfait social comprend les cotisations :
+  d’assurance maladie-maternité, d’indemnité journalière
+  de CSG/CRDS
+  d’allocations familiales
+  de retraite de base
+  de la retraite complémentaire obligatoire
+  du régime invalidité et décès
+  (ii) attention en 2018-01-01, il y a un changement dans l'Article L6331-48 du code du travail qui redefini la division entre les différents taux entre les travailleurs indépendants
+   à partir de l'article 50-0 du code général des impôts, et non plus directement dans le texte lui même.

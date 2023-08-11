@@ -5,8 +5,8 @@ values:
   1995-01-01:
     value: null
 metadata:
-  ux_name: 1 enfant
-  description_en: "Relocation allowance (PD): Rate and maximum amount"
+  short_label: 1 enfant
+  label_en: "Relocation allowance (PD): Rate and maximum amount"
   ipp_csv_id: tx_1enf
   unit: BMAF
   reference:

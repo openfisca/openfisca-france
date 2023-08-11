@@ -1,0 +1,11 @@
+description: Majoration du plafond global des avantages fiscaux pour les investissements d'outre-mer
+values:
+  2013-01-01:
+    value: 8000
+metadata:
+  last_value_still_valid_on: "2022-10-11"
+  unit: currency
+  reference:
+    2013-01-01:
+      title: LOI 2012-1509 du 29/12/2012 de finances pour 2013 art. 73 (modifie l'art. 200-0 A du CGI)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000026857557

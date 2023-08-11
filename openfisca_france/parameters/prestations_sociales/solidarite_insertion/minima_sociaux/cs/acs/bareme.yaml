@@ -1,0 +1,88 @@
+description: Montant de l'Aide à l’Acquisition d’une Complémentaire Santé (ACS) en fonction de l'âge
+brackets:
+- threshold:
+    2005-01-01:
+      value: 0
+    2010-01-01:
+      value: 0
+    2019-11-01:
+      value: null
+  amount:
+    2005-01-01:
+      value: 75
+    2005-12-20:
+      value: 100
+    2019-11-01:
+      value: null
+- threshold:
+    2005-01-01:
+      value: 25
+    2010-01-01:
+      value: 16
+    2019-11-01:
+      value: null
+  amount:
+    2005-01-01:
+      value: 150
+    2005-12-20:
+      value: 200
+    2019-11-01:
+      value: null
+- threshold:
+    2005-01-01:
+      value: 59
+    2009-08-01:
+      value: 49
+    2019-11-01:
+      value: null
+  amount:
+    2005-01-01:
+      value: 250
+    2005-12-20:
+      value: 400
+    2009-08-01:
+      value: 350
+    2019-11-01:
+      value: null
+- threshold:
+    2005-01-01:
+      value: 60
+    2009-08-01:
+      value: 59
+    2019-11-01:
+      value: null
+  amount:
+    2009-08-01:
+      value: 500
+    2013-12-25:
+      value: 550
+    2019-11-01:
+      value: null
+metadata:
+  short_label: Montant par âge
+  last_value_still_valid_on: "2022-12-13"
+  reference:
+    2005-01-01:
+      title: Article L863-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006745458/2005-01-01/
+    2005-12-20:
+      title: Article L863-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006745459/2005-12-20/
+    2009-08-01:
+      title: Article L863-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020886837/2009-07-23/
+    2010-01-01:
+      title: Article L863-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000021642849/2010-01-01/
+    2013-12-25:
+      title: Article L863-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028456764/2013-12-25/
+    2019-10-01:
+    - title: Article L863-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029354513/2022-10-17/
+    - title: Loi 2018-1203 du 22/12/2018, Article 52 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000037849648/2018-12-24/
+  amount_unit: currency
+  threshold_unit: year
+  type: single_amount
+documentation: https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/CIR-30-2019_reforme_complementaire_sante.pdf https://www.service-public.fr/particuliers/vosdroits/F13375 https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-03/fiche19.pdf

@@ -1,8 +1,0 @@
-description: Plafond de revenus
-values:
-  2005-01-01:
-    value: 12060
-  2009-01-01:
-    value: null
-metadata:
-  unit: currency

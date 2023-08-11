@@ -1,0 +1,9 @@
+description: Non mariés ou non PACS
+values:
+  2012-01-01:
+    value: 120
+  2013-01-01:
+    value: null
+metadata:
+  last_value_still_valid_on: "2023-01-05"
+  unit: currency

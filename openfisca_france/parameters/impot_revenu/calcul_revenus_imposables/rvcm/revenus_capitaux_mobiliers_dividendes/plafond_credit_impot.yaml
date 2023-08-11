@@ -1,0 +1,26 @@
+description: Plafond du crédit d'impôt sur les revenus de capitaux mobiliers (dividendes)
+values:
+  1978-01-01:
+    value: null
+  2004-01-01:
+    value: 115
+  2010-01-01:
+    value: null
+metadata:
+  ipp_csv_id: plaf_creditrcm
+  unit: currency
+  reference:
+    2004-01-01:
+      title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000789373
+    2010-01-01:
+      title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023314376
+  official_journal_date:
+    2004-01-01: "2004-12-31"
+    2010-01-01: "2010-12-30"
+  notes:
+    2004-01-01:
+    - title: Voir art. 200 septies du CGI
+    2010-01-01:
+    - title: Suppression plafond du crédit d'impôt sur dividendes

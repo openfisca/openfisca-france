@@ -3,8 +3,8 @@ values:
   1994-07-01:
     value: 60
 metadata:
-  ux_name: Pour le 2e enfant
-  description_en: "Parental leave allowance (APE): Conditions and amounts"
+  short_label: Pour le 2e enfant
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
   ipp_csv_id: intervalle_2enf
   unit: month
   reference:

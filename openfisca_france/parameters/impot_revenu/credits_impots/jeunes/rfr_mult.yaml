@@ -1,0 +1,9 @@
+description: Multiplicateur du RFR plafond pour couple bénéficiant du Crédit jeunes actifs
+values:
+  2005-01-01:
+    value: 2
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Multiplicateur
+  unit: /1

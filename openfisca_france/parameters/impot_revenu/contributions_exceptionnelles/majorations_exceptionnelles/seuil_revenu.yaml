@@ -1,0 +1,40 @@
+description: Seuil de revenu des majorations exceptionnelles d'impôt
+values:
+  1946-01-01:
+    value: null
+  1947-01-01:
+    value: 50000
+  1948-01-01:
+    value: null
+  1955-01-01:
+    value: 600000
+  1960-01-01:
+    value: 6000
+  1962-01-01:
+    value: 8000
+  1963-01-01:
+    value: 36000
+  1964-01-01:
+    value: 45000
+  1965-01-01:
+    value: 50000
+  1966-01-01:
+    value: null
+metadata:
+  short_label: Seuil de revenu
+  ipp_csv_id: seuil_rev_majo
+  unit: currency
+  reference:
+    1947-01-01:
+      title: "1948-09-24"
+    1955-01-01:
+      title: Loi 56-639 du 30/06/1956 - art. 1
+  official_journal_date:
+    1955-01-01: "1956-07-01"
+  notes:
+    1947-01-01:
+    - title: Le «double décime» (majoration de 20% de l'IGR) est appliqué à tous les contribuables dont le revenu est supérieur de 50 000 FRF au seuil d'imposition.
+    1960-01-01:
+    - title: "Création d'un Fonds National de Solidarité en 1956 : le «décime» (majoration de 10% de la surtaxe progressive SP) concerne tous les contribuables dont le revenu est supérieur au seuil de revenu de la colonne «seuil revenu». La majoration s'applique aussi à la taxe proportionnelle TP à partir de 440 000 FRF(sauf si revenus de valeurs mobilières pour lesquels il n'y a pas d'exonération).Les montants sont en anciens Francs avant 1960."
+    1965-01-01:
+    - title: Le «demi-décime» (majoration de 5% de l'IGR) concerne tous les contribuables dont le revenu est supérieur au seuil de revenu de la colonne «seuil revenu».

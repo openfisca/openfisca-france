@@ -1,7 +1,7 @@
 description: Prélèvements sociaux
 metadata:
-  ux_name: Prélèvements sociaux
-  description_en: Social security contributions
+  short_label: Prélèvements sociaux
+  label_en: Social security contributions
   order:
   - pss
   - contributions_sociales
@@ -12,5 +12,5 @@ metadata:
   - autres_taxes_participations_assises_salaires
   - contributions_assises_specifiquement_accessoires_salaire
   - cotisations_taxes_independants_artisans_commercants
-  - cotisations_taxes_professions_liberales
+  - professions_liberales
   - reductions_cotisations_sociales

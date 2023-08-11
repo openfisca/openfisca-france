@@ -11,7 +11,7 @@ values:
   2019-01-01:
     value: 0.079
 metadata:
-  ux_name: Super E10
+  short_label: Super E10
   ipp_csv_id: tgap_e10
   unit: /1
   reference:

@@ -9,8 +9,8 @@ values:
   2020-11-01:
     value: null
 metadata:
-  ux_name: Montant moins de 25 ans
-  description_en: Exceptional benefit - COVID-19 crisis
+  short_label: Montant moins de 25 ans
+  label_en: Exceptional benefit - COVID-19 crisis
   ipp_csv_id: aide_exceptionnelle_covid_base_jeune
   unit: currency
   reference:

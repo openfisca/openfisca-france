@@ -29,8 +29,9 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: Barème employeur
-  description_en: Exceptional and temporary pension contribution (CET)
+  short_label: Barème employeur
+  last_value_still_valid_on: "2021-07-30"
+  label_en: Exceptional and temporary pension contribution (CET)
   ipp_csv_id: cet_p_0_8
   reference:
     1997-01-01:
@@ -39,6 +40,7 @@ metadata:
       title: Référence non trouvée
     2019-01-01:
       title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+      href: https://www.agirc-arrco.fr/wp-content/uploads/2021/10/ANI_Retraite_17nov2017_01012019.pdf
   notes:
     1997-01-01:
     - title: "BSP : en 1997, le taux est de 0,07% (0,045% employeur, 0,025% salarié) pour le taux contractuel de 14%. Elle est respectivement de 0,044% et 0,026% pour les taux contractuels de 15 et 16%"
@@ -52,7 +54,6 @@ metadata:
     - title: BSP pour 2001non communicables à la BNF
     2019-01-01:
     - title: Suppression de la CET avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et nouvelle CET, voir barème AGIRC-ARRCO)
-  last_review: "2021-07-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

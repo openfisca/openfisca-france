@@ -5,10 +5,7 @@
     handicap: true
     taux_incapacite: 0.9
     activite:
-      2015-01: 4
-      2014-12: 4
-      2014-11: 4
-      2014-10: 4
+      2015: inactif
     age: 50
   output:
     aah_eligible: true
@@ -20,10 +17,7 @@
     age: 28
     handicap: true
     activite:
-      2013-12: 4
-      2013-11: 4
-      2013-10: 4
-      2013-09: 4
+      2015: inactif
     taux_incapacite: 0.9
   output:
     aah_eligible: true
@@ -35,11 +29,9 @@
     age: 19
     handicap: true
     taux_incapacite: 0.9
+    prestations_familiales_enfant_a_charge: true
     activite:
-      2012-06: 4
-      2012-05: 4
-      2012-04: 4
-      2012-03: 4
+      2012: inactif
     autonomie_financiere: false
   output:
     aah_eligible: false
@@ -51,11 +43,9 @@
     age: 18
     handicap: true
     taux_incapacite: 0.9
+    prestations_familiales_enfant_a_charge: false
     activite:
-      2013-07: 4
-      2013-06: 4
-      2013-05: 4
-      2013-04: 4
+      2013: inactif
     autonomie_financiere: true
   output:
     aah_eligible: true
@@ -67,37 +57,12 @@
     age: 50
     handicap: true
     activite:
-      2013-07: 4
-      2013-06: 4
-      2013-05: 4
-      2013-04: 4
+      2013: inactif
     taux_incapacite: 0.4
   output:
     aah_eligible: false
 
-- name: "Ineligibilité à l'AAH: taux d'incapacité inférieur à 50% et
-    une estriction substantielle et durable pour l'accès à l'emploi
-    reconnue par la commission des droits et
-    de l'autonomie des personnes handicapées"
-  description: Eligible à AAH
-  period: 2013-07
-  input:
-    age: 50
-    handicap: true
-    activite:
-      2013-07: 4
-      2013-06: 4
-      2013-05: 4
-      2013-04: 4
-    taux_incapacite: 0.4
-    aah_restriction_substantielle_durable_acces_emploi: true
-  output:
-    aah_eligible: false
-
-- name: "Ineligibilité à l'AAH: taux d'incapacité supérieur à 50% et
-    une estriction substantielle et durable pour l'accès à l'emploi
-    reconnue par la commission des droits et
-    de l'autonomie des personnes handicapées"
+- name: "Eligibilité à l'AAH: taux d'incapacité supérieur à 50% et rsdae"
   description: Eligible à AAH
   period: 2013-07
   input:
@@ -105,10 +70,46 @@
     handicap: true
     taux_incapacite: 0.6
     activite:
-      2013-07: 4
-      2013-06: 4
-      2013-05: 4
-      2013-04: 4
+      2013: inactif
+    aah_restriction_substantielle_durable_acces_emploi: true
+  output:
+    aah_eligible: true
+
+- name: "Eligibilité à l'AAH: Retraité avec taux d'incapacité supérieur à 80%"
+  description: Eligible à AAH
+  period: 2013-07
+  input:
+    age: 70
+    handicap: true
+    taux_incapacite: 0.85
+    activite: TypesActivite.retraite
+  output:
+    aah_eligible: true
+
+- name: "Ineligibilité à l'AAH: taux d'incapacité inférieur à 50% et
+    une restriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées"
+  description: Eligible à AAH
+  period: 2013-07
+  input:
+    age: 50
+    handicap: true
+    taux_incapacite: 0.4
+    aah_restriction_substantielle_durable_acces_emploi: true
+  output:
+    aah_eligible: false
+
+- name: "Ineligibilité à l'AAH: taux d'incapacité supérieur à 50% et
+    une restriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées"
+  description: Eligible à AAH
+  period: 2013-07
+  input:
+    age: 50
+    handicap: true
+    taux_incapacite: 0.6
     aah_restriction_substantielle_durable_acces_emploi: true
   output:
     aah_eligible: true
@@ -119,11 +120,6 @@
   input:
     age: 50
     handicap: true
-    activite:
-      2013-07: 4
-      2013-06: 4
-      2013-05: 4
-      2013-04: 4
     taux_incapacite: 0.6
   output:
     aah_eligible: false

@@ -7,5 +7,5 @@ values:
   2016-07-01:
     value: null
 metadata:
-  ux_name: Plafond taux 1
+  short_label: Plafond taux 1
   unit: currency

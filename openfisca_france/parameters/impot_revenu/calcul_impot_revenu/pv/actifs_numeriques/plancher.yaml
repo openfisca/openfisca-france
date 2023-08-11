@@ -1,0 +1,17 @@
+description: Montant plancher à partir duquel sont imposés les actifs cédés
+values:
+  1977-01-01:
+    value: null
+  2019-01-01:
+    value: 305
+metadata:
+  short_label: Plancher
+  ipp_csv_id: plancher_pv_actifs_numeriques
+  unit: currency
+  reference:
+    2019-01-01:
+      title: Loi n° 2018-1317 du 28/12/2018 (LF 2019) - art.44
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000037882395
+  notes:
+    2019-01-01:
+    - title: Pour les opérations survenues après le 1er Janvier 2019, les plus-values mobilières issues de clôture de PEA avant 5 ans de détention sont taxées au nouveau régime du prélèvement forfaitaire unique (PFU)

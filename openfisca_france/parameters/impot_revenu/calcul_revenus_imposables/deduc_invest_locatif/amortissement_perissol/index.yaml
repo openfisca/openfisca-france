@@ -1,0 +1,15 @@
+description: Amortissement Périssol
+metadata:
+  order:
+  - seuil
+  - taux_4_ans
+  - taux_20_ans
+documentation: |-
+  Le plafond des déficits fonciers imputables aux autres
+  revenus est prévu depuis 1993 et est codifié au 3° du I de l'article 156 du code
+  général des impôts (CGI).
+  Les logements éligibles au disposiif Périssol sont ceux ayant été achetés neufs 
+  ou réhabilités entre le 1er Janvier 1996 et
+  le 31 août 1999, à la condition d'être loué nu (non-meublé) à titre de résidence
+  principale du locataire pour une durée minimale de 9 ans. Il n'y a pas de contraintes
+  de loyer ou de ressources des locataires. CGI - art. 31 I-1°

@@ -5,7 +5,7 @@ values:
   2017-05-07:
     value: 1.1075
 metadata:
-  ux_name: Montant échelon 3
+  short_label: Montant échelon 3
   unit: currency
   reference:
     2017-05-07:

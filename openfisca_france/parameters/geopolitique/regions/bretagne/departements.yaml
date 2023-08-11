@@ -1,0 +1,10 @@
+description: Liste des départements membre de la région Bretagne
+values:
+  2015-01-16:
+    value:
+    - "22"
+    - "29"
+    - "35"
+    - "56"
+metadata:
+  unit: codes départements

@@ -7,8 +7,8 @@ values:
   1985-01-01:
     value: null
 metadata:
-  ux_name: A partir du 3e enfant
-  description_en: "Postnatal allowance (APN): Rate and payment"
+  short_label: A partir du 3e enfant
+  label_en: "Postnatal allowance (APN): Rate and payment"
   ipp_csv_id: majo_3enf
   unit: /1
   reference:

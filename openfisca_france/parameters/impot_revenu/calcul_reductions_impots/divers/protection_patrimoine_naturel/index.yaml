@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur les dépenses de protection du patrimoine naturel
+metadata:
+  short_label: Protection patrimoine naturel
+  order:
+  - taux
+  - plafond

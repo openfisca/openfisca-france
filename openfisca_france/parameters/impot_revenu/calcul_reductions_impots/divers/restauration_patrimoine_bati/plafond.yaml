@@ -1,0 +1,13 @@
+description: Plafond (pluri-annuel sur 4 ans) de la réduction d'impôts pour travaux de restauration immobilière (patrimoine bâti)
+values:
+  1977-01-01:
+    value: null
+  2009-01-01:
+    value: 100000
+  2016-01-01:
+    value: 400000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_restauimmo
+  unit: currency
+documentation: "Travaux de restauration complète d’un immeuble bâti (réduction d'impôt « Malraux ») : art. 199 tervicies du CGI. Loi 2016-1918, art. 40 du 29/12/2016 sur le plafond."

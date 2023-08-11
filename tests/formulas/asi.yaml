@@ -92,3 +92,51 @@
         - parent2
   output:
     asi: [223.4, 223.4]
+
+
+- name: Cas test de l'ASI après la réforme de 2020 - Célibataire (6)
+  period: 2021-11
+  absolute_error_margin: 1
+  input:
+    age: 62
+    asi_aspa_base_ressources_individu: 500
+    asi_eligibilite: true
+  output:
+    asi: 300
+#Source: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+- name: Cas test de l'ASI après la réforme de 2020 - Couple marié (7)
+  period: 2021-10
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      maries: true
+    individus:
+      parent1:
+        age: 64
+        asi_aspa_base_ressources_individu: 1000
+        asi_eligibilite: true
+        activite: retraite
+      parent2:
+        age: 64
+        asi_aspa_base_ressources_individu: 0
+        asi_eligibilite: true
+        activite: retraite
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    asi: [200, 200]
+#Source: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite

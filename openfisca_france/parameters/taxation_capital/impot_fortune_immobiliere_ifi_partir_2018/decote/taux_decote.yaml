@@ -1,10 +1,11 @@
-description: Taux de la décote de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+description: Taux de la décote de l'Impôt sur la fortune immobilière (IFI)
 values:
   2018-01-01:
     value: 0.0125
 metadata:
-  ux_name: Taux
-  description_en: "\"Décote\" computation"
+  short_label: Taux
+  last_value_still_valid_on: "2022-04-28"
+  label_en: Décote computation
   ipp_csv_id: tx_decote_ifi
   unit: /1
   reference:
@@ -18,4 +19,3 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_review: "2022-04-28"

@@ -3,5 +3,5 @@ values:
   2020-06-08:
     value: 5
 metadata:
-  ux_name: Durée minimum de résidence
+  short_label: Durée minimum de résidence
   unit: year

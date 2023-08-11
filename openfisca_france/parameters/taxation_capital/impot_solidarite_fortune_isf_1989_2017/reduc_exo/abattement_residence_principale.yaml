@@ -1,4 +1,4 @@
-description: Abattement sur résidence principale, Réductions et abattements de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Abattement lié à la résidence principale de l'impôt de solidarité sur la fortune
 values:
   1989-01-01:
     value: null
@@ -9,8 +9,8 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Abattement sur résidence principale
-  description_en: Discount and rebate
+  short_label: Abattement lié à la résidence principale
+  label_en: Discount and rebate
   ipp_csv_id: abt_residence
   unit: /1
   reference:

@@ -1,4 +1,4 @@
-- name: reduc_locmeu
+- name: reduc_location_meublee
   period: 2014
   absolute_error_margin: 2
   input:
@@ -52,7 +52,7 @@
     reductions: 2688.0
     rfr: 137843.0
     rni: 137843.0
-- name: reduc_locmeu
+- name: reduc_location_meublee
   period: 2015
   absolute_error_margin: 2
   input:
@@ -106,7 +106,7 @@
     reductions: 2810.0
     rfr: 137830.0
     rni: 137830.0
-- name: reduc_locmeu
+- name: reduc_location_meublee
   period: 2016
   absolute_error_margin: 2
   input:
@@ -160,7 +160,7 @@
     reductions: 2654.0
     rfr: 137817.0
     rni: 137817.0
-- name: reduc_locmeu
+- name: reduc_location_meublee
   period: 2017
   absolute_error_margin: 2
   input:
@@ -202,7 +202,7 @@
     iai: 41828.0
     irpp: -41828.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 137695.0
     reductions: 932.0
     rfr: 137695.0

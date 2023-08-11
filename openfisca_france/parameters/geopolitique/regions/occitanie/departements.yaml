@@ -1,0 +1,19 @@
+description: Liste des départements membre de la région Occitanie
+values:
+  2015-01-16:
+    value:
+    - "09"
+    - "11"
+    - "12"
+    - "30"
+    - "31"
+    - "32"
+    - "34"
+    - "46"
+    - "48"
+    - "65"
+    - "66"
+    - "81"
+    - "82"
+metadata:
+  unit: codes départements

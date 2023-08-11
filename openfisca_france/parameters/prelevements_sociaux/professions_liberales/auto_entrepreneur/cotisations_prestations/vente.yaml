@@ -1,0 +1,83 @@
+description: Taux de cotisations pour les prestations sociales des auto-entrepreneurs pour les activités d'achat-vente, vente à consommer sur place, prestations d'hebergement (sauf location hebergement meublé)
+values:
+  2009-01-01:
+    value: 0.12
+  2013-01-01:
+    value: 0.14
+  2014-01-01:
+    value: 0.141
+  2015-01-01:
+    value: 0.133
+  2016-01-01:
+    value: 0.134
+  2017-04-01:
+    value: 0.131
+  2018-01-01:
+    value: 0.128
+  2022-10-01:
+    value: 0.123
+metadata:
+  short_label: Taux - Vente
+  last_value_still_valid_on: "2023-05-24"
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
+  ipp_csv_id: auto_av_ca
+  unit: /1
+  reference:
+    2009-01-01:
+    - title: Décret 2008-1348 du 18/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951795
+    - title: Décret 2008-1349 du 18/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951825
+    2013-01-01:
+      title: Décret 2012-1551 du 28/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/28/2012-1551/jo/texte
+    2014-01-01:
+      title: Décret 2013-1290 du 27/12/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1290/jo/texte
+    2015-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 4, 1°
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
+    2016-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 4, 1°
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
+    2017-04-01:
+    - title: Décret 2017-301 du 08/03/2017, art. 4, 1°
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000034161060/2017-03-11/
+    - title: Article D131-6-1, a) du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034163589/2017-03-11
+    2018-01-01:
+    - title: Décret n° 2017-1894 du 30 décembre 2017 - art. 1
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036456533/2018-01-01
+    - title: Article D131-5-1, a) du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036466353/2018-01-01
+    - title: Décret n°2021-755 du 12 juin 2021 - art. 1
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000043650438/2021-06-14/
+    - title: Article D613-4, a) du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656794/2021-06-14
+    2022-10-01:
+      title: Décret n° 2022-1529 du 7 décembre 2022
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046710847
+  official_journal_date:
+    2009-01-01: "2008-12-19"
+    2013-01-01: "2012-12-30"
+    2014-01-01: "2013-12-31"
+    2015-01-01: "2014-12-19"
+    2016-01-01: "2014-12-19"
+    2017-04-01: "2017-03-10"
+    2018-01-01: "2017-12-31"
+    2022-10-01: "2022-12-09"
+documentation: |-
+  Notes :
+  (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.
+  Chaque mois ou chaque trimestre, selon son choix, il doit calculer et payer l’ensemble de ses charges sociales personnelles en fonction de son chiffre d’affaires réalisé au cours de cette période selon les pourcentages indiqués
+  Les charges sociales ainsi calculées sont définitives et ne feront pas l’objet de régularisation contrairement aux modalités de calcul classiques.
+  Le forfait social comprend les cotisations :
+  d’assurance maladie-maternité, d’indemnité journalière
+  de CSG/CRDS
+  d’allocations familiales
+  de retraite de base
+  de la retraite complémentaire obligatoire
+  du régime invalidité et décès
+  (ii) Les auto-entrepreneurs sont dispensés de contribution à la formation professionnelle jusqu'en 2011.
+  Sources :
+  Cotisation des indépendants "auto-entrepreneurs" : D. 131-6-1 du Code de la sécurité sociale jusqu'en 2017 ; devient D. 131-5-1 avec le Décret 2017-1894

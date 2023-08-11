@@ -5,8 +5,8 @@ values:
   1999-04-01:
     value: 0.6
 metadata:
-  ux_name: Avec anonymat
-  description_en: Levy in discharge on life insurance (1983 - 2017)
+  short_label: Avec anonymat
+  label_en: Levy in discharge on life insurance (1983 - 2017)
   ipp_csv_id: tx_pl_av_anonym
   unit: /1
   reference:

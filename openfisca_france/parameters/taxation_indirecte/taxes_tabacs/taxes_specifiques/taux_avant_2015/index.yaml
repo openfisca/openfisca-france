@@ -1,6 +1,6 @@
 description: Taux spécifique tabac
 metadata:
-  description_en: Tobacco specific rates
+  label_en: Tobacco specific rates
   order:
   - cigarettes
   - cigares

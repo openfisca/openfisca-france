@@ -11,8 +11,9 @@ brackets:
     2018-01-01:
       value: null
 metadata:
-  ux_name: Barème pour poly-exposés
-  description_en: SSCs for arduous working conditions
+  short_label: Barème pour poly-exposés
+  last_value_still_valid_on: "2028-01-01"
+  label_en: SSCs for arduous working conditions
   reference:
     2015-01-01:
     - title: Loi 2014-40 du 20/01/2014 (voir Notes)
@@ -37,7 +38,6 @@ metadata:
   notes:
     2018-01-01:
     - title: Suppression des cotisations pénibilité (voir Notes pour les dates d'effet)
-  last_review: "2028-01-01"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

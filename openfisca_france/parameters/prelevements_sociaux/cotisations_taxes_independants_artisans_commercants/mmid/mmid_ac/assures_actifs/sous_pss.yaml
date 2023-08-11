@@ -25,8 +25,8 @@ values:
   2013-03-01:
     value: null
 metadata:
-  ux_name: Taux sous PSS
-  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  short_label: Taux sous PSS
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   ipp_csv_id: mmid_ac_0_1
   unit: /1
   reference:

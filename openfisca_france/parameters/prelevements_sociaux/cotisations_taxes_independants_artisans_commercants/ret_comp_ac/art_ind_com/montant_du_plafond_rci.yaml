@@ -17,8 +17,8 @@ values:
   2021-01-01:
     value: 38493
 metadata:
-  ux_name: Montant du plafond RCI
-  description_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
+  short_label: Montant du plafond RCI
+  label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
   ipp_csv_id: plaf_retc_rci
   unit: currency
   reference:

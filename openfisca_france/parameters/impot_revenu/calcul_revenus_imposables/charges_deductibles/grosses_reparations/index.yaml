@@ -1,4 +1,5 @@
-description: Grosses réparations des nus-propriétaires
+description: Déductions pour grosses réparations des nus-propriétaires
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  short_label: Grosses réparations
+  order:
+  - plafond

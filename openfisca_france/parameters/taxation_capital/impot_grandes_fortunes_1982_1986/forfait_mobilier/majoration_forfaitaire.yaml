@@ -1,12 +1,12 @@
-description: Majoration forfaitaire du forfait mobilier de l'impôt sur les grandes fortunes (IGF) - (1982-1986)
+description: Majoration forfaitaire du forfait mobilier de l'impôt sur les grandes fortunes
 values:
   1982-01-01:
     value: 0.05
   1987-01-01:
     value: null
 metadata:
-  ux_name: Majoration forfaitaire
-  description_en: Furniture package
+  short_label: Majoration forfaitaire
+  label_en: Furniture package
   ipp_csv_id: tx_majo_igf
   unit: /1
   reference:

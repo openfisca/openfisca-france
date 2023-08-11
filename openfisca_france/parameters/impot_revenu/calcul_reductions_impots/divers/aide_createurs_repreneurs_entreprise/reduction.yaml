@@ -1,0 +1,10 @@
+description: Montant de la réduction d'impôt des aides aux créateurs et repreneurs d'entreprises
+values:
+  1977-01-01:
+    value: null
+  2006-01-01:
+    value: 1000
+metadata:
+  short_label: Réduction
+  ipp_csv_id: crea_entr
+  unit: currency

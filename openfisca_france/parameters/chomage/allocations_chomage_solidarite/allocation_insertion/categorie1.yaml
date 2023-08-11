@@ -11,8 +11,8 @@ values:
   1983-01-01:
     value: null
 metadata:
-  ux_name: Catégorie 1
-  description_en: Insertion allowance (AI)
+  short_label: Catégorie 1
+  label_en: Insertion allowance (AI)
   ipp_csv_id: ai_16_techno
   unit: currency
   reference:

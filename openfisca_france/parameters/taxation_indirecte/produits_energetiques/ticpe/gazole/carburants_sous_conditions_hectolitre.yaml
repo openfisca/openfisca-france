@@ -36,9 +36,7 @@ values:
     value: 18.82
 metadata:
   ipp_csv_id: ticpe_gazole_cond
-  unit:
-    1993-04-15: currency-FRF
-    2002-01-01: currency
+  unit: currency
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)

@@ -3,8 +3,8 @@ values:
   2007-07-01:
     value: 1217.26
 metadata:
-  ux_name: Dans la formule de KL (numérateur)
-  description_en: Parameters for new home-buyers (APL)
+  short_label: Dans la formule de KL (numérateur)
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: mult_kl2_apl
   unit: currency
   reference:

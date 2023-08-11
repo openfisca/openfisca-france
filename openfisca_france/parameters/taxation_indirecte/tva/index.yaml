@@ -1,6 +1,6 @@
 description: Taux de la Taxe sur la valeur ajoutée (TVA) (1968-)
 metadata:
-  description_en: Value added tax (VAT)
+  label_en: Value added tax (VAT)
   order:
   - taux_reduit
   - taux_intermediaire

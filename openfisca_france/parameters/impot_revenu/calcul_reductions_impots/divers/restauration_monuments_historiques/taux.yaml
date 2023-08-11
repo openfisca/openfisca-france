@@ -1,0 +1,15 @@
+description: Taux de la réduction d'impôt sur les dépenses de restauration des monuments historiques
+values:
+  1977-01-01:
+    value: null
+  2008-01-01:
+    value: 0.25
+  2011-01-01:
+    value: 0.22
+  2012-01-01:
+    value: 0.18
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_monhist
+  unit: /1
+documentation: "Travaux de conservation et de restauration d'objets classés monuments historiques : art. 199 duovicies du CGI"

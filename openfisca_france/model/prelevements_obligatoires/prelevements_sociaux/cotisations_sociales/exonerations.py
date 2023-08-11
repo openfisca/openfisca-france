@@ -1,6 +1,7 @@
 from numpy import datetime64, timedelta64
 
 from openfisca_france.model.base import *
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
 
@@ -11,6 +12,132 @@ class jei_date_demande(Variable):
     label = "Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+
+class exoneration_cotisations_employeur_tode_eligibilite(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Éligibilité à l'exonération de cotisations employeur agricole pour travailleur occasionnel demandeur d'emploi (TO-DE)"
+    reference = [
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947610/',
+        'https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels'
+        ]
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    end = '2025-12-31'
+    documentation = '''
+        Non modélisé (2022), tout employeur MSA sauf ces employeurs :
+        Coopératives d'utilisation de matériel agricole (CUMA).
+        Coopératives de transformation, conditionnement et commercialisation.
+        Entreprises paysagistes.
+        Structures exerçant des activités de tourisme à la ferme.
+        Entreprises de service (Crédit agricole, Groupama, caisses de MSA, groupements professionnels agricoles, Chambres d'agriculture…).
+        Artisans ruraux.
+        Entreprises de travail temporaire (ETT) et les entreprises de travail temporaire d'insertion (ETTI).
+        Entreprises de travaux agricoles, ruraux et forestiers (ETARF).
+    '''
+
+    def formula_2019(individu, period):
+        # employeur relevant de la MSA
+        secteur_agricole = individu('secteur_activite_employeur', period) == TypesSecteurActivite.agricole
+        regime_agricole = individu('regime_securite_sociale', period) == RegimeSecuriteSociale.regime_agricole
+
+        # salarié travailleur occasionnel agricole
+        travailleur_occasionnel_agricole = individu('travailleur_occasionnel_agricole', period)
+
+        return (secteur_agricole + regime_agricole) * travailleur_occasionnel_agricole
+
+
+class exoneration_cotisations_employeur_tode(Variable):
+    value_type = float
+    entity = Individu
+    label = "Exonération de cotisations employeur agricole pour travailleur occasionnel demandeur d'emploi (TO-DE)"
+    reference = [
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947610/',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038026966'
+        ]
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    end = '2025-12-31'
+    documentation = '''
+        Exonération de cotisations et contributions employeur sur les bas salaires.
+
+        Non modélisé (2022):
+        La durée maximale d’application de l’exonération TO-DE est fixée à 119 jours
+        consécutifs ou non, par employeur, par salarié et par année civile.
+    '''
+
+    def formula_2019(individu, period, parameters):
+        # l'individu est le travailleur occasionnel
+        eligible = individu('exoneration_cotisations_employeur_tode_eligibilite', period)
+
+        # cotisations assurances sociales agricoles (ASA) - identiques régime général
+        mmid_employeur = individu('mmid_employeur', period)
+        allegement_cotisation_maladie_base = individu('allegement_cotisation_maladie_base', period)  # si rémunération <= 2.5 smic
+        cotisations_asa = mmid_employeur + allegement_cotisation_maladie_base
+
+        famille = individu('famille', period)
+        accident_du_travail = individu('accident_du_travail', period)
+        fnal = individu('fnal', period)
+
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
+        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
+
+        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
+        chomage_employeur = individu('chomage_employeur', period)
+
+        # les cotisations sont des prélèvements, l'exonération leur opposé
+        assiette_exoneration = -1 * (
+            cotisations_asa
+            + famille
+            + accident_du_travail
+            + fnal
+            + vieillesse_deplafonnee_employeur
+            + vieillesse_plafonnee_employeur
+            + agirc_arrco_employeur
+            + contribution_equilibre_general_employeur
+            + contribution_solidarite_autonomie
+            + chomage_employeur
+            )
+
+        # Exonération totale à <= 1.2 SMIC
+        # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
+        # Devient nulle à >= 1.6 SMIC
+
+        salaire_de_base = individu('salaire_de_base', period)
+        smic_proratise = individu('smic_proratise', period)
+
+        parameters_tode = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.agricole.tode
+        coefficient_degressivite = parameters_tode.plafond - parameters_tode.plafond_exoneration_integrale
+        exoneration_degressive = parameters_tode.plafond_exoneration_integrale * (assiette_exoneration / coefficient_degressivite) * (parameters_tode.plafond * smic_proratise / salaire_de_base - 1)
+
+        sous_plancher = salaire_de_base <= (parameters_tode.plafond_exoneration_integrale * smic_proratise)
+        sous_plafond = salaire_de_base < (parameters_tode.plafond * smic_proratise)
+        exoneration = where(sous_plancher, assiette_exoneration, sous_plafond * exoneration_degressive)
+
+        # non cumul avec l'allègement général de cotisations employeur sur les bas salaires (Fillon)
+        choix_exoneration_cotisations_employeur_agricole = individu('choix_exoneration_cotisations_employeur_agricole', period)
+
+        return choix_exoneration_cotisations_employeur_agricole * eligible * exoneration
+
+
+class choix_exoneration_cotisations_employeur_agricole(Variable):
+    value_type = bool
+    default_value = False
+    entity = Individu
+    label = "L'employeur agricole choisit une exonération de cotisations employeur spécifique au secteur agricole"
+    reference = 'https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    documentation = '''
+    Pour un travailleur occasionnel, l'employeur agricole a le choix
+    entre la réduction générale de cotisations sur les bas salaires (Fillon)
+    et la TO-DE.
+    La TO-DE est plus avantageuse mais à son arrêt au 12.2022,
+    la réduction Fillon sera applicable.
+    '''
 
 
 class exoneration_cotisations_employeur_geographiques(Variable):

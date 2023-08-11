@@ -1,0 +1,9 @@
+description: Taux du Crédit jeunes actifs
+values:
+  2005-01-01:
+    value: 0.75
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  unit: /1

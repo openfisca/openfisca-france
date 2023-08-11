@@ -7,8 +7,8 @@ values:
   2006-06-04:
     value: null
 metadata:
-  ux_name: Seul
-  description_en: "Parental presence allowance (AA): Amounts"
+  short_label: Seul
+  label_en: "Parental presence allowance (AA): Amounts"
   ipp_csv_id: app_tx_plein_seul
   unit: BMAF
   reference:

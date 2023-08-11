@@ -5,8 +5,8 @@ values:
   1978-01-01:
     value: null
 metadata:
-  ux_name: 6+ enfants (tous >2 ans)
-  description_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
+  short_label: 6+ enfants (tous >2 ans)
+  label_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
   ipp_csv_id: tx_gene_6ans
   unit: BMAF
   reference:

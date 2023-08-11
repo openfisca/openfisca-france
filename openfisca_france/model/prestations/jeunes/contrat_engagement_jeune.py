@@ -1,9 +1,13 @@
 from openfisca_core.periods import Period
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
+from numpy import (
+    logical_not as not_,
+    maximum as max_,
+    )
 
 
-class contrat_engagement_jeune_montant(Variable):
+class contrat_engagement_jeune_montant_forfaitaire(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -15,87 +19,51 @@ class contrat_engagement_jeune_montant(Variable):
         ]
 
     def formula_2022_03_01(individu, period, parameters):
-        montant = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.montants
-        montant_degressivite = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.degressivite.montant
-        age = individu('age', period)
+        parameters_montants = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.montants
         majeur = individu('majeur', period)
         previous_year = Period(('year', period.start, 1)).offset(-1)
         tranche = individu.foyer_fiscal('ir_tranche', previous_year)
 
-        degressivite = majeur * (tranche > 0) * montant_degressivite
-        return montant.calc(age) - degressivite
+        montant_forfaitaire = (
+            parameters_montants.montant_mineurs * not_(majeur) * (tranche <= 1)
+            + parameters_montants.montant_majeurs_non_imposables * majeur * (tranche == 0)
+            + parameters_montants.montant_majeurs_1ere_tranche_ir * majeur * (tranche == 1)
+            )
+
+        return montant_forfaitaire
 
 
-class contrat_engagement_jeune_eligbilite_statut(Variable):
+class contrat_engagement_jeune_eligibilite(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Éligibilité en fonction du statut au Contrat d'Engagement Jeune"
-    set_input = set_input_dispatch_by_period
-    reference = ['https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/', 'https://www.service-public.fr/particuliers/vosdroits/F32700']
-
-    def formula_2022_03_01(individu, period):
-        activite = individu('activite', period)
-        not_in_education = activite != TypesActivite.etudiant
-        return not_in_education
-
-
-class contrat_engagement_jeune_eligibilite_age(Variable):
-    value_type = bool
-    entity = Individu
-    definition_period = MONTH
-    label = "Éligibilité en fonction de l'âge au Contrat d'Engagement Jeune"
+    label = "Éligibilité au Contrat d'Engagement Jeune"
     set_input = set_input_dispatch_by_period
 
     def formula_2022_03_01(individu, period, parameters):
+        # En fonction de l'âge
         params_age = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.critere_age
         age = individu('age', period)
         handicap = individu('handicap', period)
+        eligibilite_age = (params_age.minimum <= age) * ((age <= params_age.maximum) + (age <= (params_age.maximum_handicap) * handicap))
 
-        return (params_age.minimum <= age) * ((age <= params_age.maximum) + (age <= (params_age.maximum_handicap) * handicap))
+        # En fonction du statut
+        activite = individu('activite', period)
+        eligibilite_statut = activite != TypesActivite.etudiant
 
+        # En fonction de l'imposition du foyer fiscal
+        previous_year = Period(('year', period.start, 1)).offset(-1)
+        tranche = individu.foyer_fiscal('ir_tranche', previous_year)
+        eligibilite_ir = (tranche <= 1)
 
-class contrat_engagement_jeune_eligibilite_ressources(Variable):
-    value_type = bool
-    entity = Individu
-    definition_period = MONTH
-    label = "Éligibilité en fonction du niveau de ressources au Contrat d'Engagement Jeune"
-    set_input = set_input_dispatch_by_period
-
-    def formula_2022_03_01(individu, period, parameters):
+        # En fonction d'autres prestations et dispositifs
         three_previous_months = period.last_3_months
-        plafond = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.plafond
-        ressources_individuelles = [
-            'revenus_stage_formation_pro',
-            'indemnites_chomage_partiel',
-            'indemnites_volontariat',
-            'asi',
-            'pensions_alimentaires_percues',
-            'stage_gratification',
-            'bourse_enseignement_sup',
-            'salaire_net',
-            'indemnites_journalieres',
-            'prestation_compensatoire',
-            'rente_accident_travail',
-            'pensions_invalidite',
-            'aah',
-            'remuneration_apprenti',
-            'chomage_net',
-            ]
-
-        # Calcul sur les trois derniers mois (normalement c'est le niveau de ressources moyen le plus faible entre les 3 derniers mois et les 6 derniers mois)
-        niveau_ressources_individuelles_3_mois = sum(
-            individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_individuelles
-            )
-
+        sans_indemnites_volontariat = individu('indemnites_volontariat', period) == 0
         sans_rsa = individu.famille('rsa', three_previous_months, options = [ADD]) <= 0
         sans_ppa = individu.famille('ppa', three_previous_months, options = [ADD]) <= 0
+        eligibilite_autres_dispositifs = sans_rsa * sans_ppa * sans_indemnites_volontariat
 
-        niveau_ressources = (niveau_ressources_individuelles_3_mois) / 3
-
-        previous_year = Period(('year', period.start, 1)).offset(-1)
-        tranche = individu.foyer_fiscal('ir_tranche', previous_year) <= 1
-        return (niveau_ressources <= plafond) * sans_rsa * sans_ppa * tranche
+        return eligibilite_age * eligibilite_statut * eligibilite_ir * eligibilite_autres_dispositifs
 
 
 class contrat_engagement_jeune(Variable):
@@ -107,8 +75,48 @@ class contrat_engagement_jeune(Variable):
     reference = ['https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/', 'https://www.service-public.fr/particuliers/vosdroits/F32700']
 
     def formula_2022_03_01(individu, period, parameters):
-        montant = individu('contrat_engagement_jeune_montant', period)
-        statut = individu('contrat_engagement_jeune_eligbilite_statut', period)
-        eligibilite_age = individu('contrat_engagement_jeune_eligibilite_age', period)
-        eligibilite_ressources = individu('contrat_engagement_jeune_eligibilite_ressources', period)
-        return montant * statut * eligibilite_age * eligibilite_ressources
+        three_previous_months = period.last_3_months
+        parameters_degressivite = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.degressivite
+
+        ressources_totalement_deductibles = [
+            'revenus_stage_formation_pro',
+            'chomage_net',
+            ]
+
+        ressources_partiellement_deductibles_month = [
+            'indemnites_chomage_partiel',
+            'salaire_net',
+            'indemnites_journalieres',
+            'remuneration_apprenti',
+            ]
+        ressources_partiellement_deductibles_year = [
+            'revenus_non_salarie_nets',
+            ]
+
+        parameters_smic = parameters(period).marche_travail.salaire_minimum.smic
+        smic_brut_mensuel = parameters_smic.nb_heures_travail_mensuel * parameters_smic.smic_b_horaire
+
+        # Calcul sur les trois derniers mois (normalement c'est le niveau de ressources moyen le plus faible entre les 3 derniers mois et les 6 derniers mois)
+        ressources_mensuelles_individuelles_totalement_deductibles_3_mois = sum(
+            individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_totalement_deductibles
+            ) / 3
+        ressources_mensuelles_individuelles_partiellement_deductibles_3_mois = (
+            sum(
+                individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_partiellement_deductibles_month
+                ) / 3
+            + sum(
+                individu(ressources_incluses, period.this_year) for ressources_incluses in ressources_partiellement_deductibles_year
+                ) / 12
+            )
+
+        montant_forfaitaire = individu('contrat_engagement_jeune_montant_forfaitaire', period)
+        montant_apres_deduction_totale = max_(montant_forfaitaire - ressources_mensuelles_individuelles_totalement_deductibles_3_mois, 0)
+        montant_apres_toutes_deductions = (
+            montant_apres_deduction_totale
+            - max_(ressources_mensuelles_individuelles_partiellement_deductibles_3_mois - parameters_degressivite.abattement_deductibilite_partielle, 0) * montant_forfaitaire / (parameters_degressivite.part_smic_deductibilite_partielle * smic_brut_mensuel - parameters_degressivite.abattement_deductibilite_partielle)
+            )
+        montant = max_(montant_apres_toutes_deductions, 0)
+
+        contrat_engagement_jeune_eligibilite = individu('contrat_engagement_jeune_eligibilite', period)
+
+        return montant * contrat_engagement_jeune_eligibilite

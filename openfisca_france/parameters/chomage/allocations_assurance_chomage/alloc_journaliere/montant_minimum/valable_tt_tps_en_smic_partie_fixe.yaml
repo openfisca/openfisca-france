@@ -3,8 +3,8 @@ values:
   1979-07-01:
     value: 0.7
 metadata:
-  ux_name: Valable tt le tps (en % SMIC + partie fixe)
-  description_en: Special UI scheme for economic layoffs (1979-1983)
+  short_label: Valable tt le tps (en % SMIC + partie fixe)
+  label_en: Special UI scheme for economic layoffs (1979-1983)
   ipp_csv_id: journ_min_prct
   unit: /1
   reference:

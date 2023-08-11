@@ -9,12 +9,9 @@
     en_couple: 0
     af_nbenf: 0
     activite:
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
+      2018: actif
   output:
-    aah: 9100 / 12 # (9605,40 - 500)  / 12
+    aah: 9100 / 12 # (9605,40 - 500) / 12
 
 - name: AAH niveau Individu - Eligible, en concubinage, sans enfants, ressources supérieures au plafond
   description: Montant AAH au niveau de l individu
@@ -27,12 +24,9 @@
     en_couple: 1
     af_nbenf: 0
     activite:
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
+      2018: actif
   output:
-    aah: 2846.88 / 12 # (743.62 * 24 (17846.88) - 12000)  / 12
+    aah: 2846.88 / 12 # (743.62 * 24 (17846.88) - 12000) / 12
 
 - name: AAH Eligibilité personne seule sans revenus
   period: 2015-11
@@ -41,10 +35,7 @@
     taux_incapacite: 0.9
     age: 33 # eligible aah
     activite:
-      2018-05: 4
-      2018-04: 4
-      2018-03: 4
-      2018-02: 4
+      2018: inactif
   output:
     aah_base: 807.65
 
@@ -60,19 +51,11 @@
         age: 40
         taux_incapacite: 0.9
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
-
+          2018: inactif
       parent2:
         age: 40
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
-
+          2018: inactif
   output:
     af_nbenf: 0
     en_couple: 1
@@ -93,25 +76,16 @@
         age: 40
         taux_incapacite: 0.9
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
       parent2:
         age: 40
         taux_incapacite: 0.9
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
       enfant1:
         age: 12
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
   output:
     en_couple: 1
     af_nbenf: 1
@@ -133,24 +107,15 @@
         age: 40
         taux_incapacite: 0.9
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
       parent2:
         age: 40
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
       enfant1:
         age: 12
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
   output:
     en_couple: 1
     af_nbenf: 1
@@ -169,11 +134,8 @@
       2015-10: 400
       2015-09: 400
       2015-08: 400
-    activite:
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
+      activite:
+        2018: actif
   output:
     aah_base_ressources:
       2015-11: 80
@@ -186,10 +148,7 @@
   input:
     taux_incapacite: 0.9
     activite:
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
+      2018: actif
     salaire_imposable:
       2015-11: 1471
       2015-10: 1471
@@ -209,10 +168,7 @@
     salaire_imposable:
       2013: 770
     activite:
-      2018-05: 4
-      2018-04: 4
-      2018-03: 4
-      2018-02: 4
+      2018: inactif
   output:
     aah_base_ressources:
       2015-11: 154 / 12
@@ -230,19 +186,13 @@
         age: 40
         taux_incapacite: 0.9
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
       parent2:
         age: 40
         salaire_imposable:
           2013: 1128.70 * 12
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
   output:
     aah_base_ressources:
       2015-11:
@@ -260,10 +210,7 @@
         age: 40
         taux_incapacite: 0.9
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2015-11: 1471
           2015-10: 1471
@@ -272,10 +219,7 @@
       parent2:
         age: 40
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2015-11: 1000
           2015-10: 1000
@@ -306,10 +250,7 @@
     taux_incapacite: 0.55
     aah_restriction_substantielle_durable_acces_emploi: false
     activite:
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
+      2018: actif
     salaire_imposable:
       2018-05: 2400
       2018-04: 1500
@@ -332,10 +273,7 @@
     taux_incapacite: 0.55
     aah_restriction_substantielle_durable_acces_emploi: true
     activite:
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
+      2018: actif
     salaire_imposable:
       2018-05: 2400
       2018-04: 1500
@@ -358,10 +296,7 @@
     taux_incapacite: 0.55
     aah_restriction_substantielle_durable_acces_emploi: true
     activite:
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
+      2018: actif
     salaire_imposable:
       2018-05: 2400
       2018-04: 1500
@@ -382,10 +317,7 @@
         taux_incapacite: 0.55
         aah_restriction_substantielle_durable_acces_emploi: true
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 2250
           2018-04: 2250
@@ -396,10 +328,7 @@
       enfant1:
         age: 15
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
   output:
     aah: [158.31, 0]
 
@@ -414,10 +343,7 @@
         age: 38
         taux_incapacite: 0.81
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 500
           2018-04: 500
@@ -427,10 +353,7 @@
       parent2:
         age: 36
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 4000
           2018-04: 3000
@@ -452,10 +375,7 @@
         age: 38
         taux_incapacite: 0.55
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 2000
           2018-04: 2000
@@ -466,10 +386,7 @@
       parent2:
         age: 36
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 2000
           2018-04: 2000
@@ -480,10 +397,7 @@
       enfant1:
         age: 7
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
   output:
     aah: [0, 0, 0]
 - name: "Revalorisation 01-04-2018, Cas Passant 5 : AAH personne de 38 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12000€ avec 1 personne de 36 ans avec un revenu de 20000€ ainsi que deux enfants de 7 et 5 ans"
@@ -498,10 +412,7 @@
         age: 38
         taux_incapacite: 0.55
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 2000
           2018-04: 2000
@@ -512,10 +423,7 @@
       parent2:
         age: 36
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 4000
           2018-04: 4000
@@ -526,17 +434,11 @@
       enfant1:
         age: 7
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
       enfant2:
         age: 5
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
   output:
     aah: [0, 0, 0, 0]
 - name: "Revalorisation 01-04-2018, Cas Non Passant 1 : Non eligible AAH : personne seule de 50 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12000€"
@@ -546,10 +448,7 @@
     age: 50
     taux_incapacite: 0.55
     activite:
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
+      2018: actif
     salaire_imposable:
       2018-05: 2000
       2018-04: 2000
@@ -567,10 +466,7 @@
     age: 50
     taux_incapacite: 0.55
     activite:
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
+      2018: actif
     salaire_imposable:
       2018-05: 1000
       2018-04: 1300
@@ -595,10 +491,7 @@
         age: 42
         taux_incapacite: 0.55
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 4000
           2018-04: 4000
@@ -609,10 +502,7 @@
       enfant1:
         age: 15
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
   output:
     aah: 0
 
@@ -627,10 +517,7 @@
         age: 38
         taux_incapacite: 0.81
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 500
           2018-04: 500
@@ -639,10 +526,7 @@
       parent2:
         age: 36
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 5000
           2018-04: 4000
@@ -665,10 +549,7 @@
         age: 38
         taux_incapacite: 0.55
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 3000
           2018-04: 3000
@@ -679,10 +560,7 @@
       parent2:
         age: 36
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 5000
           2018-04: 4000
@@ -693,10 +571,7 @@
       enfant1:
         age: 7
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
   output:
     aah: 0
 
@@ -712,10 +587,7 @@
         age: 38
         taux_incapacite: 0.55
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 4000
           2018-04: 4000
@@ -726,10 +598,7 @@
       parent2:
         age: 36
         activite:
-          2018-05: 0
-          2018-04: 0
-          2018-03: 0
-          2018-02: 0
+          2018: actif
         salaire_imposable:
           2018-05: 5000
           2018-04: 5000
@@ -740,17 +609,11 @@
       enfant1:
         age: 7
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
       enfant2:
         age: 5
         activite:
-          2018-05: 4
-          2018-04: 4
-          2018-03: 4
-          2018-02: 4
+          2018: inactif
   output:
     aah: 0
 
@@ -765,10 +628,7 @@
         age: 40
         taux_incapacite: 0.9
         activite:
-          2022-05: 0
-          2022-04: 0
-          2022-03: 0
-          2022-02: 0
+          2022: actif
         salaire_imposable:
           2022-05: 1471
           2022-04: 1471
@@ -778,10 +638,7 @@
       parent2:
         age: 40
         activite:
-          2022-05: 0
-          2022-04: 0
-          2022-03: 0
-          2022-02: 0
+          2022: actif
         salaire_imposable:
           2022-05: 1000
           2022-04: 1000
@@ -810,10 +667,7 @@
         age: 40
         taux_incapacite: 0.9
         activite:
-          2022-05: 0
-          2022-04: 0
-          2022-03: 0
-          2022-02: 0
+          2022: actif
         salaire_imposable:
           2022-05: 1471
           2022-04: 1471
@@ -823,10 +677,7 @@
       parent2:
         age: 40
         activite:
-          2022-05: 0
-          2022-04: 0
-          2022-03: 0
-          2022-02: 0
+          2022: actif
         salaire_imposable:
           2022-05: 1000
           2022-04: 1000
@@ -836,10 +687,7 @@
       enfant1:
         age: 12
         activite:
-          2022-05: 4
-          2022-04: 4
-          2022-03: 4
-          2022-02: 4
+          2022: actif
   output:
     aah_base_ressources_activite_eval_trimestrielle:
       2022-05: [17652, 12000, 0]
@@ -853,26 +701,158 @@
     aah:
       2022-05: [920, 0, 0]
 
-
-- name: AAH niveau Individu avec cessation d'activite - Eligible car cessation d'activité, célibataire, sans enfants
-  description: Montant AAH au niveau de l individu
-  period: 2023-03
-  absolute_error_margin: 1
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2004-04
+  absolute_error_margin: 0.005
   input:
-    taux_incapacite: 0.8
-    age: 50  # eligible aah
-    salaire_imposable: 
-      2021: 24000
-      2022: 24000
-      2023: 24000
-    en_couple: 0
-    af_nbenf: 0
-    activite: 
-      2023-03: inactif
-      2023-02: inactif
-      2023-01: inactif
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+        salaire_imposable:
+          2002: 1128.70 * 12
   output:
-    aah_base_ressources: 696.41
+    aah_base_ressources:
+      2004-04:
+        - 812.66 # 1128.70 avec les abattements pour conjoint
+        - 1128.7
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2006-04
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+        salaire_imposable:
+          2006: 1128.70 * 12
+          2005: 1128.70 * 12
+          2004: 1128.70 * 12
+  output:
+    aah_base_ressources:
+      2006-04:
+        - 812.66 # 1128.70 avec les abattements pour conjoint
+        - 887.8 # 1128.70 avec les abattements pour bénéficiaire
+
+- name: AAH retraité, retraite 400
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    age: 65
+    taux_incapacite: 0.9
+    retraite_imposable:
+      2013-11: 400
+      2013-10: 400
+      2013-09: 400
+      2013-08: 400
+  output:
+    aah_base_ressources_hors_activite_eval_annuelle:
+      2015-11: 1600
+    aah_base_ressources: 1600/12
+    aah: 674.32 # 807.65-1600/12
+
+- name: AAH demandeur sans ressource et autre
+  period: month:2007-01
+  absolute_error_margin: 0.005
+  input:
+    familles:
+      famille0:
+        parents: [albert, estelle]
+      famille1:
+        parents: [autre1, autre2]
+    menage:
+      personne_de_reference: [albert]
+      conjoint: [estelle]
+      autres: [autre1, autre2]
+    individus:
+      albert:
+        age: 25
+        salaire_imposable:
+          2005: 1200
+      estelle:
+        age: 25
+        salaire_imposable:
+          2005: 0
+      autre1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+      autre2:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+  output:
+    caah:
+      2007-04:
+        - 0
+        - 0
+        - 0
+        - 0
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2007-01
+  absolute_error_margin: 0.005
+  input:
+    menage:
+      personne_de_reference: [personne_de_reference]
+      conjoint: [conjoint]
+    individus:
+      personne_de_reference:
+        age: 25
+        salaire_imposable:
+          2005: 1200
+      conjoint:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+  output:
+    caah:
+      2007-04:
+        - 0
+        - 0
+
+- name: AAH individu payant une pension
+  period: 2023-06
+  absolute_error_margin: 1
+  input:
+    menage:
+      personne_de_reference: [albert]
+      autres: [albertjr]
+    individus:
+      albert:
+        age: 45
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2023-06: 1200
+          2023-05: 1200
+          2023-04: 1200
+          2023-03: 1200
+        pensions_alimentaires_versees_individu:
+          2023-06: 200
+          2023-05: 200
+          2023-04: 200
+          2023-03: 200
+      albertjr:
+        age: 10
+        pensions_alimentaires_percues:
+          2023-06: 200
+          2023-05: 200
+          2023-04: 200
+          2023-03: 200
+  output:
+    aah_base_ressources: [310, 0] # ((0.2 * 6290 + 0.6 * 8110) - (200 * 12))/12 ~= 310
 
 - name: AAH niveau Individu avec cessation d'activite - Eligible car cessation d'activité, célibataire, sans enfants
   description: Montant AAH au niveau de l individu
@@ -880,16 +860,16 @@
   absolute_error_margin: 1
   input:
     taux_incapacite: 0.8
-    age: 50  # eligible aah
-    salaire_imposable: 
+    age: 50 # eligible aah
+    salaire_imposable:
       2021: 24000
-      2022: 24000
-      2023: 24000
     en_couple: 0
     af_nbenf: 0
-    activite: 
-      2023-03: actif
+    activite:
+      2023-03: inactif
       2023-02: actif
       2023-01: actif
+      2022-12: actif
   output:
-    aah_base_ressources: 994.41
+    aah_base_ressources: 696.41
+    aah: 260

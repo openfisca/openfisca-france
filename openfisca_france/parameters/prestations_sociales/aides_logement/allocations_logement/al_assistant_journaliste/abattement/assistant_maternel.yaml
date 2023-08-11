@@ -3,5 +3,5 @@ values:
   2019-01-01:
     value: 1195
 metadata:
-  ux_name: Assistant maternel
+  short_label: Assistant maternel
   unit: currency

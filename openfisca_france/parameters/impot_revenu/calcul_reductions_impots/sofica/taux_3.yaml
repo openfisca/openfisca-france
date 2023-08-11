@@ -1,0 +1,32 @@
+description: Taux 3 de la réduction d'impôt sur la souscription de parts au capital de SOFICA (1986 -)
+values:
+  1984-01-01:
+    value: null
+  2017-01-01:
+    value: 0.48
+metadata:
+  short_label: Taux 3
+  unit: /1
+  reference:
+    2007-01-01:
+      title: Loi 2008-1443 du 30/12/2008 (LFR pour 2008) - art. 87
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020042335&cidTexte=JORFTEXT000020014790
+    2010-01-01:
+      title: Décret 2010-13 du 6/01/2010
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021637325
+    2017-01-01:
+      title: Loi 2017-1837 du 30/12/2017 - art. 76
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377526&cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    2007-01-01: "2018-12-31"
+    2017-01-01: "2017-12-31"
+  notes:
+    2007-01-01:
+    - title: art. 199 unvicies du CGI à compter du 1er janvier 2007 ; art. 46 quindecies B du CGI jusqu'au 1er janvier 2007
+documentation: |-
+  Notes :
+  (1) Sociétés pour le financement de l’industrie cinématographique ou audiovisuelle
+  (SOFICA)
+  (2) Taux 1 : taux lorsque la Sofica s'engage à réaliser au moins 10 % de ses investissements dans des sociétés de production avant le 31 décembre de l'année suivant celle de la souscription.
+  (3) Taux 2 : taux normal
+  (4) Taux 3 : lorsque la Sofica s'engage à consacrer 10 % de ses investissements (a) soit à des dépenses de développement d'œuvres de fiction, de documentaires et d'animation sous forme de séries ; (b) soit à l'acquisition de droits portant exclusivement sur les recettes d'exploitation des œuvres cinématographiques ou audiovisuelles à l'étranger.

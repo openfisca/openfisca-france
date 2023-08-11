@@ -1,0 +1,9 @@
+description: Majoration du revenu fiscal de référence plafond (par demi-part supplémentaire) du Crédit jeunes actifs
+values:
+  2005-01-01:
+    value: 4276
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Majoration
+  unit: currency

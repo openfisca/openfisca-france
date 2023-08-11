@@ -21,6 +21,7 @@ class condition_rfr_exoneration_th(Variable):
     label = "Condition de revenu fiscal de référence pour l'éxonération à l'échelle du foyer fiscal"
     reference = 'http://bofip.impots.gouv.fr/bofip/5934-PGP.html'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -42,6 +43,7 @@ class exonere_taxe_habitation(Variable):
     label = "Exonération de la taxe d'habitation"
     reference = 'http://vosdroits.service-public.fr/particuliers/F42.xhtml'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         '''
@@ -85,6 +87,7 @@ class abattement_charge_famille_th_commune(Variable):
     label = 'Abattement obligatoire pour charges de famille - TH de la commune'
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         '''
@@ -110,6 +113,7 @@ class abattement_charge_famille_th_epci(Variable):
     label = "Abattement obligatoire pour charges de famille - TH de l'EPCI"
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         '''
@@ -135,6 +139,7 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
     label = 'Abattement pour personnes de condition modeste - TH de la commune'
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         '''
@@ -164,6 +169,7 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
     label = "Abattement pour personnes de condition modeste - TH de l'EPCI"
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         '''
@@ -192,6 +198,7 @@ class base_nette_th_commune(Variable):
     entity = Menage
     label = 'Base nette - TH de la commune'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         '''
@@ -218,6 +225,7 @@ class base_nette_th_epci(Variable):
     entity = Menage
     label = "Base nette - TH de l'EPCI"
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         '''
@@ -244,6 +252,7 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
     entity = Menage
     label = "Taxe d'habitation de la commune et de l'EPCI avant dégrèvement (frais de gestion inclus)"
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         taux_th_commune = menage('taux_th_commune', period)
@@ -369,6 +378,7 @@ class degrevement_office_taxe_habitation(Variable):
     label = "Dégrèvement d'office de la taxe d'habitation"
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=268AD735F5C69F94FB6756E3125BF0A0.tplgfr43s_1?idArticle=LEGIARTI000036441815&cidTexte=LEGITEXT000006069577&dateTexte=20190513&categorieLien=id&oldAction=&nbResultRech='
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2018_01_01(menage, period, parameters):
         '''
@@ -460,6 +470,7 @@ class taxe_habitation(Variable):
     label = "Taxe d'habitation de la commune et de l'EPCI (Établissement Public de Coopération Intercommunale), frais de gestion inclus"
     reference = 'https://www.service-public.fr/particuliers/vosdroits/F42'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2017_01_01(menage, period):
         taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)

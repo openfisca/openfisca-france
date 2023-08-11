@@ -1,0 +1,7 @@
+description: Cotisation de sécurité sociale (SS) branche maladie, maternité, invalidité, décès, Professions libérales
+metadata:
+  short_label: Maladie, maternité, invalidité, décès
+  label_en: SSCs for sickness and maternity benefits (professionals)
+  order:
+  - assures_actifs
+  - assures_retraites

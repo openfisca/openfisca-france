@@ -1,0 +1,43 @@
+description: Taux du crédit d'impôt pour frais de garde d'enfants
+values:
+  1977-01-01:
+    value: null
+  1978-01-01:
+    value: 0
+  1988-01-01:
+    value: 0.25
+  2006-01-01:
+    value: 0.5
+metadata:
+  short_label: Plafond
+  label_en: Child care costs (1979 - )
+  ipp_csv_id: txgardenf
+  unit: /1
+  reference:
+    1988-01-01:
+      title: Loi 88-1149 du 23/12/1988 (LF pour 1989) - art. 4 (I)
+    2005-01-01:
+      title: BOI 5 B-13-06; n°62 du 05/04/2006
+    2006-01-01:
+      title: Loi 2005-1719, art. 79 du 31/12/2005
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006322498&cidTexte=JORFTEXT000000634802
+  official_journal_date:
+    1988-01-01: "1988-12-28"
+    2006-01-01: "2005-12-31"
+  notes:
+    1978-01-01:
+    - title: Déduction du revenu offerte aux foyers fiscaux dont les conjoints justifient d'un emploi à plein temps ou ne peuvent exercer leur emploi du fait d'une longue maladie ou d'une infirmité à partir de 1982.
+    1988-01-01:
+    - title: Création du dispositif pour l'imposition des revenus de 1988. Avant 1989, la réduction d'impôt était une déduction du revenu.
+    1992-01-01:
+    - title: Depuis l'imposition des revenus de 1992, la réduction d'impôt est réservée aux dépenses nécessitées par la garde des enfants à l'extérieur du domicile du contribuable.
+    2005-01-01:
+    - title: À partir de l'imposition des revenus de 2005, la réduction d'impot devient un crédit d'impot.
+documentation: |-
+  Notes :
+  (1) Frais de garde des enfants à l'extérieur du domicile.
+  Le plafond est exprimé par enfant : art. 200 quater B du CGI
+  (2) Les enfants ouvrant droit à réduction d'impôt sont ceux âgés de moins de 6 ans au 1er janvier de l'année d'imposition.
+  (3) La réduction d'impôt est accordée aux contribuables célibataires, veufs, divorcés ou séparés, domiciliés en France et qui exercent une activité professionnelle.
+  (4) La même possibilité est accordée aux foyers fiscaux dans lesquels chacun des conjoints, soit occupe un emploi au moins à mi-temps, soit ne peut exercer cette activité du fait d'une longue maladie ou d'une infirmité ou poursuit des études dans l'enseignement supérieur.
+  (5) Le plafond est divisé par deux dans le cas d'un enfant en résidence alternée

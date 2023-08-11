@@ -1,7 +1,7 @@
 description: Cotisations de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
 metadata:
-  ux_name: Indépendants
-  description_en: SSCs for family benefits (independent workers)
+  short_label: Indépendants
+  label_en: SSCs for family benefits (independent workers)
   order:
   - revenu_professionnel_total
   - sous_pss

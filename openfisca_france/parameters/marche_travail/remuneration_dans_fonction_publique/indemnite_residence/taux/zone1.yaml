@@ -1,0 +1,7 @@
+description: "Indemnité de résidence zone 1 : taux"
+values:
+  1999-07-01:
+    value: 0.03
+metadata:
+  short_label: Taux zone 1
+  unit: /1

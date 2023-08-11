@@ -3,8 +3,9 @@ values:
   2019-01-01:
     value: 0.07
 metadata:
-  ux_name: Taux réduit
-  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  short_label: Taux réduit
+  last_value_still_valid_on: "1977-01-01"
+  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   ipp_csv_id: mmid_p_0_250
   unit: /1
   reference:
@@ -45,7 +46,6 @@ metadata:
     - title: Suppression des cotisations salariales MMID.
     2019-01-01:
     - title: Taux réduit pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
-  last_review: "1977-01-01"
 documentation: |-
   Sources :
   Barème social périodique, Législation Cnav et Légifrance.

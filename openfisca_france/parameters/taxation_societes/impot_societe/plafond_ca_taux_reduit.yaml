@@ -5,6 +5,7 @@ values:
   2002-03-31:
     value: 7630000
 metadata:
+  last_value_still_valid_on: "2023-01-05"
   ipp_csv_id: is_pfca_txred
   unit: currency
   reference:

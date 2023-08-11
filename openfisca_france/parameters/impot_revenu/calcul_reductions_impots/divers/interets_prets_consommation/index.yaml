@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur les intérêts des prêts à la consommation (case UH)
+metadata:
+  short_label: Prêts à la consommation
+  order:
+  - taux
+  - plafond

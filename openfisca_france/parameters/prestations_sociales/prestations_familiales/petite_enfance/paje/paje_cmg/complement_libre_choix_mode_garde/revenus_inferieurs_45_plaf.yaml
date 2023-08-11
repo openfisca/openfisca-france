@@ -7,8 +7,8 @@ values:
   2012-06-01:
     value: 1.0067
 metadata:
-  ux_name: Revenus <45% du plafond
-  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
+  short_label: Revenus <45% du plafond
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
   ipp_csv_id: clcmg_03ans_rev1
   unit: BMAF
   reference:

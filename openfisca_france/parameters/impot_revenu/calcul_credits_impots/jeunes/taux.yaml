@@ -1,8 +1,0 @@
-description: taux
-values:
-  2005-01-01:
-    value: 0.75
-  2009-01-01:
-    value: null
-metadata:
-  unit: /1

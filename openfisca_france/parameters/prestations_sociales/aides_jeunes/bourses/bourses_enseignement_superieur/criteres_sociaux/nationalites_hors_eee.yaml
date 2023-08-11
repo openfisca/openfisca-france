@@ -13,7 +13,7 @@ values:
     - CH
     - UK
 metadata:
-  ux_name: Nationalités hors EEE
+  short_label: Nationalités hors EEE
   reference:
     2004-07-21:
       href: https://www.education.gouv.fr/bo/2003/18/MENS0300894C.htm

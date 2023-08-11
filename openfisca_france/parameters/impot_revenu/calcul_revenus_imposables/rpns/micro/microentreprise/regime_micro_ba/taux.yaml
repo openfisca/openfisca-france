@@ -1,0 +1,32 @@
+description: Taux de l'abattement pour le régime micro-BA
+values:
+  1979-01-01:
+    value: null
+  2016-01-01:
+    value: 0.87
+metadata:
+  short_label: Taux
+  ipp_csv_id: taux_micro_ba
+  unit: /1
+  reference:
+    1979-01-01:
+      title: Loi 80-30 du 18/01/1980 (LF pour 1980)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000705191
+    2016-01-01:
+      title: Loi n° 2015-1786 du 29 décembre 2015 de finances rectificative pour 2015 - Article 33
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000031733082&idArticle=LEGIARTI000031757493&dateTexte=20161210&categorieLien=id#LEGIARTI000031757493
+  official_journal_date:
+    1979-01-01: "1980-01-19"
+    2016-01-01: "2017-05-04"
+  notes:
+    1998-01-01:
+    - title: Création du régime microfoncier
+documentation: |-
+  Notes :
+  (1) Abattement concernant les entrepreneurs individuels. Pour les autoentrepreneurs, voir art. 151-0 du CGI
+  (2) BNC : bénéfices non commerciaux. Si soumis à la TVA voir art. 293-B du CGI
+  (3) Régime microfoncier : art. 32-1 du CGI
+  (4) Plafonnement de l'imputations des déficits agricoles: art. 156-I-1° du CGI
+  (5) Plafond déficits agricoles : art. 156-I-1° du CGI
+  (6) Plafond déficits fonciers : art. 156-I-3° du CGI
+  (7) Micro-BA : art. 64 bis du CGI. Définition des plafonds de ressources à l'art. 69 du CGI.

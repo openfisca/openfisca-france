@@ -1,0 +1,13 @@
+description: Taux de la réduction d'impôt Pinel/Denormandie pour les investsissements réalisés en outre-mer avec engagement de location de 6 ans
+values:
+  2014-01-01:
+    value: 0.23
+metadata:
+  last_value_still_valid_on: "2022-10-11"
+  unit: /1
+  reference:
+    2014-01-01:
+    - title: Loi 2014-1654 du 29/12/2014 - art. 5 (V) (modifie Art. 199 novovicies du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000029994821/2015-01-01/
+    - title: Art. 199 novovicies, XII. 3° du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044991962

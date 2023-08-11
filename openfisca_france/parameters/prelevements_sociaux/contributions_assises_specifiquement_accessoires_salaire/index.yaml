@@ -1,9 +1,9 @@
 description: Contributions assises spécifiquement sur les accessoires du salaire
 metadata:
-  ux_name: Contrib. accessoires salaire
-  description_en: Contributions levied specifically on supplements to base salary
+  short_label: Contrib. accessoires du salaire
+  label_en: Contributions levied specifically on supplements to base salary
   order:
-  - prevoyance
+  - taxe_contribution_prevoyance
   - forfait_social
   - retraites_chapeau
   - cont_sur_options

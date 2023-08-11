@@ -1,10 +1,10 @@
-description: Abattement forfaitaire de base sur les revenus du conjoint (revenus d'activité, pensions, rentes viagères à titre gratuit) pour le calcul de l'Allocation pour adulte handicapé (AAH)
+description: Abattement forfaitaire de base sur les revenus du conjoint (revenus d'activité, pensions, rentes viagères à titre gratuit) pour le calcul de l'allocation aux adultes handicapés (AAH)
 values:
   2022-01-01:
     value: 5000
 metadata:
-  ux_name: Abattement forfaitaire de base
-  description_en: Adult disability allowance (AAH)
+  short_label: Abattement forfaitaire de base
+  label_en: Adult disability allowance (AAH)
   ipp_csv_id: abattement_aah_conjoint_forfaitaire_base
   unit: currency
   reference:

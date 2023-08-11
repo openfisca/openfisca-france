@@ -1,0 +1,17 @@
+description: Taux de la réduction d'impôt sur les dépenses de protection du patrimoine naturel
+values:
+  1977-01-01:
+    value: null
+  2010-01-01:
+    value: 0.25
+  2011-01-01:
+    value: 0.22
+  2012-01-01:
+    value: 0.18
+  2014-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_protecpat
+  unit: /1
+documentation: "Dépense de protection du patrimoine naturel : art. 199 octovicies du CGI. Réduction d'impôt étalée sur 6 ans concernant les dépenses survenues entre le 1er janvier 2010 et le 31 décembre 2013. Changement au 16 mai 2011 par Décret 2011-520 du 13 mai 2011 - art. 1. Depuis le 26 avril 2012 Décret 2012-547 du 23 avril 2012 - art. 1."

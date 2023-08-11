@@ -7,8 +7,9 @@ values:
   2016-01-01:
     value: 0.42804
 metadata:
-  ux_name: Majoration par enfant à charge
-  description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  short_label: Majoration par enfant à charge
+  last_value_still_valid_on: "2022-03-29"
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_isole_enf
   unit: /1
   reference:
@@ -26,5 +27,4 @@ metadata:
   notes:
     2016-01-01:
     - title: Remplacement du RSA activité par la Prime d'activité
-  last_review: "2022-03-29"
 documentation: Le terme de "parents isolés" est défini dans l'article L. 842-7.

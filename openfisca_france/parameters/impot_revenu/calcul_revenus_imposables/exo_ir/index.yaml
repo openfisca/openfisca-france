@@ -1,3 +1,6 @@
+description: Exonération d'Impôt sur le Revenu (1978 -)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  short_label: Exonération IR
+  label_en: IR Exemptions (1978 -)
+  order:
+  - conditions_ressources_exoneration_ir

@@ -1,7 +1,0 @@
-description: "Indemnité de résidence zone 2 : taux"
-values:
-  1999-07-01:
-    value: 0.01
-metadata:
-  ux_name: Taux zone 2
-  unit: /1

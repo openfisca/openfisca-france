@@ -67,10 +67,11 @@ brackets:
     1991-04-01:
       value: 0.11087999999999999
     1992-01-01:
-      value: null
+      value: 0
 metadata:
-  ux_name: Contribution employeur
-  description_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
+  short_label: Contribution employeur
+  last_value_still_valid_on: "2021-08-24"
+  label_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
   ipp_csv_id:
     rate: ircantec_p_0_1, ircantec_p_1_8, ircantec_p_1_4_75
   reference:
@@ -124,7 +125,6 @@ metadata:
     2015-01-01: "2008-09-24"
     2016-01-01: "2008-09-24"
     2017-01-01: "2008-09-24"
-  last_review: "2021-08-24"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

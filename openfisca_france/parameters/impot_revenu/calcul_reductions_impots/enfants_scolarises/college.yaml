@@ -1,0 +1,22 @@
+description: Réduction pour enfants scolarisés au collège
+values:
+  1991-01-01:
+    value: null
+  1992-01-01:
+    value: 400
+  2001-01-01:
+    value: 61
+metadata:
+  short_label: Collège
+  last_value_still_valid_on: "2022-12-08"
+  ipp_csv_id: reduc_enfscol1
+  unit: currency
+  reference:
+    1992-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    2001-01-01:
+      title: CGI. - Article 199 quater F
+      href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000006191829/
+  official_journal_date:
+    1992-01-01: "1992-12-31"

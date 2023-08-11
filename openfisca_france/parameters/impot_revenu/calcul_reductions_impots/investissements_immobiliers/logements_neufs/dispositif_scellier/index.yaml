@@ -1,0 +1,9 @@
+description: Dispositif Scellier
+metadata:
+  order:
+  - plafond
+  - logement_BBC
+  - logement_non_BBC
+  - scellier_outremer
+  - scellier_outremer_bis
+  - scellier_intermediaire

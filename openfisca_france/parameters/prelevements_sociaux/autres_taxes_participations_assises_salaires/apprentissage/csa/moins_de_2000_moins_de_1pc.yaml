@@ -11,8 +11,8 @@ values:
   2014-01-01:
     value: 0.004
 metadata:
-  ux_name: Plus de 2000, moins de 1%
-  description_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  short_label: Plus de 2000, moins de 1%
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
   unit: /1
   reference:
     1972-07-01:
@@ -67,9 +67,7 @@ metadata:
     1972-07-01: "1971-07-17"
     1973-07-01: "1972-12-29"
     1978-01-01: "1978-06-22"
-    1980-01-01: "1980-01-19"
     1997-01-01: "1997-03-14"
-    2004-01-01: "2004-12-31"
     2007-01-01: "2008-03-12"
     2011-01-01: "2011-07-30"
     2012-01-01: "2012-03-15"

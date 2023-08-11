@@ -1,4 +1,4 @@
-description: Taux du bouclier fiscal (2005-2010) de l'impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Taux du bouclier fiscal de l'impôt de solidarité sur la fortune
 values:
   2005-01-01:
     value: 0.6
@@ -7,8 +7,8 @@ values:
   2011-01-01:
     value: null
 metadata:
-  ux_name: Taux
-  description_en: Tax shield (2005-2010)
+  short_label: Taux
+  label_en: Tax shield rate
   ipp_csv_id: tx_bouclier
   unit: /1
   reference:

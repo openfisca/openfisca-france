@@ -1,0 +1,31 @@
+description: Date d'entrée en vigueur (année IR)
+values:
+  2007-01-01:
+    value: 2008
+  2008-01-01:
+    value: 2009
+  2009-01-01:
+    value: 2010
+  2010-01-01:
+    value: 2011
+metadata:
+  reference:
+    2007-01-01:
+    - title: Loi 2007-1223, art. 5 du 21/08/2007
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006267445&cidTexte=JORFTEXT000000278649
+    - title: Loi 2007-1822, art. 13 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017856263&cidTexte=JORFTEXT000017853368
+    2008-01-01:
+      title: Loi 2008-1425, art. 103 du 27/12/2008 (LF pour 2009)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020000256&cidTexte=JORFTEXT000019995721
+    2009-01-01:
+      title: Loi 2009-1673, art. 84 du 30/12/2009 (LF pour 2010)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021575889&cidTexte=JORFTEXT000021557902
+    2010-01-01:
+      title: Loi 2010-1657, art. 90 du 29/12/2010 (LF pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023347519&cidTexte=JORFTEXT000023314376
+  official_journal_date:
+    2007-01-01: "2007-12-27"
+    2008-01-01: "2008-12-28"
+    2009-01-01: "2009-12-31"
+    2010-01-01: "2010-12-30"

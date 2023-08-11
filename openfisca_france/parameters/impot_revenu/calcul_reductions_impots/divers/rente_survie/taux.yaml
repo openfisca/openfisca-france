@@ -1,0 +1,12 @@
+description: Taux de la réduction d'impôts sur rente survie et contrat d'épargne handicap
+values:
+  1977-01-01:
+    value: null
+  1978-01-01:
+    value: 0
+  1983-01-01:
+    value: 0.25
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_survie
+  unit: /1

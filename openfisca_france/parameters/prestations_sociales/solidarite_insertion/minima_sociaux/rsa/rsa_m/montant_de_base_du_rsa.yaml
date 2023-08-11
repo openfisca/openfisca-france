@@ -40,9 +40,12 @@ values:
     value: 575.52
   2022-07-01:
     value: 598.54
+  2023-04-01:
+    value: 607.75
 metadata:
-  ux_name: RSA socle
-  description_en: "Active solidarity income (RSA): Basic amount"
+  short_label: RSA socle
+  last_value_still_valid_on: "2023-05-09"
+  label_en: "Active solidarity income (RSA): Basic amount"
   ipp_csv_id: brsa
   unit: currency
   reference:
@@ -108,6 +111,9 @@ metadata:
     2022-07-01:
       title: LOI n° 2022-1158 du 16/08/2022, art. 9
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
+    2023-04-01:
+      title: Décret n° 2023-340 du 4 mai 2023, article 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047521567
   official_journal_date:
     2009-06-01: "2009-04-16"
     2010-01-01: "2010-01-17"
@@ -127,7 +133,9 @@ metadata:
     2019-04-01: "2019-05-03"
     2020-04-01: "2020-04-30"
     2021-04-01: "2021-04-30"
+    2023-04-01: "2023-05-05"
   notes:
     2022-07-01:
     - title: Revalorisation de 4%
-  last_review: "2022-09-27"
+    2023-04-01:
+    - title: Revalorisation de 1.54%

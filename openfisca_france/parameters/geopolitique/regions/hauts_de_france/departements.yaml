@@ -1,0 +1,11 @@
+description: Liste des départements membre de la région Hauts de France
+values:
+  2015-01-16:
+    value:
+    - "02"
+    - "59"
+    - "60"
+    - "62"
+    - "80"
+metadata:
+  unit: codes départements

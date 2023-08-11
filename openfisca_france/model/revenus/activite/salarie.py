@@ -166,10 +166,11 @@ class exposition_penibilite(Variable):
 
 
 class TypesAllegementModeRecouvrement(Enum):
+    # Informations sur la régularisation de la réduction appliquée sur le site des URSSAF : https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-2--le-calcul-de-la-reducti/la-regularisation.html
     __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
-    fin_d_annee = 'fin_d_annee'
-    anticipe = 'anticipe_regularisation_fin_de_periode'
-    progressif = 'progressif'
+    fin_d_annee = "Paiement en fin d'année des cotisations avec l'allègement exact"
+    anticipe = "Paiement anticipé des cotisations et régularisation de l'allègement en fin de période"
+    progressif = "Paiement anticipé des cotisations et régularisation progressive de l'allègement"  # La régularisation est faite à chaque paiement anticipé, «en faisant masse des éléments nécessaires au calcul de la réduction»
 
 
 class allegement_fillon_mode_recouvrement(Variable):
@@ -260,13 +261,13 @@ class indemnite_fin_contrat_due(Variable):
 
 class TypesContratDeTravail(Enum):
     __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
-    temps_plein = 'temps_plein'
-    temps_partiel = 'temps_partiel'
-    forfait_heures_semaines = 'forfait_heures_semaines'
-    forfait_heures_mois = 'forfait_heures_mois'
-    forfait_heures_annee = 'forfait_heures_annee'
-    forfait_jours_annee = 'forfait_jours_annee'
-    sans_objet = 'sans_objet'
+    temps_plein = 'Temps plein'
+    temps_partiel = 'Temps partiel'
+    forfait_heures_semaines = 'Convention de forfait heures sur la semaine'
+    forfait_heures_mois = 'Convention de forfait heures sur le mois'
+    forfait_heures_annee = 'Convention de forfait heures sur l’année'
+    forfait_jours_annee = 'Convention de forfait hours sur l’année'
+    sans_objet = 'Non renseigné'
 
 
 class contrat_de_travail(Variable):
@@ -274,7 +275,7 @@ class contrat_de_travail(Variable):
     possible_values = TypesContratDeTravail
     default_value = TypesContratDeTravail.temps_plein
     entity = Individu
-    label = 'Type contrat de travail'
+    label = 'Type de contrat de travail'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -321,6 +322,45 @@ class contrat_de_travail_type(Variable):
     default_value = TypesContrat.cdi
     entity = Individu
     label = 'Type du contrat de travail'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class TypesContratTravailDureeDeterminee(Enum):
+    '''
+    Tous types contrats : https://travail-emploi.gouv.fr/droit-du-travail/les-contrats-de-travail/
+    CDD, types et durées : https://www.service-public.fr/particuliers/vosdroits/F36
+
+    Contrat vendanges : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006585176/
+    CDD d'insertion : https://www.service-public.fr/particuliers/vosdroits/F14100
+
+    Contrat unique d'insertion (CUI), types : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019869576
+    PEC en CDD ou CDI : https://travail-emploi.gouv.fr/emploi-et-insertion/parcours-emploi-competences/pec
+
+    Articulation CUI/PEC et secteur : https://www.service-public.fr/particuliers/vosdroits/F21006
+    CUI-CIE = Parcours emploi compétence (PEC) - secteur marchand
+    CUI-CAE = Parcours emploi compétence (PEC) - secteur non marchand
+    '''
+    __order__ = 'non_renseigne contrat_general contrat_saisonnier contrat_vendanges contrat_usage contrat_insertion contrat_initiative_emploi contrat_accompagnement_emploi'  # Needed to preserve the enum order in Python 2
+
+    non_renseigne = 'Non renseigné'
+    contrat_general = 'Cas général du contrat de travail à durée déterminée (CDD)'
+
+    contrat_saisonnier = 'CDD à caractère saisonnier'
+    contrat_vendanges = 'CDD à caractère saisonnier pour travaux de vendanges'
+    contrat_usage = "CDD d'usage (CDDU)"  # exemple : CDD d'extra
+    contrat_insertion = "CDD d'insertion (CDDI)"
+
+    contrat_initiative_emploi = "Contrat unique d'insertion - Contrat initiative emploi (CUI-CIE)"
+    contrat_accompagnement_emploi = "Contrat unique d'insertion - Contrat d'accompagnement dans l'emploi (CUI-CAE)"
+
+
+class contrat_duree_determinee_type(Variable):
+    value_type = Enum
+    possible_values = TypesContratTravailDureeDeterminee
+    default_value = TypesContratTravailDureeDeterminee.non_renseigne
+    entity = Individu
+    label = 'Type du contrat de travail à durée déterminée (CDD)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -532,18 +572,8 @@ class nouvelle_bonification_indiciaire(Variable):
     set_input = set_input_divide_by_period
 
 
-class prevoyance_obligatoire_cadre_taux_employe(Variable):
-    value_type = float
-    default_value = 0.015  # 1.5% est le minimum en 2014
-    entity = Individu
-    label = 'Taux de cotisation employeur pour la prévoyance obligatoire des cadres'
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
 class prevoyance_obligatoire_cadre_taux_employeur(Variable):
     value_type = float
-    default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
     label = 'Taux de cotisation employeur pour la prévoyance obligatoire des cadres'
     definition_period = MONTH
@@ -626,7 +656,7 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
 
         prime_partage_valeur = individu('prime_partage_valeur_exceptionnelle', period)
         accord_interessement = individu('accord_interessement', period.first_month)
-        ppv_parameters = parameters(period).marche_travail.prime_partage_valeur
+        ppv_parameters = parameters(period).marche_travail.primes_exceptionnelles.prime_partage_valeur
         plafond_ppv_exoneree = where(
             accord_interessement,
             ppv_parameters.plafond_exoneration_avec_accord_interessement,
@@ -684,7 +714,7 @@ class ppv_eligibilite_exceptionnelle(Variable):
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
-        plafond_salaire = parameters(period).marche_travail.prime_partage_valeur.plafond_salaire
+        plafond_salaire = parameters(period).marche_travail.primes_exceptionnelles.prime_partage_valeur.plafond_salaire
         return (salaire_de_base_annuel) < (
             smic_b_annuel * plafond_salaire * quotite_de_travail
             )
@@ -710,7 +740,7 @@ class prime_partage_valeur_exoneree(Variable):
         prime_partage_valeur = individu('prime_partage_valeur', period)
         accord_interessement = individu('accord_interessement', period.first_month)
 
-        ppv_parameters = parameters(period).marche_travail.prime_partage_valeur
+        ppv_parameters = parameters(period).marche_travail.primes_exceptionnelles.prime_partage_valeur
         plafond_ppv_exoneree = where(
             accord_interessement,
             ppv_parameters.plafond_exoneration_avec_accord_interessement,
@@ -781,7 +811,7 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
-        plafond_salaire = parameters(period).marche_travail.prime_pepa.plafond_salaire
+        plafond_salaire = parameters(period).marche_travail.primes_exceptionnelles.prime_pepa.plafond_salaire
 
         # "une rémunération inférieure à trois fois la valeur annuelle du salaire minimum de croissance
         # correspondant à la durée de travail prévue au contrat"
@@ -795,14 +825,14 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
             'prime_exceptionnelle_pouvoir_achat',
             period)
 
-        plafond_exoneration = parameters(period).marche_travail.prime_pepa.plafond_exoneration
+        plafond_exoneration = parameters(period).marche_travail.primes_exceptionnelles.prime_pepa.plafond_exoneration
         prime_inf_seuil_1 = prime_exceptionnelle_pouvoir_achat <= plafond_exoneration
 
         accord_interessement = individu('accord_interessement', period.first_month)
         effectif_entreprise = individu('effectif_entreprise', period.first_month)
-        plafond_effectif_entreprise = parameters(period).marche_travail.prime_pepa.plafond_effectif_entreprise
+        plafond_effectif_entreprise = parameters(period).marche_travail.primes_exceptionnelles.prime_pepa.plafond_effectif_entreprise
         condition_entreprise = accord_interessement + (effectif_entreprise < plafond_effectif_entreprise)
-        plafond_exoneration_avec_accord_interessement = parameters(period).marche_travail.prime_pepa.plafond_exoneration_avec_accord_interessement
+        plafond_exoneration_avec_accord_interessement = parameters(period).marche_travail.primes_exceptionnelles.prime_pepa.plafond_exoneration_avec_accord_interessement
         return (condition_remuneration
                 * where(
                     prime_inf_seuil_1,
@@ -867,20 +897,18 @@ class complementaire_sante_montant(Variable):
     set_input = set_input_divide_by_period
 
 
-class complementaire_sante_taux_employeur(Variable):
+class complementaire_sante_part_employeur(Variable):
     value_type = float
-    default_value = 0.5
-    # La part minimum légale est de 50 %
     entity = Individu
     label = "Part de la complémentaire santé obligatoire payée par l'employeur"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
-class prise_en_charge_employeur_prevoyance_complementaire(Variable):
+class prevoyance_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur"
+    label = "Contributions de prévoyance prises en charge par l'employeur"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -888,7 +916,7 @@ class prise_en_charge_employeur_prevoyance_complementaire(Variable):
 class prise_en_charge_employeur_retraite_complementaire(Variable):
     value_type = float
     entity = Individu
-    label = "Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur"
+    label = "Part des cotisations de retraite complémentaire prise en charge par l'employeur"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -927,11 +955,12 @@ class indemnites_forfaitaires(Variable):
 
 
 class salaire_de_base(Variable):
+    # Salaire brut sans les primes et les heures supplémentaires - généralement la première ligne du bulletin de paye.
     value_type = float
     entity = Individu
-    label = 'Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie'
+    label = 'Salaire de base'
     set_input = set_input_divide_by_period
-    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
+    reference = 'https://www.insee.fr/fr/metadonnees/definition/c1937'
     definition_period = MONTH
     unit = 'currency'
 
@@ -996,9 +1025,10 @@ class heures_non_remunerees_volume(Variable):
 
 
 class heures_remunerees_volume(Variable):
+    # N'est pas pris en compte lorsque type_contrat_travail = temps_plein
     value_type = float
     entity = Individu
-    label = 'Volume des heures rémunérées contractuellement (heures/mois, temps partiel)'
+    label = 'Volume des heures rémunérées contractuellement'
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
@@ -1154,12 +1184,38 @@ class indemnite_residence(Variable):
         categorie_salarie = individu('categorie_salarie', period)
         zone_apl = individu.menage('zone_apl', period)
         TypesZoneApl = zone_apl.possible_values
-        _P = parameters(period)
-
-        P = _P.prestations_sociales.fonc.indem_resid
-        min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
-        taux = P.taux.zone1 * (zone_apl == TypesZoneApl.zone_1) + P.taux.zone2 * (zone_apl == TypesZoneApl.zone_2) + P.taux.zone3 * (zone_apl == TypesZoneApl.zone_3)
-        plancher = min_zone_1 * (zone_apl == TypesZoneApl.zone_1) + min_zone_2 * (zone_apl == TypesZoneApl.zone_2) + min_zone_3 * (zone_apl == TypesZoneApl.zone_3)
+        indemnite_residence = parameters(period).marche_travail.remuneration_dans_fonction_publique.indemnite_residence
+        (min_zone_1, min_zone_2, min_zone_3) = (
+            indemnite_residence.min * indemnite_residence.taux.zone1,
+            indemnite_residence.min * indemnite_residence.taux.zone2,
+            indemnite_residence.min * indemnite_residence.taux.zone3
+            )
+        taux = select(
+            [
+                (zone_apl == TypesZoneApl.zone_1),
+                (zone_apl == TypesZoneApl.zone_2),
+                (zone_apl == TypesZoneApl.zone_3),
+                ],
+            [
+                indemnite_residence.taux.zone1,
+                indemnite_residence.taux.zone2,
+                indemnite_residence.taux.zone3,
+                ],
+            default = 0
+            )
+        plancher = select(
+            [
+                (zone_apl == TypesZoneApl.zone_1),
+                (zone_apl == TypesZoneApl.zone_2),
+                (zone_apl == TypesZoneApl.zone_3),
+                ],
+            [
+                min_zone_1,
+                min_zone_2,
+                min_zone_3,
+                ],
+            default = 0
+            )
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
@@ -1184,9 +1240,7 @@ class indice_majore(Variable):
         period = Period(('month', period.start, 1)).offset('first-of')
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        _P = parameters(period)
-
-        traitement_annuel_brut = _P.prestations_sociales.fonc.IM_100
+        traitement_annuel_brut = parameters(period).prestations_sociales.fonc.IM_100
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
@@ -1200,7 +1254,7 @@ class indice_majore(Variable):
 class primes_fonction_publique(Variable):
     value_type = float
     entity = Individu
-    label = 'Calcul des primes pour les fonctionnaries'
+    label = 'Calcul des primes pour les fonctionnaires'
     reference = 'http://vosdroits.service-public.fr/particuliers/F465.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -1267,60 +1321,33 @@ class supplement_familial_traitement(Variable):
     def formula(individu, period, parameters):
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        _P = parameters(period)
+        fonction_publique = parameters(period).marche_travail.remuneration_dans_fonction_publique
+        indice_majore_100 = 100 * fonction_publique.indicefp.point_indice_en_nominal
 
         fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.DEMANDEUR)
 
-        P = _P.prestations_sociales.fonc.supplement_familial
-        part_fixe_1 = P.fixe.enf1
-        part_fixe_2 = P.fixe.enf2
-        part_fixe_supp = P.fixe.enfsupp
+        sft = fonction_publique.sft
 
         part_fixe = (
-            part_fixe_1 * (fonc_nbenf == 1)
-            + part_fixe_2 * (fonc_nbenf == 2)
-            + part_fixe_supp * max_(0, fonc_nbenf - 2)
+            sft.part_fixe.un_enfant * (fonc_nbenf == 1)
+            + sft.part_fixe.deux_enfants * (fonc_nbenf >= 2)
+            + sft.part_fixe.enfant_supplementaire * max_(0, fonc_nbenf - 2)
             )
-
-        # pct_variable_1 = 0
-        pct_variable_2 = P.prop.enf2
-        pct_variable_3 = P.prop.enf3
-        pct_variable_supp = P.prop.enfsupp
 
         pct_variable = (
-            pct_variable_2 * (fonc_nbenf == 2)
-            + (pct_variable_3) * (fonc_nbenf == 3)
-            + pct_variable_supp * max_(0, fonc_nbenf - 3)
+            sft.part_proportionnelle.deux_enfants * (fonc_nbenf == 2)
+            + sft.part_proportionnelle.trois_enfants * (fonc_nbenf >= 3)
+            + sft.part_proportionnelle.enfant_supplementaire * max_(0, fonc_nbenf - 3)
             )
 
-        indice_maj_min = P.IM_min
-        indice_maj_max = P.IM_max
+        indice_maj_min = sft.im_plancher
+        indice_maj_max = sft.im_plafond
 
-        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, _P.prestations_sociales.fonc.IM_100)
-        plancher_mensuel_1 = part_fixe
-        plancher_mensuel_2 = part_fixe + traitement_brut_mensuel_min * pct_variable_2
-        plancher_mensuel_3 = part_fixe + traitement_brut_mensuel_min * pct_variable_3
-        plancher_mensuel_supp = traitement_brut_mensuel_min * pct_variable_supp
+        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, indice_majore_100)
+        plancher = part_fixe + traitement_brut_mensuel_min * pct_variable
 
-        plancher = (
-            plancher_mensuel_1 * (fonc_nbenf == 1)
-            + plancher_mensuel_2 * (fonc_nbenf == 2)
-            + plancher_mensuel_3 * (fonc_nbenf >= 3)
-            + plancher_mensuel_supp * max_(0, fonc_nbenf - 3)
-            )
-
-        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P.prestations_sociales.fonc.IM_100)
-        plafond_mensuel_1 = part_fixe
-        plafond_mensuel_2 = part_fixe + traitement_brut_mensuel_max * pct_variable_2
-        plafond_mensuel_3 = part_fixe + traitement_brut_mensuel_max * pct_variable_3
-        plafond_mensuel_supp = traitement_brut_mensuel_max * pct_variable_supp
-
-        plafond = (
-            plafond_mensuel_1 * (fonc_nbenf == 1)
-            + plafond_mensuel_2 * (fonc_nbenf == 2)
-            + plafond_mensuel_3 * (fonc_nbenf == 3)
-            + plafond_mensuel_supp * max_(0, fonc_nbenf - 3)
-            )
+        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, indice_majore_100)
+        plafond = part_fixe + traitement_brut_mensuel_max * pct_variable
 
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
@@ -1490,6 +1517,8 @@ class exonerations_et_allegements(Variable):
             'exoneration_cotisations_employeur_apprenti', period, options = [ADD])
         exoneration_cotisations_employeur_geographiques = individu(
             'exoneration_cotisations_employeur_geographiques', period)
+        exoneration_cotisations_employeur_tode = individu(
+            'exoneration_cotisations_employeur_tode', period)
         exoneration_cotisations_employeur_jei = individu(
             'exoneration_cotisations_employeur_jei', period, options = [ADD])
         exoneration_cotisations_employeur_stagiaire = individu(
@@ -1503,6 +1532,7 @@ class exonerations_et_allegements(Variable):
             allegement_fillon
             + allegement_cotisation_maladie
             + allegement_cotisation_allocations_familiales
+            + exoneration_cotisations_employeur_tode
             + exoneration_cotisations_employeur_geographiques
             + exoneration_cotisations_employeur_jei
             + exoneration_cotisations_employeur_apprenti
@@ -1559,6 +1589,63 @@ class type_conges(Variable):
     label = 'Type de congés en cours'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+
+class TypesTaches(Enum):
+    # https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels (bénéficiaires)
+    non_renseigne = 'Non renseigné'
+    production_animale_vegetale = 'Tâches dans les activités liées au cycle de la production animale et végétale'
+    prolongement_production = "Tâches dans les activités constituant le prolongement direct de l'acte de production"
+    travaux_forestiers = 'Tâches dans les activités liées aux travaux forestiers'
+
+
+class taches_salarie_type(Variable):
+    value_type = Enum
+    possible_values = TypesTaches
+    default_value = TypesTaches.non_renseigne
+    entity = Individu
+    label = 'Type des tâches affectées au salarié'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class travailleur_occasionnel_agricole(Variable):
+    value_type = bool
+    entity = Individu
+    label = 'Le salarié est travailleur occasionnel agricole'
+    definition_period = MONTH
+    reference = 'https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels'
+    set_input = set_input_dispatch_by_period
+    documentation = '''
+    Sont considérés comme "travailleurs occasionnels agricoles", les salariés qui remplissent deux conditions
+    se rapportant à la nature de leur contrat de travail et à la nature des tâches affectées.
+
+    Cas non modélisé (2022): CDI conclu avec un demandeur d'emploi (inscrit à Pôle emploi depuis au moins 4 mois ou 1 mois
+    si cette inscription fait suite à un licenciement) par un groupement d'employeurs composés exclusivement de membres
+    exerçant les activités éligibles (cycle de la production animale et végétale, travaux forestiers,
+    activités constituant le prolongement direct de l'acte de production).
+    '''
+
+    def formula(individu, period):
+        secteur_agricole = individu('secteur_activite_employeur', period) == TypesSecteurActivite.agricole
+        cdd = individu('contrat_de_travail_type', period) == TypesContrat.cdd
+        contrat_duree_determinee_type = individu('contrat_duree_determinee_type', period)
+
+        cdd_occasionnel_agricole = (
+            (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_saisonnier)
+            + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_usage)
+            + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_vendanges)
+            + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_insertion)
+            + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_initiative_emploi)
+            )
+
+        taches_salarie_type = individu('taches_salarie_type', period)
+        taches_eligibles = (
+            (taches_salarie_type == TypesTaches.production_animale_vegetale)
+            + (taches_salarie_type == TypesTaches.prolongement_production)
+            + (taches_salarie_type == TypesTaches.travaux_forestiers)
+            )
+        return secteur_agricole * cdd * cdd_occasionnel_agricole * taches_eligibles
 
 
 class cer_ou_ppae(Variable):

@@ -1,0 +1,12 @@
+description: Plafond de la réduction d'impôt sur les versements à un fonds salarial
+values:
+  1977-01-01:
+    value: null
+  1996-01-01:
+    value: 5000
+  1998-01-01:
+    value: null
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_salarial
+  unit: currency

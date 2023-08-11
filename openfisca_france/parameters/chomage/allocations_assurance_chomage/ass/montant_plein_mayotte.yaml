@@ -43,8 +43,8 @@ values:
   2022-07-01:
     value: 8.95
 metadata:
-  ux_name: Montant plein Mayotte
-  description_en: Special UI scheme
+  short_label: Montant plein Mayotte
+  label_en: Special UI scheme
   unit: currency
   reference:
     2012-07-01:

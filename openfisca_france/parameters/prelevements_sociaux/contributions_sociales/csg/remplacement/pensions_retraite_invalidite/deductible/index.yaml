@@ -1,6 +1,6 @@
-description: Contribution Sociale Généralisée (CSG) déductible sur les pensions de retraite et d'invalidité
+description: Contribution sociale généralisée (CSG) déductible sur les pensions de retraite et d'invalidité
 metadata:
-  ux_name: CSG déductible
+  short_label: CSG déductible
   order:
   - taux_plein
   - taux_reduit

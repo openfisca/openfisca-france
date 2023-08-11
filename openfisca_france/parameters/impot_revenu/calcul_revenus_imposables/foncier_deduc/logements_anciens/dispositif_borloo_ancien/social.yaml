@@ -1,0 +1,34 @@
+description: Niveau de loyer "social" ou "très social"
+values:
+  1984-01-01:
+    value: null
+  2006-01-01:
+    value: 0.45
+  2009-01-01:
+    value: 0.6
+  2017-01-01:
+    value: null
+metadata:
+  ipp_csv_id: borloo_ancien_social
+  unit: /1
+  reference:
+    1984-01-01:
+      title: Loi n° 84-1208 du 29 décembre 1984 (LF pour 1985), art. 82
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000880778&idArticle=LEGIARTI000006274284&dateTexte=19861231&categorieLien=id#LEGIARTI000006274284
+    2006-01-01:
+      title: Loi n° 2006-872 du 13 juillet 2006, art. 39, 40 et 46
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000238980#LEGIARTI000006826032
+    2009-01-01:
+      title: Loi n° 2008-1443 du 30 décembre 2008 (LF rectificative pour 2008), art. 31
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000020014790&idArticle=LEGIARTI000020042277&dateTexte=20090327&categorieLien=id#LEGIARTI000020042277
+    2017-01-01:
+      title: Loi n° 2016-1918 du 29 décembre 2016 (LF pour 2016), art. 46
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=JORFARTI000033734399&cidTexte=JORFTEXT000033734341&dateTexte=29990101&categorieLien=id
+  official_journal_date:
+    1984-01-01: "1984-12-30"
+    2006-01-01: "2006-07-16"
+    2009-01-01: "2008-12-31"
+    2017-01-01: "2016-12-30"
+  notes:
+    2006-01-01:
+    - title: Pour les baux déjà souscrits au dispositif Besson, la déduction est de 26% alors qu'elle est supprimée en droit commun

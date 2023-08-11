@@ -1,0 +1,14 @@
+description: Actions, parts, droits ou titres détenus depuis 4 à 6 ans
+values:
+  1977-01-01:
+    value: null
+  2013-01-01:
+    value: 0.3
+  2014-01-01:
+    value: 0.5
+metadata:
+  ipp_csv_id: abat_pv_4ans
+  unit: /1
+  notes:
+    2013-01-01:
+    - title: "Les plus-values mobilières sont intégrées à l'assiette de l'IR et donc imposées au barème avec des abattements dépendant de la durée de détention: 20 % (détention 2 à 4 ans), 30 % (4-6 ans), 40% (au-delà)"

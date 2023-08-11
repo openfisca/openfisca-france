@@ -1,4 +1,4 @@
-description: Plafonnement taux d'imposition de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Plafonnement du taux d'imposition de l'impôt de solidarité sur la fortune
 values:
   1989-01-01:
     value: 0.7
@@ -11,8 +11,8 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Plafonnement taux d'imposition
-  description_en: Wealth tax ceiling
+  short_label: Plafonnement du taux d'imposition
+  label_en: Wealth tax ceiling
   ipp_csv_id: tx_plaf
   unit: /1
   reference:

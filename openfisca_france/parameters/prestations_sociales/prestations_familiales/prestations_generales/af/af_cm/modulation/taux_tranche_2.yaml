@@ -3,8 +3,9 @@ values:
   2015-07-01:
     value: 0.5
 metadata:
-  ux_name: Taux Tranche 2
-  description_en: "Family allowances (AF): General conditions and amount"
+  short_label: Taux Tranche 2
+  last_value_still_valid_on: "2022-09-27"
+  label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_modulation_taux1
   unit: BMAF
   reference:
@@ -21,7 +22,6 @@ metadata:
   notes:
     1979-07-01:
     - title: Majoration de 41% pour le 3e enfant, 37% pour le 4e.
-  last_review: "2022-09-27"
 documentation: |-
   Notes :
   L'allocation familiale est créée en 1932 par la loi Landry du 11/03/1932, art. 1 et 2 (modif titres III et V du code du travail). Parution au JO 12/03/1932

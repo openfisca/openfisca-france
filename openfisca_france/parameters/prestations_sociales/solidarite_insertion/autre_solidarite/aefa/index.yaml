@@ -1,7 +1,7 @@
-description: Aide exceptionnelle de fin d'année (AEFA)
+description: Aide exceptionnelle de fin d'année (AEFA) dite "prime de Noël"
 metadata:
-  ux_name: AEFA
-  description_en: "Exceptional end-of-year benefit (AEFA): amount"
+  short_label: Prime de Noël
+  label_en: "Exceptional end-of-year benefit (AEFA): amount"
   order:
   - montant_prime
   - taux_majoration

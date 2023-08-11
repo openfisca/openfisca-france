@@ -1,4 +1,6 @@
 description: Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  short_label: Pertes capital sociétés nouvelles
+  order:
+  - plafond_cb
+  - plafond_da

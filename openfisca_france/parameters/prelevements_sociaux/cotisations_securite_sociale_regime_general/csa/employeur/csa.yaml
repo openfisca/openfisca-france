@@ -7,19 +7,18 @@ brackets:
     2004-07-01:
       value: 0.003
 metadata:
-  ux_name: Barème employeur
-  description_en: "SSC for autonomy (CSA: Solidarity Contribution for Autonomy)"
+  short_label: Barème employeur
+  last_value_still_valid_on: "2023-01-30"
+  label_en: "SSC for autonomy (CSA: Solidarity Contribution for Autonomy)"
   ipp_csv_id: csa_p_0_
   reference:
     2004-07-01:
-      title: Loi 2004-626 du 26/06/2004, art. 11
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682208&cidTexte=JORFTEXT000000622485
-    2021-01-01:
-      title: Article L1374-40 du Code de la Sécurité sociale
+    - title: Article L1374-40 du Code de la Sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042675240
+    - title: Loi 2004-626 du 26/06/2004, art. 11
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682208&cidTexte=JORFTEXT000000622485
   official_journal_date:
     2004-07-01: "2004-07-01"
-  last_review: "2021-12-07"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

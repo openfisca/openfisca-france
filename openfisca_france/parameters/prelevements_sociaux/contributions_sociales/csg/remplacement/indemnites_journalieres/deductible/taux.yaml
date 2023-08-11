@@ -1,4 +1,4 @@
-description: Taux de la Contribution Sociale Généralisée (CSG) déductible sur les indemnités journalières (IJ)
+description: Taux de la contribution sociale généralisée (CSG) déductible sur les indemnités journalières (IJ)
 values:
   1991-02-01:
     value: null
@@ -7,7 +7,8 @@ values:
   1998-01-01:
     value: 0.038
 metadata:
-  ux_name: Taux
+  short_label: Taux
+  last_value_still_valid_on: "1998-01-01"
   ipp_csv_id: csg_ij_ded
   unit: /1
   reference:
@@ -24,7 +25,6 @@ metadata:
     1991-02-01: "1990-12-30"
     1997-01-01: "1996-12-29"
     1998-01-01: "1997-12-23"
-  last_review: "1998-01-01"
 documentation: |-
   Référence du Codes général des impôts :
   La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.

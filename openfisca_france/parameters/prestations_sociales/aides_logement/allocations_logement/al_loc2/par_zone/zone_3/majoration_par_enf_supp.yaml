@@ -1,4 +1,4 @@
-description: Montant (par personne à charge supplémentaire) du plafond de loyer en zone 3 (après la réforme de 2001) des Allocations Logement (AL)
+description: Plafond de loyer pris en compte dans le calcul du montant des aides au logement pour chaque enfant à charge supplémentaire en zone 3 (après la réforme de 2001)
 values:
   2001-01-01:
     value: 253
@@ -41,8 +41,9 @@ values:
   2022-07-01:
     value: 49.09
 metadata:
-  ux_name: Majoration par enfant supplémentaire
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  short_label: Psar enfant supplémentaire
+  last_value_still_valid_on: "2023-02-20"
+  label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_enfsupp_z3
   unit: currency
   reference:
@@ -154,5 +155,3 @@ metadata:
     - title: Idem en 2017
     2017-10-01:
     - title: Actualisation paramètres + baisse de 5 euros des aides au logement
-  last_review: "2022-09-28"
-documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

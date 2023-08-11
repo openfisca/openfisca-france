@@ -1,0 +1,18 @@
+description: Abattement des revenus pour certaines professions
+metadata:
+  order:
+  - abattement_elus_locaux
+  - abattement_journalistes
+documentation: |-
+  (1) L'abattement pour les élus locaux s’applique à toutes
+  les indemnités de fonction perçues par les élus communaux et intercommunaux (maires,
+  adjoints, conseillers municipaux, présidents et vice-présidents d’EPCI et conseillers
+  intercommunaux) et est dénommée comme la fraction représentative de frais d’emploi.
+  Cet abattement n'est appliqué que si l'élu n'a pas bénéficié de remboursement
+  de frais de séjour et de transport par la commune (pour l'imposition de 2018 sur
+  les revenus de 2019, il le percevrait de manière réduite seulement). CGI art.81 1°
+
+  (2) L'abattement forfaitarie spécifique s'applique aux journalistes, rédacteurs,
+  photographes, directeurs de journaux et critiques dramatiques et musicaux dont
+  les revenus sont en dessous du plafond, avant l'abattement de 10% dont tous les
+  salariés bénéficient au titre des frais professionnels. CGI art.81 1°

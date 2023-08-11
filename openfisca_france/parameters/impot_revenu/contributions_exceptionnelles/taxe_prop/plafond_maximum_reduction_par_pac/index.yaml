@@ -1,0 +1,5 @@
+description: "plafond: maximum de la réduction par pac"
+metadata:
+  order:
+  - jusqu_2_pacs
+  - plus_3_pacs

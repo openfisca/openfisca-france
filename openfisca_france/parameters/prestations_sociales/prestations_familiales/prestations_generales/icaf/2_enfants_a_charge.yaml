@@ -7,8 +7,8 @@ values:
   1978-01-01:
     value: null
 metadata:
-  ux_name: 2 enfants à charge
-  description_en: "Compensatory payments of tax benefits (ICAF): Amount"
+  short_label: 2 enfants à charge
+  label_en: "Compensatory payments of tax benefits (ICAF): Amount"
   ipp_csv_id: icaf_enf
   unit: currency
   reference:

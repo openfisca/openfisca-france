@@ -1,0 +1,44 @@
+description: Seuil d'impôt 4 des minorations exceptionnelles d'impôt (1965-1992)
+values:
+  1965-01-01:
+    value: null
+  1966-01-01:
+    value: 55000
+  1968-01-01:
+    value: 5000
+  1973-01-01:
+    value: null
+  1985-01-01:
+    value: 34090
+  1986-01-01:
+    value: 34910
+  1988-01-01:
+    value: 35820
+  1989-01-01:
+    value: 37010
+  1990-01-01:
+    value: 38200
+  1991-01-01:
+    value: 39350
+  1992-01-01:
+    value: 40460
+  1993-01-01:
+    value: null
+metadata:
+  short_label: Seuil 4
+  ipp_csv_id: seuil_min4
+  unit: currency
+  reference:
+    1993-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+  official_journal_date:
+    1993-01-01: "1993-12-31"
+  notes:
+    1966-01-01:
+    - title: de 5 % si revenu < 45000 à 2 % si revenu > 50000 mais < 55000
+    1968-01-01:
+    - title: de 15 % si impôt < 1000 à 2 % si impôt > 3500 mais < 5000
+    1985-01-01:
+    - title: En 1985, quand l'impot est compris entre 22730 FRF et 28410 FRF, la minoration est égale à 4 fois la différence entre 1420 FRF et 4.25 % de l'impot. Pour rester coherent avec les années suivantes, j'ai directement multiplié par 4 les deux paramètres.
+    1992-01-01:
+    - title: "Application de la formule des minorations de 1986 à 1992 (année revenus); Exemple pour 1989: ; 11 % si l'impot est inférieur ou égal à 26 480 Fr; Entre 11 et 6 % si l'impot est supérieur à 26 480 Fr et inférieur ou égal à 30 840 Fr = Difference entre 6 170 Fr et 14 % de l'impôt; 6 % si l'impot est supérieur à 30 840 Fr et inférieur ou égal à 37 010 FR; Entre 6 % et 3 % si l'impot est supérieur à 37 010 Fr et inférieur ou égal à 43 510 Fr = Difference entre 7 400 Fr et 14% de l'impôt; 3 % si l'impot est supérieur à 43 510 Fr et si le revenu imposable par part est inferieur ou egal a 312 660 Fr"

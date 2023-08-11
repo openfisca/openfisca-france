@@ -1,8 +1,0 @@
-description: Seuil
-values:
-  2012-01-01:
-    value: 0.01
-  2013-01-01:
-    value: null
-metadata:
-  unit: /1

@@ -182,7 +182,7 @@
     iai: 4293.0
     irpp: -4293.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 3500.0
     rfr: 45000.0
@@ -288,7 +288,7 @@
     iai: 4573.0
     irpp: -4573.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 3071.0
     rfr: 45000.0
@@ -338,7 +338,7 @@
     iai: 4702.0
     irpp: -4702.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 2804.0
     rfr: 45000.0
@@ -389,7 +389,7 @@
     iai: 316.0
     irpp: -316.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 7106.0
     rfr: 45000.0
@@ -431,7 +431,7 @@
     iai: 732.0
     irpp: -732.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 6690.0
     rfr: 45000.0

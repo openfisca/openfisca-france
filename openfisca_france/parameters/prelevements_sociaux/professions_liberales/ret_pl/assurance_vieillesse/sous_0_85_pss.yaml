@@ -1,0 +1,55 @@
+description: Taux sous 0,85 PSS de la cotisation de sécurité sociale (SS) branche vieillesse, Professions libérales
+values:
+  2004-01-01:
+    value: 0.086
+  2012-07-04:
+    value: 0.0863
+  2013-01-01:
+    value: 0.0975
+  2014-01-01:
+    value: 0.101
+  2015-01-01:
+    value: null
+metadata:
+  short_label: Taux sous 0,85 PSS
+  label_en: SSCs for old-age insurance (professionals)
+  ipp_csv_id: ret_plib_0_85
+  unit: /1
+  reference:
+    2004-01-01:
+    - title: Loi 2003-775 du 21/08/2003 - art. 88
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758637&cidTexte=JORFTEXT000000781627
+    - title: Décret 2004-461 du 27/05/2004 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006230996&cidTexte=JORFTEXT000000437935
+    2012-07-04:
+      title: Décret 2012-847 du 2/07/2012 - art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026116730&cidTexte=JORFTEXT000026106324
+    2013-01-01:
+      title: Décret 2012-1323 du 28/11/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/11/28/2012-1323/jo/texte
+    2014-01-01:
+      title: Décret 2012-1323 du 28/11/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/11/28/2012-1323/jo/texte
+    2015-01-01:
+      title: Décret 2014-1413 du 27/11/2014
+      href: https://www.legifrance.gouv.fr/eli/decret/2014/11/27/2014-1413/jo/texte
+  official_journal_date:
+    2004-01-01: 2003-08-22; 2003-05-29
+    2012-07-04: "2012-07-03"
+    2013-01-01: "2012-11-30"
+    2014-01-01: "2012-11-30"
+    2015-01-01: "2014-11-29"
+documentation: |-
+  Notes :
+  (i) Création du régime d'assurance vieillesse des non salariés en 1948 (Loi 48-101 du 17/01/1948) financé, pour les professions libérales, par une cotisation forfaitaire qui dépend de la profession exercée.
+  En 1993, ajout d'une cotisation proportionnelle commune à toutes les sections professionnelles libérales. La CNAVPL fédère toutes les sections professionnelles libérales et gère le régime de base commun.
+  En 2004 la cotisation forfaitaire disparait.
+  Exemple: en 2003, la cotisation forfaitaire annuelle était égale à: 2000€ pour les officiers publics et ministériels, compagnies judiciaires; 1580€ pour les médecins; 2000€ pour les chirurgiens dentistes; 1708€ pour les pharmaciens; 1984€ pour les sages-femmes; 1336€ pour les auxiliaires médicaux; 2404€ pour les vétérinaires; 2496€ pour les agents généraux d'assurance; 1448€ pour les architectes, agréés en architecture, ingénieurs, techniciens, experts et conseils; 1900€ pour les experts-comptable, comptables agréés et commissaire aux comptes; 1966€ pour les notaires; 1400€ pour les artistes auteurs ne relevant par de l'art 382-1 du CSS, professeurs de musique et musiciens.
+  (ii) Les médecins conventionnés sont redevables d'une cotisation supplémentaire destinée au financement du dispositif de cessation anticipée d'activité
+  (iii) Certaines professions libérales bénéficient d'un régime complémentaire de retraite et prévoyance obligatoire (vieillesse et/ou invalidité-décès) géré par la caisse correspondant à leur section professionnelle. Voir feuille "RET-COMP-PL".
+  Cotisation minimale :
+  Pour les affiliés percevant un revenu professionnel inférieur à 5,25% du PSS par an, une cotisation minimale annuelle est due.
+  Cotisation minimale = 0,0525*PSS annuel*taux de cotisation sous 0,85 PSS
+  Références législatives :
+  Les dispositions relatives aux cotisations dues par les affiliés à la CNAVPL figurent à l'art. L642-1 du CSS.
+  Les plafonds des tranches et les taux de cotisation sont fixés par décrets.

@@ -5,8 +5,9 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Majoration des ressources sur les revenus d'activité
-  description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  short_label: Majoration des ressources sur les revenus d'activité
+  last_value_still_valid_on: "2022-03-31"
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: tx_rsa
   unit: /1
   reference:
@@ -24,5 +25,4 @@ metadata:
   notes:
     2016-01-01:
     - title: Remplacement du RSA activité par la Prime d'activité
-  last_review: "2022-03-31"
 documentation: ""

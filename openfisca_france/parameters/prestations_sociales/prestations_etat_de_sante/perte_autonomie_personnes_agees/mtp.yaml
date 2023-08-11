@@ -1,0 +1,356 @@
+description: Montant de la majoration pour aide constante d'une tierce personne (MTP)
+values:
+  1976-01-01:
+    value: 1546.39
+  1976-07-01:
+    value: 1673.19
+  1977-01-01:
+    value: 1817.09
+  1977-07-01:
+    value: 1946.1
+  1978-01-01:
+    value: 2105.68
+  1978-07-01:
+    value: 2198.33
+  1979-01-01:
+    value: 2341.22
+  1979-07-01:
+    value: 2434.87
+  1980-01-01:
+    value: 2566.35
+  1980-07-01:
+    value: 2730.6
+  1981-01-01:
+    value: 2913.55
+  1981-07-01:
+    value: 3094.19
+  1982-01-01:
+    value: 3301.5
+  1982-07-01:
+    value: 3545.81
+  1983-01-01:
+    value: 3687.64
+  1983-07-01:
+    value: 3835.15
+  1984-01-01:
+    value: 3904.18
+  1984-07-01:
+    value: 3990.08
+  1985-01-01:
+    value: 4125.74
+  1985-07-01:
+    value: 4241.26
+  1986-01-01:
+    value: 4296.4
+  1986-10-01:
+    value: 4317.88
+  1987-01-01:
+    value: 4395.6
+  1987-07-01:
+    value: 4438.55
+  1988-01-01:
+    value: 4554.98
+  1988-07-01:
+    value: 4614.2
+  1989-01-01:
+    value: 4674.18
+  1989-07-01:
+    value: 4730.27
+  1990-01-01:
+    value: 4831.97
+  1990-07-01:
+    value: 4894.79
+  1991-01-01:
+    value: 4978
+  1991-07-01:
+    value: 5017.82
+  1992-01-01:
+    value: 5068
+  1992-07-01:
+    value: 5159.22
+  1993-01-01:
+    value: 5226.29
+  1994-01-01:
+    value: 5330.82
+  1995-01-01:
+    value: 5394.78
+  1995-07-01:
+    value: 5421.76
+  1996-01-01:
+    value: 5530.19
+  1997-01-01:
+    value: 5596.55
+  1998-01-01:
+    value: 5658.12
+  1999-01-01:
+    value: 5726.01
+  2000-01-01:
+    value: 5754.64
+  2001-01-01:
+    value: 5881.24
+  2002-01-01:
+    value: 916.31
+  2003-01-01:
+    value: 930.05
+  2004-01-01:
+    value: 945.87
+  2005-01-01:
+    value: 964.78
+  2006-01-01:
+    value: 982.15
+  2007-01-01:
+    value: 999.83
+  2008-01-01:
+    value: 1010.82
+  2008-09-01:
+    value: 1018.91
+  2009-04-01:
+    value: 1029.1
+  2010-04-01:
+    value: 1038.36
+  2011-04-01:
+    value: 1060.16
+  2012-04-01:
+    value: 1082.43
+  2013-04-01:
+    value: 1096.5
+  2014-04-01:
+    value: 1103.08
+  2016-04-01:
+    value: 1104.18
+  2017-04-01:
+    value: 1107.49
+  2018-04-01:
+    value: 1118.57
+  2019-04-01:
+    value: 1121.92
+  2020-04-01:
+    value: 1125.29
+  2021-04-01:
+    value: 1126.41
+  2022-04-01:
+    value: 1146.69
+  2022-07-01:
+    value: 1192.55
+  2023-04-01:
+    value: 1210.9
+metadata:
+  documentation_start: true
+  short_label: Majoration tierce personne (MTP)
+  last_value_still_valid_on: "2023-05-09"
+  label_en: Amount of markup for constant support to a third party (MTP)
+  unit: currency
+  reference:
+    1976-01-01:
+      title: Arrêté du 04/07/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000661779&categorieLien=vig
+    1976-07-01:
+      title: Arrêté du 25/06/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000855091&categorieLien=vig
+    1977-01-01:
+      title: Arrêté du 25/06/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000855091&categorieLien=vig
+    1977-07-01:
+      title: Arrêté du 27/06/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000326896&categorieLien=vig
+    1978-01-01:
+      title: Arrêté du 27/06/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000326896&categorieLien=vig
+    1978-07-01:
+      title: Arrêté du 26/06/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000642964&categorieLien=vig
+    1979-01-01:
+      title: Arrêté du 26/06/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000642964&categorieLien=vig
+    1979-07-01:
+      title: Arrêté du 28/06/1979
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000669690&categorieLien=vig
+    1980-01-01:
+      title: Arrêté du 28/06/1979
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000669690&categorieLien=vig
+    1980-07-01:
+      title: Arrêté du 31/12/1980
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000463651&categorieLien=vig
+    1981-01-01:
+      title: Arrêté du 31/12/1980
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000463651&categorieLien=vig
+    1981-07-01:
+      title: Arrêté du 30/06/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000460797&categorieLien=vig
+    1982-01-01:
+      title: Arrêté du 30/06/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000460797&categorieLien=vig
+    1982-07-01:
+      title: Arrêté du 06/07/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000842940&categorieLien=vig
+    1983-01-01:
+      title: Arrêté du 29/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000313902&categorieLien=vig
+    1983-07-01:
+      title: Arrêté du 29/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000313902&categorieLien=vig
+    1984-01-01:
+      title: Arrêté du 17/01/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000864951&categorieLien=vig
+    1984-07-01:
+      title: Arrêté du 17/01/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000864951&categorieLien=vig
+    1985-01-01:
+      title: Arrêté du 28/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000317246&categorieLien=vig
+    1985-07-01:
+      title: Arrêté du 28/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000317246&categorieLien=vig
+    1986-01-01:
+      title: Arrêté du 08/01/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000662259&categorieLien=vig
+    1986-10-01:
+      title: Arrêté du 09/10/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000688622&categorieLien=vig
+    1987-01-01:
+      title: Loi 87/39 du 27/01/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000508807&categorieLien=vig
+    1987-07-01:
+      title: Loi 87/39 du 27/01/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000508807&categorieLien=vig
+    1988-01-01:
+      title: Loi 88/16 du 05/01/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000509071&categorieLien=vig
+    1988-07-01:
+      title: Loi 88/16 du 05/01/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do%3bjsessionid=E910C89F46EA59F694C0FE9E3909765F.tpdjo05v_3?cidTexte=JORFTEXT000000509071&categorieLien=vig
+    1989-01-01:
+      title: Loi 89/18 du 13/01/1989
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do%3bjsessionid=C5856EF1FA5FA9CA774DE49A21F83AAF.tpdjo05v_3?idArticle=LEGIARTI000006756496&cidTexte=LEGITEXT000006069078&dateTexte=vig#10
+    1989-07-01:
+      title: Loi 89/18 du 13/01/1989
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do%3bjsessionid=C5856EF1FA5FA9CA774DE49A21F83AAF.tpdjo05v_3?idArticle=LEGIARTI000006756496&cidTexte=LEGITEXT000006069078&dateTexte=vig#10
+    1990-01-01:
+      title: Loi 90/86 du 23/01/1990, art. 14
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do%3bjsessionid=C5856EF1FA5FA9CA774DE49A21F83AAF.tpdjo05v_3?idArticle=LEGIARTI000006756684&cidTexte=LEGITEXT000006075305&dateTexte=vig#14
+    1990-07-01:
+      title: Loi 90/86 du 23/01/1990, art. 14
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do%3bjsessionid=C5856EF1FA5FA9CA774DE49A21F83AAF.tpdjo05v_3?idArticle=LEGIARTI000006756684&cidTexte=LEGITEXT000006075305&dateTexte=vig#14
+    1991-01-01:
+      title: Loi 91/73 du 18/01/1991, art. 30
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do%3bjsessionid=C5856EF1FA5FA9CA774DE49A21F83AAF.tpdjo05v_3?idArticle=LEGIARTI000006696484&cidTexte=LEGITEXT000006077122&dateTexte=vig#30
+    1991-07-01:
+      title: Loi 91/738 du 31/07/1991, art. 18
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do%3bjsessionid=C5856EF1FA5FA9CA774DE49A21F83AAF.tpdjo05v_3?idArticle=LEGIARTI000006757459&cidTexte=LEGITEXT000006077862&dateTexte=#18
+    1992-01-01:
+      title: Loi 91/1406 du 31/12/1991, art. 32
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do%3bjsessionid=C5856EF1FA5FA9CA774DE49A21F83AAF.tpdjo05v_3?idArticle=LEGIARTI000006757503&cidTexte=LEGITEXT000006078511&dateTexte=vig#32
+    1992-07-01:
+      title: Loi 91/1406 du 31/12/1991, art. 32
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do%3bjsessionid=C5856EF1FA5FA9CA774DE49A21F83AAF.tpdjo05v_3?idArticle=LEGIARTI000006757503&cidTexte=LEGITEXT000006078511&dateTexte=vig#32
+    1993-01-01:
+      title: Arrêté du 22/01/1993
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000724734/
+    1994-01-01:
+      title: Arrêté du 24/01/1994
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000363083/
+    1995-01-01:
+      title: Arrêté du 27/01/1995
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000734410/
+    1995-07-01:
+      title: Arrêté du 31/07/1995
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000554026/
+    1996-01-01:
+      title: Arrêté du 30/01/1996
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000360748/
+    1997-01-01:
+      title: Arrêté du 30/12/1996
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000380753
+    1998-01-01:
+      title: Arrêté du 29/12/1997
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000387479/
+    1999-01-01:
+      title: Arrêté du 29/12/1998
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000757782/
+    2000-01-01:
+      title: Arrêté du 29/12/1999
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000762866
+    2001-01-01:
+      title: Arrêté du 26/12/2000
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000588355
+    2002-01-01:
+    - title: Loi 2001-647 du 20/07/2001
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000406361/
+    - title: Décret 2001-1084 du 20/11/2001, art. 6
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006683919/2022-01-03/
+    - title: Arrêté du 25/01/2002
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000399330
+    2003-01-01:
+      title: Arrêté du 31/12/2002
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000776880
+    2004-01-01:
+      title: Arrêté du 23/12/2003
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000611637
+    2005-01-01:
+      title: Arrêté du 16/12/2004
+      href: https://www.legifrance.gouv.fr/loda/id/LEGITEXT000005945891/
+    2006-01-01:
+      title: Arrêté du 23/12/2005
+      href: https://www.legifrance.gouv.fr/loda/id/LEGITEXT000006053088/
+    2007-01-01:
+      title: Arrêté du 19/12/2006
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000820419
+    2008-01-01:
+      title: Arrêté du 21/12/2007
+      href: https://www.legifrance.gouv.fr/loda/id/LEGITEXT000017770723/
+    2008-09-01:
+      title: Circulaire CNAV 2008/45 du 12/08/2008
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2008045_12082008
+    2009-04-01:
+      title: Circulaire CNAV 2009/31 du 16/04/2009
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2009031_16042009
+    2010-04-01:
+      title: Circulaire CNAV 2010/43 du 23/04/2010
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2010043_23042010
+    2011-04-01:
+      title: Circulaire CNAV 2011/30 du 14/04/2011
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2011030_14042011
+    2012-04-01:
+      title: Circulaire CNAV 2012/35 du 17/04/2012
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2012_35_17042012
+    2013-04-01:
+      title: Circulaire CNAV 2013/29 du 18/04/2013
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2013_29_18042013
+    2014-04-01:
+      title: Circulaire CNAV 2014/28 du 09/04/2014
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2014_028_09042014
+    2016-04-01:
+      title: Circulaire CNAV 2016/21 du 04/04/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_21_04042016.pdf
+    2017-04-01:
+      title: Circulaire CNAV 2017/13 du 04/04/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
+    2018-04-01:
+      title: Circulaire CNAV 2018/10 du 05/04/2018
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2018_10_05042018.pdf
+    2019-04-01:
+      title: Circulaire CNAV 2019/15 du 05/04/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_15_05042019.pdf
+    2020-04-01:
+      title: Circulaire Cnav 2020/20 du 03/04/2020
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2020_20_03042020.pdf
+    2021-04-01:
+      title: Circulaire Cnav 2021/14 du 01/04/2021
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_14_01042021.pdf
+    2022-04-01:
+      title: ​Circulaire Cnav 2022/9 du 05/04/2022
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_09_05042022.pdf
+    2022-07-01:
+      title: ​Circulaire Cnav 2022/20 du 19/08/2022
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_20_19082022.pdf
+    2023-04-01:
+      title: Circulaire Cnav 2023/8 du 11/04/2023
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2023_08_11042023.pdf
+  official_journal_date:
+    2002-01-01: 2001-07-21; 2001-11-21; 2002-01-29
+    2003-01-01: "2003-01-11"
+    2004-01-01: "2003-12-30"
+    2005-01-01: "2004-12-24"
+    2006-01-01: "2005-12-31"
+    2007-01-01: "2006-12-30"
+    2008-01-01: "2007-12-28"

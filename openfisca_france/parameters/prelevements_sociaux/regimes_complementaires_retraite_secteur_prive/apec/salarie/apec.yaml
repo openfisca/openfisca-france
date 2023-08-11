@@ -23,8 +23,9 @@ brackets:
     1971-01-01:
       value: 0
 metadata:
-  ux_name: Barème salarié
-  description_en: Contributions for the Association for the employment of executives (APEC)
+  short_label: Barème salarié
+  last_value_still_valid_on: "2021-07-30"
+  label_en: Contributions for the Association for the employment of executives (APEC)
   ipp_csv_id:
     rate: apec_s_0_4, apec_s_1_4
   reference:
@@ -40,7 +41,6 @@ metadata:
     - title: Augmentation du taux de 0,04 % à 0,06 % pour la tranche B. Incertitude pour la référence législative.
     2011-01-01:
     - title: Remplacement de la cotisation forfaitaire par un taux proportionnel sous plafond.
-  last_review: "2021-07-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

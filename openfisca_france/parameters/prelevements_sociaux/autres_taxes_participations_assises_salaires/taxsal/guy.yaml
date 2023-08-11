@@ -3,8 +3,8 @@ values:
   1968-11-01:
     value: 0.0255
 metadata:
-  ux_name: Guyane
-  description_en: Payroll tax ("tax on wages") (1968-2016)
+  short_label: Guyane
+  label_en: Payroll tax ("tax on wages") (1968-2016)
   ipp_csv_id: taxsal_guy
   unit: /1
   reference:

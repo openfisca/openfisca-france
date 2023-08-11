@@ -1,0 +1,167 @@
+description: Barème marginal de l'impôt général sur le revenu (IGR, 1915-1916)
+brackets:
+- threshold:
+    1915-01-01:
+      value: 0
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: 0
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: 5000
+    1916-01-01:
+      value: 3000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: 0.004
+    1916-01-01:
+      value: 0.01
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: 10000
+    1916-01-01:
+      value: 8000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: 0.008
+    1916-01-01:
+      value: 0.02
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: 15000
+    1916-01-01:
+      value: 12000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: 0.012
+    1916-01-01:
+      value: 0.03
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: 20000
+    1916-01-01:
+      value: 16000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: 0.016
+    1916-01-01:
+      value: 0.04
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: 25000
+    1916-01-01:
+      value: 20000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: 0.02
+    1916-01-01:
+      value: 0.05
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 40000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 0.06
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 60000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 0.07
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 80000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 0.08
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 100000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 0.09
+    1917-01-01:
+      value: null
+- threshold:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 150000
+    1917-01-01:
+      value: null
+  rate:
+    1915-01-01:
+      value: null
+    1916-01-01:
+      value: 0.1
+    1917-01-01:
+      value: null
+metadata:
+  short_label: Barème 1915-16
+  label_en: Thresholds and marginal tax rates of the IGR tax (1915 - 1916)
+  reference:
+    1915-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+    1916-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+  rate_unit: /1
+  threshold_unit: currency
+documentation: |-
+  Notes :
+  Les revenus de 1915 et 1916 étaient soumis à des barèmes exprimés en taux marginal:
+  pour les revenus de 1915, la fraction de revenu imposable comprise entre 5000 et 10000 francs était soumise à un taux marginal de 0,4%
+  la fraction entre 10000 et 15000 francs à un taux marginal de 0,8%, etc.

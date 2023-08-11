@@ -1,6 +1,6 @@
 description: Taxes électricité et gaz
 metadata:
-  description_en: Taxes on electricity and gas
+  label_en: Taxes on electricity and gas
   order:
   - cspe
   - cta_electricite

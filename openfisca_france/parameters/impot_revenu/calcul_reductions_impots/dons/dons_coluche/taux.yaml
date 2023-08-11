@@ -1,4 +1,7 @@
+description: Taux des Dons Coluche
 values:
+  1975-01-01:
+    value: null
   1988-01-01:
     value: 0.5
   1996-01-01:
@@ -8,6 +11,14 @@ values:
   2005-01-01:
     value: 0.75
 metadata:
+  short_label: Taux
+  ipp_csv_id: txcoluche
   unit: /1
   reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+    2005-01-01:
+      title: Loi n° 2005-32 du 18/01/2005
+  official_journal_date:
+    2005-01-01: "2005-01-19"
+documentation: |-
+  Notes :
+  Dons Coluche (organismes d'aide aux personnes en difficulté): art. 200-1 ter du CGI

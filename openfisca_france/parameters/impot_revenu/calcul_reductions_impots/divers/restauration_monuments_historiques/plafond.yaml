@@ -1,0 +1,11 @@
+description: Taux de la réduction d'impôt sur les dépenses de restauration des monuments historiques
+values:
+  1977-01-01:
+    value: null
+  2008-01-01:
+    value: 20000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_monhist
+  unit: currency
+documentation: "Travaux de conservation et de restauration d'objets classés monuments historiques : art. 199 duovicies du CGI"

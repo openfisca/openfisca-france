@@ -1,0 +1,10 @@
+description: Actions, parts, droits ou titres détenus depuis 4 à 8 ans
+values:
+  1977-01-01:
+    value: null
+  2014-01-01:
+    value: 0.65
+metadata:
+  ipp_csv_id: abat_pv_majore_4
+  unit: /1
+documentation: L'abattement majoré est prévu au 1-quater de l'article 150-0 D du CGI et s'applique aux gains de cession de titres de PME de moins de 10 ans à la date de souscription ou d'acquisition des titres et les titres de dirigeants de PME prenant leur retraite ne bénéficiant pas de l'abattement fixe lorsque l'option au barème progressif est exercée.

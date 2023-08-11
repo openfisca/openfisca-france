@@ -1,6 +1,6 @@
-description: Contribution Sociale Généralisée (CSG) sur les indemnités journalières (IJ)
+description: contribution sociale généralisée (CSG) sur les indemnités journalières (IJ)
 metadata:
-  ux_name: Indemnités journalières
+  short_label: Indemnités journalières
   order:
   - taux_global
   - deductible

@@ -1,0 +1,6 @@
+description: Cotisation de sécurité sociale (SS) des Agents généraux d'assurance pour la retraite complémentaire, Professions libérales
+metadata:
+  short_label: Agents généraux d'assurance
+  label_en: Contribution for complementary pension scheme (professionals)
+  order:
+  - commissions_remunerations

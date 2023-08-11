@@ -3,7 +3,7 @@ values:
   2020-07-31:
     value: 900
 metadata:
-  ux_name: Montant annuel
+  short_label: Montant annuel
   unit: currency
   reference:
     2020-07-31:

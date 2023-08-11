@@ -1,0 +1,15 @@
+description: Taux forfait logement (en % du RSA) pour une personne bénéficiaire d'une aide au logement
+values:
+  2019-11-01:
+    value: 0.12
+metadata:
+  short_label: Taux 1 personne
+  last_value_still_valid_on: "2022-10-17"
+  unit: RSA
+  reference:
+    2019-11-01:
+    - title: LOI n° 2018-1203 du 22 décembre 2018 de financement de la sécurité sociale pour 2019
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006753243/2022-08-31/
+    - title: Article R861-7 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038929244
+documentation: La CMU et l'ACS sont remplacés par la CSS (ou C2S) à compter du 01/10/2019 https://circulaires.ameli.fr/circulaire/cir-302019

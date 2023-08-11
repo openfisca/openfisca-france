@@ -1,0 +1,51 @@
+description: Seuil (QF = 1,5) de la décote
+values:
+  1950-01-01:
+    value: null
+  1981-01-01:
+    value: 800
+  1982-01-01:
+    value: 1100
+  1983-01-01:
+    value: 1400
+  1984-01-01:
+    value: 1600
+  1985-01-01:
+    value: 1700
+  1986-01-01:
+    value: null
+metadata:
+  short_label: Seuil QF=1,5
+  last_value_still_valid_on: "2023-01-05"
+  ipp_csv_id: decote_np1_5
+  unit: currency
+  reference:
+    1981-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+    1982-01-01:
+      title: Loi 82-1126 du 29/12/1982 (LF pour 1983)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000503959
+    1983-01-01:
+      title: Loi 83-1179 du 29/12/1983 (LF pour 1984)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000319977
+    1984-01-01:
+      title: Loi 84-1208 du 29/12/1984 (LF pour 1985)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880778
+    1985-01-01:
+      title: Loi 85-1403 du 30/12/1985 (LF pour 1986)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878230
+    1986-01-01:
+      title: Loi 86-1317 du 30/12/1986 (LF pour 1987) de l'impôt sur le revenu (1951 - )
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000317305
+  official_journal_date:
+    1981-01-01: "1981-12-31"
+    1982-01-01: "1982-12-30"
+    1983-01-01: "1983-12-30"
+    1984-01-01: "1984-12-30"
+    1985-01-01: "1985-12-31"
+    1986-01-01: "1986-12-31"
+  notes:
+    1986-01-01:
+    - title: La décote s'applique uniquement aux contribuables ayant 1 ou 1,5 part avant 1986, c'est généralisé à tous après 1986. Demi-part généralisée à tous les enfants après le 3ème (loi 30/12/1986).
+documentation: "Notes : > Création du quotient familial en 1945 (Loi 45-0195 du 31/02/1945). (1) Les montants des plafonnements de quotient familial et de la décote se trouvent à l'article 197-2 du CGI. (2) Dispositif transitoire entre 2008 et 2010 : pour les personnes vivant seules qui n'ont pas élevé seules leurs enfants pendant 5 ans et qui ont bénéficié de la demi-part > Voir B.O.I. N° 27 DU 25/02/2010 [BOI 5B-15-10] Entre 1915 et 1947, des réductions d'impôt pour charges de famille ont été appliquées pour le calcul de l'imposition des revenus. > Voir Annexes C-2 et C-7 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001) Entre 1951 et 1981, la décote est décrite à l'aide de deux paramètres quand elle existe : un montant d'impôt seuil en dessous duquel les contribuables sont exonérés (décote qui sera conservée) et une réduction d'impôt jusqu'à un certain montant d'impôt (égale à la différence entre ce montant seuil et l'impôt par part). Lors de l'imposition des revenus des années 1964-1966 et 1969-1972, les pramètres x-y sont plus élevés pour les contribuables ayant un faible nombre de parts. Lorsqu'il n'y a qu'un seul paramètre, les contribuables dont l'impôt est inférieur à x bénéficient d'une réduction d'impôt égale à la différence entre x et leur impôt (les contribuables dont l'impôt est inférieur à x/2 sont donc exonérés). Lors de l'imposition des revenus des années 1981-1985, la décote s'applique uniquement aux contribuables ayant 1 part ou 1,5 parts, avant d'être généralisée à tous les contribuables à compter de l'imposition des revenus de 1986. > Voir Annexe C-4 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset 2001) Pour la définition de la notion d'\"enfant majeur\", voir art. 6-II bis du CGI (en vigueur au 01/01/1982)."

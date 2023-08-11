@@ -1,4 +1,4 @@
-description: Complément (6e catégorie) de l'Allocation d'éducation de l'enfant handicapé (AEEH)
+description: Complément de sixième catégorie de l'allocation d'éducation de l'enfant handicapé (AEEH)
 values:
   2006-01-01:
     value: 964.78
@@ -34,13 +34,22 @@ values:
     value: 1125.29
   2021-04-01:
     value: 1126.41
+  2022-04-01:
+    value: 1146.69
+  2022-07-01:
+    value: 1192.55
+  2023-04-01:
+    value: 1210.9
 metadata:
-  ux_name: 6e catégorie
-  description_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
+  short_label: Montant complémentaire 6ème catégorie
+  last_value_still_valid_on: "2023-05-09"
+  label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_cplt6
   unit: currency
   reference:
     2006-01-01:
+    - title: Article D541-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737170/2006-01-01/
     - title: Loi 2005-102 du 11/02/2005, art. 68 (modif. Art. L541 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682303&cidTexte=JORFTEXT000000809647
     - title: Décret 2005-1761 du 29/12/2005, art. 12
@@ -65,12 +74,24 @@ metadata:
     2021-04-01:
       title: Circulaire Cnav 2021/14 du 01/04/2020
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_14_01042021.pdf
+    2022-04-01:
+      title: ​Circulaire Cnav 2022/9 du 05/04/2022
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_09_05042022.pdf
+    2022-07-01:
+      title: ​Circulaire Cnav 2022/20 du 19/08/2022
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_20_19082022.pdf
+    2023-04-01:
+    - title: Article D541-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737170
+    - title: Circulaire Cnav 2023/8 du 11/04/2023
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2023_08_11042023.pdf
   official_journal_date:
     2006-01-01: 2005-02-12; 2006-01-01
   notes:
     2006-01-01:
     - title: Création de l'Allocation d'éducation de l'enfant handicapé
-  last_review: "2021-04-01"
 documentation: |-
   Notes :
+  L'article R541-2 du Code la sécurité sociale (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750713) définit les différentes catégories de handicaps entraînant un complément différent.
+
   (1) Le montant du complément de la sixième catégorie de l'allocation d'éducation de l'enfant handicapé est égal au montant de la majoration pour tierce personne accordée aux invalides de la 3e catégorie définis à l'article L 341-4 du CSS.

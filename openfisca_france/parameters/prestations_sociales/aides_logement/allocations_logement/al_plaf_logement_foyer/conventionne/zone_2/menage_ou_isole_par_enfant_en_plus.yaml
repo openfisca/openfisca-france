@@ -11,7 +11,8 @@ values:
   2022-07-01:
     value: 66.59
 metadata:
-  ux_name: Ménage ou isolé - par enfant en plus
+  short_label: Ménage ou isolé - par enfant en plus
+  last_value_still_valid_on: "2022-09-28"
   ipp_csv_id: plaf_foy_z2_al_par_enfant
   unit: currency
   reference:
@@ -37,4 +38,3 @@ metadata:
   official_journal_date:
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
-  last_review: "2022-09-28"

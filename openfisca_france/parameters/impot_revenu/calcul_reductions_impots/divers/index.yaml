@@ -1,3 +1,19 @@
+description: Autres réductions d'impôts (1979 -)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  short_label: Divers
+  label_en: Other tax reductions (1979 -)
+  order:
+  - formation_chefs_entreprises
+  - assurances_vie
+  - frais_de_comptabilite
+  - rente_survie
+  - rachat_entreprise
+  - versement_fonds_salarial
+  - interets_prets_consommation
+  - interets_emprunt_reprise_societe
+  - interets_paiements_differes_agriculteurs
+  - aide_createurs_repreneurs_entreprise
+  - restauration_monuments_historiques
+  - restauration_patrimoine_bati
+  - protection_patrimoine_naturel
+  - rehabilitation_residences_touristiques

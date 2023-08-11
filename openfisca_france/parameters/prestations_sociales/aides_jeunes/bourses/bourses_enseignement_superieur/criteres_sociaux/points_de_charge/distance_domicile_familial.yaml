@@ -19,7 +19,7 @@ brackets:
     2006-03-31:
       value: 2
 metadata:
-  ux_name: Selon déplacmement
+  short_label: Selon déplacmement
   reference:
     2006-03-31:
     - href: https://www.education.gouv.fr/bo/2006/15/MENS0600981C.htm

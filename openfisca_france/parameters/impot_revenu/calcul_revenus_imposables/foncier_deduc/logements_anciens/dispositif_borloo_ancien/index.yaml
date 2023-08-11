@@ -1,0 +1,6 @@
+description: Logements sous le dispositif Borloo ancien (ou conventionnement ANAH)
+metadata:
+  order:
+  - intermediaire
+  - social
+  - location_specifique

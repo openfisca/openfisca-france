@@ -1,0 +1,5 @@
+description: Logements en Nouvelle-Calédonie, Polynésie et Wallis & Futuna
+metadata:
+  order:
+  - taux
+  - duree_reduction

@@ -1,0 +1,21 @@
+description: Seuil 2 de revenu net global pour l'abattement exceptionnel en faveur des personnes âgées ou invalides pour le calcul du revenu imposable
+values:
+  1977-01-01:
+    value: null
+  1978-01-01:
+    value: 37000
+  1979-01-01:
+    value: null
+metadata:
+  short_label: Seuil 2
+  ipp_csv_id: abat_contrib_ages_invalides_plaf2
+  unit: currency
+  reference:
+    1978-01-01:
+      title: Loi 78-1239 du 29/12/1978 (LF pour 1979), art. 2, III.
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273132&cidTexte=JORFTEXT000000886458
+  official_journal_date:
+    1978-01-01: "1978-12-30"
+  notes:
+    1978-01-01:
+    - title: L'abattement de 2000 FRF s'applique au foyer dont le nombre de part est égal à 1 et dont les revenus nets globaux sont inférieurs à 16000 FRF et constitués de traitements et salaires au moins pour moitié.

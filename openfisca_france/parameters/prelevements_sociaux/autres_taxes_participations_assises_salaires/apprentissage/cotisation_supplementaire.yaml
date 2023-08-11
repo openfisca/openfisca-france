@@ -7,8 +7,8 @@ values:
   1993-01-01:
     value: null
 metadata:
-  ux_name: Cotisation supplémentaire
-  description_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  short_label: Cotisation supplémentaire
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
   ipp_csv_id: apprensup_p_0_
   unit: /1
   reference:
@@ -57,10 +57,8 @@ metadata:
     1973-07-01: "1972-12-29"
     1977-01-01: "1977-07-06"
     1978-01-01: "1978-06-22"
-    1980-01-01: "1980-01-19"
     1993-01-01: "1993-01-30"
     1997-01-01: "1997-03-14"
-    2004-01-01: "2004-12-31"
     2007-01-01: "2008-03-12"
   notes:
     1972-07-01:

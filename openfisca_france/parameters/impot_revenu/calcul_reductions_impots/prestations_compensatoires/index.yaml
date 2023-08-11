@@ -1,0 +1,9 @@
+description: Réduction d'impôt sur les prestations compensatoires (2001 -)
+metadata:
+  label_en: Compensatory allowance (2001 -)
+  order:
+  - taux
+  - plafond
+documentation: |-
+  Notes :
+  (1) Voir art. 270 et 271 du code civil

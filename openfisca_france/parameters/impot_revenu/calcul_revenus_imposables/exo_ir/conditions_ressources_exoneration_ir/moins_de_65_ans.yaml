@@ -1,0 +1,144 @@
+description: Conditions de ressources pour les moins de 65 ans pour exonération d'Impôt sur le Revenu
+values:
+  1977-01-01:
+    value: 15200
+  1978-01-01:
+    value: 16800
+  1979-01-01:
+    value: 18600
+  1980-01-01:
+    value: 21100
+  1981-01-01:
+    value: 24000
+  1982-01-01:
+    value: null
+  1984-01-01:
+    value: 31800
+  1985-01-01:
+    value: 33600
+  1986-01-01:
+    value: 34500
+  1987-01-01:
+    value: 35700
+  1988-01-01:
+    value: 36700
+  1989-01-01:
+    value: null
+  1990-01-01:
+    value: 39300
+  1991-01-01:
+    value: 40500
+  1992-01-01:
+    value: 41700
+  1993-01-01:
+    value: 42500
+  1994-01-01:
+    value: 43200
+  1995-01-01:
+    value: 44000
+  1996-01-01:
+    value: 44900
+  1997-01-01:
+    value: 45400
+  1998-01-01:
+    value: 45800
+  1999-01-01:
+    value: 46100
+  2000-01-01:
+    value: 46800
+  2001-01-01:
+    value: 7250
+  2002-01-01:
+    value: 7380
+  2003-01-01:
+    value: 7510
+  2004-01-01:
+    value: 7640
+  2005-01-01:
+    value: 7780
+  2006-01-01:
+    value: 7920
+  2007-01-01:
+    value: 8030
+  2008-01-01:
+    value: 8270
+  2009-01-01:
+    value: 8310
+  2010-01-01:
+    value: 8440
+  2012-01-01:
+    value: 8610
+  2013-01-01:
+    value: 8680
+  2014-01-01:
+    value: null
+metadata:
+  short_label: Moins de 65 ans
+  ipp_csv_id: exo_irmoins65
+  unit: currency
+  reference:
+    1998-01-01:
+      title: BOI 5 B-9-01 n°44 du 02/03/2001
+    1999-01-01:
+      title: BOI 5 B-19-00 n°163 du 05/09/2000
+    2000-01-01:
+      title: BOI 5 B-9-01 n°44 du 02/03/2001
+    2001-01-01:
+    - title: Loi 2001-1276 du 28/12/2001 (LFR pour 2001) - art. 51
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006321343&cidTexte=JORFTEXT000000581002
+    - title: BOI 5 B-3-02 n°18 du 25/01/2002
+    2002-01-01:
+      title: BOI 5 B-6-03 n°16 du 27/01/2003
+    2003-01-01:
+      title: BOI 5 B-8-04 n°37 du 25/02/2004
+    2004-01-01:
+      title: BOI 5 B-9-05 n°33 du 18/02/2005
+    2005-01-01:
+      title: BOI 5 B-6-06 n°8 du 18/01/2006
+    2006-01-01:
+      title: BOI 5 B-10-07;n°47 du 29/03/2007
+    2007-01-01:
+    - title: Décret 2008-294 du 01/04/2008 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000018559051&cidTexte=JORFTEXT000018557013
+    - title: BOI 5 B-11-08 ; n°28 du 04/03/2008
+    2008-01-01:
+    - title: Décret 2009-389 du 07/04/2009 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020499734&cidTexte=JORFTEXT000020496091
+    - title: BOI 5 B-9-09 n°35 du 31/03/2009
+    2009-01-01:
+    - title: Décret 2010-421 du 27/04/2010 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000022169561&cidTexte=JORFTEXT000022166146
+    - title: BOI 5 B-13-10 ; n°22 du 16/02/2010
+    2010-01-01:
+    - title: Décret 2011-645 du 09/06/2011 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024154164&cidTexte=JORFTEXT000024152033
+    - title: BOI 5 B-7-11 ; n°26 du 28/03/2011
+    2012-01-01:
+      title: Cf note (1)
+    2013-01-01:
+      title: Cf note (1)
+    2014-01-01:
+      title: Loi 2014-1654 du 29/12/2014 (LF pour 2015), art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029994811&cidTexte=JORFTEXT000029988857
+  official_journal_date:
+    2001-01-01: "2001-12-29"
+    2007-01-01: "2008-04-02"
+    2008-01-01: "2009-04-09"
+    2009-01-01: "2010-04-30"
+    2010-01-01: "2011-06-11"
+    2014-01-01: "2014-12-31"
+  notes:
+    2006-01-01:
+    - title: "Exonération apprentis : fraction du salaire des apprentis exonérée d'IR jusqu'en 2005 inclus : art. 5-2° bis du CGI, à compter de 2006, ce montant est égal au montant annuel du SMIC"
+    2007-01-01:
+    - title: Voir note (1)
+documentation: |-
+  Notes :
+  Les plafonds font référence aux revenus nets de frais professionnels.
+  Conditions de ressources pour exonération IR : art. 5-2° bis du CGI
+  En application du troisième alinéa du 2° bis de l'article 5 du CGI,
+  ces montants sont relevés chaque année dans la même proportion que la limite
+  supérieure de la première tranche du barème de l'impôt sur le revenus.
+  Les montants obtenus sont arrondis, s'il y a lieu, à la dizaine d'euros supérieure
+  http://bofip.impots.gouv.fr/bofip/5893-PGP#5893-PGP_Portee_de_lexoneration_210
+  https://www.insee.fr/fr/statistiques/1375188

@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur les travaux de réhabilitation des résidences de tourisme
+metadata:
+  short_label: Réhabilitation résidences tourisme
+  order:
+  - taux
+  - plafond

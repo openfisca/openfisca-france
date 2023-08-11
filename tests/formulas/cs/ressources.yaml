@@ -3,4 +3,4 @@
     boursier: [false, true]
     bourse_enseignement_sup: [1200, 1200]
   output:
-    cmu_base_ressources_individu: [1200, 0]
+    css_cmu_base_ressources_individu: [1200, 0]

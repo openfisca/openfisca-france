@@ -1,0 +1,81 @@
+description: Majorations exceptionnelles d'impôt
+metadata:
+  label_en: Exceptional tax increases (1947-1984)
+  reference:
+    1947-01-01:
+      title: "1948-09-24"
+    1955-01-01:
+      title: Loi 56-639 du 30/06/1956 - art. 1
+    1961-01-01:
+      title: Loi 60-1384 du 23/12/1960 (LF pour 1961) - art. 4 II et III
+    1967-01-01:
+      title: Loi 68-695 du 31/07/1968 (LFR pour 1968) - art. 15
+    1968-01-01:
+      title: Loi 68-1172 du 27/12/1968 (LF pour 1969) - art. 2-I-2
+    1969-01-01:
+      title: Loi 69-1161 du 24/12/1969 (LF pour 1970) - art. 3-V
+    1970-01-01:
+      title: Loi 70-1199 du 21/12/1970 (LF pour 1971) - art. 2-IX
+    1971-01-01:
+      title: Loi 71-1061 du 29/12/1971 (LF pour 1972) - art. 3-III
+    1980-01-01:
+      title: Loi 81-734 du 03/08/1981 (LFR pour 1981) - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273639&cidTexte=JORFTEXT000000705483
+    1981-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982) - art. 14
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273484&cidTexte=JORFTEXT000000515870
+    1982-01-01:
+      title: Loi 82-1126 du 29/12/1982 (LF pour 1983) - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273714&cidTexte=JORFTEXT000000503959
+    1983-01-01:
+      title: Loi 83-1179 du 29/12/1983 (LF pour 1984) - art. 2-VIII
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006317314&cidTexte=JORFTEXT000000319977
+    1984-01-01:
+      title: Loi 84-1208 du 29/12/1984 (LF pour 1985) - art. 2-VII
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006274228&cidTexte=JORFTEXT000000880778
+  official_journal_date:
+    1955-01-01: "1956-07-01"
+    1961-01-01: "1960-12-24"
+    1967-01-01: "1968-08-02"
+    1968-01-01: "1968-12-29"
+    1969-01-01: "1969-12-27"
+    1970-01-01: "1970-12-22"
+    1971-01-01: "1971-12-30"
+    1980-01-01: "1980-12-31"
+    1981-01-01: "1981-12-31"
+    1982-01-01: "1982-12-30"
+    1983-01-01: "1983-12-30"
+    1984-01-01: "1984-12-30"
+  notes:
+    1947-01-01:
+    - title: Le «double décime» (majoration de 20% de l'IGR) est appliqué à tous les contribuables dont le revenu est supérieur de 50 000 FRF au seuil d'imposition.
+    1960-01-01:
+    - title: "Création d'un Fonds National de Solidaritéen 1956 : le «décime» (majoration de 10% de la surtaxe progressive SP) concerne tous les contribuables dont le revenu est supérieur au seuil de revenu de la colonne «seuil revenu». La majoration s'applique aussi à la taxe proportionnelle TP à partir de 440 000 FRF(sauf si revenus de valeurs mobilières pour lesquels il n'y a pas d'exonération).Les montants sont en anciens Francs avant 1960."
+    1965-01-01:
+    - title: Le «demi-décime» (majoration de 5% de l'IGR) concerne tous les contribuables dont le revenu est supérieur au seuil de revenu de la colonne «seuil revenu».
+    1967-01-01:
+    - title: Majoration d'impôt de 10 % si impôt supérieur à 5 000 FRF, de 15 % si impôt entre seuil 1 et seuil 2 et de 25% si impôt supérieur à seuil 3.
+    1968-01-01:
+    - title: "Les majorations se font par paliers de 1 000 FRF d'impôt: +2% entre 6000 FRF et 7000 FRF, +4% entre 7000 FRF et 8000 FRF, etc. jusque +14% entre 12 000 FRF et 14 000 FRF; au-dessus, le taux 3 (15 %) s'applique. Des minorations d'impôt par paliers de 500 FRF sont aussi mises en place avec des taux de -2 % à -15% en dessous de 5 000 FRF d'impôt jusqu'à 1 000 FRF."
+    1969-01-01:
+    - title: Les taux de majoration de l'année précédente sont divisés par deux et à partir de 7 000 FRF. Les minorations sont maintenues.
+    1970-01-01:
+    - title: Majoration d'impôt de 1 % si impôt compris en seuil 1 et seuil 2, de 2 % si impôt compris en seuil 2 et seuil 3,et de 3 % si impôt supérieur à seuil 3.
+    1982-01-01:
+    - title: Majorations applicables uniquement à la fraction d'impôt supérieure au seuil. Pour les revenus 1981, seuls les contribuables dont l'impôt est supérieur à 25 000 FRF sont concernés.
+    1983-01-01:
+    - title: Majoration d'impôt de 5 % si impôt compris en seuil 1 et seuil 2 et de 8 % si impôt supérieur à seuil 2.
+    1984-01-01:
+    - title: Suppression des majorations exceptionnelles par la Loi 85-1404 du 30/12/1985 (LFR pour 1985)
+  order:
+  - taux_1
+  - taux_2
+  - taux_3_superieur
+  - seuil_revenu
+  - seuil_1
+  - seuil_2
+  - seuil_3_superieur
+documentation: |-
+  Notes :
+  > Voir tableau 4-6 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001)
+  (1) Attention, les majorations ne se calculent pas de façon identique selon les années (selon le revenu ou l'impôt payé, à partir d'un certain montant ou non, etc.)

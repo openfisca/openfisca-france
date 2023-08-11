@@ -9,8 +9,8 @@ values:
   2013-01-01:
     value: null
 metadata:
-  ux_name: Taux entre 1 et 4 PSS
-  description_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
+  short_label: Taux entre 1 et 4 PSS
+  label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
   ipp_csv_id: retc_art_1_4
   unit: /1
   reference:

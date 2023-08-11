@@ -1,4 +1,4 @@
-description: Définition des personnes à charge pour les Allocations logement (AL)
+description: Plafond individuel de ressources pour les ascendants du bénéficiaire ou de son conjoint pour être considéré personne à charge pour les allocations logement (AL)
 values:
   1991-11-11:
     value: 6997
@@ -33,8 +33,9 @@ values:
   2020-01-01:
     value: 13548
 metadata:
-  ux_name: Plafonds de ressources personnes à charge (autres que les enfants)
-  description_en: Definition of dependants
+  short_label: Plafond individuel de ressources pour les ascendants
+  last_value_still_valid_on: "2023-02-09"
+  label_en: Definition of dependants
   unit: currency
   reference:
     1991-11-11:
@@ -82,8 +83,12 @@ metadata:
       title: Décret 2018-227 du 30/04/2018
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036756121
     2020-01-01:
-      title: Décret 2018-227 du 30/04/2018
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036756121
+    - title: Article R823-4, 2° du Code de la construction et de l'habitation (définition et règle de calcul du plafond de ressources)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878933
+    - title: Article D815-1 du Code de la sécurité sociale (base du plafond pris en compte)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036760292
+    - title: Décret 2018-227 du 30/04/2018, art.1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036756126
   official_journal_date:
     1991-11-11: "1991-11-10"
     2007-07-01: "2007-07-12"

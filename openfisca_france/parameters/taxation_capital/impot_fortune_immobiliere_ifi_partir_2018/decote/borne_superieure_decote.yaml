@@ -1,10 +1,11 @@
-description: Borne supérieure de la décote de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+description: Borne supérieure de la décote de l'Impôt sur la fortune immobilière (IFI)
 values:
   2018-01-01:
     value: 1400000
 metadata:
-  ux_name: Borne supérieure
-  description_en: "\"Décote\" computation"
+  short_label: Borne supérieure
+  last_value_still_valid_on: "2022-04-28"
+  label_en: "\"Décote\" computation"
   ipp_csv_id: sup_decote1_ifi
   unit: currency
   reference:
@@ -18,4 +19,3 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_review: "2022-04-28"

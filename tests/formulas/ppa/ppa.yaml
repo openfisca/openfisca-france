@@ -334,7 +334,6 @@
     ppa_montant_forfaitaire_familial_non_majore:
       2015-12: 524.16 * 1.5 # =786.24
     rsa_majore_eligibilite: false
-    rsa_revenu_activite: 600
     rsa: 786.24 - 600
 
 - name: PPA personne seule avec revenus bonifiés (>95 SMIC horaire brut)
@@ -568,7 +567,7 @@
     paje_colca:
       2016-01: 100
     rsa_forfait_asf:
-      2016-01: 91.40
+      2016-01: 91.40 # 0.225 * 406.21
     chomage_net:
       2016-01: 100
     retraite_nette:

@@ -1,0 +1,8 @@
+description: Sommes versées sur un compte épargne codéveloppement (case 7UH, 2010 - 2011)
+metadata:
+  label_en: Co-development Savings Account (2010 - 2011)
+  order:
+  - taux
+  - plafond_par_personne
+  - plafond_en_revenu_net_global
+documentation: Avant 2009, ce dispositif consistait en un montant déductible, et depuis 2009 c'est une réduction d'impôt.

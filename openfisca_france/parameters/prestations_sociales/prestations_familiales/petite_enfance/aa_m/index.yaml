@@ -1,6 +1,6 @@
 description: Allocation d'adoption (AA), prestations familiales pour la petite enfance
 metadata:
-  ux_name: Allocation d'adoption
-  description_en: "Adoption allowance (AA): General conditions and amounts"
+  short_label: Allocation d'adoption
+  label_en: "Adoption allowance (AA): General conditions and amounts"
   order:
   - montant_allocation_adoption

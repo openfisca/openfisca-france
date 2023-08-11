@@ -1,0 +1,9 @@
+description: Seuil des Cotisations syndicales
+values:
+  2012-01-01:
+    value: 0.01
+  2013-01-01:
+    value: null
+metadata:
+  short_label: Seuil
+  unit: /1

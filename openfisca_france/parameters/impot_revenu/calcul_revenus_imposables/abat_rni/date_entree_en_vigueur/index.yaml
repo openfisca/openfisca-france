@@ -1,0 +1,12 @@
+description: Date d'entrée en vigueur
+metadata:
+  label_en: Tax allowance for net taxable income ( 1978 - )
+  order:
+  - annee_ir
+documentation: |-
+  Notes :
+  (1) Abattement et plafond de ressources pour personne âgée : art. 157 bis du CGI (abattement doublé si le conjoint répond aux mêmes conditions)
+  (2) Abattement pour rattachement d'enfants mariés : art. 196 B du CGI
+  (3) Abattement par personne rattachée - à doubler dans le cas d'un jeune ménage ou d'un célibataire avec jeune enfant, à tripler pour couple avec enfant rattaché
+  Les ressources à considérer sont le revenu net global du foyer fiscal
+  (4) Les invalides qui bénéficient d'une pension militaire d'invalidité pour une invalidité d'au moins 40 % ou d'une pension d'invalidité pour un accident du travail d'au moins 40 % ou de la carte d'invalidité

@@ -1,7 +1,7 @@
-description: Prestations sociales
+description: Prestations liées à l'état de santé
 metadata:
-  ux_name: Prestations sociales
-  description_en: Health related allowances
+  short_label: Prestations sociales
+  label_en: Health related allowances
   order:
   - invalidite
   - perte_autonomie_personnes_agees

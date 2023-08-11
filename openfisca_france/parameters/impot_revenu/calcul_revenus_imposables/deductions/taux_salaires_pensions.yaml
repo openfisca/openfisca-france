@@ -1,0 +1,27 @@
+description: Taux de l'abattement forfaitaire sur les salaires et pensions
+values:
+  1942-01-01:
+    value: null
+  1943-01-01:
+    value: 0.1
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_abt_sal
+  unit: /1
+  reference:
+    1982-01-01:
+      title: LF pour 1983
+    1983-01-01:
+      title: LF pour 1984
+    2011-01-01:
+    - title: LF pour 2012
+    - title: BOI 5 F-2-12 n° 10 du 03/02/12
+documentation: |-
+  Notes :
+  (1) Entre 1915 et 1944, des déductions du revenu imposable pour charges des familles étaient appliquées pour le calcul de l'impôt général sur le revenu (et de l'impôt cédulaire sur les salaires) sous forme d'abattement général dépendant du statut marital et du nombre d'enfant.
+  > Voir Annexe C-1 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001) ; voir aussi note (3) de l'onglet sur le quotient familial concernant les réductions d'impôt pour charges de famille entre 1915 et 1947.
+  (2) La déduction forfaitaire de 10 % prévue par l'article 83 -3°, 2e alinéa du CGI pour la prise en compte des frais professionnels des salariés est plafonnée.
+  (3) Il n'y a pas de plafond à la déduction entre 1952 et 1978.Entre 1934 et 1942, la déduction de 10 % est aussi plafonnée à 20 000 FRF (colonne J).
+  > Voir Annexe C-3 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001)
+  http://bofip.impots.gouv.fr/bofip/7458-PGP#7458-PGP_Plafond_de_labattement_33
+  https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034597100&cidTexte=LEGITEXT000006069577

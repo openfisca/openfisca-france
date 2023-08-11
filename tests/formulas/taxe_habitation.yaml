@@ -574,7 +574,7 @@
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
       depcom:
-        2018-01: "01058"
+        2020-01: "01058"
       valeur_locative_cadastrale_brute: 3000
       # Si dessous, on met en dur les paramètres locaux, car on n'a pas encore les paramètres de 2018
       taux_th_commune: 0.1037
@@ -626,7 +626,7 @@
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
       depcom:
-        2018-01: "01058"
+        2021-01: "01058"
       valeur_locative_cadastrale_brute: 3000
       # Si dessous, on met en dur les paramètres locaux, car on n'a pas encore les paramètres de 2018
       taux_th_commune: 0.1037
@@ -678,7 +678,7 @@
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
       depcom:
-        2018-01: "01058"
+        2021-01: "01058"
       valeur_locative_cadastrale_brute: 3000
       # Si dessous, on met en dur les paramètres locaux, car on n'a pas encore les paramètres de 2018
       taux_th_commune: 0.1037
@@ -711,3 +711,50 @@
     taxe_habitation_commune_epci_avant_degrevement: 164.07 #(1178*0.1037 + 1113*0.0362)*1.01
     degrevement_office_taxe_habitation: 129.83 #(164.07 * (70943  - 69500) / (70943 - 68887)) + (164.07 - 164.07 * (70943  - 69500) / (70943 - 68887)) * 0.3
     taxe_habitation: -34.24 #-(164.07 - 129.83)
+
+- name: th_suppression
+  description: Taxe d'habitation 2023 - on prend le test précédent mais pour 2023 (et avec un RFR plus grand), pour tester la suppression de la taxe d'habitation
+  period: 2023
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+      rfr:
+        2022: 100000
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      depcom:
+        2023-01: "01058"
+      valeur_locative_cadastrale_brute: 3000
+      # Si dessous, on met en dur les paramètres locaux, car on n'a pas encore les paramètres de 2018
+      taux_th_commune: 0.1037
+      taux_th_epci: 0.0362
+      valeur_locative_moyenne_th_commune: 2766.0
+      valeur_locative_moyenne_th_epci: 2766.0
+      abt_general_base_th_commune: 248.0
+      abt_general_base_th_epci: 273.0
+      abt_pac_1_2_th_commune: 473.0
+      abt_pac_1_2_th_epci: 487.0
+      abt_pac_3pl_th_commune: 628.0
+      abt_pac_3pl_th_epci: 640.0
+      abt_condition_modeste_th_commune: 248.0
+      abt_condition_modeste_th_epci: 273.0
+    individus:
+      parent1:
+        date_naissance: '1963-01-01'
+      parent2:
+        date_naissance: '1963-01-01'
+      enfant1:
+        date_naissance: '1990-01-01'
+      enfant2:
+        date_naissance: '1990-01-01'
+      enfant3:
+        date_naissance: '1990-01-01'
+  output:
+    taxe_habitation: 0

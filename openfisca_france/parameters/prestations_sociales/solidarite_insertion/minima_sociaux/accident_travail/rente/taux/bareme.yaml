@@ -13,6 +13,6 @@ brackets:
     2018-01-01:
       value: 1.5
 metadata:
-  ux_name: Barème
+  short_label: Barème
   rate_unit: /1
-  threshold_unit: SMIC
+  threshold_unit: smic

@@ -1,0 +1,36 @@
+description: Plafond (en % du rev net global) de la réduction d'impôt pour souscriptions de parts au capital de SOFIPECHE (1999 - 2012)
+values:
+  1997-01-01:
+    value: null
+  1998-01-01:
+    value: 0.25
+  2007-01-01:
+    value: null
+  2009-01-01:
+    value: 0.25
+  2012-01-01:
+    value: null
+metadata:
+  short_label: Plafond (% revenu net global)
+  ipp_csv_id: base_sofipeche
+  unit: /1
+  reference:
+    1998-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
+    2009-01-01:
+    - title: Loi de finances pour 2011 2010-1657 du 29/12/2010 art. 105
+    - title: Loi 2008-1425 du 27/12/2008 (LF pour 2009)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019995721
+    - title: BOI 5 B-9-09 n°35 du 31/03/2009
+  official_journal_date:
+    1998-01-01: "1998-12-31"
+    2009-01-01: "2009-12-31"
+  notes:
+    1998-01-01:
+    - title: Création sous forme de charge déductible du revenu global
+    2007-01-01:
+    - title: SOFICA et SOFIPECHE deviennent des crédits d'impôt à partir de la déclaration des revenus de 2006 (aller aux onglets SOFICA et SOFIPECHE)
+documentation: |-
+  Notes :
+  (1) Souscription au capital d'une SOFIPECHE : plafonnement à doubler pour couple

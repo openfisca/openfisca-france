@@ -1,0 +1,11 @@
+description: Plafond de la déduction des souscriptions en faveur du cinéma ou de l'audiovisuel (case AA)
+values:
+  2001-01-01:
+    value: 18000
+metadata:
+  short_label: Plafond
+  unit: currency
+  reference:
+    2001-01-01:
+    - href: http://bofip.impots.gouv.fr/bofip/1371-PGP.html
+    - href: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000022508674&cidTexte=LEGITEXT000006069577

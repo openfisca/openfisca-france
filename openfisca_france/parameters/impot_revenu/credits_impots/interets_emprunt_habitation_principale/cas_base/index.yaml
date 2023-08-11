@@ -1,0 +1,5 @@
+description: Cas de base
+metadata:
+  order:
+  - taux_2
+  - taux_applique_premiere_annuite_remboursement

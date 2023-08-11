@@ -1,0 +1,41 @@
+description: Taux de déduction de l'investissement les 7 premières années
+values:
+  1996-01-01:
+    value: null
+  2006-01-01:
+    value: 0.06
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Taux 7 ans
+  ipp_csv_id: tx_deduction_7_ans_robien_recentre
+  unit: /1
+  reference:
+    1996-01-01:
+      title: Loi n° 96-314 du 12 avril 1996 (DDOEF), art. 29
+    2006-01-01:
+      title: Loi n° 2006-872 du 13 juillet 2006, art. 39, 40 et 46
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000238980#LEGIARTI000006826032
+    2009-01-01:
+      title: Loi n° 2009-1674 du 30 décembre 2009, art. 95
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000021559075&idArticle=LEGIARTI000021579958&dateTexte=20100310&categorieLien=id#LEGIARTI000021579958
+  official_journal_date:
+    1996-01-01: "1996-04-13"
+    2006-01-01: "2006-07-16"
+    2009-01-01: "2009-12-31"
+  notes:
+    1996-01-01:
+    - title: Pour le dispositif Périssol, le plafond de déficit foncier imputable sur le revenu imposable est relevé de 70,000 F (10,700 E) à 100,000 F (15,300 E). Avec ce dispositif, 80% de l'investissement est déduit des revenus imposables au bout de 24 ans.
+    2006-01-01:
+    - title: La déduction totale du coût de l'investissement du revenu imposable avec le dispositif Robien "recentré" est de 50% en 9 ans comme le Robien "classique" mais la poursuite de l'amortissement sur les 6 années suivantes pour atteindre 65% d'amortissement en 15 ans est conditionné à l'éligibilité au dispositif Borloo.
+documentation: |-
+  Le plafond des déficits fonciers imputables aux autres
+  revenus est prévu depuis 1993 et est codifié au 3° du I de l'article 156 du code
+  général des impôts (CGI).
+  Le dispositif Robien "recentré" s'applique
+  pour les opérations survenues entre le 1er Septembre 2006 et le 31 Décembre 2009
+  selon les mêmes conditions que le Robien "classique". Le dispositif additionnel
+  Borloo neuf permet s'applique si les conditions de plafonnement des loyers sont
+  plus restrictives et avec des locataires éligibles selon leurs revenus. CGI -
+  art. 31 I-1° h et CGI - art. 31 I-1° l pour l'application du dispositif Borloo
+  neuf.

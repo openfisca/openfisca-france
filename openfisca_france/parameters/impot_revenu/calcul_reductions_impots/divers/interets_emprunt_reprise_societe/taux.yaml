@@ -1,0 +1,13 @@
+description: Taux de la réduction d'impôts sur les intérêts d'emprunt pour reprise de société
+values:
+  1977-01-01:
+    value: null
+  2004-01-01:
+    value: 0.25
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_repsoc
+  unit: currency
+documentation: |-
+  Intérêts d'emprunts pour reprise de société : plafond à doubler pour un couple
+  Art. 199 terdecies-0 B du CGI. Loi 2003-721 du 1 août 2003 - art. 42 JORF 5 août 2003

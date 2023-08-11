@@ -1,0 +1,26 @@
+description: Seuil d'impôt 1 des minorations exceptionnelles d'impôt (1965-1992)
+values:
+  1965-01-01:
+    value: null
+  1966-01-01:
+    value: 0
+  1973-01-01:
+    value: null
+  1984-01-01:
+    value: 0
+  1993-01-01:
+    value: null
+metadata:
+  short_label: Seuil 1
+  ipp_csv_id: seuil_min1
+  unit: currency
+  reference:
+    1993-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+  official_journal_date:
+    1993-01-01: "1993-12-31"
+  notes:
+    1966-01-01:
+    - title: de 5 % si revenu < 45000 à 2 % si revenu > 50000 mais < 55000
+    1984-01-01:
+    - title: 5 % si impôt < 21520

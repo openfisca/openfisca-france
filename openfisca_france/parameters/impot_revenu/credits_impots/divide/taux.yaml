@@ -1,0 +1,9 @@
+description: Taux des dividendes
+values:
+  1979-01-01:
+    value: 0.5
+  2006-01-01:
+    value: 0.4
+metadata:
+  short_label: Taux
+  unit: /1

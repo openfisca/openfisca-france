@@ -1,4 +1,4 @@
-description: Réduction pour enfant à charge, Réductions et abattements de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Réduction pour enfant à charge de l'impôt de solidarité sur la fortune
 values:
   1989-01-01:
     value: 1000
@@ -9,8 +9,8 @@ values:
   2013-01-01:
     value: null
 metadata:
-  ux_name: Réduction enfant à charge
-  description_en: Discount and rebate
+  short_label: Réduction enfant à charge
+  label_en: Discount and rebate
   ipp_csv_id: reduc_isf_enf
   unit: currency
   reference:

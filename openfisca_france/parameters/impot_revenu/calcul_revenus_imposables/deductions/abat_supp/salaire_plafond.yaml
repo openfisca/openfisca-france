@@ -1,0 +1,170 @@
+description: Salaire plafond pour toucher la déduction supplémentaire de 20%
+values:
+  1942-01-01:
+    value: null
+  1973-01-01:
+    value: 280000
+  1974-01-01:
+    value: 310000
+  1975-01-01:
+    value: 340000
+  1977-01-01:
+    value: 360000
+  1980-01-01:
+    value: 410000
+  1981-01-01:
+    value: 460000
+  1984-01-01:
+    value: 495000
+  1985-01-01:
+    value: 523000
+  1986-01-01:
+    value: 536000
+  1987-01-01:
+    value: 554000
+  1988-01-01:
+    value: 569000
+  1989-01-01:
+    value: 588000
+  1990-01-01:
+    value: 607000
+  1991-01-01:
+    value: 626000
+  1992-01-01:
+    value: 644000
+  1993-01-01:
+    value: 657000
+  1994-01-01:
+    value: 667000
+  1995-01-01:
+    value: 680000
+  1996-01-01:
+    value: 693000
+  1997-01-01:
+    value: 701000
+  1998-01-01:
+    value: 707000
+  1999-01-01:
+    value: 711000
+  2000-01-01:
+    value: 722000
+  2001-01-01:
+    value: 111900
+  2002-01-01:
+    value: 113900
+  2003-01-01:
+    value: 115900
+  2004-01-01:
+    value: 117900
+  2005-01-01:
+    value: 120100
+  2006-01-01:
+    value: null
+metadata:
+  short_label: Salaire plafond
+  ipp_csv_id: plaf_ab_dedsal
+  unit: currency
+  reference:
+    1977-01-01:
+      title: LF pour 1978
+    1980-01-01:
+      title: LF pour 1981
+    1981-01-01:
+      title: LF pour 1982
+    1984-01-01:
+      title: LF pour 1985
+    1985-01-01:
+      title: LF pour 1986
+    1986-01-01:
+      title: LF pour 1987
+    1987-01-01:
+      title: LF pour 1988
+    1988-01-01:
+      title: LF pour 1989
+    1989-01-01:
+      title: LF pour 1990
+    1990-01-01:
+      title: LF pour 1991
+    1991-01-01:
+      title: LF pour 1992
+    1992-01-01:
+      title: "LF pour 1993\_- \_art. 2-V"
+    1993-01-01:
+      title: LF pour 1994
+    1994-01-01:
+      title: LF pour 1995
+    1995-01-01:
+      title: LF pour 1996
+    1996-01-01:
+      title: LF pour 1997 - art. 2-III
+    1997-01-01:
+      title: LF pour 1998
+    1998-01-01:
+    - title: LF pour 1999
+    - title: BOI 5 F-1-99 n° 4 du 07/01/1999
+    1999-01-01:
+    - title: LF pour 2000
+    - title: BOI 5 B-5-00 n°11 du 17/01/2000
+    2000-01-01:
+    - title: LF pour 2001
+    - title: BOI 5 B-9-01 n°44 du 02/03/2001
+    2001-01-01:
+    - title: LF pour 2002
+    - title: BOI 5 B-3-02 n°18 du 25/01/2002
+    2002-01-01:
+    - title: LF pour 2003
+    - title: BOI 5 B-6-03 n°16 du 27/01/2003
+    2003-01-01:
+    - title: LF pour 2004
+    - title: BOI 5 B-8-04 n°37 du 25/02/2004
+    2004-01-01:
+    - title: LF pour 2005
+    - title: BOI 5 B-9-05 n°33 du 18/02/2005
+    2005-01-01:
+    - title: LF pour 2006
+    - title: BOI 5 B-6-06 n°8 du 18/01/2006
+    2006-01-01:
+    - title: LF pour 2007
+    - title: BOI 5 B-10-07 n°47 du 29/03/2007
+  official_journal_date:
+    1977-01-01: "1977-12-31"
+    1980-01-01: "1980-12-31"
+    1981-01-01: "1981-12-31"
+    1984-01-01: "1984-12-30"
+    1985-01-01: "1985-12-31"
+    1986-01-01: "1986-12-31"
+    1987-01-01: "1987-12-31"
+    1988-01-01: "1988-12-28"
+    1989-01-01: "1989-12-30"
+    1990-01-01: "1990-12-30"
+    1991-01-01: "1991-12-31"
+    1992-01-01: "1992-12-31"
+    1993-01-01: "1993-12-31"
+    1994-01-01: "1994-12-31"
+    1995-01-01: "1995-12-31"
+    1996-01-01: "1996-12-31"
+    1997-01-01: "1997-12-31"
+    1998-01-01: "1998-12-31"
+    1999-01-01: "1999-12-31"
+    2000-01-01: "2000-12-31"
+    2001-01-01: "2001-12-29"
+    2002-01-01: "2002-12-31"
+    2003-01-01: "2003-12-31"
+    2004-01-01: "2004-12-31"
+    2005-01-01: "2005-12-31"
+    2006-01-01: "2006-12-27"
+  notes:
+    1974-01-01:
+    - title: Pour les revenus 1973 et 1974, les salariés avaient également droit à un abattement de 10 % au-delà du plafond.
+    1988-01-01:
+    - title: "Source: Lefebvre Fiscal 1989"
+    1993-01-01:
+    - title: Montant révisé chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu
+    1997-01-01:
+    - title: Valeur minimale d'abattement pour les chômeurs de plus d'un an;(art. 13 de la loi de finances pour 1998)
+    1999-01-01:
+    - title: Voir BOFiP archives [DB 5F252]
+    2001-01-01:
+    - title: Voir aussi BOI 5 F-10-01 N° 37 du 21 FEVRIER 2001
+    2006-01-01:
+    - title: Intégration de l'abattement de 20% au barème de l'impôt sur le revenu

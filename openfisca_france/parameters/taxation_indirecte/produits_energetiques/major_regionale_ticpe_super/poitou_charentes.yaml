@@ -5,7 +5,7 @@ values:
   2016-07-01:
     value: 2.5
 metadata:
-  ux_name: Poitou-Charentes
+  short_label: Poitou-Charentes
   ipp_csv_id: maj_ticpe_super_p_c
   unit: currency
 documentation: |-

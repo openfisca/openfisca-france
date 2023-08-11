@@ -1,7 +1,7 @@
-description: Taux Plein de l'allocation de base de la Prestation d'accueil du jeune enfant (PAJE)
+description: Taux plein de l'allocation de base de la prestation d'accueil du jeune enfant (PAJE)
 metadata:
-  ux_name: Taux Plein
-  description_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
+  short_label: Taux plein
+  label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
   order:
   - avant_2014
   - apres_2014

@@ -1,0 +1,18 @@
+description: Taux tranche supérieure de l'imposition des gains de levées d'options sur titre attribuées avant le 28/09/2012 si cession durant le délai de portage de 2 ans (après le délai d'indisponibilité)
+values:
+  1977-01-01:
+    value: null
+  2000-01-01:
+    value: 0.4
+  2010-01-01:
+    value: 0.41
+  2013-01-01:
+    value: null
+metadata:
+  short_label: Taux tranche sup.
+  ipp_csv_id: tx_stockoptions1
+  unit: /1
+  notes:
+    2000-01-01:
+    - title: Pour les options attribuées à compter du 27/04/2000, création des variables tx_stockoptions1 et tx_stockoptions2
+documentation: Les options sur titres (ou stock-options) sont imposées sur la différence entre la valeur réelle de l’action à la date de la levée de l'option et le prix de souscription ou d’achat de l’action aux taux du barème si les options ont été attribuées avant le 28/09/2012. Si elles ont été attribuées à une date postérieure, le gain est imposé selon le régime du barème progressif.

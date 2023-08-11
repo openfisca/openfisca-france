@@ -3,8 +3,9 @@ values:
   2015-01-01:
     value: 0.3603
 metadata:
-  ux_name: Taux tps partiel 50-80%
-  description_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
+  short_label: Taux tps partiel 50-80%
+  last_value_still_valid_on: "2023-05-09"
+  label_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
   unit: BMAF
   reference:
     2015-01-01:
@@ -17,7 +18,6 @@ metadata:
   notes:
     2015-01-01:
     - title: Pas de modification pour 2017 cf. DSS/SD2B/2017/97 du 21/03/2017
-  last_review: "2022-09-27"
 documentation: |-
   Notes :
   La PreParE remplace la CLCA pour les enfants nés ou adoptés à compter du 1er janvier 2015.

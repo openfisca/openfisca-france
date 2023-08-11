@@ -1,0 +1,24 @@
+description: Taux spécial de réduction d'impôt pour les souscriptions de parts de FCPI et FIP
+values:
+  2020-08-01:
+    value: 0.25
+metadata:
+  last_value_still_valid_on: "2022-10-11"
+  unit: /1
+  reference:
+    2020-08-01:
+    - title: Loi 2019-1479 du 28/12/2019 de finances pour 2020 (1) - art. 137 (modifie art. 199 terdecies-0 A du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000039793005/2019-12-30/
+    - title: Art. 199 terdecies-0 A, I. 1° du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042912844/2020-12-31/
+    - title: Loi 2020-1721 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753590
+    - title: Loi 2021-953 du 19/07/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043805899
+    - title: Décret 2020-1014 du 07/08/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042220908
+documentation: |-
+  Le taux de 25 % (30 %) s'applique aux versements effectués entre le 10 août et le 31 décembre 2020.
+  Avant le 10 août c'est le taux de 18 % (38 %) qui s'applique.
+  La loi de finances pour 2021 proroge le taux majoré de 25 % pour les versements effectués au titre d'une souscription aux parts de FCPI et FIP,
+  jusqu'au 31 décembre 2021. Ce taux majoré a été de nouveau prorogé jusqu'au 31 décembre 2022.

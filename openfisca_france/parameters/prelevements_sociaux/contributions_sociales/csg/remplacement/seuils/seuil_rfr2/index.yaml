@@ -1,6 +1,6 @@
-description: Seuil de RFR 2 (taux réduit) de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+description: Seuil du revenu fiscal de référence de l'année N-2 impliquant l'assujettissement au taux médian de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
 metadata:
-  ux_name: Seuil de RFR2
+  short_label: Seuil de RFR du taux médian
   order:
   - seuil_rfr2
   - demi_part_suppl_rfr2

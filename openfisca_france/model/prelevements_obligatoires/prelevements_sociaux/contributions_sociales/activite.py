@@ -64,15 +64,34 @@ class assiette_csg_non_abattue(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period)
+    '''
+    L'exclusion des contributions employeur aux contrats de prévoyance obligatoire n'est pas facile à dater, car elle a fait l'objet de différentes
+    jurisprudences de la Cour de cassation, dans un sens comme dans l'autre, et de façon assez ancienne.
+    voir par exemple Cour de Cassation, Chambre civile 2, du 23 novembre 2006, 05-11.364 : normalement, à cette date et par cette jurisprudence, les primes d'assurances
+    prévoyance versées dans le cadre d'une obligation légale et n'acquérant pas de droits complémentaires au salarié sont exonérés de CSG.
+    Cependant on retient la date de 2018, car la lecture de l'article L136-2 du CSS, ainsi que celle du cinquième alinéa de l'article L242-1 du CSS, ne font plus
+    explicitement mention des contrats de prévoyance à cette date.
+    Auparavant, et pour rester cohérent avec certains fichiers de test (notamment tests "fiches de paie"), on continue à inclure la prévoyance obligatoire
+    (en particulier celle des cadres, qui est une obligation légale générale au-delà des conventions collectives) dans l'assiette de CSG.
+    '''
+
+    def formula_2018_01_01(individu, period, parameters):
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
-        prise_en_charge_employeur_prevoyance_complementaire = individu(
-            'prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
+        return (
+            prevoyance_complementaire_employeur
+            - complementaire_sante_employeur
+            )
+
+    def formula(individu, period, parameters):
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
 
         # TODO + indemnites_journalieres_maladie,
         return (
-            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            - prevoyance_obligatoire_cadre
+            + prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             )
 
@@ -180,13 +199,13 @@ class forfait_social(Variable):
         # ne concernent que les entreprises de 10 ou 11 employés et plus
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
         seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
-        prise_en_charge_employeur_prevoyance_complementaire = individu('prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
         effectif_entreprise = individu('effectif_entreprise', period)
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
         taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
         assiette_taux_reduit = (
-            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            - prevoyance_obligatoire_cadre + prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
 
@@ -215,15 +234,14 @@ class forfait_social(Variable):
         # ne concernent que les entreprises de 10 ou 11 employés et plus
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
         seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
-        prise_en_charge_employeur_prevoyance_complementaire = individu('prise_en_charge_employeur_prevoyance_complementaire', period, options=[ADD])
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options=[ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options=[ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
 
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options=[ADD])
         taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
 
         assiette_taux_reduit = (
-            -prevoyance_obligatoire_cadre
-            + prise_en_charge_employeur_prevoyance_complementaire
+            - prevoyance_obligatoire_cadre + prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
 
@@ -245,7 +263,6 @@ class salaire_imposable(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683657'
     set_input = set_input_divide_by_period
     definition_period = MONTH
-    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         '''
@@ -266,9 +283,6 @@ class salaire_imposable(Variable):
         hsup = individu('hsup', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
-        # Revenu du foyer fiscal projeté sur le demandeur
-        rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options=[DIVIDE])
-        rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             salaire_de_base
@@ -281,7 +295,6 @@ class salaire_imposable(Variable):
             + csg_deductible_salaire
             + cotisations_salariales
             - hsup
-            + rev_microsocial_declarant1
             + indemnite_fin_contrat
             + complementaire_sante_salarie
             + indemnite_compensatrice_csg
@@ -357,26 +370,6 @@ class tehr(Variable):
 
 
 # Non salariés
-
-class rev_microsocial(Variable):
-    '''Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)'''
-    value_type = float
-    entity = FoyerFiscal
-    label = 'Revenu net des cotisations sociales pour le régime microsocial'
-    reference = 'http://www.apce.com/pid6137/regime-micro-social.html'
-    definition_period = YEAR
-
-    def formula_2009_01_01(foyer_fiscal, period, parameters):
-        assiette_service = foyer_fiscal('assiette_service', period)
-        assiette_vente = foyer_fiscal('assiette_vente', period)
-        assiette_proflib = foyer_fiscal('assiette_proflib', period)
-        _P = parameters(period)
-
-        P = _P.cotsoc.sal.microsocial.cotisations_prestations
-        total = assiette_service + assiette_vente + assiette_proflib
-        prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.servi
-        # TODO Activités libérales relevant de la CIPAV - quelle assiette ? * P.cipav
-        return total - prelsoc_ms
 
 
 class assiette_csg_crds_non_salarie(Variable):
@@ -455,3 +448,18 @@ class crds_non_salarie(Variable):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
         taux = parameters(period).prelevements_sociaux.contributions_sociales.crds.activite.taux
         return - taux * assiette_csg_crds_non_salarie
+
+
+class revenus_non_salarie_nets(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus du travail non salariaux nets'
+    definition_period = YEAR
+
+    def formula(individu, period):
+        rpns_imposables = individu('rpns_imposables', period)
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period)
+        crds_non_salarie = individu('crds_non_salarie', period)
+        microentreprise_i = individu.foyer_fiscal('microentreprise', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        microentreprise = sum(microentreprise_i)
+        return rpns_imposables + csg_imposable_non_salarie + crds_non_salarie + microentreprise

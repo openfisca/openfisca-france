@@ -1,0 +1,6 @@
+description: Crédit d'impôt pour les dépenses de prévention des risques technologiques (2005-)
+metadata:
+  short_label: Risques technologiques
+  order:
+  - taux
+  - plafond

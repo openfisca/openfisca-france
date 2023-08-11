@@ -1,0 +1,7 @@
+description: Taux de la Taxe additionnelle de droit au bail
+values:
+  2002-01-01:
+    value: 0.025
+metadata:
+  short_label: Taux
+  unit: /1

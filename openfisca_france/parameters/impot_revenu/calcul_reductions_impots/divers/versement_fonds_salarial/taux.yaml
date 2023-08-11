@@ -1,0 +1,10 @@
+description: Taux de la réduction d'impôt sur les versements à un fonds salarial
+values:
+  1996-01-01:
+    value: 0.25
+  1997-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_salarial
+  unit: /1

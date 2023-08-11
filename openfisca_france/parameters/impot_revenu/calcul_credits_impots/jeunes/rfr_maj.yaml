@@ -1,8 +1,0 @@
-description: Majoration du revenu fiscal de référence plafond (par demi-part supplémentaire)
-values:
-  2005-01-01:
-    value: 4276
-  2009-01-01:
-    value: null
-metadata:
-  unit: currency

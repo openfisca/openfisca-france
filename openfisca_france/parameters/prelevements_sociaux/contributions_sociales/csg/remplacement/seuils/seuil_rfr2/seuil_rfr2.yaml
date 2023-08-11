@@ -1,4 +1,4 @@
-description: Seuil de RFR2 - 1 Part (taux réduit) de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+description: Seuil du revenu fiscal de référence de l'année N-2, pour la première part de quotient familial, impliquant l'assujettissement au taux médian de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
 values:
   1991-02-01:
     value: null
@@ -16,9 +16,14 @@ values:
     value: 14781
   2021-01-01:
     value: 14914
+  2022-01-01:
+    value: 14944
+  2023-01-01:
+    value: 15183
 metadata:
-  ux_name: Seuil RFR2 - 1 part
-  description_en: CSG - rates on retirement incomes
+  short_label: Seuil de RFR pour la première part de quotient familial
+  last_value_still_valid_on: "2023-07-05"
+  label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red2
   unit: currency
   reference:
@@ -55,6 +60,12 @@ metadata:
     2021-01-01:
       title: Lettre ministérielle D-20-021991 du 04/12/2020
       href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_04122020.pdf
+    2022-01-01:
+      title: Lettre ministérielle D-21-028198 du 20/12/2021
+      href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_2021_028198_20122021.pdf
+    2023-01-01:
+      title: Lettre ministérielle D-22-024221 du 12/12/2022
+      href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_12122022.pdf
   official_journal_date:
     1991-02-01: "1990-12-30"
     2015-01-01: "2014-12-30"
@@ -71,7 +82,6 @@ metadata:
     - title: La hausse de CSG est annulée pour les retraités les plus modestes par la loi 2018-1213 portant mesures d'urgences économiques et sociales. Dans les faits, cela crée un taux intermédiaire de 6,6 % qui vient s'ajouter au taux zéro, au taux réduit et au taux normal.
     2020-01-01:
     - title: Art. L136-8 du CSS non encore modifié
-  last_review: "2021-07-23"
 documentation: |-
   Référence du Codes général des impôts :
   La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.

@@ -1818,7 +1818,7 @@ class domlog(Variable):
         f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc_2002', period)
         f7uj = foyer_fiscal('f7uj_2002', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
 
@@ -1832,7 +1832,7 @@ class domlog(Variable):
         f7uc = foyer_fiscal('f7uc_2002', period)
         f7ui = foyer_fiscal('f7ui_2008', period)
         f7uj = foyer_fiscal('f7uj_2002', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
 
@@ -1845,7 +1845,7 @@ class domlog(Variable):
         f7ub = foyer_fiscal('f7ub_2007', period)
         f7ui = foyer_fiscal('f7ui_2008', period)
         f7uj = foyer_fiscal('f7uj_2002', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub) + f7ui
 

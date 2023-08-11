@@ -4,8 +4,8 @@ values:
     value: 0.03
   2015-01-01: expected
 metadata:
-  ux_name: Taux moyen
-  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+  short_label: Taux moyen
+  last_value_still_valid_on: "2015-01-01"
+  label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   unit: /1
-  last_review: "2015-01-01"
 documentation: ""

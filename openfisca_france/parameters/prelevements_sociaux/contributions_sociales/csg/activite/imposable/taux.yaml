@@ -1,19 +1,22 @@
-description: Taux de la Contribution Sociale Généralisée (CSG) imposable sur les revenus d'activité
+description: Taux de la contribution sociale généralisée (CSG) imposable sur les revenus d'activité
 values:
   1991-02-01:
     value: 0.011
   1993-07-01:
     value: 0.024
 metadata:
-  ux_name: Taux
-  description_en: CSG - rates on work incomes
+  short_label: Taux
+  last_value_still_valid_on: "2023-07-05"
+  label_en: CSG - rates on work incomes
   unit: /1
   reference:
     1991-02-01:
       title: Loi 90-1168 du 29/12/90, art. 127 à 135 (LF pour 1991)
     1993-07-01:
-      title: Loi 93-859 du 22/06/1993, art. 42 (LFR pour 1993)
+    - title: Loi 93-859 du 22/06/1993, art. 42 (LFR pour 1993)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006318786&cidTexte=JORFTEXT000000362947
+    - title: Article L136-8 du Code de la sécurité sociale (taux global)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036390220
     2011-01-01:
       title: Loi 2010-1594 du 20/12/2010, art. 20 (LFSS pour 2011)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023262256&cidTexte=JORFTEXT000023261006
@@ -26,7 +29,6 @@ metadata:
   notes:
     1991-02-01:
     - title: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.
-  last_review: "2021-07-22"
 documentation: |-
   Notes :
   L'art. 2.III de la loi 93-1352 publiée au JO le 30/12/1993 (LF pour 1994) a annulé la déductibilité prévue et a donc empêché l'application de la déductibilité de la CSG pour les revenus 1993.

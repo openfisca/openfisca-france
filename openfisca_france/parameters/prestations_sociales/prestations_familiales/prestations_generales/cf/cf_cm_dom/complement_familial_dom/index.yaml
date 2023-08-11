@@ -1,7 +1,7 @@
-description: Taux du Complément familial dans les DOM (CF)
+description: Taux du complément familial dans les DOM (CF)
 metadata:
-  ux_name: Taux du CF - DOM
-  description_en: "Family complement (CF): General conditions and amounts"
+  short_label: Taux DOM
+  label_en: "Family complement (CF): General conditions and amounts"
   order:
   - taux_base_dom
   - taux_majore_dom

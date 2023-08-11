@@ -1,0 +1,34 @@
+description: Déductions des revenus fonciers issus de certains baux (1984 -)
+metadata:
+  reference:
+    1998-01-01:
+      title: Loi n° 98-546 du 2 juillet 1998, art. 14
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000572192&fastPos=1&fastReqId=380061709&categorieLien=id&oldAction=rechTexte
+    2019-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 (LF pour 2020), art. 23
+      href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/article_23
+  official_journal_date:
+    1998-01-01: "1998-07-03"
+    2019-01-01: "2019-12-29"
+  notes:
+    1998-01-01:
+    - title: Prévu initialement jusqu'au 31 Décembre 1998, le dispositif Périssol a été prorogé jusqu'au 31 Août 1999
+    2019-01-01:
+    - title: Prévu initialement jusqu'au 31 Décembre 2019, le dispositif Cosse a été prorogé jusqu'au 31 Décembre 2022
+  order:
+  - plafond
+  - taux_droit_commun
+  - logements_neufs
+  - logements_anciens
+documentation: |-
+  Notes:
+  (1) Déficits fonciers: Le plafond des déficits fonciers imputables aux autres revenus est prévu depuis 1993 et est codifié au 3° du I de l'article 156 du code général des impôts (CGI).
+  (2) Déduction forfaitaire en droit commun: La déduction forfaitaire des revenus fonciers bruts en droit commun est prévu depuis 1979 jusqu'à 2006 et est codifiée au j du 1° du I de l'article 31 du CGI.
+  (3) Dispositif Périssol: Les logements éligibles sont ceux ayant été achetés neufs ou réhabilités entre le 1er Janvier 1996 et le 31 août 1999, à la condition d'être loué nu (non-meublé) à titre de résidence principale du locataire pour une durée minimale de 9 ans. Il n'y a pas de contraintes de loyer ou de ressources des locataires. CGI - art. 31 I-1° f
+  (4) Dispositif Besson neuf: Les logements éligibles sont ceux ayant été achetés neufs ou réhabilités entre le 1er Janvier 1999 et le 02 avril 2003, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 9 ans, avec des plafonnements de loyer en fonction de la zone géographique et de la superficie du bien. Les particuliers éligibles à ces locations doivent avoir des revenus en dessous d'un certain plafond et ne peuvent être des ascendants ou descendants du propriétaire. CGI - art 31 I-1° g
+  (5) Dispositif Robien: Les logements éligibles au dispositif Robien "classique" sont ceux ayant été achetés neufs ou réhabilités entre le 03 avril 2003 et le 31 août 2006, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 9 ans, avec des plafonnements de loyer en fonction de la zone géographique et de la superficie du bien.
+  (6) Dispositif Robien recentré: Le dispositif Robien "recentré" s'applique pour les opérations survenues entre le 1er Septembre 2006 et le 31 Décembre 2009 selon les mêmes conditions que le Robien "classique". Le dispositif additionnel Borloo neuf permet s'applique si les conditions de plafonnement des loyers sont plus restrictives et avec des locataires éligibles selon leurs revenus. CGI - art. 31 I-1° h
+  (7) Dispositif Scellier: Le dispositif Scellier se décompose entre les logements labellisés Bâtiment Basse Consommation (BBC) et les non-BBC, avec des différences de taux d'amortissement selon l'année de construction ou d'obtention du permis de construire, avec un plafonnement des loyers. De plus, il est doublé d'un dispositif Scellier "intermédiaire" aussi appelé "social" permettant de continuer l'amortissement sur 6 années supplémentaires, avec des contraintes de plafonnement des loyers plus exigeantes ainsi que des revenus des locataires encadrés. Les logements éligibles pour ces 2 versions du dispositif sont des logements neufs du 1er janvier 2009 au 31 décembre 2012 en location nue à usage d’habitation principale du locataire pour une durée minimale fixée à neuf ans, à une personne autre qu'un membre de leur foyer fiscal. CGI - art 199 septvicies pour les conditions et la réduction d'impôt et CGI - art. 31 I-1° l pour les déductions des revenus fonciers.
+  (8) Dispositif Besson ancien: Le régime Besson ancien ne concerne que les propriétés urbaines situées en France, dans des logements anciens, pour des baux renouvelés ou reconduits entre le 1er janvier 1999 et le 31 août 2006, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 6 ans, reconductibles 3 ans. Les particuliers éligibles à ces locations doivent avoir des revenus en dessous d'un certain plafond et ne peuvent être des ascendants ou descendants du propriétaire. CGI - art. 31 I-1° j
+  (9) Dispositif Borloo ancien: Le dispositif Borloo ancien concerne des baux de location conventionnés par l'Anah, entre le 1er Octobre 2006 et le 1er Janvier 2017, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 6 ans, reconductibles 3 ans. Les particuliers éligibles à ces locations doivent avoir des revenus en dessous d'un certain plafond et ne peuvent être des ascendants ou descendants du propriétaire. Il existe plusieurs secteurs de conventionnement Anah, à savoir secteur intermédiaire, social et très social, avec des restrictions croissantes en termes de plafonnement de loyer et d'encadrement du revenu des locataires. De plus, louer à un organisme public ou privé qui lui-même sous-loue ou héberge des personnes en grande difficulté (personnes mentionnées au II de l'article L. 301-1 du CCH) amène à une déduction spécifique de 70%.
+  (10) Dispositif Cosse:  Le dispositif Cosse concerne des baux de location conventionnés par l'Anah, entre le 1er Janvier 2017 et le 31 Décembre 2022, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 6 ans, reconductibles 3 ans. Les particuliers éligibles à ces locations doivent avoir des revenus en dessous d'un certain plafond et ne peuvent être des ascendants ou descendants du propriétaire. Il existe plusieurs secteurs de conventionnement Anah, à savoir secteur intermédiaire, social et très social, avec des restrictions croissantes en termes de plafonnement de loyer et d'encadrement du revenu des locataires. Les déductions dépendent des zones géographiques dans lesquelles sont situés les logements, et sont plus élevées dans les zones où le marché locatif est le plus tendu. L'intermédiation locative, c'est à dire la location à un tiers à destination de ménages en précarité, permet une déduction fiscale de 85 %, indépendamment de la zone géographique.

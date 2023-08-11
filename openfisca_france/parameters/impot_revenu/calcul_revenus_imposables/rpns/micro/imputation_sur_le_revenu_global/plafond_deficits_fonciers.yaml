@@ -1,4 +1,4 @@
-description: Déficit foncier art 156-I-3 du CGI
+description: Plafond (déficits fonciers) de l'Imputation sur le revenu global pour les régimes micro-entreprise et microfoncier
 values:
   1992-01-01:
     value: 50000
@@ -7,6 +7,26 @@ values:
   2001-01-01:
     value: 10700
 metadata:
+  short_label: Plafond (déficits fonciers)
+  ipp_csv_id: plaf_def_fonc
   unit: currency
   reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+    1992-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1995-01-01:
+      title: Loi 95-1346 du 30/12/1995 (LF pour 1996)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000191068
+    2001-01-01:
+      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+  official_journal_date:
+    1992-01-01: "1992-12-31"
+    1995-01-01: "1995-12-31"
+    2001-01-01: "2001-12-29"
+  notes:
+    1998-01-01:
+    - title: Création du régime microfoncier
+documentation: |-
+  Notes :
+  Plafond déficits fonciers : art. 156-I-3° du CGI

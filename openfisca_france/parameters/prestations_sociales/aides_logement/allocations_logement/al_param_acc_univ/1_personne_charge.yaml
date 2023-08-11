@@ -9,8 +9,8 @@ values:
   1992-07-01:
     value: 2.5
 metadata:
-  ux_name: 1 personne à charge
-  description_en: Parameters for new home-buyers and students residences
+  short_label: 1 personne à charge
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: n_1enf
   unit: /1
   reference:

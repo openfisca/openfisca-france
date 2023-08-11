@@ -1,0 +1,5 @@
+description: Plafond de la réduction d'impôt
+metadata:
+  order:
+  - plaf_personne_seule
+  - plaf_couple

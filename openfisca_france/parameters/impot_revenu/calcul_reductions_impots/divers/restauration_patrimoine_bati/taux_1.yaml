@@ -1,0 +1,13 @@
+description: Taux 1 de la réduction d'impôts pour travaux de restauration immobilière (patrimoine bâti)
+values:
+  2009-01-01:
+    value: 0.3
+  2011-01-01:
+    value: 0.27
+  2012-01-01:
+    value: 0.22
+metadata:
+  short_label: Taux 1
+  ipp_csv_id: tx_restauimmo1
+  unit: /1
+documentation: "Travaux de restauration complète d’un immeuble bâti (réduction d'impôt « Malraux ») : art. 199 tervicies du CGI. Loi 2016-1918, art. 40 du 29/12/2016 sur le plafond."

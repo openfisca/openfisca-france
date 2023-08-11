@@ -1,0 +1,31 @@
+description: Taux pour logement situé dans un quartier prioritaire (QP) de la réduction d'impôt sur 5 ans en cas de location nue (minimum 5 ans) pour les investissements réalisés en Outre-Mer (2003-2021)
+values:
+  2003-01-01:
+    value: 0.1
+  2011-01-01:
+    value: 0.072
+  2012-01-01:
+    value: null
+metadata:
+  short_label: Taux quartier prioritaire
+  ipp_csv_id: taux_quartier_reduc_invest_locnue_outremer
+  unit: /1
+  reference:
+    2003-01-01:
+      title: Loi n° 2003-660 du 21 juillet 2003 de programme pour l'outre-mer
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000005634796&dateTexte=20180626
+    2011-01-01:
+      title: Loi n° 2010-1657 du 29 décembre 2010 (LF 2011), art.105
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=JORFARTI000023315142&categorieLien=id&cidTexte=JORFTEXT000023314376&dateTexte=
+    2012-01-01:
+      title: Loi n° 2011-1977 du 28 décembre 2011 (LF 2012), art.83
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=JORFARTI000025045123&categorieLien=id&cidTexte=JORFTEXT000025044460&dateTexte=
+  official_journal_date:
+    2003-01-01: "2003-07-22"
+    2011-01-01: "2010-12-30"
+    2012-01-01: "2011-12-29"
+  notes:
+    2011-01-01:
+    - title: Rabot de 10% des réductions fiscales
+    2012-01-01:
+    - title: Rabot de 15% des réductions fiscales

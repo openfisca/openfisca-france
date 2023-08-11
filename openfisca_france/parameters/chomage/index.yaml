@@ -1,6 +1,6 @@
 description: Allocations chômage
 metadata:
-  ux_name: Allocations chômage
+  short_label: Allocations chômage
   order:
   - allocations_assurance_chomage
   - allocations_chomage_solidarite

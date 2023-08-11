@@ -1,0 +1,238 @@
+- period: 2022-01-01
+  name: PER Cas No 1 - Célibataire recevant le RSA
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+      rsa:
+        2022-06: 900
+    individus:
+      parent1:
+        age: 40
+  output:
+    eligibilite_per:
+      2022: true
+    eligibilite_per_ppa:
+      2022: false
+    prime_exceptionnelle_rentree_non_etudiant:
+      2022: 100
+
+- period: 2022-01-01
+  name: PER Cas No 2 - Célibataire recevant le RSA avec un enfant
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+      rsa:
+        2022-06: 900
+    individus:
+      parent1:
+        age: 40
+      enfant1:
+        age: 10
+  output:
+    eligibilite_per:
+      2022: true
+    eligibilite_per_ppa:
+      2022: false
+    prime_exceptionnelle_rentree_non_etudiant:
+      2022: 150
+
+- period: 2022-01-01
+  name: PER Cas No 3 - Célibataire recevant la prime d'activité
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+      rsa:
+        2022-06: 0
+      apl:
+        2022-06: 0
+      als:
+        2022-06: 0
+      alf:
+        2022-06: 0
+      aspa:
+        2022-06: 0
+      ppa:
+        2022-06: 500
+    individus:
+      parent1:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 0
+  output:
+    eligibilite_per:
+      2022: false
+    eligibilite_per_ppa:
+      2022: true
+    prime_exceptionnelle_rentree_non_etudiant:
+      2022: 28
+
+- period: 2022-01-01
+  name: PER Cas No 4 - Célibataire recevant la prime d'activité avec un enfant
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+      rsa:
+        2022-06: 0
+      apl:
+        2022-06: 0
+      als:
+        2022-06: 0
+      alf:
+        2022-06: 0
+      aspa:
+        2022-06: 0
+      ppa:
+        2022-06: 500
+    individus:
+      parent1:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 0
+      enfant1:
+        age: 10
+  output:
+    eligibilite_per:
+      2022: false
+    eligibilite_per_ppa:
+      2022: true
+    prime_exceptionnelle_rentree_non_etudiant:
+      2022: 42
+
+- period: 2022-01-01
+  name: PER Cas No 5 - Célibataire recevant la prime d'activité et l'AAH
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+      rsa:
+        2022-06: 0
+      apl:
+        2022-06: 0
+      als:
+        2022-06: 0
+      alf:
+        2022-06: 0
+      aspa:
+        2022-06: 0
+      ppa:
+        2022-06: 500
+    individus:
+      parent1:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 800
+  output:
+    eligibilite_per:
+      2022: true
+    eligibilite_per_ppa:
+      2022: false
+    prime_exceptionnelle_rentree_non_etudiant:
+      2022: 100
+
+
+- period: 2022-01-01
+  name: PER Cas No 6 - Couple (dont un adulte étudiant boursier) percevant le RSA
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1, parent2]
+      rsa:
+        2022-06: 500
+      apl:
+        2022-06: 0
+      als:
+        2022-06: 0
+      alf:
+        2022-06: 0
+      aspa:
+        2022-06: 0
+      ppa:
+        2022-06: 0
+    individus:
+      parent1:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 0
+      parent2:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 0
+        bourse_enseignement_sup:
+          2022-06: 100
+  output:
+    prime_exceptionnelle_rentree_non_etudiant:
+      2022: 100
+    prime_exceptionnelle_rentree_etudiant:
+      2022: [0, 0]
+
+- period: 2022-01-01
+  name: PER Cas No 7 - Couple éligible au RSA avec un enfant à charge boursier
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      rsa:
+        2022-06: 500
+      apl:
+        2022-06: 0
+      als:
+        2022-06: 0
+      alf:
+        2022-06: 0
+      aspa:
+        2022-06: 0
+      ppa:
+        2022-06: 0
+    individus:
+      parent1:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 0
+      parent2:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 0
+      enfant1:
+        age: 18
+        bourse_enseignement_sup:
+          2022-06: 100
+  output:
+    prime_exceptionnelle_rentree_etudiant:
+      2022: [0, 0, 100]
+    prime_exceptionnelle_rentree_non_etudiant:
+      2022: 100

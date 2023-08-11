@@ -17,8 +17,9 @@ values:
   1973-03-01:
     value: 0.0315
 metadata:
-  ux_name: Taux employeur (hors A-M)
-  description_en: SSCs for artists (1960-1974)
+  short_label: Taux employeur (hors A-M)
+  last_value_still_valid_on: "1973-01-01"
+  label_en: SSCs for artists (1960-1974)
   ipp_csv_id: acc_a_p_0_1
   unit: /1
   reference:
@@ -50,7 +51,6 @@ metadata:
   notes:
     1972-01-01:
     - title: Modification de la cotisation accident du travail.
-  last_review: "1973-01-01"
 documentation: |-
   Note générale :
   Les artistes et musiciens du spectacle bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1960 et 1974. A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

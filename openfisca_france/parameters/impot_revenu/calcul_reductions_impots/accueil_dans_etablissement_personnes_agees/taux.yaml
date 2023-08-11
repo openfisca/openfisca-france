@@ -1,0 +1,29 @@
+description: Taux de la réductions d'impôt pour dépenses d'accueil dans établissement pour les personnes âgées
+values:
+  1988-01-01:
+    value: null
+  1989-01-01:
+    value: 0.25
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_hebergante
+  unit: /1
+  reference:
+    1990-01-01:
+      title: Décret 91-883 du 09/09/1991 - art. 1 / JORF 10/09/1991
+    1991-01-01:
+      title: Loi 91-1322 du 30/12/1991 (LF pour 1992) - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006318134&cidTexte=JORFTEXT000000356342
+    1996-01-01:
+      title: Loi 96-1181 du 30/12/1996 (LF pour 1997) - art. 83
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006319737&cidTexte=JORFTEXT000000380034
+    1997-01-01:
+      title: Loi 97-1269 1997 du 30/12/1997 (LF pour 1998) - art. 90
+  official_journal_date:
+    1990-01-01: "1991-09-10"
+  notes:
+    1990-01-01:
+    - title: Applicable à partir des revenus 1989 (réductions communes aux art. 199 quaterdecies et quindecies du CGI)
+documentation: |-
+  Notes :
+  (1) Art. 199 quindecies du CGI : Réduction d'impôt accordée au titre de l'hébergement en établissement de long séjour ou en section de cure médicale

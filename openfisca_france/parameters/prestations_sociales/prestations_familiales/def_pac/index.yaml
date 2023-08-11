@@ -1,7 +1,7 @@
 description: Définition des personnes à charge pour les prestations familiales
 metadata:
-  ux_name: Définition des personnes à charge
-  description_en: Definition of dependants
+  short_label: Définition des personnes à charge
+  label_en: Definition of dependants
   order:
   - age_maximal_personnes_charge
   - age_max_pac_apprentissage_stage_formation_droit_aes

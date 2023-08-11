@@ -7,8 +7,8 @@ values:
   2018-01-01:
     value: 20550
 metadata:
-  ux_name: Un enfant
-  description_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
+  short_label: Un enfant
+  label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
   ipp_csv_id: clcmg_03ans_rev1_apres_2014
   unit: currency
   reference:

@@ -11,8 +11,8 @@ values:
   2017-01-01:
     value: null
 metadata:
-  ux_name: Taux sur toute rémunération
-  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  short_label: Taux sur toute rémunération
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   ipp_csv_id: mmid_ac_0_
   unit: /1
   reference:

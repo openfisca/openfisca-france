@@ -1,0 +1,8 @@
+description: Liste des départements membre de la région Corse
+values:
+  2015-01-16:
+    value:
+    - 2A
+    - 2B
+metadata:
+  unit: codes départements

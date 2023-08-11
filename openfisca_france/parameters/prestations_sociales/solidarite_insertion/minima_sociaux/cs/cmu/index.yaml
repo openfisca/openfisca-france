@@ -1,6 +1,6 @@
 description: Complémentaire santé solidaire (ex-CMU-C)
 metadata:
-  ux_name: Complém. santé solidaire
+  short_label: Complém. santé solidaire
   notes:
     0001-01-01:
     - title: La couverture maladie universelle complémentaire (CMU-C) a été remplacée par la complémentaire santé solidaire (C2S).

@@ -1,0 +1,5 @@
+description: Réduction d'impôt sur les frais de comptabilité et d'adhésion CGA
+metadata:
+  short_label: Frais comptabilité et CGA
+  order:
+  - plafond

@@ -44,7 +44,7 @@
     ppe: 0.0
     rbg: 45000.0
     reductions: 1185.0
-    resimm: 1185.0
+    restauration_patrimoine_bati: 1185.0
     rfr: 45000.0
     rni: 45000.0
 - name: reduc_malraux
@@ -92,7 +92,7 @@
     nbptr: 1.0
     rbg: 45000.0
     reductions: 1185.0
-    resimm: 1185.0
+    restauration_patrimoine_bati: 1185.0
     rfr: 45000.0
     rni: 45000.0
 - name: reduc_malraux
@@ -138,7 +138,7 @@
     nbptr: 1.0
     rbg: 45000.0
     reductions: 780.0
-    resimm: 780.0
+    restauration_patrimoine_bati: 780.0
     rfr: 45000.0
     rni: 45000.0
 - name: reduc_malraux
@@ -182,7 +182,7 @@
     iai: 7079.0
     irpp: -7079.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 714.0
     rfr: 45000.0
@@ -228,7 +228,7 @@
     # iai: 5864.0
     # irpp: -5864.0
     # nbptr: 1.0
-    # patnat: 0.0
+    # protection_patrimoine_naturel: 0.0
     # rbg: 45000.0
     reductions: 1642.0
     rfr: 45000.0

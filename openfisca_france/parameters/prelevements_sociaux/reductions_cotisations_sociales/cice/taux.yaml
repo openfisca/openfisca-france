@@ -11,8 +11,9 @@ values:
   2019-01-01:
     value: null
 metadata:
-  ux_name: Taux
-  description_en: Tax credit for competitivness and employment (CICE)
+  short_label: Taux
+  last_value_still_valid_on: "2018-01-01"
+  label_en: Tax credit for competitivness and employment (CICE)
   ipp_csv_id: cice_tx
   unit: /1
   reference:
@@ -40,7 +41,6 @@ metadata:
   notes:
     2019-01-01:
     - title: Abrogation et remplacement par un allègement de cotisations employeur
-  last_review: "2018-01-01"
 documentation: |-
   Note :
   Formellement le CICE est une réduction de l'impôt sur les sociétés (IS) calculée en proportion des salaires versées par l'entreprise en dessous du plafond.

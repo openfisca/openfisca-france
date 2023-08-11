@@ -11,8 +11,9 @@ values:
   1998-01-01:
     value: 0.01
 metadata:
-  ux_name: Régimes complémentaires
-  description_en: Special SSC on pension benefits for sickness insurance
+  short_label: Régimes complémentaires
+  last_value_still_valid_on: "1998-01-01"
+  label_en: Special SSC on pension benefits for sickness insurance
   ipp_csv_id: mmid_ret_comp
   unit: /1
   reference:
@@ -37,7 +38,6 @@ metadata:
     1996-01-01: "1995-12-31"
     1997-01-01: "1996-12-29"
     1998-01-01: "1997-12-30"
-  last_review: "1998-01-01"
 documentation: |-
   Sources :
   Direction de la sécurité sociale (DSS), note pour le conseil d'orientation des retraites. Référence DSS/5B/FMM/13/04/06

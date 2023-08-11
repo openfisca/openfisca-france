@@ -8,30 +8,32 @@
 [![Gitpod](https://camo.githubusercontent.com/1eb1ddfea6092593649f0117f7262ffa8fbd3017/68747470733a2f2f676974706f642e696f2f627574746f6e2f6f70656e2d696e2d676974706f642e737667)](https://gitpod-referer.now.sh/api/gitpod-referer-redirect)
 
 ## [EN] Introduction
+
 OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](https://openfisca.org/doc/) in English!
-> We host a public instance of of the [OpenFisca-France Web API](https://fr.openfisca.org/api/v24/). Learn more about its endpoint in the [Swagger documentation](https://fr.openfisca.org/legislation/swagger).
-> If you need to run large amount of calculations, or add extensions, you should [host your own instance](#servez-openfisca-france-avec-l-api-web-openfisca).
+> We host a public instance of of the [OpenFisca-France Web API](https://api.fr.openfisca.org/latest/). Learn more about its endpoint in the [Swagger documentation](https://legislation.fr.openfisca.org/swagger).
+> If you need to run large amount of calculations, or add extensions, you should [host your own instance](#servez-openfisca-france-avec-lapi-web-openfisca).
 
 ## [FR] Introduction
+
 [OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https://openfisca.org/doc/).
-> Nous mettons à disposition une instance publique de [l'API Web OpenFisca-France](https://fr.openfisca.org/api/v24/). Découvrez ses capacité sur sa [documentation Swagger](https://fr.openfisca.org/legislation/swagger).
-> Si vous avez besoin de réaliser un grand nombre de calculs ou d'ajouter des extensions, vous pouvez [servir votre propre instance](#servez-openfisca-france-avec-l-api-web-openfisca).
+> Nous mettons à disposition une instance publique de [l'API Web OpenFisca-France](https://api.fr.openfisca.org/latest/). Découvrez ses capacité sur sa [documentation Swagger](https://legislation.fr.openfisca.org/swagger).
+> Si vous avez besoin de réaliser un grand nombre de calculs ou d'ajouter des extensions, vous pouvez [servir votre propre instance](#servez-openfisca-france-avec-lapi-web-openfisca).
 
 ## API Web publique : interrogez OpenFisca-France sans installation
 
 OpenFisca met à disposition une [API Web publique](https://openfisca.org/doc/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
 Utilisez l'API publique si vous souhaitez :
-- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://fr.openfisca.org/api/v24/parameter/marche_travail.salaire_minimum.smic_h_b)) ;
-- consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://fr.openfisca.org/api/v24/variable/af_base)) ;
+- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://api.fr.openfisca.org/latest/parameter/marche_travail.salaire_minimum.smic.smic_b_horaire)) ;
+- consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://api.fr.openfisca.org/latest/variable/af_base)) ;
 - faire des calculs sur une situation (Ex : le calcul du coût du travail).
 
-L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://fr.openfisca.org/legislation/swagger).
+L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://legislation.fr.openfisca.org/swagger).
 
-[L'explorateur de législation](https://legislation.openfisca.fr/) contient la liste des paramètres et variables disponibles.
+[L'explorateur de législation](https://legislation.fr.openfisca.org/swagger) contient la liste des paramètres et variables disponibles.
 
 ## Installation
 
-Ce paquet requiert [Python 3.7](https://www.python.org/downloads/release/python-370/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [conda](https://www.anaconda.com/products/individual).
+Ce paquet requiert [Python 3.9](https://www.python.org/downloads/release/python-390/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [conda](https://www.anaconda.com/products/individual).
 
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
@@ -50,7 +52,7 @@ Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.
 Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions :
 
 ```sh
-python --version # Python 3.7.0 ou plus récent devrait être installé sur votre ordinateur.
+python --version # Python 3.9.0 ou plus récent devrait être installé sur votre ordinateur.
 # Si non, téléchargez-le sur http://www.python.org et téléchargez pip.
 ```
 
@@ -58,10 +60,10 @@ python --version # Python 3.7.0 ou plus récent devrait être installé sur votr
 pip install --upgrade pip
 pip install pew
 ```
-Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python 3.7 :
+Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python 3.9 :
 
 ```sh
-pew new openfisca --python=python3.7
+pew new openfisca --python=python3.9
 # Si demandé, répondez "Y" à la question sur la modification du fichier de configuration de votre shell
 ```
 Le  _virtualenv_  **openfisca** sera alors activé, c'est-à-dire que les commandes suivantes s'exécuteront directement dans l'environnement virtuel. Vous verrez dans votre terminal :
@@ -94,8 +96,8 @@ Pour pouvoir modifier OpenFisca-France, consultez l'[Installation avancée](#b-i
 Dans votre _virtualenv_, vérifiez les pré-requis :
 
 ```sh
-python --version  # Devrait afficher "Python 3.7.xx".
-#Si non, vérifiez que vous passez --python=python3.7 lors de la création de votre environnement virtuel.
+python --version  # Devrait afficher "Python 3.9.xx".
+#Si non, vérifiez que vous passez --python=python3.9 lors de la création de votre environnement virtuel.
 ```
 
 ```sh
@@ -136,12 +138,12 @@ Dans votre _virtualenv_, assurez-vous que vous êtes dans le répertoire où vou
 Vérifiez les pré-requis :
 
 ```sh
-python --version  # Devrait afficher "Python 3.7.xx".
-#Si non, vérifiez que vous passez --python=python3.7 lors de la création de votre environnement virtuel.
+python --version  # Devrait afficher "Python 3.9.xx".
+#Si non, vérifiez que vous passez --python=python3.9 lors de la création de votre environnement virtuel.
 ```
 
 ```sh
-pip --version  # Devrait afficher au moins 9.0.
+pip --version  # Devrait afficher au moins 23.0.
 #Si non, exécutez "pip install --upgrade pip".
 ```
 
@@ -175,7 +177,7 @@ Voici les étapes à suivre :
 - Depuis le menu démarrer, exécuter `Anaconda Powershell Prompt`. Ou utiliser votre shell préféré avec Miniconda, il vous faudra peut-être utiliser la commande `conda init`, mais conda vous le dira.
 - Exécuter les commandes suivantes dans le shell:
   - Ajouter `conda-forge` comme channel par défaut : `conda config --add channels conda-forge && conda config --set channel_priority strict `
-  - Créer un environnement virtuel dédié : `conda create --name openfisca python=3.7`
+  - Créer un environnement virtuel dédié : `conda create --name openfisca python=3.9`
   - Activer l'environnement : `conda activate openfisca`
   - Installer OpenFisca : `conda install openfisca-france`
 
@@ -186,6 +188,8 @@ Ensuite, pour quitter l'environnement OpenFisca : `conda deactivate`
 Pour y revenir : `conda activate openfisca`
 
 A noter que OpenFisca-France est présent sur [conda-forge](https://anaconda.org/conda-forge/openfisca-france) et sur un _channel_ dédié [openfisca](https://anaconda.org/openfisca/openfisca-france). C'est conda-forge qui est mis en avant dans cette documentation, car accessible par défaut dans les installations Anaconda.
+
+A noter que l'installation d'Openfisca-France peut lever une erreur sur certaines machines Windows à cause de la longueur des chemins de certains fichiers de paramètres et des restrictions de longueur de chemin sous Windows. Une option possible pour résoudre ce problème est de lever cette limite (voir cette documentation pour [Windows >=10](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry#enable-long-paths-in-windows-10-version-1607-and-later))
 
 #### Prochaines étapes
 
@@ -243,13 +247,13 @@ Pour en savoir plus sur la commande `openfisca serve` et ses options, consultez 
 Testez votre installation en requêtant la commande suivante :
 
 ```sh
-curl "http://localhost:5000/parameter/marche_travail.salaire_minimum.smic_h_b"
+curl "http://localhost:5000/parameter/marche_travail.salaire_minimum.smic.smic_b_horaire"
 ```
 Vous devriez avoir le resultat suivant :
 ```JSON
 {
   "description": "SMIC horaire brut",
-  "id": "marche_travail.salaire_minimum.smic_h_b",
+  "id": "marche_travail.salaire_minimum.smic.smic_b_horaire",
   "values": {
     "2001-08-01": 6.67,
     "2002-07-01": 6.83,
@@ -277,7 +281,7 @@ Vous devriez avoir le resultat suivant :
 
 :tada: Vous servez OpenFisca-France via l'API Web OpenFisca !
 
-Pour en savoir plus, explorez [la documentation de l'API Web](https://fr.openfisca.org/legislation/swagger).
+Pour en savoir plus, explorez [la documentation de l'API Web](https://legislation.fr.openfisca.org/swagger).
 
 Vous pouvez activer le suivi des visites sur votre instance via Piwik avec _[le Tracker API OpenFisca](https://github.com/openfisca/tracker)_ (en anglais).
 

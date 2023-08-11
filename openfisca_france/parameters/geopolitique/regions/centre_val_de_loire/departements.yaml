@@ -1,0 +1,12 @@
+description: Liste des départements membre de la région Centre Val de Loire
+values:
+  2015-01-16:
+    value:
+    - "18"
+    - "28"
+    - "36"
+    - "37"
+    - "41"
+    - "45"
+metadata:
+  unit: codes départements

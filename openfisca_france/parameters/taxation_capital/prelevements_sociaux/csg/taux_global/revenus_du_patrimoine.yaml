@@ -1,4 +1,4 @@
-description: Taux sur les revenus du patrimoine de la Contribution Sociale Généralisée (CSG) sur les revenus du capital
+description: Taux sur les revenus du patrimoine de la contribution sociale généralisée (CSG) sur les revenus du capital
 values:
   1990-07-01:
     value: 0.011
@@ -15,8 +15,9 @@ values:
   2018-01-01:
     value: 0.092
 metadata:
-  ux_name: Revenus du patrimoine
-  description_en: CSG and CRDS on financial income
+  short_label: Revenus du patrimoine
+  last_value_still_valid_on: "2019-01-01"
+  label_en: CSG and CRDS on financial income
   ipp_csv_id: tx_csg_rk_patr
   unit: /1
   reference:
@@ -58,7 +59,6 @@ metadata:
   notes:
     1996-01-01:
     - title: Crée art. 154 quinquies du CGI
-  last_review: "2019-01-01"
 documentation: |-
   Notes: Ici (4) et (5)
   En ce qui concerne l'assiette CSG, l'abattement sur l'impôt sur le revenu est appliqué, jusqu'à sa suppression en 1997.

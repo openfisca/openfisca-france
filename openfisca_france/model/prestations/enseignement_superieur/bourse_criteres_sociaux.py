@@ -1,6 +1,7 @@
 from openfisca_core.model_api import not_, select, where, Variable, MONTH, set_input_divide_by_period, set_input_dispatch_by_period
 from openfisca_france.model.base import Famille, Individu, TypesStatutMarital
 from openfisca_france.model.prestations.education import TypesScolarite, StatutsEtablissementScolaire
+from openfisca_france.model.prestations.education import TypesClasse
 
 
 class bourse_criteres_sociaux(Variable):
@@ -17,7 +18,6 @@ class bourse_criteres_sociaux(Variable):
     def formula(individu, period, parameters):
         montants = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.montants
         echelon = individu('bourse_criteres_sociaux_echelon', period)
-
         return montants.calc(echelon)
 
 
@@ -40,7 +40,11 @@ class bourse_criteres_sociaux_eligibilite_etude(Variable):
         etablissement = individu('statuts_etablissement_scolaire', period)
         etablissement_eligible = (etablissement == StatutsEtablissementScolaire.public) + (etablissement == StatutsEtablissementScolaire.prive_sous_contrat)
 
-        return enseignement_superieur * temps_plein * etablissement_eligible
+        annee_etude_individus = individu('annee_etude', period)
+        annees_etude_doctorat = [TypesClasse.doctorat_1, TypesClasse.doctorat_2, TypesClasse.doctorat_3]
+        doctorant = sum([annee_etude_individus == annee_doctorat for annee_doctorat in annees_etude_doctorat])
+
+        return enseignement_superieur * temps_plein * etablissement_eligible * not_(doctorant)
 
 
 class bourse_criteres_sociaux_eligibilite_nationalite(Variable):
@@ -213,9 +217,11 @@ class bourse_criteres_sociaux_etudiant_autonome(Variable):
         propre_declaration_fiscale = not_(individu('enfant_a_charge', period.this_year))
         avec_des_enfants = individu.famille('bourse_criteres_sociaux_nombre_enfants_parent_etudiant', period) > 0
 
-        eligible_etudiant_parent_isole = is_parent * propre_declaration_fiscale * avec_des_enfants
+        eligible_etudiant_parent = is_parent * propre_declaration_fiscale * avec_des_enfants
 
-        return eligible_couple + eligible_etudiant_parent_isole
+        orphelin = individu('orphelin', period)
+
+        return eligible_couple + eligible_etudiant_parent + orphelin
 
 
 class bourse_criteres_sociaux_points_de_charge(Variable):

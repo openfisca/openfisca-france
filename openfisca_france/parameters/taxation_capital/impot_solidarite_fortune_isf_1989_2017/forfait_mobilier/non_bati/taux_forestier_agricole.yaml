@@ -1,0 +1,8 @@
+description: Taux pour les groupements forestiers-agricoles fonciers, ISF-IFI sur l'immobilier non-bâti
+values:
+  2002-01-01:
+    value: 0.5
+  2018-01-01:
+    value: null
+metadata:
+  unit: /1

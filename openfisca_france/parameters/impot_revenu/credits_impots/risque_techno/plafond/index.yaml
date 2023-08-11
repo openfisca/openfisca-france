@@ -1,0 +1,6 @@
+description: Plafond de dépenses par logement sur 5 années consécutives du crédit d'impôt pour les dépenses de prévention des risques technologiques (2005-)
+metadata:
+  short_label: Plafonds
+  order:
+  - plafond_avant_2015
+  - plafond_apres_2015

@@ -27,8 +27,9 @@ values:
   2021-01-01:
     value: 0.0295
 metadata:
-  ux_name: Val de Marne
-  description_en: Transport tax (VT) (contribution to public transports)
+  short_label: Val de Marne
+  last_value_still_valid_on: "2021-12-07"
+  label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_94
   unit: /1
   reference:
@@ -91,7 +92,6 @@ metadata:
   notes:
     1971-09-01:
     - title: Le VT est instauré uniquement pour Paris, le 92 et le 94.
-  last_review: "2021-12-07"
 documentation: |-
   Notes :
   (i) Le versement transport est recouvré par les URSSAF comme les cotisations de Sécurité sociale, et reversé aux collectivités locales.

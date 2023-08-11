@@ -1,10 +1,11 @@
-description: Montant pour une personne seule de l'Aide exceptionnelle de fin d'année (AEFA)
+description: Montant de base l'aide pour une personne seule - Aide exceptionnelle de fin d'année (AEFA)
 values:
   2003-12-30:
     value: 152.45
 metadata:
-  ux_name: Montant seul
-  description_en: "Exceptional end-of-year benefit (AEFA): amount"
+  short_label: Montant de base pour une personne seule
+  last_value_still_valid_on: "2021-09-28"
+  label_en: "Exceptional end-of-year benefit (AEFA): amount"
   unit: currency
   reference:
     2003-12-30:
@@ -15,7 +16,6 @@ metadata:
   notes:
     2003-01-01:
     - title: Idem en 2017
-  last_review: "2021-09-28"
 documentation: |-
   Notes :
   La prime existe depuis 1988 mais nous n'avons pu remonter que jusqu'à 2003

@@ -3,7 +3,7 @@ values:
   2014-01-20:
     value: 64
 metadata:
-  ux_name: Seuil maximal d'intensité de formation mensuelle
+  short_label: Seuil maximal d'intensité de formation mensuelle
   reference:
     2014-01-20:
       href: http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20

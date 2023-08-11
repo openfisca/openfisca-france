@@ -1,0 +1,10 @@
+description: Plafonnement des effets du quotient familial
+metadata:
+  short_label: Plafonnement QF
+  order:
+  - enfant_majeur_celibataire
+  - general
+  - celib_enf
+  - celib
+  - reduc_postplafond
+  - reduc_postplafond_veuf

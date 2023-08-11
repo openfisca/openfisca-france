@@ -600,12 +600,11 @@ class aide_logement_base_ressources_individu(Variable):
 
         frais_reels = individu('frais_reels', period_frais)
 
-        abatpro = parameters(period.last_year).impot_revenu.calcul_revenus_imposables.tspr.abatpro
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abatpro.min), abatpro.max))
+        P = parameters(period.last_year).impot_revenu.calcul_revenus_imposables.deductions
+        abattement_forfaitaire = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
-        #rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
         rpns_pvct = individu('rpns_pvct', period.n_2)
         rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
@@ -619,8 +618,8 @@ class aide_logement_base_ressources_individu(Variable):
         retraite_imposable = individu('retraite_imposable', annee_glissante, options=[ADD])
         pension_invalidite = individu('pensions_invalidite', period.n_2, options = [ADD])
         revenu_assimile_pension = pensions_alimentaires_percues + retraite_imposable + pension_invalidite
-        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpen
-        revenu_assimile_pension = max_(0, revenu_assimile_pension - round_(max_(abatpen.taux * revenu_assimile_pension, abatpen.min)))
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
+        revenu_assimile_pension = max_(0, revenu_assimile_pension - round_(max_(P.taux_salaires_pensions * revenu_assimile_pension, P.abatpen.min)))
 
         abattement_revenus_activite_professionnelle = individu('aide_logement_abattement_revenus_activite_professionnelle', period)
         abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
@@ -649,8 +648,8 @@ class aide_logement_base_ressources_individu(Variable):
 
         frais_reels = individu('frais_reels', period.n_2)
 
-        abatpro = parameters(period.n_2).impot_revenu.calcul_revenus_imposables.tspr.abatpro
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abatpro.min), abatpro.max))
+        P = parameters(period.n_2).impot_revenu.calcul_revenus_imposables.deductions
+        abattement_forfaitaire = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
@@ -692,9 +691,9 @@ class aide_logement_base_ressources_individu(Variable):
         chomeur_longue_duree = individu('chomeur_longue_duree', period, options = [DIVIDE])
         frais_reels = individu('frais_reels', period.n_2)
 
-        abatpro = parameters(period.n_2).impot_revenu.calcul_revenus_imposables.tspr.abatpro
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+        P = parameters(period.n_2).impot_revenu.calcul_revenus_imposables.deductions
+        abattement_minimum = where(chomeur_longue_duree, P.abatpro.min2, P.abatpro.min)
+        abattement_forfaitaire = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, abattement_minimum), P.abatpro.max))
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
@@ -783,12 +782,12 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         def eval_forfaitaire_salaries():
             salaire_imposable = individu('salaire_imposable', period.offset(-1))
             # Application de l'abattement pour frais professionnels
-            params_abattement = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpro
+            P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
             somme_salaires_mois_precedent = 12 * salaire_imposable
             montant_abattement = round_(
                 min_(
-                    max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
-                    params_abattement.max
+                    max_(P.taux_salaires_pensions * somme_salaires_mois_precedent, P.abatpro.min),
+                    P.abatpro.max
                     )
                 )
             return max_(0, somme_salaires_mois_precedent - montant_abattement)
@@ -1286,7 +1285,7 @@ class aide_logement_R0(Variable):
             + al.al_param_r0.r0.taux3pac * (al_nb_pac == 3)
             + al.al_param_r0.r0.taux4pac * (al_nb_pac == 4)
             + al.al_param_r0.r0.taux5pac * (al_nb_pac == 5)
-            + al.al_param_r0.r0.taux6pac * (al_nb_pac == 6)
+            + al.al_param_r0.r0.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
             + al.al_param_r0.r0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
@@ -1325,6 +1324,37 @@ class aide_logement_taux_famille(Variable):
             + al.al_loc2.tf.dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
             + al.al_loc2.tf.dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
             + al.al_loc2.tf.dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac >= 6)
+            )
+
+        return where(residence_dom, TF_dom, TF_metropole)
+
+    def formula_2023_01_01(famille, period, parameters):
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        couple = famille('al_couple', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+
+        TF_metropole = (
+            al.al_loc2.tf.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + al.al_loc2.tf.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + al.al_loc2.tf.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + al.al_loc2.tf.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + al.al_loc2.tf.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + al.al_loc2.tf.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
+            + al.al_loc2.tf.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            )
+
+        TF_dom = (
+            al.al_loc2.tf.dom.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + al.al_loc2.tf.dom.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + al.al_loc2.tf.dom.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + al.al_loc2.tf.dom.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + al.al_loc2.tf.dom.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + al.al_loc2.tf.dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
+            + al.al_loc2.tf.dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
+            + al.al_loc2.tf.dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac == 6)
+            + al.al_loc2.tf.dom.personnes_seules_couples_avec_7_enfants * (al_nb_pac >= 7)
+            + al.al_loc2.tf.dom.majoration_par_pac_supplementaire * (al_nb_pac > 7) * (al_nb_pac - 7)
             )
 
         return where(residence_dom, TF_dom, TF_metropole)

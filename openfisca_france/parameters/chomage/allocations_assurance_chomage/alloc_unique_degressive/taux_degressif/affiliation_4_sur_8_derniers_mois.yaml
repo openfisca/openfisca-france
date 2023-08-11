@@ -5,8 +5,8 @@ values:
   1997-01-01:
     value: null
 metadata:
-  ux_name: Affiliation de 4 mois au cours des 8 derniers mois
-  description_en: UI scheme - degressive schedule
+  short_label: Affiliation de 4 mois au cours des 8 derniers mois
+  label_en: UI scheme - degressive schedule
   unit: month
   reference:
     1993-01-01:

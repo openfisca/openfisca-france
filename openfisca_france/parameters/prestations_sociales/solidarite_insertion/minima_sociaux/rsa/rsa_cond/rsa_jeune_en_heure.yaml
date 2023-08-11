@@ -5,8 +5,9 @@ values:
   2010-09-01:
     value: 3214
 metadata:
-  ux_name: RSA jeune
-  description_en: "Active solidarity income (RSA): General conditions"
+  short_label: RSA jeune
+  last_value_still_valid_on: "2022-03-28"
+  label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: rsa_jeune_activite
   unit: hour
   reference:
@@ -30,5 +31,4 @@ metadata:
   notes:
     2009-06-01:
     - title: RSA créé par Loi 2008-1249 du 01/12/2008
-  last_review: "2022-03-28"
 documentation: Activité préalable pendant les 3 dernières années si non respect de la condition d'âge minimal ou d'enfant à charge. 3214 heures car cela correspond au nombre d'heures à temps plein sur une année multiplié par deux, 1607*2 = 3214

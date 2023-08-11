@@ -1,6 +1,7 @@
-description: Taux
+description: Taux de la déduction des souscriptions en faveur du cinéma ou de l'audiovisuel (case AA)
 values:
   1984-01-01:
     value: 0.25
 metadata:
+  short_label: Taux
   unit: /1

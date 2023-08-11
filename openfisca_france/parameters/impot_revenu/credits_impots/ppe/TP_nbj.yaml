@@ -1,0 +1,4 @@
+description: Nombre de jours pour un temps plein
+values:
+  2002-01-01:
+    value: 360

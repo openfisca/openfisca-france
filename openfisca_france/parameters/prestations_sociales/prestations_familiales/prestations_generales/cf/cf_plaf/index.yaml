@@ -1,7 +1,7 @@
 description: Plafonds de ressources du Complément familial (CF)
 metadata:
-  ux_name: Plafonds de ressources
-  description_en: "Family complement (CF): Extra allowances"
+  short_label: Plafonds de ressources
+  label_en: "Family complement (CF): Extra allowances"
   order:
   - plafond_ressources_0_enfant
   - majoration

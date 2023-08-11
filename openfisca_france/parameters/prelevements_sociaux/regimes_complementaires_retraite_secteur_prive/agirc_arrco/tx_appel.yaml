@@ -3,8 +3,9 @@ values:
   2019-01-01:
     value: 1.27
 metadata:
-  ux_name: Taux d'appel
-  description_en: Complementary pension contributions
+  short_label: Taux d'appel
+  last_value_still_valid_on: "2021-08-02"
+  label_en: Complementary pension contributions
   unit: /1
   reference:
     2019-01-01:
@@ -15,7 +16,6 @@ metadata:
   notes:
     2019-01-01:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
-  last_review: "2021-08-02"
 documentation: |-
   Notes :
   Le taux de cotisation est égal au taux de calcul des points multiplié par le taux d'appel.

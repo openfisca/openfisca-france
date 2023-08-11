@@ -5,8 +5,8 @@ values:
   1997-01-01:
     value: null
 metadata:
-  ux_name: Contribution sociale permanente (CNAF)
-  description_en: Other social levies on financial income
+  short_label: Contribution sociale permanente (CNAF)
+  label_en: Other social levies on financial income
   ipp_csv_id: tx_contri_cnaf
   unit: /1
   reference:

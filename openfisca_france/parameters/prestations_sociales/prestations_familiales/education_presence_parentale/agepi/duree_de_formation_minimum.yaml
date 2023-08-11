@@ -3,7 +3,7 @@ values:
   2014-01-20:
     value: 40
 metadata:
-  ux_name: Durée minimum de formation
+  short_label: Durée minimum de formation
   unit: month
   reference:
     2014-01-20:

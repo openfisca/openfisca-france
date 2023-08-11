@@ -37,7 +37,7 @@ brackets:
     1968-01-01:
       value: null
 metadata:
-  ux_name: Barème
+  short_label: Barème
   ipp_csv_id:
     threshold: vf_plaf1, vf_plaf2
     rate: vf1, vf_maj, vf_maj2

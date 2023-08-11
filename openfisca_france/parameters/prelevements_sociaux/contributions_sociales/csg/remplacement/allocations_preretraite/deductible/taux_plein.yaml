@@ -1,4 +1,4 @@
-description: Taux plein de la Contribution Sociale Généralisée (CSG) déductible sur les allocations de préretraite
+description: Taux plein de la contribution sociale généralisée (CSG) déductible sur les allocations de préretraite
 values:
   1991-02-01:
     value: null
@@ -11,7 +11,8 @@ values:
   2018-01-01:
     value: 0.068
 metadata:
-  ux_name: Taux plein
+  short_label: Taux plein
+  last_value_still_valid_on: "2021-07-22"
   ipp_csv_id: csg_pre_ded
   unit: /1
   reference:
@@ -44,7 +45,6 @@ metadata:
     1998-01-01: "1997-12-23"
     2005-01-01: "2004-08-17"
     2018-01-01: "2017-12-31"
-  last_review: "2021-07-22"
 documentation: |-
   Référence du Codes général des impôts :
   La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.

@@ -1,0 +1,9 @@
+description: Cotisations pour les prestations sociales des auto-entrepreneurs
+metadata:
+  short_label: Cotisations pour prestations sociales
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
+  order:
+  - vente
+  - service
+  - cipav
+documentation: Les cotisations sont exprimées en pourcentage du chiffre d'affaires

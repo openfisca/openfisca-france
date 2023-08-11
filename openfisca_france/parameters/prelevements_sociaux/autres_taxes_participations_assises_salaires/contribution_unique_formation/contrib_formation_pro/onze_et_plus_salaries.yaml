@@ -1,10 +1,11 @@
-description: Contribution à la formation professionnelle de la CUFPA, pour 11 salariés et plus - Autres taxes et participations assises sur les salaires
+description: Contribution à la formation professionnelle pour les employeurs de 11 salariés et plus
 values:
   2019-01-01:
     value: 0.01
 metadata:
-  ux_name: 11 salariés et plus
-  description_en: Unique employer's participation to lifelong professional training and apprenticeship
+  short_label: Employeur de 11 salariés et plus
+  last_value_still_valid_on: "2023-01-30"
+  label_en: Unique employer's participation to lifelong professional training and apprenticeship
   unit: /1
   reference:
     2019-01-01:

@@ -1,4 +1,4 @@
-description: Taux 1 adulte (sans personne à charge) du montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
+description: Abattement forfaitaire « R0 » pour une personne seule sans personne à charge, intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
 values:
   2015-01-01:
     value: 4544
@@ -9,10 +9,13 @@ values:
   2020-01-01:
     value: 4588
   2022-01-01:
-    value: 4683.0
+    value: 4683
+  2023-01-01:
+    value: 4949
 metadata:
-  ux_name: Personne seule sans personne à charge
-  description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
+  short_label: Personne seule sans personne à charge
+  last_value_still_valid_on: "2023-02-22"
+  label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   ipp_csv_id: r0_seul
   unit: currency
   reference:
@@ -31,6 +34,11 @@ metadata:
     2022-01-01:
       title: Arrêté du 20/12/2021, art. 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044572819
+    2023-01-01:
+    - title: Arrêté du 26/12/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046829580
+    - title: Article D823-17 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419255
   official_journal_date:
     2015-01-01: "2014-12-31"
     2016-01-01: "2016-01-22"

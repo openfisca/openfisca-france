@@ -15,8 +15,9 @@ values:
   2018-01-01:
     value: 0.009
 metadata:
-  ux_name: Taux employeur tout salaire
-  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+  short_label: Taux employeur tout salaire
+  last_value_still_valid_on: "2020-01-01"
+  label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   ipp_csv_id: acc_p_0_
   unit: /1
   reference:
@@ -58,7 +59,6 @@ metadata:
     - title: La date du passage du taux de 1,0 à 1,1% doit être vérifiée.
     2020-01-01:
     - title: Suppression du taux bureau, remplacé par le taux "Fonctions support de nature administrative" pour les entreprises en tarification collective ou mixte. Voir Notes.
-  last_review: "2020-01-01"
 documentation: |-
   Notes sur la tarification AT-MP :
   La tarification des risques accidents du travail et maladies professionnelles (AT-MP) est complexe: il existe un taux propre à chaque entreprise, variant avec la taille et les risques d'AT-MP de l'entreprise.

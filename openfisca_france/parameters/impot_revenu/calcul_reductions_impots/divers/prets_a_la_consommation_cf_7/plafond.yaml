@@ -1,9 +1,0 @@
-values:
-  2004-01-01:
-    value: 600
-  2006-01-01:
-    value: null
-metadata:
-  unit: currency
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/

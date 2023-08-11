@@ -1,4 +1,4 @@
-description: Plafond (en nombre de SMIC) des allégements Fillon ou allègements bas salaires (entreprises restées aux 39h hedbomadaires au 30/06/2003, depuis 2003) des cotisations de Sécurité sociale (SS)
+description: Plafond (en nombre de Smic) des allégements Fillon ou allègements bas salaires (entreprises restées aux 39h hedbomadaires au 30/06/2003, depuis 2003) des cotisations de Sécurité sociale (SS)
 values:
   2003-07-01:
     value: 1.5
@@ -7,10 +7,11 @@ values:
   2005-07-01:
     value: null
 metadata:
-  ux_name: Plafond
-  description_en: General SSC reductions, so called Fillon reductions (2003-2016)
+  short_label: Plafond
+  last_value_still_valid_on: "2021-11-19"
+  label_en: General SSC reductions, so called Fillon reductions (2003-2016)
   ipp_csv_id: plaf_trans_39
-  unit: SMIC
+  unit: smic_mensuel_brut
   reference:
     2003-07-01:
     - title: Loi 2003-47 du 17/01/2003, art. 9
@@ -32,7 +33,6 @@ metadata:
   notes:
     2003-07-01:
     - title: Loi dite Fillon
-  last_review: "2021-11-19"
 documentation: |-
   Notes :
   Le salaire de référence pour le calcul de l'allègement avant le 01/07/2005 pour les entreprises ayant signé un accord de RTT avant le 30/06/2003 est la GMR 2.

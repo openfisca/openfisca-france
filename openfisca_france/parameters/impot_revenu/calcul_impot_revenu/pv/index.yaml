@@ -1,0 +1,19 @@
+description: Imposition des plus-values (1979 -)
+metadata:
+  label_en: Taxation of capital gains (1979 -)
+  order:
+  - pv_cession_valeurs_mobilieres_pv_professionnelles
+  - pv_mobilieres_levees_options_attribuees_2000_2012
+  - actions_gratuites
+  - pea
+  - bspce
+  - actifs_numeriques
+  - abattement_option
+documentation: |-
+  Notes :
+  (1) Taux d'imposition des plus-values, gain de levée d'options, gain d'acquisition d'actions gratuites et des PEA à l'article 200-A du CGI.
+  (2) Les plus-values réalisées suite à un retrait d'un PEA ancien de plus de 5 ans sont exonérées d'imposition sur le revenu.
+  (3) Les options sur titres (ou stock-options) sont imposées sur la différence entre la valeur réelle de l’action à la date de la levée de l'option et le prix de souscription ou d’achat de l’action aux taux du barème si les options ont été attribuées avant le 28/09/2012. Si elles ont été attribuées à une date postérieure, le gain est imposé selon le régime du barème progressif.
+  (4) Le gain d’acquisition d'actions gratuites est égal à la valeur des actions à la date de leur acquisition définitive. Il est imposé au taux du barème si les actions ont été attribuées avant le 28/09/2012 et sur le barème progressif si attribuées à une date postérieure.
+  (5) Les plus-values de cession de valeurs mobilières (y compris options sur titres et actions gratuites) ont été intégrées à l'assiette de l'IR pour imposition selon le barème progressif en 2013 jusqu'en 2018, date depuis laquelle elles sont désormais imposées aux taux de prélèvement forfaitaire unique de 12,8%.
+  (6) L'abattement majoré est prévu au 1-quater de l'article 150-0 D du CGI et s'applique aux gains de cession de titres de PME de moins de 10 ans à la date de souscription ou d'acquisition des titres et les titres de dirigeants de PME prenant leur retraite ne bénéficiant pas de l'abattement fixe lorsque l'option au barème progressif est exercée.

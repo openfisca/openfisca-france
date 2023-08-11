@@ -1,7 +1,7 @@
 description: Plafond de ressources de l'Allocation solidarité aux personne agées (ASPA) - Minimum vieillesse
 metadata:
-  ux_name: Plafond de ressources
-  description_en: Solidarity income for elderly (ASPA)
+  short_label: Plafond de ressources
+  label_en: Solidarity income for elderly (ASPA)
   order:
   - personnes_seules
   - couples

@@ -894,18 +894,6 @@ class mmida_employeur(Variable):
         return cotisation + contribution_solidarite_autonomie
 
 
-class mhsup(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Individu
-    label = 'Heures supplémentaires comptées négativement'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(individu, period, parameters):
-        return - individu('hsup', period)
-
-
 class plafond_securite_sociale(Variable):
     value_type = float
     entity = Individu
@@ -935,9 +923,12 @@ class plafond_securite_sociale(Variable):
 class prevoyance_obligatoire_cadre(Variable):
     value_type = float
     entity = Individu
-    label = 'Cotisation de prévoyance pour les cadres et assimilés'
+    label = 'Contribution de prévoyance obligatoire pour les cadres et assimilés'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    '''
+    La prévoyance obligatoire des cadres n'est pas soumise à CSG/CRDS ni à cotisations sociales.
+    '''
     # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -946,12 +937,37 @@ class prevoyance_obligatoire_cadre(Variable):
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         prevoyance_obligatoire_cadre_taux_employeur = individu(
             'prevoyance_obligatoire_cadre_taux_employeur', period)
+        minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.prevoyance.prevoyance_obligatoire
+        taux = max_(minimum, prevoyance_obligatoire_cadre_taux_employeur)
 
         cotisation = - (
             (categorie_salarie == TypesCategorieSalarie.prive_cadre)
             * min_(assiette_cotisations_sociales, plafond_securite_sociale)
-            * prevoyance_obligatoire_cadre_taux_employeur
+            * taux
             )
+        return cotisation
+
+
+class prevoyance_complementaire_employeur(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Contributions de prévoyance complémentaire'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    '''
+    On définit la prévoyance complémentaire par référence à la prévoyance obligatoire : c'est la partie non obligatoire des contributions de prévoyance totales versées par l'employeur.
+    La prévoyance complémentaire est assujettie à CSG et au forfait social, ce qui n'est pas le cas de la prévoyance obligatoire.
+    '''
+
+    def formula(individu, period):
+        prevoyance_totale = individu('prevoyance_employeur', period)
+        prevoyance_obligatoire = individu('prevoyance_obligatoire_cadre', period)
+        cotisation = - max_(
+            0,
+            prevoyance_totale
+            - (-prevoyance_obligatoire)
+            )
+
         return cotisation
 
 
@@ -963,12 +979,20 @@ class complementaire_sante_employeur(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
-        complementaire_sante_taux_employeur = individu(
-            'complementaire_sante_taux_employeur', period)
+    def formula_2016_01_01(individu, period, parameters):
+        complementaire_sante_part_employeur = individu('complementaire_sante_part_employeur', period)
+        minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.complementaire_sante.part_employeur
+        part_employeur = max_(complementaire_sante_part_employeur, minimum)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - part_employeur * complementaire_sante_montant
 
-        cotisation = - complementaire_sante_taux_employeur * complementaire_sante_montant
+        return cotisation
+
+    def formula(individu, period):
+        part_employeur = individu('complementaire_sante_part_employeur', period)
+        complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - part_employeur * complementaire_sante_montant
+
         return cotisation
 
 
@@ -980,12 +1004,20 @@ class complementaire_sante_salarie(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
-        complementaire_sante_taux_employeur = individu(
-            'complementaire_sante_taux_employeur', period)
+    def formula_2016_01_01(individu, period, parameters):
+        complementaire_sante_part_employeur = individu('complementaire_sante_part_employeur', period)
+        minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.complementaire_sante.part_employeur
+        part_employeur = max_(complementaire_sante_part_employeur, minimum)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - (1 - part_employeur) * complementaire_sante_montant
 
-        cotisation = - (1 - complementaire_sante_taux_employeur) * complementaire_sante_montant
+        return cotisation
+
+    def formula(individu, period):
+        part_employeur = individu('complementaire_sante_part_employeur', period)
+        complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - (1 - part_employeur) * complementaire_sante_montant
+
         return cotisation
 
 
@@ -1061,7 +1093,10 @@ class vieillesse_deplafonnee_salarie(Variable):
     value_type = float
     entity = Individu
     label = 'Cotisation vieillesse déplafonnée (salarié)'
-    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043870904'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1081,7 +1116,10 @@ class vieillesse_plafonnee_salarie(Variable):
     value_type = float
     entity = Individu
     label = 'Cotisation vieillesse plafonnée (salarié)'
-    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043870904'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1103,6 +1141,10 @@ class vieillesse_deplafonnee_employeur(Variable):
     label = 'Cotisation vieillesse déplafonnée'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -1122,6 +1164,10 @@ class vieillesse_plafonnee_employeur(Variable):
     label = 'Cotisation vieillesse plafonnée (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(

@@ -1,0 +1,7 @@
+description: Le propriétaire s'engage à louer pour 6 ans minimum
+metadata:
+  order:
+  - taux_6_ans_metropole
+  - taux_6_ans_outre_mer
+  - taux_addition_3_ans
+  - taux_addition_bis_3_ans

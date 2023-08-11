@@ -3,7 +3,7 @@ values:
   2020-07-31:
     value: 10
 metadata:
-  ux_name: Durée versement
+  short_label: Durée versement
   unit: month
   reference:
     2020-07-31:

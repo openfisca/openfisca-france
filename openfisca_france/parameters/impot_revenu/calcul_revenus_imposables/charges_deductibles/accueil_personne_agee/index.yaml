@@ -1,4 +1,5 @@
-description: Frais d'accueil d'une personne de plus de 75 ans
+description: Déduction pour frais d'accueil d'une personne de plus de 75 ans
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  short_label: Accueil personne âgée
+  order:
+  - plafond

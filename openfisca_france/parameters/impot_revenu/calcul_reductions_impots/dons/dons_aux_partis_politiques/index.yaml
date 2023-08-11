@@ -1,3 +1,8 @@
+description: Dons aux partis politiques
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  short_label: Partis politiques
+  label_en: Gifts (1977 -)
+  order:
+  - taux
+  - plafond_en_revenu_net_global
+  - plafond_foyer

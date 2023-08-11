@@ -1,0 +1,11 @@
+description: Coefficient de plafond global du complément de l'Aide au Retour à l'Emploi (ARE)
+values:
+  2014-09-30:
+    value: 30.42
+metadata:
+  short_label: Coefficient plafond
+  last_value_still_valid_on: "2022-08-08"
+  reference:
+    2014-09-30:
+      title: Circulaire Unédic n°2014-26 du 30 septembre 2014
+      href: https://www.unedic.org/sites/default/files/circulaires/ci201426.pdf

@@ -3,5 +3,5 @@ values:
   2002-01-01:
     value: 65
 metadata:
-  ux_name: Âge minimal
+  short_label: Âge minimal
   unit: year

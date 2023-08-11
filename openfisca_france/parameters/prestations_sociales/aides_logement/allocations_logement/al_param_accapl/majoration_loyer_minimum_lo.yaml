@@ -3,8 +3,8 @@ values:
   2007-07-01:
     value: 45.57
 metadata:
-  ux_name: Majoration du loyer minimum (Lo)
-  description_en: Parameters for new home-buyers (APL)
+  short_label: Majoration du loyer minimum (Lo)
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: maj_lo_apl
   unit: currency
   reference:

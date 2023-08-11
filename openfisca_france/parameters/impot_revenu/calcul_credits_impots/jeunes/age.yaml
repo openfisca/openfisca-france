@@ -1,8 +1,0 @@
-description: Âge limite
-values:
-  2005-01-01:
-    value: 26
-  2009-01-01:
-    value: null
-metadata:
-  unit: currency

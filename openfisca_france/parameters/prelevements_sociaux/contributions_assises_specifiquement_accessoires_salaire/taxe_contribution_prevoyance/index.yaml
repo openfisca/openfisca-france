@@ -1,0 +1,6 @@
+description: Taxe spéciale sur les contributions patronales de prévoyance (1996-2012)
+metadata:
+  short_label: Prévoyance
+  label_en: Special tax on employer's contributions to life-insurance contracts (1996-2012)
+  order:
+  - taux

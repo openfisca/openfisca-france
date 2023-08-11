@@ -1,0 +1,48 @@
+description: Taux additionnel les 3 années suivantes en cas d'éligibilité au dispositif Scellier intermédiaire (renouvelable une fois)
+values:
+  1984-01-01:
+    value: null
+  2009-01-01:
+    value: 0.06
+  2011-01-01:
+    value: 0.05
+  2012-01-01:
+    value: 0.04
+  2013-01-01:
+    value: null
+metadata:
+  ipp_csv_id: taux_scellier_intermediaire
+  unit: /1
+  reference:
+    1984-01-01:
+      title: Loi n° 84-1208 du 29 décembre 1984 (LF pour 1985), art. 82
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000880778&idArticle=LEGIARTI000006274284&dateTexte=19861231&categorieLien=id#LEGIARTI000006274284
+    2009-01-01:
+      title: Loi n° 2008-1443 du 30 décembre 2008 (LF rectificative pour 2008), art. 31
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000020014790&idArticle=LEGIARTI000020042277&dateTexte=20090327&categorieLien=id#LEGIARTI000020042277
+    2011-01-01:
+      title: Loi n° 2010-1657 du 29 décembre 2010 (LF pour 2011), art. 105
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000023314376&idArticle=LEGIARTI000023347537&dateTexte=20110515&categorieLien=id#LEGIARTI000023347537
+    2012-01-01:
+      title: Loi n° 2011-1977 du 28 décembre 2011 (LF pour 2012), art. 75
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000025044460&idArticle=LEGIARTI000025048554&dateTexte=20120425&categorieLien=id#LEGIARTI000025048554
+    2013-01-01:
+      title: Loi n° 2012-1509 du 29 décembre 2012 (LF pour 2013), art. 80
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872833&cidTexte=LEGITEXT000026872634&dateTexte=20200618
+  official_journal_date:
+    1984-01-01: "1984-12-30"
+    2009-01-01: "2008-12-31"
+    2011-01-01: "2010-12-30"
+    2012-01-01: "2011-12-29"
+    2013-01-01: "2012-12-30"
+  notes:
+    1984-01-01:
+    - title: Le dispositif Méhaignerie original permet de déduire de ses impôts 5% du prix d'investissement repartis sur les 2 ans suivants l'investissement.
+    2009-01-01:
+    - title: En Scellier, la réduction d'impôt totale suite à l'investissement dans un bien construit au cours de l'année 2009 est de 25% en 9 ans pour les logements BBC et non BBC. En cas d'éligibilité au dispositif Scellier intermédiaire, elle est de 31% en 12 ans et 37% en 15 ans, si le propriétaire reconduit son engagement de location. Pour les biens situés en Outre-Mer, la réduction est de 40% en 9 ans et en cas d'éligibilité au Scellier intermédiaire de 46% en 12 ans et 52% en 15 ans.
+    2011-01-01:
+    - title: En Scellier, suite à un rabot homothétique sur les mécanismes de réduction fiscale de la LF pour 2011, la réduction d'impôt totale suite à l'investissement dans un bien construit au cours de l'année 2011 est de 22% en 9 ans pour les logements BBC et 13% pour les logements non BBC. En cas d'éligibilité au dispositif Scellier intermédiaire, elle est de 27% en 12 ans et 32% en 15 ans pour les logements BBC et de 18% en 12 ans et 23% en 15 ans pour les logements non BBC, si le propriétaire reconduit son engagement de location. Pour les biens situés en Outre-Mer, la réduction est de 36% en 9 ans et en cas d'éligibilité au Scellier intermédiaire de 41% en 12 ans et 46% en 15 ans.
+    2012-01-01:
+    - title: En Scellier, la réduction d'impôt totale suite à l'investissement dans un bien construit au cours de l'année 2012 est de 13% en 9 ans pour les logements BBC et 6% pour les logements non BBC. En cas d'éligibilité au dispositif Scellier intermédiaire, elle est de 17% en 12 ans et 21% en 15 ans pour les logements BBC et de 10% en 12 ans et 14% en 15 ans pour les logements non BBC, si le propriétaire reconduit son engagement de location. Pour les biens situés en Outre-Mer, la réduction est de 24% en 9 ans et en cas d'éligibilité au Scellier intermédiaire de 28% en 12 ans et 32% en 15 ans.
+    2013-01-01:
+    - title: La réduction d'impôt avec le dispositif Duflot est de 18% du prix d'achat en 9 ans pour les logements en métropole et 29% en Outre-Mer.

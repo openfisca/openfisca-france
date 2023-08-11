@@ -1,0 +1,9 @@
+description: Imposition des gains d'acquisition d'actions gratuites attribuées avant le 28 septembre 2012
+values:
+  1995-01-01:
+    value: 0.3
+metadata:
+  short_label: Taux 30%
+  ipp_csv_id: tx_actions_gratuites
+  unit: /1
+documentation: Le gain d’acquisition d'actions gratuites est égal à la valeur des actions à la date de leur acquisition définitive. Il est imposé au taux du barème si les actions ont été attribuées avant le 28/09/2012 et sur le barème progressif si attribuées à une date postérieure.

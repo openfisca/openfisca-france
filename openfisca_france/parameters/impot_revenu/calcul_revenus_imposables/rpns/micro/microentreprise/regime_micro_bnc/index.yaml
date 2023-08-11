@@ -1,0 +1,7 @@
+description: Abattement pour le Régime spécial micro BNC
+metadata:
+  short_label: Micro BNC
+  order:
+  - marchandises
+  - services
+  - taux

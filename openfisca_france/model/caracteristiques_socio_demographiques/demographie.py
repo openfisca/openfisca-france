@@ -20,7 +20,7 @@ class majeur(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        majeur = individu('age', period) >= parameters(period).marche_travail.age_majorite
+        majeur = individu('age', period) >= parameters(period).geopolitique.age_majorite
         mineur_emancipe = individu('mineur_emancipe', period)
 
         return majeur + mineur_emancipe
@@ -31,6 +31,15 @@ class mineur_emancipe(Variable):
     default_value = False
     entity = Individu
     label = "L'individu est émancipé"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class orphelin(Variable):
+    value_type = bool
+    default_value = False
+    entity = Individu
+    label = "L'individu est orphelin de ses deux parents"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -398,10 +407,10 @@ class enfant_place(Variable):
 
 class RegimeSecuriteSociale(Enum):
     regime_general = 'Régime général'
-    regime_agricole = 'Régime Agricole'
-    regime_retraite_fonctionnaires_civils_militaires_etat = 'Régime de retraite des fonctionnaires civils et militaires de l’Etat'
+    regime_agricole = 'Régime agricole'
+    regime_retraite_fonctionnaires_civils_militaires_etat = 'Régime de retraite des fonctionnaires civils et militaires de l’État'
     regime_special_fonctionnaires_territoriaux_hospitaliers = 'Régime spécial des fonctionnaires territoriaux et hospitaliers'
-    fond_special_pensions_ouvriers_etablissements_industriels_etat = 'Le Fonds spécial des pensions des ouvriers des établissements industriels de l’Etat (FSPOEIE)'
+    fond_special_pensions_ouvriers_etablissements_industriels_etat = 'Le Fonds spécial des pensions des ouvriers des établissements industriels de l’État (FSPOEIE)'
     regime_special_agents_sncf = 'Régime spécial des agents de la SNCF'
     regime_special_agents_ratp = 'Régime spécial des agents de la RATP'
     regime_special_industries_electriques_gazieres = 'Régime spécial des industries électriques et gazières (CNIEG)'

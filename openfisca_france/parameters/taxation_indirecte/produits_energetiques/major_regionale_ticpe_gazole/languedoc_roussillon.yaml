@@ -7,7 +7,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Languedoc-Roussillon
+  short_label: Languedoc-Roussillon
   ipp_csv_id: maj_ticpe_die_l_r
   unit: currency
 documentation: |-

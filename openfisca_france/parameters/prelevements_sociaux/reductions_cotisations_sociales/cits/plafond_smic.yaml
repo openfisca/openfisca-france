@@ -1,13 +1,14 @@
-description: Plafond (en nombre de SMIC) du crédit d'impôt de taxe sur les salaires (CITS) (2017-2018), dans les réductions sur les cotisations de Sécurité sociale (SS)
+description: Plafond (en nombre de Smic) du crédit d'impôt de taxe sur les salaires (CITS) (2017-2018), dans les réductions sur les cotisations de Sécurité sociale (SS)
 values:
   2017-01-01:
     value: 2.5
   2019-01-01:
     value: null
 metadata:
-  ux_name: Plafond
-  description_en: Tax credit on the payroll tax (CITS)
-  unit: SMIC
+  short_label: Plafond
+  last_value_still_valid_on: "2019-01-01"
+  label_en: Tax credit on the payroll tax (CITS)
+  unit: smic
   reference:
     2017-01-01:
       title: Loi 2016-1917 du 29/12/2016 (LF pour 2017), art. 88
@@ -21,7 +22,6 @@ metadata:
   notes:
     2019-01-01:
     - title: Abrogation et remplacement par un allègement de cotisations employeur
-  last_review: "2019-01-01"
 documentation: |-
   Note :
   Le CITS, crédit d'impôt sur la taxe sur les salaires, est calculé en proportion des salaires versées par l'entreprise en dessous du plafond.

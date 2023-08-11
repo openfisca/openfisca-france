@@ -1,7 +1,7 @@
 description: Garanties de ressources (1972-1999) des allocations chômage pour les personnes en préretraite
 metadata:
-  ux_name: Garanties de ressources
-  description_en: Minimum income guarantee (1972-1999)
+  short_label: Garanties de ressources
+  label_en: Minimum income guarantee (1972-1999)
   order:
   - revalorisation
   - montant_minimum

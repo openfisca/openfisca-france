@@ -25,8 +25,9 @@ values:
   2017-01-01:
     value: 0.0201
 metadata:
-  ux_name: Val d'Oise
-  description_en: Transport tax (VT) (contribution to public transports)
+  short_label: Val d'Oise
+  last_value_still_valid_on: "2021-12-07"
+  label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_95
   unit: /1
   reference:
@@ -78,7 +79,6 @@ metadata:
   notes:
     2013-07-01:
     - title: Evolution progressive en Essonne et Val d'Oise (objectif de 1,80% en juillet 2015)
-  last_review: "2021-12-07"
 documentation: |-
   Notes :
   (i) Le versement transport est recouvré par les URSSAF comme les cotisations de Sécurité sociale, et reversé aux collectivités locales.
