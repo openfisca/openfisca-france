@@ -30,7 +30,7 @@ class aide_permis_pro_btp(Variable):
         return eligibilite_age * alternant * eligibilite_ressource * est_en_formation_btp * montant
 
     def formula(individu, period, parameters):
-        params = parameters(period).prestations_sociales.educatuion_culture.aide_permis_pro_btp
+        params = parameters(period).prestations_sociales.education_culture.aide_permis_pro_btp
 
         rfr = individu.foyer_fiscal('rfr', period.this_year)
         montant = select(

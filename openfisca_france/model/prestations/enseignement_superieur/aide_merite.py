@@ -85,4 +85,4 @@ class aide_merite_montant(Variable):
 
     def formula(individu, period, parameters):
         aide_merite_eligibilite = individu('aide_merite_eligibilite', period.first_month)
-        return aide_merite_eligibilite * parameters(period).prestations_sociales.educatuion_culture.bourses.bourses_enseignement_superieur.aide_merite.montant_annuel
+        return aide_merite_eligibilite * parameters(period).prestations_sociales.education_culture.bourses.bourses_enseignement_superieur.aide_merite.montant_annuel
