@@ -4,6 +4,5 @@ metadata:
   label_en: Transport-related allowances
   order:
   - permis_de_conduire
-  - aides_logement
-  - prestations_etat_de_sante
-  - solidarite_insertion
+  - aide_mobilite
+  - carte_sncf_eleve_apprenti
