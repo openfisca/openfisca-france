@@ -20,7 +20,7 @@ class depart1825_eligibilite(Variable):
         ]
 
     def formula(individu, period, parameters):
-        criteres_age = parameters(period).prestations_sociales.education_culture.depart1825.age
+        criteres_age = parameters(period).prestations_sociales.education.depart1825.age
         age = individu('age', period)
 
         eligibilite_age = (criteres_age.minimum <= age) * (age <= criteres_age.maximum)
@@ -32,7 +32,7 @@ class depart1825_eligibilite(Variable):
         eligibilite_statut = etudiant_boursier + alternant + garantie_jeunes
 
         nbptr = individu.foyer_fiscal('nbptr', period.n_2)
-        plafond_ressources = parameters(period).prestations_sociales.education_culture.depart1825.plafond_ressources
+        plafond_ressources = parameters(period).prestations_sociales.education.depart1825.plafond_ressources
         plafond_ressources = plafond_ressources.base + 2 * max_(0, nbptr - 1) * plafond_ressources.par_demi_part_supplementaire
 
         ressources = individu.foyer_fiscal('rfr', period.n_2)
@@ -55,7 +55,7 @@ class depart1825_montant_maximum(Variable):
 
     def formula(individu, period, parameters):
 
-        montant = parameters(period).prestations_sociales.education_culture.depart1825.montant_maximum
+        montant = parameters(period).prestations_sociales.education.depart1825.montant_maximum
         eligibilite = individu('depart1825_eligibilite', period)
 
         return montant * eligibilite

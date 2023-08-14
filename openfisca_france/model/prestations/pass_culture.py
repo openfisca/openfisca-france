@@ -10,7 +10,7 @@ class pass_culture(Variable):
     reference = ['https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043518870', 'https://www.service-public.fr/particuliers/vosdroits/F34959']
 
     def formula(individu, period, parameters):
-        montant = parameters(period).prestations_sociales.education_culture.pass_culture.montants
+        montant = parameters(period).prestations_sociales.education.pass_culture.montants
         age = individu('age', period.offset(1, 'month'))
-        age_maximum = parameters(period).prestations_sociales.education_culture.pass_culture.age_maximum
+        age_maximum = parameters(period).prestations_sociales.education.pass_culture.age_maximum
         return montant.calc(age) * (age <= age_maximum)

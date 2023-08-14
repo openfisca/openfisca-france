@@ -18,4 +18,4 @@ class seances_sante_psy_etudiant(Variable):
         etudiant = individu('etudiant', period)
         enseignement_superieur = individu('scolarite', period) == TypesScolarite.enseignement_superieur
 
-        return etudiant * enseignement_superieur * parameters(period).prestations_sociales.education_culture.sante_psy.etudiant.seances_max
+        return etudiant * enseignement_superieur * parameters(period).prestations_sociales.education.sante_psy.etudiant.seances_max
