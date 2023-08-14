@@ -1,6 +1,14 @@
 # Changelog
 
-## 150.4.0 [#2166](hhttps://github.com/openfisca/openfisca-france/pull/2166)
+## 150.4.1 [#2143](https://github.com/openfisca/openfisca-france/pull/2143)
+
+* Évolution du système socio-fiscal. | Changement mineur.
+* Périodes concernées : à partir du 01/07/2023.
+* Zones impactées : `parameters/marche_travail/remunerations_fonction_publique/indicefp`.
+* Détails :
+  - Actualise le point d'indice en juillet 2023
+
+## 150.4.0 [#2166](https://github.com/openfisca/openfisca-france/pull/2166)
 
 * Correction d'une erreur de formule
 * Périodes concernées : toutes.
