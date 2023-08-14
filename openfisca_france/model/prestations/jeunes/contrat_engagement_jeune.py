@@ -17,7 +17,7 @@ class contrat_engagement_jeune_montant_forfaitaire(Variable):
         ]
 
     def formula_2022_03_01(individu, period, parameters):
-        parameters_montants = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.montants
+        parameters_montants = parameters(period).prestations_sociales.educatuion_culture.contrat_engagement_jeune.montants
         majeur = individu('majeur', period)
 
         tranche = individu.foyer_fiscal('ir_tranche', period.n_2)
@@ -40,7 +40,7 @@ class contrat_engagement_jeune_eligibilite(Variable):
 
     def formula_2022_03_01(individu, period, parameters):
         # En fonction de l'âge
-        params_age = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.critere_age
+        params_age = parameters(period).prestations_sociales.educatuion_culture.contrat_engagement_jeune.critere_age
         age = individu('age', period)
         handicap = individu('handicap', period)
         eligibilite_age = (params_age.minimum <= age) * ((age <= params_age.maximum) + (age <= (params_age.maximum_handicap) * handicap))
@@ -73,7 +73,7 @@ class contrat_engagement_jeune(Variable):
 
     def formula_2022_03_01(individu, period, parameters):
         three_previous_months = period.last_3_months
-        parameters_degressivite = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.degressivite
+        parameters_degressivite = parameters(period).prestations_sociales.educatuion_culture.contrat_engagement_jeune.degressivite
 
         ressources_totalement_deductibles = [
             'revenus_stage_formation_pro',

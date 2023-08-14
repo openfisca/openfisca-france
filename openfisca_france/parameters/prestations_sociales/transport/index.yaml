@@ -1,0 +1,9 @@
+description: Prestations sociales liées au transport
+metadata:
+  short_label: Prestations liées au transport
+  label_en: Transport-related allowances
+  order:
+  - permis_de_conduire
+  - aides_logement
+  - prestations_etat_de_sante
+  - solidarite_insertion
