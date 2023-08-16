@@ -1,6 +1,17 @@
 # Changelog
 
-## 150.4.1 [#2143](https://github.com/openfisca/openfisca-france/pull/2143)
+### 150.4.2 [#2156](https://github.com/openfisca/openfisca-france/pull/2156)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées :
+    - `openfisca_france/model/prestations/aide_permis_pro_btp.py`,
+    - `openfisca_france/parameters/prestations_sociales/aides_jeunes/aide_permis_pro_btp.yaml`
+* Détails :
+  - Mise à jour des conditions et montants associés à l'aide au permis pro BTP
+  - Réorganisation des paramètres pour les rassembler en un fichier.
+
+### 150.4.1 [#2143](https://github.com/openfisca/openfisca-france/pull/2143)
 
 * Évolution du système socio-fiscal. | Changement mineur.
 * Périodes concernées : à partir du 01/07/2023.
