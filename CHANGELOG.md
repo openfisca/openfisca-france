@@ -1,5 +1,13 @@
 # Changelog
 
+### 150.4.5 [#2172](https://github.com/openfisca/openfisca-france/pull/2172)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_revenus_imposables/abat_rni/index.yaml`.
+* Détails :
+  - Suppression d'un élément `order` qui ne correspond pas à un fichier existant
+
 ### 150.4.4 [#2165](https://github.com/openfisca/openfisca-france/pull/2165/)
 
 * Évolution du système socio-fiscal
