@@ -3427,10 +3427,7 @@ class taux_moyen_imposition(Variable):
             ) * (rni > 0)
 
 
-###############################################################################
-# # Calcul du nombre de parts
-###############################################################################
-
+# Calcul du nombre de parts
 
 class nbptr(Variable):
     value_type = float
@@ -3470,17 +3467,31 @@ class nbptr(Variable):
         no_alt = nbH == 0  # Aucun enfant à charge en garde alternée
         has_alt = not_(no_alt)
 
-        # # nombre de parts liées aux enfants à charge
-        # que des enfants en résidence alternée
-        enf1 = (no_pac & has_alt) * (quotient_familial.enf1 * min_(nbH, 2) * 0.5
-                                     + quotient_familial.enf2 * max_(nbH - 2, 0) * 0.5)
-        # pas que des enfants en résidence alternée
-        enf2 = (has_pac & has_alt) * ((nb_pac == 1) * (quotient_familial.enf1 * min_(nbH, 1) * 0.5
-            + quotient_familial.enf2 * max_(nbH - 1, 0) * 0.5) + (nb_pac > 1) * (quotient_familial.enf2 * nbH * 0.5))
-        # pas d'enfant en résidence alternée
-        enf3 = quotient_familial.enf1 * min_(nb_pac, 2) + quotient_familial.enf2 * max_((nb_pac - 2), 0)
+        # nombre de parts liées aux enfants à charge
 
-        enf = enf1 + enf2 + enf3
+        # parts des enfants en résidence alternée quand il n'y a que des enfants en résidence alternée
+        enf_a = (no_pac & has_alt) * (
+            quotient_familial.enf1 * min_(nbH, 1)
+            + quotient_familial.enf2 * max_(min_(nbH - 1, 1), 0)
+            + quotient_familial.enf3_et_sup * max_(nbH - 2, 0)
+            ) * 0.5
+        # parts des enfants en résidence alternée quand il y a aussi des enfants entièrement à charge
+        enf_b = (has_pac & has_alt) * (
+            (nb_pac == 1) * (
+                quotient_familial.enf2 * min_(nbH, 1)
+                + quotient_familial.enf3_et_sup * max_(nbH - 1, 0)
+                ) * 0.5
+            + (nb_pac > 1) * (quotient_familial.enf3_et_sup * nbH * 0.5)
+            )
+        # parts des enfants entièrement à charge
+        enf_c = (
+            quotient_familial.enf1 * min_(nb_pac, 1)
+            + quotient_familial.enf2 * max_(min_(nb_pac - 1, 1), 0)
+            + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0)
+            )
+
+        enf = enf_a + enf_b + enf_c
+
         # # note 2 : nombre de parts liées aux invalides (enfant + adulte)
         n2 = quotient_familial.inv1 * (nbG + nbI / 2) + quotient_familial.inv2 * nbR
 
@@ -3526,8 +3537,9 @@ class nbptr(Variable):
         note 1 enfants et résidence alternée (formulaire 2041 GV page 10)
 
         quotient_familial.conj : nb part associées au conjoint d'un couple marié ou pacsé
-        quotient_familial.enf1 : nb part 2 premiers enfants
-        quotient_familial.enf2 : nb part enfants de rang 3 ou plus
+        quotient_familial.enf1 : nb part premier enfant
+        quotient_familial.enf2 : nb part deuxième enfant
+        quotient_familial.enf3_et_sup : nb part enfants de rang 3 ou plus
         quotient_familial.inv1 : nb part supp enfants invalides (I, G)
         quotient_familial.inv2 : nb part supp adultes invalides (R)
         quotient_familial.sans_pers_a_charge.not31 : nb part supp note 3 : cases W ou G pour veuf, celib ou div
@@ -3567,17 +3579,31 @@ class nbptr(Variable):
         no_alt = nbH == 0  # Aucun enfant à charge en garde alternée
         has_alt = not_(no_alt)
 
-        # # nombre de parts liées aux enfants à charge
-        # que des enfants en résidence alternée
-        enf1 = (no_pac & has_alt) * (quotient_familial.enf1 * min_(nbH, 2) * 0.5
-                                     + quotient_familial.enf2 * max_(nbH - 2, 0) * 0.5)
-        # pas que des enfants en résidence alternée
-        enf2 = (has_pac & has_alt) * ((nb_pac == 1) * (quotient_familial.enf1 * min_(nbH, 1) * 0.5
-            + quotient_familial.enf2 * max_(nbH - 1, 0) * 0.5) + (nb_pac > 1) * (quotient_familial.enf2 * nbH * 0.5))
-        # pas d'enfant en résidence alternée
-        enf3 = quotient_familial.enf1 * min_(nb_pac, 2) + quotient_familial.enf2 * max_((nb_pac - 2), 0)
+        # nombre de parts liées aux enfants à charge
 
-        enf = enf1 + enf2 + enf3
+        # parts des enfants en résidence alternée quand il n'y a que des enfants en résidence alternée
+        enf_a = (no_pac & has_alt) * (
+            quotient_familial.enf1 * min_(nbH, 1)
+            + quotient_familial.enf2 * max_(min_(nbH - 1, 1), 0)
+            + quotient_familial.enf3_et_sup * max_(nbH - 2, 0)
+            ) * 0.5
+        # parts des enfants en résidence alternée quand il y a aussi des enfants entièrement à charge
+        enf_b = (has_pac & has_alt) * (
+            (nb_pac == 1) * (
+                quotient_familial.enf2 * min_(nbH, 1)
+                + quotient_familial.enf3_et_sup * max_(nbH - 1, 0)
+                ) * 0.5
+            + (nb_pac > 1) * (quotient_familial.enf3_et_sup * nbH * 0.5)
+            )
+        # parts des enfants entièrement à charge
+        enf_c = (
+            quotient_familial.enf1 * min_(nb_pac, 1)
+            + quotient_familial.enf2 * max_(min_(nb_pac - 1, 1), 0)
+            + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0)
+            )
+
+        enf = enf_a + enf_b + enf_c
+
         # # note 2 : nombre de parts liées aux invalides (enfant + adulte)
         n2 = quotient_familial.inv1 * (nbG + nbI / 2) + quotient_familial.inv2 * nbR
 
@@ -3620,10 +3646,7 @@ class nbptr(Variable):
         return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & not_(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
 
 
-###############################################################################
-# # Calcul de la prime pour l'emploi
-###############################################################################
-
+# Calcul de la prime pour l'emploi
 
 class ppe_coef(Variable):
     value_type = float

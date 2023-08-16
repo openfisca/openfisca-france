@@ -1,5 +1,21 @@
 # Changelog
 
+### 150.4.4 [#2165](https://github.com/openfisca/openfisca-france/pull/2165/)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes 
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py` et `/openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/enf1.yaml`
+* Détails :
+Actuellement, les parts de quotient familial se distinguent par 2 paramètres : le premier enf1, concerne les deux premiers enfants, le second enf2, concerne les enfants à partir du 3ème. 
+Cette PR a pour objectif de se rapprocher du fonctionnement de l'Article 194 du CGI, en proposant 3 paramètres : 
+    - enf1 :  part du premier enfant
+    - enf2 : part du deuxième enfant
+    - enf3_et_sup : parts à partir du 3ème enfant
+    
+Ces changements :
+- Modifient l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
+- Corrigent ou améliorent un calcul déjà existant.
+
 ### 150.4.3 [#2145](https://github.com/openfisca/openfisca-france/pull/2145)
 
 * Amélioration technique.
