@@ -1,6 +1,6 @@
 # Changelog
 
-### 150.4.3 [#2165](https://github.com/openfisca/openfisca-france/pull/2165/)
+### 150.4.4 [#2165](https://github.com/openfisca/openfisca-france/pull/2165/)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes 
@@ -15,6 +15,17 @@ Cette PR a pour objectif de se rapprocher du fonctionnement de l'Article 194 du 
 Ces changements :
 - Modifient l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
 - Corrigent ou améliorent un calcul déjà existant.
+
+### 150.4.3 [#2145](https://github.com/openfisca/openfisca-france/pull/2145)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : [
+    `openfisca_france/model/prestations/minima_sociaux/rsa.py`,
+    `tests/formulas/rsa/rsa_majore.yaml`
+]
+* Détails :
+  - Une personne à la charge de ses parents n'est pas une personne isolée.
 
 ### 150.4.2 [#2156](https://github.com/openfisca/openfisca-france/pull/2156)
 

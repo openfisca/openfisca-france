@@ -904,6 +904,7 @@ class rsa_majore_eligibilite(Variable):
     value_type = bool
     entity = Famille
     label = 'Eligibilité au RSA majoré pour parent isolé'
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F15553'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -914,12 +915,14 @@ class rsa_majore_eligibilite(Variable):
         enceinte_fam = famille('enceinte_fam', period)
         nbenf = famille('rsa_nb_enfants', period)
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
+        non_rattache_fiscalement = not_(famille.demandeur('enfant_a_charge', period.this_year))
 
         return (
             isole
             * (enceinte_fam | (nbenf > 0))
             * (enfant_moins_3_ans | isolement_recent | enceinte_fam)
             * rsa_eligibilite_tns
+            * non_rattache_fiscalement
             )
 
 
