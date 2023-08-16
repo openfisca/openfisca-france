@@ -63,7 +63,7 @@ values:
 metadata:
   short_label: Maximum
   ipp_csv_id: max_abt_dedsal
-  unit: currency
+  unit: currency_next_year
   reference:
     1977-01-01:
       title: LF pour 1978
@@ -88,7 +88,7 @@ metadata:
     1991-01-01:
       title: LF pour 1992
     1992-01-01:
-      title: "LF pour 1993\_- \_art. 2-V"
+      title: LF pour 1993 - art. 2-V
     1993-01-01:
       title: LF pour 1994
     1994-01-01:

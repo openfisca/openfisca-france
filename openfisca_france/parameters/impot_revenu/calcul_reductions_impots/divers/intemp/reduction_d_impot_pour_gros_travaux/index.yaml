@@ -1,3 +1,5 @@
+description: Réduction d'impôt pour gros travaux
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  order:
+  - taux
+  - plafond

@@ -1,4 +1,4 @@
-description: Plafond des Dons Coluche
+description: Plafond des dons Coluche
 values:
   1975-01-01:
     value: null
@@ -64,7 +64,7 @@ metadata:
   short_label: Plafond
   last_value_still_valid_on: "2023-07-05"
   ipp_csv_id: plafcoluche
-  unit: currency
+  unit: currency_next_year
   reference:
     2002-01-01:
       title: Loi 2003-709 du 01/08/2003 - art. 1 (V)
@@ -86,11 +86,13 @@ metadata:
       title: Décret 2011-645 du 09/06/2011 - art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024154164&cidTexte=JORFTEXT000024152033
     2011-01-01:
-      title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
+    - title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023314376
+    - title: BOI 5-B-11-12
     2015-01-01:
-      title: Loi 2015-1785 du 29/12/2015 (LF pour 2016)
+    - title: Loi 2015-1785 du 29/12/2015 (LF pour 2016)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031732865
+    - title: Décret n° 2016-775 du 10/06/2016 - art. 1
     2016-01-01:
     - title: Loi 2016-1917 du 29/12/2016 (LF pour 2017)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033734169&categorieLien=id
@@ -108,36 +110,35 @@ metadata:
       title: Décret n° 2020-897 modifiant l'article 200 du CGI
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042143201/
     2020-01-01:
-    - title : Article 200, 1.ter. du Code général des impôts
+    - title: Article 200, 1.ter. du Code général des impôts
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045764695
     - title: Loi n° 2020-473 du 25/04/2020 de finances rectificative pour 2020, art. 14
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000041820881
+  official_journal_date:
+    2002-01-01: "2003-08-02"
+    2005-01-01: "2005-01-19"
+    2007-01-01: "2008-04-02"
+    2008-01-01: "2009-04-09"
+    2009-01-01: "2010-04-30"
+    2010-01-01: "2011-06-11"
+    2011-01-01: "2011-12-29"
+    2015-01-01: "2015-12-30"
+    2016-01-01: "2016-12-30"
+    2017-01-01: "2017-12-31"
+    2018-01-01: "2019-06-07"
+    2019-01-01: "2020-07-24"
+    2020-01-01: "2020-04-25"
   notes:
     1989-01-01:
     - title: À partir de 1989, les avantages fiscaux prennent la forme de réduction d'impôt et non plus de déduction du revenu imposable (sauf dons Coluche)
     1990-01-01:
-    - title: 'Avant 1990 (inclus) : Dons coluche et autre dons dans art. 238-2 bis du CGI'
+    - title: "Avant 1990 (inclus) : Dons coluche et autre dons dans art. 238-2 bis du CGI"
     2008-01-01:
     - title: Depuis revenus 1999, regroupement des dons aux œuvres reconnues d'utilité publique, d'intérêt général et pour le financement des partis politiques et des campagnes électorales
     2019-01-01:
     - title: Les dons effectués du 16 avril au 31 décembre 2019 pour participer aux travaux de conservation et de restauration de la cathédrale Notre-Dame de Paris et de son mobilier ouvrent droit à une réduction d’impôt de 75 % des versements dans la limite de 1 000 €
     2020-01-01:
     - title: Le plafond des dons Coluche a été exceptionnellement élevée à 1000 euros pour l'imposition des revenus de l'année 2020 et a été reconduit d'année en année jusqu'à 2023 (https://www.legifrance.gouv.fr/codes/id/LEGIARTI000046861095/2023-01-01/, 1ter).
-  official_journal_date:
-    2002-01-01: '2003-08-02'
-    2005-01-01: '2005-01-19'
-    2007-01-01: '2008-04-02'
-    2008-01-01: '2009-04-09'
-    2009-01-01: '2010-04-30'
-    2010-01-01: '2011-06-11'
-    2011-01-01: '2011-12-29'
-    2015-01-01: '2015-12-30'
-    2016-01-01: '2016-12-30'
-    2017-01-01: '2017-12-31'
-    2018-01-01: '2019-06-07'
-    2019-01-01: '2020-07-24'
-    2020-01-01: '2020-04-25'
 documentation: |-
-  Notes :
   Dons Coluche (organismes d'aide aux personnes en difficulté): art. 200-1 ter du CGI
   La limite de versements mentionnée au premier alinéa est relevée chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu de l'année précédant celle des versements. Le montant obtenu est arrondi, s'il y a lieu, à l'euro supérieur.

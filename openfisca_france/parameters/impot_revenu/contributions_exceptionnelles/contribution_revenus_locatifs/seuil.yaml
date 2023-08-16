@@ -6,7 +6,7 @@ values:
     value: 1830
 metadata:
   short_label: Seuil
-  unit: currency
+  unit: currency_next_year
   reference:
     2001-04-01:
       title: Code général des impôts, art. 234 nonies

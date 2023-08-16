@@ -687,9 +687,9 @@ class cd_sofipe(Variable):
         f6cc = foyer_fiscal('f6cc', period)
         rbg_int = foyer_fiscal('rbg_int', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        sofipeche = parameters(period).impot_revenu.calcul_reductions_impots.sofipeche
+        sofipeche = parameters(period).impot_revenu.calcul_revenus_imposables.charges_deductibles.deductions_souscription_parts_sofipeche
 
-        plafond = min_(sofipeche.plafond_revenu_net_global * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
+        plafond = min_(sofipeche.plafond_en_revenu_net_global * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
         return min_(f6cc, plafond)
 
 
@@ -730,7 +730,7 @@ class epargne_codeveloppement_deduc(Variable):
         rbg_int = foyer_fiscal('rbg_int', period)
         codev = parameters(period).impot_revenu.calcul_reductions_impots.compte_epargne_co_developpement
 
-        plafond = min_(codev.plafond_en_revenu_net_global * rbg_int, codev.plafond_par_personne)
+        plafond = min_(codev.plafond.plafond_en_revenu_net_global * rbg_int, codev.plafond.plafond_par_personne)
         return min_(f6eh, plafond)
 
 

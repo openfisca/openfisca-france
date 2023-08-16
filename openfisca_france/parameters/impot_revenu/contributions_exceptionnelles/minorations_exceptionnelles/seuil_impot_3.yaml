@@ -1,4 +1,4 @@
-description: Seuil d'impôt 3 des minorations exceptionnelles d'impôt (1965-1992)
+description: Seuil d'impôt 3 des minorations exceptionnelles d'impôt
 values:
   1965-01-01:
     value: null
@@ -27,7 +27,7 @@ values:
 metadata:
   short_label: Seuil 3
   ipp_csv_id: seuil_min3
-  unit: currency
+  unit: currency_next_year
   reference:
     1993-01-01:
       title: Loi 93-1352 du 30/12/1993 (LF pour 1994)

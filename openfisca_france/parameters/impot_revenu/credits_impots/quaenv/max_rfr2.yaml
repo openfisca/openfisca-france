@@ -3,4 +3,4 @@ values:
   2014-01-01:
     value: 25000
 metadata:
-  unit: currency
+  unit: currency_next_year

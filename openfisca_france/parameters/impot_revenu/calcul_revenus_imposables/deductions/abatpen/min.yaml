@@ -60,12 +60,12 @@ metadata:
   short_label: Minimum
   last_value_still_valid_on: "2023-07-05"
   ipp_csv_id: min_abtpen
-  unit: currency
+  unit: currency_next_year
   reference:
     1978-01-01:
       title: LF pour 1979
     1992-01-01:
-      title: "LF pour 1993\_- \_art. 2-V"
+      title: LF pour 1993 - art. 2-V
     1993-01-01:
       title: LF pour 1994
     1994-01-01:
@@ -139,7 +139,7 @@ metadata:
     2022-01-01:
     - title: Décret n° 2023-422 du 31/05/2023, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047618675
-    - title:  Article 158, 5.a. du Code général des impôts
+    - title: Article 158, 5.a. du Code général des impôts
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622551
   official_journal_date:
     1978-01-01: "1978-12-30"

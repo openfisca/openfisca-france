@@ -53,7 +53,7 @@ values:
 metadata:
   short_label: Seuil
   ipp_csv_id: seuil_pv
-  unit: currency
+  unit: currency_next_year
   reference:
     2002-01-01:
       title: BOI 5 C-1-03; n°51 du 18/03/2003

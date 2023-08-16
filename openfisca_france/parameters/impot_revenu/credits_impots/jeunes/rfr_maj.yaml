@@ -6,4 +6,4 @@ values:
     value: null
 metadata:
   short_label: Majoration
-  unit: currency
+  unit: currency_next_year

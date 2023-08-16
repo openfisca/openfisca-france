@@ -12,6 +12,8 @@ values:
     value: 0.19
   2012-01-01:
     value: 0.24
+  2013-01-01:
+    value: null
   2018-01-01:
     value: 0.128
 metadata:
@@ -33,3 +35,5 @@ metadata:
     - title: "Seuil d'imposition des plus-values : art 150-0 A du CGI supprimé par LF 2011"
     2012-01-01:
     - title: Taux d'imposition des plus-values mobilières de 2012 (imposées en 2013) majoré à 24% par la loi de finances pour 2013 (Loi 2012-1509 du 29/12/2012 de finances pour 2013 art. 10)
+    2013-01-01:
+    - title: "Les plus-values mobilières sont intégrées à l'assiette de l'IR et donc imposées au barème avec des abattements dépendant de la durée de détention: 20 % (détention 2 à 4 ans), 30 % (4-6 ans), 40% (au-delà)"

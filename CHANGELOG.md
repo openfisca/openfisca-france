@@ -1,5 +1,41 @@
 # Changelog
 
+### 150.4.2 [#2156](https://github.com/openfisca/openfisca-france/pull/2156)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées :
+    - `openfisca_france/model/prestations/aide_permis_pro_btp.py`,
+    - `openfisca_france/parameters/prestations_sociales/aides_jeunes/aide_permis_pro_btp.yaml`
+* Détails :
+  - Mise à jour des conditions et montants associés à l'aide au permis pro BTP
+  - Réorganisation des paramètres pour les rassembler en un fichier.
+
+### 150.4.1 [#2143](https://github.com/openfisca/openfisca-france/pull/2143)
+
+* Évolution du système socio-fiscal. | Changement mineur.
+* Périodes concernées : à partir du 01/07/2023.
+* Zones impactées : `parameters/marche_travail/remunerations_fonction_publique/indicefp`.
+* Détails :
+  - Actualise le point d'indice en juillet 2023
+
+## 150.4.0 [#2166](https://github.com/openfisca/openfisca-france/pull/2166)
+
+* Correction d'une erreur de formule
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/prestations_familiales/base_ressource`.
+* Détails :
+  - La variable `prestations_familiales_base_ressources_individu` contenait les variables `glo` et `assiette_csg_plus_values`, alors que la variable `rev_coll`, utilisée dans `prestations_familiales_base_ressources_communes`, contenait `plus_values_prelevement_forfaitaire_unique_ir` et `revenu_categoriel_plus_values`. On corrige de ceci, et on met un commentaire pour expliquer le choix fait en termes de variable de plus-values.
+
+## 150.3.0 [#2121](https://github.com/openfisca/openfisca-france/pull/2121)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Homogénéisation de nombreux dispositifs de l'IR avec [les barèmes IPP](https://gitlab.com/ipp/partage-public-ipp/baremes-ipp/baremes-ipp-yaml).
+  - Arrivées possibles de nouveaux paramètres
+
 ### 150.2.2 [#2159](https://github.com/openfisca/openfisca-france/pull/2159)
 
 * Changement mineur.

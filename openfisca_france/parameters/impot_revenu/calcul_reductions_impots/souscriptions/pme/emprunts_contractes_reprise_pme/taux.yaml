@@ -1,0 +1,30 @@
+description: Taux de la réduction d'impôt pour emprunts contractés pour la reprise d'une PME
+values:
+  1991-01-01:
+    value: null
+  1992-01-01:
+    value: 0.25
+  2015-01-01:
+    value: 0.18
+  2019-08-10:
+    value: 0.25
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_pme
+  unit: /1
+  reference:
+    2015-01-01:
+    - title: Loi 2015-1786 du 29/12/2015 de finances rectificative pour 2015- art. 26, I, 4°, a)
+    - title: Article 199 terdecies-0 A du CGI, I, 1º
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030021439/2015-01-01
+    2019-08-10:
+    - title: Décret n° 2020-1014 du 7 août 2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042220890
+    - title: Décret n° 2021-559 du 06/05/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043486453
+  official_journal_date:
+    2015-01-01: "2012-12-30"
+    2019-08-10: 2020-08-09; 2021-05-08
+  notes:
+    2019-08-10:
+    - title: Le montant de la réduction d'impôt sur le revenu a été augmenté à 25 % pour les investissements effectués à partir du 10 août 2020 jusqu'au 31 décembre 2020. Cette modification a été reconduite jusqu'au 31 décembre 2021.

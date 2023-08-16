@@ -6,4 +6,4 @@ values:
     value: null
 metadata:
   short_label: Seuil intermédiaire
-  unit: currency
+  unit: currency_next_year

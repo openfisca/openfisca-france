@@ -1,1 +1,6 @@
 description: Mise en recouvrement de l'impôt
+metadata:
+  short_label: Recouvrement
+  order:
+  - seuil
+  - min

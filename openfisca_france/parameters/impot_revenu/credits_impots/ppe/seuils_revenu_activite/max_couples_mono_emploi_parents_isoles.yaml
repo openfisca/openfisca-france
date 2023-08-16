@@ -1,5 +1,7 @@
-description: Revenu d'activité individuel maximum (point de sortie) pour les couples monoactifs et parents isolés pour la Prime pour l'emploi (PPE, 2000 - 2015)
+description: Revenu d'activité individuel maximum (point de sortie) pour les couples monoactifs et parents isolés pour la Prime pour l'emploi
 values:
+  1999-01-01:
+    value: null
   2000-01-01:
     value: 146257
   2001-01-01:
@@ -20,9 +22,9 @@ values:
     value: null
 metadata:
   short_label: Maximum (couples mono-emploi et parents isolés))
-  label_en: Employment Allowance (2001 - 2015)
+  label_en: Employment Allowance
   ipp_csv_id: seuil_ppe_max_coup
-  unit: currency
+  unit: currency_next_year
   reference:
     2000-01-01:
     - title: Loi 2001-458 du 30/05/2001
