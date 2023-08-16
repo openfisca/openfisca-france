@@ -1,5 +1,16 @@
 # Changelog
 
+### 150.4.3 [#2145](https://github.com/openfisca/openfisca-france/pull/2145)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : [
+    `openfisca_france/model/prestations/minima_sociaux/rsa.py`,
+    `tests/formulas/rsa/rsa_majore.yaml`
+]
+* Détails :
+  - Une personne à la charge de ses parents n'est pas une personne isolée.
+
 ### 150.4.2 [#2156](https://github.com/openfisca/openfisca-france/pull/2156)
 
 * Évolution du système socio-fiscal.
