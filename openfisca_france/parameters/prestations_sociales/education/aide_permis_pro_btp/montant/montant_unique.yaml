@@ -1,0 +1,6 @@
+description: Montant unique de l'Aide au financement du permis B pro BTP
+values:
+  2023-01-01:
+    value: 600
+metadata:
+  short_label: Montant unique
