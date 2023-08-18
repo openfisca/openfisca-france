@@ -402,7 +402,7 @@ class revenus_remplacement_pensions_bruts_menage(Variable):
         crds_retraite = menage.sum(crds_retraite_i)
 
         return (
-            + pensions_nettes
+            pensions_nettes
             - casa
             - csg_imposable_chomage  # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
             - csg_deductible_chomage
@@ -441,7 +441,7 @@ class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
         plus_values_base_large = menage.sum(plus_values_base_large_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
-            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            revenus_capitaux_prelevement_forfaitaire_unique_ir
             + revenus_capitaux_prelevement_bareme
             + revenus_capitaux_prelevement_liberatoire
             + interets_pel_moins_12_ans_cel
@@ -487,7 +487,7 @@ class prelevements_sociaux_menage(Variable):
         prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
-            + csg
+            csg
             + crds_hors_prestations
             + prelevements_sociaux_revenus_capital_hors_csg_crds
             )

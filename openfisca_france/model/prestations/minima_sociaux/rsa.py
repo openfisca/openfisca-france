@@ -640,7 +640,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
-            + livret_a * taux_livret_a / 12
+            livret_a * taux_livret_a / 12
             + epargne_revenus_non_imposables * rsa.rsa_cond.patrimoine.taux_interet_forfaitaire_epargne_non_imposable / 12
             + revenus_capital
             + revenus_locatifs
