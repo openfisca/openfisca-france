@@ -1,5 +1,19 @@
 # Changelog
 
+# 151.0.0 [#2171](hhttps://github.com/openfisca/openfisca-france/pull/2171)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parametres/prestations_sociales/aides_jeunes`.
+  - `parametres/prestations_sociales/aide_mobilite`.
+  - `parametres/prestations_sociales/gratuite_musees_monuments`
+* Détails :
+  - Renomme `aides_jeunes` en `education`
+  - Déplace `aide_mobilite` dans `transport`
+  - Déplace `gratuite_musees_monuments` dans `education`
+  - On a choisi le nom `education` plutôt que `education_culture` pour éviter d'avoir des chemins trop longs (le test idoine échouait)
+
 ### 150.4.6 [#2169](hhttps://github.com/openfisca/openfisca-france/pull/2169)
 
 * Correction de paramètres.

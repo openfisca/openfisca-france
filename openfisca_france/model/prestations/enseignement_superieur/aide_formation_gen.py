@@ -38,7 +38,7 @@ class aide_formation_gen(Variable):
 
     def formula_2017_04_14(individu, period, parameters):
         points_de_charge = individu('bourse_criteres_sociaux_points_de_charge', period)
-        baremes = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.plafond_ressources
+        baremes = parameters(period).prestations_sociales.education.bourses.enseignement_superieur.criteres_sociaux.plafond_ressources
         plafond_echelon_0bis = baremes.echelon_0bis.calc(points_de_charge)
         plafond_echelon_1 = baremes.echelon_1.calc(points_de_charge)
         plafond_echelon_2 = baremes.echelon_2.calc(points_de_charge)
@@ -62,6 +62,6 @@ class aide_formation_gen(Variable):
                 ],
             [7, 6, 5, 4, 3, 2, 1, 0], default=-1)
 
-        montants = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.montants
+        montants = parameters(period).prestations_sociales.education.bourses.enseignement_superieur.criteres_sociaux.montants
 
         return montants.calc(echelon) * individu('aide_formation_gen_eligibilite', period)

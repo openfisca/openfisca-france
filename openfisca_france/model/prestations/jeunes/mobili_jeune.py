@@ -22,12 +22,12 @@ class mobili_jeune(Variable):
 
         secteur_agricole = individu('secteur_activite_employeur', period) == TypesSecteurActivite.agricole
 
-        maximum = where(secteur_agricole, parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.montant.maximum.secteur_agricole, parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.montant.maximum.autres_secteurs)
+        maximum = where(secteur_agricole, parameters(period).prestations_sociales.education.mobilite.mobili_jeune.montant.maximum.secteur_agricole, parameters(period).prestations_sociales.education.mobilite.mobili_jeune.montant.maximum.autres_secteurs)
 
         eligibilite = individu('mobili_jeune_eligibilite', period)
 
         return where(
-            (reste_a_charge >= parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.montant.minimum) * eligibilite,
+            (reste_a_charge >= parameters(period).prestations_sociales.education.mobilite.mobili_jeune.montant.minimum) * eligibilite,
             min_(reste_a_charge, maximum),
             0,
             )
@@ -42,8 +42,8 @@ class mobili_jeune(Variable):
         eligibilite = individu('mobili_jeune_eligibilite', period)
 
         return where(
-            reste_a_charge >= parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.montant.minimum,
-            eligibilite * min_(reste_a_charge, parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.montant.maximum.autres_secteurs),
+            reste_a_charge >= parameters(period).prestations_sociales.education.mobilite.mobili_jeune.montant.minimum,
+            eligibilite * min_(reste_a_charge, parameters(period).prestations_sociales.education.mobilite.mobili_jeune.montant.maximum.autres_secteurs),
             0,
             )
 
@@ -82,7 +82,7 @@ class mobili_jeune_eligibilite(Variable):
     '''
 
     def formula_2022_06(individu, period, parameters):
-        condition_age = individu('age', period) < parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.age_maximum
+        condition_age = individu('age', period) < parameters(period).prestations_sociales.education.mobilite.mobili_jeune.age_maximum
 
         alternant = individu('alternant', period)  # sous contrat d'apprentissage ou de professionnalisation
         contributeur_peec = individu('peec_employeur', period)
@@ -101,7 +101,7 @@ class mobili_jeune_eligibilite(Variable):
         return condition_age * alternant * contributeur_peec * condition_remuneration * locataire
 
     def formula_2012_07(individu, period, parameters):
-        condition_age = individu('age', period) < parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.age_maximum
+        condition_age = individu('age', period) < parameters(period).prestations_sociales.education.mobilite.mobili_jeune.age_maximum
 
         alternant = individu('alternant', period)  # sous contrat d'apprentissage ou de professionnalisation
         mobili_jeune_eligibilite_employeur = individu('mobili_jeune_eligibilite_employeur', period)

@@ -23,7 +23,7 @@ class pret_formation_permis_eligibilite(Variable):
 
     def formula_2005_09_30(individu, period, parameters):
         age = individu('age', period)
-        criteres_age = parameters(period).prestations_sociales.transport.pret_formation_permis.age
+        criteres_age = parameters(period).prestations_sociales.transport.permis_de_conduire.pret_formation_permis.age
         return (criteres_age.minimum <= age) * (age <= criteres_age.maximum)
 
 
@@ -39,7 +39,7 @@ class aide_financement_permis_apprenti(Variable):
         ]
 
     def formula(individu, period, parameters):
-        montant = parameters(period).prestations_sociales.transport.aide_financement_permis_apprenti.montant
+        montant = parameters(period).prestations_sociales.transport.permis_de_conduire.aide_financement_permis_apprenti.montant
         eligibilite = individu('aide_financement_permis_apprenti_eligibilite', period)
 
         return montant * eligibilite
@@ -57,7 +57,7 @@ class aide_financement_permis_apprenti_eligibilite(Variable):
         ]
 
     def formula(individu, period, parameters):
-        age_minimal = parameters(period).prestations_sociales.transport.aide_financement_permis_apprenti.age_min
+        age_minimal = parameters(period).prestations_sociales.transport.permis_de_conduire.aide_financement_permis_apprenti.age_min
         age = individu('age', period)
         apprenti = individu('apprenti', period)
 

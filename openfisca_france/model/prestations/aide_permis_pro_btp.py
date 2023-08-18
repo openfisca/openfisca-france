@@ -12,7 +12,7 @@ class aide_permis_pro_btp(Variable):
     definition_period = MONTH
 
     def formula_2023(individu, period, parameters):
-        params = parameters(period).prestations_sociales.aides_jeunes.aide_permis_pro_btp
+        params = parameters(period).prestations_sociales.education.aide_permis_pro_btp
 
         smic_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         rfr = individu.foyer_fiscal('rfr', period.this_year)
@@ -30,7 +30,7 @@ class aide_permis_pro_btp(Variable):
         return eligibilite_age * alternant * eligibilite_ressource * est_en_formation_btp * montant
 
     def formula(individu, period, parameters):
-        params = parameters(period).prestations_sociales.aides_jeunes.aide_permis_pro_btp
+        params = parameters(period).prestations_sociales.education.aide_permis_pro_btp
 
         rfr = individu.foyer_fiscal('rfr', period.this_year)
         montant = select(

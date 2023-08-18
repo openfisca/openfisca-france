@@ -232,7 +232,7 @@ class aide_mobilite_eligible(Variable):
         date_debut_type_activite_recherche_emploi = individu('date_debut_recherche_emploi', period)
         contrat_de_travail_debut_en_mois = contrat_travail_debut.astype('M8[M]')
         amob_date_de_demande = individu('aide_mobilite_date_demande', period)
-        parametres_amob = parameters(period).prestations_sociales.aide_mobilite
+        parametres_amob = parameters(period).prestations_sociales.transport.aide_mobilite
         date_contrat_limite_contexte_formation_reprise = min_((contrat_de_travail_debut_en_mois + 1) + (contrat_travail_debut - contrat_de_travail_debut_en_mois),
                                                (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, 'D'))
         dates_demandes_amob_eligibles_formation_reprise = amob_date_de_demande <= date_contrat_limite_contexte_formation_reprise
@@ -330,7 +330,7 @@ class aide_mobilite(Variable):
     def formula_2021_06_09(individu, period, parameters):
 
         eligibilite_amob = individu('aide_mobilite_eligible', period)
-        parametres_amob = parameters(period).prestations_sociales.aide_mobilite
+        parametres_amob = parameters(period).prestations_sociales.transport.aide_mobilite
 
         annee_glissante = Period(('year', period.start, 1)).offset(-1)
 

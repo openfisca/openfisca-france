@@ -58,5 +58,5 @@ class aide_permis_demandeur_emploi(Variable):
         eligibilite_financiere = individu('aide_permis_demandeur_emploi_eligibilite_financiere', period)
         eligibilite_individu = individu('aide_permis_demandeur_emploi_eligibilite_individu', period)
 
-        montant = parameters(period).prestations_sociales.transport.aide_permis_demandeur_emploi.montant_maximum
+        montant = parameters(period).prestations_sociales.transport.permis_de_conduire.aide_permis_demandeur_emploi.montant_maximum
         return montant * eligibilite_financiere * eligibilite_individu
