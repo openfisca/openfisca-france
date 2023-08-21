@@ -409,42 +409,38 @@ class abattements_plus_values(Variable):
 # Plus values et gains taxables à des taux forfaitaires
 
 class f3vd(Variable):
-    ''' ATTENTION : à partir des revenus 2015, la case 3SD est supprimée : seule la case 3VD reste et recense les montants à l'échelle du foyer fiscal. Avec le code actuel, le seul problème serait si la case 3SD était réutilisée un jour pour autre chose dans le formulaire, ce qui n'est pas le cas aujourd'hui '''
-    cerfa_field = {
-        0: '3VD',
-        1: '3SD',
-        }
-    value_type = int
+    value_type = float
     unit = 'currency'
-    entity = Individu
+    entity = FoyerFiscal
     label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
-    # start_date = date(2008, 1, 1)
+    # Investiguée qu'à partir des revenus 2017
     definition_period = YEAR
 
 
 class f3vi(Variable):
-    ''' ATTENTION : à partir des revenus 2015, la case 3SI est supprimée : seule la case 3VI reste et recense les montants à l'échelle du foyer fiscal. Avec le code actuel, le seul problème serait si la case 3SI était réutilisée un jour pour autre chose dans le formulaire, ce qui n'est pas le cas aujourd'hui '''
-    cerfa_field = {
-        0: '3VI',
-        1: '3SI',
-        }
-    value_type = int
+    value_type = float
     unit = 'currency'
-    entity = Individu
+    entity = FoyerFiscal
     label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %"
+    # Investiguée qu'à partir des revenus 2017
     definition_period = YEAR
 
 
 class f3vf(Variable):
-    ''' ATTENTION : à partir des revenus 2015, la case 3SF est supprimée : seule la case 3VF reste et recense les montants à l'échelle du foyer fiscal. Avec le code actuel, le seul problème serait si la case 3SF était réutilisée un jour pour autre chose dans le formulaire, ce qui n'est pas le cas aujourd'hui '''
-    cerfa_field = {
-        0: '3VF',
-        1: '3SF',
-        }
-    value_type = int
+    value_type = float
     unit = 'currency'
-    entity = Individu
+    entity = FoyerFiscal
     label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %"
+    # Investiguée qu'à partir des revenus 2017
+    definition_period = YEAR
+
+
+class f3vn(Variable):
+    value_type = float
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Gains sur options et acquisitions gratuites attribuées à compter du 16.10.2007, soumis à la contribution salariale de 10%"
+    # Investiguée qu'à partir des revenus 2017
     definition_period = YEAR
 
 

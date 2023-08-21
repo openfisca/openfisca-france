@@ -1,0 +1,13 @@
+description: Contribution salariale sur gains de levée d'options
+values:
+  2012-09-01:
+    value: 0.10
+metadata:
+  unit: currency
+  reference:
+    2012-09-01:
+      href: 
+      title: ... 
+documentation: |-
+  Notes :
+  Ce paramètre existe avant septembre 2012, mais pas rempli pour ces périodes.

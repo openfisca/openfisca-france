@@ -161,11 +161,14 @@ class plus_values_base_large(Variable):
         f3we = foyer_fiscal('f3we', period)
         f3vz = foyer_fiscal('f3vz', period)
         f3vt = foyer_fiscal('f3vt', period)
+        f3vd = foyer_fiscal('f3vd', period)
+        f3vf = foyer_fiscal('f3vf', period)
+        f3vi = foyer_fiscal('f3vi', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3vg + f3we + f3vz + rpns_pvce + f3vt
+        intersection_v1_v2 = f3vg + f3we + f3vz + rpns_pvce + f3vt + f3vd + f3vf + f3vi
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2
 
@@ -182,11 +185,14 @@ class plus_values_base_large(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3wb = foyer_fiscal('f3wb', period)
         f3vt = foyer_fiscal('f3vt', period)
+        f3vd = foyer_fiscal('f3vd', period)
+        f3vf = foyer_fiscal('f3vf', period)
+        f3vi = foyer_fiscal('f3vi', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt
+        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + f3vd + f3vf + f3vi
         ajouts_de_rev_cat_pv = f3vl + f3wb
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
@@ -203,11 +209,14 @@ class plus_values_base_large(Variable):
         f3vz = foyer_fiscal('f3vz', period)
         f3wb = foyer_fiscal('f3wb', period)
         f3vt = foyer_fiscal('f3vt', period)
+        f3vd = foyer_fiscal('f3vd', period)
+        f3vf = foyer_fiscal('f3vf', period)
+        f3vi = foyer_fiscal('f3vi', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt
+        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + f3vd + f3vf + f3vi
         ajouts_de_rev_cat_pv = f3wb
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
@@ -225,11 +234,14 @@ class plus_values_base_large(Variable):
         f3wb = foyer_fiscal('f3wb', period)
         f3vt = foyer_fiscal('f3vt', period)
         f3pi = foyer_fiscal('f3pi', period)
+        f3vd = foyer_fiscal('f3vd', period)
+        f3vf = foyer_fiscal('f3vf', period)
+        f3vi = foyer_fiscal('f3vi', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + f3pi
+        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + f3pi + f3vd + f3vf + f3vi
         ajouts_de_rev_cat_pv = f3wb
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
@@ -280,22 +292,24 @@ class revenus_nets_du_capital(Variable):
         plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
 
-        revenus_du_capital_cap_avant_prelevements_sociaux = (
+        # Ajoute les gains de levée d'options qui, pour les prélèvements sociaux, sont soumis aux mêmes taux que les salaires
+        glo_assimiles_salaire_ir_et_ps = individu('f1tt', period)
+
+        revenus_du_capital_ff_avant_prelevements_sociaux = (
             assiette_csg_revenus_capital
             - assiette_csg_plus_values
             + plus_values_base_large
             - rente_viagere_titre_onereux_net
             )
+        revenus_du_capital_ind_avant_prelevements_sociaux = glo_assimiles_salaire_ir_et_ps
 
         prelevements_sociaux_revenus_capital = foyer_fiscal('prelevements_sociaux_revenus_capital', period)
 
-        revenus_foyer_fiscal = (
-            revenus_du_capital_cap_avant_prelevements_sociaux
-            + prelevements_sociaux_revenus_capital
+        return (
+            revenus_du_capital_ff_avant_prelevements_sociaux * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+            + revenus_du_capital_ind_avant_prelevements_sociaux
+            + prelevements_sociaux_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
             )
-        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return revenus_foyer_fiscal_projetes
 
 
 class revenus_fonciers_bruts_menage(Variable):

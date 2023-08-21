@@ -611,9 +611,7 @@ class aide_logement_base_ressources_individu(Variable):
 
         revenus = revenus * (1 - aide_logement_condition_neutralisation)
 
-        glo = individu('glo', period.last_year)
-
-        return revenus + revenu_assimile_pension + glo
+        return revenus + revenu_assimile_pension
 
     def formula_2018_01_01(individu, period, parameters):
 
@@ -653,9 +651,7 @@ class aide_logement_base_ressources_individu(Variable):
 
         revenus = revenus * (1 - aide_logement_condition_neutralisation)
 
-        glo = individu('glo', period.n_2)
-
-        return revenus + revenu_assimile_pension_apres_abattements + glo
+        return revenus + revenu_assimile_pension_apres_abattements
 
     def formula(individu, period, parameters):
 
@@ -698,9 +694,8 @@ class aide_logement_base_ressources_individu(Variable):
         revenus = revenus * (1 - aide_logement_condition_neutralisation)
 
         hsup = individu('hsup', period.n_2, options = [ADD])
-        glo = individu('glo', period.n_2)
 
-        return revenus + revenu_assimile_pension_apres_abattements + hsup + glo
+        return revenus + revenu_assimile_pension_apres_abattements + hsup
 
 
 class aide_logement_base_revenus_fiscaux(Variable):
@@ -733,6 +728,8 @@ class aide_logement_base_revenus_fiscaux(Variable):
         rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
         # Apparait à partir de 2018
         plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
+        # glo taxés forfaitairement. NB : peut-être faudrait-il ajouter toutes les plus-values taxées forfaitairement à l'IR, hors PFU ? A vérifier.
+        glo = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         return (
             + revenu_categoriel_foncier
@@ -742,6 +739,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rev_cat_pv
             + plus_values_prelevement_forfaitaire_unique_ir
+            + glo
             - f7ga
             - f7gb
             - f7gc
