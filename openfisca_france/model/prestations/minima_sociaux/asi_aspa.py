@@ -48,7 +48,6 @@ class asi_aspa_base_ressources_individu(Variable):
         # Revenus du foyer fiscal que l'on projette sur le premier invidividu
         rente_viagere_titre_onereux_foyer_fiscal = individu.foyer_fiscal('rente_viagere_titre_onereux', three_previous_months, options = [ADD])
         revenus_foyer_fiscal_individu = rente_viagere_titre_onereux_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * (3 / 12)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
@@ -100,7 +99,7 @@ class asi_aspa_base_ressources_individu(Variable):
         base_ressources_3_mois = sum(
             max_(0, individu(ressource_type, three_previous_months, options = [ADD]))
             for ressource_type in ressources_incluses
-            ) + aah + revenus_foyer_fiscal_individu + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire() + plus_values
+            ) + aah + revenus_foyer_fiscal_individu + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire()
 
         return base_ressources_3_mois / 3
 
