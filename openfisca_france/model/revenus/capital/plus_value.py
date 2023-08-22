@@ -439,7 +439,7 @@ class f3vn(Variable):
     value_type = float
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Gains sur options et acquisitions gratuites attribuées à compter du 16.10.2007, soumis à la contribution salariale de 10%"
+    label = 'Gains sur options et acquisitions gratuites attribuées à compter du 16.10.2007, soumis à la contribution salariale de 10%'
     # Investiguée qu'à partir des revenus 2017
     definition_period = YEAR
 
