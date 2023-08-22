@@ -1,0 +1,12 @@
+- name: pveximpres
+  description: Plus-values d'entreprises exonérées d'IR suite à départ à la retraite (mais non exonérées de prélèvements sociaux)
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    pveximpres: 100000
+  output:
+    assiette_csg_plus_values: 100000
+    plus_values_base_large: 100000
+    prelevements_sociaux_revenus_capital: -17200 # 17200 *0.172*100000
+    revenus_nets_du_capital: 82800 # 100000-17200
+    impots_directs: 0
