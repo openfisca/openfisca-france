@@ -1,5 +1,16 @@
 # Changelog
 
+# 151.0.1 [#2175](hhttps://github.com/openfisca/openfisca-france/pull/2175)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/prestations_sociales/prestations_familiales/bmaf`.
+  - `parameters/prestations_sociales/prestations_familiales/def_*`
+* Détails :
+  - Corrige description, références et doc
+  - Corrige quelques anciennes valeurs
+
 # 151.0.0 [#2171](hhttps://github.com/openfisca/openfisca-france/pull/2171)
 
 * Amélioration technique.

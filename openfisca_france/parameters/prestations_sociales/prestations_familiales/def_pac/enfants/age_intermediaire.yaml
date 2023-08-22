@@ -3,4 +3,5 @@ values:
   2001-01-01:
     value: 16
 metadata:
+  short_label: Âge intermédiaire
   unit: year
