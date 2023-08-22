@@ -1913,7 +1913,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3vd = foyer_fiscal('f3vd', period)
         f3vi = foyer_fiscal('f3vi', period)
         f3vf = foyer_fiscal('f3vf', period)
-        
+
         f3vm = foyer_fiscal('f3vm', period)
         f3vp = foyer_fiscal('f3vp', period)
         f3vq = foyer_fiscal('f3vq', period)

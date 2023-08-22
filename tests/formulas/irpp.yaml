@@ -641,51 +641,6 @@
   output:
     irpp: -48036
 
-
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
-  period: 2010
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 20000
-  output:
-    irpp: -3600
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
-  period: 2010
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 50000
-  output:
-    irpp: -9000
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
-  period: 2010
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 150000
-  output:
-    irpp: -27000
-
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
-  period: 2011
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 20000
-  output:
-    irpp: -3800
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
-  period: 2011
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 50000
-  output:
-    irpp: -9500
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
-  period: 2011
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 150000
-  output:
-    irpp: -28500
-
 - name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5

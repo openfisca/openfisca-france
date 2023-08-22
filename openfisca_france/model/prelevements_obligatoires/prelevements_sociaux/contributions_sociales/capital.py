@@ -384,7 +384,7 @@ class crds_glo_assimile_salaire_ir_et_ps(Variable):
 class contribution_salariale_glo_assimile_salaire(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = "Contribution salariale sur GLO"
+    label = 'Contribution salariale sur GLO'
     entity = FoyerFiscal
     definition_period = YEAR
     set_input = set_input_divide_by_period
@@ -462,7 +462,7 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
             + P.caps.produits_de_placement
             + P.prelevements_solidarite.produits_de_placement
             )
-        
+
         contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
 
         return -assiette_csg_revenus_capital * total + contribution_salariale_glo_assimile_salaire
@@ -477,7 +477,7 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
             + P.prelevements_solidarite.produits_de_placement
             + P.caps.rsa
             )
-        
+
         contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
 
         return -assiette_csg_revenus_capital * total + contribution_salariale_glo_assimile_salaire
@@ -491,7 +491,7 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
             + P.caps.produits_de_placement
             + P.prelevements_solidarite.produits_de_placement
             )
-        
+
         contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
 
         return -assiette_csg_revenus_capital * total + contribution_salariale_glo_assimile_salaire

@@ -61,12 +61,12 @@
       - ind0
       f3sk: 20000.0
       f3vt: 20000.0
+      f3vi: 10000.0
     individus:
       ind0:
         activite: actif
         date_naissance: '1970-01-01'
         statut_marital: celibataire
-        f3vi: 10000.0
     famille:
       parents:
       - ind0
