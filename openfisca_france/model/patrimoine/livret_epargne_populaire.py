@@ -54,6 +54,12 @@ class livret_epargne_populaire_taux(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+    def formula_2023_08_01(individu, period, parameters):
+        eligibilite = individu('livret_epargne_populaire_eligibilite', period)
+        taux_epargne_populaire = parameters(period).taxation_capital.epargne.livret_epargne_populaire.taux
+
+        return eligibilite * 100 * taux_epargne_populaire
+
     def formula(individu, period, parameters):
         eligibilite = individu('livret_epargne_populaire_eligibilite', period)
 
