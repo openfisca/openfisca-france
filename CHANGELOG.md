@@ -1,5 +1,16 @@
 # Changelog
 
+# 151.1.0 [#2179](https://github.com/openfisca/openfisca-france/pull/2179)
+
+* Changement mineur.
+* Périodes concernées : depuis 2023-08-01.
+* Zones impactées :
+  - `parameters/taxation_capital/epargne/livret_a`.
+  - `model/patrimoine/livret_epargne_populaire`
+* Détails :
+  - Mise à jour du taux du livret A
+  - Mise à jour de la formule du taux du livret d'épargne populaire (taux fixé désormais)
+
 # 151.0.1 [#2175](hhttps://github.com/openfisca/openfisca-france/pull/2175)
 
 * Changement mineur.
