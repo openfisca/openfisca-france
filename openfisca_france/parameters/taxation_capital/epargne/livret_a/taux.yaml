@@ -88,6 +88,8 @@ values:
     value: 0.01
   2022-08-01:
     value: 0.02
+  2023-02-01:
+    value: 0.03
 metadata:
   short_label: Taux
   last_value_still_valid_on: "2023-01-05"
@@ -102,4 +104,10 @@ metadata:
     2022-02-01:
       title: JORF n° 0025 du 30 janvier 2022, Arrêté du 27 janvier 2022 relatif aux taux d'intérêt des produits d'épargne réglementée
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045084355
+    2023-02-01:
+      title: JORF n°0025 du 29 janvier 2023, Arrêté du 27 janvier 2023 relatif aux taux d'intérêt des produits d'épargne réglementée
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047069197
+    2023-08-01:
+      title: JORF n°0174 du 29 juillet 2023, Arrêté du 28 juillet 2023 relatif aux taux d'intérêt des produits d'épargne réglementée
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047901505
 documentation: "Notes : Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2365"
