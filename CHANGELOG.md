@@ -1,5 +1,13 @@
 # Changelog
 
+### 151.1.3 [#2164](https://github.com/openfisca/openfisca-france/pull/2164)
+
+* Tri de tests
+* Périodes concernées : toutes.
+* Zones impactées : `tests/ipp/*`.
+* Détails :
+  - Supprime des tables .dta de l'IPP situés das le dossier tests, datant de 2014 et non-utilisés.
+
 ### 151.1.2 [#2176](https://github.com/openfisca/openfisca-france/pull/2176)
 
 * Corrige une erreur.
