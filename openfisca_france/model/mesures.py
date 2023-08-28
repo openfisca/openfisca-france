@@ -292,7 +292,7 @@ class revenus_nets_du_capital(Variable):
         plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
 
-        # Ajoute les gains de levée d'options qui, pour les prélèvements sociaux, sont soumis aux mêmes taux que les salaires
+        # Ajoute les gains de levée d'options qui, pour les prélèvements sociaux, sont soumis aux mêmes taux que les salaires. Contrairement aux revenus ci-dessus, ces revenus sont individuels.
         glo_assimiles_salaire_ir_et_ps = individu('f1tt', period)
 
         revenus_du_capital_ff_avant_prelevements_sociaux = (
@@ -301,13 +301,12 @@ class revenus_nets_du_capital(Variable):
             + plus_values_base_large
             - rente_viagere_titre_onereux_net
             )
-        revenus_du_capital_ind_avant_prelevements_sociaux = glo_assimiles_salaire_ir_et_ps
 
         prelevements_sociaux_revenus_capital = foyer_fiscal('prelevements_sociaux_revenus_capital', period)
 
         return (
             revenus_du_capital_ff_avant_prelevements_sociaux * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-            + revenus_du_capital_ind_avant_prelevements_sociaux
+            + glo_assimiles_salaire_ir_et_ps
             + prelevements_sociaux_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
             )
 
