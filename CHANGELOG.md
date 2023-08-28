@@ -1,5 +1,13 @@
 # Changelog
 
+### 151.1.2 [#2176](https://github.com/openfisca/openfisca-france/pull/2176)
+
+* Corrige une erreur.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/asi_aspa`.
+* Détails :
+  - Corrige un double compte des plus-values dans la base ressources de l'ASPA et de l'ASI.
+
 ### 151.1.1 [#2163](https://github.com/openfisca/openfisca-france/pull/2163)
 
 * Correction d'une formule.
