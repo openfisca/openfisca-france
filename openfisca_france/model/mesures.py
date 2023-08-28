@@ -237,14 +237,16 @@ class plus_values_base_large(Variable):
     def formula_2018_01_01(foyer_fiscal, period):
         '''
         Cf. docstring période précédente
-        Pour 2018 et 2019, assiette_csg_plus_values est inclus dans rfr_plus_values_hors_rni
+        Pour 2018 et 2019, seule variable de assiette_csg_plus_values n'étant pas dans rfr_plus_values_hors_rni : pveximpres
         '''
         f3wb = foyer_fiscal('f3wb', period)
 
         rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
         ajouts_de_rev_cat_pv = f3wb
 
-        return rfr_plus_values_hors_rni + ajouts_de_rev_cat_pv
+        return rfr_plus_values_hors_rni + pveximpres + ajouts_de_rev_cat_pv
 
 
 class revenus_nets_du_capital(Variable):
