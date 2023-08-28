@@ -1,6 +1,14 @@
 # Changelog
 
-# 151.1.0 [#2179](https://github.com/openfisca/openfisca-france/pull/2179)
+### 151.1.1 [#2163](https://github.com/openfisca/openfisca-france/pull/2163)
+
+* Correction d'une formule.
+* Périodes concernées : toutes.
+* Zones impactées : `measures.py`.
+* Détails :
+  - Corrige `plus_values_base_large` suite à une modification de `assiette_csg_plus_values` introduite dans la PR #2126.
+
+## 151.1.0 [#2179](https://github.com/openfisca/openfisca-france/pull/2179)
 
 * Changement mineur.
 * Périodes concernées : depuis 2023-08-01.
@@ -11,7 +19,7 @@
   - Mise à jour du taux du livret A
   - Mise à jour de la formule du taux du livret d'épargne populaire (taux fixé désormais)
 
-# 151.0.1 [#2175](hhttps://github.com/openfisca/openfisca-france/pull/2175)
+### 151.0.1 [#2175](hhttps://github.com/openfisca/openfisca-france/pull/2175)
 
 * Changement mineur.
 * Périodes concernées : toutes.
