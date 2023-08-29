@@ -1671,9 +1671,9 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3vt = foyer_fiscal('f3vt', period)
         f3vm = foyer_fiscal('f3vm', period)
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire_taux2 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux2', period)
+        glo_taxation_ir_forfaitaire_taux3 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux3', period)
+        glo_taxation_ir_forfaitaire_taux4 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux4', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
@@ -1682,13 +1682,13 @@ class taxation_plus_values_hors_bareme(Variable):
         return round_(
             pv.plus_values.pvce * rpns_pvce
             + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * max_(0, f3vg - f3vh)
-            + pv.actions_gratuites.taux2 * f3vd
+            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
             + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * f3vl
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
             + pv.plus_values.taux_pv_entrep * f3sa_2012
-            + pv.actions_gratuites.taux3 * f3vi
-            + pv.actions_gratuites.taux4 * f3vf
+            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.moins_3ans * f3sk
             )
@@ -1701,9 +1701,9 @@ class taxation_plus_values_hors_bareme(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vm = foyer_fiscal('f3vm', period)
         f3vt = foyer_fiscal('f3vt', period)
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire_taux2 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux2', period)
+        glo_taxation_ir_forfaitaire_taux3 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux3', period)
+        glo_taxation_ir_forfaitaire_taux4 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux4', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
@@ -1713,9 +1713,9 @@ class taxation_plus_values_hors_bareme(Variable):
             pv.plus_values.pvce * rpns_pvce
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
-            + pv.actions_gratuites.taux2 * f3vd
-            + pv.actions_gratuites.taux3 * f3vi
-            + pv.actions_gratuites.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
+            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.moins_3ans * f3sk
             )
@@ -1728,9 +1728,9 @@ class taxation_plus_values_hors_bareme(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vm = foyer_fiscal('f3vm', period)
         f3vt = foyer_fiscal('f3vt', period)
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire_taux2 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux2', period)
+        glo_taxation_ir_forfaitaire_taux3 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux3', period)
+        glo_taxation_ir_forfaitaire_taux4 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux4', period)
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
@@ -1742,9 +1742,9 @@ class taxation_plus_values_hors_bareme(Variable):
             pv.plus_values.pvce * rpns_pvce
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
-            + pv.actions_gratuites.taux2 * f3vd
-            + pv.actions_gratuites.taux3 * f3vi
-            + pv.actions_gratuites.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
+            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.moins_3ans * f3sk
             + pv.plus_values.taux_plus_values_report * f3wi
@@ -1756,9 +1756,9 @@ class taxation_plus_values_hors_bareme(Variable):
         Taxation des plus-values (hors imposition au barÃ¨me), en excluant, à partir de 2018, celles imposées au PFU
         (qui sont à impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py)
         '''
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire_taux2 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux2', period)
+        glo_taxation_ir_forfaitaire_taux3 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux3', period)
+        glo_taxation_ir_forfaitaire_taux4 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux4', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3vm = foyer_fiscal('f3vm', period)
@@ -1773,9 +1773,9 @@ class taxation_plus_values_hors_bareme(Variable):
 
         return round_(
             pv.plus_values.pvce * rpns_pvce
-            + pv.actions_gratuites.taux2 * f3vd
-            + pv.actions_gratuites.taux3 * f3vi
-            + pv.actions_gratuites.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
+            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.moins_3ans * f3sk
             + pv.pea.taux_avant_2_ans * f3vm
@@ -1790,9 +1790,9 @@ class taxation_plus_values_hors_bareme(Variable):
         Taxation des plus-values (hors imposition au barème), en excluant celles imposées au PFU
         (qui sont à impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py)
         '''
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire_taux2 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux2', period)
+        glo_taxation_ir_forfaitaire_taux3 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux3', period)
+        glo_taxation_ir_forfaitaire_taux4 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux4', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3wi = foyer_fiscal('f3wi', period)
@@ -1809,9 +1809,9 @@ class taxation_plus_values_hors_bareme(Variable):
 
         return round_(
             pv.plus_values.pvce * rpns_pvce
-            + pv.actions_gratuites.taux2 * f3vd
-            + pv.actions_gratuites.taux3 * f3vi
-            + pv.actions_gratuites.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
+            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + P.taux10 * rpns_info
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.moins_3ans * f3sk
@@ -1833,9 +1833,7 @@ class rfr_plus_values_hors_rni(Variable):
         '''
         f3vc = foyer_fiscal('f3vc', period)
 
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vg = foyer_fiscal('f3vg', period)
         f3vl = foyer_fiscal('f3vl', period)
@@ -1846,7 +1844,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz + rpns_pvce
+        return f3vc + glo_taxation_ir_forfaitaire + f3vg + f3vl + f3vm + f3vp + f3vy + f3vz + rpns_pvce
 
     def formula_2012_01_01(foyer_fiscal, period):
         '''
@@ -1857,9 +1855,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
 
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vg = foyer_fiscal('f3vg', period)
         f3vl = foyer_fiscal('f3vl', period)
@@ -1873,7 +1869,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa_2012 + f3sj + f3sk + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we + rpns_pvce
+        return f3sa_2012 + f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + f3vg + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
     def formula_2013_01_01(foyer_fiscal, period):
         '''
@@ -1883,9 +1879,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
 
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vm = foyer_fiscal('f3vm', period)
         f3vp = foyer_fiscal('f3vp', period)
@@ -1899,7 +1893,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + rpns_pvce
+        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
     def formula_2016_01_01(foyer_fiscal, period):
         '''
@@ -1910,9 +1904,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3tz = foyer_fiscal('f3tz', period)
         f3vc = foyer_fiscal('f3vc', period)
 
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vm = foyer_fiscal('f3vm', period)
         f3vp = foyer_fiscal('f3vp', period)
@@ -1928,7 +1920,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
+        return f3sj + f3sk + f3tz + f3vc + glo_taxation_ir_forfaitaire + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
     def formula_2017_01_01(foyer_fiscal, period):
         '''
@@ -1939,9 +1931,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3tz = foyer_fiscal('f3tz', period)
         f3vc = foyer_fiscal('f3vc', period)
 
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vm = foyer_fiscal('f3vm', period)
         f3vp = foyer_fiscal('f3vp', period)
@@ -1958,7 +1948,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3pi
+        return f3sj + f3sk + f3tz + f3vc + glo_taxation_ir_forfaitaire + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3pi
 
     def formula_2018_01_01(foyer_fiscal, period):
         '''
@@ -1971,9 +1961,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
 
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vm = foyer_fiscal('f3vm', period)
         f3vq = foyer_fiscal('f3vq', period)
@@ -1988,7 +1976,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3pi
+        return f3vg + f3ua + f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3pi
 
     def formula_2019_01_01(foyer_fiscal, period):
         '''
@@ -2001,9 +1989,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
 
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vq = foyer_fiscal('f3vq', period)
         f3vr = foyer_fiscal('f3vr', period)
@@ -2018,7 +2004,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3an + f3pi
+        return f3vg + f3ua + f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3an + f3pi
 
 
 class iai(Variable):
@@ -2192,21 +2178,93 @@ class rfr(Variable):
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
 
 
+class glo_taxation_ir_forfaitaire_taux2(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period):
+        '''
+        On crée cette variable étant donné que ces revenus sont renseignés jusqu'à 2014 dans des cases individuelles, et à partir de 2015 dans
+        des cases à l'échelle du foyer fiscal. Créer cette variable intermédiaire permet d'alléger le code dans les formules dépendant de ces
+        revenus.
+        NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+        '''
+        f3vd_i = foyer_fiscal.members('f3vd_2014', period)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        
+        return f3vd
+
+    def formula_2015_01_01(foyer_fiscal, period):
+        f3vd = foyer_fiscal('f3vd', period)
+
+        return f3vd
+
+
+class glo_taxation_ir_forfaitaire_taux3(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period):
+        '''
+        On crée cette variable étant donné que ces revenus sont renseignés jusqu'à 2014 dans des cases individuelles, et à partir de 2015 dans
+        des cases à l'échelle du foyer fiscal. Créer cette variable intermédiaire permet d'alléger le code dans les formules dépendant de ces
+        revenus.
+        NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+        '''
+        f3vi_i = foyer_fiscal.members('f3vi_2014', period)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        
+        return f3vi
+
+    def formula_2015_01_01(foyer_fiscal, period):
+        f3vi = foyer_fiscal('f3vi', period)
+
+        return f3vi
+
+
+class glo_taxation_ir_forfaitaire_taux4(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period):
+        '''
+        On crée cette variable étant donné que ces revenus sont renseignés jusqu'à 2014 dans des cases individuelles, et à partir de 2015 dans
+        des cases à l'échelle du foyer fiscal. Créer cette variable intermédiaire permet d'alléger le code dans les formules dépendant de ces
+        revenus.
+        NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+        '''
+        f3vf_i = foyer_fiscal.members('f3vf_2014', period)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+        
+        return f3vf
+
+    def formula_2015_01_01(foyer_fiscal, period):
+        f3vf = foyer_fiscal('f3vf', period)
+
+        return f3vf
+
+
 class glo_taxation_ir_forfaitaire(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Gains de levée d'options taxés forfaitairement à l'IR"
     definition_period = YEAR
 
-    def formula_2017_01_01(foyer_fiscal, period):
+    def formula(foyer_fiscal, period):
         '''
-        Existante avant 2017, mais on a fait le suivi à partir de 2017.
+        NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
         '''
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vi = foyer_fiscal('f3vi', period)
-        f3vf = foyer_fiscal('f3vf', period)
+        glo_taxation_ir_forfaitaire_taux2 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux2', period)
+        glo_taxation_ir_forfaitaire_taux3 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux3', period)
+        glo_taxation_ir_forfaitaire_taux4 = foyer_fiscal('glo_taxation_ir_forfaitaire_taux4', period)
 
-        return f3vd + f3vi + f3vf
+        return glo_taxation_ir_forfaitaire_taux2 + glo_taxation_ir_forfaitaire_taux3 + glo_taxation_ir_forfaitaire_taux4
 
 
 class credits_impot_sur_valeurs_etrangeres(Variable):

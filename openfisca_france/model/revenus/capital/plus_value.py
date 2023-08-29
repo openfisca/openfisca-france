@@ -408,14 +408,72 @@ class abattements_plus_values(Variable):
 
 # Plus values et gains taxables à des taux forfaitaires
 
+class f3vd_2014(Variable):
+    cerfa_field = {
+        0: '3VD',
+        1: '3SD',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
+    # start_date = date(2008, 1, 1)
+    end = '2014-12-31'
+    definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+
+
+class f3vi_2014(Variable):
+    cerfa_field = {
+        0: '3VI',
+        1: '3SI',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %"
+    end = '2014-12-31'
+    definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+
+
+class f3vf_2014(Variable):
+    cerfa_field = {
+        0: '3VF',
+        1: '3SF',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %"
+    end = '2014-12-31'
+    definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+
+
+class f3vn_2014(Variable):
+    cerfa_field = {
+        0: '3VN',
+        1: '3SN',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Gains sur options et acquisitions gratuites attribuées à compter du 16/10/2007, soumis à la contribution salariale de 10%'
+    # start_date = date(2013, 1, 1) : elle existe avant 2013 mais pour ces années avant, la législation n'a pas été codée. Voir variable contribution_salariale_glo_assimile_salaire
+    end = '2014-12-31'
+    definition_period = YEAR
+
+
 class f3vd(Variable):
     cerfa_field = '3VD'
     value_type = float
     unit = 'currency'
     entity = FoyerFiscal
     label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
-    # Investiguée qu'à partir des revenus 2017
+    # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
 
 
 class f3vi(Variable):
@@ -424,8 +482,9 @@ class f3vi(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %"
-    # Investiguée qu'à partir des revenus 2017
+    # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
 
 
 class f3vf(Variable):
@@ -434,8 +493,9 @@ class f3vf(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %"
-    # Investiguée qu'à partir des revenus 2017
+    # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
 
 
 class f3vn(Variable):
@@ -444,6 +504,7 @@ class f3vn(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Gains sur options et acquisitions gratuites attribuées à compter du 16/10/2007, soumis à la contribution salariale de 10%'
+    # start_date = date(2015, 1, 1)
     # Investiguée qu'à partir des revenus 2017
     definition_period = YEAR
 

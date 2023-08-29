@@ -161,14 +161,12 @@ class plus_values_base_large(Variable):
         f3we = foyer_fiscal('f3we', period)
         f3vz = foyer_fiscal('f3vz', period)
         f3vt = foyer_fiscal('f3vt', period)
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vf = foyer_fiscal('f3vf', period)
-        f3vi = foyer_fiscal('f3vi', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3vg + f3we + f3vz + rpns_pvce + f3vt + f3vd + f3vf + f3vi
+        intersection_v1_v2 = f3vg + f3we + f3vz + rpns_pvce + f3vt + glo_taxation_ir_forfaitaire
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2
 
@@ -185,14 +183,12 @@ class plus_values_base_large(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3wb = foyer_fiscal('f3wb', period)
         f3vt = foyer_fiscal('f3vt', period)
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vf = foyer_fiscal('f3vf', period)
-        f3vi = foyer_fiscal('f3vi', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + f3vd + f3vf + f3vi
+        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + glo_taxation_ir_forfaitaire
         ajouts_de_rev_cat_pv = f3vl + f3wb
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
@@ -209,14 +205,12 @@ class plus_values_base_large(Variable):
         f3vz = foyer_fiscal('f3vz', period)
         f3wb = foyer_fiscal('f3wb', period)
         f3vt = foyer_fiscal('f3vt', period)
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vf = foyer_fiscal('f3vf', period)
-        f3vi = foyer_fiscal('f3vi', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + f3vd + f3vf + f3vi
+        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + glo_taxation_ir_forfaitaire
         ajouts_de_rev_cat_pv = f3wb
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
@@ -234,14 +228,12 @@ class plus_values_base_large(Variable):
         f3wb = foyer_fiscal('f3wb', period)
         f3vt = foyer_fiscal('f3vt', period)
         f3pi = foyer_fiscal('f3pi', period)
-        f3vd = foyer_fiscal('f3vd', period)
-        f3vf = foyer_fiscal('f3vf', period)
-        f3vi = foyer_fiscal('f3vi', period)
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + f3pi + f3vd + f3vf + f3vi
+        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + f3pi + glo_taxation_ir_forfaitaire
         ajouts_de_rev_cat_pv = f3wb
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
