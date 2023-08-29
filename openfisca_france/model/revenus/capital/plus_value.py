@@ -409,6 +409,7 @@ class abattements_plus_values(Variable):
 # Plus values et gains taxables à des taux forfaitaires
 
 class f3vd(Variable):
+    cerfa_field = '3VD'
     value_type = float
     unit = 'currency'
     entity = FoyerFiscal
@@ -418,6 +419,7 @@ class f3vd(Variable):
 
 
 class f3vi(Variable):
+    cerfa_field = '3VI'
     value_type = float
     unit = 'currency'
     entity = FoyerFiscal
@@ -427,6 +429,7 @@ class f3vi(Variable):
 
 
 class f3vf(Variable):
+    cerfa_field = '3VF'
     value_type = float
     unit = 'currency'
     entity = FoyerFiscal
@@ -436,6 +439,7 @@ class f3vf(Variable):
 
 
 class f3vn(Variable):
+    cerfa_field = '3VN'
     value_type = float
     unit = 'currency'
     entity = FoyerFiscal
