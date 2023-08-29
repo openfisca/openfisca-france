@@ -1,5 +1,27 @@
 # Changelog
 
+# 152.0.0 [#2178](https://github.com/openfisca/openfisca-france/pull/2178)
+
+* Correction et complétion de la législation
+* Périodes concernées : toutes.
+* Zones impactées:
+   - `mesures.py`
+   - `prelevements_obligatoires/impot_revenu/ir.py`
+   - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+   - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/csg_crds.py`
+   - `prestations/aides_logement.py`
+   - `revenus/capital/plus_values.py`
+* Détails :
+  - Ajoute les GLO taxés forfaitairement dans le revenu disponible (dans `plus_values_base_large`). Supprime ces GLO avant 2016 (car code faux).
+  - Ajoute ces GLO dans l'assiette CSG pour les années où ils n'y étaient pas injectés.
+  - Injecte dans le revenu disponible les GLO assimilés salaires et code les prélèvements associés à ces revenus. Il faut distinguer les GLO assimilés salaires pour l'IR (mais traités comme des revenus du capital pour les prélèvements sociaux), et ceux assimilés salaires à la fois pour l'IR et pour les prélèvements sociaux. Avant cette PR, n'était codé que l'IR associé à ces GLO, et pas les prélèvements sociaux. On ajoute les prélèvements sociaux, c'est-à-dire:
+     - pour ceux ayant les PS des revenus du capital (`f3vj`) : ajout dans l'assiette des PS des revenus du capital (donc, calcul de la CSG, CRDS et autres prélèvements)
+     - pour les autres (`f1tt`) : ils sont soumis à CSG et CRDS des revenus d'activité ainsi qu'à une contribution salariale de 10%. On code cela. Création de `csg_glo_assimile_salaire_ir_et_ps`, `crds_glo_assimile_salaire_ir_et_ps` et `contribution_salariale_glo_assimile_salaire` (qui implique de créer `f3vn`).
+   - Injecte les GLO assimilés salaires pour l'IR dans le revenu disponible (l'IR sur ces GLO y était injecté, mais pas les GLO eux-même).
+   - Suppression des formules de `taxation_plus_values_hors_bareme` avant 2012, qui étaient fausses.
+   - Enlève `f3vm` pour 2018, qui était mise à tord.
+   - Pour les GLO taxés forfaitairement, on code le changement d'entité en 2015 des cases qui y sont associées (passage de cases individuelles à foyer fiscal en 2015, pour `f3vd`, `f3vi` et `f3vf` : avant n'était codé que l'ancienne entité). Puis, pour simplifier les formules qui appellent ces revenus, création des variables `glo_taxation_ir_forfaitaire_taux2`, `glo_taxation_ir_forfaitaire_taux3` et `glo_taxation_ir_forfaitaire_taux4`. Renommage également de `glo` par `glo_taxation_ir_forfaitaire`
+
 ### 151.1.3 [#2164](https://github.com/openfisca/openfisca-france/pull/2164)
 
 * Tri de tests
