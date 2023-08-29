@@ -2193,7 +2193,7 @@ class glo_taxation_ir_forfaitaire_taux2(Variable):
         '''
         f3vd_i = foyer_fiscal.members('f3vd_2014', period)
         f3vd = foyer_fiscal.sum(f3vd_i)
-        
+
         return f3vd
 
     def formula_2015_01_01(foyer_fiscal, period):
@@ -2217,7 +2217,7 @@ class glo_taxation_ir_forfaitaire_taux3(Variable):
         '''
         f3vi_i = foyer_fiscal.members('f3vi_2014', period)
         f3vi = foyer_fiscal.sum(f3vi_i)
-        
+
         return f3vi
 
     def formula_2015_01_01(foyer_fiscal, period):
@@ -2241,7 +2241,7 @@ class glo_taxation_ir_forfaitaire_taux4(Variable):
         '''
         f3vf_i = foyer_fiscal.members('f3vf_2014', period)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        
+
         return f3vf
 
     def formula_2015_01_01(foyer_fiscal, period):
