@@ -1,0 +1,22 @@
+- name: glo_2019
+  description: Test du traitement des différents types de glo (assimilés salaires pour l'IR seulement, pour l'IR et les PS, pour aucun prélèvement) hors injection dans le barème progressif de l'IR (injection dans le revenu disponible, calcul des prélèvements sociaux, taxation forfaitaire à l'IR)
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    f1tt: 20000
+    f3vj: 30000
+    f3vd: 15000
+    f3vi: 8000
+    f3vf: 7000
+    f3vn: 60000 # On prend ici la somme de f3vj, f3vd, f3vi et f3vf
+  output:
+    assiette_csg_revenus_capital: 60000 # 30000 + 15000 + 8000 + 7000
+    plus_values_base_large: 30000 # 15000 + 8000 + 7000
+    contribution_salariale_glo_assimile_salaire: -8000 # -0.1*80000
+    csg_glo_assimile_salaire_ir_et_ps: -1840 # -0.092*20000
+    crds_glo_assimile_salaire_ir_et_ps: -100 # -0.005*20000
+    prelevements_sociaux_revenus_capital: -20260 # -( 0.172*(30000 + 15000 + 8000 + 7000) + 8000 + 1840 + 100 )
+    revenus_nets_du_capital: 59740 # 80000 - 20260
+    revenus_nets_du_travail: 0
+    taxation_plus_values_hors_bareme: 7970 # 0.18*15000 + 0.30*8000 + 0.41*7000
+    rfr: 75000 # 0.9*(20000 + 30000) + 15000 + 8000 + 7000

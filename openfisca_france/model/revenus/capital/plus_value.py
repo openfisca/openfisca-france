@@ -408,8 +408,7 @@ class abattements_plus_values(Variable):
 
 # Plus values et gains taxables à des taux forfaitaires
 
-class f3vd(Variable):
-    ''' ATTENTION : à partir des revenus 2015, la case 3SD est supprimée : seule la case 3VD reste et recense les montants à l'échelle du foyer fiscal. Avec le code actuel, le seul problème serait si la case 3SD était réutilisée un jour pour autre chose dans le formulaire, ce qui n'est pas le cas aujourd'hui '''
+class f3vd_2014(Variable):
     cerfa_field = {
         0: '3VD',
         1: '3SD',
@@ -419,11 +418,12 @@ class f3vd(Variable):
     entity = Individu
     label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
     # start_date = date(2008, 1, 1)
+    end = '2014-12-31'
     definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
 
 
-class f3vi(Variable):
-    ''' ATTENTION : à partir des revenus 2015, la case 3SI est supprimée : seule la case 3VI reste et recense les montants à l'échelle du foyer fiscal. Avec le code actuel, le seul problème serait si la case 3SI était réutilisée un jour pour autre chose dans le formulaire, ce qui n'est pas le cas aujourd'hui '''
+class f3vi_2014(Variable):
     cerfa_field = {
         0: '3VI',
         1: '3SI',
@@ -432,11 +432,12 @@ class f3vi(Variable):
     unit = 'currency'
     entity = Individu
     label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %"
+    end = '2014-12-31'
     definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
 
 
-class f3vf(Variable):
-    ''' ATTENTION : à partir des revenus 2015, la case 3SF est supprimée : seule la case 3VF reste et recense les montants à l'échelle du foyer fiscal. Avec le code actuel, le seul problème serait si la case 3SF était réutilisée un jour pour autre chose dans le formulaire, ce qui n'est pas le cas aujourd'hui '''
+class f3vf_2014(Variable):
     cerfa_field = {
         0: '3VF',
         1: '3SF',
@@ -445,6 +446,66 @@ class f3vf(Variable):
     unit = 'currency'
     entity = Individu
     label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %"
+    end = '2014-12-31'
+    definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+
+
+class f3vn_2014(Variable):
+    cerfa_field = {
+        0: '3VN',
+        1: '3SN',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Gains sur options et acquisitions gratuites attribuées à compter du 16/10/2007, soumis à la contribution salariale de 10%'
+    # start_date = date(2013, 1, 1) : elle existe avant 2013 mais pour ces années avant, la législation n'a pas été codée. Voir variable contribution_salariale_glo_assimile_salaire
+    end = '2014-12-31'
+    definition_period = YEAR
+
+
+class f3vd(Variable):
+    cerfa_field = '3VD'
+    value_type = float
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
+    # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+
+
+class f3vi(Variable):
+    cerfa_field = '3VI'
+    value_type = float
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %"
+    # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+
+
+class f3vf(Variable):
+    cerfa_field = '3VF'
+    value_type = float
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %"
+    # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+    # NB : la législation sur les GLO a été checkée en août 2023 à partir de 2017 seulement.
+
+
+class f3vn(Variable):
+    cerfa_field = '3VN'
+    value_type = float
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Gains sur options et acquisitions gratuites attribuées à compter du 16/10/2007, soumis à la contribution salariale de 10%'
+    # start_date = date(2015, 1, 1)
+    # Investiguée qu'à partir des revenus 2017
     definition_period = YEAR
 
 
