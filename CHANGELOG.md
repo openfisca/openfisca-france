@@ -1,5 +1,21 @@
 # Changelog
 
+## 153.1.0 [#2180](https://github.com/openfisca/openfisca-france/pull/2180)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+    - `openfisca_france/model/prestations/jeunes/service_civique.py`
+    - `openfisca_france/model/prestations/depart1825.py`
+    - `openfisca_france/model/prestations/enseignement_superieur/aide_merite.py`
+    - `openfisca_france/parameters/prestations_sociales/education/service_civique/`
+    - `tests/formulas/bourses_superieur/aide_merite.yaml`
+    - `tests/formulas/depart1825.yaml`
+* Détails :
+  - Ajoute une variable pour modéliser le service civique
+  - Modélise le cas du service_civique dans la variable `aide_merite_eligibilite`
+  - Modélise le cas du service_civique dans la variable `depart1825_eligibilite`
+  
 # 153.0.0 [#2177](https://github.com/openfisca/openfisca-france/pull/2177)
 
 * Tri de programmes.
