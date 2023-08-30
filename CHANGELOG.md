@@ -1,5 +1,13 @@
 # Changelog
 
+# 153.0.0 [#2177](https://github.com/openfisca/openfisca-france/pull/2177)
+
+* Tri de programmes.
+* Périodes concernées : toutes.
+* Zones impactées : `reforms/*`.
+* Détails :
+  - Supprime vieilles réformes non utilisées
+
 # 152.0.0 [#2178](https://github.com/openfisca/openfisca-france/pull/2178)
 
 * Correction et complétion de la législation
