@@ -29,7 +29,7 @@ class aide_merite_eligibilite(Variable):
 
     def formula(individu, period):
 
-        def periode_universitaire_precedente(mois_calcul):
+        def calcul_periode_universitaire_precedente(mois_calcul):
             nb_mois_annee_courante = mois_calcul.date.month - mois_calcul.this_year.date.month + 1
 
             # https://www.campusfrance.org/fr/node/2176
@@ -55,7 +55,7 @@ class aide_merite_eligibilite(Variable):
             )
 
         # a déjà perçu l'aide l'année [universitaire] précédente
-        periode_universitaire_precedente = periode_universitaire_precedente(period)
+        periode_universitaire_precedente = calcul_periode_universitaire_precedente(period)
         aide_merite_eligibilite_an_dernier = individu(
             'aide_merite_eligibilite',
             periode_universitaire_precedente,
