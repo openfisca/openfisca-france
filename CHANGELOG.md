@@ -1,5 +1,16 @@
 # Changelog
 
+### 153.2.0 [#2181](https://github.com/openfisca/openfisca-france/pull/2181)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 07/2021.
+* Zones impactées : 
+  - `openfisca_france/model/prestations/alimentation.py`.
+  - `openfisca_france/parameters/prestations_sociales/education/alimentation/montant_repas_non_boursier.yaml`.
+* Détails :
+  - Ajoute le dispositif permettant aux étudiant du supérieur de béneficier de repas à 3,30 euros dans les restaurant du crous.
+  - Ajoute une variable qui détermine le prix d'un repas au restaurant universitaire pour les étudiants
+
 ## 153.1.0 [#2180](https://github.com/openfisca/openfisca-france/pull/2180)
 
 * Évolution du système socio-fiscal
@@ -15,7 +26,7 @@
   - Ajoute une variable pour modéliser le service civique
   - Modélise le cas du service_civique dans la variable `aide_merite_eligibilite`
   - Modélise le cas du service_civique dans la variable `depart1825_eligibilite`
-  
+
 # 153.0.0 [#2177](https://github.com/openfisca/openfisca-france/pull/2177)
 
 * Tri de programmes.
