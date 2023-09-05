@@ -14,10 +14,7 @@ class depart1825_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = [
-        'https://programme-depart-1825.com/eligibilite/',
-        'https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans'
-        ]
+    reference = ['https://depart1825.com/eligibilite/']
 
     def formula(individu, period, parameters):
         criteres_age = parameters(period).prestations_sociales.education.depart1825.age
