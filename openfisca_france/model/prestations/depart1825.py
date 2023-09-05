@@ -25,8 +25,9 @@ class depart1825_eligibilite(Variable):
         etudiant_boursier = (individu('activite', period) == TypesActivite.etudiant) * individu('boursier', period)
         alternant = individu('alternant', period)
         garantie_jeunes = individu('garantie_jeunes', period) > 0
+        en_service_civique = individu('service_civique', period) + individu('service_civique', period.last_month)
 
-        eligibilite_statut = etudiant_boursier + alternant + garantie_jeunes
+        eligibilite_statut = etudiant_boursier + alternant + garantie_jeunes + en_service_civique
 
         nbptr = individu.foyer_fiscal('nbptr', period.n_2)
         plafond_ressources = parameters(period).prestations_sociales.education.depart1825.plafond_ressources
