@@ -32,3 +32,22 @@ class crous_repas_tarif_non_boursiers_eligibilite(Variable):
         enseignement_superieur = individu('scolarite', period) == TypesScolarite.enseignement_superieur
         boursier = individu('boursier', period)
         return not_(boursier) * enseignement_superieur
+
+
+class crous_repas_montant(Variable):
+    value_type = float
+    label = 'Montant du repas au restaurant universitaire'
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = 'https://www.etudiant.gouv.fr/fr/crous-resto-c-est-bon-de-s-y-retrouver-1195'
+
+    def formula(individu, period, parameters):
+        etudiant_non_boursier = individu('crous_repas_tarif_non_boursiers_eligibilite', period)
+        tarif_repas_non_boursier = parameters(period).prestations_sociales.education.alimentation.montant_repas_non_boursier
+
+        eligibilite_repas_un_euro = individu('crous_repas_un_euro_eligibilite', period)
+
+        montant_repas = eligibilite_repas_un_euro * 1 + (etudiant_non_boursier * tarif_repas_non_boursier)
+
+        return montant_repas
