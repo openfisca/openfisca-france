@@ -17,3 +17,15 @@
       month:2020-09:10: [true, false]
   output:
     aide_merite_montant: [900, 0]
+
+- name: Éligibilité à l'aide au mérite pour les personne ayant effectué un service civique l'année d'après le bac
+  period: 2023-09
+  input:
+    aide_merite_eligibilite:
+      2021-09: [true]
+    service_civique:
+      2022-09: [true]
+    etudiant: [true]
+    bourse_criteres_sociaux: [103.2]
+  output:
+    aide_merite_eligibilite: [true]

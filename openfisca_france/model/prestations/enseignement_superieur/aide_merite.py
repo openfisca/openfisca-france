@@ -18,18 +18,16 @@ class aide_merite_eligibilite(Variable):
     ayant eu mention très bien au baccalauréat.
 
     Non modélisé :
-    L'étudiant respecte les conditions d'inscription pédagogique, d'assiduité
+    - L'étudiant respecte les conditions d'inscription pédagogique, d'assiduité
     et de présentation aux examens (non applicable si nouveau bachelier)
     ou redouble pour raisons médicales.
-    L'étudiant éligible à la bourse sur critères sociaux et éligible à une aide au mérite
-    en année universitaire N-1 et ayant réalisé un Service Civique
-    au titre de cette même année, peut percevoir son aide au mérite en N.
-    Un étudiant ne peut bénéficier de plus de 3 fois de l'aide au mérite.
+
+    - Un étudiant ne peut bénéficier de plus de 3 fois de l'aide au mérite.
     '''
 
     def formula(individu, period):
 
-        def periode_universitaire_precedente(mois_calcul):
+        def calcul_periode_universitaire_precedente(mois_calcul):
             nb_mois_annee_courante = mois_calcul.date.month - mois_calcul.this_year.date.month + 1
 
             # https://www.campusfrance.org/fr/node/2176
@@ -55,14 +53,27 @@ class aide_merite_eligibilite(Variable):
             )
 
         # a déjà perçu l'aide l'année [universitaire] précédente
-        periode_universitaire_precedente = periode_universitaire_precedente(period)
+        periode_universitaire_precedente = calcul_periode_universitaire_precedente(period)
         aide_merite_eligibilite_an_dernier = individu(
             'aide_merite_eligibilite',
             periode_universitaire_precedente,
             options = [ADD]
             )
 
-        return etudiant * condition_ressources * (condition_mention + aide_merite_eligibilite_an_dernier)
+        # éligible accordée en N-2, année N-1 en Service Civique
+        service_civique_annee_passee = individu('service_civique', periode_universitaire_precedente, options = [ADD])
+        periode_universitaire_2_ans_avant = periode_universitaire_precedente.offset(-12, MONTH)
+        aide_merite_eligibilite_deux_ans_avant = individu('aide_merite_eligibilite',
+            periode_universitaire_2_ans_avant,
+            options = [ADD])
+        aide_merite_eligibile_mais_service_civique_annee_passee = (aide_merite_eligibilite_deux_ans_avant
+                                                    * service_civique_annee_passee)
+
+        return etudiant * condition_ressources * (
+            condition_mention
+            + aide_merite_eligibilite_an_dernier
+            + aide_merite_eligibile_mais_service_civique_annee_passee
+            )
 
 
 class aide_merite_montant(Variable):
