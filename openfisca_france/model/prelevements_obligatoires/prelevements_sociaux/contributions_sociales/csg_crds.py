@@ -43,11 +43,11 @@ class csg(Variable):
 class csg_salaire(Variable):
     value_type = float
     entity = Individu
-    label = "CSG salaire"
+    label = 'CSG salaire'
     definition_period = MONTH
 
     def formula(individu, period):
-        return  (
+        return (
             individu('csg_deductible_salaire', period)
             + individu('csg_imposable_salaire', period)
             )
@@ -56,11 +56,11 @@ class csg_salaire(Variable):
 class csg_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "CSG non salarié"
+    label = 'CSG non salarie'
     definition_period = YEAR
 
     def formula(individu, period):
-        return  (
+        return (
             individu('csg_deductible_non_salarie', period)
             + individu('csg_imposable_non_salarie', period)
             )
@@ -69,11 +69,11 @@ class csg_non_salarie(Variable):
 class csg_retraite(Variable):
     value_type = float
     entity = Individu
-    label = "CSG sur les retraites"
+    label = 'CSG sur les retraites'
     definition_period = MONTH
 
     def formula(individu, period):
-        return  (
+        return (
             individu('csg_imposable_retraite', period)
             + individu('csg_deductible_retraite', period)
             )
@@ -82,11 +82,11 @@ class csg_retraite(Variable):
 class csg_chomage(Variable):
     value_type = float
     entity = Individu
-    label = "CSG sur le chomage"
+    label = 'CSG sur le chomage'
     definition_period = MONTH
 
     def formula(individu, period):
-        return  (
+        return (
             individu('csg_imposable_chomage', period)
             + individu('csg_deductible_chomage', period)
             )
