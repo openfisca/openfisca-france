@@ -2,8 +2,8 @@
 
 ## 153.1.0 [#2180](https://github.com/openfisca/openfisca-france/pull/2180)
 
-* Évolution du système socio-fiscal.
-* Périodes concernées : toutes.
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes
 * Zones impactées : 
     - `openfisca_france/model/prestations/jeunes/service_civique.py`
     - `openfisca_france/model/prestations/depart1825.py`
