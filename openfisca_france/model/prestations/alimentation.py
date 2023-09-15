@@ -8,7 +8,7 @@ class crous_repas_un_euro_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = 'https://www.etudiant.gouv.fr/fr/crous-resto-c-est-bon-de-s-y-retrouver-1195'
+    reference = 'https://www.service-public.fr/particuliers/actualites/A16017'
 
     def formula_2021_01(individu, period):
         return individu('scolarite', period) == TypesScolarite.enseignement_superieur
@@ -26,7 +26,7 @@ class crous_repas_tarif_non_boursiers_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = 'https://www.etudiant.gouv.fr/fr/crous-resto-c-est-bon-de-s-y-retrouver-1195'
+    reference = 'https://www.service-public.fr/particuliers/actualites/A16017'
 
     def formula_2021_07(individu, period):
         enseignement_superieur = individu('scolarite', period) == TypesScolarite.enseignement_superieur
@@ -40,7 +40,7 @@ class crous_repas_montant(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = 'https://www.etudiant.gouv.fr/fr/crous-resto-c-est-bon-de-s-y-retrouver-1195'
+    reference = 'https://www.service-public.fr/particuliers/actualites/A16017'
 
     def formula(individu, period, parameters):
         etudiant_non_boursier = individu('crous_repas_tarif_non_boursiers_eligibilite', period)
