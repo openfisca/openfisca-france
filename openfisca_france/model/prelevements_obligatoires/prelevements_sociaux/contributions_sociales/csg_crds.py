@@ -14,7 +14,7 @@ class csg(Variable):
         csg_salaire = individu('csg_salaire', period, options = [ADD])
         csg_chomage = individu('csg_chomage', period, options = [ADD])
         csg_retraite = individu('csg_retraite', period, options = [ADD])
-        csg_non_salarie = individu('csg_non_salarie', period, options = [ADD])
+        csg_non_salarie = individu('csg_non_salarie', period)
         csg_glo_assimile_salaire_ir_et_ps = individu('csg_glo_assimile_salaire_ir_et_ps', period)
         # CSG sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         csg_revenus_capital = individu.foyer_fiscal('csg_revenus_capital', period)
@@ -33,6 +33,7 @@ class csg(Variable):
 
 
 class csg_salaire(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Individu
     label = 'CSG salaire'
@@ -59,6 +60,7 @@ class csg_non_salarie(Variable):
 
 
 class csg_retraite(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Individu
     label = 'CSG sur les retraites'
@@ -72,6 +74,7 @@ class csg_retraite(Variable):
 
 
 class csg_chomage(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Individu
     label = 'CSG sur le chomage'
