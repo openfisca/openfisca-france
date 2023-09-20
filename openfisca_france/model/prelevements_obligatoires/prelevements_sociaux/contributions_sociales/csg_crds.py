@@ -38,6 +38,7 @@ class csg_salaire(Variable):
     entity = Individu
     label = 'CSG salaire'
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         return (
@@ -65,6 +66,7 @@ class csg_retraite(Variable):
     entity = Individu
     label = 'CSG sur les retraites'
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         return (
@@ -79,6 +81,7 @@ class csg_chomage(Variable):
     entity = Individu
     label = 'CSG sur le chomage'
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         return (
