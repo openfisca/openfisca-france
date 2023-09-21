@@ -37,13 +37,13 @@ values:
   2020-01-01:
     value: 13548
   2021-01-01:
-    value: 10881.75*1.25
+    value: 13602.19
   2022-01-01:
-    value: 11001.44*1.25
+    value: 13751.8
   2022-07-01:
-    value: 11441.5*1.25
+    value: 14301.88
   2023-01-01:
-    value: 11533.02*1.25
+    value: 14416.28
 metadata:
   short_label: Plafond individuel de ressources pour les ascendants
   last_value_still_valid_on: "2023-02-09"
@@ -133,6 +133,14 @@ metadata:
     - title: La valeur est calculée comme 10418.4*1.25
     2020-01-01:
     - title: La valeur est calculée comme 10838.40 *1.25
+    2021-01-01:
+    - title: La valeur est calculée comme 10881.75 *1.25
+    2022-01-01:
+    - title: La valeur est calculée comme 11001.44 *1.25
+    2022-07-01:
+    - title: La valeur est calculée comme 11441.5 *1.25
+    2023-01-01:
+    - title: La valeur est calculée comme 11533.02 *1.25
 documentation: |-
   Notes :
   "Plafonds indiqués à l'art. L815-9 du CSS (législation sur les allocations aux personnes âgées)". Ces plafonds seront multipliés par 1,25 à partir de 2007
