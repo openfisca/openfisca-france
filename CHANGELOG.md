@@ -1,5 +1,14 @@
 # Changelog
 
+### 153.2.1 [#2185](https://github.com/openfisca/openfisca-france/pull/2185)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `impot_revenu/calcul_impot_revenu/recouvrement`.
+* Détails :
+  - Change libellés des paramètres "minimum de mise en recouvrement de l'IR" en suivant la formulation proposée par l'Insee dans cette étude : https://www.insee.fr/fr/statistiques/3584540
+  - Ajoute référence législative.
+
 ### 153.2.0 [#2181](https://github.com/openfisca/openfisca-france/pull/2181)
 
 * Évolution du système socio-fiscal.

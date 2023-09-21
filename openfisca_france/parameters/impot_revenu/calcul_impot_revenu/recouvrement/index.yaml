@@ -1,6 +1,6 @@
-description: Mise en recouvrement de l'impôt
+description: Montants minimums de mise en recouvrement de l'impôt
 metadata:
-  short_label: Recouvrement
+  short_label: Montants minimums de mise en recouvrement de l'impôt
   order:
   - seuil
   - min
