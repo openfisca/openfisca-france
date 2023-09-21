@@ -1,4 +1,4 @@
-description: Montant fixe de la partie invalidité des cotisations invalidité-décès de sécurité sociale (SS) des indépendants artisans-commerçants
+description: Taux de la partie invalidité des cotisations invalidité-décès de sécurité sociale (SS) des indépendants artisans-commerçants
 values:
   2004-08-24:
     value: 0.014
@@ -7,7 +7,7 @@ values:
   2013-01-01:
     value: null
 metadata:
-  short_label: Montant des cotisations décès
+  short_label: Taux des cotisations décès
   label_en: SSCs for disability and death benefits (sales retailers and craftsmen)
   ipp_csv_id: inval_ic_0_1
   unit: /1
