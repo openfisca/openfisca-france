@@ -1,5 +1,17 @@
 # Changelog
 
+### 153.3.0 [#2181](https://github.com/openfisca/openfisca-france/pull/2186)
+
+* Évolution du système socio-fiscal. Amélioration technique
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/prestations_sociales/aides_logement/allocations_logement/al_pac/plaf_de_ressources_pac_autres.yaml`.
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants/deces_ac/commercants_industriels`.
+* Détails :
+  - Met à jour les valeurs des plafonds pac sur les dernières années
+  - Ajoute quelques vieilles années et met tout en currency (FRF avant 2002)
+  - sépare cotisations décès invalidite entre avant et après 2004 car change d'unité
+
 ### 153.2.1 [#2185](https://github.com/openfisca/openfisca-france/pull/2185)
 
 * Changement mineur.
@@ -13,7 +25,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 07/2021.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prestations/alimentation.py`.
   - `openfisca_france/parameters/prestations_sociales/education/alimentation/montant_repas_non_boursier.yaml`.
 * Détails :
@@ -24,7 +36,7 @@
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
     - `openfisca_france/model/prestations/jeunes/service_civique.py`
     - `openfisca_france/model/prestations/depart1825.py`
     - `openfisca_france/model/prestations/enseignement_superieur/aide_merite.py`

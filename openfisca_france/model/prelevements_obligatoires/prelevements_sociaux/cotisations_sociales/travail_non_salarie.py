@@ -119,7 +119,7 @@ class deces_artisan_commercant(Variable):
         bareme_artisan.multiply_thresholds(plafond_securite_sociale_annuel)
         # Commercant (Invalidite + Deces)
         bareme_commercant = MarginalRateTaxScale(name = 'deces_commercant')
-        bareme_commercant.add_bracket(0, deces_ac.commercants_industriels.sous_pss)
+        bareme_commercant.add_bracket(0, deces_ac.commercants_industriels.apres_2004.sous_pss)
         bareme_commercant.add_bracket(1, 0)
         bareme_commercant.multiply_thresholds(plafond_securite_sociale_annuel)
         # Calcul du montant
@@ -133,7 +133,7 @@ class deces_artisan_commercant(Variable):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         deces_ac = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.deces_ac
         # Avant 2004, le montant était forfaitaire pour les commerçants
-        montant_commercant = deces_ac.commercants_industriels.montant_forfaitaire_total
+        montant_commercant = deces_ac.commercants_industriels.avant_2004.montant_forfaitaire_total
         categorie_non_salarie = individu('categorie_non_salarie', period)
         # Artisan
         bareme_artisan = MarginalRateTaxScale(name = 'deces_artisan')
