@@ -504,6 +504,7 @@ class effectif_entreprise(Variable):
     value_type = int
     label = "Effectif de l'entreprise"
     set_input = set_input_dispatch_by_period
+    is_period_size_independent = True
     definition_period = MONTH
 
 
