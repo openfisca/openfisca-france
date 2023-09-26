@@ -1,5 +1,13 @@
 # Changelog
 
+### 153.3.1 [#2190](https://github.com/openfisca/openfisca-france/pull/2190)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/revenus/activite/salarie.py`.
+* Détails :
+  - Ajoute l'option `is_period_size_independent = True` à la variable effectif_entreprise
+
 ### 153.3.0 [#2181](https://github.com/openfisca/openfisca-france/pull/2186)
 
 * Évolution du système socio-fiscal. Amélioration technique
