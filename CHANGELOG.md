@@ -1,5 +1,13 @@
 # Changelog
 
+### 153.3.2 [#2158](https://github.com/openfisca/openfisca-france/pull/2158)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2023.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/cmu/plafond_base.yaml`.
+* Détails :
+  - Changement du plafond de base de la css
+
 ### 153.3.1 [#2190](https://github.com/openfisca/openfisca-france/pull/2190)
 
 * Changement mineur.
@@ -8,7 +16,7 @@
 * Détails :
   - Ajoute l'option `is_period_size_independent = True` à la variable effectif_entreprise
 
-### 153.3.0 [#2181](https://github.com/openfisca/openfisca-france/pull/2186)
+## 153.3.0 [#2181](https://github.com/openfisca/openfisca-france/pull/2186)
 
 * Évolution du système socio-fiscal. Amélioration technique
 * Périodes concernées : toutes.
@@ -29,7 +37,7 @@
   - Change libellés des paramètres "minimum de mise en recouvrement de l'IR" en suivant la formulation proposée par l'Insee dans cette étude : https://www.insee.fr/fr/statistiques/3584540
   - Ajoute référence législative.
 
-### 153.2.0 [#2181](https://github.com/openfisca/openfisca-france/pull/2181)
+## 153.2.0 [#2181](https://github.com/openfisca/openfisca-france/pull/2181)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 07/2021.
