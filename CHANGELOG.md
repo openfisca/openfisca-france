@@ -1,4 +1,52 @@
 # Changelog
+### 153.3.3 [2134](https://github.com/openfisca/openfisca-france/pull/2134)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées: à partir du 01/01/2022.
+* Zones impactées :
+ -  `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/al_param_r0/r0`
+     - `/taux1pac.yaml`
+     - `/taux2pac.yaml`
+     - `/taux3pac.yaml`
+     - `/taux4pac.yaml`
+     - `/taux5pac.yaml`
+     - `/taux6pac.yaml`
+     - `/taux_couple.yaml`
+     - `/taux_pac_supp.yaml`
+     - `/taux_seul.yaml`
+ - `openfisca_france/parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone/zone_1`
+     - `/couples.yaml`
+     - `/famille_1.yaml`
+     - `/majoration_par_pac_supp.yaml`
+     - `/personnes_seules.yaml`
+- `openfisca_france/parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone/zone_2`
+     - `/couples.yaml`
+     - `/famille_1.yaml`
+     - `/majoration_par_pac_supp.yaml`
+     - `/personnes_seules.yaml`
+ - `openfisca_france/parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone/zone_3`
+     - `/couples.yaml`
+     - `/famille_1.yaml`
+     - `/majoration_par_pac_supp.yaml`
+     - `/personnes_seules.yaml`
+ - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/ars/ars_plaf/plafond_ressources.yaml`
+ - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_cond_ress`
+      - `/majoration_plafond_par_enfant_supplementaire.yaml`
+      - `/plafond_tranche_1.yaml`
+      - `/plafond_tranche_1_base.yaml`
+      - `/plafond_tranche_2.yaml`
+      - `/plafond_tranche_2_base.yaml`
+ - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/cf/cf_plaf/plafond_ressources_0_enfant.yaml`
+ - `openfisca_france/parameters/taxation_capital/epargne/livret_a`
+     - `/majoration_base.yaml`
+     - `/taux.yaml`
+* Détails :
+  - Revalorisation du R0 pour 01/01/2022
+  - Revalorisation du RLS pour 01/01/2022
+  - Revalorisation des plafonds AF pour 01/01/2022
+  - Revalorisation des plafonds CF pour 01/01/2022
+  - Revalorisation du Taux LEP pour 01/02/2022
+  - Correction de la référence pour le plafond de ressources de l'ARS pour 01/01/2022
 
 ### 153.3.2 [#2158](https://github.com/openfisca/openfisca-france/pull/2158)
 
@@ -346,7 +394,7 @@ Le calcul se fait sur une période annuelle mais là formule actuelle effectue l
   - Rajoute les plus-values de vente d'entreprise liée à un départ à la retraite dans cotisations
 
 
-### 149.4.0 [#2141](https://github.com/openfisca/openfisca-france/pull/2141)
+## 149.4.0 [#2141](https://github.com/openfisca/openfisca-france/pull/2141)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
@@ -359,7 +407,7 @@ Le calcul se fait sur une période annuelle mais là formule actuelle effectue l
   - Met à jour les montant de l'aspa et de l'asi pour 2023
   - Corrige une typo sur l'année d'entrée en vigueur d'un paramètre des aides au logement
 
-### 149.3.0 [#2139](https://github.com/openfisca/openfisca-france/pull/2139)
+## 149.3.0 [#2139](https://github.com/openfisca/openfisca-france/pull/2139)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2022
@@ -378,7 +426,7 @@ Le calcul se fait sur une période annuelle mais là formule actuelle effectue l
   - Mets à jour l'abattement maximal sur le déficit agricole
   - Met en forme les dons coluche
 
-### 149.2.0 [#2138](https://github.com/openfisca/openfisca-france/pull/2138)
+## 149.2.0 [#2138](https://github.com/openfisca/openfisca-france/pull/2138)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2022
