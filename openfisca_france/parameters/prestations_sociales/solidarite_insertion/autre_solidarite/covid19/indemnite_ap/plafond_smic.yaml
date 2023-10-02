@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Plafond versement
   last_value_still_valid_on: "2022-01-10"
-  label_en: Exceptional benefit - COVID-19 crisis
+  label_en: Exceptional benefit - covid-19 crisis
   unit: smic_horaire_brut
   reference:
     2020-03-01:

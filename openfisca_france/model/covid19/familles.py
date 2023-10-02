@@ -4,7 +4,7 @@ from openfisca_france.model.base import Variable, Famille, MONTH, not_, max_, se
 class covid_aide_exceptionnelle_famille_montant(Variable):
     entity = Famille
     value_type = float
-    label = "Montant de l'aide exceptionnelle pour les familles pendant la crise sanitaire dûe au COVID-19"
+    label = "Montant de l'aide exceptionnelle pour les familles pendant la crise sanitaire dûe au covid-19"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     end = '2020-10-31'

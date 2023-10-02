@@ -1,4 +1,4 @@
-description: Majoration par enfant à charge du montant de base de l'Aide exceptionnelle de solidarité COVID-19
+description: Majoration par enfant à charge du montant de base de l'aide exceptionnelle de solidarité covid-19
 values:
   2020-05-01:
     value: 100
@@ -10,7 +10,7 @@ values:
     value: null
 metadata:
   short_label: Majoration par enfant à charge
-  label_en: Exceptional benefit - COVID-19 crisis
+  label_en: Exceptional benefit - covid-19 crisis
   ipp_csv_id: aide_exceptionnelle_covid_par_enfant
   unit: currency
   reference:

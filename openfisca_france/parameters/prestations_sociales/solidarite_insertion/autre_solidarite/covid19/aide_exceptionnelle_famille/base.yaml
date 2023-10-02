@@ -1,4 +1,4 @@
-description: Montant de base de l'Aide exceptionnelle de solidarité COVID-19
+description: Montant de base de l'aide exceptionnelle de solidarité covid-19
 values:
   2020-05-01:
     value: 150
@@ -10,7 +10,7 @@ values:
     value: null
 metadata:
   short_label: Montant de base
-  label_en: Exceptional benefit - COVID-19 crisis
+  label_en: Exceptional benefit - covid-19 crisis
   ipp_csv_id: aide_exceptionnelle_covid_base
   unit: currency
   reference:

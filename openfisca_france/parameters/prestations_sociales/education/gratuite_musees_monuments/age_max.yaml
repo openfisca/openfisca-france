@@ -1,0 +1,11 @@
+description: Âge jusqu'auquel l'accès aux musées et monuments nationaux est gratuit pour les résidents de l'Union européenne.
+values:
+  2009-04-04:
+    value: 25
+metadata:
+  short_label: Âge maximum
+  reference:
+    0001-01-01:
+      href: https://www.service-public.fr/particuliers/vosdroits/F20348
+    2009-04-04:
+      href: https://www.culture.gouv.fr/Nous-connaitre/Decouvrir-le-ministere/Histoire-du-ministere/Ressources-documentaires/Discours-de-ministres/Discours-de-ministres-depuis-1998/Frederic-Mitterrand-2009-2012/Communiques-2009-2012/Frederic-Mitterrand-etend-la-gratuite-des-musees-et-des-monuments-nationaux-a-tous-les-jeunes-qui-resident-dans-l-Union-Europeenne-quelle-que-soit
