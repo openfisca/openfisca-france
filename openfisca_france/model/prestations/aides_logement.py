@@ -1390,7 +1390,7 @@ def preload_zone_apl():
     if zone_apl_by_depcom is None:
         with pkg_resources.resource_stream(
                 openfisca_france.__name__,
-                'assets/apl/20110914_zonage.csv',
+                'assets/apl/20200701_zonage.csv',
                 ) as csv_file:
             if sys.version_info < (3, 0):
                 csv_reader = csv.DictReader(csv_file)
