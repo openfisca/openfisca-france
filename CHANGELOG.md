@@ -1,4 +1,16 @@
 # Changelog
+
+### 153.3.4 [2191](https://github.com/openfisca/openfisca-france/pull/2191)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/prestations_sociales/education`.
+  - `parameters/prestations_sociales/solidarite_insertion/autre_solidarite`.
+* Détails :
+  - Harmonisation avec les barèmes IPP.
+  - Ne change pas les valeurs.
+
 ### 153.3.3 [2134](https://github.com/openfisca/openfisca-france/pull/2134)
 
 * Évolution du système socio-fiscal.
