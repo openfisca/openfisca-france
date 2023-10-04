@@ -621,7 +621,7 @@ class revenus_et_produits_plafonnement_isf_ifi(Variable):
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
         plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
-        interets_pel_moins_12_ans_cel_i = foyer_fiscal.members('interets_pel_moins_12_ans_cel', period)
+        interets_pel_cel_non_soumis_IR_i = foyer_fiscal.members('interets_pel_cel_non_soumis_IR', period)
         livret_a_i = foyer_fiscal.members('livret_a', period.last_month)
         taux_livret_a = parameters(period).taxation_capital.epargne.livret_a.taux
         interets_livret_a_i = livret_a_i * taux_livret_a
@@ -632,7 +632,7 @@ class revenus_et_produits_plafonnement_isf_ifi(Variable):
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
         rpns_pvct = foyer_fiscal.sum(rpns_pvct_i)
         revenu_assimile_salaire_apres_abattements = foyer_fiscal.sum(salcho_imp_i)
-        interets_pel_moins_12_ans_cel = foyer_fiscal.sum(interets_pel_moins_12_ans_cel_i)
+        interets_pel_cel_non_soumis_IR = foyer_fiscal.sum(interets_pel_cel_non_soumis_IR_i)
         interets_livret_a = foyer_fiscal.sum(interets_livret_a_i)
 
         montant = max_(
@@ -650,7 +650,7 @@ class revenus_et_produits_plafonnement_isf_ifi(Variable):
             + revenu_categoriel_foncier
             + plus_values_base_large
             + assurance_vie_ps_exoneree_irpp_pl
-            + interets_pel_moins_12_ans_cel
+            + interets_pel_cel_non_soumis_IR
             + interets_livret_a
             )
 

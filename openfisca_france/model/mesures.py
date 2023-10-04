@@ -439,8 +439,8 @@ class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
         revenus_capitaux_prelevement_liberatoire_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         revenus_capitaux_prelevement_liberatoire = menage.sum(revenus_capitaux_prelevement_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        interets_pel_moins_12_ans_cel_i = menage.members('interets_pel_moins_12_ans_cel', period)
-        interets_pel_moins_12_ans_cel = menage.sum(interets_pel_moins_12_ans_cel_i)
+        interets_pel_cel_non_soumis_IR_i = menage.members('interets_pel_cel_non_soumis_IR', period)
+        interets_pel_cel_non_soumis_IR = menage.sum(interets_pel_cel_non_soumis_IR_i)
         assurance_vie_ps_exoneree_irpp_pl_i = menage.members.foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
         assurance_vie_ps_exoneree_irpp_pl = menage.sum(assurance_vie_ps_exoneree_irpp_pl_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
@@ -451,7 +451,7 @@ class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
             revenus_capitaux_prelevement_forfaitaire_unique_ir
             + revenus_capitaux_prelevement_bareme
             + revenus_capitaux_prelevement_liberatoire
-            + interets_pel_moins_12_ans_cel
+            + interets_pel_cel_non_soumis_IR
             + assurance_vie_ps_exoneree_irpp_pl
             + plus_values_base_large
             )
