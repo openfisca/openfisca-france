@@ -1,5 +1,14 @@
 # Changelog
 
+### 153.3.5 [2192](https://github.com/openfisca/openfisca-france/pull/2192)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2020.
+* Zones impactées : `parameters/impot_revenu/calcul_revenus_imposables/rpns/cga_taux2.yaml`.
+* Détails :
+  - Le taux de pénalité associé à l'absence de CGA appliqué a évolué depuis 2020, et devrait être supprimé en 2023
+
+
 ### 153.3.4 [2191](https://github.com/openfisca/openfisca-france/pull/2191)
 
 * Changement mineur.
