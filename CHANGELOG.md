@@ -1,9 +1,15 @@
 # Changelog
 
+### 154.0.1 [21914](https://github.com/openfisca/openfisca-france/pull/2194)
+
+* Changement mineur.
+* Détails :
+- Correction d'une erreur sur champ de paramètres, n'affectant pas les calculs, qui n'est plus valide
+
 # 154.0.0 [2193](https://github.com/openfisca/openfisca-france/pull/2193)
 
 * Corrections/mises à jour
-* Zones impactées: 
+* Zones impactées:
    - `measures.py`
    - `prelevements_obligatoires/impots_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
    - `prelevements_obligatoires/isf.py`
