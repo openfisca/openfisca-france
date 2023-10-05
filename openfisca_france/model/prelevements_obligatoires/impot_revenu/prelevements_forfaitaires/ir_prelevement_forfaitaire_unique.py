@@ -179,19 +179,11 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
             - produit_etats_non_cooperatif
             )
 
-        # Intérêts des PEL et CEL, hors intérêts des PEL de plus de 12 ans, qui sont déclarés dans la déclaration de revenus (attention, on ne connait pas le formulaire 2019 des revenus 2018 au moment de faire ce code)
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i = foyer_fiscal.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018 = foyer_fiscal.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i)
-        interets_compte_epargne_logement_ouvert_a_partir_de_2018_i = foyer_fiscal.members('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
-        interets_compte_epargne_logement_ouvert_a_partir_de_2018 = foyer_fiscal.sum(interets_compte_epargne_logement_ouvert_a_partir_de_2018_i)
-
         # Plus-values
         plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
 
         assiette_pfu_hors_assurance_vie = (
             revenus_capitaux_prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs
-            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018
-            + interets_compte_epargne_logement_ouvert_a_partir_de_2018
             + plus_values_prelevement_forfaitaire_unique_ir
             )
 

@@ -17,23 +17,11 @@ class interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018(Variable)
     '''
     NB :
     (1) Cette variable est définie indépendemment de epargne_revenus_non_imposables
-    (2) Les intérêts des PEL de plus de 12 ans sont imposables à l'impôt sur le revenu, et donc déjà présents dans les cases 2TR ou 2FA (attention: formulaire IR 2019 sur revenus 2018 non connu au moment de coder cette variable)
+    (2) Les intérêts des PEL de plus de 12 ans et ouverts avant 2018 sont imposables à l'impôt sur le revenu, et donc déjà présents dans la déclaration de revenus (ex : case 2TR pour les revenus de 2018)
     '''
     value_type = float
     entity = Individu
     label = 'Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts avant le 1er janvier 2018'
-    definition_period = YEAR
-
-
-class interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018(Variable):
-    '''
-    NB :
-    (1) Cette variable est définie indépendemment de epargne_revenus_non_imposables
-    (2) Les intérêts des PEL de plus de 12 ans sont imposables à l'impôt sur le revenu, et donc déjà présents dans les cases 2TR ou 2FA (attention: formulaire IR 2019 sur revenus 2018 non connu au moment de coder cette variable)
-    '''
-    value_type = float
-    entity = Individu
-    label = 'Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts à partir du 1er janvier 2018'
     definition_period = YEAR
 
 
@@ -45,19 +33,11 @@ class interets_compte_epargne_logement_ouvert_avant_2018(Variable):
     definition_period = YEAR
 
 
-class interets_compte_epargne_logement_ouvert_a_partir_de_2018(Variable):
+class interets_pel_cel_non_soumis_IR(Variable):
     ''' NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables '''
     value_type = float
     entity = Individu
-    label = 'Intérêts des comptes épargne logement (CEL) ouverts à partir du 1er janvier 2018'
-    definition_period = YEAR
-
-
-class interets_pel_moins_12_ans_cel(Variable):
-    ''' NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables '''
-    value_type = float
-    entity = Individu
-    label = 'Intérêts des plans épargne logement (PEL) de moins de 12 ans et des comptes épargne logement (CEL)'
+    label = "Intérêts des plans épargne logement (PEL) et des comptes épargne logement (CEL) non soumis à l'impôt sur le revenu"
     definition_period = YEAR
 
     def formula(individu, period):
@@ -68,20 +48,6 @@ class interets_pel_moins_12_ans_cel(Variable):
         return (
             interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
             + interets_compte_epargne_logement_ouvert_avant_2018
-            )
-
-    def formula_2018_01_01(individu, period):
-
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = individu('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
-        interets_compte_epargne_logement_ouvert_avant_2018 = individu('interets_compte_epargne_logement_ouvert_avant_2018', period)
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018 = individu('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
-        interets_compte_epargne_logement_ouvert_a_partir_de_2018 = individu('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
-
-        return (
-            interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
-            + interets_compte_epargne_logement_ouvert_avant_2018
-            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018
-            + interets_compte_epargne_logement_ouvert_a_partir_de_2018
             )
 
 
@@ -305,8 +271,8 @@ class assiette_csg_revenus_capital(Variable):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
 
         # Revenus des produits d'épargne logement
-        interets_pel_moins_12_ans_cel_i = foyer_fiscal.members('interets_pel_moins_12_ans_cel', period)
-        interets_pel_moins_12_ans_cel = foyer_fiscal.sum(interets_pel_moins_12_ans_cel_i)
+        interets_pel_cel_non_soumis_IR_i = foyer_fiscal.members('interets_pel_cel_non_soumis_IR', period)
+        interets_pel_cel_non_soumis_IR = foyer_fiscal.sum(interets_pel_cel_non_soumis_IR_i)
 
         # Revenus fonciers
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
@@ -329,7 +295,7 @@ class assiette_csg_revenus_capital(Variable):
             + revenus_capitaux_prelevement_liberatoire
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rente_viagere_titre_onereux_net
-            + interets_pel_moins_12_ans_cel
+            + interets_pel_cel_non_soumis_IR
             + rev_cat_rfon
             + assiette_csg_plus_values
             + assurance_vie_ps_exoneree_irpp_pl

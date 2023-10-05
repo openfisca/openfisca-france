@@ -1,5 +1,16 @@
 # Changelog
 
+# 154.0.0 [2193](https://github.com/openfisca/openfisca-france/pull/2193)
+
+* Corrections/mises à jour
+* Zones impactées: 
+   - `measures.py`
+   - `prelevements_obligatoires/impots_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
+   - `prelevements_obligatoires/isf.py`
+   - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+* Détails :
+  - Lors du code des variables des PEL/CEL, on n'avait pas la brochure de l'IR sur les revenus 2018, ce qui nous avait amené à coder ces variables en fonction de la nomenclature des cases de la déclaration d'IR sur les revenus 2017. Cette PR actualise cela.
+
 ### 153.3.5 [2192](https://github.com/openfisca/openfisca-france/pull/2192)
 
 * Évolution du système socio-fiscal.
