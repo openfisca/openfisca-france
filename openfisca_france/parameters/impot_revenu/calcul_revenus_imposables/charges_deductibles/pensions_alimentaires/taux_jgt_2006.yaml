@@ -6,6 +6,7 @@ values:
     value: 0.25
 metadata:
   short_label: Majoration
+  last_value_still_valid_on: "2023-10-17"
   unit: /1
   reference:
     2006-01-01:
