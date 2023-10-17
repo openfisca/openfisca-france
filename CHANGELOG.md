@@ -1,6 +1,14 @@
 # Changelog
 
-### 154.0.1 [21914](https://github.com/openfisca/openfisca-france/pull/2194)
+### 154.0.2 [2196](https://github.com/openfisca/openfisca-france/pull/2196)
+
+* Changement mineur.
+* Zones impactées : openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/ et openfisca_france/parameters/impot_revenu/credits_impots/plaf_nich/.
+* Détails :
+  - Ajout du champ `last_value_still_valid_on` et de références.
+
+
+### 154.0.1 [2194](https://github.com/openfisca/openfisca-france/pull/2194)
 
 * Changement mineur.
 * Détails :
