@@ -714,9 +714,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
 
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
-        # Supprimée à partir de 2018
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
-        # Supprimée à partir de 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         # Apparait à partir de 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
@@ -724,7 +722,6 @@ class aide_logement_base_revenus_fiscaux(Variable):
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        # Supprimée à partir de 2018
         rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
         # Apparait à partir de 2018
         plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)

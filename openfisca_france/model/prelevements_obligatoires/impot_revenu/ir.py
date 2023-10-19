@@ -601,9 +601,32 @@ class revenu_categoriel_plus_values(Variable):
         return f3sb + f3vg + f3wb + f3ua
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
+        choix_bareme = foyer_fiscal('f2op', period)
+        f3sb = foyer_fiscal('f3sb', period)
         f3wb = foyer_fiscal('f3wb', period)
+        f3vg = foyer_fiscal('f3vg', period)  # Brut d'abattement à partir de 2018
+        f3sg = foyer_fiscal('f3sg', period)  # Abattement pour durée de détention de droit commun
+        f3ua = foyer_fiscal('f3ua', period)  # Brut d'abattement à partir de 2018
+        f3sl = foyer_fiscal('f3sl', period)  # Abattement pour durée de détention renforcé
+        f3va = foyer_fiscal('f3va', period)  # Abattement fixe
+        f3tj = foyer_fiscal('f3tj', period)
 
-        return f3wb
+        return f3wb + choix_bareme * (f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + f3tj)
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        choix_bareme = foyer_fiscal('f2op', period)
+        f3sb = foyer_fiscal('f3sb', period)
+        f3wb = foyer_fiscal('f3wb', period)
+        f3vg = foyer_fiscal('f3vg', period)  # Brut d'abattement à partir de 2018
+        f3sg = foyer_fiscal('f3sg', period)  # Abattement pour durée de détention de droit commun
+        f3ua = foyer_fiscal('f3ua', period)  # Brut d'abattement à partir de 2018
+        f3sl = foyer_fiscal('f3sl', period)  # Abattement pour durée de détention renforcé
+        f3va = foyer_fiscal('f3va', period)  # Abattement fixe
+        f3tj = foyer_fiscal('f3tj', period)
+        f3tk = foyer_fiscal('f3tk', period)
+        f3vt = foyer_fiscal('f3vt', period)
+
+        return f3wb + choix_bareme * (f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + max_(0, f3tj - f3tk) + f3vt)
 
 
 class revenu_categoriel_deductions(Variable):
@@ -823,20 +846,98 @@ class revenu_categoriel_capital(Variable):
 
         NB : La mise en place du PFU supprime la taxation au barème de la plupart des revenus des valeurs et capitaux mobiliers.
         Ces revenus sortent donc de la variable `revenu_categoriel_capital` et entrent dans la variable `revenus_capitaux_prelevement_forfaitaire_unique_ir`.
+        En revanche, si la case 2op est cochée, les revenus des valeurs et capitaux mobiliers sont taxés au barème et non au pfu.
+        Dans ce cas, ils ne sortent pas de la variable `revenu_categoriel_capital`.
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        choix_bareme = foyer_fiscal('f2op', period)
+
+        # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
         f2ch = foyer_fiscal('f2ch', period)
         f2yy = foyer_fiscal('f2yy', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
+        # Revenus à prendre en compte dans un seul cas: imposition au barème
+        f2ca = foyer_fiscal('f2ca', period)
+        f2dc = foyer_fiscal('f2dc', period)
+        f2fu = foyer_fiscal('f2fu', period)
+        f2go = foyer_fiscal('f2go', period)
+        f2tr = foyer_fiscal('f2tr', period)
+        f2ts = foyer_fiscal('f2ts', period)
+        f2tt = foyer_fiscal('f2tt', period)
+        f2vv = foyer_fiscal('f2vv', period)
+        f2ww = foyer_fiscal('f2ww', period)
+        f2zz = foyer_fiscal('f2zz', period)
+
+        # Revenus après abatemment
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
         abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
+        abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
+        abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
+            + choix_bareme * (
+                f2zz + max_(f2vv - abattement_residuel, 0)
+                + max_(f2ww - abattement_residuel2, 0)
+                + f2fu + f2dc - abattement_dividende
+                + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues
+                )
             )
 
-        return max_(0, rvcm_apres_abattement - deficit_rcm)
+        return max_(0, rvcm_apres_abattement - f2ca * choix_bareme - deficit_rcm)
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Revenus des valeurs et capitaux mobiliers
+
+        NB : La mise en place du PFU supprime la taxation au barème de la plupart des revenus des valeurs et capitaux mobiliers.
+        Ces revenus sortent donc de la variable `revenu_categoriel_capital` et entrent dans la variable `revenus_capitaux_prelevement_forfaitaire_unique_ir`.
+        En revanche, si la case 2op est cochée, les revenus des valeurs et capitaux mobiliers sont taxés au barème et non au pfu.
+        Dans ce cas, ils ne sortent pas de la variable `revenu_categoriel_capital`.
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        deficit_rcm = foyer_fiscal('deficit_rcm', period)
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        choix_bareme = foyer_fiscal('f2op', period)
+
+        # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
+        f2ch = foyer_fiscal('f2ch', period)
+        f2yy = foyer_fiscal('f2yy', period)
+
+        # Revenus à prendre en compte dans un seul cas: imposition au barème
+        f2ca = foyer_fiscal('f2ca', period)
+        f2dc = foyer_fiscal('f2dc', period)
+        f2fu = foyer_fiscal('f2fu', period)
+        f2go = foyer_fiscal('f2go', period)
+        f2tr = foyer_fiscal('f2tr', period)
+        f2ts = foyer_fiscal('f2ts', period)
+        f2tt = foyer_fiscal('f2tt', period)
+        f2vv = foyer_fiscal('f2vv', period)
+        f2ww = foyer_fiscal('f2ww', period)
+        f2zz = foyer_fiscal('f2zz', period)
+        f2tq = foyer_fiscal('f2tq', period)
+        f2tz = foyer_fiscal('f2tz', period)
+
+        # Revenus après abatemment
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
+        abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
+        abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
+        rvcm_apres_abattement = (
+            f2yy
+            + f2ch - min_(f2ch, abattement_assurance_vie)
+            + choix_bareme * (
+                f2zz + max_(f2vv - abattement_residuel, 0)
+                + max_(f2ww - abattement_residuel2, 0)
+                + f2fu + f2dc - abattement_dividende
+                + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues
+                + f2tq + f2tz
+                )
+            )
+
+        return max_(0, rvcm_apres_abattement - f2ca * choix_bareme - deficit_rcm)
 
 
 class rfr_rvcm_abattements_a_reintegrer(Variable):
@@ -884,20 +985,25 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         2 remarques :
             - L'abattement sur les dividendes devrait être intégré dans cette formule (il s'ajoute au RFR) mais on attends pour cela de coder l'option pour l'imposition au barème des dividendes.
             - À partir de 2018, les revenus de l'assurance-vie sont taxés au PFU et entrent dans le calcul du RFR via `revenus_capitaux_prelevement_forfaitaire_unique_ir`.
-              Cette variable est brute d'abattement. Or, l'abattement sur les assurance-vie se déduit bien du RFR (contrairement à celui sur les dividendes). On le rajoute donc ici en négatif.
+              Cette variable est brute d'abattement. Or, l'abattement sur les assurance-vie se déduit bien du RFR (contrairement à celui sur les dividendes). On le rajoute donc ici en négatif dans le cas où le foyer choisit le pfu.
+              Si le foyer a choisi l'imposition au barème pour les revenus éligibles au pfu, les revenus de l'assurance-vie entrent dans le calcul du RFR via `revenus_categoriel` net d'abattement.
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        choix_bareme = foyer_fiscal('f2op', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2dh = foyer_fiscal('f2dh', period)
         f2vv = foyer_fiscal('f2vv', period)
         f2ww = foyer_fiscal('f2ww', period)
+        f2dc = foyer_fiscal('f2dc', period)
+        f2fu = foyer_fiscal('f2fu', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         abattement_assurance_vie = (
             (f2ch < P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)) * max_(0, min_(f2vv + f2ww, P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch - f2dh))
             )
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
 
-        return - abattement_assurance_vie
+        return - abattement_assurance_vie * (choix_bareme == 0) + abattement_dividende * choix_bareme
 
 
 class revenu_categoriel_foncier(Variable):
@@ -1053,6 +1159,20 @@ class csg_patrimoine_deductible_ir(Variable):
         f2bh = foyer_fiscal('f2bh', period)
         f2df = foyer_fiscal('f2df', period)
         csg_deduc_patrimoine = max_(f6de, 0) + max_(csg_deductible * (f2bh + f2df), 0)
+
+        return min_(csg_deduc_patrimoine, max_(rbg, 0))
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Si le foyer fiscal n'opte pas pour l'imposition au barème des revenus éligibles au pfu, les revenus inscrits case 2BH n'ouvrent pas droit à csg déductible
+        '''
+        csg_deductible = parameters(period).taxation_capital.prelevements_sociaux.csg.taux_deductible.revenus_du_patrimoine
+        choix_bareme = foyer_fiscal('f2op', period)
+        rbg = foyer_fiscal('rbg', period)
+        f6de = foyer_fiscal('f6de', period)
+        f2bh = foyer_fiscal('f2bh', period)
+        f2df = foyer_fiscal('f2df', period)
+        csg_deduc_patrimoine = max_(f6de, 0) + max_(csg_deductible * (choix_bareme * f2bh + f2df), 0)
 
         return min_(csg_deduc_patrimoine, max_(rbg, 0))
 

@@ -173,6 +173,16 @@ class f2tr(Variable):
     definition_period = YEAR
 
 
+class f2tz(Variable):
+    cerfa_field = '2TZ'
+    value_type = float
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Produits des plans d'épargne retraite - sortie en capital"
+    definition_period = YEAR
+    # start_date = date(2020, 1, 1)
+
+
 class f2yy(Variable):
     cerfa_field = '2YY'
     value_type = float
@@ -503,10 +513,49 @@ class revenus_capitaux_prelevement_bareme(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
+        choix_bareme = foyer_fiscal('f2op', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
+
+        # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
         f2ch = foyer_fiscal('f2ch', year)
         f2yy = foyer_fiscal('f2yy', year)
 
-        return (f2ch + f2yy) / 12
+        # Revenus à prendre en compte dans un seul cas: imposition au barème
+        f2dc = foyer_fiscal('f2dc', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        f2vv = foyer_fiscal('f2vv', year)
+        f2ww = foyer_fiscal('f2ww', year)
+        f2zz = foyer_fiscal('f2zz', year)
+
+        return (f2ch + f2yy + choix_bareme * (f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz)) / 12
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        choix_bareme = foyer_fiscal('f2op', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
+
+        # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
+        f2ch = foyer_fiscal('f2ch', year)
+        f2yy = foyer_fiscal('f2yy', year)
+
+        # Revenus à prendre en compte dans un seul cas: imposition au barème
+        f2dc = foyer_fiscal('f2dc', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        f2vv = foyer_fiscal('f2vv', year)
+        f2ww = foyer_fiscal('f2ww', year)
+        f2zz = foyer_fiscal('f2zz', year)
+        f2tq = foyer_fiscal('f2tq', year)
+        f2tz = foyer_fiscal('f2tz', year)
+
+        return (f2ch + f2yy + choix_bareme * (f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz + f2tq + f2tz)) / 12
 
 
 class revenus_capitaux_prelevement_liberatoire(Variable):

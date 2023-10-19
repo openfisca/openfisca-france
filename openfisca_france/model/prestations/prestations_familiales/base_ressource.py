@@ -126,8 +126,8 @@ class rev_coll(Variable):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)  # Supprimée en 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée en 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
         abat_spe = foyer_fiscal('abattements_speciaux_prestations_familiales', period)
         revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
         f7ga = foyer_fiscal('f7ga', period)

@@ -264,7 +264,7 @@
   output:
     prelevements_sociaux_revenus_capital: -41280
     revenus_nets_du_capital: (270000 - 30000) - 41280 # car les revenus associés à 3SA et 3SB ne sont pas dans les revenus courants : voir docstring de plus_values_base_large
-    prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs: -28160 #-(220000*0.128) 3VD est un gain taxé forfaitairement au taux de 18% et non au PFU
+    prelevement_forfaitaire_unique_ir_hors_assurance_vie: -28160 #-(220000*0.128) 3VD est un gain taxé forfaitairement au taux de 18% et non au PFU
     taxation_plus_values_hors_bareme: 9000 #50000 * 0.18
     impots_directs: -28160 - 9000
     revenu_disponible: (270000 - 30000) - 41280 - 28160 - 9000 # car les revenus associés à 3SA et 3SB ne sont pas dans les revenus courants : voir docstring de plus_values_base_large
