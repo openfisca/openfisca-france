@@ -2073,6 +2073,7 @@ class rfr_plus_values_hors_rni(Variable):
     def formula_2018_01_01(foyer_fiscal, period):
         '''
         Plus-values réalisées sur année 2018 entrant dans le calcul du revenu fiscal de référence.
+        Si on choisit l'imposition au barème pour les revenus éligibles au pfu, les plus-values réalisées éligibles au pfu (3vg, 3tj et 3ua) sont déjà comptés dans le calcul du rfr via la variable 'rni'.
         '''
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
@@ -2081,6 +2082,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
 
+        choix_bareme = foyer_fiscal('f2op', period)
         glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vm = foyer_fiscal('f3vm', period)
@@ -2096,7 +2098,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3vg + f3ua + f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3pi
+        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3pi + (choix_bareme == 0) * (f3vg + f3ua + f3tj)
 
     def formula_2019_01_01(foyer_fiscal, period):
         '''
@@ -2109,6 +2111,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
 
+        choix_bareme = foyer_fiscal('f2op', period)
         glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vq = foyer_fiscal('f3vq', period)
@@ -2124,7 +2127,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3vg + f3ua + f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3an + f3pi
+        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + (f3vq - f3vr) + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3an + f3pi + (choix_bareme == 0) * (f3vg + f3ua + f3tj + f3vt)
 
 
 class iai(Variable):
@@ -2268,12 +2271,14 @@ class rfr(Variable):
         abattements_plus_values = foyer_fiscal('abattements_plus_values', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
-        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer', period)  # Supprimée à partir de 2018
+        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer', period)
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
         rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
         rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
         rni = foyer_fiscal('rni', period)
+        choix_bareme = foyer_fiscal('f2op', period)
+        f3sb = foyer_fiscal('f3sb', period)  # Dans le cas de l'imposition au barème des revenus éligibles au pfu, les plus-values en report d'imposition qui sont imposables pour la période concernée sont comptées dans le rni mais ne doivent pas être comptées dans le rfr.
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_info_i = foyer_fiscal.members('rpns_info', period)
 
@@ -2287,7 +2292,7 @@ class rfr(Variable):
         prime_partage_valeur_exoneree_exceptionnelle = (foyer_fiscal.sum(prime_partage_valeur_exoneree_exceptionnelle_i) * 0.9)
 
         return (
-            max_(0, rni)
+            max_(0, rni - choix_bareme * f3sb)
             + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rpns_exon + rpns_info
             + abattements_plus_values
