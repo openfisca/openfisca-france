@@ -50,7 +50,7 @@
       personne_de_reference: ind0
   output:
     iai: 45918.0
-    irpp: -37918.0
+    impot_revenu_restant_a_payer: -37918.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 145000.0
@@ -108,7 +108,7 @@
       personne_de_reference: ind0
   output:
     iai: 45905.0
-    irpp: -37905.0
+    impot_revenu_restant_a_payer: -37905.0
     nbptr: 1.0
     rbg: 145000.0
     rfr: 145000.0
@@ -165,7 +165,7 @@
       personne_de_reference: ind0
   output:
     iai: 45891.0
-    irpp: -37891.0
+    impot_revenu_restant_a_payer: -37891.0
     nbptr: 1.0
     rbg: 145000.0
     rfr: 145000.0
@@ -222,7 +222,7 @@
       personne_de_reference: ind0
   output:
     iai: 45755.0
-    irpp: -37755.0
+    impot_revenu_restant_a_payer: -37755.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 145000.0
@@ -279,7 +279,7 @@
   output:
     creimp: 5000.0
     iai: 45397.0
-    irpp: -40397.0
+    impot_revenu_restant_a_payer: -40397.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 145000.0
@@ -335,7 +335,7 @@
   output:
     creimp: 4200.0
     iai: 45369.0
-    irpp: -41169.0
+    impot_revenu_restant_a_payer: -41169.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 145000.0
@@ -393,7 +393,7 @@
   output:
     creimp: 4650.0
     iai: 45172.0
-    irpp: -40522.0
+    impot_revenu_restant_a_payer: -40522.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 145000.0

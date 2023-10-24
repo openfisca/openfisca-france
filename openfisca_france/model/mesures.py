@@ -595,26 +595,26 @@ class aides_logement(Variable):
 class irpp_economique(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Notion économique de l'IRPP"
+    label = "Notion économique de l'impot_revenu_restant_a_payer"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Cette variable d'IRPP comptabilise dans les montants
+        Cette variable d'impot_revenu_restant_a_payer comptabilise dans les montants
         d'imposition les acomptes qui, dans la déclaration fiscale, sont considérés comme des crédits
         d'impôt. Ajouter ces acomptes au montant "administratif" d'impôt correspond donc au "véritable impôt"
-        payé en totalité, alors que la variable 'irpp' correspond à une notion administrative.
+        payé en totalité, alors que la variable 'impot_revenu_restant_a_payer' correspond à une notion administrative.
         Exemple :
         Certains revenus du capital sont soumis à un prélèvement forfaitaire à la source non libératoire,
         faisant office d'acompte. Puis, l'impôt au barème sur ces revenus est calculé, et confronté à l'acompte.
         Cet acompte, est en case 2CK, et considéré comme un crédit d'impôt. Retrancher de l'impôt au barème ce
-        crédit permet d'obtenir l'impôt dû suite à la déclaration de revenus, qui correspond à la variable 'irpp'.
+        crédit permet d'obtenir l'impôt dû suite à la déclaration de revenus, qui correspond à la variable 'impot_revenu_restant_a_payer'.
         Cette notion est administrative. L'impôt total payé correspond à cette notion administrative, augmentée des acomptes.
         '''
-        irpp = foyer_fiscal('irpp', period)
+        impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
 
-        return irpp - acomptes_ir  # Car par convention, irpp est un montant négatif et acomptes_ir un montant positif
+        return impot_revenu_restant_a_payer - acomptes_ir  # Car par convention, impot_revenu_restant_a_payer est un montant négatif et acomptes_ir un montant positif
 
 
 class impots_directs(Variable):
@@ -634,13 +634,7 @@ class impots_directs(Variable):
         irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
         irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        prelevement_forfaitaire_liberatoire_i = menage.members.foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
-        prelevement_forfaitaire_liberatoire = menage.sum(prelevement_forfaitaire_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        prelevement_forfaitaire_unique_ir_i = menage.members.foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
-        prelevement_forfaitaire_unique_ir = menage.sum(prelevement_forfaitaire_unique_ir_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        # On comptabilise ir_pv_immo ici directement, et non pas dans la variable 'irpp', car administrativement, cet impôt n'est pas dans l'irpp, et n'est déclaré dans le formulaire 2042C que pour calculer le revenu fiscal de référence. On colle à la définition administrative, afin d'avoir une variable 'irpp' qui soit comparable à l'IR du simulateur en ligne de la DGFiP
+        # On comptabilise ir_pv_immo ici directement, et non pas dans la variable 'impot_revenu_restant_a_payer', car administrativement, cet impôt n'est pas dans l'impot_revenu_restant_a_payer, et n'est déclaré dans le formulaire 2042C que pour calculer le revenu fiscal de référence. On colle à la définition administrative, afin d'avoir une variable 'impot_revenu_restant_a_payer' qui soit comparable à l'IR du simulateur en ligne de la DGFiP
         ir_pv_immo_i = menage.members.foyer_fiscal('ir_pv_immo', period)
         ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
@@ -653,8 +647,6 @@ class impots_directs(Variable):
         return (
             taxe_habitation
             + irpp_economique
-            + prelevement_forfaitaire_liberatoire
-            + prelevement_forfaitaire_unique_ir
             + ir_pv_immo
             + isf_ifi
             + prelevement_liberatoire_autoentrepreneur

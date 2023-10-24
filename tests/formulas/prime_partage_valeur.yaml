@@ -151,8 +151,8 @@
       # 21299.271 = (20666.271 + 3_000) * 0.9
       2022: [17714.158, 17714.158, 17714.158, 17714.158, 17714.158, 17714.158, 17714.158]
       2023: [17714.158, 20414.158, 21299.271, 20414.158, 20414.158, 23114.158, 23999.271]
-    irpp:
-      # L'IRPP ne doit pas changer pour ceux dont la prime est exonérée d'impôt
+    impot_revenu_restant_a_payer:
+      # L'impot_revenu_restant_a_payer ne doit pas changer pour ceux dont la prime est exonérée d'impôt
       2022: [-275, -275, -275, -275, -275, -275, -275]
       2023: [-275, -275, -416, -275, -275, -275, -416]
     ppa:
@@ -162,7 +162,7 @@
     prestations_sociales:
       2023: [1745.3168, 775.19183, 442.2387, 775.19183, 775.19183, 277.37405, 277.37405]
     revenu_disponible:
-      # revenu_disponible = (salaire_net*12) - irpp + prestations_sociales
+      # revenu_disponible = (salaire_net*12) - impot_revenu_restant_a_payer + prestations_sociales
       # Pour le 2e individu : 1833.1951*12-275+694.1191 = 22417.46 => C'est bon !
       2023: [20468.658, 22498.533, 22974.496, 22498.533, 22498.533, 25000.717, 25809.635]
 
@@ -250,7 +250,7 @@
       # rfr = revenu_assimile_salaire * 0.9 (abattement pro)
       # 22_481 ×,09 = 20_233
       2023: [17714.158, 19_928.37, 20233.734, 21118.838, 20233.734, 20233.734, 22753.303, 23638.404]
-    irpp:
+    impot_revenu_restant_a_payer:
       # La prime pérenne est soumise à l'impôt
       # De 10 777 € à 27 478 € : Première tranche 11%
       # (17_714.158 - 10_777)*0.11 = 763.087
@@ -261,7 +261,7 @@
     prestations_sociales:
       2023:  [1745.3168, 823.8001, 867.64594, 560.46655, 867.64594, 867.64594, 277.37405, 277.37405]
     revenu_disponible:
-      # revenu_disponible = salaire_net*12 - irpp + prestations_sociales
+      # revenu_disponible = salaire_net*12 - impot_revenu_restant_a_payer + prestations_sociales
       # 1_781 * 12 - 630 + 823.8001 = 21_565.8001 ~= 21566.877 OK
       2023:  [20468.658, 21566.877, 21902.084, 22402.82, 21902.084, 21902.084, 23623.898, 24431.814]
 
@@ -294,7 +294,7 @@
     salaire_net:
       2022-09: [4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30]
       2023-09: [4412.47, 4412.47, 4412.47, 4412.47, 4412.47, 4412.47, 4412.47] #  4412.47 avec l'augmentation du plafond secu (sinon=2022) via le montant csg-crds
-    irpp:
+    impot_revenu_restant_a_payer:
       2022: [-8413, -8413, -8413, -8413, -8413, -8413, -8413]
       2023: [-8404, -8404, -8404, -8404, -8404, -8404, -8404]
 
@@ -342,7 +342,7 @@
     rfr:
       # La totalité de la prime est dans le RFR
       2023: [49367.01, 51886.58, 52783.31, 51886.58, 51886.58, 54406.16, 55302.87]
-    irpp:
+    impot_revenu_restant_a_payer:
       # La totalité de la prime est soumise à l'IR
       2023: [-8404, -9160, -9429, -9160, -9160, -9916, -10185]
 
@@ -371,7 +371,7 @@
     rfr:
       # La totalité de la prime est dans le RFR
       2023: [45130.34, 45222.94]
-    irpp:
+    impot_revenu_restant_a_payer:
       # La totalité de la prime est soumise à l'IR
       2023: [-7133, -7161]
     revenu_disponible:

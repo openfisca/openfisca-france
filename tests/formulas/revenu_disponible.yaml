@@ -179,7 +179,7 @@
     prelevements_sociaux_revenus_capital: -6355 # -(0.7*30000 + 20000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
     revenus_nets_du_capital: (20000 - 6355)
     pensions_nettes: 30000
-    irpp: -6593 # Montant calculé sur le simulateur de la DGFiP
+    impot_revenu_restant_a_payer: -6593 # Montant calculé sur le simulateur de la DGFiP
     impots_directs: -6593 # Montant calculé sur le simulateur de la DGFiP
     revenu_disponible: (20000 - 6355) + 30000 - 6593
 
@@ -195,7 +195,7 @@
   output:
     acomptes_ir: 13000
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.082))
-    irpp: -7266 # Montant calculé sur le simulateur de la DGFiP
+    impot_revenu_restant_a_payer: -7266 # Montant calculé sur le simulateur de la DGFiP
     impots_directs: -7266-13000
 
 - name: acomptes_ir_2017
@@ -210,7 +210,7 @@
     prelevement_forfaitaire_non_liberatoire: 10000
     acomptes_ir: 10000
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.082))
-    irpp: -2293 # Montant calculé sur le simulateur de la DGFiP
+    impot_revenu_restant_a_payer: -2293 # Montant calculé sur le simulateur de la DGFiP
     impots_directs: -(2293+10000)
     revenu_disponible: 100000*(1-(0.045+0.02+0.003+0.005+0.082))-(2293+10000)
 
@@ -224,7 +224,7 @@
     prelevements_sociaux_revenus_capital: -100000*(0.045+0.02+0.003+0.005+0.082)
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.082))
     ir_pv_immo: -0.19*100000
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
     impots_directs: -0.19*100000
 
 - name: pfu_av_2018
@@ -279,7 +279,7 @@
     prelevements_sociaux_revenus_capital: -100000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.099)
     revenus_nets_du_capital: 100000 * (1 - (0.045 + 0.02 + 0.003 + 0.005 + 0.099))
     ir_pv_immo: -0.19 * 100000
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
     impots_directs: -0.19 *  100000
     # revenu_disponible: 100000*(1-(0.19+0.045+0.02+0.003+0.005+0.099))
 

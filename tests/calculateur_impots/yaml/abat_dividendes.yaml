@@ -31,7 +31,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    irpp: -67942.0
+    impot_revenu_restant_a_payer: -67942.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 194000.0
@@ -71,7 +71,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    irpp: -69742.0
+    impot_revenu_restant_a_payer: -69742.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 198000.0

@@ -53,7 +53,7 @@
       personne_de_reference: ind0
   output:
     decote_gain_fiscal: 856.0
-    irpp: -503.0
+    impot_revenu_restant_a_payer: -503.0
     nbptr: 3.0
     ppe: 0.0
     reduction_ss_condition_revenus: 126.0
@@ -116,7 +116,7 @@
       personne_de_reference: ind0
   output:
     decote_gain_fiscal: 259.0
-    irpp: -1679.0
+    impot_revenu_restant_a_payer: -1679.0
     nbptr: 3.0
     ppe: 0.0
     reduction_ss_condition_revenus: 343.0

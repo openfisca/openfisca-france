@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 #    # sont intégrés. Pas possible de le recalculer.
 #
 #    # impot sur le revenu du foyer (hors prélèvement libératoire, revenus au quotient)
-#    irpp   = -(mciria + ppetot - mcirra )
+#    impot_revenu_restant_a_payer   = -(mciria + ppetot - mcirra )
 
 
 class jour_xyz(Variable):
@@ -1096,7 +1096,7 @@ class revenu_categoriel(Variable):
 
 
 ###############################################################################
-# # Déroulé du calcul de l'irpp
+# # Déroulé du calcul de l'impot_revenu_restant_a_payer
 ###############################################################################
 
 
@@ -2139,7 +2139,7 @@ class iai(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        impôt avant imputation de l'irpp
+        impôt avant imputation de l'impot_revenu_restant_a_payer
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
@@ -2150,7 +2150,7 @@ class iai(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
-        impôt avant imputation de l'irpp
+        impôt avant imputation de l'impot_revenu_restant_a_payer
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
@@ -2181,11 +2181,11 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
         # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
 
 
-class irpp(Variable):
+class impot_revenu_restant_a_payer(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Impôt sur le revenu des personnes physiques restant à payer, après prise en compte des éventuels acomptes'
-    reference = 'http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464766'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2200,25 +2200,28 @@ class irpp(Variable):
         credits_impot = foyer_fiscal('credits_impot', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
         contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
+        prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         P = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
 
-        pre_result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus
+        pre_result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
+        impots_totaux_avant_imputations = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
 
         return (
-            (iai > P.seuil) * (
+            (impots_totaux_avant_imputations > P.seuil) * (
                 (pre_result < P.min)
                 * (pre_result > 0)
-                * iai
+                * pre_result
                 * 0
                 + ((pre_result <= 0) + (pre_result >= P.min))
                 * (- pre_result)
                 )
-            + (iai <= P.seuil) * (
+            + (impots_totaux_avant_imputations <= P.seuil) * (
                 (pre_result < 0)
                 * (-pre_result)
                 + (pre_result >= 0)
                 * 0
-                * iai
+                * pre_result
                 )
             )
 
@@ -2230,8 +2233,8 @@ class foyer_impose(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        irpp = foyer_fiscal('irpp', period)
-        return (irpp < 0)
+        impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
+        return (impot_revenu_restant_a_payer < 0)
 
 ###############################################################################
 # # Autres totaux utiles pour la suite
@@ -3489,9 +3492,9 @@ class taux_moyen_imposition(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         rni = foyer_fiscal('rni', period)
-        irpp = foyer_fiscal('irpp', period)
+        impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
         return (
-            (- irpp) / (rni + (rni == 0))
+            (- impot_revenu_restant_a_payer) / (rni + (rni == 0))
             ) * (rni > 0)
 
 

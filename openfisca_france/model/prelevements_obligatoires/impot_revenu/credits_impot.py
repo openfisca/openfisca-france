@@ -1407,7 +1407,7 @@ class prelevement_forfaitaire_non_liberatoire(Variable):
         profiter du prélèvement forfaitaire libératoire sont passés à l'imposition obligatoire au barème.
         Mais un prélèvement forfaitaire demeure à partir de 2013, pour éviter les trous de trésorerie
         (car un prélèvement forfaitaire est à la source). Ce prélèvement est non-libératoire : il
-        correspond à un acompte d'IRPP, qui est donc déduit de l'impôt dû au moment du calcul de
+        correspond à un acompte d'impot_revenu_restant_a_payer, qui est donc déduit de l'impôt dû au moment du calcul de
         l'impôt final après déclaration des revenus
         '''
         f2ck = foyer_fiscal('f2ck', period)
@@ -1426,7 +1426,7 @@ class acomptes_ir(Variable):
         Acomptes d'impôt sur le revenu pris en compte dans le calcul de l'impôt final.
         On déduit de l'impôt final ces acomptes. Si les acomptes dépassent l'impôt final,
         l'excédent est restitué.
-        La variable irpp correspond à l'impôt après prise en compte de cette déduction
+        La variable impot_revenu_restant_a_payer correspond à l'impôt après prise en compte de cette déduction
         '''
 
         acompte_ir_elus_locaux = foyer_fiscal('acompte_ir_elus_locaux', period)

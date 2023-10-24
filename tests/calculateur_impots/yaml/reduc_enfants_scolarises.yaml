@@ -59,7 +59,7 @@
   output:
     reduction_enfants_scolarises: 168.0
     iai: 3923.0
-    irpp: -3923.0
+    impot_revenu_restant_a_payer: -3923.0
     nbptr: 2.25
     ppe: 0.0
     rbg: 45000.0
@@ -127,7 +127,7 @@
   output:
     reduction_enfants_scolarises: 168.0
     iai: 3912.0
-    irpp: -3912.0
+    impot_revenu_restant_a_payer: -3912.0
     nbptr: 2.25
     rbg: 45000.0
     reductions: 168.0
@@ -194,7 +194,7 @@
   output:
     reduction_enfants_scolarises: 168.0
     iai: 3902.0
-    irpp: -3902.0
+    impot_revenu_restant_a_payer: -3902.0
     nbptr: 2.25
     rbg: 45000.0
     reductions: 168.0
@@ -261,7 +261,7 @@
   output:
     reduction_enfants_scolarises: 168.0
     iai: 3807.0
-    irpp: -3807.0
+    impot_revenu_restant_a_payer: -3807.0
     nbptr: 2.25
     protection_patrimoine_naturel: 0.0
     rbg: 45000.0

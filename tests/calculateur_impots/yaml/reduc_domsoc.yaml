@@ -55,7 +55,7 @@
   output:
     reductions: 6280.0
     iai: 1364.0
-    irpp: -1364.0
+    impot_revenu_restant_a_payer: -1364.0
     rbg: 45000.0
     rfr: 45000.0
     rni: 45000.0
