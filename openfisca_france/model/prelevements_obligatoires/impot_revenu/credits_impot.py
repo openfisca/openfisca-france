@@ -36,7 +36,6 @@ class credits_impot(Variable):
             'drbail',
             'inthab',
             'preetu',
-            'prlire',
             'quaenv',
             ]
 
@@ -91,7 +90,6 @@ class credits_impot(Variable):
             'drbail',
             'inthab',
             'preetu',
-            'prlire',
             'quaenv',
             ]
 
@@ -1431,8 +1429,9 @@ class acomptes_ir(Variable):
 
         acompte_ir_elus_locaux = foyer_fiscal('acompte_ir_elus_locaux', period)
         prelevement_forfaitaire_non_liberatoire = foyer_fiscal('prelevement_forfaitaire_non_liberatoire', period)
+        prlire = foyer_fiscal('prlire', period)
 
-        return acompte_ir_elus_locaux + prelevement_forfaitaire_non_liberatoire
+        return acompte_ir_elus_locaux + prelevement_forfaitaire_non_liberatoire + prlire
 
 
 class direpa(Variable):
