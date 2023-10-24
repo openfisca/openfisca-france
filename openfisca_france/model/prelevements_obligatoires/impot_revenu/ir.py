@@ -948,7 +948,6 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f2da = foyer_fiscal('f2da', period)
         f2dc = foyer_fiscal('f2dc', period)
         f2ts = foyer_fiscal('f2ts', period)
         f2ca = foyer_fiscal('f2ca', period)

@@ -125,7 +125,7 @@ class rev_coll(Variable):
         # Quand rev_coll est calculé sur une année glissante, rente_viagere_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
-        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)  # Supprimée en 2018
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
         abat_spe = foyer_fiscal('abattements_speciaux_prestations_familiales', period)

@@ -22,7 +22,7 @@
     prelevement_forfaitaire_unique_ir: -6400.0
     nbptr: 1.0
     rfr: 50000.0
-    impot_revenu_restant_a_payer: 0.0
+    impot_revenu_restant_a_payer: -6400
     prelevements_sociaux_revenus_capital: -8600.0
 
 - name: Cas d'un foyer fiscal sujet à la fois au PFU sur plus-values et à des taxations hors barème et hors PFU sur plus-values
@@ -49,7 +49,7 @@
     prelevement_forfaitaire_unique_ir: -5120.0
     nbptr: 1.0
     rfr: 60000.0
-    impot_revenu_restant_a_payer: -10000.0
+    impot_revenu_restant_a_payer: -15120.0
     prelevements_sociaux_revenus_capital: -10320.0
 
 - name: Cas d'imposition hors barème de plus-values non imposable au PFU
