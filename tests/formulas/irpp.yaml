@@ -291,15 +291,6 @@
   output:
     impot_revenu_restant_a_payer: 0
 
-- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
-  description: 'TODO: Check with Mahdi wether 2DA exists in 2013.'
-  period: 2013
-  absolute_error_margin: 0.5
-  input:
-    f2da: 20000
-  output:
-    impot_revenu_restant_a_payer: 0
-
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
