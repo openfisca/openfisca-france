@@ -256,4 +256,3 @@
     f4ba: 10000
   output:
     prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
-
