@@ -7,6 +7,14 @@ log = logging.getLogger(__name__)
 # (le reste étant associé aux prélèvements sociaux)
 
 
+class f2op(Variable):
+    cerfa_field = '2OP'
+    value_type = bool
+    entity = FoyerFiscal
+    label = 'Le foyer fiscal choisit l imposition au barème plutôt que le pfu si il coche la case 2op'
+    definition_period = YEAR
+
+
 class assurance_vie_pfu_ir_plus8ans_1990_19970926(Variable):
     value_type = float
     entity = FoyerFiscal
