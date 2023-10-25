@@ -1,4 +1,4 @@
-description: Seuil d'exonération (sur l'impot_revenu_restant_a_payer payé en N-1) de la Contribution SS additionnelle solidarité autonomie (CASA)
+description: Seuil d'exonération (sur l'impôt sur le revenu payé en N-1) de la Contribution SS additionnelle solidarité autonomie (CASA)
 values:
   2013-04-01:
     value: 61
