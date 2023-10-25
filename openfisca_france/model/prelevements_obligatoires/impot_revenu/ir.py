@@ -2148,7 +2148,7 @@ class iai(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
-        impôt avant imputation de l'impot_revenu_restant_a_payer
+        impôt sur le revenu avant imputation
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
