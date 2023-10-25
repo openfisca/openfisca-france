@@ -409,25 +409,25 @@ class abattements_plus_values(Variable):
         A partir de 2018, si le foyer choisit l'imposition au barème des rvenus éligibles au pfu, les plus-values entrent dans le calcul du rfr net d'abattement, on rajoute donc les abattements.
         Cela n'est pas nécessaire dans le cas pfu puisque les plus-values entrent dans le calcul du rfr brut d'abattement.
         '''
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
         f3sg = foyer_fiscal('f3sg', period)
         f3sl = foyer_fiscal('f3sl', period)
         f3va = foyer_fiscal('f3va', period)
 
-        return choix_bareme * (f3sg + f3sl + f3va)
+        return imposition_au_bareme * (f3sg + f3sl + f3va)
 
     def formula_2019_01_01(foyer_fiscal, period):
         '''
         A partir de 2018, si le foyer choisit l'imposition au barème des rvenus éligibles au pfu, les plus-values entrent dans le calcul du rfr net d'abattement, on rajoute donc les abattements.
         Cela n'est pas nécessaire dans le cas pfu puisque les plus-values entrent dans le calcul du rfr brut d'abattement.
         '''
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
         f3sg = foyer_fiscal('f3sg', period)
         f3sl = foyer_fiscal('f3sl', period)
         f3va = foyer_fiscal('f3va', period)
         f3tk = foyer_fiscal('f3tk', period)
 
-        return choix_bareme * (f3sg + f3sl + f3va + f3tk)
+        return imposition_au_bareme * (f3sg + f3sl + f3va + f3tk)
 
 
 # Plus values et gains taxables à des taux forfaitaires

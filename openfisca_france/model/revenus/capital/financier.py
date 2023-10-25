@@ -513,7 +513,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
-        choix_bareme = foyer_fiscal('f2op', year)
+        imposition_au_bareme = foyer_fiscal('f2op', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
@@ -531,11 +531,11 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2ww = foyer_fiscal('f2ww', year)
         f2zz = foyer_fiscal('f2zz', year)
 
-        return (f2ch + f2yy + choix_bareme * (f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz)) / 12
+        return (f2ch + f2yy + imposition_au_bareme * (f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz)) / 12
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
-        choix_bareme = foyer_fiscal('f2op', year)
+        imposition_au_bareme = foyer_fiscal('f2op', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
@@ -555,7 +555,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tq = foyer_fiscal('f2tq', year)
         f2tz = foyer_fiscal('f2tz', year)
 
-        return (f2ch + f2yy + choix_bareme * (f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz + f2tq + f2tz)) / 12
+        return (f2ch + f2yy + imposition_au_bareme * (f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz + f2tq + f2tz)) / 12
 
 
 class revenus_capitaux_prelevement_liberatoire(Variable):

@@ -601,7 +601,7 @@ class revenu_categoriel_plus_values(Variable):
         return f3sb + f3vg + f3wb + f3ua
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
         f3sb = foyer_fiscal('f3sb', period)
         f3wb = foyer_fiscal('f3wb', period)
         f3vg = foyer_fiscal('f3vg', period)  # Brut d'abattement à partir de 2018
@@ -611,10 +611,10 @@ class revenu_categoriel_plus_values(Variable):
         f3va = foyer_fiscal('f3va', period)  # Abattement fixe
         f3tj = foyer_fiscal('f3tj', period)
 
-        return f3wb + choix_bareme * (f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + f3tj)
+        return f3wb + imposition_au_bareme * (f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + f3tj)
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
         f3sb = foyer_fiscal('f3sb', period)
         f3wb = foyer_fiscal('f3wb', period)
         f3vg = foyer_fiscal('f3vg', period)  # Brut d'abattement à partir de 2018
@@ -626,7 +626,7 @@ class revenu_categoriel_plus_values(Variable):
         f3tk = foyer_fiscal('f3tk', period)
         f3vt = foyer_fiscal('f3vt', period)
 
-        return f3wb + choix_bareme * (f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + max_(0, f3tj - f3tk) + f3vt)
+        return f3wb + imposition_au_bareme * (f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + max_(0, f3tj - f3tk) + f3vt)
 
 
 class revenu_categoriel_deductions(Variable):
@@ -852,7 +852,7 @@ class revenu_categoriel_capital(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
 
         # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
         f2ch = foyer_fiscal('f2ch', period)
@@ -878,7 +878,7 @@ class revenu_categoriel_capital(Variable):
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + choix_bareme * (
+            + imposition_au_bareme * (
                 f2zz + max_(f2vv - abattement_residuel, 0)
                 + max_(f2ww - abattement_residuel2, 0)
                 + f2fu + f2dc - abattement_dividende
@@ -886,7 +886,7 @@ class revenu_categoriel_capital(Variable):
                 )
             )
 
-        return max_(0, rvcm_apres_abattement - f2ca * choix_bareme - deficit_rcm)
+        return max_(0, rvcm_apres_abattement - f2ca * imposition_au_bareme - deficit_rcm)
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         '''
@@ -900,7 +900,7 @@ class revenu_categoriel_capital(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
 
         # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
         f2ch = foyer_fiscal('f2ch', period)
@@ -928,7 +928,7 @@ class revenu_categoriel_capital(Variable):
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + choix_bareme * (
+            + imposition_au_bareme * (
                 f2zz + max_(f2vv - abattement_residuel, 0)
                 + max_(f2ww - abattement_residuel2, 0)
                 + f2fu + f2dc - abattement_dividende
@@ -937,7 +937,7 @@ class revenu_categoriel_capital(Variable):
                 )
             )
 
-        return max_(0, rvcm_apres_abattement - f2ca * choix_bareme - deficit_rcm)
+        return max_(0, rvcm_apres_abattement - f2ca * imposition_au_bareme - deficit_rcm)
 
 
 class rfr_rvcm_abattements_a_reintegrer(Variable):
@@ -988,7 +988,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
               Si le foyer a choisi l'imposition au barème pour les revenus éligibles au pfu, les revenus de l'assurance-vie entrent dans le calcul du RFR via `revenus_categoriel` net d'abattement.
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2dh = foyer_fiscal('f2dh', period)
         f2vv = foyer_fiscal('f2vv', period)
@@ -1002,7 +1002,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
             )
         abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
 
-        return - abattement_assurance_vie * (choix_bareme == 0) + abattement_dividende * choix_bareme
+        return - abattement_assurance_vie * (not imposition_au_bareme) + abattement_dividende * imposition_au_bareme
 
 
 class revenu_categoriel_foncier(Variable):
@@ -1166,12 +1166,12 @@ class csg_patrimoine_deductible_ir(Variable):
         Si le foyer fiscal n'opte pas pour l'imposition au barème des revenus éligibles au pfu, les revenus inscrits case 2BH n'ouvrent pas droit à csg déductible
         '''
         csg_deductible = parameters(period).taxation_capital.prelevements_sociaux.csg.taux_deductible.revenus_du_patrimoine
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
         rbg = foyer_fiscal('rbg', period)
         f6de = foyer_fiscal('f6de', period)
         f2bh = foyer_fiscal('f2bh', period)
         f2df = foyer_fiscal('f2df', period)
-        csg_deduc_patrimoine = max_(f6de, 0) + max_(csg_deductible * (choix_bareme * f2bh + f2df), 0)
+        csg_deduc_patrimoine = max_(f6de, 0) + max_(csg_deductible * (imposition_au_bareme * f2bh + f2df), 0)
 
         return min_(csg_deduc_patrimoine, max_(rbg, 0))
 
@@ -2081,7 +2081,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
 
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
         glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vm = foyer_fiscal('f3vm', period)
@@ -2097,7 +2097,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3pi + (choix_bareme == 0) * (f3vg + f3ua + f3tj)
+        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3pi + (not imposition_au_bareme) * (f3vg + f3ua + f3tj)
 
     def formula_2019_01_01(foyer_fiscal, period):
         '''
@@ -2110,7 +2110,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
 
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
         glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         f3vq = foyer_fiscal('f3vq', period)
@@ -2126,7 +2126,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + (f3vq - f3vr) + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3an + f3pi + (choix_bareme == 0) * (f3vg + f3ua + f3tj + f3vt)
+        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + (f3vq - f3vr) + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3an + f3pi + (not imposition_au_bareme) * (f3vg + f3ua + f3tj + f3vt)
 
 
 class iai(Variable):
@@ -2279,7 +2279,7 @@ class rfr(Variable):
         rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
         rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
         rni = foyer_fiscal('rni', period)
-        choix_bareme = foyer_fiscal('f2op', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
         f3sb = foyer_fiscal('f3sb', period)  # Dans le cas de l'imposition au barème des revenus éligibles au pfu, les plus-values en report d'imposition qui sont imposables pour la période concernée sont comptées dans le rni mais ne doivent pas être comptées dans le rfr.
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_info_i = foyer_fiscal.members('rpns_info', period)
@@ -2294,7 +2294,7 @@ class rfr(Variable):
         prime_partage_valeur_exoneree_exceptionnelle = (foyer_fiscal.sum(prime_partage_valeur_exoneree_exceptionnelle_i) * 0.9)
 
         return (
-            max_(0, rni - choix_bareme * f3sb)
+            max_(0, rni - imposition_au_bareme * f3sb)
             + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rpns_exon + rpns_info
             + abattements_plus_values
