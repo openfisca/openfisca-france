@@ -595,7 +595,7 @@ class aides_logement(Variable):
 class irpp_economique(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Notion économique de l'impot_revenu_restant_a_payer"
+    label = "Notion économique de l'impot sur le revenu"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
