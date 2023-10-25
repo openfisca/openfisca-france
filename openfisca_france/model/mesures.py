@@ -600,7 +600,7 @@ class irpp_economique(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Cette variable d'impot_revenu_restant_a_payer comptabilise dans les montants
+        Cette variable d'impot sur le revenu comptabilise dans les montants
         d'imposition les acomptes qui, dans la déclaration fiscale, sont considérés comme des crédits
         d'impôt. Ajouter ces acomptes au montant "administratif" d'impôt correspond donc au "véritable impôt"
         payé en totalité, alors que la variable 'impot_revenu_restant_a_payer' correspond à une notion administrative.
