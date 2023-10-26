@@ -136,10 +136,12 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
 
         return result / 12
 
-    def formula_2020_01_01(foyer_fiscal, period, parameters):
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
         Note : cette variable est définie à l'échelle du mois pour être en cohérence avec les variables qu'elle remplace
                 (à savoir revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
+        Brochure pratique revenus 2019 page 123 et 340: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2020/accueil.htm
+        Nouvelle variable 'Intérêts imposables des obligations remboursables en actions détenues dans le PEA-PME' (2tq) qui est éligible au pfu. Ces revenus étaient comptés dans la variable 2tr auparavant.
         '''
         year = period.this_year
         imposition_au_bareme = foyer_fiscal('f2op', year)
@@ -151,9 +153,40 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         f2tt = foyer_fiscal('f2tt', year)
         f2go = foyer_fiscal('f2go', year)
         f2tq = foyer_fiscal('f2tq', year)
+
+        result = where(imposition_au_bareme, 0, assurance_vie_pfu_ir + f2dc + f2fu + f2ts + f2tr + f2tt + f2go + f2tq)
+
+        return result / 12
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Note : cette variable est définie à l'échelle du mois pour être en cohérence avec les variables qu'elle remplace
+                (à savoir revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
+
+        Nouvelle variable 'Produits des plans d’épargne retraite – sortie en capital' (2tz) qui est éligible au pfu. Ces revenus étaient comptés dans la variable 2tr auparavant.
+        Source: Brochure pratique revenus 2020 pages 119, 132 et 364: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2021/accueil.htm
+
+        A compter de l’imposition des revenus de 2020, le montant des revenus 2GO est multiplié par un coefficient de 1,25 pour le calcul de l’impôt sur le revenu quelles que
+        soient les modalités d’imposition de ces revenus (prélèvement forfaitaire unique de 12,8% ou option pour le barème progressif). Jusqu'en 2019, ce coefficient ne s'appliquait qu'en
+        cas d'option pour le barème progressif.
+        Sources:
+            - Brochure pratique revenus 2020 page 130: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2021/accueil.htm
+            - Brochure pratique revenus 2019 page 120: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2020/accueil.htm
+        '''
+        year = period.this_year
+        imposition_au_bareme = foyer_fiscal('f2op', year)
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        assurance_vie_pfu_ir = foyer_fiscal('assurance_vie_pfu_ir', year)
+        f2dc = foyer_fiscal('f2dc', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tq = foyer_fiscal('f2tq', year)
         f2tz = foyer_fiscal('f2tz', year)
 
-        result = where(imposition_au_bareme, 0, assurance_vie_pfu_ir + f2dc + f2fu + f2ts + f2tr + f2tt + f2go + f2tq + f2tz)
+        result = where(imposition_au_bareme, 0, assurance_vie_pfu_ir + f2dc + f2fu + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues + f2tq + f2tz)
 
         return result / 12
 

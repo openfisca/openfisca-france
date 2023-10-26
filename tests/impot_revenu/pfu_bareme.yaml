@@ -149,3 +149,85 @@
     prelevement_forfaitaire_unique_ir: -2560  # pfu des actifs numériques f3an qui ne peuvent pas être imposé au barème
     rfr: 390000
     impot_revenu_restant_a_payer: -94395  # pfu des an + taxation au barème des revenus éligibles au pfu
+
+- name: option_prelevement_forfaitaire_unique_capital_2019
+  description: Test pfu pour 2019 avec des revenus de capital
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2go: 10000
+      f2tt: 50000
+      f2tq: 20000
+      f2op: false
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    rfr: 80000
+    prelevement_forfaitaire_unique_ir: -10240  # 80000*0.128
+    impot_revenu_restant_a_payer: -10240  # pfu
+
+- name: option_imposition_bareme_capital_2019
+  description: Test imposition bareme pour 2019 avec des revenus de capital
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2go: 10000
+      f2tt: 50000
+      f2tq: 20000
+      f2op: true
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: 0  # option barème
+    rfr: 82500  # 10000*1.25 (2go majoré si taxation au barème) + 50000 + 20000
+    impot_revenu_restant_a_payer: -19772
+
+- name: option_prelevement_forfaitaire_unique_capital_2020
+  description: Test pfu pour 2020 avec des revenus de capital
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2go: 10000
+      f2tt: 40000
+      f2tq: 20000
+      f2tz: 10000
+      f2op: false
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: -10560  # (10000*1.25 (2go majoré dans tous les cas, pfu ou barème, à partir de 2020) + 70000)*0.128
+    impot_revenu_restant_a_payer: -10560  # pfu
+    rfr: 82500
+
+- name: option_imposition_bareme_capital_2020
+  description: Test imposition bareme pour 2020 avec des revenus de capital
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2go: 10000
+      f2tt: 40000
+      f2tq: 20000
+      f2tz: 10000
+      f2op: true
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: 0  # option barème
+    rfr: 82500
+    impot_revenu_restant_a_payer: -19744

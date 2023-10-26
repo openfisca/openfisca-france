@@ -890,14 +890,59 @@ class revenu_categoriel_capital(Variable):
 
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Revenus des valeurs et capitaux mobiliers
+
+        Seule différence avec la formule précédente :
+            On ajoute la case 2TQ qui représente des revenus qui étaient comptés dans 2TR jusqu'en 2018.
+            Source : Brochure pratique revenus 2019 page 123 et 340: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2020/accueil.htm
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        deficit_rcm = foyer_fiscal('deficit_rcm', period)
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        imposition_au_bareme = foyer_fiscal('f2op', period)
+
+        # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
+        f2ch = foyer_fiscal('f2ch', period)
+        f2yy = foyer_fiscal('f2yy', period)
+
+        # Revenus à prendre en compte dans un seul cas: imposition au barème
+        f2ca = foyer_fiscal('f2ca', period)
+        f2dc = foyer_fiscal('f2dc', period)
+        f2fu = foyer_fiscal('f2fu', period)
+        f2go = foyer_fiscal('f2go', period)
+        f2tr = foyer_fiscal('f2tr', period)
+        f2ts = foyer_fiscal('f2ts', period)
+        f2tt = foyer_fiscal('f2tt', period)
+        f2vv = foyer_fiscal('f2vv', period)
+        f2ww = foyer_fiscal('f2ww', period)
+        f2zz = foyer_fiscal('f2zz', period)
+        f2tq = foyer_fiscal('f2tq', period)
+
+        # Revenus après abatemment
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
+        abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
+        abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
+        pre_result = where(imposition_au_bareme, f2zz + max_(f2vv - abattement_residuel, 0) + max_(f2ww - abattement_residuel2, 0) + f2fu + f2dc - abattement_dividende
+            + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues + f2tq, 0)
+        rvcm_apres_abattement = (
+            f2yy
+            + f2ch - min_(f2ch, abattement_assurance_vie)
+            + pre_result
+            )
+        f2ca = where(imposition_au_bareme, f2ca, 0)
+
+        return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
+
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         '''
         Revenus des valeurs et capitaux mobiliers
 
-        NB : La mise en place du PFU supprime la taxation au barème de la plupart des revenus des valeurs et capitaux mobiliers.
-        Ces revenus sortent donc de la variable `revenu_categoriel_capital` et entrent dans la variable `revenus_capitaux_prelevement_forfaitaire_unique_ir`.
-        En revanche, si la case 2op est cochée, les revenus des valeurs et capitaux mobiliers sont taxés au barème et non au pfu.
-        Dans ce cas, ils ne sortent pas de la variable `revenu_categoriel_capital`.
+        Seule différence avec la formule précédente :
+            On ajoute la case 2TZ qui représente des revenus qui étaient comptés dans 1AI jusqu'en 2018 et n'étaient pas éligibles au pfu.
+            Source : Brochure pratique revenus 2020 page 119, 132 et 364: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2021/accueil.htm
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
@@ -927,19 +972,16 @@ class revenu_categoriel_capital(Variable):
         abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
+        pre_result = where(imposition_au_bareme, f2zz + max_(f2vv - abattement_residuel, 0) + max_(f2ww - abattement_residuel2, 0) + f2fu + f2dc - abattement_dividende
+            + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues + f2tq + f2tz, 0)
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + imposition_au_bareme * (
-                f2zz + max_(f2vv - abattement_residuel, 0)
-                + max_(f2ww - abattement_residuel2, 0)
-                + f2fu + f2dc - abattement_dividende
-                + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues
-                + f2tq + f2tz
-                )
+            + pre_result
             )
+        f2ca = where(imposition_au_bareme, f2ca, 0)
 
-        return max_(0, rvcm_apres_abattement - f2ca * imposition_au_bareme - deficit_rcm)
+        return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
 
 class rfr_rvcm_abattements_a_reintegrer(Variable):
