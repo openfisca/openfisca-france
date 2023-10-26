@@ -573,8 +573,7 @@ class traitements_salaires_pensions_rentes(Variable):
 class revenu_categoriel_plus_values(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Revenu catégoriel - Plus-values'
-    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm'
+    label = 'Revenu catégoriel - Plus-values (plus-values imposées au barème, les autres entrent dans la variable plus_values_prelevement_forfaitaire_unique_ir si elles sont éligibles au pfu et dans taxation_plus_values_hors_bareme sinon)'
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
