@@ -105,7 +105,9 @@ class assurance_vie_pfu_ir(Variable):
         f2vv = foyer_fiscal('f2vv', period)
         f2ww = foyer_fiscal('f2ww', period)
 
-        return (not imposition_au_bareme) * (f2zz + f2vv + f2ww)
+        result = where(imposition_au_bareme, 0, f2zz + f2vv + f2ww)
+
+        return result
 
 
 class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
@@ -130,7 +132,9 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         f2tt = foyer_fiscal('f2tt', year)
         f2go = foyer_fiscal('f2go', year)
 
-        return ((not imposition_au_bareme) * (assurance_vie_pfu_ir + f2dc + f2fu + f2ts + f2tr + f2tt + f2go)) / 12
+        result = where(imposition_au_bareme, 0, assurance_vie_pfu_ir + f2dc + f2fu + f2ts + f2tr + f2tt + f2go)
+
+        return result / 12
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         '''
@@ -149,7 +153,9 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         f2tq = foyer_fiscal('f2tq', year)
         f2tz = foyer_fiscal('f2tz', year)
 
-        return ((not imposition_au_bareme) * (assurance_vie_pfu_ir + f2dc + f2fu + f2ts + f2tr + f2tt + f2go + f2tq + f2tz)) / 12
+        result = where(imposition_au_bareme, 0, assurance_vie_pfu_ir + f2dc + f2fu + f2ts + f2tr + f2tt + f2go + f2tq + f2tz)
+
+        return result / 12
 
 
 class plus_values_prelevement_forfaitaire_unique_ir(Variable):
@@ -167,7 +173,9 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         f3vg = foyer_fiscal('f3vg', period)
         f3tj = foyer_fiscal('f3tj', period)
 
-        return (not imposition_au_bareme) * (f3sb + max_(0, f3ua - f3va) + f3vg + f3tj)
+        result = where(imposition_au_bareme, 0, f3sb + max_(0, f3ua - f3va) + f3vg + f3tj)
+
+        return result
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         imposition_au_bareme = foyer_fiscal('f2op', period)
@@ -180,7 +188,9 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         f3vt = foyer_fiscal('f3vt', period)
         f3an = foyer_fiscal('f3an', period)  # Actifs numériques toujours soumis au pfu, pas d'option d'imposition au barème
 
-        return f3an + (not imposition_au_bareme) * (f3sb + max_(0, f3ua - f3va) + f3vg + max_(0, f3tj - f3tk) + f3vt)
+        pre_result = where(imposition_au_bareme, 0, f3sb + max_(0, f3ua - f3va) + f3vg + max_(0, f3tj - f3tk) + f3vt)
+
+        return f3an + pre_result
 
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie(Variable):
@@ -235,13 +245,13 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
 
         abattement_residuel = max_(P2.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
-        pfu_ir_sur_assurance_vie = -(
+        pfu_ir_sur_assurance_vie = where(imposition_au_bareme, 0,
             (f2zz * P1_taux)
             + (max_(f2vv - abattement_residuel, 0) * P1_taux_reduit_av)
             + (max_(f2ww - abattement_residuel2, 0) * P1_taux)
             )
 
-        return pfu_ir_sur_assurance_vie * (not imposition_au_bareme)
+        return -pfu_ir_sur_assurance_vie
 
 
 class prelevement_forfaitaire_unique_ir(Variable):

@@ -414,7 +414,9 @@ class abattements_plus_values(Variable):
         f3sl = foyer_fiscal('f3sl', period)
         f3va = foyer_fiscal('f3va', period)
 
-        return imposition_au_bareme * (f3sg + f3sl + f3va)
+        result = where(imposition_au_bareme, f3sg + f3sl + f3va, 0)
+
+        return result
 
     def formula_2019_01_01(foyer_fiscal, period):
         '''
@@ -427,7 +429,9 @@ class abattements_plus_values(Variable):
         f3va = foyer_fiscal('f3va', period)
         f3tk = foyer_fiscal('f3tk', period)
 
-        return imposition_au_bareme * (f3sg + f3sl + f3va + f3tk)
+        result = where(imposition_au_bareme, f3sg + f3sl + f3va + f3tk, 0)
+
+        return result
 
 
 # Plus values et gains taxables à des taux forfaitaires

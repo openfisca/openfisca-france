@@ -530,8 +530,9 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2vv = foyer_fiscal('f2vv', year)
         f2ww = foyer_fiscal('f2ww', year)
         f2zz = foyer_fiscal('f2zz', year)
+        pre_result = where(imposition_au_bareme, f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz, 0)
 
-        return (f2ch + f2yy + imposition_au_bareme * (f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz)) / 12
+        return (f2ch + f2yy + pre_result) / 12
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
@@ -555,7 +556,9 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tq = foyer_fiscal('f2tq', year)
         f2tz = foyer_fiscal('f2tz', year)
 
-        return (f2ch + f2yy + imposition_au_bareme * (f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz + f2tq + f2tz)) / 12
+        pre_result = where(imposition_au_bareme, f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz + f2tq + f2tz, 0)
+
+        return (f2ch + f2yy + pre_result) / 12
 
 
 class revenus_capitaux_prelevement_liberatoire(Variable):

@@ -611,7 +611,9 @@ class revenu_categoriel_plus_values(Variable):
         f3va = foyer_fiscal('f3va', period)  # Abattement fixe
         f3tj = foyer_fiscal('f3tj', period)
 
-        return f3wb + imposition_au_bareme * (f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + f3tj)
+        pre_result = where(imposition_au_bareme, f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + f3tj, 0)
+
+        return f3wb + pre_result
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         imposition_au_bareme = foyer_fiscal('f2op', period)
@@ -626,7 +628,9 @@ class revenu_categoriel_plus_values(Variable):
         f3tk = foyer_fiscal('f3tk', period)
         f3vt = foyer_fiscal('f3vt', period)
 
-        return f3wb + imposition_au_bareme * (f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + max_(0, f3tj - f3tk) + f3vt)
+        pre_result = where(imposition_au_bareme, f3sb + max_(0, f3ua - f3sl - f3va) + max_(0, f3vg - f3sg) + max_(0, f3tj - f3tk) + f3vt, 0)
+
+        return f3wb + pre_result
 
 
 class revenu_categoriel_deductions(Variable):
@@ -875,18 +879,16 @@ class revenu_categoriel_capital(Variable):
         abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
+        pre_result = where(imposition_au_bareme, f2zz + max_(f2vv - abattement_residuel, 0) + max_(f2ww - abattement_residuel2, 0) + f2fu + f2dc - abattement_dividende
+            + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues, 0)
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + imposition_au_bareme * (
-                f2zz + max_(f2vv - abattement_residuel, 0)
-                + max_(f2ww - abattement_residuel2, 0)
-                + f2fu + f2dc - abattement_dividende
-                + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues
-                )
+            + pre_result
             )
+        f2ca = where(imposition_au_bareme, f2ca, 0)
 
-        return max_(0, rvcm_apres_abattement - f2ca * imposition_au_bareme - deficit_rcm)
+        return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         '''
@@ -996,12 +998,12 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         f2fu = foyer_fiscal('f2fu', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_assurance_vie = (
+        abattement_assurance_vie = where(imposition_au_bareme, 0,
             (f2ch < P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)) * max_(0, min_(f2vv + f2ww, P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch - f2dh))
             )
-        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_dividende = where(imposition_au_bareme, (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement, 0)
 
-        return - abattement_assurance_vie * (not imposition_au_bareme) + abattement_dividende * imposition_au_bareme
+        return - abattement_assurance_vie + abattement_dividende
 
 
 class revenu_categoriel_foncier(Variable):
@@ -1170,7 +1172,8 @@ class csg_patrimoine_deductible_ir(Variable):
         f6de = foyer_fiscal('f6de', period)
         f2bh = foyer_fiscal('f2bh', period)
         f2df = foyer_fiscal('f2df', period)
-        csg_deduc_patrimoine = max_(f6de, 0) + max_(csg_deductible * (imposition_au_bareme * f2bh + f2df), 0)
+        f2bh = where(imposition_au_bareme, f2bh, 0)
+        csg_deduc_patrimoine = max_(f6de, 0) + max_(csg_deductible * (f2bh + f2df), 0)
 
         return min_(csg_deduc_patrimoine, max_(rbg, 0))
 
@@ -2096,7 +2099,9 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3pi + (not imposition_au_bareme) * (f3vg + f3ua + f3tj)
+        pre_result = where(imposition_au_bareme, 0, f3vg + f3ua + f3tj)
+
+        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3pi + pre_result
 
     def formula_2019_01_01(foyer_fiscal, period):
         '''
@@ -2125,7 +2130,9 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + (f3vq - f3vr) + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3an + f3pi + (not imposition_au_bareme) * (f3vg + f3ua + f3tj + f3vt)
+        pre_result = where(imposition_au_bareme, 0, f3vg + f3ua + f3tj + f3vt)
+
+        return f3sj + f3sk + f3vc + glo_taxation_ir_forfaitaire + (f3vq - f3vr) + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3an + f3pi + pre_result
 
 
 class iai(Variable):
@@ -2292,8 +2299,10 @@ class rfr(Variable):
         # TODO: On applique ici l'abattement de 10% mais idéalement il faudrait tenir compte des frais réels le cas échéant.
         prime_partage_valeur_exoneree_exceptionnelle = (foyer_fiscal.sum(prime_partage_valeur_exoneree_exceptionnelle_i) * 0.9)
 
+        f3sb = where(imposition_au_bareme, f3sb, 0)
+
         return (
-            max_(0, rni - imposition_au_bareme * f3sb)
+            max_(0, rni - f3sb)
             + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rpns_exon + rpns_info
             + abattements_plus_values
