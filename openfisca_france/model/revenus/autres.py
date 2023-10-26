@@ -173,7 +173,7 @@ class f8td(Variable):
 
 
 class f8ti(Variable):
-    cerfa_field = '8TK'
+    cerfa_field = '8TI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal

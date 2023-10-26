@@ -1,5 +1,17 @@
 # Changelog
 
+### 154.1.0 [2198](https://github.com/openfisca/openfisca-france/pull/2198)
+
+* Corrections/mises à jour.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
+  - `openfisca_france/model/revenus/autres.py`
+* Détails :
+  - Ajoute des end-date pour certains crédits d'impôt qui n'existent plus et donc les cases CERFA on été réutilisée depuis
+  - Corrige la case cerfa de la variable `f8ti`
+
+
 ### 154.0.2 [2196](https://github.com/openfisca/openfisca-france/pull/2196)
 
 * Changement mineur.
