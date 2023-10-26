@@ -406,7 +406,7 @@ class abattements_plus_values(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period):
         '''
-        A partir de 2018, si le foyer choisit l'imposition au barème des rvenus éligibles au pfu, les plus-values entrent dans le calcul du rfr net d'abattement, on rajoute donc les abattements.
+        A partir de 2018, si le foyer choisit l'imposition au barème des revenus éligibles au pfu, les plus-values entrent dans le calcul du rfr net d'abattement, on rajoute donc les abattements.
         Cela n'est pas nécessaire dans le cas pfu puisque les plus-values entrent dans le calcul du rfr brut d'abattement.
         '''
         imposition_au_bareme = foyer_fiscal('f2op', period)
@@ -420,8 +420,11 @@ class abattements_plus_values(Variable):
 
     def formula_2019_01_01(foyer_fiscal, period):
         '''
-        A partir de 2018, si le foyer choisit l'imposition au barème des rvenus éligibles au pfu, les plus-values entrent dans le calcul du rfr net d'abattement, on rajoute donc les abattements.
-        Cela n'est pas nécessaire dans le cas pfu puisque les plus-values entrent dans le calcul du rfr brut d'abattement.
+        A partir de 2019, les revenus de la variable 3tj peuvent bénéficier d'un abattement fixe de départ à la retraite d’un dirigeant de PME (3tk). Cet abattement s'applique lorsque
+        le foyer choisit l'imposition au barème des revenus éligibles au pfu, ils doivent donc dans ce cas être rajouté au calcul du rfr.
+        Sources:
+         - Brochure pratique revenus 2019 page 147: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2020/accueil.htm
+         - Brochure pratique revenus 2018 page 142: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2019/accueil.htm
         '''
         imposition_au_bareme = foyer_fiscal('f2op', period)
         f3sg = foyer_fiscal('f3sg', period)

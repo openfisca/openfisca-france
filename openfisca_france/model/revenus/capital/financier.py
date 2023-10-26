@@ -536,6 +536,11 @@ class revenus_capitaux_prelevement_bareme(Variable):
         return (f2ch + f2yy + pre_result) / 12
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Seule différence avec la formule précédente :
+            On ajoute la case 2TQ qui représente des revenus qui étaient comptés dans 2TR jusqu'en 2018.
+            Source : Brochure pratique revenus 2019 page 123 et 340: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2020/accueil.htm
+        '''
         year = period.this_year
         imposition_au_bareme = foyer_fiscal('f2op', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
@@ -561,6 +566,11 @@ class revenus_capitaux_prelevement_bareme(Variable):
         return (f2ch + f2yy + pre_result) / 12
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Seule différence avec la formule précédente :
+            On ajoute la case 2TZ qui représente des revenus qui étaient comptés dans 1AI jusqu'en 2018 et n'étaient pas éligibles au pfu.
+            Source : Brochure pratique revenus 2020 page 119, 132 et 364: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2021/accueil.htm
+        '''
         year = period.this_year
         imposition_au_bareme = foyer_fiscal('f2op', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
