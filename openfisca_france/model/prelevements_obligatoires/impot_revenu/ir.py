@@ -2280,7 +2280,7 @@ class foyer_impose(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
+        impot_revenu_restant_a_payer = foyer_fiscal('irpp_economique', period)
         return (impot_revenu_restant_a_payer < 0)
 
 ###############################################################################
