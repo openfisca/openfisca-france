@@ -2241,6 +2241,8 @@ class impot_revenu_restant_a_payer(Variable):
         dans certains cas, il existe des prélèvements à la source faisant
         office d'acomptes d'impôt sur le revenu (cf. variable acomptes_ir). Ces acomptes sont comptabilisés
         dans la feuille d'impôt comme des crédits d'impôt, mais correspondent économiquement à des montants d'impôt dus.
+        Le prélèvement forfaitaire libératoire a déjà été payé il ne doit donc pas être compté dans l'impôt restant à payer.
+        En revanche, il compte dans le calcul du seuil de recouvrement.
         '''
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
@@ -2251,23 +2253,24 @@ class impot_revenu_restant_a_payer(Variable):
         P = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
 
         pre_result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
+        result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir
         impots_totaux_avant_imputations = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
 
         return (
             (impots_totaux_avant_imputations > P.seuil) * (
                 (pre_result < P.min)
-                * (pre_result > 0)
-                * pre_result
+                * (result > 0)
+                * result
                 * 0
                 + ((pre_result <= 0) + (pre_result >= P.min))
-                * (- pre_result)
+                * (- result)
                 )
             + (impots_totaux_avant_imputations <= P.seuil) * (
                 (pre_result < 0)
-                * (-pre_result)
+                * (-result)
                 + (pre_result >= 0)
                 * 0
-                * pre_result
+                * result
                 )
             )
 

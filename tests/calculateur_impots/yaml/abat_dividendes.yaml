@@ -73,7 +73,8 @@
   output:
     iai: 69742.0
     prelevement_forfaitaire_liberatoire: -10500.0
-    impot_revenu_restant_a_payer: -69742.0 - 10500.0
+    impot_revenu_restant_a_payer: -69742.0  # Le pfl a déjà été payé, il ne fait pas parti des impôts restants à payer
+    impots_directs: -69742.0 - 10500.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 198000.0

@@ -230,21 +230,21 @@
   input:
     f2da: 20000
   output:
-    impot_revenu_restant_a_payer: -3600
+    impots_directs: -3600
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 18 % (2DA) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2da: 50000
   output:
-    impot_revenu_restant_a_payer: -9000
+    impots_directs: -9000
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 18 % (2DA) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2da: 150000
   output:
-    impot_revenu_restant_a_payer: -27000
+    impots_directs: -27000
 
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 19 % (2DA) de 20 000 €
   period: 2011
@@ -252,7 +252,7 @@
   input:
     f2da: 20000
   output:
-    impot_revenu_restant_a_payer: -3800
+    impots_directs: -3800
 
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 19 % (2DA) de 50 000 €
   period: 2011
@@ -260,14 +260,14 @@
   input:
     f2da: 50000
   output:
-    impot_revenu_restant_a_payer: -9500
+    impots_directs: -9500
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 19 % (2DA) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2da: 150000
   output:
-    impot_revenu_restant_a_payer: -28500
+    impots_directs: -28500
 
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
   period: 2012
@@ -275,21 +275,21 @@
   input:
     f2da: 20000
   output:
-    impot_revenu_restant_a_payer: -4200
+    impots_directs: -4200
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2da: 50000
   output:
-    impot_revenu_restant_a_payer: -10500
+    impots_directs: -10500
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2da: 150000
   output:
-    impot_revenu_restant_a_payer: -31500
+    impots_directs: -31500
 
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
   period: 2010
@@ -372,24 +372,27 @@
   input:
     f2dh: 20000
   output:
-    prelevement_forfaitaire_liberatoire: -1500
-    impot_revenu_restant_a_payer: -1155  # -20000*0.075 + 4600*0.075 (abattement)
+    prelevement_forfaitaire_liberatoire: -1500  # -20000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement du pfl à restituer)
+    impots_directs: -1155  # pfl net d'abattement, impôt réellement payé
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2dh: 50000
   output:
-    prelevement_forfaitaire_liberatoire: -3750
-    impot_revenu_restant_a_payer: -3405  # -50000*0.075 + 4600*0.075 (abattement)
+    prelevement_forfaitaire_liberatoire: -3750  # -50000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement du pfl à restituer)
+    impots_directs: -3405  # pfl net d'abattement, impôt réellement payé
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2dh: 150000
   output:
-    prelevement_forfaitaire_liberatoire: -11250
-    impot_revenu_restant_a_payer: -10905  # -150000*0.075 + 4600*0.075 (abattement)
+    prelevement_forfaitaire_liberatoire: -11250  # -150000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -10905  # pfl net d'abattement, impôt réellement payé
 
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2011
@@ -397,24 +400,27 @@
   input:
     f2dh: 20000
   output:
-    prelevement_forfaitaire_liberatoire: -1500
-    impot_revenu_restant_a_payer: -1155  # -20000*0.075 + 4600*0.075 (abattement)
+    prelevement_forfaitaire_liberatoire: -1500  # -20000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -1155  # pfl net d'abattement, impôt réellement payé
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2dh: 50000
   output:
-    prelevement_forfaitaire_liberatoire: -3750
-    impot_revenu_restant_a_payer: -3405  # -50000*0.075 + 4600*0.075 (abattement)
+    prelevement_forfaitaire_liberatoire: -3750  # -50000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -3405  # pfl net d'abattement, impôt réellement payé
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2dh: 150000
   output:
-    prelevement_forfaitaire_liberatoire: -11250
-    impot_revenu_restant_a_payer: -10905  # -150000*0.075 + 4600*0.075 (abattement)
+    prelevement_forfaitaire_liberatoire: -11250  # -150000*0.075
+    impot_revenu_restant_a_payer: 345 # 4600*0.075 (abattement)
+    impots_directs: -10905  # pfl net d'abattement, impôt réellement payé
 
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2012
@@ -422,24 +428,27 @@
   input:
     f2dh: 20000
   output:
-    prelevement_forfaitaire_liberatoire: -1500
-    impot_revenu_restant_a_payer: -1155  # -20000*0.075 + 4600*0.075 (abattement)
+    prelevement_forfaitaire_liberatoire: -1500  # -20000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -1155  # pfl net d'abattement, impôt réellement payé
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2dh: 50000
   output:
-    prelevement_forfaitaire_liberatoire: -3750
-    impot_revenu_restant_a_payer: -3405  # -50000*0.075 + 4600*0.075 (abattement)
+    prelevement_forfaitaire_liberatoire: -3750  # -50000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -3405  # pfl net d'abattement, impôt réellement payé
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2dh: 150000
   output:
-    prelevement_forfaitaire_liberatoire: -11250
-    impot_revenu_restant_a_payer: -10905  # -150000*0.075 + 4600*0.075 (abattement)
+    prelevement_forfaitaire_liberatoire: -11250  # -150000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -10905  # pfl net d'abattement, impôt réellement payé
 
 - name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2013
