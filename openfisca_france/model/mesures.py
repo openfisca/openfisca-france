@@ -612,9 +612,10 @@ class irpp_economique(Variable):
         Cette notion est administrative. L'impôt total payé correspond à cette notion administrative, augmentée des acomptes.
         '''
         impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
 
-        return impot_revenu_restant_a_payer - acomptes_ir  # Car par convention, impot_revenu_restant_a_payer est un montant négatif et acomptes_ir un montant positif
+        return impot_revenu_restant_a_payer + prelevement_forfaitaire_liberatoire - acomptes_ir  # Car par convention, impot_revenu_restant_a_payer et prelevement_forfaitaire_liberatoire sont des montants négatifs et acomptes_ir un montant positif
 
 
 class impots_directs(Variable):
@@ -634,9 +635,6 @@ class impots_directs(Variable):
         irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
         irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        prelevement_forfaitaire_liberatoire_i = menage.members.foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
-        prelevement_forfaitaire_liberatoire = menage.sum(prelevement_forfaitaire_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-
         # On comptabilise ir_pv_immo ici directement, et non pas dans la variable 'impot_revenu_restant_a_payer', car administrativement, cet impôt n'est pas dans l'impot_revenu_restant_a_payer, et n'est déclaré dans le formulaire 2042C que pour calculer le revenu fiscal de référence. On colle à la définition administrative, afin d'avoir une variable 'impot_revenu_restant_a_payer' qui soit comparable à l'IR du simulateur en ligne de la DGFiP
         ir_pv_immo_i = menage.members.foyer_fiscal('ir_pv_immo', period)
         ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -653,5 +651,4 @@ class impots_directs(Variable):
             + ir_pv_immo
             + isf_ifi
             + prelevement_liberatoire_autoentrepreneur
-            + prelevement_forfaitaire_liberatoire
             )
