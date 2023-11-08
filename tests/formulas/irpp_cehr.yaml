@@ -1,11 +1,11 @@
-- name: IRPP/contribution_exceptionnelle_hauts_revenus - Célibataire ayant des revenus salariaux (1AJ) de 250 000 €
+- name: impot_revenu_restant_a_payer/contribution_exceptionnelle_hauts_revenus - Célibataire ayant des revenus salariaux (1AJ) de 250 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 250000
   output:
     contribution_exceptionnelle_hauts_revenus: 0
-- name: IRPP/contribution_exceptionnelle_hauts_revenus - Couple ayant des revenus salariaux (1AJ) de 500 000 €
+- name: impot_revenu_restant_a_payer/contribution_exceptionnelle_hauts_revenus - Couple ayant des revenus salariaux (1AJ) de 500 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
@@ -34,15 +34,15 @@
   output:
     contribution_exceptionnelle_hauts_revenus: 0
 
-- name: IRPP/contribution_exceptionnelle_hauts_revenus - Célibataire ayant des revenus salariaux (1AJ) de 1 500 000 €
+- name: impot_revenu_restant_a_payer/contribution_exceptionnelle_hauts_revenus - Célibataire ayant des revenus salariaux (1AJ) de 1 500 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 1500000
   output:
-    irpp: -642772
+    impot_revenu_restant_a_payer: -642772
 
-- name: IRPP/contribution_exceptionnelle_hauts_revenus - Couple ayant des revenus salariaux (1AJ) de 1 500 000 €
+- name: impot_revenu_restant_a_payer/contribution_exceptionnelle_hauts_revenus - Couple ayant des revenus salariaux (1AJ) de 1 500 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
@@ -69,9 +69,9 @@
         personne_de_reference:
         - parent2
   output:
-    irpp: -616914
+    impot_revenu_restant_a_payer: -616914
 
-- name: IRPP/contribution_exceptionnelle_hauts_revenus - Couple ayant des revenus salariaux (1AJ) de 1 500 000 €
+- name: impot_revenu_restant_a_payer/contribution_exceptionnelle_hauts_revenus - Couple ayant des revenus salariaux (1AJ) de 1 500 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
@@ -99,12 +99,12 @@
         personne_de_reference:
         - parent2
   output:
-    irpp: -610543
+    impot_revenu_restant_a_payer: -610543
 
-- name: IRPP/contribution_exceptionnelle_hauts_revenus - Célibataire ayant des revenus salariaux (1AJ) de 1 500 000 €
+- name: impot_revenu_restant_a_payer/contribution_exceptionnelle_hauts_revenus - Célibataire ayant des revenus salariaux (1AJ) de 1 500 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 1500000
   output:
-    irpp: -697262
+    impot_revenu_restant_a_payer: -697262

@@ -58,7 +58,7 @@
       - ind4
       personne_de_reference: ind0
   output:
-    irpp: -0.0
+    impot_revenu_restant_a_payer: -0.0
     nbptr: 4.0
     ppe: 0.0
     rbg: 22500.0
@@ -124,7 +124,7 @@
       - ind4
       personne_de_reference: ind0
   output:
-    irpp: -0.0
+    impot_revenu_restant_a_payer: -0.0
     nbptr: 4.0
     rbg: 22500.0
     rfr: 22500.0

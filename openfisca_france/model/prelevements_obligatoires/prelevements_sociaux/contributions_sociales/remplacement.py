@@ -561,7 +561,7 @@ class casa(Variable):
 
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        ir = individu.foyer_fiscal('irpp', period = period.last_year)
+        ir = individu.foyer_fiscal('impot_revenu_restant_a_payer', period = period.last_year)
         parameters = parameters(period)
         seuil_exoneration = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils.seuil_ir
 

@@ -1,5 +1,27 @@
 # Changelog
 
+### 155.0.0 [2197](https://github.com/openfisca/openfisca-france/pull/2197)
+
+* Changement majeur de version.
+* Zones impactées:
+   - `mesures.py`
+   - `prelevements_obligatoires/impots_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
+   - `prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/prelevement_forfaitaire_liberatoire.py`
+   - `prelevements_obligatoires/isf.py`
+   - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+   - `prelevements_obligatoires/impots_revenu/ir.py`
+   - `prelevements_obligatoires/impots_revenu/credits_impot.py`
+   - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+   - `model/prestations/aides_logement.py`
+   - `model/revenus/capital/financier.py`
+   - `model/revenus/capital/plus_value.py`
+   - `scripts/performance/measure_calculations_performance.py`
+   - presque 100 tests (.yaml) avec le renommage de la variable
+* Détails :
+  - Ajout de l'option imposition au barème des revenus éligibles au prélèvement forfaitaire unique
+  - Changement de nom de la variable irrp en impot_revenu_restant_a_payer. Cette variable représente l'impôt à payer après les acomptes et le prélèvement forfaitaire libératoire
+
+
 ### 154.1.0 [2198](https://github.com/openfisca/openfisca-france/pull/2198)
 
 * Corrections/mises à jour.

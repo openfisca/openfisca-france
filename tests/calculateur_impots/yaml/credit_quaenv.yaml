@@ -59,7 +59,7 @@
   output:
     credits_impot: 2400.0
     iai: 7702.0
-    irpp: -5302.0
+    impot_revenu_restant_a_payer: -5302.0
     nbptr: 1.0
     quaenv: 2400.0
     rbg: 45000.0
@@ -88,7 +88,7 @@
   output:
     credits_impot: 1600.0
     iai: 7644.0
-    irpp: -6044.0
+    impot_revenu_restant_a_payer: -6044.0
     nbptr: 1.0
     quaenv: 1600.0
     rbg: 45000.0
