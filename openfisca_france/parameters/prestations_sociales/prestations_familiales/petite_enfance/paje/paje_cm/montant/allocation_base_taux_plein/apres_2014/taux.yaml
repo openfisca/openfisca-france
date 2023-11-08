@@ -17,10 +17,8 @@ metadata:
     - title: Décret 2003-1394 du 31/12/2003, art. 1 (modif art. D531-1 du CSS et crée art. D531-3 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
     2014-04-01:
-    - title: Article D531-3 du Code de la sécurité sociale
-      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000030055664/2015-01-01/
-    - title: Décret n° 2014-422 du 24 avril 2014, art. 2 (modifie art. D531-3 du CSS)
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000028879156/
+      title: Décret n° 2014-422 du 24 avril 2014, art. 2 (modifie art. D531-3 du CSS)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000028880083/2014-04-27/
   official_journal_date:
     2004-01-01: 2003-12-19; 2004-01-01
     2014-04-01: "2014-04-26"
@@ -28,6 +26,5 @@ metadata:
     2004-01-01:
     - title: "art. D531-1 : fixe l'âge limite; art. D531-3 : fixe le montant de l'aide (en % de la BMAF); La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi)."
 documentation: |-
-  Notes :
-  (1) S'applique pour les enfants nés à partir du 1er avril 2014
+  S'applique pour les enfants nés à partir du 1er avril 2014
   NB : A partir du 1er avril 2014, et pour les enfants nés ou adoptés avant le 1er avril 2018, les montants de l'allocation de base à taux plein et taux partiel sont gelés à leur montant calculé à partir de la BMAF en vigueur au 1er avril 2013. Cf. III. de l'art. 74 de la loi 2013-1203 du 23 décembre 2013 de financement de la sécurité sociale pour 2014. Ce paragraphe III. est abrogé par la loi 2017-1836 du 30/12/2017 avec application de l'abrogation à compter du 1er avril 2018.

@@ -1,12 +1,12 @@
-description: Plafond de ressources (1 enfant) pour le droit au salaire unique, pour l'Allocation de salaire unique (ASU, 1941-1977)
+description: Plafond de ressources (1 enfant) pour le droit au salaire unique, pour l'Allocation de salaire unique (ASU)
 values:
   1976-07-01:
     value: 28800
   1978-01-01:
     value: null
 metadata:
-  short_label: Un enfant
-  label_en: "Single earner allowance (ASU): Thresholds for means-testing"
+  short_label: 1 enfant
+  label_en: One child
   ipp_csv_id: plaf_asu_1enf
   unit: currency
   reference:
@@ -24,7 +24,3 @@ metadata:
   notes:
     1976-07-01:
     - title: Remplacé par le "Complément Familial" depuis 01/01/1978
-documentation: |-
-  Notes :
-  (1) Majoration pour les ménages avec 4 enfants et plus ou au moins 1 enfant de moins de 3 ans et des ressources ne dépassant pas le plafond.
-  (2) La loi 72-8 du 3 janvier 1972 met en place les plafonds des ressource auxquels est conditionnée l'allocation de salaire unique

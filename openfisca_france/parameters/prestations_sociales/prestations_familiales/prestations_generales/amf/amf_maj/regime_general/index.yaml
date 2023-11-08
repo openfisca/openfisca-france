@@ -1,7 +1,7 @@
-description: Majoration pour le régime général des Allocation de la mère au foyer (AMF, 1955-1977)
+description: Majoration pour le régime général des Allocation de la mère au foyer (AMF)
 metadata:
   short_label: Régime général
-  label_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
+  label_en: General scheme
   order:
   - base
   - montant

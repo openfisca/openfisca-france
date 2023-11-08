@@ -1,4 +1,4 @@
-description: "Prestations sociales familiales : Éducation et présence parentale"
+description: Prestations sociales familiales, Éducation et présence parentale
 metadata:
   short_label: Éducation et présence parentale
   label_en: Education and parental presence
@@ -10,3 +10,4 @@ metadata:
   - aeeh
   - app
   - ajpp
+  - agepi

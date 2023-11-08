@@ -1,5 +1,6 @@
-description: Conditions générales du Revenu de solidarité active (RSA)
+description: Conditions générales du revenu de solidarité active (RSA)
 metadata:
+  documentation_start: true
   short_label: Conditions générales
   label_en: "Active solidarity income (RSA): General conditions"
   order:
