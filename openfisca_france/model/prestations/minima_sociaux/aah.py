@@ -19,7 +19,7 @@ from numpy import datetime64, absolute as abs_
 class aah_date_debut_incarceration(Variable):
     value_type = date
     default_value = date.max
-    label = "La date de début d'incarcération"
+    label = 'La date de début d\'incarcération'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -28,7 +28,7 @@ class aah_date_debut_incarceration(Variable):
 class aah_date_debut_hospitalisation(Variable):
     value_type = date
     default_value = date.max
-    label = "La date de début d'hospitalisation"
+    label = 'La date de début d\'hospitalisation'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -36,7 +36,7 @@ class aah_date_debut_hospitalisation(Variable):
 
 class aah_base_ressources(Variable):
     value_type = float
-    label = "Base ressources de l'allocation adulte handicapé"
+    label = 'Base ressources de l\'allocation adulte handicapé'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -243,7 +243,7 @@ class aah_base_ressources(Variable):
 
 class aah_base_ressources_activite_eval_trimestrielle(Variable):
     value_type = float
-    label = "Base de ressources des revenus d'activité de l'AAH pour un individu, évaluation trimestrielle"
+    label = 'Base de ressources des revenus d\'activité de l\'AAH pour un individu, évaluation trimestrielle'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -295,7 +295,7 @@ class aah_base_ressources_activite_eval_trimestrielle(Variable):
 
 class aah_base_ressources_activite_milieu_protege(Variable):
     value_type = float
-    label = "Base de ressources de l'AAH des revenus d'activité en milieu protégé pour un individu"
+    label = 'Base de ressources de l\'AAH des revenus d\'activité en milieu protégé pour un individu'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -303,7 +303,7 @@ class aah_base_ressources_activite_milieu_protege(Variable):
 
 class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
     value_type = float
-    label = "Base de ressources hors revenus d'activité de l'AAH pour un individu, évaluation trimestrielle"
+    label = 'Base de ressources hors revenus d\'activité de l\'AAH pour un individu, évaluation trimestrielle'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -351,7 +351,7 @@ class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
 
 class aah_base_ressources_activite_eval_annuelle(Variable):
     value_type = float
-    label = "Base de ressources de l'AAH pour un individu, évaluation annuelle"
+    label = 'Base de ressources de l\'AAH pour un individu, évaluation annuelle'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -391,7 +391,7 @@ class aah_restriction_substantielle_durable_acces_emploi(Variable):
     value_type = bool
     default_value = False
     entity = Individu
-    label = "Restriction substantielle et durable pour l'accès à l'emploi reconnue par la commission des droits et de l'autonomie des personnes handicapées"
+    label = 'Restriction substantielle et durable pour l\'accès à l\'emploi reconnue par la commission des droits et de l\'autonomie des personnes handicapées'
     reference = [
         'Article L821-2 du Code de la sécurité sociale',
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=17BE3036A19374AA1C8C7A4169702CD7.tplgfr24s_2?idArticle=LEGIARTI000020039305&cidTexte=LEGITEXT000006073189&dateTexte=20180731'
@@ -402,7 +402,7 @@ class aah_restriction_substantielle_durable_acces_emploi(Variable):
 
 class aah_eligible(Variable):
     value_type = bool
-    label = "Eligibilité à l'Allocation adulte handicapé"
+    label = 'Eligibilité à l\'Allocation adulte handicapé'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -492,7 +492,7 @@ class aah_eligible(Variable):
 
 class aah_base_non_cumulable(Variable):
     value_type = float
-    label = "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
+    label = 'Montant de l\'Allocation adulte handicapé (hors complément) pour un individu, mensualisée'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -503,7 +503,7 @@ class aah_base_non_cumulable(Variable):
 
 class aah_plafond_ressources(Variable):
     value_type = float
-    label = "Montant plafond des ressources pour bénéficier de l'Allocation adulte handicapé (hors complément)"
+    label = 'Montant plafond des ressources pour bénéficier de l\'Allocation adulte handicapé (hors complément)'
     entity = Individu
     reference = [
         'Article D821-2 du Code de la sécurité sociale',
@@ -541,7 +541,7 @@ class aah_plafond_ressources(Variable):
 class aah_base(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
+    label = 'Montant de l\'Allocation adulte handicapé (hors complément) pour un individu, mensualisée'
     entity = Individu
     reference = [
         'Article L821-1 du Code de la sécurité sociale',
@@ -626,7 +626,7 @@ class eligibilite_caah(Variable):
 class caah(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = "Complément d'allocation adulte handicapé (mensualisé)"
+    label = 'Complément d\'allocation adulte handicapé (mensualisé)'
     entity = Individu
     set_input = set_input_divide_by_period
     definition_period = MONTH

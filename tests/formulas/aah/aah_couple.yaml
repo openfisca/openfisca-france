@@ -150,6 +150,7 @@
           - parent2
   output:
     aah_base_ressources: [413.42, 720]
+
 - name: Couple de personnes en situation de handicap, déconjugalisation
   period: 2023-11
   absolute_error_margin: 1
@@ -166,6 +167,37 @@
         activite: actif
         salaire_imposable:
           2023: 13000
+        aah_eligible: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+          - parent1
+      foyer_fiscal_1:
+        declarants:
+          - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+          - parent1
+      menage_1:
+        personne_de_reference:
+          - parent2
+  output:
+    aah_base_ressources: [413.42, 720]
+# L'aah base_ressource change avec le smic (et le montant d'AAH peut changer), l'output réel est donc encore inconnu (05/2023) : test utile uniquement pour le développement, en utilisant la dernière valeur du SMIC et d'AAH(qui risque de changer encore d'ici octobre)
+- name: Couple de personnes en situation de handicap, déconjugalisation
+  period: 2023-11
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        activite: actif
+        salaire_imposable:
+          2023: 24000
+        aah_eligible: true
+      parent2:
         aah_eligible: true
     foyers_fiscaux:
       foyer_fiscal_0:

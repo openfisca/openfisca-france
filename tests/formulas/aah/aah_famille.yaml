@@ -244,8 +244,18 @@
         aah_eligible: false
       parent2:
         aah_eligible: false
+        activite:
+          2014-01: 4
+          2013-12: 4
+          2013-11: 4
+          2013-10: 4
       enfant1:
         aah_eligible: true
+        activite:
+          2014-01: 0
+          2013-12: 0
+          2013-11: 0
+          2013-10: 0
         aah_base_ressources: 25000 / 12
       enfant2:
         aah_eligible: false
