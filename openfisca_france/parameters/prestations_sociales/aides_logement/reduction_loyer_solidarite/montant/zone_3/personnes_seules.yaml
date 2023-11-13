@@ -1,0 +1,26 @@
+description: Montant mensuel de la réduction de loyer de solidarité (RLS) pour un bénéficiaire isolé à charge en zone 3
+values:
+  2018-01-01:
+    value: 26
+  2019-01-01:
+    value: 26.41
+  2020-01-01:
+    value: 40.43
+  2020-10-01:
+    value: 27.85
+  2021-01-01:
+    value: 37.96
+  2021-10-01:
+    value: 43.2
+  2022-01-01:
+    value: 41.76
+  2022-10-01:
+    value: 39.98
+  2023-01-01:
+    value: 42.76
+metadata:
+  short_label: Bénéficiaire isolé
+  last_value_still_valid_on: "2023-05-24"
+  ipp_csv_id: rls_z3_personne_isolee
+  unit: currency
+

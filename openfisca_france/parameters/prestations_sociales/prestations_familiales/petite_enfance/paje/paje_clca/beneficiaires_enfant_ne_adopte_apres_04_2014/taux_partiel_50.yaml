@@ -2,11 +2,13 @@ description: Taux pour les gens à temps partiel < 50% du Complément de libre c
 values:
   2004-01-01:
     value: 0.6246
+  2015-01-01:
+    value: 0.6246
   2018-01-01:
     value: null
 metadata:
   short_label: Taux partiel < 50%
-  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
+  label_en: Partial rate < 50%.
   ipp_csv_id: tx_clca_base_partiel1
   unit: /1
   reference:
@@ -21,9 +23,13 @@ metadata:
     - title: Décret 2008-331 du 09/04/2008, art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000018615607&cidTexte=JORFTEXT000018614251
     - title: Décret 2006-732 du 22/06/2006, art. 1 et 2
+    2015-01-01:
+      title: Décret 2014-1708 du 30/12/2014 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030046638&cidTexte=JORFTEXT000030005057
   official_journal_date:
     2004-01-01: 2003-12-19; 2004-01-01
     2008-05-01: 2006-06-24; 2008-04-11
+    2015-01-01: "2014-12-31"
   notes:
     2004-01-01:
     - title: "art. D531-1 : fixe l'âge limite; art. D531-3 : fixe le montant de l'aide (en % de la BMAF); La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi)."

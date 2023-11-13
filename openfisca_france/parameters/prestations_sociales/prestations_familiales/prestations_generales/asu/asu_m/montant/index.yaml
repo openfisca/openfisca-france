@@ -1,7 +1,7 @@
-description: Montant mensuel de l'Allocation de salaire unique (ASU, 1941-1977)
+description: Montant mensuel de l'Allocation de salaire unique (ASU)
 metadata:
   short_label: Montant mensuel
-  label_en: "Single earner allowance (ASU): Monthly amount"
+  label_en: Monthly amount
   order:
   - moins_1_enfant_moins_2_ans
   - 1_enfant_plus_2_ans

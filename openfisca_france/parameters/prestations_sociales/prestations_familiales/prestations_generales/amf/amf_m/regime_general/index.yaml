@@ -1,7 +1,7 @@
-description: Taux du Régime général (en % de la BMAF) de l'Allocation de la mère au foyer (AMF, 1955-1977)
+description: Taux du Régime général (en % de la BMAF) de l'Allocation de la mère au foyer (AMF)
 metadata:
   short_label: Régime général
-  label_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
+  label_en: General scheme
   order:
   - moins_1_enfant_moins_2_ans
   - points_2_a_6_enfants

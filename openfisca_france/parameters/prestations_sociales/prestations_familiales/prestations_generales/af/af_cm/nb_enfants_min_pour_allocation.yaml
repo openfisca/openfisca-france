@@ -1,4 +1,4 @@
-description: Nombre minimal d'enfants ouvrant droit aux prestations familiales
+description: Nombre minimal d'enfants pour avoir droit à l'allocation
 values:
   1932-06-14:
     value: 0
@@ -11,11 +11,9 @@ metadata:
   ipp_csv_id: af_nenf_agemin
   reference:
     1946-09-01:
+    - title: Loi du 22 aout 1946
+      href: https://www.legifrance.gouv.fr/loda/id/LEGISCTA000006106589
+    - title: Décret 46-2880 du 10/12/1946
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029963006/
     - title: Article L521-1 du code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029963006/
-    - title: Décret 46-2880 du 10/12/1946
-      href: https://www.legifrance.gouv.fr/loda/id/LEGISCTA000006106589
-documentation: |-
-  Notes :
-  L'allocation familiale est créée en 1932 par la loi Landry du 11/03/1932, art. 1 et 2 (modif titres III et V du code du travail). Parution au JO 12/03/1932
-  Le nombre minimal de deux enfants pour obtenir l'allocation et les majorations par enfant supplémentaire sont instituées dès 1946 (Loi 46-1835 du 22 août 1946 fixant le régime des prestations familiales)

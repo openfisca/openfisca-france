@@ -15,7 +15,7 @@ values:
 metadata:
   short_label: Taux majoré
   last_value_still_valid_on: "2023-05-11"
-  label_en: "Family complement (CF): General conditions and amounts"
+  label_en: Increased rate
   ipp_csv_id: tx_cf_maj
   unit: BMAF
   reference:

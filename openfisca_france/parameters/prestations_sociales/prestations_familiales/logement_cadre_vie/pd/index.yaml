@@ -1,6 +1,7 @@
 description: Prime de déménagement (PD)
 metadata:
-  short_label: Prime de déménagement
-  label_en: Relocation allowance (PD) - Rate and maximum amount
+  short_label: Prime de déménagement (PD)
+  label_en: "Relocation allowance (PD): Rate and maximum amount"
   order:
   - taux_en_bmaf
+documentation: Création en 1958

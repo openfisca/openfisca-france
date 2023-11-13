@@ -1,4 +1,4 @@
-description: Majoration plafond pour 2 enfants pour la majoration du plafond de ressources des Allocation de la mère au foyer (AMF, 1955-1977)
+description: Majoration plafond pour 2 enfants pour la majoration du plafond de ressources des Allocation de la mère au foyer (AMF)
 values:
   1974-07-01:
     value: 24120
@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: 2 enfants
-  label_en: "Allowance for stay-at-home-mother (AMF): Thresholds for means-testing"
+  label_en: 2 children
   ipp_csv_id: plafmaj_2_enf
   unit: currency
   reference:
@@ -21,6 +21,3 @@ metadata:
   notes:
     1978-01-01:
     - title: Remplacé par "complément familial" depuis 01/01/1978
-documentation: |-
-  Notes :
-  Ce plafond est institué par la loi 72-8 du 3 janvier 1972, art 2

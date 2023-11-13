@@ -1,4 +1,4 @@
-description: Plafonds de ressources de l'Allocation pour frais de garde (AFG, 1976-1977)
+description: Plafonds de ressources de l'Allocation pour frais de garde (AFG)
 metadata:
   short_label: Plafonds de ressources
   label_en: "Child care costs allowance (AFG): Thresholds for means-testing"
@@ -6,3 +6,4 @@ metadata:
   - plafond_ressources_revenu
   - plafond_ressources_2_revenus
   - plafond_unique_montant_mensuel_max_majoration_s_u
+documentation: Ce plafond existe dès l'apparition de l'AFG (il est d'ailleurs cité par la loi 72-8 du 3 janvier 1972)

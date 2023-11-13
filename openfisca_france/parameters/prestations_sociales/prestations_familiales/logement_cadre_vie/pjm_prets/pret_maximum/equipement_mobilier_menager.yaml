@@ -21,7 +21,7 @@ metadata:
   unit: currency
   reference:
     1975-01-05:
-      title: Loi 75-6 du 03/01/1975 (crée art. L.543 CSS )Décret 76-117 du 03/02/1976
+      title: Loi 75-6 du 03/01/1975 (crée art. L.543 CSS )
     1978-01-01:
       title: Décret 76-117 du 03/02/1976
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000307312
@@ -42,6 +42,3 @@ metadata:
   notes:
     1978-01-01:
     - title: "Décret 76-117: PJM a 2% du budget total pour les prestations familiales"
-documentation: |-
-  Notes :
-  La loi 75-6 du 03/01/1975 crée le Prêt aux Jeunes ménages (codifié par l'art. L543 du CSS), il est ensuite mis en application par le décrêt 76-117 du 03/02/1976 qui est applicble à compter du 1er avril 1975

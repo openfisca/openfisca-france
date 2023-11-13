@@ -1,4 +1,4 @@
-description: Plafonds de loyer (après la réforme de 2001) des Allocations Logement (AL)
+description: Plafonds de loyer (après la réforme de 2001) des allocations Logement (AL)
 metadata:
   short_label: Plafonds de loyer (après 2001)
   label_en: Parameters for the rental sector (after the 2001 reform)
@@ -6,4 +6,10 @@ metadata:
   - par_zone
   - montant_forfaitaire_participation_minimale_po
   - montant_proportionnel_participation_minimale_po
+  - tf
+  - tl
   - montant_forfaitaire
+  - colocation
+  - chambre
+  - autre
+documentation: Les loyers de référence sont les mêmes que les plafonds pour la zone 2

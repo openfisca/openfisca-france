@@ -1,4 +1,4 @@
-description: Majoration des ressources sur les revenus d'activité pour le Revenu de solidarité active (RSA)
+description: Majoration des ressources sur les revenus d'activité pour le revenu de solidarité active (RSA)
 values:
   2009-06-01:
     value: 0.62
@@ -25,4 +25,3 @@ metadata:
   notes:
     2016-01-01:
     - title: Remplacement du RSA activité par la Prime d'activité
-documentation: ""

@@ -11,7 +11,6 @@ metadata:
   - maj_3enf
   - taux_incapacite_aspa_anticipe
 documentation: |-
-  Notes :
   Le barème "personnes seules" concerne également les couples si un seul des conjoints bénéficie de l'ASPA.
   Le barème "couples" est appliqué si un seul conjoint est bénéficiaire de l'ASPA et l'autre de l'allocation supplémentaire d'invalidité.
   L'ASPA vise à remplacer le minimum vieillesse et une série de dispositifs destinés aux personnes âgées disposant de faibles ressources.

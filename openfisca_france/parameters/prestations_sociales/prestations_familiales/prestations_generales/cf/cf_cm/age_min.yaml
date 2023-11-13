@@ -11,7 +11,7 @@ values:
 metadata:
   short_label: Âge min enfants
   last_value_still_valid_on: "2023-05-11"
-  label_en: "Family complement (CF): General conditions and amounts"
+  label_en: Min age children
   ipp_csv_id: cf_enf_agemin
   unit: year
   reference:

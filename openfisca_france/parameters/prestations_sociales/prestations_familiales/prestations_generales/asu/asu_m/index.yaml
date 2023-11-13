@@ -1,9 +1,14 @@
-description: Montant de l'Allocation de salaire unique (ASU, 1941-1977)
+description: Montant de l'Allocation de salaire unique (ASU)
 metadata:
-  short_label: Montant
+  documentation_start: true
+  short_label: Montant mensuel
   label_en: "Single earner allowance (ASU): Monthly amount"
   order:
   - base
   - taux
   - montant
   - majoration
+documentation: |-
+  L'Allocation de salaire unique est instituée en 1941 par la loi du 29 mars 1941 parue au JO du 11 avril 1941 page 1555
+  L'ASU ne peut se cumuler avec l'allocation de la mère au foyer.
+  L'ASU est versée tant que l'âge du plus jeune enfant est inférieur à

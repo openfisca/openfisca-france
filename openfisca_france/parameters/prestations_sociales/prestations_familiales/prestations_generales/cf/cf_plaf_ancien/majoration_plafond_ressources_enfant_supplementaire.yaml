@@ -1,16 +1,16 @@
 description: Majoration du plafond de ressources -enfant supplémentaire, entre 1978 et 1986 du Complément familial (CF)
 values:
   1978-01-01:
-    value: 0.170112204119
+    value: 0.17011220411927452
   1978-07-01:
-    value: 0.170111855302
+    value: 0.1701118553020773
   1983-01-01:
-    value: 0.170095152673
+    value: 0.17009515267324415
   1986-07-01:
-    value: 0.151333715761
+    value: 0.15133371576079163
 metadata:
-  short_label: Majoration du plafond de ressources -enfant supplémentaire
-  label_en: "Family complement (CF): Thresholds for means-testing"
+  short_label: Majoration du plafond de ressources - enfant supplémentaire
+  label_en: Increase of the resource ceiling -additional child
   ipp_csv_id: plaf_suppenf_biact
   unit: /1
   reference:

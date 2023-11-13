@@ -1,4 +1,4 @@
-description: Taux de la 2ème majoration pour âge (14 ans pour les enfants né après le 30/04/97)
+description: Taux de la 2ème majoration pour âge (14 ans pour les enfants nés > 30/04/97)
 values:
   2002-01-01:
     value: 0.16

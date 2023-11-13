@@ -1,5 +1,6 @@
-description: Majoration et montant minimum versés du Revenu minimum d'insertion (RMI)
+description: Majoration et montant minimum versés du revenu minimum d'insertion (RMI)
 metadata:
+  documentation_start: true
   short_label: Majoration et montant minimum versés
   label_en: "Minimum insertion income (RMI): Extra allowance and minimal amount"
   order:

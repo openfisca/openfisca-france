@@ -1,0 +1,15 @@
+description: Majoration par personne à charge supplémentaire du taux « TF » pris en compte dans le taux de participation personnel du ménage « Tp » pour le calcul des allocations logement en métropole
+values:
+  2001-01-01:
+    value: -0.0006
+  2002-01-01:
+    value: -0.0007
+  2007-07-01:
+    value: -0.0006
+metadata:
+  short_label: Par personne à charge supplémentaire
+  last_value_still_valid_on: "2023-02-22"
+  label_en: Parameters for the rental sector (after the 2001 reform)
+  ipp_csv_id: tf_enfsupp
+  unit: /1
+

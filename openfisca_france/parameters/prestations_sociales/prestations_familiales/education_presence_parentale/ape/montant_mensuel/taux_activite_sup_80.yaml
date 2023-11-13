@@ -4,6 +4,8 @@ values:
     value: 0.451
   1987-04-01:
     value: 0.7129
+  1994-07-01:
+    value: 0.9427
 metadata:
   short_label: Activité 50% -80% durée légale
   label_en: "Parental leave allowance (APE): Conditions and amounts"
@@ -15,6 +17,14 @@ metadata:
     1987-04-01:
       title: Loi 86-1307 du 29/12/1986, art. 3 (modif L 532-2, 3, 4)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006681717&cidTexte=JORFTEXT000000693695
+    1994-07-01:
+    - title: Loi 94-629 du 25/07/1994, art. 2 (modif art. L532-1, 2 ,4 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757878&cidTexte=JORFTEXT000000365243
+    - title: Décret 94-755 du 01/09/1994 (modif art. R 532-1,2,3,4,5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000164333
+    - title: Décret 94-756 du 01/09/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000530872
+    - title: art. L532-3, 5, 6 du CSS
     1996-07-01:
       title: Loi 96-604 du 05/07/1996, art. 47 (modif art. L532-1 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006284502&cidTexte=JORFTEXT000000193679
@@ -24,16 +34,15 @@ metadata:
   official_journal_date:
     1985-01-01: "1985-01-05"
     1987-04-01: "1986-12-30"
+    1994-07-01: "1994-07-26"
     1996-07-01: "1996-07-06"
     2004-01-01: "2003-12-19"
   notes:
     1985-01-01:
     - title: La loi 85-17 du 4 janvier 1985 crée l'Allocation parentale d'éducation
+    1994-07-01:
+    - title: Prestation d'accueil jeune enfant non cumulable avec CF et ASF. Prolongation jusqu'au 6e anniversaire en cas de naissance multiple
     1996-07-01:
     - title: APE pendant 1 an en cas d'adoption d'un enfant entre 2 et 16 ans. APE pendant 3 ans si adoption simultanée d'au moins 3 enfants
     2004-01-01:
     - title: Remplacée par PAJE. Toujours pas de cumul avec CF
-documentation: |-
-  Notes :
-   L'activité professionnelle et les situations assimilées sont prises en comptes, au titre des vingt-quatre mois, si elles ont assuré un revenu moyen annuel d'au moins 40 p. 100 d'une somme égale à 2.028 fois le montant horaire du salaire minimum de croissance en vigueur au 1er janvier de l'année de la demande d'allocation parentale d'éducation.
-  (1) Hors adoption après l'âge de 2 ans.

@@ -1,5 +1,6 @@
 description: Complément familial (CF)
 metadata:
+  documentation_start: true
   short_label: Complément familial
   label_en: Family complement (CF)
   order:

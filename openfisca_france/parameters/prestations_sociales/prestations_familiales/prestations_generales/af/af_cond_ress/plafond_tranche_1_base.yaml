@@ -17,7 +17,9 @@ values:
   2023-01-01:
     value: 59330
 metadata:
+  short_label: Plafond n°1
   last_value_still_valid_on: "2023-01-31"
+  unit: currency
   reference:
     2016-01-01:
       title: Arrêté du 08/12/2015, art. 1
@@ -40,6 +42,3 @@ metadata:
     2023-01-01:
       title: Arrêté du 21 décembre 2022 relatif aux plafonds de ressources de certaines prestations familialess
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
-documentation: |-
-  Notes :
-  https://www.ipp.eu/baremes-ipp/prestations-sociales/0/3/prestations_generales/af_cond/

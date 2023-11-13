@@ -1,4 +1,4 @@
-description: Montant par enfant supplémentaire de l'Indemnité compensatrice des avantages fiscaux (ICAF, 1948-1977)
+description: Montant par enfant supplémentaire de l'Indemnité compensatrice des avantages fiscaux (ICAF)
 values:
   1948-10-01:
     value: 1000
@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Par enfant supplémentaire
-  label_en: "Compensatory payments of tax benefits (ICAF): Amount"
+  label_en: Per additional child
   ipp_csv_id: icaf_enf_supp
   unit: currency
   reference:
@@ -25,7 +25,3 @@ metadata:
     - title: Pour les salariés uniquement
     1978-01-01:
     - title: Remplacée par le complément familial à partir du 01/01/1978
-documentation: |-
-  Note:
-  ICAF instaurée en octobre 1948. Les montants ont été progressivement relevés entre 1948 et 1958), mais le détail de l'évolution est à préciser
-  Indemnité accordée aux familles au titre de l'ancien impôt sur les salaires

@@ -1,15 +1,20 @@
-description: Taux du Régime général (en % de la BMAF), pour au moins 1 enfant de moins de 2 ans de l'Allocation de la mère au foyer (AMF, 1955-1977)
+description: Taux du Régime général (en % de la BMAF), pour au moins 1 enfant de moins de 2 ans de l'Allocation de la mère au foyer (AMF)
 values:
+  1955-06-01:
+    value: null
   1974-07-01:
     value: 0.5
   1978-01-01:
     value: null
 metadata:
   short_label: 1+ enfant (<2 ans)
-  label_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
+  label_en: 1+ childen (<2ans)
   ipp_csv_id: tx_gene_02ans
   unit: BMAF
   reference:
+    1955-06-01:
+    - title: Loi 55-1045 du 06/08/1955, art. 2
+    - title: Décret 55-1429 du 02/11/1955
     1974-07-01:
     - title: Loi 72-8 du 03/01/1972
     - title: Décret 72-528 et 530 du 9/06/1972 (AMF)
@@ -17,11 +22,11 @@ metadata:
       title: Loi 77-765 du 12/07/1977
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
   official_journal_date:
+    1955-06-01: 1955-05-09; 1955-11-03
     1974-07-01: 1972-01-05; 1972-06-30
     1978-01-01: "1977-07-13"
   notes:
+    1955-06-01:
+    - title: Création de l'AMF
     1978-01-01:
     - title: Remplacé par "complément familial" depuis 01/01/1978
-documentation: |-
-  Notes
-  Le salaire de base auquel s'appliquent ces taux est le même qu'en matière d'allocation de salaire unique

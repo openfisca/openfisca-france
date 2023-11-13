@@ -1,9 +1,9 @@
-description: Taux d'abattement forfaitaire (en fraction du Smic) pour une personne seule pour l'Allocation solidarité aux personne agées (ASPA) - Minimum vieillesse
+description: Taux d'abattement forfaitaire (en fraction du Smic) pour une personne seule pour l'allocation solidarité aux personne agées (ASPA)
 values:
   2002-01-01:
     value: 0
   2015-01-01:
     value: 0.9
 metadata:
-  short_label: Taux Personne Seule
+  short_label: Taux personne seule
   unit: smic

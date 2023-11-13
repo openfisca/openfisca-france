@@ -2,10 +2,12 @@ description: Majoration en % de la base du plafond de ressources (plafond taux p
 values:
   2004-01-01:
     value: 0.3
+  2018-04-01:
+    value: 0.3
 metadata:
-  short_label: Majoration, par enfant, en % de la base du plafond de ressources, à partir du 3ème enfant
+  short_label: Majoration, par enfant, à partir du 3ème enfant
   last_value_still_valid_on: "2023-02-06"
-  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: Increase, per child, in % of the resource ceiling, from the 3rd child
   ipp_csv_id: maj_plaf_paje_enf3pl_a_partir_20180401
   unit: /1
   reference:
@@ -16,11 +18,18 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043316366/2022-07-24
     - title: Décret 2003-1393 du 31/12/2003, art. 2 (modif art. R531-1 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
+    2018-04-01:
+    - title: Décret 2018-312 du 26 avril 2018, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036847857
+    - title: Décret 2018-331 du 3 mai 2018 - art. 1 (modifie art. R531-1 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036876229
+    - title: Loi 2017-1836 du 30/12/2017, art. 37 (modifie art. L531-3 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036339090
   official_journal_date:
     2004-01-01: "2004-01-01"
+    2018-04-01: 2018-04-28; 2018-05-05; 2017-12-31
   notes:
     2004-01-01:
     - title: "Création de la PAJE. Mais entrée en vigueur progressive : de janvier 2004 à décembre 2006 inclus (cf. art. 60, VIII de la loi 2003-1199)"
-    2021-04-01:
-    - title: Les dispositions de la PAJE pour les enfants nés ou adoptés avant le 01/04/2018 ne s'appliquent plus (naissance ou adoption depuis plus de 3 ans).
-documentation: L'article R531-1 modifié par le décrêt 2003-1393 renvoie désormais vers l'Article R522-2 qui indique les montants de la majoration.
+    2018-04-01:
+    - title: Le Décret 2018-331 spécifie que les plafonds sont majorés dans les conditions définies aux deuxième et troisième alinéas de l'article R. 522-2. C'est dans ces alinéas que figurent les pourcentages de majoration pour enfant à charge. De plus, à compter des enfants nés à partir du 1er avril 2018, les plafonds de ressources de l'allocation de base à taux plein sont identiques aux plafonds de ressources du complément familial (voir art. L531-3 du CSS, après modification de cet article par l'art. 37 de la loi 2017-1836 du 30/12/2017).

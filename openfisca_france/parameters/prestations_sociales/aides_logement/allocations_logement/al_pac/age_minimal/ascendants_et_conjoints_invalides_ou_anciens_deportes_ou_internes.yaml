@@ -15,6 +15,8 @@ metadata:
       title: Décret 91-1159 du 08/11/1991, art. 1 (modif art. D542-4 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776071&cidTexte=JORFTEXT000000701067
     2016-07-01:
+    - title: Décret 2010-1734 du 30/12/2010, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023383419&cidTexte=JORFTEXT000023334246
     - title: Article L161-17-2 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025014605
     - title: Décret 2013-140 du 14/02/2013, art. 2 (modifie art.D542-4 du CSS)
@@ -26,5 +28,4 @@ metadata:
     - title: Réforme des âges minimals pour les ascendants et leur conjoint (alignement sur les âges de départ à la retraite à taux plein)
     - title: référence suivante retirée car aucun lien trouvé. Décret 2010-1734 du 30/12/2010, art. 5 - https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023383419&cidTexte=JORFTEXT000023334246
 documentation: |-
-  Notes :
   A partir du 01/07/2016, les âges indiqués sont ceux en vigueur pour les personnes nés à partir du 1er janvier 1955. Pour les générations d'avant, cet âge minimal varie de manière croissante. Cf. l'article. L16117-2 du CSS pour les détails

@@ -1,0 +1,15 @@
+description: Taux « TF » des personnes seules ou couple ayant trois personnes à charge, pris en compte dans le taux de participation personnel du ménage « Tp » pour le calcul des allocations logement en métropole
+values:
+  2001-01-01:
+    value: 0.0228
+  2002-01-01:
+    value: 0.0251
+  2007-07-01:
+    value: 0.0201
+metadata:
+  short_label: Personnes seules ou couple ayant trois personnes à charge
+  last_value_still_valid_on: "2023-02-22"
+  label_en: Parameters for the rental sector (after the 2001 reform)
+  ipp_csv_id: tf_enf3
+  unit: /1
+

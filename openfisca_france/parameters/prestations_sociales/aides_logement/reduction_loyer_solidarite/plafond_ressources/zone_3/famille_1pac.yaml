@@ -1,0 +1,12 @@
+description: Plafond de ressources de la réduction de loyer de solidarité (RLS) pour un bénéficiaire isolé ou un couple ayant une personne à charge en zone 3
+values:
+  2018-01-01:
+    value: 1276
+  2019-01-01:
+    value: 1289
+metadata:
+  short_label: Bénéficiaire isolé ou couple ayant 1 personne à charge
+  last_value_still_valid_on: "2023-05-24"
+  ipp_csv_id: plafond_ressources_rls_z3_famille_1pac
+  unit: currency
+
