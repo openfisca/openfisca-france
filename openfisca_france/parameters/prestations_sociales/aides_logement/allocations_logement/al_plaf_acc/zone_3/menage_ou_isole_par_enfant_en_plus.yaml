@@ -1,4 +1,4 @@
-description: Ménage ou isolé - par enfant en plus, Zone 3 - Plafonds d'annuités de remboursement pour les accédants à la propriété des Allocations logement (AL)
+description: Ménage ou isolé - par enfant en plus, Zone 3 - Plafonds d'annuités de remboursement pour les accédants à la propriété des allocations logement (AL)
 values:
   1990-07-01:
     value: 165
@@ -126,8 +126,3 @@ metadata:
   notes:
     2015-10-01:
     - title: Idem en 2016
-documentation: |-
-  Notes :
-  Il s'agit du montant des mensualités plafonds en AL pour des contrats de prêts signés à compter du 1e janvier 2013.
-  Les ALF, APL et ALS ne sont plus révisées au 1 janvier de chaque année N mais au 1 octobre de l'année N.
-  APL accession créée en 1977.

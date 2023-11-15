@@ -18,7 +18,7 @@ class reduction_loyer_solidarite_plafond_ressources(Variable):
         couple = famille('al_couple', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        plafond_ressources = rls.plafond_ressources.par_zone[zone_apl]
+        plafond_ressources = rls.plafond_ressources[zone_apl]
 
         plafond_personne_seule = plafond_ressources.personnes_seules
         plafond_couple = plafond_ressources.couples
@@ -69,7 +69,7 @@ class reduction_loyer_solidarite_montant(Variable):
         couple = famille('al_couple', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        montant = rls.montant.par_zone[zone_apl]
+        montant = rls.montant[zone_apl]
 
         montant_personne_seule = montant.personnes_seules
         montant_couple = montant.couples

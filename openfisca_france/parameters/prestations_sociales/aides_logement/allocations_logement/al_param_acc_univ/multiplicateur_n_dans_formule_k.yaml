@@ -38,6 +38,8 @@ values:
     value: 17136.73
   2007-07-01:
     value: 21420.91
+  2019-07-24:
+    value: null
 metadata:
   short_label: Multiplicateur de N dans la formule de K
   label_en: Parameters for new home-buyers and students residences
@@ -129,7 +131,3 @@ metadata:
     - title: "Ici, la revalorisation des barèmes entre en vigueur le 01/07/2001. Donc, du 01/07 au 31/12/2001 : ces montants sont en francs"
     2007-07-01:
     - title: Paramètres toujours identiques en 2017
-documentation: |-
-  Notes :
-  Allocation logement créée en 1948 par la loi 48-1360 du 1er septembre 1948 (parution au JO 2/09/1948) - Titre II
-  (Lien légifrance)

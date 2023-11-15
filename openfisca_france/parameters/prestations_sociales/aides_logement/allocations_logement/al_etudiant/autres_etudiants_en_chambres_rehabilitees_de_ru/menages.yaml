@@ -1,4 +1,4 @@
-description: Mesure du loyer pour les ménages - autres, dont les étudiants en chambres réhabilitées de résidences universitaires, allocations logement (AL)
+description: Mesure du loyer pour les ménages - autres, dont les étudiants en chambres réhabilitées de résidences universitaires
 values:
   2005-09-01:
     value: 226.8
@@ -93,6 +93,9 @@ metadata:
     2015-10-01: "2015-10-21"
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
+    2020-10-01: "2020-09-30"
+    2021-10-01: "2021-09-30"
+    2022-07-01: "2022-08-21" 
   notes:
     2005-09-01:
     - title: "Décret 2005-1607 : déplace les barèmes à l'art. D831-2-1 du CSS."

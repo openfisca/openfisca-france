@@ -1260,28 +1260,30 @@ class aide_logement_taux_famille(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
-        TF_metropole = (
-            al.al_loc2.tf.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
-            + al.al_loc2.tf.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+        metropole = al.al_loc2.tf.metropole
+        tf_metropole = (
+            metropole.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + metropole.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + metropole.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + metropole.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + metropole.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + metropole.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
+            + metropole.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
-        TF_dom = (
-            al.al_loc2.tf.dom.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.dom.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac >= 6)
+        dom = al.al_loc2.tf.dom
+        tf_dom = (
+            dom.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + dom.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + dom.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + dom.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + dom.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
+            + dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
+            + dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac >= 6)
             )
 
-        return where(residence_dom, TF_dom, TF_metropole)
+        return where(residence_dom, tf_dom, tf_metropole)
 
     def formula_2023_01_01(famille, period, parameters):
         al = parameters(period).prestations_sociales.aides_logement.allocations_logement
@@ -1289,30 +1291,32 @@ class aide_logement_taux_famille(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
-        TF_metropole = (
-            al.al_loc2.tf.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
-            + al.al_loc2.tf.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+        metropole = al.al_loc2.tf.metropole
+        tf_metropole = (
+            metropole.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + metropole.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + metropole.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + metropole.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + metropole.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + metropole.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
+            + metropole.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
-        TF_dom = (
-            al.al_loc2.tf.dom.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.dom.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac == 6)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_7_enfants * (al_nb_pac >= 7)
-            + al.al_loc2.tf.dom.majoration_par_pac_supplementaire * (al_nb_pac > 7) * (al_nb_pac - 7)
+        dom = al.al_loc2.tf.dom
+        tf_dom = (
+            dom.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + dom.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + dom.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + dom.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + dom.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
+            + dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
+            + dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac == 6)
+            + dom.personnes_seules_couples_avec_7_enfants * (al_nb_pac >= 7)
+            + dom.majoration_par_pac_supplementaire * (al_nb_pac > 7) * (al_nb_pac - 7)
             )
 
-        return where(residence_dom, TF_dom, TF_metropole)
+        return where(residence_dom, tf_dom, tf_metropole)
 
 
 class aide_logement_taux_loyer(Variable):
