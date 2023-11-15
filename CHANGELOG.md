@@ -1,6 +1,20 @@
 # Changelog
 
-### 155.0.0 [2197](https://github.com/openfisca/openfisca-france/pull/2197)
+### 155.0.1 [2184](https://github.com/openfisca/openfisca-france/pull/2184)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+   - `model/prestations/prestations_familiales/paje.py`
+   - `parameters/chomage/preretraites/sr_fne`
+   -  `parameters/prestations_sociales/prestations_familiales`
+   -  `parameters/prestations_sociales/solidarite_insertion`
+* Détails :
+  - Homogénéisation des intitulés, notes, documentation avec les Barèmes IPP
+  - Ajout de références manquantes
+
+
+# 155.0.0 [2197](https://github.com/openfisca/openfisca-france/pull/2197)
 
 * Changement majeur de version.
 * Zones impactées:
@@ -22,11 +36,11 @@
   - Changement de nom de la variable irrp en impot_revenu_restant_a_payer. Cette variable représente l'impôt à payer après les acomptes et le prélèvement forfaitaire libératoire
 
 
-### 154.1.0 [2198](https://github.com/openfisca/openfisca-france/pull/2198)
+## 154.1.0 [2198](https://github.com/openfisca/openfisca-france/pull/2198)
 
 * Corrections/mises à jour.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
   - `openfisca_france/model/revenus/autres.py`
 * Détails :

@@ -2,19 +2,26 @@ description: Majorations enfants (à appliquer au plafond 0 enfant correspondant
 values:
   2004-01-01:
     value: 0.3
+  2018-01-01:
+    value: null
 metadata:
   short_label: 3ème enfant et plus
-  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: 3rd child and more
   ipp_csv_id: maj_plaf_paje_enf3pl_avant_20140401
   unit: /1
   reference:
     2004-01-01:
       title: Décret 2003-1393 du 31/12/2003, art. 2 (modif art. R531-1 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
+    2018-01-01:
+    - title: Circulaire DSS/SD2B/2017/352du 22/12/2017
+    - title: Arrêté du 27/12/2017, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036299559
   official_journal_date:
     2004-01-01: "2004-01-01"
+    2018-01-01: "2017-12-29"
   notes:
     2004-01-01:
     - title: "Création de la PAJE. Mais entrée en vigueur progressive : de janvier 2004 à décembre 2006 inclus (cf. art. 60, VIII de la loi 2003-1199)"
-    2021-04-01:
-    - title: Les dispositions de la PAJE pour les enfants nés ou adoptés avant le 01/04/2018 ne s'appliquent plus (naissance ou adoption depuis plus de 3 ans).
+    2018-01-01:
+    - title: Revalorisation des plafonds de 0,2%. Les plafonds pour les enfants nés avant le 01/04/2014 sont supprimés, car ces enfants ont désormais plus de 3 ans.

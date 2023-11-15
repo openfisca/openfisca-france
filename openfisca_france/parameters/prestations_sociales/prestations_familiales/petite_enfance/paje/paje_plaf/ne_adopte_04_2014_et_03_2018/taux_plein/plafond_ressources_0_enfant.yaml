@@ -1,7 +1,7 @@
 description: Plafonds de ressources de base à taux plein pour enfants nés ou adoptés entre le 01/04/2014 et le 31/03/2018 de la Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
-    value: 0
+    value: null
   2014-04-01:
     value: 24344
   2015-01-01:
@@ -16,9 +16,11 @@ values:
     value: 25307
   2021-01-01:
     value: 25535
+  2021-04-01:
+    value: null
 metadata:
   short_label: Plafond de ressources - 0 enfant
-  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: Resource ceiling - 0 children
   ipp_csv_id: plaf_paje_0enf_abplein_entre_20140401_20180331
   unit: currency
   reference:

@@ -1,5 +1,7 @@
 description: Montant, pour orphelin ou assimilé d'un seul parent, dans le calcul du RSA et de la PPA (en % de la BMAF) de l'Allocation de soutien familial (ASF)
 values:
+  1970-12-26:
+    value: null
   2009-06-01:
     value: 0.225
 metadata:
@@ -8,6 +10,8 @@ metadata:
   ipp_csv_id: asf_1parent_rsa
   unit: BMAF
   reference:
+    1970-12-26:
+      title: Loi 70-1218 du 23/12/1970 (modif art. L543 du CSS)
     1971-07-01:
       title: Décret 71-504 du 29/06/1971
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000695960&categorieLien=id
@@ -29,6 +33,7 @@ metadata:
       title: Loi 2008-1425 du 27/12/2008, art. 181 (modif L523-1 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020000308&cidTexte=JORFTEXT000019995721
   official_journal_date:
+    1970-12-26: "1970-12-25"
     1971-07-01: "1971-06-30"
     1982-07-01: "1982-06-24"
     1984-12-28: "1984-12-27"
@@ -36,6 +41,8 @@ metadata:
     1999-11-17: "1999-11-16"
     2009-06-01: "2008-12-28"
   notes:
+    1970-12-26:
+    - title: Création de l'allocation d'orphelin
     1971-07-01:
     - title: Appelé "Allocation d'orphelin"
     1982-07-01:
@@ -44,6 +51,3 @@ metadata:
     - title: Allocation de Soutien Familial
     2009-06-01:
     - title: Le RSA intègre dans son calcul l'ASF mais avec des taux différents
-documentation: |-
-  Notes :
-  le RSA n'a pas complètement éliminé l'ASF, mais les deux prestations se complètent (les montants sont indiqués pour 2013)

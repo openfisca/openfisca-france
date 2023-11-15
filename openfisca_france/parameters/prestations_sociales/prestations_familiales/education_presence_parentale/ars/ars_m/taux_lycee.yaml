@@ -1,4 +1,4 @@
-description: Montant pour la 3ème tranche d'âge (lycéens de 6-10 ans), en % de la BMAF, de l'Allocation de rentrée scolaire (ARS)
+description: Montant pour la 3ème tranche d'âge (lycéens 15 ans), en % de la BMAF, de l'Allocation de rentrée scolaire (ARS)
 values:
   1978-01-01:
     value: 0.2
@@ -13,7 +13,7 @@ values:
   2012-08-01:
     value: 0.9795
 metadata:
-  short_label: Montant pour la 3ème tranche d'âge
+  short_label: 3ème tranche d'âge
   last_value_still_valid_on: "2023-05-11"
   label_en: "Back-to-school allowance (ARS): Amounts"
   ipp_csv_id: ars1517
@@ -55,7 +55,7 @@ metadata:
     1997-08-01: "1997-08-23"
     2001-08-01: "2001-08-04"
     2008-08-03: 2007-12-21; 2008-08-02
-    2012-09-03: "2012-06-30"
+    2012-08-01: "2012-06-30"
   notes:
     1995-08-01:
     - title: Modification du taux.
@@ -64,12 +64,5 @@ metadata:
     2008-08-03:
     - title: "La loi : Le montant varie avec l'âge; Le décret : Changement de taux. Au regard de la date du JO, ce nouveau taux devrait s'appliquer pour la rentrée 2008. Or, ce n'est pas la cas : cf. dico permanent"
 documentation: |-
-  Notes :
-  L'ARS a un plafond variable selon le nombre d'enfants dès 1974 (Loi 74-644 du 16/07/1974)
-  Décret 2002-1059, art 1 du 07/08/2002 (JORF 08/08/2002): L'allocation différentielle de rentrée scolaire est égale, pour chaque enfant, à la différence entre, d'une part, le plafond défini au deuxième alinéa de l'article R. 543-5, majoré du montant de l'allocation de rentrée scolaire en vigueur au 1er juillet de l'année en cours multiplié par le nombre d'enfants y ouvrant droit au titre de la rentrée scolaire en cours et, d'autre part, le montant des ressources, cette différence étant divisée par le nombre d'enfants à charge ouvrant droit à cette allocation.
-  (1) Entrée à 6 ans : Chaque enfant "qui atteindra son sixième anniversaire avant le 1er février de l'année suivant celle de la rentrée scolaire" (art. R543-2 du CSS)
-  Limite de 11 ans : l'enfant sort de cette catégorie s'il atteint ses 11 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
-  (2) Limite de 11 ans : l'enfant entre dans cette catégorie s'il atteint ses 11 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
-  Limite de 15 ans : l'enfant sort de cette catégorie s'il atteint ses 15 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
-  (3)Limite de 15 ans : l'enfant entre dans cette catégorie s'il atteint ses 15 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
+  Limite de 15 ans : l'enfant entre dans cette catégorie s'il atteint ses 15 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
   Limite de 18 ans : "tout enfant qui n'a pas atteint l'âge de dix-huit ans révolus au 15 septembre de l'année considérée"(art. R543-2 du CSS)

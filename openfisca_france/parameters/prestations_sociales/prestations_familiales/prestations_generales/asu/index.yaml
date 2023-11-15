@@ -1,5 +1,6 @@
-description: Allocation de salaire unique (ASU, 1941-1977)
+description: Allocation de salaire unique (ASU)
 metadata:
+  documentation_start: true
   short_label: ASU
   label_en: Single earner allowance (ASU)
   order:

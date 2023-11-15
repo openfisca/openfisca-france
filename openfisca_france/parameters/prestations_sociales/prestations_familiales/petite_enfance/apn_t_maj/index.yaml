@@ -1,9 +1,11 @@
-description: Taux et versement de l'Allocations postnatales (APN, 1975-1984)
+description: Taux et versement de l'Allocations postnatales (APN)
 metadata:
-  short_label: APN
-  label_en: "Postnatal allowance (APN): Rate and payment"
+  documentation_start: true
+  short_label: Allocations postnatales (APN)
+  label_en: Postnatal allowance (APN)
   order:
   - taux_base_calcul_verse
   - nombre_fractions_versement
   - taux
   - majoration_naissance_adoption
+documentation: Le versement s'effectue en trois fois. Le taux de la base de calcul versé est égal au taux du premier versement plus 2 fois le taux du dernier versement.

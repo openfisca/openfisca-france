@@ -4,7 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Durée versement enfants adoptés
-  label_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
+  label_en: Duration of payment for adopted children
   ipp_csv_id: duree_adopt
   unit: year
   reference:
@@ -18,7 +18,3 @@ metadata:
   notes:
     2004-01-01:
     - title: "art. D531-1 : fixe l'âge limite; art. D531-3 : fixe le montant de l'aide (en % de la BMAF); La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi)."
-documentation: |-
-  Notes :
-  (1) S'applique pour les enfants nés à partir du 1er avril 2014
-  NB : A partir du 1er avril 2014, et pour les enfants nés ou adoptés avant le 1er avril 2018, les montants de l'allocation de base à taux plein et taux partiel sont gelés à leur montant calculé à partir de la BMAF en vigueur au 1er avril 2013. Cf. III. de l'art. 74 de la loi 2013-1203 du 23 décembre 2013 de financement de la sécurité sociale pour 2014. Ce paragraphe III. est abrogé par la loi 2017-1836 du 30/12/2017 avec application de l'abrogation à compter du 1er avril 2018.

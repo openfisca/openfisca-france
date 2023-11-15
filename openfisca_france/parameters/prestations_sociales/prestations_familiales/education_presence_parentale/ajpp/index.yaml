@@ -1,6 +1,6 @@
 description: Allocation journalière de présence parentale (AJPP)
 metadata:
-  short_label: AJPP
+  short_label: Allocation journalière de présence parentale (AJPP)
   label_en: "Daily parental presence allowance (AJPP): Amounts"
   order:
   - montant
