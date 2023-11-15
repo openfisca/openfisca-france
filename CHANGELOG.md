@@ -1,5 +1,15 @@
 # Changelog
 
+### 155.0.2 [2202](https://github.com/openfisca/openfisca-france/pull/2202)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+   -  `parameters/prestations_sociales/prestations_familiales`
+* Détails :
+  - Retrait de paramètres inutilisés
+
+
 ### 155.0.1 [2184](https://github.com/openfisca/openfisca-france/pull/2184)
 
 * Changement mineur.
