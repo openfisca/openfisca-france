@@ -1,0 +1,7 @@
+description: Plafond de ressources pour accéder aux logements financés par le prêt locatif aidé d'intégration pour les logements très sociaux
+metadata:
+  short_label: Plafond de ressources PLAI
+  label_en: Social housing
+  order:
+  - par_categorie_de_menage
+  - par_personne_supplementaire

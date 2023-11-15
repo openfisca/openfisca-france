@@ -1,0 +1,35 @@
+description: Île-de-France - Par personne supplémentaire
+values:
+  2017-01-01:
+    value: 4065
+  2018-01-01:
+    value: 4102
+  2019-01-01:
+    value: 4166
+  2020-01-01:
+    value: 4216
+  2021-01-01:
+    value: 4235
+  2022-01-01:
+    value: 4270
+metadata:
+  unit: currency
+  reference:
+    2017-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte
+    2018-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000036484518/2018-01-01/
+    2019-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000038053742/2019-01-01/
+    2020-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000041461671/2020-01-02/
+    2021-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000043030087/2021-01-01/
+    2022-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000045015082/2022-01-01/

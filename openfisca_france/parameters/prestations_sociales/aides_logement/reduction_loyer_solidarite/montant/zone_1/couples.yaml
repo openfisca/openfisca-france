@@ -1,0 +1,26 @@
+description: Montant mensuel de la réduction de loyer de solidarité (RLS) pour un couple sans personne à charge en zone 1
+values:
+  2018-01-01:
+    value: 38.39
+  2019-01-01:
+    value: 38.99
+  2020-01-01:
+    value: 59.7
+  2020-10-01:
+    value: 41.13
+  2021-01-01:
+    value: 56.05
+  2021-10-01:
+    value: 63.29
+  2022-01-01:
+    value: 61.53
+  2022-10-01:
+    value: 58.9
+  2023-01-01:
+    value: 63
+metadata:
+  short_label: Couple sans personne à charge
+  last_value_still_valid_on: "2023-05-24"
+  ipp_csv_id: rls_z1_couple
+  unit: currency
+

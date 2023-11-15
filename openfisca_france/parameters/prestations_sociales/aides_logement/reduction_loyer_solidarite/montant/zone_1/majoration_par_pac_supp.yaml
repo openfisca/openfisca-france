@@ -1,0 +1,26 @@
+description: Majoration de la réduction du loyer de solidarité (RLS) par personne à charge supplémentaire en zone 1
+values:
+  2018-01-01:
+    value: 6.29
+  2019-01-01:
+    value: 6.39
+  2020-01-01:
+    value: 9.78
+  2020-10-01:
+    value: 6.74
+  2021-01-01:
+    value: 9.18
+  2021-10-01:
+    value: 10.05
+  2022-01-01:
+    value: 10.0
+  2022-10-01:
+    value: 9.57
+  2023-01-01:
+    value: 10.24
+metadata:
+  short_label: Majoration par personne à charge supplémentaire
+  last_value_still_valid_on: "2023-05-24"
+  ipp_csv_id: rls_z1_pac_supplementaire
+  unit: currency
+
