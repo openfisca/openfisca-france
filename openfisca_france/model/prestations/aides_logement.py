@@ -1370,7 +1370,7 @@ class crds_logement(Variable):
 
     def formula(famille, period, parameters):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
-        crds = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af.crds
+        crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
         return -aide_logement_montant_brut * crds
 
 
