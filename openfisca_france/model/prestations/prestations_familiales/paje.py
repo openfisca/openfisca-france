@@ -432,7 +432,7 @@ class paje_cmg(Variable):
         etudiant_i = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant_i, role = Famille.PARENT)
 
-    # condition de revenu minimal
+        # condition de revenu minimal
 
         cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.reduite - 1) > 0)
 
@@ -448,7 +448,7 @@ class paje_cmg(Variable):
         paje_prepare_inactif = (paje_prepare > 0) * inactif
         eligible = cond_eligibilite * not_(paje_prepare_inactif)
 
-    # Les plafonds de ressource
+        # Les plafonds de ressource
 
         seuil_revenus_1 = (
             (nombre_enfants == 1) * paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.enfant
@@ -462,16 +462,16 @@ class paje_cmg(Variable):
             + max_(nombre_enfants - 2, 0) * paje.plaf_cmg.deuxieme_plafond_ne_adopte_apres_04_2014.majoration_enfant_supp
             )
 
-    #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
-    #        dans l'entreprise), vous cumulez intégralement la PreParE et le Cmg.
-    #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez à 50% ou moins de la durée
-    #        du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
+        # Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
+        # dans l'entreprise), vous cumulez intégralement la PreParE et le Cmg.
+        # Si vous bénéficiez du PreParE taux partiel (= vous travaillez à 50% ou moins de la durée
+        # du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
 
         paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
         seuil_revenus_1 = seuil_revenus_1 * (1 - .5 * paje_prepare_temps_partiel)
         seuil_revenus_2 = seuil_revenus_2 * (1 - .5 * paje_prepare_temps_partiel)
 
-    # calcul du montant
+        # calcul du montant
 
         montant_cmg = (
             bmaf * (

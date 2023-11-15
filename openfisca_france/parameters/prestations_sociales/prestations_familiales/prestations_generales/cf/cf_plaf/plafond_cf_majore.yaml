@@ -1,9 +1,9 @@
-description: Plafond de ressources pour avoir droit au complément familial majoré
+description: Taux à appliquer au plafond de ressources pour avoir droit au complément familial majoré
 values:
   2014-04-01:
     value: 0.5
 metadata:
-  short_label: Pour avoir le droit au complément familial majoré
+  short_label: Taux du plafond pour le complément familial majoré
   unit: /1
   reference:
     2014-04-01:
