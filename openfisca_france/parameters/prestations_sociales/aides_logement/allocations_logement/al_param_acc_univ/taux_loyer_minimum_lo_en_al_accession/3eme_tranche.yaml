@@ -8,6 +8,8 @@ values:
     value: 0.26
   2007-07-01:
     value: 0.208
+  2021-07-24:
+    value: null
 metadata:
   short_label: 3ème tranche
   label_en: Parameters for new home-buyers and students residences
@@ -28,16 +30,18 @@ metadata:
     2007-07-01:
       title: Décret 2007-1081 du 10/07/2007, art. 1 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006266095&cidTexte=JORFTEXT000000826498
+    2021-07-24:
+      title: Décret 2019-772 du 24/07/2019
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000038812320
   official_journal_date:
     1972-07-01: "1972-06-30"
     1978-07-01: "1978-07-16"
     1986-01-01: "1985-12-21"
     1988-05-07: "1988-05-07"
     2007-07-01: "2007-07-12"
+    2021-07-24: "2021-07-25"
   notes:
     2007-07-01:
     - title: Paramètres toujours identiques en 2017
-documentation: |-
-  Notes :
-  Allocation logement créée en 1948 par la loi 48-1360 du 1er septembre 1948 (parution au JO 2/09/1948) - Titre II
-  (Lien légifrance)
+    2021-07-24:
+    - title: Abrogé.

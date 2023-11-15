@@ -4,6 +4,6 @@ metadata:
   label_en: Definition of dependants
   order:
   - age_limite_enfants_charge
+  - age_minimal
   - pourcentage_min_handicap
   - plaf_de_ressources_pac_autres
-  - age_minimal

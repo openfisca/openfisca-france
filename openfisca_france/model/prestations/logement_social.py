@@ -144,7 +144,7 @@ class logement_social_plafond_ressources(Variable):
         ]
 
     def formula(famille, period, parameters):
-        logement_social = parameters(period).prestations_sociales.aides_logement.logement_social.plai
+        plai = parameters(period).prestations_sociales.aides_logement.logement_social.plai
 
         categorie_menage = famille('logement_social_categorie_menage', period)
         zone_logement_social = famille.demandeur.menage('zone_logement_social', period)
@@ -153,8 +153,8 @@ class logement_social_plafond_ressources(Variable):
         # On détermine le nombre de personnes à charge supplémentaires au-dessus de 4
         personnes_a_charge_supplementaires = (personnes_a_charge > 4) * (personnes_a_charge - 4)
 
-        plafond_ressources_par_categorie = logement_social.plafond_ressources.par_categorie_de_menage[categorie_menage]
-        par_personne_supplementaire = logement_social.plafond_ressources.par_personne_supplementaire[zone_logement_social]
+        plafond_ressources_par_categorie = plai.par_categorie_de_menage[categorie_menage]
+        par_personne_supplementaire = plai.par_personne_supplementaire[zone_logement_social]
 
         return plafond_ressources_par_categorie[zone_logement_social] + (personnes_a_charge_supplementaires * par_personne_supplementaire)
 

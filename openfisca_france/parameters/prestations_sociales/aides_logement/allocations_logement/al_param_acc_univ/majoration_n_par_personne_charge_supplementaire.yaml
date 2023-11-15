@@ -6,6 +6,8 @@ values:
     value: 0.4
   1988-07-01:
     value: 0.5
+  2021-07-24:
+    value: null
 metadata:
   short_label: Majoration N par personne à charge supplémentaire
   label_en: Parameters for new home-buyers and students residences
@@ -23,15 +25,17 @@ metadata:
     1988-07-01:
       title: Décret 88-1071 du 29/11/1988 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000312623
+    2021-07-24:
+      title: Décret 2019-772 du 24/07/2019
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000038812320
   official_journal_date:
     1972-07-01: "1972-06-30"
     1986-01-01: "1985-12-21"
     1988-05-07: "1988-05-07"
     1988-07-01: "1988-11-30"
+    2021-07-24: "2021-07-25"
   notes:
     1988-07-01:
     - title: Création de la 5e tranche et ajout de valeurs de N avec 2, 3 et 4 enfants
-documentation: |-
-  Notes :
-  Allocation logement créée en 1948 par la loi 48-1360 du 1er septembre 1948 (parution au JO 2/09/1948) - Titre II
-  (Lien légifrance)
+    2021-07-24:
+    - title: Abrogé.

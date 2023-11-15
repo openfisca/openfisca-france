@@ -1,5 +1,6 @@
 description: Majoration forfaitaire comptabilisée pour tous dans le calcul des aides au logement au titre des charges du logement
 metadata:
+  documentation_start: true
   short_label: Majoration forfaitaire pour les charges du logement
   label_en: Lump sum extra allowance for charges
   order:

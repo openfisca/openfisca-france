@@ -123,6 +123,8 @@ metadata:
     2015-10-01: "2015-10-21"
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
+    2020-10-01: "2020-09-30"
+    2021-10-01: "2021-09-30"
   notes:
     2001-01-01:
     - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
@@ -150,4 +152,3 @@ metadata:
     - title: Idem en 2017
     2017-10-01:
     - title: Actualisation paramètres + baisse de 5 euros des aides au logement
-documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

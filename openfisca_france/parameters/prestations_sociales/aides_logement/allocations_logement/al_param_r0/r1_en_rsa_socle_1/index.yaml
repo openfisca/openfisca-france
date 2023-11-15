@@ -8,3 +8,6 @@ metadata:
   - personne_isolee_ou_couple_avec_1_enf
   - personne_isolee_ou_couple_avec_2_enf
   - majoration_enfant_a_charge_supp
+documentation: |-
+  Les abattements appliqués aux traitements et salaires mentionnés dans le code général des impôts s'appliquent à R1-R2.
+  À partir de 2015, le forfait R0 n'est plus calculé à partir de R1 et R2 mais directement défini en euros par la loi.

@@ -6,15 +6,3 @@ metadata:
   short_label: Personne seule ou couple ayant trois personnes à charge
   label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   unit: currency
-  reference:
-    2021-01-01:
-    - title: Arrêté du 31/12/2020, article 1, 3°, 3°
-      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000043041786/2021-01-02/
-    - title: Arrêté du 27/09/2019, art. 47
-      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000043044380/2021-01-01
-    - title: Article D823-17 du Code de la construction et de l'habitation
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419255
-documentation: |-
-  Notes :
-  (1) Les abattements appliqués aux traitements et salaires mentionnés dans le code général des impôts s'appliquent à R1-R2.
-  (2) À partir de 2015, le forfait R0 n'est plus calculé à partir de R1 et R2 mais directement défini en euros par la loi.

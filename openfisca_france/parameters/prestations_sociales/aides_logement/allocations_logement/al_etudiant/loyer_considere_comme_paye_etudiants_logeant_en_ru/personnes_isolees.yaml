@@ -1,4 +1,4 @@
-description: Mesure du loyer pour une personne isolée - Loyer considéré comme payé par les étudiants logeant en résidence universitaire, allocations logement (AL)
+description: Mesure du loyer pour une personne isolée - Loyer considéré comme payé par les étudiants logeant en résidence universitaire
 values:
   1994-07-01:
     value: 416
@@ -115,8 +115,10 @@ metadata:
       title: Arrêté du 25/09/2020 art. 14
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042376750
     2021-10-01:
-      title: Arrêté du 27/09/2019, art. 43
-      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137394/2021-10-01/#LEGIARTI000044137394
+      - title: Arrêté du 23/09/2021, art. 1
+        href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044126838
+      - title: Arrêté du 27/09/2019, art. 43
+        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137394/2021-10-01/#LEGIARTI000044137394
     2022-07-01:
       title: Arrêté du 27/09/2019, art. 43
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206187/2022-07-01
@@ -141,6 +143,8 @@ metadata:
     2015-10-01: "2015-10-21"
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
+    2020-10-01: "2020-09-30"
+    2021-10-01: "2021-09-30"
   notes:
     2005-09-01:
     - title: "Décret 2005-1607 : déplace les barèmes à l'art. D831-2-1 du CSS."

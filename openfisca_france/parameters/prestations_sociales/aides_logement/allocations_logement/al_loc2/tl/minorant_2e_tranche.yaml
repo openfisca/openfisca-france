@@ -1,4 +1,4 @@
-description: Taux (minorant pour la 2e tranche) de participation personnel complémentaire (TL) (après la réforme de 2001) des Allocations Logement (AL)
+description: Taux (minorant pour la 2e tranche) de participation personnel complémentaire (TL) (après la réforme de 2001) des allocations Logement (AL)
 values:
   2001-01-01:
     value: null
@@ -21,4 +21,3 @@ metadata:
   notes:
     2001-01-01:
     - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
-documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

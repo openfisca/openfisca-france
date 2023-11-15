@@ -38,6 +38,8 @@ values:
     value: 1138.42
   2007-07-01:
     value: 1423.03
+  2021-07-24:
+    value: null
 metadata:
   short_label: 1ère tranche
   label_en: Parameters for new home-buyers and students residences
@@ -102,6 +104,9 @@ metadata:
     2007-07-01:
       title: Décret 2007-1081 du 10/07/2007, art. 1 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006266095&cidTexte=JORFTEXT000000826498
+    2021-07-24:
+      title: Décret 2019-772 du 24/07/2019
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000038812320
   official_journal_date:
     1972-07-01: "1972-06-30"
     1978-07-01: "1978-07-16"
@@ -123,6 +128,7 @@ metadata:
     2002-07-01: "2002-12-22"
     2003-07-01: "2004-05-29"
     2007-07-01: "2007-07-12"
+    2021-07-24: "2021-07-25"
   notes:
     1988-07-01:
     - title: Création de la 5e tranche et ajout de valeurs de N avec 2, 3 et 4 enfants
@@ -130,7 +136,5 @@ metadata:
     - title: "Ici, la revalorisation des barèmes entre en vigueur le 01/07/2001. Donc, du 01/07 au 31/12/2001 : ces montants sont en francs"
     2007-07-01:
     - title: Paramètres toujours identiques en 2017
-documentation: |-
-  Notes :
-  Allocation logement créée en 1948 par la loi 48-1360 du 1er septembre 1948 (parution au JO 2/09/1948) - Titre II
-  (Lien légifrance)
+    2021-07-24:
+    - title: Abrogé.

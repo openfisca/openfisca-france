@@ -3,12 +3,20 @@ metadata:
   short_label: Mayotte
   label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   order:
+  - taux_seul
+  - taux_couple
   - taux1pac
   - taux2pac
   - taux3pac
   - taux4pac
   - taux5pac
   - taux6pac
-  - taux_couple
-  - taux_seul
+  reference:
+    2021-01-01:
+    - title: Arrêté du 31/12/2020, article 1, 3°, 3°
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000043041786/2021-01-02/
+    - title: Arrêté du 27/09/2019, art. 47
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000043044380/2021-01-01
+    - title: Article D823-17 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419255
 documentation: Mentionné à l'article D823-17 du Code de la construction et de l'habitation.
