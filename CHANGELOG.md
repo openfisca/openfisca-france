@@ -1,5 +1,14 @@
 # Changelog
 
+### 155.0.3 [2203](https://github.com/openfisca/openfisca-france/pull/2203)
+
+*  Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations_sociales/aides_logement/allocations_logement/al_param_r0/rmi.yaml`.
+* Détails :
+  - Retire paramètres non utilisés
+
+
 ### 155.0.2 [2202](https://github.com/openfisca/openfisca-france/pull/2202)
 
 * Changement mineur.
