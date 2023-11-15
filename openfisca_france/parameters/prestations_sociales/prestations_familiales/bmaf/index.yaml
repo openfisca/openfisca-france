@@ -1,6 +1,6 @@
 description: Base mensuelle de calcul des allocations familiales (BMAF)
 metadata:
-  short_label: Familiales
+  short_label: BMAF
   label_en: Monthly basis for the computation of family allowances (BMAF)
   order:
   - bmaf
