@@ -1,0 +1,35 @@
+description: Catégorie 4 / Paris et communes limitrophes - Plafonds de ressources annuelles applicables aux logements financés avec un prêt locatif aidé d'intégration (PLAI)
+values:
+  2017-01-01:
+    value: 29781
+  2018-01-01:
+    value: 30049
+  2019-01-01:
+    value: 30521
+  2020-01-01:
+    value: 30887
+  2021-01-01:
+    value: 31029
+  2022-01-01:
+    value: 31287
+metadata:
+  unit: currency
+  reference:
+    2017-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte
+    2018-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000036484518/2018-01-01/
+    2019-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000038053742/2019-01-01/
+    2020-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000041461671/2020-01-02/
+    2021-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000043030087/2021-01-01/
+    2022-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000045015082/2022-01-01/
