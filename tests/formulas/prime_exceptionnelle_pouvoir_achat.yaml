@@ -10,7 +10,7 @@
     effectif_entreprise: [65, 65]
     accord_interessement: [false, false]
   output:
-    irpp:
+    impot_revenu_restant_a_payer:
       2021: [-7246, -7246]
     salaire_super_brut:
       2021-11: [7231.7837, 7148.45]

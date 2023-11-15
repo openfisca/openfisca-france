@@ -34,7 +34,7 @@
   output:
     assloy: 190.0
     iai: 13861.0
-    irpp: -13671.0
+    impot_revenu_restant_a_payer: -13671.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 65000.0
@@ -76,7 +76,7 @@
   output:
     assloy: 190.0
     iai: 13855.0
-    irpp: -13665.0
+    impot_revenu_restant_a_payer: -13665.0
     nbptr: 1.0
     rbg: 65000.0
     rfr: 65000.0
@@ -117,7 +117,7 @@
   output:
     assloy: 190.0
     iai: 13850.0
-    irpp: -13660.0
+    impot_revenu_restant_a_payer: -13660.0
     nbptr: 1.0
     rbg: 65000.0
     rfr: 65000.0

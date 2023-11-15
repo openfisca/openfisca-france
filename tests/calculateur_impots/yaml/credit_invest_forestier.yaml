@@ -38,7 +38,7 @@
   output:
     ci_investissement_forestier: 2063
     iai: 7861.0
-    irpp: -5798.0
+    impot_revenu_restant_a_payer: -5798.0
     nbptr: 1.0
     rbg: 45000.0
     rfr: 45000.0
@@ -87,7 +87,7 @@
   output:
     ci_investissement_forestier: 2028
     iai: 7855.0
-    irpp: -5827.0
+    impot_revenu_restant_a_payer: -5827.0
     nbptr: 1.0
     rbg: 45000.0
     rfr: 45000.0
@@ -142,7 +142,7 @@
     ci_investissement_forestier: 1468
     reductions: 22
     iai: 7828.0
-    irpp: -6360.0
+    impot_revenu_restant_a_payer: -6360.0
     nbptr: 1.0
     rbg: 45000.0
     rfr: 45000.0
@@ -201,7 +201,7 @@
     ci_investissement_forestier: 1664
     reductions: 18
     iai: 7775.0
-    irpp: -6111.0
+    impot_revenu_restant_a_payer: -6111.0
     nbptr: 1.0
     rbg: 45000.0
     rfr: 45000.0
@@ -264,7 +264,7 @@
   output:
     ci_investissement_forestier: 1787
     iai: 7644.0
-    irpp: -5857.0
+    impot_revenu_restant_a_payer: -5857.0
     nbptr: 1.0
     rbg: 45000.0
     rfr: 45000.0
@@ -331,7 +331,7 @@
   output:
     ci_investissement_forestier: 1682
     iai: 7506.0
-    irpp: -5824.0
+    impot_revenu_restant_a_payer: -5824.0
     nbptr: 1.0
     rbg: 45000.0
     rfr: 45000.0
@@ -398,7 +398,7 @@
   output:
     ci_investissement_forestier: 1773
     iai: 7422.0
-    irpp: -5649.0
+    impot_revenu_restant_a_payer: -5649.0
     nbptr: 1.0
     rbg: 45000.0
     rfr: 45000.0

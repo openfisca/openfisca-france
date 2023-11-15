@@ -45,7 +45,7 @@
       personne_de_reference: ind0
   output:
     iai: 34717.0
-    irpp: -34717.0
+    impot_revenu_restant_a_payer: -34717.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 137843.0
@@ -102,7 +102,7 @@
       personne_de_reference: ind0
   output:
     iai: 33676.0
-    irpp: -33676.0
+    impot_revenu_restant_a_payer: -33676.0
     nbptr: 1.0
     rbg: 137830.0
     reductions: 9289.0
@@ -161,7 +161,7 @@
       personne_de_reference: ind0
   output:
     iai: 32979.0
-    irpp: -32979.0
+    impot_revenu_restant_a_payer: -32979.0
     nbptr: 1.0
     rbg: 137817.0
     reductions: 9967.0

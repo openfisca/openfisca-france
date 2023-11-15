@@ -51,7 +51,7 @@
     nbptr: 1.0
     ppe: 0.0
     iai: 40296.0
-    irpp: -40296.0
+    impot_revenu_restant_a_payer: -40296.0
 - name: reduc_location_meublee
   period: 2015
   absolute_error_margin: 2
@@ -100,7 +100,7 @@
       personne_de_reference: ind0
   output:
     iai: 40155.0
-    irpp: -40155.0
+    impot_revenu_restant_a_payer: -40155.0
     nbptr: 1.0
     rbg: 137830.0
     reductions: 2810.0
@@ -154,7 +154,7 @@
       personne_de_reference: ind0
   output:
     iai: 40292.0
-    irpp: -40292.0
+    impot_revenu_restant_a_payer: -40292.0
     nbptr: 1.0
     rbg: 137817.0
     reductions: 2654.0
@@ -200,7 +200,7 @@
       personne_de_reference: ind0
   output:
     iai: 41828.0
-    irpp: -41828.0
+    impot_revenu_restant_a_payer: -41828.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 137695.0

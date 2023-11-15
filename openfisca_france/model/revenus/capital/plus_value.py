@@ -378,7 +378,6 @@ class abattements_plus_values(Variable):
     reference = 'http://bofip.impots.gouv.fr/bofip/9540-PGP'
     label = "Abattements sur plus-values notamment pour durée de détention de droit commun, renforcé, et abattement en cas de départ à la retraite d'un dirigeant de PME (abattement fixe et pour durée de détention)"
     definition_period = YEAR
-    end = '2017-12-31'
 
     def formula_2013_01_01(foyer_fiscal, period):
         f3sg = foyer_fiscal('f3sg', period)
@@ -404,6 +403,38 @@ class abattements_plus_values(Variable):
         f3va = foyer_fiscal('f3va', period)
 
         return f3sg + f3sl + f3va
+
+    def formula_2018_01_01(foyer_fiscal, period):
+        '''
+        A partir de 2018, si le foyer choisit l'imposition au barème des revenus éligibles au pfu, les plus-values entrent dans le calcul du rfr net d'abattement, on rajoute donc les abattements.
+        Cela n'est pas nécessaire dans le cas pfu puisque les plus-values entrent dans le calcul du rfr brut d'abattement.
+        '''
+        imposition_au_bareme = foyer_fiscal('f2op', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3va = foyer_fiscal('f3va', period)
+
+        result = where(imposition_au_bareme, f3sg + f3sl + f3va, 0)
+
+        return result
+
+    def formula_2019_01_01(foyer_fiscal, period):
+        '''
+        A partir de 2019, les revenus de la variable 3tj peuvent bénéficier d'un abattement fixe de départ à la retraite d’un dirigeant de PME (3tk). Cet abattement s'applique lorsque
+        le foyer choisit l'imposition au barème des revenus éligibles au pfu, ils doivent donc dans ce cas être rajouté au calcul du rfr.
+        Sources:
+         - Brochure pratique revenus 2019 page 147: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2020/accueil.htm
+         - Brochure pratique revenus 2018 page 142: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2019/accueil.htm
+        '''
+        imposition_au_bareme = foyer_fiscal('f2op', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3va = foyer_fiscal('f3va', period)
+        f3tk = foyer_fiscal('f3tk', period)
+
+        result = where(imposition_au_bareme, f3sg + f3sl + f3va + f3tk, 0)
+
+        return result
 
 
 # Plus values et gains taxables à des taux forfaitaires

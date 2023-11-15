@@ -564,7 +564,7 @@ class isf_ifi_avant_plaf(Variable):
 class total_impots_plafonnement_isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Total des impôts dus au titre des revenus et produits (irpp, contribution_exceptionnelle_hauts_revenus, prélèvements forfaitaires, prélèvements sociaux) + ISF et IFI. Utilisé pour calculer le montant du plafonnement de l'ISF et de l'IFI."
+    label = "Total des impôts dus au titre des revenus et produits (iai, contribution_exceptionnelle_hauts_revenus, prélèvements forfaitaires, prélèvements sociaux) + ISF et IFI. Utilisé pour calculer le montant du plafonnement de l'ISF et de l'IFI."
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -575,8 +575,6 @@ class total_impots_plafonnement_isf_ifi(Variable):
         '''
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
         irpp_economique = foyer_fiscal('irpp_economique', period)
-        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
-        prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         ir_pv_immo = foyer_fiscal('ir_pv_immo', period)
         crds_i = foyer_fiscal.members('crds', period)
         csg_i = foyer_fiscal.members('csg', period)
@@ -587,8 +585,6 @@ class total_impots_plafonnement_isf_ifi(Variable):
         return (
             isf_ifi_avant_plaf
             - irpp_economique
-            - prelevement_forfaitaire_liberatoire
-            - prelevement_forfaitaire_unique_ir
             - ir_pv_immo
             - crds
             - csg
@@ -616,8 +612,8 @@ class revenus_et_produits_plafonnement_isf_ifi(Variable):
         rag_i = foyer_fiscal.members('rag', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_pvct_i = foyer_fiscal.members('rpns_pvct', period)
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])  # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
         plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
@@ -748,7 +744,7 @@ class isf_ifi(Variable):
 # calcul de l'ensemble des revenus du contribuable
 
 
-# TODO: à reintégrer dans irpp
+# TODO: à reintégrer dans impot_revenu_restant_a_payer
 class rvcm_plus_abat(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -772,7 +768,7 @@ class maj_cga(Variable):
     label = 'Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)'
     definition_period = YEAR
 
-    # TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
+    # TODO: à reintégrer dans impot_revenu_restant_a_payer (et vérifier au passage que frag_impo est dans la majo_cga
     def formula(individu, period, parameters):
         frag_impo = individu('frag_impo', period)
         nrag_impg = individu('nrag_impg', period)
@@ -872,7 +868,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
     definition_period = YEAR
 
     def formula_2006(foyer_fiscal, period, parameters):
-        irpp = foyer_fiscal('irpp', period)
+        impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
         tax_fonc = foyer_fiscal('tax_fonc', period)
         isf_ifi = foyer_fiscal('isf_ifi', period)
         csg_deductible_salaire_i = foyer_fiscal.members('csg_deductible_salaire', period)
@@ -882,7 +878,6 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         csg_deductible_chomage_i = foyer_fiscal.members('csg_deductible_chomage', period)
         csg_deductible_retraite_i = foyer_fiscal.members('csg_deductible_retraite', period)
         csg_imposable_retraite_i = foyer_fiscal.members('csg_imposable_retraite', period)
-        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
 
         prelevements_sociaux_revenus_capital = foyer_fiscal('prelevements_sociaux_revenus_capital', period)
         crds_salaire = foyer_fiscal.sum(crds_salaire_i)
@@ -899,11 +894,11 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         # # ajouter Prelèvements sources/ libé
         # # ajouter crds rstd
         # # impôt sur les plus-values immo et cession de fonds de commerce
-        imp1 = prelevements_sociaux_revenus_capital + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite + prelevement_forfaitaire_liberatoire
+        imp1 = prelevements_sociaux_revenus_capital + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés sur l'année 'n'
         '''
-        imp2 = irpp + isf_ifi + taxe_habitation + tax_fonc + csg_imposable_salaire + csg_imposable_chomage + csg_imposable_retraite
+        imp2 = impot_revenu_restant_a_payer + isf_ifi + taxe_habitation + tax_fonc + csg_imposable_salaire + csg_imposable_chomage + csg_imposable_retraite
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés en 'n-1'
         '''

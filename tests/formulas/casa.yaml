@@ -2,7 +2,7 @@
   period: 2014-01
   input:
     retraite_brute: 2000.0
-    irpp:
+    impot_revenu_restant_a_payer:
       2013:
         50.0
   output:
@@ -12,7 +12,7 @@
   period: 2014-01
   input:
     retraite_brute: 2000.0
-    irpp:
+    impot_revenu_restant_a_payer:
       2013:
         1500
   output:

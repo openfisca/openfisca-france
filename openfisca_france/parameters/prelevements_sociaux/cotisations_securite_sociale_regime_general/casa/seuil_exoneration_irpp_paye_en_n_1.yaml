@@ -1,9 +1,9 @@
-description: Seuil d'exonération (sur l'IRPP payé en N-1) de la Contribution SS additionnelle solidarité autonomie (CASA)
+description: Seuil d'exonération (sur l'impôt sur le revenu payé en N-1) de la Contribution SS additionnelle solidarité autonomie (CASA)
 values:
   2013-04-01:
     value: 61
 metadata:
-  short_label: Seuil d'exonération (sur l'IRPP payé en N-1)
+  short_label: Seuil d'exonération (sur l'impôt sur le revenu payé en N-1)
   last_value_still_valid_on: "2021-12-07"
   label_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
   ipp_csv_id: casa_seuil
