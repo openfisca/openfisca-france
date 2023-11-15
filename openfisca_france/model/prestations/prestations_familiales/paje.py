@@ -786,7 +786,6 @@ class paje_clca(Variable):
     def formula_2004(famille, period, parameters):
         '''
         Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
-        'fam'
 
         Parameters:
         -----------
