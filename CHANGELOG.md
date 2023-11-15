@@ -1,5 +1,15 @@
 # Changelog
 
+### 155.0.4 [2204](https://github.com/openfisca/openfisca-france/pull/2204)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+ - `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/limite_plafond_ressources`
+* Détails :
+  - Retrait de paramètres inutilisés
+
+
 ### 155.0.3 [2203](https://github.com/openfisca/openfisca-france/pull/2203)
 
 *  Changement mineur.
