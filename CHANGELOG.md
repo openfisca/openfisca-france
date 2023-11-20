@@ -1,5 +1,16 @@
 # Changelog
 
+# 162.0.0 [2206](https://github.com/openfisca/openfisca-france/pull/2206)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+ - `parameters/prestations_sociales/aides_logement/allocations_logement`
+* Détails :
+  - Retrait de paramètres inutilisés : `prestations_sociales.aides_logement.allocations_logement.al_assistant_journaliste`
+  - Raccourcissemnt de certains chemins unitilement longs : `reduction_loyer_solidarite.montant.par_zone.zone_*` en `reduction_loyer_solidarite.montant.zone_*`
+  - Mutualisation des références au niveaux des index
+
 ### 161.0.1 [2268](https://github.com/openfisca/openfisca-france/pull/2268)
 
 * Changement mineur.
