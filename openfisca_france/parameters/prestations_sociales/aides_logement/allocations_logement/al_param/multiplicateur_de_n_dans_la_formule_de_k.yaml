@@ -38,8 +38,8 @@ values:
     value: 17136.73
   2007-07-01:
     value: 21420.91
-  2019-07-24:
-    value: null
+  # 2019-07-24:
+  #   value: null
 metadata:
   short_label: Multiplicateur de N dans la formule de K
   label_en: Parameters for new home-buyers and students residences
@@ -129,5 +129,3 @@ metadata:
     - title: Création de la 5e tranche et ajout de valeurs de N avec 2, 3 et 4 enfants
     2001-07-01:
     - title: "Ici, la revalorisation des barèmes entre en vigueur le 01/07/2001. Donc, du 01/07 au 31/12/2001 : ces montants sont en francs"
-    2007-07-01:
-    - title: Paramètres toujours identiques en 2017
