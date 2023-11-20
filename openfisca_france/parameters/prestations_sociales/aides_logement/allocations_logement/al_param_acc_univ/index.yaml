@@ -11,17 +11,11 @@ metadata:
   order:
   - constante_coefficient_k
   - multiplicateur_n_dans_formule_k
-  - menage_0_personnes_charge
-  - 1_personne_charge
-  - 2_personnes_charge
-  - 3_personnes_charge
-  - 4_personnes_charge
-  - majoration_n_par_personne_charge_supplementaire
   - taux_loyer_minimum_lo_en_al_accession
   - seuils
+  - parametre_n
   - majoration_loyer_minimum_lo
   - intervalles_ressources_consideres
   - montant_forfaitaire_mf0
 documentation: |-
   Allocation logement créée en 1948 par la loi 48-1360 du 1er septembre 1948 (parution au JO 2/09/1948) - Titre II
-  (Lien légifrance)
