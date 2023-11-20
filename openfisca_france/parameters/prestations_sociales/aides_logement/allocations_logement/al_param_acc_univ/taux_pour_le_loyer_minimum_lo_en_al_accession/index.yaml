@@ -1,20 +1,13 @@
-description: Taux (2ème tranche) pour le loyer minimum (Lo) en AL accession, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
-values:
-  1972-07-01:
-    value: 0.18
-  1978-07-01:
-    value: 0.15
-  1988-07-01:
-    value: 0.03
-  2007-07-01:
-    value: 0.024
-  2021-07-24:
-    value: null
+description: Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
 metadata:
-  short_label: 2ème tranche
+  short_label: Paramètres d'accession
   label_en: Parameters for new home-buyers and students residences
-  ipp_csv_id: lo_tx2
-  unit: /1
+  order:
+  - 1ere_tranche
+  - 2eme_tranche
+  - 3eme_tranche
+  - 4eme_tranche
+  - 5eme_tranche
   reference:
     1972-07-01:
       title: Décret 72-533 du 29/06/1972
@@ -43,7 +36,5 @@ metadata:
   notes:
     1988-07-01:
     - title: Création de la 5e tranche et ajout de valeurs de N avec 2, 3 et 4 enfants
-    2007-07-01:
-    - title: Paramètres toujours identiques en 2017
     2021-07-24:
     - title: Abrogé.

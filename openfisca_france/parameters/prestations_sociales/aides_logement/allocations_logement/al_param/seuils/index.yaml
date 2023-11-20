@@ -1,3 +1,9 @@
+description: Seuils, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  short_label: Seuils
+  label_en: Parameters for new home-buyers and students residences
+  order:
+  - 1ere_tranche
+  - 2eme_tranche
+  - 3eme_tranche
+  - 4eme_tranche_et_debut_5eme_tranche

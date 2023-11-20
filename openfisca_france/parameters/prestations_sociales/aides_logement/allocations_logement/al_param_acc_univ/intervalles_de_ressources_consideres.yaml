@@ -1,7 +1,5 @@
 description: Intervalles de ressources considérés, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire
 values:
-  1972-07-01:
-    value: null
   1997-02-01:
     value: 500
   2001-07-01:

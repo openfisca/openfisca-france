@@ -1,17 +1,19 @@
 description: Taux (4ème tranche) pour le loyer minimum (Lo) en AL accession, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
 values:
   1972-07-01:
-    value: 0.33
+    value: 0.28
   1978-07-01:
-    value: null
+    value: 0.34
+  1986-01-01:
+    value: 0.36
   1988-07-01:
-    value: 0.41
+    value: 0.29
   2007-07-01:
-    value: 0.328
+    value: 0.232
   2021-07-24:
     value: null
 metadata:
-  short_label: 5ème tranche
+  short_label: 4ème tranche
   label_en: Parameters for new home-buyers and students residences
-  ipp_csv_id: lo_tx5
+  ipp_csv_id: lo_tx4
   unit: /1

@@ -1,56 +1,48 @@
-description: Seuils (4ème tranche (et début 5ème tranche)), Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
+description: Majoration du loyer minimum (Lo), Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire
 values:
-  1972-07-01:
-    value: 15000
-  1978-07-01:
-    value: null
-  1988-07-01:
-    value: 17220
+  1986-07-01:
+    value: 400
   1989-07-01:
-    value: 17702
+    value: 411
   1990-07-01:
-    value: 18286
+    value: 425
   1991-07-01:
-    value: 18835
+    value: 138
   1992-07-01:
-    value: 19344
+    value: 450
   1994-07-01:
-    value: 19634
+    value: 457
   1997-07-01:
-    value: 20007
+    value: 466
   1998-07-01:
-    value: 20227
+    value: 471
   1999-07-01:
-    value: 20348
+    value: 474
   2000-07-01:
-    value: 20450
+    value: 476
   2001-07-01:
-    value: 3167.43
+    value: 73.79
   2002-07-01:
-    value: 3218.11
+    value: 74.97
   2003-07-01:
-    value: 3276.04
-  2007-07-01:
-    value: 4095.05
+    value: 76.32
   2021-07-24:
     value: null
 metadata:
-  short_label: 4ème tranche (et début 5ème tranche)
+  short_label: Majoration du loyer minimum (Lo)
   label_en: Parameters for new home-buyers and students residences
-  ipp_csv_id: seuil_tr4_lo
+  ipp_csv_id: maj_lo
   unit: currency
   reference:
     1972-07-01:
       title: Décret 72-533 du 29/06/1972
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000499900
-    1978-07-01:
-      title: Décret 78-751 du 13/07/1978
+    1986-07-01:
+      title: Décret 86-1091 du 08/10/1986 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000870115
     1988-05-07:
       title: Décret 88-569 du 04/05/1988 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000504346
-    1988-07-01:
-      title: Décret 88-1071 du 29/11/1988 (modif art. D542-5 du CSS)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000312623
     1989-07-01:
       title: Décret 89-831 du 10/11/1989 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700911
@@ -86,17 +78,13 @@ metadata:
     2003-07-01:
       title: Décret 2004-464 du 28/05/2004, art. 1 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006231026&cidTexte=JORFTEXT000000618795
-    2007-07-01:
-      title: Décret 2007-1081 du 10/07/2007, art. 1 (modif art. D542-5 du CSS)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006266095&cidTexte=JORFTEXT000000826498
     2021-07-24:
       title: Décret 2019-772 du 24/07/2019
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000038812320
   official_journal_date:
     1972-07-01: "1972-06-30"
-    1978-07-01: "1978-07-16"
+    1986-07-01: "1986-10-09"
     1988-05-07: "1988-05-07"
-    1988-07-01: "1988-11-30"
     1989-07-01: "1989-11-11"
     1990-07-01: "1990-10-26"
     1991-07-01: "1991-11-10"
@@ -109,14 +97,9 @@ metadata:
     2001-07-01: "2001-08-02"
     2002-07-01: "2002-12-22"
     2003-07-01: "2004-05-29"
-    2007-07-01: "2007-07-12"
     2021-07-24: "2021-07-25"
   notes:
-    1988-07-01:
-    - title: Création de la 5e tranche et ajout de valeurs de N avec 2, 3 et 4 enfants
     2001-07-01:
     - title: "Ici, la revalorisation des barèmes entre en vigueur le 01/07/2001. Donc, du 01/07 au 31/12/2001 : ces montants sont en francs"
-    2007-07-01:
-    - title: Paramètres toujours identiques en 2017
     2021-07-24:
     - title: Abrogé.
