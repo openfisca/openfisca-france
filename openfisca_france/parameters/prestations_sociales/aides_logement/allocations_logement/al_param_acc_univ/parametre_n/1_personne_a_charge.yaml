@@ -1,0 +1,18 @@
+description: 1 personne à charge, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire
+values:
+  1972-07-01:
+    value: 1.5
+  1986-01-01:
+    value: 1.4
+  1988-07-01:
+    value: 2.3
+  1992-07-01:
+    value: 2.5
+metadata:
+  short_label: Bénéficiaire isolé ou un ménage ayant une personne à charge
+  last_value_still_valid_on: "2023-02-23"
+  unit: /1
+  reference:
+    1988-07-01:
+      title: Article D832-25, 2° du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878710/2019-09-01/
