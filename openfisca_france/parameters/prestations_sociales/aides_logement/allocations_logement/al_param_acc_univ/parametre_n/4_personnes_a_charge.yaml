@@ -1,15 +1,13 @@
-description: 2 personnes à charge, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire
+description: 4 personnes à charge, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire
 values:
-  1972-07-01:
-    value: null
   1988-07-01:
-    value: 3
+    value: 4.3
   2021-07-24:
     value: null
 metadata:
-  short_label: 2 personnes à charge
+  short_label: 4 personnes à charge
   label_en: Parameters for new home-buyers and students residences
-  ipp_csv_id: n_2enf
+  ipp_csv_id: n_4enf
   unit: /1
   reference:
     1972-07-01:
