@@ -26,8 +26,8 @@ values:
     value: 74.97
   2003-07-01:
     value: 76.32
-  2021-07-24:
-    value: null
+  # 2021-07-24:
+  #   value: null
 metadata:
   short_label: Majoration du loyer minimum (Lo)
   label_en: Parameters for new home-buyers and students residences
