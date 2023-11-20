@@ -9,13 +9,13 @@ metadata:
   official_journal_date:
     1988-05-07: "1988-05-07"
   order:
-  - constante_coefficient_k
-  - multiplicateur_n_dans_formule_k
-  - taux_loyer_minimum_lo_en_al_accession
+  - constante_du_coefficient_k
+  - multiplicateur_de_n_dans_formule_de_k
+  - taux_pour_le_loyer_minimum_lo_en_al_accession
   - seuils
   - parametre_n
-  - majoration_loyer_minimum_lo
-  - intervalles_ressources_consideres
+  - majoration_du_loyer_minimum_lo
+  - intervalles_de_ressources_consideres
   - montant_forfaitaire_mf0
 documentation: |-
   Allocation logement créée en 1948 par la loi 48-1360 du 1er septembre 1948 (parution au JO 2/09/1948) - Titre II

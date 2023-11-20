@@ -4,7 +4,7 @@ metadata:
   label_en: Parameters for new home-buyers and students residences
   order:
   - constante_du_coefficient_k
-  - multiplicateur_de_n_dans_formule_k
+  - multiplicateur_de_n_dans_formule_de_k
   - taux_pour_le_loyer_minimum_lo_en_al_accession
   - seuils
   - parametre_n
