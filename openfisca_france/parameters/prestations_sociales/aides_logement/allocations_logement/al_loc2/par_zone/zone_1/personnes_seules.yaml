@@ -40,6 +40,8 @@ values:
     value: 298.07
   2022-07-01:
     value: 308.5
+  2023-10-01:
+    value: 319.30
 metadata:
   short_label: Personne seule
   last_value_still_valid_on: "2023-02-20"
@@ -112,6 +114,9 @@ metadata:
     2022-07-01:
       title: Arrêté du 27/09/2019, art. 7
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206217/2022-07-01
+    2023-10-01:
+      title: Arrêté du 22 septembre 2023 relatif au calcul des aides personnelles au logement et de l'aide à l'accession sociale et à la sortie de l'insalubrité spécifique à l'outre-mer
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048107807
   official_journal_date:
     2001-01-01: "2000-12-28"
     2001-07-01: "2001-08-02"
@@ -130,6 +135,7 @@ metadata:
     2015-10-01: "2015-10-21"
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
+    2023-10-01: "2023-09-27"
   notes:
     2001-01-01:
     - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
