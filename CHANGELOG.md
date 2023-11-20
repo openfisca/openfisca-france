@@ -1,5 +1,9 @@
 # Changelog
 
+
+* Détails :
+  - Retrait de paramètres inutilisés prestations_sociales.aides_logement.allocations_logement.al_assistant_journaliste
+
 ### 155.0.4 [2204](https://github.com/openfisca/openfisca-france/pull/2204)
 
 * Changement mineur.

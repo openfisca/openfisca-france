@@ -1,0 +1,41 @@
+description: Seuils (4ème tranche (et début 5ème tranche)), Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
+values:
+  1972-07-01:
+    value: 15000
+  1978-07-01:
+    value: null
+  1988-07-01:
+    value: 17220
+  1989-07-01:
+    value: 17702
+  1990-07-01:
+    value: 18286
+  1991-07-01:
+    value: 18835
+  1992-07-01:
+    value: 19344
+  1994-07-01:
+    value: 19634
+  1997-07-01:
+    value: 20007
+  1998-07-01:
+    value: 20227
+  1999-07-01:
+    value: 20348
+  2000-07-01:
+    value: 20450
+  2001-07-01:
+    value: 3167.43
+  2002-07-01:
+    value: 3218.11
+  2003-07-01:
+    value: 3276.04
+  2007-07-01:
+    value: 4095.05
+  2021-07-24:
+    value: null
+metadata:
+  short_label: 4ème tranche (et début 5ème tranche)
+  label_en: Parameters for new home-buyers and students residences
+  ipp_csv_id: seuil_tr4_lo
+  unit: currency

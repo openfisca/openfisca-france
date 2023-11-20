@@ -1,3 +1,41 @@
+description: Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
 metadata:
+  short_label: Paramètres d'accession
+  label_en: Parameters for new home-buyers and students residences
+  order:
+  - 1ere_tranche
+  - 2eme_tranche
+  - 3eme_tranche
+  - 4eme_tranche
+  - 5eme_tranche
   reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+    1972-07-01:
+      title: Décret 72-533 du 29/06/1972
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000499900
+    1986-01-01:
+      title: Décret 85-1354 du 17/12/1985 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000507924
+    1988-05-07:
+      title: Décret 88-569 du 04/05/1988 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000504346
+    1988-07-01:
+      title: Décret 88-1071 du 29/11/1988 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000312623
+    1992-07-01:
+      title: Décret 92-1015 du 23/06/1992 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000360891
+    2021-07-24:
+      title: Décret 2019-772 du 24/07/2019
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000038812320
+  official_journal_date:
+    1972-07-01: "1972-06-30"
+    1986-01-01: "1985-12-21"
+    1988-05-07: "1988-05-07"
+    1988-07-01: "1988-11-30"
+    1992-07-01: "1992-09-24"
+    2021-07-24: "2021-07-25"
+  notes:
+    1988-07-01:
+    - title: Création de la 5e tranche et ajout de valeurs de N avec 2, 3 et 4 enfants
+    2021-07-24:
+    - title: Abrogé.

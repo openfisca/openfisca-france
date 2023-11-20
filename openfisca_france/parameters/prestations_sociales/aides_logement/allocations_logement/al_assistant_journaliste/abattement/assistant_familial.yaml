@@ -1,7 +1,0 @@
-description: Montant des abattements spécifiques des allocations logement pour les assistants familiaux
-values:
-  2019-01-01:
-    value: 1195
-metadata:
-  short_label: Assistant familial
-  unit: currency
