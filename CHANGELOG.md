@@ -1,5 +1,14 @@
 # Changelog
 
+### 155.0.6 [2210](https://github.com/openfisca/openfisca-france/pull/2210)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/ressources`.
+* Détails :
+  - Déplace `parameters/prestations_sociales/aides_logement/ressources` vers  `parameters/prestations_sociales/aides_logement/allocations_logement/ressources`.
+
+
 ### 155.0.5 [2209](https://github.com/openfisca/openfisca-france/pull/2209)
 
 * Changement mineur.
@@ -8,6 +17,16 @@
  - `prestations/aides_logement.py`
 * Détails :
   - Retrait de paramètres redondants et utilisation des paramètres d'origine
+
+
+### 155.0.4 [2204](https://github.com/openfisca/openfisca-france/pull/2204)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+ - `prestations_sociales/aides_logement/reduction_loyer_solidarite/reduction_plafond_ressources`
+* Détails :
+  - Retire paramètres non utilisés
 
 
 ### 155.0.3 [2203](https://github.com/openfisca/openfisca-france/pull/2203)
