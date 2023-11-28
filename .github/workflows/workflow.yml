@@ -311,7 +311,6 @@ jobs:
       - name: Get version
         run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
       - name: Build and Upload to Conda
-      - name: Conda upload
         # This shell is made necessary by https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
         run: |
