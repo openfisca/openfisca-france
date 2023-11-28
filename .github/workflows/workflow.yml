@@ -296,8 +296,7 @@ jobs:
 
   publish-to-conda:
     runs-on: "ubuntu-20.04"
-    # needs: [ deploy ] ######################################"" PUT IT BACK !!!!!!!!!!!!
-    needs: [ build ]
+    needs: [ deploy ]
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
