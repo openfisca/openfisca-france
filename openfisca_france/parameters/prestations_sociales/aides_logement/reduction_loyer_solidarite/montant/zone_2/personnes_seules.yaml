@@ -13,7 +13,7 @@ values:
   2021-10-01:
     value: 46.21
   2022-01-01:
-    value: 44.60
+    value: 44.6
   2022-10-01:
     value: 42.7
   2023-01-01:
@@ -23,4 +23,3 @@ metadata:
   last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: rls_z2_personne_isolee
   unit: currency
-

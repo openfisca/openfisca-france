@@ -2,11 +2,6 @@ description: Seuils, Paramètres de calcul pour les accédants et les étudiants
 metadata:
   short_label: Seuils
   label_en: Parameters for new home-buyers and students residences
-  order:
-  - 1ere_tranche
-  - 2eme_tranche
-  - 3eme_tranche
-  - 4eme_tranche_et_debut_5eme_tranche
   reference:
     1972-07-01:
       title: Décret 72-533 du 29/06/1972
@@ -98,3 +93,8 @@ metadata:
     - title: "Ici, la revalorisation des barèmes entre en vigueur le 01/07/2001. Donc, du 01/07 au 31/12/2001 : ces montants sont en francs"
     2021-07-24:
     - title: Abrogé.
+  order:
+  - 1ere_tranche
+  - 2eme_tranche
+  - 3eme_tranche
+  - 4eme_tranche_et_debut_5eme_tranche

@@ -2,10 +2,6 @@ description: Plafonds de loyer (avant la réforme de 2001) des allocations logem
 metadata:
   short_label: Plafonds de loyer (avant 2001)
   label_en: Parameters for the rental sector (before the 2001 reform)
-  order:
-  - plafonds_de_loyer_en_zone_1
-  - plafonds_de_loyer_en_zone_2
-  - plafonds_de_loyer_en_zone_3
   reference:
     1994-07-01:
       title: Arrêté du 14/11/1994, art. 1 et 3
@@ -35,3 +31,7 @@ metadata:
   notes:
     2001-01-01:
     - title: Réforme de 2001 qui change le calcul de l'ALF pour les locataires
+  order:
+  - plafonds_de_loyer_en_zone_1
+  - plafonds_de_loyer_en_zone_2
+  - plafonds_de_loyer_en_zone_3

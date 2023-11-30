@@ -1,10 +1,6 @@
 description: Montant mensuel de la réduction de loyer de solidarité (RLS)
 metadata:
   short_label: Montant mensuel
-  order:
-  - zone_1
-  - zone_2
-  - zone_3
   reference:
     2018-01-01:
     - title: Décret n° 2018-136 du 27/02/2018, art. 1
@@ -47,3 +43,7 @@ metadata:
   notes:
     2018-01-01:
     - title: Création de la réduction de loyer de solidarité par la loi de finances pour 2018. Elle entre en vigueur le 01/02/2018.
+  order:
+  - zone_1
+  - zone_2
+  - zone_3

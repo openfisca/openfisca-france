@@ -2,12 +2,6 @@ description: Paramètres de calcul pour les accédants et les étudiants logés 
 metadata:
   short_label: Paramètres d'accession
   label_en: Parameters for new home-buyers and students residences
-  order:
-  - 1ere_tranche
-  - 2eme_tranche
-  - 3eme_tranche
-  - 4eme_tranche
-  - 5eme_tranche
   reference:
     1972-07-01:
       title: Décret 72-533 du 29/06/1972
@@ -38,3 +32,9 @@ metadata:
     - title: Création de la 5e tranche et ajout de valeurs de N avec 2, 3 et 4 enfants
     2021-07-24:
     - title: Abrogé.
+  order:
+  - 1ere_tranche
+  - 2eme_tranche
+  - 3eme_tranche
+  - 4eme_tranche
+  - 5eme_tranche
