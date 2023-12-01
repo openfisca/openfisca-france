@@ -1,5 +1,14 @@
 # Changelog
 
+### 155.0.7 [2212](https://github.com/openfisca/openfisca-france/pull/2212)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/autres/age_max_etudiant.yaml`.
+* Détails :
+  - Déplace `allocations_logement/autres/age_max_etudiant.yaml` vers `allocations_logement/al_etudiant/age_max.yaml`.
+
+
 ### 155.0.6 [2210](https://github.com/openfisca/openfisca-france/pull/2210)
 
 * Changement mineur.

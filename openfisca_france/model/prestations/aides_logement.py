@@ -903,7 +903,7 @@ class aide_logement_base_ressources(Variable):
     def formula_2021_01_01(famille, period, parameters):
         biactivite = famille('aide_logement_biactivite', period)
         parametres_ressources = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources
-        age_etudiant_max = parameters(period).prestations_sociales.aides_logement.allocations_logement.autres.age_max_etudiant
+        age_etudiant_max = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_etudiant.age_max
         base_ressources_i = famille.members('aide_logement_base_ressources_individu', period)
 
         base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
