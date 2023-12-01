@@ -2,14 +2,6 @@ description: Taux fonction de la taille de la famille « TF » pris en compte da
 metadata:
   short_label: Taux « TF » en métropole
   label_en: Parameters for the rental sector (after the 2001 reform)
-  order:
-  - personnes_isolees
-  - couples_sans_enfant
-  - personnes_seules_couples_avec_1_enfant
-  - personnes_seules_couples_avec_2_enfants
-  - personnes_seules_couples_avec_3_enfants
-  - personnes_seules_couples_avec_4_enfants
-  - variation_tf_par_enfant_supplementaire
   reference:
     2001-01-01:
     - title: Décret 2000-1269, art. 2 du 26/12/2000 (crée art. D542-5-2 du CSS)
@@ -32,3 +24,11 @@ metadata:
     - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
     2002-01-01:
     - title: Changement de la participation minimale forfaitaire (composante de Po)
+  order:
+  - personnes_isolees
+  - couples_sans_enfant
+  - personnes_seules_couples_avec_1_enfant
+  - personnes_seules_couples_avec_2_enfants
+  - personnes_seules_couples_avec_3_enfants
+  - personnes_seules_couples_avec_4_enfants
+  - variation_tf_par_enfant_supplementaire

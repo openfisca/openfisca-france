@@ -2,13 +2,6 @@ description: Plafonds de loyers en zone 1 pris en compte dans le calcul des allo
 metadata:
   short_label: Zone 1
   label_en: Parameters for the rental sector (after the 2001 reform)
-  order:
-  - personnes_seules
-  - couples
-  - un_enfant
-  - majoration_par_enf_supp
-  - degressivite
-  - suppression
   reference:
     2001-01-01:
     - title: Décret 2000-1269, art. 2 du 26/12/2000 (crée art. D542-5-2 du CSS)
@@ -67,15 +60,15 @@ metadata:
       title: Arrêté du 27/09/2019, art.13.
       href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039160329/
     2020-10-01:
-      - title: Arrêté du 25/09/2020, art. 1
-        href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042376745
-      - title: Arrêté du 27/09/2019, art. 7
-        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042378448/2021-01-02
+    - title: Arrêté du 25/09/2020, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042376745
+    - title: Arrêté du 27/09/2019, art. 7
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042378448/2021-01-02
     2021-10-01:
-      - title: Arrêté du 23/09/2021, art. 1
-        href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044126838
-      - title: Arrêté du 27/09/2019, art. 7
-        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137432/2021-10-01/#LEGIARTI000044137432
+    - title: Arrêté du 23/09/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044126838
+    - title: Arrêté du 27/09/2019, art. 7
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137432/2021-10-01/#LEGIARTI000044137432
     2022-07-01:
       title: Arrêté du 27/09/2019, art. 7
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206217/2022-07-01
@@ -128,3 +121,10 @@ metadata:
     - title: Idem en 2017
     2017-10-01:
     - title: Actualisation paramètres + baisse de 5 euros des aides au logement
+  order:
+  - personnes_seules
+  - couples
+  - un_enfant
+  - majoration_par_enf_supp
+  - degressivite
+  - suppression

@@ -2,16 +2,6 @@ description: Abattement forfaitaire « R0 » appliqué aux ressources du ménage
 metadata:
   short_label: Abattement forfaitaire « R0 »
   label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
-  order:
-  - taux_seul
-  - taux_couple
-  - taux1pac
-  - taux2pac
-  - taux3pac
-  - taux4pac
-  - taux5pac
-  - taux6pac
-  - taux_pac_supp
   reference:
     2015-01-01:
       title: Arrêté du 29/12/2014 fixant les montants du paramètre R0 pour le calcul des aides personnelles au logement, art. 2
@@ -44,6 +34,16 @@ metadata:
     2022-01-01: "2021-12-28"
     2023-01-01: "2022-12-29"
     2024-01-01: "2023-12-21"
+  order:
+  - taux_seul
+  - taux_couple
+  - taux1pac
+  - taux2pac
+  - taux3pac
+  - taux4pac
+  - taux5pac
+  - taux6pac
+  - taux_pac_supp
 documentation: |-
   À partir de 2015, le forfait R0 n'est plus calculé à partir de R1 et R2 mais directement défini en euros par la loi.
   Il est mentionné à l'article D823-17 du Code de la construction et de l'habitation. Également mentionné à l'article 2 ter de l'arrêté du 3 juillet 1978 - secteur locatif (après 2001)

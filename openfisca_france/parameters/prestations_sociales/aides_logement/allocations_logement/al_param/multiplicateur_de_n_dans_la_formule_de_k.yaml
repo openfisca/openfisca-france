@@ -38,8 +38,6 @@ values:
     value: 17136.73
   2007-07-01:
     value: 21420.91
-  # 2019-07-24:
-  #   value: null
 metadata:
   short_label: Multiplicateur de N dans la formule de K
   label_en: Parameters for new home-buyers and students residences

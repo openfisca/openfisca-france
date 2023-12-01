@@ -1,10 +1,6 @@
 description: Plafonds d'équivalence de loyer et de charges locatives pour les personnes résidant dans un logement-foyer conventionné
 metadata:
   short_label: Conventionné
-  order:
-  - zone_1
-  - zone_2
-  - zone_3
   reference:
     2017-10-01:
       title: Arrêté du 28/09/2017, art. 6
@@ -33,3 +29,7 @@ metadata:
     2021-10-01: "2021-09-30"
     2022-07-01: "2022-08-21"
     2023-10-01: "2023-09-27"
+  order:
+  - zone_1
+  - zone_2
+  - zone_3

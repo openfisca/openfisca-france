@@ -10,9 +10,6 @@ metadata:
   ipp_csv_id: n_4enf
   unit: /1
   reference:
-    1972-07-01:
-      title: Décret 72-533 du 29/06/1972
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000499900
     1988-05-07:
       title: Décret 88-569 du 04/05/1988 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000504346
@@ -23,7 +20,6 @@ metadata:
       title: Décret 2019-772 du 24/07/2019
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000038812320
   official_journal_date:
-    1972-07-01: "1972-06-30"
     1988-05-07: "1988-05-07"
     1988-07-01: "1988-11-30"
     2021-07-24: "2021-07-25"
