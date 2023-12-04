@@ -1,4 +1,5 @@
 description: Montant pour les parents isolés ou les femmes enceintes (en % de la base) du revenu de solidarité active (RSA)
+values:
   2009-06-01:
     value: 1.284
   2016-01-01:
