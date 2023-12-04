@@ -1,6 +1,5 @@
 from numpy import datetime64, logical_and as and_, logical_or as or_
 
-from openfisca_core import periods
 from openfisca_core.periods import Period
 
 from openfisca_france.model.base import *
