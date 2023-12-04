@@ -2,15 +2,6 @@ description: Allocation parent isolé (API)
 metadata:
   short_label: API
   documentation_start: true
-  reference:
-    2009-06-01:
-      title: Décret 2009-404 du 15/04/2009, art. 4 (abroge art. D524-1 du CSS)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522721&cidTexte=JORFTEXT000020521930
-  official_journal_date:
-    2009-06-01: "2009-04-16"
-  notes:
-    2009-06-01:
-    - title: Abrogation de l'API
   label_en: Single parent allowance (API)
   order:
   - api_cond
