@@ -4,3 +4,4 @@ metadata:
   label_en: "Active solidarity income (RSA): Basic amount"
   order:
   - montant_de_base_du_rsa
+  - pente

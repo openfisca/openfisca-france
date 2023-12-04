@@ -1,11 +1,11 @@
-description: RSA jeune (en heure), Conditions générales du Revenu de solidarité active (RSA)
+description: Condition d'heures d'activité exercée pour les jeunes (en heure) pour être éligile au revenu de solidarité active (RSA)
 values:
   2009-06-01:
     value: null
   2010-09-01:
     value: 3214
 metadata:
-  short_label: RSA jeune
+  short_label: Heures du RSA jeune
   last_value_still_valid_on: "2022-03-28"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: rsa_jeune_activite

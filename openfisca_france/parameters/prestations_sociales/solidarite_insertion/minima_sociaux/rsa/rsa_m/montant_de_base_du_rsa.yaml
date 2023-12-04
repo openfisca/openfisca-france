@@ -1,4 +1,4 @@
-description: Montant de base du Revenu de solidarité active (RSA) pour la métropole
+description: Montant de base du revenu de solidarité active (RSA) pour la métropole
 values:
   2009-06-01:
     value: 454.63
@@ -133,6 +133,8 @@ metadata:
     2019-04-01: "2019-05-03"
     2020-04-01: "2020-04-30"
     2021-04-01: "2021-04-30"
+    2022-04-01: "2022-04-27"
+    2022-07-01: "2022-08-17"
     2023-04-01: "2023-05-05"
   notes:
     2022-07-01:
