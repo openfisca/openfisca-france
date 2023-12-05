@@ -1,8 +1,8 @@
 # Changelog
 
-### 155.0.9 [2211](https://github.com/openfisca/openfisca-france/pull/22101)
+### 155.0.9 [2211](https://github.com/openfisca/openfisca-france/pull/2211)
 
-* Changement mineur.
+* Amélioration technique.
 * Périodes concernées : non applicable.
 * Zones impactées : `.github/workflows/workflow.yml`.
 * Détails :
