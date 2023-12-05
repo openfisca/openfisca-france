@@ -1,4 +1,4 @@
-description: Montant maximal de la bonification (en % de la base RSA) pour la Prime pour l'Activité (PPA)
+description: Montant maximal de la bonification (en % de la base RSA) pour la prime pour l'activité (PPA)
 values:
   2015-10-01:
     value: 0.12782
@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Montant maximal de la bonification (en % de la base RSA)
   last_value_still_valid_on: "2022-08-03"
-  label_en: "Active solidarity income - Activity premium (PA) : Amounts"
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
   ipp_csv_id: pa_bonification
   unit: /1
   reference:

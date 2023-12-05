@@ -4,11 +4,11 @@ values:
 metadata:
   short_label: Majoration par enfant à charge
   last_value_still_valid_on: "2022-08-03"
-  label_en: "Active solidarity income - Activity premium (PA) : Amounts"
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
   ipp_csv_id: pa_maj6
   unit: /1
   reference:
-    title: Majoration par enfant à charge (en % de la base RSA) de la Prime pour l'Activité (PA)
+    title: Majoration par enfant à charge (en % de la base RSA) de la Prime pour l'Activité (PPA)
   official_journal_date:
     2019-01-01: "2018-12-22"
   notes:

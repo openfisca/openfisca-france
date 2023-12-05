@@ -1,6 +1,6 @@
-description: Forfait logement de la Prime Pour l'Activité (PA ou PPA)
+description: Forfait logement de la prime pour l'activité (PPA)
 metadata:
   short_label: Forfait logement
-  label_en: "Activity prenium (PA) : accomodation allowance"
+  label_en: "Activity prenium (PPA) : accomodation allowance"
   order:
   - taux_forfait_logement

@@ -1,4 +1,4 @@
-description: Majoration des ressources sur les revenus d'activité (Pente) pour la Prime pour l'Activité (PPA)
+description: Majoration des ressources sur les revenus d'activité (Pente) pour la prime pour l'activité (PPA)
 values:
   2015-10-01:
     value: 0.62
@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Majoration des ressources sur les revenus d'activité
   last_value_still_valid_on: "2022-08-03"
-  label_en: "Active solidarity income - Activity premium (PA) : Amounts"
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
   ipp_csv_id: pa_maj_revenu
   unit: /1
   reference:

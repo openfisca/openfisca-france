@@ -4,11 +4,11 @@ values:
 metadata:
   short_label: Parents isolés / femmes enceintes
   last_value_still_valid_on: "2022-08-03"
-  label_en: "Active solidarity income - Activity premium (PA) : Amounts"
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
   ipp_csv_id: pa_maj5
   unit: /1
   reference:
-    title: Majoration pour les Parents isolés ou femmes enceintes (en % de la base RSA) de la Prime pour l'Activité (PA)
+    title: Majoration pour les Parents isolés ou femmes enceintes (en % de la base RSA) de la Prime pour l'Activité (PPA)
   official_journal_date:
     2019-01-01: "2018-12-22"
   notes:
