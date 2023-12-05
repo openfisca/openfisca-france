@@ -303,13 +303,32 @@ jobs:
           auto-update-conda: true
           python-version: "3.9.9"
           # Add conda-forge for OpenFisca-Core
-          channels: openfisca,conda-forge
+          channels: conda-forge
           activate-environment: true
       - name: Get source code
         uses: actions/checkout@v3
       - name: Get version
         run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
-      - name: Build and Upload to Conda
+      # Get the last commit hash on the PR (-2 : before the merge commit)
+      - uses: actions/github-script@v6
+        id: last_pr_commit
+        with:
+          script: |
+            const commits = ${{ toJSON(github.event.commits) }}
+            return commits.at(-2).id;
+          result-encoding: string
+      # Default Download artifact don't see artifact of other workflow
+      # So we use dawidd6/action-download-artifact@v2 to do it.
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow_conclusion: success
+          commit: ${{steps.last_pr_commit.outputs.result}}
+          name: conda-build-${{ env.PACKAGE_VERSION }}-${{steps.last_pr_commit.outputs.result}}
+          path: conda-build-tmp
+          if_no_artifact_found: fail
+      - name: Conda upload
         # This shell is made necessary by https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
         run: |
