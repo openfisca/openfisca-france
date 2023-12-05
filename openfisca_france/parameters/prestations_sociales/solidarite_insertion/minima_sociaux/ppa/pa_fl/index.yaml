@@ -4,3 +4,4 @@ metadata:
   label_en: "Activity prenium (PPA) : accomodation allowance"
   order:
   - taux_forfait_logement
+documentation: Il faut appliquer ces taux au montant du RSA en tenant compte de la composition du foyer
