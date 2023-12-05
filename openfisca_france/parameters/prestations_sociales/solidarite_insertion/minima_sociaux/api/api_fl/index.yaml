@@ -1,7 +1,7 @@
-description: Forfait logement de l'Allocation parent isolé (API)
+description: Forfait logement de l'allocation parent isolé (API)
 metadata:
   short_label: Forfait Logement
-  label_en: "Single parent allowance (API): General conditions"
+  label_en: "Single parent allowance (API): Accomodation allowance"
   order:
   - femmes_enceintes
   - couple_1_enfant

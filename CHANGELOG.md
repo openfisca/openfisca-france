@@ -1,5 +1,14 @@
 # Changelog
 
+### 155.0.8 [2213](https://github.com/openfisca/openfisca-france/pull/2213)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/`.
+* Détails :
+  - Nettoyage de description (casse) et de la documentation
+
+
 ### 155.0.7 [2212](https://github.com/openfisca/openfisca-france/pull/2212)
 
 * Changement mineur.

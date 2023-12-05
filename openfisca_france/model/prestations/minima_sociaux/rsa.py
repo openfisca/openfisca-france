@@ -1,6 +1,5 @@
 from numpy import datetime64, logical_and as and_, logical_or as or_
 
-from openfisca_core import periods
 from openfisca_core.periods import Period
 
 from openfisca_france.model.base import *
@@ -699,15 +698,13 @@ class rsa_eligibilite(Variable):
 
         etudiant_i = famille.members('etudiant', period)
 
-        if period.start < periods.period('2009-06').start:
-            # Les jeunes de moins de 25 ans ne sont pas éligibles au RMI
-            rsa_jeune_condition_i = False
-        else:
-            # Les jeunes de moins de 25 ans sont éligibles sous condition d'activité suffisante
-            # à partir de 2010 rendue ici par rsa.rsa_cond.rsa_jeune == 1
+        # Avant 2009-06, les jeunes de moins de 25 ans ne sont pas éligibles au RMI
+        rsa_jeune_condition_i = False
+        # Les jeunes de moins de 25 ans sont éligibles sous condition d'activité suffisante
+        # à partir de 2010
+        if period.start.date >= date(2010, 1, 1):
             rsa_jeune_condition_i = (
-                (rsa.rsa_cond.rsa_jeune == 1)
-                * (age_i > rsa.rsa_cond.age_min_rsa_jeune)
+                (age_i > rsa.rsa_cond.age_min_rsa_jeune)
                 * (age_i < rsa.rsa_cond.age_max_rsa_jeune)
                 * rsa_jeune_condition_heures_travail_remplie_i
                 )

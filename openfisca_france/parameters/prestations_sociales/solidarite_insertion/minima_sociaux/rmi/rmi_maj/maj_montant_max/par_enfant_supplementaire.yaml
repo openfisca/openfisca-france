@@ -1,4 +1,4 @@
-description: Majoration du montant maximal par enfant supplémentaire, 1 enfant (en % de la base) du Revenu minimum d'insertion (RMI)
+description: Majoration du montant maximal par enfant supplémentaire (en % de la base) du revenu minimum d'insertion (RMI)
 values:
   1988-12-14:
     value: 0.3
@@ -28,7 +28,3 @@ metadata:
     - title: Le décret 2004-1136, art. 4 abroge en 2004 le décret 88-1111 et crée l'art. R262-1 du CASF
     2009-06-01:
     - title: Création du RSA qui remplace le RMI
-documentation: |-
-  Notes :
-  (1) Quel que soit le type de ménage.
-   RMI entré en vigueur pour la première fois le 01/01/1989

@@ -1,4 +1,4 @@
-description: Limite d'âge des enfants comptés à charge pour l'Allocation parent isolé (API)
+description: Limite d'âge des enfants comptés à charge pour l'allocation parent isolé (API)
 values:
   1977-10-01:
     value: 20

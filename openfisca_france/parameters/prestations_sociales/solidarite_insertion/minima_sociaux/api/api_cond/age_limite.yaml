@@ -1,4 +1,4 @@
-description: Limite d'âge des enfants pour prolongation du droit à l'Allocation parent isolé (API)
+description: Limite d'âge des enfants pour prolongation du droit à l'allocation parent isolé (API)
 values:
   1976-10-01:
     value: 3
@@ -27,3 +27,4 @@ metadata:
     - title: API créée par la loi 76-617, en insérant un chapitre V-3 au CSS
     2009-06-01:
     - title: Abrogation de l'API
+
