@@ -327,6 +327,7 @@ jobs:
           commit: ${{steps.last_pr_commit.outputs.result}}
           name: conda-build-${{ env.PACKAGE_VERSION }}-${{steps.last_pr_commit.outputs.result}}
           path: conda-build-tmp
+          event: push  # to listen to commit events and avoid conflict with PR opening event
           if_no_artifact_found: fail
       - name: Conda upload
         # This shell is made necessary by https://github.com/conda-incubator/setup-miniconda/issues/128
@@ -334,4 +335,4 @@ jobs:
         run: |
           conda install anaconda-client
           conda info
-          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca ./conda-build-tmp/noarch/openfisca-france-*-py_0.tar.bz2 --force
+          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca ./conda-build-tmp/noarch/openfisca-france-*-py_0.tar.bz2

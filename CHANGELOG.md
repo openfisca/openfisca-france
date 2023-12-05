@@ -1,5 +1,15 @@
 # Changelog
 
+### 155.0.9 [2211](https://github.com/openfisca/openfisca-france/pull/2211)
+
+* Amélioration technique.
+* Périodes concernées : non applicable.
+* Zones impactées : `.github/workflows/workflow.yml`.
+* Détails :
+  - Améliore la récupération d'[artifacts](https://docs.github.com/fr/actions/using-workflows/storing-workflow-data-as-artifacts) en intégration continue pour le `build` de librairie conda
+  -  Permet de trouver le paquet même si le merge de la PR est fait sans avoir réalisé de commit après son ouverture.
+
+
 ### 155.0.8 [2213](https://github.com/openfisca/openfisca-france/pull/2213)
 
 * Changement mineur.
