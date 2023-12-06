@@ -1,5 +1,5 @@
+from openfisca_core.periods import Instant, Period
 from openfisca_france.model.base import *
-
 from numpy import round as round_, logical_or as or_, remainder as remainder_, datetime64
 
 
@@ -381,7 +381,11 @@ class ppa_forfait_logement(Variable):
         avantage_al = aide_logement > 0
 
         params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+        if period.start.date < date(2016, 1, 1):
+            instant = Instant((2016, 1, 1))
+            ppa = parameters(Period(('month', instant, 1))).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+        else:
+            ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
 
         # Le montant forfaitaire se calcule de la même manière que celle de la formule 'ppa_montant_forfaitaire_familial_non_majore',
         # sauf dans le cas où le foyer se compose de trois personnes ou plus, où le montant forfaitaire se calcule pour trois personnes seulement.
