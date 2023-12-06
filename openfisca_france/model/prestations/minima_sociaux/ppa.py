@@ -123,7 +123,11 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
 
     def formula(famille, period, parameters):
         nb_enfants = famille('rsa_nb_enfants', period)
-        ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+        if period.start.date < date(2016, 1, 1):
+            instant = Instant((2016, 1, 1))
+            ppa = parameters(Period(('month', instant, 1))).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+        else:
+            ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
 
         taux_majore = (
             ppa.pa_m.majoration_isolement.femmes_enceintes
