@@ -1,6 +1,6 @@
 description: Seuil de salaire (en multiple du smic horaire brut) pour bénéficier de la bonification maximale de la prime pour l'activité (PPA)
 values:
-  2015-10-01:
+  2016-01-01:
     value: 95
   2018-10-01:
     value: 120
@@ -10,7 +10,7 @@ metadata:
   label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
   ipp_csv_id: pa_seuil_max
   reference:
-    2015-10-01:
+    2016-01-01:
     - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
     - title: Article D843-1 du Code de la sécurité sociale
@@ -19,8 +19,8 @@ metadata:
       title: Décret 2018-1197 du 21/12/2018, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037846000
   official_journal_date:
-    2015-10-01: "2015-12-22"
-    2018-10-01: "2018-12-22"
+    2016-01-01: "2015-12-22"
+    2019-01-01: "2018-12-22"
   notes:
     2016-01-01:
     - title: Création de la prime d'activité.

@@ -1,6 +1,6 @@
 description: Taux de la majoration du montant maximal (en % de la base RSA) par personne supplémentaire (au-delà de la 1ère) de la prime pour l'activité (PPA)
 values:
-  2015-10-01:
+  2016-01-01:
     value: 0.3
 metadata:
   short_label: Majoration par personne supplémentaire (au-delà de la 1ère)
@@ -9,11 +9,11 @@ metadata:
   ipp_csv_id: pa_maj3
   unit: /1
   reference:
-    2015-10-01:
+    2016-01-01:
     - title: Article D843-1 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
     - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
   official_journal_date:
-    2015-10-01: "2015-12-22"
+    2016-01-01: "2015-12-22"
 

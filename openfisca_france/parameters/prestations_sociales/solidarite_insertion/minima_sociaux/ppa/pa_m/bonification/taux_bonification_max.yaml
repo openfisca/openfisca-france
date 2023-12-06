@@ -1,6 +1,6 @@
 description: Montant maximal de la bonification (en % de la base RSA) pour la prime pour l'activité (PPA)
 values:
-  2015-10-01:
+  2016-01-01:
     value: 0.12782
   2018-10-01:
     value: 0.29101
@@ -11,7 +11,7 @@ metadata:
   ipp_csv_id: pa_bonification
   unit: /1
   reference:
-    2015-10-01:
+    2016-01-01:
     - title: Article D843-1 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
     - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
@@ -20,8 +20,8 @@ metadata:
       title: Décret nº2018-1197 du 21/12/2018
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037846000
   official_journal_date:
-    2015-10-01: "2015-12-22"
-    2018-10-01: "2018-12-22"
+    2016-01-01: "2015-12-22"
+    2019-01-01: "2018-12-22"
   notes:
     2016-01-01:
     - title: Création de la prime d'activité.

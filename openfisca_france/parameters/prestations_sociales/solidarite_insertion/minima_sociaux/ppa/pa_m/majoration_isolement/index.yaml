@@ -1,7 +1,7 @@
 description: Majoration pour personnes isolées du montant de la prime pour l'activité (PPA)
 metadata:
-  short_label: Majoration isolement
-  label_en: "Activity prenium (PPA) : accomodation allowance"
+  short_label: Personnes isolées
+  label_en: "Activity prenium (PPA)"
   order:
   - femmes_enceintes
   - par_enfant_charge
