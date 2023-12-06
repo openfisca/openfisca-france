@@ -7,3 +7,19 @@ metadata:
   - montant_minimum
   - montant_minimal_apres_degressivite
   - montant_minimal_are_formation
+documentation: |-
+  Allocation égale au maximum entre un premier pourcentage du salaire journalier de référence, plus une partie fixe, ou un pourcentage plus élevé du salaire journalier de référence sans partie fixe
+  Montants fixes et allocation minimale réduits proportionnellement si salarié travaillait à temps partiel
+  Avant 1979
+  Salaire de référence pris seulement sur les 3 derniers mois d'activité, et divisé par 90 pour obtenir le salaire journalier de référence
+  Majoration de 15% du taux des allocations d'assurance s'applique pour les 3 premiers mois, revient donc à remplacer 35% par 40%. Après avenant de 1973, majoration de trois mois portée à 6 mois pour les 50-55 ans, 12mois pour 55-58ans, 24mois pour 58ans et plus.
+  Montant maximal en pourcentage du salaire de référence correspond au maximum des allocations d'assurance et d'aide publique cumulées
+  En 1968, montant minimum en Ancien Franc
+  En 1984: si affiliation entre 3-6 mois, montants minimum et maximum de l'alloc sont minorés de 25% et alloc = partie pptionnelle + partie fixe
+  En 1992: montant minimal après degressivité plus élevé pr plus de 52 ans, au chômage depuis plus d'un an, ayant été affilié depuis au moins 20 ans, justifiant d'une année continue ou deux années discontinues d'appartenance à une/plusieurs entreprises au cours des 5 dernières années
+  Seuil exoneration CSG/CRDS = (Smic horaire * 35)/7 approximativement
+  Sources:
+  - Légifrance, Site internet Assedic.fr unijuridis depuis 1994
+  - Document Revalorisations depuis avril 1978 du service juridique de l'Unedic et Historique du régime d'assurance chômage 1982-1986 (p. 138-139)
+  - Consultation des circulaires Unedic au service de documentation de l'Unedic.
+  - Barème social périodique
