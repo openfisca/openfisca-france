@@ -92,7 +92,12 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
         nb_parents = famille('nb_parents', period)
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)  # noqa F841
-        ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+
+        if period.start.date < date(2016, 1, 1):
+            instant = Instant((2016, 1, 1))
+            ppa = parameters(Period(('month', instant, 1))).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+        else:
+            ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
 
         nb_personnes = nb_parents + nb_enfants
 
