@@ -1,4 +1,4 @@
-description: Revalorisation du salaire de référence pour le calcul des allocations de préretraites FNE-ARPE pour les personnes au chômage
+description: Revalorisation du salaire de référence pour le calcul des allocations de préretraites FNE-ARPE
 values:
   1981-10-01:
     value: 0.0743
@@ -165,10 +165,3 @@ metadata:
       title: Circulaire 2009-16 du 09/07/2009 -décision du 26/06/2009
     2010-07-01:
       title: Circulaire 2010-10 - décision du 29/06/2010
-documentation: |-
-  Notes :
-  La revalorisation du salaire de référence (SR) des préretraites du FNE est
-  décidée par les pouvoirs publics et depuis 1987 la revalorisation est la même que pour les retraites
-  du régime général (voir les décrets 98-1024 du 12 novembre 1998 et 93-451 du 24 mars 1993).
-  Sources:
-  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe B.

@@ -1,21 +1,21 @@
-description: Plafond de ressources d'un couple pour l'allocation transitoire de solidarité (ATS) des allocations chômage pour les personnes en préretraite
+description: Montant journalier d'allocation transitoire de solidarité (ATS) des allocations chômage pour les personnes en préretraite
 values:
   2011-07-01:
-    value: 2289.42
+    value: 33.18
   2012-01-01:
-    value: 2328.06
+    value: 33.74
   2013-01-01:
-    value: 2368.77
+    value: 34.33
   2014-01-01:
-    value: 2399.82
+    value: 34.78
   2015-01-01:
-    value: 2421.21
+    value: 35.09
   2015-03-01:
     value: null
 metadata:
-  short_label: Plafond couple
-  label_en: Transitional solidarity allowance (ATS) (2011-2015)
-  ipp_csv_id: solid_plaf_couple
+  short_label: Montant journalier
+  label_en: Transitional solidarity allowance (ATS)
+  ipp_csv_id: solid_fixe
   unit: currency
   reference:
     2011-07-01:
@@ -42,8 +42,3 @@ metadata:
   notes:
     2015-03-01:
     - title: "L'ATS n'existe plus : au 01/03/2015, tous les demandeurs d'emploi justifiant des trimestres pour bénéficier d'une retraite à taux plein nés 1953 l'ont atteint au 1er mars 2015 (61 ans et 2 mois)."
-documentation: |-
-  Notes :
-  Remplace l'AER en juillet 2011.
-  Sources:
-  Légifrance

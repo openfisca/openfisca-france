@@ -1,4 +1,4 @@
-description: Montant mensuel de la Prime transitoire de solidarité (PTS) des allocations chômage pour les personnes en préretraite
+description: Montant mensuel de la prime transitoire de solidarité (PTS) pour les personnes en préretraite
 values:
   2015-06-01:
     value: 300
@@ -16,6 +16,6 @@ metadata:
     2015-06-01: "2015-07-16"
   notes:
     2015-06-01:
-    - title: Création de la Prime transitoire de solidarité
+    - title: Création de la prime transitoire de solidarité
     2018-01-01:
     - title: La prime transitoire de solidarité n'est plus attribuée depuis le 31 décembre 2017. Le bénéficiaire de la PTS (né en 1954 ou en 1955) la perçoit cependant jusqu'à la liquidation de sa retraite

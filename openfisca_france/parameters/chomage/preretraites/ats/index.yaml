@@ -1,8 +1,10 @@
-description: Allocation transitoire de solidarité (ATS) des allocations chômage pour les personnes en préretraite
+description: Allocation transitoire de solidarité (ATS)
 metadata:
   short_label: Allocation transitoire de solidarité (ATS)
   label_en: Transitional solidarity allowance (ATS) (2011-2015)
   order:
   - montant_journalier
-  - plafond_seul
-  - plafond_couple
+  - plafond_ressources
+documentation: |-
+  Remplace l'AER en juillet 2011.
+
