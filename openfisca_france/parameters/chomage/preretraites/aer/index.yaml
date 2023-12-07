@@ -1,5 +1,6 @@
 description: Allocation équivalent retraite (AER)
 metadata:
+  documentation_start: true
   short_label: AER
   label_en: Early retirement allowance (AER)
   reference:

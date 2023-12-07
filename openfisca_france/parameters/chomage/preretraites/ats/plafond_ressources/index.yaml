@@ -1,0 +1,5 @@
+description: Plafond de ressources
+metadata:
+  order:
+  - personne_seule
+  - couple

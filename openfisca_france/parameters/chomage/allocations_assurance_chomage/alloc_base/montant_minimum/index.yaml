@@ -4,4 +4,5 @@ metadata:
   label_en: UI scheme - lump-sum and minimum
   order:
   - 3_premiers_mois
-  - ensuite
+  - hors_mayotte
+  - mayotte

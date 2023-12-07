@@ -1,4 +1,4 @@
-description: Montant minimum après 3 mois de l'allocation de base d'assurance chômage
+description: Montant minimum journalier brut de l'allocation chômage (Hors Mayotte et plus de 3 mois) 
 values:
   1968-07-22:
     value: 7.1
@@ -128,8 +128,12 @@ values:
     value: 29.26
   2020-07-01:
     value: 29.38
+  2021-07-01:
+    value: 29.56
+  2022-07-01:
+    value: 30.42
 metadata:
-  short_label: Après 3 mois
+  short_label: Montant minimum journalier
   label_en: "UI scheme: lump-sum and minimum"
   ipp_csv_id: base_min_3_
   unit: currency
