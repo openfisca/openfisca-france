@@ -87,9 +87,8 @@ metadata:
     1982-04-01:
       title: Arrêté du 26/08/1982
     1983-04-01:
-      title: Arrêté du 01/07/1983
-    1983-10-01:
-      title: Arrêté du 27/12/1983
+      - title: Arrêté du 01/07/1983
+      - title: Arrêté du 27/12/1983
     1984-04-01:
       title: Décret 84-495 du 25/06/1984
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000337265&categorieLien=id
@@ -148,7 +147,8 @@ metadata:
     2001-01-01:
       title: Arrêté du 26/12/2000
     2003-01-01:
-      title: Arrêté du 31/12/2002
+      - title: Arrêté du 25/12/2002
+      - title: Arrêté du 31/12/2002
     2004-01-01:
       title: Arrêté du 23/12/2003
     2005-01-01:

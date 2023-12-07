@@ -170,10 +170,9 @@ metadata:
     - title: Décret 83-714 du 02/08/1983
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000310067
     - title: Arrêté du 28 mars 1984 portant agrément de la convention du 24-02-1984
-    1984-04-01:
-      title: Circulaire 84-12 -décision ASF du 18/04/1984
     1984-10-01:
-      title: Dir. 35-85 -décision ASF du 22/10/1984
+    - title: Circulaire 84-12 -décision ASF du 18/04/1984
+    - title: Dir. 35-85 -décision ASF du 22/10/1984
     1985-01-01:
       title: Dir. 35-85 -décision ASF du 21/12/1984
     1985-07-01:
