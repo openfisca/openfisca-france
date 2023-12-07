@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Foyer 3 pers.
   last_value_still_valid_on: "2022-01-10"
-  label_en: "Activity prenium (PPA) : accomodation allowance"
+  label_en: "Activity premium (PPA) : accomodation allowance"
   ipp_csv_id: pa_logt3
   unit: /1
   reference:
