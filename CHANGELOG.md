@@ -1,5 +1,14 @@
 # Changelog
 
+### 155.0.10 [2214](https://github.com/openfisca/openfisca-france/pull/2214)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa`.
+* Détails :
+  - Nettoyage des descriptions et des notes
+
+
 ### 155.0.9 [2211](https://github.com/openfisca/openfisca-france/pull/2211)
 
 * Amélioration technique.
