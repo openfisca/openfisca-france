@@ -1,5 +1,16 @@
 # Changelog
 
+### 155.0.11 [2216](https://github.com/openfisca/openfisca-france/pull/2216)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/chomage`.
+* Détails :
+  - Nettoyage des descriptions et des notes
+  - Renommage et consolidation de quelques chemins dont un seul est utilisé par openfisca-france :
+      `chomage.allocation_retour_emploi` en `chomage.allocations_assurance_chomage.alloc_base`
+
+
 ### 155.0.10 [2214](https://github.com/openfisca/openfisca-france/pull/2214)
 
 * Changement mineur.
