@@ -2,7 +2,7 @@ description: Seuil de salaire (en multiple du smic horaire brut) pour bénéfici
 values:
   2016-01-01:
     value: 95
-  2018-10-01:
+  2019-01-01:
     value: 120
 metadata:
   short_label: Seuil salaire bonification max
@@ -15,7 +15,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
     - title: Article D843-1 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
-    2018-10-01:
+    2019-01-01:
       title: Décret 2018-1197 du 21/12/2018, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037846000
   official_journal_date:

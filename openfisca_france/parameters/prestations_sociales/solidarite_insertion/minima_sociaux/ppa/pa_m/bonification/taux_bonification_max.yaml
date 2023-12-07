@@ -2,7 +2,7 @@ description: Montant maximal de la bonification (en % de la base RSA) pour la pr
 values:
   2016-01-01:
     value: 0.12782
-  2018-10-01:
+  2019-01-01:
     value: 0.29101
 metadata:
   short_label: Montant maximal de la bonification (en % de la base RSA)
@@ -16,7 +16,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
     - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
-    2018-10-01:
+    2019-01-01:
       title: Décret nº2018-1197 du 21/12/2018
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037846000
   official_journal_date:
