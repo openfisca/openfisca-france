@@ -1,4 +1,4 @@
-description: Montant minimum des garanties de ressources (1972-1999) des allocations chômage pour les personnes en préretraite
+description: Montant minimum de la garantie de ressources pour les personnes en préretraite
 values:
   1972-01-31:
     value: 21.05
@@ -114,7 +114,7 @@ values:
     value: null
 metadata:
   short_label: Montant minimum
-  label_en: Minimum income guarantee (1972-1999)
+  label_en: Minimum income guarantee
   ipp_csv_id: gr_min
   unit: currency
   reference:
@@ -170,10 +170,9 @@ metadata:
     - title: Décret 83-714 du 02/08/1983
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000310067
     - title: Arrêté du 28 mars 1984 portant agrément de la convention du 24-02-1984
-    1984-04-01:
-      title: Circulaire 84-12 -décision ASF du 18/04/1984
     1984-10-01:
-      title: Dir. 35-85 -décision ASF du 22/10/1984
+    - title: Circulaire 84-12 -décision ASF du 18/04/1984
+    - title: Dir. 35-85 -décision ASF du 22/10/1984
     1985-01-01:
       title: Dir. 35-85 -décision ASF du 21/12/1984
     1985-07-01:
@@ -221,18 +220,3 @@ metadata:
     - title: Suppression de la garantie de ressources sauf dans certains cas (principalement ceux qui en bénéficiaient avant la 01/01/1983 ou qui en ont fait la demande avant cette date)
     1999-01-01:
     - title: Les individus ayant cessé leur activité à 50 ans (sidérurgie) atteignent 65 ans en 1999 (d’où la disparition du régime à cette date)
-documentation: |-
-  Notes :
-  Allocation de ressources destinée aux plus de 60 ans, licenciés après leur 60ème anniversaire, justifiant de 15 ans d'affiliation au régime d'assurance chômage (10 ans depuis 1973), qui n'ont pas liquidé leur pension de retraite,
-  et qui bénéficient des allocations d'assurance chômage depuis un certain délai (6mois pour les personnées licenciées avant 61 ans, 3 mois entre 61 et 64 ans, sans délai après 64 ans, depuis l'avenant du 25/06/1973).
-  A partir du nouvel accord du 13 juin 1977, garantie de ressources étendue non plus seulement aux salariés de plus de 60 ans licenciés, mais aussi aux salariés de plus de 60 ans démissionnaires
-  A partir de la convention du 27/03/1979, garantie de ressources peut être étendue aux salariés licenciés après 55 ans qui ne sont plus en cours d'indemnisation mais qui justifient de 10 ans d'appartenance au régime d'assurance chômage,
-  selon décision d'une commission Assedic, et aux salariés pour motif économiques ne justifiant pas de 10 ans d'affiliation, pendant 1 an pour ceux qui ont été licenciés après 60 ans, et pendant un an moins le nombre de jours servis par
-   allocations d'assurance chômage pour ceux licenciés avant 60 ans.
-  La garantie de ressources correspond à 70% du SJR calculé sur les 3 derniers mois d'activité avant la rupture du contrat. A partir du 08/07/1983, la garantie de ressources est supprimée sauf pour ceux qui en bénéficiaient avant cette date.
-  Pour ceux qui ont commencé à en bénéficier en 1983, le taux de remplacement est désormais égal à 65% SJR sous le plafond de la Sécurité sociale, et à 50% SJR au-dessus.
-  Avant 1979, le montant minimal correspond à 115% du total de l'allocation d'aide publiqe et de l'allocation d'assurance minimale
-  Sources:
-  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe B.
-  Document Revalorisations depuis avril 1978 du service juridique de l'Unedic
-  Consultation des circulaires et des directives au service de documentation de l'Unedic

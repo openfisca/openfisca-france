@@ -1,4 +1,4 @@
-description: Revalorisation du salaire de référence pour le calcul des allocations de préretraites FNE-ARPE pour les personnes au chômage
+description: Revalorisation du salaire de référence pour le calcul des allocations de préretraites FNE-ARPE
 values:
   1981-10-01:
     value: 0.0743
@@ -87,9 +87,8 @@ metadata:
     1982-04-01:
       title: Arrêté du 26/08/1982
     1983-04-01:
-      title: Arrêté du 01/07/1983
-    1983-10-01:
-      title: Arrêté du 27/12/1983
+      - title: Arrêté du 01/07/1983
+      - title: Arrêté du 27/12/1983
     1984-04-01:
       title: Décret 84-495 du 25/06/1984
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000337265&categorieLien=id
@@ -97,8 +96,6 @@ metadata:
       title: Décret 84-523 du 28/06/1984
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699391&categorieLien=id
     1985-01-01:
-      title: Arrêté du 12/03/1985
-    1985-07-01:
       title: Arrêté du 12/03/1985
     1986-01-01:
       title: Arrêté du 15/01/1986
@@ -150,7 +147,8 @@ metadata:
     2001-01-01:
       title: Arrêté du 26/12/2000
     2003-01-01:
-      title: Arrêté du 31/12/2002
+      - title: Arrêté du 25/12/2002
+      - title: Arrêté du 31/12/2002
     2004-01-01:
       title: Arrêté du 23/12/2003
     2005-01-01:
@@ -165,10 +163,3 @@ metadata:
       title: Circulaire 2009-16 du 09/07/2009 -décision du 26/06/2009
     2010-07-01:
       title: Circulaire 2010-10 - décision du 29/06/2010
-documentation: |-
-  Notes :
-  La revalorisation du salaire de référence (SR) des préretraites du FNE est
-  décidée par les pouvoirs publics et depuis 1987 la revalorisation est la même que pour les retraites
-  du régime général (voir les décrets 98-1024 du 12 novembre 1998 et 93-451 du 24 mars 1993).
-  Sources:
-  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe B.

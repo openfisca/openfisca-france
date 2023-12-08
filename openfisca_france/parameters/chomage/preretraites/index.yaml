@@ -3,9 +3,9 @@ metadata:
   short_label: Préretraites
   label_en: Early retirement benefits
   order:
-  - alloc_transitoire_securite
-  - prime_transitoire_solidarite
-  - alloc_equivalent_retraite
-  - garanties_ressources
+  - ats
+  - pts
+  - aer
+  - garantie_ressources
   - sr_fne
   - fne_arpe
