@@ -1,7 +1,5 @@
 description: Plafond du crédit d'impôt pour frais de garde d'enfants
 values:
-  1977-01-01:
-    value: null
   1978-01-01:
     value: 3000
   1983-01-01:
@@ -45,10 +43,9 @@ metadata:
     - title: Déduction du revenu offerte aux foyers fiscaux dont les conjoints justifient d'un emploi à plein temps ou ne peuvent exercer leur emploi du fait d'une longue maladie ou d'une infirmité à partir de 1982.
     1988-01-01:
     - title: Création du dispositif pour l'imposition des revenus de 1988. Avant 1989, la réduction d'impôt était une déduction du revenu.
-    1992-01-01:
-    - title: Depuis l'imposition des revenus de 1992, la réduction d'impôt est réservée aux dépenses nécessitées par la garde des enfants à l'extérieur du domicile du contribuable.
-    2005-01-01:
-    - title: À partir de l'imposition des revenus de 2005, la réduction d'impot devient un crédit d'impot.
 documentation: |-
   Le plafond est exprimé par enfant : art. 200 quater B du CGI
   Le plafond est divisé par deux dans le cas d'un enfant en résidence alternée
+  Depuis l'imposition des revenus de 1992, la réduction d'impôt est réservée aux dépenses nécessitées par la garde des enfants à l'extérieur du domicile du contribuable.
+  À partir de l'imposition des revenus de 2005, la réduction d'impot devient un crédit d'impot.
+

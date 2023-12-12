@@ -41,9 +41,6 @@ metadata:
     2016-01-01: "2017-05-04"
     2017-01-01: "2017-12-31"
     2022-01-01: "2023-06-02"
-  notes:
-    1998-01-01:
-    - title: Création du régime microfoncier
 documentation: |-
   Ref : Article 69 I du CGI.
   Les seuils sont actualisés tous les trois ans dans la même proportion que l'évolution triennale de la limite supérieure de la première tranche du barème de l'impôt sur le revenu et sont arrondis, respectivement, à la centaine d'euros la plus proche et au millier d'euros le plus proche.
