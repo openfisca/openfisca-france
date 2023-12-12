@@ -1,5 +1,15 @@
 # Changelog
 
+### 155.0.12 [2219](https://github.com/openfisca/openfisca-france/pull/2219)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/taxe_indirecte/taxe_habitation`.
+* Détails :
+  - Déplace `parameters/taxe_indirecte/taxe_habitation` vers `parameters/taxe_habitation`.
+  - Corrige doublons, `null` en début de séries, description et documentation
+
+
 ### 155.0.11 [2216](https://github.com/openfisca/openfisca-france/pull/2216)
 
 * Changement mineur.
