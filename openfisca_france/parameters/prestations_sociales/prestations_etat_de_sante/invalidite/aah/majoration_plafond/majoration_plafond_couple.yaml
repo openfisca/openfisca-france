@@ -7,7 +7,7 @@ values:
   2019-11-01:
     value: 0.81
   2023-10-01:
-    value: Null
+    value: null
 metadata:
   short_label: Pour un demandeur en couple
   last_value_still_valid_on: "2023-01-16"
