@@ -10,11 +10,15 @@ class pass_sport(Variable):
     entity = Individu
 
     def formula_2022_06_30(individu, period):
-        boursier = individu('boursier', period)
 
         age = individu('age', period)
-        eligibilite_age = age <= 28
+
+        boursier = individu('boursier', period)
+        eligibilite_age_profil_boursier = age <= 28
+
+        ars = individu.famille('ars', period.this_year)
+        eligibilite_age_profil_ars = (age >= 6) * (age <= 17)
 
         montant = 50
 
-        return montant * boursier * eligibilite_age
+        return montant * ((boursier * eligibilite_age_profil_boursier) + (ars * eligibilite_age_profil_ars))

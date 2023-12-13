@@ -5,3 +5,12 @@
     age: [18, 18, 29]
   output:
     pass_sport: [0, 50,0]
+
+- name: Eligibilité Pour les bénéficiaire de l'ARS
+  period: 2023-12
+  input:
+    age: [6, 5, 18]
+    ars:
+      2023: [True, True, True]
+  output:
+    pass_sport: [50, 0, 0]
