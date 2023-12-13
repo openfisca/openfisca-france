@@ -14,3 +14,11 @@
       2023: [True, True, True]
   output:
     pass_sport: [50, 0, 0]
+
+- name: Eligibilité Pour les bénéficiaire de l'AEEH
+  period: 2023-12
+  input:
+    age: [6, 5, 20]
+    aeeh: [1, 1, 1]
+  output:
+    pass_sport: [50, 0, 0]
