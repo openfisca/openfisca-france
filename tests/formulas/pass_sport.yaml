@@ -1,0 +1,7 @@
+- name: Eligibilité Pour les étudiants boursier
+  period: 2023-12
+  input: 
+    boursier: [False, True, True]
+    age: [18, 18, 29]
+  output:
+    pass_sport: [0, 50,0]
