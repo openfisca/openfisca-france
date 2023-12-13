@@ -8,6 +8,10 @@ class pass_sport(Variable):
     reference = ['https://www.legifrance.gouv.fr/loda/id/LEGIARTI000046139655/2022-08-05#LEGIARTI000046139655',
                  'https://www.etudiant.gouv.fr/fr/le-pass-sport-et-les-etudiants-2800']
     entity = Individu
+    documentation = '''
+    Non modélisé (2023) :
+        -  Etre un étudiant âgé au plus de 28 ans révolus et bénéficier, au plus tard le 15 octobre 2022, d'une aide annuelle sous conditions de ressources, dans le cadre des formations sanitaires et sociales en application des articles L. 4151-8 et L. 4383-4 du code de la santé publique ou de l'article L. 451-3 du code de l'action sociale et des familles.
+    '''
 
     def formula_2022_06_30(individu, period):
 
