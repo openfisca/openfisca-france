@@ -158,8 +158,8 @@
         conjoint: parent2
   output:
     aah_base_ressources: [990.33, 0]
-    aah_base: [767.85, 971.37]
-    aah: [767.85, 971.37]   # montant maximum pour le 2ème individu en attendant l'actualisation du montant min((montant mensuel aah * 1.81 - base ressources), montant mensuel aah)
+    aah_base: [0, 971.37]
+    aah: [0, 971.37]   # montant maximum pour le 2ème individu en attendant l'actualisation du montant min((montant mensuel aah * 1.81 - base ressources), montant mensuel aah)
 
 - name: Couple de personnes en situation de handicap, juste avant déconjugalisation
   period: 2023-08
