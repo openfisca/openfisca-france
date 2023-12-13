@@ -7,7 +7,7 @@ values:
   2019-11-01:
     value: 0.81
   2023-10-01:
-    value: 0
+    value: Null
 metadata:
   short_label: Pour un demandeur en couple
   last_value_still_valid_on: "2023-01-16"
@@ -32,5 +32,5 @@ metadata:
     2023-10-01: "2022-12-29"
   Notes:
     2023-10-01:
-      title: "Déconjugalisation de l'AAH, sauf sur option. Nous ne la prenons pas en compte"
+      title: "Déconjugalisation de l'AAH, sauf sur option. Nous ne prenons pas en compte cette option"
 

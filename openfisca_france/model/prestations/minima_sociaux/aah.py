@@ -504,6 +504,18 @@ class aah_plafond_ressources(Variable):
             * af_nbenf
             )
 
+    def formula_2023_10_01(individu, period, parameters):
+        law = parameters(period).prestations_sociales
+
+        af_nbenf = individu.famille('af_nbenf', period)
+        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+
+        return montant_max * (
+            + 1
+            + law.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_par_enfant_supplementaire
+            * af_nbenf
+            )
+
 
 class aah_base(Variable):
     calculate_output = calculate_output_add
