@@ -19,16 +19,27 @@ class pass_sport(Variable):
 
         boursier = individu('boursier', period)
         eligibilite_age_profil_boursier = age <= 28
+        eligibilite_profil_boursier = boursier * eligibilite_age_profil_boursier
 
         ars = individu.famille('ars', period.this_year)
         eligibilite_age_profil_ars = (age >= 6) * (age <= 17)
+        eligibilite_profil_ars = ars * eligibilite_age_profil_ars
 
         aeeh = individu.famille('aeeh', period)
         eligibilite_age_profil_aeeh = (age >= 6) * (age <= 19)
+        eligibilite_profil_aeeh = aeeh * eligibilite_age_profil_aeeh
 
         aah = individu('aah', period)
         eligibilite_age_profil_aah = (age >= 16) * (age <= 30)
+        eligibilite_profil_aah = (aah * eligibilite_age_profil_aah)
 
         montant = 50
 
-        return montant * ((boursier * eligibilite_age_profil_boursier) + (ars * eligibilite_age_profil_ars) + (aeeh * eligibilite_age_profil_aeeh) + (aah * eligibilite_age_profil_aah))
+        eligibilite = (
+            eligibilite_profil_boursier
+            + eligibilite_profil_ars
+            + eligibilite_profil_aeeh
+            + eligibilite_profil_aah
+            )
+
+        return montant * eligibilite
