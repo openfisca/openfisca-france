@@ -1,5 +1,6 @@
 description: Autres alcools (rhum, bouilleurs de cru, etc.)
 metadata:
+  documentation_start: true
   label_en: Other alcohols (specific rhums, etc.)
   order:
   - rhum_dom
@@ -7,3 +8,4 @@ metadata:
   - bouilleurs_cru
   - quantites_ajoutees_preparation_vins
   - aperitifs_liqueurs_assimiles
+documentation: Données renseignées dans l'article 403 du code général des impôts.

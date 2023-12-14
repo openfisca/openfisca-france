@@ -1,4 +1,4 @@
-description: Cotisation sécurité sociale sur les boissons alcooliques (€ par décilitre)
+description: Cotisation de sécurité sociale sur les boissons alcooliques (€ par décilitre)
 values:
   1983-04-01:
     value: 1
@@ -27,4 +27,3 @@ metadata:
     1983-04-01: "1983-01-20"
     2008-12-19: "2008-12-18"
     2011-12-23: "2011-12-22"
-documentation: Données renseignées dans l''article L245-9 du code de la sécurité sociale'
