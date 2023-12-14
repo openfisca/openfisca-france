@@ -1,5 +1,6 @@
-description: TICPE - produits énergétiques
+description: Taxe intérieure de consommation sur les produits énergétiques (TICPE)
 metadata:
+  short_label: TICPE
   documentation_start: true
   label_en: TICPE - Energy products
   order:
