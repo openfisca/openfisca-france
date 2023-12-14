@@ -1,0 +1,7 @@
+description: Montant du Pass'Sport
+values:
+  2022-06-30:
+    value: 50
+metadata:
+  short_label: Montant
+  unit: currency

@@ -13,27 +13,35 @@ class pass_sport(Variable):
         -  Etre un étudiant âgé au plus de 28 ans révolus et bénéficier, au plus tard le 15 octobre 2022, d'une aide annuelle sous conditions de ressources, dans le cadre des formations sanitaires et sociales en application des articles L. 4151-8 et L. 4383-4 du code de la santé publique ou de l'article L. 451-3 du code de l'action sociale et des familles.
     '''
 
-    def formula_2022_06_30(individu, period):
+    def formula_2022_06_30(individu, period, parameters):
+        parametres = parameters(period).prestations_sociales.education.pass_sport
 
         age = individu('age', period)
 
         boursier = individu('boursier', period)
-        eligibilite_age_profil_boursier = age <= 28
+        age_maximum_profil_boursier = parametres.critere_age.age_maximum_profil_boursier
+        eligibilite_age_profil_boursier = age <= age_maximum_profil_boursier
         eligibilite_profil_boursier = boursier * eligibilite_age_profil_boursier
 
         ars = individu.famille('ars', period.this_year)
-        eligibilite_age_profil_ars = (age >= 6) * (age <= 17)
+        age_maximum_profil_ars = parametres.critere_age.age_maximum_profil_ars
+        age_minimum_profil_ars = parametres.critere_age.age_minimum_profil_ars
+        eligibilite_age_profil_ars = (age >= age_minimum_profil_ars) * (age <= age_maximum_profil_ars)
         eligibilite_profil_ars = ars * eligibilite_age_profil_ars
 
         aeeh = individu.famille('aeeh', period)
-        eligibilite_age_profil_aeeh = (age >= 6) * (age <= 19)
+        age_maximum_profil_aeeh = parametres.critere_age.age_maximum_profil_aeeh
+        age_minimum_profil_aeeh = parametres.critere_age.age_minimum_profil_aeeh
+        eligibilite_age_profil_aeeh = (age >= age_minimum_profil_aeeh) * (age <= age_maximum_profil_aeeh)
         eligibilite_profil_aeeh = aeeh * eligibilite_age_profil_aeeh
 
         aah = individu('aah', period)
-        eligibilite_age_profil_aah = (age >= 16) * (age <= 30)
+        age_maximum_profil_aah = parametres.critere_age.age_maximum_profil_aah
+        age_minimum_profil_aah = parametres.critere_age.age_minimum_profil_aah
+        eligibilite_age_profil_aah = (age >= age_minimum_profil_aah) * (age <= age_maximum_profil_aah)
         eligibilite_profil_aah = (aah * eligibilite_age_profil_aah)
 
-        montant = 50
+        montant = parametres.montant
 
         eligibilite = (
             eligibilite_profil_boursier
