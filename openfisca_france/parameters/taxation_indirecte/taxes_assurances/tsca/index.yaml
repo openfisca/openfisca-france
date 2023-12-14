@@ -1,5 +1,6 @@
 description: Taxe spéciale sur les conventions d'assurance (TSCA)
 metadata:
+  documentation_start: true
   label_en: Taxes on insurance contracts
   order:
   - assurances_incendie_particuliers
@@ -19,3 +20,8 @@ metadata:
   - assurance_vehicules_terrestres_moteur_lourds
   - assurances_vehicules_terrestres_moteur
   - autres_assurances
+documentation: |-
+  Déductions pour les véhicules de plus de 3,5 tonnes
+  Les assurances dépendance sont exonérées de la TSCA
+  NB : données renseignées dans l'article 1001 du code général des impôts, et L137-6 du code de la sécurité sociale.
+

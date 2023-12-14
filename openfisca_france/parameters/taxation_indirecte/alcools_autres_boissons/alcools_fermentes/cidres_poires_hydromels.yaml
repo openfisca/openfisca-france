@@ -1,4 +1,4 @@
-description: Alcools fermentés - Cidres / Poirés / Hydromels (€/hl)
+description: Taxe sur les cidres, poirés et hydromels (€/hl)
 values:
   1982-01-01:
     value: 7.6
@@ -27,6 +27,7 @@ values:
   2021-01-01:
     value: 1.37
 metadata:
+  short_label: Cidres, poirés et hydromels
   ipp_csv_id: taxe_cidre_poire_hydromel
   unit: currency
   reference:
@@ -70,4 +71,3 @@ metadata:
     2014-05-30: "2014-05-29"
     2015-06-06: "2015-06-05"
     2017-01-01: "2016-12-31"
-documentation: Données renseignées dans l''article 438 du code général des impôts'

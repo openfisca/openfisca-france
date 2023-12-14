@@ -1,4 +1,4 @@
-description: TGAP carburants (2005 - ) pour le Gazole B30
+description: TGAP carburants pour le gazole B30
 values:
   2005-01-01:
     value: 0.012
@@ -54,4 +54,3 @@ metadata:
     2010-01-01: "2005-12-31"
     2014-01-01: "2013-12-30"
     2019-01-01: "2018-12-30"
-documentation: Données renseignées dans l''article 266 quindecies du code des douanes'

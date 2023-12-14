@@ -1,5 +1,14 @@
 # Changelog
 
+## 155.0.13 [2220](https://github.com/openfisca/openfisca-france/pull/2220)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/taxation_indirecte`.
+* Détails :
+  - Nettoyage des descriptions et des documentations (notamment doublons)
+
+
 ### 155.0.12 [2219](https://github.com/openfisca/openfisca-france/pull/2219)
 
 * Changement mineur.
