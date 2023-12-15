@@ -4,6 +4,8 @@ values:
     value: 846
   2019-01-01:
     value: 854
+  2024-01-01:
+    value: 895
 metadata:
   short_label: Bénéficiaire isolé
   last_value_still_valid_on: "2023-05-24"
