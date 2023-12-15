@@ -20,6 +20,8 @@ values:
     value: 45.66
   2023-10-01:
     value: 48.22
+  2024-01-01:
+    value: 48.45
 metadata:
   short_label: Bénéficiaire isolé
   last_value_still_valid_on: "2023-05-24"
