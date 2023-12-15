@@ -10,6 +10,8 @@ values:
     value: 1500
   2022-08-01:
     value: 1600
+  2024-01-01:
+    value: 1700
 metadata:
   short_label: Minoration du forfait de ressources pour les étudiants en location titulaires d'une bourse d'enseignement supérieur non-assujettie à l'impôt sur le revenu
   last_value_still_valid_on: "2023-02-20"
