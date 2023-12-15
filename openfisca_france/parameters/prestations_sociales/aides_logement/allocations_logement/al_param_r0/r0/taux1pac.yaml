@@ -12,6 +12,8 @@ values:
     value: 8002.0
   2023-01-01:
     value: 8456
+  2024-01-01:
+    value: 8862
 metadata:
   short_label: Personne seule ou couple ayant une personne à charge
   last_value_still_valid_on: "2023-02-22"

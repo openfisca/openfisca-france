@@ -12,6 +12,8 @@ values:
     value: 6709.0
   2023-01-01:
     value: 7090
+  2024-01-01:
+    value: 7430
 metadata:
   short_label: Couple sans personne à charge
   last_value_still_valid_on: "2023-02-22"

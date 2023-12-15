@@ -12,6 +12,8 @@ values:
     value: 8495.0
   2023-01-01:
     value: 8977
+  2024-01-01:
+    value: 9408
 metadata:
   short_label: Personne seule ou couple ayant trois personnes à charge
   last_value_still_valid_on: "2023-02-22"
