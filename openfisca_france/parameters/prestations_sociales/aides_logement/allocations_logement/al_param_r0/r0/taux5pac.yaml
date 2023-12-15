@@ -12,6 +12,8 @@ values:
     value: 9124.0
   2023-01-01:
     value: 9642
+  2024-01-01:
+    value: 10105
 metadata:
   short_label: Personne seule ou couple ayant cinq personnes à charge
   last_value_still_valid_on: "2023-02-22"
