@@ -1,11 +1,11 @@
-description: Prélèvement libératoire sur les Bons ou contrats de capitalisation et placements de même nature (assurance-vie), souscrits entre le 1/1/83 et le 31/12/89, durée de 6 ans et plus, produits acquis après le 01/01/1998 avec abattement IR, lors du dénouement du contrat (1983-2017)
+description: Prélèvement libératoire sur les bons ou contrats de capitalisation et placements de même nature (assurance-vie), souscrits entre le 1/1/83 et le 31/12/89, durée de 6 ans et plus, produits acquis après le 01/01/1998 avec abattement IR, lors du dénouement du contrat
 values:
   1998-01-01:
     value: 0.075
 metadata:
   short_label: Durée de 6+ ans et produits après 1998
   last_value_still_valid_on: "2022-02-16"
-  label_en: Levy in discharge on life insurance (1983 - 2017)
+  label_en: Levy in discharge on life insurance
   ipp_csv_id: tx_pl_av_6b
   unit: /1
   reference:
@@ -19,11 +19,4 @@ metadata:
   notes:
     1998-01-01:
     - title: Les bons ou contrats principalement investis en actions sont exonérés d'IR après huit ans.
-documentation: |-
-  Notes :
-  (1) Cas des primes versées avant le 01/01/1998.
-  (2) Cas des produits acquis après le 01/01/1998. Ces produits sont soumis à un abattement d'un montant forfaitaire à partir du 01/01/1998 (cf. art. 125-0 A du CGI).
-  (3) Etats "non-coopératifs" définis à l'article 238-0 A du CGI.
-  (4) Cas des primes versées avant le 01/01/1998 et les produits afférents acquis après cette date.
-  Référence :
-  Article 125-0 A du CGI régit le prélèvement sur les produits des bons ou contrats de capitalisation.
+documentation: Cas des produits acquis après le 01/01/1998. Ces produits sont soumis à un abattement d'un montant forfaitaire à partir du 01/01/1998 (cf. art. 125-0 A du CGI).

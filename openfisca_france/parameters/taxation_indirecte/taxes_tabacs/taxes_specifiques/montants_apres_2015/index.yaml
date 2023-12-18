@@ -1,8 +1,11 @@
-description: Montants spécifiques de taxes sur le tabac
+description: Montants spécifiques de la taxe sur les tabacs
 metadata:
-  label_en: Tobacco specific rates
+  label_en: Tobacco specific amounts
   order:
   - cigarettes
   - cigares
   - tabac_rouler
   - autres_tabacs
+  - autres_tabacs_a_chauffer
+  - autres_tabacs_a_fumer_apres_chauffer
+  - tabacs_batonnets

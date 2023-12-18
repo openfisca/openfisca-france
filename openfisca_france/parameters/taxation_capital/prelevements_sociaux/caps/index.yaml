@@ -1,7 +1,12 @@
 description: Contributions additionnelles au prélèvement social (CAPS) sur les revenus du capital
 metadata:
+  short_label: CAPS sur les revenus du capital
+  documentation_start: true
   label_en: Other social levies on financial income
   order:
   - revenus_du_patrimoine
   - produits_de_placement
   - rsa
+documentation: |-
+  - Les contributions additionnelles au prélèvement social (CAPS) sur les revenus du patrimoine et sur les produits de placement sont codifées à l'article L14-10-4 du Code de l'action sociale et des familles.
+  - La contribution RSA est référencée à l'article L262-24 du Code de l'action sociale et des familles.

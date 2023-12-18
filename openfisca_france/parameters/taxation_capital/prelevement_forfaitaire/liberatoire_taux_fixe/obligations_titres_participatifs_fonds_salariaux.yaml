@@ -1,4 +1,4 @@
-description: Prélèvements libératoires sur les revenus des valeurs mobilières, Obligations, titres participatifs, fonds salariaux (1965-2017)
+description: Prélèvements libératoires sur les revenus des valeurs mobilières, Obligations, titres participatifs, fonds salariaux
 values:
   1965-01-01:
     value: 0.25
@@ -28,9 +28,6 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006321732&cidTexte=JORFTEXT000000612133
     2008-01-01:
       title: Loi 2007-1822 du 24/12/2007, art. 10 et 12 (LF pour 2008)
-    2010-03-01:
-      title: Loi 2009-1674 du 30/12/2009, art. 22
-      href: https://www.legifrance.gouv.fr/eli/loi/2009/12/30/2009-1674/jo/article_22
     2011-01-01:
       title: Loi 2010-1657 du 29/12/2010, art. 6 (LF pour 2011)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023347467&cidTexte=JORFTEXT000023314376
@@ -41,7 +38,6 @@ metadata:
     1990-06-15: "1989-12-30"
     2004-01-01: "2003-12-31"
     2008-01-01: "2007-12-27"
-    2010-03-01: "2009-12-31"
     2011-01-01: "2010-12-30"
     2012-01-01: "2011-12-29"
   notes:
@@ -53,7 +49,3 @@ metadata:
     - title: Création du prélèvement libératoire sur les placements à revenus variables, notamment sur les dividendes (crée art. 117 quater du CGI)
     2012-01-01:
     - title: La modification du taux appliqué aux revenus du PEP reste théorique puisque tous les PEP ont plus de huit ans.
-documentation: |-
-  Notes :
-  Etat "non-coopératif" : défini à l'article 238-0 A du CGI
-  Références du Code général des impôts : l'article 125 A du CGI régit le prélèvement sur les produits de placements à revenu fixe tandis que l'article 117 quater régit le prélèvement sur les dividendes.
