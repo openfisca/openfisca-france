@@ -1,5 +1,14 @@
 # Changelog
 
+## 155.1.1 [2223](https://github.com/openfisca/openfisca-france/pull/2223)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/taxation_capital`.
+* Détails :
+  - Nettoyage des descriptions et de la documentation.
+  - Nettoyage des débuts de séries temporelles.
+
 ## 155.1.0 [2221](https://github.com/openfisca/openfisca-france/pull/2221)
 
 * Évolution du système socio-fiscal.
@@ -27,7 +36,6 @@
   - Déplace `parameters/taxe_indirecte/taxe_habitation` vers `parameters/taxe_habitation`.
   - Corrige doublons, `null` en début de séries, description et documentation
 
-
 ### 155.0.11 [2216](https://github.com/openfisca/openfisca-france/pull/2216)
 
 * Changement mineur.
@@ -38,7 +46,6 @@
   - Renommage et consolidation de quelques chemins dont un seul est utilisé par openfisca-france :
       `chomage.allocation_retour_emploi` en `chomage.allocations_assurance_chomage.alloc_base`
 
-
 ### 155.0.10 [2214](https://github.com/openfisca/openfisca-france/pull/2214)
 
 * Changement mineur.
@@ -46,7 +53,6 @@
 * Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa`.
 * Détails :
   - Nettoyage des descriptions et des notes
-
 
 ### 155.0.9 [2211](https://github.com/openfisca/openfisca-france/pull/2211)
 
@@ -57,7 +63,6 @@
   - Améliore la récupération d'[artifacts](https://docs.github.com/fr/actions/using-workflows/storing-workflow-data-as-artifacts) en intégration continue pour le `build` de librairie conda
   -  Permet de trouver le paquet même si le merge de la PR est fait sans avoir réalisé de commit après son ouverture.
 
-
 ### 155.0.8 [2213](https://github.com/openfisca/openfisca-france/pull/2213)
 
 * Changement mineur.
@@ -65,7 +70,6 @@
 * Zones impactées : `parameters/prestations_sociales/`.
 * Détails :
   - Nettoyage de description (casse) et de la documentation
-
 
 ### 155.0.7 [2212](https://github.com/openfisca/openfisca-france/pull/2212)
 
@@ -75,7 +79,6 @@
 * Détails :
   - Déplace `allocations_logement/autres/age_max_etudiant.yaml` vers `allocations_logement/al_etudiant/age_max.yaml`.
 
-
 ### 155.0.6 [2210](https://github.com/openfisca/openfisca-france/pull/2210)
 
 * Changement mineur.
@@ -83,7 +86,6 @@
 * Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/ressources`.
 * Détails :
   - Déplace `parameters/prestations_sociales/aides_logement/ressources` vers  `parameters/prestations_sociales/aides_logement/allocations_logement/ressources`.
-
 
 ### 155.0.5 [2209](https://github.com/openfisca/openfisca-france/pull/2209)
 
@@ -94,7 +96,6 @@
 * Détails :
   - Retrait de paramètres redondants et utilisation des paramètres d'origine
 
-
 ### 155.0.4 [2204](https://github.com/openfisca/openfisca-france/pull/2204)
 
 * Changement mineur.
@@ -104,7 +105,6 @@
 * Détails :
   - Retire paramètres non utilisés
 
-
 ### 155.0.3 [2203](https://github.com/openfisca/openfisca-france/pull/2203)
 
 *  Changement mineur.
@@ -112,7 +112,6 @@
 * Zones impactées : `prestations_sociales/aides_logement/allocations_logement/al_param_r0/rmi.yaml`.
 * Détails :
   - Retire paramètres non utilisés
-
 
 ### 155.0.2 [2202](https://github.com/openfisca/openfisca-france/pull/2202)
 
@@ -122,7 +121,6 @@
    -  `parameters/prestations_sociales/prestations_familiales`
 * Détails :
   - Retrait de paramètres inutilisés
-
 
 ### 155.0.1 [2184](https://github.com/openfisca/openfisca-france/pull/2184)
 
@@ -136,7 +134,6 @@
 * Détails :
   - Homogénéisation des intitulés, notes, documentation avec les Barèmes IPP
   - Ajout de références manquantes
-
 
 # 155.0.0 [2197](https://github.com/openfisca/openfisca-france/pull/2197)
 
@@ -159,7 +156,6 @@
   - Ajout de l'option imposition au barème des revenus éligibles au prélèvement forfaitaire unique
   - Changement de nom de la variable irrp en impot_revenu_restant_a_payer. Cette variable représente l'impôt à payer après les acomptes et le prélèvement forfaitaire libératoire
 
-
 ## 154.1.0 [2198](https://github.com/openfisca/openfisca-france/pull/2198)
 
 * Corrections/mises à jour.
@@ -171,14 +167,12 @@
   - Ajoute des end-date pour certains crédits d'impôt qui n'existent plus et donc les cases CERFA on été réutilisée depuis
   - Corrige la case cerfa de la variable `f8ti`
 
-
 ### 154.0.2 [2196](https://github.com/openfisca/openfisca-france/pull/2196)
 
 * Changement mineur.
 * Zones impactées : openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/ et openfisca_france/parameters/impot_revenu/credits_impots/plaf_nich/.
 * Détails :
   - Ajout du champ `last_value_still_valid_on` et de références.
-
 
 ### 154.0.1 [2194](https://github.com/openfisca/openfisca-france/pull/2194)
 
@@ -204,7 +198,6 @@
 * Zones impactées : `parameters/impot_revenu/calcul_revenus_imposables/rpns/cga_taux2.yaml`.
 * Détails :
   - Le taux de pénalité associé à l'absence de CGA appliqué a évolué depuis 2020, et devrait être supprimé en 2023
-
 
 ### 153.3.4 [2191](https://github.com/openfisca/openfisca-france/pull/2191)
 
@@ -610,7 +603,6 @@ Le calcul se fait sur une période annuelle mais là formule actuelle effectue l
 * Détails :
   - Corrige double positionnement de cncn_info dans le calcul de l'impôt
   - Rajoute les plus-values de vente d'entreprise liée à un départ à la retraite dans cotisations
-
 
 ## 149.4.0 [#2141](https://github.com/openfisca/openfisca-france/pull/2141)
 
