@@ -317,8 +317,8 @@ class csg_glo_assimile_salaire_ir_et_ps(Variable):
 
     def formula(individu, period, parameters):
         f1tt = individu('f1tt', period)
-        P = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = P.imposable.taux + P.deductible.taux
+        csg_activite = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
+        taux = csg_activite.imposable.taux + csg_activite.deductible.taux
         return - f1tt * taux
 
 
@@ -391,13 +391,13 @@ class crds_revenus_capital(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
+        prelevements_sociaux = parameters(period).taxation_capital.prelevements_sociaux
 
         crds_glo_assimile_salaire_ir_et_ps_i = foyer_fiscal.members('crds_glo_assimile_salaire_ir_et_ps', period)
         crds_glo_assimile_salaire_ir_et_ps = foyer_fiscal.sum(crds_glo_assimile_salaire_ir_et_ps_i)
 
         return (
-            - assiette_csg_revenus_capital * P.crds.produits_de_placement
+            - assiette_csg_revenus_capital * prelevements_sociaux.crds.produits_de_placement
             + crds_glo_assimile_salaire_ir_et_ps
             )
 
@@ -411,56 +411,52 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
+        prelevements_sociaux = parameters(period).taxation_capital.prelevements_sociaux
 
-        total = (
-            P.prelevement_social.produits_de_placement
-            + P.caps.produits_de_placement
-            + P.prelevements_solidarite.produits_de_placement
+        taux = (
+            prelevements_sociaux.prelevement_social.produits_de_placement
+            + prelevements_sociaux.caps.produits_de_placement
             )
 
         contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
 
-        return -assiette_csg_revenus_capital * total + contribution_salariale_glo_assimile_salaire
+        return -assiette_csg_revenus_capital * taux + contribution_salariale_glo_assimile_salaire
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
+        prelevements_sociaux = parameters(period).taxation_capital.prelevements_sociaux
 
-        total = (
-            P.prelevement_social.produits_de_placement
-            + P.caps.produits_de_placement
-            + P.prelevements_solidarite.produits_de_placement
-            + P.caps.rsa
+        taux = (
+            prelevements_sociaux.prelevement_social.produits_de_placement
+            + prelevements_sociaux.caps.produits_de_placement
+            + prelevements_sociaux.caps.rsa
             )
 
         contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
 
-        return -assiette_csg_revenus_capital * total + contribution_salariale_glo_assimile_salaire
+        return -assiette_csg_revenus_capital * taux + contribution_salariale_glo_assimile_salaire
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
+        prelevements_sociaux = parameters(period).taxation_capital.prelevements_sociaux
 
-        total = (
-            P.prelevement_social.produits_de_placement
-            + P.caps.produits_de_placement
-            + P.prelevements_solidarite.produits_de_placement
+        taux = (
+            prelevements_sociaux.prelevement_social.produits_de_placement
+            + prelevements_sociaux.caps.produits_de_placement
+            + prelevements_sociaux.prelevements_solidarite.produits_de_placement
             )
 
         contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
 
-        return -assiette_csg_revenus_capital * total + contribution_salariale_glo_assimile_salaire
+        return -assiette_csg_revenus_capital * taux + contribution_salariale_glo_assimile_salaire
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
-
-        total = P.prelevements_solidarite.produits_de_placement
+        taux = parameters(period).taxation_capital.prelevements_sociaux.prelevements_solidarite.produits_de_placement
 
         contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
 
-        return -assiette_csg_revenus_capital * total + contribution_salariale_glo_assimile_salaire
+        return -assiette_csg_revenus_capital * taux + contribution_salariale_glo_assimile_salaire
 
 
 class prelevements_sociaux_revenus_capital(Variable):
