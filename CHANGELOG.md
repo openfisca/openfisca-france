@@ -1,13 +1,22 @@
 # Changelog
 
-## 155.0.13 [2220](https://github.com/openfisca/openfisca-france/pull/2220)
+## 155.1.0 [2221](https://github.com/openfisca/openfisca-france/pull/2221)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 2022/08/02.
+* Zones impactées :
+    - `openfisca_france/model/prestations/jeunes/pass_sport.py`
+    - `openfisca_france/parameters/prestations_sociales/education/pass_sport/*`
+* Détails :
+  - Ajoute le dispositif du Pass'Sport, dispositif de réduction des frais d'inscription à un club sportif.
+
+### 155.0.13 [2220](https://github.com/openfisca/openfisca-france/pull/2220)
 
 * Changement mineur.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/taxation_indirecte`.
 * Détails :
   - Nettoyage des descriptions et des documentations (notamment doublons)
-
 
 ### 155.0.12 [2219](https://github.com/openfisca/openfisca-france/pull/2219)
 
