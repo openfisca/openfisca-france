@@ -5,6 +5,7 @@ values:
   2013-01-01:
     value: 0.05
 metadata:
+  short_label: Cigares
   ipp_csv_id: tx_spec_cigares
   unit: /1
   reference:

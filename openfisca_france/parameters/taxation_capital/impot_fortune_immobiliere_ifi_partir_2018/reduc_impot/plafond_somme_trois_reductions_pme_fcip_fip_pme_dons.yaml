@@ -1,4 +1,4 @@
-description: Plafond pour la somme des trois réductions (PME, FCPI/FIP sur PME et dons) de l'Impôt sur la fortune immobilière
+description: Plafond pour la somme des trois réductions (PME, FCPI/FIP sur PME et dons) de l'impôt sur la fortune immobilière
 values:
   2018-01-01:
     value: 45000

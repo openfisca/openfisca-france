@@ -1,7 +1,5 @@
 description: Taux de la contribution additionnelle au prélèvement social (CAPS) sur les revenus du patrimoine
 values:
-  1945-01-01:
-    value: 0
   2003-01-01:
     value: 0.0015
   2004-07-01:
@@ -28,6 +26,4 @@ metadata:
   notes:
     2018-01-01:
     - title: Création d'un prélèvement de solidarité directement affecté au budget de l'Etat. Il s'applique aux revenus du patrimoine réalisés à partir de 2018, sauf pour les revenus faisant l'objet du nouveau prélèvement à la source, qui sont concernés à partir de ceux réalisés en 2019 (cf. revenus évoqués dans l'art. L136-6-1 du CSS). Cf. XIV art. 26 loi 2018-1203
-documentation: |-
-  - Les contributions additionnelles au prélèvement social (CAPS) sur les revenus du patrimoine et sur les produits de placement sont codifées à l'article L14-10-4 du Code de l'action sociale et des familles.
-  - La contribution RSA est référencée à l'article L262-24 du Code de l'action sociale et des familles.
+

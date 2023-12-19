@@ -1,7 +1,15 @@
 description: Contribution sociale généralisée (CSG) sur les revenus du capital
 metadata:
-  short_label: CSG Revenus Capital
+  documentation_start: true
+  short_label: CSG des revenus du capital
   label_en: CSG on financial income
   order:
   - taux_global
   - taux_deductible
+documentation: |-
+  En ce qui concerne l'assiette CSG, l'abattement sur l'impôt sur le revenu est appliqué, jusqu'à sa suppression en 1997.
+  Les variations de taux de CSG associés à un texte en vigueur au début d'une année N concerne en général les revenus du patrimoine de l'année N-1 et les revenus de placement de l'année N. Par exemple, pour les hausses votées fin 2017 et en vigueur début 2018, cf. le 3° et 4° du V.A de l'art. 8 de la loi 2017-1836, et le II.B de l'art. 67 de la loi 2017-1837. Pour le passage du taux de CSG à 9,2% en vigueur début 2019, cf. le XIV de l'art. 26 de la loi 2018-1203.
+  Le passage du taux de CSG à 9,2% s'applique à partir des revenus de placement de 2019, et à partir des revenus du patrimoine de 2018, sauf pour les revenus du patrimoine mentionnés à l'art. L.136-6-1 du CSS qui eux, sont concernés par le nouveau prélèvement à la source. Ces revenus sont soumis au taux de 9,2% à compter des revenus réalisés en 2019. Cf. XIV de l'art. 26 de la loi 2018-1203.
+  Référence dans les codes législatifs :
+  - Pour les taux globaux de CSG : les articles L136-6, L136-7 et L136-8 du Code de la Sécurité Sociale (repris aux articles 1600-0 C, 1600-0 D et 1600-0 E du Code général des impôts) régissent respectivement la contribution sociale sur les revenus du patrimoine, la contribution sociale sur les revenus de placement et le taux de ces contributions.
+  - Pour les taux de CSG déductible : l'article 154 quinquies du CGI régit ladéductibilité partielle de la contribution sociale généralisée

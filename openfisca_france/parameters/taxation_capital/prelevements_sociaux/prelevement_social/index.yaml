@@ -1,7 +1,13 @@
 description: Prélèvements sociaux sur les revenus du patrimoine et les produits de placement
 metadata:
+  documentation_start: true
   short_label: Prélèvements sociaux
   label_en: Other social levies on financial income
   order:
   - revenus_du_patrimoine
   - produits_de_placement
+documentation: |-
+  La loi 2012-354 du 14/03/2012 qui augmentait le taux du prélévement social sur les revenus du patrimoine à 5,4% ne semble pas s'appliquer à cause de la rétroactivité de la loi 2012-1404 du 17/12/2012 et de l'annualisation de l'imposition des revenus du patrimoine.
+  Références dans les codes législatifs :
+  - Les prélèvements sociaux sur les revenus du patrimoine et sur les produits de placement, ainsi que les taux de ces prélèvements sont codifiés respectivement aux articles L245-14, L245-15 et L245-16 du Code de la sécurité sociale (repris à l'article 1600-0 F du CGI).
+

@@ -1,4 +1,4 @@
-description: Taux sur les produits de placement de la contribution sociale généralisée (CSG) déductible sur les revenus du capital
+description: Taux de la contribution sociale généralisée (CSG) déductible sur les produits de placement
 values:
   1990-01-01:
     value: null
@@ -36,16 +36,7 @@ metadata:
     2018-01-01: "2017-12-31"
   notes:
     2012-01-01:
-    - title: Voir note (3).
+    - title: "Le recours au prélèvement forfaitaire libératoire est limité à partir de 2013 à moins de 2000 € d'intérêts annuels pour les revenus de placement: ceux-ci ne bénéficient pasde la CSG déductible, au même titre que les bons détenus anonymement. Le PFL est également maintenu pour les bons ou contrats de capitalisation et placements qui ne bénéficient pas de la CSG déductible."
 documentation: |-
-  Notes: ici (2) et (4)
-  En ce qui concerne l'assiette CSG, l'abattement sur l'impôt sur le revenu est appliqué, jusqu'à sa suppression en 1997.
-  (1) Sauf sur les plus-values taxées à l'impôt sur le revenu à un taux proportionnel.
-  (2) Sauf les revenus mobiliers soumis à prélèvement libératoire ou exonérés d'impôt sur le revenu ainsi que les plus-values mobilières.
-  (3) Le recours au prélèvement forfaitaire libératoire est limité à partir de 2013 à moins de 2000 € d'intérêts annuels pour les revenus de placement: ceux-ci ne bénéficient pasde la CSG déductible, au même titre que les bons détenus anonymement. Le PFL est également maintenu pour les bons ou contrats de capitalisation et placements qui ne bénéficient pas de la CSG déductible.
-  (4) Les variations de taux de CSG associés à un texte en vigueur au début d'une année N concerne en général les revenus du patrimoine de l'année N-1 et les revenus de placement de l'année N. Par exemple, pour les hausses votées fin 2017 et en vigueur début 2018, cf. le 3° et 4° du V.A de l'art. 8 de la loi 2017-1836, et le II.B de l'art. 67 de la loi 2017-1837. Pour le passage du taux de CSG à 9,2% en vigueur début 2019, cf. le XIV de l'art. 26 de la loi 2018-1203.
-  (5) Le passage du taux de CSG à 9,2% s'applique à partir des revenus de placement de 2019, et à partir des revenus du patrimoine de 2018, sauf pour les revenus du patrimoine mentionnés à l'art. L.136-6-1 du CSS qui eux, sont concernés par le nouveau prélèvement à la source. Ces revenus sont soumis au taux de 9,2% à compter des revenus réalisés en 2019. Cf. XIV de l'art. 26 de la loi 2018-1203.
-  Référence dans les codes législatifs :
-  Pour les taux globaux de CSG : les articles L136-6, L136-7 et L136-8 du Code de la Sécurité Sociale (repris aux articles 1600-0 C, 1600-0 D et 1600-0 E du Code général des impôts) régissent respectivement la contribution sociale sur les revenus du patrimoine, la contribution sociale sur les revenus de placement et le taux de ces contributions.
-  Pour le taux de CRDS : l'ordonnance 96-50 du 24/01/1996 est codifiée aux articles 1600-0 G à 1600-0 J du CGI.
-  Pour les taux de CSG déductible : l'article 154 quinquies du CGI régit ladéductibilité partielle de la contribution sociale généralisée
+  En ce qui concerne l'assiette CSG, l'abattement sur l'impôt sur le revenu, appliqué jusqu'à sa suppression en 1997, ne concerne pas les revenus mobiliers soumis à prélèvement libératoire ou exonérés d'impôt sur le revenu ainsi que les plus-values mobilières.
+

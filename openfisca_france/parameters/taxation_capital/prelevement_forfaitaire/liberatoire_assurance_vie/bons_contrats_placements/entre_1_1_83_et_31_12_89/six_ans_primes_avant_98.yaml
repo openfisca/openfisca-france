@@ -1,4 +1,4 @@
-description: Prélèvement libératoire sur les Bons ou contrats de capitalisation et placements de même nature (assurance-vie), souscrits entre le 1/1/83 et le 31/12/89, durée de 6 ans et plus, primes versées avant le 01/01/1998 et produits afférents acquis après cette date, lors du dénouement du contrat (1983-2017)
+description: Prélèvement libératoire sur les bons ou contrats de capitalisation et placements de même nature (assurance-vie), souscrits entre le 1/1/83 et le 31/12/89, durée de 6 ans et plus, primes versées avant le 01/01/1998 et produits afférents acquis après cette date, lors du dénouement du contrat
 values:
   1983-01-01:
     value: 0
@@ -6,20 +6,22 @@ values:
     value: null
 metadata:
   short_label: Durée de 6+ ans et primes avant 1998
-  label_en: Levy in discharge on life insurance (1983 - 2017)
+  label_en: Levy in discharge on life insurance
   ipp_csv_id: tx_pl_av_6a
   unit: /1
   reference:
     1983-01-01:
       title: Loi 82-1126 du 29/12/1982, art. 14 (LF pour 1983)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273726&cidTexte=JORFTEXT000000503959
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 - art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197
   official_journal_date:
     1983-01-01: "1997-12-30"
+    2018-01-01: "2017-12-31"
   notes:
     1983-01-01:
     - title: Création de l'art. 125-0 A du CGI
-documentation: |-
-  Notes :
-  Cas des primes versées avant le 01/01/1998.
-  Référence :
-  Article 125-0 A du CGI régit le prélèvement sur les produits des bons ou contrats de capitalisation.
+    2018-01-01:
+    - title: Le prélèvement libératoire est remplacé par un prélèvement forfaitaire unique non-libératoire, dont la valeur est telle que la somme du taux de ce prélèvement et des prélèvements sociaux est de 30%.
+documentation: Cas des primes versées avant le 01/01/1998.
