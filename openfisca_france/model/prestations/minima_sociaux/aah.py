@@ -489,6 +489,13 @@ class aah_plafond_ressources(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    """
+         A partir du 01/10/2023, la déconjugalisation est la règle par défaut.
+         Seules les personnes ayant droit à la conjugalisation sans interruption
+         depuis cette date peuvent garder l'ancien calcul. Ils ne sont pas pris en
+         compte dans les formules actuelles.
+    """
+
     def formula(individu, period, parameters):
         law = parameters(period).prestations_sociales
 

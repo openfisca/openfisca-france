@@ -6,8 +6,6 @@ values:
     value: 0.89
   2019-11-01:
     value: 0.81
-  2023-10-01:
-    value: null
 metadata:
   short_label: Pour un demandeur en couple
   last_value_still_valid_on: "2023-01-16"
@@ -23,14 +21,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039211076
     - title: Décret 2019-1047 du 11/10/2019 - art. 1 et 2
       href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039207638/
-    2023-10-01:
-    - title: Décret 2022-1694 du 28/12/2022 - Article 1
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046830048
   official_journal_date:
     2018-11-01: "2018-11-03"
     2019-11-01: "2019-11-13"
-    2023-10-01: "2022-12-29"
-  Notes:
-    2023-10-01:
-      title: "Déconjugalisation de l'AAH, sauf sur option. Nous ne prenons pas en compte cette option"
+  documentation:
+    "Depuis le 01/10/2023, ce taux n'est appliqué que pour les personnes encore éligibles à la conjugalisation de l'AAH."
 
