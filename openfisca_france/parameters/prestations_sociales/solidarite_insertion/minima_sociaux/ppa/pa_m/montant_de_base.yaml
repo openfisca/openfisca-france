@@ -28,10 +28,10 @@ metadata:
   unit: currency
   reference:
     2016-01-01:
-      - title: Décret 2015-1710 du 21/12/2015, art. 1
-        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665102
-      - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
-        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665104
+    - title: Décret 2015-1710 du 21/12/2015, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665102
+    - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665104
     2016-04-01:
       title: Décret 2016-536 du 27/04/2016, art. 1
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000032482324&categorieLien=id
