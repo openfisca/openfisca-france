@@ -11,7 +11,7 @@
       parent1:
         taux_incapacite: 0.9
         age: 50
-        aah_base_ressources: 9700 / 12
+        aah_base_ressources_conjugalisee: 9700 / 12
     foyer_fiscal:
       declarants:
       - parent1
@@ -34,7 +34,7 @@
       parent1:
         taux_incapacite: 0.9
         age: 27
-        aah_base_ressources: 0
+        aah_base_ressources_conjugalisee: 0
     foyer_fiscal:
       declarants:
       - parent1
@@ -56,7 +56,7 @@
     individus:
       parent1:
         aah_eligible: true
-        aah_base_ressources: 15000 / 12
+        aah_base_ressources_conjugalisee: 15000 / 12
       parent2:
         aah_eligible: false
     foyers_fiscaux:
@@ -92,10 +92,10 @@
     individus:
       parent1:
         aah_eligible: true
-        aah_base_ressources: 15000 / 12
+        aah_base_ressources_conjugalisee: 15000 / 12
       parent2:
         aah_eligible: true
-        aah_base_ressources: 15000 / 12
+        aah_base_ressources_conjugalisee: 15000 / 12
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -131,7 +131,7 @@
         aah_eligible: false
       parent2:
         aah_eligible: true
-        aah_base_ressources: 20000 / 12
+        aah_base_ressources_conjugalisee: 20000 / 12
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -170,7 +170,7 @@
         aah_eligible: false
       enfant1:
         aah_eligible: true
-        aah_base_ressources: 25000 / 12
+        aah_base_ressources_conjugalisee: 25000 / 12
       enfant2:
         aah_eligible: false
     foyers_fiscaux:
@@ -222,7 +222,7 @@
         aah_eligible: false
       enfant1:
         aah_eligible: true
-        aah_base_ressources: 25000 / 12
+        aah_base_ressources_conjugalisee: 25000 / 12
       enfant2:
         aah_eligible: false
       antonin:
