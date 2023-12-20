@@ -1,5 +1,13 @@
 # Changelog
 
+## 155.1.2 [2225](https://github.com/openfisca/openfisca-france/pull/2225)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters`.
+* Détails :
+  - Nettoyage, description et documentation.
+
 ## 155.1.1 [2223](https://github.com/openfisca/openfisca-france/pull/2223)
 
 * Changement mineur.
