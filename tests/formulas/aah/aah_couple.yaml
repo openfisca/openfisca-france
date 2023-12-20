@@ -157,7 +157,7 @@
         personne_de_reference: parent1
         conjoint: parent2
   output:
-    aah_conjugalise_eligible: False
+    aah_conjugalise_eligible: false
     aah_base_ressources_deconjugalisee: [990.33, 0]
     aah_base: [0, 971.37]
     aah: [0, 971.37]
