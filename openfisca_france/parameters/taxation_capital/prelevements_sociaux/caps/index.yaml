@@ -1,7 +1,7 @@
 description: Contributions additionnelles au prélèvement social (CAPS) sur les revenus du capital
 metadata:
-  short_label: CAPS sur les revenus du capital
   documentation_start: true
+  short_label: CAPS sur les revenus du capital
   label_en: Other social levies on financial income
   order:
   - revenus_du_patrimoine

@@ -1,5 +1,6 @@
 description: Taxes sur les tabacs
 metadata:
+  documentation_start: true
   label_en: Excises on tobacco
   order:
   - taux_normal

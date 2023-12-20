@@ -1,7 +1,7 @@
 description: Taxe intérieure de consommation sur les produits énergétiques (TICPE)
 metadata:
-  short_label: TICPE
   documentation_start: true
+  short_label: TICPE
   label_en: TICPE - Energy products
   order:
   - goudrons_utilises_comme_combustibles

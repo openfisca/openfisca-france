@@ -3,13 +3,6 @@ metadata:
   documentation_start: true
   short_label: Complément de libre choix d'activité (CLCA)
   label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
-  order:
-  - periode_ref_8_trimestres_cotis_vieillesse
-  - beneficiaires_enfant_ne_adopte_apres_04_2014
-  - non_beneficiaires_enfant_ne_adopte_avant_04_2014
-  - colca
-  - duree1
-  - age_max_enfant
   reference:
     2004-01-01:
     - title: Loi 2003-1199 du 18/12/2003, art. 60 II (crée art. L531-3 du CSS)
@@ -36,3 +29,10 @@ metadata:
     - title: Cf. http://circulaires.legifrance.gouv.fr/pdf/2009/04/cir_10648.pdf & http://circulaires.legifrance.gouv.fr/pdf/2009/04/cir_6840.pdf pour les taux
     2015-01-01:
     - title: La CLCA est remplacée par la PreParE mais elle continue d'être effective tant que l'enfant est né ou adopté avant le 1er janvier 2015
+  order:
+  - periode_ref_8_trimestres_cotis_vieillesse
+  - beneficiaires_enfant_ne_adopte_apres_04_2014
+  - non_beneficiaires_enfant_ne_adopte_avant_04_2014
+  - colca
+  - duree1
+  - age_max_enfant

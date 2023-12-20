@@ -6,6 +6,4 @@ metadata:
   order:
   - montant_journalier
   - plafond_ressources
-documentation: |-
-  Remplace l'AER en juillet 2011.
-
+documentation: Remplace l'AER en juillet 2011.
