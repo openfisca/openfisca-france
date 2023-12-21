@@ -1,5 +1,18 @@
 # Changelog
 
+### 155.1.3 [2226](https://github.com/openfisca/openfisca-france/pull/2226)
+
+* Amélioration technique.
+* Périodes concernées : non applicable.
+* Zones impactées : `.github/workflows/workflow.yml`.
+* Détails :
+
+Avant cette PR, nous construisions le build conda sur la branche de travail et tentions de le récupérer sur la branche `master` pour la publication sur les channels `conda-forge` et `openfisca`.
+
+Mais malgré la #2211, il restait une erreur sur le job `Download artifact` : `Error: no matching workflow run found with any artifacts?` comme, par exemple, sur [le job `publish-to-conda` du workflow #7085](https://github.com/openfisca/openfisca-france/actions/runs/7277379565/job/19830302514)
+
+Cette PR fait donc le choix de rebuilder sur `master` pour `conda`.
+
 ## 155.1.2 [2225](https://github.com/openfisca/openfisca-france/pull/2225)
 
 * Changement mineur.
