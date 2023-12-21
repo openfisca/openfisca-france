@@ -317,22 +317,10 @@ jobs:
             const commits = ${{ toJSON(github.event.commits) }}
             return commits.at(-2).id;
           result-encoding: string
-      # Default Download artifact don't see artifact of other workflow
-      # So we use dawidd6/action-download-artifact@v2 to do it.
-      - name: Download artifact
-        id: download-artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow_conclusion: success
-          commit: ${{steps.last_pr_commit.outputs.result}}
-          name: conda-build-${{ env.PACKAGE_VERSION }}-${{steps.last_pr_commit.outputs.result}}
-          path: conda-build-tmp
-          event: push  # to listen to commit events and avoid conflict with PR opening event
-          if_no_artifact_found: fail
-      - name: Conda upload
+      - name: Conda build and upload
         # This shell is made necessary by https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
         run: |
-          conda install anaconda-client
-          conda info
-          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca ./conda-build-tmp/noarch/openfisca-france-*-py_0.tar.bz2
+          conda install -y conda-build anaconda-client
+          conda config --set anaconda_upload yes
+          conda build -c conda-forge -c openfisca --token  ${{ secrets.ANACONDA_TOKEN }}  --user openfisca .conda
