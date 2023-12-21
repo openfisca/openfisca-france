@@ -321,6 +321,6 @@ jobs:
         # This shell is made necessary by https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
         run: |
-          conda install -y conda-build anaconda-client
+          conda install --yes conda-build anaconda-client
           conda config --set anaconda_upload yes
-          conda build -c conda-forge -c openfisca --token  ${{ secrets.ANACONDA_TOKEN }}  --user openfisca .conda
+          conda build --channel conda-forge --channel openfisca --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
