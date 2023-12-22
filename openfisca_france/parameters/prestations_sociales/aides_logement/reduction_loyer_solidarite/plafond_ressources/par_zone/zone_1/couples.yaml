@@ -4,6 +4,8 @@ values:
     value: 1091
   2019-01-01:
     value: 1102
+  2024-01-01:
+    value: 1155
 metadata:
   short_label: Couple
   last_value_still_valid_on: "2023-05-24"

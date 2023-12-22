@@ -4,6 +4,8 @@ values:
     value: 245
   2019-01-01:
     value: 247
+  2024-01-01:
+    value: 259
 metadata:
   short_label: Majoration par personne à charge supplémentaire
   last_value_still_valid_on: "2023-05-24"

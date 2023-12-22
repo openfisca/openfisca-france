@@ -120,7 +120,6 @@
       parents: [parent1, parent2]
     individus:
       parent1:
-        activite: inactif
         salaire_imposable:
           2019: 12000
         activite:

@@ -12,6 +12,8 @@ values:
     value: 311.0
   2023-01-01:
     value: 328
+  2024-01-01:
+    value: 343
 metadata:
   short_label: Par personne à charge supplémentaire
   last_value_still_valid_on: "2023-02-22"

@@ -4,6 +4,8 @@ values:
     value: 2876
   2019-01-01:
     value: 2905
+  2024-01-01:
+    value: 3045
 metadata:
   short_label: Bénéficiaire isolé ou couple ayant 6 personnes à charge
   last_value_still_valid_on: "2023-05-24"

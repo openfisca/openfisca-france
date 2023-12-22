@@ -22,6 +22,8 @@ values:
     value: 7800
   2022-08-01:
     value: 8100
+  2024-01-01:
+    value: 8400
 metadata:
   short_label: Forfait de ressources pour les étudiants en location
   last_value_still_valid_on: "2023-02-20"

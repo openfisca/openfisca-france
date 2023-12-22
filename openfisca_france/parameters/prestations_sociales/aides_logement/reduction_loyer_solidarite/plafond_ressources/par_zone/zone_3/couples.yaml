@@ -4,6 +4,8 @@ values:
     value: 998
   2019-01-01:
     value: 1008
+  2024-01-01:
+    value: 1056
 metadata:
   short_label: Couple sans personne à charge
   last_value_still_valid_on: "2023-05-24"
