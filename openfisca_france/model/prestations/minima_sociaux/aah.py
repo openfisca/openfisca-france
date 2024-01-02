@@ -585,23 +585,21 @@ class aah_base(Variable):
 
     def formula_2023_10_01(individu, period, parameters):
         law = parameters(period).prestations_sociales
-
-        aah_eligible = individu('aah_eligible', period)
-        aah_base_ressources_conjugalisee = individu('aah_base_ressources_conjugalisee', period)
-        plaf_ress_aah_conjugalise = individu('aah_plafond_ressources_conjugalise', period)
         # Le montant de l'AAH est plafonné au montant de base.
         montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
-        montant_aah = min_(montant_max, max_(0, plaf_ress_aah_conjugalise - aah_base_ressources_conjugalisee))
+        aah_eligible = individu('aah_eligible', period)
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
+        aah_conjugalise_eligible = individu('aah_conjugalise_eligible', period)
 
-        aah_conjugalise = aah_eligible * min_(max_(0, montant_aah), max_(0, montant_max - aah_base_non_cumulable))
+        aah_base_ressources_conjugalisee = individu('aah_base_ressources_conjugalisee', period)
+        plaf_ress_aah_conjugalise = individu('aah_plafond_ressources_conjugalise', period)
+        montant_aah_conjugalise = min_(montant_max, max_(0, plaf_ress_aah_conjugalise - aah_base_ressources_conjugalisee))
+        aah_conjugalise = aah_eligible * min_(max_(0, montant_aah_conjugalise), max_(0, montant_max - aah_base_non_cumulable))
 
         aah_base_ressources_deconjugalisee = individu('aah_base_ressources_deconjugalisee', period)
         plaf_ress_aah_deconjugalise = individu('aah_plafond_ressources_deconjugalise', period)
         montant_aah_deconjugalise = min_(montant_max, max_(0, plaf_ress_aah_deconjugalise - aah_base_ressources_deconjugalisee))
         aah_deconjugalise = aah_eligible * min_(max_(0, montant_aah_deconjugalise), max_(0, montant_max - aah_base_non_cumulable))
-
-        aah_conjugalise_eligible = individu('aah_conjugalise_eligible', period)
 
         return where(aah_conjugalise_eligible, max_(aah_conjugalise, aah_deconjugalise), aah_deconjugalise)
 
