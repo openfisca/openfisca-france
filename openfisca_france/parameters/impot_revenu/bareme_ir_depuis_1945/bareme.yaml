@@ -129,6 +129,8 @@ brackets:
       value: 10225
     2022-01-01:
       value: 10777
+    2023-01-01:
+      value: 11294
   rate:
     1945-01-01:
       value: 0.12
@@ -279,6 +281,8 @@ brackets:
       value: 26070
     2022-01-01:
       value: 27478
+    2023-01-01:
+      value: 28797
   rate:
     1945-01-01:
       value: 0.3
@@ -431,6 +435,8 @@ brackets:
       value: 74545
     2022-01-01:
       value: 78570
+    2023-01-01:
+      value: 82341
   rate:
     1945-01-01:
       value: 0.45
@@ -585,6 +591,8 @@ brackets:
       value: 160336
     2022-01-01:
       value: 168994
+    2023-01-01:
+      value: 177106
   rate:
     1945-01-01:
       value: 0.6
@@ -1430,6 +1438,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2023-01-01/
     - title: LOI n° 2022-1726, art. 2 du 30/12/2022 (LF pour 2023)
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845640
+    2023-01-01:
+      title: Loi 2023-1322, art. 2 du 29/12/2023 (LF pour 2024)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048727355
   official_journal_date:
     1946-01-01: "1949-01-01"
     1959-01-01: "1959-12-31"
@@ -1495,6 +1506,7 @@ metadata:
     2019-01-01: "2019-12-29"
     2020-01-01: 2020-12-30; 2019-12-29
     2022-01-01: "2022-12-31"
+    2023-01-01: "2023-12-30"
   notes:
     1947-01-01:
     - title: Coexistence IGR et impôts cédulaires (voir notes 1 à 4). Ces barèmes concernent l'IGR jusqu'en 1948. En 1948, un « prélèvement exceptionnel de lutte contre l'inflation » sur les revenus 1946 est instauré dans le cadre du « plan Mayer » (intégré dans le barème); les contribuables ayant le choix d'échapper à cette majoration du barème s'ils souscrivent à un « emprunt obligatoire » rémunéré à 3 % sur 10 ans.

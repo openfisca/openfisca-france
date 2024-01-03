@@ -1,5 +1,17 @@
 # Changelog
 
+### 155.1.4 [2229](https://github.com/openfisca/openfisca-france/pull/2229)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2024.
+* Zones impactées : 
+  - `parameters/marche_travail/salaire_minimum/smic`
+  - `parameters/impot_revenu/bareme_ir_depuis_1945/bareme`
+  - `parameters/impot_revenu/calcul_impot_revenu/plaf_qf`
+* Détails :
+    * Mise à jour de certains paramètres pour 2024 : le SMIC, le barème de l'IR, le plafonnement du quotient familial
+    * Modifie un test utilisant l'IR 2023
+
 ### 155.1.3 [2226](https://github.com/openfisca/openfisca-france/pull/2226)
 
 * Amélioration technique.

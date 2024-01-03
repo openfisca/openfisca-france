@@ -152,9 +152,8 @@
       2022: [17714.158, 17714.158, 17714.158, 17714.158, 17714.158, 17714.158, 17714.158]
       2023: [17714.158, 20414.158, 21299.271, 20414.158, 20414.158, 23114.158, 23999.271]
     impot_revenu_restant_a_payer:
-      # L'impot_revenu_restant_a_payer ne doit pas changer pour ceux dont la prime est exonérée d'impôt
       2022: [-275, -275, -275, -275, -275, -275, -275]
-      2023: [-275, -275, -416, -275, -275, -275, -416]
+      2023: [-153, -153, -295, -153, -153, -153, -295]
     ppa:
       # Le premier cas-type touche la PPA toute l'année, les autres partiellement.
       2023-01: [139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394]
@@ -163,8 +162,8 @@
       2023: [1745.3168, 775.19183, 442.2387, 775.19183, 775.19183, 277.37405, 277.37405]
     revenu_disponible:
       # revenu_disponible = (salaire_net*12) - impot_revenu_restant_a_payer + prestations_sociales
-      # Pour le 2e individu : 1833.1951*12-275+694.1191 = 22417.46 => C'est bon !
-      2023: [20468.658, 22498.533, 22974.496, 22498.533, 22498.533, 25000.717, 25809.635]
+      # Pour le 2e individu : 1833.1951*12-153+694.1191 = 22620.46 => C'est bon !
+      2023: [20590.658, 22620.533, 23095.496, 22620.533, 22620.533, 25122.717, 25930.635]
 
 
 - name: Prime pérenne de partage de la valeur pour salaire < 3 SMIC
@@ -251,19 +250,13 @@
       # 22_481 ×,09 = 20_233
       2023: [17714.158, 19_928.37, 20233.734, 21118.838, 20233.734, 20233.734, 22753.303, 23638.404]
     impot_revenu_restant_a_payer:
-      # La prime pérenne est soumise à l'impôt
-      # De 10 777 € à 27 478 € : Première tranche 11%
-      # (17_714.158 - 10_777)*0.11 = 763.087
-      # Décote LF2023 : La décote est égale à la différence entre 833 € (célibataire), et 45,25 % du montant de l'impôt.
-      # 763.087 - (833- 763.087*0.4525) = 275.38
-      # (20_233.734 - 10_777)*0.11 - (833 - ((20_233.734 - 10_777)*0.11)*0.4525 ) = 677.94
-      2023: [-275, -630, -678, -820, -678, -678, -1080, -1222]
+      2023: [-153, -507, -555, -697, -555, -555, -958, -1099]
     prestations_sociales:
       2023: [1745.3168, 823.8001, 867.64594, 560.46655, 867.64594, 867.64594, 277.37405, 277.37405]
     revenu_disponible:
       # revenu_disponible = salaire_net*12 - impot_revenu_restant_a_payer + prestations_sociales
-      # 1_781 * 12 - 630 + 823.8001 = 21_565.8001 ~= 21566.877 OK
-      2023: [20468.658, 21566.877, 21902.084, 22402.82, 21902.084, 21902.084, 23623.898, 24431.814]
+      # 1_781 * 12 - 507 + 823.8001 = 21_565.8001 ~= 21689.877 OK
+      2023: [20590.658, 21689.877, 22025.084, 22525.82, 22025.084, 22025.084, 23745.898, 24554.814]
 
 
 - name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 pour salaire >= 3 SMIC
@@ -296,7 +289,7 @@
       2023-09: [4412.47, 4412.47, 4412.47, 4412.47, 4412.47, 4412.47, 4412.47] #  4412.47 avec l'augmentation du plafond secu (sinon=2022) via le montant csg-crds
     impot_revenu_restant_a_payer:
       2022: [-8413, -8413, -8413, -8413, -8413, -8413, -8413]
-      2023: [-8404, -8404, -8404, -8404, -8404, -8404, -8404]
+      2023: [-8096, -8096, -8096, -8096, -8096, -8096, -8096]
 
 
 - name: Prime pérenne de partage de la valeur pour salaire >= 3 SMIC
@@ -344,7 +337,7 @@
       2023: [49367.01, 51886.58, 52783.31, 51886.58, 51886.58, 54406.16, 55302.87]
     impot_revenu_restant_a_payer:
       # La totalité de la prime est soumise à l'IR
-      2023: [-8404, -9160, -9429, -9160, -9160, -9916, -10185]
+      2023: [-8096, -8852, -9121, -8852, -8852, -9608, -9877]
 
 
 - name: Prime pérenne de partage de la valeur vs primes_salaires
@@ -373,9 +366,9 @@
       2023: [45130.34, 45222.94]
     impot_revenu_restant_a_payer:
       # La totalité de la prime est soumise à l'IR
-      2023: [-7133, -7161]
+      2023: [-6825, -6853]
     revenu_disponible:
-      2023: [42025.29, 42099.90]
+      2023: [42333.29, 42407.90]
 
 - name: Prime exceptionnelle de partage de la valeur pour un salarié à temps partiel < 3*SMIC mais dont l'équivalent temps plein est > 3*SMIC
   period: 2023
