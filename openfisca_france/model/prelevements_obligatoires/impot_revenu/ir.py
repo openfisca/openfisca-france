@@ -1220,12 +1220,7 @@ class rbg(Variable):
         revenu_categoriel = foyer_fiscal('revenu_categoriel', period)
         deficit_ante = foyer_fiscal('deficit_ante', period)
         f6gh = foyer_fiscal('f6gh', period)
-
-        # (Total 17)
-        # sans les revenus au quotient
-        nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
-        return max_(0,
-                    revenu_categoriel + f6gh - deficit_ante)
+        return max_(0, revenu_categoriel + f6gh - deficit_ante)
 
 
 class csg_patrimoine_deductible_ir(Variable):
@@ -3504,9 +3499,8 @@ class revenu_non_salarie(Variable):
         coupe_bois = individu('coupe_bois', period)
         f5sq = individu('f5sq', period)
         arag_defi = individu('arag_defi', period)
-        nrag_defi = individu('nrag_defi', period)
         atimp = individu('atimp', period)
-        def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
+        def_agri = f5sq + arag_defi
         revenus_non_salaries = rpns_mrag + coupe_bois + atimp - def_agri
         return revenus_non_salaries
 
@@ -3690,7 +3684,6 @@ class taux_effectif(Variable):
         microentreprise = foyer_fiscal('microentreprise', period)
         abnc_proc_i = foyer_fiscal.members('abnc_proc', period)
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
-        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
         abnc_proc = foyer_fiscal.sum(abnc_proc_i)
         base_fictive = rni + microentreprise + abnc_proc
         trigger = (microentreprise != 0) | (abnc_proc != 0)
