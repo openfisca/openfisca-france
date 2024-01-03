@@ -2767,7 +2767,7 @@ class defacc(Variable):
         aacc_impn = foyer_fiscal.sum(aacc_impn_i)
         macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
         return (
-            min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp )
+            min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp)
             )
 
 
