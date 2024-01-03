@@ -1128,6 +1128,22 @@ class revenu_categoriel_non_salarial(Variable):
             - defmeu
             )
 
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        rpns_i = foyer_fiscal.members('rpns_imposables', period)
+        rpns = foyer_fiscal.sum(rpns_i)
+        defrag = foyer_fiscal('defrag', period)
+        defacc = foyer_fiscal('defacc', period)
+        defncn = foyer_fiscal('defncn', period)
+        defmeu = foyer_fiscal('defmeu', period)
+
+        return (
+            rpns
+            - defrag
+            - defncn
+            - defacc
+            - defmeu
+            )
+
 
 class revenu_categoriel(Variable):
     value_type = float
@@ -1197,6 +1213,19 @@ class rbg(Variable):
         nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
         return max_(0,
                     revenu_categoriel + f6gh + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante)
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        '''Revenu brut global
+        '''
+        revenu_categoriel = foyer_fiscal('revenu_categoriel', period)
+        deficit_ante = foyer_fiscal('deficit_ante', period)
+        f6gh = foyer_fiscal('f6gh', period)
+
+        # (Total 17)
+        # sans les revenus au quotient
+        nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
+        return max_(0,
+                    revenu_categoriel + f6gh - deficit_ante)
 
 
 class csg_patrimoine_deductible_ir(Variable):
@@ -2576,6 +2605,37 @@ class rpns_exon(Variable):
             + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
             + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + nbic_pvce + nrag_pvce
             )
+    
+    def formula_2023_01_01(individu, period, parameters):
+        '''
+        Plus values de cession
+        '''
+        frag_exon = individu('frag_exon', period)
+        mrag_exon = individu('mrag_exon', period)
+        arag_exon = individu('arag_exon', period)
+        nrag_exon = individu('nrag_exon', period)
+        mbic_exon = individu('mbic_exon', period)
+        abic_exon = individu('abic_exon', period)
+        nbic_exon = individu('nbic_exon', period)
+        macc_exon = individu('macc_exon', period)
+        aacc_exon = individu('aacc_exon', period)
+        nacc_exon = individu('nacc_exon', period)
+        mbnc_exon = individu('mbnc_exon', period)
+        abnc_proc = individu('abnc_proc', period)
+        nrag_pvce = individu('nrag_pvce', period)
+        abnc_exon = individu('abnc_exon', period)
+        nbnc_exon = individu('nbnc_exon', period)
+        mncn_exon = individu('mncn_exon', period)
+        cncn_exon = individu('cncn_exon', period)
+        cncn_jcre = individu('cncn_jcre', period)
+        nbic_pvce = individu('nbic_pvce', period)
+
+        return (
+            frag_exon + mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon
+            + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
+            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + nbic_pvce + nrag_pvce
+            )
+
 
 
 class defrag(Variable):
@@ -2633,6 +2693,23 @@ class defrag(Variable):
         return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + mrag_pvct)
                     + arag_impg + coupe_bois + mrag_impo)
 
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        # frag_fore est remplacé par coupe_bois, frag_pvct par mrag_pvct
+        f5qf = foyer_fiscal('f5qf', period)
+        f5qg = foyer_fiscal('f5qg', period)
+        f5qn = foyer_fiscal('f5qn', period)
+        f5qo = foyer_fiscal('f5qo', period)
+        f5qp = foyer_fiscal('f5qp', period)
+        f5qq = foyer_fiscal('f5qq', period)
+        mrag_impo_i = foyer_fiscal.members('mrag_impo', period)
+        coupe_bois_i = foyer_fiscal.members('coupe_bois', period)
+        arag_impg_i = foyer_fiscal.members('arag_impg', period)
+
+        coupe_bois = foyer_fiscal.sum(coupe_bois_i)
+        mrag_impo = foyer_fiscal.sum(mrag_impo_i)
+        arag_impg = foyer_fiscal.sum(arag_impg_i)
+        return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, arag_impg + coupe_bois + mrag_impo)
+
 
 class defacc(Variable):
     value_type = float
@@ -2668,6 +2745,31 @@ class defacc(Variable):
             min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
             )
 
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        f5rn = foyer_fiscal('f5rn', period)
+        f5ro = foyer_fiscal('f5ro', period)
+        f5rp = foyer_fiscal('f5rp', period)
+        f5rq = foyer_fiscal('f5rq', period)
+        f5rr = foyer_fiscal('f5rr', period)
+        f5rw = foyer_fiscal('f5rw', period)
+        macc_impv_i = foyer_fiscal.members('macc_impv', period)
+        macc_imps_i = foyer_fiscal.members('macc_imps', period)
+        macc_pvct_i = foyer_fiscal.members('macc_pvct', period)
+        aacc_impn_i = foyer_fiscal.members('aacc_impn', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+
+        def abat_rpns(rev, P):
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
+
+        macc_pvct = foyer_fiscal.sum(macc_pvct_i)
+        macc_impv = foyer_fiscal.sum(macc_impv_i)
+        macc_imps = foyer_fiscal.sum(macc_imps_i)
+        aacc_impn = foyer_fiscal.sum(aacc_impn_i)
+        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
+        return (
+            min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp )
+            )
+
 
 class defncn(Variable):
     value_type = float
@@ -2699,6 +2801,29 @@ class defncn(Variable):
         return min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
             abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
+            )  # TODO check !
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        f5ht = foyer_fiscal('f5ht', period)
+        f5it = foyer_fiscal('f5it', period)
+        f5jt = foyer_fiscal('f5jt', period)
+        f5kt = foyer_fiscal('f5kt', period)
+        f5lt = foyer_fiscal('f5lt', period)
+        f5mt = foyer_fiscal('f5mt', period)
+        mncn_impo_i = foyer_fiscal.members('mncn_impo', period)
+        mncn_pvct_i = foyer_fiscal.members('mncn_pvct', period)
+        cncn_aimp_i = foyer_fiscal.members('cncn_aimp', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+        specialbnc = micro.microentreprise.regime_micro_bnc
+
+        def abat_rpns(rev, P):
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
+        mncn_impo = foyer_fiscal.sum(mncn_impo_i)
+        mncn_pvct = foyer_fiscal.sum(mncn_pvct_i)
+        cncn_aimp = foyer_fiscal.sum(cncn_aimp_i)
+        return min_(
+            f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
+            abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp
             )  # TODO check !
 
 
@@ -3373,6 +3498,18 @@ class revenu_non_salarie(Variable):
         revenus_non_salaries = rpns_mrag + coupe_bois + atimp + ntimp + majo_cga - def_agri
         return revenus_non_salaries
 
+    def formula_2023_01_01(individu, period, parameters):
+        # Il n'y a plus de majoration pour absence de CGA (ntimp disparait)
+        rpns_mrag = individu('rpns_revenus_microBA_agricole', period)
+        coupe_bois = individu('coupe_bois', period)
+        f5sq = individu('f5sq', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_defi = individu('nrag_defi', period)
+        atimp = individu('atimp', period)
+        def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
+        revenus_non_salaries = rpns_mrag + coupe_bois + atimp - def_agri
+        return revenus_non_salaries
+
 
 class locations_pro(Variable):
     value_type = float
@@ -3545,6 +3682,18 @@ class taux_effectif(Variable):
         nbnc_proc = foyer_fiscal.sum(nbnc_proc_i)
         base_fictive = rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
         trigger = (microentreprise != 0) | (abnc_proc != 0) | (nbnc_proc != 0)
+        return trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        rni = foyer_fiscal('rni', period)
+        nbptr = foyer_fiscal('nbptr', period)
+        microentreprise = foyer_fiscal('microentreprise', period)
+        abnc_proc_i = foyer_fiscal.members('abnc_proc', period)
+        bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+        abnc_proc = foyer_fiscal.sum(abnc_proc_i)
+        base_fictive = rni + microentreprise + abnc_proc
+        trigger = (microentreprise != 0) | (abnc_proc != 0)
         return trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
 
 
