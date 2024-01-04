@@ -4,7 +4,7 @@
 Amélioration technique.
 * Zones impactée : `.github/workflows/workflow.yml`.
 * Détail :
-  - Modifie l'authentification à Pypi pour se connecter via un token
+  - Modifie l'authentification à Pypi pour se connecter via un token suite à l'obligation d'utiliser la double authentification (2FA)
 
 ## 155.1.5 [2227](https://github.com/openfisca/openfisca-france/pull/2227)
 
