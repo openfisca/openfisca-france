@@ -488,7 +488,7 @@ class aah_base_non_cumulable(Variable):
 
 class aah_plafond_ressources_conjugalise(Variable):
     value_type = float
-    label = "Montant plafond des ressources pour bénéficier de l'Allocation adulte handicapé (hors complément)"
+    label = "Montant plafond des ressources pour bénéficier de l'Allocation adulte handicapé (hors complément) avant déconjugalisation"
     entity = Individu
     reference = [
         'Article D821-2 du Code de la sécurité sociale',
@@ -500,8 +500,7 @@ class aah_plafond_ressources_conjugalise(Variable):
     '''
          A partir du 01/10/2023, la déconjugalisation est la règle par défaut.
          Seules les personnes ayant droit à la conjugalisation sans interruption
-         depuis cette date peuvent garder l'ancien calcul. Ils ne sont pas pris en
-         compte dans les formules actuelles.
+         depuis cette date peuvent garder l'ancien calcul.
     '''
 
     def formula(individu, period, parameters):
@@ -550,8 +549,8 @@ class aah_conjugalise_eligible(Variable):
     entity = Individu
     label = "Eligibilité à la conjugalisation de l'AAH après le 01/10/2023"
     reference = [
-        'Article L821-2 du Code de la sécurité sociale',
-        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=17BE3036A19374AA1C8C7A4169702CD7.tplgfr24s_2?idArticle=LEGIARTI000020039305&cidTexte=LEGITEXT000006073189&dateTexte=20180731'
+        'Décret 2022-1694 du 28 décembre 2022',
+        'https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046830064'
         ]
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
