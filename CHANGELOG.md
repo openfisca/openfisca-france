@@ -1,4 +1,10 @@
 # Changelog
+### 155.1.6 [2231](https://github.com/openfisca/openfisca-france/pull/2231)
+
+Amélioration technique.
+* Zones impactée : `.github/workflows/workflow.yml`.
+* Détail :
+  - Modifie l'authentification à Pypi pour se connecter via un token
 
 ## 155.1.5 [2227](https://github.com/openfisca/openfisca-france/pull/2227)
 
