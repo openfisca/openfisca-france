@@ -24,7 +24,7 @@
         alnp_defs: 500
         alnp_imps: 0
         date_naissance: '1970-01-01'
-        nacc_defs: 20000
+        nacc_pres: 20000
         statut_marital: celibataire
     famille:
       parents:
@@ -65,7 +65,7 @@
         alnp_defs: 500
         alnp_imps: 0
         date_naissance: '1970-01-01'
-        nacc_defs: 20000
+        nacc_pres: 20000
         statut_marital: celibataire
     famille:
       parents:
@@ -106,7 +106,7 @@
         alnp_defs: 500
         alnp_imps: 0
         date_naissance: '1970-01-01'
-        nacc_defs: 20000
+        nacc_pres: 20000
         statut_marital: celibataire
     famille:
       parents:

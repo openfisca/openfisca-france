@@ -263,6 +263,7 @@ class nrag_exon(Variable):
     entity = Individu
     label = "Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur), activités exercées en Corse"
     # start_date = date(2007, 1, 1)
+    end = '2023-12-01'
     definition_period = YEAR
 
 
@@ -289,6 +290,7 @@ class nrag_defi(Variable):
     entity = Individu
     label = "Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
+    end = '2023-12-01'
     definition_period = YEAR
 
 
@@ -382,6 +384,7 @@ class nbic_exon(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -444,6 +447,7 @@ class nbic_impn(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -528,6 +532,7 @@ class nbic_defn(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -539,8 +544,21 @@ class nbic_defs(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = 'Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)'
+    label = 'Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime simplifié du bénéfice réel)'
     end = '2009-12-31'
+    definition_period = YEAR
+
+#TODO : ajouter dans formules
+class nlnp_imps(Variable):
+    cerfa_field = {0: '5KM',
+        1: '5LM',
+        2: '5MM', }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Locations meublées non professionnelles: Gîtes ruraux et chambres d'hôtes déjà soumis aux prélèvements sociaux sans CGA (régime du bénéfice réel)"
+    # start_date = date(2012, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -603,6 +621,7 @@ class nacc_exon(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -689,6 +708,7 @@ class nacc_impn(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -713,7 +733,7 @@ class nacc_meup(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = 'Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)'
+    label = "Locations meublées non professionnelles: Locations meublées et chambre d'hôtes déjà soumises aux prélèvements sociaux (régime micro entreprise)"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
@@ -740,11 +760,12 @@ class nacc_defn(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
 # (f5nm, f5om, f5pm)) #TODO autres 5NM
-class nacc_defs(Variable):
+class nacc_pres(Variable):
     cerfa_field = {0: '5NM',
         1: '5OM',
         2: '5PM', }
@@ -778,6 +799,7 @@ class cncn_bene(Variable):
     entity = Individu
     label = 'Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)'
     # start_date = date(2006, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -792,6 +814,7 @@ class cncn_defi(Variable):
     entity = Individu
     label = 'Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)'
     # start_date = date(2006, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -828,6 +851,7 @@ class nbnc_exon(Variable):
     unit = 'currency'
     entity = Individu
     label = "Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -889,6 +913,7 @@ class nbnc_impo(Variable):
     unit = 'currency'
     entity = Individu
     label = "Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -901,6 +926,7 @@ class nbnc_defi(Variable):
     unit = 'currency'
     entity = Individu
     label = "Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -1185,6 +1211,7 @@ class nbic_pvce(Variable):
     entity = Individu
     label = 'Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)'
     # start_date = date(2008, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -1222,6 +1249,7 @@ class nacc_pvce(Variable):
     entity = Individu
     label = 'Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)'
     # start_date = date(2009, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -1310,6 +1338,7 @@ class arag_sjag(Variable):
     entity = Individu
     label = 'Abattement pour les jeunes agriculteurs des revenus agricoles sans CGA (régime du bénéfice réel)'
     # start_date = date(2011, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -1385,8 +1414,7 @@ class nlnp_defs(Variable):
     entity = Individu
     label = 'Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)'
     # start_date = date(2009, 1, 1)
-    end = '2010-12-31'
-    # TODO: Toujours present dans brochure 2019 par ex.
+    end = '2022-12-31'
     definition_period = YEAR
 
 

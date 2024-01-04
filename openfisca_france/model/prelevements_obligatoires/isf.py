@@ -561,6 +561,194 @@ class isf_ifi_avant_plaf(Variable):
 
 
 # # calcul du plafonnement ##
+
+class rag(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus agricoles'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Revenus agricoles
+        '''
+        frag_exon = individu('frag_exon', period)
+        frag_impo = individu('frag_impo', period)
+        arag_exon = individu('arag_exon', period)
+        arag_impg = individu('arag_impg', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_exon = individu('nrag_exon', period)
+        nrag_impg = individu('nrag_impg', period)
+        nrag_defi = individu('nrag_defi', period)
+        nrag_ajag = individu('nrag_ajag', period)
+
+        return (
+            frag_exon + frag_impo
+            + arag_exon + arag_impg - arag_defi
+            + nrag_exon + nrag_impg - nrag_defi
+            + nrag_ajag
+            )
+
+    def formula_2016_01_01(individu, period, parameters):
+        '''
+        Revenus agricoles
+        '''
+        mrag_exon = individu('mrag_exon', period)
+        mrag_impo = individu('mrag_impo', period)
+        arag_exon = individu('arag_exon', period)
+        arag_impg = individu('arag_impg', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_exon = individu('nrag_exon', period)
+        nrag_impg = individu('nrag_impg', period)
+        nrag_defi = individu('nrag_defi', period)
+        nrag_ajag = individu('nrag_ajag', period)
+
+        return (
+            mrag_exon + mrag_impo
+            + arag_exon + arag_impg - arag_defi
+            + nrag_exon + nrag_impg - nrag_defi
+            + nrag_ajag
+            )
+
+
+class ric(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Bénéfices industriels et commerciaux'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Bénéfices industriels et commerciaux
+        '''
+        mbic_exon = individu('mbic_exon', period)
+        mbic_impv = individu('mbic_impv', period)
+        mbic_imps = individu('mbic_imps', period)
+        abic_exon = individu('abic_exon', period)
+        nbic_exon = individu('nbic_exon', period)
+        abic_impn = individu('abic_impn', period)
+        nbic_impn = individu('nbic_impn', period)
+        abic_imps = individu('abic_imps', period)
+        nbic_imps = individu('nbic_imps', period)
+        abic_defn = individu('abic_defn', period)
+        nbic_defn = individu('nbic_defn', period)
+        abic_defs = individu('abic_defs', period)
+        nbic_defs = individu('nbic_defs', period)
+        nbic_apch = individu('nbic_apch', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+
+        zbic = (
+            mbic_exon + mbic_impv + mbic_imps
+            + abic_exon + nbic_exon
+            + abic_impn + nbic_impn
+            + abic_imps + nbic_imps
+            + abic_defn - nbic_defn
+            + abic_defs - nbic_defs
+            + nbic_apch
+            )
+
+        cond = (mbic_impv > 0) & (mbic_imps == 0)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
+
+        cbic = min_(
+            mbic_impv + mbic_imps + mbic_exon,
+            max_(
+                micro.microentreprise.montant_minimum,
+                round_(
+                    mbic_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux + mbic_imps * micro.microentreprise.regime_micro_bnc.services.taux + mbic_exon * taux
+                    )
+                )
+            )
+        return zbic - cbic
+
+
+class rac(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus accessoires individuels'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F1225.xhtml'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Revenus accessoires individuels
+        '''
+        macc_exon = individu('macc_exon', period)
+        macc_impv = individu('macc_impv', period)
+        macc_imps = individu('macc_imps', period)
+        aacc_exon = individu('aacc_exon', period)
+        aacc_impn = individu('aacc_impn', period)
+        aacc_imps = individu('aacc_imps', period)
+        aacc_defn = individu('aacc_defn', period)
+        aacc_defs = individu('aacc_defs', period)
+        nacc_exon = individu('nacc_exon', period)
+        nacc_impn = individu('nacc_impn', period)
+        nacc_defn = individu('nacc_defn', period)
+        alnp_imps = individu('alnp_imps', period)
+        mncn_impo = individu('mncn_impo', period)
+        cncn_bene = individu('cncn_bene', period)
+        cncn_defi = individu('cncn_defi', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+
+        zacc = (
+            macc_exon + macc_impv + macc_imps
+            + aacc_exon + aacc_impn + aacc_imps - aacc_defn - aacc_defs
+            + nacc_exon + nacc_impn - nacc_defn - alnp_imps
+            + mncn_impo + cncn_bene - cncn_defi
+            )
+
+    # TODO: aacc_imps aacc_defs
+        cond = (macc_impv > 0) & (macc_imps == 0)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
+
+        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.microentreprise.montant_minimum, round_(
+            macc_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux
+            + macc_imps * micro.microentreprise.regime_micro_bnc.services.taux + macc_exon * taux
+            + mncn_impo * micro.microentreprise.regime_micro_bnc.taux)))
+
+        return zacc - cacc
+
+
+class rnc(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus non commerciaux individuels'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Revenus non commerciaux individuels
+        '''
+        mbnc_exon = individu('mbnc_exon', period)
+        mbnc_impo = individu('mbnc_impo', period)
+        abnc_exon = individu('abnc_exon', period)
+        nbnc_exon = individu('nbnc_exon', period)
+        abnc_impo = individu('abnc_impo', period)
+        nbnc_impo = individu('nbnc_impo', period)
+        abnc_defi = individu('abnc_defi', period)
+        nbnc_defi = individu('nbnc_defi', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.microentreprise
+
+        zbnc = (
+            mbnc_exon + mbnc_impo
+            + abnc_exon + nbnc_exon
+            + abnc_impo + nbnc_impo
+            - abnc_defi - nbnc_defi
+            )
+
+        cbnc = min_(
+            mbnc_exon + mbnc_impo,
+            max_(
+                micro.montant_minimum,
+                round_((mbnc_exon + mbnc_impo) * micro.regime_micro_bnc.taux)
+                )
+            )
+
+        return zbnc - cbnc
+
 class total_impots_plafonnement_isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -743,6 +931,154 @@ class isf_ifi(Variable):
 
 # calcul de l'ensemble des revenus du contribuable
 
+class rag(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus agricoles'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Revenus agricoles
+        '''
+        frag_exon = individu('frag_exon', period)
+        frag_impo = individu('frag_impo', period)
+        arag_exon = individu('arag_exon', period)
+        arag_impg = individu('arag_impg', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_exon = individu('nrag_exon', period)
+        nrag_impg = individu('nrag_impg', period)
+        nrag_defi = individu('nrag_defi', period)
+        nrag_ajag = individu('nrag_ajag', period)
+
+        return (
+            frag_exon + frag_impo
+            + arag_exon + arag_impg - arag_defi
+            + nrag_exon + nrag_impg - nrag_defi
+            + nrag_ajag
+            )
+
+    def formula_2016_01_01(individu, period, parameters):
+        '''
+        Revenus agricoles
+        '''
+        mrag_exon = individu('mrag_exon', period)
+        mrag_impo = individu('mrag_impo', period)
+        arag_exon = individu('arag_exon', period)
+        arag_impg = individu('arag_impg', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_exon = individu('nrag_exon', period)
+        nrag_impg = individu('nrag_impg', period)
+        nrag_defi = individu('nrag_defi', period)
+        nrag_ajag = individu('nrag_ajag', period)
+
+        return (
+            mrag_exon + mrag_impo
+            + arag_exon + arag_impg - arag_defi
+            + nrag_exon + nrag_impg - nrag_defi
+            + nrag_ajag
+            )
+
+
+class ric(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Bénéfices industriels et commerciaux'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Bénéfices industriels et commerciaux
+        '''
+        mbic_exon = individu('mbic_exon', period)
+        mbic_impv = individu('mbic_impv', period)
+        mbic_imps = individu('mbic_imps', period)
+        abic_exon = individu('abic_exon', period)
+        nbic_exon = individu('nbic_exon', period)
+        abic_impn = individu('abic_impn', period)
+        nbic_impn = individu('nbic_impn', period)
+        abic_imps = individu('abic_imps', period)
+        nbic_imps = individu('nbic_imps', period)
+        abic_defn = individu('abic_defn', period)
+        nbic_defn = individu('nbic_defn', period)
+        abic_defs = individu('abic_defs', period)
+        nbic_defs = individu('nbic_defs', period)
+        nbic_apch = individu('nbic_apch', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+
+        zbic = (
+            mbic_exon + mbic_impv + mbic_imps
+            + abic_exon + nbic_exon
+            + abic_impn + nbic_impn
+            + abic_imps + nbic_imps
+            + abic_defn - nbic_defn
+            + abic_defs - nbic_defs
+            + nbic_apch
+            )
+
+        cond = (mbic_impv > 0) & (mbic_imps == 0)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
+
+        cbic = min_(
+            mbic_impv + mbic_imps + mbic_exon,
+            max_(
+                micro.microentreprise.montant_minimum,
+                round_(
+                    mbic_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux + mbic_imps * micro.microentreprise.regime_micro_bnc.services.taux + mbic_exon * taux
+                    )
+                )
+            )
+        return zbic - cbic
+
+
+class rac(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus accessoires individuels'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F1225.xhtml'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Revenus accessoires individuels
+        '''
+        macc_exon = individu('macc_exon', period)
+        macc_impv = individu('macc_impv', period)
+        macc_imps = individu('macc_imps', period)
+        aacc_exon = individu('aacc_exon', period)
+        aacc_impn = individu('aacc_impn', period)
+        aacc_imps = individu('aacc_imps', period)
+        aacc_defn = individu('aacc_defn', period)
+        aacc_defs = individu('aacc_defs', period)
+        nacc_exon = individu('nacc_exon', period)
+        nacc_impn = individu('nacc_impn', period)
+        nacc_defn = individu('nacc_defn', period)
+        nacc_pres = individu('nacc_pres', period)
+        mncn_impo = individu('mncn_impo', period)
+        cncn_bene = individu('cncn_bene', period)
+        cncn_defi = individu('cncn_defi', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+
+        zacc = (
+            macc_exon + macc_impv + macc_imps
+            + aacc_exon + aacc_impn + aacc_imps - aacc_defn - aacc_defs
+            + nacc_exon + nacc_impn - nacc_defn + nacc_pres
+            + mncn_impo + cncn_bene - cncn_defi
+            )
+
+    # TODO: aacc_imps aacc_defs
+        cond = (macc_impv > 0) & (macc_imps == 0)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
+
+        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.microentreprise.montant_minimum, round_(
+            macc_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux
+            + macc_imps * micro.microentreprise.regime_micro_bnc.services.taux + macc_exon * taux
+            + mncn_impo * micro.microentreprise.regime_micro_bnc.taux)))
+
+        return zacc - cacc
+
 
 # TODO: à reintégrer dans impot_revenu_restant_a_payer
 class rvcm_plus_abat(Variable):
@@ -777,9 +1113,9 @@ class maj_cga(Variable):
         nbic_defn = individu('nbic_defn', period)
         nbic_defs = individu('nbic_defs', period)
         nacc_impn = individu('nacc_impn', period)
-        nacc_meup = individu('nacc_meup', period)
+        nlnp_defs = individu('nlnp_defs', period)
         nacc_defn = individu('nacc_defn', period)
-        nacc_defs = individu('nacc_defs', period)
+        nlnp_imps = individu('nlnp_imps', period)
         nbnc_impo = individu('nbnc_impo', period)
         nbnc_defi = individu('nbnc_defi', period)
         rpns = parameters(period).impot_revenu.calcul_revenus_imposables.rpns
@@ -788,7 +1124,7 @@ class maj_cga(Variable):
 
         # C revenus industriels et commerciaux non professionnels
         # (revenus accesoires du foyers en nomenclature INSEE)
-        nacc_timp = max_(0, (nacc_impn + nacc_meup) - (nacc_defn + nacc_defs))
+        nacc_timp = max_(0, (nacc_impn + nlnp_imps) - (nacc_defn + nlnp_defs))
 
         # régime de la déclaration contrôlée ne bénéficiant pas de l'abattement association agréée
         nbnc_timp = nbnc_impo - nbnc_defi
