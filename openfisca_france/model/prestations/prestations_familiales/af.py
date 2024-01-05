@@ -61,11 +61,12 @@ class af_eligibilite_base(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def formula(famille, period):
+    def formula(famille, period, parameters):
         residence_dom = famille.demandeur.menage('residence_dom', period)
         af_nbenf = famille('af_nbenf', period)
+        nb_enfants_min_pour_allocation = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.nb_enfants_min_pour_allocation
 
-        return not_(residence_dom) * (af_nbenf >= 2)
+        return not_(residence_dom) * (af_nbenf >= nb_enfants_min_pour_allocation)
 
 
 class af_eligibilite_dom(Variable):
@@ -98,6 +99,7 @@ class af_base(Variable):
 
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+        nb_enfants_min_pour_allocation = af.af_cm.nb_enfants_min_pour_allocation
 
         eligibilite = or_(eligibilite_base, eligibilite_dom)
 
@@ -107,8 +109,8 @@ class af_base(Variable):
             * af.af_maj_dom.allocations_familiales_un_enfant
             )
 
-        deux_enfants = (af_nbenf >= 2) * af.af_cm.taux.enf2
-        plus_de_trois_enfants = max_(af_nbenf - 2, 0) * af.af_cm.taux.enf3
+        deux_enfants = (af_nbenf >= nb_enfants_min_pour_allocation) * af.af_cm.taux.enf2
+        plus_de_trois_enfants = max_(af_nbenf - nb_enfants_min_pour_allocation, 0) * af.af_cm.taux.enf3
         taux_total = un_seul_enfant + deux_enfants + plus_de_trois_enfants
         montant_base = eligibilite * round_(bmaf * taux_total, 2)
         coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
@@ -328,9 +330,12 @@ class af_allocation_forfaitaire(Variable):
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
-
         af_forfait = round_(bmaf * af.af_maj.majoration_enfants.allocation_forfaitaire.taux, 2)
-        af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
+
+        nb_enfants_min = af.af_maj.majoration_enfants.allocation_forfaitaire.nb_enfants_min
+        condition_nb_enfants = ((af_nbenf + af_forfaitaire_nbenf)>=nb_enfants_min)
+        # allocation forfaitaire est versée aux familles ayant au moins 3 enfants à charge y compris ceux ayant 20 ans
+        af_allocation_forfaitaire = (condition_nb_enfants * af_forfaitaire_nbenf) * af_forfait
 
         af_forfaitaire_taux_modulation = famille('af_allocation_forfaitaire_taux_modulation', period)
         af_forfaitaire_module = af_allocation_forfaitaire * af_forfaitaire_taux_modulation
