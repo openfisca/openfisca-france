@@ -512,6 +512,7 @@ class ppa(Variable):
 
         return ppa
 
+
 class crds_ppa(Variable):
     value_type = float
     entity = Famille

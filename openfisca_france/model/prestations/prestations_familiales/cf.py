@@ -343,6 +343,7 @@ class cf(Variable):
 
         return not_(residence_mayotte) * round(cf_brut, 2)
 
+
 class crds_cf(Variable):
     value_type = float
     entity = Famille
@@ -355,6 +356,7 @@ class crds_cf(Variable):
         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
 
         return -(cf) * taux_crds
+
 
 class cf_net_crds(Variable):
     calculate_output = calculate_output_add

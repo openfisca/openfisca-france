@@ -62,6 +62,7 @@ class ars(Variable):
         ars_montant = max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res)))
 
         return ars_montant * (ars_montant >= ars.montant_minimum_verse)
+
     
 class crds_ars(Variable):
     value_type = float
@@ -76,6 +77,7 @@ class crds_ars(Variable):
         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
 
         return -(ars) * taux_crds
+
 
 class ars_nette_crds(Variable):
     calculate_output = calculate_output_add

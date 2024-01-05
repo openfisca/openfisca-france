@@ -90,6 +90,7 @@ class crds_hors_prestations(Variable):
 
         return crds_individu + crds_revenus_capital_projetee
 
+
 class crds_pfam(Variable):
     value_type = float
     entity = Famille

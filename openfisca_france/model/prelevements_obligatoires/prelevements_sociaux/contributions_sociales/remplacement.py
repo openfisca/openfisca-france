@@ -612,3 +612,4 @@ class retraite_nette(Variable):
 
         return retraite_imposable + csg_imposable_retraite + crds_retraite + casa
 
+

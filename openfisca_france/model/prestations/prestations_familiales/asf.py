@@ -80,6 +80,7 @@ class asf(Variable):
 
         return asf_elig * (montant > asf.seuil) * montant
 
+
 class crds_asf(Variable):
     value_type = float
     entity = Famille
@@ -92,6 +93,7 @@ class crds_asf(Variable):
         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
 
         return -(asf) * taux_crds
+
 
 class asf_nette_crds(Variable):
     calculate_output = calculate_output_add

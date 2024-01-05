@@ -378,6 +378,7 @@ def depassement_helper(famille, period, parameters, nb_enf_tot):
 
     return depassement_mensuel
 
+
 class crds_af(Variable):
     value_type = float
     entity = Famille
@@ -390,6 +391,7 @@ class crds_af(Variable):
         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
 
         return -(af) * taux_crds
+
 
 class af_nettes_crds(Variable):
     calculate_output = calculate_output_add
