@@ -2655,7 +2655,6 @@ class rpns_exon(Variable):
             )
 
 
-
 class defrag(Variable):
     value_type = float
     entity = FoyerFiscal

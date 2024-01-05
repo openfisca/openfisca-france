@@ -548,7 +548,8 @@ class nbic_defs(Variable):
     end = '2009-12-31'
     definition_period = YEAR
 
-#TODO : ajouter dans formules
+
+# TODO : ajouter dans formules
 class nlnp_imps(Variable):
     cerfa_field = {0: '5KM',
         1: '5LM',
