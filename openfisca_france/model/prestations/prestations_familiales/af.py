@@ -334,7 +334,7 @@ class af_allocation_forfaitaire(Variable):
         af_forfait = round_(bmaf * af.af_maj.majoration_enfants.allocation_forfaitaire.taux, 2)
 
         nb_enfants_min = af.af_maj.majoration_enfants.allocation_forfaitaire.nb_enfants_min
-        condition_nb_enfants = ((af_nbenf + af_forfaitaire_nbenf)>=nb_enfants_min)
+        condition_nb_enfants = ((af_nbenf + af_forfaitaire_nbenf) >= nb_enfants_min)
         # allocation forfaitaire est versée aux familles ayant au moins 3 enfants à charge y compris ceux ayant 20 ans
         af_allocation_forfaitaire = (condition_nb_enfants * af_forfaitaire_nbenf) * af_forfait
 
