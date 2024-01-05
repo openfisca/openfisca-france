@@ -611,5 +611,3 @@ class retraite_nette(Variable):
         crds_retraite = individu('crds_retraite', period)
 
         return retraite_imposable + csg_imposable_retraite + crds_retraite + casa
-
-
