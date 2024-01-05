@@ -48,9 +48,11 @@ values:
     value: 11441.5
   2023-01-01:
     value: 11533.02
+  2024-01-01:
+    value: 12144.27
 metadata:
   short_label: Personne seule
-  last_value_still_valid_on: "2021-01-01"
+  last_value_still_valid_on: "2024-01-05"
   label_en: Solidarity income for elderly (ASPA)
   ipp_csv_id: plaf_mv_seul_aspa
   unit: currency
@@ -115,6 +117,9 @@ metadata:
     2023-01-01:
       title: Circulaire Cnav 2023/3 du 09/01/2023
       href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2023_03_09012023.pdf
+    2024-01-01:
+      title: Circulaire Cnav 2023-34 du 29/12/2023 p10.
+      href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2023_34_29122023.pdf
   official_journal_date:
     2006-01-01: "2007-01-13"
     2007-01-01: "2006-12-30"
