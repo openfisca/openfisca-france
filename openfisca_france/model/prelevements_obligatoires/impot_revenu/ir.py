@@ -2590,6 +2590,37 @@ class rpns_exon(Variable):
         abnc_exon = individu('abnc_exon', period)
         nbnc_exon = individu('nbnc_exon', period)
         mncn_exon = individu('mncn_exon', period)
+        cncn_jcre = individu('cncn_jcre', period)
+        nbic_pvce = individu('nbic_pvce', period)
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+
+        return (
+            frag_exon + mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
+            + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
+            + abnc_exon + nbnc_exon + mncn_exon + cncn_jcre + nbic_pvce + nrag_pvce
+            )
+
+    def formula_2008_01_01(individu, period, parameters):
+        '''
+        Plus values de cession
+        '''
+        frag_exon = individu('frag_exon', period)
+        mrag_exon = individu('mrag_exon', period)
+        arag_exon = individu('arag_exon', period)
+        nrag_exon = individu('nrag_exon', period)
+        mbic_exon = individu('mbic_exon', period)
+        abic_exon = individu('abic_exon', period)
+        nbnc_proc = individu('nbnc_proc', period)
+        nbic_exon = individu('nbic_exon', period)
+        macc_exon = individu('macc_exon', period)
+        aacc_exon = individu('aacc_exon', period)
+        nacc_exon = individu('nacc_exon', period)
+        mbnc_exon = individu('mbnc_exon', period)
+        abnc_proc = individu('abnc_proc', period)
+        nrag_pvce = individu('nrag_pvce', period)
+        abnc_exon = individu('abnc_exon', period)
+        nbnc_exon = individu('nbnc_exon', period)
+        mncn_exon = individu('mncn_exon', period)
         cncn_exon = individu('cncn_exon', period)
         cncn_jcre = individu('cncn_jcre', period)
         nbic_pvce = individu('nbic_pvce', period)
@@ -2605,28 +2636,22 @@ class rpns_exon(Variable):
         '''
         Plus values de cession
         '''
-        frag_exon = individu('frag_exon', period)
         mrag_exon = individu('mrag_exon', period)
         arag_exon = individu('arag_exon', period)
-        #nrag_exon = individu('nrag_exon', period)
         mbic_exon = individu('mbic_exon', period)
         abic_exon = individu('abic_exon', period)
-        nbic_exon = individu('nbic_exon', period)
         macc_exon = individu('macc_exon', period)
         aacc_exon = individu('aacc_exon', period)
         mbnc_exon = individu('mbnc_exon', period)
-        abnc_proc = individu('abnc_proc', period)
-        nrag_pvce = individu('nrag_pvce', period)
         abnc_exon = individu('abnc_exon', period)
         mncn_exon = individu('mncn_exon', period)
         cncn_exon = individu('cncn_exon', period)
         cncn_jcre = individu('cncn_jcre', period)
-        nbic_pvce = individu('nbic_pvce', period)
 
         return (
-            frag_exon + mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon
-            + nbic_exon + macc_exon + aacc_exon + mbnc_exon + abnc_proc
-            + abnc_exon + mncn_exon + cncn_exon + cncn_jcre + nbic_pvce + nrag_pvce
+            mrag_exon + arag_exon + mbic_exon + abic_exon
+            + macc_exon + aacc_exon + mbnc_exon
+            + abnc_exon + mncn_exon + cncn_exon + cncn_jcre
             )
 
 
@@ -2845,45 +2870,6 @@ class defmeu(Variable):
         return min_(f5ga + f5gb + f5gc + f5gd + f5ge + f5gf + f5gg + f5gh + f5gi + f5gj, alnp_imps + nacc_pres)
 
 
-class rnc(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Revenus non commerciaux individuels'
-    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50'
-    definition_period = YEAR
-
-    def formula(individu, period, parameters):
-        '''
-        Revenus non commerciaux individuels
-        '''
-        mbnc_exon = individu('mbnc_exon', period)
-        mbnc_impo = individu('mbnc_impo', period)
-        abnc_exon = individu('abnc_exon', period)
-        nbnc_exon = individu('nbnc_exon', period)
-        abnc_impo = individu('abnc_impo', period)
-        nbnc_impo = individu('nbnc_impo', period)
-        abnc_defi = individu('abnc_defi', period)
-        nbnc_defi = individu('nbnc_defi', period)
-        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.microentreprise
-
-        zbnc = (
-            mbnc_exon + mbnc_impo
-            + abnc_exon + nbnc_exon
-            + abnc_impo + nbnc_impo
-            - abnc_defi - nbnc_defi
-            )
-
-        cbnc = min_(
-            mbnc_exon + mbnc_impo,
-            max_(
-                micro.montant_minimum,
-                round_((mbnc_exon + mbnc_impo) * micro.regime_micro_bnc.taux)
-                )
-            )
-
-        return zbnc - cbnc
-
-
 class rpns_pvct(Variable):
     value_type = float
     entity = Individu
@@ -2994,7 +2980,7 @@ class rpns_revenus_forfait_agricole(Variable):
     entity = Individu
     label = 'Revenus du forfait agricole - Revenus des professions non salariées'
     definition_period = YEAR
-    end = '2015-12-31'  # TODO : le forfait agricole est remplaçé par le régime micro-bénéfices agricoles à partir de 2016
+    end = '2015-12-31'
 
     def formula(individu, period, parameters):
 

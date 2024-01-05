@@ -1156,7 +1156,7 @@ class bouclier_rev(Variable):
         cd_eparet = foyer_fiscal('cd_eparet', period)
 
         maj_cga_i = foyer_fiscal.members('maj_cga', period)  # noqa F841
-        maj_cga = foyer_fiscal.sum(maj_cga)  # noqa F841
+        maj_cga = foyer_fiscal.sum(maj_cga_i)  # noqa F841
 
         # TODO: réintégrer les déficits antérieur
         # TODO: intégrer les revenus soumis au prélèvement libératoire
