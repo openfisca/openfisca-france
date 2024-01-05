@@ -184,6 +184,8 @@ values:
     value: 3428
   2023-01-01:
     value: 3666
+  2024-01-01:
+    value: 3864
 metadata:
   short_label: Plafond mensuel
   last_value_still_valid_on: "2023-01-01"
@@ -425,6 +427,9 @@ metadata:
     2023-01-01:
       title: Arrêté du 09/12/2022
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046745084
+    2024-01-01:
+      title: Arrêté du 19/12/2023
+      href : https://www.legifrance.gouv.fr/jorf/id/JORFARTI000048708695#JORFARTI000048708695
   official_journal_date:
     1946-07-01: "1945-10-06"
     1946-10-01: "1946-10-08"
@@ -517,6 +522,7 @@ metadata:
     2020-01-01: "2019-12-03"
     2021-01-01: "2020-12-29"
     2023-01-01: "2022-12-16"
+    2024-01-01: "2023-12-29"
   notes:
     1930-07-01:
     - title: Voir référence sur Gallica.bnf.fr

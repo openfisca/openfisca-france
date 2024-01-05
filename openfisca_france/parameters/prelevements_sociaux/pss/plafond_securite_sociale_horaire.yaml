@@ -14,6 +14,8 @@ values:
     value: 26
   2023-01-01:
     value: 27
+  2024-01-01:
+    value: 29
 metadata:
   short_label: Plafond horaire
   last_value_still_valid_on: "2015-01-01"
@@ -43,6 +45,11 @@ metadata:
     2023-01-01:
       title: Arrêté du 09/12/2022
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046745084
+    2024-01-01:
+    - title: Arrêté du 19/12/2023
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000048708695#JORFARTI000048708695
+    - title: Site de l'URSSAF
+      href: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
   official_journal_date:
     2009-01-01: "2008-12-24"
     2010-01-01: "2009-11-26"
@@ -51,6 +58,7 @@ metadata:
     2018-01-01: "2017-12-09"
     2020-01-01: "2019-12-03"
     2023-01-01: "2022-12-16"
+    2024-01-01: "2023-12-29"
   notes:
     2015-01-01:
     - title: à partir de cette date, les montants ne sont plus explicitement dans la loi,  mais sont calculés à partir de https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025103320/2012-01-01/ (montant_mensuel*12/nb_h_travaillee_de_ref, ce dernier valant 1607)
