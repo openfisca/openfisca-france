@@ -571,13 +571,12 @@ class minima_sociaux(Variable):
         minimum_vieillesse = famille('minimum_vieillesse', period, options = [ADD])
         # Certaines réformes ayant des effets de bords nécessitent que le rsa soit calculé avant la ppa
         rsa = famille('rsa', period, options = [ADD])
-        ppa = famille('ppa', period, options = [ADD])
+        ppa_nette_crds = famille('ppa_nette_crds', period, options = [ADD])
         psa = famille('psa', period, options = [ADD])
-        crds_mini = famille('crds_mini', period, options = [ADD])
         garantie_jeunes_i = famille.members('garantie_jeunes', period, options = [ADD])
         garantie_jeunes = famille.sum(garantie_jeunes_i)
 
-        return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa + crds_mini + garantie_jeunes
+        return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa_nette_crds + garantie_jeunes
 
 
 class aides_logement(Variable):

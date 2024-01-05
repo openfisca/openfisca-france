@@ -172,6 +172,36 @@ class rsa_activite(Variable):
         return max_(rsa - rmi, 0)
 
 
+class crds_rsa_activite(Variable):
+    value_type = float
+    entity = Famille
+    end = '2015-12-31'
+    label = 'CRDS versée sur le RSA activité'
+    reference = 'https://www.legifrance.gouv.fr/loda/id/LEGIARTI000038834962/2019-09-01/#LEGIARTI000038834962'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2009_06_01(famille, period, parameters):
+        rsa_activite = famille('rsa_activite', period)
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return - taux_crds * rsa_activite
+
+
+class rsa_activite_net_crds(Variable):
+    value_type = float
+    entity = Famille
+    label = 'Revenu de solidarité active activité net de CRDS'
+    end = '2015-12-31'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2009_06_01(famille, period):
+        rsa_activite = famille('rsa_activite', period)
+        crds_rsa_activite = famille('crds_rsa_activite', period)
+        return rsa_activite + crds_rsa_activite
+
+
 class rsa_activite_individu(Variable):
     value_type = float
     entity = Individu
