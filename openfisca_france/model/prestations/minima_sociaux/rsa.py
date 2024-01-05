@@ -296,6 +296,25 @@ class rsa_base_ressources_prestations_familiales(Variable):
         return result
 
 
+class crds_mini(Variable):
+    value_type = float
+    entity = Famille
+    label = 'CRDS versée sur les minimas sociaux'
+    reference = 'https://www.legifrance.gouv.fr/loda/id/LEGIARTI000038834962/2019-09-01/#LEGIARTI000038834962'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2016_01_01(famille, period, parameters):
+        crds_ppa = famille('crds_ppa', period)
+
+        return crds_ppa
+
+    def formula_2009_06_01(famille, period, parameters):
+        crds_rsa_activite = famille('crds_rsa_activite', period)
+
+        return crds_rsa_activite
+
+
 class enceinte_fam(Variable):
     value_type = bool
     entity = Famille
