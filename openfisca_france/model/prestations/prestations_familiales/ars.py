@@ -63,7 +63,7 @@ class ars(Variable):
 
         return ars_montant * (ars_montant >= ars.montant_minimum_verse)
 
-    
+
 class crds_ars(Variable):
     value_type = float
     entity = Famille
