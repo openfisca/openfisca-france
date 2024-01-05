@@ -342,3 +342,30 @@ class cf(Variable):
             )
 
         return not_(residence_mayotte) * round(cf_brut, 2)
+
+class crds_cf(Variable):
+    value_type = float
+    entity = Famille
+    label = 'CRDS sur le complément familial'
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        cf = famille('cf', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return -(cf) * taux_crds
+
+class cf_net_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = 'Complément familial net de CRDS'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        cf = famille('cf', period)
+        crds_cf = famille('crds_cf', period)
+
+        return cf + crds_cf

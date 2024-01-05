@@ -530,16 +530,15 @@ class prestations_familiales(Variable):
     definition_period = YEAR
 
     def formula(famille, period):
-        af = famille('af', period, options = [ADD])
-        cf = famille('cf', period, options = [ADD])
-        ars = famille('ars', period)
+        af = famille('af_nettes_crds', period, options = [ADD])
+        cf = famille('cf_net_crds', period, options = [ADD])
+        ars = famille('ars_nette_crds', period)
         aeeh = famille('aeeh', period, options = [ADD])
         aes = famille('aes', period, options = [ADD])
-        paje = famille('paje', period, options = [ADD])
-        asf = famille('asf', period, options = [ADD])
-        crds_pfam = famille('crds_pfam', period)
+        paje = famille('paje_nette_crds', period, options = [ADD])
+        asf = famille('asf_nette_crds', period, options = [ADD])
 
-        return af + cf + ars + aeeh + aes + paje + asf + crds_pfam
+        return af + cf + ars + aeeh + aes + paje + asf
 
 
 class minimum_vieillesse(Variable):
