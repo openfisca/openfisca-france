@@ -172,7 +172,7 @@ values:
     value: 46368
 metadata:
   short_label: Annuel
-  last_value_still_valid_on: "2021-01-01"
+  last_value_still_valid_on: "2024-01-05"
   label_en: Social security yearly ceiling
   ipp_csv_id: pss_a
   unit: currency

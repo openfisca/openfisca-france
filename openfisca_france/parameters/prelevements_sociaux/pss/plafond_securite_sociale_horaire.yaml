@@ -18,7 +18,7 @@ values:
     value: 29
 metadata:
   short_label: Plafond horaire
-  last_value_still_valid_on: "2015-01-01"
+  last_value_still_valid_on: "2024-01-05"
   label_en: Social security hourly ceiling
   unit: currency
   reference:
