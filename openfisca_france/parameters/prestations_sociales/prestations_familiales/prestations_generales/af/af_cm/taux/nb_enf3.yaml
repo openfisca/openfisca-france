@@ -1,0 +1,12 @@
+description: Nombre d'enfants pour le 2e Taux (en % de la BMAF) des allocations familiales (AF)
+values:
+  1946-09-01:
+    value: 3
+metadata:
+  short_label: Nombre
+  last_value_still_valid_on: "2024-01-05"
+  label_en: "Family allowances (AF): General conditions and amount"
+  unit: BMAF
+  reference:
+    1946-09-01:
+      title: Loi du 22 aout 1946

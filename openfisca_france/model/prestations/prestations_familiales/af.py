@@ -99,7 +99,8 @@ class af_base(Variable):
 
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
-        nb_enfants_min_pour_allocation = af.af_cm.nb_enfants_min_pour_allocation
+        nb_enf2 = af.af_cm.taux.nb_enf2
+        nb_enf3 = af.af_cm.taux.nb_enf3
 
         eligibilite = or_(eligibilite_base, eligibilite_dom)
 
@@ -109,8 +110,8 @@ class af_base(Variable):
             * af.af_maj_dom.allocations_familiales_un_enfant
             )
 
-        deux_enfants = (af_nbenf >= nb_enfants_min_pour_allocation) * af.af_cm.taux.enf2
-        plus_de_trois_enfants = max_(af_nbenf - nb_enfants_min_pour_allocation, 0) * af.af_cm.taux.enf3
+        deux_enfants = (af_nbenf >= nb_enf2) * (min_(af_nbenf - (nb_enf2 - 1), nb_enf3 - nb_enf2)) * af.af_cm.taux.enf2
+        plus_de_trois_enfants = max_(af_nbenf - (nb_enf3 - 1), 0) * af.af_cm.taux.enf3
         taux_total = un_seul_enfant + deux_enfants + plus_de_trois_enfants
         montant_base = eligibilite * round_(bmaf * taux_total, 2)
         coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
