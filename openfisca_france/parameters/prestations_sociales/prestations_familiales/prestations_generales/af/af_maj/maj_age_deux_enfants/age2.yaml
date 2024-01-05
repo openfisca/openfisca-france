@@ -3,10 +3,10 @@ values:
   2002-01-01:
     value: 16
   2008-05-01:
-    value: 14
+    value: null
 metadata:
   short_label: Âge seuil 2ème majoration
-  last_value_still_valid_on: "2022-02-28"
+  last_value_still_valid_on: "2024-01-05"
   unit: year
   reference:
     2008-05-01:
