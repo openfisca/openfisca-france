@@ -1,5 +1,13 @@
 # Changelog
 
+### 155.1.8[2234](https://github.com/openfisca/openfisca-france/pull/2234)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2024.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa`.
+* Détails :
+  - Met à jour les montant de l'aspa à partir du 01/01/2024
+
 ### 155.1.7[2233](https://github.com/openfisca/openfisca-france/pull/2233)
 
 * Évolution du système socio-fiscal.
