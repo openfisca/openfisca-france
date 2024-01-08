@@ -305,16 +305,14 @@ class crds_mini(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2016_01_01(famille, period, parameters):
-        ppa = famille('ppa', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+        crds_ppa = famille('crds_ppa', period)
 
-        return - taux_crds * ppa
+        return crds_ppa
 
     def formula_2009_06_01(famille, period, parameters):
-        rsa_activite = famille('rsa_activite', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+        crds_rsa_activite = famille('crds_rsa_activite', period)
 
-        return - taux_crds * rsa_activite
+        return crds_rsa_activite
 
 
 class enceinte_fam(Variable):

@@ -62,3 +62,33 @@ class ars(Variable):
         ars_montant = max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res)))
 
         return ars_montant * (ars_montant >= ars.montant_minimum_verse)
+
+
+class crds_ars(Variable):
+    value_type = float
+    entity = Famille
+    label = "CRDS sur l'allocation de rentrée scolaire"
+    reference = 'http://www.cleiss.fr/docs/regimes/regime_francea1.html'
+    definition_period = YEAR
+
+    def formula(famille, period, parameters):
+        ars = famille('ars', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return -(ars) * taux_crds
+
+
+class ars_nette_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = 'Allocation de rentrée scolaire nette de CRDS'
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        ars = famille('ars', period)
+        crds_af = famille('crds_ars', period)
+
+        return ars + crds_af

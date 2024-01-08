@@ -377,3 +377,32 @@ def depassement_helper(famille, period, parameters, nb_enf_tot):
         ) / 12
 
     return depassement_mensuel
+
+
+class crds_af(Variable):
+    value_type = float
+    entity = Famille
+    label = 'CRDS sur les allocations familiales'
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        af = famille('af', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return -(af) * taux_crds
+
+
+class af_nettes_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = 'Allocations familiales nettes de CRDS'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        af = famille('af', period)
+        crds_af = famille('crds_af', period)
+
+        return af + crds_af

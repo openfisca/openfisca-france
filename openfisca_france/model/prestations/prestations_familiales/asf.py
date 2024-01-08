@@ -79,3 +79,32 @@ class asf(Variable):
         montant = famille('asf_montant', period)
 
         return asf_elig * (montant > asf.seuil) * montant
+
+
+class crds_asf(Variable):
+    value_type = float
+    entity = Famille
+    label = "CRDS sur l'allocation de soutien familial'"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        asf = famille('asf', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return -(asf) * taux_crds
+
+
+class asf_nette_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = 'Complément familial net de CRDS'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        asf = famille('asf', period)
+        crds_asf = famille('crds_asf', period)
+
+        return asf + crds_asf

@@ -89,3 +89,21 @@ class crds_hors_prestations(Variable):
         crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return crds_individu + crds_revenus_capital_projetee
+
+
+class crds_pfam(Variable):
+    value_type = float
+    entity = Famille
+    label = 'CRDS sur les prestations familiales'
+    definition_period = YEAR
+
+    def formula(famille, period):
+        crds_af = famille('crds_af', period, options = [ADD])
+        crds_cf = famille('crds_cf', period, options = [ADD])
+        crds_asf = famille('crds_asf', period, options = [ADD])
+        crds_ars = famille('crds_ars', period)
+        crds_paje = famille('crds_paje', period, options = [ADD])
+        crds_ape = famille('crds_ape', period, options = [ADD])
+        crds_apje = famille('crds_apje', period, options = [ADD])
+
+        return (crds_af + crds_cf + crds_asf + crds_ars + crds_paje + crds_ape + crds_apje)

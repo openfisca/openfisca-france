@@ -1,5 +1,19 @@
 # Changelog
 
+### 155.2.0 [2232](https://github.com/openfisca/openfisca-france/pull/2232)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
+  - `openfisca_france/model/prestations/minima_sociaux/anciens_ms.py`
+  - `openfisca_france/model/mesures.py`
+  - `openfisca_france/model/prestations/prestations_familiales`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales`
+* Détails :
+  - Remonte la crds sur les prestations familiales et sur la prime d'activité à chaque prestation
+
 ### 155.1.8[2234](https://github.com/openfisca/openfisca-france/pull/2234)
 
 * Évolution du système socio-fiscal.

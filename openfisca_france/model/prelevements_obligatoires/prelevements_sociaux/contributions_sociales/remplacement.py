@@ -611,23 +611,3 @@ class retraite_nette(Variable):
         crds_retraite = individu('crds_retraite', period)
 
         return retraite_imposable + csg_imposable_retraite + crds_retraite + casa
-
-
-class crds_pfam(Variable):
-    value_type = float
-    entity = Famille
-    label = 'CRDS sur les prestations familiales)'
-    reference = 'http://www.cleiss.fr/docs/regimes/regime_francea1.html'
-    definition_period = YEAR
-
-    def formula(famille, period, parameters):
-        af = famille('af', period, options = [ADD])
-        cf = famille('cf', period, options = [ADD])
-        asf = famille('asf', period, options = [ADD])
-        ars = famille('ars', period)
-        paje = famille('paje', period, options = [ADD])
-        ape = famille('ape', period, options = [ADD])
-        apje = famille('apje', period, options = [ADD])
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
-
-        return -(af + cf + asf + ars + paje + ape + apje) * taux_crds

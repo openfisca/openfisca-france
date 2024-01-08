@@ -754,6 +754,35 @@ class ape(Variable):
         return round(ape, 2)
 
 
+class crds_ape(Variable):
+    value_type = float
+    entity = Famille
+    label = "CRDS sur l'allocation parentale d'éducation"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        ape = famille('ape', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return -(ape) * taux_crds
+
+
+class ape_nette_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = "Allocation parentale d'éducation nette de CRDS"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        ape = famille('ape', period)
+        crds_ape = famille('crds_ape', period)
+
+        return ape + crds_ape
+
+
 class apje(Variable):
     value_type = float
     entity = Famille
@@ -771,6 +800,35 @@ class apje(Variable):
 
         apje = (cf_montant < apje_avant_cumul) * (ape_avant_cumul < apje_avant_cumul) * apje_avant_cumul
         return round(apje, 2)
+
+
+class crds_apje(Variable):
+    value_type = float
+    entity = Famille
+    label = "CRDS sur l'allocation pour le jeune enfant"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        apje = famille('apje', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return -(apje) * taux_crds
+
+
+class apje_nette_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = 'Allocation pour le jeune enfant nette de CRDS'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        apje = famille('apje', period)
+        crds_apje = famille('crds_apje', period)
+
+        return apje + crds_apje
 
 
 class paje_clca(Variable):
@@ -919,3 +977,32 @@ class paje_colca(Variable):
             )
 
         return paje_colca
+
+
+class crds_paje(Variable):
+    value_type = float
+    entity = Famille
+    label = 'CRDS sur la PAJE - Ensemble des prestations'
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        paje = famille('paje', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return -(paje) * taux_crds
+
+
+class paje_nette_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = 'PAJE nette de CRDS'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        paje = famille('paje', period)
+        crds_paje = famille('crds_paje', period)
+
+        return paje + crds_paje

@@ -513,6 +513,35 @@ class ppa(Variable):
         return ppa
 
 
+class crds_ppa(Variable):
+    value_type = float
+    entity = Famille
+    label = "CRDS sur la prime pour l'activité"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2016_01_01(famille, period, parameters):
+        ppa = famille('ppa', period)
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return - taux_crds * ppa
+
+
+class ppa_nette_crds(Variable):
+    value_type = float
+    entity = Famille
+    label = "Prime Pour l'Activité nette de CRDS"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
+
+    def formula_2016_01_01(famille, period, parameters):
+        ppa = famille('ppa', period)
+        crds_ppa = famille('crds_ppa', period)
+
+        return ppa + crds_ppa
+
+
 class ppa_mois_demande(Variable):
     value_type = date
     entity = Famille
