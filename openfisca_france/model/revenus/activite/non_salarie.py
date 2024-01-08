@@ -263,7 +263,7 @@ class nrag_exon(Variable):
     entity = Individu
     label = "Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur), activités exercées en Corse"
     # start_date = date(2007, 1, 1)
-    end = '2023-12-01'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -290,7 +290,7 @@ class nrag_defi(Variable):
     entity = Individu
     label = "Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
-    end = '2023-12-01'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
