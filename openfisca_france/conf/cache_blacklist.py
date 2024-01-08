@@ -59,7 +59,7 @@ cache_blacklist = set([
     'asf_nette_crds',
     'cf_net_crds',
     'crds_ppa',
-    'crds_rsa_activite',*
+    'crds_rsa_activite',
     'crds_mini',
     'crds_af',
     'crds_ars',
