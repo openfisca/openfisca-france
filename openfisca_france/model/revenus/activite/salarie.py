@@ -594,7 +594,10 @@ class prime_partage_valeur(Variable):
     entity = Individu
     label = 'Prime pérenne de partage de la valeur (PPV)'
     definition_period = (YEAR)  # La PPV est versée en fonction du salaire des 12 derniers mois
-    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
+    reference = [
+        'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18',
+        'https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/protection-pouvoir-dachat.html',
+        ]
     set_input = set_input_divide_by_period
     documentation = '''
         La PPV exonérée représente l'éxonération de la prime des cotisations salariales,
