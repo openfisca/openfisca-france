@@ -594,7 +594,10 @@ class prime_partage_valeur(Variable):
     entity = Individu
     label = 'Prime pérenne de partage de la valeur (PPV)'
     definition_period = (YEAR)  # La PPV est versée en fonction du salaire des 12 derniers mois
-    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
+    reference = [
+        'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18',
+        'https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/protection-pouvoir-dachat.html',
+        ]
     set_input = set_input_divide_by_period
     documentation = '''
         La PPV exonérée représente l'éxonération de la prime des cotisations salariales,
@@ -614,7 +617,7 @@ class prime_partage_valeur(Variable):
         => Sous 3 SMIC les 12 derniers mois, on est en plus exonéré d'IR, CSG et CRDS.
 
         Pour tout niveau de revenu :
-        PPV est exonérée, dans la limite de 3 000 euros :
+        La PPV est exonérée, dans la limite de 3 000 euros :
         * de toutes les cotisations sociales d'origine légale ou conventionnelle à la charge du salarié et de l'employeur,
         ainsi que des participations, taxes et contributions prévues :
         * à l'article 235 bis du code général des impôts
@@ -627,6 +630,8 @@ class prime_partage_valeur(Variable):
             = article L. 6131-1 du code du travail
             ]
         dans leur rédaction en vigueur à la date de son versement.
+
+        Pour plus de documentation, un [article du BOSS est dédié à la PPV = https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/protection-pouvoir-dachat.html]
         '''
 
 

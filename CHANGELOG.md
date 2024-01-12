@@ -1,5 +1,13 @@
 # Changelog
 
+### 155.2.1 [2237](https://github.com/openfisca/openfisca-france/pull/2237)
+
+* Amélioration technique. 
+* Périodes concernées : à partir du 01/07/2022.
+* Zones impactées : `openfisca_france/model/revenus/activite/salarie.py`
+* Détails :
+  - Ajoute un lien vers la page de documentation du BOSS concernant la `prime_partage_valeur`, PPV.
+
 ### 155.2.0 [2232](https://github.com/openfisca/openfisca-france/pull/2232)
 
 * Amélioration technique. 
