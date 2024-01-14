@@ -10,23 +10,25 @@
     individus:
       parent1:
         aah_eligible: true
+        activite: actif
         aah_base_ressources: 16790.72 / 12
       parent2:
         aah_eligible: false
+        activite: inactif
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     individus:
       parent1:
@@ -46,23 +48,25 @@
     individus:
       parent1:
         aah_eligible: true
+        activite: actif
         aah_base_ressources: 8777.70 / 12
       parent2:
         aah_eligible: false
+        activite: inactif
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     individus:
       parent1:
@@ -82,23 +86,25 @@
     individus:
       parent1:
         aah_eligible: false
+        activite: inactif
       parent2:
         aah_eligible: true
+        activite: actif
         aah_base_ressources: 12585.68 / 12
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     individus:
       parent1:
@@ -114,23 +120,24 @@
       parents: [parent1, parent2]
     individus:
       parent1:
+        activite: inactif
         salaire_imposable:
           2019: 12000
       parent2: {}
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     aah_base_ressources: [413.42, 720]
 # L'aah base_ressource change avec le smic (et le montant d'AAH peut changer), l'output réel est donc encore inconnu (05/2023) : test utile uniquement pour le développement, en utilisant la dernière valeur du SMIC et d'AAH(qui risque de changer encore d'ici octobre)
@@ -142,16 +149,17 @@
       parents: [parent1, parent2]
     individus:
       parent1:
+        activite: actif
         salaire_imposable:
-          2021: 24000
+          2023: 24000
         aah_eligible: true
       parent2:
         aah_eligible: true
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
-        - parent2
+          - parent1
+          - parent2
     menages:
       menage_0:
         personne_de_reference: parent1
@@ -159,7 +167,7 @@
   output:
     aah_base_ressources: [990.33, 0]
     aah_base: [767.85, 971.37]
-    aah: [767.85, 971.37]   # montant maximum pour le 2ème individu en attendant l'actualisation du montant min((montant mensuel aah * 1.81 - base ressources), montant mensuel aah)
+    aah: [767.85, 971.37] # montant maximum pour le 2ème individu en attendant l'actualisation du montant min((montant mensuel aah * 1.81 - base ressources), montant mensuel aah)
 
 - name: Couple de personnes en situation de handicap, juste avant déconjugalisation
   period: 2023-08
@@ -169,21 +177,23 @@
       parents: [parent1, parent2]
     individus:
       parent1:
+        activite: actif
         salaire_imposable:
-          2021: 24000
+          2023: 24000
         aah_eligible: true
       parent2:
+        activite: actif
         aah_eligible: true
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
-        - parent2
+          - parent1
+          - parent2
     menages:
       menage_0:
         personne_de_reference: parent1
         conjoint: parent2
   output:
-    aah_base_ressources: [990.33, 1383.33]  #[..., 24000/12*0.9-5000/12]
+    aah_base_ressources: [990.33, 1383.33] #[..., 24000/12*0.9-5000/12]
     aah_base: [767.85, 374.84]
     aah: [767.85, 374.84]
