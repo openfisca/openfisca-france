@@ -38,6 +38,8 @@ values:
     value: 10163.71
   2023-04-01:
     value: 10320.07
+  2024-04-01:
+    value: 10794.79 #10320.71*1.0046
 metadata:
   short_label: Plafond de ressources pour une personne seule
   last_value_still_valid_on: "2023-07-05"
@@ -115,6 +117,9 @@ metadata:
     2023-04-01:
       title: ​Circulaire Cnav 2023/9 du 11/04/2023
       href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2023_09_11042023.pdf
+    2024-04-01:
+      title: Loi 2023-1250 de financement de la sécurité sociale pour 2024 du 26/12/2023
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048668665
   official_journal_date:
     2006-01-01: "2007-01-13"
     2008-01-01: "2007-12-28"
@@ -127,6 +132,8 @@ metadata:
     - title: La circulaire Cnav 2009/9 du 03/02/2009 met en œuvre de l'article 73 de la loi 2008-1330 du 17/12/2008 concernant la déconnexion de la revalorisation des montants et des plafonds de ressources de l'ASI de ceux de l'ASPA.
     2020-04-01:
     - title: Depuis le 01/04/2020, l'ASI cesse d'être une allocation forfaitaire.
+    2024-04-01:
+    - title: Revalorisation prévisionnelle de 4.6 %
 documentation: |-
   Les plafonds de ressources sont identiques à ceux de l'ASPA jusqu'en 2008.
   Les ressources sont estimées à partir des revenus des 3 derniers mois, si ces revenus dépassent le plafond, ce sont les revenus des 12 derniers mois qui sont considérés.
