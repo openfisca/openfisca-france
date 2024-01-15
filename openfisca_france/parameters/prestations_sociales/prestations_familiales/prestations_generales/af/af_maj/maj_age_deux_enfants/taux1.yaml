@@ -5,10 +5,4 @@ values:
   2008-05-01:
     value: 0
 metadata:
-  short_label: Taux de la 1ère majoration pour âge
-  last_value_still_valid_on: "2024-01-15"
-  unit: pourcentage_de_bmaf
-  reference:
-    2008-05-01:
-    - title: Article D521-1 du Code de la Sécurité sociale
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318
+  unit: /1
