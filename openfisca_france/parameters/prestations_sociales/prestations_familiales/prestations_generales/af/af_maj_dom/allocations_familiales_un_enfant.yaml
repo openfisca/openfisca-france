@@ -1,4 +1,4 @@
-description: Taux de majoration (en % de la BMAF) des allocations familiales (AF) pour un seul enfant à charge dans les DOM
+description: Taux de majoration, en part de BMAF, des allocations familiales (AF), pour un seul enfant à charge, dans les DOM
 values:
   1991-08-06:
     value: 0.0588
