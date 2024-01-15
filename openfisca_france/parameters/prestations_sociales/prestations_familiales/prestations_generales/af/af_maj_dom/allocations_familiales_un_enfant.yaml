@@ -6,7 +6,7 @@ metadata:
   short_label: Un enfant à charge
   last_value_still_valid_on: "2022-03-10"
   label_en: "Family allowances (AF): Extra allowances for oversea territories"
-  unit: BMAF
+  unit: pourcentage_de_bmaf
   reference:
     1991-08-06:
     - title: Décret 91-761 du 5/08/1991 - art. 1

@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Taux pour le premier enfant à charge
   last_value_still_valid_on: "2023-05-04"
-  unit: BMAF
+  unit: pourcentage_de_bmaf
   reference:
     2002-01-01:
       title: Article D521-1 du Code de la sécurité sociale

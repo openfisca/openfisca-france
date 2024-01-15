@@ -15,7 +15,7 @@ metadata:
   last_value_still_valid_on: "2024-01-15"
   label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_t1_2enf
-  unit: BMAF
+  unit: pourcentage_de_bmaf
   reference:
     1946-09-01:
       title: Loi du 22 aout 1946
