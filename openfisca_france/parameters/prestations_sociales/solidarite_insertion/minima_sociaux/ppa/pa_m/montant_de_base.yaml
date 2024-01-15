@@ -20,6 +20,8 @@ values:
     value: 586.23
   2023-04-01:
     value: 595.25
+  2024-04-01:
+    value: 622.63 #595.25*1.0046
 metadata:
   short_label: Montant de base
   last_value_still_valid_on: "2023-05-09"
@@ -59,6 +61,9 @@ metadata:
     2023-04-01:
       title: Décret n° 2023-343 du 4 mai 2023, article 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047521600
+    2024-04-01:
+      title: Loi 2023-1250 de financement de la sécurité sociale pour 2024 du 26/12/2023
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048668665
   official_journal_date:
     2016-01-01: "2015-12-22"
     2016-04-01: "2016-05-03"
@@ -77,3 +82,5 @@ metadata:
     - title: Revalorisation de la prime pour l'activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La PPA augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
     2022-07-01:
     - title: Revalorisation de 4%
+    2024-04-01:
+    - title: Revalorisation prévisionnelle de 4.6 %
