@@ -1,5 +1,12 @@
 # Changelog
 
+### 155.2.2 [2239](https://github.com/openfisca/openfisca-france/pull/2239)
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2024
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/remplacement/`.
+* Détails :
+  - Met à jour les seuils de rfr pour le calcul de la csg sur les retraites à partir de 2024
+
 ### 155.2.1 [2237](https://github.com/openfisca/openfisca-france/pull/2237)
 
 * Amélioration technique. 
