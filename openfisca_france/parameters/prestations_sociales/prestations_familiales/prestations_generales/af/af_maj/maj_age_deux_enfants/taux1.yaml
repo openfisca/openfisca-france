@@ -1,13 +1,13 @@
-description: Taux de la 1ère majoration pour âge
+description: Taux (en % de la BMAF) de la majoration pour âge des allocations familiales
 values:
   2002-01-01:
     value: 0.09
   2008-05-01:
     value: 0.16
 metadata:
-  short_label: Taux 1ème majoration
+  short_label: Taux de la majoration
   last_value_still_valid_on: "2024-01-05"
-  unit: /1
+  unit: pourcentage_de_bmaf
   reference:
     2008-05-01:
     - title: Décret 2008-410 du 28/04/2008
