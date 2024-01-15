@@ -1,4 +1,4 @@
-description: Taux pour 3 enfants et par enfant supplémentaire (en % de la BMAF) des allocations familiales (AF)
+description: Taux (en % de la BMAF) pour le troisème enfant à charge et pour les enfants suivants servant au calcul des allocations familiales (AF)
 values:
   1946-09-01:
     value: 0.3
@@ -11,7 +11,7 @@ values:
   1986-01-01:
     value: 0.41
 metadata:
-  short_label: 3 et enfants supplémentaires
+  short_label: Taux pour le troisième enfant à charge, et les suivants
   last_value_still_valid_on: "2023-05-04"
   label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_enf_sup

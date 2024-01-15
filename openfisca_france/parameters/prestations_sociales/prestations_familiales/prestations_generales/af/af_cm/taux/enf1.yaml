@@ -1,9 +1,9 @@
-description: Taux pour le 1er enfant à charge (en % de la BMAF) des allocations familiales (AF)
+description: Taux (en % de la BMAF) pour le premier enfant à charge servant au calcul des allocations familiales (AF)
 values:
   2002-01-01:
     value: 0
 metadata:
-  short_label: 1er enfant
+  short_label: Taux pour le premier enfant à charge
   last_value_still_valid_on: "2023-05-04"
   unit: BMAF
   reference:
