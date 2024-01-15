@@ -3,8 +3,7 @@ metadata:
   short_label: Taux
   label_en: "Family allowances (AF): General conditions and amount"
   order:
-  - enf1
   - enf2
-  - enf3
   - nb_enf2
+  - enf3
   - nb_enf3

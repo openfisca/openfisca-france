@@ -1,4 +1,4 @@
-description: Taux (en % de la BMAF) pour le deuxième enfant à charge servant au calcul des allocations familiales (AF)
+description: Premier taux, en part de BMAF, servant au calcul des allocations familiales (AF)
 values:
   1946-09-01:
     value: 0.2
@@ -11,7 +11,7 @@ values:
   1982-02-01:
     value: 0.32
 metadata:
-  short_label: Taux pour le deuxième enfant à charge
+  short_label: Premier taux
   last_value_still_valid_on: "2023-05-04"
   label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_t1_2enf
