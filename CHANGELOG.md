@@ -1,6 +1,17 @@
 # Changelog
 
+### 155.2.3 [2240](https://github.com/openfisca/openfisca-france/pull/2240)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2024.
+* Zones impactées : 
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/charges_deductibles/pensions_alimentaires/plafond.yaml`.
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/charges_deductibles/pensions_alimentaires/plafond.yaml`
+* Détails :
+  - Met à jour un abattement de l'IR
+
 ### 155.2.2 [2239](https://github.com/openfisca/openfisca-france/pull/2239)
+
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2024
 * Zones impactées : `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/remplacement/`.
