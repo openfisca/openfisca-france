@@ -1,4 +1,4 @@
-description: Taux (en % de la BMAF) de la majoration pour âge des allocations familiales
+description: Taux (en part de la BMAF) de la majoration pour âge des allocations familiales
 values:
   2002-01-01:
     value: 0.09
