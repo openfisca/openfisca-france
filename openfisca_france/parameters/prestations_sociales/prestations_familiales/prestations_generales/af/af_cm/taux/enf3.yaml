@@ -11,8 +11,8 @@ values:
   1986-01-01:
     value: 0.41
 metadata:
-  short_label: 3 et enfants supplémentaires
-  last_value_still_valid_on: "2023-05-04"
+  short_label: Taux pour le troisième enfant à charge, et les suivants
+  last_value_still_valid_on: "2024-01-15"
   label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_enf_sup
   unit: BMAF
