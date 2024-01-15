@@ -14,7 +14,7 @@ values:
     value: 0.083
 metadata:
   short_label: Taux plein global
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-01-15"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_pens
   unit: /1

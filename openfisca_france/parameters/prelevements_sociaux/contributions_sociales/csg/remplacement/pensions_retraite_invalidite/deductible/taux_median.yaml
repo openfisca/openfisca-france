@@ -6,7 +6,7 @@ values:
     value: 0.042
 metadata:
   short_label: Taux médian
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-01-15"
   ipp_csv_id: csg_pens_median_deductible
   unit: /1
   reference:

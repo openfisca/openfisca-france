@@ -4,7 +4,7 @@ values:
     value: 0.024
 metadata:
   short_label: Taux plein
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-01-15"
   unit: /1
   reference:
     1997-01-01:
