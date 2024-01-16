@@ -61,11 +61,12 @@ class af_eligibilite_base(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def formula(famille, period):
+    def formula(famille, period, parameters):
         residence_dom = famille.demandeur.menage('residence_dom', period)
         af_nbenf = famille('af_nbenf', period)
+        nb_enfants_min_pour_allocation = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.nb_enfants_min_pour_allocation
 
-        return not_(residence_dom) * (af_nbenf >= 2)
+        return not_(residence_dom) * (af_nbenf >= nb_enfants_min_pour_allocation)
 
 
 class af_eligibilite_dom(Variable):
@@ -98,6 +99,8 @@ class af_base(Variable):
 
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+        nb_enf2 = af.af_cm.taux.nb_enf2
+        nb_enf3 = af.af_cm.taux.nb_enf3
 
         eligibilite = or_(eligibilite_base, eligibilite_dom)
 
@@ -107,8 +110,11 @@ class af_base(Variable):
             * af.af_maj_dom.allocations_familiales_un_enfant
             )
 
-        deux_enfants = (af_nbenf >= 2) * af.af_cm.taux.enf2
-        plus_de_trois_enfants = max_(af_nbenf - 2, 0) * af.af_cm.taux.enf3
+        # pour chaque enfant entre nb_enf2 et nb_enf3-1 la famille reçoit un montant = au premier taux de BMAF
+        # pour chaque enfant à partir du nb_enf3 ème enfant la famille reçoit un montant = au deuxième taux de BMAF
+        # ex pour une famille de 4 enfants la famille reçoit 1 * taux.enf2 * BMAF (pour le 2e enfant) + 2 * taux.enf3 * BMAF (pour le 3e et le 4e enfant)
+        deux_enfants = (af_nbenf >= nb_enf2) * (min_(af_nbenf - (nb_enf2 - 1), nb_enf3 - nb_enf2)) * af.af_cm.taux.enf2
+        plus_de_trois_enfants = max_(af_nbenf - (nb_enf3 - 1), 0) * af.af_cm.taux.enf3
         taux_total = un_seul_enfant + deux_enfants + plus_de_trois_enfants
         montant_base = eligibilite * round_(bmaf * taux_total, 2)
         coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
@@ -174,6 +180,46 @@ class af_majoration_enfant(Variable):
     label = "Allocations familiales - Majoration pour âge applicable à l'enfant"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+    def formula_2008_05_01(individu, period, parameters):
+        pfam_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
+        age = individu('age', period)
+        garde_alternee = individu('garde_alternee', period)
+
+        af_nbenf = individu.famille('af_nbenf', period)
+        af_base = individu.famille('af_base', period)
+        age_aine = individu.famille('af_age_aine', period)
+
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+
+        montant_enfant_seul = bmaf * (
+            (af.af_maj_dom.tranches_age.age_debut_premiere_tranche <= age)
+            * (age < af.af_maj_dom.tranches_age.age_debut_deuxieme_tranche)
+            * af.af_maj_dom.majoration_premier_enfant.taux_tranche_1
+            + (af.af_maj_dom.tranches_age.age_debut_deuxieme_tranche <= age)
+            * af.af_maj_dom.majoration_premier_enfant.taux_tranche_2
+            )
+
+        montant_plusieurs_enfants = bmaf * (
+            (af.af_maj.maj_age_deux_enfants.age1 <= age)
+            * af.af_maj.maj_age_deux_enfants.taux1
+            )
+
+        montant = (af_nbenf == 1) * montant_enfant_seul + (af_nbenf > 1) * montant_plusieurs_enfants
+
+        # Attention ! Ne fonctionne pas pour les enfants du même âge (typiquement les jumeaux...)
+        pas_aine = or_(af_nbenf != 2, (af_nbenf == 2) * not_(age == age_aine))
+
+        coeff_garde_alternee = where(garde_alternee, af.af_cm.facteur_garde_alternee, 1)
+
+        return (
+            pfam_enfant_a_charge
+            * (af_base > 0)
+            * pas_aine
+            * montant
+            * coeff_garde_alternee
+            )
 
     def formula(individu, period, parameters):
         pfam_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
@@ -288,9 +334,12 @@ class af_allocation_forfaitaire(Variable):
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
-
         af_forfait = round_(bmaf * af.af_maj.majoration_enfants.allocation_forfaitaire.taux, 2)
-        af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
+
+        nb_enfants_min = af.af_maj.majoration_enfants.allocation_forfaitaire.nb_enfants_min
+        condition_nb_enfants = ((af_nbenf + af_forfaitaire_nbenf) >= nb_enfants_min)
+        # allocation forfaitaire est versée aux familles ayant au moins 3 enfants à charge y compris ceux ayant 20 ans
+        af_allocation_forfaitaire = (condition_nb_enfants * af_forfaitaire_nbenf) * af_forfait
 
         af_forfaitaire_taux_modulation = famille('af_allocation_forfaitaire_taux_modulation', period)
         af_forfaitaire_module = af_allocation_forfaitaire * af_forfaitaire_taux_modulation

@@ -1,5 +1,15 @@
 # Changelog
 
+### 156.0.0 [2235](https://github.com/openfisca/openfisca-france/pull/2235)
+
+* Amélioration technique.
+* Périodes concernées : toutes
+* Zones impactées : 
+  - `openfisca_france/model/prestations/prestations_familiales/af.py`.
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af`
+* Détails :
+  - Crée des paramètres sur les conditions de nombre d'enfants dans les allocations familiales qui étaient en dur dans le code
+
 ### 155.2.3 [2240](https://github.com/openfisca/openfisca-france/pull/2240)
 
 * Évolution du système socio-fiscal.

@@ -3,5 +3,5 @@ metadata:
   short_label: Allocation forfaitaire
   label_en: "Family allowances (AF): Extra allowances"
   order:
-  - age_minimum
+  - nb_enfants_min
   - taux
