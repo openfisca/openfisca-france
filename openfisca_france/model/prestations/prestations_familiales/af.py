@@ -109,13 +109,13 @@ class af_base(Variable):
             * (af_nbenf == 1)
             * af.af_maj_dom.allocations_familiales_un_enfant
             )
-
-        deux_enfants = (af_nbenf >= nb_enf2) * (min_(af_nbenf - (nb_enf2 - 1), nb_enf3 - nb_enf2)) * af.af_cm.taux.enf2
+        
         # Pour chaque enfant entre nb_enf2 et nb_enf3-1 la famille reçoit un montant = au premier taux de BMAF
-        plus_de_trois_enfants = max_(af_nbenf - (nb_enf3 - 1), 0) * af.af_cm.taux.enf3
         # Pour chaque enfant à partir du nb_enf3 ème enfant la famille reçoit un montant = au deuxième taux de BMAF
+        # Ex pour une famille de 4 enfants la famille reçoit 1 * taux.enf2 * BMAF (pour le 2e enfant) + 2 * taux.enf3 * BMAF (pour le 3e et le 4e enfant)
+        deux_enfants = (af_nbenf >= nb_enf2) * (min_(af_nbenf - (nb_enf2 - 1), nb_enf3 - nb_enf2)) * af.af_cm.taux.enf2
+        plus_de_trois_enfants = max_(af_nbenf - (nb_enf3 - 1), 0) * af.af_cm.taux.enf3
         taux_total = un_seul_enfant + deux_enfants + plus_de_trois_enfants
-        # Ex pour une famille de 4 enfants la famille reçoit 1 * taux.enf2 * BMAF (pour le 2e enfant) + 2 * taux.enf3 * BMAF (pour le 3e et le 4e enfant) 
         montant_base = eligibilite * round_(bmaf * taux_total, 2)
         coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
         montant_base = montant_base * coeff_garde_alternee
