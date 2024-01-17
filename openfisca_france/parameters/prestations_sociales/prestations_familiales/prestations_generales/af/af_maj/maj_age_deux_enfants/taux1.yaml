@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Taux de la majoration
   last_value_still_valid_on: "2024-01-05"
-  unit: pourcentage_de_bmaf
+  unit: BMAF
   reference:
     2008-05-01:
     - title: Décret 2008-410 du 28/04/2008
