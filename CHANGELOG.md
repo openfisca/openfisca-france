@@ -1,5 +1,15 @@
 # Changelog
 
+### 156.0.1 [2242](https://github.com/openfisca/openfisca-france/pull/2242)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_maj/maj_age_deux_enfants/taux1.yaml`.
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_maj/maj_age_deux_enfants/taux2.yaml`.
+* Détails :
+  - Corrige deux changements d'unités ajouter par erreur dans la PR #2235
+
 ### 156.0.0 [2235](https://github.com/openfisca/openfisca-france/pull/2235)
 
 * Amélioration technique.
