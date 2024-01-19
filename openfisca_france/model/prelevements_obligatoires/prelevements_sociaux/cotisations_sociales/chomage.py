@@ -20,7 +20,6 @@ class chomage_cotisation_retraite_complementaire_journaliere(Variable):
         # le seuil d'exonération de cette cotisation est indexé sur le montant minimum d'ARE
         seuil_exoneration = parameters(period).chomage.allocations_assurance_chomage.alloc_base.montant_minimum.hors_mayotte
 
-
         taux_cotisation = parameters(period).prelevements_sociaux.regimes_complementaires_retraite_secteur_prive.cotisation_retraite_complementaire.chomage.taux
         cotisation_theorique = are_salaire_journalier_reference * taux_cotisation
         allocation_cotisation_deduite = allocation_retour_emploi_journaliere - cotisation_theorique
