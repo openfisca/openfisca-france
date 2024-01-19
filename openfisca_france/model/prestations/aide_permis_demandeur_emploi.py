@@ -25,6 +25,17 @@ class aide_permis_demandeur_emploi_eligibilite_financiere(Variable):
 
         return sans_rsa * sans_aah * sans_retraite * chomage_minimum
 
+    def formula_2002_07_01(individu, period, parameters):
+        sans_rsa = individu.famille('rsa', period) <= 0
+        sans_aah = individu('aah', period) <= 0
+        sans_retraite = individu('retraite_brute', period) <= 0
+
+        allocation_journaliere_minimum = parameters(period).chomage.allocation_retour_emploi.montant_minimum_hors_mayotte
+        plafond_chomage = allocation_journaliere_minimum * 31
+        chomage_minimum = individu('chomage_net', period) <= plafond_chomage
+
+        return sans_rsa * sans_aah * sans_retraite * chomage_minimum
+
 
 class aide_permis_demandeur_emploi_eligibilite_individu(Variable):
     value_type = bool
