@@ -129,9 +129,9 @@ class agepi_eligible(Variable):
 
         allocation_individu = individu('allocation_retour_emploi_journaliere', period)
 
-        parametres_are = parameters(period).chomage.allocation_retour_emploi.montant_minimum_hors_mayotte
-        allocation_minimale_hors_mayotte = parametres_are.montant_minimum.hors_mayotte * hors_mayotte
-        allocation_minimale_mayotte = parametres_are.montant_minimum.mayotte * mayotte
+        parametres_are = parameters(period).chomage.allocations_assurance_chomage.alloc_base.montant_minimum.apres_1979
+        allocation_minimale_hors_mayotte = parametres_are.montant_minimum_hors_mayotte * hors_mayotte
+        allocation_minimale_mayotte = parametres_are.mayotte * mayotte
 
         allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
 

@@ -187,8 +187,8 @@ class aide_mobilite_ressources_eligibles(Variable):
 
         allocation_individu = individu('allocation_retour_emploi_journaliere', period)
         allocations = parameters(period).chomage.allocations_assurance_chomage.alloc_base
-        allocation_minimale_hors_mayotte = allocations.montant_minimum.hors_mayotte * hors_mayotte
-        allocation_minimale_mayotte = allocations.montant_minimum.mayotte * mayotte
+        allocation_minimale_hors_mayotte = allocations.montant_minimum.apres_1979.montant_minimum_hors_mayotte * hors_mayotte
+        allocation_minimale_mayotte = allocations.montant_minimum.apres_1979.mayotte * mayotte
 
         allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
 
