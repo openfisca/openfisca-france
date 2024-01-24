@@ -596,16 +596,16 @@
     rsa: 826.40 - 200
 
 - name: RSA avec revenu d'apprenti
-  period: 2021-04
+  period: 2021-01
   absolute_error_margin: 0.03
   input:
     famille:
       parents: [personne1]
       aide_logement:
-        2021-04: 250
-        2021-03: 250
-        2021-02: 250
         2021-01: 250
+        2020-12: 250
+        2020-11: 250
+        2020-10: 250
     foyer_fiscal:
       declarants: [personne1]
     menage:
@@ -615,32 +615,31 @@
       personne1:
         date_naissance: 1980-01-01
         remuneration_apprenti:
-          2021-04: 960
-          2021-03: 960
-          2021-02: 960
           2021-01: 960
+          2020-12: 960
+          2020-11: 960
+          2020-10: 960
         salaire_imposable:
-          2021-04: 0
-          2021-03: 0
-          2021-02: 0
           2021-01: 0
+          2020-12: 0
+          2020-11: 0
+          2020-10: 0
   output:
-    rsa_forfait_logement: 67.84
     rsa_base_ressources: 960
     rsa: 0
 
 
 - name: RSA avec revenu d'apprenti - la condition d'accès est remplie sur les 3 ans qui précèdent la demande soit les 3214 heures d'activité
-  period: 2021-04
+  period: 2021-01
   absolute_error_margin: 0.03
   input:
     famille:
       parents: [personne1]
       aide_logement:
-        2021-04: 120
-        2021-03: 120
-        2021-02: 120
         2021-01: 120
+        2020-12: 120
+        2020-11: 120
+        2020-10: 120
     foyer_fiscal:
       declarants: [personne1]
     menage:
@@ -650,17 +649,16 @@
       personne1:
         date_naissance: 2000-01-01
         remuneration_apprenti:
-          2021-04: 943
-          2021-03: 943
-          2021-02: 943
           2021-01: 943
+          2020-12: 943
+          2020-11: 943
+          2020-10: 943
         rsa_jeune_condition_heures_travail_remplie: true
         salaire_imposable:
-          2021-04: 0
-          2021-03: 0
-          2021-02: 0
           2021-01: 0
+          2020-12: 0
+          2020-11: 0
+          2020-10: 0
   output:
-    rsa_forfait_logement: 67.84
     rsa_base_ressources: 943
     rsa: 0
