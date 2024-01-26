@@ -56,9 +56,11 @@ values:
     value: 19515
   2023-01-01:
     value: 19827
+  2024-01-01:
+    value: 20878
 metadata:
   short_label: Base du plafond de ressources
-  last_value_still_valid_on: "2023-05-11"
+  last_value_still_valid_on: "2024-01-26"
   label_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
   ipp_csv_id: plaf_ars_0enf
   unit: currency
@@ -133,6 +135,11 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951022
     - title: Arrêté du 21/12/2022, art. 3
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
+    2024-01-01:
+    - title: Article L543-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951022
+    - title: Arrêté du 22/12/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048680633
   official_journal_date:
     1978-07-13: "1985-12-21"
     1997-07-01: "1997-05-27"
@@ -156,6 +163,7 @@ metadata:
     2021-01-01: "2020-12-18"
     2022-01-01: "2021-12-28"
     2023-01-01: "2022-12-24"
+    2024-01-01: "2023-12-28"
   notes:
     1978-07-13:
     - title: "Plafond: 2,130 fois le salaire minimum de croissance prévu à l'article L 141-4 du code du travail en vigueur au 01/07 de l'année de référence, majoré de 30% à partir du premier enfant, par enfant à charge"
