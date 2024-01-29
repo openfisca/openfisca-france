@@ -1,5 +1,13 @@
 # Changelog
 
+### 156.0.3 [2246](https://github.com/openfisca/openfisca-france/pull/2246)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/01/2024.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/prestations_familiales`.
+* Détails :
+  - Mets à jour les plafonds de ressources de certaines prestations familiales pour 2024
+
 ### 156.0.2 [2208](https://github.com/openfisca/openfisca-france/pull/2208)
 
 * Évolution du système socio-fiscal.
