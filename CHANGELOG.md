@@ -1,5 +1,30 @@
 # Changelog
 
+### 156.0.3 [2246](https://github.com/openfisca/openfisca-france/pull/2246)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/01/2024.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/prestations_familiales`.
+* Détails :
+  - Mets à jour les plafonds de ressources de certaines prestations familiales pour 2024
+
+### 156.0.2 [2208](https://github.com/openfisca/openfisca-france/pull/2208)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2023.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/al_charge`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/al_loc2`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/al_param_r0/r0`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/al_plaf_logement_foyer`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/plafond_ressources`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/ressources/dar_11.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/ressources/dar_4.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/ressources/dar_5.yaml`
+* Détails :
+  - Mise à jour des paramètres pour le calcul de l'aide au logement et de la réduction de loyer de solidarité.
+
 ### 156.0.1 [2242](https://github.com/openfisca/openfisca-france/pull/2242)
 
 * Changement mineur.

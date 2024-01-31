@@ -36,6 +36,8 @@ values:
     value: 35.39
   2022-07-01:
     value: 36.63
+  2023-10-01:
+    value: 37.91
 metadata:
   short_label: Montant minimum de la participation minimale « P0 »
   last_value_still_valid_on: "2023-02-22"
@@ -107,6 +109,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206225/2022-07-01
     - title: Article D823-17 du Code de la construction et de l'habitation
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419255
+    2023-10-01:
+      title: Arrêté du 22/09/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048107807
   official_journal_date:
     2001-01-01: "2000-12-28"
     2002-01-01: "2001-08-02"
@@ -123,6 +128,7 @@ metadata:
     2015-10-01: "2015-10-21"
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
+    2023-10-01: "2023-09-27"
   notes:
     2001-01-01:
     - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
