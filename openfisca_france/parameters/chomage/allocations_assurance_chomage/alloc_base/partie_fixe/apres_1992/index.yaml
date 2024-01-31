@@ -3,5 +3,4 @@ metadata:
   short_label: Partie fixe
   label_en: UI scheme - lump-sum and minimum
   order:
-  - apres_1992
-  - avant_1992
+  - partie_fixe

@@ -3,5 +3,6 @@ metadata:
   short_label: Contributions de sécurité sociale du régime général
   label_en: Social security contributions (SSCs)
   order:
-  - crds
   - csg
+  - crds
+
