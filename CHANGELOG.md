@@ -1,5 +1,16 @@
 # Changelog
 
+### 157.0.0 [2090](https://github.com/openfisca/openfisca-france/pull/2090)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  | à partir du 01/07/2002.
+* Zones impactées : `parameters/chomage`.
+* Détails :
+  - Met à jour le montant minimal d'ARE, sa partie fixe, le montant minimal pour les personnes en formation (pour et hors Mayotte).
+  - Attribue Null aux variable de montant minimal d'allocation de moins de trois mois et de plus de six mois, car elles sont remplacées à ce moment par parameters/chomage/allocation_retour_emploi_allocation_minimum_hors_mayotte
+  - Met à jour les montants d'ATA et d'ASS, qui n'acceptent plus de nouveaux bénéficiaires mais se poursuivent pour les anciens allocataires
+  - Déplace les fichiers pour séparer les paramètres à certains moments dissociés selon la durée de cotisation (création de sous-dossiers par date)
+
 ### 156.0.3 [2246](https://github.com/openfisca/openfisca-france/pull/2246)
 
 * Évolution du système socio-fiscal.
@@ -29,7 +40,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_maj/maj_age_deux_enfants/taux1.yaml`.
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_maj/maj_age_deux_enfants/taux2.yaml`.
 * Détails :
@@ -39,7 +50,7 @@
 
 * Amélioration technique.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prestations/prestations_familiales/af.py`.
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af`
 * Détails :
@@ -49,7 +60,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2024.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/charges_deductibles/pensions_alimentaires/plafond.yaml`.
   - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/charges_deductibles/pensions_alimentaires/plafond.yaml`
 * Détails :
@@ -65,7 +76,7 @@
 
 ### 155.2.1 [2237](https://github.com/openfisca/openfisca-france/pull/2237)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : à partir du 01/07/2022.
 * Zones impactées : `openfisca_france/model/revenus/activite/salarie.py`
 * Détails :
@@ -73,9 +84,9 @@
 
 ### 155.2.0 [2232](https://github.com/openfisca/openfisca-france/pull/2232)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
   - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
   - `openfisca_france/model/prestations/minima_sociaux/anciens_ms.py`
