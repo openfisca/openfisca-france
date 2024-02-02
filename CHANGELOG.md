@@ -1,6 +1,13 @@
 # Changelog
 
-### 157.0.0 [2090](https://github.com/openfisca/openfisca-france/pull/2090)
+### 157.0.1 [2248](https://github.com/openfisca/openfisca-france/pull/2248)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées: `openfisca_france/parameters/chomage`
+* Détails : Correction de l'index
+
+# 157.0.0 [2090](https://github.com/openfisca/openfisca-france/pull/2090)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  | à partir du 01/07/2002.
