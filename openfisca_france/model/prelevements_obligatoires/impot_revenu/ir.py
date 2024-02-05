@@ -403,7 +403,7 @@ class revenu_assimile_salaire(Variable):
             + revenus_imposables_associes_gerants
             + droits_auteurs_imposables
             + salaire_imposable_agents_assurance
-        )
+            )
 
 
 class revenu_assimile_salaire_apres_abattements(Variable):
