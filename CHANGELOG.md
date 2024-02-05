@@ -1,5 +1,19 @@
 # Changelog
 
+### [2250](https://github.com/openfisca/openfisca-france/pull/2250)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`.
+  - `openfisca_france/model/caracteristiques_socio_demographiques/demographie.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/charges_deductibles.py`
+  - `openfisca_france/model/revenus/activite/salarie.py`
+* Détails :
+  - Annualise la variable caseT qui est une case de la déclaration annuelle de l'impôt sur le revenu
+  - Ajoute des variables de revenus assimilés salaire
+  - Ajoute les cases fiscales des nouveau plan d'épargne retraite
+
 ### 157.0.1 [2249](https://github.com/openfisca/openfisca-france/pull/2249)
 
 * Changement mineur.
