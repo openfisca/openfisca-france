@@ -1653,6 +1653,7 @@ class travailleur_occasionnel_agricole(Variable):
             )
         return secteur_agricole * cdd * cdd_occasionnel_agricole * taches_eligibles
 
+
 class salaires_imposable_particulier_employeur(Variable):
     cerfa_field = {
         0: '1AA',
@@ -1665,6 +1666,7 @@ class salaires_imposable_particulier_employeur(Variable):
     entity = Individu
     label = 'Revenus des salariés des particuliers employeurs'
     definition_period = YEAR
+
 
 class revenus_imposables_associes_gerants(Variable):
     cerfa_field = {
@@ -1679,6 +1681,7 @@ class revenus_imposables_associes_gerants(Variable):
     label = 'Revenus des associes et gerants'
     definition_period = YEAR
 
+
 class droits_auteurs_imposables(Variable):
     cerfa_field = {
         0: '1GF',
@@ -1691,6 +1694,7 @@ class droits_auteurs_imposables(Variable):
     entity = Individu
     label = 'Droits d auteurs fonctionnaires chercheurs'
     definition_period = YEAR
+
 
 class salaire_imposable_agents_assurance(Variable):
     cerfa_field = {

@@ -129,6 +129,7 @@ class f6rs(Variable):
     label = "Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S"
     definition_period = YEAR
 
+
 class f6ns(Variable):
     cerfa_field = {
         0: '6NS',
