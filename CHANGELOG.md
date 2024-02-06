@@ -1,6 +1,6 @@
 # Changelog
 
-### [2250](https://github.com/openfisca/openfisca-france/pull/2250)
+### 157.0.2 [2250](https://github.com/openfisca/openfisca-france/pull/2250)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
