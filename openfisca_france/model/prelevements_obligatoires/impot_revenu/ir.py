@@ -389,8 +389,21 @@ class revenu_assimile_salaire(Variable):
         chomage_imposable = individu('chomage_imposable', period, options = [ADD])
         f1tt = individu('f1tt', period)
         f3vj = individu('f3vj', period)
+        salaires_imposable_particulier_employeur = individu('salaires_imposable_particulier_employeur', period)
+        revenus_imposables_associes_gerants = individu('revenus_imposables_associes_gerants', period)
+        droits_auteurs_imposables = individu('droits_auteurs_imposables', period)
+        salaire_imposable_agents_assurance = individu('salaire_imposable_agents_assurance', period)
 
-        return salaire_imposable + chomage_imposable + f1tt + f3vj
+        return (
+            salaire_imposable
+            + chomage_imposable
+            + f1tt
+            + f3vj
+            + salaires_imposable_particulier_employeur
+            + revenus_imposables_associes_gerants
+            + droits_auteurs_imposables
+            + salaire_imposable_agents_assurance
+            )
 
 
 class revenu_assimile_salaire_apres_abattements(Variable):
@@ -1355,7 +1368,7 @@ class ir_plaf_qf(Variable):
         caseN = foyer_fiscal('caseN', period)
         caseP = foyer_fiscal('caseP', period)
         caseS = foyer_fiscal('caseS', period)
-        caseT = foyer_fiscal('caseT', period.first_month)
+        caseT = foyer_fiscal('caseT', period)
         caseW = foyer_fiscal('caseW', period)
         nbF = foyer_fiscal('nbF', period)
         nbG = foyer_fiscal('nbG', period)
@@ -1444,7 +1457,7 @@ class ir_plaf_qf(Variable):
         caseL = foyer_fiscal('caseL', period)
         caseP = foyer_fiscal('caseP', period)
         caseS = foyer_fiscal('caseS', period)
-        caseT = foyer_fiscal('caseT', period.first_month)
+        caseT = foyer_fiscal('caseT', period)
         caseW = foyer_fiscal('caseW', period)
         nbF = foyer_fiscal('nbF', period)  # noqa F841
         nbG = foyer_fiscal('nbG', period)
@@ -3581,7 +3594,7 @@ class nbptr(Variable):
         caseF = foyer_fiscal('caseF', period)
         caseS = foyer_fiscal('caseS', period)
         caseL = foyer_fiscal('caseL', period)
-        caseT = foyer_fiscal('caseT', period.first_month)
+        caseT = foyer_fiscal('caseT', period)
         quotient_familial = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial
 
         no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
@@ -3693,7 +3706,7 @@ class nbptr(Variable):
         caseF = foyer_fiscal('caseF', period)
         caseS = foyer_fiscal('caseS', period)
         caseL = foyer_fiscal('caseL', period)
-        caseT = foyer_fiscal('caseT', period.first_month)
+        caseT = foyer_fiscal('caseT', period)
         quotient_familial = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial
 
         no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
@@ -3908,7 +3921,7 @@ class ppe_brute(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
         veuf = foyer_fiscal('veuf', period)
-        caseT = foyer_fiscal('caseT', period.first_month)
+        caseT = foyer_fiscal('caseT', period)
         caseL = foyer_fiscal('caseL', period)
         nbH = foyer_fiscal('nbH', period)
         ppe = parameters(period).impot_revenu.credits_impots.ppe

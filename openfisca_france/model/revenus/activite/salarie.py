@@ -1652,3 +1652,57 @@ class travailleur_occasionnel_agricole(Variable):
             + (taches_salarie_type == TypesTaches.travaux_forestiers)
             )
         return secteur_agricole * cdd * cdd_occasionnel_agricole * taches_eligibles
+
+
+class salaires_imposable_particulier_employeur(Variable):
+    cerfa_field = {
+        0: '1AA',
+        1: '1BA',
+        2: '1CA',
+        3: '1DA',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Revenus des salariés des particuliers employeurs'
+    definition_period = YEAR
+
+
+class revenus_imposables_associes_gerants(Variable):
+    cerfa_field = {
+        0: '1GB',
+        1: '1HB',
+        2: '1IB',
+        3: '1JB',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Revenus des associes et gerants'
+    definition_period = YEAR
+
+
+class droits_auteurs_imposables(Variable):
+    cerfa_field = {
+        0: '1GF',
+        1: '1HF',
+        2: '1IF',
+        3: '1JF',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Droits d auteurs fonctionnaires chercheurs'
+    definition_period = YEAR
+
+
+class salaire_imposable_agents_assurance(Variable):
+    cerfa_field = {
+        0: '1GG',
+        1: '1HG',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Agents generaux d assurance - salaire imposable'
+    definition_period = YEAR
