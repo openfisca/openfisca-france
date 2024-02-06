@@ -1128,7 +1128,7 @@ class revenu_categoriel_non_salarial(Variable):
             - defmeu
             )
 
-    def formula_2023_01_01(foyer_fiscal, period, parameters):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         rpns_i = foyer_fiscal.members('rpns_imposables', period)
         rpns = foyer_fiscal.sum(rpns_i)
         defrag = foyer_fiscal('defrag', period)
@@ -2711,7 +2711,6 @@ class defrag(Variable):
                     + arag_impg + coupe_bois + mrag_impo)
 
     def formula_2023_01_01(foyer_fiscal, period, parameters):
-        # frag_fore est remplacé par coupe_bois, frag_pvct par mrag_pvct
         f5qf = foyer_fiscal('f5qf', period)
         f5qg = foyer_fiscal('f5qg', period)
         f5qn = foyer_fiscal('f5qn', period)
