@@ -277,6 +277,7 @@ class nrag_impg(Variable):
     entity = Individu
     label = "Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 

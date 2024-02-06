@@ -2574,7 +2574,6 @@ class rpns_exon(Variable):
         Plus values de cession
         '''
         frag_exon = individu('frag_exon', period)
-        mrag_exon = individu('mrag_exon', period)
         arag_exon = individu('arag_exon', period)
         nrag_exon = individu('nrag_exon', period)
         mbic_exon = individu('mbic_exon', period)
@@ -2595,7 +2594,7 @@ class rpns_exon(Variable):
         cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         return (
-            frag_exon + mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
+            frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
             + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
             + abnc_exon + nbnc_exon + mncn_exon + cncn_jcre + nbic_pvce + nrag_pvce
             )
@@ -2605,6 +2604,35 @@ class rpns_exon(Variable):
         Plus values de cession
         '''
         frag_exon = individu('frag_exon', period)
+        arag_exon = individu('arag_exon', period)
+        nrag_exon = individu('nrag_exon', period)
+        mbic_exon = individu('mbic_exon', period)
+        abic_exon = individu('abic_exon', period)
+        nbnc_proc = individu('nbnc_proc', period)
+        nbic_exon = individu('nbic_exon', period)
+        macc_exon = individu('macc_exon', period)
+        aacc_exon = individu('aacc_exon', period)
+        nacc_exon = individu('nacc_exon', period)
+        mbnc_exon = individu('mbnc_exon', period)
+        abnc_proc = individu('abnc_proc', period)
+        abnc_exon = individu('abnc_exon', period)
+        nbnc_exon = individu('nbnc_exon', period)
+        mncn_exon = individu('mncn_exon', period)
+        cncn_exon = individu('cncn_exon', period)
+        cncn_jcre = individu('cncn_jcre', period)
+        nbic_pvce = individu('nbic_pvce', period)
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+
+        return (
+            frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
+            + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
+            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + nbic_pvce
+            )
+
+    def formula_2016_01_01(individu, period, parameters):
+        '''
+        Plus values de cession
+        '''
         mrag_exon = individu('mrag_exon', period)
         arag_exon = individu('arag_exon', period)
         nrag_exon = individu('nrag_exon', period)
@@ -2617,7 +2645,6 @@ class rpns_exon(Variable):
         nacc_exon = individu('nacc_exon', period)
         mbnc_exon = individu('mbnc_exon', period)
         abnc_proc = individu('abnc_proc', period)
-        nrag_pvce = individu('nrag_pvce', period)
         abnc_exon = individu('abnc_exon', period)
         nbnc_exon = individu('nbnc_exon', period)
         mncn_exon = individu('mncn_exon', period)
@@ -2627,9 +2654,38 @@ class rpns_exon(Variable):
         cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         return (
-            frag_exon + mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
+            mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
             + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
-            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + nbic_pvce + nrag_pvce
+            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + nbic_pvce
+            )
+
+    def formula_2018_01_01(individu, period, parameters):
+        '''
+        Plus values de cession
+        '''
+        mrag_exon = individu('mrag_exon', period)
+        arag_exon = individu('arag_exon', period)
+        nrag_exon = individu('nrag_exon', period)
+        mbic_exon = individu('mbic_exon', period)
+        abic_exon = individu('abic_exon', period)
+        nbic_exon = individu('nbic_exon', period)
+        macc_exon = individu('macc_exon', period)
+        aacc_exon = individu('aacc_exon', period)
+        nacc_exon = individu('nacc_exon', period)
+        mbnc_exon = individu('mbnc_exon', period)
+        abnc_proc = individu('abnc_proc', period)
+        abnc_exon = individu('abnc_exon', period)
+        nbnc_exon = individu('nbnc_exon', period)
+        mncn_exon = individu('mncn_exon', period)
+        cncn_exon = individu('cncn_exon', period)
+        cncn_jcre = individu('cncn_jcre', period)
+        nbic_pvce = individu('nbic_pvce', period)
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+
+        return (
+            mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon
+            + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
+            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + nbic_pvce
             )
 
     def formula_2023_01_01(individu, period, parameters):
@@ -2693,7 +2749,6 @@ class defrag(Variable):
         f5qo = foyer_fiscal('f5qo', period)
         f5qp = foyer_fiscal('f5qp', period)
         f5qq = foyer_fiscal('f5qq', period)
-        frag_impo_i = foyer_fiscal.members('frag_impo', period)
         mrag_impo_i = foyer_fiscal.members('mrag_impo', period)
         nrag_impg_i = foyer_fiscal.members('nrag_impg', period)
         coupe_bois_i = foyer_fiscal.members('coupe_bois', period)
@@ -2702,12 +2757,11 @@ class defrag(Variable):
         cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         coupe_bois = foyer_fiscal.sum(coupe_bois_i)
-        frag_impo = foyer_fiscal.sum(frag_impo_i)
         mrag_impo = foyer_fiscal.sum(mrag_impo_i)
         arag_impg = foyer_fiscal.sum(arag_impg_i)
         nrag_impg = foyer_fiscal.sum(nrag_impg_i)
         mrag_pvct = foyer_fiscal.sum(mrag_pvct_i)
-        return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + mrag_pvct)
+        return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (nrag_impg + mrag_pvct)
                     + arag_impg + coupe_bois + mrag_impo)
 
     def formula_2023_01_01(foyer_fiscal, period, parameters):
@@ -3203,6 +3257,7 @@ class nbnc_timp(Variable):
     value_type = float
     entity = Individu
     label = 'Revenus des professions non salariées individuels sans abattement CGA (régime contrôlé)'
+    end = '2022-12-31'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -3217,6 +3272,7 @@ class nacc_timp(Variable):
     value_type = float
     entity = Individu
     label = 'Revenus des professions non salariées individuels sans abattement CGA (régime réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -3231,6 +3287,7 @@ class ntimp(Variable):
     value_type = float
     entity = Individu
     label = 'Revenus des professions non salariées individuels sans abattement'
+    end = '2022-12-31'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -3508,7 +3565,7 @@ class taux_effectif(Variable):
         trigger = (microentreprise != 0) | (abnc_proc != 0) | (nbnc_proc != 0)
         return trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
 
-    def formula_2023_01_01(foyer_fiscal, period, parameters):
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
         rni = foyer_fiscal('rni', period)
         nbptr = foyer_fiscal('nbptr', period)
         microentreprise = foyer_fiscal('microentreprise', period)
