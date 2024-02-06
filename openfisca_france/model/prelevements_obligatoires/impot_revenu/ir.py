@@ -2680,7 +2680,6 @@ class rpns_exon(Variable):
         cncn_exon = individu('cncn_exon', period)
         cncn_jcre = individu('cncn_jcre', period)
         nbic_pvce = individu('nbic_pvce', period)
-        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         return (
             mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon
