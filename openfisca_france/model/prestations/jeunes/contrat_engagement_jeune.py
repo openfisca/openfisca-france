@@ -45,10 +45,6 @@ class contrat_engagement_jeune_eligibilite(Variable):
         handicap = individu('handicap', period)
         eligibilite_age = (params_age.minimum <= age) * ((age <= params_age.maximum) + (age <= (params_age.maximum_handicap) * handicap))
 
-        # En fonction du statut
-        activite = individu('activite', period)
-        eligibilite_statut = activite != TypesActivite.etudiant
-
         # En fonction de l'imposition du foyer fiscal
         tranche = individu.foyer_fiscal('ir_tranche', period.n_2)
         eligibilite_ir = (tranche <= 1)
@@ -60,7 +56,7 @@ class contrat_engagement_jeune_eligibilite(Variable):
         sans_ppa = individu.famille('ppa', three_previous_months, options = [ADD]) <= 0
         eligibilite_autres_dispositifs = sans_rsa * sans_ppa * sans_indemnites_volontariat
 
-        return eligibilite_age * eligibilite_statut * eligibilite_ir * eligibilite_autres_dispositifs
+        return eligibilite_age * eligibilite_ir * eligibilite_autres_dispositifs
 
 
 class contrat_engagement_jeune(Variable):
