@@ -1,25 +1,6 @@
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-class garantie_jeunes_statut(Variable):
-    value_type = bool
-    entity = Individu
-    definition_period = MONTH
-    label = "Garantie jeunes - condition de statut - ni étudiant, ni stagiaire (ni employé aussi, mais seulement au moment d'entrer dans le programme, d'où l'absence de cette condition ici)"
-    set_input = set_input_divide_by_period
-    reference = ['https://fr.wikipedia.org/wiki/NEET']
-
-    def formula_2017_01_01(individu, period):
-        activite = individu('activite', period)
-        not_in_education = (activite != TypesActivite.etudiant)
-
-        no_indemnites_stage = individu('indemnites_stage', period) == 0
-        no_revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period) == 0
-        not_in_training = no_indemnites_stage * no_revenus_stage_formation_pro
-
-        return not_in_education * not_in_training
-
-
 class garantie_jeunes_montant(Variable):
     value_type = float
     entity = Individu
@@ -138,7 +119,6 @@ class garantie_jeunes(Variable):
 
     def formula_2017_01_01(individu, period, parameters):
         montant = individu('garantie_jeunes_montant', period)
-        statut = individu('garantie_jeunes_statut', period)
         age_ok = individu('garantie_jeunes_eligibilite_age', period)
         garantie_jeunes_eligibilite_ressources = individu('garantie_jeunes_eligibilite_ressources', period)
-        return montant * statut * age_ok * garantie_jeunes_eligibilite_ressources
+        return montant * age_ok * garantie_jeunes_eligibilite_ressources
