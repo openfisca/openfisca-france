@@ -1,10 +1,20 @@
 # Changelog
 
+### 157.0.3 [2253](https://github.com/openfisca/openfisca-france/pull/2253)
+
+* Évolution du système socio-fiscal.Changement mineur.
+* Périodes concernées : à partir du 01/01/2019.
+Zones impactées :
+  - `assets/taxe_habitation`.
+* Détails :
+  - Ajoute les paramètres de fiscalité locale issue du REI après 2018
+  - Ajoute les cases correspondantes à chaque année dans le fichier stata associé
+
 ### 157.0.2 [2250](https://github.com/openfisca/openfisca-france/pull/2250)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`.
   - `openfisca_france/model/caracteristiques_socio_demographiques/demographie.py`
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/charges_deductibles.py`
