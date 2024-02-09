@@ -1,5 +1,16 @@
 # Changelog
 
+### 158.0.0 [2230](https://github.com/openfisca/openfisca-france/pull/2230)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes
+Zones impactées :
+  - `model/prelevements_obligatoires/impot_revenu/ir`.
+  - `model/revenus/activite/non_salarie`.
+* Détails :
+  - La pénalité pour absence de CGA pour les revenus non-salariaux prend fin en 2023. Le taux associé prend donc fin, et de nombreuses formules sont reformulées dans une version 2023 un peu allégée. De nombreuses cases fiscales sont supprimées en conséquence.
+  - Renomme nacc_defs, qui n'était pas un déficit et dont le nom portait donc à confusion, en nacc_imps.
+
 ### 157.0.3 [2253](https://github.com/openfisca/openfisca-france/pull/2253)
 
 * Évolution du système socio-fiscal.Changement mineur.
