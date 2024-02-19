@@ -1,8 +1,6 @@
-description: Barème de l'impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Barème de l'impôt de solidarité sur la fortune (ISF)
 brackets:
 - threshold:
-    1987-01-01:
-      value: null
     1989-01-01:
       value: 4000000
     1990-01-01:
@@ -36,8 +34,6 @@ brackets:
     2018-01-01:
       value: null
   rate:
-    1987-01-01:
-      value: null
     1989-01-01:
       value: 0.005
     1999-01-01:
@@ -47,8 +43,6 @@ brackets:
     2018-01-01:
       value: null
 - threshold:
-    1987-01-01:
-      value: null
     1989-01-01:
       value: 6500000
     1990-01-01:
@@ -86,8 +80,6 @@ brackets:
     2018-01-01:
       value: null
   rate:
-    1987-01-01:
-      value: null
     1989-01-01:
       value: 0.007
     1999-01-01:
@@ -97,8 +89,6 @@ brackets:
     2018-01-01:
       value: null
 - threshold:
-    1987-01-01:
-      value: null
     1989-01-01:
       value: 12900000
     1990-01-01:
@@ -134,8 +124,6 @@ brackets:
     2018-01-01:
       value: null
   rate:
-    1987-01-01:
-      value: null
     1989-01-01:
       value: 0.009
     1999-01-01:
@@ -143,8 +131,6 @@ brackets:
     2018-01-01:
       value: null
 - threshold:
-    1987-01-01:
-      value: null
     1989-01-01:
       value: 20000000
     1990-01-01:
@@ -182,8 +168,6 @@ brackets:
     2018-01-01:
       value: null
   rate:
-    1987-01-01:
-      value: null
     1989-01-01:
       value: 0.011
     1990-01-01:
