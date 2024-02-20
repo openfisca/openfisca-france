@@ -394,19 +394,19 @@ class isf_ifi_iai(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.bareme.bareme
+        bareme = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.bareme
         return bareme.calc(assiette_isf_ifi)
 
     # TODO: Cette formule a seulement été vérifiée jusqu'au 2015-12-31
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme.bareme
+        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme
         assiette_isf_ifi = (assiette_isf_ifi >= bareme.rates[1]) * assiette_isf_ifi
         return bareme.calc(assiette_isf_ifi)
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme.bareme
+        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme
         return bareme.calc(assiette_isf_ifi)
 
 
