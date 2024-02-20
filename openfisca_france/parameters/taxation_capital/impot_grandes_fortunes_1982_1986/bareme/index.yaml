@@ -1,7 +1,0 @@
-description: Barème de l'impôt sur les grandes fortunes (IGF) - (1982-1986)
-metadata:
-  short_label: Barème
-  label_en: Wealth tax computation
-  order:
-  - bareme
-  - nombre_tranches
