@@ -1,6 +1,17 @@
 # Changelog
 
-### 158.0.0 [2230](https://github.com/openfisca/openfisca-france/pull/2230)
+### 158.0.1 [2256](https://github.com/openfisca/openfisca-france/pull/2256)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `taxation_capital/impot_fortune_immobiliere_ifi_partir_2018`
+  - `taxation_capital/impot_grandes_fortunes_1982_1986`
+  - `taxation_capital/impot_solidarite_fortune_isf_1989_2017`
+* Détails :
+  - Retire un noeud `bareme` inutile
+
+# 158.0.0 [2230](https://github.com/openfisca/openfisca-france/pull/2230)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes
