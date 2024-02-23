@@ -5,7 +5,7 @@
   input:
     taux_incapacite: 0.9
     age: 22  # eligible aah
-    aah_base_ressources: 500 / 12
+    aah_base_ressources_conjugalisee: 500 / 12
     en_couple: 0
     af_nbenf: 0
   output:
@@ -18,7 +18,7 @@
   input:
     taux_incapacite: 0.9
     age: 33  # eligible aah
-    aah_base_ressources: 15000 / 12
+    aah_base_ressources_conjugalisee: 15000 / 12
     en_couple: 1
     af_nbenf: 0
   output:
@@ -114,7 +114,7 @@
       2015-09: 400
       2015-08: 400
   output:
-    aah_base_ressources:
+    aah_base_ressources_conjugalisee:
       2015-11: 80
     aah_base:
       2015-11: 727.65
@@ -130,7 +130,7 @@
       2015-09: 1471
       2015-08: 1471
   output:
-    aah_base_ressources:
+    aah_base_ressources_conjugalisee:
       2015-11: (0.3 * 1457) * 0.2 + (1471 - 0.3 * 1457) * 0.6 # = 8494, Abat. de 80% sur les 30% du SMIC + abat. de 40% sur le reste
     aah_base:
       2015-11: 99.89
@@ -143,7 +143,7 @@
     salaire_imposable:
       2013: 770
   output:
-    aah_base_ressources:
+    aah_base_ressources_conjugalisee:
       2015-11: 154 / 12
     aah_base:
       2015-11: 795
@@ -163,7 +163,7 @@
         salaire_imposable:
           2013: 1128.70 * 12
   output:
-    aah_base_ressources:
+    aah_base_ressources_conjugalisee:
       2015-11:
         - 812.66 # 1128.70 avec les abattements pour conjoint
         - 502.31 # 1128.70 avec les abattements pour bénéficiaire
@@ -191,7 +191,7 @@
           2015-09: 1000
           2015-08: 1000
   output:
-    aah_base_ressources:
+    aah_base_ressources_conjugalisee:
       2015-11:
         - 1427.67 # 1471 avec abat. bénéficiaire + 1000 avec abat. conjoint
         - 1484.25 # 1471 avec abat. conjoint     + 1000 avec abat. bénéficiaire
@@ -551,7 +551,7 @@
           2022-02: 1000
           2022-01: 1000
   output:
-    aah_base_ressources:
+    aah_base_ressources_conjugalisee:
       2022-05:
         - 1174 # 1471 avec abat. bénéficiaire + 1000 avec abat. conjoint
         - 1315 # 1471 avec abat. conjoint     + 1000 avec abat. bénéficiaire
@@ -590,7 +590,7 @@
   output:
     aah_base_ressources_activite_eval_trimestrielle:
       2022-05: [17652, 12000, 0]
-    aah_base_ressources:
+    aah_base_ressources_conjugalisee:
       2022-05:
         - 1052 # [[(1 - 0.8) * min(0.3 * 12 * 10.85 * 151.67, 17652) + (1 - 0.44) * (17 652 - 5924)] + [12000*0.9 - (5000 + 1*1400)]] / 12 [[base ressource demandeur + base ressource conjoint]] /12
         - 1193
@@ -616,7 +616,7 @@
         salaire_imposable:
           2002: 1128.70 * 12
   output:
-    aah_base_ressources:
+    aah_base_ressources_conjugalisee:
       2004-04:
         - 812.66 # 1128.70 avec les abattements pour conjoint
         - 1128.7
@@ -638,7 +638,7 @@
           2005: 1128.70 * 12
           2004: 1128.70 * 12
   output:
-    aah_base_ressources:
+    aah_base_ressources_conjugalisee:
       2006-04:
         - 812.66 # 1128.70 avec les abattements pour conjoint
         - 887.8 # 1128.70 avec les abattements pour bénéficiaire
@@ -657,7 +657,7 @@
   output:
     aah_base_ressources_hors_activite_eval_annuelle:
       2015-11: 1600
-    aah_base_ressources: 1600/12
+    aah_base_ressources_conjugalisee: 1600/12
     aah: 674.32 # 807.65-1600/12
 
 - name: AAH demandeur sans ressource et autre
@@ -752,4 +752,4 @@
           2023-04: 200
           2023-03: 200
   output:
-    aah_base_ressources: [310, 0] # ((0.2 * 6290 + 0.6 * 8110) - (200 * 12))/12 ~= 310
+    aah_base_ressources_conjugalisee: [310, 0] # ((0.2 * 6290 + 0.6 * 8110) - (200 * 12))/12 ~= 310
