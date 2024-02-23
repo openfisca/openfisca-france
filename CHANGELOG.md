@@ -1,5 +1,16 @@
 # Changelog
 
+### 158.0.1 [2218](https://github.com/openfisca/openfisca-france/pull/2218)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2023.
+* Zones impactées :
+  - prestations_sociales/prestations_etat_de_sante/invalidite/aah/majoration_plafond
+  - model/prestations/minima sociaux/aah
+* Détails :
+  - La déconjugalisation de l'aah ne prenait pas encore en compte la déconjugalisation du plafond
+  - Ajout de l'option de conjugalisation après octobre 2023. Renomme en conséquence aah_base_ressource et aah selon leur statut de conjugalisation.
+
 ### 158.0.1 [2256](https://github.com/openfisca/openfisca-france/pull/2256)
 
 * Évolution du système socio-fiscal.
