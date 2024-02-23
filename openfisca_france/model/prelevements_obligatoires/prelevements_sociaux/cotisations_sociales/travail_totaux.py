@@ -35,17 +35,17 @@ class cotisations_employeur_contributives(Variable):
 
     def formula(individu, period, parameters):
         ags = individu('ags', period)
-        agff_employeur = individu('agff_employeur', period, options = [ADD])
+        agff_employeur = individu('agff_employeur', period, options = [ADD]) # ancien dispositif
         agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
-        agirc_employeur = individu('agirc_employeur', period, options = [ADD])
-        agirc_gmp_employeur = individu('agirc_gmp_employeur', period, options = [ADD])
+        agirc_employeur = individu('agirc_employeur', period, options = [ADD]) # ancien dispositif
+        agirc_gmp_employeur = individu('agirc_gmp_employeur', period, options = [ADD]) # ancien dispositif
         apec_employeur = individu('apec_employeur', period)
-        arrco_employeur = individu('arrco_employeur', period)
+        arrco_employeur = individu('arrco_employeur', period) # ancien dispositif
         chomage_employeur = individu('chomage_employeur', period)
         contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
         contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = individu(
-            'cotisation_exceptionnelle_temporaire_employeur', period)
+            'cotisation_exceptionnelle_temporaire_employeur', period) # ancien dispositif
         fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period, options = [ADD])
         ircantec_employeur = individu('ircantec_employeur', period, options = [ADD])
         pension_employeur = individu('pension_employeur', period, options = [ADD])
