@@ -8,7 +8,6 @@
 * Détails :
   - Renomme SMIC en Smic.
 
-
 # 159.0.0 [2218](https://github.com/openfisca/openfisca-france/pull/2218)
 
 * Évolution du système socio-fiscal.
