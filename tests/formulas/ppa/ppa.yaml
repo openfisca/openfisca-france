@@ -336,7 +336,7 @@
     rsa_majore_eligibilite: false
     rsa: 786.24 - 600
 
-- name: PPA personne seule avec revenus bonifiés (>95 SMIC horaire brut)
+- name: PPA personne seule avec revenus bonifiés (>95 Smic horaire brut)
   period: 2016-01
   relative_error_margin: 0.05
   input:
@@ -354,7 +354,7 @@
       2015-10: 67
     rsa: 0
 
-- name: PPA personne seule avec revenus bonifiés (>59 SMIC horaire brut)
+- name: PPA personne seule avec revenus bonifiés (>59 Smic horaire brut)
   period: 2016-01
   relative_error_margin: 0.05
   input:

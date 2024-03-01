@@ -3,7 +3,7 @@ values:
   1979-07-01:
     value: 0.7
 metadata:
-  short_label: Valable tt le tps (en % SMIC + partie fixe)
+  short_label: Valable tt le tps (en % Smic + partie fixe)
   label_en: Special UI scheme for economic layoffs
   ipp_csv_id: journ_min_prct
   unit: /1

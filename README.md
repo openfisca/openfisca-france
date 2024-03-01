@@ -23,7 +23,7 @@ OpenFisca is a versatile microsimulation free software. This repository contains
 
 OpenFisca met à disposition une [API Web publique](https://openfisca.org/doc/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
 Utilisez l'API publique si vous souhaitez :
-- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://api.fr.openfisca.org/latest/parameter/marche_travail.salaire_minimum.smic.smic_b_horaire)) ;
+- accéder à un paramètre (Ex : [le montant du Smic horaire brut](https://api.fr.openfisca.org/latest/parameter/marche_travail.salaire_minimum.smic.smic_b_horaire)) ;
 - consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://api.fr.openfisca.org/latest/variable/af_base)) ;
 - faire des calculs sur une situation (Ex : le calcul du coût du travail).
 
@@ -252,7 +252,7 @@ curl "http://localhost:5000/parameter/marche_travail.salaire_minimum.smic.smic_b
 Vous devriez avoir le resultat suivant :
 ```JSON
 {
-  "description": "SMIC horaire brut",
+  "description": "Smic horaire brut",
   "id": "marche_travail.salaire_minimum.smic.smic_b_horaire",
   "values": {
     "2001-08-01": 6.67,

@@ -3,7 +3,7 @@ values:
   2003-07-01:
     value: 3
 metadata:
-  short_label: Nombre d'enfants minimum 
+  short_label: Nombre d'enfants minimum
   last_value_still_valid_on: "2024-01-05"
   label_en: "Family allowances (AF): minimum age"
   ipp_csv_id: maj_forf_age

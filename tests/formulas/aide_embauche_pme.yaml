@@ -16,7 +16,7 @@
     aide_embauche_pme: 166.67
 
 - period: 2016-02
-  name: Salaire > 1.3 x SMIC
+  name: Salaire > 1.3 x Smic
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1908

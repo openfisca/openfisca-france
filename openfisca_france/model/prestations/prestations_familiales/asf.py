@@ -18,7 +18,7 @@ class asf_elig_enfant(Variable):
             # Âge compatible avec les prestations familiales
             (age >= af.af_cm.age1)
             * (age < af.af_cm.age3)
-            * not_(autonomie_financiere)  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
+            * not_(autonomie_financiere)  # Ne perçoit pas plus de ressources que "55% du Smic" au sens CAF
             )
 
         return eligibilite

@@ -5,7 +5,7 @@ keywords:
 - plafonds
 description: |
   Demandeur = 500 euros de retraite + 833 euros de salaire
-  Application abattement de 1,5 SMIC d' où 833 - 728,77 = 104,23 euros
+  Application abattement de 1,5 Smic d' où 833 - 728,77 = 104,23 euros
   Conjoint = 150 euros de retraite
   Total : 1242 - (500 + 104,23 + 150) = 487,77
 period: month:2015-02

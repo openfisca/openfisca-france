@@ -61,8 +61,8 @@
       # TODO KO 2023-09: 250  # ERROR 'prime_partage_valeur' must be computed for a whole year.
 
 
-- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 (réservée aux < 3 SMIC)
-# ! Limite du test : test sensible aux revalorisations du SMIC et des prestations sociales (PPA) sur 2023.
+- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 (réservée aux < 3 Smic)
+# ! Limite du test : test sensible aux revalorisations du Smic et des prestations sociales (PPA) sur 2023.
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : Sans accord, Prime au plafond
@@ -166,8 +166,8 @@
       2023: [20590.658, 22620.533, 23095.496, 22620.533, 22620.533, 25122.717, 25930.635]
 
 
-- name: Prime pérenne de partage de la valeur pour salaire < 3 SMIC
-# ! Limite du test : test sensible aux revalorisations du SMIC et des prestations sociales (PPA) sur 2023.
+- name: Prime pérenne de partage de la valeur pour salaire < 3 Smic
+# ! Limite du test : test sensible aux revalorisations du Smic et des prestations sociales (PPA) sur 2023.
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : avec le montant de la prime dans le salaire
@@ -259,7 +259,7 @@
       2023: [20590.658, 21689.877, 22025.084, 22525.82, 22025.084, 22025.084, 23745.898, 24554.814]
 
 
-- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 pour salaire >= 3 SMIC
+- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 pour salaire >= 3 Smic
 # Non, éligible, on le vérifie quand même.
   period: 2023-09
   absolute_error_margin: 0.01
@@ -273,7 +273,7 @@
     accord_interessement:
       month:2021-01:36: [false, false, false, true, true, true, true]
   output:
-    # Pas de prime pour les salariés >= 3 x SMIC
+    # Pas de prime pour les salariés >= 3 x Smic
     ppv_eligibilite_exceptionnelle:
       2023: [0, 0, 0, 0, 0, 0, 0]
     prime_partage_valeur_exceptionnelle:
@@ -292,7 +292,7 @@
       2023: [-8096, -8096, -8096, -8096, -8096, -8096, -8096]
 
 
-- name: Prime pérenne de partage de la valeur pour salaire >= 3 SMIC
+- name: Prime pérenne de partage de la valeur pour salaire >= 3 Smic
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : Sans accord, Prime au plafond
@@ -370,7 +370,7 @@
     revenu_disponible:
       2023: [42333.29, 42407.90]
 
-- name: Prime exceptionnelle de partage de la valeur pour un salarié à temps partiel < 3*SMIC mais dont l'équivalent temps plein est > 3*SMIC
+- name: Prime exceptionnelle de partage de la valeur pour un salarié à temps partiel < 3*Smic mais dont l'équivalent temps plein est > 3*Smic
   period: 2023
   relative_error_margin: 0.01
   input:
@@ -380,8 +380,8 @@
       2022: [12, 11.9, 12.1]
       2023: [12, 11.9, 12.1]
     salaire_de_base:
-      # Attention : Salaire strictement inférieur à 3 * dernier SMIC annuel en vigueur en 2023
-      # SMIC 2023-01-01 : 1_709.28 * 12 = 20_511.36, 20_511.36 * 3 = 61_534.08
+      # Attention : Salaire strictement inférieur à 3 * dernier Smic annuel en vigueur en 2023
+      # Smic 2023-01-01 : 1_709.28 * 12 = 20_511.36, 20_511.36 * 3 = 61_534.08
       # Même salaire en 2022 car l'éligibilité est évaluée sur une année glissante
       2022: [61_534, 61_534, 61_534]
       2023: [61_534, 61_534, 61_534]
@@ -390,7 +390,7 @@
     quotite_de_travail:
       2023-01: [1, 0.99, 1.008]
     # Le deuxième n'a pas le droit de toucher la prime exceptionnelle
-    # car son salaire équivalent temps plein est > 3 SMIC
+    # car son salaire équivalent temps plein est > 3 Smic
     ppv_eligibilite_exceptionnelle: [1, 0, 1]
     prime_partage_valeur_exoneree_exceptionnelle: [1_200, 0, 1_200]
     prime_partage_valeur_non_exoneree_exceptionnelle: [0, 0, 0]

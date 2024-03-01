@@ -102,9 +102,9 @@ class exoneration_cotisations_employeur_tode(Variable):
             + chomage_employeur
             )
 
-        # Exonération totale à <= 1.2 SMIC
-        # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
-        # Devient nulle à >= 1.6 SMIC
+        # Exonération totale à <= 1.2 Smic
+        # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du Smic/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
+        # Devient nulle à >= 1.6 Smic
 
         salaire_de_base = individu('salaire_de_base', period)
         smic_proratise = individu('smic_proratise', period)

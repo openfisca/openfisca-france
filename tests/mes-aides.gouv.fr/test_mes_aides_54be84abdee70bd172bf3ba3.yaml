@@ -1,11 +1,11 @@
-name: Pas d'eval forfaitaire si RNC > 1015 fois le SMIC
+name: Pas d'eval forfaitaire si RNC > 1015 fois le Smic
 keywords:
 - al
 - base ressources
 - eval forfaitaire
 description: |
   Attention test peu robuste en raison d'un operateur ceil
-  Pas d'application de l'évaluation forfaitaire dans le cas d'un allocataire qui perçoit une rémunération mensuelle en m-1 et dont les RNC N-2 sont supérieurs à 1015 fois le SMIC horaire brut n-2 (9,43 € en 2013).
+  Pas d'application de l'évaluation forfaitaire dans le cas d'un allocataire qui perçoit une rémunération mensuelle en m-1 et dont les RNC N-2 sont supérieurs à 1015 fois le Smic horaire brut n-2 (9,43 € en 2013).
   9,43 * 1015 = 9571
   Ici revenus d'activité = 11000 > 9571
 

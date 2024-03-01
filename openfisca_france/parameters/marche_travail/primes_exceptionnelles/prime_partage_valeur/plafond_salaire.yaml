@@ -3,7 +3,7 @@ values:
   2022-07-01:
     value: 3
 metadata:
-  short_label: Salaire maximal d'éligibilité à la PPV, en nombre de SMIC annuels
+  short_label: Salaire maximal d'éligibilité à la PPV, en nombre de Smic annuels
   unit: smic_annuel
   reference:
     2022-07-01:

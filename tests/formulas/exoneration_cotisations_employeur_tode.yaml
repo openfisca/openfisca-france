@@ -1,4 +1,4 @@
-- name: Exonération totale TO-DE pour salarié agricole à rémunération mensuelle brute <= 1.2 SMIC
+- name: Exonération totale TO-DE pour salarié agricole à rémunération mensuelle brute <= 1.2 Smic
   period: 2022-04
   relative_error_margin: 0.002  # fnal : 0.001 -> 0.002
   input:
@@ -20,9 +20,9 @@
 
         mmid_employeur: -1 * 1603.15 * 1.2 * 0.13
         assiette_allegement: 1603.15 * 1.2
-        allegement_cotisation_maladie_base: (1603.15 * 1.2) * (0.13 - 0.07)  # sous 2.5 SMIC
+        allegement_cotisation_maladie_base: (1603.15 * 1.2) * (0.13 - 0.07)  # sous 2.5 Smic
 
-        famille: -1 * 1603.15 * 1.2 * 0.0345  # taux réduit sous 3.5 SMIC
+        famille: -1 * 1603.15 * 1.2 * 0.0345  # taux réduit sous 3.5 Smic
         accident_du_travail: -1 * 1603.15 * 1.2 * 0.0116  # taux 2022
         fnal: -1 * (1603.15 * 1.2) * 0.001  # sous 1 PSS (3428€)
         vieillesse_plafonnee_employeur: -1 * (1603.15 * 1.2) * 0.0855  # sous 1 PSS
@@ -40,7 +40,7 @@
     exonerations_et_allegements: 625.61
 
 
-- name: Exonération partielle de TO-DE pour salarié agricole à rémunération mensuelle brute < 1.6 SMIC
+- name: Exonération partielle de TO-DE pour salarié agricole à rémunération mensuelle brute < 1.6 Smic
   period: 2022-04
   relative_error_margin: 0.002  # fnal : 0.001 -> 0.002
   input:
@@ -65,9 +65,9 @@
 
     mmid_employeur: -1 * 1603.15 * 1.5 * 0.13  # cotisation avant allègement
     assiette_allegement: 1603.15 * 1.5
-    allegement_cotisation_maladie_base: (1603.15 * 1.5) * (0.13 - 0.07)  # sous 2.5 SMIC
+    allegement_cotisation_maladie_base: (1603.15 * 1.5) * (0.13 - 0.07)  # sous 2.5 Smic
 
-    famille: -1 * 1603.15 * 1.5 * 0.0525  # FIXME: à <= 3.5 SMIC devrait être au prelevements_sociaux.cotisations_securite_sociale_regime_general.famille.taux_reduit
+    famille: -1 * 1603.15 * 1.5 * 0.0525  # FIXME: à <= 3.5 Smic devrait être au prelevements_sociaux.cotisations_securite_sociale_regime_general.famille.taux_reduit
     accident_du_travail: -1 * 1603.15 * 1.5 * 0.009  # FIXME: taux 2018 à mettre à jour
     fnal: -1 * (1603.15 * 1.5) * 0.001  # sous 1 PSS (3428€)
     vieillesse_plafonnee_employeur: -1 * (1603.15 * 1.5) * 0.0855  # sous 1 PSS
@@ -85,7 +85,7 @@
     exonerations_et_allegements: 163.81
 
 
-- name: Exonération nulle de TO-DE pour salarié agricole à rémunération mensuelle brute >= 1.6 SMIC
+- name: Exonération nulle de TO-DE pour salarié agricole à rémunération mensuelle brute >= 1.6 Smic
   period: 2022-04
   relative_error_margin: 0.001
   input:
@@ -110,9 +110,9 @@
 
     mmid_employeur: -1 * 1603.15 * 2.6 * 0.13
     assiette_allegement: 1603.15 * 2.6
-    allegement_cotisation_maladie_base: 0  # pas d'allègement au-delà de 2.5 SMIC
+    allegement_cotisation_maladie_base: 0  # pas d'allègement au-delà de 2.5 Smic
 
-    famille: -1 * 1603.15 * 2.6 * 0.0525  # FIXME: à <= 3.5 SMIC devrait être au prelevements_sociaux.cotisations_securite_sociale_regime_general.famille.taux_reduit
+    famille: -1 * 1603.15 * 2.6 * 0.0525  # FIXME: à <= 3.5 Smic devrait être au prelevements_sociaux.cotisations_securite_sociale_regime_general.famille.taux_reduit
     accident_du_travail: -1 * 1603.15 * 2.6 * 0.009  # FIXME: taux 2018 à mettre à jour
     fnal: -1 * (3428 * 0.001) # plafond à 1 PSS = 3428/mois
 

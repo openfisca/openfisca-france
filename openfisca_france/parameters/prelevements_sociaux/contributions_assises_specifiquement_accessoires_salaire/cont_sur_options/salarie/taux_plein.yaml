@@ -1,4 +1,4 @@
-description: Taux plein des contributions salariales sur options et actions attribuées gratuitement (Taxes sur les accessoires du salaire)
+description: Taux plein des contributions salariales sur options et actions attribuées gratuitement
 values:
   2007-10-16:
     value: 0.025
@@ -7,7 +7,7 @@ values:
   2012-07-11:
     value: 0.1
 metadata:
-  short_label: Taux Plein
+  short_label: Taux plein
   label_en: Contribution levied on options and shares granted for free
   ipp_csv_id: cont_opt_s_tx1
   unit: /1

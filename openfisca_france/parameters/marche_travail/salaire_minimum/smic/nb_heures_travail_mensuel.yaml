@@ -1,4 +1,4 @@
-description: Nombre d'heures travaillées forfaitaires (temps plein) au SMIC
+description: Nombre d'heures travaillées forfaitaires (temps plein) au Smic
 values:
   1970-01-01:
     value: 173.3
@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Nombre d'heures temps plein
   last_value_still_valid_on: "2022-08-03"
-  label_en: Minimum wage - SMIC
+  label_en: Minimum wage - Smic
   ipp_csv_id: htp
   unit: hour
   reference:

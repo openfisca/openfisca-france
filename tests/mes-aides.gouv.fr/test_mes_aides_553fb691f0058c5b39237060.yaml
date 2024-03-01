@@ -4,7 +4,7 @@ keywords:
 - tns
 description: |-
   Éligibilité au RSA d'un TNS agricole en couple
-  Bénéfice agricole = 11500€ < (800*SMIC horaire)*1,5 = 11532€
+  Bénéfice agricole = 11500€ < (800*Smic horaire)*1,5 = 11532€
 
   Ne pas afficher de montant
 period: month:2015-04

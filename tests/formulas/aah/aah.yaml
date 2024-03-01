@@ -103,7 +103,7 @@
     - 0
     - 0
 
-- name: AAH salarié célibataire (K.P.), moins de 30% du SMIC
+- name: AAH salarié célibataire (K.P.), moins de 30% du Smic
   period: 2015-11
   absolute_error_margin: 1
   input:
@@ -119,7 +119,7 @@
     aah_base:
       2015-11: 727.65
 
-- name: AAH salarié célibataire (K.P.), plus de 30% du SMIC
+- name: AAH salarié célibataire (K.P.), plus de 30% du Smic
   period: 2015-11
   absolute_error_margin: 1
   input:
@@ -131,7 +131,7 @@
       2015-08: 1471
   output:
     aah_base_ressources_conjugalisee:
-      2015-11: (0.3 * 1457) * 0.2 + (1471 - 0.3 * 1457) * 0.6 # = 8494, Abat. de 80% sur les 30% du SMIC + abat. de 40% sur le reste
+      2015-11: (0.3 * 1457) * 0.2 + (1471 - 0.3 * 1457) * 0.6 # = 8494, Abat. de 80% sur les 30% du Smic + abat. de 40% sur le reste
     aah_base:
       2015-11: 99.89
 
