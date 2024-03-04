@@ -201,7 +201,7 @@ class rsa_base_ressources_minima_sociaux(Variable):
         aah_i = famille.members('aah', three_previous_months, options = [ADD])
         asi_i = famille.members('asi', three_previous_months, options = [ADD])
         caah_i = famille.members('caah', three_previous_months, options = [ADD])
-        return aspa + famille.sum(ass_i, aah_i + asi_i + caah_i) / 3
+        return aspa + famille.sum(ass_i + aah_i + asi_i + caah_i) / 3
 
 
 class rsa_base_ressources_prestations_familiales(Variable):
