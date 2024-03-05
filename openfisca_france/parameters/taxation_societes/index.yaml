@@ -1,4 +1,5 @@
+description: Taxation des sociétés
 metadata:
   order:
-  - contributions_additionnelles
   - impot_societe
+  - contributions_additionnelles

@@ -606,7 +606,7 @@ class prime_partage_valeur(Variable):
         administrations publiques et singulièrement de la sécurité sociale.
 
         la condition de rémunération est valable jusqu'au 31 décembre 2023.
-        Alors, lorsque la rémunération est inférieure à 3 SMIC, la PPV est **aussi**
+        Alors, lorsque la rémunération est inférieure à 3 Smic, la PPV est **aussi**
         exonérée d'impôt sur le revenu, ainsi que des contributions prévues
         à l'article L. 136-1 du code de la sécurité sociale
         [CSG activité = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033712581]
@@ -614,7 +614,7 @@ class prime_partage_valeur(Variable):
         de la dette sociale (⑯).
         [CRDS = https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038834962/]
         Néanmoins, elle est incluse dans le revenu fiscal de référence (⑰).
-        => Sous 3 SMIC les 12 derniers mois, on est en plus exonéré d'IR, CSG et CRDS.
+        => Sous 3 Smic les 12 derniers mois, on est en plus exonéré d'IR, CSG et CRDS.
 
         Pour tout niveau de revenu :
         La PPV est exonérée, dans la limite de 3 000 euros :
@@ -656,7 +656,7 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
     def formula_2022_07_01(individu, period, parameters):
         '''
         La prime exceptionnelle de partage de la valeur (PPV),
-        est réservée aux salariés qui ont un salaire de base inférieur à 3 x SMIC.
+        est réservée aux salariés qui ont un salaire de base inférieur à 3 x Smic.
         Elle ne peut plus être versée après le 31 décembre 2023.
         '''
 
@@ -674,7 +674,7 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
         ppv_eligibilite_exceptionnelle = individu('ppv_eligibilite_exceptionnelle', period)
         return (
             min_(prime_partage_valeur, plafond_ppv_exoneree)
-            * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x SMIC
+            * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x Smic
             )
 
 
@@ -692,12 +692,12 @@ class prime_partage_valeur_non_exoneree_exceptionnelle(Variable):
         return (
             prime_partage_valeur_exceptionnelle
             - prime_partage_valeur_exoneree_exceptionnelle
-            ) * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x SMIC
+            ) * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x Smic
 
 
 class ppv_eligibilite_exceptionnelle(Variable):
     '''
-    Cette variable sert à neutraliser la prime pour les personnes qui touchent plus que 3xSMIC
+    Cette variable sert à neutraliser la prime pour les personnes qui touchent plus que 3xSmic
     Car dans ce cas il n'est pas autorisé de leur verser la prime exceptionnelle.
     L'employeur doit alors opter pour la prime temporaire/exceptionnelle.
     '''
@@ -711,7 +711,7 @@ class ppv_eligibilite_exceptionnelle(Variable):
     documentation = '''
     L'individu est éligible à des exonérations complémentaires
     sur la prime de partage de valeur (PPV) pour une rémunération
-    inférieure à 3 SMIC : exonération de CSG, CRDS
+    inférieure à 3 Smic : exonération de CSG, CRDS
     et impôt sur le revenu.
     '''
 
@@ -802,7 +802,7 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
         Voici l'explication du dispositif :
         https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/instruction-du-19-aout-2021.html
         Prime exceptionnelle de pouvoir d'achat (prime Macron), voici comment j'ai écrit mon calcul :
-        si salaire < 3 SMIC alors
+        si salaire < 3 Smic alors
             si prime pepa < 1000 alors
                 exoneration = min (prime pepa, 1000)
             sinon (cas prime pepa >= 1000)

@@ -56,7 +56,7 @@ metadata:
     1978-01-01:
     - title: Le décret 77-1452 institue un plafond propre au prêt aux jeunes ménages. Il n'est plus conditionné au plafond de ressources de l'allocation pour frais de garde
     1983-07-01:
-    - title: Le plafonnement n'est plus indexé sur le SMIC du 1er juillet de l'année de ref mais selon le coeff de revalorisation des pensions d'invalidité
+    - title: Le plafonnement n'est plus indexé sur le Smic du 1er juillet de l'année de ref mais selon le coeff de revalorisation des pensions d'invalidité
     1985-05-16:
     - title: Décret 85-526 abroge le décret 76-117.
-documentation: "Le plafond se calcule sur la base du SMIC en vigueur au 1er juillet de l'année de référence selon la formule suivante pour les couples sans enfants: (SMIC*4260*25%)*4"
+documentation: "Le plafond se calcule sur la base du Smic en vigueur au 1er juillet de l'année de référence selon la formule suivante pour les couples sans enfants: (Smic*4260*25%)*4"

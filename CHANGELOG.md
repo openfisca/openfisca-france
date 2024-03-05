@@ -1,6 +1,14 @@
 # Changelog
 
-### 158.0.1 [2218](https://github.com/openfisca/openfisca-france/pull/2218)
+### 159.0.1 [2258](https://github.com/openfisca/openfisca-france/pull/2258)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : aucune en termes fonctionnels.
+* Détails :
+  - Renomme SMIC en Smic.
+
+# 159.0.0 [2218](https://github.com/openfisca/openfisca-france/pull/2218)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/10/2023.

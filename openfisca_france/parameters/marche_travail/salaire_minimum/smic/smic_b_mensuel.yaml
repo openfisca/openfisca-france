@@ -1,4 +1,4 @@
-description: SMIC brut mensuel
+description: Smic brut mensuel
 values:
   1970-01-01:
     value: 566.7999999999989
@@ -243,9 +243,9 @@ values:
   2024-01-01:
     value: 1766.92
 metadata:
-  short_label: SMIC brut mensuel
+  short_label: Smic brut mensuel
   last_value_still_valid_on: "2024-01-03"
-  label_en: Minimum wage - SMIC
+  label_en: Minimum wage - Smic
   ipp_csv_id: smic_m
   unit: currency
   reference:
@@ -670,7 +670,7 @@ metadata:
     1976-01-01:
     - title: Pour une durée hebdomadaire de 40h sur 52 semaines = 173 h 1/3 (autres durées possibles)
     1976-04-01:
-    - title: "N.B. : pas le même SMIC dans les DOM-TOM, ici montant pour la métropole."
+    - title: "N.B. : pas le même Smic dans les DOM-TOM, ici montant pour la métropole."
     1982-05-01:
     - title: Changement de durée légale du travail le 1er février 1982. On passe de 40 à 39 heures / semaine. Smic légal pour 39h = 3067,35 F. mais art. 3 de l'Ordonnance 82-41 du 16/01/82 (JO 17/01/82) précise que si l'horaire hebdomadaire est effectivement réduit à 39h, la rémunération mensuelle ne peut être inférieure à 3145,94 F
     1994-07-01:

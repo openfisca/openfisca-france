@@ -1,4 +1,4 @@
-description: Taux pour les Primes d'assurances pour loyers impayés
+description: Taux pour les primes d'assurances pour loyers impayés
 values:
   2005-01-01:
     value: 0.5

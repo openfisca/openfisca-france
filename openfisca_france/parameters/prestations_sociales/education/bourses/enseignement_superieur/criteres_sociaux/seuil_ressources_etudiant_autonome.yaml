@@ -1,4 +1,4 @@
-description: Seuil de ressources pour considérer l'étudiant autonome (en % du SMIC net)
+description: Seuil de ressources pour considérer l'étudiant autonome (en % du Smic net)
 values:
   2006-03-31:
     value: 0.9

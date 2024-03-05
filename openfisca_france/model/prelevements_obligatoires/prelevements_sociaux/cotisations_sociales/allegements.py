@@ -28,7 +28,7 @@ class assiette_allegement(Variable):
 class coefficient_proratisation(Variable):
     value_type = float
     entity = Individu
-    label = 'Coefficient de proratisation du salaire notamment pour le calcul du SMIC'
+    label = 'Coefficient de proratisation du salaire notamment pour le calcul du Smic'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -293,7 +293,7 @@ class aide_embauche_pme(Variable):
 class smic_proratise(Variable):
     value_type = float
     entity = Individu
-    label = 'SMIC proratisé (mensuel)'
+    label = 'Smic proratisé (mensuel)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

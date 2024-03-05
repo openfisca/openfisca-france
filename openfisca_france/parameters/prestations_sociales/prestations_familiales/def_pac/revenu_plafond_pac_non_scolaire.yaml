@@ -1,4 +1,4 @@
-description: Revenu plafond pour les personnes à charge n'étant plus sous l'obligation scolaire (en % du SMIC), pour les prestations familiales
+description: Revenu plafond pour les personnes à charge n'étant plus sous l'obligation scolaire (en % du Smic), pour les prestations familiales
 values:
   1985-12-22:
     value: 0.55
@@ -14,4 +14,4 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750602/2000-01-29
   official_journal_date:
     1985-12-22: "1985-12-21"
-documentation: En vertu de l'article R512-2 du CSS*, la base à appliquer à ce pourcentage est le SMIC horaire défini aux articles L141-1 à L141-9 du Code du Travail, multiplié par 169.
+documentation: En vertu de l'article R512-2 du CSS*, la base à appliquer à ce pourcentage est le Smic horaire défini aux articles L141-1 à L141-9 du Code du Travail, multiplié par 169.

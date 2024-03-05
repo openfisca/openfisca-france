@@ -2,7 +2,7 @@ name: Taxe d'apprentissage
 keywords: Taxe d'apprentissage, apprentissage
 description: |
   Calcul :
-  SMIC mensuel = 1457,52€
+  Smic mensuel = 1457,52€
   Taxe d'apprentissage en 2015 : 0.68%
   Montant mensuel = 1457,52 * 0.0068 = 9,911136
 

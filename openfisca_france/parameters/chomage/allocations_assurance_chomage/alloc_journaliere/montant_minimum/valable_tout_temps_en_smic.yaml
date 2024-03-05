@@ -3,7 +3,7 @@ values:
   1979-07-01:
     value: 0.9
 metadata:
-  short_label: Valable tout le temps (en % SMIC)
+  short_label: Valable tout le temps (en % Smic)
   label_en: Special UI scheme for economic layoffs
   ipp_csv_id: journ_min
   unit: /1

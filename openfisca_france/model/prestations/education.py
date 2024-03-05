@@ -19,7 +19,7 @@ class bourse_college_echelon(Variable):
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
         P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_college.apres_2016
 
-        # Les plafonds sont estimés en multiples du SMIC au 1er juillet de l'année n_2
+        # Les plafonds sont estimés en multiples du Smic au 1er juillet de l'année n_2
         juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
         smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic.smic_b_horaire
 
@@ -184,7 +184,7 @@ class bourse_lycee_echelon(Variable):
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
         P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_lycee.apres_2016
 
-        # Les plafonds sont estimés en multiples du SMIC au 1er juillet de l'année n_2
+        # Les plafonds sont estimés en multiples du Smic au 1er juillet de l'année n_2
         juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
         smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic.smic_b_horaire
 
