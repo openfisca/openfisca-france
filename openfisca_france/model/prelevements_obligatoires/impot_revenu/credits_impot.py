@@ -1467,9 +1467,10 @@ class divide(Variable):
         f2dc = foyer_fiscal('f2dc', period)
         f2gr = foyer_fiscal('f2gr', period)
         P = parameters(period).impot_revenu.credits_impots.divide
+        P_taux = parameters(period).calcul_revenus_imposables.rvcm.revenus_capitaux_mobiliers_dividendes
 
-        max1 = P.max * (maries_ou_pacses + 1)
-        return min_(P.taux * (f2dc + f2gr), max1)
+        max1 = P.plafond * (maries_ou_pacses + 1)
+        return min_(P_taux.taux_abattement * (f2dc + f2gr), max1)
 
 
 class drbail(Variable):
