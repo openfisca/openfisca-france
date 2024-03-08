@@ -1,5 +1,13 @@
 # Changelog
 
+### 159.0.3 [2260](https://github.com/openfisca/openfisca-france/pull/2260)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/02/2024.
+* Zones impactées : `openfisca_france/model/patrimoine/livret_epargne_populaire.py`.
+* Détails :
+  - Mise à jour du taux de rémunération du Livret d'Épargne Populaire
+
 ### 159.0.2 [2259](https://github.com/openfisca/openfisca-france/pull/2259)
 
 * Évolution du système socio-fiscal.
