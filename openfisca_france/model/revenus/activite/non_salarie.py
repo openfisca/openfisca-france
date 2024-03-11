@@ -2224,8 +2224,12 @@ class rpns_micro_entreprise_revenus_net(Variable):
 
     def formula(individu, period, parameters):
         rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period, options = [DIVIDE])
-        taux_cotisations_sociales = parameters(period).taxation_societes.tns.micro_entreprise.cotisations_sociales
-        rpns_micro_entreprise_charges_sociales = rpns_micro_entreprise_benefice * taux_cotisations_sociales
+        bareme_cs_me = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
+        rpns_micro_entreprise_charges_sociales = (
+            (rpns_micro_entreprise_CA_bic_vente_imp * (bareme_cs_me.formation_professionnelle.ventecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.vente))
+            + (rpns_micro_entreprise_CA_bnc_imp * (bareme_cs_me.formation_professionnelle.artisans_hors_alsace_chiffre_affaires + bareme_cs_me.cotisations_prestations.cipav))
+            + (rpns_micro_entreprise_CA_bic_service_imp * (bareme_cs_me.formation_professionnelle.servicecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.service))
+        )
         revenus = rpns_micro_entreprise_benefice - rpns_micro_entreprise_charges_sociales
 
         return revenus
