@@ -2210,7 +2210,7 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
             (bareme_cs_ae.formation_professionnelle.ventecom_chiffre_affaires + bareme_cs_ae.cotisations_prestations.vente) * rpns_auto_entrepreneur_CA_achat_revente
             + (bareme_cs_ae.formation_professionnelle.artisans_hors_alsace_chiffre_affaires + bareme_cs_ae.cotisations_prestations.cipav) * rpns_auto_entrepreneur_CA_bic
             + (bareme_cs_ae.formation_professionnelle.servicecom_chiffre_affaires + bareme_cs_ae.cotisations_prestations.service) * rpns_auto_entrepreneur_CA_bnc
-        )
+            )
 
         return rpns_auto_entrepreneur_benefice - rpns_auto_entrepreneur_charges_sociales
 
@@ -2229,7 +2229,7 @@ class rpns_micro_entreprise_revenus_net(Variable):
             (rpns_micro_entreprise_CA_bic_vente_imp * (bareme_cs_me.formation_professionnelle.ventecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.vente))
             + (rpns_micro_entreprise_CA_bnc_imp * (bareme_cs_me.formation_professionnelle.artisans_hors_alsace_chiffre_affaires + bareme_cs_me.cotisations_prestations.cipav))
             + (rpns_micro_entreprise_CA_bic_service_imp * (bareme_cs_me.formation_professionnelle.servicecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.service))
-        )
+            )
         revenus = rpns_micro_entreprise_benefice - rpns_micro_entreprise_charges_sociales
 
         return revenus
