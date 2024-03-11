@@ -2204,12 +2204,13 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
         rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period)
         rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period)
         rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
-        bareme_cs_ae = parameters(period).taxation_societes.tns.auto_entrepreneur
+        bareme_cs_ae = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
 
         rpns_auto_entrepreneur_charges_sociales = (
-            (bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente)
-            + (bareme_cs_ae.bic * rpns_auto_entrepreneur_CA_bic)
-            + (bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc))
+            (bareme_cs_ae.formation_professionnelle.ventecom_chiffre_affaires + bareme_cs_ae.cotisations_prestations.vente) * rpns_auto_entrepreneur_CA_achat_revente
+            + (bareme_cs_ae.formation_professionnelle.artisans_hors_alsace_chiffre_affaires + bareme_cs_ae.cotisations_prestations.cipav) * rpns_auto_entrepreneur_CA_bic
+            + (bareme_cs_ae.formation_professionnelle.servicecom_chiffre_affaires + bareme_cs_ae.cotisations_prestations.service) * rpns_auto_entrepreneur_CA_bnc
+        )
 
         return rpns_auto_entrepreneur_benefice - rpns_auto_entrepreneur_charges_sociales
 
