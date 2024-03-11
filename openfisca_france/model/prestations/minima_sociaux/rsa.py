@@ -741,7 +741,7 @@ class rsa_eligibilite_tns(Variable):
         has_conjoint = famille('nb_parents', period) > 1
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
         P = parameters(period)
-        P_agr = P.taxation_societes.tns.exploitant_agricole
+        P_agr = P.prestations_sociales.solidarite_insertion.minima_sociaux.rsa.exploitant_agricole
         P_micro = P.impot_revenu.calcul_revenus_imposables.rpns.micro
         maj_2p = P_agr.maj_2p
         maj_1e_2ad = P_agr.maj_1e_2ad
