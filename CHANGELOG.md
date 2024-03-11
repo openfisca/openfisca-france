@@ -1,5 +1,13 @@
 # Changelog
 
+### 159.0.2 [2259](https://github.com/openfisca/openfisca-france/pull/2259)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prestations/minima sociaux/rsa`
+* Détails :
+ - La base ressources du RSA comprenait l'ASS du mois de référence, et pas de la moyenne des trois mois précédents. Or, selon la caf (voir #2257), le calcul est bien effectué comme pour l'aah par exemple, sur cette moyenne.
+
 ### 159.0.1 [2258](https://github.com/openfisca/openfisca-france/pull/2258)
 
 * Changement mineur.
