@@ -1,4 +1,4 @@
-description: Alcools fermentés  - Vins mousseux (€/hl)
+description: Taxe sur les vins mousseux (€/hl)
 values:
   1982-01-01:
     value: 54.8
@@ -31,6 +31,7 @@ values:
   2021-01-01:
     value: 9.68
 metadata:
+  short_label: Vins mousseux
   ipp_csv_id: taxe_vins_mousseux
   unit: currency
   reference:
@@ -80,4 +81,3 @@ metadata:
     2015-06-06: "2015-06-05"
     2017-01-01: "2016-12-31"
     2018-01-01: "2017-12-27"
-documentation: Données renseignées dans l''article 438 du code général des impôts'

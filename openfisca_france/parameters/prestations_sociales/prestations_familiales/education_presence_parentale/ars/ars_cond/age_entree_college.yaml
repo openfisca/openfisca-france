@@ -4,7 +4,7 @@ values:
     value: 11
 metadata:
   short_label: Premier seuil d'âge
-  last_value_still_valid_on: "2023-01-27"
+  last_value_still_valid_on: "2023-05-11"
   unit: year
   reference:
     2002-01-01:

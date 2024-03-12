@@ -5,3 +5,6 @@ metadata:
   order:
   - plafond
   - taux_investissement
+documentation: |-
+  FCPI: Fonds commun de placement dans l'innovation
+  FIP: Fonds d'investissement de proximité

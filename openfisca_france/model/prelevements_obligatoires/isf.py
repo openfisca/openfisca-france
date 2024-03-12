@@ -394,19 +394,19 @@ class isf_ifi_iai(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.bareme.bareme
+        bareme = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.bareme
         return bareme.calc(assiette_isf_ifi)
 
     # TODO: Cette formule a seulement été vérifiée jusqu'au 2015-12-31
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme.bareme
+        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme
         assiette_isf_ifi = (assiette_isf_ifi >= bareme.rates[1]) * assiette_isf_ifi
         return bareme.calc(assiette_isf_ifi)
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme.bareme
+        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme
         return bareme.calc(assiette_isf_ifi)
 
 
@@ -561,10 +561,11 @@ class isf_ifi_avant_plaf(Variable):
 
 
 # # calcul du plafonnement ##
+
 class total_impots_plafonnement_isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Total des impôts dus au titre des revenus et produits (irpp, contribution_exceptionnelle_hauts_revenus, prélèvements forfaitaires, prélèvements sociaux) + ISF et IFI. Utilisé pour calculer le montant du plafonnement de l'ISF et de l'IFI."
+    label = "Total des impôts dus au titre des revenus et produits (iai, contribution_exceptionnelle_hauts_revenus, prélèvements forfaitaires, prélèvements sociaux) + ISF et IFI. Utilisé pour calculer le montant du plafonnement de l'ISF et de l'IFI."
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -575,8 +576,6 @@ class total_impots_plafonnement_isf_ifi(Variable):
         '''
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
         irpp_economique = foyer_fiscal('irpp_economique', period)
-        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
-        prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         ir_pv_immo = foyer_fiscal('ir_pv_immo', period)
         crds_i = foyer_fiscal.members('crds', period)
         csg_i = foyer_fiscal.members('csg', period)
@@ -587,8 +586,6 @@ class total_impots_plafonnement_isf_ifi(Variable):
         return (
             isf_ifi_avant_plaf
             - irpp_economique
-            - prelevement_forfaitaire_liberatoire
-            - prelevement_forfaitaire_unique_ir
             - ir_pv_immo
             - crds
             - csg
@@ -616,12 +613,12 @@ class revenus_et_produits_plafonnement_isf_ifi(Variable):
         rag_i = foyer_fiscal.members('rag', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_pvct_i = foyer_fiscal.members('rpns_pvct', period)
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])  # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
         plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
-        interets_pel_moins_12_ans_cel_i = foyer_fiscal.members('interets_pel_moins_12_ans_cel', period)
+        interets_pel_cel_non_soumis_IR_i = foyer_fiscal.members('interets_pel_cel_non_soumis_IR', period)
         livret_a_i = foyer_fiscal.members('livret_a', period.last_month)
         taux_livret_a = parameters(period).taxation_capital.epargne.livret_a.taux
         interets_livret_a_i = livret_a_i * taux_livret_a
@@ -632,7 +629,7 @@ class revenus_et_produits_plafonnement_isf_ifi(Variable):
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
         rpns_pvct = foyer_fiscal.sum(rpns_pvct_i)
         revenu_assimile_salaire_apres_abattements = foyer_fiscal.sum(salcho_imp_i)
-        interets_pel_moins_12_ans_cel = foyer_fiscal.sum(interets_pel_moins_12_ans_cel_i)
+        interets_pel_cel_non_soumis_IR = foyer_fiscal.sum(interets_pel_cel_non_soumis_IR_i)
         interets_livret_a = foyer_fiscal.sum(interets_livret_a_i)
 
         montant = max_(
@@ -650,7 +647,7 @@ class revenus_et_produits_plafonnement_isf_ifi(Variable):
             + revenu_categoriel_foncier
             + plus_values_base_large
             + assurance_vie_ps_exoneree_irpp_pl
-            + interets_pel_moins_12_ans_cel
+            + interets_pel_cel_non_soumis_IR
             + interets_livret_a
             )
 
@@ -747,8 +744,195 @@ class isf_ifi(Variable):
 
 # calcul de l'ensemble des revenus du contribuable
 
+class rag(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus agricoles'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50'
+    definition_period = YEAR
 
-# TODO: à reintégrer dans irpp
+    def formula(individu, period, parameters):
+        '''
+        Revenus agricoles
+        '''
+        frag_exon = individu('frag_exon', period)
+        frag_impo = individu('frag_impo', period)
+        arag_exon = individu('arag_exon', period)
+        arag_impg = individu('arag_impg', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_exon = individu('nrag_exon', period)
+        nrag_impg = individu('nrag_impg', period)
+        nrag_defi = individu('nrag_defi', period)
+        nrag_ajag = individu('nrag_ajag', period)
+
+        return (
+            frag_exon + frag_impo
+            + arag_exon + arag_impg - arag_defi
+            + nrag_exon + nrag_impg - nrag_defi
+            + nrag_ajag
+            )
+
+    def formula_2016_01_01(individu, period, parameters):
+        '''
+        Revenus agricoles
+        '''
+        mrag_exon = individu('mrag_exon', period)
+        mrag_impo = individu('mrag_impo', period)
+        arag_exon = individu('arag_exon', period)
+        arag_impg = individu('arag_impg', period)
+        arag_defi = individu('arag_defi', period)
+        nrag_exon = individu('nrag_exon', period)
+        nrag_impg = individu('nrag_impg', period)
+        nrag_defi = individu('nrag_defi', period)
+        nrag_ajag = individu('nrag_ajag', period)
+
+        return (
+            mrag_exon + mrag_impo
+            + arag_exon + arag_impg - arag_defi
+            + nrag_exon + nrag_impg - nrag_defi
+            + nrag_ajag
+            )
+
+
+class ric(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Bénéfices industriels et commerciaux'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Bénéfices industriels et commerciaux
+        '''
+        mbic_exon = individu('mbic_exon', period)
+        mbic_impv = individu('mbic_impv', period)
+        mbic_imps = individu('mbic_imps', period)
+        abic_exon = individu('abic_exon', period)
+        nbic_exon = individu('nbic_exon', period)
+        abic_impn = individu('abic_impn', period)
+        nbic_impn = individu('nbic_impn', period)
+        abic_imps = individu('abic_imps', period)
+        nbic_imps = individu('nbic_imps', period)
+        abic_defn = individu('abic_defn', period)
+        nbic_defn = individu('nbic_defn', period)
+        abic_defs = individu('abic_defs', period)
+        nbic_defs = individu('nbic_defs', period)
+        nbic_apch = individu('nbic_apch', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+
+        zbic = (
+            mbic_exon + mbic_impv + mbic_imps
+            + abic_exon + nbic_exon
+            + abic_impn + nbic_impn
+            + abic_imps + nbic_imps
+            + abic_defn - nbic_defn
+            + abic_defs - nbic_defs
+            + nbic_apch
+            )
+
+        cond = (mbic_impv > 0) & (mbic_imps == 0)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
+
+        cbic = min_(
+            mbic_impv + mbic_imps + mbic_exon,
+            max_(
+                micro.microentreprise.montant_minimum,
+                round_(
+                    mbic_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux + mbic_imps * micro.microentreprise.regime_micro_bnc.services.taux + mbic_exon * taux
+                    )
+                )
+            )
+        return zbic - cbic
+
+
+class rac(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus accessoires individuels'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F1225.xhtml'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Revenus accessoires individuels
+        '''
+        macc_exon = individu('macc_exon', period)
+        macc_impv = individu('macc_impv', period)
+        macc_imps = individu('macc_imps', period)
+        aacc_exon = individu('aacc_exon', period)
+        aacc_impn = individu('aacc_impn', period)
+        aacc_imps = individu('aacc_imps', period)
+        aacc_defn = individu('aacc_defn', period)
+        aacc_defs = individu('aacc_defs', period)
+        nacc_exon = individu('nacc_exon', period)
+        nacc_impn = individu('nacc_impn', period)
+        nacc_defn = individu('nacc_defn', period)
+        nacc_pres = individu('nacc_pres', period)
+        mncn_impo = individu('mncn_impo', period)
+        cncn_bene = individu('cncn_bene', period)
+        cncn_defi = individu('cncn_defi', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+
+        zacc = (
+            macc_exon + macc_impv + macc_imps
+            + aacc_exon + aacc_impn + aacc_imps - aacc_defn - aacc_defs
+            + nacc_exon + nacc_impn - nacc_defn + nacc_pres
+            + mncn_impo + cncn_bene - cncn_defi
+            )
+
+    # TODO: aacc_imps aacc_defs
+        cond = (macc_impv > 0) & (macc_imps == 0)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
+
+        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.microentreprise.montant_minimum, round_(
+            macc_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux
+            + macc_imps * micro.microentreprise.regime_micro_bnc.services.taux + macc_exon * taux
+            + mncn_impo * micro.microentreprise.regime_micro_bnc.taux)))
+
+        return zacc - cacc
+
+
+class rnc(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus non commerciaux individuels'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Revenus non commerciaux individuels
+        '''
+        mbnc_exon = individu('mbnc_exon', period)
+        mbnc_impo = individu('mbnc_impo', period)
+        abnc_exon = individu('abnc_exon', period)
+        nbnc_exon = individu('nbnc_exon', period)
+        abnc_impo = individu('abnc_impo', period)
+        nbnc_impo = individu('nbnc_impo', period)
+        abnc_defi = individu('abnc_defi', period)
+        nbnc_defi = individu('nbnc_defi', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.microentreprise
+
+        zbnc = (
+            mbnc_exon + mbnc_impo
+            + abnc_exon + nbnc_exon
+            + abnc_impo + nbnc_impo
+            - abnc_defi - nbnc_defi
+            )
+
+        cbnc = min_(
+            mbnc_exon + mbnc_impo,
+            max_(
+                micro.montant_minimum,
+                round_((mbnc_exon + mbnc_impo) * micro.regime_micro_bnc.taux)
+                )
+            )
+
+        return zbnc - cbnc
+
+
+# TODO: à reintégrer dans impot_revenu_restant_a_payer
 class rvcm_plus_abat(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -772,7 +956,7 @@ class maj_cga(Variable):
     label = 'Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)'
     definition_period = YEAR
 
-    # TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
+    # TODO: à reintégrer dans impot_revenu_restant_a_payer (et vérifier au passage que frag_impo est dans la majo_cga
     def formula(individu, period, parameters):
         frag_impo = individu('frag_impo', period)
         nrag_impg = individu('nrag_impg', period)
@@ -781,9 +965,9 @@ class maj_cga(Variable):
         nbic_defn = individu('nbic_defn', period)
         nbic_defs = individu('nbic_defs', period)
         nacc_impn = individu('nacc_impn', period)
-        nacc_meup = individu('nacc_meup', period)
+        nlnp_defs = individu('nlnp_defs', period)
         nacc_defn = individu('nacc_defn', period)
-        nacc_defs = individu('nacc_defs', period)
+        nlnp_imps = individu('nlnp_imps', period)
         nbnc_impo = individu('nbnc_impo', period)
         nbnc_defi = individu('nbnc_defi', period)
         rpns = parameters(period).impot_revenu.calcul_revenus_imposables.rpns
@@ -792,7 +976,7 @@ class maj_cga(Variable):
 
         # C revenus industriels et commerciaux non professionnels
         # (revenus accesoires du foyers en nomenclature INSEE)
-        nacc_timp = max_(0, (nacc_impn + nacc_meup) - (nacc_defn + nacc_defs))
+        nacc_timp = max_(0, (nacc_impn + nlnp_imps) - (nacc_defn + nlnp_defs))
 
         # régime de la déclaration contrôlée ne bénéficiant pas de l'abattement association agréée
         nbnc_timp = nbnc_impo - nbnc_defi
@@ -824,7 +1008,7 @@ class bouclier_rev(Variable):
         cd_eparet = foyer_fiscal('cd_eparet', period)
 
         maj_cga_i = foyer_fiscal.members('maj_cga', period)  # noqa F841
-        maj_cga = foyer_fiscal.sum(maj_cga)  # noqa F841
+        maj_cga = foyer_fiscal.sum(maj_cga_i)  # noqa F841
 
         # TODO: réintégrer les déficits antérieur
         # TODO: intégrer les revenus soumis au prélèvement libératoire
@@ -872,7 +1056,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
     definition_period = YEAR
 
     def formula_2006(foyer_fiscal, period, parameters):
-        irpp = foyer_fiscal('irpp', period)
+        impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
         tax_fonc = foyer_fiscal('tax_fonc', period)
         isf_ifi = foyer_fiscal('isf_ifi', period)
         csg_deductible_salaire_i = foyer_fiscal.members('csg_deductible_salaire', period)
@@ -882,7 +1066,6 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         csg_deductible_chomage_i = foyer_fiscal.members('csg_deductible_chomage', period)
         csg_deductible_retraite_i = foyer_fiscal.members('csg_deductible_retraite', period)
         csg_imposable_retraite_i = foyer_fiscal.members('csg_imposable_retraite', period)
-        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
 
         prelevements_sociaux_revenus_capital = foyer_fiscal('prelevements_sociaux_revenus_capital', period)
         crds_salaire = foyer_fiscal.sum(crds_salaire_i)
@@ -899,11 +1082,11 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         # # ajouter Prelèvements sources/ libé
         # # ajouter crds rstd
         # # impôt sur les plus-values immo et cession de fonds de commerce
-        imp1 = prelevements_sociaux_revenus_capital + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite + prelevement_forfaitaire_liberatoire
+        imp1 = prelevements_sociaux_revenus_capital + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés sur l'année 'n'
         '''
-        imp2 = irpp + isf_ifi + taxe_habitation + tax_fonc + csg_imposable_salaire + csg_imposable_chomage + csg_imposable_retraite
+        imp2 = impot_revenu_restant_a_payer + isf_ifi + taxe_habitation + tax_fonc + csg_imposable_salaire + csg_imposable_chomage + csg_imposable_retraite
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés en 'n-1'
         '''

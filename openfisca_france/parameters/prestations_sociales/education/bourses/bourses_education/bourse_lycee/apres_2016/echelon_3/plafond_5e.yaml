@@ -1,0 +1,6 @@
+description: Plafond de référence pour l'échelon 3, pour une famille avec 5 enfants, en multiple du Smic horaire brut
+values:
+  2016-07-01:
+    value: 2154.1
+metadata:
+  unit: /1

@@ -1,4 +1,4 @@
-description: Plafonds de ressources (pour un revenu et 2 enfants) de l'Allocation pour frais de garde (AFG, 1976-1977)
+description: Plafonds de ressources (pour un revenu et 2 enfants) de l'Allocation pour frais de garde (AFG)
 values:
   1976-07-01:
     value: 32160
@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: 2 enfants
-  label_en: "Child care costs allowance (AFG): Thresholds for means-testing"
+  label_en: 2 children
   ipp_csv_id: agf_plaf_2_enf
   unit: currency
   reference:
@@ -24,6 +24,3 @@ metadata:
     - title: Plafond calculé sur le revenu fiscal net de 1975 pour la période de paiement 01/07/76-30/06/1977
     1978-01-01:
     - title: Remplacé par "complément familial" depuis 01/01/1978
-documentation: |-
-  Notes :
-  Ce plafond existe dès l'apparition de l'AFG (il est d'ailleurs cité par la loi 72-8 du 3 janvier 1972)

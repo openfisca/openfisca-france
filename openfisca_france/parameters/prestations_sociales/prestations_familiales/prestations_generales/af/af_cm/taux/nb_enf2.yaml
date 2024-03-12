@@ -1,0 +1,11 @@
+description: Rang de l'enfant à partir duquel le premier taux des allocations familiales (AF) s'applique
+values:
+  1946-09-01:
+    value: 2
+metadata:
+  short_label: Rang de l'enfant à partir duquel le premier taux s'applique
+  last_value_still_valid_on: "2024-01-05"
+  label_en: "Family allowances (AF): General conditions and amount"
+  reference:
+    1946-09-01:
+      title: Loi du 22 aout 1946

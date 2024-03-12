@@ -1,10 +1,10 @@
-name: Application eval forfaitaire si RNC en dessous de 1015 fois le SMIC
+name: Application eval forfaitaire si RNC en dessous de 1015 fois le Smic
 keywords:
 - al
 - base ressources
 - eval forfaitaire
 description: |
-  Application d'une évaluation forfaitaire dans le cas d'un allocataire qui perçoit un salaire en m-1 et dont les RNC N-2 sont inférieurs à 1015 fois le SMIC horaire brut n-2 (9,43 € en 2013), c'est-à-dire 9,43 * 1015 = 9570 €.
+  Application d'une évaluation forfaitaire dans le cas d'un allocataire qui perçoit un salaire en m-1 et dont les RNC N-2 sont inférieurs à 1015 fois le Smic horaire brut n-2 (9,43 € en 2013), c'est-à-dire 9,43 * 1015 = 9570 €.
   Cas d'un salarié = évaluation forfaitaire de 12 fois le salaire m-1.
   Ici salaire m-1 = 1200
   Pour passer du salaire net au salaire imposable, il faut diviser le salaire net par 0.971 (csg non déductible 2,4% et crds 0,5%)

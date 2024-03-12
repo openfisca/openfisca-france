@@ -1,0 +1,22 @@
+description: Garantie de ressources des allocations chômage pour les personnes en préretraite
+metadata:
+  documentation_start: true
+  short_label: Garanties de ressources
+  label_en: Minimum income guarantee
+  order:
+  - revalorisation_sjr
+  - montant_minimum
+documentation: |-
+  Allocation de ressources destinée aux plus de 60 ans, licenciés après leur 60ème anniversaire, justifiant de 15 ans d'affiliation au régime d'assurance chômage (10 ans depuis 1973), qui n'ont pas liquidé leur pension de retraite,
+  et qui bénéficient des allocations d'assurance chômage depuis un certain délai (6mois pour les personnées licenciées avant 61 ans, 3 mois entre 61 et 64 ans, sans délai après 64 ans, depuis l'avenant du 25/06/1973).
+  A partir du nouvel accord du 13 juin 1977, garantie de ressources étendue non plus seulement aux salariés de plus de 60 ans licenciés, mais aussi aux salariés de plus de 60 ans démissionnaires
+  A partir de la convention du 27/03/1979, garantie de ressources peut être étendue aux salariés licenciés après 55 ans qui ne sont plus en cours d'indemnisation mais qui justifient de 10 ans d'appartenance au régime d'assurance chômage,
+  selon décision d'une commission Assedic, et aux salariés pour motif économiques ne justifiant pas de 10 ans d'affiliation, pendant 1 an pour ceux qui ont été licenciés après 60 ans, et pendant un an moins le nombre de jours servis par
+   allocations d'assurance chômage pour ceux licenciés avant 60 ans.
+  La garantie de ressources correspond à 70% du SJR calculé sur les 3 derniers mois d'activité avant la rupture du contrat. A partir du 08/07/1983, la garantie de ressources est supprimée sauf pour ceux qui en bénéficiaient avant cette date.
+  Pour ceux qui ont commencé à en bénéficier en 1983, le taux de remplacement est désormais égal à 65% SJR sous le plafond de la Sécurité sociale, et à 50% SJR au-dessus.
+  Avant 1979, le montant minimal correspond à 115% du total de l'allocation d'aide publiqe et de l'allocation d'assurance minimale
+  Sources:
+  - Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe B.
+  - Document Revalorisations depuis avril 1978 du service juridique de l'Unedic
+  - Consultation des circulaires et des directives au service de documentation de l'Unedic

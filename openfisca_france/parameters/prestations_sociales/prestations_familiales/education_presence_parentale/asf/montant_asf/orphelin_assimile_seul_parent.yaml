@@ -18,6 +18,7 @@ values:
     value: 0.422
 metadata:
   short_label: Orphelin ou assimilé d'un seul parent
+  last_value_still_valid_on: "2023-05-09"
   label_en: "Family support allowance (ASF): Amounts"
   ipp_csv_id: asf_1parent
   unit: BMAF
@@ -89,9 +90,3 @@ metadata:
     - title: Majoration de 25 % en plus de l'inflation à horizon 2018
     2015-04-01:
     - title: Taux non modifiés en 2016
-documentation: |-
-  Montant de l''ASF, en pourcentage de la base mensuelle des allocations familiales (BMAF),
-  pour un enfant orphelin de père ou de mère (un seul parent manquant) ou dans une situation
-  assimilée : beaux parents ou pension alimentaire non versée
-  Notes :
-  le RSA n'a pas complètement éliminé l'ASF, mais les deux prestations se complètent (les montants sont indiqués pour 2013)

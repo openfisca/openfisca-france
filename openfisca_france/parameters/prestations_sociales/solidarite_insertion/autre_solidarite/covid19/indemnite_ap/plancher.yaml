@@ -1,4 +1,4 @@
-description: Montant horaire minimum de l'Allocation d'activité partielle de l'Aide exceptionnelle Covid-19
+description: Montant horaire minimum de l'allocation d'activité partielle de l'aide exceptionnelle covid-19
 values:
   2020-03-01:
     value: 8.03
@@ -13,7 +13,7 @@ values:
 metadata:
   short_label: Montant horaire minimum
   last_value_still_valid_on: "2022-01-10"
-  label_en: Exceptional benefit - COVID-19 crisis
+  label_en: Exceptional benefit - covid-19 crisis
   unit: currency
   reference:
     2020-03-01:

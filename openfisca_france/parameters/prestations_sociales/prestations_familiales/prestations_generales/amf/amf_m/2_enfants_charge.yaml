@@ -1,4 +1,4 @@
-description: Taux pour 2 enfants à charge de l'Allocation de la mère au foyer (AMF, 1955-1977)
+description: Taux pour 2 enfants à charge de l'Allocation de la mère au foyer (AMF)
 values:
   1955-06-01:
     value: null
@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: 2 enfants à charge
-  label_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
+  label_en: 2 dependant children
   ipp_csv_id: tx_amf_2enf
   unit: /1
   reference:
@@ -24,6 +24,3 @@ metadata:
   notes:
     1955-06-01:
     - title: Création de l'AMF
-documentation: |-
-  Notes
-  Le salaire de base auquel s'appliquent ces taux est le même qu'en matière d'allocation de salaire unique

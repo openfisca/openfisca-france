@@ -5,7 +5,7 @@ keywords:
 - plafonds
 description: |
   Retraite = 650
-  Salaire = 500 auquel il faut appliquer l'abattement de 0,9 SMIC = 437,26 soit 62,73 euros
+  Salaire = 500 auquel il faut appliquer l'abattement de 0,9 Smic = 437,26 soit 62,73 euros
   d'où 650 + 62,73 = 712,73
   800 - 712,73 = 87,27
 period: month:2015-02

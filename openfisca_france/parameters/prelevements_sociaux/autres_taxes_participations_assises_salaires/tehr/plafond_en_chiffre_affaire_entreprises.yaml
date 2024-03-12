@@ -1,4 +1,4 @@
-description: Plafond du montant de taxe versée (en % du chiffre d'affaire de l'entreprises) pour la Taxe exceptionnelle de solidarité sur les hautes rémunérations (TEHR) versées par les entreprises
+description: Plafond du montant (en % du chiffre d'affaire de l'entreprises) de la taxe exceptionnelle de solidarité sur les hautes rémunérations (TEHR) versées par les entreprises
 values:
   2013-01-01:
     value: 0.05

@@ -16,7 +16,7 @@ input:
   nombre_tickets_restaurant: 0
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   prise_en_charge_employeur_retraite_complementaire: 0
-  prise_en_charge_employeur_prevoyance_complementaire: 0
+  prevoyance_complementaire_employeur: 0
   prise_en_charge_employeur_retraite_supplementaire: 0
   ratio_alternants: 0
   redevable_taxe_apprentissage: 0

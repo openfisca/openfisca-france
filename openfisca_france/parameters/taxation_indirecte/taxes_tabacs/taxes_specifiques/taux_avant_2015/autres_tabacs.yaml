@@ -1,10 +1,11 @@
-description: Taux spécifique des taxes sur le tabac - Autres tabacs
+description: Taux spécifique de la taxe sur les autres tabacs
 values:
   1979-01-01:
     value: null
   2013-01-01:
     value: 0.1
 metadata:
+  short_label: Autres tabacs
   ipp_csv_id: tx_spec_autres_tabac
   unit: /1
   reference:

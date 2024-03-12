@@ -35,6 +35,15 @@ class mineur_emancipe(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class orphelin(Variable):
+    value_type = bool
+    default_value = False
+    entity = Individu
+    label = "L'individu est orphelin de ses deux parents"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class adoption(Variable):
     value_type = bool
     entity = Individu
@@ -219,9 +228,7 @@ class caseT(Variable):
     value_type = bool
     entity = FoyerFiscal
     label = "Vous êtes parent isolé au 1er janvier de l'année de perception des revenus"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-    # TODO: Set definition_period as YEAR and change the suggestion process (scenarios.py)
+    definition_period = YEAR
 
 
 class caseW(Variable):

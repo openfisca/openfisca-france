@@ -52,7 +52,7 @@
       personne_de_reference: ind0
   output:
     iai: 35346.0
-    irpp: -35346.0
+    impot_revenu_restant_a_payer: -35346.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 137843.0
@@ -116,7 +116,7 @@
       personne_de_reference: ind0
   output:
     iai: 34205.0
-    irpp: -34205.0
+    impot_revenu_restant_a_payer: -34205.0
     nbptr: 1.0
     rbg: 137830.0
     reductions: 8760.0
@@ -181,7 +181,7 @@
       personne_de_reference: ind0
   output:
     iai: 33342.0
-    irpp: -33342.0
+    impot_revenu_restant_a_payer: -33342.0
     nbptr: 1.0
     rbg: 137817.0
     reductions: 9604.0
@@ -240,7 +240,7 @@
       personne_de_reference: ind0
   output:
     iai: 33267.0
-    irpp: -33267.0
+    impot_revenu_restant_a_payer: -33267.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 137695.0
@@ -293,7 +293,7 @@
   output:
     reductions: 6043.0
     iai: 36227.0
-    irpp: -36227.0
+    impot_revenu_restant_a_payer: -36227.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 137373.0
@@ -339,7 +339,7 @@
   output:
     reductions: 10000.0
     # iai: 32232.0
-    # irpp: -32232.0
+    # impot_revenu_restant_a_payer: -32232.0
     # nbptr: 1.0
     # protection_patrimoine_naturel: 0.0
     # rbg: 137348.0
@@ -389,7 +389,7 @@
   output:
     reductions: 3266.0
     # iai: 38696.0
-    # irpp: -38696.0
+    # impot_revenu_restant_a_payer: -38696.0
     # nbptr: 1.0
     # protection_patrimoine_naturel: 0.0
     # rbg: 137171.0

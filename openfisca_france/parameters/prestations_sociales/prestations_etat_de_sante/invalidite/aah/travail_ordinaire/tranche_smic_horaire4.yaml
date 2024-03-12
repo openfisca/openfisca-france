@@ -1,4 +1,4 @@
-description: Taux du SMIC qui délimite la tranche 4 et 5 pour les taux d'abattement des revenus ordinaires pour l'AAH
+description: Taux du Smic qui délimite la tranche 4 et 5 pour les taux d'abattement des revenus ordinaires pour l'AAH
 values:
   2005-07-01:
     value: 1500
@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Seuil entre tranches 4
   label_en: Adult disability allowance (AAH)
-  unit: SMIC
+  unit: smic_horaire_brut
   reference:
     2005-07-01:
       title: Décret n°2005-725 du 29 juin 2005, art. 6 (crée art. D821-9 du CSS)

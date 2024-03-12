@@ -7,6 +7,7 @@ values:
   2014-01-01:
     value: 0.65
 metadata:
+  short_label: Plus de 8 ans
   ipp_csv_id: abat_pv_8ans
   unit: /1
   notes:

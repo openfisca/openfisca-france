@@ -1,4 +1,4 @@
-description: Taux pour 1 enfant de plus de 2 ans de l'Allocation de salaire unique (ASU, 1941-1977)
+description: Taux pour 1 enfant de plus de 2 ans de l'Allocation de salaire unique (ASU)
 values:
   1941-04-01:
     value: null
@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: 1 enfant (>2 ans)
-  label_en: "Single earner allowance (ASU): Monthly amount"
+  label_en: 1 child (>2 ans)
   ipp_csv_id: tx_asu_1_enf_plus2ans
   unit: /1
   reference:
@@ -16,6 +16,7 @@ metadata:
     - title: Loi 72-8 du 03/01/1972
     - title: Décret 72-530 du 29/06/1972 (S.U.)
     - title: Décret 76-767 du 16/08/1976 ("Majoration")
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000507293
     1978-01-01:
       title: Loi 77-765 du 12/07/1977
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
@@ -25,9 +26,3 @@ metadata:
   notes:
     1976-07-01:
     - title: Réservé aux ménages avec un seul revenu, sauf si l'autre conjoint a un revenu ne dépassant pas la moitié de la base de calcul des AF soit 347,25
-documentation: |-
-  Notes :
-  L'Allocation de salaire unique est instituée en 1941 par la loi du 29 mars 1941 parue au JO du 11 avril 1941 page 1555
-  l'ASU ne peut se cumuler avec l'allocation de la mère au foyer.
-  L'ASU est versée tant que l'âge du plus jeune enfant est inférieur à
-  Allocation supprimée en 1949 pour les ménages ayant un enfant unique de plus de 10 ans

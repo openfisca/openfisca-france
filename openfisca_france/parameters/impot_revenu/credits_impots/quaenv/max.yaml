@@ -3,4 +3,4 @@ values:
   2005-01-01:
     value: 8000
 metadata:
-  unit: currency
+  unit: currency_next_year

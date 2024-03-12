@@ -7,6 +7,7 @@ values:
   2006-01-01:
     value: 0.4
 metadata:
+  short_label: Taux de l'abattement
   ipp_csv_id: tx_abt_rcm
   unit: /1
   reference:
@@ -19,3 +20,4 @@ metadata:
   official_journal_date:
     1979-01-01: "1980-01-19"
     2006-01-01: "2005-12-31"
+documentation: "Taux de l'abattement sur dividendes : art. 158-3-2° du CGI (ancêtre de tx_abt_rcm)"

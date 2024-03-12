@@ -1,7 +1,7 @@
-description: Taux de l'Allocation de salaire unique (ASU, 1941-1977)
+description: Taux de l'Allocation de salaire unique (ASU)
 metadata:
   short_label: Taux
-  label_en: "Single earner allowance (ASU): Monthly amount"
+  label_en: Rates
   order:
   - 1_enfant_moins_5_ans
   - 1_enfant_plus_5_ans

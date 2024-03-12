@@ -1,9 +1,9 @@
-description: Taux de Majoration montant maximal, pour Célibataires avec un enfant ou Couples (en % de la base) du Revenu de solidarité active (RSA)
+description: Taux de majoration du montant maximal pour les célibataires avec un enfant ou les couples (en % de la base) du revenu de solidarité active (RSA)
 values:
   2009-06-01:
     value: 0.5
 metadata:
-  short_label: Célibataire avec un enfant ou Couples
+  short_label: Célibataires avec un enfant ou couples
   last_value_still_valid_on: "2022-03-29"
   label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_rmi_coup

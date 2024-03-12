@@ -1,4 +1,4 @@
-from openfisca_core.periods import Instant, Period
+from openfisca_core.periods import Period
 from openfisca_france.model.base import *
 
 
@@ -18,29 +18,26 @@ class aide_merite_eligibilite(Variable):
     ayant eu mention très bien au baccalauréat.
 
     Non modélisé :
-    L'étudiant respecte les conditions d'inscription pédagogique, d'assiduité
+    - L'étudiant respecte les conditions d'inscription pédagogique, d'assiduité
     et de présentation aux examens (non applicable si nouveau bachelier)
     ou redouble pour raisons médicales.
-    L'étudiant éligible à la bourse sur critères sociaux et éligible à une aide au mérite
-    en année universitaire N-1 et ayant réalisé un Service Civique
-    au titre de cette même année, peut percevoir son aide au mérite en N.
-    Un étudiant ne peut bénéficier de plus de 3 fois de l'aide au mérite.
+
+    - Un étudiant ne peut bénéficier de plus de 3 fois de l'aide au mérite.
     '''
 
     def formula(individu, period):
 
-        def periode_universitaire_precedente(mois_calcul):
+        def calcul_periode_universitaire_precedente(mois_calcul):
             nb_mois_annee_courante = mois_calcul.date.month - mois_calcul.this_year.date.month + 1
 
             # https://www.campusfrance.org/fr/node/2176
             if nb_mois_annee_courante < 9:
-                debut_annee_courante = mois_calcul.last_year
+                annee_de_rentree_courante = mois_calcul.last_year
             else:
-                debut_annee_courante = mois_calcul.this_year
+                annee_de_rentree_courante = mois_calcul.this_year
 
-            rentree_an_passe = Instant((debut_annee_courante.offset(-1), 9, 1))
-            periode_universitaire_precedente = str(Period((MONTH, rentree_an_passe, 10)))
-            return periode_universitaire_precedente
+            septembre_dernier = annee_de_rentree_courante.offset(-4, MONTH).start
+            return Period((MONTH, septembre_dernier, 10))
 
         # l'individu intègre un établissement supérieur à la rentrée
         etudiant = individu('etudiant', period)
@@ -56,14 +53,27 @@ class aide_merite_eligibilite(Variable):
             )
 
         # a déjà perçu l'aide l'année [universitaire] précédente
-        periode_universitaire_precedente = periode_universitaire_precedente(period)
+        periode_universitaire_precedente = calcul_periode_universitaire_precedente(period)
         aide_merite_eligibilite_an_dernier = individu(
             'aide_merite_eligibilite',
             periode_universitaire_precedente,
             options = [ADD]
             )
 
-        return etudiant * condition_ressources * (condition_mention + aide_merite_eligibilite_an_dernier)
+        # éligible accordée en N-2, année N-1 en Service Civique
+        service_civique_annee_passee = individu('service_civique', periode_universitaire_precedente, options = [ADD])
+        periode_universitaire_2_ans_avant = periode_universitaire_precedente.offset(-12, MONTH)
+        aide_merite_eligibilite_deux_ans_avant = individu('aide_merite_eligibilite',
+            periode_universitaire_2_ans_avant,
+            options = [ADD])
+        aide_merite_eligibile_mais_service_civique_annee_passee = (aide_merite_eligibilite_deux_ans_avant
+                                                    * service_civique_annee_passee)
+
+        return etudiant * condition_ressources * (
+            condition_mention
+            + aide_merite_eligibilite_an_dernier
+            + aide_merite_eligibile_mais_service_civique_annee_passee
+            )
 
 
 class aide_merite_montant(Variable):
@@ -86,4 +96,4 @@ class aide_merite_montant(Variable):
 
     def formula(individu, period, parameters):
         aide_merite_eligibilite = individu('aide_merite_eligibilite', period.first_month)
-        return aide_merite_eligibilite * parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.aide_merite.montant_annuel
+        return aide_merite_eligibilite * parameters(period).prestations_sociales.education.bourses.enseignement_superieur.aide_merite.montant_annuel

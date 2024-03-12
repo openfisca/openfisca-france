@@ -1,0 +1,7 @@
+description: Montant maximum de l'aide mobili-jeune pour les secteurs autres que le secteur agricole
+values:
+  2012-07-01:
+    value: 100
+metadata:
+  short_label: Autres secteurs
+  unit: currency

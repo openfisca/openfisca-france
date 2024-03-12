@@ -1,9 +1,9 @@
-description: Âge maximal de l'enfant ouvrant droit aux prestations familiales (forfait datant de 2003-07-01 inclus)
+description: Âge maximal de l'enfant ouvrant droit aux prestations familiales (y compris l'aide additionnelle de l'allocation forfaitaire)
 values:
   2003-07-01:
     value: 20
 metadata:
-  short_label: Âge maximal de l'enfant (forfait de 2003 inclus)
+  short_label: Âge maximal de l'enfant
   last_value_still_valid_on: "2022-03-01"
   unit: year
   reference:

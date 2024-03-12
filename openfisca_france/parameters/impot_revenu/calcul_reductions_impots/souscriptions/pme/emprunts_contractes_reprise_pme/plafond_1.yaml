@@ -1,0 +1,12 @@
+description: Plafond 1 de la réduction d'impôt pour emprunts contractés pour la reprise d'une PME
+values:
+  1991-01-01:
+    value: null
+  1992-01-01:
+    value: 25000
+  1998-01-01:
+    value: null
+metadata:
+  short_label: Plafond 1
+  ipp_csv_id: plaf_pme1
+  unit: currency_next_year

@@ -34,7 +34,7 @@
   output:
     ir_brut: 1483.0
     decote_gain_fiscal: 65
-    irpp: -1418.0
+    impot_revenu_restant_a_payer: -1418.0
     nbptr: 1.0
     ppe: 0.0
     rfr: 30400.0 # 10000 + 20000 + 5000 - 4600 (abattement)
@@ -121,7 +121,7 @@
     prelevement_forfaitaire_unique_ir: -4298.0 # 1000 * 0.128 + 30000 * 0.075 + 15000 * 0.128
     #prelevement_forfaitaire_liberatoire: -345.0
     ir_brut: 1461.0
-    irpp: -1361.0
+    impot_revenu_restant_a_payer: -5659.0
     nbptr: 1.0
     ppe: 0.0
     rfr: 76400.0

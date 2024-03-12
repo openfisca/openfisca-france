@@ -1,4 +1,4 @@
-description: TGAP carburants (2005 - )
+description: TGAP carburants
 metadata:
   label_en: Tax on polluting activities - fuel
   order:
@@ -9,3 +9,4 @@ metadata:
   - super_e85
   - gazole_routier
   - gazole_b30
+documentation: Données renseignées dans l'article 266 quindecies du code des douanes

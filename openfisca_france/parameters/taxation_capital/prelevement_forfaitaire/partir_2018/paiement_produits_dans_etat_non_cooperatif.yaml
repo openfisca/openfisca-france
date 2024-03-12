@@ -15,6 +15,4 @@ metadata:
   notes:
     2018-01-01:
     - title: Le prélèvement libératoire est remplacé par un prélèvement forfaitaire unique non-libératoire, dont la valeur est telle que la somme du taux de ce prélèvement et des prélèvements sociaux est de 30%.
-documentation: |-
-  Notes :
-  Etats "non-coopératifs" définis à l'article 238-0 A du CGI
+documentation: Etats "non-coopératifs" définis à l'article 238-0 A du CGI

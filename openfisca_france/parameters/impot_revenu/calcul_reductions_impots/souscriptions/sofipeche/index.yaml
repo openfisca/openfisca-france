@@ -1,0 +1,9 @@
+description: Souscription au capital de SOFIPECHE
+metadata:
+  short_label: Au capital de SOFIPECHE
+  label_en: Capital Subscription in SOFIPECHE (fishing firms)
+  order:
+  - taux
+  - plafond
+  - plafond_revenu_net_global
+documentation: "Souscription au capital d'une SOFIPECHE : plafonnement à doubler pour couple. Cette charge déductible est devenu une réduction d'impôts en 2009"

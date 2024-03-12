@@ -1,7 +1,7 @@
-description: Majoration du montant de l'Allocation de salaire unique (ASU, 1941-1977)
+description: Majoration du montant de l'Allocation de salaire unique (ASU)
 metadata:
   short_label: Majoration
-  label_en: "Single earner allowance (ASU): Monthly amount"
+  label_en: Increase
   order:
   - base
   - montant

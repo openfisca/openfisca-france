@@ -1,0 +1,52 @@
+description: Barème de l'impôt sur la fortune immobilière (IFI)
+brackets:
+- threshold:
+    2018-01-01:
+      value: 800000
+  rate:
+    2018-01-01:
+      value: 0.005
+- threshold:
+    2018-01-01:
+      value: 1300000
+  rate:
+    2018-01-01:
+      value: 0.007
+- threshold:
+    2018-01-01:
+      value: 2570000
+  rate:
+    2018-01-01:
+      value: 0.01
+- threshold:
+    2018-01-01:
+      value: 5000000
+  rate:
+    2018-01-01:
+      value: 0.0125
+- threshold:
+    2018-01-01:
+      value: 10000000
+  rate:
+    2018-01-01:
+      value: 0.015
+metadata:
+  short_label: Barème IFI
+  last_value_still_valid_on: "2022-04-28"
+  label_en: Wealth tax schedule
+  ipp_csv_id:
+    threshold: seuil1_ifi, seuil2_ifi, seuil3_ifi, seuil4_ifi, seuil5_ifi
+    rate: tx1_ifi, tx2_ifi, tx3_ifi, tx4_ifi, tx5_ifi
+  reference:
+    2018-01-01:
+    - title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 977 du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
+    - title: Article 977 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036385041/
+  official_journal_date:
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
+  rate_unit: /1
+  threshold_unit: currency

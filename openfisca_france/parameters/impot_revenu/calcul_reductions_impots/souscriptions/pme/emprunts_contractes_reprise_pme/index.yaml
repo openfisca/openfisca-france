@@ -1,0 +1,11 @@
+description: Emprunts contractés pour la reprise d'une PME
+metadata:
+  short_label: Emprunts pour reprise de PME
+  label_en: Small Firms Capital Subscription (PME) (1993 -)
+  order:
+  - taux
+  - plafond_1
+  - plafond_2
+documentation: |-
+  Souscription au capital des PME : 1° du I de l'article 199 terdecies OA du CGI
+  Plafond doublé pour les couples

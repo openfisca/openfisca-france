@@ -4,7 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Deux enfants ou plus
-  label_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
+  label_en: Two or more children
   unit: year
   reference:
     2015-01-01:
@@ -17,8 +17,3 @@ metadata:
   notes:
     2015-01-01:
     - title: Pas de modification pour 2017 cf. DSS/SD2B/2017/97 du 21/03/2017
-documentation: |-
-  Notes :
-  La PreParE remplace la CLCA pour les enfants nés ou adoptés à compter du 1er janvier 2015.
-  Ces conditions varient selon qu'on soit en couple ou un parent isolé. La durée est limitée à 6 mois pour chaque parent pour un couple avec un enfant et 24 mois pour chaque parents pour un couple avec deux enfants.
-  Aussi, un couple avec plus de trois enfants demandant la PreParE majorée aura une limitiation à 8 mois maximum pour chaque parent

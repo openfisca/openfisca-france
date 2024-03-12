@@ -1,0 +1,14 @@
+description: Part minimum de la contribution employeur dans la complémentaire santé obligatoire
+values:
+  2016-01-01:
+    value: 0.5
+metadata:
+  short_label: Part employeur minimum
+  label_en: Minimum employer share in the mandatory complementary health insurance scheme
+  unit: /1
+  reference:
+    2016-01-01:
+      title: Article 1, II, Loi n°2013-504 du 14 juin 2013 relative à la sécurisation de l'emploi
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000027546648
+  official_journal_date:
+    2016-01-01: "2013-06-16"

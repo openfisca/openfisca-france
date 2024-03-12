@@ -653,6 +653,7 @@ class f7vh_2014(Variable):
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture du 1.9 au 31.12.2014"
     # start_date = date(2014, 1, 1)
     definition_period = YEAR
+    end = '2014-12-31'
 
 
 class f7vh(Variable):
@@ -805,6 +806,7 @@ class f7vk_2015(Variable):
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: Volets isolants 2015"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2015-12-31'
 
 
 class f7vk(Variable):
@@ -823,6 +825,7 @@ class f7vl_2015(Variable):
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: Portes d'entrées donnant sur l'extérieur 2015"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2015-12-31'
 
 
 class f7vl(Variable):
@@ -964,6 +967,7 @@ class f7tp_2015(Variable):
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale 2015: Pompes à chaleur autres que air/air et autres que géothermiques dont la finalité essentielle est la production de chaleur"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2015-12-31'
 
 
 class f7tp(Variable):
@@ -982,6 +986,7 @@ class f7tq_2015(Variable):
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale 2015: Pompes à chaleur géothermiques dont la finalité essentielle est la production de chaleur"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2015-12-31'
 
 
 class f7tq(Variable):
@@ -1000,6 +1005,7 @@ class f7tr_2015(Variable):
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale 2015: Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques)"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2015-12-31'
 
 
 class f7tr(Variable):
@@ -1018,6 +1024,7 @@ class f7ts_2015(Variable):
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale 2015: Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2015-12-31'
 
 
 class f7ts(Variable):
@@ -4928,6 +4935,7 @@ class f7sx_2017(Variable):
     label = 'Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé'
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class f7sx(Variable):
@@ -5769,6 +5777,7 @@ class f7qk_2019(Variable):
     entity = FoyerFiscal
     label = 'Investissements locatifs Pinel en outremer réalisés en 2016 avec engagement de location 6 ans'
     definition_period = YEAR
+    end = '2019-12-31'
 
 
 class f7qk(Variable):
@@ -8945,6 +8954,7 @@ class f7ja_2017(Variable):
     label = 'Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, BBC'
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class f7ja(Variable):
@@ -11054,6 +11064,7 @@ class f7ta_2015(Variable):
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 : chaudières à condensation '
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2015-12-31'
 
 
 class f7ta(Variable):
@@ -11438,6 +11449,7 @@ class f7vi_2015(Variable):
     label = 'Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose) en 2015'
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2015-12-31'
 
 
 class f7vi(Variable):
@@ -11487,7 +11499,7 @@ class f7tu_2012(Variable):
     entity = FoyerFiscal
     label = "Dépenses de travaux dans l'habitation principale"
     # start_date = date(2012, 1, 1)
-#   end = '2012-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -11508,7 +11520,7 @@ class f7tt_2012(Variable):
     entity = FoyerFiscal
     label = "Dépenses de travaux dans l'habitation principale"
     # start_date = date(2012, 1, 1)
-#    end = '2012-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -11529,7 +11541,7 @@ class f7tv_2012(Variable):
     entity = FoyerFiscal
     label = "Dépenses de travaux dans l'habitation principale"
     # start_date = date(2012, 1, 1)
-#    end = '2012-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 

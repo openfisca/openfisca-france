@@ -1,4 +1,4 @@
-description: Montant spécifique des taxes sur le tabac - Cigares
+description: Montant de la taxe spécifique sur les cigares
 values:
   2015-01-01:
     value: 19
@@ -17,6 +17,7 @@ values:
   2023-03-01:
     value: 52.2
 metadata:
+  short_label: Cigares
   last_value_still_valid_on: "2022-12-28"
   ipp_csv_id: tx_spec_cigares
   unit: currency

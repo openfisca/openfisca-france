@@ -1,7 +1,8 @@
-description: Autres réductions d'impôts (1979 -)
+description: Autres réductions d'impôts
 metadata:
-  short_label: Divers
-  label_en: Other tax reductions (1979 -)
+  documentation_start: true
+  short_label: Autres
+  label_en: Other tax reductions
   order:
   - formation_chefs_entreprises
   - assurances_vie
@@ -17,3 +18,4 @@ metadata:
   - restauration_patrimoine_bati
   - protection_patrimoine_naturel
   - rehabilitation_residences_touristiques
+  - intemp

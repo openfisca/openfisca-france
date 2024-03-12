@@ -1,6 +1,4 @@
 description: Contribution au remboursement de la dette sociale (CRDS)
 metadata:
   short_label: CRDS
-  notes:
-    0001-01-01:
-    - title: Les taux de CRDS sur les revenus du capital sont rangés dans parameters.taxation_capital.prelevements_sociaux.crds
+documentation: Les taux de CRDS sur les revenus du capital sont consignés dans la section liée à la taxation du capital 

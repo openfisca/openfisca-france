@@ -2,9 +2,9 @@ description: Impôts sur le revenu
 metadata:
   order:
   - bareme_ir_depuis_1945
-  - calcul_impot_revenu
+  - anciens_baremes_igr
   - calcul_revenus_imposables
+  - calcul_impot_revenu
   - calcul_reductions_impots
   - credits_impots
   - contributions_exceptionnelles
-  - anciens_baremes_igr

@@ -1,4 +1,4 @@
-description: Majoration du montant maximal pour les Couples (en % de la base) du Revenu minimum d'insertion (RMI)
+description: Majoration du montant maximal pour les couples (en % de la base) du revenu minimum d'insertion (RMI)
 values:
   1988-12-14:
     value: 0.5
@@ -21,7 +21,3 @@ metadata:
   notes:
     2009-06-01:
     - title: Création du RSA qui remplace le RMI
-documentation: |-
-  Notes :
-  (1) Quel que soit le type de ménage.
-   RMI entré en vigueur pour la première fois le 01/01/1989

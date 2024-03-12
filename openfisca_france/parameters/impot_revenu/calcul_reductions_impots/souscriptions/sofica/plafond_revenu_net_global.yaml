@@ -1,0 +1,19 @@
+description: Plafond (en % du revenu net global) de la réduction d'impôt sur la souscription de parts au capital de SOFICA (1986 -)
+values:
+  1984-01-01:
+    value: null
+  1985-01-01:
+    value: 0.25
+metadata:
+  short_label: Plafond (% RNG)
+  ipp_csv_id: base_sofica
+  unit: /1
+  reference:
+    1985-01-01:
+      title: Loi 85-695 du 11/07/1985 - art. 40-IV
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006274634&cidTexte=JORFTEXT000000693456
+  official_journal_date:
+    1985-01-01: "1985-07-12"
+  notes:
+    1985-01-01:
+    - title: Charge déductible du revenu global

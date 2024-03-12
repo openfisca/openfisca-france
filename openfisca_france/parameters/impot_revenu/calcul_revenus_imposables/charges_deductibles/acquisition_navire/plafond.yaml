@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_navire
-  unit: currency
+  unit: currency_next_year
   reference:
     1990-01-01:
       title: Loi 90-1168 du 29/12/1990 (LF pour 1991)

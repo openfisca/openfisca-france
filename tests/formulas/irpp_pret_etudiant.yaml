@@ -1,4 +1,4 @@
-- name: IRPP - Crédit d'impôt prêt étudiant
+- name: impot_revenu_restant_a_payer - Crédit d'impôt prêt étudiant
   period: 2005
   absolute_error_margin: 0.5
   input:
@@ -7,9 +7,9 @@
     f7uk: 4000
     f7vo: 1
   output:
-    irpp: -1137
+    impot_revenu_restant_a_payer: -1137
 
-- name: IRPP - Crédit d'impôt prêt étudiant
+- name: impot_revenu_restant_a_payer - Crédit d'impôt prêt étudiant
   period: 2006
   absolute_error_margin: 0.5
   input:
@@ -18,9 +18,9 @@
     f7uk: 4000
     f7vo: 1
   output:
-    irpp: -759
+    impot_revenu_restant_a_payer: -759
 
-- name: IRPP - Crédit d'impôt prêt étudiant
+- name: impot_revenu_restant_a_payer - Crédit d'impôt prêt étudiant
   period: 2007
   absolute_error_margin: 0.5
   input:
@@ -29,9 +29,9 @@
     f7uk: 4000
     f7vo: 1
   output:
-    irpp: -743
+    impot_revenu_restant_a_payer: -743
 
-- name: IRPP - Crédit d'impôt prêt étudiant
+- name: impot_revenu_restant_a_payer - Crédit d'impôt prêt étudiant
   period: 2008
   absolute_error_margin: 0.5
   input:
@@ -41,9 +41,9 @@
     f7uk: 4000
     f7vo: 1
   output:
-    irpp: -706
+    impot_revenu_restant_a_payer: -706
 
-- name: IRPP - Crédit d'impôt prêt étudiant
+- name: impot_revenu_restant_a_payer - Crédit d'impôt prêt étudiant
   period: 2009
   absolute_error_margin: 0.5
   input:
@@ -53,9 +53,9 @@
     f7uk: 4000
     f7vo: 1
   output:
-    irpp: -701
+    impot_revenu_restant_a_payer: -701
 
-- name: IRPP - Crédit d'impôt prêt étudiant
+- name: impot_revenu_restant_a_payer - Crédit d'impôt prêt étudiant
   period: 2010
   absolute_error_margin: 0.5
   input:
@@ -65,9 +65,9 @@
     f7uk: 4000
     f7vo: 1
   output:
-    irpp: -681
+    impot_revenu_restant_a_payer: -681
 
-- name: IRPP - Crédit d'impôt prêt étudiant
+- name: impot_revenu_restant_a_payer - Crédit d'impôt prêt étudiant
   period: 2011
   absolute_error_margin: 0.5
   input:
@@ -77,9 +77,9 @@
     f7uk: 4000
     f7vo: 1
   output:
-    irpp: -681
+    impot_revenu_restant_a_payer: -681
 
-- name: IRPP - Crédit d'impôt prêt étudiant
+- name: impot_revenu_restant_a_payer - Crédit d'impôt prêt étudiant
   period: 2012
   absolute_error_margin: 0.5
   input:
@@ -89,9 +89,9 @@
     f7uk: 4000
     f7vo: 1
   output:
-    irpp: -681
+    impot_revenu_restant_a_payer: -681
 
-- name: IRPP - Crédit d'impôt prêt étudiant
+- name: impot_revenu_restant_a_payer - Crédit d'impôt prêt étudiant
   period: 2013
   absolute_error_margin: 0.5
   input:
@@ -101,4 +101,4 @@
     f7uk: 4000
     f7vo: 1
   output:
-    irpp: -670
+    impot_revenu_restant_a_payer: -670

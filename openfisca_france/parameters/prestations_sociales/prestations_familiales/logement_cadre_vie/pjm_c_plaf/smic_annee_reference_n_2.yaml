@@ -21,7 +21,7 @@ metadata:
   unit: currency
   reference:
     1978-01-01:
-      title: Arrêté du 17/11/1972Loi 75-6 du 03/01/1975Décret 76-117 du 03/02/1976Décret 77-1452 (modif Décret 76-117)
+      title: Arrêté du 17/11/1972
     1978-07-01:
       title: Décret 77-1452 du 27/12/1977
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000696375
@@ -36,7 +36,3 @@ metadata:
   notes:
     1978-01-01:
     - title: Le décret 77-1452 institue un plafond propre au prêt aux jeunes ménages. Il n'est plus conditionné au plafond de ressources de l'allocation pour frais de garde
-documentation: |-
-  Notes :
-  (1) Le plafond se calcule sur la base du SMIC en vigueur au 1er juillet de l'année de référence selon la formule suivante pour les couples sans enfants: (SMIC*4260*25%)*4
-  (2) Le prêt aux jeunes ménages a un plafond dès sa création en 1975, ce-dernier est d'abord institué par le décret 76-117 de la manière suivante "Art 6 - Sous réserve des conditions prévues à l'article précédent, les jeunes ménages ne peuvent prétendre à un prêt que si leur revenu net global apprécié dans les mêmes conditions que pour l'allocation pour frais de garde ne dépasse pas les plafonds de ressources prévus par l'octroi de cette prestation." L'article 5 du même décret explicite notamment les conditions d'âge (au moins l'un des conjoints doit avoir moins de 26 ans) .

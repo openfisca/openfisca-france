@@ -11,5 +11,5 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_rachat
-  unit: currency
+  unit: currency_next_year
 documentation: "Rachat d'entreprise par salarié : plafond à doubler pour couple"

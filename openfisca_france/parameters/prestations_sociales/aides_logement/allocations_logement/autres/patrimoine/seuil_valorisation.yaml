@@ -4,8 +4,8 @@ values:
     value: 30000
 metadata:
   short_label: Seuil de prise en compte du patrimoine
-  unit: currency
   last_value_still_valid_on: "2023-02-20"
+  unit: currency
   reference:
     2016-10-01:
     - title: Article L822-5 du Code de la construction et de l'habitation

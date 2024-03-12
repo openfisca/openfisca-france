@@ -29,7 +29,7 @@ values:
 metadata:
   short_label: Seuil 1
   ipp_csv_id: seuil1_majo
-  unit: currency
+  unit: currency_next_year
   reference:
     1967-01-01:
       title: Loi 68-695 du 31/07/1968 (LFR pour 1968) - art. 15

@@ -17,23 +17,11 @@ class interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018(Variable)
     '''
     NB :
     (1) Cette variable est définie indépendemment de epargne_revenus_non_imposables
-    (2) Les intérêts des PEL de plus de 12 ans sont imposables à l'impôt sur le revenu, et donc déjà présents dans les cases 2TR ou 2FA (attention: formulaire IR 2019 sur revenus 2018 non connu au moment de coder cette variable)
+    (2) Les intérêts des PEL de plus de 12 ans et ouverts avant 2018 sont imposables à l'impôt sur le revenu, et donc déjà présents dans la déclaration de revenus (ex : case 2TR pour les revenus de 2018)
     '''
     value_type = float
     entity = Individu
     label = 'Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts avant le 1er janvier 2018'
-    definition_period = YEAR
-
-
-class interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018(Variable):
-    '''
-    NB :
-    (1) Cette variable est définie indépendemment de epargne_revenus_non_imposables
-    (2) Les intérêts des PEL de plus de 12 ans sont imposables à l'impôt sur le revenu, et donc déjà présents dans les cases 2TR ou 2FA (attention: formulaire IR 2019 sur revenus 2018 non connu au moment de coder cette variable)
-    '''
-    value_type = float
-    entity = Individu
-    label = 'Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts à partir du 1er janvier 2018'
     definition_period = YEAR
 
 
@@ -45,19 +33,11 @@ class interets_compte_epargne_logement_ouvert_avant_2018(Variable):
     definition_period = YEAR
 
 
-class interets_compte_epargne_logement_ouvert_a_partir_de_2018(Variable):
+class interets_pel_cel_non_soumis_IR(Variable):
     ''' NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables '''
     value_type = float
     entity = Individu
-    label = 'Intérêts des comptes épargne logement (CEL) ouverts à partir du 1er janvier 2018'
-    definition_period = YEAR
-
-
-class interets_pel_moins_12_ans_cel(Variable):
-    ''' NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables '''
-    value_type = float
-    entity = Individu
-    label = 'Intérêts des plans épargne logement (PEL) de moins de 12 ans et des comptes épargne logement (CEL)'
+    label = "Intérêts des plans épargne logement (PEL) et des comptes épargne logement (CEL) non soumis à l'impôt sur le revenu"
     definition_period = YEAR
 
     def formula(individu, period):
@@ -68,20 +48,6 @@ class interets_pel_moins_12_ans_cel(Variable):
         return (
             interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
             + interets_compte_epargne_logement_ouvert_avant_2018
-            )
-
-    def formula_2018_01_01(individu, period):
-
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = individu('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
-        interets_compte_epargne_logement_ouvert_avant_2018 = individu('interets_compte_epargne_logement_ouvert_avant_2018', period)
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018 = individu('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
-        interets_compte_epargne_logement_ouvert_a_partir_de_2018 = individu('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
-
-        return (
-            interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
-            + interets_compte_epargne_logement_ouvert_avant_2018
-            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018
-            + interets_compte_epargne_logement_ouvert_a_partir_de_2018
             )
 
 
@@ -148,10 +114,16 @@ class assiette_csg_plus_values(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
+
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va_2014 + f3vz + f3we + f3vt + rpns_pvce
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3sg + f3sl + f3va_2014 + f3vz + f3we + f3vt + rpns_pvce + glo_taxation_ir_forfaitaire + pveximpres
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -169,10 +141,16 @@ class assiette_csg_plus_values(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
+
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va_2016 + f3vz + f3we + f3vt + rpns_pvce
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3sg + f3sl + f3va_2016 + f3vz + f3we + f3vt + rpns_pvce + glo_taxation_ir_forfaitaire + pveximpres
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -191,10 +169,16 @@ class assiette_csg_plus_values(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
+
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va + f3ua + f3vz + f3we + f3vt + f3pi + rpns_pvce
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3sg + f3sl + f3va + f3ua + f3vz + f3we + f3vt + f3pi + rpns_pvce + glo_taxation_ir_forfaitaire + pveximpres
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
 
@@ -202,9 +186,6 @@ class assiette_csg_plus_values(Variable):
         f3vg = foyer_fiscal('f3vg', period)
         f3we = foyer_fiscal('f3we', period)
         f3ua = foyer_fiscal('f3ua', period)
-        f3vd_i = foyer_fiscal.members('f3vd', period)
-        f3vi_i = foyer_fiscal.members('f3vi', period)
-        f3vf_i = foyer_fiscal.members('f3vf', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3tj = foyer_fiscal('f3tj', period)
         f3sk = foyer_fiscal('f3sk', period)
@@ -216,14 +197,17 @@ class assiette_csg_plus_values(Variable):
         f3pi = foyer_fiscal('f3pi', period)
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        f3vd = foyer_fiscal.sum(f3vd_i)
-        f3vi = foyer_fiscal.sum(f3vi_i)
-        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3vd + f3vi + f3vf
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + glo_taxation_ir_forfaitaire + pveximpres
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
 
@@ -231,13 +215,9 @@ class assiette_csg_plus_values(Variable):
         f3vg = foyer_fiscal('f3vg', period)
         f3we = foyer_fiscal('f3we', period)
         f3ua = foyer_fiscal('f3ua', period)
-        f3vd_i = foyer_fiscal.members('f3vd', period)
-        f3vi_i = foyer_fiscal.members('f3vi', period)
-        f3vf_i = foyer_fiscal.members('f3vf', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3tj = foyer_fiscal('f3tj', period)
         f3sk = foyer_fiscal('f3sk', period)
-        f3vm = foyer_fiscal('f3vm', period)
         f3vt = foyer_fiscal('f3vt', period)
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
@@ -246,14 +226,17 @@ class assiette_csg_plus_values(Variable):
         f3an = foyer_fiscal('f3an', period)
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        f3vd = foyer_fiscal.sum(f3vd_i)
-        f3vi = foyer_fiscal.sum(f3vi_i)
-        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        glo_taxation_ir_forfaitaire = foyer_fiscal('glo_taxation_ir_forfaitaire', period)
 
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3an + f3vd + f3vi + f3vf
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vt + f3wi + f3wj + f3pi + f3tj + f3an + glo_taxation_ir_forfaitaire + pveximpres
 
 
 class assiette_csg_revenus_capital(Variable):
@@ -288,8 +271,8 @@ class assiette_csg_revenus_capital(Variable):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
 
         # Revenus des produits d'épargne logement
-        interets_pel_moins_12_ans_cel_i = foyer_fiscal.members('interets_pel_moins_12_ans_cel', period)
-        interets_pel_moins_12_ans_cel = foyer_fiscal.sum(interets_pel_moins_12_ans_cel_i)
+        interets_pel_cel_non_soumis_IR_i = foyer_fiscal.members('interets_pel_cel_non_soumis_IR', period)
+        interets_pel_cel_non_soumis_IR = foyer_fiscal.sum(interets_pel_cel_non_soumis_IR_i)
 
         # Revenus fonciers
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
@@ -300,6 +283,10 @@ class assiette_csg_revenus_capital(Variable):
         # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
 
+        # Gains de levée d'option assimilées salaires pour l'IR et soumis aux prélèvements sociaux des revenus du patrimoine
+        f3vj_i = foyer_fiscal.members('f3vj', period)
+        f3vj = foyer_fiscal.sum(f3vj_i)
+
         # Crédits d'impôt sur valeurs étrangères déduits de la base CSG
         credits_impot_sur_valeurs_etrangeres = foyer_fiscal('credits_impot_sur_valeurs_etrangeres', period)
 
@@ -308,16 +295,67 @@ class assiette_csg_revenus_capital(Variable):
             + revenus_capitaux_prelevement_liberatoire
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rente_viagere_titre_onereux_net
-            + interets_pel_moins_12_ans_cel
+            + interets_pel_cel_non_soumis_IR
             + rev_cat_rfon
             + assiette_csg_plus_values
             + assurance_vie_ps_exoneree_irpp_pl
+            + f3vj
             - credits_impot_sur_valeurs_etrangeres,
             0
             )
 
 
 # 3. Variables de prélèvements sociaux sur les revenus du capital
+
+class csg_glo_assimile_salaire_ir_et_ps(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    label = "CSG sur GLO assimilés salaires pour les prélèvements sociaux, en plus de l'être pour l'IR (cases 1TT et similaires)"
+    entity = Individu
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        f1tt = individu('f1tt', period)
+        csg_activite = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
+        taux = csg_activite.imposable.taux + csg_activite.deductible.taux
+        return - f1tt * taux
+
+
+class crds_glo_assimile_salaire_ir_et_ps(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    label = "CRDS sur GLO assimilés salaires pour les prélèvements sociaux, en plus de l'être pour l'IR (cases 1TT et similaires)"
+    entity = Individu
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        f1tt = individu('f1tt', period)
+        return - f1tt * (
+            parameters(period).prelevements_sociaux.contributions_sociales.crds.activite.taux
+            )
+
+
+class contribution_salariale_glo_assimile_salaire(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    label = 'Contribution salariale sur GLO'
+    entity = FoyerFiscal
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Existe avant 2013, mais pas codé pour cette période antérieure.
+        '''
+        f1tt_i = foyer_fiscal.members('f1tt', period)
+        f1tt = foyer_fiscal.sum(f1tt_i)
+        f3vn = foyer_fiscal('f3vn', period)
+        return - (f1tt + f3vn) * (
+            parameters(period).prelevements_sociaux.contribution_salariale_glo
+            )
+
 
 class csg_revenus_capital(Variable):
     value_type = float
@@ -333,10 +371,16 @@ class csg_revenus_capital(Variable):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         csg = parameters(period).taxation_capital.prelevements_sociaux.csg
 
+        csg_glo_assimile_salaire_ir_et_ps_i = foyer_fiscal.members('csg_glo_assimile_salaire_ir_et_ps', period)
+        csg_glo_assimile_salaire_ir_et_ps = foyer_fiscal.sum(csg_glo_assimile_salaire_ir_et_ps_i)
+
         # Pour les revenus du patrimoine, le changement de CSG se fait à partir des revenus de 2017,
         # mais le taux de CSG déductible se fait à partir des revenus 2018. Pour les revenus de placement le timing est différent,
         # et reste à être pris en compte ici : cf. II.B de l'art. 67 de loi 2017-1837 et 3° et 4° du V.A de l'art. 8 de loi 2017-1836
-        return -assiette_csg_revenus_capital * csg.taux_global.produits_de_placement
+        return (
+            - assiette_csg_revenus_capital * csg.taux_global.produits_de_placement
+            + csg_glo_assimile_salaire_ir_et_ps
+            )
 
 
 class crds_revenus_capital(Variable):
@@ -347,9 +391,15 @@ class crds_revenus_capital(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
+        prelevements_sociaux = parameters(period).taxation_capital.prelevements_sociaux
 
-        return -assiette_csg_revenus_capital * P.crds.produits_de_placement
+        crds_glo_assimile_salaire_ir_et_ps_i = foyer_fiscal.members('crds_glo_assimile_salaire_ir_et_ps', period)
+        crds_glo_assimile_salaire_ir_et_ps = foyer_fiscal.sum(crds_glo_assimile_salaire_ir_et_ps_i)
+
+        return (
+            - assiette_csg_revenus_capital * prelevements_sociaux.crds.produits_de_placement
+            + crds_glo_assimile_salaire_ir_et_ps
+            )
 
 
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
@@ -361,48 +411,52 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
+        prelevements_sociaux = parameters(period).taxation_capital.prelevements_sociaux
 
-        total = (
-            P.prelevement_social.produits_de_placement
-            + P.caps.produits_de_placement
-            + P.prelevements_solidarite.produits_de_placement
+        taux = (
+            prelevements_sociaux.prelevement_social.produits_de_placement
+            + prelevements_sociaux.caps.produits_de_placement
             )
 
-        return -assiette_csg_revenus_capital * total
+        contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
+
+        return -assiette_csg_revenus_capital * taux + contribution_salariale_glo_assimile_salaire
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
+        prelevements_sociaux = parameters(period).taxation_capital.prelevements_sociaux
 
-        total = (
-            P.prelevement_social.produits_de_placement
-            + P.caps.produits_de_placement
-            + P.prelevements_solidarite.produits_de_placement
-            + P.caps.rsa
+        taux = (
+            prelevements_sociaux.prelevement_social.produits_de_placement
+            + prelevements_sociaux.caps.produits_de_placement
+            + prelevements_sociaux.caps.rsa
             )
 
-        return -assiette_csg_revenus_capital * total
+        contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
+
+        return -assiette_csg_revenus_capital * taux + contribution_salariale_glo_assimile_salaire
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
+        prelevements_sociaux = parameters(period).taxation_capital.prelevements_sociaux
 
-        total = (
-            P.prelevement_social.produits_de_placement
-            + P.caps.produits_de_placement
-            + P.prelevements_solidarite.produits_de_placement
+        taux = (
+            prelevements_sociaux.prelevement_social.produits_de_placement
+            + prelevements_sociaux.caps.produits_de_placement
+            + prelevements_sociaux.prelevements_solidarite.produits_de_placement
             )
 
-        return -assiette_csg_revenus_capital * total
+        contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
+
+        return -assiette_csg_revenus_capital * taux + contribution_salariale_glo_assimile_salaire
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period).taxation_capital.prelevements_sociaux
+        taux = parameters(period).taxation_capital.prelevements_sociaux.prelevements_solidarite.produits_de_placement
 
-        total = P.prelevements_solidarite.produits_de_placement
+        contribution_salariale_glo_assimile_salaire = foyer_fiscal('contribution_salariale_glo_assimile_salaire', period)
 
-        return -assiette_csg_revenus_capital * total
+        return -assiette_csg_revenus_capital * taux + contribution_salariale_glo_assimile_salaire
 
 
 class prelevements_sociaux_revenus_capital(Variable):

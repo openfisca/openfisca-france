@@ -1,3 +1,5 @@
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 
@@ -261,6 +263,7 @@ class nrag_exon(Variable):
     entity = Individu
     label = "Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur), activités exercées en Corse"
     # start_date = date(2007, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -274,6 +277,7 @@ class nrag_impg(Variable):
     entity = Individu
     label = "Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -287,6 +291,7 @@ class nrag_defi(Variable):
     entity = Individu
     label = "Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -316,7 +321,7 @@ class ebic_impv(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = 'Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)'
+    label = 'Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur ayant opté pour le versement libératoire)'
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
@@ -329,7 +334,7 @@ class ebic_imps(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = 'Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)'
+    label = 'Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur ayant opté pour le versement libératoire)'
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
@@ -380,6 +385,7 @@ class nbic_exon(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -442,6 +448,7 @@ class nbic_impn(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -526,6 +533,7 @@ class nbic_defn(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -537,8 +545,22 @@ class nbic_defs(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = 'Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)'
+    label = 'Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime simplifié du bénéfice réel)'
     end = '2009-12-31'
+    definition_period = YEAR
+
+
+# TODO : ajouter dans formules
+class nlnp_imps(Variable):
+    cerfa_field = {0: '5KM',
+        1: '5LM',
+        2: '5MM', }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Locations meublées non professionnelles: Gîtes ruraux et chambres d'hôtes déjà soumis aux prélèvements sociaux sans CGA (régime du bénéfice réel)"
+    # start_date = date(2012, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -601,6 +623,7 @@ class nacc_exon(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -687,6 +710,7 @@ class nacc_impn(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -711,7 +735,7 @@ class nacc_meup(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = 'Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)'
+    label = "Locations meublées non professionnelles: Locations meublées et chambre d'hôtes déjà soumises aux prélèvements sociaux (régime micro entreprise)"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
@@ -738,11 +762,12 @@ class nacc_defn(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
 # (f5nm, f5om, f5pm)) #TODO autres 5NM
-class nacc_defs(Variable):
+class nacc_pres(Variable):
     cerfa_field = {0: '5NM',
         1: '5OM',
         2: '5PM', }
@@ -776,6 +801,7 @@ class cncn_bene(Variable):
     entity = Individu
     label = 'Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)'
     # start_date = date(2006, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -790,6 +816,7 @@ class cncn_defi(Variable):
     entity = Individu
     label = 'Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)'
     # start_date = date(2006, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -826,6 +853,7 @@ class nbnc_exon(Variable):
     unit = 'currency'
     entity = Individu
     label = "Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -887,6 +915,7 @@ class nbnc_impo(Variable):
     unit = 'currency'
     entity = Individu
     label = "Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -899,6 +928,7 @@ class nbnc_defi(Variable):
     unit = 'currency'
     entity = Individu
     label = "Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -1183,6 +1213,7 @@ class nbic_pvce(Variable):
     entity = Individu
     label = 'Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)'
     # start_date = date(2008, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -1220,6 +1251,7 @@ class nacc_pvce(Variable):
     entity = Individu
     label = 'Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)'
     # start_date = date(2009, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -1308,6 +1340,7 @@ class arag_sjag(Variable):
     entity = Individu
     label = 'Abattement pour les jeunes agriculteurs des revenus agricoles sans CGA (régime du bénéfice réel)'
     # start_date = date(2011, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -1383,7 +1416,7 @@ class nlnp_defs(Variable):
     entity = Individu
     label = 'Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)'
     # start_date = date(2009, 1, 1)
-    end = '2010-12-31'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -1849,7 +1882,7 @@ class rpns_auto_entrepreneur_CA_achat_revente(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine ventes et assimilées "
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur avec versement libératoire domaine ventes et assimilées "
     definition_period = MONTH
 
     def formula(individu, period):
@@ -1862,7 +1895,7 @@ class rpns_auto_entrepreneur_CA_bic(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine prestations de service et locations meublées "
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur avec versement libératoire domaine prestations de service et locations meublées "
     definition_period = MONTH
 
     def formula(individu, period):
@@ -1875,7 +1908,7 @@ class rpns_auto_entrepreneur_CA_bnc(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine non commercial"
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur avec versement libératoire domaine non commercial"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -1888,7 +1921,7 @@ class rpns_auto_entrepreneur_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur"
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur avec versement libératoire"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -1973,7 +2006,7 @@ class rpns_micro_entreprise_bic_exon(Variable):
 class rpns_micro_entreprise_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
-    label = "Chiffre d'affaires en de micro-entreprise"
+    label = "Chiffre d'affaires en micro-entreprise"
     definition_period = YEAR
 
     def formula(individu, period):
@@ -2085,7 +2118,7 @@ class travailleur_non_salarie(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
+        this_year_and_last_year = Period(('year', period.start.offset('first-of', 'year'), 2)).offset(-1)
         rpns_auto_entrepreneur_chiffre_affaires = individu('rpns_auto_entrepreneur_chiffre_affaires', period) != 0
         rpns_micro_entreprise_chiffre_affaires = individu('rpns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
         rpns_autres_revenus = individu('rpns_autres_revenus', this_year_and_last_year, options = [ADD]) != 0
@@ -2105,7 +2138,7 @@ class travailleur_non_salarie(Variable):
 
 class rpns_auto_entrepreneur_benefice(Variable):
     value_type = float
-    label = "Bénéfice en tant qu'auto-entrepreneur"
+    label = "Bénéfice en tant qu'auto-entrepreneur avec versement libératoire"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -2153,11 +2186,15 @@ class rpns_micro_entreprise_benefice(Variable):
 # the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
 # Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore
 # we are not using the following formulas for calculating prestations_sociales.
+# This seemingly unfair method is however explained by the fact that the rate allowing to go from 'CA' to 'base_ressources' already takes into account
+# the 'cotisations sociales', as both are directly computed from the same 'CA'. The main point of 'versement liberatoire' and 'micro-social' is to avoid to compute a true 'benefice',
+# and so doing it in two steps would not be more accurate (it would be indeed unfair if the computed 'benefices' were actual 'benefices' before 'cotisations sociales' :
+# in this case, one could however take a real 'benefice' taxation scheme).
 
 
 class rpns_auto_entrepreneur_revenus_net(Variable):
     value_type = float
-    label = "Revenu d'un auto-entrepreneur"
+    label = "Revenu d'un auto-entrepreneur avec versement libératoire"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -2167,12 +2204,13 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
         rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period)
         rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period)
         rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
-        bareme_cs_ae = parameters(period).taxation_societes.tns.auto_entrepreneur
+        bareme_cs_ae = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
 
         rpns_auto_entrepreneur_charges_sociales = (
-            (bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente)
-            + (bareme_cs_ae.bic * rpns_auto_entrepreneur_CA_bic)
-            + (bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc))
+            (bareme_cs_ae.formation_professionnelle.ventecom_chiffre_affaires + bareme_cs_ae.cotisations_prestations.vente) * rpns_auto_entrepreneur_CA_achat_revente
+            + (bareme_cs_ae.formation_professionnelle.artisans_hors_alsace_chiffre_affaires + bareme_cs_ae.cotisations_prestations.cipav) * rpns_auto_entrepreneur_CA_bic
+            + (bareme_cs_ae.formation_professionnelle.servicecom_chiffre_affaires + bareme_cs_ae.cotisations_prestations.service) * rpns_auto_entrepreneur_CA_bnc
+            )
 
         return rpns_auto_entrepreneur_benefice - rpns_auto_entrepreneur_charges_sociales
 
@@ -2186,8 +2224,12 @@ class rpns_micro_entreprise_revenus_net(Variable):
 
     def formula(individu, period, parameters):
         rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period, options = [DIVIDE])
-        taux_cotisations_sociales = parameters(period).taxation_societes.tns.micro_entreprise.cotisations_sociales
-        rpns_micro_entreprise_charges_sociales = rpns_micro_entreprise_benefice * taux_cotisations_sociales
+        bareme_cs_me = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
+        rpns_micro_entreprise_charges_sociales = (
+            (rpns_micro_entreprise_CA_bic_vente_imp * (bareme_cs_me.formation_professionnelle.ventecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.vente))
+            + (rpns_micro_entreprise_CA_bnc_imp * (bareme_cs_me.formation_professionnelle.artisans_hors_alsace_chiffre_affaires + bareme_cs_me.cotisations_prestations.cipav))
+            + (rpns_micro_entreprise_CA_bic_service_imp * (bareme_cs_me.formation_professionnelle.servicecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.service))
+            )
         revenus = rpns_micro_entreprise_benefice - rpns_micro_entreprise_charges_sociales
 
         return revenus

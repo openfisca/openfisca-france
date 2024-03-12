@@ -1,4 +1,7 @@
 from numpy import logical_not as not_
+
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
@@ -15,8 +18,8 @@ class ars(Variable):
         Allocation de rentrée scolaire brute de CRDS
         '''
         janvier = period.first_month
-        octobre = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
-        decembre = period.start.offset('first-of', 'year').offset(11, 'month').period('month')
+        octobre = Period(('month', period.start.offset('first-of', 'year').offset(9, 'month'), 1))
+        decembre = Period(('month', period.start.offset('first-of', 'year').offset(11, 'month'), 1))
         af_nbenf = famille('af_nbenf', octobre)
         base_ressources = famille('prestations_familiales_base_ressources', janvier)
         ars = parameters(octobre).prestations_sociales.prestations_familiales.education_presence_parentale.ars
@@ -59,3 +62,33 @@ class ars(Variable):
         ars_montant = max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res)))
 
         return ars_montant * (ars_montant >= ars.montant_minimum_verse)
+
+
+class crds_ars(Variable):
+    value_type = float
+    entity = Famille
+    label = "CRDS sur l'allocation de rentrée scolaire"
+    reference = 'http://www.cleiss.fr/docs/regimes/regime_francea1.html'
+    definition_period = YEAR
+
+    def formula(famille, period, parameters):
+        ars = famille('ars', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+
+        return -(ars) * taux_crds
+
+
+class ars_nette_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = 'Allocation de rentrée scolaire nette de CRDS'
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        ars = famille('ars', period)
+        crds_af = famille('crds_ars', period)
+
+        return ars + crds_af

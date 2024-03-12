@@ -1,10 +1,11 @@
-description: Taux spécifique des taxes sur le tabac - Tabacs à chiquer
+description: Taux spécifique de la taxe sur les tabacs à chiquer
 values:
   1979-01-01:
     value: null
   2013-01-01:
     value: 0
 metadata:
+  short_label: Tabacs à chiquer
   ipp_csv_id: tx_spec_tabac_chiquer
   unit: /1
   reference:

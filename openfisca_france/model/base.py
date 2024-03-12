@@ -1,6 +1,10 @@
 from openfisca_core.model_api import *
 from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage  # noqa F401
 
+
+AGE_INT_MINIMUM = -9999
+
+
 # Enums commonly used through the legislation
 
 

@@ -136,14 +136,18 @@ class csg_deductible_chomage(Variable):
             * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
             )
 
+        # Approximation annuelle
+        salaire_net = individu('salaire_net', period)
+        rpns_imposables = individu('rpns_imposables', period, options = [DIVIDE])
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [DIVIDE])
+        crds_non_salarie = individu('crds_non_salarie', period, options = [DIVIDE])
+        remuneration_activite_nette = salaire_net + rpns_imposables + csg_imposable_non_salarie + crds_non_salarie
+
         csg_deductible_chomage = max_(
             - montant_csg
-            - max_(cho_seuil_exo - (
-                chomage_brut
-                + csg_imposable_chomage
-                + montant_csg
-                ), 0),
-            0,
+            - max_(
+                cho_seuil_exo - (remuneration_activite_nette + assiette_csg_chomage + csg_imposable_chomage + montant_csg), 0
+                ), 0
             )
 
         return - csg_deductible_chomage
@@ -195,7 +199,15 @@ class csg_imposable_chomage(Variable):
             * nbh_travail
             * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
             )
-        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
+
+        salaire_net = individu('salaire_net', period)
+        # Approximation annuelle
+        rpns_imposables = individu('rpns_imposables', period, options = [DIVIDE])
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [DIVIDE])
+        crds_non_salarie = individu('crds_non_salarie', period, options = [DIVIDE])
+        remuneration_activite_nette = salaire_net + rpns_imposables + csg_imposable_non_salarie + crds_non_salarie
+
+        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (remuneration_activite_nette + assiette_csg_chomage + montant_csg), 0), 0)
         return - csg_imposable_chomage
 
 
@@ -247,12 +259,20 @@ class crds_chomage(Variable):
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds.activite,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * eligible
+
+        salaire_net = individu('salaire_net', period)
+        # Approximation annuelle
+        rpns_imposables = individu('rpns_imposables', period, options = [DIVIDE])
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [DIVIDE])
+        crds_non_salarie = individu('crds_non_salarie', period, options = [DIVIDE])
+        remuneration_activite_nette = salaire_net + rpns_imposables + csg_imposable_non_salarie + crds_non_salarie
+
         crds_chomage = max_(
-            -montant_crds - max_(
-                cho_seuil_exo - (assiette_crds_chomage + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
+            - montant_crds - max_(
+                cho_seuil_exo - (remuneration_activite_nette + assiette_crds_chomage + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
                 ), 0
             )
-        return -crds_chomage
+        return - crds_chomage
 
 
 class chomage_imposable(Variable):
@@ -541,7 +561,7 @@ class casa(Variable):
 
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        ir = individu.foyer_fiscal('irpp', period = period.last_year)
+        ir = individu.foyer_fiscal('impot_revenu_restant_a_payer', period = period.last_year)
         parameters = parameters(period)
         seuil_exoneration = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils.seuil_ir
 
@@ -591,23 +611,3 @@ class retraite_nette(Variable):
         crds_retraite = individu('crds_retraite', period)
 
         return retraite_imposable + csg_imposable_retraite + crds_retraite + casa
-
-
-class crds_pfam(Variable):
-    value_type = float
-    entity = Famille
-    label = 'CRDS sur les prestations familiales)'
-    reference = 'http://www.cleiss.fr/docs/regimes/regime_francea1.html'
-    definition_period = YEAR
-
-    def formula(famille, period, parameters):
-        af = famille('af', period, options = [ADD])
-        cf = famille('cf', period, options = [ADD])
-        asf = famille('asf', period, options = [ADD])
-        ars = famille('ars', period)
-        paje = famille('paje', period, options = [ADD])
-        ape = famille('ape', period, options = [ADD])
-        apje = famille('apje', period, options = [ADD])
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
-
-        return -(af + cf + asf + ars + paje + ape + apje) * taux_crds

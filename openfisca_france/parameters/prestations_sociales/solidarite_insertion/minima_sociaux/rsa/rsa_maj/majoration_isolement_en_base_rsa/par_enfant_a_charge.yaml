@@ -1,7 +1,5 @@
-description: Montant pour les personnes isolées, Majoration par enfant à charge (en % de la base) du Revenu de solidarité active (RSA)
+description: Majoration par enfant à charge pour les parents isolés (en % de la base) du revenu de solidarité active (RSA)
 values:
-  1997-01-01:
-    value: 0
   2009-06-01:
     value: 0.428
   2016-01-01:

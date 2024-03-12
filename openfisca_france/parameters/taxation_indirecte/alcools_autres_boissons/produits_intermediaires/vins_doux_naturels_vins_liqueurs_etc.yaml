@@ -1,4 +1,4 @@
-description: Produits intermédiaires Vins doux naturels et vins de liqueurs AOP (€/hl) (1)
+description: Produits intermédiaires Vins doux naturels et vins de liqueurs AOP (€/hl)
 values:
   1993-07-01:
     value: 350
@@ -74,6 +74,4 @@ metadata:
     2015-06-06: "2015-06-05"
     2017-01-01: "2016-12-31"
     2018-01-01: "2017-12-27"
-documentation: |-
-  Données renseignées dans l''article 402 bis du code général des impôts.
-  (1) : vins mentionnés aux articles 417 et 417 bis du CGI.
+documentation: vins mentionnés aux articles 417 et 417 bis du CGI.

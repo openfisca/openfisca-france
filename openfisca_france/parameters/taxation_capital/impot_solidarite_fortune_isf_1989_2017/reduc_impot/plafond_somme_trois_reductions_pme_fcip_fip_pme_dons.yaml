@@ -1,4 +1,4 @@
-description: Plafond pour le total des trois réductions (PME, FCIP/FIP sur PME et dons) de l'impôt de solidarité sur la fortune
+description: Plafond pour le total des trois réductions (PME, FCPI/FIP sur PME et dons) de l'impôt de solidarité sur la fortune
 values:
   2008-01-01:
     value: 50000
@@ -7,7 +7,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  short_label: Plafond pour la somme des trois réductions (PME, FCIP/FIP sur PME et dons)
+  short_label: Plafond pour la somme des trois réductions (PME, FCPI/FIP sur PME et dons)
   label_en: Tax reductions for investment and donations
   unit: currency
   reference:

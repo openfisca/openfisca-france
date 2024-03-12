@@ -1,0 +1,107 @@
+description: Montant fixe de la partie deces des cotisations invalidité-décès de sécurité sociale (SS) des indépendants artisans-commerçants
+values:
+  1975-01-01:
+    value: 77
+  1980-01-01:
+    value: 68
+  1982-01-01:
+    value: 56
+  1983-01-01:
+    value: 60
+  1984-01-01:
+    value: 64
+  1985-01-01:
+    value: 68
+  1986-01-01:
+    value: 70
+  1987-01-01:
+    value: 72
+  1988-01-01:
+    value: 74
+  1989-01-01:
+    value: 76
+  1990-01-01:
+    value: 78
+  1991-01-01:
+    value: 58
+  1992-01-01:
+    value: 48
+  1994-01-01:
+    value: 32
+  2004-08-24:
+    value: null
+metadata:
+  short_label: Montant des cotisations décès
+  label_en: SSCs for disability and death benefits (sales retailers and craftsmen)
+  ipp_csv_id: deces_ic_0_1
+  unit: currency
+  reference:
+    1975-01-01:
+    - title: Décret 75-969 du 16/10/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000683438
+    - title: Décret 75-19 du 8/01/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000883429
+    1980-01-01:
+      title: Décret 80-430 du 11/06/1980
+    1982-01-01:
+    - title: Décret 82-168 du 15/02/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000879564
+    - title: Décret 82-170 du 17/02/1982
+    1983-01-01:
+      title: Décret 83-202 du 15/03/1983
+    1984-01-01:
+      title: Décret 84-1039 du 26/11/1984
+    1985-01-01:
+      title: Décret 85-555 du 28/05/1985
+    1985-12-21:
+      title: Décret 85-1354 17/12/1985 art. 1
+    1986-01-01:
+    - title: Décret 86-232 du 18/02/1986 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006769903&cidTexte=JORFTEXT000000700920
+    - title: Décret 86-852 du 17/07/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517698
+    1987-01-01:
+      title: Décret 87-47 du 30/01/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517048
+    1988-01-01:
+      title: Décret 88-102 du 28/01/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000692151&categorieLien=id
+    1989-01-01:
+    - title: Décret 89-47 27/01/1989 art. 1, art. 2
+    - title: Décret 89-191 du 28/03/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509671
+    1990-01-01:
+      title: Décret 90-2400 du 14/03/1990
+    1991-01-01:
+      title: Décret 91-319 du 26/03/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000873332&categorieLien=id
+    1992-01-01:
+      title: Décret 92-351 du 01/04/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000356523
+    1994-01-01:
+      title: Décret 94-766 du 31/08/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000714796&categorieLien=id
+    1999-01-01:
+      title: Décret 99-1103 du 21/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000580171&categorieLien=id
+    2004-08-24:
+      title: Décret 2004-848 du 23/08/2004 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006233585&cidTexte=JORFTEXT000000625026
+  official_journal_date:
+    1975-01-01: "1975-01-18"
+    1980-01-01: "1980-06-18"
+    1982-01-01: 1982-02-18; 1982-02-19
+    1983-01-01: "1983-03-17"
+    1984-01-01: "1984-11-27"
+    1985-01-01: "1985-05-30"
+    1985-12-21: "1985-12-21"
+    1986-01-01: 1986-02-21; 1986-07-19
+    1987-01-01: "1987-01-31"
+    1988-01-01: "1988-01-30"
+    1989-01-01: 1989-01-29; 1989-03-30
+    1990-01-01: "1990-03-20"
+    1991-01-01: "1991-03-28"
+    1992-01-01: "1992-04-02"
+    1994-01-01: "1994-09-04"
+    1999-01-01: "1999-12-26"
+    2004-08-24: "2004-08-24"

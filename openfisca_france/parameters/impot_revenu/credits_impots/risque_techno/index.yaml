@@ -1,6 +1,12 @@
-description: Crédit d'impôt pour les dépenses de prévention des risques technologiques (2005-)
+description: Crédit d'impôt pour les dépenses de prévention des risques technologiques
 metadata:
+  documentation_start: true
   short_label: Risques technologiques
   order:
   - taux
   - plafond
+documentation: |-
+  Article 200 quater A
+  Le logement doit être situé en France, affecté à l'habitation principale, situé dans un périmètre couvert par un plan de prévention des risques technologiques et achevé avant l'approbation du plan de prévention des risques technologiques (PPRT).
+  Le crédit d'impôt s'applique aux travaux prescrits par le PPRT. Les dépenses de diagnostics préalables sont aussi concernées. Les travaux doivent être réalisés par la même entreprise qui fournit les équipements.
+  Suite à la prorogation du dispositif jusqu'à la fin de l'année 2020, le plafond ne s'estime pas sur une durée de 5 ans mais de 6, à savoir du 1er Janvier 2015 au 31 Décembre 2020.

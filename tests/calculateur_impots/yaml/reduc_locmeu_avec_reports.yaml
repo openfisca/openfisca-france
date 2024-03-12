@@ -69,7 +69,7 @@
   output:
     reductions: 6578.0
     iai: 36406.0
-    irpp: -36406.0
+    impot_revenu_restant_a_payer: -36406.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 137843.0
@@ -157,7 +157,7 @@
     location_meublee: 8250.0
     reductions: 8250.0
     iai: 34715.0
-    irpp: -34715.0
+    impot_revenu_restant_a_payer: -34715.0
     nbptr: 1.0
     rbg: 137830.0
     rfr: 137830.0
@@ -252,7 +252,7 @@
     location_meublee: 9634.0
     reductions: 9634.0
     iai: 33312.0
-    irpp: -33312.0
+    impot_revenu_restant_a_payer: -33312.0
     nbptr: 1.0
     rbg: 137817.0
     rfr: 137817.0
@@ -345,7 +345,7 @@
     location_meublee: 9442.0
     reductions: 9442.0
     iai: 33318.0
-    irpp: -33318.0
+    impot_revenu_restant_a_payer: -33318.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 137695.0
@@ -371,6 +371,6 @@
     location_meublee: 6833.0
     reductions: 6833.0
     iai: 6211.0
-    irpp: -6211.0
+    impot_revenu_restant_a_payer: -6211.0
     rbg: 63000.0
     rfr: 63000.0

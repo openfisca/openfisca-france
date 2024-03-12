@@ -7,8 +7,9 @@ values:
   2010-01-01:
     value: null
 metadata:
+  short_label: Plafond du crédit d'impôt
   ipp_csv_id: plaf_creditrcm
-  unit: currency
+  unit: currency_next_year
   reference:
     2004-01-01:
       title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)

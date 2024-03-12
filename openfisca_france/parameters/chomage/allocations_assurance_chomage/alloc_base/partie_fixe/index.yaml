@@ -3,5 +3,5 @@ metadata:
   short_label: Partie fixe
   label_en: UI scheme - lump-sum and minimum
   order:
-  - si_affiliation_entre_3_6_mois
-  - si_affiliation_6_mois
+  - apres_1992
+  - avant_1992

@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_abattement_journalistes
-  unit: currency
+  unit: currency_next_year
   reference:
     1998-01-01:
       title: Loi n° 98-1267 du 30 décembre 1998 (LF pour 2019), art. 23
@@ -21,8 +21,3 @@ metadata:
   notes:
     2018-01-01:
     - title: Introduction d'un plafond de revenu pour les journalistes rédacteurs, photographes, directeurs de journaux et critiques dramatiques et musicaux bénéficiant de l'abattement spécifique à leurs professions.
-documentation: |-
-  L'abattement forfaitarie spécifique s'applique aux journalistes, rédacteurs,
-  photographes, directeurs de journaux et critiques dramatiques et musicaux dont
-  les revenus sont en dessous du plafond, avant l'abattement de 10% dont tous les
-  salariés bénéficient au titre des frais professionnels. CGI art.81 1°

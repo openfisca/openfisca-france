@@ -1,0 +1,7 @@
+description: Critère d'âge maximum des profils ARS pour le Pass'Sport
+values:
+  2022-06-30:
+    value: 17
+metadata:
+  short_label: Maximum
+  unit: year

@@ -5,7 +5,7 @@ keywords:
 description: |
   La personne perçoit du RSA majoré depuis un an, et son enfant a plus de 3 ans => Elle n'a plus droit au RSA majoré.
   Elle perçoit une pension alimentaire supérieure à l'ASF => N'ouvre pas droit à l'ASF.
-  Le RSA (non majoré) est donc de : 641.72 - 100 (PA) = 541,72
+  Le RSA (non majoré) est donc de : 641.72 - 100 (PPA) = 541,72
 period: month:2014-11
 relative_error_margin: 0.02
 input:

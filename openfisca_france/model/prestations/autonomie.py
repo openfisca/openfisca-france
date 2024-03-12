@@ -1,3 +1,5 @@
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 
@@ -141,7 +143,7 @@ class apa_eligibilite(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2002(individu, period, parameters):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = Period(('month', period.start.offset('first-of', 'month'), 1))
         parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         age = individu('age', period)
         apa_age_min = parameters.apa_domicile.condition_age
@@ -182,7 +184,7 @@ class apa_domicile(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2002(individu, period, parameters):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = Period(('month', period.start.offset('first-of', 'month'), 1))
         apa_domicile = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees.apa_domicile
         apa_eligibilite = individu('apa_eligibilite', period)
         smic_brut_horaire = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
@@ -204,7 +206,7 @@ class apa_etablissement(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2002(individu, period, parameters):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = Period(('month', period.start.offset('first-of', 'month'), 1))
         perte_autonomie_personnes_agees = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         smic_brut_horaire = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
         seuil_non_versement = perte_autonomie_personnes_agees.apa_institution.seuil_versement_en_part_smic_brut_horaire * smic_brut_horaire
@@ -363,7 +365,7 @@ class apa_urgence_institution(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2002(individu, period, parameters):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = Period(('month', period.start.offset('first-of', 'month'), 1))
         dependance_tarif_etablissement_gir_1_2 = individu('dependance_tarif_etablissement_gir_1_2', period)
         part_urgence_institution = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees.apa_institution.part_tarif_dependance
         apa_urgence_institution = part_urgence_institution * dependance_tarif_etablissement_gir_1_2

@@ -1,0 +1,6 @@
+description: Plafond
+metadata:
+  order:
+  - plafond_en_revenu_net_global
+  - plafond_par_personne
+documentation: Le plafonnement par foyer fiscal (art. 199 sexvicies CGI) s'applique dans la limite des deux plafonds.

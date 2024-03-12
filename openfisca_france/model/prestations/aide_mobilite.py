@@ -1,9 +1,15 @@
 from numpy import fabs, timedelta64
-from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, ADD,\
-    set_input_dispatch_by_period, set_input_divide_by_period, min_, date
+
+from openfisca_core.periods import Period
+
+from openfisca_france.model.base import (
+    Variable, date, Enum, Individu, MONTH, ADD, min_, not_,
+    set_input_dispatch_by_period, set_input_divide_by_period,
+    )
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
-from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation,\
-    TypesCategoriesDemandeurEmploi
+from openfisca_france.model.revenus.activite.salarie import (
+    TypesContrat, TypesLieuEmploiFormation, TypesCategoriesDemandeurEmploi
+    )
 
 
 class aide_mobilite_date_demande(Variable):
@@ -180,9 +186,9 @@ class aide_mobilite_ressources_eligibles(Variable):
         hors_mayotte = not_(mayotte)
 
         allocation_individu = individu('allocation_retour_emploi_journaliere', period)
-        allocations = parameters(period).chomage.allocation_retour_emploi
-        allocation_minimale_hors_mayotte = allocations.montant_minimum_hors_mayotte * hors_mayotte
-        allocation_minimale_mayotte = allocations.montant_minimum_mayotte * mayotte
+        allocations = parameters(period).chomage.allocations_assurance_chomage.alloc_base
+        allocation_minimale_hors_mayotte = allocations.montant_minimum.apres_1979.montant_minimum_hors_mayotte * hors_mayotte
+        allocation_minimale_mayotte = allocations.montant_minimum.apres_1979.mayotte * mayotte
 
         allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
 
@@ -226,7 +232,7 @@ class aide_mobilite_eligible(Variable):
         date_debut_type_activite_recherche_emploi = individu('date_debut_recherche_emploi', period)
         contrat_de_travail_debut_en_mois = contrat_travail_debut.astype('M8[M]')
         amob_date_de_demande = individu('aide_mobilite_date_demande', period)
-        parametres_amob = parameters(period).prestations_sociales.aide_mobilite
+        parametres_amob = parameters(period).prestations_sociales.transport.aide_mobilite
         date_contrat_limite_contexte_formation_reprise = min_((contrat_de_travail_debut_en_mois + 1) + (contrat_travail_debut - contrat_de_travail_debut_en_mois),
                                                (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, 'D'))
         dates_demandes_amob_eligibles_formation_reprise = amob_date_de_demande <= date_contrat_limite_contexte_formation_reprise
@@ -324,9 +330,9 @@ class aide_mobilite(Variable):
     def formula_2021_06_09(individu, period, parameters):
 
         eligibilite_amob = individu('aide_mobilite_eligible', period)
-        parametres_amob = parameters(period).prestations_sociales.aide_mobilite
+        parametres_amob = parameters(period).prestations_sociales.transport.aide_mobilite
 
-        annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = Period(('year', period.start, 1)).offset(-1)
 
         aide_mobilite_12_derniers_mois = individu('aide_mobilite', annee_glissante, options=[ADD])
 

@@ -1,0 +1,16 @@
+description: Prestations sociales liées à l'éducation et à la culture
+metadata:
+  short_label: Education et culture
+  order:
+  - aide_permis_pro_btp
+  - bourses
+  - carte_des_metiers
+  - contrat_engagement_jeune
+  - depart1825
+  - garantie_jeunes
+  - garantie_pret_etudiant
+  - mobilite
+  - pass_culture
+  - pass_sport
+  - sante_psy
+  - gratuite_musees_monuments

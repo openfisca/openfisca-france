@@ -11,7 +11,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plafond_reduc_invest_outremer
-  unit: currency
+  unit: currency_next_year
   reference:
     2009-01-01:
     - title: Loi 2008-1425 du 27/12/2008 - art. 87 (V) (créé Art. 199 undecies D)

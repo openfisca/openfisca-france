@@ -1,4 +1,4 @@
-description: Seuil de la décote de l'impôt sur le revenu (1951 - )
+description: Seuil de la décote de l'impôt sur le revenu
 values:
   2002-01-01:
     value: 772
@@ -25,8 +25,9 @@ values:
   2014-01-01:
     value: null
 metadata:
+  short_label: Seuil
   last_value_still_valid_on: "2023-02-24"
-  unit: currency
+  unit: currency_next_year
   reference:
     2014-01-01:
       title: LOI n° 2014-1654 du 29 décembre 2014 de finances pour 2015, art. 2, 3°

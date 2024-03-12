@@ -1,4 +1,4 @@
-description: Alcools fermentés  - Exonération des pétillants (voir conditions) (€/hl)
+description: Exonération de la taxe sur les alcools fermentés des pétillants (€/hl)
 values:
   1982-01-01:
     value: 5.4
@@ -17,4 +17,3 @@ metadata:
   official_journal_date:
     1982-01-01: "1981-12-31"
     1993-02-01: "1993-01-04"
-documentation: Données renseignées dans l''article 438 du code général des impôts'

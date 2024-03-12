@@ -1,0 +1,11 @@
+description: Critères d'âge pour le Pass'Sport
+metadata:
+  short_label: Critères d'âge
+  order:
+  - age_maximum_profil_boursier
+  - age_minimum_profil_aah
+  - age_maximum_profil_aah
+  - age_minimum_profil_aeeh
+  - age_maximum_profil_aeeh
+  - age_minimum_profil_ars
+  - age_maximum_profil_ars

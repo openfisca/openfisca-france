@@ -1,93 +1,93 @@
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 20000
   output:
-    irpp: -1181
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
+    impot_revenu_restant_a_payer: -1181
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 50000
   output:
-    irpp: -7934
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
+    impot_revenu_restant_a_payer: -7934
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 150000
   output:
-    irpp: -42338
+    impot_revenu_restant_a_payer: -42338
 
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 20000
   output:
-    irpp: -1181
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
+    impot_revenu_restant_a_payer: -1181
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 50000
   output:
-    irpp: -7934
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
+    impot_revenu_restant_a_payer: -7934
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 150000
   output:
-    irpp: -42338
+    impot_revenu_restant_a_payer: -42338
 
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 20000
   output:
-    irpp: -1181
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
+    impot_revenu_restant_a_payer: -1181
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 50000
   output:
-    irpp: -7934
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
+    impot_revenu_restant_a_payer: -7934
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 150000
   output:
-    irpp: -43222
+    impot_revenu_restant_a_payer: -43222
 
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 20000
   output:
-    irpp: -1170
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
+    impot_revenu_restant_a_payer: -1170
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 50000
   output:
-    irpp: -7889
-- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
+    impot_revenu_restant_a_payer: -7889
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 150000
   output:
-    irpp: -43076
+    impot_revenu_restant_a_payer: -43076
 
 
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 20 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -97,8 +97,8 @@
   input:
     retraite_imposable: 20000
   output:
-    irpp: -1181
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €
+    impot_revenu_restant_a_payer: -1181
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 50 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -108,8 +108,8 @@
   input:
     retraite_imposable: 50000
   output:
-    irpp: -8336
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €
+    impot_revenu_restant_a_payer: -8336
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 150 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -119,9 +119,9 @@
   input:
     retraite_imposable: 150000
   output:
-    irpp: -46642
+    impot_revenu_restant_a_payer: -46642
 
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 20 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -131,8 +131,8 @@
   input:
     retraite_imposable: 20000
   output:
-    irpp: -1181
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €
+    impot_revenu_restant_a_payer: -1181
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 50 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -142,8 +142,8 @@
   input:
     retraite_imposable: 50000
   output:
-    irpp: -8336
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €
+    impot_revenu_restant_a_payer: -8336
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 150 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -153,9 +153,9 @@
   input:
     retraite_imposable: 150000
   output:
-    irpp: -46642
+    impot_revenu_restant_a_payer: -46642
 
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 20 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -165,8 +165,8 @@
   input:
     retraite_imposable: 20000
   output:
-    irpp: -1181
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €
+    impot_revenu_restant_a_payer: -1181
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 50 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -176,8 +176,8 @@
   input:
     retraite_imposable: 50000
   output:
-    irpp: -8336
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €
+    impot_revenu_restant_a_payer: -8336
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 150 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -187,9 +187,9 @@
   input:
     retraite_imposable: 150000
   output:
-    irpp: -46642
+    impot_revenu_restant_a_payer: -46642
 
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 20 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -199,8 +199,8 @@
   input:
     retraite_imposable: 20000
   output:
-    irpp: -1170
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €
+    impot_revenu_restant_a_payer: -1170
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 50 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -210,8 +210,8 @@
   input:
     retraite_imposable: 50000
   output:
-    irpp: -8283
-- name: IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €
+    impot_revenu_restant_a_payer: -8283
+- name: impot_revenu_restant_a_payer - Retraité célibataire ayant une pension (1AS) de 150 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -221,770 +221,734 @@
   input:
     retraite_imposable: 150000
   output:
-    irpp: -46523
+    impot_revenu_restant_a_payer: -46523
 
 
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 18 % (2DA) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2da: 20000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €
+    impots_directs: -3600
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 18 % (2DA) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2da: 50000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €
+    impots_directs: -9000
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 18 % (2DA) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2da: 150000
   output:
-    irpp: 0
+    impots_directs: -27000
 
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 19 % (2DA) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2da: 20000
   output:
-    irpp: 0
+    impots_directs: -3800
 
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 19 % (2DA) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2da: 50000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €
+    impots_directs: -9500
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 19 % (2DA) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2da: 150000
   output:
-    irpp: 0
+    impots_directs: -28500
 
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2da: 20000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €
+    impots_directs: -4200
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2da: 50000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €
+    impots_directs: -10500
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2da: 150000
   output:
-    irpp: 0
+    impots_directs: -31500
 
-- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
-  description: 'TODO: Check with Mahdi wether 2DA exists in 2013.'
-  period: 2013
-  absolute_error_margin: 0.5
-  input:
-    f2da: 20000
-  output:
-    irpp: 0
-
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2dc: 20000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2dc: 50000
   output:
-    irpp: -2976
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €
+    impot_revenu_restant_a_payer: -2976
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2dc: 150000
   output:
-    irpp: -22917
+    impot_revenu_restant_a_payer: -22917
 
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2dc: 20000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2dc: 50000
   output:
-    irpp: -2976
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €
+    impot_revenu_restant_a_payer: -2976
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2dc: 150000
   output:
-    irpp: -22917
+    impot_revenu_restant_a_payer: -22917
 
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2dc: 20000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2dc: 50000
   output:
-    irpp: -3434
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €
+    impot_revenu_restant_a_payer: -3434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2dc: 150000
   output:
-    irpp: -23542
+    impot_revenu_restant_a_payer: -23542
 
-- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
   description: 'TODO: Check with Mahdi.'
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2dc: 20000
   output:
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
 
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2dh: 20000
   output:
-    irpp: 345
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
+    prelevement_forfaitaire_liberatoire: -1500  # -20000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement du pfl à restituer)
+    impots_directs: -1155  # pfl net d'abattement, impôt réellement payé
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2dh: 50000
   output:
-    irpp: 345
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
+    prelevement_forfaitaire_liberatoire: -3750  # -50000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement du pfl à restituer)
+    impots_directs: -3405  # pfl net d'abattement, impôt réellement payé
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2dh: 150000
   output:
-    irpp: 345
+    prelevement_forfaitaire_liberatoire: -11250  # -150000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -10905  # pfl net d'abattement, impôt réellement payé
 
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2dh: 20000
   output:
-    irpp: 345
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
+    prelevement_forfaitaire_liberatoire: -1500  # -20000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -1155  # pfl net d'abattement, impôt réellement payé
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2dh: 50000
   output:
-    irpp: 345
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
+    prelevement_forfaitaire_liberatoire: -3750  # -50000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -3405  # pfl net d'abattement, impôt réellement payé
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2dh: 150000
   output:
-    irpp: 345
+    prelevement_forfaitaire_liberatoire: -11250  # -150000*0.075
+    impot_revenu_restant_a_payer: 345 # 4600*0.075 (abattement)
+    impots_directs: -10905  # pfl net d'abattement, impôt réellement payé
 
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2dh: 20000
   output:
-    irpp: 345
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
+    prelevement_forfaitaire_liberatoire: -1500  # -20000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -1155  # pfl net d'abattement, impôt réellement payé
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2dh: 50000
   output:
-    irpp: 345
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
+    prelevement_forfaitaire_liberatoire: -3750  # -50000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -3405  # pfl net d'abattement, impôt réellement payé
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2dh: 150000
   output:
-    irpp: 345
+    prelevement_forfaitaire_liberatoire: -11250  # -150000*0.075
+    impot_revenu_restant_a_payer: 345  # 4600*0.075 (abattement)
+    impots_directs: -10905  # pfl net d'abattement, impôt réellement payé
 
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2dh: 20000
   output:
-    irpp: 345
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
+    impot_revenu_restant_a_payer: 345
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2dh: 50000
   output:
-    irpp: 345
-- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
+    impot_revenu_restant_a_payer: 345
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2dh: 150000
   output:
-    irpp: 345
+    impot_revenu_restant_a_payer: 345
 
 
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2tr: 20000
   output:
-    irpp: -1461
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
+    impot_revenu_restant_a_payer: -1461
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2tr: 50000
   output:
-    irpp: -9434
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
+    impot_revenu_restant_a_payer: -9434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2tr: 150000
   output:
-    irpp: -48142
+    impot_revenu_restant_a_payer: -48142
 
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2tr: 20000
   output:
-    irpp: -1461
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
+    impot_revenu_restant_a_payer: -1461
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2tr: 50000
   output:
-    irpp: -9434
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
+    impot_revenu_restant_a_payer: -9434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2tr: 150000
   output:
-    irpp: -48142
+    impot_revenu_restant_a_payer: -48142
 
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2tr: 20000
   output:
-    irpp: -1461
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
+    impot_revenu_restant_a_payer: -1461
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2tr: 50000
   output:
-    irpp: -9434
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
+    impot_revenu_restant_a_payer: -9434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2tr: 150000
   output:
-    irpp: -48142
+    impot_revenu_restant_a_payer: -48142
 
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2tr: 20000
   output:
-    irpp: -1450
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
+    impot_revenu_restant_a_payer: -1450
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2tr: 50000
   output:
-    irpp: -9389
-- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
+    impot_revenu_restant_a_payer: -9389
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2tr: 150000
   output:
-    irpp: -48036
+    impot_revenu_restant_a_payer: -48036
 
 
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2ts: 20000
   output:
-    irpp: -1461
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
+    impot_revenu_restant_a_payer: -1461
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2ts: 50000
   output:
-    irpp: -9434
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
+    impot_revenu_restant_a_payer: -9434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f2ts: 150000
   output:
-    irpp: -48142
+    impot_revenu_restant_a_payer: -48142
 
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2ts: 20000
   output:
-    irpp: -1461
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
+    impot_revenu_restant_a_payer: -1461
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2ts: 50000
   output:
-    irpp: -9434
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
+    impot_revenu_restant_a_payer: -9434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f2ts: 150000
   output:
-    irpp: -48142
+    impot_revenu_restant_a_payer: -48142
 
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2ts: 20000
   output:
-    irpp: -1461
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
+    impot_revenu_restant_a_payer: -1461
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2ts: 50000
   output:
-    irpp: -9434
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
+    impot_revenu_restant_a_payer: -9434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f2ts: 150000
   output:
-    irpp: -48142
+    impot_revenu_restant_a_payer: -48142
 
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2ts: 20000
   output:
-    irpp: -1450
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
+    impot_revenu_restant_a_payer: -1450
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2ts: 50000
   output:
-    irpp: -9389
-- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
+    impot_revenu_restant_a_payer: -9389
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f2ts: 150000
   output:
-    irpp: -48036
+    impot_revenu_restant_a_payer: -48036
 
-
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
-  period: 2010
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 20000
-  output:
-    irpp: -3600
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
-  period: 2010
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 50000
-  output:
-    irpp: -9000
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
-  period: 2010
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 150000
-  output:
-    irpp: -27000
-
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
-  period: 2011
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 20000
-  output:
-    irpp: -3800
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
-  period: 2011
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 50000
-  output:
-    irpp: -9500
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
-  period: 2011
-  absolute_error_margin: 0.5
-  input:
-    f3vg: 150000
-  output:
-    irpp: -28500
-
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f3vg: 20000
   output:
-    irpp: -4800
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
+    impot_revenu_restant_a_payer: -4800
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f3vg: 50000
   output:
-    irpp: -12000
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
+    impot_revenu_restant_a_payer: -12000
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f3vg: 150000
   output:
-    irpp: -36000
+    impot_revenu_restant_a_payer: -36000
 
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f3vg: 20000
   output:
-    irpp: -1450
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
+    impot_revenu_restant_a_payer: -1450
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f3vg: 50000
   output:
-    irpp: -9389
-- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
+    impot_revenu_restant_a_payer: -9389
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f3vg: 150000
   output:
-    irpp: -48036
+    impot_revenu_restant_a_payer: -48036
 
 
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
   description: 'TODO: Test value for 2010.'
   period: 2010
   absolute_error_margin: 0.5
   input:
     f3vz: 20000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
   description: 'TODO: Test value for 2010.'
   period: 2010
   absolute_error_margin: 0.5
   input:
     f3vz: 50000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
   description: 'TODO: Test value for 2010.'
   period: 2010
   absolute_error_margin: 0.5
   input:
     f3vz: 150000
   output:
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
 
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f3vz: 20000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f3vz: 50000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f3vz: 150000
   output:
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
 
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f3vz: 20000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f3vz: 50000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f3vz: 150000
   output:
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
 
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f3vz: 20000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f3vz: 50000
   output:
-    irpp: 0
-- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f3vz: 150000
   output:
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
 
 
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f4ba: 20000
   output:
-    irpp: -1461
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
+    impot_revenu_restant_a_payer: -1461
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f4ba: 50000
   output:
-    irpp: -9434
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
+    impot_revenu_restant_a_payer: -9434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input:
     f4ba: 150000
   output:
-    irpp: -48142
+    impot_revenu_restant_a_payer: -48142
 
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f4ba: 20000
   output:
-    irpp: -1461
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
+    impot_revenu_restant_a_payer: -1461
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f4ba: 50000
   output:
-    irpp: -9434
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
+    impot_revenu_restant_a_payer: -9434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     f4ba: 150000
   output:
-    irpp: -48142
+    impot_revenu_restant_a_payer: -48142
 
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f4ba: 20000
   output:
-    irpp: -1461
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
+    impot_revenu_restant_a_payer: -1461
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f4ba: 50000
   output:
-    irpp: -9434
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
+    impot_revenu_restant_a_payer: -9434
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input:
     f4ba: 150000
   output:
-    irpp: -48142
+    impot_revenu_restant_a_payer: -48142
 
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f4ba: 20000
   output:
-    irpp: -1450
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
+    impot_revenu_restant_a_payer: -1450
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f4ba: 50000
   output:
-    irpp: -9389
-- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
+    impot_revenu_restant_a_payer: -9389
+- name: impot_revenu_restant_a_payer - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input:
     f4ba: 150000
   output:
-    irpp: -48036
+    impot_revenu_restant_a_payer: -48036
 
-- name: IRPP - Célibataire ayant des   Revenu net imposable de 12 000 € (teste la décote)
+- name: impot_revenu_restant_a_payer - Célibataire ayant des   Revenu net imposable de 12 000 € (teste la décote)
   period: 2013
   absolute_error_margin: 0.9
   input:
     salaire_imposable: 12000
   output:
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
     decote_gain_fiscal: 263
 
-- name: IRPP - Célibataire ayant des   Revenu net imposable de 14 000 € (teste la décote)
+- name: impot_revenu_restant_a_payer - Célibataire ayant des   Revenu net imposable de 14 000 € (teste la décote)
   period: 2013
   absolute_error_margin: 0.9
   input:
     salaire_imposable: 14000
   output:
     reduction_impot_exceptionnelle: 350
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
     decote: 301
     ir_plaf_qf: 414
     decote_gain_fiscal: 301
 
-- name: IRPP - Célibataire ayant des   Revenu net imposable de 16 000 € (teste la décote)
+- name: impot_revenu_restant_a_payer - Célibataire ayant des   Revenu net imposable de 16 000 € (teste la décote)
   period: 2013
   absolute_error_margin: 0.1
   input:
     salaire_imposable: 16000
   output:
-    irpp: -491
+    impot_revenu_restant_a_payer: -491
     decote_gain_fiscal: 175
 
-- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 16000 € (teste la décote)"
+- name: "impot_revenu_restant_a_payer - Célibataire ayant des \tRevenu net imposable de 16000 € (teste la décote)"
   period: 2014
   absolute_error_margin: 0.1
   input:
     salaire_imposable: 16000
   output:
-    irpp: -183
+    impot_revenu_restant_a_payer: -183
     decote: 476
-- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 150000 €"
+- name: "impot_revenu_restant_a_payer - Célibataire ayant des \tRevenu net imposable de 150000 €"
   period: 2014
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 150000
   output:
-    irpp: -42984
+    impot_revenu_restant_a_payer: -42984
     decote_gain_fiscal: 0
-- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 15000 € (teste la décote)"
+- name: "impot_revenu_restant_a_payer - Célibataire ayant des \tRevenu net imposable de 15000 € (teste la décote)"
   period: 2014
   absolute_error_margin: 0.1
   input:
     salaire_imposable: 15000
   output:
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
     decote_gain_fiscal: 533
-- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 18000 € (teste la décote)"
+- name: "impot_revenu_restant_a_payer - Célibataire ayant des \tRevenu net imposable de 18000 € (teste la décote)"
   period: 2014
   absolute_error_margin: 0.1
   input:
     salaire_imposable: 18000
   output:
-    irpp: -687
+    impot_revenu_restant_a_payer: -687
     decote_gain_fiscal: 224
-- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 10000 € (teste la décote)"
+- name: "impot_revenu_restant_a_payer - Célibataire ayant des \tRevenu net imposable de 10000 € (teste la décote)"
   period: 2014
   absolute_error_margin: 0.9
   input:
     salaire_imposable: 10000
   output:
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
     decote_gain_fiscal: 0
 
 - period: '2014'
   absolute_error_margin: 0.5
-  name: IRPP Couple, salaire_net = [30000, 0]
+  name: impot_revenu_restant_a_payer Couple, salaire_net = [30000, 0]
   input:
     foyer_fiscal:
       declarants: [1, 2]
@@ -1013,7 +977,7 @@
         - 2
   output:
     decote_gain_fiscal: 803
-    irpp: -264
+    impot_revenu_restant_a_payer: -264
 
 - name: Test de la CSG déductible sur revenus du patrimoine (2017)
   period: '2017'
@@ -1023,4 +987,4 @@
     f2dc: 50000
     f2bh: 50000
   output:
-    irpp: -2211
+    impot_revenu_restant_a_payer: -2211

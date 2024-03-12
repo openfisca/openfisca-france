@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   last_value_still_valid_on: "2022-10-11"
-  unit: currency
+  unit: currency_next_year
   reference:
     2021-01-01:
       title: LOI n° 2020-1721 du 29 décembre 2020 de finances pour 2021 (1)

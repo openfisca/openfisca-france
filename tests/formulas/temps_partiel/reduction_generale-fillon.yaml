@@ -5,7 +5,7 @@
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
     heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
-    salaire_de_base: 1257.4 # ~ équivalent SMIC
+    salaire_de_base: 1257.4 # ~ équivalent Smic
     contrat_de_travail: temps_partiel
   output:
     allegement_fillon: >

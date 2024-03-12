@@ -5,4 +5,4 @@ values:
   2008-01-01:
     value: 400
 metadata:
-  unit: currency
+  unit: currency_next_year

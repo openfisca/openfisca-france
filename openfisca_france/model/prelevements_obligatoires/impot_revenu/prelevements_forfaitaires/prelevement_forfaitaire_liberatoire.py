@@ -87,9 +87,9 @@ class prelevement_forfaitaire_liberatoire(Variable):
               A priori, cette ancienne formule n'est pas entièrement correcte (application d'un taux unique à la case 2EE par exemple) et mériterait d'être corrigée.
           (2) Cette variable ne comprend pas la taxation forfaitaire à 24% associée
               à la base f2fa, qui est prise en compte via la variable tax_rvcm_forfaitaire,
-              qui est incluse dans irpp. Cette taxaiton à 24% est certes forfaitaire,
-              mais apparemment pas à la source. Elle serait calculée au moment de l'irpp,
-              d'où le fait de l'inclure dans la variable IRPP.
+              qui est incluse dans impot_revenu_restant_a_payer. Cette taxaiton à 24% est certes forfaitaire,
+              mais apparemment pas à la source. Elle serait calculée au moment de l'impot_revenu_restant_a_payer,
+              d'où le fait de l'inclure dans la variable impot_revenu_restant_a_payer.
         '''
 
         assurance_vie_pl_non_anonyme_plus8ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_plus8ans_depuis1990', period)

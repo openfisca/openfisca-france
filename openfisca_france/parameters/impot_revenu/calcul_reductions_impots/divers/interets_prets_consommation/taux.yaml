@@ -14,6 +14,6 @@ metadata:
   short_label: Taux
   ipp_csv_id: pret_conso
   unit: /1
-documentation: |-
-  Intérêt des prêts à la consommation
-  Loi 2004-804 du 9 août 2004 - art. 2 JORF 11 août 2004 / Décret 2004-1000 du 21 septembre 2004 - Art. 2
+  notes:
+    1996-01-01:
+    - title: tx_formachef n'est à appliquer que sur l'excédent des frais de formation par rapport à ceux de l'année précédente

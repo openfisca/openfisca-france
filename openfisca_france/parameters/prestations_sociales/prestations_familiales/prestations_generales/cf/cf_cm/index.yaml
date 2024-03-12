@@ -1,5 +1,6 @@
 description: Conditions générales et montants du complément familial (CF)
 metadata:
+  documentation_start: true
   short_label: Conditions générales et montants
   label_en: "Family complement (CF): General conditions and amounts"
   order:

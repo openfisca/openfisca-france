@@ -8,5 +8,5 @@
     b1ab: 2500000
     b2nf: 7000
   output:
-    irpp: -7889
+    impot_revenu_restant_a_payer: -7889
     isf_inv_pme: 3500

@@ -35,7 +35,7 @@
   output:
     frais_de_comptabilite: 500.0
     iai: 24918.0
-    irpp: -24918.0
+    impot_revenu_restant_a_payer: -24918.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 95000.0
@@ -79,7 +79,7 @@
   output:
     frais_de_comptabilite: 500.0
     iai: 24905.0
-    irpp: -24905.0
+    impot_revenu_restant_a_payer: -24905.0
     nbptr: 1.0
     rbg: 95000.0
     reductions: 500.0
@@ -122,7 +122,7 @@
   output:
     frais_de_comptabilite: 500.0
     iai: 24891.0
-    irpp: -24891.0
+    impot_revenu_restant_a_payer: -24891.0
     nbptr: 1.0
     rbg: 95000.0
     reductions: 500.0
@@ -165,7 +165,7 @@
   output:
     frais_de_comptabilite: 500.0
     iai: 24755.0
-    irpp: -24755.0
+    impot_revenu_restant_a_payer: -24755.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 95000.0

@@ -1,8 +1,8 @@
-description: Taux de majoration selon la taille du foyer de l'Aide exceptionnelle de fin d'année (AEFA)
+description: Majoration du montant de la prime selon la taille du foyer de l'aide exceptionnelle de fin d'année (AEFA)
 metadata:
-  short_label: Taux de majoration
+  short_label: Majoration du montant selon la taille du foyer
   label_en: "Exceptional end-of-year benefit (AEFA): amount"
   order:
   - tx_2p
-  - tx_3pac
   - tx_supp
+  - tx_3pac

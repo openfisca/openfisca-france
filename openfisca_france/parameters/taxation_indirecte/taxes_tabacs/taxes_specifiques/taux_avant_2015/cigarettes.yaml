@@ -1,4 +1,4 @@
-description: Taux spécifique des taxes sur le tabac - Cigarettes
+description: Taux spécifique de la taxe sur les cigarettes
 values:
   1979-01-01:
     value: 0.05
@@ -13,6 +13,7 @@ values:
   2013-07-01:
     value: 0.15
 metadata:
+  short_label: Cigarettes
   ipp_csv_id: tx_spec_cigarettes
   unit: /1
   reference:

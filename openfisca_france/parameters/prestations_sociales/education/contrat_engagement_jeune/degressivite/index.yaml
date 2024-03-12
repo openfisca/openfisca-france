@@ -1,0 +1,6 @@
+description: Dégressivité - Contrat d'engagement jeune
+metadata:
+  short_label: Dégressivité
+  order:
+  - abattement_deductibilite_partielle
+  - part_smic_deductibilite_partielle

@@ -8,6 +8,6 @@ metadata:
   - tx_red
   - tx_normal
 documentation: |-
-  Le taux réduit sous 2,5 SMIC est codé dans reductions_cotisations_sociales.alleg_gen.
+  Le taux réduit sous 2,5 Smic est codé dans reductions_cotisations_sociales.alleg_gen.
   Au lieu de calculer le taux réduit, on calcule la cotisation normale et on déduit cet allègement.
   Les taux normaux et réduits ici sont issus de l'harmonisation avec l'IPP

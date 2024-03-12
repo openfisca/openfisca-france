@@ -1,6 +1,7 @@
 description: Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
-  short_label: CMG
+  documentation_start: true
+  short_label: Complément de libre choix de mode de garde (CMG)
   label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
   order:
   - remuneration_brute_maximale_assistante_maternelle
@@ -8,3 +9,5 @@ metadata:
   - assistante_mat_asso_entreprise_microcreche
   - garde_domicile
   - majoration_plafond_une_personne_isolee
+  - limite_age
+documentation: Depuis le 01/06/2012 (cf. Décret 2012-666 du 4 mai 2012 - art. 2), la prise en charge partielle de la rémunération par l'organisme débiteur des prestations familiales est fixée au maximum à 85 % du salaire net servi et des indemnités mentionnées à l'article L. 423-4 du code de l'action sociale et des familles.

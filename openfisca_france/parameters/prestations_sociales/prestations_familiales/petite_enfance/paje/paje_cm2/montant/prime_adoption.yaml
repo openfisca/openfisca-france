@@ -5,8 +5,8 @@ values:
   2005-08-01:
     value: 4.595
 metadata:
-  short_label: Montant prime adoption
-  label_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
+  short_label: Prime adoption
+  label_en: Adoption premium amount
   ipp_csv_id: tx_paje_adopt
   unit: BMAF
   reference:
@@ -28,7 +28,4 @@ metadata:
     - title: La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi).
     2005-08-01:
     - title: "Loi : Le montant de la prime devient majoré en cas d'adoption.; Décret : précise le nouveau taux pour la prime à l'adoption.; Taux toujours non modifiés en 2016"
-documentation: |-
-  Notes :
-  Prime versée "avant la fin du dernier jour du mois civil suivant le sixième mois de la grossesse" (cf. art. D531-2 du CSS)
-  A partir du 1er avril 2014, les montants de prime à la naissance et de prime à l'adoption sont gelés à leur montant calculé à partir de la BMAF en vigueur au 1er avril 2013. Cf. III. de l'art. 74 de la loi 2013-1203 du 23 décembre 2013 de financement de la sécurité sociale pour 2014. Ce paragraphe III. est abrogé par la loi 2017-1836 du 30/12/2017 avec application de l'abrogation à compter du 1er avril 2018.
+documentation: La prime est versée "au plus tard le deuxième mois qui suit l'arrivée des enfants au foyer des adoptants" (cf. art. D531-2 du CSS)

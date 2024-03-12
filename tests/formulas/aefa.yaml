@@ -1,0 +1,115 @@
+- name: Prime de noël - AEFA
+  description: Montant personne seule
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    nb_parents: 1
+  output:
+    aefa: 152.45
+
+- name: Prime de noël - AEFA
+  description: Montant un parent avec un enfant
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+    individus:
+      parent1: {}
+      enfant1:
+        age: 8
+  output:
+    aefa: 228.67 # 152.45 * (1 + .5)
+
+- name: Prime de noël - AEFA
+  description: Montant un parent avec deux enfants
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1, enfant2]
+    individus:
+      parent1: {}
+      enfant1:
+        age: 8
+      enfant2:
+        age: 9
+  output:
+    aefa: 274.41 # 152.45 * (1 + .5 + .3)
+
+
+- name: Prime de noël - AEFA
+  description: Montant un parent avec trois enfants
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1: {}
+      enfant1:
+        age: 8
+      enfant2:
+        age: 9
+      enfant3:
+        age: 10
+  output:
+    aefa: 335.39  # 152.45 * (1 + .5 + .3 + .4)
+
+
+- name: Prime de noël - AEFA
+  description: Montant couple
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1: {}
+      parent2: {}
+  output:
+    aefa: 152.45 * (1 + .5)
+
+
+- name: Prime de noël - AEFA
+  description: Montant couple avec deux enfants
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    individus:
+      parent1: {}
+      parent2: {}
+      enfant1:
+        age: 8
+      enfant2:
+        age: 9
+  output:
+    aefa: 320.14  # 152.45 * (1 + .5 + 2 * .3)
+
+
+- name: Prime de noël - AEFA
+  description: Montant couple avec trois enfants
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+      asile_demandeur: true
+    individus:
+      parent1: {}
+      parent2: {}
+      enfant1:
+        age: 8
+      enfant2:
+        age: 9
+      enfant3:
+        age: 10
+  output:
+    aefa: 381.12  # 152.45 * (1 + .5 + 2 * .3 + .4)

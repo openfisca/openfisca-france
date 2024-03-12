@@ -1,16 +1,16 @@
 description: Plafonds de ressources pour un revenu par enfant supplémentaire (brut imposable) entre 1978 et 1986 du Complément familial (CF)
 values:
   1978-01-01:
-    value: 0.20002258866
+    value: 0.20002258866049244
   1978-07-01:
-    value: 0.200003997282
+    value: 0.20000399728184834
   1983-01-01:
-    value: 0.205715137205
+    value: 0.20571513720455745
   1986-07-01:
-    value: 0.199994314305
+    value: 0.1999943143052081
 metadata:
   short_label: Enfant supplémentaire
-  label_en: "Family complement (CF): Thresholds for means-testing"
+  label_en: Additional child
   ipp_csv_id: plaf_suppenf_monoact
   unit: /1
   reference:
@@ -32,6 +32,3 @@ metadata:
     1978-07-01: "1978-07-12"
     1983-01-01: "1982-12-30"
     1986-07-01: "1985-05-04"
-documentation: |-
-  Notes :
-  Le brut imposable est calculé à partir du net imposable dans le cas de salariés n'ayant d'autres sources de revenus que leurs salaires et ne bénéficiant pas d'un abattement supplémentaire pour frais professionnels, ie abattements de 10% puis de 20% uniquement

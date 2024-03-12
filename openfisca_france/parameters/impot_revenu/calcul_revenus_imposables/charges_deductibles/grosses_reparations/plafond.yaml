@@ -10,7 +10,7 @@ metadata:
   short_label: Plafond
   last_value_still_valid_on: "2022-08-11"
   ipp_csv_id: plaf_grossedepense
-  unit: currency
+  unit: currency_next_year
   reference:
     2009-01-01:
     - href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/

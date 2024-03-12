@@ -1,4 +1,4 @@
-description: Montant pour les couples avec2 enfants ou plus, du forfait logement de l'Allocation parent isolé (API)
+description: Montant pour les couples avec2 enfants ou plus, du forfait logement de l'allocation parent isolé (API)
 values:
   1976-10-01:
     value: null
@@ -40,6 +40,3 @@ metadata:
     - title: API créée par la loi 76-617, en insérant un chapitre V-3 au CSS; Même évaluation de l'avantage en nature que pour les cotisations sociales
     2007-02-01:
     - title: "Loi : Calcul du forfait passe en % du RMI; Décret : dit que le forfait logement de l'API suit maintenant la même règle que le RMI; Même forfait logement que le RMI : cf. feuille \"RMI_FL\" à partir du 01/02/2007"
-documentation: |-
-  Notes :
-  (1) A partir de février 2007 : en % du RMI pour 1 personne. Jusqu'en janvier 2007 inclus : en % de la BMAF.

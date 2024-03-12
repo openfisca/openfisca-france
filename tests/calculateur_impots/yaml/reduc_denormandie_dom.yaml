@@ -20,7 +20,7 @@
   output:
     duflot_pinel_denormandie_om: 4833.0
     iai: 2811.0
-    irpp: -2811.0
+    impot_revenu_restant_a_payer: -2811.0
     nbptr: 1.0
     rbg: 45000.0
     reductions: 4833.0
@@ -49,7 +49,7 @@
   output:
     duflot_pinel_denormandie_om: 7667.0
     iai: 0.0
-    irpp: -0.0
+    impot_revenu_restant_a_payer: -0.0
     nbptr: 1.0
     rbg: 45000.0
     reductions: 7644.0
@@ -79,7 +79,7 @@
   output:
     duflot_pinel_denormandie_om: 5750.0
     iai: 10407.0
-    irpp: -10407.0
+    impot_revenu_restant_a_payer: -10407.0
     nbptr: 1.0
     rbg: 81000.0
     reductions: 8750.0
@@ -109,7 +109,7 @@
   output:
     duflot_pinel_denormandie_om: 11500.0
     iai: 7657.0
-    irpp: -7657.0
+    impot_revenu_restant_a_payer: -7657.0
     nbptr: 1.0
     rbg: 81000.0
     reductions: 11500.0
@@ -140,7 +140,7 @@
   output:
     duflot_pinel_denormandie_om: 9666.0
     iai: 9491.0
-    irpp: -9491.0
+    impot_revenu_restant_a_payer: -9491.0
     nbptr: 1.0
     rbg: 81000.0
     reductions: 9666.0

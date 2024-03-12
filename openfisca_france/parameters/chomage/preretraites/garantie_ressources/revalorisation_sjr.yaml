@@ -1,0 +1,217 @@
+description: Revalorisation du salaire journalier de référence de la garantie de ressources pour les personnes en préretraite
+values:
+  1972-01-31:
+    value: null
+  1972-07-03:
+    value: 0.06
+  1972-11-06:
+    value: null
+  1973-01-01:
+    value: 0.06
+  1973-02-01:
+    value: null
+  1973-07-02:
+    value: 0.06
+  1973-12-31:
+    value: 0.08
+  1974-01-14:
+    value: null
+  1974-07-01:
+    value: 0.1
+  1974-12-30:
+    value: 0.07
+  1975-01-13:
+    value: null
+  1975-06-02:
+    value: 0.06
+  1975-10-06:
+    value: 0.07
+  1976-02-23:
+    value: null
+  1976-04-05:
+    value: 0.06
+  1976-10-04:
+    value: 0.07
+  1977-04-04:
+    value: 0.064
+  1977-10-03:
+    value: 0.056
+  1978-02-20:
+    value: null
+  1978-04-03:
+    value: 0.061
+  1978-10-02:
+    value: 0.074
+  1979-04-02:
+    value: 0.05
+  1979-07-01:
+    value: null
+  1979-10-01:
+    value: 0.062
+  1980-04-01:
+    value: 0.0713
+  1980-10-01:
+    value: 0.0824
+  1981-04-01:
+    value: 0.0664
+  1981-07-01:
+    value: null
+  1981-10-01:
+    value: 0.0743
+  1982-04-01:
+    value: 0.0831
+  1982-11-01:
+    value: 0.016
+  1983-04-01:
+    value: 0.04
+  1984-10-01:
+    value: 0.02
+  1985-07-01:
+    value: 0.023
+  1986-01-01:
+    value: 0.018
+  1986-07-01:
+    value: 0.005
+  1987-01-01:
+    value: 0.012
+  1987-07-01:
+    value: 0.0175
+  1988-01-01:
+    value: 0.015
+  1988-07-01:
+    value: 0.0165
+  1989-01-01:
+    value: 0.013
+  1989-07-01:
+    value: 0.021
+  1990-01-01:
+    value: 0.016
+  1990-07-01:
+    value: 0.015
+  1991-01-01:
+    value: 0.0185
+  1991-07-01:
+    value: 0.0125
+  1992-01-01:
+    value: 0.015
+  1992-07-01:
+    value: 0.016
+  1993-01-01:
+    value: 0.012
+  1994-07-01:
+    value: 0.08
+  1995-04-01:
+    value: 0.01
+  1996-01-01:
+    value: 0.015
+  1997-01-01:
+    value: 0.013
+  1998-01-01:
+    value: 0.0135
+  1999-01-01:
+    value: 0.01
+  2000-01-01:
+    value: null
+metadata:
+  short_label: Revalorisation SJR
+  label_en: Minimum income guarantee (1972-1999)
+  ipp_csv_id: sr_gr
+  unit: /1
+  reference:
+    1972-01-31:
+      title: Accord du 27/03/1972
+    1972-07-03:
+      title: Circulaire 72-19 - décision du 20/06/ 1972
+    1973-01-01:
+      title: Circulaire 72-35 - décision du 28/11/1972
+    1973-07-02:
+      title: Circulaire 73-16 - décision du 28/06/1973
+    1973-12-31:
+      title: Circulaire 73-30 - décision du 04/12/1973
+    1974-07-01:
+      title: Circulaire 74-11 - décision du 03/07/1974
+    1974-12-30:
+      title: Circulaire 74-31 - décision du 23/12/1974
+    1975-06-02:
+      title: Circulaire 75-24 - décision du 02/06/1975
+    1975-10-06:
+      title: Circulaire 75-36 - décision du 23/09/1975
+    1976-04-05:
+      title: Circulaire 76-06 - décision du 25/03/1976
+    1976-10-04:
+      title: Circulaire 76-20 - décision du 21/09/1976
+    1977-04-04:
+      title: Circulaire 77-14 - décision du 13/04/1977
+    1977-10-03:
+      title: Circulaire 77-28 - décision du 23/09/1977
+    1978-04-03:
+      title: Circulaire 78-14 - décision du 21/03/1978
+    1978-10-02:
+      title: Circulaire 78-36 - décision du 02/10/1978
+    1979-04-02:
+      title: Circulaire 79-15 - décision du 29/03/1979
+    1979-07-01:
+      title: Réglement annexé à la Convention du 27/03/1979
+    1979-10-01:
+      title: Circulaire 79-36 -décision du 21/09/1979
+    1980-04-01:
+      title: Circulaire 80-17 -décision du 27/03/1980
+    1980-10-01:
+      title: Circulaire 80-40 -décision du 09/09/1980
+    1981-04-01:
+      title: Circulaire 81-21 -décision du 26/03/1981
+    1981-07-01:
+      title: Circulaire 81-38 -décision du 01/07/1981
+    1981-10-01:
+      title: Circulaire 81-45 - décision du 29/09/1981
+    1982-04-01:
+      title: Circulaire 82-23 -décision du 02/04/1982
+    1982-11-01:
+      title: Décret 82-991 du 24/11/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701672&categorieLien=id
+    1983-04-01:
+      title: Circulaire 83-21 -décision du 25/04/1983
+    1984-10-01:
+    - title: Circulaire 84-12 -décision ASF du 18/04/1984
+    - title: Dir. 35-85 -décision ASF du 22/10/1984
+    1985-07-01:
+      title: Dir. 75-85 -décision ASF du 21/06/1984
+    1986-01-01:
+      title: Dir. 28-86 -décision ASF du 10/12/1985
+    1986-07-01:
+      title: Dir. 72-86 -décision ASF du 20/06/1986
+    1987-01-01:
+      title: Dir. 34-87 -décision ASF du 09/12/1986
+    1987-07-01:
+      title: Dir. 59-87 -décision ASF du 11/06/1987
+    1988-01-01:
+      title: Dir. 59-87 -décision ASF de 1987
+    1988-07-01:
+      title: Dir. 64-88 -décision ASF du 07/06/1988
+    1989-01-01:
+      title: Dir. 42-89 - décision ASF du 02/12/1988
+    1989-07-01:
+      title: Dir. 61-89 -décision ASF du 06/06/1989
+    1990-01-01:
+      title: Dir. 23-90 -décision ASF du 23/11/1989
+    1990-07-01:
+      title: Dir. 23-90 -décision ASF du 07/06/1990
+    1991-01-01:
+      title: Dir. 23-91 - décision ASF du 05/12/1990
+    1991-07-01:
+      title: Dir. 23-91 – décision ASF du 10/06/1991
+    1992-01-01:
+      title: Dir. 11-92 -décision ASF du 10/12/1991
+    1992-07-01:
+      title: Dir. 29-92 -décision ASF du 05/06/1992
+    1993-01-01:
+      title: Dir. 20-93 -décision ASF du 08/12/1992
+    1994-07-01:
+      title: Dir. 24-94 -décision ASF du 08/06/1994
+    1995-04-01:
+      title: Dir. 25-95 -décision ASF du 01/03/1995
+  official_journal_date:
+    1982-11-01: "1982-11-25"
+  notes:
+    1999-01-01:
+    - title: Les individus ayant cessé leur activité à 50 ans (sidérurgie) atteignent 65 ans en 1999 (d’où la disparition du régime à cette date)

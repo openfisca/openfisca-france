@@ -1,4 +1,4 @@
-description: Boissons fermentées autres que vin et bière (€/hl)
+description: Taxe sur les boissons fermentées autres que vin et bière (€/hl)
 values:
   1982-01-01:
     value: 22
@@ -29,6 +29,7 @@ values:
   2021-01-01:
     value: 3.91
 metadata:
+  short_label: Boissons fermentées autres que vin et bière
   ipp_csv_id: taxe_boiss_fermen_sauf_vin_biere
   unit: currency
   reference:
@@ -75,4 +76,3 @@ metadata:
     2015-06-06: "2015-06-05"
     2017-01-01: "2016-12-31"
     2018-01-01: "2017-12-27"
-documentation: Données renseignées dans l''article 438 du code général des impôts'

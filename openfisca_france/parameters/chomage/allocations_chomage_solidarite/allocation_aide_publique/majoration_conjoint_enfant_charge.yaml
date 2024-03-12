@@ -22,7 +22,7 @@ values:
     value: 6.6
 metadata:
   short_label: Majoration
-  label_en: Public aid allowance (1967-1979)
+  label_en: Public aid allowance
   ipp_csv_id: aide_pu_maj
   unit: currency
   reference:
@@ -57,8 +57,3 @@ metadata:
     1976-02-23: "1976-03-10"
     1977-04-04: "1977-03-30"
     1978-02-20: "1978-02-26"
-documentation: |-
-  Allocation de solidarité versée sans limite de durée, mais les allocations et majorations sont réduites de 10% après 12 mois pour chaque année supplémentaire.
-  Sources:
-  Légifrance
-  Mémento social, Francis Lefebvre

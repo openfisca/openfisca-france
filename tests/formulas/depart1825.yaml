@@ -1,16 +1,32 @@
 - period: 2021-03
   input:
-    activite: [etudiant, etudiant, inactif, inactif, actif]
-    boursier: [true, false, true, true, true]
-    alternant: [false, false, true, false, false]
-    garantie_jeunes: [0, 0, 0, 1, 1]
-    age: [18, 18, 18, 18, 18]
+    activite: [etudiant, etudiant, inactif, inactif, actif, actif]
+    boursier: [true, false, true, true, true, true]
+    alternant: [false, false, true, false, false, false]
+    service_civique: [false, false, false, false, false, true]
+    garantie_jeunes: [0, 0, 0, 1, 1, 0]
+    age: [18, 18, 18, 18, 18, 18]
     nbptr:
-      2019: [ 1, 1.5, 1, 1, 1 ]
+      2019: [1, 1.5, 1, 1, 1, 1]
     rfr:
-      2019: [ 17280, 30000, 17280, 17280, 17280 ]
+      2019: [17280, 30000, 17280, 17280, 17280, 97280]
   output:
-    depart1825_eligibilite: [true, false, true, true, true]
+    depart1825_eligibilite: [true, false, true, true, true, true]
+
+- period: 2021-03
+  name: Personne en service civique il y a moins d'un mois
+  input:
+    service_civique:
+      2021-02: [true, false]
+      2021-01: [true, true]
+    age: [18, 18]
+    garantie_jeunes: [0, 0]
+    nbptr:
+      2019: [1, 1]
+    rfr:
+      2019: [97280, 97280]
+  output:
+    depart1825_eligibilite: [true, false]
 
 - period: 2021-03
   input:

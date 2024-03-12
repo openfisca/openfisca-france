@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   ipp_csv_id: plafond_Scellier
-  unit: currency
+  unit: currency_next_year
   reference:
     1984-01-01:
       title: Loi n° 84-1208 du 29 décembre 1984 (LF pour 1985), art. 82

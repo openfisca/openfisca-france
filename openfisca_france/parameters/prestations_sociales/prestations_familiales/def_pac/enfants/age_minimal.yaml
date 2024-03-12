@@ -3,4 +3,5 @@ values:
   2001-01-01:
     value: 0
 metadata:
+  short_label: Âge minimal
   unit: year

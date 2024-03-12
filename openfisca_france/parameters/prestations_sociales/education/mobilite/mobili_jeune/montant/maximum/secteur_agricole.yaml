@@ -1,0 +1,7 @@
+description: Montant maximum de l'aide mobili-jeune pour le secteur agricole
+values:
+  2022-06-01:
+    value: 300
+metadata:
+  short_label: Secteur agricole
+  unit: currency

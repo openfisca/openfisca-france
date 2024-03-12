@@ -286,9 +286,11 @@ values:
     value: 56.2323
   2022-07-01:
     value: 58.2004
+  2023-07-01:
+    value: 59.0734
 metadata:
   short_label: Point d'indice (€)
-  label_en: Index point of public sector (1970-2017)
+  label_en: Index point of public sector
   ipp_csv_id: pt_indice_euro
   unit: currency
   reference:
@@ -643,6 +645,9 @@ metadata:
     2022-07-01:
       title: Décret 2022-994 du 07/07/2022
       href: https://www.legifrance.gouv.fr/eli/decret/2022/7/7/TFPF2215443D/jo/texte
+    2023-07-01:
+      title: Décret n° 2023-519 du 28/06/2023
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047749222
   official_journal_date:
     1985-11-01: "1985-11-05"
     1987-03-01: "1987-02-20"
@@ -689,6 +694,7 @@ metadata:
     2016-07-01: "2016-05-26"
     2017-02-01: "2016-05-26"
     2022-07-01: "2022-07-08"
+    2023-07-01: "2023-06-29"
   notes:
     1990-01-01:
     - title: La date d'effet est bien le 1er janvier 1990

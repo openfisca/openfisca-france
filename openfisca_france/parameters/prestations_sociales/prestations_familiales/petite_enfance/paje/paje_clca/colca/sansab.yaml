@@ -1,6 +1,7 @@
-description: Taux de la prestation du Complément optionnel de libre choix d'activité (CLCA) pour les non bénéficiaires de l'allocation de base (enfant né ou adopté avant avril 2014) de la Prestation d'accueil du jeune enfant (PAJE)
+description: Taux de la prestation du Complément optionnel de libre choix d'activité (COLCA) pour les non bénéficiaires de l'allocation de base (enfant né ou adopté avant avril 2014) de la Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
     value: 2.0388
 metadata:
+  short_label: Taux
   unit: /1

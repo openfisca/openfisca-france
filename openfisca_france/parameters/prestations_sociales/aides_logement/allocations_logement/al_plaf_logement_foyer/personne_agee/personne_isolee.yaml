@@ -10,6 +10,8 @@ values:
     value: 206.4
   2022-07-01:
     value: 213.62
+  2023-10-01:
+    value: 221.10
 metadata:
   short_label: Personne isolée
   last_value_still_valid_on: "2022-09-28"
@@ -27,3 +29,8 @@ metadata:
     2022-07-01:
       title: Arrêté du 27/09/2019, art. 43
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000046206187/2022-07-01
+    2023-10-01:
+      title: Arrêté du 22/09/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048107807
+  official_journal_date:
+    2023-10-01: "2023-09-27"

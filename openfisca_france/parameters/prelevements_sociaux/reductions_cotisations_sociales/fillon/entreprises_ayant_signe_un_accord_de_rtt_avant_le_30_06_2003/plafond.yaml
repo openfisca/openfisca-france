@@ -1,4 +1,4 @@
-description: Plafond (en nombre de SMIC) des allégements Fillon ou allègements bas salaires (entreprises ayant signé un accord de RTT avant le 30/06/2003, depuis 2003) des cotisations de Sécurité sociale (SS)
+description: Plafond (en nombre de Smic) des allégements Fillon ou allègements bas salaires (entreprises ayant signé un accord de RTT avant le 30/06/2003, depuis 2003) des cotisations de Sécurité sociale (SS)
 values:
   2003-07-01:
     value: 1.7
@@ -11,7 +11,7 @@ metadata:
   last_value_still_valid_on: "2021-11-19"
   label_en: General SSC reductions, so called Fillon reductions (2003-2016)
   ipp_csv_id: plaf_trans_35
-  unit: SMIC
+  unit: smic_mensuel_brut
   reference:
     2003-07-01:
     - title: Loi 2003-47 du 17/01/2003, art. 9

@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Tranche 3
   label_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
-  unit: currency
+  unit: currency_next_year
   reference:
     1917-01-01:
       title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"

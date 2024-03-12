@@ -1,0 +1,57 @@
+description: Plancher des ressources (avant 2021) puis forfait des ressources (depuis 2021) prises en compte dans le calcul des aides au logement, pour les étudiants en location
+values:
+  2002-01-01:
+    value: 5411.62
+  2002-07-01:
+    value: 5500
+  2007-07-01:
+    value: 6900
+  2009-01-01:
+    value: 7100
+  2011-01-01:
+    value: 7200
+  2012-01-01:
+    value: 7300
+  2013-01-01:
+    value: 7500
+  2014-01-01:
+    value: 7600
+  2018-01-01:
+    value: 7700
+  2022-01-01:
+    value: 7800
+  2022-08-01:
+    value: 8100
+  2024-01-01:
+    value: 8400
+metadata:
+  short_label: Forfait de ressources pour les étudiants en location
+  last_value_still_valid_on: "2023-02-20"
+  unit: currency
+  reference:
+    2002-07-01:
+      title: Arrêté du 23-12-2002, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000001272987
+    2007-07-01:
+      title: Arrêté du 8 novembre 2007, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002082509
+    2018-01-01:
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036341227
+    2022-01-01:
+    - title: Arrêté du 20 décembre 2021, article 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572817/#JORFARTI000044572819
+    - title: Article R822-20 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419188
+    2022-08-01:
+    - title: Arrêté du 29 juillet 2022, article 1, 1°a
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046114992/#JORFARTI000046114998
+    - title: Article R822-20 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419188
+    - title: Arrêté du 27 septembre 2019, article 6
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046126949/2022-08-01
+    2024-01-01:
+      title: Arrêté du 15/12/2023 relatif au calcul des aides personnelles au logement pour l'année 2024, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048621292
+  official_journal_date:
+    2024-01-01: "2023-12-21"
+documentation: Plancher de ressources (avant 2021) puis forfait de ressources (depuis 2021) pour les étudiants (avant oct 2019, R.351-7-2 du CCH et art. 1 quater de l'arrêté du 3 juillet 1978 ; oct 2019 - dec 2020, art. 6 de l'arrêté du 27 sept 2019 et art. R822-21 du CCH ; depuis janv 2021, même arrêté et art. R822-20 du CCH

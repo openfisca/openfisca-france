@@ -1,7 +1,9 @@
-description: Conditions de ressources (1998) des Allocations Familiales (AF)
+description: Conditions de ressources des allocations familiales (AF)
 metadata:
-  short_label: Conditions de ressources (1998)
+  documentation_start: true
+  short_label: Conditions de ressources
   label_en: "Family allowances (AF): Thresholds for means-testing"
   order:
   - plafond_de_ressources
   - majoration_plafond
+documentation: "Définition biactifs : voir section idoine"

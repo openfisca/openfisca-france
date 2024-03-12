@@ -1,0 +1,24 @@
+description: Plafond 2 de la réduction d'impôt pour emprunts contractés pour la reprise d'une PME
+values:
+  1991-01-01:
+    value: null
+  1995-01-01:
+    value: 37500
+  2001-01-01:
+    value: 5717
+  2002-01-01:
+    value: 20000
+  2015-01-01:
+    value: 50000
+metadata:
+  short_label: Plafond 2
+  ipp_csv_id: plaf_pme2
+  unit: currency_next_year
+  reference:
+    2015-01-01:
+      title: Loi 2015-1786 du 29/12/2015 de finances rectificative pour 2015- art. 26, 2°
+  official_journal_date:
+    2015-01-01: "2012-12-30"
+  notes:
+    1995-01-01:
+    - title: "plaf_PME2 : sommes versées à partir du 01/08/1995"

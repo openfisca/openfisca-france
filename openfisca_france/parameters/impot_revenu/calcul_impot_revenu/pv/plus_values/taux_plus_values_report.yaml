@@ -3,6 +3,7 @@ values:
   2016-01-01:
     value: 0.24
 metadata:
+  short_label: Taux forfaitaire général
   unit: /1
   reference:
     title: openfisca

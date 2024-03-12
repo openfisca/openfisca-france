@@ -1,0 +1,232 @@
+description: Points de charge par plafond de ressources annuelles de l'échelon 7 de la bourse du supérieur sur critères sociaux
+brackets:
+- threshold:
+    2020-07-22:
+      value: 0
+  amount:
+    2020-07-22:
+      value: 250
+    2021-07-16:
+      value: 250
+    2022-07-18:
+      value: 250
+    2023-03-15:
+      value: 265
+- threshold:
+    2020-07-22:
+      value: 1
+  amount:
+    2020-07-22:
+      value: 500
+    2021-07-16:
+      value: 500
+    2022-07-18:
+      value: 500
+    2023-03-15:
+      value: 530
+- threshold:
+    2020-07-22:
+      value: 2
+  amount:
+    2020-07-22:
+      value: 750
+    2021-07-16:
+      value: 750
+    2022-07-18:
+      value: 750
+    2023-03-15:
+      value: 795
+- threshold:
+    2020-07-22:
+      value: 3
+  amount:
+    2020-07-22:
+      value: 1000
+    2021-07-16:
+      value: 1000
+    2022-07-18:
+      value: 1000
+    2023-03-15:
+      value: 1060
+- threshold:
+    2020-07-22:
+      value: 4
+  amount:
+    2020-07-22:
+      value: 1250
+    2021-07-16:
+      value: 1250
+    2022-07-18:
+      value: 1250
+    2023-03-15:
+      value: 1325
+- threshold:
+    2020-07-22:
+      value: 5
+  amount:
+    2020-07-22:
+      value: 1500
+    2021-07-16:
+      value: 1500
+    2022-07-18:
+      value: 1500
+    2023-03-15:
+      value: 1590
+- threshold:
+    2020-07-22:
+      value: 6
+  amount:
+    2020-07-22:
+      value: 1750
+    2021-07-16:
+      value: 1750
+    2022-07-18:
+      value: 1750
+    2023-03-15:
+      value: 1855
+- threshold:
+    2020-07-22:
+      value: 7
+  amount:
+    2020-07-22:
+      value: 2000
+    2021-07-16:
+      value: 2000
+    2022-07-18:
+      value: 2000
+    2023-03-15:
+      value: 2120
+- threshold:
+    2020-07-22:
+      value: 8
+  amount:
+    2020-07-22:
+      value: 2250
+    2021-07-16:
+      value: 2250
+    2022-07-18:
+      value: 2250
+    2023-03-15:
+      value: 2385
+- threshold:
+    2020-07-22:
+      value: 9
+  amount:
+    2020-07-22:
+      value: 2500
+    2021-07-16:
+      value: 2500
+    2022-07-18:
+      value: 2500
+    2023-03-15:
+      value: 2650
+- threshold:
+    2020-07-22:
+      value: 10
+  amount:
+    2020-07-22:
+      value: 2750
+    2021-07-16:
+      value: 2750
+    2022-07-18:
+      value: 2750
+    2023-03-15:
+      value: 2915
+- threshold:
+    2020-07-22:
+      value: 11
+  amount:
+    2020-07-22:
+      value: 3000
+    2021-07-16:
+      value: 3000
+    2022-07-18:
+      value: 3000
+    2023-03-15:
+      value: 3180
+- threshold:
+    2020-07-22:
+      value: 12
+  amount:
+    2020-07-22:
+      value: 3250
+    2021-07-16:
+      value: 3250
+    2022-07-18:
+      value: 3250
+    2023-03-15:
+      value: 3445
+- threshold:
+    2020-07-22:
+      value: 13
+  amount:
+    2020-07-22:
+      value: 3500
+    2021-07-16:
+      value: 3500
+    2022-07-18:
+      value: 3500
+    2023-03-15:
+      value: 3710
+- threshold:
+    2020-07-22:
+      value: 14
+  amount:
+    2020-07-22:
+      value: 3750
+    2021-07-16:
+      value: 3750
+    2022-07-18:
+      value: 3750
+    2023-03-15:
+      value: 3975
+- threshold:
+    2020-07-22:
+      value: 15
+  amount:
+    2020-07-22:
+      value: 4000
+    2021-07-16:
+      value: 4000
+    2022-07-18:
+      value: 4000
+    2023-03-15:
+      value: 4240
+- threshold:
+    2020-07-22:
+      value: 16
+  amount:
+    2020-07-22:
+      value: 4250
+    2021-07-16:
+      value: 4250
+    2022-07-18:
+      value: 4250
+    2023-03-15:
+      value: 4505
+- threshold:
+    2020-07-22:
+      value: 17
+  amount:
+    2020-07-22:
+      value: 4500
+    2021-07-16:
+      value: 4500
+    2022-07-18:
+      value: 4500
+    2023-03-15:
+      value: 4770
+metadata:
+  reference:
+    2020-07-22:
+      title: Arrêté du 22 juillet 2020 fixant les plafonds de ressources relatifs aux bourses d'enseignement supérieur du ministère de l'enseignement supérieur, de la recherche et de l'innovation pour l'année universitaire 2020-2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042170756
+    2021-07-16:
+      title: Arrêté du 16 juillet 2021 fixant les plafonds de ressources relatifs aux bourses d'enseignement supérieur du ministère de l'enseignement supérieur, de la recherche et de l'innovation pour l'année universitaire 2021-2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043868508
+    2022-07-18:
+      title: Arrêté du 18 juillet 2022 fixant les plafonds de ressources relatifs aux bourses d'enseignement supérieur du ministère de l'enseignement supérieur et de la recherche pour l'année universitaire 2022-2023
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046096036
+    2023-03-15:
+      title: Aucun document officiel encore, à mettre à jour lors de la publication !
+  type: single_amount

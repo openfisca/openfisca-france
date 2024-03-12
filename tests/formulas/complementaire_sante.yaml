@@ -7,7 +7,7 @@
     allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     effectif_entreprise: 249
-    complementaire_sante_taux_employeur: 0.6
+    complementaire_sante_part_employeur: 0.6
     complementaire_sante_montant: 35
   output:
     complementaire_sante_employeur: -35 * 0.6

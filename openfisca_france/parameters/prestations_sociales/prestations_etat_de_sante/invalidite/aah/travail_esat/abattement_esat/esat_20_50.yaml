@@ -3,7 +3,7 @@ values:
   2007-01-01:
     value: 0.05
 metadata:
-  short_label: Rémunération garantie Esat entre 20 et 50 % SMIC
+  short_label: Rémunération garantie Esat entre 20 et 50 % Smic
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: abattement_esat_20_50
   unit: /1

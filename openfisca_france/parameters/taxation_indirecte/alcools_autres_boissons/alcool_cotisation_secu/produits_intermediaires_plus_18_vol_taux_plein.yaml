@@ -1,4 +1,4 @@
-description: Cotisation sécurité sociale sur les produits intermédiaires titrant plus de 18% vol. - Taux plein (€/hl)
+description: Cotisation de sécurité sociale sur les produits intermédiaires titrant plus de 18% vol. - Taux plein (€/hl)
 values:
   1983-04-01:
     value: null
@@ -59,4 +59,3 @@ metadata:
     2015-01-01: "2014-12-26"
     2017-01-01: "2016-12-31"
     2018-01-01: "2017-12-27"
-documentation: Données renseignées dans l''article L245-9 du code de la sécurité sociale'

@@ -1,6 +1,7 @@
 description: Conditions et montant de l'Allocation parentale d'éducation (APE, 1985-2004)
 metadata:
-  short_label: APE
+  documentation_start: true
+  short_label: Allocation parentale d'éducation (APE)
   label_en: "Parental leave allowance (APE): Conditions and amounts"
   order:
   - nombre_min_enfants_pris_en_charge
@@ -9,3 +10,4 @@ metadata:
   - intervalle_calcul_nb_annees_activite
   - duree_allocation_maximale
   - montant_mensuel
+documentation: L'activité professionnelle et les situations assimilées sont prises en comptes, au titre des vingt-quatre mois, si elles ont assuré un revenu moyen annuel d'au moins 40 p. 100 d'une somme égale à 2.028 fois le montant horaire du salaire minimum de croissance en vigueur au 1er janvier de l'année de la demande d'allocation parentale d'éducation.

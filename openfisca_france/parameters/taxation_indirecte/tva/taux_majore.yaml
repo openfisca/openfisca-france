@@ -1,4 +1,4 @@
-description: Taux majoré de la Taxe sur la valeur ajoutée (TVA)
+description: Taux majoré de la taxe sur la valeur ajoutée (TVA)
 values:
   1954-07-01:
     value: null
@@ -15,6 +15,7 @@ values:
   1993-01-01:
     value: null
 metadata:
+  short_label: Taux majoré
   ipp_csv_id: tx_maj
   unit: /1
   reference:
@@ -44,7 +45,3 @@ metadata:
     1990-01-01: "1989-12-30"
     1990-09-13: "1990-12-30"
     1993-01-01: "1991-07-27"
-documentation: |-
-  Le montant de TVA est appliqué au prix TTC jusqu''au 1er janvier 1970, puis au prix hors taxe depuis.
-  Création de la TVA avec la loi 54-404 du 10 avril 1954 (JO 11/04/1954) et le décret 55-465 du 30/04/1955 (JO 03/05/1955).
-  "Taux de TVA appliqués dans les Etats membres de l''Union européenne", Commission européenne, Fiscalité et union douanière, 2014, page 26.'

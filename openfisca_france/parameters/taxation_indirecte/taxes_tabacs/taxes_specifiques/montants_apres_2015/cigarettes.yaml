@@ -1,4 +1,4 @@
-description: Montant spécifique des taxes sur le tabac - Cigarettes
+description: Montant de la taxe spécifique sur les cigarettes
 values:
   2015-01-01:
     value: 48.75
@@ -17,6 +17,7 @@ values:
   2023-03-01:
     value: 68.1
 metadata:
+  short_label: Cigarettes
   last_value_still_valid_on: "2022-12-28"
   ipp_csv_id: tx_spec_cigarettes
   unit: currency

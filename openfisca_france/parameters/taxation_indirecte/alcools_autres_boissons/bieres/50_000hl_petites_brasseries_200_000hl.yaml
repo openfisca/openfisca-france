@@ -1,4 +1,4 @@
-description: Bières - 50 000hl < petites brasseries < 200 000hl (en €/degré/hl)
+description: Taxes sur les bières des petites brasseries comprises entre  50 000 hl et  200 000 hl (en €/degré/hl)
 values:
   1979-07-01:
     value: null
@@ -83,4 +83,3 @@ metadata:
     2015-10-09: "2015-10-08"
     2017-01-01: "2016-12-31"
     2018-01-01: "2017-12-27"
-documentation: Données renseignées dans l'article 520A du code général des impôts

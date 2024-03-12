@@ -8,7 +8,7 @@
     ip_net: 7934.0
     reductions: 330.0
     reduction_cotisations_syndicales: 330.0
-    irpp: -(7934.0 - 330.0)
+    impot_revenu_restant_a_payer: -(7934.0 - 330.0)
 
 - name: Cotisations syndicales en réduction d’impôt jusqu’à 2011, non imposable suite à réduction
   period: 2011
@@ -20,7 +20,7 @@
     ip_net: 35.0
     reductions: 35.0
     reduction_cotisations_syndicales: 85.8
-    irpp: 0.0
+    impot_revenu_restant_a_payer: 0.0
 
 - name: Cotisations syndicales en crédit d’impôt depuis 2012, impôt négatif
   period: 2012
@@ -34,4 +34,4 @@
     reduction_cotisations_syndicales: 0.0
     credit_cotisations_syndicales: 87.8
     credits_impot: 87.8
-    irpp: -(25.0 - 87.8)
+    impot_revenu_restant_a_payer: -(25.0 - 87.8)

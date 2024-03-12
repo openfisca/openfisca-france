@@ -1,5 +1,7 @@
-description: Alcools fermentés (vins, cidre, etc.)
+description: Taxe sur les alcools fermentés (vins, cidre, etc.)
 metadata:
+  documentation_start: true
+  short_label: Alcools fermentés
   label_en: Fermented alcohols (wine, cider, etc.)
   order:
   - vins_mousseux
@@ -8,3 +10,4 @@ metadata:
   - cidres_poires_hydromels
   - exoneration_ensemble_vins
   - exoneration_petillants
+documentation: Données renseignées dans l'article 438 du code général des impôts

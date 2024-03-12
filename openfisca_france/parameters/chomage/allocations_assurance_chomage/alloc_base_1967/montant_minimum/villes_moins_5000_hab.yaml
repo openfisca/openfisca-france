@@ -1,4 +1,4 @@
-description: Montant minimum de l'allocation de base d'assurance chômage (1958-1967) pour les villes de moinss de 5000 habitants
+description: Montant minimum de l'allocation de base d'assurance chômage pour les villes de moins de 5000 habitants
 values:
   1958-12-31:
     value: 350
@@ -20,7 +20,7 @@ values:
     value: null
 metadata:
   short_label: Moins de 5000 hab.
-  label_en: UI scheme (1958-1967)
+  label_en: UI scheme
   ipp_csv_id: base_min_m5000
   unit: currency
   reference:
@@ -43,7 +43,3 @@ metadata:
     - title: Avenant du 10/07/1967
   official_journal_date:
     1967-01-09: "1967-07-19"
-documentation: |-
-  Art. 8 du règlement de la Convention du 31/12/1958
-  Sources :
-  Consultation des circulaires Unedic au service de documentation de l'Unedic.

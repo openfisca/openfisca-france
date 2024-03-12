@@ -1,6 +1,8 @@
-description: Prélèvement libératoire sur les revenus d'assurance vie (1983 - 2017)
+description: Prélèvement libératoire sur les revenus d'assurance vie
 metadata:
-  short_label: Prélèvement libératoire sur les revenus d'assurance vie
-  label_en: Levy in discharge on life insurance (1983 - 2017)
+  documentation_start: true
+  short_label: Revenus d'assurance vie
+  label_en: Levy in discharge on life insurance
   order:
   - bons_contrats_placements
+documentation: "Référence : l'article 125-0 A du CGI régit le prélèvement sur les produits des bons ou contrats de capitalisation."

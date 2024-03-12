@@ -1,4 +1,4 @@
-description: Nombre minimal d'enfants, Conditions générales du Revenu de solidarité active (RSA)
+description: Nombre minimal d'enfants pour être éligible au revenu de solidarité active (RSA) sans condtion d'âge
 values:
   2009-06-01:
     value: 1
@@ -7,7 +7,6 @@ metadata:
   last_value_still_valid_on: "2022-03-28"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: min_npac_rmi
-  unit: /1
   reference:
     2009-06-01:
     - title: Loi 2008-1249 du 01/12/2008, art. 3 (modif art. L262-4 du CASF)
@@ -21,3 +20,4 @@ metadata:
   notes:
     2009-06-01:
     - title: RSA créé par Loi 2008-1249 du 01/12/2008
+documentation: Nés ou à naître si la condition d'âge n'est pas respectée.

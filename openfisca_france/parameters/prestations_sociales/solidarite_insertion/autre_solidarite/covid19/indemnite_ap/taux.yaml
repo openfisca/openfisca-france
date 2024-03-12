@@ -1,4 +1,4 @@
-description: Taux horaire (en % de la rémunération horaire brute) de l'Allocation d'activité partielle de l'Aide exceptionnelle Covid-19
+description: Taux horaire (en % de la rémunération horaire brute) de l'allocation d'activité partielle de l'aide exceptionnelle covid-19
 values:
   2020-03-01:
     value: 0.7

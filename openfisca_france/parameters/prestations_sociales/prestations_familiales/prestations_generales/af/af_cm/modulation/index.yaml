@@ -1,7 +1,7 @@
-description: Modulation, en fonction des ressources, des Allocations Familiales (AF)
+description: Modulation, en fonction des ressources, des allocations familiales (AF)
 metadata:
   short_label: Modulation
-  label_en: "Family allowances (AF): General conditions and amount"
+  label_en: "Family allowances (AF): modulation"
   order:
   - taux_tranche_1
   - taux_tranche_2

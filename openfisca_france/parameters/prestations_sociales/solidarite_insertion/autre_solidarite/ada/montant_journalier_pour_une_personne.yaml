@@ -1,4 +1,4 @@
-description: Montant journalier pour une personne de l'Allocation pour demandeur d'asile (ADA)
+description: Montant journalier pour une personne de l'allocation pour demandeur d'asile (ADA)
 values:
   2015-11-01:
     value: 6.8
@@ -13,15 +13,3 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031355378/2022-01-10/
   official_journal_date:
     2015-11-01: "2015-10-23"
-documentation: |-
-  Loi du 29/07/2015, art. 23
-  2015-07-30
-  Créé l'allocation pour demandeur d'asile (ADA). Remplace l'allocation temporaire d'attente (ATA) versée par Pôle Emploi, et l'allocation mensuelle de subsistance (AMS).
-  Notes :
-  L'ADA est gérée par l'Office français de l'immigration et de l'intégration (OFII).
-  "Son montant est révisé, le cas échéant, une fois par an, en fonction de l'évolution des prix, hors tabac, prévue dans le rapport économique, social et financier annexé au projet de loi de finances de l'année."
-  "Un décret définit le barème de l'allocation pour demandeur d'asile, en prenant en compte les ressources de l'intéressé, son mode d'hébergement et, le cas échéant, les prestations offertes par son lieu d'hébergement.
-   Le barème de l'allocation pour demandeur d'asile prend en compte le nombre d'adultes et d'enfants composant la famille du demandeur d'asile et accompagnant celui-ci."
-  Sources :
-  Code de l'entrée et du séjour des étrangers et du droit d'asile (CESEDA), titre IV, chapitre IV, Section 4.
-  CESEDA, Annexe 7.1

@@ -1,4 +1,4 @@
-description: Taux pour 2 personnes (en % du montant forfaitaire du RMI) du Forfait logement du Revenu minimum d'insertion (RMI)
+description: Taux pour 2 personnes (en % du montant forfaitaire du RMI) du forfait logement du revenu minimum d'insertion (RMI)
 values:
   1988-12-14:
     value: 0.16
@@ -25,7 +25,3 @@ metadata:
     - title: "Art 4 : pour les propriétaires sans AL et les logés à titre gratuit (on entend par AL les 3 types d'aides au logement); Art 9 : pour les bénéficiaires des aides au logement. NB : la somme retenue est en fait le minimum entre le forfait logement et les aides au logement.; Le décret 2009-404, art. 2 change de l'emplacement du règlement :; L'art 4 est remplacé par l'art. R262-4 du CASF (version du 26/10/2004); L'art 9 est remplacé par l'art. R262-7 du CASF (version du 26/10/2004)"
     2009-06-01:
     - title: Création du RSA qui remplace le RMI
-documentation: |-
-  Notes :
-  Il s'agit du forfait logement maximal pour une personne, à comparer avec les allocations logement si le ménage en perçoit.
-  La référence de l'Article R262-4 est la plus vieille que nous ayons pu trouver

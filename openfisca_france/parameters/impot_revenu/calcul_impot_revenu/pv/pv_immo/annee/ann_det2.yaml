@@ -1,0 +1,7 @@
+description: Nombre d'années pleines de détentions (2e seuil)
+values:
+  2012-02-01:
+    value: 17
+metadata:
+  short_label: Seuil 2
+  unit: year

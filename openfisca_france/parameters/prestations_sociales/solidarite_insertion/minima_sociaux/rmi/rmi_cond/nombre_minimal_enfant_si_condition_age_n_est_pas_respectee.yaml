@@ -1,11 +1,11 @@
-description: Nombre minimal d'enfants si la condition d'âge n'est pas respectée, Conditions générales du Revenu minimum d'insertion (RMI)
+description: Nombre minimal d'enfants si la condition d'âge pour être allocaatire du RMI n'est pas respectée
 values:
   1989-01-01:
     value: 1
   2009-06-01:
     value: null
 metadata:
-  short_label: Nb minimal d'enfants
+  short_label: Nombre minimal d'enfants
   last_value_still_valid_on: "2022-03-24"
   label_en: "Minimum insertion income (RMI): General conditions"
   ipp_csv_id: min_npac_rmi_rsa

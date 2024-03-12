@@ -130,6 +130,20 @@ class f6rs(Variable):
     definition_period = YEAR
 
 
+class f6ns(Variable):
+    cerfa_field = {
+        0: '6NS',
+        1: '6NT',
+        2: '6NU',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Cotisations d'épargne retraite versées au titre d'un PERECO PERIN et PERO"
+    # start_date = date(2019,1,1)
+    definition_period = YEAR
+
+
 class f6ss(Variable):
     cerfa_field = {
         0: '6SS',
@@ -660,14 +674,15 @@ class cd_eparet(Variable):
         f6ps_i = foyer_fiscal.members('f6ps', period)
         f6rs_i = foyer_fiscal.members('f6rs', period)
         f6ss_i = foyer_fiscal.members('f6ss', period)
+        f6ns_i = foyer_fiscal.members('f6ns', period)
 
         # TODO: En théorie, les plafonds de déductions (ps, pt, pu) sont calculés sur
         # le formulaire 2041 GX
         return foyer_fiscal.sum(
             where(
                 f6ps_i == 0,
-                f6rs_i + f6ss_i,
-                min_(f6rs_i + f6ss_i, f6ps_i)
+                f6rs_i + f6ss_i + f6ns_i,
+                min_(f6rs_i + f6ss_i + f6ns_i, f6ps_i)
                 )
             )
 
@@ -687,9 +702,9 @@ class cd_sofipe(Variable):
         f6cc = foyer_fiscal('f6cc', period)
         rbg_int = foyer_fiscal('rbg_int', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        sofipeche = parameters(period).impot_revenu.calcul_reductions_impots.sofipeche
+        sofipeche = parameters(period).impot_revenu.calcul_revenus_imposables.charges_deductibles.deductions_souscription_parts_sofipeche
 
-        plafond = min_(sofipeche.plafond_revenu_net_global * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
+        plafond = min_(sofipeche.plafond_en_revenu_net_global * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
         return min_(f6cc, plafond)
 
 
@@ -730,7 +745,7 @@ class epargne_codeveloppement_deduc(Variable):
         rbg_int = foyer_fiscal('rbg_int', period)
         codev = parameters(period).impot_revenu.calcul_reductions_impots.compte_epargne_co_developpement
 
-        plafond = min_(codev.plafond_en_revenu_net_global * rbg_int, codev.plafond_par_personne)
+        plafond = min_(codev.plafond.plafond_en_revenu_net_global * rbg_int, codev.plafond.plafond_par_personne)
         return min_(f6eh, plafond)
 
 

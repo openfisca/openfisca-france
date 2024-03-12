@@ -61,7 +61,8 @@
       # TODO KO 2023-09: 250  # ERROR 'prime_partage_valeur' must be computed for a whole year.
 
 
-- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 (réservée aux < 3 SMIC)
+- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 (réservée aux < 3 Smic)
+# ! Limite du test : test sensible aux revalorisations du Smic et des prestations sociales (PPA) sur 2023.
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : Sans accord, Prime au plafond
@@ -150,23 +151,23 @@
       # 21299.271 = (20666.271 + 3_000) * 0.9
       2022: [17714.158, 17714.158, 17714.158, 17714.158, 17714.158, 17714.158, 17714.158]
       2023: [17714.158, 20414.158, 21299.271, 20414.158, 20414.158, 23114.158, 23999.271]
-    irpp:
-      # L'IRPP ne doit pas changer pour ceux dont la prime est exonérée d'impôt
+    impot_revenu_restant_a_payer:
       2022: [-275, -275, -275, -275, -275, -275, -275]
-      2023: [-275, -275, -416, -275, -275, -275, -416]
+      2023: [-153, -153, -295, -153, -153, -153, -295]
     ppa:
       # Le premier cas-type touche la PPA toute l'année, les autres partiellement.
       2023-01: [139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394]
-      2023-12: [139.38394, 41.88394, 0, 41.88394, 41.88394, 0, 0]
+      2023-12: [151.02396, 53.523956, 22.651642, 53.523956, 53.523956, 0, 0]
     prestations_sociales:
-      2023: [1664.244, 694.11914, 288.33063, 694.11914, 694.11914, 277.37405, 277.37405]
+      2023: [1745.3168, 775.19183, 442.2387, 775.19183, 775.19183, 277.37405, 277.37405]
     revenu_disponible:
-      # revenu_disponible = (salaire_net*12) - irpp + prestations_sociales
-      # Pour le 2e individu : 1833.1951*12-275+694.1191 = 22417.46 => C'est bon !
-      2023: [20387.586, 22417.46, 22820.588, 22417.46, 22417.46, 25000.717, 25809.635]
+      # revenu_disponible = (salaire_net*12) - impot_revenu_restant_a_payer + prestations_sociales
+      # Pour le 2e individu : 1833.1951*12-153+694.1191 = 22620.46 => C'est bon !
+      2023: [20590.658, 22620.533, 23095.496, 22620.533, 22620.533, 25122.717, 25930.635]
 
 
-- name: Prime pérenne de partage de la valeur pour salaire < 3 SMIC
+- name: Prime pérenne de partage de la valeur pour salaire < 3 Smic
+# ! Limite du test : test sensible aux revalorisations du Smic et des prestations sociales (PPA) sur 2023.
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : avec le montant de la prime dans le salaire
@@ -248,23 +249,17 @@
       # rfr = revenu_assimile_salaire * 0.9 (abattement pro)
       # 22_481 ×,09 = 20_233
       2023: [17714.158, 19_928.37, 20233.734, 21118.838, 20233.734, 20233.734, 22753.303, 23638.404]
-    irpp:
-      # La prime pérenne est soumise à l'impôt
-      # De 10 777 € à 27 478 € : Première tranche 11%
-      # (17_714.158 - 10_777)*0.11 = 763.087
-      # Décote LF2023 : La décote est égale à la différence entre 833 € (célibataire), et 45,25 % du montant de l'impôt.
-      # 763.087 - (833- 763.087*0.4525) = 275.38
-      # (20_233.734 - 10_777)*0.11 - (833 - ((20_233.734 - 10_777)*0.11)*0.4525 ) = 677.94
-      2023: [-275, -630, -678, -820, -678, -678, -1080, -1222]
+    impot_revenu_restant_a_payer:
+      2023: [-153, -507, -555, -697, -555, -555, -958, -1099]
     prestations_sociales:
-      2023: [1664.244, 742.7274, 786.57324, 479.39383, 786.57324, 786.57324, 277.37405, 277.37405]
+      2023: [1745.3168, 823.8001, 867.64594, 560.46655, 867.64594, 867.64594, 277.37405, 277.37405]
     revenu_disponible:
-      # revenu_disponible = salaire_net*12 - irpp + prestations_sociales
-      # 1_781 * 12 - 630 + 742 = 21_484 ~= 21485.803 OK
-      2023: [20387.586, 21485.803, 21821.012, 22321.748, 21821.012, 21821.012, 23623.898, 24431.814]
+      # revenu_disponible = salaire_net*12 - impot_revenu_restant_a_payer + prestations_sociales
+      # 1_781 * 12 - 507 + 823.8001 = 21_565.8001 ~= 21689.877 OK
+      2023: [20590.658, 21689.877, 22025.084, 22525.82, 22025.084, 22025.084, 23745.898, 24554.814]
 
 
-- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 pour salaire >= 3 SMIC
+- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 pour salaire >= 3 Smic
 # Non, éligible, on le vérifie quand même.
   period: 2023-09
   absolute_error_margin: 0.01
@@ -278,7 +273,7 @@
     accord_interessement:
       month:2021-01:36: [false, false, false, true, true, true, true]
   output:
-    # Pas de prime pour les salariés >= 3 x SMIC
+    # Pas de prime pour les salariés >= 3 x Smic
     ppv_eligibilite_exceptionnelle:
       2023: [0, 0, 0, 0, 0, 0, 0]
     prime_partage_valeur_exceptionnelle:
@@ -292,12 +287,12 @@
     salaire_net:
       2022-09: [4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30]
       2023-09: [4412.47, 4412.47, 4412.47, 4412.47, 4412.47, 4412.47, 4412.47] #  4412.47 avec l'augmentation du plafond secu (sinon=2022) via le montant csg-crds
-    irpp:
+    impot_revenu_restant_a_payer:
       2022: [-8413, -8413, -8413, -8413, -8413, -8413, -8413]
-      2023: [-8404, -8404, -8404, -8404, -8404, -8404, -8404]
+      2023: [-8096, -8096, -8096, -8096, -8096, -8096, -8096]
 
 
-- name: Prime pérenne de partage de la valeur pour salaire >= 3 SMIC
+- name: Prime pérenne de partage de la valeur pour salaire >= 3 Smic
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : Sans accord, Prime au plafond
@@ -340,9 +335,9 @@
     rfr:
       # La totalité de la prime est dans le RFR
       2023: [49367.01, 51886.58, 52783.31, 51886.58, 51886.58, 54406.16, 55302.87]
-    irpp:
+    impot_revenu_restant_a_payer:
       # La totalité de la prime est soumise à l'IR
-      2023: [-8404, -9160, -9429, -9160, -9160, -9916, -10185]
+      2023: [-8096, -8852, -9121, -8852, -8852, -9608, -9877]
 
 
 - name: Prime pérenne de partage de la valeur vs primes_salaires
@@ -369,13 +364,13 @@
     rfr:
       # La totalité de la prime est dans le RFR
       2023: [45130.34, 45222.94]
-    irpp:
+    impot_revenu_restant_a_payer:
       # La totalité de la prime est soumise à l'IR
-      2023: [-7133, -7161]
+      2023: [-6825, -6853]
     revenu_disponible:
-      2023: [42025.29, 42099.90]
+      2023: [42333.29, 42407.90]
 
-- name: Prime exceptionnelle de partage de la valeur pour un salarié à temps partiel < 3*SMIC mais dont l'équivalent temps plein est > 3*SMIC
+- name: Prime exceptionnelle de partage de la valeur pour un salarié à temps partiel < 3*Smic mais dont l'équivalent temps plein est > 3*Smic
   period: 2023
   relative_error_margin: 0.01
   input:
@@ -385,8 +380,8 @@
       2022: [12, 11.9, 12.1]
       2023: [12, 11.9, 12.1]
     salaire_de_base:
-      # Attention : Salaire strictement inférieur à 3 * dernier SMIC annuel en vigueur en 2023
-      # SMIC 2023-01-01 : 1_709.28 * 12 = 20_511.36, 20_511.36 * 3 = 61_534.08
+      # Attention : Salaire strictement inférieur à 3 * dernier Smic annuel en vigueur en 2023
+      # Smic 2023-01-01 : 1_709.28 * 12 = 20_511.36, 20_511.36 * 3 = 61_534.08
       # Même salaire en 2022 car l'éligibilité est évaluée sur une année glissante
       2022: [61_534, 61_534, 61_534]
       2023: [61_534, 61_534, 61_534]
@@ -395,7 +390,7 @@
     quotite_de_travail:
       2023-01: [1, 0.99, 1.008]
     # Le deuxième n'a pas le droit de toucher la prime exceptionnelle
-    # car son salaire équivalent temps plein est > 3 SMIC
+    # car son salaire équivalent temps plein est > 3 Smic
     ppv_eligibilite_exceptionnelle: [1, 0, 1]
     prime_partage_valeur_exoneree_exceptionnelle: [1_200, 0, 1_200]
     prime_partage_valeur_non_exoneree_exceptionnelle: [0, 0, 0]

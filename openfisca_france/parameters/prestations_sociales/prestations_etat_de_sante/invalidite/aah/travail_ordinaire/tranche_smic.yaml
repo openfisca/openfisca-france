@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Seuil entre tranches
   label_en: Adult disability allowance (AAH)
-  unit: SMIC
+  unit: smic_horaire_brut
   reference:
     2011-01-01:
       title: Décret n° 2010-1403 du 12/11/2010, art. 1 (modifie art. D821-9 du CSS)

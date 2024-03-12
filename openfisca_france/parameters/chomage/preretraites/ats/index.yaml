@@ -1,0 +1,9 @@
+description: Allocation transitoire de solidarité (ATS)
+metadata:
+  documentation_start: true
+  short_label: Allocation transitoire de solidarité (ATS)
+  label_en: Transitional solidarity allowance (ATS)
+  order:
+  - montant_journalier
+  - plafond_ressources
+documentation: Remplace l'AER en juillet 2011.

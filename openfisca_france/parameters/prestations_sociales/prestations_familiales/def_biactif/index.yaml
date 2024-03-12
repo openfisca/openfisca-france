@@ -1,5 +1,6 @@
 description: Définition d'un couple bi-actif pour les prestations familiales
 metadata:
+  documentation_start: true
   short_label: Couple bi-actif
   label_en: Definition of a biactive couple
   order:

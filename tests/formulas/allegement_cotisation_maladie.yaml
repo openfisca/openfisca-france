@@ -1,4 +1,4 @@
-- name: Taux réduit de cotisation maladie recouvrée de façon anticipée et pour rémunération 1xSMIC <= 2.5xSMIC
+- name: Taux réduit de cotisation maladie recouvrée de façon anticipée et pour rémunération 1xSmic <= 2.5xSmic
   period: 2021-09
   relative_error_margin: 0.001
   input:
@@ -8,7 +8,7 @@
     assiette_allegement: 1554.58
     allegement_cotisation_maladie: 0.06 * 1554.58
 
-- name: Taux réduit de cotisation maladie recouvrée en fin d'année et pour rémunération 1xSMIC <= 2.5xSMIC
+- name: Taux réduit de cotisation maladie recouvrée en fin d'année et pour rémunération 1xSmic <= 2.5xSmic
   period: 2021
   relative_error_margin: 0.001
   input:
@@ -25,7 +25,7 @@
       2021-11: 0
       2021-12: 93.27 * 9  # 0.06 * 1554.58 * 9 mois de salaire
 
-- name: Taux complet de cotisation maladie recouvrée progressivement pour rémunération > 2.5xSMIC
+- name: Taux complet de cotisation maladie recouvrée progressivement pour rémunération > 2.5xSmic
   period: 2021-03
   input:
     salaire_de_base:

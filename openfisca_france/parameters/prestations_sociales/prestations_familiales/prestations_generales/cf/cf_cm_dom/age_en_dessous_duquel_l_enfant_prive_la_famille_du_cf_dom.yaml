@@ -4,7 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Âge sous lequel l'enfant prive du CF
-  label_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
+  label_en: Age under which the child is deprived of the CF
   unit: year
   reference:
     2002-01-01:

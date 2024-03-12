@@ -689,7 +689,7 @@ class restauration_patrimoine_bati(Variable):
             + P.taux_rb * min_(f7rb, max2)
             + P.taux_rc * min_(f7rc + f7rf, max3)
             + P.taux_ra * min_(f7ra, max4)
-            + P.taux_re * min_(f7re, max5)
+            + P.taux_22 * min_(f7re, max5)
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -717,7 +717,8 @@ class restauration_patrimoine_bati(Variable):
             P.taux_rd * min_(f7rd, max1)
             + P.taux_rb * min_(f7rb, max2)
             + P.taux_rc * min_(f7sy + f7rf + f7rc, max3)
-            + P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5)
+            + P.taux_ra * min_(f7ra, max4)
+            + P.taux_22 * min_(f7re + f7sx, max5)
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -737,8 +738,8 @@ class restauration_patrimoine_bati(Variable):
         max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
 
         return (
-            P.taux_rc * min_(f7sy + f7rf + f7nx, max1)
-            + P.taux_re * min_(f7re + f7sx + f7ny, max2)
+            P.taux_30 * min_(f7sy + f7rf + f7nx, max1)
+            + P.taux_22 * min_(f7re + f7sx + f7ny, max2)
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):

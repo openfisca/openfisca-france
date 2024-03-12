@@ -37,7 +37,7 @@
       personne_de_reference: ind0
   output:
     iai: 1443.0
-    irpp: -1443.0
+    impot_revenu_restant_a_payer: -1443.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 45000.0
@@ -84,7 +84,7 @@
   output:
     decote_gain_fiscal: 84.0
     iai: 1358.0
-    irpp: -1358.0
+    impot_revenu_restant_a_payer: -1358.0
     nbptr: 1.0
     rbg: 45000.0
     rfr: 20000.0
@@ -131,7 +131,7 @@
   output:
     decote_gain_fiscal: 84.0
     iai: 1289.0
-    irpp: -1289.0
+    impot_revenu_restant_a_payer: -1289.0
     nbptr: 1.0
     rbg: 45000.0
     reduction_ss_condition_revenus: 68.0
@@ -180,7 +180,7 @@
   output:
     decote_gain_fiscal: 107.0
     iai: 1228.0
-    irpp: -1228.0
+    impot_revenu_restant_a_payer: -1228.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 45000.0

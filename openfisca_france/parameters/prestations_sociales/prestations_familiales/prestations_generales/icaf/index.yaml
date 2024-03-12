@@ -1,7 +1,12 @@
-description: Indemnité compensatrice des avantages fiscaux (ICAF, 1948-1977)
+description: Indemnité compensatrice des avantages fiscaux (ICAF)
 metadata:
-  short_label: Montant ICAF
-  label_en: "Compensatory payments of tax benefits (ICAF): Amount"
+  documentation_start: true
+  short_label: Indemnité compensatrice des avantages fiscaux (ICAF)
+  label_en: Compensatory payments of tax benefits (ICAF)
   order:
   - 2_enfants_a_charge
   - par_enfant_supplementaire
+documentation: |-
+  L'indemnité compensatrice des avantages fiscaux (ICAF) est instaurée en octobre 1948.
+  Les montants ont été progressivement relevés entre 1948 et 1958), mais le détail de l'évolution est à préciser.
+  L'indemnité accordée aux familles au titre de l'ancien impôt sur les salaires.

@@ -1,0 +1,123 @@
+description: Plafond de ressources mensuel d'un couple pour l'allocation équivalent retraite (AER) des allocations chômage pour les personnes en préretraite
+values:
+  2002-04-06:
+    value: 1989.27
+  2003-01-01:
+    value: 2018.94
+  2004-01-01:
+    value: 2049.3
+  2005-01-01:
+    value: 2085.87
+  2006-01-01:
+    value: 2123.13
+  2007-01-01:
+    value: 2161.08
+  2008-01-01:
+    value: 2195.58
+  2009-01-01:
+    value: 2228.7
+  2010-01-01:
+    value: 2255.61
+  2011-01-01:
+    value: 2289.42
+  2012-01-01:
+    value: 2328.06
+  2013-01-01:
+    value: 2368.77
+  2014-01-01:
+    value: 2399.82
+  2015-01-01:
+    value: 2421.21
+  2016-04-01:
+    value: 2423.97
+  2017-04-01:
+    value: 2431.56
+  2018-04-01:
+    value: 2456.4
+  2019-04-01:
+    value: 2495.73
+  2020-04-01:
+    value: 2518.5
+metadata:
+  short_label: Plafond mensuel couple
+  label_en: Early retirement allowance (AER)
+  ipp_csv_id: aer_plaf_couple
+  unit: currency
+  reference:
+    2002-04-06:
+      title: Décret 2002-462 du 05/04/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/4/5/2002-462/jo/texte
+    2003-01-01:
+      title: Décret 2002-1615 du 31/12/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/12/31/2002-1615/jo/texte
+    2004-01-01:
+      title: Décret 2003-1374 du 31/12/2003
+      href: https://www.legifrance.gouv.fr/eli/decret/2003/12/31/2003-1374/jo/texte
+    2005-01-01:
+      title: Décret 2004-1537 du 30/12/2004
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000805739
+    2006-01-01:
+      title: Décret 2005-1700 du 29/12/2005
+      href: https://www.legifrance.gouv.fr/eli/decret/2005/12/29/2005-1700/jo/texte
+    2007-01-01:
+      title: Décret 2007-32 du 08/01/2007
+      href: https://www.legifrance.gouv.fr/eli/decret/2007/1/8/2007-32/jo/texte
+    2008-01-01:
+      title: Décret 2008-52 du 16/01/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/1/16/2008-52/jo/texte
+    2009-01-01:
+      title: Décret 2009-124 du 04/02/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/2/4/2009-124/jo/texte
+    2010-01-01:
+      title: Décret 2009-1703 du 30/12/2009
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021569821
+    2011-01-01:
+      title: Décret 2011-123 du 29/01/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/1/29/2011-123/jo/texte
+    2012-01-01:
+      title: Décret 2012-196 du 09/02/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/2/9/2012-196/jo/texte
+    2013-01-01:
+      title: Décret 2012-1496 du 28/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/28/2012-1496/jo/texte
+    2014-01-01:
+      title: Décret 2013-1274 du 27/12/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1274/jo/texte
+    2015-01-01:
+      title: Décret 2014-1719 du 31/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030005607
+    2016-04-01:
+      title: Décret 2016-540 du 03/05/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte
+    2017-04-01:
+      title: Décret 2017-1022 du 10/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034678225
+    2018-04-01:
+      title: Décret 2018-446 du 05/06/2018
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/6/5/2018-446/jo/texte
+    2019-04-01:
+      title: Décret 2019-466 du 16/05/2019
+      href: https://www.legifrance.gouv.fr/eli/decret/2019/5/16/2019-466/jo/texte
+    2020-04-01:
+      title: Décret 2020-669 du 02/06/2020
+      href: https://www.legifrance.gouv.fr/eli/decret/2020/6/2/2020-669/jo/texte
+  official_journal_date:
+    2002-04-06: "2002-04-06"
+    2003-01-01: "2003-01-01"
+    2004-01-01: "2004-01-01"
+    2005-01-01: "2005-01-01"
+    2006-01-01: "2005-12-30"
+    2007-01-01: "2007-01-09"
+    2008-01-01: "2008-01-17"
+    2009-01-01: "2009-02-05"
+    2010-01-01: "2009-12-31"
+    2011-01-01: "2011-01-30"
+    2012-01-01: "2012-10-02"
+    2013-01-01: "2012-12-29"
+    2014-01-01: "2013-12-29"
+    2015-01-01: "2014-12-31"
+    2016-04-01: "2016-05-04"
+    2017-04-01: "2017-05-11"
+    2018-04-01: "2018-06-06"
+    2019-04-01: "2019-05-18"
+    2020-04-01: "2020-06-04"

@@ -1,12 +1,14 @@
 description: Majorations du plafond par enfant (à appliquer au plafond 0 enfant correspondant au cas de figure) pour enfants nés ou adoptés entre le 01/04/2014 et le 31/03/2018 de la Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
-    value: 0
+    value: null
   2014-04-01:
     value: 0.22
+  2021-04-01:
+    value: null
 metadata:
   short_label: Majoration pour enfant supplémentaire
-  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: Additional child allowance
   ipp_csv_id: maj_plaf_paje_enf_entre_20140401_20180331
   unit: /1
   reference:

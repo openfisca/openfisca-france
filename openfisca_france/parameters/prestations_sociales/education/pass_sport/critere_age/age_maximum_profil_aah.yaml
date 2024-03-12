@@ -1,0 +1,7 @@
+description: Critère d'âge maximum des profils AAH pour le Pass'Sport
+values:
+  2022-06-30:
+    value: 30
+metadata:
+  short_label: Maximum
+  unit: year

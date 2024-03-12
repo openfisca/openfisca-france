@@ -1,0 +1,7 @@
+description: Contrat d'engagement jeune
+metadata:
+  short_label: CEJ
+  order:
+  - critere_age
+  - degressivite
+  - montants

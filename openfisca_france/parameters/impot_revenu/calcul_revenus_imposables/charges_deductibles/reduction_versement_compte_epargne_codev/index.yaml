@@ -1,0 +1,6 @@
+description: Réduction pour versement compte épargne CODEV
+metadata:
+  order:
+  - plafond_en_revenu_net_global
+  - plafond
+documentation: "Versements sur un compte épargne codéveloppement : montant versé dans la limite de 25% du revenu et de 20 000 euros par personne du foyer fiscal"

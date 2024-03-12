@@ -1,9 +1,9 @@
-name: Test Fillon pour salarié au SMIC entreprise de plus de 20 salariés
+name: Test Fillon pour salarié au Smic entreprise de plus de 20 salariés
 keywords: Fillon
 description: |
   Calcul :
-  SMIC mensuel = 1457,52€
-  SMIC annuel = 17490,20€
+  Smic mensuel = 1457,52€
+  Smic annuel = 17490,20€
   Coeff max ent > 20 salariés = 0,2835
 
   (0,2835/0,6)*[1,6*(17490,20/17490,20)] = 0,2835

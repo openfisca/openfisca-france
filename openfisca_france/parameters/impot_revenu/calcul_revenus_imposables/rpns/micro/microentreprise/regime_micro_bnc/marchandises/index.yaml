@@ -3,3 +3,4 @@ metadata:
   short_label: Vente
   order:
   - plafond
+  - taux

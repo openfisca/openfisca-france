@@ -8,7 +8,7 @@ metadata:
   short_label: Université
   last_value_still_valid_on: "2022-12-08"
   ipp_csv_id: reduc_enfscol3
-  unit: currency
+  unit: currency_next_year
   reference:
     1992-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)

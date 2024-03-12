@@ -12,7 +12,7 @@
     credit_impot_competitivite_emploi: 87.5
 
 - period: 2015-11
-  description: C'est bon en dessous de 2.5 fois le SMIC
+  description: C'est bon en dessous de 2.5 fois le Smic
   relative_error_margin: 0.001
   input:
     salaire_de_base: 3643.79
@@ -25,7 +25,7 @@
     credit_impot_competitivite_emploi: 218.6
 
 - period: 2015-11
-  description: Rien au dessus de 2.5 fois le SMIC
+  description: Rien au dessus de 2.5 fois le Smic
   relative_error_margin: 0.001
   input:
     salaire_de_base: 3643.9

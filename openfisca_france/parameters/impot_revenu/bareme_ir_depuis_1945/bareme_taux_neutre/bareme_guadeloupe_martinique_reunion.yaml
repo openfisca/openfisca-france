@@ -237,4 +237,4 @@ metadata:
     2020-01-01: "2019-12-29"
     2021-01-01: "2020-12-30"
   rate_unit: /1
-  threshold_unit: currency
+  threshold_unit: currency_next_year

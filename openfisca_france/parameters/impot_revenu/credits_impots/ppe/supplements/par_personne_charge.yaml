@@ -1,4 +1,4 @@
-description: Supplément par personne à charge de la Prime pour l'emploi (PPE, 2000 - 2015)
+description: Supplément par personne à charge de la prime pour l'emploi (PPE)
 values:
   1999-01-01:
     value: null
@@ -20,9 +20,9 @@ values:
     value: null
 metadata:
   short_label: Par personne à charge
-  label_en: Employment Allowance (2001 - 2015)
+  label_en: Employment Allowance
   ipp_csv_id: supp_ppe_enf
-  unit: currency
+  unit: currency_next_year
   reference:
     2000-01-01:
     - title: Loi 2001-458 du 30/05/2001

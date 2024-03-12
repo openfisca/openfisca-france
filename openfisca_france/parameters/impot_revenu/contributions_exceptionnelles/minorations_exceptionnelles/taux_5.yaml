@@ -1,4 +1,4 @@
-description: Taux 5 des minorations exceptionnelles d'impôt (1965-1992)
+description: Taux 5 des minorations exceptionnelles d'impôt
 values:
   1965-01-01:
     value: null
@@ -15,7 +15,7 @@ values:
   1993-01-01:
     value: null
 metadata:
-  short_label: Taux 5
+  short_label: "5"
   ipp_csv_id: tx_min5
   unit: /1
   reference:

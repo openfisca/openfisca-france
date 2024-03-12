@@ -1,5 +1,8 @@
 from functools import partial
 from numpy import busday_count as original_busday_count, datetime64, timedelta64, where
+
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 
@@ -501,6 +504,7 @@ class effectif_entreprise(Variable):
     value_type = int
     label = "Effectif de l'entreprise"
     set_input = set_input_dispatch_by_period
+    is_period_size_independent = True
     definition_period = MONTH
 
 
@@ -569,18 +573,8 @@ class nouvelle_bonification_indiciaire(Variable):
     set_input = set_input_divide_by_period
 
 
-class prevoyance_obligatoire_cadre_taux_employe(Variable):
-    value_type = float
-    default_value = 0.015  # 1.5% est le minimum en 2014
-    entity = Individu
-    label = 'Taux de cotisation employeur pour la prévoyance obligatoire des cadres'
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
 class prevoyance_obligatoire_cadre_taux_employeur(Variable):
     value_type = float
-    default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
     label = 'Taux de cotisation employeur pour la prévoyance obligatoire des cadres'
     definition_period = MONTH
@@ -600,7 +594,10 @@ class prime_partage_valeur(Variable):
     entity = Individu
     label = 'Prime pérenne de partage de la valeur (PPV)'
     definition_period = (YEAR)  # La PPV est versée en fonction du salaire des 12 derniers mois
-    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
+    reference = [
+        'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18',
+        'https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/protection-pouvoir-dachat.html',
+        ]
     set_input = set_input_divide_by_period
     documentation = '''
         La PPV exonérée représente l'éxonération de la prime des cotisations salariales,
@@ -609,7 +606,7 @@ class prime_partage_valeur(Variable):
         administrations publiques et singulièrement de la sécurité sociale.
 
         la condition de rémunération est valable jusqu'au 31 décembre 2023.
-        Alors, lorsque la rémunération est inférieure à 3 SMIC, la PPV est **aussi**
+        Alors, lorsque la rémunération est inférieure à 3 Smic, la PPV est **aussi**
         exonérée d'impôt sur le revenu, ainsi que des contributions prévues
         à l'article L. 136-1 du code de la sécurité sociale
         [CSG activité = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033712581]
@@ -617,10 +614,10 @@ class prime_partage_valeur(Variable):
         de la dette sociale (⑯).
         [CRDS = https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038834962/]
         Néanmoins, elle est incluse dans le revenu fiscal de référence (⑰).
-        => Sous 3 SMIC les 12 derniers mois, on est en plus exonéré d'IR, CSG et CRDS.
+        => Sous 3 Smic les 12 derniers mois, on est en plus exonéré d'IR, CSG et CRDS.
 
         Pour tout niveau de revenu :
-        PPV est exonérée, dans la limite de 3 000 euros :
+        La PPV est exonérée, dans la limite de 3 000 euros :
         * de toutes les cotisations sociales d'origine légale ou conventionnelle à la charge du salarié et de l'employeur,
         ainsi que des participations, taxes et contributions prévues :
         * à l'article 235 bis du code général des impôts
@@ -633,6 +630,8 @@ class prime_partage_valeur(Variable):
             = article L. 6131-1 du code du travail
             ]
         dans leur rédaction en vigueur à la date de son versement.
+
+        Pour plus de documentation, un [article du BOSS est dédié à la PPV = https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/protection-pouvoir-dachat.html]
         '''
 
 
@@ -657,7 +656,7 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
     def formula_2022_07_01(individu, period, parameters):
         '''
         La prime exceptionnelle de partage de la valeur (PPV),
-        est réservée aux salariés qui ont un salaire de base inférieur à 3 x SMIC.
+        est réservée aux salariés qui ont un salaire de base inférieur à 3 x Smic.
         Elle ne peut plus être versée après le 31 décembre 2023.
         '''
 
@@ -675,7 +674,7 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
         ppv_eligibilite_exceptionnelle = individu('ppv_eligibilite_exceptionnelle', period)
         return (
             min_(prime_partage_valeur, plafond_ppv_exoneree)
-            * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x SMIC
+            * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x Smic
             )
 
 
@@ -693,12 +692,12 @@ class prime_partage_valeur_non_exoneree_exceptionnelle(Variable):
         return (
             prime_partage_valeur_exceptionnelle
             - prime_partage_valeur_exoneree_exceptionnelle
-            ) * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x SMIC
+            ) * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x Smic
 
 
 class ppv_eligibilite_exceptionnelle(Variable):
     '''
-    Cette variable sert à neutraliser la prime pour les personnes qui touchent plus que 3xSMIC
+    Cette variable sert à neutraliser la prime pour les personnes qui touchent plus que 3xSmic
     Car dans ce cas il n'est pas autorisé de leur verser la prime exceptionnelle.
     L'employeur doit alors opter pour la prime temporaire/exceptionnelle.
     '''
@@ -712,12 +711,12 @@ class ppv_eligibilite_exceptionnelle(Variable):
     documentation = '''
     L'individu est éligible à des exonérations complémentaires
     sur la prime de partage de valeur (PPV) pour une rémunération
-    inférieure à 3 SMIC : exonération de CSG, CRDS
+    inférieure à 3 Smic : exonération de CSG, CRDS
     et impôt sur le revenu.
     '''
 
     def formula_2022_07_01(individu, period, parameters):
-        annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = Period(('year', period.start, 1)).offset(-1)
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
@@ -803,7 +802,7 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
         Voici l'explication du dispositif :
         https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/instruction-du-19-aout-2021.html
         Prime exceptionnelle de pouvoir d'achat (prime Macron), voici comment j'ai écrit mon calcul :
-        si salaire < 3 SMIC alors
+        si salaire < 3 Smic alors
             si prime pepa < 1000 alors
                 exoneration = min (prime pepa, 1000)
             sinon (cas prime pepa >= 1000)
@@ -814,7 +813,7 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
         sinon
             Pas d'exonération
         '''
-        annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = Period(('year', period.start, 1)).offset(-1)
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
@@ -904,20 +903,18 @@ class complementaire_sante_montant(Variable):
     set_input = set_input_divide_by_period
 
 
-class complementaire_sante_taux_employeur(Variable):
+class complementaire_sante_part_employeur(Variable):
     value_type = float
-    default_value = 0.5
-    # La part minimum légale est de 50 %
     entity = Individu
     label = "Part de la complémentaire santé obligatoire payée par l'employeur"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
-class prise_en_charge_employeur_prevoyance_complementaire(Variable):
+class prevoyance_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur"
+    label = "Contributions de prévoyance prises en charge par l'employeur"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -925,7 +922,7 @@ class prise_en_charge_employeur_prevoyance_complementaire(Variable):
 class prise_en_charge_employeur_retraite_complementaire(Variable):
     value_type = float
     entity = Individu
-    label = "Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur"
+    label = "Part des cotisations de retraite complémentaire prise en charge par l'employeur"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -1246,7 +1243,7 @@ class indice_majore(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        period = period.start.period('month').offset('first-of')
+        period = Period(('month', period.start, 1)).offset('first-of')
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         traitement_annuel_brut = parameters(period).prestations_sociales.fonc.IM_100
@@ -1263,7 +1260,7 @@ class indice_majore(Variable):
 class primes_fonction_publique(Variable):
     value_type = float
     entity = Individu
-    label = 'Calcul des primes pour les fonctionnaries'
+    label = 'Calcul des primes pour les fonctionnaires'
     reference = 'http://vosdroits.service-public.fr/particuliers/F465.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -1297,7 +1294,7 @@ class af_nbenf_fonc(Variable):
             D'où l'introduction de cette variable alternative.
         '''
 
-        salaire_de_base_mensualise = famille.members('salaire_de_base', period.start.period('month', 6).offset(-6), options = [ADD])
+        salaire_de_base_mensualise = famille.members('salaire_de_base', Period(('month', period.start, 6)).offset(-6), options = [ADD])
         law = parameters(period)
         nbh_travaillees = 169
         smic_mensuel_brut = law.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees
@@ -1655,3 +1652,57 @@ class travailleur_occasionnel_agricole(Variable):
             + (taches_salarie_type == TypesTaches.travaux_forestiers)
             )
         return secteur_agricole * cdd * cdd_occasionnel_agricole * taches_eligibles
+
+
+class salaires_imposable_particulier_employeur(Variable):
+    cerfa_field = {
+        0: '1AA',
+        1: '1BA',
+        2: '1CA',
+        3: '1DA',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Revenus des salariés des particuliers employeurs'
+    definition_period = YEAR
+
+
+class revenus_imposables_associes_gerants(Variable):
+    cerfa_field = {
+        0: '1GB',
+        1: '1HB',
+        2: '1IB',
+        3: '1JB',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Revenus des associes et gerants'
+    definition_period = YEAR
+
+
+class droits_auteurs_imposables(Variable):
+    cerfa_field = {
+        0: '1GF',
+        1: '1HF',
+        2: '1IF',
+        3: '1JF',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Droits d auteurs fonctionnaires chercheurs'
+    definition_period = YEAR
+
+
+class salaire_imposable_agents_assurance(Variable):
+    cerfa_field = {
+        0: '1GG',
+        1: '1HG',
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Agents generaux d assurance - salaire imposable'
+    definition_period = YEAR

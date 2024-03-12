@@ -1,0 +1,86 @@
+description: Montant minimum journalier brut de l'allocation chômage (hors Mayotte et plus de 3 mois) avant 2002
+values:
+  1968-07-22:
+    value: 7.1
+  1970-01-05:
+    value: 7.7
+  1971-03-29:
+    value: 8.2
+  1971-10-11:
+    value: 8.69
+  1972-11-06:
+    value: 9.74
+  1973-07-02:
+    value: 10.32
+  1974-07-01:
+    value: 13.92
+  1974-12-30:
+    value: 15.22
+  1975-06-02:
+    value: 17.39
+  1975-10-06:
+    value: 18.26
+  1976-04-05:
+    value: 19.6
+  1976-10-04:
+    value: 21.2
+  1977-04-04:
+    value: 22.61
+  1977-10-03:
+    value: 24
+  1978-04-03:
+    value: 25.7
+  1978-10-02:
+    value: 27.75
+  1979-04-02:
+    value: 29.13
+  1979-07-01:
+    value: null
+metadata:
+  short_label: Après les 3 premiers mois
+  label_en: "UI scheme: lump-sum and minimum"
+  ipp_csv_id: base_min_3_
+  unit: currency
+  reference:
+    1968-07-22:
+      title: Circulaire 68-35 - décision du 25/06/1968
+    1970-01-05:
+      title: Circulaire 69-36 - décision du 04/12/1969
+    1971-03-29:
+      title: Circulaire 71-06 - décision du 23/03/1971
+    1971-10-11:
+      title: Circulaire 71-17 - décision du 28/09/1971
+    1972-11-06:
+      title: Circulaire 72-33 - décision du 23/10/1972
+    1973-07-02:
+      title: Circulaire 73-17 - décision du 26/06/1973
+    1974-07-01:
+      title: Circulaire 74-12 - décision du 03/07/1974
+    1974-12-30:
+      title: Circulaire 74-32 - décision du 20/12/1974
+    1975-06-02:
+      title: Circulaire 75-23 - décision du 21/05/1975
+    1975-10-06:
+      title: Circulaire 75-36 - décision du 23/09/1975
+    1976-04-05:
+      title: Circulaire 76-06 - décision du 25/03/1976
+    1976-10-04:
+      title: Circulaire 76-20 - décision du 21/09/1976
+    1977-04-04:
+      title: Circulaire 77-14 - décision du 13/04/1977
+    1977-10-03:
+      title: Circulaire 77-28 - décision du 23/09/1977
+    1978-04-03:
+      title: Circulaire 78-14 - décision du 21/03/1978
+    1978-10-02:
+      title: Circulaire 78-36 - décision du 02/10/1978
+    1979-04-02:
+      title: Circulaire 79-15 - décision du 29/03/1979
+    1979-07-01:
+    - title: Loi cadre 79-32 du 16/01/1979
+    - title: Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+  official_journal_date:
+    1979-07-01: 1979-01-17; 1979-05-20
+  notes:
+    1979-07-01:
+    - title: "Nouvelle convention: fusion des régimes d'assurance et de solidarité"

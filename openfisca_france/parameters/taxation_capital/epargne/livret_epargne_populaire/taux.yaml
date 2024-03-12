@@ -1,0 +1,19 @@
+description: Taux d'intérêt annuel du livret d'épargne populaire
+values:
+  2023-08-01:
+    value: 0.06
+  2024-02-01:
+    value: 0.05
+metadata:
+  short_label: Taux
+  unit: /1
+  reference:
+    2023-08-01:
+      title: JORF n°0174 du 29 juillet 2023, Arrêté du 28 juillet 2023 relatif aux taux d'intérêt des produits d'épargne réglementée
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047901505
+    2024-02-01:
+      - title: Arrêté du 26 janvier 2024 relatif au taux d'intérêt du livret d'épargne populaire
+        href: https://www.legifrance.gouv.fr/eli/arrete/2024/1/26/ECOT2401411A/jo/texte
+      - title: Le Gouverneur de la Banque de France propose une fixation du taux du LEP à 5 % pour donner un gain supplémentaire de pouvoir d’achat aux ménages et stimuler sa détention
+        href: https://www.banque-france.fr/fr/communiques-de-presse/le-gouverneur-de-la-banque-de-france-propose-une-fixation-du-taux-du-lep-5-pour-donner-un-gain
+documentation: "Notes : Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2367"

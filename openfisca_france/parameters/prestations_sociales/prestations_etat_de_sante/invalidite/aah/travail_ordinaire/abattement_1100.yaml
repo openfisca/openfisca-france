@@ -5,7 +5,7 @@ values:
   2011-01-01:
     value: null
 metadata:
-  short_label: Abattement (entre 700 et 1100 SMIC horaires)
+  short_label: Abattement (entre 700 et 1100 Smic horaires)
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: abattement_ordinaire_1100
   unit: /1

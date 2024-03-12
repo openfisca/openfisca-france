@@ -1,7 +1,7 @@
 description: Réduction d'impôt sous condition de revenus
 metadata:
-  short_label: Réduc. sous conditions
-  label_en: Family quotient ceiling and "decote" (1978 - )
+  short_label: Réduction sous conditions
+  label_en: Family quotient ceiling and "decote"
   order:
   - taux
   - plafond_rfr_celib

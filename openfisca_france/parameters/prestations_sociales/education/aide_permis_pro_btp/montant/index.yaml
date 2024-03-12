@@ -1,0 +1,8 @@
+description: Montants de l'Aide au financement du permis B pro BTP
+metadata:
+  short_label: Montants
+  order:
+  - montant_unique
+  - premier_echelon
+  - deuxieme_echelon
+  - troisieme_echelon

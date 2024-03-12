@@ -1,0 +1,7 @@
+description: Prime transitoire de solidarité (PTS) pour les personnes en préretraite
+metadata:
+  documentation_start: true
+  short_label: Prime transitoire de solidarité
+  label_en: Transitional solidarity premium (PTS)
+  order:
+  - montant_mensuel

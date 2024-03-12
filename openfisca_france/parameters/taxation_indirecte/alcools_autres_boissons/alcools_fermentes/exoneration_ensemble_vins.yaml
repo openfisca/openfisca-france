@@ -1,10 +1,11 @@
-description: Alcools fermentés  - Exonération pour l'ensemble des vins (€/hl)
+description: Exonération pour l'ensemble des vins (€/hl)
 values:
   1982-01-01:
     value: 12.7
   1993-02-01:
     value: null
 metadata:
+  short_label: Exonération vins
   ipp_csv_id: exoneration_taxe_vins
   unit: currency
   reference:
@@ -17,4 +18,3 @@ metadata:
   official_journal_date:
     1982-01-01: "1981-12-31"
     1993-02-01: "1993-01-04"
-documentation: Données renseignées dans l''article 438 du code général des impôts'

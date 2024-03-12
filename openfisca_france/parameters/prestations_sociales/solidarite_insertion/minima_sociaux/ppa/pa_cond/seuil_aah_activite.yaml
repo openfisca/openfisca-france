@@ -4,4 +4,4 @@ values:
     value: 29
 metadata:
   short_label: Seuil AAH activité
-  unit: SMIC
+  unit: smic_horaire_brut

@@ -1,4 +1,4 @@
-name: personne isolée 1 enft salariée hébergement à titre gratuit
+name: Personne celibataire à charge de ses parents avec 1 enfant, salariée et hébergée à titre gratuit
 keywords:
 - recette
 - rsa
@@ -267,4 +267,4 @@ input:
     personne_de_reference: 55e6c292dc46199d042bb6e8
     statut_occupation_logement: loge_gratuitement
 output:
-  rsa: 590
+  rsa: 480

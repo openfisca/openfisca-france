@@ -2,6 +2,8 @@ import logging
 
 from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
 
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
@@ -26,7 +28,7 @@ class assiette_allegement(Variable):
 class coefficient_proratisation(Variable):
     value_type = float
     entity = Individu
-    label = 'Coefficient de proratisation du salaire notamment pour le calcul du SMIC'
+    label = 'Coefficient de proratisation du salaire notamment pour le calcul du Smic'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -78,8 +80,10 @@ class coefficient_proratisation(Variable):
 
         duree_legale_mensuelle = parameters(period).marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
-        heures_temps_plein = switch(heures_duree_collective_entreprise,
-                                    {0: duree_legale_mensuelle, 1: heures_duree_collective_entreprise})
+        heures_temps_plein = where(heures_duree_collective_entreprise,
+                                   heures_duree_collective_entreprise,
+                                   duree_legale_mensuelle
+                                   )
 
         jours_absence = heures_non_remunerees_volume / 7
 
@@ -289,7 +293,7 @@ class aide_embauche_pme(Variable):
 class smic_proratise(Variable):
     value_type = float
     entity = Individu
-    label = 'SMIC proratisé (mensuel)'
+    label = 'Smic proratisé (mensuel)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -535,7 +539,7 @@ def compute_allegement_anticipe(individu, period, parameters, variable_name, com
     if period.start.month == 12:
         cumul = individu(
             variable_name,
-            period.start.offset('first-of', 'year').period('month', 11), options = [ADD])
+            Period(('month', period.start.offset('first-of', 'year'), 11)), options = [ADD])
         return compute_function(
             individu, period.this_year, parameters
             ) - cumul
@@ -546,8 +550,8 @@ def compute_allegement_progressif(individu, period, parameters, variable_name, c
         return compute_function(individu, period.first_month, parameters)
 
     if period.start.month > 1:
-        up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
-        up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
+        up_to_this_month = Period(('month', period.start.offset('first-of', 'year'), period.start.month))
+        up_to_previous_month = Period(('month', period.start.offset('first-of', 'year'), period.start.month - 1))
         cumul = individu(variable_name, up_to_previous_month, options = [ADD])
         return compute_function(individu, up_to_this_month, parameters) - cumul
 

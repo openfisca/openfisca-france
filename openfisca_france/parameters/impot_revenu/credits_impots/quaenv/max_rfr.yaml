@@ -5,4 +5,4 @@ values:
   2012-01-01:
     value: 30000
 metadata:
-  unit: currency
+  unit: currency_next_year

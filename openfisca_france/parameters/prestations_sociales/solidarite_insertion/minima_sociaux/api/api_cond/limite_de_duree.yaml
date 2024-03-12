@@ -1,4 +1,4 @@
-description: Limite de durée (en mois) par rapport au moment où le droit aurait pu être ouvert pour l'Allocation parent isolé (API)
+description: Limite de durée (en mois) par rapport au moment où le droit aurait pu être ouvert pour l'allocation parent isolé (API)
 values:
   1976-10-01:
     value: 18
