@@ -1,5 +1,14 @@
 # Changelog
 
+### 159.0.4 [2264](https://github.com/openfisca/openfisca-france/pull/2264)
+
+* Amélioration technique. | Changement mineur.
+* Zones impactées :
+  - `model/prelevements_obligatoires/impot_revenu/reductions_impot_deplafonnees.py`
+  - `parameters/impot_revenu/calcul_reductions_impots/divers/restauration_patrimoine_bati`
+* Détails :
+  - Harmonisation du paramètre resturation patrimoine bati avec les barèmes IPP
+
 ### 159.0.3 [2260](https://github.com/openfisca/openfisca-france/pull/2260)
 
 * Évolution du système socio-fiscal.
