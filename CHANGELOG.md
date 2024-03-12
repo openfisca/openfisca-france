@@ -1,5 +1,14 @@
 # Changelog
 
+### 159.0.5 [2265](https://github.com/openfisca/openfisca-france/pull/2265)
+
+* Changement mineur.
+* Zones impactées :
+  - `parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/index.yaml`
+  - `parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/index.yaml`
+* Détails :
+  - Harmonisation du paramètre souscription capital avec les barèmes IPP
+
 ### 159.0.4 [2264](https://github.com/openfisca/openfisca-france/pull/2264)
 
 * Amélioration technique. | Changement mineur.
