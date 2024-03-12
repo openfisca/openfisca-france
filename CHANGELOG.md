@@ -1,5 +1,15 @@
 # Changelog
 
+### 160.0.0 [2262](https://github.com/openfisca/openfisca-france/pull/2262)
+
+* Amélioration technique
+* Zones impactées :
+  - `parameters/taxation_societes/tns`
+  - `parameters/prestations_sociales/solidarite_insertion/rsa`
+* Détails :
+  - Supprime des paramètres en doublon (dans tns/auto_entrepreneur : achat_revente, bic, bnc et dans tns/micro_entreprise : achat_revente, bic, bnc et cotisations_sociales)
+  - Déplace les conditions pour l'obtention par des salariés agricoles du RSA avant 2016 dans rsa
+
 ### 159.0.5 [2265](https://github.com/openfisca/openfisca-france/pull/2265)
 
 * Changement mineur.
