@@ -4,5 +4,13 @@ values:
     value: 110
 metadata:
   short_label: Multiple couple
+  last_value_still_valid_on: "2024-03-12"
   label_en: Special UI scheme
   unit: /1
+  reference:
+    2005-01-01:
+      title: Code du Travail, Article R5423-1
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018525084
+  notes:
+    2005-01-01:
+    - title: "Avant 2008, ce paramètre était défini dans l'article R351-13 du Code du Travail"
