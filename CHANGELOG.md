@@ -1,5 +1,14 @@
 # Changelog
 
+### 160.0.1 [2266](https://github.com/openfisca/openfisca-france/pull/2266)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2023.
+* Zones impactées : `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass`.
+* Détails :
+  - Met à jour les valeurs de l'ASS à partir d'avril 2023
+  - Ajoute des références pour des paramètres de l'ASS
+
 ### 160.0.0 [2262](https://github.com/openfisca/openfisca-france/pull/2262)
 
 * Amélioration technique
