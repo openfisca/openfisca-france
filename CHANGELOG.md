@@ -1,5 +1,15 @@
 # Changelog
 
+### 160.0.2 [2267](https://github.com/openfisca/openfisca-france/pull/2267)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : 
+  - `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/plaf_seul.yaml`
+  - `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/plaf_coup.yaml`
+* Détails :
+  - Supprime l'unité "/1" pour deux paramètres qui n'était pas des taux
+
 ### 160.0.1 [2266](https://github.com/openfisca/openfisca-france/pull/2266)
 
 * Évolution du système socio-fiscal.
