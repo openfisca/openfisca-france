@@ -14,7 +14,7 @@ brackets:
       value: 0
 metadata:
   short_label: Entreprises de moins de 50 salariés
-  last_value_still_valid_on: "2023-01-30"
+  last_value_still_valid_on: "2024-03-14"
   ipp_csv_id: fnal_p_m50_0_1
   reference:
     2020-01-01:

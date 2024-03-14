@@ -58,6 +58,8 @@ brackets:
       value: 0.002
     2017-07-01:
       value: 0.0015
+    2024-01-01:
+      value: 0.002
 - threshold:
     1974-01-01:
       value: 4
@@ -66,6 +68,7 @@ brackets:
       value: 0
 metadata:
   short_label: Taux employeur
+  last_value_still_valid_on: "2024-14-03"
   label_en: Contributions to the scheme of wage guarantee (AGS)
   ipp_csv_id: ags_p_0_4
   reference:
@@ -124,6 +127,9 @@ metadata:
       title: Conseil d'administration de l'AGS du 14/12/2016. Circulaire Unedic 2016-31 du 19/12/2016.
     2017-07-01:
       title: Conseil d'administration de l'AGS du 29/06/2017. Circulaire Unedic 2017-19 du 21/07/2017. Conseil d'administration de l'AGS du 04/06/2021.
+    2024-01-01 :
+      title: Le guide pratique AGS 2024
+      href : https://www.ags-garantie-salaires.org/files/ags-theme/ags/2024/Guide%20pratique%20AGS%202024.pdf
   notes:
     2001-01-01:
     - title: BSP 2001 non communicables à la BNF

@@ -4,8 +4,14 @@ values:
     value: 5.33
   2015-01-01:
     value: 5.66
+  2024-01-01:
+    value: 7.18
 metadata:
   short_label: Seuil
-  last_value_still_valid_on: "2015-01-01"
+  last_value_still_valid_on: "2024-14-03"
   unit: currency
+  reference:
+    2024-01-01:
+      title: Ursaff - Les titres-restaurant
+      href: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-titres-restaurant.html
 documentation: ""

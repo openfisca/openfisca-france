@@ -126,7 +126,7 @@ brackets:
       value: 0
 metadata:
   short_label: Barème employeur
-  last_value_still_valid_on: "2021-12-07"
+  last_value_still_valid_on: "2024-03-14"
   ipp_csv_id:
     rate: chom_p_0_1, chom_p_1_4
   reference:
@@ -193,9 +193,8 @@ metadata:
     2007-01-01:
       title: Circulaire Unedic 2007-02 du 18/01/2007. Convention du 18/01/2006
     2017-10-01:
-    - title: Circulaire Unedic 2017-21 du 24/07/2017
-      href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Ci2017-21.pdf
-    - title: Convention relative à l'assurance chômage du 14/04/2017 (arrêté ministériel du 04/05/2017)
+    - title: Unédic Taux de contribution
+      href: https://www.unedic.org/storage/uploads/2023/09/01/Fiche_Taux_de_Contribution_novembre_2019_uid_64f1a9dcb314b.pdf
   official_journal_date:
     1982-11-06: "1982-11-05"
     1983-07-01: "1983-07-01"

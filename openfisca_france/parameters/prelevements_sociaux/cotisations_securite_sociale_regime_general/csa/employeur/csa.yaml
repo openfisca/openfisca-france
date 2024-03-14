@@ -8,7 +8,7 @@ brackets:
       value: 0.003
 metadata:
   short_label: Barème employeur
-  last_value_still_valid_on: "2023-01-30"
+  last_value_still_valid_on: "2024-03-14"
   label_en: "SSC for autonomy (CSA: Solidarity Contribution for Autonomy)"
   ipp_csv_id: csa_p_0_
   reference:

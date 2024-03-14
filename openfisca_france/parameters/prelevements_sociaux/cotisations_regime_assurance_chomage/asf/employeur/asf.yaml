@@ -3,6 +3,8 @@ brackets:
 - threshold:
     1984-01-01:
       value: 0
+    2001-04-01:
+      value: null
   rate:
     1984-01-01:
       value: 0.012
@@ -11,10 +13,12 @@ brackets:
     1994-01-01:
       value: 0.0116
     2001-04-01:
-      value: 0
+      value: null
 - threshold:
     1984-04-01:
       value: 1
+    2001-04-01:
+      value: null
   rate:
     1984-01-01:
       value: 0
@@ -23,13 +27,17 @@ brackets:
     1994-01-01:
       value: 0.0129
     2001-04-01:
-      value: 0
+      value: null
 - threshold:
     1984-04-01:
       value: 4
+    2001-04-01:
+      value: null
   rate:
     1984-04-01:
       value: 0
+    2001-04-01:
+      value: null
 metadata:
   short_label: Barème employeur
   last_value_still_valid_on: "2021-12-07"

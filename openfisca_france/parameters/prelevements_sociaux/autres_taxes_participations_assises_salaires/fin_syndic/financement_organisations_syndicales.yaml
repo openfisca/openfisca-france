@@ -8,7 +8,7 @@ brackets:
       value: 0.00016
 metadata:
   short_label: Taux contribution dialogue social
-  last_value_still_valid_on: "2021-12-07"
+  last_value_still_valid_on: "2024-03-14"
   label_en: Employer's contributions to the funding of trade unions
   ipp_csv_id: taux
   reference:

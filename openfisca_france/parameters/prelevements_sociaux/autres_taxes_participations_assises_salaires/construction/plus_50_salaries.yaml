@@ -8,6 +8,7 @@ brackets:
       value: 0.0045
 metadata:
   short_label: Plus de 50 salariés
+  last_value_still_valid_on: "2024-03-14"
   ipp_csv_id: cons_p50_0_
   reference:
     2020-01-01:

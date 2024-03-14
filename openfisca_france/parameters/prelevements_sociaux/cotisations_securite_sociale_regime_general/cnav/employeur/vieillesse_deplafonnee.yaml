@@ -16,9 +16,13 @@ brackets:
       value: 0.0185
     2017-01-01:
       value: 0.019
+    2017-01-01:
+      value: 0.019
+    2024-01-01:
+      value: 0.0202
 metadata:
   short_label: Taux sur tout le salaire
-  last_value_still_valid_on: "2023-01-30"
+  last_value_still_valid_on: "2024-03-14"
   label_en: SSCs for old-age benefits (1967-2016)
   ipp_csv_id:
     rate: cnav_p_0_
@@ -80,6 +84,11 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029924557/2015-01-01/
     - title: Décret 2014-1531 du 17/12/2014, art. 4
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000029920866
+    2024-01-01:
+    - title: Article D242-4 du Code de la Sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029924557/2024-03-14/
+    - title: Décret 2023-1329 du 29/12/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048727897
   official_journal_date:
     1967-10-01: "1967-09-24"
     1970-08-01: "1970-07-31"
@@ -100,6 +109,7 @@ metadata:
     2015-01-01: "2014-12-19"
     2016-01-01: "2014-12-19"
     2017-01-01: "2014-12-19"
+    2024-01-01: "2023-12-30"
   notes:
     1991-02-01:
     - title: Voir note (i).
