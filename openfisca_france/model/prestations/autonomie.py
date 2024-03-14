@@ -6,6 +6,7 @@ from openfisca_france.model.base import *
 class base_ressources_apa(Variable):
     value_type = float
     label = "Ressources considérées dans le calcul de l'APA"
+    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000588742'
     entity = Individu
     definition_period = MONTH
 
@@ -24,6 +25,7 @@ class base_ressources_apa(Variable):
 class apa_domicile_participation(Variable):
     value_type = float
     label = "Participation du bénéficiaire de l'APA à domicile en euros"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032112672'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -71,6 +73,11 @@ class apa_domicile_participation(Variable):
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
         parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         majoration_tierce_personne = parameters.mtp
+        premiere_fraction = parameters.apa_domicile.participation_en_part_mtp.fraction_premier_seuil
+        seconde_fraction = parameters.apa_domicile.participation_en_part_mtp.fraction_second_seuil
+        seuil_inf = parameters.apa_domicile.seuil_revenu_en_part_mtp.seuil_inferieur
+        seuil_sup = parameters.apa_domicile.seuil_revenu_en_part_mtp.seuil_superieur
+        taux_part_max = parameters.apa_domicile.taux_de_participation.maximum
 
         proratisation_couple = (
             1
@@ -80,8 +87,8 @@ class apa_domicile_participation(Variable):
 
         base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
 
-        premier_seuil = 0.317 * majoration_tierce_personne
-        second_seuil = 0.498 * majoration_tierce_personne
+        premier_seuil = premiere_fraction * majoration_tierce_personne
+        second_seuil = seconde_fraction * majoration_tierce_personne
         condlist = [
             dependance_plan_aide_domicile_accepte <= premier_seuil,
             (premier_seuil <= dependance_plan_aide_domicile_accepte) * (dependance_plan_aide_domicile_accepte <= second_seuil),
@@ -107,19 +114,19 @@ class apa_domicile_participation(Variable):
         A_3 = select(condlist, choicelist_3)
 
         apa_domicile_participation = min_(
-            0.9 * dependance_plan_aide_domicile_accepte,
-            0.9
+            taux_part_max * dependance_plan_aide_domicile_accepte,
+            taux_part_max
             * max_(0, base_ressources_apa_domicile - 0.725 * majoration_tierce_personne)
-            / (1.945 * majoration_tierce_personne)
+            / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
             * (
                 A_1
                 + A_2 * (
-                    (1 - 0.4) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne)
-                    + (0.4 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
+                    (1 - 0.4) * base_ressources_apa_domicile / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
+                    + (0.4 * seuil_sup * majoration_tierce_personne - seuil_inf * majoration_tierce_personne) / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
                     )
                 + A_3 * (
-                    (1 - 0.2) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne)
-                    + (0.2 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
+                    (1 - 0.2) * base_ressources_apa_domicile / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
+                    + (0.2 * seuil_sup * majoration_tierce_personne - seuil_inf * majoration_tierce_personne) / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
                     )
                 )
             )
@@ -131,6 +138,7 @@ class apa_eligibilite(Variable):
     value_type = bool
     entity = Individu
     label = "Allocation personalisée d'autonomie - Éligibilité"
+    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000588742'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -154,6 +162,7 @@ class apa_eligibilite(Variable):
 class apa_domicile_taux_participation(Variable):
     value_type = float
     label = "Taux de participation du bénéficiaire à l'APA à domicile"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032112672'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -169,6 +178,7 @@ class apa_domicile_taux_participation(Variable):
 class apa_domicile(Variable):
     value_type = float
     label = "Allocation personalisée d'autonomie"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000444131'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -190,6 +200,7 @@ class apa_domicile(Variable):
 class apa_etablissement(Variable):
     value_type = float
     label = "Allocation personalisée d'autonomie en institution"
+    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000588742'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -331,6 +342,7 @@ class dependance_tarif_etablissement_gir_dependant(Variable):
 class apa_urgence_domicile(Variable):
     value_type = float
     label = "Allocation personalisée d'autonomie d'urgence à domicile"
+    reference = 'https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000588742'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -347,6 +359,7 @@ class apa_urgence_domicile(Variable):
 class apa_urgence_institution(Variable):
     value_type = float
     label = "Allocation personalisée d'autonomie en institution"
+    reference = 'https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000588742'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -362,6 +375,7 @@ class apa_urgence_institution(Variable):
 class dependance_plan_aide_domicile_accepte(Variable):
     value_type = float
     label = "Coût du plan d'aide plafonné pris en compte pour la détermination de l'APA"
+    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000588742'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period

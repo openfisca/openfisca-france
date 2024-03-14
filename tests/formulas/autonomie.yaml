@@ -319,3 +319,16 @@
     apa_urgence_institution:
       2001-12: 0
       2002-01: 300 # 600 * 0.5
+
+- name: APA test de non-versement
+  description: APA inférieur au seuil de non-versement
+  period: 2019-05
+  absolute_error_margin: 0.03
+  input:
+    age: 70
+    gir: gir_4
+    dependance_plan_aide_domicile: 300
+    base_ressources_apa: 3500
+  output:
+    apa_domicile: 0
+    apa_domicile_taux_participation: 0.9
