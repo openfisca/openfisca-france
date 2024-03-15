@@ -1,10 +1,16 @@
 # Changelog
 
-### 161.0.0 [2263](https://github.com/openfisca/openfisca-france/pull/2263/files)
+### 161.0.1 [2268](https://github.com/openfisca/openfisca-france/pull/2268)
+* Changement mineur.
+ Périodes concernées : toutes.
+* Détails :
+  - Corrige des index erroné
+
+# 161.0.0 [2263](https://github.com/openfisca/openfisca-france/pull/2263)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
     - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py`.
     - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_deplafonnees.py`
     - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots`
@@ -17,7 +23,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/plaf_seul.yaml`
   - `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/plaf_coup.yaml`
 * Détails :
