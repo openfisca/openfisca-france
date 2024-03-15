@@ -1,9 +1,7 @@
-description: Plafond de la réduction d'impôt pour cotisations syndicales
+description: Plafond du crédit d'impôt pour cotisations syndicales
 values:
-  1988-01-01:
-    value: 0.01
   2012-01-01:
-    value: null
+    value: 0.01
 metadata:
   short_label: Plafond
   label_en: Union dues
@@ -11,8 +9,6 @@ metadata:
   ipp_csv_id: plafcotsynd
   unit: /1
   reference:
-    1988-01-01:
-      title: Loi 1988-1149 du 28/12/1988, art. 8-I, II (LF pour 1989)
     2012-01-01:
     - title: LOI n° 2012-1510 du 29/12/2012 de finances rectificative pour 2012, article 23
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000026858081

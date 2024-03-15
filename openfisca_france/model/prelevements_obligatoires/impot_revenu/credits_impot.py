@@ -858,7 +858,19 @@ class credit_cotisations_syndicales(Variable):
         '''
         Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
         '''
-        return foyer_fiscal('cotisations_syndicales', period)
+        f7ac = foyer_fiscal.members('f7ac', period)
+
+        cotisations_versees = f7ac
+
+        salaire_imposable = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
+        chomage_imposable = foyer_fiscal.members('chomage_imposable', period, options = [ADD])
+        retraite_imposable = foyer_fiscal.members('retraite_imposable', period, options = [ADD])
+
+        P = parameters(period).impot_revenu.credits_impots.cotisations_syndicales
+
+        plafond = (salaire_imposable + chomage_imposable + retraite_imposable) * P.plafond
+
+        return (P.taux * foyer_fiscal.sum(min_(cotisations_versees, plafond)))
 
 
 class creimp_exc_2008(Variable):

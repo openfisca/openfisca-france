@@ -572,18 +572,6 @@ class reduction_cotisations_syndicales(Variable):
     def formula(foyer_fiscal, period, parameters):
         '''
         Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
-        '''
-        return foyer_fiscal('cotisations_syndicales', period)
-
-
-class cotisations_syndicales(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = "Montant de la réduction ou crédit d'impôt pour cotisations syndicales"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
         NB: This is but an approximation of the true calculation, as it is done on the level of the tax unit.
         In reality, the ceilings of 1 % of revenues are applied on the individual level (cf. BOI-IR-RICI-20).
         '''
