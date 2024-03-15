@@ -1,1 +1,6 @@
-description: Souscription de prêts étudiants
+description: Crédit d'impôt pour la souscription de prêts étudiants
+metadata:
+  short_label: Souscription de prêts étudiants
+  order:
+  - taux
+  - max

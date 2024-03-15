@@ -1,5 +1,18 @@
 # Changelog
 
+### 161.0.0 [2263](https://github.com/openfisca/openfisca-france/pull/2263/files)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : 
+    - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py`.
+    - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_deplafonnees.py`
+    - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots`
+    - `openfisca_france/parameters/impot_revenu/credits_impots`
+* Détails :
+  - Harmonisation des paramètres de crédits et réductions d'impôt avec les barèmes IPP
+  - Suppression de la variables `cotisations_syndicales` qui servait à la fois pour un crédit et une réduction, pour bien séparer les deux
+
 ### 160.0.2 [2267](https://github.com/openfisca/openfisca-france/pull/2267)
 
 * Changement mineur.

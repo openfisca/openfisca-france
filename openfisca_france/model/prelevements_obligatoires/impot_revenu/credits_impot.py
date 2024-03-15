@@ -858,7 +858,19 @@ class credit_cotisations_syndicales(Variable):
         '''
         Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
         '''
-        return foyer_fiscal('cotisations_syndicales', period)
+        f7ac = foyer_fiscal.members('f7ac', period)
+
+        cotisations_versees = f7ac
+
+        salaire_imposable = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
+        chomage_imposable = foyer_fiscal.members('chomage_imposable', period, options = [ADD])
+        retraite_imposable = foyer_fiscal.members('retraite_imposable', period, options = [ADD])
+
+        cotisations_syndicales = parameters(period).impot_revenu.credits_impots.cotisations_syndicales
+
+        plafond = (salaire_imposable + chomage_imposable + retraite_imposable) * cotisations_syndicales.plafond
+
+        return (cotisations_syndicales.taux * foyer_fiscal.sum(min_(cotisations_versees, plafond)))
 
 
 class creimp_exc_2008(Variable):
@@ -1466,10 +1478,11 @@ class divide(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2dc = foyer_fiscal('f2dc', period)
         f2gr = foyer_fiscal('f2gr', period)
-        P = parameters(period).impot_revenu.credits_impots.divide
+        credits_impots_divide = parameters(period).impot_revenu.credits_impots.divide
+        revenus_capitaux_mobiliers_dividendes_taux = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.revenus_capitaux_mobiliers_dividendes
 
-        max1 = P.max * (maries_ou_pacses + 1)
-        return min_(P.taux * (f2dc + f2gr), max1)
+        max1 = credits_impots_divide.plafond * (maries_ou_pacses + 1)
+        return min_(revenus_capitaux_mobiliers_dividendes_taux.taux_abattement * (f2dc + f2gr), max1)
 
 
 class drbail(Variable):
