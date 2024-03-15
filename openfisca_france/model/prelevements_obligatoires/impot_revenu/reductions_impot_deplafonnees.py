@@ -584,11 +584,11 @@ class reduction_cotisations_syndicales(Variable):
         chomage_imposable = foyer_fiscal.members('chomage_imposable', period, options = [ADD])
         retraite_imposable = foyer_fiscal.members('retraite_imposable', period, options = [ADD])
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cotisations_syndicales
+        cotisations_syndicales = parameters(period).impot_revenu.calcul_reductions_impots.cotisations_syndicales
 
-        plafond = (salaire_imposable + chomage_imposable + retraite_imposable) * P.plafond
+        plafond = (salaire_imposable + chomage_imposable + retraite_imposable) * cotisations_syndicales.plafond
 
-        return (P.taux * foyer_fiscal.sum(min_(cotisations_versees, plafond)))
+        return (cotisations_syndicales.taux * foyer_fiscal.sum(min_(cotisations_versees, plafond)))
 
 
 class interets_emprunt_reprise_societe(Variable):
