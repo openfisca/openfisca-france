@@ -208,16 +208,16 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        reduction_9_ans = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie.location_9_ans
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
-        inv_om = min_(P.plafond, f7gi)
-        inv_metro = min_(P.plafond - inv_om, f7gh)
+        inv_om = min_(reduction_9_ans.plafond, f7gi)
+        inv_metro = min_(reduction_9_ans.plafond - inv_om, f7gh)
 
-        ri_metro = around(inv_metro * P.taux_duflot_metro / 9)
+        ri_metro = around(inv_metro * reduction_9_ans.taux_metro / 9)
 
         return ri_metro
 
@@ -228,7 +228,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         even though they may contain OM investments as well (only relevant after 2015,
         but since there are no separate cases, nothing one can potentially do).
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
@@ -249,13 +249,13 @@ class duflot_pinel_denormandie_metropole(Variable):
 
         # Duflot 2013
 
-        reduc_2013 = around(P.taux_duflot_metro * min_(P.plafond - f7gi, f7gh) / 9)
+        reduc_2013 = around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(duflot_pinel_denormandie.plafond - f7gi, f7gh) / 9)
 
         # Duflot et Pinel 2014
-        max1 = max_(0, P.plafond - f7el - f7qd - f7qc)  # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, duflot_pinel_denormandie.plafond - f7el - f7qd - f7qc)  # 2014 : plafond commun 'duflot' et 'rpinel'
 
-        reduc_2014 = (around(P.taux_duflot_metro * min_(max1, f7ek + f7qb) / 9)
-            + around(P.taux_pinel_denormandie_metro_6ans * min_(max1 - f7ek - f7qb, f7qa) / 6))
+        reduc_2014 = (around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max1, f7ek + f7qb) / 9)
+            + around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max1 - f7ek - f7qb, f7qa) / 6))
 
         ri_metro = reduc_2013 + reduc_2014 + f7fi
 
@@ -266,7 +266,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         Investissement locatif privé - Dispositif Pinel
         De 2015 à 2018
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
@@ -320,13 +320,13 @@ class duflot_pinel_denormandie_metropole(Variable):
             }
 
         # Duflot 2013
-        reduc_2013 = around(P.taux_duflot_metro * min_(P.plafond - f7gi, f7gh) / 9)
+        reduc_2013 = around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(duflot_pinel_denormandie.plafond - f7gi, f7gh) / 9)
 
         # Duflot et Pinel 2014
         max1 = max_(0, P.plafond - f7el - f7qd - f7qc)  # 2014 : plafond commun 'duflot' et 'rpinel'
 
-        reduc_2014 = (around(P.taux_duflot_metro * min_(max1, f7ek + f7qb) / 9)
-            + around(P.taux_pinel_denormandie_metro_6ans * min_(max1 - f7ek - f7qb, f7qa) / 6))
+        reduc_2014 = (around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max1, f7ek + f7qb) / 9)
+            + around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max1 - f7ek - f7qb, f7qa) / 6))
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -336,9 +336,9 @@ class duflot_pinel_denormandie_metropole(Variable):
                 depense = foyer_fiscal(variable, period)
                 if zone == 'metropole':
                     if duree == 9:
-                        reduction += around(P.taux_pinel_denormandie_metro_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                     elif duree == 6:
-                        reduction += around(P.taux_pinel_denormandie_metro_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
@@ -355,7 +355,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -405,9 +405,9 @@ class duflot_pinel_denormandie_metropole(Variable):
                 depense = foyer_fiscal(variable, period)
                 if zone == 'metropole':
                     if duree == 9:
-                        reduction += around(P.taux_pinel_denormandie_metro_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                     elif duree == 6:
-                        reduction += around(P.taux_pinel_denormandie_metro_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
@@ -426,7 +426,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         NB: it is not clear whether the extension of the Pinel investment should also
         count towards the ceiling of € 300K. I will assume it does.
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qp', 9, 'outremer'),  # Pinel 2017
@@ -484,9 +484,9 @@ class duflot_pinel_denormandie_metropole(Variable):
                 depense = foyer_fiscal(variable, period)
                 if zone == 'metropole':
                     if duree == 9:
-                        reduction += around(P.taux_pinel_denormandie_metro_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                     elif duree == 6:
-                        reduction += around(P.taux_pinel_denormandie_metro_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
@@ -497,7 +497,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = around(min_(P.plafond - f7rs, f7rr) * P.taux_prolong1_6ans / 3)
+        prorogation = around(min_(duflot_pinel_denormandie.plafond - f7rs, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
 
         return reduction_cumulee + report + f7fi + f7fk + f7fr + f7fv + f7fw + f7fx + prorogation
 
@@ -505,7 +505,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qu', 9, 'outremer'),
@@ -573,9 +573,9 @@ class duflot_pinel_denormandie_metropole(Variable):
                 depense = foyer_fiscal(variable, period)
                 if zone == 'metropole':
                     if duree == 9:
-                        reduction += around(P.taux_pinel_denormandie_metro_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                     elif duree == 6:
-                        reduction += around(P.taux_pinel_denormandie_metro_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
@@ -586,8 +586,8 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(P.plafond - f7rs, f7rr) * P.taux_prolong1_6ans / 3)
-            + around(min_(P.plafond - f7ry, f7rx) * P.taux_prolong1_6ans / 3))
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond - f7rs, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond - f7ry, f7rx) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
 
         return reduction_cumulee + report + f7fi + f7fk + f7fr + f7fv + f7fw + f7fx + prorogation + f7sx
 
@@ -602,14 +602,14 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
         inv_om = min_(P.plafond, f7gi)
 
-        ri_om = around(inv_om * P.taux_duflot_om / 9)
+        ri_om = around(inv_om * duflot_pinel_denormandie.location_9_ans.taux_om / 9)
 
         return ri_om
 
@@ -620,7 +620,7 @@ class duflot_pinel_denormandie_om(Variable):
         even though they may contain OM investments as well (only relevant after 2015,
         but since there are no separate cases, nothing one can potentially do).
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
@@ -633,14 +633,14 @@ class duflot_pinel_denormandie_om(Variable):
         f7qd = foyer_fiscal('f7qd_2018', period)  # Outre-Mer, 9 ans
 
         # Duflot 2013
-        reduc_2013 = around(P.taux_duflot_om * min_(P.plafond, f7gi) / 9)
+        reduc_2013 = around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(duflot_pinel_denormandie.plafond, f7gi) / 9)
 
         # Duflot et Pinel 2014
         inv_29_om = min_(P.plafond, f7el + f7qd)
         inv_23_om = min_(P.plafond - inv_29_om, f7qc)
 
-        reduc = (around((inv_29_om * P.taux_duflot_om / 9)
-            + around(inv_23_om * P.taux_pinel_denormandie_om_6ans / 6))) + reduc_2013
+        reduc = (around((inv_29_om * duflot_pinel_denormandie.location_9_ans.taux_om / 9)
+            + around(inv_23_om * duflot_pinel_denormandie.location_6_ans.taux_om / 6))) + reduc_2013
 
         return reduc
 
@@ -648,7 +648,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot + Pinel
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
@@ -661,11 +661,11 @@ class duflot_pinel_denormandie_om(Variable):
         f7qd = foyer_fiscal('f7qd_2018', period)  # Outre-Mer, 9 ans
 
         # Duflot 2013
-        reduc_2013 = P.taux_duflot_om * min_(P.plafond, f7gi) / 9
+        reduc_2013 = duflot_pinel_denormandie.location_9_ans.taux_om * min_(duflot_pinel_denormandie.plafond, f7gi) / 9
 
         # Duflot et Pinel 2014
-        reduc_2014 = (around(P.taux_duflot_om * min_(P.plafond, f7el + f7qd) / 9)
-            + around(P.taux_pinel_denormandie_om_6ans * min_(P.plafond - f7el - f7qd, f7qc) / 6))
+        reduc_2014 = (around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(duflot_pinel_denormandie.plafond, f7el + f7qd) / 9)
+            + around(duflot_pinel_denormandie.location_6_ans.taux_om * min_(duflot_pinel_denormandie.plafond - f7el - f7qd, f7qc) / 6))
 
         cases_investissement = {
             2015: [
@@ -705,9 +705,9 @@ class duflot_pinel_denormandie_om(Variable):
                 depense = foyer_fiscal(variable, period)
                 if zone == 'outremer':
                     if duree == 9:
-                        reduction += around(P.taux_pinel_denormandie_om_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                     elif duree == 6:
-                        reduction += around(P.taux_pinel_denormandie_om_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
@@ -724,7 +724,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -766,9 +766,9 @@ class duflot_pinel_denormandie_om(Variable):
                 depense = foyer_fiscal(variable, period)
                 if zone == 'outremer':
                     if duree == 9:
-                        reduction += around(P.taux_pinel_denormandie_om_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                     elif duree == 6:
-                        reduction += around(P.taux_pinel_denormandie_om_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
@@ -787,7 +787,7 @@ class duflot_pinel_denormandie_om(Variable):
         NB: it is not clear whether the extension of the Pinel investment should also
         count towards the ceiling of € 300K. I will assume it does.
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -837,9 +837,9 @@ class duflot_pinel_denormandie_om(Variable):
                 depense = foyer_fiscal(variable, period)
                 if zone == 'outremer':
                     if duree == 9:
-                        reduction += around(P.taux_pinel_denormandie_om_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                     elif duree == 6:
-                        reduction += around(P.taux_pinel_denormandie_om_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
@@ -850,7 +850,7 @@ class duflot_pinel_denormandie_om(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = around(min_(P.plafond, f7rs) * P.taux_prolong1_6ans / 3)
+        prorogation = around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
 
         return reduction_cumulee + report + prorogation
 
@@ -858,7 +858,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -916,9 +916,9 @@ class duflot_pinel_denormandie_om(Variable):
                 depense = foyer_fiscal(variable, period)
                 if zone == 'outremer':
                     if duree == 9:
-                        reduction += around(P.taux_pinel_denormandie_om_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                     elif duree == 6:
-                        reduction += around(P.taux_pinel_denormandie_om_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
@@ -929,8 +929,8 @@ class duflot_pinel_denormandie_om(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(P.plafond, f7rs) * P.taux_prolong1_6ans / 3)
-            + around(min_(P.plafond, f7ry) * P.taux_prolong1_6ans / 3))
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7ry) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
 
         return reduction_cumulee + report + prorogation + f7sy
 

@@ -1,9 +1,9 @@
-description: Taux de la réduction d'impôt Pinel/Denormandie pour les investsissements réalisés en outre-mer avec engagement de location de 6 ans
+description: Taux de la réduction d'impôt Pinel/Denormandie pour les investissements réalisés en outre-mer avec engagement de location de 6 ans
 values:
   2014-01-01:
     value: 0.23
 metadata:
-  last_value_still_valid_on: "2022-10-11"
+  last_value_still_valid_on: "2024-03-18"
   unit: /1
   reference:
     2014-01-01:

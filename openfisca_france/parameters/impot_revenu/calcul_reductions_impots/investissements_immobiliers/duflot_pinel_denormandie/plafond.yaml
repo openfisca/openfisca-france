@@ -3,7 +3,7 @@ values:
   2013-01-01:
     value: 300000
 metadata:
-  last_value_still_valid_on: "2022-10-11"
+  last_value_still_valid_on: "2024-03-18"
   unit: currency_next_year
   reference:
     2013-01-01:
