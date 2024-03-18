@@ -1,5 +1,16 @@
 # Changelog
 
+### 161.0.2 [2269](https://github.com/openfisca/openfisca-france/pull/2269)
+
+* Changement mineur.
+* Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
+* Zones impactées : 
+    - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/propre_entreprise/iDOMe_taux1.yaml`
+    - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/propre_entreprise/iDOMe_taux2.yaml`
+
+* Détails :
+  - Suprime deux paramètres de taux qui ne sont pas utilisés dans les formules et qui ne sont pas documentés
+
 ### 161.0.1 [2268](https://github.com/openfisca/openfisca-france/pull/2268)
 
 * Changement mineur.
