@@ -1,5 +1,15 @@
 # Changelog
 
+### 161.0.3 [2270](https://github.com/openfisca/openfisca-france/pull/2270)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2024.
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux`.
+* Détails :
+  - Mise à jour des paramètres de cotisations (particulier et employeur)
+  - Mise à jour des last_value_still_valid_on
+  - Mise à jour de références
+
 ### 161.0.2 [2269](https://github.com/openfisca/openfisca-france/pull/2269)
 
 * Changement mineur.
