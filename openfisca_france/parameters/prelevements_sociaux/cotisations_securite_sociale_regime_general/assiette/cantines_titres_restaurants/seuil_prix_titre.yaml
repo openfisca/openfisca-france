@@ -4,14 +4,18 @@ values:
     value: 5.33
   2015-01-01:
     value: 5.66
-  2024-01-01:
-    value: 7.18
+  2023-01-01:
+    value: 6.91
 metadata:
   short_label: Seuil
-  last_value_still_valid_on: "2024-14-03"
+  last_value_still_valid_on: "2024-03-14"
   unit: currency
   reference:
-    2024-01-01:
-      title: Ursaff - Les titres-restaurant
+    2023-01-01:
+      title: Code général des impôts, art. 81 (19°)
       href: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-titres-restaurant.html
-documentation: ""
+documentation: "La limite d'exonération est relevée chaque année dans la même proportion que la variation de 
+l'indice des prix à la consommation hors tabac entre le 1er octobre de l'avant-dernière année et le 1er octobre 
+de l'année précédant celle de l'acquisition des titres-restaurant et arrondie, s'il y a lieu, au centime d'euro 
+le plus proche. (cf. Article 81 du Code général des impôts)
+Pour 2024, la valeur devrait donc être égale à 7,18 € (cf. https://boss.gouv.fr/portail/accueil/avantages-en-nature-et-frais-pro/avantages-en-nature.html#titre-chapitre-7---tableaux-recapitula-untitled)"
