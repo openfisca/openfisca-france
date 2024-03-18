@@ -1,7 +1,0 @@
-description: Montant des abattements spécifiques des allocations logement pour les assistants maternels
-values:
-  2019-01-01:
-    value: 1195
-metadata:
-  short_label: Assistant maternel
-  unit: currency

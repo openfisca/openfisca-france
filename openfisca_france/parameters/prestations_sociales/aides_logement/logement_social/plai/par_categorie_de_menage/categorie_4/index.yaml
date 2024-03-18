@@ -1,0 +1,8 @@
+description: Prêt locatif aidé d'intégration pour les logements très sociaux pour les ménages de catégorie 4
+metadata:
+  short_label: Ménage de catégorie 4
+  label_en: Housing allowances
+  order:
+  - paris_communes_limitrophes
+  - ile_de_france
+  - autres_regions
