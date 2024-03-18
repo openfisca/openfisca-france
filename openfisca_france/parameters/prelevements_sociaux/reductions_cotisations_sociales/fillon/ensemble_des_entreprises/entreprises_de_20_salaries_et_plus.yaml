@@ -20,11 +20,9 @@ values:
     value: 0.3246
   2022-01-01:
     value: 0.3235
-  2024-01-01:
-    value: 0.3234
 metadata:
   short_label: Coefficient maximal pour les employeurs de 20 salariés et plus
-  last_value_still_valid_on: "2024-03-14"
+  last_value_still_valid_on: "2023-01-30"
   label_en: General SSC reductions, so called Fillon reductions (2003-2016)
   ipp_csv_id: tx_fillon_20_
   unit: /1
@@ -76,11 +74,6 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042912368/2021-01-01/
     - title: Décret 2021-1936 du 30/12/2021, art. 2
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044793095
-      2024-01-01:
-    - title: Décret n° 2023-1329 du 29/12/2023, art. 1 (IV)
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048727897
-    - title: Article D241-7 du Code de la sécurité sociale
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497/2024-03-14/
   official_journal_date:
     2003-07-01: 2003-01-18; 2003-06-12
     2005-07-01: "2005-02-06"
@@ -91,7 +84,6 @@ metadata:
     2019-01-01: 2018-12-30; 2018-12-23
     2020-01-01: "2020-01-03"
     2022-01-01: "2021-12-30"
-    2024-01-01: "2023-12-30"
   notes:
     2003-07-01:
     - title: Loi dite Fillon
