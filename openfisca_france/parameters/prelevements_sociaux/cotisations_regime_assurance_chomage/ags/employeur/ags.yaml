@@ -68,7 +68,7 @@ brackets:
       value: 0
 metadata:
   short_label: Taux employeur
-  last_value_still_valid_on: "2024-14-03"
+  last_value_still_valid_on: "2024-03-14"
   label_en: Contributions to the scheme of wage guarantee (AGS)
   ipp_csv_id: ags_p_0_4
   reference:
