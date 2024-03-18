@@ -1,0 +1,11 @@
+description: 
+values:
+  2012-01-01:
+    value: 0.13
+metadata:
+  short_laber: Logements 2011
+  unit: /1
+  reference:
+    2012-01-01:
+      title: Loi n° 2011-1977 du 28 décembre 2011 (LF pour 2012), art. 75
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000025044460&idArticle=LEGIARTI000025048554&dateTexte=20120425&categorieLien=id#LEGIARTI000025048554
