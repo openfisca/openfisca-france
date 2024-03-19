@@ -1,4 +1,4 @@
-description: Taux moyen des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+description: Taux moyen des cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 values:
   2012-01-01:
     value: 0.03

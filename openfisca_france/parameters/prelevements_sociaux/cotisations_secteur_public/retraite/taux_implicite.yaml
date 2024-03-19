@@ -1,4 +1,4 @@
-description: Taux implicite des Cotisations retraites de l'Etat-employeur
+description: Taux implicite des cotisations retraites de l'Etat-employeur
 values:
   1995-01-01:
     value: 0.486
