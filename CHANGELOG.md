@@ -1,5 +1,13 @@
 # Changelog
 
+### 163.0.0 [2272](https://github.com/openfisca/openfisca-france/pull/2272)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/investissements_immobiliers`.
+* Détails :
+  - Harmonisation des paramètres des réductions d'impôt concernant les investissements locatatifs
+
 ### 162.0.1 [2274](https://github.com/openfisca/openfisca-france/pull/2274)
 
 * Changement mineur.
@@ -8,7 +16,7 @@
 * Détails :
   - Retrait des intervalles entre deux dates inutiles des champs `description` et `label`
 
-# 162.0.0 [2273](https://github.com/openfisca/openfisca-france/pull/2273)
+### 162.0.0 [2273](https://github.com/openfisca/openfisca-france/pull/2273)
 
 * Recode un dispositif depuis sa création - harmonise des paramètres avec les barèmes IPP
 * Périodes concernées : à partir du 01/01/2005.
