@@ -2,11 +2,10 @@ description: Cotisations invalidité-décès de sécurité sociale (SS) des ind�
 metadata:
   short_label: Commerçants-industriels
   label_en: "Contributions and taxes on self-employed: sales retailers"
+  notes:
+    1975-01-01:
+    - title: Institution d'un régime invalidité décès pour les travailleurs non salariés des professions industrielles et commerciales
   order:
   - invalidite
   - deces
   - montant_forfaitaire_total
-
-  notes:
-    1975-01-01:
-    - title: Institution d'un régime invalidité décès pour les travailleurs non salariés des professions industrielles et commerciales

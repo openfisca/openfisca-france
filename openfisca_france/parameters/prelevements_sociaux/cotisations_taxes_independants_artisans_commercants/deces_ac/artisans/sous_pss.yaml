@@ -17,7 +17,7 @@ values:
   2015-01-01:
     value: 0.013
 metadata:
-  short_label: Taux Artisan
+  short_label: Taux artisan
   label_en: SSCs for disability and death benefits (sales retailers and craftsmen)
   ipp_csv_id: id_art_0_1
   unit: /1
@@ -31,7 +31,7 @@ metadata:
     - title: Décret 82-168 du 15/02/1982
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000879564
     - title: Décret 82-170 du 17/02/1982
-    1985-12-21:
+    1986-01-01:
       title: Décret 85-1354 17/12/1985 art. 1
     1986-01-01:
     - title: Décret 86-232 du 18/02/1986 - art. 2
@@ -67,7 +67,7 @@ metadata:
   official_journal_date:
     1975-01-01: "1975-01-18"
     1982-01-01: 1982-02-18; 1982-02-19
-    1985-12-21: "1985-12-21"
+    1986-01-01: "1985-12-21"
     1986-01-01: 1986-02-21; 1986-07-19
     1989-01-01: 1989-01-29; 1989-03-30
     1995-01-01: 1994-10-19; 1995-04-07

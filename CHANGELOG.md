@@ -3720,7 +3720,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
   - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/famille`
   - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/csa`
 * Détails :
-  - Met à jour certaines valeurs et références de cotisations employeur, dont : la Contribution apprentissage, la Contribution solidarité autonomie, les cotisations famille, la contribution au dialogue social et le versement transport
+  - Met à jour certaines valeurs et références de cotisations employeur, dont : la contribution apprentissage, la contribution solidarité autonomie, les cotisations famille, la contribution au dialogue social et le versement transport
 
 ## 80.4.0 [#1725](https://github.com/openfisca/openfisca-france/pull/1725)
 
