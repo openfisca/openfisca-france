@@ -4,7 +4,6 @@ metadata:
   label_en: Complementary pension schemes (private sector)
   order:
   - agirc_arrco
-  - cet
   - cet2019
   - ceg
   - apec
@@ -13,3 +12,4 @@ metadata:
   - agirc
   - agff
   - gmp
+  - cet
