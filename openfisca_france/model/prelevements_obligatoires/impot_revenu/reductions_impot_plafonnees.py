@@ -607,7 +607,7 @@ class duflot_pinel_denormandie_om(Variable):
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
-        inv_om = min_(P.plafond, f7gi)
+        inv_om = min_(duflot_pinel_denormandie.plafond, f7gi)
 
         ri_om = around(inv_om * duflot_pinel_denormandie.location_9_ans.taux_om / 9)
 
@@ -636,8 +636,8 @@ class duflot_pinel_denormandie_om(Variable):
         reduc_2013 = around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(duflot_pinel_denormandie.plafond, f7gi) / 9)
 
         # Duflot et Pinel 2014
-        inv_29_om = min_(P.plafond, f7el + f7qd)
-        inv_23_om = min_(P.plafond - inv_29_om, f7qc)
+        inv_29_om = min_(duflot_pinel_denormandie.plafond, f7el + f7qd)
+        inv_23_om = min_(duflot_pinel_denormandie.plafond - inv_29_om, f7qc)
 
         reduc = (around((inv_29_om * duflot_pinel_denormandie.location_9_ans.taux_om / 9)
             + around(inv_23_om * duflot_pinel_denormandie.location_6_ans.taux_om / 6))) + reduc_2013
