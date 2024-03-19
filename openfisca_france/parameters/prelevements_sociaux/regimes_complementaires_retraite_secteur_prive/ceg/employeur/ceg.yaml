@@ -24,12 +24,13 @@ metadata:
   label_en: Complementary pension contributions
   reference:
     2019-01-01:
-      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
-      href: https://www.calameo.com/read/0027117299ac722559c92
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire, art. 37
+      href: https://www.legifrance.gouv.fr/conv_coll/article/KALIARTI000036731900#KALIARTI000036731900
   official_journal_date:
     2019-01-01: "2017-11-19"
   notes:
     2019-01-01:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
+    - title: Les taux de cotisation de 1,29% (CEG T1) et 1,62% (CEG T2) sont obtenus en multipliant les taux globaux CEG (2,15% pour la T1 et 2,70% pour la T2) multipliés par la part employeur égale à 60% (cf. art. 38 de l'ANI du 17/11/2017)
   rate_unit: /1
   threshold_unit: PSS
