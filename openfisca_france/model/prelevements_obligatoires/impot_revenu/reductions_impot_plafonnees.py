@@ -208,16 +208,16 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot
         '''
-        reduction_9_ans = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie.location_9_ans
+        reduction = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
-        inv_om = min_(reduction_9_ans.plafond, f7gi)
-        inv_metro = min_(reduction_9_ans.plafond - inv_om, f7gh)
+        inv_om = min_(reduction.plafond, f7gi)
+        inv_metro = min_(reduction.plafond - inv_om, f7gh)
 
-        ri_metro = around(inv_metro * reduction_9_ans.taux_metro / 9)
+        ri_metro = around(inv_metro * reduction.location_9_ans.taux_metro / 9)
 
         return ri_metro
 
