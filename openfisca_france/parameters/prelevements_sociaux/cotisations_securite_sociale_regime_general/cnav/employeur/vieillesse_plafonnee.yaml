@@ -34,7 +34,7 @@ brackets:
       value: 0.0855
 metadata:
   short_label: Taux sous plafond
-  last_value_still_valid_on: "2021-10-11"
+  last_value_still_valid_on: "2024-03-14"
   label_en: SSCs for old-age benefits (1967-2016)
   ipp_csv_id:
     rate: cnav_p_0_1
@@ -110,7 +110,6 @@ metadata:
     2014-01-01: "2013-12-31"
     2015-01-01: "2014-12-19"
     2016-01-01: "2014-12-19"
-    2017-01-01: "2014-12-19"
   notes:
     1991-02-01:
     - title: Voir note (i).

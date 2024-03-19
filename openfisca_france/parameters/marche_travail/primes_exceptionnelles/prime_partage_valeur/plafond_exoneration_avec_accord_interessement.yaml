@@ -4,6 +4,7 @@ values:
     value: 6000
 metadata:
   short_label: Deuxième plafond d'exonération sous condition employeur
+  last_value_still_valid_on: "2024-03-13"
   unit: currency
   reference:
     2022-07-01:

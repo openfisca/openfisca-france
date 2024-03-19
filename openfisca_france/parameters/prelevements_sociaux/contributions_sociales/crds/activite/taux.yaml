@@ -4,7 +4,7 @@ values:
     value: 0.005
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-03-13"
   label_en: CRDS
   ipp_csv_id: crds
   unit: /1
