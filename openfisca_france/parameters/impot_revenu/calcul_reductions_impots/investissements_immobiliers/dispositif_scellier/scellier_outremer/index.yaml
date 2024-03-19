@@ -1,5 +1,6 @@
-description: Logements en Outre-Mer
+description: Barème de la réduction d'impôt Scellier pour les logements en Outre-Mer
 metadata:
+  short_label: Barème pour les logements en Outre-Mer
   order:
   - taux
   - duree_reduction

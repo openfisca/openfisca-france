@@ -5,7 +5,8 @@ values:
 metadata:
   ipp_csv_id: plafond_Scellier
   short_label: Plafond
-  unit: currency_next_year
+  last_value_still_valid_on: "2024-03-19"
+  unit: currency
   reference:
     2009-01-01:
       title: Loi n° 2008-1443 du 30 décembre 2008 (LF rectificative pour 2008), art. 31
