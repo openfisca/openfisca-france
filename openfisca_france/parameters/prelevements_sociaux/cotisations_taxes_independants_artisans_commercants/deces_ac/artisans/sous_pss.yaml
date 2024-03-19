@@ -32,8 +32,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000879564
     - title: Décret 82-170 du 17/02/1982
     1986-01-01:
-      title: Décret 85-1354 17/12/1985 art. 1
-    1986-01-01:
+    - title: Décret 85-1354 17/12/1985 art. 1
     - title: Décret 86-232 du 18/02/1986 - art. 2
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006769903&cidTexte=JORFTEXT000000700920
     - title: Décret 86-852 du 17/07/1986
@@ -67,8 +66,7 @@ metadata:
   official_journal_date:
     1975-01-01: "1975-01-18"
     1982-01-01: 1982-02-18; 1982-02-19
-    1986-01-01: "1985-12-21"
-    1986-01-01: 1986-02-21; 1986-07-19
+    1986-01-01: 1985-12-21; 1986-02-21; 1986-07-19
     1989-01-01: 1989-01-29; 1989-03-30
     1995-01-01: 1994-10-19; 1995-04-07
     1999-01-01: "1999-12-26"
@@ -81,7 +79,6 @@ metadata:
     2013-01-01:
     - title: Le premier décret, prenant effet au 01/01/2013, prévoyait un taux de 1,10 % décomposé en 1 % et 0,1 %.; Le second décret, prenant effet à la même date, supprime la décomposition.
 documentation: |-
-  Notes :
   (i) La cotisation forfaitaire due par les commerçants-industriels est la somme des cotisations (forfaitaires) invalidité et capital décès.
   (ii) La cotisation invalidité n'est pas due pour les commerçants-industriels de plus de 60 ans. Par ailleurs, les artisans de plus de 65 ans sont totalement exonérés de la cotisation.
   (iii) La cotisation pour les artisans ne peut être calculée sur une assiette inférieure à 20% du PSS.
