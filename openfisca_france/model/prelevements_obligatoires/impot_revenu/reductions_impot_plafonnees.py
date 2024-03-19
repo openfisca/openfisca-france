@@ -323,7 +323,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduc_2013 = around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(duflot_pinel_denormandie.plafond - f7gi, f7gh) / 9)
 
         # Duflot et Pinel 2014
-        max1 = max_(0, P.plafond - f7el - f7qd - f7qc)  # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, duflot_pinel_denormandie.plafond - f7el - f7qd - f7qc)  # 2014 : plafond commun 'duflot' et 'rpinel'
 
         reduc_2014 = (around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max1, f7ek + f7qb) / 9)
             + around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max1 - f7ek - f7qb, f7qa) / 6))
