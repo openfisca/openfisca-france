@@ -1,4 +1,4 @@
-description: Taux de cotisation spéciale assurance maladie des Cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
+description: Taux de cotisation spéciale assurance maladie des cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
 values:
   1985-04-01:
     value: 0.01
