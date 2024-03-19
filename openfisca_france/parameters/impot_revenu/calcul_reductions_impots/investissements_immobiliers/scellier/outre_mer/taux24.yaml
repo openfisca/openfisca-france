@@ -1,9 +1,9 @@
-description: Taux 24%
+description:
 values:
   2012-01-01:
     value: 0.24
 metadata:
-  short_laber: Logements 2012
+  short_laber: Investissements engagés en 2012
   unit: /1
   reference:
     2012-01-01:

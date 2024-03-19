@@ -3721,9 +3721,9 @@ class scelli(Variable):
         '''
         f7hj = foyer_fiscal('f7hj', period)
         f7hk = foyer_fiscal('f7hk', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
-        return max_(P.taux25 * min_(P.max, f7hj), P.taux40 * min_(P.max, f7hk)) / 9
+        return max_(investissement_2009.logement_non_BBC.taux * min_(investissement_2009.plafond, f7hj), investissement_2009.scellier_outremer.taux * min_(investissement_2009.plafond, f7hk)) / 9
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3739,18 +3739,18 @@ class scelli(Variable):
         f7hr = foyer_fiscal('f7hr_2017', period)
         f7hs = foyer_fiscal('f7hs_2017', period)
         f7la = foyer_fiscal('f7la', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         return (
             max_(
-                max_(P.taux25 * min_(P.max, f7hj), P.taux40 * min_(P.max, f7hk)),
-                max_(P.taux25 * min_(P.max, f7hn), P.taux40 * min_(P.max, f7ho))
+                max_(investissement_2009_2010.logement_non_BBC.taux * min_(investissement_2009_2010.plafond, f7hj), investissement_2009_2010.scellier_outremer.taux * min_(investissement_2009_2010.plafond, f7hk)),
+                max_(investissement_2009_2010.logement_non_BBC.taux * min_(investissement_2009_2010.plafond, f7hn), investissement_2009_2010.scellier_outremer.taux * min_(investissement_2009_2010.plafond, f7ho))
                 ) / 9
             + max_(
-                P.taux25 * min_(P.max, f7hl),
-                P.taux40 * min_(P.max, f7hm)
+                investissement_2009_2010.logement_non_BBC.taux * min_(investissement_2009_2010.plafond, f7hl),
+                investissement_2009_2010.scellier_outremer.taux * min_(investissement_2009_2010.plafond, f7hm)
                 ) / 9
-            + max_(P.taux25 * f7hr, P.taux40 * f7hs)
+            + max_(investissement_2009_2010.logement_non_BBC.taux * f7hr, investissement_2009_2010.scellier_outremer.taux * f7hs)
             + f7la)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -3795,22 +3795,23 @@ class scelli(Variable):
         f7nr = foyer_fiscal('f7nr', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         return (
-            min_(P.max, maxi(
-                P.taux13 * max_(f7nf, f7nj) / 9,
-                P.taux15 * max_(f7ng, f7ni) / 9,
-                P.taux22 * max_(f7na, f7ne) / 9,
-                P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
-                P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-                P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
+            min_(investissement_2011.plafond, maxi(
+                investissement_2011.logement_non_BBC.taux * max_(f7nf, f7nj) / 9,
+                investissement_2011.logement_non_BBC.taux_transitoire * max_(f7ng, f7ni) / 9,
+                investissement_2011.logement_BBC.taux * max_(f7na, f7ne) / 9,
+                investissement_2009_2010.logement_BBC.taux * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                investissement_2011.scellier_outremer.taux * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+                investissement_2009_2010.scellier_outremer.taux * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
                 ))
-            + min_(P.max, maxi(P.taux25 * max_(f7hj, f7hn), P.taux40 * max_(f7hk, f7ho))) / 9
-            + min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
-            + min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz))
-            + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))
-            + min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
+            + min_(investissement_2011.plafond, maxi(investissement_2009_2010.logement_BBC.taux * max_(f7hj, f7hn), investissement_2009_2010.scellier_outremer.taux * max_(f7hk, f7ho))) / 9
+            + min_(investissement_2011.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hl, investissement_2009_2010.scellier_outremer.taux * f7hm)) / 9
+            + min_(investissement_2011.plafond, maxi(investissement_2009_2010.logement_BBC.taux * f7hv, investissement_2009_2010.logement_BBC.taux * f7hx, investissement_2009_2010.scellier_outremer.taux * f7hw, investissement_2009_2010.scellier_outremer.taux * f7hz))
+            + min_(investissement_2011.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7ht, investissement_2009_2010.scellier_outremer.taux * f7hu))
+            + min_(investissement_2011.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hr, investissement_2009_2010.scellier_outremer.taux * f7hs))
             + f7la + f7lb + f7lc
             )
 
@@ -3882,31 +3883,32 @@ class scelli(Variable):
         f7nr = foyer_fiscal('f7nr', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         return (
-            min_(P.max, maxi(
-                P.taux13 * max_(f7nf, f7nj) / 9,
-                P.taux15 * max_(f7ng, f7ni) / 9,
-                P.taux22 * max_(f7na, f7ne) / 9,
-                P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
-                P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-                P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
+            min_(investissement_2012.plafond, maxi(
+                investissement_2011.logement_non_BBC.taux * max_(f7nf, f7nj) / 9,
+                investissement_2011.logement_non_BBC.taux_transitoire * max_(f7ng, f7ni) / 9,
+                investissement_2011.logement_BBC.taux * max_(f7na, f7ne) / 9,
+                investissement_2009_2010.logement_BBC.taux * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                investissement_2011.scellier_outremer.taux * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+                investissement_2009_2010.scellier_outremer.taux * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
                 ))
-            + min_(P.max, maxi(P.taux25 * max_(f7hj, f7hn), P.taux40 * max_(f7hk, f7ho))) / 9
-            + min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
-            + min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz))
-            + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))
-            + min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
+            + min_(investissement_2009_2010.plafond, maxi(investissement_2009_2010.logement_BBC.taux * max_(f7hj, f7hn), investissement_2009_2010.scellier_outremer.taux * max_(f7hk, f7ho))) / 9
+            + min_(investissement_2009_2010.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hl, investissement_2009_2010.scellier_outremer.taux * f7hm)) / 9
+            + min_(investissement_2009_2010.plafond, maxi(investissement_2009_2010.logement_BBC.taux * f7hv, investissement_2009_2010.logement_BBC.taux * f7hx, investissement_2009_2010.scellier_outremer.taux * f7hw, investissement_2009_2010.scellier_outremer.taux * f7hz))
+            + min_(investissement_2009_2010.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7ht, investissement_2009_2010.scellier_outremer.taux * f7hu))
+            + min_(investissement_2009_2010.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hr, investissement_2009_2010.scellier_outremer.taux * f7hs))
             + f7la + f7lb + f7lc + f7ld + f7le + f7lf
             + f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
-            + min_(P.max, maxi(
-                P09.taux_prorogation * max_(f7jf, f7jj) / 9,
-                P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
-                P.taux22 * maxi(f7jb, f7jd) / 9,
-                P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
-                P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)
+            + min_(investissement_2009_2010.plafond, maxi(
+                investissement_2009_2010.taux_prorogation * max_(f7jf, f7jj) / 9,
+                investissement_2012.logement_BBC.taux * maxi(f7ja, f7je, f7jg, f7jh) / 9,
+                investissement_2011.logement_BBC.taux * maxi(f7jb, f7jd) / 9,
+                investissement_2012.scellier_outremer.taux * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
+                investissement_2011.scellier_outremer.taux * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)
                 ))
             )
 
@@ -3996,28 +3998,29 @@ class scelli(Variable):
         f7nr = foyer_fiscal('f7nr', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
-        reductions = (min_(P.max, maxi(
-            P.taux13 * max_(f7nf, f7nj) / 9,
-            P.taux15 * max_(f7ng, f7ni) / 9,
-            P.taux22 * max_(f7na, f7ne) / 9,
-            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
-            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
+        reductions = (min_(investissement_2012.plafond, maxi(
+            investissement_2011.logement_non_BBC.taux * max_(f7nf, f7nj) / 9,
+            investissement_2011.logement_non_BBC.taux_transitoire * max_(f7ng, f7ni) / 9,
+            investissement_2011.logement_BBC.taux * max_(f7na, f7ne) / 9,
+            investissement_2009_2010.logement_BBC.taux * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+            investissement_2011.scellier_outremer.taux * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+            investissement_2009_2010.scellier_outremer.taux * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
             ))
-            + min_(P.max, maxi(P.taux25 * max_(f7hj, f7hn), P.taux40 * max_(f7hk, f7ho))) / 9
-            + min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
-            + min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz))
-            + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))
-            + min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
-            + min_(P.max, maxi(
-                P09.taux_prorogation * maxi(f7jf, f7jj, f7fb) / 9,
-                P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
-                P.taux22 * maxi(f7jb, f7jd) / 9,
-                P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
-                P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)
+            + min_(investissement_2012.plafond, maxi(investissement_2009_2010.logement_BBC.taux * max_(f7hj, f7hn), investissement_2009_2010.scellier_outremer.taux * max_(f7hk, f7ho))) / 9
+            + min_(investissement_2012.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hl, investissement_2009_2010.scellier_outremer.taux * f7hm)) / 9
+            + min_(investissement_2012.plafond, maxi(investissement_2009_2010.logement_BBC.taux * f7hv, investissement_2009_2010.logement_BBC.taux * f7hx, investissement_2009_2010.scellier_outremer.taux * f7hw, investissement_2009_2010.scellier_outremer.taux * f7hz))
+            + min_(investissement_2012.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7ht, investissement_2009_2010.scellier_outremer.taux * f7hu))
+            + min_(investissement_2012.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hr, investissement_2009_2010.scellier_outremer.taux * f7hs))
+            + min_(investissement_2012.plafond, maxi(
+                investissement_2009_2010.taux_prorogation * maxi(f7jf, f7jj, f7fb) / 9,
+                investissement_2012.logement_BBC.taux * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
+                investissement_2011.logement_BBC.taux * maxi(f7jb, f7jd) / 9,
+                investissement_2012.scellier_outremer.taux * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+                investissement_2011.scellier_outremer.taux * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)
                 ))
             + f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz
             + f7mg
@@ -4130,42 +4133,43 @@ class scelli(Variable):
         f7yk = foyer_fiscal('f7yk', period)
         f7yl = foyer_fiscal('f7yl', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln
 
-        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
-        report_scelli_2010 = min_(P.max, P.taux25 * f7hv + P.taux25 * f7hx + P.taux40 * f7hw + P.taux40 * f7hz) + min_(P.max, P.taux25 * f7ht + P.taux40 * f7hu)
+        report_scelli_2009 = min_(investissement_2009_2010.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hr, investissement_2009_2010.scellier_outremer.taux * f7hs))
+        report_scelli_2010 = min_(investissement_2009_2010.plafond, investissement_2009_2010.logement_BBC.taux * f7hv + investissement_2009_2010.logement_BBC.taux * f7hx + investissement_2009_2010.scellier_outremer.taux * f7hw + investissement_2009_2010.scellier_outremer.taux * f7hz) + min_(investissement_2009_2010.plafond, investissement_2009_2010.logement_BBC.taux * f7ht + investissement_2009_2010.scellier_outremer.taux * f7hu)
         report_scelli_2011 = f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
         report_scelli_2012 = f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
         report_scelli_2013 = f7ya + f7yb + f7yc + f7yd + f7ye + f7yf + f7yg + f7yh + f7yi + f7yj + f7yk + f7yl
 
-        reduc_scelli_2014_invest_2009 = min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
+        reduc_scelli_2014_invest_2009 = min_(investissement_2009_2010.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hl, investissement_2009_2010.scellier_outremer.taux * f7hm)) / 9
 
-        reduc_scelli_2014_invest_2010 = min_(P.max, maxi(
-            P.taux25 * max_(f7hj, f7hn) / 9,
-            P.taux40 * max_(f7hk, f7ho) / 9))
+        reduc_scelli_2014_invest_2010 = min_(investissement_2009_2010.plafond, maxi(
+            investissement_2009_2010.logement_BBC.taux * max_(f7hj, f7hn) / 9,
+            investissement_2009_2010.scellier_outremer.taux * max_(f7hk, f7ho) / 9))
 
-        reduc_scelli_2014_invest_2011 = min_(P.max, maxi(
-            P.taux13 * max_(f7nf, f7nj) / 9,
-            P.taux15 * max_(f7ng, f7ni) / 9,
-            P.taux22 * max_(f7na, f7ne) / 9,
-            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
-            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
+        reduc_scelli_2014_invest_2011 = min_(investissement_2011.plafond, maxi(
+            investissement_2011.logement_non_BBC.taux * max_(f7nf, f7nj) / 9,
+            investissement_2011.logement_non_BBC.taux_transitoire * max_(f7ng, f7ni) / 9,
+            investissement_2011.logement_BBC.taux * max_(f7na, f7ne) / 9,
+            investissement_2009_2010.logement_BBC.taux * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+            investissement_2011.scellier_outremer.taux * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+            investissement_2009_2010.scellier_outremer.taux * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
-        reduc_scelli_2014_invest_2012 = min_(P.max, maxi(
-            P09.taux_prorogation * maxi(f7jf, f7jj) / 9,
-            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
-            P.taux22 * maxi(f7jb, f7jd) / 9,
-            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
-            P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+        reduc_scelli_2014_invest_2012 = min_(investissement_2012.plafond, maxi(
+            investissement_2009_2010.taux_prorogation * maxi(f7jf, f7jj) / 9,
+            investissement_2012.logement_BBC.taux * maxi(f7ja, f7je, f7jg, f7jh) / 9,
+            investissement_2011.logement_BBC.taux * maxi(f7jb, f7jd) / 9,
+            investissement_2012.scellier_outremer.taux * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
+            investissement_2011.scellier_outremer.taux * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
 
-        reduc_scelli_2014_invest_mars_2013 = min_(P.max, maxi(
-            P09.taux_prorogation * f7fb / 9,
-            P.taux13 * f7fa / 9,
-            P.taux24 * maxi(f7fc / 9, f7fd / 5)))
+        reduc_scelli_2014_invest_mars_2013 = min_(investissement_2012.plafond, maxi(
+            investissement_2009_2010.taux_prorogation * f7fb / 9,
+            investissement_2012.logement_BBC.taux * f7fa / 9,
+            investissement_2012.scellier_outremer.taux * maxi(f7fc / 9, f7fd / 5)))
 
         reductions = (
             reduc_scelli_2014_invest_2009
@@ -4287,43 +4291,44 @@ class scelli(Variable):
         f7yr = foyer_fiscal('f7yr', period)
         f7ys = foyer_fiscal('f7ys', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj
 
-        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
-        report_scelli_2010 = min_(P.max, P.taux25 * f7hv + P.taux25 * f7hx + P.taux40 * f7hw + P.taux40 * f7hz) + min_(P.max, P.taux25 * f7ht + P.taux40 * f7hu)
+        report_scelli_2009 = min_(investissement_2009_2010.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hr, investissement_2009_2010.scellier_outremer.taux * f7hs))
+        report_scelli_2010 = min_(investissement_2009_2010.plafond, investissement_2009_2010.logement_BBC.taux * f7hv + investissement_2009_2010.logement_BBC.taux * f7hx + investissement_2009_2010.scellier_outremer * f7hw + investissement_2009_2010.scellier_outremer * f7hz) + min_(investissement_2009_2010.logement_BBC.taux, investissement_2009_2010.logement_BBC.taux * f7ht + investissement_2009_2010.scellier_outremer * f7hu)
         report_scelli_2011 = f7ha + f7hg + f7hh + f7hd + f7hf
         report_scelli_2012 = f7gj + f7gl + f7gs + f7gu + f7gv + f7gx + f7gw
         report_scelli_2013 = f7yb + f7yd + f7yf + f7yh + f7yj + f7yk + f7yl
         report_scelli_2014 = f7ym + f7yn + f7yo + f7yp + f7yq + f7yr + f7ys
 
-        reduc_scelli_2015_invest_2009 = min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
+        reduc_scelli_2015_invest_2009 = min_(investissement_2009_2010.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hl, investissement_2009_2010.scellier_outremer.taux * f7hm)) / 9
 
-        reduc_scelli_2015_invest_2010 = min_(P.max, maxi(
-            P.taux25 * max_(f7hj, f7hn) / 9,
-            P.taux40 * max_(f7hk, f7ho) / 9))
+        reduc_scelli_2015_invest_2010 = min_(investissement_2009_2010.plafond, maxi(
+            investissement_2009_2010.logement_BBC.taux * max_(f7hj, f7hn) / 9,
+            investissement_2009_2010.scellier_outremer.taux * max_(f7hk, f7ho) / 9))
 
-        reduc_scelli_2015_invest_2011 = min_(P.max, maxi(
-            P.taux13 * max_(f7nf, f7nj) / 9,
-            P.taux15 * max_(f7ng, f7ni) / 9,
-            P.taux22 * max_(f7na, f7ne) / 9,
-            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
-            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
+        reduc_scelli_2015_invest_2011 = min_(investissement_2011.plafond, maxi(
+            investissement_2011.logement_non_BBC.taux * max_(f7nf, f7nj) / 9,
+            investissement_2011.logement_non_BBC.taux_transitoire * max_(f7ng, f7ni) / 9,
+            investissement_2011.logement_BBC.taux * max_(f7na, f7ne) / 9,
+            investissement_2011.logement_BBC.taux * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+            investissement_2011.scellier_outremer.taux * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+            investissement_2009_2010.scellier_outremer.taux * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
         reduc_scelli_2015_invest_2012 = min_(P.max, maxi(
-            P09.taux_prorogation * maxi(f7jf, f7jj) / 9,
-            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
-            P.taux22 * maxi(f7jb, f7jd) / 9,
-            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
-            P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+            investissement_2009_2010.taux_prorogation * maxi(f7jf, f7jj) / 9,
+            investissement_2012.logement_BBC.taux * maxi(f7ja, f7je, f7jg, f7jh) / 9,
+            investissement_2011.logement_BBC.taux * maxi(f7jb, f7jd) / 9,
+            investissement_2012.scellier_outremer.taux * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
+            investissement_2011.scellier_outremer.taux * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
 
         reduc_scelli_2015_invest_mars_2013 = min_(P.max, maxi(
-            P09.taux_prorogation * f7fb / 9,
-            P.taux13 * f7fa / 9,
-            P.taux24 * maxi(f7fc / 9, f7fd / 5)))
+            investissement_2009_2010.taux_prorogation * f7fb / 9,
+            investissement_2012.logement_BBC.taux * f7fa / 9,
+            investissement_2012.scellier_outremer.taux * maxi(f7fc / 9, f7fd / 5)))
 
         reductions = (
             reduc_scelli_2015_invest_2009
@@ -4395,42 +4400,42 @@ class scelli(Variable):
         inv_3_6 = ['f7zb', 'f7zc']
         inv_3_5 = ['f7za', 'f7zd']
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
-        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_40]) * P.taux40)
-        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_25]) * P.taux25)
+        ri_rep = ri_rep + min_(investissement_2009_2010.plafond, sum([foyer_fiscal(r, period) for r in reports_base_40]) * investissement_2009_2010.scellier_outremer.taux)
+        ri_rep = ri_rep + min_(investissement_2009_2010.plafond, sum([foyer_fiscal(r, period) for r in reports_base_25]) * investissement_2009_2010.logement_BBC.taux)
 
-        base_inv_5_40 = min_(sum([foyer_fiscal(i, period) for i in inv_5_40]), P.max)
-        base_inv_5_36 = min_(sum([foyer_fiscal(i, period) for i in inv_5_36]), P.max - base_inv_5_40)
-        base_inv_5_24 = min_(sum([foyer_fiscal(i, period) for i in inv_5_24]), P.max - base_inv_5_40 - base_inv_5_36)
-        base_inv_9_40 = min_(sum([foyer_fiscal(i, period) for i in inv_9_40]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24)
-        base_inv_9_36 = min_(sum([foyer_fiscal(i, period) for i in inv_9_36]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40)
-        base_inv_9_25 = min_(sum([foyer_fiscal(i, period) for i in inv_9_25]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36)
-        base_inv_9_24 = min_(sum([foyer_fiscal(i, period) for i in inv_9_24]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25)
-        base_inv_9_22 = min_(sum([foyer_fiscal(i, period) for i in inv_9_22]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24)
-        base_inv_9_15 = min_(sum([foyer_fiscal(i, period) for i in inv_9_15]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22)
-        base_inv_9_13 = min_(sum([foyer_fiscal(i, period) for i in inv_9_13]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15)
-        base_inv_9_6 = min_(sum([foyer_fiscal(i, period) for i in inv_9_6]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13)
-        base_inv_3_6 = min_(sum([foyer_fiscal(i, period) for i in inv_3_6]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6)
-        base_inv_3_5 = min_(sum([foyer_fiscal(i, period) for i in inv_3_5]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6 - base_inv_3_6)
+        base_inv_5_40 = min_(sum([foyer_fiscal(i, period) for i in inv_5_40]), investissement_2012.plafond)
+        base_inv_5_36 = min_(sum([foyer_fiscal(i, period) for i in inv_5_36]), investissement_2012.plafond - base_inv_5_40)
+        base_inv_5_24 = min_(sum([foyer_fiscal(i, period) for i in inv_5_24]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36)
+        base_inv_9_40 = min_(sum([foyer_fiscal(i, period) for i in inv_9_40]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24)
+        base_inv_9_36 = min_(sum([foyer_fiscal(i, period) for i in inv_9_36]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40)
+        base_inv_9_25 = min_(sum([foyer_fiscal(i, period) for i in inv_9_25]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36)
+        base_inv_9_24 = min_(sum([foyer_fiscal(i, period) for i in inv_9_24]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25)
+        base_inv_9_22 = min_(sum([foyer_fiscal(i, period) for i in inv_9_22]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24)
+        base_inv_9_15 = min_(sum([foyer_fiscal(i, period) for i in inv_9_15]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22)
+        base_inv_9_13 = min_(sum([foyer_fiscal(i, period) for i in inv_9_13]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15)
+        base_inv_9_6 = min_(sum([foyer_fiscal(i, period) for i in inv_9_6]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13)
+        base_inv_3_6 = min_(sum([foyer_fiscal(i, period) for i in inv_3_6]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6)
+        base_inv_3_5 = min_(sum([foyer_fiscal(i, period) for i in inv_3_5]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6 - base_inv_3_6)
 
-        red_inv_5_40 = base_inv_5_40 * P.taux40 / 5
-        red_inv_5_36 = base_inv_5_36 * P.taux36 / 5
-        red_inv_5_24 = base_inv_5_24 * P.taux24 / 5
-        red_inv_9_40 = base_inv_9_40 * P.taux40 / 9
-        red_inv_9_36 = base_inv_9_36 * P.taux36 / 9
-        red_inv_9_25 = base_inv_9_25 * P.taux25 / 9
-        red_inv_9_24 = base_inv_9_24 * P.taux24 / 9
-        red_inv_9_22 = base_inv_9_22 * P.taux22 / 9
-        red_inv_9_15 = base_inv_9_15 * P.taux15 / 9
-        red_inv_9_13 = base_inv_9_13 * P.taux13 / 9
-        red_inv_9_6 = base_inv_9_6 * P09.taux_prorogation / 9
-        red_inv_3_6 = base_inv_3_6 * P09.taux_prorogation / 3
-        red_inv_3_5 = base_inv_3_5 * P11.taux_prorogation / 3
+        red_inv_5_40 = base_inv_5_40 * investissement_2009_2010.scellier_outremer.taux / 5
+        red_inv_5_36 = base_inv_5_36 * investissement_2011.scellier_outremer.taux / 5
+        red_inv_5_24 = base_inv_5_24 * investissement_2012.scellier_outremer.taux / 5
+        red_inv_9_40 = base_inv_9_40 * investissement_2009_2010.scellier_outremer.taux / 9
+        red_inv_9_36 = base_inv_9_36 * investissement_2011.scellier_outremer.taux / 9
+        red_inv_9_25 = base_inv_9_25 * investissement_2009_2010.logement_BBC.taux / 9
+        red_inv_9_24 = base_inv_9_24 * investissement_2012.scellier_outremer.taux / 9
+        red_inv_9_22 = base_inv_9_22 * investissement_2011.logement_BBC.taux / 9
+        red_inv_9_15 = base_inv_9_15 * investissement_2011.logement_non_BBC.taux_transitoire / 9
+        red_inv_9_13 = base_inv_9_13 * investissement_2011.logement_non_BBC.taux / 9
+        red_inv_9_6 = base_inv_9_6 * investissement_2009_2010.taux_prorogation / 9
+        red_inv_3_6 = base_inv_3_6 * investissement_2009_2010.taux_prorogation / 3
+        red_inv_3_5 = base_inv_3_5 * investissement_2011.taux_prorogation / 3
 
         reductions = ri_rep + red_inv_5_40 + red_inv_5_36 + red_inv_5_24 + red_inv_9_40 + red_inv_9_36 + red_inv_9_25 + red_inv_9_24 + red_inv_9_22 + red_inv_9_15 + red_inv_9_13 + red_inv_9_6 + red_inv_3_6 + red_inv_3_5
 
@@ -4483,45 +4488,44 @@ class scelli(Variable):
         inv_3_5 = ['f7za', 'f7zd', 'f7ze', 'f7zh', 'f7zj', 'f7zk']
         inv_3_4 = ['f7zi', 'f7zl']
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
-        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_40]) * P.taux40)
-        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_25]) * P.taux25)
+        ri_rep = ri_rep + min_(investissement_2009_2010.plafond, sum([foyer_fiscal(r, period) for r in reports_base_40]) * investissement_2009_2010.scellier_outremer.taux)
+        ri_rep = ri_rep + min_(investissement_2009_2010.plafond, sum([foyer_fiscal(r, period) for r in reports_base_25]) * investissement_2009_2010.logement_BBC.taux)
 
-        base_inv_5_40 = min_(sum([foyer_fiscal(i, period) for i in inv_5_40]), P.max)
-        base_inv_5_36 = min_(sum([foyer_fiscal(i, period) for i in inv_5_36]), P.max - base_inv_5_40)
-        base_inv_5_24 = min_(sum([foyer_fiscal(i, period) for i in inv_5_24]), P.max - base_inv_5_40 - base_inv_5_36)
-        base_inv_9_40 = min_(sum([foyer_fiscal(i, period) for i in inv_9_40]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24)
-        base_inv_9_36 = min_(sum([foyer_fiscal(i, period) for i in inv_9_36]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40)
-        base_inv_9_25 = min_(sum([foyer_fiscal(i, period) for i in inv_9_25]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36)
-        base_inv_9_24 = min_(sum([foyer_fiscal(i, period) for i in inv_9_24]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25)
-        base_inv_9_22 = min_(sum([foyer_fiscal(i, period) for i in inv_9_22]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24)
-        base_inv_9_15 = min_(sum([foyer_fiscal(i, period) for i in inv_9_15]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22)
-        base_inv_9_13 = min_(sum([foyer_fiscal(i, period) for i in inv_9_13]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15)
-        base_inv_9_6 = min_(sum([foyer_fiscal(i, period) for i in inv_9_6]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13)
-        base_inv_3_6 = min_(sum([foyer_fiscal(i, period) for i in inv_3_6]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6)
-        base_inv_3_5 = min_(sum([foyer_fiscal(i, period) for i in inv_3_5]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6 - base_inv_3_6)
-        base_inv_3_4 = min_(sum([foyer_fiscal(i, period) for i in inv_3_4]), P.max - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6 - base_inv_3_6 - base_inv_3_5)
+        base_inv_5_40 = min_(sum([foyer_fiscal(i, period) for i in inv_5_40]), investissement_2012.plafond)
+        base_inv_5_36 = min_(sum([foyer_fiscal(i, period) for i in inv_5_36]), investissement_2012.plafond - base_inv_5_40)
+        base_inv_5_24 = min_(sum([foyer_fiscal(i, period) for i in inv_5_24]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36)
+        base_inv_9_40 = min_(sum([foyer_fiscal(i, period) for i in inv_9_40]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24)
+        base_inv_9_36 = min_(sum([foyer_fiscal(i, period) for i in inv_9_36]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40)
+        base_inv_9_25 = min_(sum([foyer_fiscal(i, period) for i in inv_9_25]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36)
+        base_inv_9_24 = min_(sum([foyer_fiscal(i, period) for i in inv_9_24]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25)
+        base_inv_9_22 = min_(sum([foyer_fiscal(i, period) for i in inv_9_22]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24)
+        base_inv_9_15 = min_(sum([foyer_fiscal(i, period) for i in inv_9_15]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22)
+        base_inv_9_13 = min_(sum([foyer_fiscal(i, period) for i in inv_9_13]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15)
+        base_inv_9_6 = min_(sum([foyer_fiscal(i, period) for i in inv_9_6]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13)
+        base_inv_3_6 = min_(sum([foyer_fiscal(i, period) for i in inv_3_6]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6)
+        base_inv_3_5 = min_(sum([foyer_fiscal(i, period) for i in inv_3_5]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6 - base_inv_3_6)
+        base_inv_3_4 = min_(sum([foyer_fiscal(i, period) for i in inv_3_4]), investissement_2012.plafond - base_inv_5_40 - base_inv_5_36 - base_inv_5_24 - base_inv_9_40 - base_inv_9_36 - base_inv_9_25 - base_inv_9_24 - base_inv_9_22 - base_inv_9_15 - base_inv_9_13 - base_inv_9_6 - base_inv_3_6 - base_inv_3_5)
 
-        red_inv_5_40 = base_inv_5_40 * P.taux40 / 5
-        red_inv_5_36 = base_inv_5_36 * P.taux36 / 5
-        red_inv_5_24 = base_inv_5_24 * P.taux24 / 5
-        red_inv_9_40 = base_inv_9_40 * P.taux40 / 9
-        red_inv_9_36 = base_inv_9_36 * P.taux36 / 9
-        red_inv_9_25 = base_inv_9_25 * P.taux25 / 9
-        red_inv_9_24 = base_inv_9_24 * P.taux24 / 9
-        red_inv_9_22 = base_inv_9_22 * P.taux22 / 9
-        red_inv_9_15 = base_inv_9_15 * P.taux15 / 9
-        red_inv_9_13 = base_inv_9_13 * P.taux13 / 9
-        red_inv_9_6 = base_inv_9_6 * P09.taux_prorogation / 9
-        red_inv_3_6 = base_inv_3_6 * P09.taux_prorogation / 3
-        red_inv_3_5 = base_inv_3_5 * P11.taux_prorogation / 3
-        red_inv_3_4 = base_inv_3_4 * P12.taux_prorogation / 3
+        red_inv_5_40 = base_inv_5_40 * investissement_2009_2010.scellier_outremer.taux / 5
+        red_inv_5_36 = base_inv_5_36 * investissement_2011.scellier_outremer.taux / 5
+        red_inv_5_24 = base_inv_5_24 * investissement_2012.scellier_outremer.taux/ 5
+        red_inv_9_40 = base_inv_9_40 * investissement_2009_2010.scellier_outremer.taux / 9
+        red_inv_9_36 = base_inv_9_36 * investissement_2011.scellier_outremer.taux / 9
+        red_inv_9_25 = base_inv_9_25 * investissement_2009_2010.logement_BBC.taux / 9
+        red_inv_9_24 = base_inv_9_24 * investissement_2012.scellier_outremer.taux / 9
+        red_inv_9_22 = base_inv_9_22 * investissement_2011.logement_BBC.taux / 9
+        red_inv_9_15 = base_inv_9_15 * investissement_2011.logement_non_BBC.taux_transitoire / 9
+        red_inv_9_13 = base_inv_9_13 * investissement_2012.logement_BBC.taux / 9
+        red_inv_9_6 = base_inv_9_6 * investissement_2009_2010.taux_prorogation / 9
+        red_inv_3_6 = base_inv_3_6 * investissement_2009_2010.taux_prorogation / 3
+        red_inv_3_5 = base_inv_3_5 * investissement_2011.taux_prorogation / 3
+        red_inv_3_4 = base_inv_3_4 * investissement_2012.taux_prorogation / 3
 
         reductions = ri_rep + red_inv_5_40 + red_inv_5_36 + red_inv_5_24 + red_inv_9_40 + red_inv_9_36 + red_inv_9_25 + red_inv_9_24 + red_inv_9_22 + red_inv_9_15 + red_inv_9_13 + red_inv_9_6 + red_inv_3_6 + red_inv_3_5 + red_inv_3_4
 
@@ -4591,23 +4595,22 @@ class scelli(Variable):
             'f7sl', 'f7sm_2019',
             ]
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
-        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_40]) * P.taux40)
-        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_25]) * P.taux25)
+        ri_rep = ri_rep + min_(investissement_2012.plafond, sum([foyer_fiscal(r, period) for r in reports_base_40]) * investissement_2009_2010.scellier_outremer.taux)
+        ri_rep = ri_rep + min_(investissement_2012.plafond, sum([foyer_fiscal(r, period) for r in reports_base_25]) * investissement_2009_2010.logement_BBC.taux)
 
-        base_ri_6 = min_(P.max, sum([foyer_fiscal(inv, period) for inv in inv_6]))
-        base_ri_5 = min_(P.max - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
-        base_ri_4 = min_(P.max - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
+        base_ri_6 = min_(investissement_2012.plafond, sum([foyer_fiscal(inv, period) for inv in inv_6]))
+        base_ri_5 = min_(investissement_2012.plafond - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
+        base_ri_4 = min_(investissement_2012.plafond - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
 
-        ri_6 = base_ri_6 * P09.taux_prorogation / 3
-        ri_5 = base_ri_5 * P11.taux_prorogation / 3
-        ri_4 = base_ri_4 * P12.taux_prorogation / 3
+        ri_6 = base_ri_6 * investissement_2009_2010.taux_prorogation / 3
+        ri_5 = base_ri_5 * investissement_2011.taux_prorogation / 3
+        ri_4 = base_ri_4 * investissement_2012.taux_prorogation / 3
 
         reductions = ri_rep + ri_6 + ri_5 + ri_4
 
@@ -4619,10 +4622,10 @@ class scelli(Variable):
         2019
         '''
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+
 
         reports = [
             'f7rt', 'f7ru', 'f7rv', 'f7rw',
@@ -4677,13 +4680,13 @@ class scelli(Variable):
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
-        base_ri_6 = min_(P.max, sum([foyer_fiscal(inv, period) for inv in inv_6]))
-        base_ri_5 = min_(P.max - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
-        base_ri_4 = min_(P.max - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
+        base_ri_6 = min_(investissement_2012.plafond, sum([foyer_fiscal(inv, period) for inv in inv_6]))
+        base_ri_5 = min_(investissement_2012.plafond - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
+        base_ri_4 = min_(investissement_2012.plafond - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
 
-        ri_6 = base_ri_6 * P09.taux_prorogation / 3
-        ri_5 = base_ri_5 * P11.taux_prorogation / 3
-        ri_4 = base_ri_4 * P12.taux_prorogation / 3
+        ri_6 = base_ri_6 * investissement_2009_2010.taux_prorogation / 3
+        ri_5 = base_ri_5 * investissement_2011.taux_prorogation / 3
+        ri_4 = base_ri_4 * investissement_2012.taux_prorogation / 3
 
         reductions = ri_rep + ri_6 + ri_5 + ri_4
 
@@ -4695,10 +4698,10 @@ class scelli(Variable):
         2020
         '''
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+
 
         reports = [
             'f7rt', 'f7ru', 'f7rv', 'f7rw',
@@ -4753,13 +4756,13 @@ class scelli(Variable):
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
-        base_ri_6 = min_(P.max, sum([foyer_fiscal(inv, period) for inv in inv_6]))
-        base_ri_5 = min_(P.max - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
-        base_ri_4 = min_(P.max - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
+        base_ri_6 = min_(investissement_2012.plafond, sum([foyer_fiscal(inv, period) for inv in inv_6]))
+        base_ri_5 = min_(investissement_2012.plafond - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
+        base_ri_4 = min_(investissement_2012.plafond - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
 
-        ri_6 = base_ri_6 * P09.taux_prorogation / 3
-        ri_5 = base_ri_5 * P11.taux_prorogation / 3
-        ri_4 = base_ri_4 * P12.taux_prorogation / 3
+        ri_6 = base_ri_6 * investissement_2009_2010.taux_prorogation / 3
+        ri_5 = base_ri_5 * investissement_2011.taux_prorogation / 3
+        ri_4 = base_ri_4 * investissement_2012.taux_prorogation / 3
 
         reductions = ri_rep + ri_6 + ri_5 + ri_4
 
@@ -4771,10 +4774,9 @@ class scelli(Variable):
         2021
         '''
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.scelli
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         reports = [
             'f7rt', 'f7ru', 'f7rv', 'f7rw',
@@ -4840,13 +4842,13 @@ class scelli(Variable):
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
-        base_ri_6 = min_(P.max, sum([foyer_fiscal(inv, period) for inv in inv_6]))
-        base_ri_5 = min_(P.max - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
-        base_ri_4 = min_(P.max - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
+        base_ri_6 = min_(investissement_2012.plafond, sum([foyer_fiscal(inv, period) for inv in inv_6]))
+        base_ri_5 = min_(investissement_2012.plafond - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
+        base_ri_4 = min_(investissement_2012.plafond - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
 
-        ri_6 = base_ri_6 * P09.taux_prorogation / 3
-        ri_5 = base_ri_5 * P11.taux_prorogation / 3
-        ri_4 = base_ri_4 * P12.taux_prorogation / 3
+        ri_6 = base_ri_6 * investissement_2009_2010.taux_prorogation / 3
+        ri_5 = base_ri_5 * investissement_2011.taux_prorogation / 3
+        ri_4 = base_ri_4 * investissement_2012.taux_prorogation / 3
 
         reductions = ri_rep + ri_6 + ri_5 + ri_4
 

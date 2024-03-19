@@ -1,9 +1,9 @@
 description: 
 values:
-  2011-01-01:
-    value: 0.13
+  2012-01-01:
+    value: 0.06
 metadata:
-  short_laber: Investissements engagés en 2011 sur logement non BBC et en 2012 sur logement BBC
+  short_laber: Investissements engagés en 2012 sur logement non BBC
   unit: /1
   reference:
     2011-01-01:

@@ -1,7 +1,5 @@
 description: Taux de réduction
 values:
-  1984-01-01:
-    value: null
   2009-01-01:
     value: 0.25
   2011-01-01:
