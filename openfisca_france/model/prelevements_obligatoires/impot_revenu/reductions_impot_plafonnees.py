@@ -4514,7 +4514,7 @@ class scelli(Variable):
 
         red_inv_5_40 = base_inv_5_40 * investissement_2009_2010.scellier_outremer.taux / 5
         red_inv_5_36 = base_inv_5_36 * investissement_2011.scellier_outremer.taux / 5
-        red_inv_5_24 = base_inv_5_24 * investissement_2012.scellier_outremer.taux/ 5
+        red_inv_5_24 = base_inv_5_24 * investissement_2012.scellier_outremer.taux / 5
         red_inv_9_40 = base_inv_9_40 * investissement_2009_2010.scellier_outremer.taux / 9
         red_inv_9_36 = base_inv_9_36 * investissement_2011.scellier_outremer.taux / 9
         red_inv_9_25 = base_inv_9_25 * investissement_2009_2010.logement_BBC.taux / 9
@@ -4626,7 +4626,6 @@ class scelli(Variable):
         investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
         investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
-
         reports = [
             'f7rt', 'f7ru', 'f7rv', 'f7rw',
 
@@ -4701,7 +4700,6 @@ class scelli(Variable):
         investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
         investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
         investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
-
 
         reports = [
             'f7rt', 'f7ru', 'f7rv', 'f7rw',
