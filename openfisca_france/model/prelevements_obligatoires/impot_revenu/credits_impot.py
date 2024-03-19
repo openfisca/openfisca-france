@@ -668,6 +668,26 @@ class aidper(Variable):
             + P_aide_pers.taux_risques_techno * (min_(f7wl, max2) + min_(max_(0, f7wl - max2), max_maj))
             + P_aide_pers.taux_risques_techno * min_(f7wr, max0 + max_maj)
             )
+    
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+        f7wj = foyer_fiscal('f7wj', period)
+        f7wl = foyer_fiscal('f7wl', period)
+        f7wr = foyer_fiscal('f7wr', period)
+        P_aide_pers = parameters(period).impot_revenu.credits_impots.equ_hab_princ_aide_personnes
+        P_plaf_commun = P_aide_pers.plafond.plafond_commun
+        P_plaf_maj = P_aide_pers.plafond.maj_plaf_risques_techno_avant_2015
+
+        # Les plafonds sont appliqués par contribuable et habitation. Ici, on suppose que 7wl, 7wj et 7wi d'une part et 7wr d'autre part sont associés à deux habitations distinctes : 7wl, 7wj et 7wi sont associées à l'habitation principale tandis que 7wr est associée aux logements donnés à la location.
+        max0 = P_plaf_commun.celib * (maries_ou_pacses == 0) + P_plaf_commun.couple * (maries_ou_pacses == 1) + P_plaf_commun.maj_pac * nb_pac_majoration_plafond
+        max1 = max_(0, max0 - f7wj)
+        max_maj = P_plaf_maj.celib * (maries_ou_pacses == 0) + P_plaf_maj.couple * (maries_ou_pacses == 1)
+        return (
+            P_aide_pers.taux_equ_pers_agees_hand * min_(f7wj, max0)
+            + P_aide_pers.taux_risques_techno * (min_(f7wl, max1) + min_(max_(0, f7wl - max1), max_maj))
+            + P_aide_pers.taux_risques_techno * min_(f7wr, max0 + max_maj)
+            )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
