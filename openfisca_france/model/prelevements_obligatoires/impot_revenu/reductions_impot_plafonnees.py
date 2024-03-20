@@ -4318,14 +4318,14 @@ class scelli(Variable):
             investissement_2011.scellier_outremer.taux * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
             investissement_2009_2010.scellier_outremer.taux * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
-        reduc_scelli_2015_invest_2012 = min_(P.max, maxi(
+        reduc_scelli_2015_invest_2012 = min_(investissement_2012.plafond, maxi(
             investissement_2009_2010.taux_prorogation * maxi(f7jf, f7jj) / 9,
             investissement_2012.logement_BBC.taux * maxi(f7ja, f7je, f7jg, f7jh) / 9,
             investissement_2011.logement_BBC.taux * maxi(f7jb, f7jd) / 9,
             investissement_2012.scellier_outremer.taux * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
             investissement_2011.scellier_outremer.taux * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
 
-        reduc_scelli_2015_invest_mars_2013 = min_(P.max, maxi(
+        reduc_scelli_2015_invest_mars_2013 = min_(investissement_2012.plafond, maxi(
             investissement_2009_2010.taux_prorogation * f7fb / 9,
             investissement_2012.logement_BBC.taux * f7fa / 9,
             investissement_2012.scellier_outremer.taux * maxi(f7fc / 9, f7fd / 5)))
