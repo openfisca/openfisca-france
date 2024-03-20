@@ -3,7 +3,7 @@ values:
   2005-01-01:
     value: 5000
 metadata:
-  short_label: Célibataire
+  short_label: Célibataires
   ipp_csv_id: plaf_aide_pers_celib
   unit: currency_next_year
   reference:

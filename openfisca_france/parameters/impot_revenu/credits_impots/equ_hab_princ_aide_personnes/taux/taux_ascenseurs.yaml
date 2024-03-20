@@ -5,7 +5,7 @@ values:
   2013-01-01:
     value: null
 metadata:
-  short_label: Taux ascenseurs
+  short_label: Ascenseurs électriques à traction
   ipp_csv_id: tx_ascenseurs
   unit: /1
   reference:

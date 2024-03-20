@@ -5,7 +5,7 @@ values:
   2006-01-01:
     value: null
 metadata:
-  short_label: PAC3
+  short_label: Majoration 3ème personne à charge et plus
   ipp_csv_id: plaf_aide_pers_pac3
   unit: currency_next_year
   reference:

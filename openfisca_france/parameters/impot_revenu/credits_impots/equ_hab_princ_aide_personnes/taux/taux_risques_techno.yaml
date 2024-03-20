@@ -5,7 +5,7 @@ values:
   2013-01-01:
     value: 0.4
 metadata:
-  short_label: Taux risques technologiques
+  short_label: Prévention des risques technologiques
   ipp_csv_id: tx_risques_techno
   unit: /1
   reference:

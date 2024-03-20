@@ -1,9 +1,9 @@
-description: Déclaration commune
+description: Déclarations communes
 values:
   2005-01-01:
     value: 10000
 metadata:
-  short_label: Couple
+  short_label: Déclarations communes
   ipp_csv_id: plaf_aide_pers_couple
   unit: currency_next_year
   reference:

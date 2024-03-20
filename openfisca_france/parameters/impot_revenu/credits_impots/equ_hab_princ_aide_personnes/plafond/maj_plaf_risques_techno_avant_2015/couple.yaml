@@ -5,7 +5,7 @@ values:
   2015-01-01:
     value: null
 metadata:
-  short_label: Couples
+  short_label: Déclarations communes
   ipp_csv_id: maj_plaf_risques_techno_couple
   unit: currency_next_year
   reference:

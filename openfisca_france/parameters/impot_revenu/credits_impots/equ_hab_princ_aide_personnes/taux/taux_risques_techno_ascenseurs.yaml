@@ -5,7 +5,7 @@ values:
   2010-01-01:
     value: null
 metadata:
-  short_label: Taux risques technologiques et ascenseurs
+  short_label: Prévention des risques technologiques et ascenseurs électriques à traction
   ipp_csv_id: tx_risques_techno_ascenseurs
   unit: /1
   reference:

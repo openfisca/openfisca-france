@@ -606,8 +606,8 @@ class aidper(Variable):
 
         max1 = max_(0, max0 - f7wj)
         return (
-            P_aide_pers.taux_equ_pers_agees_hand * min_(f7wj, max0)
-            + P_aide_pers.taux_risques_techno_ascenseurs * min_(f7wi_2009, max1)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max0)
+            + P_aide_pers.taux.taux_risques_techno_ascenseurs * min_(f7wi_2009, max1)
             )
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -621,8 +621,8 @@ class aidper(Variable):
         max0 = P_plaf.celib * (maries_ou_pacses == 0) + P_plaf.couple * (maries_ou_pacses == 1) + P_plaf.maj_pac * nb_pac_majoration_plafond
         max1 = max_(0, max0 - f7wj)
         return (
-            P_aide_pers.taux_equ_pers_agees_hand * min_(f7wj, max0)
-            + P_aide_pers.taux_risques_techno_ascenseurs * min_(f7wi_2009, max1)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max0)
+            + P_aide_pers.taux.taux_risques_techno_ascenseurs * min_(f7wi_2009, max1)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -640,10 +640,10 @@ class aidper(Variable):
         max1 = max_(0, max0 - f7wl)
         max2 = max_(0, max1 - f7wj)
         return (
-            P_aide_pers.taux_risques_techno * min_(f7wl, max0)
-            + P_aide_pers.taux_equ_pers_agees_hand * min_(f7wj, max1)
-            + P_aide_pers.taux_ascenseurs * min_(f7wi_2012, max2)
-            + P_aide_pers.taux_risques_techno * min_(f7sf_2011, max0)
+            P_aide_pers.taux.taux_risques_techno * min_(f7wl, max0)
+            + P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max1)
+            + P_aide_pers.taux.taux_ascenseurs * min_(f7wi_2012, max2)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7sf_2011, max0)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -663,12 +663,12 @@ class aidper(Variable):
         max2 = max_(0, max1 - f7wi_2012)
         max_maj = P_plaf_maj.celib * (maries_ou_pacses == 0) + P_plaf_maj.couple * (maries_ou_pacses == 1)
         return (
-            P_aide_pers.taux_equ_pers_agees_hand * min_(f7wj, max0)
-            + P_aide_pers.taux_ascenseurs * min_(f7wi_2012, max1)
-            + P_aide_pers.taux_risques_techno * (min_(f7wl, max2) + min_(max_(0, f7wl - max2), max_maj))
-            + P_aide_pers.taux_risques_techno * min_(f7wr, max0 + max_maj)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max0)
+            + P_aide_pers.taux.taux_ascenseurs * min_(f7wi_2012, max1)
+            + P_aide_pers.taux.taux_risques_techno * (min_(f7wl, max2) + min_(max_(0, f7wl - max2), max_maj))
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wr, max0 + max_maj)
             )
-    
+
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
@@ -684,9 +684,9 @@ class aidper(Variable):
         max1 = max_(0, max0 - f7wj)
         max_maj = P_plaf_maj.celib * (maries_ou_pacses == 0) + P_plaf_maj.couple * (maries_ou_pacses == 1)
         return (
-            P_aide_pers.taux_equ_pers_agees_hand * min_(f7wj, max0)
-            + P_aide_pers.taux_risques_techno * (min_(f7wl, max1) + min_(max_(0, f7wl - max1), max_maj))
-            + P_aide_pers.taux_risques_techno * min_(f7wr, max0 + max_maj)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max0)
+            + P_aide_pers.taux.taux_risques_techno * (min_(f7wl, max1) + min_(max_(0, f7wl - max1), max_maj))
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wr, max0 + max_maj)
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -701,9 +701,9 @@ class aidper(Variable):
         # Les plafonds sont appliqués par contribuable et habitation. Ici, on suppose que 7wl, 7wj et 7wi d'une part et 7wr d'autre part sont associés à deux habitations distinctes : 7wl, 7wj et 7wi sont associées à l'habitation principale tandis que 7wr est associée aux logements donnés à la location.
         max_hors_risques_techno = P_plaf_commun.celib * (maries_ou_pacses == 0) + P_plaf_commun.couple * (maries_ou_pacses == 1) + P_plaf_commun.maj_pac * nb_pac_majoration_plafond
         return (
-            P_aide_pers.taux_equ_pers_agees_hand * min_(f7wj, max_hors_risques_techno)
-            + P_aide_pers.taux_risques_techno * min_(f7wl, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
-            + P_aide_pers.taux_risques_techno * min_(f7wr, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max_hors_risques_techno)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wl, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wr, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
             )
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
@@ -719,9 +719,9 @@ class aidper(Variable):
         # Les plafonds sont appliqués par contribuable et habitation. Ici, on suppose que 7wl, 7wj et 7wi d'une part et 7wr d'autre part sont associés à deux habitations distinctes : 7wl, 7wj et 7wi sont associées à l'habitation principale tandis que 7wr est associée aux logements donnés à la location.
         max_hors_risques_techno = P_plaf_commun.celib * (maries_ou_pacses == 0) + P_plaf_commun.couple * (maries_ou_pacses == 1) + P_plaf_commun.maj_pac * nb_pac_majoration_plafond
         return (
-            P_aide_pers.taux_equ_pers_agees_hand * min_(f7wi + f7wj, max_hors_risques_techno)
-            + P_aide_pers.taux_risques_techno * min_(f7wl, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
-            + P_aide_pers.taux_risques_techno * min_(f7wr, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wi + f7wj, max_hors_risques_techno)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wl, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wr, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
             )
 
 

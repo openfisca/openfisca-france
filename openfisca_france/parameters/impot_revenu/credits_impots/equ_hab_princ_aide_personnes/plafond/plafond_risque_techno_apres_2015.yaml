@@ -3,7 +3,7 @@ values:
   2015-01-01:
     value: 20000
 metadata:
-  short_label: Plafond risques techno depuis 2015
+  short_label: Dépenses de prévention des risques technologiques
   ipp_csv_id: plaf_risques_techno_post_2015
   unit: currency_next_year
   reference:
@@ -12,4 +12,4 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000029989669
   notes:
     2015-01-01:
-    - title: Le double plafond est supprimé et remplacé par un plafond unique indépendant de la composition du foyer fiscal. De plus, le crédit d'impôt est ouvert aux logements loués pendant une durée de cinq ans, à titre d'habitation principale. Le plafond unique est codifié par la LF 2015, mais en vigueur à partir de l'IR 2016 sur revenus 2015.
+    - title: Pour la prévention des risques technologiques, le double plafond (plafond commun + majoration) est supprimé et remplacé par un plafond unique et distinct pour ce type de dépenses, et indépendant de la composition du foyer fiscal. Les autres dépenses gardent les mêmes plafonds. Ces modifications sont codifiées par la LF 2015, mais en vigueur à partir de l'IR 2016 sur revenus 2015.

@@ -5,7 +5,7 @@ values:
   2006-01-01:
     value: null
 metadata:
-  short_label: PAC1
+  short_label: Majoration 1ère personne à charge
   ipp_csv_id: plaf_aide_pers_pac1
   unit: currency_next_year
   reference:
