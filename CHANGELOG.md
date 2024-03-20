@@ -1,5 +1,16 @@
 # Changelog
 
+### 162.0.0 [2273](https://github.com/openfisca/openfisca-france/pull/2273)
+
+* Recode un dispositif depuis sa création - harmonise des paramètres avec les barèmes IPP
+* Périodes concernées : à partir du 01/01/2005.
+* Zones impactées:
+    - `prelevements_obligatoires_impot_revenu/credits_impot.py`.
+    - `prelevements_obligatoires_impot_revenu/variables_reductions_credits.py`.
+* Détails :
+  - Reprise de la législation des crédits d'impôt à l'IR pour les dépenses d'équipement de l'habitation principale en faveur de l'aide aux personnes (vérification depuis l'entrée en vigueur de ces dispositifs : IR sur revenus 2005).
+  - Pour harmonisation avec les barèmes IPP : crée le dossier de paramètres `equ_hab_princ_aide_personnes`, qui est la fusion de `aidper` et de `risque_techno`. Réagence les paramètres et ajoute les références et le format pour coller aux barèmes IPP. La PR côté barèmes IPP est ici (PR 480 du dépôt public des barèmes) : https://gitlab.com/ipp/partage-public-ipp/baremes-ipp/baremes-ipp-yaml/-/merge_requests/480
+
 ### 161.0.3 [2270](https://github.com/openfisca/openfisca-france/pull/2270)
 
 * Évolution du système socio-fiscal.
