@@ -1,0 +1,20 @@
+description: Célibataires
+values:
+  2012-01-01:
+    value: 5000
+  2015-01-01:
+    value: null
+metadata:
+  short_label: Célibataires
+  ipp_csv_id: maj_plaf_risques_techno_celib
+  unit: currency_next_year
+  reference:
+    2012-01-01:
+      title: Loi n°2011-1977 du 28 décembre 2011 (LF 2012), art. 82
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000025048569/2011-12-30
+    2015-01-01:
+      title: Loi n° 2014-1654 du 29 décembre 2014 (LF 2015), art. 73
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000029989669
+  notes:
+    2012-01-01:
+    - title: Création d'une majoration de plafond de dépenses, spécifique aux dépenses de prévention des risques technologiques.

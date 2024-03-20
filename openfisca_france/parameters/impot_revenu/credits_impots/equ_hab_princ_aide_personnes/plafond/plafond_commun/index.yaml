@@ -1,0 +1,10 @@
+description: Plafond pluriannuel appliqué à toutes dépenses jusqu'à l'imposition des revenus 2014, et appliqué aux dépenses hors risques technologiques à partir de l'imposition des revenus 2015
+metadata:
+  short_label: Plafond appliqué à toutes dépenses jusqu'à l'imposition des revenus 2014, et aux dépenses hors prévention des risques technologiques à partir de l'imposition des revenus 2015
+  order:
+  - celib
+  - couple
+  - maj_pac1
+  - maj_pac2
+  - maj_pac3
+  - maj_pac

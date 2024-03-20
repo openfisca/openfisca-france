@@ -1,0 +1,16 @@
+description: Crédit d'impôt pour les dépenses d'équipement de l'habitation principale en faveur de l'aide aux personnes
+metadata:
+  documentation_start: true
+  short_label: Dépenses d'équipement de l'habitation principale en faveur de l'aide aux personnes
+  order:
+  - taux
+  - plafond
+documentation: |-
+  Article 200 quater A.
+  Pour les travaux de prévention des risques technologiques : le logement doit être situé en France, affecté à l'habitation principale, situé dans un périmètre couvert par un plan de prévention des risques technologiques et achevé avant l'approbation du plan de prévention des risques technologiques (PPRT).
+  Le crédit d'impôt s'applique aux travaux prescrits par le PPRT. Les dépenses de diagnostics préalables sont aussi concernées. Les travaux doivent être réalisés par la même entreprise qui fournit les équipements.
+  Les plafonds s'appliquent par contribuable et par habitation.
+  Les majorations pour personne à charge sont divisées par deux en cas de résidence alternée.
+  Pour les plafonds d'abord communs puis hors risques technologiques, il s'agit de plafonds pluriannuels appréciés sur cinq années consécutives (ex : pour l'IR N sur revenus N-1, on prend la période de l'année N-5 à l'année N-1), avec un début de période ne pouvant être avant le 1er janvier 2005.
+  Pour la majoration des plafonds pour les risques technologiques, en vigueur de l'IR 2013 sur revenus 2012 à l'IR 2015 sur revenus 2014 : il n'est utilisé qu'après épuisement du plafond commun. S'il n'y a des dépenses que pour risques technologiques, d'abord le plafond de droit commun est utilisé. Voir la loi pour plus de détails.
+  Pour le plafond en vigueur depuis l'IR 2016 sur revenus 2015 et spécifique aux risques technologiques : il est apprécié sur le cumul des dépenses depuis le 1er janvier 2015.

@@ -1,0 +1,7 @@
+description: Plafonds de dépenses
+metadata:
+  short_label: Plafonds de dépenses
+  order:
+  - plafond_commun
+  - maj_plaf_risques_techno_avant_2015
+  - plafond_risque_techno_apres_2015

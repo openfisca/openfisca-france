@@ -1,0 +1,22 @@
+description: Taux du crédit d'impôt pour les dépenses d'ascenseurs électriques à traction
+values:
+  2010-01-01:
+    value: 0.15
+  2013-01-01:
+    value: null
+metadata:
+  short_label: Ascenseurs électriques à traction
+  ipp_csv_id: tx_ascenseurs
+  unit: /1
+  reference:
+    2010-01-01:
+      title: Loi n° 2010-1657 du 29 décembre 2010  (LF 2011), art. 99
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000023314376&idArticle=LEGIARTI000023347489&dateTexte=20111231&categorieLien=id#LEGIARTI000023347489
+    2013-01-01:
+      title: Décret n°2013-463 du 3 juin 2013, art. 1
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000027507241/2013-06-07#LEGIARTI000027507241
+  notes:
+    2010-01-01:
+    - title: Les taux pour les risques technologiques et pour les ascenseurs deviennent distincts. Celui pour les ascenseurs est le même que l'ancien taux commun.
+    2013-01-01:
+    - title: Cette disposition pour les dépenses d'ascenseurs électriques est périmée.

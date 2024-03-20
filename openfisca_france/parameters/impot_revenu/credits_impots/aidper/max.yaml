@@ -1,8 +1,0 @@
-description: Plafond
-values:
-  2002-01-01:
-    value: 4000
-  2005-01-01:
-    value: 5000
-metadata:
-  unit: currency_next_year

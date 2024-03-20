@@ -575,209 +575,153 @@ class aidmob(Variable):
 class aidper(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Crédits d’impôt pour dépenses en faveur de l’aide aux personnes'
+    label = 'Crédits d’impôt pour dépenses d’équipement de l’habitation principale en faveur de l’aide aux personnes'
     reference = 'http://bofip.impots.gouv.fr/bofip/3859-PGP'
     definition_period = YEAR
 
-    def formula_2002_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        (cases 7WI, 7WJ, 7WL).
-        2002-2003
-        '''
+    def formula_2005_01_01(foyer_fiscal, period, parameters):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         nbH = foyer_fiscal('nbH', period)
-        f7wi = foyer_fiscal('f7wi_2012', period)
-        P = parameters(period).impot_revenu.credits_impots.aidper
-
-        n = nb_pac_majoration_plafond - nbH / 2
-
-        max0 = (
-            P.max * (1 + maries_ou_pacses)
-            + P.pac1 * (n >= 1)
-            + P.pac2 * (n >= 2)
-            + P.pac3 * (max_(n - 2, 0))
-            + (
-                (n >= 2) * P.pac3 * nbH
-                + (n == 1) * (P.pac2 + (nbH > 1) * P.pac3 * (nbH - 1)) * (nbH >= 1)
-                + (n == 0) * (P.pac1 + (nbH > 1) * P.pac2 * (nbH - 1)
-                + (nbH > 2) * P.pac3 * (nbH - 2)) * (nbH >= 1)
-                ) / 2
-            )
-
-        return P.taux_wi * min_(f7wi, max0)
-
-    def formula_2004_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        (cases 7WI, 7WJ).
-        2004-2005
-        '''
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        nbH = foyer_fiscal('nbH', period)
-        f7wi = foyer_fiscal('f7wi_2012', period)
+        f7wi_2009 = foyer_fiscal('f7wi_2009', period)
         f7wj = foyer_fiscal('f7wj', period)
-        P = parameters(period).impot_revenu.credits_impots.aidper
+        P_aide_pers = parameters(period).impot_revenu.credits_impots.equ_hab_princ_aide_personnes
+        P_plaf = P_aide_pers.plafond.plafond_commun
 
-        n = nb_pac_majoration_plafond - nbH / 2
+        nb_pac_non_alternes = nb_pac_majoration_plafond - nbH / 2
 
+        # S'il y a des PAC en résidence alternée, ils sont décomptés en premier
         max0 = (
-            P.max * (1 + maries_ou_pacses)
-            + P.pac1 * (n >= 1)
-            + P.pac2 * (n >= 2)
-            + P.pac3 * (max_(n - 2, 0))
+            P_plaf.celib * (maries_ou_pacses == 0)
+            + P_plaf.couple * (maries_ou_pacses == 1)
             + (
-                (n >= 2) * P.pac3 * nbH
-                + (n == 1) * (P.pac2 + (nbH > 1) * P.pac3 * (nbH - 1)) * (nbH >= 1)
-                + (n == 0) * (P.pac1 + (nbH > 1) * P.pac2 * (nbH - 1) + (nbH > 2) * P.pac3 * (nbH - 2)) * (nbH >= 1)
+                P_plaf.maj_pac1 * (nbH >= 1)
+                + P_plaf.maj_pac2 * (nbH >= 2)
+                + P_plaf.maj_pac3 * max_(nbH - 2, 0)
                 ) / 2
+            + (nbH >= 2) * P_plaf.maj_pac3 * nb_pac_non_alternes
+            + (nbH == 1) * (P_plaf.maj_pac2 * (nb_pac_non_alternes >= 1) + P_plaf.maj_pac3 * max_(nb_pac_non_alternes - 1, 0))
+            + (nbH == 0) * (P_plaf.maj_pac1 + (nb_pac_non_alternes >= 1) + P_plaf.maj_pac2 * (nb_pac_non_alternes >= 2) + P_plaf.maj_pac3 * max_(nb_pac_non_alternes - 2, 0))
             )
 
         max1 = max_(0, max0 - f7wj)
         return (
-            P.taux_wj * min_(f7wj, max0)
-            + P.taux_wi * min_(f7wi, max1)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max0)
+            + P_aide_pers.taux.taux_risques_techno_ascenseurs * min_(f7wi_2009, max1)
             )
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        (cases 7WI, 7WJ).
-        2006-2009
-        cf. cerfa 50796
-        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7wi = foyer_fiscal('f7wi_2012', period)
+        f7wi_2009 = foyer_fiscal('f7wi_2009', period)
         f7wj = foyer_fiscal('f7wj', period)
-        P = parameters(period).impot_revenu.credits_impots.aidper
+        P_aide_pers = parameters(period).impot_revenu.credits_impots.equ_hab_princ_aide_personnes
+        P_plaf = P_aide_pers.plafond.plafond_commun
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
+        max0 = P_plaf.celib * (maries_ou_pacses == 0) + P_plaf.couple * (maries_ou_pacses == 1) + P_plaf.maj_pac * nb_pac_majoration_plafond
         max1 = max_(0, max0 - f7wj)
         return (
-            P.taux_wj * min_(f7wj, max0)
-            + P.taux_wi * min_(f7wi, max1)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max0)
+            + P_aide_pers.taux.taux_risques_techno_ascenseurs * min_(f7wi_2009, max1)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        (cases 7SF, 7WI, 7WJ, 7WL).
-        2010-2011
-        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7sf = foyer_fiscal('f7sf_2011', period)
-        f7wi = foyer_fiscal('f7wi_2012', period)
+        f7wi_2012 = foyer_fiscal('f7wi_2012', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
-        P = parameters(period).impot_revenu.credits_impots.aidper
+        f7sf_2011 = foyer_fiscal('f7sf_2011', period)
+        P_aide_pers = parameters(period).impot_revenu.credits_impots.equ_hab_princ_aide_personnes
+        P_plaf = P_aide_pers.plafond.plafond_commun
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - f7wl - f7sf)
+        # Les plafonds sont appliqués par contribuable et habitation. Ici, on suppose que 7wl, 7wj et 7wi d'une part et 7sf d'autre part sont associés à deux habitations distinctes : 7wl, 7wj et 7wi sont associées à l'habitation principale tandis que 7sf est associée aux logements donnés à la location.
+        max0 = P_plaf.celib * (maries_ou_pacses == 0) + P_plaf.couple * (maries_ou_pacses == 1) + P_plaf.maj_pac * nb_pac_majoration_plafond
+        max1 = max_(0, max0 - f7wl)
         max2 = max_(0, max1 - f7wj)
         return (
-            P.taux_wl * min_(f7wl + f7sf, max0)
-            + P.taux_wj * min_(f7wj, max1)
-            + P.taux_wi * min_(f7wi, max2)
+            P_aide_pers.taux.taux_risques_techno * min_(f7wl, max0)
+            + P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max1)
+            + P_aide_pers.taux.taux_ascenseurs * min_(f7wi_2012, max2)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7sf_2011, max0)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        (cases 7WI, 7WJ, 7WL, 7WR).
-        2012
-        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7wi = foyer_fiscal('f7wi_2012', period)
+        f7wi_2012 = foyer_fiscal('f7wi_2012', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
-        P = parameters(period).impot_revenu.credits_impots.aidper
+        P_aide_pers = parameters(period).impot_revenu.credits_impots.equ_hab_princ_aide_personnes
+        P_plaf_commun = P_aide_pers.plafond.plafond_commun
+        P_plaf_maj = P_aide_pers.plafond.maj_plaf_risques_techno_avant_2015
 
-        # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
-        max00 = P.max * (1 + maries_ou_pacses)
-        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - f7wj)  # f7wj s'impute avant f7wl et f7wi
-        max2 = max_(0, max1 - f7wi)  # f7wi s'impute avant f7wl
+        # Les plafonds sont appliqués par contribuable et habitation. Ici, on suppose que 7wl, 7wj et 7wi d'une part et 7wr d'autre part sont associés à deux habitations distinctes : 7wl, 7wj et 7wi sont associées à l'habitation principale tandis que 7wr est associée aux logements donnés à la location.
+        max0 = P_plaf_commun.celib * (maries_ou_pacses == 0) + P_plaf_commun.couple * (maries_ou_pacses == 1) + P_plaf_commun.maj_pac * nb_pac_majoration_plafond
+        max1 = max_(0, max0 - f7wj)
+        max2 = max_(0, max1 - f7wi_2012)
+        max_maj = P_plaf_maj.celib * (maries_ou_pacses == 0) + P_plaf_maj.couple * (maries_ou_pacses == 1)
         return (
-            P.taux_wr * f7wr +
-            + P.taux_wj * min_(f7wj, max0)
-            + P.taux_wi * min_(f7wi, max1)
-            + P.taux_wl * (min_(f7wl, max2) + min_(max_(0, f7wl - max2), max00))
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max0)
+            + P_aide_pers.taux.taux_ascenseurs * min_(f7wi_2012, max1)
+            + P_aide_pers.taux.taux_risques_techno * (min_(f7wl, max2) + min_(max_(0, f7wl - max2), max_maj))
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wr, max0 + max_maj)
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        2013 - 2015
-        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
-        P = parameters(period).impot_revenu.credits_impots.aidper
+        P_aide_pers = parameters(period).impot_revenu.credits_impots.equ_hab_princ_aide_personnes
+        P_plaf_commun = P_aide_pers.plafond.plafond_commun
+        P_plaf_maj = P_aide_pers.plafond.maj_plaf_risques_techno_avant_2015
 
-        # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
-        max00 = P.max * (1 + maries_ou_pacses)
-        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - f7wj)  # f7wj s'impute avant f7wl
-
+        # Les plafonds sont appliqués par contribuable et habitation. Ici, on suppose que 7wl, 7wj et 7wi d'une part et 7wr d'autre part sont associés à deux habitations distinctes : 7wl, 7wj et 7wi sont associées à l'habitation principale tandis que 7wr est associée aux logements donnés à la location.
+        max0 = P_plaf_commun.celib * (maries_ou_pacses == 0) + P_plaf_commun.couple * (maries_ou_pacses == 1) + P_plaf_commun.maj_pac * nb_pac_majoration_plafond
+        max1 = max_(0, max0 - f7wj)
+        max_maj = P_plaf_maj.celib * (maries_ou_pacses == 0) + P_plaf_maj.couple * (maries_ou_pacses == 1)
         return (
-            P.taux_wr * f7wr
-            + P.taux_wj * min_(f7wj, max0)
-            + P.taux_wl * (min_(f7wl, max1) + min_(max_(0, f7wl - max1), max00))
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max0)
+            + P_aide_pers.taux.taux_risques_techno * (min_(f7wl, max1) + min_(max_(0, f7wl - max1), max_maj))
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wr, max0 + max_maj)
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        2015 - 2018
-        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
-        P = parameters(period).impot_revenu.credits_impots.aidper
+        P_aide_pers = parameters(period).impot_revenu.credits_impots.equ_hab_princ_aide_personnes
+        P_plaf_commun = P_aide_pers.plafond.plafond_commun
 
-        # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
-        max00 = P.max * (1 + maries_ou_pacses)
-        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
-        max1 = P.max_wl
-
+        # Les plafonds sont appliqués par contribuable et habitation. Ici, on suppose que 7wl, 7wj et 7wi d'une part et 7wr d'autre part sont associés à deux habitations distinctes : 7wl, 7wj et 7wi sont associées à l'habitation principale tandis que 7wr est associée aux logements donnés à la location.
+        max_hors_risques_techno = P_plaf_commun.celib * (maries_ou_pacses == 0) + P_plaf_commun.couple * (maries_ou_pacses == 1) + P_plaf_commun.maj_pac * nb_pac_majoration_plafond
         return (
-            P.taux_wr * f7wr
-            + P.taux_wj * min_(f7wj, max0)
-            + P.taux_wl * min_(f7wl, max1)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wj, max_hors_risques_techno)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wl, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wr, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
             )
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        2018 -
-        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7wi = foyer_fiscal('f7wi', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
-        P = parameters(period).impot_revenu.credits_impots.aidper
+        P_aide_pers = parameters(period).impot_revenu.credits_impots.equ_hab_princ_aide_personnes
+        P_plaf_commun = P_aide_pers.plafond.plafond_commun
 
-        # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
-        max00 = P.max * (1 + maries_ou_pacses)
-        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
-        max1 = P.max_wl
-
+        # Les plafonds sont appliqués par contribuable et habitation. Ici, on suppose que 7wl, 7wj et 7wi d'une part et 7wr d'autre part sont associés à deux habitations distinctes : 7wl, 7wj et 7wi sont associées à l'habitation principale tandis que 7wr est associée aux logements donnés à la location.
+        max_hors_risques_techno = P_plaf_commun.celib * (maries_ou_pacses == 0) + P_plaf_commun.couple * (maries_ou_pacses == 1) + P_plaf_commun.maj_pac * nb_pac_majoration_plafond
         return (
-            P.taux_wr * f7wr
-            + P.taux_wj * min_(f7wi + f7wj, max0)
-            + P.taux_wl * min_(f7wl, max1)
+            P_aide_pers.taux.taux_equ_pers_agees_hand * min_(f7wi + f7wj, max_hors_risques_techno)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wl, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
+            + P_aide_pers.taux.taux_risques_techno * min_(f7wr, P_aide_pers.plafond.plafond_risque_techno_apres_2015)
             )
 
 

@@ -1354,12 +1354,24 @@ class f7wf(Variable):
 
 
 # Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale
+class f7wi_2009(Variable):
+    cerfa_field = '7WI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: travaux de prévention des risques technologiques ou ascenseurs électriques à traction"
+    # start_date = '2005-01-01'
+    end = '2009-12-31'
+    definition_period = YEAR
+
+
 class f7wi_2012(Variable):
     cerfa_field = '7WI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction"
+    # start_date = '2010-01-01'
     end = '2012-12-31'
     definition_period = YEAR
 
@@ -11393,7 +11405,7 @@ class f7sf_2011(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Crédit de travaux en faveur d aides aux personnes pour des logements en location (avant 2012 ) / Appareils de régulation du chauffage, matériaux de calorifugeage (après 2011)'
+    label = "Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques"
     # start_date = '2010-01-01'
     end = '2011-12-31'
     definition_period = YEAR
@@ -11404,7 +11416,7 @@ class f7sf_2015(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'QuaEnv'
+    label = 'QuaEnv - Appareils de régulation du chauffage, matériaux de calorifugeage'
     # start_date = '2012-01-01'
     end = '2015-12-31'
     definition_period = YEAR
