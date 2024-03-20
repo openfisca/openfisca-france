@@ -4298,7 +4298,7 @@ class scelli(Variable):
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj
 
         report_scelli_2009 = min_(investissement_2009_2010.plafond, max_(investissement_2009_2010.logement_BBC.taux * f7hr, investissement_2009_2010.scellier_outremer.taux * f7hs))
-        report_scelli_2010 = min_(investissement_2009_2010.plafond, investissement_2009_2010.logement_BBC.taux * f7hv + investissement_2009_2010.logement_BBC.taux * f7hx + investissement_2009_2010.scellier_outremer.taux * f7hw + investissement_2009_2010.scellier_outremer.taux * f7hz) + min_(investissement_2009_2010.logement_BBC.taux, investissement_2009_2010.logement_BBC.taux * f7ht + investissement_2009_2010.scellier_outremer.taux * f7hu)
+        report_scelli_2010 = min_(investissement_2009_2010.plafond, investissement_2009_2010.logement_BBC.taux * f7hv + investissement_2009_2010.logement_BBC.taux * f7hx + investissement_2009_2010.scellier_outremer.taux * f7hw + investissement_2009_2010.scellier_outremer.taux * f7hz) + min_(investissement_2009_2010.plafond, investissement_2009_2010.logement_BBC.taux * f7ht + investissement_2009_2010.scellier_outremer.taux * f7hu)
         report_scelli_2011 = f7ha + f7hg + f7hh + f7hd + f7hf
         report_scelli_2012 = f7gj + f7gl + f7gs + f7gu + f7gv + f7gx + f7gw
         report_scelli_2013 = f7yb + f7yd + f7yf + f7yh + f7yj + f7yk + f7yl
