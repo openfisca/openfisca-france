@@ -36,3 +36,10 @@ metadata:
     1991-01-01: "1990-07-10"
     1993-01-01: 1993-01-30; 1992-07-19
     2015-01-01: "2014-10-26"
+  notes:
+    1984-01-01:
+    - title: Une incertitude subsiste sur la date d'entrée en vigueur (1er janvier 1984 ou 1er janvier 1985 ?).
+    1993-01-01:
+    - title: Une fraction de 0,4 % du montant des salaires de 1993 doit être versée au Trésor avant le 05/04/1994
+    2015-01-01:
+    - title: Les articlesR. 6332-22-2 à R. 6332-22-5 décomposent le taux employeur, pour les différentes catégories d'entreprise (v).
