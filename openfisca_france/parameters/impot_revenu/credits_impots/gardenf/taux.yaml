@@ -8,7 +8,7 @@ values:
     value: 0.5
 metadata:
   short_label: Taux
-  label_en: Child care costs (1979 - )
+  label_en: Child care costs
   ipp_csv_id: txgardenf
   unit: /1
   reference:

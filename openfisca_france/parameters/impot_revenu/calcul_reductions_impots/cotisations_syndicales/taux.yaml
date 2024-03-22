@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: Taux
-  label_en: Union dues (1989 - 2016)
+  label_en: Union dues
   last_value_still_valid_on: "2024-03-15"
   ipp_csv_id: tx_cotsynd
   unit: /1
@@ -32,4 +32,3 @@ metadata:
   notes:
     2012-01-01:
       - title: à partir de l'imposition des revenus de 2012 la réduction d'impôt devient un crédit d'impôt
-

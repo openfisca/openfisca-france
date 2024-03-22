@@ -1,4 +1,4 @@
-description: Formule de calcul - taux (en % de l'impôt) des minorations exceptionnelles d'impôt (1965-1992)
+description: Formule de calcul - taux (en % de l'impôt) des minorations exceptionnelles d'impôt
 values:
   1965-01-01:
     value: null

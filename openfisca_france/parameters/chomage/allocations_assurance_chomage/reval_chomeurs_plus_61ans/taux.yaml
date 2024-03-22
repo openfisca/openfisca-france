@@ -1,4 +1,4 @@
-description: Taux de revalorisation du salaire de références des chômeurs de plus de 61 ans (1965-1973) pour les allocations chômage
+description: Taux de revalorisation du salaire de références des chômeurs de plus de 61 ans pour les allocations chômage
 values:
   1965-01-11:
     value: 0.075
@@ -30,7 +30,7 @@ values:
     value: null
 metadata:
   short_label: Taux
-  label_en: Indexation of UI reference wage for older unemployed - above age 61 (1965-1973)
+  label_en: Indexation of UI reference wage for older unemployed - above age 61
   ipp_csv_id: sr_61
   unit: /1
   reference:

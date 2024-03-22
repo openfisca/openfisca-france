@@ -21,7 +21,7 @@ values:
 metadata:
   short_label: Plafond
   last_value_still_valid_on: "2023-01-05"
-  label_en: Child care costs (1979 - )
+  label_en: Child care costs
   ipp_csv_id: plafgardenf
   unit: currency_next_year
   reference:

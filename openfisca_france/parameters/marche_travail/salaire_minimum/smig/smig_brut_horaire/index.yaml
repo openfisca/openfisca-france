@@ -1,7 +1,7 @@
 description: Smig horaire brut
 metadata:
   short_label: Smig Horaire
-  label_en: Minimum wage - SMIG (1950-1969)
+  label_en: Minimum wage - SMIG
   order:
   - zone_sans_abattement
   - zone_abattement_maximale

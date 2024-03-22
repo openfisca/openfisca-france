@@ -6,7 +6,7 @@ values:
     value: 0.24
 metadata:
   short_label: Produits de placements à revenu fixe (n'excédant pas 2000€)
-  label_en: Levy in discharge on capital income (1965 - 2012)
+  label_en: Levy in discharge on capital income
   unit: /1
   reference:
     2012-01-01:

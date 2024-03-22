@@ -1,6 +1,6 @@
-description: Taxes proportionnelles et taxes complémentaires (1948-1969)
+description: Taxes proportionnelles et taxes complémentaires
 metadata:
-  label_en: Flat taxes and other taxes (1948-1969)
+  label_en: Flat taxes and other taxes
   order:
   - taux
   - taux_reduit

@@ -8,7 +8,7 @@ values:
     value: 0.24
 metadata:
   short_label: Courus du 16/07/78 au 31/12/79
-  label_en: Levy in discharge on capital income (1965 - 2012)
+  label_en: Levy in discharge on capital income
   ipp_csv_id: tx_plac_7879
   unit: /1
   reference:

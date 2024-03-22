@@ -6,7 +6,7 @@ values:
     value: 0.75
 metadata:
   short_label: Paiement de produits dans un Etat "non-coopératif"
-  label_en: Levy in discharge on capital income (1965 - 2012)
+  label_en: Levy in discharge on capital income
   unit: /1
   reference:
     2010-01-01:

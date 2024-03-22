@@ -4,7 +4,7 @@ values:
     value: 0.05
 metadata:
   short_label: Produits d'épargne solidaire de partage
-  label_en: Levy in discharge on capital income (1965 - 2012)
+  label_en: Levy in discharge on capital income
   unit: /1
   reference:
     2008-01-01:

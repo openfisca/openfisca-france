@@ -8,7 +8,7 @@ values:
     value: 4.57
 metadata:
   short_label: Part fixe par enfant supplémentaire
-  label_en: Family income supplement (SFT) (1985-2017)
+  label_en: Family income supplement (SFT)
   ipp_csv_id: enf4
   unit: currency
   reference:
