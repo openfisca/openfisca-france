@@ -1,4 +1,4 @@
-description: Plus de 50 salariés, participation des employeurs à l'effort de construction (PEEC)
+description: Participation des employeurs à l'effort de construction (PEEC) pour les entreprises de plus de 50 salariés
 brackets:
 - threshold:
     2020-01-01:
@@ -10,6 +10,7 @@ metadata:
   short_label: Plus de 50 salariés
   last_value_still_valid_on: "2024-03-14"
   ipp_csv_id: cons_p50_0_
+  unit: /1
   reference:
     2020-01-01:
     - title: Article L313-1 du Code de la construction et de l'habitation (régime général)
