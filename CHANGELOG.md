@@ -1,6 +1,14 @@
 # Changelog
 
-### 162.0.0 [2273](https://github.com/openfisca/openfisca-france/pull/2273)
+### 162.0.1 [2274](https://github.com/openfisca/openfisca-france/pull/2274)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : toutes.
+* Détails :
+  - Retrait des intervalles entre deux dates inutiles des champs `description` et `label`
+
+# 162.0.0 [2273](https://github.com/openfisca/openfisca-france/pull/2273)
 
 * Recode un dispositif depuis sa création - harmonise des paramètres avec les barèmes IPP
 * Périodes concernées : à partir du 01/01/2005.
@@ -25,7 +33,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
-* Zones impactées : 
+* Zones impactées :
     - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/propre_entreprise/iDOMe_taux1.yaml`
     - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/propre_entreprise/iDOMe_taux2.yaml`
 
