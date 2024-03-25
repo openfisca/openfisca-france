@@ -1,4 +1,4 @@
-description: Colmar-Metz - Moyenne des produits de base de l'office des 3 dernières années, limitée à 3*moyenne générale des produits des offices de France, pour la cotisation de sécurité sociale (SS) des notaires pour la retraite complémentaire
+description: Taux de la cotisation de sécurité sociale (SS) des notaires de Colmar-Metz pour la retraite complémentaire
 values:
   1951-01-01:
     value: 0.02
@@ -27,4 +27,4 @@ metadata:
     2015-01-01: "2015-12-30"
   notes:
     1951-01-01:
-    - title: Création d'un régime supplémentaire pour les notaires du ressort de la Cour d'appel de Colmar
+    - title: Création d'un régime supplémentaire pour les notaires du ressort de la Cour d'appel de Colmar. L'assiette est la moyenne des produits de base de l'office des 3 dernières années, limitée à 3 * moyenne générale des produits des offices de France.

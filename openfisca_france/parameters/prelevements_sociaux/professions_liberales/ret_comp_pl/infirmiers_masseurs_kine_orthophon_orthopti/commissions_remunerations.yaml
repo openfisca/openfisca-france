@@ -1,4 +1,4 @@
-description: Commissions et rémunérations brutes entre un seuil plancher et un seuil plafond -Cotisation de sécurité sociale (SS) retraite complémentaire des Infirmiers, masseurs-kiné, orthophonistes, orthoptistes
+description: Cotisation de sécurité sociale (SS) retraite complémentaire des infirmiers, masseurs-kiné, orthophonistes et orthoptistes sur les commissions et rémunérations brutes
 values:
   1996-01-01:
     value: 0.03
@@ -15,4 +15,4 @@ metadata:
     1996-01-01: "1996-07-23"
   notes:
     1996-01-01:
-    - title: Institution d'une cotisation proportionnelle en plus de la cotisation ofrfaitaire qui existait depuis la création du régime complémentaire en 1984 pour les infirmiers, masseurs-kiné, orthophonistes et orthoptistes
+    - title: Institution d'une cotisation proportionnelle en plus de la cotisation forfaitaire qui existait depuis la création du régime complémentaire en 1984 pour les infirmiers, masseurs-kiné, orthophonistes et orthoptistes. La cotisation est proportionnelle aux commissions et rémunérations brutes entre un seuil plancher et un seuil plafond.

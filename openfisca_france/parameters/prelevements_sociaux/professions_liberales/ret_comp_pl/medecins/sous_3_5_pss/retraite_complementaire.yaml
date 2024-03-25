@@ -1,4 +1,4 @@
-description: Taux de la cotisation (sous 3,5 PSS) des médecins pour la retraite complémentaire
+description: Taux de la cotisation (sous 3,5 PSS) de retraite complémentaire des médecins
 values:
   1949-01-01:
     value: null
@@ -27,7 +27,7 @@ values:
   2018-01-01:
     value: 0.098
 metadata:
-  short_label: Taux
+  short_label: Taux sous 3,5 PSS
   label_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: retc_med_0_35
   unit: /1

@@ -5,7 +5,7 @@ values:
   1962-01-01:
     value: 0.025
   2005-01-01:
-    value: 0
+    value: null
 metadata:
   short_label: Section A (allocation variable)
   label_en: Contribution for complementary pension scheme (professionals)
