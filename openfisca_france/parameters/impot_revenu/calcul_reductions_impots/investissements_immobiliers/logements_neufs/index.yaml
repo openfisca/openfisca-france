@@ -1,9 +1,0 @@
-description: Réduction d'impôts pour les investissements locatifs dans des logements neufs ou réhabilités
-metadata:
-  short_label: Logements neufs ou réhabilités
-  label_en: Tax reductions for real new estate investments
-  order:
-  - dispositif_mehaignerie
-  - dispositif_scellier
-  - dispositif_duflot
-  - dispositif_pinel
