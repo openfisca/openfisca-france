@@ -1,7 +1,19 @@
-description: Cotisation de sécurité sociale (SS) branche maladie, maternité, invalidité, décès, Professions libérales
+description: Cotisation de sécurité sociale (SS) branche maladie, maternité, invalidité, décès pour les professions libérales
 metadata:
   short_label: Maladie, maternité, invalidité, décès
   label_en: SSCs for sickness and maternity benefits (professionals)
   order:
   - assures_actifs
   - assures_retraites
+documentation: |-
+  Sources :
+  Loi 66-509 du 12/07/1966, JO 1966-07-13
+  Pour les années récentes, art. D. 621-3 du CSS
+  Notes :
+  (1) La cotisation à l'assurance Maladie-Maternité ne finance pas les prestations d'invalidité décès. Les cotisations ID sont prélevées par différentes caisses et le taux varie selon les professions.
+  (2) Les assurés ayant des revenus professionnels inférieurs à 13 % du PSS sont totalement exonérés de cotisations ainsi que les assurés à partir de 65 ans (60 ans pour les femmes) ayant élevé au moins 4 enfants jusqu'à l'âge de 14 ans.
+  (3) A partir de 2018, en-dessous de 110 % du PSS, le taux de cotisation est calculé comme suit :
+          taux = [(6,5% - 1,5%)/ (1,1 PSS)] × revenu + 1,5%
+  Cotisation minimale :
+  Pour les affiliés percevant un revenu professionnel inférieur à 40 % du PSS par an, une cotisation minimale annuelle est due.
+  Cotisation minimale = 0,45*PSS annuel*taux de cotisation
