@@ -1,4 +1,5 @@
 description: Versement transport (VT)
+metadata:
   short_label: Versement transport (VT)
   label_en: Transport tax (VT) (contribution to public transports)
   order:
