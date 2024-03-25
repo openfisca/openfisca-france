@@ -26,7 +26,7 @@ values:
     value: 18
 metadata:
   short_label: 3 premiers mois
-  label_en: Public aid allowance (1967-1979)
+  label_en: Public aid allowance
   ipp_csv_id: aide_pu_0_3
   unit: currency
   reference:

@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Retrait après 8 ans
-  label_en: Levy in discharge on capital income (1965 - 2012)
+  label_en: Levy in discharge on capital income
   ipp_csv_id: tx_epargne_ap8
   unit: /1
   reference:

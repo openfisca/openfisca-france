@@ -2,7 +2,7 @@ description: Prélèvements libératoires sur les revenus des valeurs mobilière
 metadata:
   documentation_start: true
   short_label: Revenus des valeurs mobilières
-  label_en: Levy in discharge on capital income (1965 - 2012)
+  label_en: Levy in discharge on capital income
   order:
   - obligations_titres_participatifs_fonds_salariaux
   - dividendes
