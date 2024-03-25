@@ -1,4 +1,4 @@
-description: Régime supplémentaire pour les auxilliaires médicaux conventionnés (ASV) sous 5 PSS de la cotisation de sécurité sociale (SS) retraite complémentaire des Infirmiers, masseurs-kiné, orthophonistes, orthoptistes
+description: Cotisation supplémentaire (sous 5 PSS) pour les auxiliaires médicaux conventionnés (ASV) de la cotisation de sécurité (SS) retraite complémentaire des infirmiers, masseurs-kiné, orthophonistes, orthoptistes
 values:
   2010-01-01:
     value: 0.0025
