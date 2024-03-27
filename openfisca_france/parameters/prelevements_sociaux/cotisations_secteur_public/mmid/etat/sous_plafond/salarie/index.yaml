@@ -1,6 +1,6 @@
-description: Cotisations maladie spécifiques (salarié, sous plafond) de la Fonction publique d'Etat
+description: Cotisations maladie (agent, sous plafond) de la fonction publique d'Etat
 metadata:
-  short_label: Salarié
+  short_label: Agent
   label_en: Health insurance contributions
   order:
   - maladie

@@ -8,7 +8,7 @@ from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalari
 log = logging.getLogger(__name__)
 
 
-def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
+def build_pat(parameters):
     '''Construit le dictionnaire de barèmes des cotisations employeur à partir des paramètres de parameters.'''
     # TODO: contribution patronale de prévoyance complémentaire
     pat = ParameterNode('pat', data=dict(description='Cotisations sociales employeur'))  # Génère pat
@@ -18,11 +18,11 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
         ))  # Génère commun
 
     # Réindexation : nouveaux chemins suite à l'harmonisation avec les répertoires des barèmes IPP
-    autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
-    retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
-    chomage = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
-    regime_general = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
-    public = node_json.prelevements_sociaux.cotisations_secteur_public
+    autres = parameters.prelevements_sociaux.autres_taxes_participations_assises_salaires
+    retraites = parameters.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
+    chomage = parameters.prelevements_sociaux.cotisations_regime_assurance_chomage
+    regime_general = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
+    public = parameters.prelevements_sociaux.cotisations_secteur_public
 
     # Création de commun
     # Apprentissage (avec effacement)
@@ -236,7 +236,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     return pat
 
 
-def build_sal(node_json):
+def build_sal(parameters):
     '''
     Construit le dictionnaire de barèmes des cotisations salariales
     '''
@@ -247,12 +247,12 @@ def build_sal(node_json):
         ))  # Génère commun
 
     # Réindexation: nouveaux chemins
-    retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
-    chomage = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
-    regime_general = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
-    public = node_json.prelevements_sociaux.cotisations_secteur_public
-    indep = node_json.prelevements_sociaux.cotisations_taxes_independants_artisans_commercants
-    liberal = node_json.prelevements_sociaux.professions_liberales
+    retraites = parameters.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
+    chomage = parameters.prelevements_sociaux.cotisations_regime_assurance_chomage
+    regime_general = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
+    public = parameters.prelevements_sociaux.cotisations_secteur_public
+    indep = parameters.prelevements_sociaux.cotisations_taxes_independants_artisans_commercants
+    liberal = parameters.prelevements_sociaux.professions_liberales
 
     # Création de commun
     commun.children.update(chomage.chomage.salarie.children)
