@@ -1,4 +1,4 @@
-description: Plafond (en % du traitement indiciaire brut) des cotisations au régime de Retraite additionnelle de la fonction publique (RAFP), assiette plafond
+description: Plafond (en % du traitement indiciaire brut) des cotisations au régime de retraite additionnelle de la fonction publique (RAFP)
 values:
   2005-01-01:
     value: 0.2
@@ -14,8 +14,4 @@ metadata:
       href: https://www.legifrance.gouv.fr/eli/decret/2004/6/18/2004-569/jo/texte
   official_journal_date:
     2005-01-01: "2004-06-19"
-documentation: |-
-  Note :
-  Le RAFP est un régime obligatoire à points permettant aux fonctionnaires d'acquérir une retraite additionnelle.
-  Assiette :
-  Ensemble des rémunérations soumises à CSG mais non soumises au régime de retraite de base de la fonction publique (i.e. primes et indemnités). L'assiette est plafonnée à un pourcentage du traitement indiciaire brut de l'année. Seule la garantie individuelle du pouvoir d'achat (GIPA) n'est pas soumise à ce plafonnement.
+

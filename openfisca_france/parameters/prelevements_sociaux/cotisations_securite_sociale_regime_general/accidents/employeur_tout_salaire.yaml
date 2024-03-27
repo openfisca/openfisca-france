@@ -1,4 +1,4 @@
-description: Taux employeur tout salaire des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+description: Taux employeur tout salaire des cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 values:
   1976-01-01:
     value: null
@@ -47,14 +47,8 @@ metadata:
     2018-01-01: "2017-12-31"
     2020-01-01: "2017-03-01"
   notes:
-    1977-01-01:
-    - title: Référence manquante
     1991-01-01:
     - title: Cotisation déplafonnée avec réduction des taux.
-    1992-01-01:
-    - title: Référence manquante
-    1993-01-01:
-    - title: Référence manquante
     2008-01-01:
     - title: La date du passage du taux de 1,0 à 1,1% doit être vérifiée.
     2020-01-01:

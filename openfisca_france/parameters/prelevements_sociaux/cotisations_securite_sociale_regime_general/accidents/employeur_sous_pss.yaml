@@ -1,4 +1,4 @@
-description: Taux employeur sous le Plafond de la Sécurité sociale (PSS) des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+description: Taux employeur sous le plafond de la Sécurité sociale (PSS) des cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 values:
   1976-01-01:
     value: 0.017
@@ -29,32 +29,12 @@ metadata:
     1991-01-01:
       title: Loi 90-86 du 23/01/1990, art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756669&cidTexte=JORFTEXT000000707200
-    2020-01-01:
-      title: Arrêté du 15/02/2017
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034104339&categorieLien=id
   official_journal_date:
     1976-01-01: "1976-10-10"
     1991-01-01: "1990-01-25"
-    2020-01-01: "2017-03-01"
   notes:
-    1977-01-01:
-    - title: Référence manquante
-    1979-01-01:
-    - title: Référence manquante
-    1983-01-01:
-    - title: Référence manquante
-    1984-01-01:
-    - title: Référence manquante
-    1985-01-01:
-    - title: Référence manquante
-    1986-01-01:
-    - title: Référence manquante
-    1989-01-01:
-    - title: Référence manquante
     1991-01-01:
     - title: Cotisation déplafonnée avec réduction des taux.
-    2020-01-01:
-    - title: Suppression du taux bureau, remplacé par le taux "Fonctions support de nature administrative" pour les entreprises en tarification collective ou mixte. Voir Notes.
 documentation: |-
   Notes sur la tarification AT-MP :
   La tarification des risques accidents du travail et maladies professionnelles (AT-MP) est complexe: il existe un taux propre à chaque entreprise, variant avec la taille et les risques d'AT-MP de l'entreprise.

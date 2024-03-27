@@ -1,4 +1,4 @@
-description: Taux bureau (déplafonné) des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+description: Taux bureau (déplafonné) des cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 values:
   1976-01-01:
     value: null
