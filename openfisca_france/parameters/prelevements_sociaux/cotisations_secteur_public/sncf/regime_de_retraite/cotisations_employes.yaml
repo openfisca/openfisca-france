@@ -1,7 +1,9 @@
-description: Cotisations salariés, régime de retraite des cotisations du régime de la SNCF - Cotisations spécifiques à la fonction publique
+description: Cotisations salariés du régime de retraite de la SNCF publique
 values:
   2007-01-01:
     value: 0.0785
+  2014-01-01:
+    value: 0.0805
   2015-01-01:
     value: 0.0815
   2016-01-01:
@@ -35,6 +37,11 @@ metadata:
     - title: Décret 2007-1056 du 28/06/2007.
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000467954
     - title: Arrêté du 06/05/2008 fixant les composantes T1 définitive pour 2007 et provisionnelle pour 2008
+    2014-01-01:
+    - title: Arrêté du 16/07/2014 fixant les composantes T1 définitive pour 2013 et provisionnelle pour 2014
+    - title: Décret 2013-1290 du 27/12/2013, art. 7
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028420114&cidTexte=JORFTEXT000028408271
+    - title: Lettre ministérielle du 23/01/2014
     2015-01-01:
     - title: Décret 2014-1531 du 17/12/2014, art. 10
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
@@ -75,6 +82,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
   official_journal_date:
     2007-01-01: 2007-06-29; 2008-05-16
+    2014-01-01: 2014-07-26; 2013-12-31
     2015-01-01: 2014-12-19; 2015-08-04
     2016-01-01: "2014-12-19"
     2017-01-01: "2014-12-19"
@@ -88,6 +96,8 @@ metadata:
     2025-01-01: "2014-12-19"
     2026-01-01: "2014-12-19"
   notes:
+    2014-01-01:
+    - title: Lettre ministérielle citée par les Comptes combinés 2014 de l'ACOSS
     2015-01-01:
     - title: Le décret fixe les taux à la charge de l'employeur jusqu'en 2026. Valeur T2 mise à jour avec Chiffres clés CPRPSNCF 2017
     2016-01-01:
@@ -101,6 +111,3 @@ metadata:
     2020-01-01:
     - title: Valeurs manquantes pour régime prévoyance. Valeur T2 provient du rapport du Sénat sur le PLF 2020
       href: https://www.senat.fr/rap/l19-140-324/l19-140-3244.html
-documentation: |-
-  Sources :
-  Chiffres clés du régime CPRPSNCF publiés annuellement

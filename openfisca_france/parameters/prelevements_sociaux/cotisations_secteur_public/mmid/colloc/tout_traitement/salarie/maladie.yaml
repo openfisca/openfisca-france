@@ -1,4 +1,4 @@
-description: Barème salarié Tout traitement pour la Fonction publique hospitalière et Collectivités locales des cotisations maladie spécifiques à la fonction publique
+description:  Cotisations maladie sur l'ensemble du traitement des agents de la fonction publique hospitalière et des collectivités locales
 brackets:
 - threshold:
     1967-10-01:
@@ -23,7 +23,7 @@ brackets:
     1998-01-01:
       value: null
 metadata:
-  short_label: Barème salarié
+  short_label: Barème
   last_value_still_valid_on: "2021-08-24"
   label_en: Health insurance contributions - local governments and hospital administration
   ipp_csv_id: mmid_h_s_0_

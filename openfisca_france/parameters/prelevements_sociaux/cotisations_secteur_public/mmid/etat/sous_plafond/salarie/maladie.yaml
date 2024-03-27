@@ -1,4 +1,4 @@
-description: Cotisations maladie spécifiques (salarié, sous plafond) de la Fonction publique d'Etat
+description: Cotisation maladie (agent, sous plafond) de la fonction publique d'Etat
 brackets:
 - threshold:
     1967-10-01:
