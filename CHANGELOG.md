@@ -1,5 +1,13 @@
 # Changelog
 
+### 163.0.1 [2275](https://github.com/openfisca/openfisca-france/pull/2275)
+
+* Changement mineur
+* Périodes concernées : à partir du 31/12/2023.
+* Zones impactées : openfisca_france/model/revenus/activite/salarie.py.
+* Détails : 
+  - La prime exceptionnelle de partage de la valeur (PEPV) s'est terminée le 31 décembre 2023, seule la version non exceptionnelle (PPV) persiste. Cette PR Ajoute une end date dans les formules.
+
 ### 163.0.0 [2272](https://github.com/openfisca/openfisca-france/pull/2272)
 
 * Amélioration technique.

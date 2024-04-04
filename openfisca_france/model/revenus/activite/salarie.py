@@ -642,6 +642,7 @@ class prime_partage_valeur_exceptionnelle(Variable):
     definition_period = (YEAR)  # La PPV est versée en fonction du salaire des 12 derniers mois
     reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
     set_input = set_input_divide_by_period
+    end = '2023-12-31'
 
 
 class prime_partage_valeur_exoneree_exceptionnelle(Variable):
@@ -650,6 +651,7 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
     label = 'Prime exceptionnelle de partage de la valeur (PPV), partie exonérée'
     definition_period = YEAR
     reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
+    end = '2023-12-31'
 
     set_input = set_input_divide_by_period
 
@@ -684,6 +686,7 @@ class prime_partage_valeur_non_exoneree_exceptionnelle(Variable):
     label = 'Prime exceptionnelle de partage de la valeur (PPV), partie non exonérée'
     definition_period = YEAR
     set_input = set_input_divide_by_period
+    end = '2023-12-31'
 
     def formula_2022_07_01(individu, period, parameters):
         prime_partage_valeur_exceptionnelle = individu('prime_partage_valeur_exceptionnelle', period)
