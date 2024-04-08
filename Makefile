@@ -49,7 +49,8 @@ check-yaml:
 
 check-all-yaml:
 	@# check yaml style
-	yamllint .
+	yamllint openfisca_france/parameters
+	yamllint tests
 
 test: clean check-syntax-errors check-style
 	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
