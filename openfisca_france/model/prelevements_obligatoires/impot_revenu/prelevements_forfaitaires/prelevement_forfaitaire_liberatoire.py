@@ -121,10 +121,3 @@ class prelevement_forfaitaire_liberatoire(Variable):
             )
 
         return pfl
-
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        Prelèvement forfaitaire libératoire (PFL) sur les revenus du capital
-        TODO: Le prélèvement libératoire est remplacé par un prélèvement forfaitaire unique non-libératoire, dont la valeur est telle que la somme du taux de ce prélèvement et des prélèvements sociaux est de 30%.
-        '''
-        pass
