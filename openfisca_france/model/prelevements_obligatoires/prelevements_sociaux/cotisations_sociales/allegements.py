@@ -308,7 +308,7 @@ class smic_proratise(Variable):
         return smic_proratise
 
 
-class allegement_fillon(Variable):
+class allegement_general(Variable):
     value_type = float
     entity = Individu
     label = 'Réduction générale des cotisations patronales (dite réduction Fillon)'
@@ -322,7 +322,7 @@ class allegement_fillon(Variable):
     def formula_2005_07_01(individu, period, parameters):
         stagiaire = individu('stagiaire', period)
         apprenti = individu('apprenti', period)
-        allegement_mode_recouvrement = individu('allegement_fillon_mode_recouvrement', period)
+        allegement_mode_recouvrement = individu('allegement_general_mode_recouvrement', period)
         exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
         exoneration_cotisations_employeur_tode = individu('exoneration_cotisations_employeur_tode', period)
         non_cumulee = not_(exoneration_cotisations_employeur_jei + exoneration_cotisations_employeur_tode)
@@ -331,15 +331,15 @@ class allegement_fillon(Variable):
         allegement = switch_on_allegement_mode(
             individu, period, parameters,
             allegement_mode_recouvrement,
-            'allegement_fillon',
+            'allegement_general',
             )
 
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 
-def compute_allegement_fillon(individu, period, parameters):
+def compute_allegement_general(individu, period, parameters):
     '''
-        Exonération Fillon
+        Exonération générale de cotisations patronales
         https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
     '''
     # Be careful ! Period is several months
@@ -365,20 +365,20 @@ def compute_allegement_fillon(individu, period, parameters):
     # au titre des salariés temporaires pour lesquels elle est tenue à
     # l’obligation d’indemnisation compensatrice de congés payés.
 
-    fillon = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.fillon
+    allegement_general = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
 
     # Du 2003-07-01 au 2005-06-30
     if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
-        seuil = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
-        tx_max = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+        seuil = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+        tx_max = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
     # Après le 2005-07-01
 
     else:
-        seuil = fillon.ensemble_des_entreprises.plafond
+        seuil = allegement_general.ensemble_des_entreprises.plafond
         tx_max = (
-            fillon.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
+            allegement_general.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
             * not_(majoration)
-            + fillon.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
+            + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
             * majoration
             )
 
@@ -388,10 +388,10 @@ def compute_allegement_fillon(individu, period, parameters):
     ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
 
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
-    taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
+    taux_allegement_general = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
 
     # Montant de l'allegment
-    return taux_fillon * assiette
+    return taux_allegement_general * assiette
 
 
 class allegement_cotisation_allocations_familiales(Variable):

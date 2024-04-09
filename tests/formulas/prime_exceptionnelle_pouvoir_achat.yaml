@@ -35,7 +35,7 @@
       2020-04: [1366.8169, 1400.9998] # salaire imposable plus important pour le deuxième cas car prime non exonérée
     csg_deductible_salaire:
       2020-04: [-111.34977, -114.13346]
-    exonerations_et_allegements:
+    exonerations:
       2020-04: [0, 0]
 
 

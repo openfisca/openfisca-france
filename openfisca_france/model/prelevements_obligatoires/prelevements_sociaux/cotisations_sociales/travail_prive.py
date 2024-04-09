@@ -812,7 +812,7 @@ class famille_net_allegement(Variable):
         cotisation = individu('famille', period)
         allegement = individu('allegement_cotisation_allocations_familiales', period)
 
-        return cotisation - allegement
+        return cotisation + allegement
 
 
 class mmid_salarie(Variable):
@@ -898,7 +898,7 @@ class mmid_employeur_net_allegement(Variable):
         cotisation = individu('mmid_employeur', period)
         allegement = individu('allegement_cotisation_maladie', period)
 
-        return cotisation - allegement
+        return cotisation + allegement
 
 
 class plafond_securite_sociale(Variable):

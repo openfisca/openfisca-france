@@ -2,7 +2,7 @@
   name: Base
   relative_error_margin: 0.001
   input:
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     effectif_entreprise: 1
     heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7

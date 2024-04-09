@@ -4,7 +4,7 @@
   input:
     salaire_de_base: 1457.52
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
     contrat_de_travail_type: cdi
@@ -17,7 +17,7 @@
   input:
     salaire_de_base: 3643.79
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
     contrat_de_travail_type: cdi
@@ -30,7 +30,7 @@
   input:
     salaire_de_base: 3643.9
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
     contrat_de_travail_type: cdi
@@ -43,7 +43,7 @@
   input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
     contrat_de_travail_type: cdi

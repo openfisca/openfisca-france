@@ -3,7 +3,7 @@
   relative_error_margin: 0.01
   input:
     salaire_de_base: 1467
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     contrat_de_travail_type: cdi
     effectif_entreprise: 94
@@ -18,7 +18,7 @@
   relative_error_margin: 0.01
   input:
     salaire_de_base: 1467
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     contrat_de_travail_type: cdd
     effectif_entreprise: 94
@@ -34,7 +34,7 @@
   relative_error_margin: 0.01
   input:
     salaire_de_base: 1467
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     contrat_de_travail_type: cdd
     effectif_entreprise: 94

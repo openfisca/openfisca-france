@@ -2,11 +2,11 @@
   name: Base
   relative_error_margin: 0.001
   input:
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     salaire_de_base: 1500
   output:
-    allegement_fillon: >
+    allegement_general: >
       1500 *
       (
         (.2809 / 0.6)

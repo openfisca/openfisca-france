@@ -2,7 +2,7 @@
   name: Base
   relative_error_margin: 0.0001
   input:
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 9
     heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
     salaire_de_base: 1257.4 # ~ équivalent Smic
@@ -15,7 +15,7 @@
   name: Equivalent temps plein supérieur à 1.3 x Smic, pas d'aide
   relative_error_margin: 0.0001
   input:
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 9
     heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
     salaire_de_base: 1635

@@ -50,7 +50,7 @@ output:
   prevoyance_obligatoire_cadre: -32.5935 # -16.08
   # taxe_apprentissage: 0
   versement_transport: 0 # -.027 * 2172.9
-  allegement_fillon: 0
+  allegement_general: 0
   credit_impot_competitivite_emploi: 130.37
   tehr:
     year:2015: 0

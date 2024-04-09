@@ -2,7 +2,7 @@ name: Coordinatrice
 period: 2014-03
 absolute_error_margin: 0.005
 input:
-  allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
+  allegement_general_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: true
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
@@ -66,7 +66,7 @@ output:
   contribution_developpement_apprentissage: 0
   versement_transport: -36
 
-  allegement_fillon: 222.12
+  allegement_general: 222.12
   credit_impot_competitivite_emploi: 108 # pas sur la fiche de paie
   tehr: {'2014': 0}
   salaire_de_base: 1800
