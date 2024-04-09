@@ -54,10 +54,8 @@
     exoneration_cotisations_employeur_jei: 0
     exoneration_cotisations_employeur_apprenti: 0
     exoneration_cotisations_employeur_stagiaire: 0
-    cotisations_employeur_contributives: -300.74002
     taux_accident_travail: 0.01
     accident_du_travail: -14.67
-    cotisations_employeur_non_contributives: -258.045
     cotisations_employeur_main_d_oeuvre: -38.82
     cotisations_employeur: -597.60
     salaire_super_brut_hors_allegements: 2064.6

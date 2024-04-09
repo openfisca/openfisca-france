@@ -33,7 +33,6 @@ output:
   # salaire_super_brut: 0
   # cotisations_employeur: -737.96 - 222.12 - 72
 
-  # cotisations_employeur_contributives: 0
   ags: -5.4
   agff_employeur: -21.60
   apec_employeur: 0
@@ -47,7 +46,6 @@ output:
   pension_employeur: 0
   rafp_employeur: 0
 
-  # cotisations_employeur_non_contributives: 0
   ati_atiacl: 0
   accident_du_travail: -27
   famille: -94.5

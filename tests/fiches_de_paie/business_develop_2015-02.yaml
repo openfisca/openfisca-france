@@ -35,7 +35,6 @@ output:
   # 0.35 + 23.90 + 6.52 + 2.17 + 74.97 + 78.77 + 86.92 + 6.52 + 101.4 + 41.16 + 0.78 + 4.78 + 26.07 + 16.08
   # = 470.39 != 496.76
   # cotisations_employeur: -470.39 - 2172.9 * (.018 + 0.0850 + 0.128)
-  # cotisations_employeur_non_contributives: -2172.9 * (.018 + 0.0850 + 0.0525 + 0.128 - 0.004)
   ati_atiacl: 0
   accident_du_travail: -23.9
   taxe_salaires: 0

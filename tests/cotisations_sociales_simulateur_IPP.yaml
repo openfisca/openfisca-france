@@ -19,15 +19,8 @@
     mmid_employeur: -194
     famille: -108
     contribution_solidarite_autonomie: -6
-    cotisations_employeur_non_contributives: -314.6
-                # mmid_employeur, famille, fnal, versement_transport,
-                # ati_atiacl contribution_solidarite_autonomie
-
     rafp_employeur: -20
     pension_employeur: -1371.80
-    cotisations_employeur_contributives: -1371.80 -20
-                # pension_employeur, rafp_employeur
-
     cotisations_employeur: -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6)
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, transport csa,
 
@@ -70,11 +63,8 @@
     mmid_employeur: -230
     famille: -108
     contribution_solidarite_autonomie: -6
-    cotisations_employeur_non_contributives: -(230 + 108 + 10 + 6)
     rafp_employeur: -20
     pension_employeur: -546
-    cotisations_employeur_contributives: -(546 + 20)
-
 
     cotisations_employeur: -(546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6)
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, csa,
@@ -117,14 +107,9 @@
     mmid_employeur: -230
     famille: -108
     contribution_solidarite_autonomie: -6
-# cotisations_employeur_non_contributives = -(10 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
-# pension,  ati, rafp, maladie, famille, feh, fnal1, fnal2, transport, csa
-    cotisations_employeur_non_contributives: -354
     pension_employeur: -546
     fonds_emploi_hospitalier: -20
     rafp_employeur: -20
-    cotisations_employeur_contributives: -(546 + 20 + 20)
-                # pension,  rafp, feh
     cotisations_employeur: -(546 + 10 + 20 + 230 + 108 + 20 + 2 + 8 + 2000 * 0.0175 + 6)
     pension_salarie: -167.80
     rafp_salarie: -20
@@ -162,8 +147,6 @@
     rafp_employeur: 0
     ircantec_employeur: -90.24  # TODO: Trouver source extérieur site IPP buggé
     contribution_solidarite_autonomie: -7.68
-    cotisations_employeur_contributives: -343.68 # -40.96 -212.48 -90.24 - 7.68
-    cotisations_employeur_non_contributives: -465.92 - 7.68
     cotisations_employeur: -( 212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68 )
     pension_salarie: 0
     rafp_salarie: 0
@@ -224,10 +207,8 @@
         mmid_employeur: -194
         famille: -108
         contribution_solidarite_autonomie: -6
-        cotisations_employeur_non_contributives: -314.6
         pension_employeur: -1371.80
         rafp_employeur: -20
-        cotisations_employeur_contributives: -1371.80 - 20
         cotisations_employeur: -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6)
         pension_salarie: -167.80
         rafp_salarie: -20
@@ -288,12 +269,10 @@
         cotisations_employeur_main_d_oeuvre: -45
         pension_employeur: -1371.80
         rafp_employeur: -20
-        cotisations_employeur_contributives: -1391.8
         ati_atiacl: -6.6
         mmid_employeur: -194
         famille: -108
         contribution_solidarite_autonomie: -6
-        cotisations_employeur_non_contributives: -314.6
         cotisations_employeur: -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6)
         pension_salarie: -167.80
         rafp_salarie: -20
@@ -313,12 +292,10 @@
         cotisations_employeur_main_d_oeuvre: -45
         pension_employeur: -1371.80
         rafp_employeur: -20
-        cotisations_employeur_contributives: -1391.8
         ati_atiacl: -6.6
         mmid_employeur: -194
         famille: -108
         contribution_solidarite_autonomie: -6
-        cotisations_employeur_non_contributives: -314.6
         cotisations_employeur: -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6)
         pension_salarie: -167.80
         rafp_salarie: -20
