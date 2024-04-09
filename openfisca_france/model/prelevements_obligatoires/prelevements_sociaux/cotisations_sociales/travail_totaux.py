@@ -91,7 +91,7 @@ class cotisations_employeur_non_contributives(Variable):
         ati_atiacl = individu('ati_atiacl', period, options = [ADD])
         contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
         famille = individu('famille', period)
-        mmid_employeur = individu('mmid_employeur', period, options = [ADD])
+        mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period, options = [ADD])
         taxe_salaires = individu('taxe_salaires', period, options = [ADD])
         forfait_social = individu('forfait_social', period, options = [ADD])
 
@@ -101,7 +101,7 @@ class cotisations_employeur_non_contributives(Variable):
             + accident_du_travail
             + contribution_solidarite_autonomie
             + famille
-            + mmid_employeur
+            + mmid_employeur_net_allegement
             + taxe_salaires
             + forfait_social
             )

@@ -872,6 +872,19 @@ class mmid_employeur(Variable):
             )
         return cotisation
 
+class mmid_employeur_net_allegement(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation maladie (employeur)'
+    reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        cotisation = individu('mmid_employeur', period)
+        allegement = individu('allegement_cotisation_maladie', period)
+
+        return cotisation - allegement
 
 class mmida_employeur(Variable):
     value_type = float

@@ -72,7 +72,7 @@ class exoneration_cotisations_employeur_tode(Variable):
         eligible = individu('exoneration_cotisations_employeur_tode_eligibilite', period)
 
         # cotisations assurances sociales agricoles (ASA) - identiques régime général
-        mmid_employeur = individu('mmid_employeur', period)
+        mmid_employeur = individu('mmid_employeur_net_allegement', period)
         allegement_cotisation_maladie_base = individu('allegement_cotisation_maladie_base', period)  # si rémunération <= 2.5 smic
         cotisations_asa = mmid_employeur + allegement_cotisation_maladie_base
 
