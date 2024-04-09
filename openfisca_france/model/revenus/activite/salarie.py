@@ -1481,15 +1481,17 @@ class salaire_super_brut(Variable):
     def formula(individu, period, parameters):
         period = period
         salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
-        exonerations_et_allegements = individu('exonerations_et_allegements', period)
-        return salaire_super_brut_hors_allegements - exonerations_et_allegements
+        exonerations = individu('exonerations', period)
+        allegement_fillon = individu('allegement_fillon', period, options = [ADD])
+        return salaire_super_brut_hors_allegements - exonerations - allegement_fillon
 
     def formula_2019_01_01(individu, period, parameters):
         period = period
         salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
-        exonerations_et_allegements = individu('exonerations_et_allegements', period)
+        exonerations = individu('exonerations', period)
+        allegement_fillon = individu('allegement_fillon', period, options = [ADD])
         prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period, options = [DIVIDE])
-        return salaire_super_brut_hors_allegements - exonerations_et_allegements + prime_exceptionnelle_pouvoir_achat_exoneree
+        return salaire_super_brut_hors_allegements - exonerations - allegement_fillon + prime_exceptionnelle_pouvoir_achat_exoneree
 
     def formula_2022_07_01(individu, period, parameters):
         '''
@@ -1503,21 +1505,23 @@ class salaire_super_brut(Variable):
         '''
         period = period
         salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
-        exonerations_et_allegements = individu('exonerations_et_allegements', period)
+        exonerations = individu('exonerations', period)
+        allegement_fillon = individu('allegement_fillon', period, options = [ADD])
         prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
         prime_partage_valeur_exoneree_exceptionnelle = individu('prime_partage_valeur_exoneree_exceptionnelle', period, options=[DIVIDE])
         return (
             salaire_super_brut_hors_allegements
-            - exonerations_et_allegements
+            - exonerations
+            - allegement_fillon
             + prime_partage_valeur_exoneree
             + prime_partage_valeur_exoneree_exceptionnelle
             )
 
 
-class exonerations_et_allegements(Variable):
+class exonerations(Variable):
     value_type = float
     entity = Individu
-    label = 'Exonérations et allègements'
+    label = 'Exonérations'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1533,11 +1537,8 @@ class exonerations_et_allegements(Variable):
         exoneration_cotisations_employeur_stagiaire = individu(
             'exoneration_cotisations_employeur_stagiaire', period, options = [ADD])
 
-        allegement_fillon = individu('allegement_fillon', period, options = [ADD])
-
         return (
-            allegement_fillon
-            + exoneration_cotisations_employeur_tode
+            exoneration_cotisations_employeur_tode
             + exoneration_cotisations_employeur_geographiques
             + exoneration_cotisations_employeur_jei
             + exoneration_cotisations_employeur_apprenti
