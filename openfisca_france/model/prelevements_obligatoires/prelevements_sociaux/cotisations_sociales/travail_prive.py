@@ -801,6 +801,20 @@ class famille(Variable):
         return cotisation
 
 
+class famille_net_allegement(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation famille (employeur)'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        cotisation = individu('famille', period)
+        allegement = individu('allegement_cotisation_allocations_familiales', period)
+
+        return cotisation - allegement
+
+
 class mmid_salarie(Variable):
     value_type = float
     entity = Individu

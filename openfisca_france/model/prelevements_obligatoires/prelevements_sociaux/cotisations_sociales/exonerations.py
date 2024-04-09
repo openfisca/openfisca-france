@@ -74,7 +74,7 @@ class exoneration_cotisations_employeur_tode(Variable):
         # cotisations assurances sociales agricoles (ASA) - identiques régime général
         mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period)
 
-        famille = individu('famille', period)
+        famille = individu('famille_net_allegement', period)
         accident_du_travail = individu('accident_du_travail', period)
         fnal = individu('fnal', period)
 
