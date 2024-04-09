@@ -886,26 +886,6 @@ class mmid_employeur_net_allegement(Variable):
 
         return cotisation - allegement
 
-class mmida_employeur(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Cotisation maladie (employeur)'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    # Note: this formula is used only to check fiche_de_paie from memento
-
-    def formula(individu, period, parameters):
-        cotisation = apply_bareme(
-            individu,
-            period,
-            parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'maladie',
-            variable_name = 'mmida_employeur',
-            )
-        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
-        return cotisation + contribution_solidarite_autonomie
-
 
 class plafond_securite_sociale(Variable):
     value_type = float
