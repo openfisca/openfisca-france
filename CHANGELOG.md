@@ -1,5 +1,21 @@
 # Changelog
 
+### 164.0.0 [2277](https://github.com/openfisca/openfisca-france/pull/2277)
+
+Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque ligne ci-dessous, les cas ne correspondant pas à votre contribution :)
+
+* Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : 
+   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/`
+   - `openfisca_france/model/revenus/activite/`
+   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/fillon/`
+   - `test/`
+* Détails :
+  - Déplacement des réduction de cotisations emploueyr maladie et famille dans le calcul des cotisations directement
+  - Renommage de la variable `allegement_fillon` en `allegement_general`, ainsi que toutes les variables liées
+  - Suppression des variables `cotisations_employeur_contributives` et `cotisations_employeur_non_contributives`
+
 ### 163.04 [2261](https://github.com/openfisca/openfisca-france/pull/2261)
 
 * Changement mineur.
