@@ -1,5 +1,22 @@
 # Changelog
 
+### 163.0.2 [2251](https://github.com/openfisca/openfisca-france/pull/2251)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :à partir du 01/01/2024.
+* Zones impactées :
+  - `parameters/prestations_sociales/prestations_familiales`
+    - `/petite_enfance/paje/paje_plaf/ne_adopte_apres_04_2018`
+      - `/taux_partiel`
+        - `/biactifs_parents_isoles.yaml`
+        - `/plafond_ressources_0_enfant.yaml`
+      - `/taux_plein`
+        - `/biactifs_parents_isoles.yaml`.
+        - `/plafond_ressources_0_enfant.yaml`
+    - `/prestations_generales/cf/cf_plaf`
+      - `/majoration/biactifs_isoles.yaml`
+      - `/plafond_ressources_0_enfant.yaml`
+
 ### 163.0.1 [2275](https://github.com/openfisca/openfisca-france/pull/2275)
 
 * Changement mineur
