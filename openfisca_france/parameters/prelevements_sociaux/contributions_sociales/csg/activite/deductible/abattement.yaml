@@ -22,7 +22,7 @@ brackets:
       value: null
 metadata:
   short_label: Abattement
-  last_value_still_valid_on: "2021-12-15"
+  last_value_still_valid_on: "2024-04-10"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_abt
   reference:
