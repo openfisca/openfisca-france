@@ -1,0 +1,11 @@
+description: Abattement sur le montant des ressources ASPA/ASV pour le calcul de l'éligibilité à la CSS pour une personne seule
+values:
+  2021-04-01:
+    value: 71
+metadata:
+  short_label: Abattement
+  unit: currency
+  reference:
+    2021-04-01:
+      title: Bulletin officiel Santé - Protection sociale - Solidarité n° 2021/6 du 16 avril 2021 - Instruction interministérielle N° DSS/SD2A/2021/71 du 30 mars 2021
+      href: https://sante.gouv.fr/fichiers/bo/2021/2021.6.sante.pdf#page=75

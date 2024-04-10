@@ -1,5 +1,16 @@
 # Changelog
 
+### 155.2.4 [2279](https://github.com/openfisca/openfisca-france/pull/2279)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2021.
+* Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/cs/ressources.py`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/css/`
+* Détails :
+  - Afin que les revalorisations exceptionnelles de l’allocation aux adultes handicapés (AAH), de l’allocation de solidarité aux personnes âgées (ASPA), de l’allocation supplémentaire vieillesse (ASV) et de l’allocation supplémentaire d’invalidité (ASI) ne conduisent à rendre inéligibles certains de leurs allocataires à la complémentaire santé solidaire (C2S), l’article 40 de la loi de financement de la sécurité sociale pour 2018 a introduit un abattement sur le montant de ces allocations pris en compte dans l’éligibilité à la CSS.
+    La présente PR prend en compte ces abattements dans le calcul des ressources pour l'éligibilité à la CSS
+
 ### 155.2.3 [2240](https://github.com/openfisca/openfisca-france/pull/2240)
 
 * Évolution du système socio-fiscal.
