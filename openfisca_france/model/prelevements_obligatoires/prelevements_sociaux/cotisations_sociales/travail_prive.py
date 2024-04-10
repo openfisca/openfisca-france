@@ -804,7 +804,7 @@ class famille(Variable):
 class famille_net_allegement(Variable):
     value_type = float
     entity = Individu
-    label = 'Cotisation famille (employeur)'
+    label = 'Cotisation famille (employeur) avec prise en compte du taux réduit en dessous de 3,5 SMIC'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -890,7 +890,7 @@ class mmid_employeur(Variable):
 class mmid_employeur_net_allegement(Variable):
     value_type = float
     entity = Individu
-    label = 'Cotisation maladie (employeur)'
+    label = 'Cotisation maladie (employeur) avec prise en compte du taux réduit en dessous de 2,5 SMIC'
     reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
