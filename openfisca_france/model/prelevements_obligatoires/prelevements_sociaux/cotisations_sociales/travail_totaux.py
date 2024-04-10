@@ -41,6 +41,8 @@ class cotisations_employeur(Variable):
         taxe_salaires = individu('taxe_salaires', period, options = [ADD])
         forfait_social = individu('forfait_social', period, options = [ADD])
 
+        cotisations_employeur_main_d_oeuvre = individu('cotisations_employeur_main_d_oeuvre', period)
+
         cotisations = (
             # contributives
             # prive
@@ -68,6 +70,7 @@ class cotisations_employeur(Variable):
             + mmid_employeur_net_allegement
             + taxe_salaires
             + forfait_social
+            + cotisations_employeur_main_d_oeuvre
             )
 
         return cotisations
@@ -96,6 +99,8 @@ class cotisations_employeur(Variable):
         taxe_salaires = individu('taxe_salaires', period, options = [ADD])
         forfait_social = individu('forfait_social', period, options = [ADD])
 
+        cotisations_employeur_main_d_oeuvre = individu('cotisations_employeur_main_d_oeuvre', period)
+
         cotisations = (
             # contributives
             # prive
@@ -120,6 +125,7 @@ class cotisations_employeur(Variable):
             + mmid_employeur_net_allegement
             + taxe_salaires
             + forfait_social
+            + cotisations_employeur_main_d_oeuvre
             )
 
         return cotisations
