@@ -1,5 +1,13 @@
 # Changelog
 
+### 163.0.3 [2276](https://github.com/openfisca/openfisca-france/pull/2276)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : liens Unédic des `parameters`.
+* Détails :
+  - L'Unédic a changé l'arborescence de son site, cette PR met à jour les urls en conséquent.
+
 ### 163.0.2 [2251](https://github.com/openfisca/openfisca-france/pull/2251)
 
 * Évolution du système socio-fiscal.

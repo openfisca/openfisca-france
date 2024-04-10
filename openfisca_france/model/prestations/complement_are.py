@@ -230,7 +230,7 @@ class complement_are_csg_journaliere(Variable):
     set_input = set_input_dispatch_by_period
     reference = [
         'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations',
-        'https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf'  # seuil d'exonération
+        'https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf'  # seuil d'exonération
         ]
 
     def formula(individu, period, parameters):
@@ -295,7 +295,7 @@ class complement_are_crds_journaliere(Variable):
     set_input = set_input_dispatch_by_period
     reference = [
         'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations',
-        'https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf'  # seuil d'exonération
+        'https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf'  # seuil d'exonération
         ]
 
     def formula(individu, period, parameters):
