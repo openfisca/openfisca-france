@@ -43,7 +43,7 @@ class cotisations_employeur(Variable):
 
         cotisations = (
             # contributives
-            ## prive
+            # prive
             ags
             + agff_employeur
             + agirc_employeur
@@ -54,7 +54,7 @@ class cotisations_employeur(Variable):
             + cotisation_exceptionnelle_temporaire_employeur
             + vieillesse_deplafonnee_employeur
             + vieillesse_plafonnee_employeur
-            ## public
+            # public
             + fonds_emploi_hospitalier
             + ircantec_employeur
             + pension_employeur
@@ -98,7 +98,7 @@ class cotisations_employeur(Variable):
 
         cotisations = (
             # contributives
-            ## prive
+            # prive
             ags
             + agirc_arrco_employeur
             + apec_employeur
@@ -107,7 +107,7 @@ class cotisations_employeur(Variable):
             + contribution_equilibre_technique_employeur
             + vieillesse_deplafonnee_employeur
             + vieillesse_plafonnee_employeur
-            ## public
+            # public
             + fonds_emploi_hospitalier
             + ircantec_employeur
             + pension_employeur

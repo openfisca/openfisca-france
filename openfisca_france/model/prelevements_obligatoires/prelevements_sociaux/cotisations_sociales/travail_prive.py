@@ -886,6 +886,7 @@ class mmid_employeur(Variable):
             )
         return cotisation
 
+
 class mmid_employeur_net_allegement(Variable):
     value_type = float
     entity = Individu
