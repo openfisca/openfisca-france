@@ -1,5 +1,14 @@
 # Changelog
 
+### 163.04 [2261](https://github.com/openfisca/openfisca-france/pull/2261)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : `prelevement_forfaitaire/liberatoire_assurance_vie`.
+* Détails :
+  - Ajout d'une description pour préciser que ces paramètres sont encore valable pour les anciens versements sur les anciens contrats.
+  - Corrige des problèmes de lint dans les fichiers YAML.
+
 ### 163.0.3 [2276](https://github.com/openfisca/openfisca-france/pull/2276)
 
 * Changement mineur.
