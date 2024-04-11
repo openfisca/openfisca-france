@@ -4,7 +4,7 @@ values:
     value: 0.15
 metadata:
   short_label: Durée de 4 à 8 ans
-  last_value_still_valid_on: "2022-02-16"
+  last_value_still_valid_on: "2024-04-08"
   label_en: Levy in discharge on life insurance
   ipp_csv_id: tx_pl_av_48
   unit: /1

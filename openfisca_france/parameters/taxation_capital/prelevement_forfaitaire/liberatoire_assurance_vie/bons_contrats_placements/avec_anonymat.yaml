@@ -6,6 +6,7 @@ values:
     value: 0.6
 metadata:
   short_label: Avec anonymat
+  last_value_still_valid_on: "2024-04-08"
   label_en: Levy in discharge on life insurance
   ipp_csv_id: tx_pl_av_anonym
   unit: /1

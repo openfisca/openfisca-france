@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   unit: /1
-  short_label : Taux transitoire
+  short_label: Taux transitoire
   last_value_still_valid_on: "2024-03-19"
   reference:
     2009-01-01:

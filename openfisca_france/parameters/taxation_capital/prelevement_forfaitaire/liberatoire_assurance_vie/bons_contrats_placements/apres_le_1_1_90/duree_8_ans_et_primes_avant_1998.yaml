@@ -4,6 +4,7 @@ values:
     value: 0
 metadata:
   short_label: Durée de 8 ans et plus
+  last_value_still_valid_on: "2024-04-08"
   label_en: Levy in discharge on life insurance
   ipp_csv_id: tx_pl_av_8
   unit: /1
@@ -12,4 +13,5 @@ metadata:
       title: Loi 89-936 du 29/12/1989, art. 112 (LF pour 1990)
   official_journal_date:
     1990-01-01: "1989-12-30"
-documentation: Cas des primes versées avant le 01/01/1998 et les produits afférents acquis après cette date.
+documentation: |
+  Cas des primes versées avant le 01/01/1998 et les produits afférents acquis après cette date.

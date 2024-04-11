@@ -6,6 +6,7 @@ values:
     value: 0.75
 metadata:
   short_label: Produits bénéficiant des personnes établies dans des Etats "non-coopératifs"
+  last_value_still_valid_on: "2024-04-08"
   label_en: Levy in discharge on life insurance
   unit: /1
   reference:

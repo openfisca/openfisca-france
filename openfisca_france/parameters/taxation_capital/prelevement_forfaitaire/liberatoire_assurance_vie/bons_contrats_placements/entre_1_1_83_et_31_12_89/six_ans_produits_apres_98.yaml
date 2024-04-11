@@ -4,7 +4,7 @@ values:
     value: 0.075
 metadata:
   short_label: Durée de 6+ ans et produits après 1998
-  last_value_still_valid_on: "2022-02-16"
+  last_value_still_valid_on: "2024-04-08"
   label_en: Levy in discharge on life insurance
   ipp_csv_id: tx_pl_av_6b
   unit: /1
@@ -19,4 +19,5 @@ metadata:
   notes:
     1998-01-01:
     - title: Les bons ou contrats principalement investis en actions sont exonérés d'IR après huit ans.
-documentation: Cas des produits acquis après le 01/01/1998. Ces produits sont soumis à un abattement d'un montant forfaitaire à partir du 01/01/1998 (cf. art. 125-0 A du CGI).
+documentation: |
+  Cas des produits acquis après le 01/01/1998. Ces produits sont soumis à un abattement d'un montant forfaitaire à partir du 01/01/1998 (cf. art. 125-0 A du CGI).
