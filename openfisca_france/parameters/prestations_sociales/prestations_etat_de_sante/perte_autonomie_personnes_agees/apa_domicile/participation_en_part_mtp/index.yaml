@@ -1,0 +1,8 @@
+description: Fractions de la MTP et intervenant dans le calcul de la participation du bénéficiaire de l'APA si ses ressources mensuelles sont supérieures à 0,725 fois et inférieures ou égales à 2,67 fois le montant mensuel de la MTP
+metadata:
+  short_label: Fractions de la MTP
+  label_en: Fractions (personalized autonomy allowance)
+  order:
+  - fraction_premier_seuil
+  - fraction_second_seuil
+documentation: Pour les bénéficiaires dont les ressources mensuelles sont supérieures à 0,725 fois et inférieures ou égales à 2,67 fois le montant mensuel de la majoration pour aide constante d’une tierce personne susvisée, le taux de participation est déterminé en appliquant une formule de lissage.
