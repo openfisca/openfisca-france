@@ -4,7 +4,7 @@
     effectif_entreprise: 1
     categorie_salarie: prive_non_cadre
     salaire_de_base: '1457.52'
-    allegement_fillon_mode_recouvrement: progressif
+    allegement_general_mode_recouvrement: progressif
     jeune_entreprise_innovante: false
     contrat_de_travail_debut: '2015-01-01'
   output:
@@ -16,7 +16,7 @@
     effectif_entreprise: 10
     categorie_salarie: prive_non_cadre
     salaire_de_base: '1457.52'
-    allegement_fillon_mode_recouvrement: progressif
+    allegement_general_mode_recouvrement: progressif
     jeune_entreprise_innovante: false
     contrat_de_travail_debut: '2015-01-01'
   output:
@@ -27,7 +27,7 @@
     effectif_entreprise: 300
     categorie_salarie: prive_non_cadre
     salaire_de_base: '3000'
-    allegement_fillon_mode_recouvrement: progressif
+    allegement_general_mode_recouvrement: progressif
     jeune_entreprise_innovante: false
     contrat_de_travail_debut: '2015-01-01'
   output:

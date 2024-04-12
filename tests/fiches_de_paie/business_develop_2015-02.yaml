@@ -35,7 +35,6 @@ output:
   # 0.35 + 23.90 + 6.52 + 2.17 + 74.97 + 78.77 + 86.92 + 6.52 + 101.4 + 41.16 + 0.78 + 4.78 + 26.07 + 16.08
   # = 470.39 != 496.76
   # cotisations_employeur: -470.39 - 2172.9 * (.018 + 0.0850 + 0.128)
-  # cotisations_employeur_non_contributives: -2172.9 * (.018 + 0.0850 + 0.0525 + 0.128 - 0.004)
   ati_atiacl: 0
   accident_du_travail: -23.9
   taxe_salaires: 0
@@ -50,7 +49,7 @@ output:
   prevoyance_obligatoire_cadre: -32.5935 # -16.08
   # taxe_apprentissage: 0
   versement_transport: 0 # -.027 * 2172.9
-  allegement_fillon: 0
+  allegement_general: 0
   credit_impot_competitivite_emploi: 130.37
   tehr:
     year:2015: 0

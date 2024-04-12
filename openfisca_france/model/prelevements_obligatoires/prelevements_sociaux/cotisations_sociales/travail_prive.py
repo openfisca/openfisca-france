@@ -801,6 +801,20 @@ class famille(Variable):
         return cotisation
 
 
+class famille_net_allegement(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation famille (employeur) avec prise en compte du taux réduit en dessous de 3,5 SMIC'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        cotisation = individu('famille', period)
+        allegement = individu('allegement_cotisation_allocations_familiales', period)
+
+        return cotisation + allegement
+
+
 class mmid_salarie(Variable):
     value_type = float
     entity = Individu
@@ -873,25 +887,19 @@ class mmid_employeur(Variable):
         return cotisation
 
 
-class mmida_employeur(Variable):
+class mmid_employeur_net_allegement(Variable):
     value_type = float
     entity = Individu
-    label = 'Cotisation maladie (employeur)'
+    label = 'Cotisation maladie (employeur) avec prise en compte du taux réduit en dessous de 2,5 SMIC'
+    reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    # Note: this formula is used only to check fiche_de_paie from memento
 
     def formula(individu, period, parameters):
-        cotisation = apply_bareme(
-            individu,
-            period,
-            parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'maladie',
-            variable_name = 'mmida_employeur',
-            )
-        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
-        return cotisation + contribution_solidarite_autonomie
+        cotisation = individu('mmid_employeur', period)
+        allegement = individu('allegement_cotisation_maladie', period)
+
+        return cotisation + allegement
 
 
 class plafond_securite_sociale(Variable):

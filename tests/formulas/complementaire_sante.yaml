@@ -4,7 +4,7 @@
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     effectif_entreprise: 249
     complementaire_sante_part_employeur: 0.6

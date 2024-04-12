@@ -4,7 +4,7 @@ absolute_error_margin: 0.005
 input:
   apprentissage_contrat_debut:
     year:2013:3: '2013-01-01'
-  allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
+  allegement_general_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
   date_naissance: '1996-01-01'
@@ -39,8 +39,6 @@ input:
 output:
   # salaire_super_brut: 0
   remboursement_transport: 0
-
-  # # cotisations_employeur_contributives: 0
   ags: -2.14
   agff_employeur: -8.57
   agirc_employeur: 0
@@ -55,8 +53,6 @@ output:
   ircantec_employeur: 0
   pension_employeur: 0
   rafp_employeur: 0
-  #
-  # # cotisations_employeur_non_contributives: 0
   ati_atiacl: 0
   accident_du_travail: -10.71
   famille: -37.49
@@ -76,7 +72,7 @@ output:
   taxe_apprentissage: 0
   versement_transport: 0
   #
-  allegement_fillon: 0
+  allegement_general: 0
   credit_impot_competitivite_emploi: 42.85
   forfait_social: 0
   tehr: {'2014': 0}

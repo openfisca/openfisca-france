@@ -2,7 +2,7 @@
   period: 2014-07
   absolute_error_margin: 0.005
   input:
-    allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
+    allegement_general_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     assujettie_taxe_salaires: false
     avantage_en_nature_valeur_reelle: 0
@@ -51,7 +51,6 @@
     contribution_supplementaire_apprentissage: 0
     fnal: -15
 
-    # cotisations_employeur_contributives: 0
     ags: -9
     agff_employeur: -36.00
     agirc_gmp_employeur: -41.17
@@ -70,7 +69,7 @@
     taux_versement_transport: 0.027
     versement_transport: -81
 
-    allegement_fillon: 0
+    allegement_general: 0
     credit_impot_competitivite_emploi: 180
     forfait_social: -4.72
     tehr:

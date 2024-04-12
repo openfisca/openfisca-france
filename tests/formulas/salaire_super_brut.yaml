@@ -3,28 +3,28 @@
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1457.52
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     categorie_salarie: prive_non_cadre
   output:
     cotisations_employeur: -601.06
-    allegement_fillon: 407
+    allegement_general: 407
     salaire_super_brut_hors_allegements: 2059
-    salaire_super_brut: 1651.3 # fillon
+    salaire_super_brut: 1651.3 # alègement général
 
 - period: 2015-04
   name: JEI -> plus d'allègement général base salaire (fillon)
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1457.52
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     categorie_salarie: prive_non_cadre
     jeune_entreprise_innovante: 1
   output:
     cotisations_employeur: -601.2
-    allegement_fillon: 0
+    allegement_general: 0
     exoneration_cotisations_employeur_jei: 413
-    exonerations_et_allegements: 413 # JEI
+    exonerations: 413 # JEI
     salaire_super_brut_hors_allegements: 2059
     salaire_super_brut: 1645.4

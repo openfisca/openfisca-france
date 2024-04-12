@@ -9,7 +9,7 @@
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 29
     contrat_de_travail_debut: 2016-01-25
   output:
@@ -21,7 +21,7 @@
   input:
     salaire_de_base: 1908
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 29
     contrat_de_travail_debut: 2016-01-25
   output:
@@ -33,7 +33,7 @@
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output:
@@ -45,7 +45,7 @@
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1 # premier salarié
     contrat_de_travail_debut: 2016-01-25
   output:
@@ -57,7 +57,7 @@
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 29
     contrat_de_travail_type: cdd
     contrat_de_travail_debut: 2016-01-25
@@ -71,7 +71,7 @@
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 29
     contrat_de_travail_type: cdd
     contrat_de_travail_debut: 2016-01-25
@@ -85,7 +85,7 @@
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 29
     contrat_de_travail_type: cdd
     contrat_de_travail_debut: 2016-01-25
@@ -99,7 +99,7 @@
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 29
     contrat_de_travail_debut: 2016-01-25
   output:

@@ -27,5 +27,5 @@
     csg_deductible_salaire: -15.03
     csg_imposable_salaire: -7.07
     crds_salaire: -1.47
-    allegement_fillon: 0
+    allegement_general: 0
     salaire_net_a_payer: 808.2 -7.07 -15.03 -23.7 -1.47 -.01  # TODO: gerer erreur d'arrondi

@@ -9,7 +9,7 @@
   input:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output:
@@ -21,7 +21,7 @@
   input:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 2
   output:
     aide_premier_salarie: 0
@@ -32,7 +32,7 @@
   input:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     contrat_de_travail_type: cdd
     contrat_de_travail_debut: 2015-07-01
@@ -46,7 +46,7 @@
   input:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     contrat_de_travail_type: cdd
     # supérieur à 1 an :
@@ -61,7 +61,7 @@
   input:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     contrat_de_travail_type: cdd
     # supérieur à 1 an :
@@ -81,7 +81,7 @@
   input:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     contrat_de_travail_debut: 2015-07-01
     effectif_entreprise: 1
   output:
@@ -94,7 +94,7 @@
   input:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     contrat_de_travail_type: cdd
     # supérieur à 1 an :

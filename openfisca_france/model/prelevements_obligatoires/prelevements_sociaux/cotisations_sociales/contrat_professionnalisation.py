@@ -123,8 +123,8 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        mmid_employeur = individu('mmid_employeur', period)
-        famille = individu('famille', period)
+        mmid_employeur = individu('mmid_employeur_net_allegement', period)
+        famille = individu('famille_net_allegement', period)
         vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
         # FIXME: correspond bien à vieillesse de base ?
         cotisations_exonerees = mmid_employeur + famille + vieillesse_plafonnee_employeur

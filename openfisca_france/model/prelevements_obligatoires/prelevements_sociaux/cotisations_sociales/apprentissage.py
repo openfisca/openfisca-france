@@ -119,7 +119,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
         cotisations_employeur = individu('cotisations_employeur', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         famille = individu('famille', period)
-        mmid_employeur = individu('mmid_employeur', period)
+        mmid_employeur = individu('mmid_employeur_net_allegement', period)
         vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
         vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
 

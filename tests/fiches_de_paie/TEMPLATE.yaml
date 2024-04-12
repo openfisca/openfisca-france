@@ -1,7 +1,7 @@
 name: TEMPLATE
 period: 2014-01
 input:
-  allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
+  allegement_general_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
@@ -41,7 +41,6 @@ output:
   # cotisations_employeur: 0
   remboursement_transport: 0
 
-  # cotisations_employeur_contributives: 0
   ags: 0
   agff_employeur: 0
   agirc_gmp_employeur: 0
@@ -57,7 +56,6 @@ output:
   pension_employeur: 0
   rafp_employeur: 0
 
-  # cotisations_employeur_non_contributives: 0
   ati_atiacl: 0
   accident_du_travail: 0
   famille: 0
@@ -76,7 +74,7 @@ output:
   taxe_apprentissage: 0
   versement_transport: 0
 
-  allegement_fillon: 0
+  allegement_general: 0
   credit_impot_competitivite_emploi: 0
   forfait_social: 0
   tehr: {'2014': 0}

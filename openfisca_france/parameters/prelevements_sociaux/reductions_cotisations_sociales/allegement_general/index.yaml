@@ -1,0 +1,8 @@
+description: Allègements bas salaires (depuis 2003) des cotisations de Sécurité sociale (SS)
+metadata:
+  short_label: Allègements bas salaires
+  label_en: General SSC reductions, so-called Fillon reductions (2003-2016)
+  order:
+  - ensemble_des_entreprises
+  - entreprises_accord_de_rtt_avant_le_30_06_2003
+  - entreprises_aux_39_heures_au_30_06_2003
