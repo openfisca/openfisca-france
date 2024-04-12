@@ -1,10 +1,18 @@
 # Changelog
 
-### 164.0.0 [2277](https://github.com/openfisca/openfisca-france/pull/2277)
+## 164.1.0 [2084](https://github.com/openfisca/openfisca-france/pull/2084)
+
+*  Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees/apa_domicile/participation_en_part_mtp`.
+* Détails :
+  - Ajout de paramètres qui était auparavant en dur
+
+# 164.0.0 [2277](https://github.com/openfisca/openfisca-france/pull/2277)
 
 * Amélioration technique.
-* Périodes concernées : toutes. 
-* Zones impactées : 
+* Périodes concernées : toutes.
+* Zones impactées :
    - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/`
    - `openfisca_france/model/revenus/activite/`
    - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/fillon/`
@@ -14,7 +22,7 @@
   - Renommage de la variable `allegement_fillon` en `allegement_general`, ainsi que toutes les variables liées
   - Suppression des variables `cotisations_employeur_contributives` et `cotisations_employeur_non_contributives`
 
-### 163.04 [2261](https://github.com/openfisca/openfisca-france/pull/2261)
+### 163.0.4 [2261](https://github.com/openfisca/openfisca-france/pull/2261)
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/01/2018.
@@ -53,10 +61,10 @@
 * Changement mineur
 * Périodes concernées : à partir du 31/12/2023.
 * Zones impactées : openfisca_france/model/revenus/activite/salarie.py.
-* Détails : 
+* Détails :
   - La prime exceptionnelle de partage de la valeur (PEPV) s'est terminée le 31 décembre 2023, seule la version non exceptionnelle (PPV) persiste. Cette PR Ajoute une end date dans les formules.
 
-### 163.0.0 [2272](https://github.com/openfisca/openfisca-france/pull/2272)
+# 163.0.0 [2272](https://github.com/openfisca/openfisca-france/pull/2272)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -72,7 +80,7 @@
 * Détails :
   - Retrait des intervalles entre deux dates inutiles des champs `description` et `label`
 
-### 162.0.0 [2273](https://github.com/openfisca/openfisca-france/pull/2273)
+# 162.0.0 [2273](https://github.com/openfisca/openfisca-france/pull/2273)
 
 * Recode un dispositif depuis sa création - harmonise des paramètres avec les barèmes IPP
 * Périodes concernées : à partir du 01/01/2005.
@@ -143,7 +151,7 @@
   - Met à jour les valeurs de l'ASS à partir d'avril 2023
   - Ajoute des références pour des paramètres de l'ASS
 
-### 160.0.0 [2262](https://github.com/openfisca/openfisca-france/pull/2262)
+# 160.0.0 [2262](https://github.com/openfisca/openfisca-france/pull/2262)
 
 * Amélioration technique
 * Zones impactées :
