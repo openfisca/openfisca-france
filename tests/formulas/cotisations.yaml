@@ -2,7 +2,7 @@
   name: Salarié du privé non cadre au Smic (allegement général au max)
   relative_error_margin: 0.001
   input:
-    salaire_de_base: 1766.92 
+    salaire_de_base: 1766.92
     # necessary when requesting on a 1 month salary :
     allegement_general_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
@@ -89,7 +89,7 @@
     cotisations_employeur: -(6.66 + 133.44 + 114.5 + 36.46 + 57.13 + 241.79 + 25.45 + 8.48 + 97.52 + 197.89 + 38.06) # -958.59
     salaire_super_brut_hors_allegements: 2828 + 958.59
     allegement_general: 0
-    salaire_super_brut: 2828  + 958.59 - 0 
+    salaire_super_brut: 2828  + 958.59 - 0
     agirc_arrco_salarie: -89.08
     contribution_equilibre_general_salarie: -24.32
     contribution_equilibre_technique_salarie: 0
