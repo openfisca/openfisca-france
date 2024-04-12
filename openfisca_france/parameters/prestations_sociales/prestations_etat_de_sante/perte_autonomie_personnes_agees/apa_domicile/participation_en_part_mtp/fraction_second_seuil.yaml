@@ -1,4 +1,4 @@
-description: Seconde fraction de la MTP et intervenant dans le calcul de la participation du bénéficiaire de l'APA si ses ressources mensuelles sont supérieures à 0,725 fois et inférieures ou égales à 2,67 fois le montant mensuel de la MTP
+description: Seconde fraction de la MTP intervenant dans le calcul de la participation du bénéficiaire de l'APA si ses ressources mensuelles sont supérieures à 0,725 fois et inférieures ou égales à 2,67 fois le montant mensuel de la MTP
 values:
   2016-03-01:
     value: 0.498
