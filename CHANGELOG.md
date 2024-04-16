@@ -1,6 +1,14 @@
 # Changelog
 
-## 164.1.0 [2084](https://github.com/openfisca/openfisca-france/pull/2084)
+### 164.1.1 [2280](https://github.com/openfisca/openfisca-france/pull/2280)
+
+* Changement mineur.
+* Périodes concernées : toutes. 
+* Zones impactées : ` openfisca_france/parameters/impot_revenu/calcul_reductions_impots/investissements_immobiliers/duflot_pinel_denormandie`.
+* Détails :
+  - Ajoute des index
+
+### 164.1.0 [2084](https://github.com/openfisca/openfisca-france/pull/2084)
 
 *  Changement mineur.
 * Périodes concernées : toutes.
@@ -8,7 +16,7 @@
 * Détails :
   - Ajout de paramètres qui était auparavant en dur
 
-# 164.0.0 [2277](https://github.com/openfisca/openfisca-france/pull/2277)
+### 164.0.0 [2277](https://github.com/openfisca/openfisca-france/pull/2277)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
