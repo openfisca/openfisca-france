@@ -4,6 +4,7 @@ values:
     value: 0.12
 metadata:
   last_value_still_valid_on: "2024-03-18"
+  short_label: Métropole
   unit: /1
   reference:
     2014-01-01:
