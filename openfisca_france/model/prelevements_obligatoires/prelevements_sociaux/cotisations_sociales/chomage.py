@@ -30,3 +30,17 @@ class chomage_cotisation_retraite_complementaire_journaliere(Variable):
                 -1 * cotisation_theorique,
                 0),
             2)
+
+
+class chomage_cotisation_retraite_complementaire(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation de retraite complémentaire sur allocation chômage'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(individu, period):
+        chomage_cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
+        nombre_jours_mois = period.days
+
+        return chomage_cotisation_retraite_complementaire_journaliere * nombre_jours_mois
