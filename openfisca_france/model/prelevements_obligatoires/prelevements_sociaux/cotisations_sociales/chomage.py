@@ -40,12 +40,6 @@ class chomage_cotisation_retraite_complementaire(Variable):
 
     def formula(individu, period, parameters):
         chomage_cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
-        debut_mois = datetime64(period.start.offset('first-of', 'month'))
-        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
-        nombre_jours_mois = busday_count(
-            debut_mois,
-            fin_mois,
-            weekmask= '1' * 7
-            )
+        nombre_jours_mois = period.days
 
         return chomage_cotisation_retraite_complementaire_journaliere * nombre_jours_mois
