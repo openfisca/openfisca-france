@@ -344,3 +344,15 @@
   output:
     csg_imposable_chomage: -0.024*(0.9825*1000)
     csg_deductible_chomage: -7
+
+- name: Chomage déductible retraite complementaire
+  period: 2020-01
+  input:
+    chomage_brut: 1000.0
+    are_salaire_journalier_reference: 100
+    allocation_retour_emploi_journaliere: 60
+    rfr:
+      2018:
+        15000.0
+  output:
+    chomage_cotisation_retraite_complementaire: -31 * 0.03 * 100
