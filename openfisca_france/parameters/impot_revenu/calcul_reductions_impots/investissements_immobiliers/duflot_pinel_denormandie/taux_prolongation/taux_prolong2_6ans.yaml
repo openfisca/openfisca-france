@@ -4,6 +4,7 @@ values:
     value: 0.03
 metadata:
   last_value_still_valid_on: "2022-10-11"
+  short_label: Taux 2 pour un engagement initial de 6 ans
   unit: /1
   reference:
     2023-01-01:
