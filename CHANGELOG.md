@@ -1,5 +1,13 @@
 # Changelog
 
+### 164.1.1 [2019](https://github.com/openfisca/openfisca-france/pull/2019)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `model/revenus/remplacement/chomage.py`
+* Détails :
+  - Corrige, dans l'assiette de la CSG/CRDS pour le chomage, la cotisation retraite complementaire (passage d'une valeur journalière à mensuelle)
+
 ## 164.1.0 [2084](https://github.com/openfisca/openfisca-france/pull/2084)
 
 *  Changement mineur.
