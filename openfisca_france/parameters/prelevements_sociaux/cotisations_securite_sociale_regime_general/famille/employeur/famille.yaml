@@ -3,8 +3,6 @@ brackets:
 - threshold:
     1946-07-01:
       value: 0
-    1990-01-01:
-      value: null
   rate:
     1946-07-01:
       value: 0.12
