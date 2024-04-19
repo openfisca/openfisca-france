@@ -35,11 +35,11 @@ class pass_sport(Variable):
         eligibilite_age_profil_aeeh = (age >= age_minimum_profil_aeeh) * (age <= age_maximum_profil_aeeh)
         eligibilite_profil_aeeh = aeeh * eligibilite_age_profil_aeeh
 
-        aah = individu('aah', period)
+        aah_eligibilite = individu('aah', period) > 0
         age_maximum_profil_aah = parametres.critere_age.age_maximum_profil_aah
         age_minimum_profil_aah = parametres.critere_age.age_minimum_profil_aah
         eligibilite_age_profil_aah = (age >= age_minimum_profil_aah) * (age <= age_maximum_profil_aah)
-        eligibilite_profil_aah = (aah * eligibilite_age_profil_aah)
+        eligibilite_profil_aah = (aah_eligibilite * eligibilite_age_profil_aah)
 
         montant = parametres.montant
 
