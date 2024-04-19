@@ -1,10 +1,18 @@
 # Changelog
 
+### 164.1.3 [2281](https://github.com/openfisca/openfisca-france/pull/2281)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/famille/employeur/famille`.
+* Détails :
+  - Retire les tranches d'un barème en conservant les premières et en retirant les dernières.
+
 ### 164.1.2 [2280](https://github.com/openfisca/openfisca-france/pull/2280)
 
 * Changement mineur.
-* Périodes concernées : toutes. 
-* Zones impactées : ` openfisca_france/parameters/impot_revenu/calcul_reductions_impots/investissements_immobiliers/duflot_pinel_denormandie`.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/investissements_immobiliers/duflot_pinel_denormandie`.
 * Détails :
   - Ajoute des index
 
