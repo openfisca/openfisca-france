@@ -1,0 +1,172 @@
+description: Déciles de niveau de vie, France métropolitaine, individus vivant dans un ménage ordinaire dont le revenu déclaré est positif ou null et dont la personne de référence n'est pas étudiante
+brackets:
+- threshold:
+    2017-01-01:
+      value: 11770
+    2018-01-01:
+      value: 11580
+    2019-01-01:
+      value: 11910
+    2020-01-01:
+      value: 12560
+    2021-01-01:
+      value: 12290
+    2024-01-01:
+      value: 13814
+  rate:
+    2017-01-01:
+      value: 1
+- threshold:
+    2017-01-01:
+      value: 14790
+    2018-01-01:
+      value: 14620
+    2019-01-01:
+      value: 15100
+    2020-01-01:
+      value: 15860
+    2021-01-01:
+      value: 15550
+    2024-01-01:
+      value: 17479
+  rate:
+    2017-01-01:
+      value: 2
+- threshold:
+    2017-01-01:
+      value: 17310
+    2018-01-01:
+      value: 17230
+    2019-01-01:
+      value: 17780
+    2020-01-01:
+      value: 18490
+    2021-01-01:
+      value: 18360
+    2024-01-01:
+      value: 20637
+  rate:
+    2017-01-01:
+      value: 3
+- threshold:
+    2017-01-01:
+      value: 19580
+    2018-01-01:
+      value: 19620
+    2019-01-01:
+      value: 20150
+    2020-01-01:
+      value: 20810
+    2021-01-01:
+      value: 20790
+    2024-01-01:
+      value: 23368
+  rate:
+    2017-01-01:
+      value: 4
+- threshold:
+    2017-01-01:
+      value: 21900
+    2018-01-01:
+      value: 21950
+    2019-01-01:
+      value: 22500
+    2020-01-01:
+      value: 23230
+    2021-01-01:
+      value: 23160
+    2024-01-01:
+      value: 26032
+  rate:
+    2017-01-01:
+      value: 5
+- threshold:
+    2017-01-01:
+      value: 24440
+    2018-01-01:
+      value: 24530
+    2019-01-01:
+      value: 25020
+    2020-01-01:
+      value: 25790
+    2021-01-01:
+      value: 25840
+    2024-01-01:
+      value: 29044
+  rate:
+    2017-01-01:
+      value: 6
+- threshold:
+    2017-01-01:
+      value: 27500
+    2018-01-01:
+      value: 27560
+    2019-01-01:
+      value: 28170
+    2020-01-01:
+      value: 28690
+    2021-01-01:
+      value: 28900
+    2024-01-01:
+      value: 32484
+  rate:
+    2017-01-01:
+      value: 7
+- threshold:
+    2017-01-01:
+      value: 31840
+    2018-01-01:
+      value: 31830
+    2019-01-01:
+      value: 32440
+    2020-01-01:
+      value: 32890
+    2021-01-01:
+      value: 33440
+    2024-01-01:
+      value: 37587
+  rate:
+    2017-01-01:
+      value: 8
+- threshold:
+    2017-01-01:
+      value: 40190
+    2018-01-01:
+      value: 40420
+    2019-01-01:
+      value: 40770
+    2020-01-01:
+      value: 41400
+    2021-01-01:
+      value: 41870
+    2024-01-01:
+      value: 47062
+  rate:
+    2017-01-01:
+      value: 9
+metadata:
+  short_label: déciles de niveau de vie
+  last_value_still_valid_on: "2024-04-22"
+  reference:
+    2017-01-01:
+      title: Distribution des niveaux de vie, données annuelles de 1996 à 2021, INSEE
+      href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
+    2018-01-01:
+      title: Distribution des niveaux de vie, données annuelles de 1996 à 2021, INSEE
+      href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
+    2019-01-01:
+      title: Distribution des niveaux de vie, données annuelles de 1996 à 2021, INSEE
+      href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
+    2020-01-01:
+      title: Distribution des niveaux de vie, données annuelles de 1996 à 2021, INSEE
+      href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
+    2021-01-01:
+      title: Distribution des niveaux de vie, données annuelles de 1996 à 2021, INSEE
+      href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
+  notes:
+    2020-01-01: 
+    - title: données provisoires en date de avril 2024. Pour l'année 2020 deux séries sont présentées mais uniquement la deuxième est reportée ici.
+    2021-01-01: 
+    - title: données provisoires en date de avril 2024
+    2024-01-01:
+     - title: les valeurs 2024 sont des projections à partir des données 2021, dernière année connue. Les valeurs 2021 ont été augmentées de 12,4 % qui est l'évolution moyenne du SMPT économique cumulées pour les années 2022 (3,7%), 2023 (5.1%), 2024 (3.1%) telles que prévues dans le Rapport économique social et financier (RESF) attaché au PLF pour 2024, p54
