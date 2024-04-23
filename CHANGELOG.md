@@ -1,5 +1,10 @@
 # Changelog
 
+### 164.1.4 [2284](https://github.com/openfisca/openfisca-france/pull/2284)
+
+* Supprime un ensemble de paramètres non utilisés, et ne correspondant pas à un paramètre dans la loi. L'ajustement est fait côté barème aussi : https://gitlab.com/ipp/partage-public-ipp/baremes-ipp/baremes-ipp-yaml/-/merge_requests/485
+* Zones impactées : `prelevements_obligatoires/impot_revenu/ir.py`.
+
 ### 164.1.3 [2281](https://github.com/openfisca/openfisca-france/pull/2281)
 
 * Changement mineur.
