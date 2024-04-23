@@ -1,5 +1,14 @@
 # Changelog
 
+## 164.1.7 [2283](https://github.com/openfisca/openfisca-france/pull/2084)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/revenus/activite/salarie.py.`.
+* Détails :
+  - Le mode de recouvrement des allègements de cotisations a été modifié de "fin d'année" à "progressif".
+  - Avec le mode de recouvrement "fin d'année", le montant des allègements obtenu est annuel, même lorsque la période définie est mensuelle (par exemple "2024-12")
+
 ### 164.1.6 [2271](https://github.com/openfisca/openfisca-france/pull/2271)
 
 * Changement mineur.
