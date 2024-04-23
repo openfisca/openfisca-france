@@ -11,6 +11,8 @@ brackets:
       value: 12560
     2021-01-01:
       value: 12290
+    2024-01-01:
+      value: 13814
   rate:
     2017-01-01:
       value: 1
@@ -25,6 +27,8 @@ brackets:
       value: 15860
     2021-01-01:
       value: 15550
+    2024-01-01:
+      value: 17479
   rate:
     2017-01-01:
       value: 2
@@ -39,6 +43,8 @@ brackets:
       value: 18490
     2021-01-01:
       value: 18360
+    2024-01-01:
+      value: 20637
   rate:
     2017-01-01:
       value: 3
@@ -53,6 +59,8 @@ brackets:
       value: 20810
     2021-01-01:
       value: 20790
+    2024-01-01:
+      value: 23368
   rate:
     2017-01-01:
       value: 4
@@ -67,6 +75,8 @@ brackets:
       value: 23230
     2021-01-01:
       value: 23160
+    2024-01-01:
+      value: 26032
   rate:
     2017-01-01:
       value: 5
@@ -81,6 +91,8 @@ brackets:
       value: 25790
     2021-01-01:
       value: 25840
+    2024-01-01:
+      value: 29044
   rate:
     2017-01-01:
       value: 6
@@ -95,6 +107,8 @@ brackets:
       value: 28690
     2021-01-01:
       value: 28900
+    2024-01-01:
+      value: 32484
   rate:
     2017-01-01:
       value: 7
@@ -109,6 +123,8 @@ brackets:
       value: 32890
     2021-01-01:
       value: 33440
+    2024-01-01:
+      value: 37587
   rate:
     2017-01-01:
       value: 8
@@ -123,6 +139,8 @@ brackets:
       value: 41400
     2021-01-01:
       value: 41870
+    2024-01-01:
+      value: 47062
   rate:
     2017-01-01:
       value: 9
@@ -150,3 +168,5 @@ metadata:
     - title: données provisoires en date de avril 2024. Pour l'année 2020 deux séries sont présentées mais uniquement la deuxième est reportée ici.
     2021-01-01: 
     - title: données provisoires en date de avril 2024
+    2024-01-01:
+     - title: les valeurs 2024 sont des projections à partir des données 2021, dernière année connue. Les valeurs 2021 ont été augmentées de 12,4 % qui est l'évolution moyenne du SMPT économique cumulées pour les années 2022 (3,7%), 2023 (5.1%), 2024 (3.1%) telles que prévues dans le Rapport économique social et financier (RESF) attaché au PLF pour 2024, p54
