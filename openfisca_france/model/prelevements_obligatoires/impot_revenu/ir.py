@@ -1667,8 +1667,6 @@ class nat_imp(Variable):
         credits_impot = foyer_fiscal('credits_impot', period)
         contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
 
-        # def _nat_imp(rni, nbptr, non_imposable = law.impot_revenu.calcul_impot_revenu.non_imposable):
-        # seuil = non_imposable.seuil + (nbptr - 1)*non_imposable.supp
         return (iai - credits_impot + contribution_exceptionnelle_hauts_revenus) > 0
 
 
