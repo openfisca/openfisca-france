@@ -9,6 +9,7 @@
       month:2021-01:12: [60000, 60000]  # 5000*12 Le salaire de 2021 ne lui permet pas d'être exonéré mais comme on prend en compte le salaire des 12 derniers mois alors il est exonéré
     effectif_entreprise: [65, 65]
     accord_interessement: [false, false]
+    allegement_cotisation_allocations_familiales_mode_recouvrement: [fin_d_annee, fin_d_annee]
   output:
     impot_revenu_restant_a_payer:
       2021: [-7246, -7246]
@@ -26,6 +27,9 @@
     effectif_entreprise: [30, 65]
     accord_interessement: [false, false]
     salaire_de_base: [20000, 20000]
+    allegement_cotisation_allocations_familiales_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_general_mode_recouvrement: [fin_d_annee, fin_d_annee]
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 1000] # Exonération de 1000 car pas d'accord d'intéressement et effectif d'entreprise > 50
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 500]
@@ -48,6 +52,9 @@
     accord_interessement: true
     salaire_de_base:
       2021-05: 2000
+    allegement_cotisation_allocations_familiales_mode_recouvrement: fin_d_annee
+    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
+    allegement_general_mode_recouvrement: fin_d_annee
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: 2000
     prime_exceptionnelle_pouvoir_achat_non_exoneree: 200 #  Non exonéré car le montant dépasse les 2000 €
@@ -65,6 +72,9 @@
     accord_interessement: [true, false]
     salaire_de_base:
       2021-05: [2000, 2000]
+    allegement_cotisation_allocations_familiales_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_general_mode_recouvrement: [fin_d_annee, fin_d_annee]
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 2000]
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
@@ -80,6 +90,12 @@
       2022-05: [3000, 3000]
     effectif_entreprise: [55, 55]
     accord_interessement: [false, false]
+    allegement_cotisation_allocations_familiales_mode_recouvrement: 
+      2022-05: [fin_d_annee, fin_d_annee]
+    allegement_cotisation_maladie_mode_recouvrement: 
+      2022-05: [fin_d_annee, fin_d_annee]
+    allegement_general_mode_recouvrement: 
+      2022-05: [fin_d_annee, fin_d_annee]
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: [0, 0]
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
@@ -94,6 +110,9 @@
     salaire_de_base: 2000*12
     effectif_entreprise: 55
     accord_interessement: false
+    allegement_cotisation_allocations_familiales_mode_recouvrement: fin_d_annee
+    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
+    allegement_general_mode_recouvrement: fin_d_annee
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: 1000
     prime_exceptionnelle_pouvoir_achat_non_exoneree: 1300 # Non exonéré jusqu'à 2000 € car ni accord d'intéressement ni effectif d'entreprise
@@ -110,6 +129,12 @@
       2020: [24_000, 65_000]
     effectif_entreprise: [55, 55]
     accord_interessement: [true, true]
+    allegement_cotisation_allocations_familiales_mode_recouvrement: 
+      2020-05: [fin_d_annee, fin_d_annee]
+    allegement_cotisation_maladie_mode_recouvrement: 
+      2020-05: [fin_d_annee, fin_d_annee]
+    allegement_general_mode_recouvrement: 
+      2020-05: [fin_d_annee, fin_d_annee]
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 0]
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 2000] # Non exonéré car salaire annuel < 3 Smic
@@ -139,6 +164,9 @@
       2020: [55_964, 55_964, 55_964]
       2021: [55_964, 55_964, 55_964]
     prime_exceptionnelle_pouvoir_achat: [1200, 1200, 1200]
+    allegement_cotisation_allocations_familiales_mode_recouvrement: [fin_d_annee, fin_d_annee, fin_d_annee]
+    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, fin_d_annee, fin_d_annee]
+    allegement_general_mode_recouvrement: [fin_d_annee, fin_d_annee, fin_d_annee]
   output:
     quotite_de_travail:
       2021-01: [1, 0.99, 1.008]
@@ -196,6 +224,9 @@
     prime_exceptionnelle_pouvoir_achat: [2000, 2000]
     accord_interessement: [true, true]
     effectif_entreprise: [55, 55]
+    allegement_cotisation_allocations_familiales_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_general_mode_recouvrement: [fin_d_annee, fin_d_annee]
   output:
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [2000, 2000]
     prime_exceptionnelle_pouvoir_achat_exoneree: [0, 0]
@@ -209,6 +240,9 @@
     prime_exceptionnelle_pouvoir_achat: [2000, 2000]
     accord_interessement: [true, true]
     effectif_entreprise: [50, 50]
+    allegement_cotisation_allocations_familiales_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_general_mode_recouvrement: [fin_d_annee, fin_d_annee]
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 2000]
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
@@ -226,6 +260,9 @@
       month:2019-09:24: [65, 65]
     accord_interessement:
       month:2019-09:24: [false, false]
+    allegement_cotisation_allocations_familiales_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, fin_d_annee]
+    allegement_general_mode_recouvrement: [fin_d_annee, fin_d_annee]
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree:
       2021: [1000, 0] #  Exonération de 1000 car pas d'accord d'intéressement et effectif > 50
