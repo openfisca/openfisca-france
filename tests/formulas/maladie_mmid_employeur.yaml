@@ -12,7 +12,7 @@
   input:
     salaire_de_base:
       month:2021-01:9: 1554.58 * 9
-    allegement_cotisation_maladie_mode_recouvrement: 
+    allegement_cotisation_maladie_mode_recouvrement:
       2021-09: fin_d_annee
       2021-10: fin_d_annee
       2021-11: fin_d_annee
