@@ -1,5 +1,13 @@
 # Changelog
 
+### 164.1.5 [2282](https://github.com/openfisca/openfisca-france/pull/2282)
+
+* Changement mineur.
+* Périodes concernées : toutes. 
+* Zones impactées : `openfisca_france/model/prestations/jeunes/pass_sport`.
+* Détails :
+  - Corrige le calcul du montant de l'aide Pass Sport pour les bénéficiaires de l'aah
+
 ### 164.1.4 [2284](https://github.com/openfisca/openfisca-france/pull/2284)
 
 * Supprime un ensemble de paramètres non utilisés, et ne correspondant pas à un paramètre dans la loi. L'ajustement est fait côté barème aussi : https://gitlab.com/ipp/partage-public-ipp/baremes-ipp/baremes-ipp-yaml/-/merge_requests/485
