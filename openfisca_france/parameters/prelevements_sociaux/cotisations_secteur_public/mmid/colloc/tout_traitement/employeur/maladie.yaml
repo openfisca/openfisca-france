@@ -1,4 +1,4 @@
-description: Barème employeur tout traitement pour la fonction publique hospitalière et collectivités locales des cotisations maladie spécifiques à la fonction publique
+description: Cotisation maladie (employeur, tout traitement) pour la fonction publique hospitalière et les collectivités locales
 brackets:
 - threshold:
     1967-10-01:
@@ -19,7 +19,7 @@ brackets:
     2024-01-30:
       value: 0.0888
 metadata:
-  short_label: Barème employeur
+  short_label: Barème
   last_value_still_valid_on: "2024-03-14"
   label_en: Health insurance contributions - local governments and hospital administration
   ipp_csv_id: mmid_h_p_0_

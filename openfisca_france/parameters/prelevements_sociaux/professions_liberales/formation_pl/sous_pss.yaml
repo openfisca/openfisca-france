@@ -1,4 +1,4 @@
-description: Taux sous PSS de la participation à la formation professionnelle continue, taxes des professions libérales
+description: Taux sous PSS de la participation des professions libérales à la formation professionnelle continue
 values:
   1992-01-01:
     value: 0.0015
@@ -25,7 +25,6 @@ metadata:
     1992-01-01: "1992-01-04"
     2012-08-18: "2012-08-17"
 documentation: |-
-  Note :
   Depuis 2005, supplément de 0,9 % si leur conjoint a le statut de conjoint collaborateur.
   Sources :
   Article article L. 953-1 du Code du travail (depuis 2005), puis article L. 6331-48 du Code du travail (depuis 2008).

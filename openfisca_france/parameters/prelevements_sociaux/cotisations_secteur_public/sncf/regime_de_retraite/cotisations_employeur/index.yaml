@@ -1,7 +1,8 @@
-description: Cotisations employeurs, régime de retraite des cotisations du régime de la SNCF - Cotisations spécifiques à la fonction publique
+description: Cotisations employeurs du  régime de retraite de la SNCF
 metadata:
   short_label: Employeur
   label_en: Contributions to the SNCF scheme (public railway company)
   order:
   - t1
   - t2
+

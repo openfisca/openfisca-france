@@ -1,4 +1,4 @@
-description: Taux 2 des cotisations employeurs, régime de retraite des cotisations du régime de la SNCF - Cotisations spécifiques à la fonction publique
+description: Taux 2 des cotisations employeurs du régime de retraite de la SNCF
 values:
   2007-01-01:
     value: 0.1196
@@ -110,6 +110,3 @@ metadata:
     - title: Référence législative manquante pour taux T1 et T2.
     2019-01-01:
     - title: "Valeur T2 provient du rapport du Sénat sur le PLF 2020 : https://www.senat.fr/rap/l19-140-324/l19-140-3244.html  Valeur régime prévoyance provient d'un rapport de l'IGAS : http://www.igas.gouv.fr/IMG/pdf/Rapport_prevoyance_branche_ferroviaire.pdf"
-documentation: |-
-  Sources :
-  Chiffres clés du régime CPRPSNCF publiés annuellement

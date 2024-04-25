@@ -3,7 +3,7 @@ metadata:
   short_label: Contrib. accessoires du salaire
   label_en: Contributions levied specifically on supplements to base salary
   order:
-  - taxe_contribution_prevoyance
   - forfait_social
+  - taxe_contribution_prevoyance
   - retraites_chapeau
   - cont_sur_options

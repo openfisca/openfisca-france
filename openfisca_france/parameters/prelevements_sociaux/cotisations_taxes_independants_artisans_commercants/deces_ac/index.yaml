@@ -2,6 +2,23 @@ description: Cotisations invalidité-décès de sécurité sociale (SS) des ind�
 metadata:
   short_label: Artisans
   label_en: "Contributions and taxes on self-employed: craftsmen and sales retailers"
+  reference:
+    1985-12-21:
+      title: Décret 85-1354 17/12/1985 art. 1
+    1999-01-01:
+      title: Décret 99-1103 du 21/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000580171&categorieLien=id
+    2012-01-01:
+      title: Décret 2011-2038 du 29/12/2011 - art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025090358&cidTexte=JORFTEXT000025055789
+  official_journal_date:
+    1985-12-21: "1985-12-21"
+    1999-01-01: "1999-12-26"
+    2012-01-01: "2011-12-30"
   order:
   - artisans
   - commercants_industriels
+documentation: |-
+  (i) La cotisation forfaitaire due par les commerçants-industriels est la somme des cotisations (forfaitaires) invalidité et capital décès.
+  (ii) La cotisation invalidité n'est pas due pour les commerçants-industriels de plus de 60 ans. Par ailleurs, les artisans de plus de 65 ans sont totalement exonérés de la cotisation.
+  (iii) La cotisation pour les artisans ne peut être calculée sur une assiette inférieure à 20% du PSS.

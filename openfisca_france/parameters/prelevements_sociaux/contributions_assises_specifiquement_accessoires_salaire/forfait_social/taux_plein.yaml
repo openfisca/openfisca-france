@@ -1,4 +1,4 @@
-description: Taux plein du forfait social des contributions assises spécifiquement sur les accessoires du salaire
+description: Taux plein du forfait social
 values:
   2009-01-01:
     value: 0.02
@@ -41,8 +41,3 @@ metadata:
   notes:
     2012-08-01:
     - title: Création du taux réduit de 8 % pour les Scop, et sur les contributions au financement de prestations complémentaires de prévoyance non assujetties à cotisations.
-documentation: |-
-  Principe de la contribution :
-  Le forfait social est une contribution payée par l'employeur, et assise sur les gains et rémunérations assujettie à la CSG et à la CRDS mais exclus de l'assiette des cotisations sociales.
-  Références dans le CSS :
-  Art. L 137-15 à L 137-17 du CSS.

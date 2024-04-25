@@ -1,4 +1,4 @@
-description: Plus de 20 salariés, participation des employeurs à l'effort de construction (PEEC)
+description: Participation des employeurs à l'effort de construction (PEEC) pour lesentreprise de plus de 20 salariés 
 brackets:
 - threshold:
     1953-01-01:
@@ -44,9 +44,6 @@ metadata:
     1992-01-01:
       title: Décret 90-64 du 15/01/1990
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000342807&categorieLien=id
-    2005-01-01:
-      title: Ordonnance 2005-895 du 02/08/2005
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000632642&categorieLien=id
     2020-01-01:
       title: Loi 2019-486 du 22/05/2019, art. 11
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038496156
@@ -58,7 +55,6 @@ metadata:
     1989-01-01: "1988-12-28"
     1991-01-01: "1991-07-27"
     1992-01-01: "1990-01-17"
-    2005-01-01: "2005-08-03"
     2020-01-01: "2019-05-23"
   rate_unit: /1
   threshold_unit: PSS

@@ -944,7 +944,7 @@ class ratio_alternants(Variable):
     label = "Ratio d'alternants dans l'effectif moyen"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    # TODO modéliser cette variable, dont la définition intervient dans le calcul de la Contribution supplémentaire d'apprentissage, et change au cours du temps.
+    # TODO modéliser cette variable, dont la définition intervient dans le calcul de la contribution supplémentaire d'apprentissage, et change au cours du temps.
 
 
 class remboursement_transport_base(Variable):
