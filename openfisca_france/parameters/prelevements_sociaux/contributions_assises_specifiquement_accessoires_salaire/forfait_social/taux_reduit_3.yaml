@@ -1,4 +1,4 @@
-description: Taux réduit 3 du forfait social des contributions assises spécifiquement sur les accessoires du salaire
+description: Taux réduit 3 du forfait social
 values:
   2009-01-01:
     value: null
@@ -21,8 +21,3 @@ metadata:
   notes:
     2019-01-01:
     - title: Création du taux réduit de 10 % pour l'abondement employeur à l'acquisition des titres de l'entreprise (PEE), pour les entreprises de plus de 50 salariés.
-documentation: |-
-  Principe de la contribution :
-  Le forfait social est une contribution payée par l'employeur, et assise sur les gains et rémunérations assujettie à la CSG et à la CRDS mais exclus de l'assiette des cotisations sociales.
-  Références dans le CSS :
-  Art. L 137-15 à L 137-17 du CSS.

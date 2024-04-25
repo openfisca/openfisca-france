@@ -1,4 +1,4 @@
-description: Taux réduit 2 du forfait social des contributions assises spécifiquement sur les accessoires du salaire
+description: Taux réduit 2 du forfait social
 values:
   2016-01-01:
     value: 0.16
@@ -16,8 +16,3 @@ metadata:
   notes:
     2016-01-01:
     - title: Création du taux réduit intermédiaire de 16 % par la loi dite "loi Macron" (art. 149) pour certains versements au PERCO.
-documentation: |-
-  Principe de la contribution :
-  Le forfait social est une contribution payée par l'employeur, et assise sur les gains et rémunérations assujettie à la CSG et à la CRDS mais exclus de l'assiette des cotisations sociales.
-  Références dans le CSS :
-  Art. L 137-15 à L 137-17 du CSS.
