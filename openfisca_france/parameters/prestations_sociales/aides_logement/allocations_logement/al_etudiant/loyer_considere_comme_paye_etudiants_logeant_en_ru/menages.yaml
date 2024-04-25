@@ -46,9 +46,11 @@ values:
     value: 131
   2022-07-01:
     value: 135.59
+  2023-09-28:
+    value: 140.34
 metadata:
   short_label: Ménages
-  last_value_still_valid_on: "2022-09-28"
+  last_value_still_valid_on: "2024-04-25"
   label_en: Measure of rent for students living in university residences
   ipp_csv_id: alf_etudiant_menage
   unit: currency
@@ -120,6 +122,9 @@ metadata:
     2022-07-01:
       title: Arrêté du 27/09/2019, art. 43
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206187/2022-07-01
+    2023-09-28:
+      title: Arrêté du 22/09/2023 art. 1
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206187/2024-04-25
   official_journal_date:
     1994-07-01: "1994-11-16"
     1997-07-01: "1997-09-11"
@@ -141,6 +146,7 @@ metadata:
     2015-10-01: "2015-10-21"
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
+    2023-09-28: "2023-09-27"
   notes:
     2005-09-01:
     - title: "Décret 2005-1607 : déplace les barèmes à l'art. D831-2-1 du CSS."
