@@ -6,7 +6,6 @@ metadata:
     1998-01-01:
     - title: Prévu initialement jusqu'au 31 Décembre 1998, le dispositif Périssol a été prorogé jusqu'au 31 Août 1999.
   order:
-  - plafond
   - amortissement_perissol
   - dispositif_besson_neuf
   - dispositif_robien
