@@ -1,9 +1,18 @@
 # Changelog
 
+### 164.1.6 [2271](https://github.com/openfisca/openfisca-france/pull/2271)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux`.
+* Détails :
+  - Homégénise et nettoie les description, référence et notes
+  - Retire les doublons de notes
+
 ### 164.1.5 [2282](https://github.com/openfisca/openfisca-france/pull/2282)
 
 * Changement mineur.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/model/prestations/jeunes/pass_sport`.
 * Détails :
   - Corrige le calcul du montant de l'aide Pass Sport pour les bénéficiaires de l'aah
