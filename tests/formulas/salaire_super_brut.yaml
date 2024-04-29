@@ -4,6 +4,8 @@
   input:
     salaire_de_base: 1457.52
     allegement_general_mode_recouvrement: anticipe
+    allegement_cotisation_allocations_familiales_mode_recouvrement: fin_d_annee
+    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
     effectif_entreprise: 1
     categorie_salarie: prive_non_cadre
   output:
