@@ -28,8 +28,3 @@ metadata:
     - title: "Modulation des taux selon le revenu : si 110 % PSS < revenu d'activité ( r ) < 140 % PSS, taux égal à [(T2 - T1) /(0,3 x PSS)] x (r - 1,1 x PSS) + T1 , où T2 = 5,25 %, T1 = 2,15 %"
     2018-01-01:
     - title: "Modulation des taux selon le revenu : si 110 % PSS < revenu d'activité ( r ) < 140 % PSS, taux égal à [(T1)/ (0,3 × PSS)] × (r - 1,1 × PSS), où T1 = 3,10 %"
-documentation: |-
-  Notes :
-  (i) L'art. R242-13 du CSS statue que le taux applicable aux indépendants est le taux aplicable dans le régime général.
-  Toutefois l'harmonisation s'est faite progressivement.
-  (ii) Avant 1974, la cotisation était fixée forfaitairement selon le niveau du revenu professionnel de l'employeur/travailleur indépendant (arrêté du 20/06/1963).

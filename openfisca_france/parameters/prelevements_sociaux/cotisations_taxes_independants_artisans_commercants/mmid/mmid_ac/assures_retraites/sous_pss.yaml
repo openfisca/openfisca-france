@@ -1,4 +1,4 @@
-description: Taux sous PSS de la cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès, Artisans-Commerçants
+description: Taux sous PSS de la cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès des artisans-commerçants
 values:
   1970-04-01:
     value: null
@@ -45,12 +45,6 @@ metadata:
       title: Décret 81-266 du 18/03/1981
     1981-10-01:
       title: Décret 81-813 du 27/08/1981
-    1988-10-01:
-      title: Décret 88-913 du 05/09/1988, art. 1
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006773293&cidTexte=JORFTEXT000000512343
-    2005-01-01:
-      title: Décret 2004-1230 du 17/1/2004, art. 1 (V)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006235953&cidTexte=JORFTEXT000000604754
   official_journal_date:
     1970-04-01: "1971-04-14"
     1974-10-01: 1975-08-08; 1973-12-30
@@ -61,26 +55,6 @@ metadata:
     1979-04-01: "1979-03-14"
     1981-04-01: "1981-03-22"
     1981-10-01: "1981-08-30"
-    1988-10-01: "1988-09-08"
-    2005-01-01: "2004-11-20"
   notes:
     1974-10-01:
     - title: Décision d'une harmonisation progressive entre régimes des artisans et commerçants et régime général achevée au plus tard le 31 décembre 1977
-documentation: |-
-  Loi 66-509 du 12/07/1966
-  1966-07-13
-  Notes :
-  Les cotisations sont calculées provisoirement (sur des bases forfaitaires les deux premières années car le revenu professionnel n'est pas connu)
-  Ces cotisations sont ensuite recalculées, une fois connu le revenu réalisé au cours de la première année et font l’objet d’une régularisation l’année suivante (on paie donc l'impôt sur l'avant-dernière année, puis régularisation l'année suivante)
-  (1) En 2017, en-dessous de 70 % du PSS, le taux de cotisation est calculé comme suit :
-        taux = taux au-delà de 70 % du PSS - 3,50 % * (1 - revenu/0,7 PSS)
-       Par exemple, en 2017, pour un revenu égal à 60 % du PSS, le taux de cotisation est environ égal à 6 % (6,5 % - 3,5 % * (1 - 0,143))
-  (2) En 2018, entre 40 % et 110 % du PSS, le taux de cotisation est calculé comme suit :
-           taux = [(7,2% - 2,2%)/ (1,1 PSS)] × revenu + 2,2%
-       En-deçà de 40 % du PSS, le taux de cotisation est calculé comme suit :
-           taux = [(7,2% - 2,2%)/ (1,1 PSS)] × revenu + [(2,2% - 0,85%)/ (0,4 PSS)] × revenu + 0,85%
-  Assiette :
-  Les cotisations personnelles sont calculées sur la base des revenus professionnels pris en compte, avant certaines déductions, pour le calcul de l'impôt sur le revenu.
-  A cette rémunération s'ajoute :
-  les dividendes perçus dépassant 10 % du capital de l'entreprise ou 10 % du patrimoine affecté pour les EIRL
-  l'abattement pour frais professionnels (10 % ou réels)
