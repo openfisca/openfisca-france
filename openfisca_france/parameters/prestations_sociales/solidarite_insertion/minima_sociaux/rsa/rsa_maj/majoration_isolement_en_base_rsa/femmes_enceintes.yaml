@@ -6,7 +6,7 @@ values:
     value: 1.28412
 metadata:
   short_label: Parents isolés ou femmes enceintes
-  last_value_still_valid_on: "2022-03-29"
+  last_value_still_valid_on: "2024-04-26"
   label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_isole_enceinte
   unit: /1

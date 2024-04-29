@@ -8,7 +8,7 @@ values:
     value: 14
 metadata:
   short_label: Âge seuil tranche 1
-  last_value_still_valid_on: "2023-02-02"
+  last_value_still_valid_on: "2024-04-26"
   label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_enf_age1
   unit: year

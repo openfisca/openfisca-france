@@ -4,7 +4,7 @@ values:
     value: 20
 metadata:
   short_label: Âge maximal de l'enfant
-  last_value_still_valid_on: "2022-03-01"
+  last_value_still_valid_on: "2024-04-26"
   unit: year
   reference:
     2003-07-01:

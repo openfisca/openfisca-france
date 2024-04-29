@@ -4,7 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Nb d'enfant pour que l'aîné donne droit à majoration
-  last_value_still_valid_on: "2023-02-02"
+  last_value_still_valid_on: "2024-04-26"
   label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: nb_enf_maj
   unit: year
