@@ -90,11 +90,11 @@
       2022-05: [3000, 3000]
     effectif_entreprise: [55, 55]
     accord_interessement: [false, false]
-    allegement_cotisation_allocations_familiales_mode_recouvrement: 
+    allegement_cotisation_allocations_familiales_mode_recouvrement:
       2022-05: [fin_d_annee, fin_d_annee]
-    allegement_cotisation_maladie_mode_recouvrement: 
+    allegement_cotisation_maladie_mode_recouvrement:
       2022-05: [fin_d_annee, fin_d_annee]
-    allegement_general_mode_recouvrement: 
+    allegement_general_mode_recouvrement:
       2022-05: [fin_d_annee, fin_d_annee]
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: [0, 0]
@@ -129,11 +129,11 @@
       2020: [24_000, 65_000]
     effectif_entreprise: [55, 55]
     accord_interessement: [true, true]
-    allegement_cotisation_allocations_familiales_mode_recouvrement: 
+    allegement_cotisation_allocations_familiales_mode_recouvrement:
       2020-05: [fin_d_annee, fin_d_annee]
-    allegement_cotisation_maladie_mode_recouvrement: 
+    allegement_cotisation_maladie_mode_recouvrement:
       2020-05: [fin_d_annee, fin_d_annee]
-    allegement_general_mode_recouvrement: 
+    allegement_general_mode_recouvrement:
       2020-05: [fin_d_annee, fin_d_annee]
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 0]

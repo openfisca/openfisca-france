@@ -86,13 +86,13 @@
       #     [0, 250, 350, 250, 250, 500, 600]
     accord_interessement:
       month:2021-01:36: [false, false, false, true, true, true, true]
-    allegement_cotisation_allocations_familiales_mode_recouvrement: 
+    allegement_cotisation_allocations_familiales_mode_recouvrement:
       2022: [fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee]
       2023: [fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee]
-    allegement_cotisation_maladie_mode_recouvrement: 
+    allegement_cotisation_maladie_mode_recouvrement:
       2022: [fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee]
       2023: [fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee]
-    allegement_general_mode_recouvrement: 
+    allegement_general_mode_recouvrement:
       2022: [fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee]
       2023: [fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee, fin_d_annee]
   output:
