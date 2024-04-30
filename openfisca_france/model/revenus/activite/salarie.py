@@ -176,7 +176,7 @@ class TypesAllegementModeRecouvrement(Enum):
 class allegement_general_mode_recouvrement(Variable):
     value_type = Enum
     possible_values = TypesAllegementModeRecouvrement
-    default_value = TypesAllegementModeRecouvrement.fin_d_annee
+    default_value = TypesAllegementModeRecouvrement.progressif
     entity = Individu
     label = 'Mode de recouvrement des allègements Fillon'
     definition_period = MONTH
@@ -186,7 +186,7 @@ class allegement_general_mode_recouvrement(Variable):
 class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     value_type = Enum
     possible_values = TypesAllegementModeRecouvrement
-    default_value = TypesAllegementModeRecouvrement.fin_d_annee
+    default_value = TypesAllegementModeRecouvrement.progressif
     entity = Individu
     label = "Mode de recouvrement de l'allègement de la cotisation d'allocations familiales"
     definition_period = MONTH
@@ -196,7 +196,7 @@ class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
 class allegement_cotisation_maladie_mode_recouvrement(Variable):
     value_type = Enum
     possible_values = TypesAllegementModeRecouvrement
-    default_value = TypesAllegementModeRecouvrement.fin_d_annee
+    default_value = TypesAllegementModeRecouvrement.progressif
     entity = Individu
     label = "Mode de recouvrement de l'allègement des cotisations maladie sur les bas et moyens salaires (Ex-CICE)"
     definition_period = MONTH

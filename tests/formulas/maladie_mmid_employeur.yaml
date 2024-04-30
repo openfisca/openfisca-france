@@ -12,7 +12,11 @@
   input:
     salaire_de_base:
       month:2021-01:9: 1554.58 * 9
-    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
+    allegement_cotisation_maladie_mode_recouvrement:
+      2021-09: fin_d_annee
+      2021-10: fin_d_annee
+      2021-11: fin_d_annee
+      2021-12: fin_d_annee
   output:
     assiette_allegement:
       2021-09: 1554.58
@@ -32,7 +36,11 @@
       2021-01: 3886.55  # 1554.58 * 2.5 + 0.1
       2021-02: 3886.55
       2021-03: 3886.55
-    allegement_cotisation_maladie_mode_recouvrement: progressif
+    allegement_cotisation_maladie_mode_recouvrement:
+      2021-09: progressif
+      2021-10: progressif
+      2021-11: progressif
+      2021-12: progressif
   output:
     assiette_allegement:
       2021-01: 3886.55
