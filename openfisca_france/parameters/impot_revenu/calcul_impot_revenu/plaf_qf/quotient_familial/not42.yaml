@@ -4,7 +4,7 @@ values:
     value: 0.5
 metadata:
   short_label: Anciens combattants
-  last_value_still_valid_on: "2023-10-17"
+  last_value_still_valid_on: "2024-04-26"
   unit: part_quotient_familial
   reference:
     2000-01-01:

@@ -3,6 +3,7 @@ values:
   2009-01-01:
     value: 50000
 metadata:
+  last_value_still_valid_on: "2024-04-26"
   unit: currency_next_year
   reference:
     2009-01-01:

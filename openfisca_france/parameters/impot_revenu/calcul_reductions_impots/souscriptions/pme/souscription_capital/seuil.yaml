@@ -9,7 +9,7 @@ values:
 metadata:
   unit: currency_next_year
   short_label: Seuil de souscription en numéraire au capital de sociétés
-  last_value_still_valid_on: "2023-10-17"
+  last_value_still_valid_on: "2024-04-26"
   reference:
     2001-01-01:
       - title: Article 199 terdecies-0 A, II, du Code général des impôts

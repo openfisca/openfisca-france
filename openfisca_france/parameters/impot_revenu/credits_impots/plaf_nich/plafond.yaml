@@ -10,7 +10,7 @@ values:
     value: 10000
 metadata:
   short_label: Plafond
-  last_value_still_valid_on: "2023-10-17"
+  last_value_still_valid_on: "2024-04-26"
   ipp_csv_id: plaf_nich
   unit: currency_next_year
   reference:
