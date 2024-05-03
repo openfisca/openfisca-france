@@ -1,6 +1,14 @@
 # Changelog
 
-## 165.0.0 [2283](https://github.com/openfisca/openfisca-france/pull/2084)
+# 166.0.0 [2295](https://github.com/openfisca/openfisca-france/pull/2095)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters.marche_travail.indemnite_fin_contrat`.
+* Détails :
+  - Déplace `indemnite_fin_contrat` de `prelevements_sociaux.cotisations_securite_sociale_regime_general` où elle n'a rien à y faire vers `marche_travail`.
+
+# 165.0.0 [2283](https://github.com/openfisca/openfisca-france/pull/2084)
 
 * Changement majeur.
 * Périodes concernées : toutes.

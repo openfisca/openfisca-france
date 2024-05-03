@@ -92,7 +92,7 @@ class indemnite_fin_contrat(Variable):
         # Pour l'instant, cette variable d'entrée peut les remplacer
         # Elle est cependant fixée à False par défaut
         indemnite_fin_contrat_due = individu('indemnite_fin_contrat_due', period)
-        taux = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.indemnite_fin_contrat.taux
+        taux = parameters(period).marche_travail.indemnite_fin_contrat.taux
 
         result = (
             # CDD
