@@ -1,6 +1,6 @@
 # Changelog
 
-# 165.0.1 [2295](https://github.com/openfisca/openfisca-france/pull/2095)
+# 166.0.0 [2295](https://github.com/openfisca/openfisca-france/pull/2095)
 
 * Changement mineur.
 * Périodes concernées : toutes.
