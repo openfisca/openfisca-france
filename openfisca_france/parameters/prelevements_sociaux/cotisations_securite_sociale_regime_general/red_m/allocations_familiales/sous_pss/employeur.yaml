@@ -11,7 +11,7 @@ values:
   1974-01-01:
     value: 0.063
 metadata:
-  short_label: Taux employeur
+  short_label: Taux employeur sous PSS
   last_value_still_valid_on: "1974-01-01"
   label_en: SSCs for physicians working part-time
   ipp_csv_id: fam_m_p_0_1
