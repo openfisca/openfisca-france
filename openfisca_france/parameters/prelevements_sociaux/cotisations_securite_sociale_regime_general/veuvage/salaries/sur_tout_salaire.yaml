@@ -1,4 +1,4 @@
-description: Taux salarié (sur tout salaire) des cotisations de sécurité sociale (SS) assurance veuvage
+description: Taux salarié (sur tout salaire) des cotisations de sécurité sociale (SS) de l'assurance veuvage
 values:
   1982-01-01:
     value: 0.001
@@ -25,6 +25,3 @@ metadata:
     - title: La cotisation veuvage est déplafonnée à compter du 1er janvier 1982.
     2004-07-01:
     - title: La cotisation veuvage est transférée à la Cnav.
-documentation: |-
-  Sources :
-  www.legislation.cnav.fr, Journal Officiel via www.legifrance.gouv.fr

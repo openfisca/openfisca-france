@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Taux employeur
   last_value_still_valid_on: "1971-01-01"
-  label_en: SSCs for freelance journalists (1964-1974)
+  label_en: SSCs for freelance journalists
   ipp_csv_id: mmid_j_p_0_1
   unit: /1
   reference:
@@ -23,10 +23,3 @@ metadata:
     1967-10-01: "1967-10-01"
     1969-01-01: "1969-01-01"
     1971-01-01: "1971-01-15"
-documentation: |-
-  Note générale :
-  Les journalistes pigistes bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1964 et 1974.
-  A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 20%.
-  Notes :
-  Jusqu'au 01/07/1977, les plus de 65 ans sont exonérés de cotisation salariale pour l'assurance vieillesse
-  L'arrêté du 31/01/1973 ne précise pas de date d'effet, impliquant une date d'effet à la date de publication du JO. On note le début du mois comme date d'effet pour prendre en compte les versements mensualisés de la paie.
