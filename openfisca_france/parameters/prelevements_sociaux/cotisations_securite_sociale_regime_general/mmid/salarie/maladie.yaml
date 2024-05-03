@@ -45,7 +45,7 @@ brackets:
 metadata:
   short_label: Barème salarié
   last_value_still_valid_on: "2021-10-29"
-  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  label_en: SSCs for sickness, maternity, disability and death benefits
   ipp_csv_id:
     rate: mmid_s_0_1, mmid_s_0_
   reference:

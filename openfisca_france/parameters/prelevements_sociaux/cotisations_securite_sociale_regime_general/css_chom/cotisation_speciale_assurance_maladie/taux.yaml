@@ -16,9 +16,3 @@ metadata:
   label_en: SSCs on unemployment benefits
   ipp_csv_id: chom_mmid_tx
   unit: /1
-documentation: |-
-  Note :
-  Pour la cotisation d'assurance maladie, l'assiette est égale à l'allocation de base brute. Disparait en décembre 1997.
-  Exonération de cotisation pour la retraite complémentaire si l'ARE est inférieure àl'ARE minimale :
-       cf article 19 de l'arrêté du 25/06/2014 "portant agrément de la convention du 14 mai 2014 relative à l'indemnisation du chômage et les textes qui lui sont associés"
-       cf réglement général de l'Unédic, art. 19

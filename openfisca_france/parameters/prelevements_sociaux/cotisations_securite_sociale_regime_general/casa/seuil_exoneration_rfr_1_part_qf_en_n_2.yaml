@@ -1,7 +1,5 @@
 description: Seuil d'exonération (RFR pour 1 part de QF en N-2) de la contribution SS additionnelle solidarité autonomie (CASA)
 values:
-  2013-04-01:
-    value: null
   2015-01-01:
     value: 13900
   2016-04-01:
@@ -22,11 +20,6 @@ metadata:
   label_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
   unit: currency
   reference:
-    2013-04-01:
-    - title: Article L137-41 du Code de la Sécurité Sociale
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042675242
-    - title: Loi 2012-1404 du 03/12/2012 (LFSS pour 2013), art. 17
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026787271&cidTexte=JORFTEXT000026785322
     2015-01-01:
       title: Loi 2014-1554 du 22/12/2014 (LFSS pour 2015), art. 7
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029954669&cidTexte=JORFTEXT000029953502
@@ -56,10 +49,3 @@ metadata:
   notes:
     2015-01-01:
     - title: Créé un seuil d'exonération de Casa assis sur les revenus N-2, identique au seuil d'assujettissement de CRDS et CSG taux 6,6 % (modifie L. 136-2, L. 136-8 du CGI, L14-10-4 du Code de l'action sociale et des familles)
-documentation: |-
-  Sources :
-  JOFR, via le site http://www.legifrance.gouv.fr
-  Références du CGI :
-  Article L14-10-4 du Code de l'action sociale et des familles
-  Pour le seuil de recouvrement : art. 1657 Code général des impôts (1bis)
-  Pour le seuil d'exonération de Casa : art. L136-8 du Code de la sécurité sociale (2° du III)

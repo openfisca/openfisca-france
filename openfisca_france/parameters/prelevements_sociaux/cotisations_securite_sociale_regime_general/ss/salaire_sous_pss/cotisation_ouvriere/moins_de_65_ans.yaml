@@ -1,4 +1,4 @@
-description: Taux ouvrier (de moins de 65 ans) des cotisations de sécurité sociale (SS) de 1930-1966, sous le plafond de la sécurité sociale (PSS)
+description: Taux ouvrier (de moins de 65 ans) des cotisations de sécurité sociale (SS), sous le plafond de la sécurité sociale (PSS)
 values:
   1930-07-01:
     value: 0.04
@@ -13,7 +13,7 @@ values:
 metadata:
   short_label: Moins de 65 ans
   last_value_still_valid_on: "1967-01-01"
-  label_en: SSC (1930-1966)
+  label_en: SSC
   ipp_csv_id: css_i65_s_0_1
   unit: /1
   reference:

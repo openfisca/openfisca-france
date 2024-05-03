@@ -1,4 +1,4 @@
-description: Taux salarié (sur tout salaire) des cotisations de sécurité sociale (SS) assurance veuvage (1981-2004)
+description: Taux salarié (sur tout salaire) des cotisations de sécurité sociale (SS) assurance veuvage
 values:
   1982-01-01:
     value: 0.001
@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Sur tout salaire
   last_value_still_valid_on: "2004-01-01"
-  label_en: SSCs for widowhood insurance (1981-2004)
+  label_en: SSCs for widowhood insurance
   ipp_csv_id: veuv_s_0_
   unit: /1
   reference:

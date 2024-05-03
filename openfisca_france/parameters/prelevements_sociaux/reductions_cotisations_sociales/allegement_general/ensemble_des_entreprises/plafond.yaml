@@ -1,11 +1,11 @@
-description: Plafond de rémunération (en nombre de Smic) des salariés concernés par l'allègement bas salaires (toutes entreprises, depuis 2003) de cotisations de sécurité sociale (SS)
+description: Plafond de rémunération (en nombre de Smic) des salariés concernés par l'allègement (toutes entreprises) de cotisations de sécurité sociale (SS) sur les bas salaires
 values:
   2005-07-01:
     value: 1.6
 metadata:
   short_label: Plafond de rémunération des salariés
   last_value_still_valid_on: "2023-01-30"
-  label_en: General SSC reductions, so called Fillon reductions (2003-2016)
+  label_en: General SSC reductions, so called Fillon reductions
   ipp_csv_id: plaf_fillon
   unit: smic_annuel
   reference:
@@ -16,19 +16,5 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042912368/2021-01-01/
     - title: Décret 2005-88 du 04/02/2005
       href: https://www.legifrance.gouv.fr/eli/decret/2005/2/4/2005-88/jo/texte
-documentation: |-
-  Notes :
-  Le salaire de référence pour le calcul de l'allègement avant le 01/07/2005 pour les entreprises ayant signé un accord de RTT avant le 30/06/2003 est la GMR 2.
-  Le salaire de référence pour le calcul de l'allègement pour les entreprises restées au 39h au 30/06/2003, et pour l'ensemble des entreprises à partir du 01/07/2005, est le Smic.
-  La GMR 2 correspond à la Garantie mensuelle de ressources pour les salariés passés aux 35 heures avantle 30 juin 2000.
-  (Voir feuille "GMR' des Barèmes IPP - Marché du travail, Institut des Politiques Publiques)
-  Formule de calcul :
-  Du 01/07/2003 au 30/09/2007
-  Réduction = Salaire brut mensuel * Réduction maximale/(Plafond - 1) *(Plafond * (Salaire de référence * Nb d'heures travaillées)/Salaire brut mensuel - 1)
-  Du 01/10/2007 au 31/12/2010
-  Réduction = Salaire brut mensuel * Réduction maximale/(Plafond - 1) *(Plafond * Smic mensuel/Salaire brut mensuel - 1)
-  Depuis le 01/01/2011
-  Réduction = Salaire brut annuel* Réduction maximale/(Plafond - 1) *(Plafond * Smic annuel/Salaire brut annuel - 1)
-  Sources :
-  L241-13 du CSS (principe de la réduction dégressive)
-  D241-7 du CSS (formule et taux)
+  official_journal_date:
+    2005-07-01: "2005-02-06"

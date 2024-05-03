@@ -1,6 +1,6 @@
 description: Cotisations de sécurité sociale (SS) des artistes du spectacle pour les accidents du travail, sous le plafond de la sécurité sociale (PSS)
 metadata:
   short_label: Sous PSS
-  label_en: SSCs for artists (1960-1974)
+  label_en: SSCs for artists
   order:
   - employeurs_france_hors_am

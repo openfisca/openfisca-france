@@ -1,5 +1,6 @@
 description: Cotisations de sécurité sociale (SS) du régime général pour la branche famille
 metadata:
+  documentation_start: true
   short_label: Branche famille
   label_en: SSCs for family benefits
   order:

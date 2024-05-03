@@ -1,4 +1,4 @@
-description: Taux employeur des cotisations de sécurité sociale (SS) des professions médicales à temps partiel (1961-1974), pour les allocations familiales, sous le plafond de la sécurité sociale (PSS)
+description: Taux employeur des cotisations de sécurité sociale (SS) des professions médicales à temps partiel, pour les allocations familiales, sous le plafond de la sécurité sociale (PSS)
 values:
   1961-05-01:
     value: 0.1
@@ -13,7 +13,7 @@ values:
 metadata:
   short_label: Taux employeur
   last_value_still_valid_on: "1974-01-01"
-  label_en: SSCs for physicians working part-time (1961-1974)
+  label_en: SSCs for physicians working part-time
   ipp_csv_id: fam_m_p_0_1
   unit: /1
   reference:
@@ -36,7 +36,3 @@ metadata:
   notes:
     1967-10-01:
     - title: Il n'y a pas de distinctions d'âge pour les cotisations mmid.
-documentation: |-
-  Note générale :
-  Les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1961 et 1974.
-  A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

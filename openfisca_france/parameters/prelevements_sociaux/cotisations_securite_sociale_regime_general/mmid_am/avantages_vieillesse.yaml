@@ -23,7 +23,7 @@ values:
 metadata:
   short_label: Cotis. Avantages vieillesse
   last_value_still_valid_on: "1986-01-01"
-  label_en: SSCs of the local sickness scheme of Alsace-Moselle (1967-2016)
+  label_en: SSCs of the local sickness scheme of Alsace-Moselle
   ipp_csv_id: am_pens
   unit: /1
   reference:

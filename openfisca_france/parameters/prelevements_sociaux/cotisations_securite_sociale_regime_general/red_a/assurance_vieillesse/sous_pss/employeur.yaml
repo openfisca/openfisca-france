@@ -1,4 +1,4 @@
-description: Taux employeur des cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974) pour l'assurance vieillesse, sous le plafond de la sécurité sociale (PSS)
+description: Taux employeur des cotisations de sécurité sociale (SS) des artistes du spectacle pour l'assurance vieillesse, sous le plafond de la sécurité sociale (PSS)
 values:
   1960-01-01:
     value: null
@@ -11,7 +11,7 @@ values:
 metadata:
   short_label: Taux employeur
   last_value_still_valid_on: "1974-01-01"
-  label_en: SSCs for artists (1960-1974)
+  label_en: SSCs for artists
   ipp_csv_id: ret_a_p_0_1
   unit: /1
   reference:

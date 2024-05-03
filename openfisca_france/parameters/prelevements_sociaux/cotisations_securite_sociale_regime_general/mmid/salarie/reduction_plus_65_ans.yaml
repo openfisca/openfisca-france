@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Réduction > 65 ans
   last_value_still_valid_on: "1977-01-01"
-  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  label_en: SSCs for sickness, maternity, disability and death benefits
   ipp_csv_id: mmid_red65_s_0_1
   unit: /1
   reference:

@@ -1,4 +1,4 @@
-description: Cotisations sur les allocations chômage et préretraite du régime local d'assurance maladie d'Alsace et Moselle (depuis 1967)
+description: Cotisations sur les allocations chômage et préretraite du régime local d'assurance maladie d'Alsace et Moselle
 values:
   1946-07-01:
     value: null
@@ -21,7 +21,7 @@ values:
 metadata:
   short_label: Cotis. sur les allocs chômage et préretraite
   last_value_still_valid_on: "1986-01-01"
-  label_en: SSCs of the local sickness scheme of Alsace-Moselle (1967-2016)
+  label_en: SSCs of the local sickness scheme of Alsace-Moselle
   ipp_csv_id: am_cho
   unit: /1
   reference:

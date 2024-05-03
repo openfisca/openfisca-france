@@ -1,4 +1,4 @@
-description: Barème salarié des cotisations du régime local d'assurance maladie d'Alsace et Moselle (depuis 1967)
+description: Barème salarié des cotisations du régime local d'assurance maladie d'Alsace et Moselle
 brackets:
 - threshold:
     1989-09-01:
@@ -43,7 +43,7 @@ brackets:
 metadata:
   short_label: Barème salarié
   last_value_still_valid_on: "2021-08-05"
-  label_en: SSCs of the local sickness scheme of Alsace-Moselle (1967-2016)
+  label_en: SSCs of the local sickness scheme of Alsace-Moselle
   ipp_csv_id:
     rate: am_s_0_1, am_s_0_
   reference:

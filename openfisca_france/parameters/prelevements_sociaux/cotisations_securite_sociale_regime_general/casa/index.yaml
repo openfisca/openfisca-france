@@ -1,8 +1,15 @@
 description: Contribution additionnelle solidarité autonomie (CASA) du régime général de la sécurité sociale (SS)
 metadata:
   short_label: Contribution additionnelle solidarité autonomie (CASA)
-  label_en: Social contributions
+  label_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
   order:
   - pensions_retraite_preretraite_invalidite
   - seuil_exoneration_irpp_paye_en_n_1
   - seuil_exoneration_rfr_1_part_qf_en_n_2
+documentation: |-
+  Sources :
+  JOFR, via le site http://www.legifrance.gouv.fr
+  Références du CGI :
+  Article L14-10-4 du Code de l'action sociale et des familles
+  Pour le seuil de recouvrement : art. 1657 Code général des impôts (1bis)
+  Pour le seuil d'exonération de Casa : art. L136-8 du Code de la sécurité sociale (2° du III)
