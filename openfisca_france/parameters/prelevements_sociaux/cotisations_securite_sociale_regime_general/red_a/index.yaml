@@ -8,3 +8,8 @@ metadata:
   - accidents_travail
   - allocations_familiales
   - assurances_sociales_avant_1967
+documentation: |-
+  L'arrêté du 31/01/1973 ne précise pas de date d'effet, impliquant une date d'effet à la date de publication du JO. On note le début du mois comme date d'effet pour prendre en compte les versements mensualisés de la paie.
+
+  Note générale :
+  Les artistes et musiciens du spectacle bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1960 et 1974. A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

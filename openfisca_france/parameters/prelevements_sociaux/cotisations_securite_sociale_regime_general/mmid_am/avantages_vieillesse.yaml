@@ -36,17 +36,10 @@ metadata:
     1994-01-01:
       title: Décret 93-1359 du 30/12/1993
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000881274
-    1995-01-01:
-      title: Décret 94-1152 du 27/12/1994
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000186097&categorieLien=id
-    1996-01-01:
-      title: Décision du régime local du 20/11/1995 (Avis publié au JO)
     1998-07-01:
       title: Décision du régime local du 20/10/1997 (Avis publié au JO)
     1999-07-01:
       title: Décision du régime local du 26/10/1998 (Avis publié au JO)
-    2000-07-01:
-      title: Décision du régime local du 27/03/2000 (Avis publié au JO)
     2003-01-01:
       title: Décision du régime local du 18/11/2002 (Avis publié au JO)
     2006-01-01:
@@ -59,12 +52,10 @@ metadata:
       title: Décision du régime local du 28/11/2011 (Avis publié au JO)
   official_journal_date:
     1946-07-01: "1946-06-14"
-    1986-01-11: "1986-01-04"
     1989-09-01: "1989-08-04"
     1994-01-01: "1993-12-31"
     1998-07-01: "1997-12-28"
     1999-07-01: "1998-12-20"
-    2000-07-01: "2000-06-24"
     2003-01-01: "2002-12-28"
     2006-01-01: "2006-01-08"
     2007-07-01: "2007-06-09"
@@ -73,12 +64,3 @@ metadata:
   notes:
     1946-07-01:
     - title: La date de début d'effet est supputée.
-    2000-07-01:
-    - title: Référence de l'avis absent sur légifrance mais disponible ici
-      href: http://admi.net/jo/2000/09573.html
-documentation: |-
-  Sources :
-  Historique des cotisations communiqué par le régime local; www.legifrance.gouv.fr.
-  Notes :
-  Il s'agit de cotisations supplémentaires qui s'ajoutent aux cotisations applicables dans le reste de la France.
-  Il existe aussi un régime local agricole (non reporté ici).

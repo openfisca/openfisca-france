@@ -6,3 +6,9 @@ metadata:
   - maladie_alsace_moselle
   - avantages_vieillesse
   - allocations_chomage_et_preretraite
+documentation: |-
+  Il s'agit de cotisations supplémentaires qui s'ajoutent aux cotisations applicables dans le reste de la France.
+  Il existe aussi un régime local agricole (non reporté ici).
+
+  Sources :
+  Historique des cotisations communiqué par le régime local; www.legifrance.gouv.fr.
