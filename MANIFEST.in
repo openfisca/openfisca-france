@@ -1,2 +1,0 @@
-recursive-include openfisca_france *
-prune openfisca_france/assets/taxe_habitation/source
