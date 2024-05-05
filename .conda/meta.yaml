@@ -1,10 +1,10 @@
 ###############################################################################
 ## File for Anaconda.org
-## It use Jinja2 templating code to retreive information from setup.py
+## It uses Jinja2 templating code to retrieve information from pyproject.toml
 ###############################################################################
 
 {% set name = "OpenFisca-France" %}
-{% set data = load_setup_py_data() %}
+{% set data = load_file_data('pyproject.toml') %}
 {% set version = data.get('version') %}
 
 package:
