@@ -1,5 +1,13 @@
 # Changelog
 
+# 166.0.1 [2287](https://github.com/openfisca/openfisca-france/pull/2287)
+
+* Changement mineur.
+* Périodes concernées : à partir du 2023-10-01.
+* Zones impactées : `prestations_sociales.aides_logement.allocations_logement.al_etudiant`.
+* Détails :
+  - Mise à jour des équivalences de loyer, en complément de #2208 A noter que les paramètres mis à jour ne sont pas utilisés dans le moteur de calcul, d'où l'absence de tests.
+
 # 166.0.0 [2295](https://github.com/openfisca/openfisca-france/pull/2095)
 
 * Changement mineur.
