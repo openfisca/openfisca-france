@@ -140,3 +140,48 @@
   output:
     asi: [200, 200]
 #Source: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+- name: Cas test de l'ASI après reval 2024 - Célibataire (8)
+  period: 2024-01
+  absolute_error_margin: 1
+  input:
+    age: 35
+    asi_aspa_base_ressources_individu: 500
+    asi_eligibilite: true
+  output:
+    asi: 360
+
+- name: Cas test de l'ASI après reval 2024 - Couple marié (9)
+  period: 2024-10
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      maries: true
+    individus:
+      parent1:
+        age: 35
+        asi_aspa_base_ressources_individu: 1000
+        asi_eligibilite: true
+        activite: retraite
+      parent2:
+        age: 35
+        asi_aspa_base_ressources_individu: 0
+        asi_eligibilite: true
+        activite: retraite
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    asi: [287.07, 287.07]
