@@ -30,6 +30,7 @@ Issues = "https://github.com/openfisca/openfisca-france/issues"
 Changelog = "https://github.com/openfisca/openfisca-france/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
+where = ["openfisca_france"]
 exclude = ["openfisca_france/assets/taxe_habitation/source"]
 
 [project.optional-dependencies]
