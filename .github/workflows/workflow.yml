@@ -16,14 +16,14 @@ jobs:
         openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
@@ -38,7 +38,7 @@ jobs:
             pip install $(python ${GITHUB_WORKSPACE}/.github/get_minimal_version.py)
       - name: Cache release
         id: restore-release
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
@@ -50,16 +50,16 @@ jobs:
         dependencies-version: [maximal]
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.9.9
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.dependencies-version }}
@@ -79,14 +79,14 @@ jobs:
         python-version: ["3.9.9", "3.10.6"]
         openfisca-dependencies: [minimal, maximal]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
@@ -98,9 +98,9 @@ jobs:
   test-path-length:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.9.9
       - name: Test max path length
@@ -119,14 +119,14 @@ jobs:
         openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.9.9
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.openfisca-dependencies }}
@@ -148,14 +148,14 @@ jobs:
         dependencies-version: [maximal]
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.9.9
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.dependencies-version }}
@@ -166,11 +166,11 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [ lint-files, test-python, test-yaml, test-api ] # Last job to run
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.9.9
       - name: Check version number has been properly updated
@@ -186,11 +186,11 @@ jobs:
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.9.9
       - id: stop-early
@@ -207,22 +207,22 @@ jobs:
       PYPI_USERNAME: __token__
       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.9.9
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.dependencies-version }}
       - name: Cache release
         id: restore-release
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.dependencies-version }}
@@ -244,7 +244,7 @@ jobs:
           # Add conda-forge for OpenFisca-Core
           channels: openfisca,conda-forge
           activate-environment: true
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Update meta.yaml
         run: |
           python3 -m pip install requests argparse
@@ -275,7 +275,7 @@ jobs:
           # Add conda-forge for OpenFisca-Core
           channels: openfisca,conda-forge
           activate-environment: true
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Test max path length
         run: "python3 openfisca_france/scripts/check_path_length.py"
       - name: Get version
@@ -306,7 +306,7 @@ jobs:
           channels: conda-forge
           activate-environment: true
       - name: Get source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Get version
         run: echo "PACKAGE_VERSION=$(python3 ./pyproject.toml --version)" >> $GITHUB_ENV
       # Get the last commit hash on the PR (-2 : before the merge commit)
