@@ -1,4 +1,4 @@
-description: Taux d'appel des cotisations aux régimes complémentaires de retraite après fusion de l'AGIRC et de l'ARRCO (secteur privé)
+description: Taux d'appel des cotisations aux régimes complémentaires de retraite du secteur privé après fusion de l'AGIRC et de l'ARRCO
 values:
   2019-01-01:
     value: 1.27
@@ -16,7 +16,3 @@ metadata:
   notes:
     2019-01-01:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
-documentation: |-
-  Notes :
-  Le taux de cotisation est égal au taux de calcul des points multiplié par le taux d'appel.
-  La répartition du taux de cotisation total entre la part salarié et la part employeur se fait le plus souvent selon la règle de répartition "40/60", mais il existe des dérogations.

@@ -1,4 +1,4 @@
-description: Taux d'appel des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
+description: Taux d'appel des cotisations au régimes complémentaire de retraite des non-cadres (ARRCO)
 values:
   1962-01-01:
     value: 1
@@ -28,8 +28,6 @@ metadata:
   label_en: Pension contributions for non-executives (ARRCO)
   unit: /1
   reference:
-    1982-01-01:
-      title: (pas de référence)
     1983-01-01:
       title: Lettre-circulaire ARRCO 82-28 du 09/07/82
     1987-01-01:
@@ -40,26 +38,6 @@ metadata:
       title: Accords ARRCO du 12/11/86 et du 01/12/89
     1992-01-01:
       title: Accords ARRCO du 12/11/86 et du 01/12/89
-    1996-01-01:
-      title: Accord ARRCO du 10/02/1993
-    1997-01-01:
-      title: Accords du 9/02/94 et du 25/04/1996
-    1998-01-01:
-      title: Accord ARRCO du 25/04/1996, art. 26
-    1999-01-01:
-      title: Accord ARRCO du 25/04/1996, art. 26
-    2000-01-01:
-      title: Accord ARRCO du 25/04/1996, art. 26
-    2002-01-01:
-      title: Accord ARRCO du 25/04/1996, art. 26
-    2004-01-01:
-      title: Accord ARRCO du 25/04/1996, art. 26
-    2005-01-01:
-      title: Accord ARRCO du 25/04/1996, art. 26
-    2014-01-01:
-      title: Accord AGIRC-ARRCO du 13/03/2013
-    2015-01-01:
-      title: Accord AGIRC-ARRCO du 13/03/2013
     2019-01-01:
       title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
   notes:

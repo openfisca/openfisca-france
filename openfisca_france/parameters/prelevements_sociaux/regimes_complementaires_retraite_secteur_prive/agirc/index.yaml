@@ -1,6 +1,6 @@
-description: Cotisations retraites des cades (AGIRC) aux régimes complémentaires de retraite (secteur privé) (1948-2018)
+description: Cotisations du régime complémentaire de retraite des cades (AGIRC)
 metadata:
-  short_label: Cotisations retraites des cades (AGIRC) (1948-2018)
+  short_label: Cotisations retraites des cades (AGIRC)
   label_en: Pension contributions for executives (AGIRC)
   order:
   - taux_appel
