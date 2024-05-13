@@ -1,6 +1,15 @@
 # Changelog
 
-# 166.0.2 [2288](https://github.com/openfisca/openfisca-france/pull/2288)
+### 166.0.3 [2295](https://github.com/openfisca/openfisca-france/pull/2295)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux`.
+* Détails :
+  - Description de la fonctionnalité ajoutée ou du nouveau comportement adopté.
+  - Cas dans lesquels une erreur était constatée.
+
+### 166.0.2 [2288](https://github.com/openfisca/openfisca-france/pull/2288)
 
 * Changement mineur.
 * Périodes concernées : aucune.
@@ -15,7 +24,7 @@
 * Détails :
   - Mise à jour des `last_value_still_valid_on` sur les paramètres de l'impôt sur le revenu après vérification de la validité de l'article en référence.
 
-# 166.0.1 [2287](https://github.com/openfisca/openfisca-france/pull/2287)
+### 166.0.1 [2287](https://github.com/openfisca/openfisca-france/pull/2287)
 
 * Changement mineur.
 * Périodes concernées : à partir du 2023-10-01.
