@@ -1,5 +1,20 @@
 # Changelog
 
+# 166.0.2 [2288](https://github.com/openfisca/openfisca-france/pull/2288)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    * /parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/inv2.yaml
+    * /parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/retrocession/plaf_retro_2011_1.yaml
+    * /parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/retrocession/plaf_retro_2011_2.yaml
+    * /parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/retrocession/taux_retro_1.yaml
+    * /parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/retrocession/taux_retro_2.yaml
+    * /parameters/impot_revenu/contributions_exceptionnelles/indemnite_compensatrice_agents_assurance.yaml
+    * /parameters/impot_revenu/credits_impots/gardenf/plafond.yaml
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres de l'impôt sur le revenu après vérification de la validité de l'article en référence.
+
 # 166.0.1 [2287](https://github.com/openfisca/openfisca-france/pull/2287)
 
 * Changement mineur.
