@@ -1,4 +1,4 @@
-description: Taux salarié plafonné de la cotisation de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV) (1967-2016)
+description: Taux salarié plafonné de la cotisation de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV)
 brackets:
 - threshold:
     1993-07-01:
@@ -41,7 +41,7 @@ brackets:
 metadata:
   short_label: Taux sous plafond
   last_value_still_valid_on: "2024-03-13"
-  label_en: SSCs for old-age benefits (1967-2016)
+  label_en: SSCs for old-age benefits
   ipp_csv_id:
     rate: cnav_s_0_1
   reference:

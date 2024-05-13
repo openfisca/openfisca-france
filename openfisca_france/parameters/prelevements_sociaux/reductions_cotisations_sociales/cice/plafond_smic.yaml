@@ -1,4 +1,4 @@
-description: Plafond (en nombre de Smic) du crédit d'impôt sur la compétitivité et l'emploi (CICE, 2013-2018) des cotisations de sécurité sociale (SS)
+description: Plafond (en nombre de Smic) du crédit d'impôt sur la compétitivité et l'emploi (CICE)
 values:
   2013-01-01:
     value: 2.5
@@ -23,9 +23,3 @@ metadata:
   notes:
     2019-01-01:
     - title: Abrogation et remplacement par un allègement de cotisations employeur
-documentation: |-
-  Note :
-  Formellement le CICE est une réduction de l'impôt sur les sociétés (IS) calculée en proportion des salaires versées par l'entreprise en dessous du plafond.
-  En pratique, ce dispositif fonctionne comme un allègement des cotisations patronales.
-  Références législatives :
-  Code général des impôts - Article 244 quater C - III

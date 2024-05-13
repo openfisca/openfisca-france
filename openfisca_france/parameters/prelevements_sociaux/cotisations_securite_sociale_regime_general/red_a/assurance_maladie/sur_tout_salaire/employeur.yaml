@@ -1,4 +1,4 @@
-description: Taux employeur des cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974) pour l'assurance maladie, sur tout salaire
+description: Taux employeur des cotisations de sécurité sociale (SS) des artistes du spectacle pour l'assurance maladie, sur tout salaire
 values:
   1960-01-01:
     value: null
@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Taux employeur
   last_value_still_valid_on: "1967-01-01"
-  label_en: SSCs for artists (1960-1974)
+  label_en: SSCs for artists
   ipp_csv_id: mmid_a_p_0_
   unit: /1
   reference:
@@ -18,8 +18,3 @@ metadata:
   official_journal_date:
     1960-01-01: "1960-02-09"
     1967-10-01: "1967-10-01"
-documentation: |-
-  Note générale :
-  Les artistes et musiciens du spectacle bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1960 et 1974. A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.
-  Notes :
-  L'arrêté du 31/01/1973 ne précise pas de date d'effet, impliquant une date d'effet à la date de publication du JO. On note le début du mois comme date d'effet pour prendre en compte les versements mensualisés de la paie.

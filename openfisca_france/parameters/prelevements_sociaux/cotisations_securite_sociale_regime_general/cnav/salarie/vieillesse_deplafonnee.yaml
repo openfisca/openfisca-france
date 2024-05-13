@@ -19,7 +19,7 @@ brackets:
 metadata:
   short_label: Taux sur tout salaire
   last_value_still_valid_on: "2024-03-13"
-  label_en: SSCs for old-age benefits (1967-2016)
+  label_en: SSCs for old-age benefits
   ipp_csv_id:
     rate: cnav_s_0_
   reference:

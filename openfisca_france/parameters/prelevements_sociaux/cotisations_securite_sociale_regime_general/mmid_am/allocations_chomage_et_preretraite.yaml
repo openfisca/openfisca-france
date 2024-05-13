@@ -1,4 +1,4 @@
-description: Cotisations sur les allocations chômage et préretraite du régime local d'assurance maladie d'Alsace et Moselle (depuis 1967)
+description: Cotisations sur les allocations chômage et préretraite du régime local d'assurance maladie d'Alsace et Moselle
 values:
   1946-07-01:
     value: null
@@ -21,7 +21,7 @@ values:
 metadata:
   short_label: Cotis. sur les allocs chômage et préretraite
   last_value_still_valid_on: "1986-01-01"
-  label_en: SSCs of the local sickness scheme of Alsace-Moselle (1967-2016)
+  label_en: SSCs of the local sickness scheme of Alsace-Moselle
   ipp_csv_id: am_cho
   unit: /1
   reference:
@@ -34,14 +34,14 @@ metadata:
       title: Décision du régime local du 20/10/1997 (Avis publié au JO)
     1999-07-01:
       title: Décision du régime local du 26/10/1998 (Avis publié au JO)
-    2000-07-01:
-      title: Décision du régime local du 27/03/2000 (Avis publié au JO)
     2003-01-01:
       title: Décision du régime local du 18/11/2002 (Avis publié au JO)
     2006-01-01:
       title: Décision du régime local du 19/12/2005 (Avis publié au JO)
     2007-07-01:
       title: Décision du régime local du 27/11/2007 (Avis publié au JO)
+    2008-01-01:
+      title: Décision du régime local du 16/04/2007 (Avis publié au JO)
     2012-01-01:
       title: Décision du régime local du 28/11/2011 (Avis publié au JO)
   official_journal_date:
@@ -57,12 +57,3 @@ metadata:
   notes:
     1946-07-01:
     - title: La date de début d'effet est supputée.
-    2000-07-01:
-    - title: Référence de l'avis absent sur légifrance mais disponible ici
-      href: http://admi.net/jo/2000/09573.html
-documentation: |-
-  Sources :
-  Historique des cotisations communiqué par le régime local; www.legifrance.gouv.fr.
-  Notes :
-  Il s'agit de cotisations supplémentaires qui s'ajoutent aux cotisations applicables dans le reste de la France.
-  Il existe aussi un régime local agricole (non reporté ici).

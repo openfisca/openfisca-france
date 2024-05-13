@@ -1,6 +1,6 @@
-description: Cotisations du régime d'assurance maladie
+description: Cotisations SS branche maladie, maternité, invalidité, décès (MMID) 
 metadata:
-  short_label: Cotisations Assurance Maladie
+  short_label: MMID
   label_en: SSCs of the sickness scheme
   order:
   - employeur
@@ -8,6 +8,13 @@ metadata:
   - tx_red
   - tx_normal
 documentation: |-
-  Le taux réduit sous 2,5 Smic est codé dans reductions_cotisations_sociales.alleg_gen.
-  Au lieu de calculer le taux réduit, on calcule la cotisation normale et on déduit cet allègement.
-  Les taux normaux et réduits ici sont issus de l'harmonisation avec l'IPP
+  (i) Parfois le taux de maladie est présenté en incluant le taux de CSA (notamment sur le site de l'URSSAFF). Ici nous distinguons les deux.
+  (ii) En 1981, le taux MMID a été changé en milieu de mois: le décret 81-1013 précise que la date d'application est la date de publication au JO, soit le 14/11/1981.
+  Le fait générateur des cotisations sociales étant le versement des rémunérations, le nouveau taux de cotisation s'applique aux rémunérations versées après l'entrée en vigueur tel que précisée par les textes (Mémento pratique Francis Lefebvre, Paie 2012)
+  En pratique, la plupart des salariés étant payés à la fin du mois, le nouveau taux a été appliqué à la majorité des rémunérations versées en novembre 1981; c'est pourquoi nous avons reporté le 1er novembre 1981 comme date d'effet.
+  Cependant, l'ancien taux a été appliqué à toute rémunération versée avant le 14 novembre 1981.
+  Les accomptes de paie, décalages de paie, rappels de salaire et indemnités de congés payés appellent des précisions quant à l'application de cette règle: voir Mémento pratique Francis Lefebvre, Paie 2012 (§28232 et 2825).
+  A partir de 2019, le taux réduit et le taux normal constitue bien des taux globaux d'imposition, et non des taux d'imposition par tranche, contrairement à précédemment.
+
+  Sources :
+  Barème social périodique, Législation Cnav et Légifrance.

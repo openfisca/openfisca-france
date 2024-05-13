@@ -1,4 +1,4 @@
-description: Taux employeur sous plafond de la cotisation de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV) (1967-2016)
+description: Taux employeur sous plafond de la cotisation de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV)
 brackets:
 - threshold:
     1967-10-01:
@@ -35,7 +35,7 @@ brackets:
 metadata:
   short_label: Taux sous plafond
   last_value_still_valid_on: "2024-03-14"
-  label_en: SSCs for old-age benefits (1967-2016)
+  label_en: SSCs for old-age benefits
   ipp_csv_id:
     rate: cnav_p_0_1
   reference:
