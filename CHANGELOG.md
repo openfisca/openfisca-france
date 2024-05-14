@@ -1,5 +1,18 @@
 # Changelog
 
+### 166.0.4 [2294](https://github.com/openfisca/openfisca-france/pull/2294)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+  - /parameters/impot_revenu/calcul_impot_revenu/...
+  - /parameters/impot_revenu/calcul_reductions_impots/...
+  - /parameters/impot_revenu/calcul_revenus_imposables/rpns/micro/microentreprise/regime_micro_ba/taux.yaml
+  - /parameters/impot_revenu/contributions_exceptionnelles/contribution_revenus_locatifs/seuil.yaml
+  - /parameters/impot_revenu/credits_impots/...
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres de l'impôt sur le revenu après vérification de la validité de l'article en référence.
+
 ### 166.0.3 [2295](https://github.com/openfisca/openfisca-france/pull/2295)
 
 * Changement mineur.
