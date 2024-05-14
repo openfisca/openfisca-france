@@ -6,7 +6,7 @@ values:
     value: 50000
 metadata:
   short_label: Plafond
-  last_value_still_valid_on: "2022-05-16"
+  last_value_still_valid_on: "2024-04-26"
   label_en: Tax reductions for investment and donations
   ipp_csv_id: plaf_taux_imp_ifi
   unit: currency

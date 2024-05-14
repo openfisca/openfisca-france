@@ -1,5 +1,20 @@
 # Changelog
 
+### 166.0.5 [2291](https://github.com/openfisca/openfisca-france/pull/2291)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/decote/borne_inferieure_decote.yaml
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/plafond_somme_reduction_pme_fcip_fip_pme.yaml
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/plafond_somme_trois_reductions_pme_fcip_fip_pme_dons.yaml
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/reduction_investissements_capital_pme/plafond_investissement_dans_pme.yaml
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/reduction_investissements_capital_pme/taux_investissement_direct.yaml
+    * /parameters/taxation_capital/prelevements_sociaux/csg/taux_deductible/produits_de_placement.yaml
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres de la taxation du capital après vérification de la validité de l'article en référence.
+
 ### 166.0.4 [2294](https://github.com/openfisca/openfisca-france/pull/2294)
 
 * Changement mineur.
