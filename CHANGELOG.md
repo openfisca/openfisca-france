@@ -1,5 +1,17 @@
 # Changelog
 
+### 166.0.6 [2293](https://github.com/openfisca/openfisca-france/pull/2293)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    * /parameters/taxation_indirecte/taxes_tabacs/taxes_specifiques/montants_apres_2015/autres_tabacs_a_chauffer.yaml
+    * /parameters/taxation_indirecte/taxes_tabacs/taxes_specifiques/montants_apres_2015/tabac_rouler.yaml
+    * /parameters/taxation_indirecte/taxes_tabacs/taxes_specifiques/montants_apres_2015/tabacs_batonnets.yaml
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur certains paramètres de la taxation indirecte après vérification de la validité de l'article en référence.
+
 ### 166.0.5 [2291](https://github.com/openfisca/openfisca-france/pull/2291)
 
 * Changement mineur.
