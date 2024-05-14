@@ -3,7 +3,7 @@ values:
   2013-01-01:
     value: 300000
 metadata:
-  last_value_still_valid_on: "2024-03-18"
+  last_value_still_valid_on: "2024-04-26"
   short_label: Plafond
   unit: currency_next_year
   reference:

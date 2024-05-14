@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Taux
   label_en: Union dues
-  last_value_still_valid_on: "2024-03-15"
+  last_value_still_valid_on: "2024-04-26"
   ipp_csv_id: tx_cotsynd
   unit: /1
   reference:

@@ -5,6 +5,7 @@ values:
   2002-04-01:
     value: 1830
 metadata:
+  last_value_still_valid_on: "2024-04-26"
   short_label: Seuil
   unit: currency_next_year
   reference:

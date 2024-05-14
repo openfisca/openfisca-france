@@ -9,7 +9,7 @@ values:
 metadata:
   unit: /1
   short_label: Taux additionnel
-  last_value_still_valid_on: "2024-03-19"
+  last_value_still_valid_on: "2024-04-26"
   reference:
     2009-01-01:
     - title: Loi 2010-1657 du 29/12/2010 - art. 105 (V) (modifie art. 199 septvicies du CGI)
