@@ -365,7 +365,6 @@ def compute_allegement_general(individu, period, parameters):
     if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
         seuil = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
         tx_max = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
-    
     # Du 2005-07-01 au 2019-12-31
     elif date(2005, 7, 1) <= period.start.date <= date(2019, 12, 31):
         seuil = allegement_general.ensemble_des_entreprises.plafond
@@ -376,7 +375,6 @@ def compute_allegement_general(individu, period, parameters):
             + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
             * petite_entreprise
             )
-        
     # Après le 2019-12-31
     else:
         seuil = allegement_general.ensemble_des_entreprises.plafond
