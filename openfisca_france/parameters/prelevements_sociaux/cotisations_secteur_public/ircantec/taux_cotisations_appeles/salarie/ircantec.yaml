@@ -129,23 +129,3 @@ metadata:
     2017-01-01: "2008-09-24"
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  L'IRCANTEC est le régime de retraite complémentaire des non-titulaires de la fonction publique.
-  Les non-titulaires versent leurs cotisations pour leurs avantages de retraite de base au régime général (CNAV).
-  L'IRCANTEC remplace deux institutions de retraite complémentaire: IPACTE et l'IGRANTE. Références législatives relatives à ces deux régimes :
-  IPACTE:
-  Décret 51-1445 du 12/12/1951
-  IGRANTE:
-  Décret 59-1569 du 31/12/1959
-  Article 2 (2° et 3°), articles 7, 8, 9 et 10 du décret du 12/12/1951 ;
-  Article 2 (2° et 3°) du décret du 9/06/1955 ;
-  Articles 2, 3, 4 et 5 du décret du 31/12/1959.
-  Le Décret 2008-996 modifie l'article 7 du Décret 70-1277 du 23/12/1970portant création d'un régime de retraites complémentaire des assurances sociales en faveur des agents non titulaires de l'Etat et des collectivités publiques.
-
-  Assiette :
-  Tranche A: sous 1 PSS
-  Tranche B: entre 1 et 4,75 PSS jusqu'en 1991 ; entre 1 et 8 PSS à partir de 1992 (Décret 91-1375 du 30/12/1991, JO 31/12/1991)
-
-  Les taux de cotisation appelés sont utilisés pour le calcul des cotisations. Les taux de cotisation théoriques sont utilisés pour le calcul des points.
-  Les taux de cotisation appelés se calculent en appliquant le taux d'appel aux taux de cotisation théoriques.
