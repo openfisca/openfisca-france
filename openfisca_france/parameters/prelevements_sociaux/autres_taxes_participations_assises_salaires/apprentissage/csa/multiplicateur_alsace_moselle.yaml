@@ -1,7 +1,7 @@
 description: Multiplicateur CSA Alsace-Moselle
 values:
   2012-01-01:
-    value: .520
+    value: 0.52
 metadata:
   last_value_still_valid_on: "2024-05-16"
   unit: /1
