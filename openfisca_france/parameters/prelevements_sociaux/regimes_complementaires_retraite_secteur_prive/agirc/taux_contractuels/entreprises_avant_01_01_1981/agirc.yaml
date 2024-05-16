@@ -122,12 +122,3 @@ metadata:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  Les taux contractuels définissent les points de retraite acquis par les cotisations. Les taux d'appel appliqués aux taux contractuels définissent les taux effectifs.
-  BSP 1988: "Cotisation obligatoire sur la tranche C depuis le 01/01/88 pour les entreprises affiliées à CCSBTP, IRCASUP et IRICASE (taux contractuel) ; au 01/01/91 pour toutes les entreprises".
-  Clause spéciale pour les entreprises créées entre le 01/01/81 et le 31/12/83 : taux minimum de 12 % appelé à 110 % (4,40 % salarié, 8,80 % employeur) à l'expiration des deux années civiles suivant la création .
-  Pour les entreprises créées depuis le 01/01/84, le taux minimum est fixé à 12 %, appelé à 110 % (4,40 % salarié, 8,80 % employeur).
-  Les employeurs peuvent choisir de cotiser au-delà du taux minimum, dans la limite d'un taux plafond.
-  Sources :
-  Barème social périodique; Guide Agirc envoyé par le centre de document de l'Agirc.

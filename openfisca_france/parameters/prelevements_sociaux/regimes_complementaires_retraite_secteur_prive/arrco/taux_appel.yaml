@@ -41,18 +41,5 @@ metadata:
     2019-01-01:
       title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
   notes:
-    1982-01-01:
-    - title: "BSP : \"Le plus souvent, répartition employeur/salarié = 60/40 comme à l'UNIRS\""
     2019-01-01:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
-documentation: |-
-  Notes :
-  Tranche 1: Sous PSS
-  Tranche 2: Entre 1 et 3 PSS.
-  Taux contractuels: taux qui servent à calculer les points de retraite des salariés.
-  Taux d'appel: taux appliqué au taux contractuels pour obtenir le taux effectif de cotisation.
-  Champ :
-  Tous les salariés (cadres et non-cadres) cotisent à l'Arrco sur la tranche 1, mais seuls les non-cadres cotisent sur la tranche 2.
-  Sources :
-  Document faxé par l'ARRCO "Paramètres de fonctionnement pratique depuis la création de l'Arrco au titre des opérations obligatoires (1962-1999)"
-  Site web de l'Arrco depuis 1999.
