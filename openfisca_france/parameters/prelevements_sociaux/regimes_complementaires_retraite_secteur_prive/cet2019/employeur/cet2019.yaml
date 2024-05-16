@@ -27,6 +27,3 @@ metadata:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  Les taux de cotisation CET s'appliquent à l'ensemble du salaire, mais uniquement pour les salariés dont la rémunération est supérieure à T1 (1 PSS).

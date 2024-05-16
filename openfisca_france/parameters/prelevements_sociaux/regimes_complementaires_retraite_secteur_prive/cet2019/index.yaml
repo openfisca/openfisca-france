@@ -5,3 +5,4 @@ metadata:
   order:
   - salarie
   - employeur
+documentation: Les taux de cotisation CET s'appliquent à l'ensemble du salaire, mais uniquement pour les salariés dont la rémunération est supérieure à T1 (1 PSS)
