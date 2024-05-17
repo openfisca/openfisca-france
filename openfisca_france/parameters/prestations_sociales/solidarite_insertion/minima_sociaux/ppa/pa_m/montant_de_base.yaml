@@ -24,7 +24,7 @@ values:
     value: 622.63
 metadata:
   short_label: Montant de base
-  last_value_still_valid_on: "2023-05-09"
+  last_value_still_valid_on: "2024-05-17"
   label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
   ipp_csv_id: pa_montant_base
   unit: currency

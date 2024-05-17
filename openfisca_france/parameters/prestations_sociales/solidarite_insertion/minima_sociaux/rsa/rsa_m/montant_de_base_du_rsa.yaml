@@ -46,7 +46,7 @@ values:
     value: 635.71
 metadata:
   short_label: RSA socle
-  last_value_still_valid_on: "2023-05-09"
+  last_value_still_valid_on: "2024-05-17"
   label_en: "Active solidarity income (RSA): Basic amount"
   ipp_csv_id: brsa
   unit: currency
