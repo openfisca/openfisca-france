@@ -1,6 +1,6 @@
 # Changelog
 
-### 166.0.7 [2301](https://github.com/openfisca/openfisca-france/pull/2301)
+### 166.0.8 [2301](https://github.com/openfisca/openfisca-france/pull/2301)
 
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -9,6 +9,17 @@
   - Élimination de doublons dans les documentations
   - Retrait d'intervalle de dates
   - Correction des labels
+
+### 166.0.7 [2289](https://github.com/openfisca/openfisca-france/pull/2289)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    * /parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/*
+    * /parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/reduction.yaml
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres de l'impôt sur le revenu après vérification de la validité de l'article en référence.
 
 ### 166.0.6 [2293](https://github.com/openfisca/openfisca-france/pull/2293)
 
