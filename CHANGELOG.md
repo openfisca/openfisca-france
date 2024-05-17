@@ -1,5 +1,15 @@
 # Changelog
 
+### 166.0.8 [2301](https://github.com/openfisca/openfisca-france/pull/2301)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux`.
+* Détails :
+  - Élimination de doublons dans les documentations
+  - Retrait d'intervalle de dates
+  - Correction des labels
+
 ### 166.0.7 [2289](https://github.com/openfisca/openfisca-france/pull/2289)
 
 * Changement mineur.
