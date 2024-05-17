@@ -1,4 +1,4 @@
-description: L'élu exerce plusieurs mandats
+description: L'élu local exerce plusieurs mandats
 values:
   2017-01-01:
     value: 11475
@@ -6,6 +6,10 @@ values:
     value: 11844
   2019-01-01:
     value: 11901.6
+  2022-01-01:
+    value: 12109.86
+  2023-01-01:
+    value: 12410.46
 metadata:
   ipp_csv_id: abattement_elu_pluriels
   unit: currency_next_year
@@ -36,3 +40,7 @@ metadata:
     - title: Introduction d'un abattement spécifique pour les élus locaux de communes de moins de 3500 habitants, quel que soit le nombre de mandats de l'élu. Cet abattement correspond à 125 % de l'indemnité versée aux maires des communes de moins de 1000 habitants. Il est applicable aux élus n'ayant pas bénéficié du remboursement des frais de transport et de séjour prévu à l'article L. 2123-18-1 du code général des collectivités territoriales.
     2019-01-01:
     - title: Changement de la définition des abattements. Pour les mandats uniques, il est de 17 % du montant du traitement correspondant à l'indice brut terminal de l'échelle indiciaire de la fonction publique. Pour les mandats multiples, il est de 1,5 fois celui pour mandat unique. Pour les élus locaux de communes de moins de 3500 habitants, quel que soit le nombre de mandats, il est de 38,75 % du montant du traitement correspondant à l'indice brut terminal de l'échelle indiciaire de la fonction publique.
+    2022-01-01:
+    - title: Le montant varie avec le traitement correspondant à l'indice brut terminal de l'échelle indiciaire de la fonction publique.
+    2023-01-01:
+    - title: Le montant varie avec le traitement correspondant à l'indice brut terminal de l'échelle indiciaire de la fonction publique.
