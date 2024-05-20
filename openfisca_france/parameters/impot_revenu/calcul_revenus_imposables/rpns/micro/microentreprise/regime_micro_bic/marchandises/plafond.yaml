@@ -26,7 +26,7 @@ values:
     value: 188700
 metadata:
   short_label: Plafond
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-05-20"
   ipp_csv_id: limit_micro
   unit: currency_next_year
   reference:
