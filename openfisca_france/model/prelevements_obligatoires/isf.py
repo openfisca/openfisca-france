@@ -832,14 +832,14 @@ class ric(Variable):
             )
 
         cond = (mbic_impv > 0) & (mbic_imps == 0)
-        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
+        taux = micro.microentreprise.regime_micro_bic.marchandises.taux * cond + micro.microentreprise.regime_micro_bic.services.taux * not_(cond)
 
         cbic = min_(
             mbic_impv + mbic_imps + mbic_exon,
             max_(
                 micro.microentreprise.montant_minimum,
                 round_(
-                    mbic_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux + mbic_imps * micro.microentreprise.regime_micro_bnc.services.taux + mbic_exon * taux
+                    mbic_impv * micro.microentreprise.regime_micro_bic.marchandises.taux + mbic_imps * micro.microentreprise.regime_micro_bic.services.taux + mbic_exon * taux
                     )
                 )
             )
@@ -883,11 +883,11 @@ class rac(Variable):
 
     # TODO: aacc_imps aacc_defs
         cond = (macc_impv > 0) & (macc_imps == 0)
-        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
+        taux = micro.microentreprise.regime_micro_bic.marchandises.taux * cond + micro.microentreprise.regime_micro_bic.services.taux * not_(cond)
 
         cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.microentreprise.montant_minimum, round_(
-            macc_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux
-            + macc_imps * micro.microentreprise.regime_micro_bnc.services.taux + macc_exon * taux
+            macc_impv * micro.microentreprise.regime_micro_bic.marchandises.taux
+            + macc_imps * micro.microentreprise.regime_micro_bic.services.taux + macc_exon * taux
             + mncn_impo * micro.microentreprise.regime_micro_bnc.taux)))
 
         return zacc - cacc
