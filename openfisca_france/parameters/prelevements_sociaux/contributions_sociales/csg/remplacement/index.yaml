@@ -1,6 +1,6 @@
 description: Contribution sociale généralisée (CSG) sur les revenus de remplacement
 metadata:
-  short_label: Revenus de remplacement
+  short_label: CSG sur les revenus de remplacement
   label_en: CSG - rates on replacement incomes
   order:
   - allocations_chomage
