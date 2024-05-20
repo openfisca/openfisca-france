@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+9#! /usr/bin/env python
 
 from setuptools import setup, find_namespace_packages
 from pathlib import Path
@@ -9,7 +9,7 @@ long_description = (this_directory / 'README.md').read_text()
 
 setup(
     name = 'OpenFisca-France',
-    version = '166.0.8',
+    version = '166.0.9',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
