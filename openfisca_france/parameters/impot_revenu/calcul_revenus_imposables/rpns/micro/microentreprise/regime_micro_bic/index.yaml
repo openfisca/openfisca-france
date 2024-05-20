@@ -1,8 +1,7 @@
-description: Abattement pour le Régime spécial micro BNC
+description: Abattement pour le Régime spécial micro BIC
 metadata:
-  short_label: Micro BNC
+  short_label: Micro BIC
   order:
   - marchandises
   - services
-  - taux
-documentation: "BNC : bénéfices non commerciaux. Si soumis à la TVA voir art. 293-B du CGI"
+documentation: "BIC : bénéfices industriels et commerciaux."

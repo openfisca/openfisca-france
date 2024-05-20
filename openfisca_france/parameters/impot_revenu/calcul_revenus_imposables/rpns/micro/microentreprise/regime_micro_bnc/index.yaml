@@ -1,0 +1,6 @@
+description: Abattement pour le Régime spécial micro BNC
+metadata:
+  short_label: Micro BNC
+  order:
+  - taux
+documentation: "BNC : bénéfices non commerciaux."
