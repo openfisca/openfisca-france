@@ -1,4 +1,4 @@
-9#! /usr/bin/env python
+#! /usr/bin/env python
 
 from setuptools import setup, find_namespace_packages
 from pathlib import Path
