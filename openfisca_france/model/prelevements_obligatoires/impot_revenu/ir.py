@@ -2857,7 +2857,7 @@ class defncn(Variable):
         cncn_bene_i = foyer_fiscal.members('cncn_bene', period)
         cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
-        specialbnc = micro.microentreprise.regime_micro_bnc
+        specialbnc = micro.microentreprise.regime_micro_bic
 
         def abat_rpns(rev, P):
             return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
@@ -2881,7 +2881,7 @@ class defncn(Variable):
         mncn_pvct_i = foyer_fiscal.members('mncn_pvct', period)
         cncn_aimp_i = foyer_fiscal.members('cncn_aimp', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
-        specialbnc = micro.microentreprise.regime_micro_bnc
+        specialbnc = micro.microentreprise.regime_micro_bic
 
         def abat_rpns(rev, P):
             return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
