@@ -1,5 +1,5 @@
 - period: 2024-01
-  name: Salarié du privé non cadre au Smic (allegement général au max)
+  name: Salarié du privé non cadre au Smic
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1766.92
@@ -22,8 +22,8 @@
     cotisations_employeur_main_d_oeuvre: -23.79
     cotisations_employeur: -(3.53 + 83.4 + 71.56 + 22.79 + 35.69 + 151.07 +15.9 + 5.3 + 60.95 + 123.68 + 23.79) #-597.67
     salaire_super_brut_hors_allegements: 1766.92 + 597.67
-    allegement_general: 573.54
-    salaire_super_brut: 1766.92 + 597.67 - 573.54
+    allegement_general: 564.35
+    salaire_super_brut: 1766.92 + 597.67 - 564.35
     agirc_arrco_salarie: -55.66
     contribution_equilibre_general_salarie: -15.2
     contribution_equilibre_technique_salarie: 0
