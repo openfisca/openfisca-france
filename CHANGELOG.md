@@ -1,5 +1,21 @@
 # Changelog
 
+### 166.0.10 [2290](https://github.com/openfisca/openfisca-france/pull/2290)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    - /parameters/prestations_sociales/prestations_familiales/prestations_generales/af/*
+    - /parameters/prestations_sociales/solidarite_insertion/autre_solidarite/aefa/*
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/accident_travail/rente/taux/taux_minimum.yaml
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/css/*
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/*
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/*
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/*
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres des prestations sociales après vérification de la validité de l'article en référence.
+
 ### 166.0.9 [2305](https://github.com/openfisca/openfisca-france/pull/2305)
 
 * Changement mineur.
