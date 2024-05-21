@@ -1,8 +1,9 @@
-description: Revenu minimum imposable (en multiple du smic annuel brut) de la contribution sociale généralisée (CSG) sur les allocations chômage
+description: Montant imposable d'allocations chômage (en multiple du smic annuel net) en deçà duquel un chômeur est exonéré de la contribution sociale généralisée (CSG)
 values:
   2002-01-01:
     value: 1
 metadata:
-  short_label: Revenu minimum imposable
+  short_label: Montant imposable d'allocations chômage maximal exonéré
   last_value_still_valid_on: "2002-01-01"
-  unit: smic_annuel
+  unit: smic
+documentation: Le demandeur d’emploi est exonéré des contributions sociales en totalité ou partiellement si celles-ci diminuent le montant net de son allocation à un montant inférieur au SMIC journalier.

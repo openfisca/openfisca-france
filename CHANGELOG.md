@@ -1,5 +1,13 @@
 # Changelog
 
+### 166.0.9 [2305](https://github.com/openfisca/openfisca-france/pull/2305)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/csg`.
+* Détails :
+  - Élimine des doublons de documentation
+
 ### 166.0.8 [2301](https://github.com/openfisca/openfisca-france/pull/2301)
 
 * Changement mineur.
