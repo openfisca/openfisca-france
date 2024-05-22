@@ -1,5 +1,13 @@
 # Changelog
 
+### 166.0.11 [2304](https://github.com/openfisca/openfisca-france/pull/2304)
+
+* Changement mineur. Évolution du système socio-fiscal.
+* Périodes concernées : jusqu'au 01/01/2000
+* Zones impactées : `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial`.
+* Détails :
+  - Met des dates de début des cas d'augmentation du quotient familial antérieure à 2000 quand pertinent
+
 ### 166.0.10 [2290](https://github.com/openfisca/openfisca-france/pull/2290)
 
 * Changement mineur.
