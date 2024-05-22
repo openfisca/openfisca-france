@@ -55,8 +55,8 @@
     cotisations_employeur_main_d_oeuvre: -30.93
     cotisations_employeur: -(4.59 + 108.42 + 93.03 + 29.63 + 46.4 + 196.39 + 20.67 + 6.89 + 79.24 + 160.78 + 30.93) # -776.98
     salaire_super_brut_hors_allegements: 2297 + 776.98
-    allegement_general: 282.07
-    salaire_super_brut: 2297 + 776.98 - 282.07
+    allegement_general: 282.30
+    salaire_super_brut: 2297 + 776.98 - 282.30
     agirc_arrco_salarie: -72.36
     contribution_equilibre_general_salarie: -19.76
     contribution_equilibre_technique_salarie: 0
