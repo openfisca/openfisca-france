@@ -3,9 +3,9 @@ values:
   2009-01-01:
     value: 300000
 metadata:
-  ipp_csv_id: plafond_Scellier
   short_label: Plafond
   last_value_still_valid_on: "2024-03-19"
+  ipp_csv_id: plafond_Scellier
   unit: currency
   reference:
     2009-01-01:
