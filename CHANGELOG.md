@@ -1,5 +1,16 @@
 # Changelog
 
+### 166.1.0 [2293](https://github.com/openfisca/openfisca-france/pull/2302)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2020.
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_50_salaries_et_plus.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_moins_de_50_salaries.yaml`
+* Détails :
+  - Avec la loi PACTE, le seuil de l'effectif d'entreprise à prendre en compte pour le calcul de l'allègement est passé de 20 à 50 à partir du 1er janvier 2020 (cf. cotisation FNAL)
+
 ### 166.0.11 [2304](https://github.com/openfisca/openfisca-france/pull/2304)
 
 * Changement mineur. Évolution du système socio-fiscal.
