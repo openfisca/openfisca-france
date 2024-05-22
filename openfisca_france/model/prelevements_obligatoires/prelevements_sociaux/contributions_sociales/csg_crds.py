@@ -10,7 +10,7 @@ class csg(Variable):
     label = 'Contribution sociale généralisée'
     definition_period = YEAR
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         csg_salaire = individu('csg_salaire', period, options = [ADD])
         csg_chomage = individu('csg_chomage', period, options = [ADD])
         csg_retraite = individu('csg_retraite', period, options = [ADD])
@@ -40,7 +40,7 @@ class csg_salaire(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         return (
             individu('csg_deductible_salaire', period)
             + individu('csg_imposable_salaire', period)
@@ -53,7 +53,7 @@ class csg_non_salarie(Variable):
     label = 'CSG non salarie'
     definition_period = YEAR
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         return (
             individu('csg_deductible_non_salarie', period)
             + individu('csg_imposable_non_salarie', period)
@@ -68,7 +68,7 @@ class csg_retraite(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         return (
             individu('csg_imposable_retraite', period)
             + individu('csg_deductible_retraite', period)
