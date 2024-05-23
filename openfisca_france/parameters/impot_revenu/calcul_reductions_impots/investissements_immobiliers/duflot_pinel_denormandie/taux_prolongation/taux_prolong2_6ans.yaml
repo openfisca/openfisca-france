@@ -3,8 +3,8 @@ values:
   2023-01-01:
     value: 0.03
 metadata:
-  last_value_still_valid_on: "2024-04-26"
   short_label: Seconde période triennale pour un engagement initial de 6 ans
+  last_value_still_valid_on: "2024-04-26"
   unit: /1
   reference:
     2023-01-01:

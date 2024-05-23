@@ -4,8 +4,8 @@ values:
     value: 0.01
 metadata:
   short_label: Plafond
-  label_en: Union dues
   last_value_still_valid_on: "2024-04-26"
+  label_en: Union dues
   ipp_csv_id: plafcotsynd
   unit: /1
   reference:
@@ -16,4 +16,4 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030949107
   notes:
     2012-01-01:
-      - title: à partir de l'imposition des revenus de 2012 la réduction d'impôt devient un crédit d'impôt
+    - title: à partir de l'imposition des revenus de 2012 la réduction d'impôt devient un crédit d'impôt

@@ -5,9 +5,9 @@ values:
   2013-01-01:
     value: null
 metadata:
-  ipp_csv_id: duree_scellier_initial
   short_label: Durée de répartition de la réduction
   last_value_still_valid_on: "2024-03-19"
+  ipp_csv_id: duree_scellier_initial
   reference:
     2009-01-01:
       title: Loi n° 2008-1443 du 30 décembre 2008 (LF rectificative pour 2008), art. 31

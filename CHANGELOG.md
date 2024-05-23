@@ -1,10 +1,18 @@
 # Changelog
 
-### 166.1.0 [2293](https://github.com/openfisca/openfisca-france/pull/2302)
+### 166.1.1 [2307](https://github.com/openfisca/openfisca-france/pull/2307)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Réordonne certains champs des metadata par synchronisation avec les barèmes IPP
+
+## 166.1.0 [2293](https://github.com/openfisca/openfisca-france/pull/2302)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2020.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_50_salaries_et_plus.yaml`
   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_moins_de_50_salaries.yaml`
