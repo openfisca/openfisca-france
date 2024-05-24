@@ -2,12 +2,6 @@ description: Taux employeur sous plafond de la cotisation de sécurité sociale 
 brackets:
 - threshold:
     1967-10-01:
-      value: 1
-  rate:
-    1967-10-01:
-      value: 0
-- threshold:
-    1967-10-01:
       value: 0
   rate:
     1967-10-01:
@@ -32,6 +26,12 @@ brackets:
       value: 0.085
     2016-01-01:
       value: 0.0855
+- threshold:
+    1967-10-01:
+      value: 1
+  rate:
+    1967-10-01:
+      value: 0
 metadata:
   short_label: Taux sous plafond
   last_value_still_valid_on: "2024-03-14"

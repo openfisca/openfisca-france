@@ -1,5 +1,15 @@
 # Changelog
 
+### 166.1.2 [2309](https://github.com/openfisca/openfisca-france/pull/2309)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `parameters`.
+* Détails :
+  - Tri des tranches des barèmes par seuil croissant
+  - Correction de l'indentation dans une metadata
+  - Homogénéïsation des units avec les barèmes IPP et le simulateur LexImpact
+
 ### 166.1.1 [2307](https://github.com/openfisca/openfisca-france/pull/2307)
 
 * Changement mineur.
