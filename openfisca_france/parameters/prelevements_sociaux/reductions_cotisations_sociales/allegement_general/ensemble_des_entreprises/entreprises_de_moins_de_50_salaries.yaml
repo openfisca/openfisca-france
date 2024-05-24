@@ -48,10 +48,10 @@ metadata:
     2023-01-01: "2022-12-30"
     2024-01-01: "2023-12-30"
   notes:
-  2020-01-01:
-  - title: "Avant le 1er janvier 2020, l'article D241-7 du Code de la Sécurité Sociale faisait référence à l'article L834-1 du Code de la Sécurité Sociale pour le seuil relatif à l'effectif de l'entreprise. 
-  Depuis 2020, il est fait référence à l'article L813-5 du Code de la construction et de l'habitation, le seuil passant ainsi de 20 à 50 salariés.
-  Entre le 2 janvier 2020 et le 24 février 2020, l'article D241-7 du Code de la Sécurité Sociale faisait référence à l'article L813-4 du Code de la construction et de l'habitation mais cela semble être une erreur (Décret n° 2020-2 du 02/02/2020, article 2) corrigée par le Décret n° 2020-158 du 24/02/2020, article 2."
+    2020-01-01:
+    - title: "Avant le 1er janvier 2020, l'article D241-7 du Code de la Sécurité Sociale faisait référence à l'article L834-1 du Code de la Sécurité Sociale pour le seuil relatif à l'effectif de l'entreprise. 
+    Depuis 2020, il est fait référence à l'article L813-5 du Code de la construction et de l'habitation, le seuil passant ainsi de 20 à 50 salariés.
+    Entre le 2 janvier 2020 et le 24 février 2020, l'article D241-7 du Code de la Sécurité Sociale faisait référence à l'article L813-4 du Code de la construction et de l'habitation mais cela semble être une erreur (Décret n° 2020-2 du 02/02/2020, article 2) corrigée par le Décret n° 2020-158 du 24/02/2020, article 2."
 
 documentation: |-
   Notes :
