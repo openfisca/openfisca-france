@@ -1,49 +1,49 @@
-description: Catégorie 1 / Autres régions - Plafonds de ressources annuelles applicables aux logements financés avec le prêt locatif à usage social (PLUS)
+description: Catégorie 5 / Autres régions - Plafonds de ressources annuelles applicables aux logements financés avec le prêt locatif à usage social (PLUS)
 values:
   1987-08-19:
-    value: 61698
+    value: 117060
   1999-08-25:
-    value: 78124
+    value: 178171
   2002-01-01:
-    value: 12946
+    value: 29525
   2008-01-01:
-    value: 20477
+    value: 46701
   2009-06-01:
-    value: 18955
+    value: 43231
   2010-01-01:
-    value: 19016
+    value: 43369
   2011-01-01:
-    value: 19225
+    value: 43846
   2012-01-01:
-    value: 19417
+    value: 44284
   2013-01-01:
-    value: 19834
+    value: 45236
   2014-01-01:
-    value: 20013
+    value: 45643
   2015-01-01:
-    value: 20107
+    value: 45858
   2016-01-01:
-    value: 20111
+    value: 45867
   2017-01-01:
-    value: 20123
+    value: 45895
   2018-01-01:
-    value: 46408
+    value: 25470
   2019-01-01:
-    value: 47035
+    value: 25870
   2020-01-01:
     value: 47599
   2020-01-02:
-    value: 20870
+    value: 47599
   2021-01-01:
-    value: 47818
+    value: 26300
   2022-01-01:
     value: 48214
   2023-01-01:
-    value: 21878
+    value: 49898
   2024-01-01:
     value: 22642
 metadata:
-  last_value_still_valid_on: "2024-05-21"
+  last_value_still_valid_on: "2024-05-24"
   unit: currency
   reference:
     1987-08-19:
