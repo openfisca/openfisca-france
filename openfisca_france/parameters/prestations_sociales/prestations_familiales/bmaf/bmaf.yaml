@@ -182,6 +182,8 @@ values:
     value: 439.17
   2023-04-01:
     value: 445.93
+  2024-04-01:
+    value: 466.44
 metadata:
   last_value_still_valid_on: "2023-05-04"
   label_en: Monthly basis for the computation of family allowances (BMAF)
@@ -439,6 +441,9 @@ metadata:
     2023-04-01:
       title: Instruction interministérielle DSS/2B/2023/41 du 24 mars 2023
       href: https://sante.gouv.fr/fichiers/bo/2023/2023.6.sante.pdf
+    2024-04-01:
+      title: Instruction interministérielle n° DSS/2B/2024/43 du 20 mars 2024 (p. 84)
+      href: https://sante.gouv.fr/fichiers/bo/2024/2024.6.sante.pdf
   official_journal_date:
     1946-07-01: "1946-08-23"
     1947-02-01: "1947-04-06"
