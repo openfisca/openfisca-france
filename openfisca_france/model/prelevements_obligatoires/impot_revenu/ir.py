@@ -2867,7 +2867,7 @@ class defncn(Variable):
         cncn_aimp = foyer_fiscal.sum(cncn_aimp_i)
         return min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
-            abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
+            abat_rpns(mncn_impo, specialbnc) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
             )  # TODO check !
 
     def formula_2023_01_01(foyer_fiscal, period, parameters):
@@ -2890,7 +2890,7 @@ class defncn(Variable):
         cncn_aimp = foyer_fiscal.sum(cncn_aimp_i)
         return min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
-            abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp
+            abat_rpns(mncn_impo, specialbnc) + mncn_pvct + cncn_aimp
             )  # TODO check !
 
 
@@ -3439,10 +3439,10 @@ class rpns_imposables(Variable):
         macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
         # # D revenus non commerciaux professionnels
         # regime déclaratif special ou micro-bnc
-        mbnc_timp = abat_rpns(mbnc_impo, micro.microentreprise.regime_micro_bnc.services)
+        mbnc_timp = abat_rpns(mbnc_impo, micro.microentreprise.regime_micro_bnc)
         # # E revenus non commerciaux non professionnels
         # regime déclaratif special ou micro-bnc
-        mncn_timp = abat_rpns(mncn_impo, micro.microentreprise.regime_micro_bnc.services)
+        mncn_timp = abat_rpns(mncn_impo, micro.microentreprise.regime_micro_bnc)
         macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
