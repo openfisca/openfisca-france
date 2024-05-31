@@ -1,5 +1,13 @@
 # Changelog
 
+### 166.1.3 [2303](https://github.com/openfisca/openfisca-france/pull/2303)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2024.
+* Zones impactées : `parameters/prestations_sociales`.
+* Détails :
+  - Revalorisation de prestations sociales : prime d'activité, rsa, aah, ass, aer, ata, cmu
+
 ### 166.1.2 [2309](https://github.com/openfisca/openfisca-france/pull/2309)
 
 * Changement mineur.
