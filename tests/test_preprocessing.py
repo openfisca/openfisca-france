@@ -62,7 +62,7 @@ cotisations_salarie_by_name = {
         'start_non_null_date': '1971-01-01',
         },
     'maladie_alsace_moselle': {
-        'start_non_null_date': '1989-09-01',
+        'start_non_null_date': '1946-07-01',
         },
     'maladie': {
         'start_non_null_date': '1967-10-01',
