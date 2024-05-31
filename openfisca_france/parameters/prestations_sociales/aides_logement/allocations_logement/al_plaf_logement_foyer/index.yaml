@@ -1,5 +1,7 @@
-description: Plafonds d'équivalence de loyer et de charges locatives pour les personnes résidant dans un logement-foyer, Allocations logement (AL)
+description: Plafonds d'équivalence de loyer et de charges locatives pour les personnes résidant dans un logement-foyer
 metadata:
   short_label: Plafonds d'équivalence de loyer
   order:
   - conventionne
+  - crous
+  - personne_agee

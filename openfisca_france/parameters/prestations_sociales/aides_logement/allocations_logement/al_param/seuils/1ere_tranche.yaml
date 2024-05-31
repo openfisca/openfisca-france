@@ -1,4 +1,9 @@
+description: Seuils (1ère tranche), Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
 values:
+  1972-07-01:
+    value: 2500
+  1978-07-01:
+    value: 3675
   1986-01-01:
     value: 6675
   1986-07-01:
@@ -33,7 +38,10 @@ values:
     value: 1138.42
   2007-07-01:
     value: 1423.03
+  2021-07-24:
+    value: null
 metadata:
+  short_label: 1ère tranche
+  label_en: Parameters for new home-buyers and students residences
+  ipp_csv_id: seuil_tr1_lo
   unit: currency
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/

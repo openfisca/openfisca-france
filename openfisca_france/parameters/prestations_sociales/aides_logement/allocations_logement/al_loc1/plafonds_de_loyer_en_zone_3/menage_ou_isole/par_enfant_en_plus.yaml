@@ -1,4 +1,4 @@
-description: Ménage ou isolé, par enfant en plus - Plafonds de loyer en zone 3 (avant la réforme de 2001) des Allocations logement (AL)
+description: Part par enfant supplémentaire des plafonds de loyer des allocations logement (AL) pour un ménages ou une personnes isolée avec enfants en zone 3 (avant la réforme de 2001)
 values:
   1994-07-01:
     value: 167
@@ -17,32 +17,3 @@ metadata:
   label_en: Parameters for the rental sector (before the 2001 reform)
   ipp_csv_id: plaf_loy_enfsupp_z3_acc
   unit: currency
-  reference:
-    1994-07-01:
-      title: Arrêté du 14/11/1994, art. 1 et 3
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000164986&categorieLien=id
-    1997-07-01:
-      title: Arrêté du 10/09/1997, art. 1 et 3
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000552987&categorieLien=id
-    1998-07-01:
-      title: Arrêté du 11/09/1998, art. 1 et 3
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000557595&categorieLien=id
-    1999-07-01:
-      title: Arrêté du 28/06/1999, art. 1 et 3
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000760915&categorieLien=id
-    2000-07-01:
-      title: Arrêté du 01/08/2000, art. 1
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000401552&categorieLien=id
-    2001-01-01:
-      title: Décret 2000-1269 du 26/12/2000
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000578227&categorieLien=id
-  official_journal_date:
-    1994-07-01: "1994-11-16"
-    1997-07-01: "1997-09-11"
-    1998-07-01: "1998-09-13"
-    1999-07-01: "1999-06-29"
-    2000-07-01: "2000-08-05"
-    2001-01-01: "2000-12-28"
-  notes:
-    2001-01-01:
-    - title: Réforme de 2001 qui change le calcul de l'ALF pour les locataires
