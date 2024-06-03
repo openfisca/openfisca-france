@@ -3,8 +3,6 @@ brackets:
 - threshold:
     1967-10-01:
       value: 0
-    1984-01-01:
-      value: null
   rate:
     1967-10-01:
       value: 0.095
@@ -19,12 +17,20 @@ brackets:
     1981-11-01:
       value: 0.0545
     1984-01-01:
-      value: null
+      value: 0.126
+    1992-01-01:
+      value: 0.128
+    2016-01-01:
+      value: 0.1284
+    2017-01-01:
+      value: 0.1289
+    2018-01-01:
+      value: 0.13
 - threshold:
     1967-10-01:
       value: 1
     1984-01-01:
-      value: 0
+      value: null
   rate:
     1967-10-01:
       value: 0.02
@@ -35,15 +41,7 @@ brackets:
     1981-11-01:
       value: 0.08
     1984-01-01:
-      value: 0.126
-    1992-01-01:
-      value: 0.128
-    2016-01-01:
-      value: 0.1284
-    2017-01-01:
-      value: 0.1289
-    2018-01-01:
-      value: 0.13
+      value: null
 metadata:
   short_label: Barème employeur
   last_value_still_valid_on: "2024-03-14"

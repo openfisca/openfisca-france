@@ -62,16 +62,4 @@ metadata:
     - title: Le taux AGFF se substitute à l'ASF.
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  La tranche A correspond au salaire en-dessous du PSS et tranche B le salaire de 1 à 4 plafonds.
-  (i) L'Association pour la gestion de la structure financière (ASF) a eu pour mission:
-  - le financement des garanties de ressources
-  - le financement de l'abaissement de l'âge de la retraite des régimes compl. AGIRC - ARCCO
-  => 1,8 - 2 points de cotisation assurance chômage
-  La cotisation ASF était perçu par l'UNEDIC et était souvent incluse dans la cotisation chômage sur les fiches de paie (avant 2001).
-  (ii) L'Association pour la Gestion du Fonds de Financement de l'AGIRC et de l'ARRCO (AGFF) remplace depuis le 1er avril 2001, l'Association pour la structure Financière (ASF).
-  La collecte de la cotisation afférente a été transférée aux régimes de retraite complémentaire AGIRC-ARRCO.
-  (Voir feuille
-  "AGFF")
-  (iii) La tranche A correspond au salaire en-dessous du PSS et tranche B le salaire de 1 à 4 plafonds.
+
