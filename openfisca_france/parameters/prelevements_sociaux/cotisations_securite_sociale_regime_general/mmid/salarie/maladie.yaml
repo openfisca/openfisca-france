@@ -3,7 +3,7 @@ brackets:
 - threshold:
     1967-10-01:
       value: 0
-    1980-01-01:
+    2018-01-01:
       value: null
   rate:
     1967-10-01:
@@ -12,24 +12,6 @@ brackets:
       value: 0.03
     1979-01-01:
       value: 0.01
-    1980-01-01:
-      value: null
-- threshold:
-    1967-10-01:
-      value: 1
-    1980-01-01:
-      value: 0
-    2018-01-01:
-      value: null
-  rate:
-    1967-10-01:
-      value: 0.01
-    1976-01-01:
-      value: 0.015
-    1979-01-01:
-      value: 0.035
-    1979-08-01:
-      value: 0.045
     1980-01-01:
       value: 0.055
     1987-07-01:
@@ -41,6 +23,22 @@ brackets:
     1998-01-01:
       value: 0.0075
     2018-01-01:
+      value: null
+- threshold:
+    1967-10-01:
+      value: 1
+    1980-01-01:
+      value: null
+  rate:
+    1967-10-01:
+      value: 0.01
+    1976-01-01:
+      value: 0.015
+    1979-01-01:
+      value: 0.035
+    1979-08-01:
+      value: 0.045
+    1980-01-01:
       value: null
 metadata:
   short_label: Barème salarié
