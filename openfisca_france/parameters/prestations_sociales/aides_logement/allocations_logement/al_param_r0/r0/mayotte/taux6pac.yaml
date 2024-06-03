@@ -2,6 +2,8 @@ description: Abattement forfaitaire « R0 » à Mayotte pour une personne seule 
 values:
   2021-01-01:
     value: 9139
+  2021-12-31:
+    value: null
 metadata:
   short_label: Personne seule ou couple ayant six personnes à charge ou plus
   label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
@@ -14,6 +16,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000043044380/2021-01-01
     - title: Article D823-17 du Code de la construction et de l'habitation
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419255
+    2021-12-31:
+      title: Arrêté du 20 décembre 2021 - Art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044572819
   notes:
     2021-01-01:
     - title: La loi indique ce montant pour "six personnes à charge OU PLUS"
