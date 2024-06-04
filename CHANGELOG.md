@@ -1,5 +1,16 @@
 # Changelog
 
+### 166.1.4 [2297](https://github.com/openfisca/openfisca-france/pull/2297)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+  - `parameters.prestations_sociales.aides_logement.allocations_logement`
+  - `parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah.age_legal_retraite`
+  - `prestations_sociales.solidarite_insertion.autre_solidarite.covid19.indemnite_ap.planch`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour.
+
 ### 166.1.3 [2303](https://github.com/openfisca/openfisca-france/pull/2303)
 
 * Évolution du système socio-fiscal.
