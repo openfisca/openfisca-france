@@ -1,5 +1,13 @@
 # Changelog
 
+### 166.1.4 [2308](https://github.com/openfisca/openfisca-france/pull/2308)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `prestations_sociales.aides_logement.logement_social.plu.*`
+* Détails :
+  - Mise à jour des valeurs historiques et actuelles des aides au logement social de type PLUS.
+
 ### 166.1.4 [2297](https://github.com/openfisca/openfisca-france/pull/2297)
 
 * Changement mineur.
