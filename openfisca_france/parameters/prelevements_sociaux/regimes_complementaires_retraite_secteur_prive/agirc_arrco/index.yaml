@@ -8,3 +8,6 @@ metadata:
   - tx_total
   - employeur
   - salarie
+documentation: |-
+  Le taux de cotisation est égal au taux de calcul des points multiplié par le taux d'appel.
+  La répartition du taux de cotisation total entre la part salarié et la part employeur se fait le plus souvent selon la règle de répartition "40/60", mais il existe des dérogations.
