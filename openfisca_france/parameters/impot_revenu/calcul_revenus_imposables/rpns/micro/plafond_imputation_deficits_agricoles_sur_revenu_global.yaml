@@ -47,7 +47,7 @@ values:
   2022-01-01:
     value: 119675
   2023-01-01:
-    value: 125149
+    value: 125416
 metadata:
   short_label: Plafond (déficits agricoles)
   ipp_csv_id: plaf_defba
@@ -131,8 +131,8 @@ metadata:
     - title: Article 156 du CGI
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622626
     2023-01-01:
-    - title: Référence non encore publiée au 25/04/2024 (valeur prise dans la brochure pratique de l'IR, et issue de la règle de revalorisation inscrite dans l'art. 156 du CGI)
-      href: A venir
+      title: Décret n° 2024-496 du 30/05/2024, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
   official_journal_date:
     1979-01-01: "1980-01-19"
     1988-01-01: "1988-12-28"
@@ -157,7 +157,7 @@ metadata:
     2020-01-01: "2021-06-11"
     2021-01-01: "2022-05-06"
     2022-01-01: "2023-06-02"
-    2023-01-01: "A venir"
+    2023-01-01: "2024-06-01"
   notes:
     1994-01-01:
     - title: Cf. article 156 du Code Général des Impôt pour le plafonnement du déficit foncier global
