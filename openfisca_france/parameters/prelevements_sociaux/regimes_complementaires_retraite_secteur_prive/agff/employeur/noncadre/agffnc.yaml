@@ -40,9 +40,3 @@ metadata:
     - title: Suppression de l'AGFF avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  (i) L'Association pour la Gestion du Fonds de Financement de l'AGIRC et de l'ARRCO (AGFF) remplace depuis le 1er avril 2001, l'Association pour la structure Financière (ASF).
-  (voir feuille "ASF")
-  L'ASF était perçue par les ASSEDIC quand l'AGFF est perçue par les régimes complémentaires AGIRC-ARRCO.
-  Le dispositif est reconduit jusqu'à 2018.
