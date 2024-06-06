@@ -35,9 +35,9 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  short_label: Cadre
+  short_label: Barème
   last_value_still_valid_on: "2021-07-30"
-  label_en: Contributions to the financial structure AGFF (2001-2016)
+  label_en: Contributions to the financial structure AGFF
   ipp_csv_id:
     rate: agff_s_0_1, agff_s_1_4
   reference:
