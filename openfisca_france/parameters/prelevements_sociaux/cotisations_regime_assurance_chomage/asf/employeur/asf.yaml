@@ -15,7 +15,7 @@ brackets:
     2001-04-01:
       value: null
 - threshold:
-    1984-04-01:
+    1984-01-01:
       value: 1
     2001-04-01:
       value: null
@@ -39,7 +39,7 @@ brackets:
     2001-04-01:
       value: null
 metadata:
-  short_label: Barème employeur
+  short_label: Barème
   last_value_still_valid_on: "2021-12-07"
   label_en: Contributions to the financial structure ASF
   ipp_csv_id:
@@ -62,4 +62,3 @@ metadata:
     - title: Le taux AGFF se substitute à l'ASF.
   rate_unit: /1
   threshold_unit: PSS
-

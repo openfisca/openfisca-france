@@ -3,6 +3,8 @@ brackets:
 - threshold:
     1984-01-01:
       value: 0
+    2001-04-01:
+      value: null
   rate:
     1984-01-01:
       value: 0.008
@@ -11,25 +13,33 @@ brackets:
     1994-01-01:
       value: 0.008
     2001-04-01:
-      value: 0
+      value: null
 - threshold:
-    1984-04-01:
+    1984-01-01:
       value: 1
+    2001-04-01:
+      value: null
   rate:
+    1984-01-01:
+      value: 0
     1984-04-01:
       value: 0.008
     1994-01-01:
       value: 0.0089
     2001-04-01:
-      value: 0
+      value: null
 - threshold:
     1984-04-01:
       value: 4
+    2001-04-01:
+      value: null
   rate:
     1984-04-01:
       value: 0
+    2001-04-01:
+      value: null
 metadata:
-  short_label: Barème salarié
+  short_label: Barème
   label_en: Contributions to the financial structure ASF
   ipp_csv_id:
     rate: asf_s_0_1, asf_s_1_4
@@ -55,4 +65,3 @@ metadata:
     - title: Le taux AGFF se substitute à l'ASF.
   rate_unit: /1
   threshold_unit: PSS
-
