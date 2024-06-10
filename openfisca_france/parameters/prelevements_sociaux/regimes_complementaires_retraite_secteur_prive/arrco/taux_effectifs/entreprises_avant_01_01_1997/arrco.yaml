@@ -88,6 +88,16 @@ brackets:
       value: 0.2025
     2019-01-01:
       value: null
+- threshold:
+    1962-01-01:
+      value: 3
+    2019-01-01:
+      value: null
+  rate:
+    1962-01-01:
+      value: 0
+    2019-01-01:
+      value: null
 metadata:
   short_label: Tranches 1 et 2
   last_value_still_valid_on: "2021-07-30"
