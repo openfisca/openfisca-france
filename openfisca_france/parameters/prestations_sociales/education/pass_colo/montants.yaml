@@ -30,6 +30,12 @@ brackets:
   amount:
     2024-01-01:
       value: 200
+- threshold:
+    2024-01-01:
+      value: 1501
+  amount:
+    2024-01-01:
+      value: 0
 metadata:
   short_label: Montant
   reference:
