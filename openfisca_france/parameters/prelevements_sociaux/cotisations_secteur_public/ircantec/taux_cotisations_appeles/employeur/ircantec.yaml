@@ -35,7 +35,15 @@ brackets:
       value: 1
   rate:
     1971-01-01:
-      value: null
+      value: 0.0495
+    1983-01-01:
+      value: 0.066
+    1988-01-01:
+      value: 0.0825
+    1989-01-01:
+      value: 0.100716
+    1991-04-01:
+      value: 0.11087999999999999
     1992-01-01:
       value: 0.11549999999999999
     2011-01-01:
@@ -54,19 +62,11 @@ brackets:
       value: 0.1255
 - threshold:
     1971-01-01:
+      value: 4.75
+    1992-01-01:
       value: 8
   rate:
     1971-01-01:
-      value: 0.0495
-    1983-01-01:
-      value: 0.066
-    1988-01-01:
-      value: 0.0825
-    1989-01-01:
-      value: 0.100716
-    1991-04-01:
-      value: 0.11087999999999999
-    1992-01-01:
       value: 0
 metadata:
   short_label: Contribution employeur
