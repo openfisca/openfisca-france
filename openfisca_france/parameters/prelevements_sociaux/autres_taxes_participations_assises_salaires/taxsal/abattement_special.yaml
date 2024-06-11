@@ -35,6 +35,7 @@ values:
   2024-01-01:
     value: 23616
 metadata:
+  last_value_still_valid_on: "2024-06-11"
   unit: currency
   reference:
     2018-01-01:

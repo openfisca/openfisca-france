@@ -92,7 +92,7 @@ values:
     value: 27670
 metadata:
   short_label: Plafond de la 2e tranche
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-06-11"
   label_en: Tax allowance for net taxable income
   ipp_csv_id: plaf_pers_age2
   unit: currency_next_year

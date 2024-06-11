@@ -78,7 +78,7 @@ values:
     value: 3968
 metadata:
   short_label: Plafond
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-06-11"
   ipp_csv_id: plaf_frais
   unit: currency_next_year
   reference:

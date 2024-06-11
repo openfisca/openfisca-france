@@ -50,6 +50,7 @@ values:
     value: 125416
 metadata:
   short_label: Plafond (déficits agricoles)
+  last_value_still_valid_on: "2024-06-11"
   ipp_csv_id: plaf_defba
   unit: currency_next_year
   reference:

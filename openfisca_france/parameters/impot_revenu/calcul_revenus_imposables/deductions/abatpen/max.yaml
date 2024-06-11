@@ -94,7 +94,7 @@ values:
     value: 4321
 metadata:
   short_label: Maximum
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-06-11"
   ipp_csv_id: max_abtpen
   unit: currency_next_year
   reference:
