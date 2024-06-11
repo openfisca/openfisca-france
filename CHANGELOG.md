@@ -1,6 +1,6 @@
 # Changelog
 
-## 166.2.0 [2286](https://github.com/openfisca/openfisca-france/pull/2286)
+# 167.0.0 [2286](https://github.com/openfisca/openfisca-france/pull/2286)
 
 * Évolution du système socio-fiscal et corrections.
 * Périodes concernées : toutes.
