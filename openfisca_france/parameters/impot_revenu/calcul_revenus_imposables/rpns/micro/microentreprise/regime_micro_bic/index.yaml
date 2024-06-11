@@ -1,0 +1,7 @@
+description: Abattement pour le Régime spécial micro BIC
+metadata:
+  short_label: Micro BIC
+  order:
+  - marchandises
+  - services
+documentation: "BIC : bénéfices industriels et commerciaux."

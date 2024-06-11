@@ -1,5 +1,18 @@
 # Changelog
 
+# 167.0.0 [2286](https://github.com/openfisca/openfisca-france/pull/2286)
+
+* Évolution du système socio-fiscal et corrections.
+* Périodes concernées : toutes.
+* Détails :
+  - Actualise des paramètres monétaires existants (n'ai regardé ni les paramètres non monétaires, ni s'il y avait de nouveaux paramètres créés). Critère d'investigation d'un fichier :
+     - (1) le paramètre est existant (ne regarde pas si nouveaux paramètres)
+     - (2) il est monétaire
+     - (3) sa dernière valeur n'est pas `null`
+     - (4) sa dernière valeur est à une date antérieure à `2023-01-01`.
+  - Champ des fichiers checkés : `parameters/impot_revenu/calcul_impot_revenu` (tout était bon), `parameters/impot_revenu/calcul_revenus_imposables` (cette partie n'était pas actualisée) ; taxes sur le salaire et les boissons et limite de réduction d'impôt pour don. qui étaient mis à jour dans le décret correspondant aux paramètres précédents.
+  - Redéfinit et réagence certains paramètres et corrige certaines erreurs des dates passées (sans pour autant faire une vérification systématique de l'historique), au sein de ceux remplissant les critères susmentionnés.
+
 ### 166.1.5 [2308](https://github.com/openfisca/openfisca-france/pull/2308)
 
 * Changement mineur.
