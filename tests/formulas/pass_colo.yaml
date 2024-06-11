@@ -134,7 +134,7 @@
       enfant2:
         date_naissance: 2010-03-10
   output:
-    pass_colo: 200
+    pass_colo: 0
 
 - name: Non eligibilité Pour famille dont aucun enfant né en 2013
   period: 2024-01
