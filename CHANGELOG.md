@@ -1,5 +1,13 @@
 # Changelog
 
+# 167.0.1 [2312](https://github.com/openfisca/openfisca-france/pull/2312)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux`.
+* Détails :
+  - Nettoyage des labels (dates, majuscules, description)
+
 # 167.0.0 [2286](https://github.com/openfisca/openfisca-france/pull/2286)
 
 * Évolution du système socio-fiscal et corrections.
