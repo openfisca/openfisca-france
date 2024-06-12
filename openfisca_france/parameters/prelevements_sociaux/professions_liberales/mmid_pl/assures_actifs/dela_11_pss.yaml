@@ -16,4 +16,4 @@ metadata:
     2018-01-01:
     - title: Progressivité du taux de cotisation
 documentation: |-
- A partir de 2018, en-dessous de 110 % du PSS, le taux de cotisation est calculé comme suit : taux = [(6,5% - 1,5%)/ (1,1 PSS)] × revenu + 1,5%
+  A partir de 2018, en-dessous de 110 % du PSS, le taux de cotisation est calculé comme suit : taux = [(6,5% - 1,5%)/ (1,1 PSS)] × revenu + 1,5%
