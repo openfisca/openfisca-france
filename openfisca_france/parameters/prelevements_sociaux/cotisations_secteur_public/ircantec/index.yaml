@@ -6,6 +6,7 @@ metadata:
   order:
   - taux_cotisations_appeles
   - taux_cotisations_theoriques
+  - taux_appel
 documentation: |-
   L'IRCANTEC est le régime de retraite complémentaire des non-titulaires de la fonction publique.
   Les non-titulaires versent leurs cotisations pour leurs avantages de retraite de base au régime général (CNAV).

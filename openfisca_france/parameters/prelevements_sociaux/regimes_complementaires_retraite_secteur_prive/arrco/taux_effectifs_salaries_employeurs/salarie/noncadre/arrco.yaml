@@ -1,4 +1,4 @@
-description: Barème salarié non-cadre des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
+description: Barème salarié non-cadre des cotisations au régime complémentaire de retraite des non-cadres (ARRCO) du secteur privé
 brackets:
 - threshold:
     1962-01-01:
@@ -103,7 +103,7 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  short_label: Non-cadre - Tranches 1 et 2(avant 97)
+  short_label: Non-cadre - Tranches 1 et 2 (avant 97)
   last_value_still_valid_on: "2021-07-30"
   label_en: Pension contributions for non-executives (ARRCO)
   ipp_csv_id:

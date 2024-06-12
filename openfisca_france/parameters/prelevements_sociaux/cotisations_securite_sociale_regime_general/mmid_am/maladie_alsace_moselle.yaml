@@ -1,7 +1,7 @@
 description: Barème salarié des cotisations du régime local d'assurance maladie d'Alsace et Moselle
 brackets:
 - threshold:
-    1989-09-01:
+    1946-07-01:
       value: 0
   rate:
     1946-07-01:
@@ -10,12 +10,6 @@ brackets:
       value: 0.01
     1967-10-01:
       value: 0.015
-- threshold:
-    1989-09-01:
-      value: 1
-  rate:
-    1946-07-01:
-      value: null
     1986-01-11:
       value: 0.015
     1989-09-01:
@@ -40,6 +34,16 @@ brackets:
       value: 0.016
     2012-01-01:
       value: 0.015
+- threshold:
+    1946-07-01:
+      value: 1
+    1986-01-11:
+      value: null
+  rate:
+    1946-07-01:
+      value: 0
+    1986-01-11:
+      value: null
 metadata:
   short_label: Barème salarié
   last_value_still_valid_on: "2021-08-05"

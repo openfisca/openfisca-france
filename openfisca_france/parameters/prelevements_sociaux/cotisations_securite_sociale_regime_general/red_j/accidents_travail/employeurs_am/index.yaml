@@ -1,0 +1,7 @@
+description: Taux employeur sous le plafond de la sécurité sociale (PSS) de cotisations de sécurité sociale (SS) pour les accidents du travail des journalistes pigistes en Alsace-Moselle
+metadata:
+  short_label: Employeur AM
+  label_en: SSCs for freelance journalists
+  order:
+  - presse_quotidienne
+  - presse_periodique

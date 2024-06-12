@@ -35,9 +35,9 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  short_label: Cadre
+  short_label: Barème
   last_value_still_valid_on: "2021-07-30"
-  label_en: Contributions to the financial structure AGFF (2001-2016)
+  label_en: Contributions to the financial structure AGFF
   ipp_csv_id:
     rate: agff_s_0_1, agff_s_1_4
   reference:
@@ -54,11 +54,3 @@ metadata:
     - title: Suppression de l'AGFF avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  (i) L'Association pour la Gestion du Fonds de Financement de l'AGIRC et de l'ARRCO (AGFF) remplace depuis le 1er avril 2001, l'Association pour la structure Financière (ASF).
-  (voir feuille "ASF")
-  L'ASF était perçue par les ASSEDIC quand l'AGFF est perçue par les régimes complémentaires AGIRC-ARRCO.
-  Le dispositif est reconduit jusqu'à 2018.
-  (ii) La tranche 2 est située entre 1 et 3 fois le PSS et s'applique pour les non cadres; la tranche B, entre 1 et 4 fois le plafond, s'applique pour les cadres.
-  La tranche 1 (pour les non-cadres) et la tranche A (pour les cadres) correspond au salaire en dessous d'un PSS

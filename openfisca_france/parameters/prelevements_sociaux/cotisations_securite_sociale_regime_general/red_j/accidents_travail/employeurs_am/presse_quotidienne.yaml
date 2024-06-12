@@ -1,7 +1,5 @@
-description: Taux employeur (pour la presse quotidienne, en Alsace-Moselle) de cotisations de sécurité sociale (SS) des journalistes pigistes (1964-1974) pour les accidents du travail, sous le plafond de la sécurité sociale (PSS)
+description: Taux employeur sous le plafond de la sécurité sociale (PSS) de cotisations de sécurité sociale (SS) pour les accidents du travail des journalistes pigistes de la presse quotidienne en Alsace-Moselle
 values:
-  1964-01-01:
-    value: null
   1973-03-01:
     value: 0.0192
   1974-01-01:
@@ -9,7 +7,7 @@ values:
 metadata:
   short_label: Presse quotidienne
   last_value_still_valid_on: "1974-01-01"
-  label_en: SSCs for freelance journalists (1964-1974)
+  label_en: SSCs for freelance journalists
   ipp_csv_id: acc_pq_am_p_0_1
   unit: /1
   reference:

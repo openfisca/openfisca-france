@@ -1088,7 +1088,7 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    # TODO: coplete this function
+    # TODO: complete this function
     def formula(individu, period, parameters):
         period = period
         avantage_en_nature_valeur_reelle = individu('avantage_en_nature_valeur_reelle', period)
