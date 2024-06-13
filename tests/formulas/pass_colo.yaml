@@ -1,0 +1,157 @@
+- name: Famille éligible avec un enfant né en 2013
+  period: 2024-01
+  input:
+    foyer_fiscal:
+      rfr:
+        2022:
+          1
+      nbptr:
+        2022:
+          1
+    menage:
+      enfants: [ enfant1 ]
+    individus:
+      enfant1:
+        date_naissance: 2013-03-10
+  output:
+    pass_colo: 350
+
+- name: Famille éligible avec le quotien familial de 1000€
+  period: 2024-01
+  input:
+    foyer_fiscal:
+      rfr:
+        2022:
+          1000
+      nbptr:
+        2022:
+          1
+    menage:
+      enfants: [ enfant1, enfant2 ]
+    individus:
+      enfant1:
+        date_naissance: 2013-02-11
+      enfant2:
+        date_naissance: 2010-03-10
+  output:
+    pass_colo: 250
+
+- name: Famille éligible avec le quotien familial < 200
+  period: 2024-01
+  input:
+    foyer_fiscal:
+      rfr:
+        2022:
+          300
+      nbptr:
+        2022:
+          2
+    menage:
+      enfants: [ enfant1, enfant2 ]
+    individus:
+      enfant1:
+        date_naissance: 2013-02-11
+      enfant2:
+        date_naissance: 2010-03-10
+  output:
+    pass_colo: 350
+
+- name: Famille éligible avec le quotien familial entre 201 et 700
+  period: 2024-01
+  input:
+    foyer_fiscal:
+      rfr:
+        2022:
+          1000
+      nbptr:
+        2022:
+          2
+    menage:
+      enfants: [ enfant1, enfant2 ]
+    individus:
+      enfant1:
+        date_naissance: 2013-02-11
+      enfant2:
+        date_naissance: 2010-03-10
+  output:
+    pass_colo: 300
+
+- name: Famille éligible avec le quotien familial entre 701 et 1200
+  period: 2024-01
+  input:
+    foyer_fiscal:
+      rfr:
+        2022:
+          2000
+      nbptr:
+        2022:
+          2
+    menage:
+      enfants: [ enfant1, enfant2 ]
+    individus:
+      enfant1:
+        date_naissance: 2013-02-11
+      enfant2:
+        date_naissance: 2010-03-10
+  output:
+    pass_colo: 250
+
+- name: Famille éligible avec le quotien familial entre 1201 et 1500
+  period: 2024-01
+  input:
+    foyer_fiscal:
+      rfr:
+        2022:
+          2500
+      nbptr:
+        2022:
+          2
+    menage:
+      enfants: [ enfant1, enfant2 ]
+    individus:
+      enfant1:
+        date_naissance: 2013-02-11
+      enfant2:
+        date_naissance: 2010-03-10
+  output:
+    pass_colo: 200
+
+- name: Famille non éligible car le quotien familial > 1500
+  period: 2024-01
+  input:
+    foyer_fiscal:
+      rfr:
+        2022:
+          4000
+      nbptr:
+        2022:
+          2
+    menage:
+      enfants: [ enfant1, enfant2 ]
+    individus:
+      enfant1:
+        date_naissance: 2013-02-11
+      enfant2:
+        date_naissance: 2010-03-10
+  output:
+    pass_colo: 0
+
+- name: Non eligibilité Pour famille dont aucun enfant né en 2013
+  period: 2024-01
+  input:
+    foyer_fiscal:
+      rfr:
+        2022:
+          1
+      nbptr:
+        2022:
+          1
+    menage:
+      enfants: [ enfant1, enfant2 ]
+    individus:
+      enfant1:
+        date_naissance: 2007-02-11
+      enfant2:
+        date_naissance: 2010-03-10
+  output:
+    pass_colo: 0

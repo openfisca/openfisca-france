@@ -1,6 +1,14 @@
 # Changelog
 
-# 167.0.1 [2312](https://github.com/openfisca/openfisca-france/pull/2312)
+# 167.0.2 [2299](https://github.com/openfisca/openfisca-france/pull/2299)
+
+* Changement mineur.
+* Périodes concernées : à partir du 2024-01-01.
+* Zones impactées : `prestations_sociales.education.pass_colo`.
+* Détails :
+    - Ajout de l'aide pass colo à destination des enfants né(e) en 2013 souhaitant aller en colonie de vacances
+
+### 167.0.1 [2312](https://github.com/openfisca/openfisca-france/pull/2312)
 
 * Changement mineur.
 * Périodes concernées : toutes.
