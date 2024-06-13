@@ -3,9 +3,9 @@ metadata:
   short_label: Cotisations retraite
   label_en: Contributions for pensions - central government
   order:
-  - taux_implicite
-  - ati
   - pension
+  - ati
+  - taux_implicite
 documentation: |-
   Ce tableau reporte les taux de la contribution de l'Etat sur les traitements de ses agents civils et militaires destinée au financement de leurs pensions de retraite de base, ainsi que les allocations temporaires qui leurs sont versées en cas d'invalidité (ATI).
   Sources :
