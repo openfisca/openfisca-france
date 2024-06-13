@@ -6,7 +6,7 @@ values:
     value: 0.42804
 metadata:
   short_label: Majoration par enfant à charge
-  last_value_still_valid_on: "2022-03-29"
+  last_value_still_valid_on: "2024-04-26"
   label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_isole_enf
   unit: /1

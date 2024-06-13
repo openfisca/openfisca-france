@@ -4,3 +4,11 @@ metadata:
   label_en: Contributions to the scheme of wage guarantee (AGS)
   order:
   - employeur
+documentation: |-
+  L'AGS (association pour la gestion du régime d'assurance des créances des salariés) est un
+  régime patronal fondé sur la solidarité des employeurs, financé exclusivement par leurs cotisations.
+  FNGS-GAS, Fonds de garantie salaires : sur la partie du salaire < à 4 plafonds
+
+  Sources :
+  Barème social périodique
+  Site web de l'AGS (http://www.ags-garantie-salaires.org).

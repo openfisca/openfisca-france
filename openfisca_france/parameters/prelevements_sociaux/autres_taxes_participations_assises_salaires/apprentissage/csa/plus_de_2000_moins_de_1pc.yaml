@@ -9,7 +9,7 @@ values:
   2014-01-01:
     value: 0.006
 metadata:
-  last_value_still_valid_on: "2023-01-30"
+  last_value_still_valid_on: "2024-05-16"
   unit: /1
   reference:
     2011-01-01:
@@ -30,6 +30,8 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025516217/2012-03-16/
     - title: LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012, art.22
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
+    - title: Article L6242-1 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043701803/2024-05-16/
   official_journal_date:
     2011-01-01: "2011-07-30"
     2012-01-01: "2012-03-15"

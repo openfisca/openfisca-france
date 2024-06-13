@@ -1,4 +1,4 @@
-description: Taux effectifs (entreprises avant 01/01/1997) des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
+description: Taux effectifs (entreprises avant 01/01/1997) des cotisations au régime complémentaire de retraite des non-cadres (ARRCO) du secteur privé
 brackets:
 - threshold:
     1962-01-01:
@@ -88,6 +88,16 @@ brackets:
       value: 0.2025
     2019-01-01:
       value: null
+- threshold:
+    1962-01-01:
+      value: 3
+    2019-01-01:
+      value: null
+  rate:
+    1962-01-01:
+      value: 0
+    2019-01-01:
+      value: null
 metadata:
   short_label: Tranches 1 et 2
   last_value_still_valid_on: "2021-07-30"
@@ -134,14 +144,3 @@ metadata:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  Tranche 1: Sous PSS
-  Tranche 2: Entre 1 et 3 PSS.
-  Taux contractuels: taux qui servent à calculer les points de retraite des salariés.
-  Taux d'appel: taux appliqué au taux contractuels pour obtenir le taux effectif de cotisation.
-  Champ :
-  Tous les salariés (cadres et non-cadres) cotisent à l'Arrco sur la tranche 1, mais seuls les non-cadres cotisent sur la tranche 2.
-  Sources :
-  Document faxé par l'ARRCO "Paramètres de fonctionnement pratique depuis la création de l'Arrco au titre des opérations obligatoires (1962-1999)"
-  Site web de l'Arrco depuis 1999.

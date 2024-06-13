@@ -3,6 +3,6 @@ metadata:
   short_label: Régimes micro
   label_en: Micro-firms and micro-landed schemes
   order:
-  - imputation_sur_le_revenu_global
+  - plafond_imputation_deficits_agricoles_sur_revenu_global
   - microentreprise
   - microfoncier

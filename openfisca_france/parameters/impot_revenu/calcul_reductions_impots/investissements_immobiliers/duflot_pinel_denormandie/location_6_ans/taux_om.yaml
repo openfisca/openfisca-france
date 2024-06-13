@@ -3,8 +3,8 @@ values:
   2014-01-01:
     value: 0.23
 metadata:
-  last_value_still_valid_on: "2024-03-18"
   short_label: Outre-mer
+  last_value_still_valid_on: "2024-04-26"
   unit: /1
   reference:
     2014-01-01:

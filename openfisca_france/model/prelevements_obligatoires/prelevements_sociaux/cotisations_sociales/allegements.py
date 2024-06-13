@@ -347,13 +347,7 @@ def compute_allegement_general(individu, period, parameters):
 
     assiette = individu('assiette_allegement', period, options = [ADD])
     smic_proratise = individu('smic_proratise', period, options = [ADD])
-    taille_entreprise = individu('taille_entreprise', first_month)
-    TypesTailleEntreprise = taille_entreprise.possible_values
-    majoration = (
-        (taille_entreprise == TypesTailleEntreprise.non_pertinent)
-        + (taille_entreprise == TypesTailleEntreprise.moins_de_10)
-        + (taille_entreprise == TypesTailleEntreprise.de_10_a_19)
-        )  # majoration éventuelle pour les petites entreprises
+    effectif_entreprise = individu('effectif_entreprise', first_month)
 
     # Calcul du taux
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
@@ -371,15 +365,25 @@ def compute_allegement_general(individu, period, parameters):
     if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
         seuil = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
         tx_max = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
-    # Après le 2005-07-01
-
-    else:
+    # Du 2005-07-01 au 2019-12-31
+    elif date(2005, 7, 1) <= period.start.date <= date(2019, 12, 31):
         seuil = allegement_general.ensemble_des_entreprises.plafond
+        petite_entreprise = (effectif_entreprise < 20)
         tx_max = (
             allegement_general.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
-            * not_(majoration)
+            * not_(petite_entreprise)
             + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
-            * majoration
+            * petite_entreprise
+            )
+    # Après le 2019-12-31
+    else:
+        seuil = allegement_general.ensemble_des_entreprises.plafond
+        petite_entreprise = (effectif_entreprise < 50)
+        tx_max = (
+            allegement_general.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus
+            * not_(petite_entreprise)
+            + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries
+            * petite_entreprise
             )
 
     if seuil <= 1:

@@ -1,4 +1,4 @@
-description: Paramètre 3 de l'allègement de cotisations sociales des lois Aubry II (2000-2003)
+description: Paramètre 3 de l'allègement de cotisations sociales des lois Aubry II
 values:
   2000-02-01:
     value: 20000
@@ -13,7 +13,7 @@ values:
 metadata:
   short_label: Paramètre 3
   last_value_still_valid_on: "2003-07-01"
-  label_en: Reduction in SSCs defined by the laws "Aubry II" (2000-2003)
+  label_en: Reduction in SSCs defined by the laws "Aubry II"
   ipp_csv_id: aubry2_3
   unit: currency
   reference:
@@ -42,16 +42,3 @@ metadata:
     - title: Incertitude sur la date d'entrée en vigueur de l'allégement (1er janvier 2000 ?)
     2003-07-01:
     - title: La Loi 2003-47 remplace l'allégement Aubry II par un nouveau dispositif de réduction des cotisations patronales.
-documentation: |-
-  Paramètres et formule :
-  Allégement = (Paramètre 1 * Paramètre 2 / Rémunération brute du salarié - Paramètre 3)/12
-  Montant minimum de l'allégement : cf. colonne Exonération annuelle minimale
-  Majoration de l'allégement pour entreprises en zone de revitalisation rurale : Majoration 1 et Majoration 2 pour les entreprises dont l'horaire collectif est de 32h/semaine
-  Notes :
-  (i) Les allégements de charges sont accordés aux employeurs de salariés relevant du régime général (art. L 241-13-1 du CSS) et de salariés relevant des régimes spéciaux (art. L 711-13-1 du CSS).
-  Seuls sont présentés ici les paramètres du barème permettant le calcul de l'allégement pour le régime général.
-  (ii) Des majorations d'allègement sont prévus pour certaines entreprises (outres celles situées en zones de revitalisation rurale).
-  (iii) La loi 2003-47 du 17/01/2003 instaure un nouveau dispositif d'allégements de charges (dits Fillon) qui remplacent le dispositif Aubry II.
-  Des mesures transitoires ont été appliquées entre 2003 et 2005.
-  Sources :
-  Lettre circulaire 2003-053 du 29/03/2000 de la Dirres (fournit des explications détaillées sur le fonctionnement des allégements Aubry II).

@@ -1,7 +1,18 @@
-description: Allègements Robien (1996-2005) des cotisations de Sécurité sociale (SS)
+description: Allègements Robien des cotisations de Sécurité sociale (SS)
 metadata:
-  short_label: Allègements Robien (1996-2005)
-  label_en: Robien reductions (1996-2005)
+  documentation_start: true
+  short_label: Allègements Robien
+  label_en: Robien reductions
   order:
   - reduction_temps_travail_10
   - reduction_temps_travail_15
+documentation: |-
+  (1) Les taux indiqués sont des taux de réduction du montant des cotisations patronales, pour l'ensemble des salariés de l'entreprise.
+  Cette réduction est conditionnée à la signature d'une convention qui stipule une réduction du temps de travail (de 10 ou 15 %) et qui engage l'entreprise à :
+  - soit faire des embauches, dans un délai fixé par la convention, correspondant à 10 % (resp. 15 %) de l'effectif moyen annuel de l'entreprise
+    et à l'issue de la période d'embauches, maintenir l'effectif de l'entreprise au moins à son niveau atteint, pendant au moins 2 ans
+  - soit s'engager à éviter des licenciements pour motif économique, dont le nombre est stipulé dans cette convention,
+    de même que la durée d'engagement de maintien des effectifs et les conditions de compensation de rémunération pour les salariés
+  (2) Quand bien même le dispositif Robien est supprimé, les réductions de cotisations continuent de s'appliquer, pendant le nombre d'années restantes, aux entreprises ayant signé une telle convention avant la date d'abrogation.
+  Sources :
+  Articles 39 et 39-1 de la loi 93-1313 quinquennale relative au travail, à l'emploi et à la formation professionnelle.

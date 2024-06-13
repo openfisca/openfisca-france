@@ -1,6 +1,6 @@
-description: Barème pour les salariés non-cadres des cotisations aux régimes complémentaires de retraite (secteur privé) pour la structure financière de l'AGFF (2001-2018)
+description: Barème pour les salariés non-cadres des cotisations pour l'association pour la gestion du fonds de financement (AGFF) des retraites complémentaires du secteur privé
 metadata:
-  short_label: Barème non-cadre
-  label_en: Contributions to the financial structure AGFF (2001-2016)
+  short_label: Non-cadre
+  label_en: Contributions to the financial structure AGFF
   order:
   - agff

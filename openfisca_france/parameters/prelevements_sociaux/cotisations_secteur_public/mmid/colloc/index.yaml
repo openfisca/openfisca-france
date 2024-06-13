@@ -1,5 +1,6 @@
 description: Cotisations maladie spécifiques à la fonction publique hospitalière et aux collectivités locales
 metadata:
+  documentation_start: true
   short_label: Fonction publique hospitalière et collectivités locales
   label_en: Health insurance contributions - local governments and hospital administration
   reference:

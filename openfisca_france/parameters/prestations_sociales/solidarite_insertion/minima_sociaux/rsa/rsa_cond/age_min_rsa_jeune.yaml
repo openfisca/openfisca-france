@@ -6,7 +6,7 @@ values:
     value: 18
 metadata:
   short_label: Âge minimal RSA Jeune
-  last_value_still_valid_on: "2022-03-28"
+  last_value_still_valid_on: "2024-04-26"
   unit: year
   reference:
     2010-01-01:

@@ -1,0 +1,15 @@
+description: Taux global de l contribution d'équilibre technique (CET) des régimes complémentaires de retraite du secteur privé
+values:
+  2019-01-01:
+    value: 0.0035
+metadata:
+  short_label: Total
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+  official_journal_date:
+    2019-01-01: "2017-11-19"
+  notes:
+    2019-01-01:
+    - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)

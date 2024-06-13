@@ -1,8 +1,10 @@
-description: Cotisations salariales pour l'Association pour la gestion de la structure financière, ou cotisation ASF (1984-2001)
+description: Cotisations salariales pour l'Association pour la gestion de la structure financière (ASF)
 brackets:
 - threshold:
     1984-01-01:
       value: 0
+    2001-04-01:
+      value: null
   rate:
     1984-01-01:
       value: 0.008
@@ -11,26 +13,34 @@ brackets:
     1994-01-01:
       value: 0.008
     2001-04-01:
-      value: 0
+      value: null
 - threshold:
-    1984-04-01:
+    1984-01-01:
       value: 1
+    2001-04-01:
+      value: null
   rate:
+    1984-01-01:
+      value: 0
     1984-04-01:
       value: 0.008
     1994-01-01:
       value: 0.0089
     2001-04-01:
-      value: 0
+      value: null
 - threshold:
     1984-04-01:
       value: 4
+    2001-04-01:
+      value: null
   rate:
     1984-04-01:
       value: 0
+    2001-04-01:
+      value: null
 metadata:
-  short_label: Barème salarié
-  label_en: Contributions to the financial structure ASF (1984-2001)
+  short_label: Barème
+  label_en: Contributions to the financial structure ASF
   ipp_csv_id:
     rate: asf_s_0_1, asf_s_1_4
   reference:
@@ -55,15 +65,3 @@ metadata:
     - title: Le taux AGFF se substitute à l'ASF.
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  (i) L'Association pour la gestion de la structure financière (ASF) a eu pour mission:
-  - le financement des garanties de ressources
-  - le financement de l'abaissement de l'âge de la retraite des régimes compl. AGIRC - ARCCO
-  => 1,8 - 2 points de cotisation assurance chômage
-  La cotisation ASF était perçu par l'UNEDIC et était souvent incluse dans la cotisation chômage sur les fiches de paie (avant 2001).
-  (ii) L'Association pour la Gestion du Fonds de Financement de l'AGIRC et de l'ARRCO (AGFF) remplace depuis le 1er avril 2001, l'Association pour la structure Financière (ASF).
-  La collecte de la cotisation afférente a été transférée aux régimes de retraite complémentaire AGIRC-ARRCO.
-  (Voir feuille
-  "AGFF")
-  (iii) La tranche A correspond au salaire en-dessous du PSS et tranche B le salaire de 1 à 4 plafonds.

@@ -43,7 +43,3 @@ metadata:
     - title: Remplacement de la cotisation forfaitaire par un taux proportionnel sous plafond.
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Note :
-  L'Association pour l'emploi des cadres (APEC) a été mise en place par la convention du 18/11/1966.
-  La cotisation APEC est recouvrée par l'AGIRC.

@@ -4,3 +4,6 @@ metadata:
   label_en: SSCs for family benefits (independent workers)
   order:
   - famille_ind
+  - arti
+  - comind
+

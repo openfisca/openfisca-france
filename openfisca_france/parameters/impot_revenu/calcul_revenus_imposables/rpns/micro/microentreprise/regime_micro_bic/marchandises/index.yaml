@@ -1,0 +1,6 @@
+description: Abattement pour le Régime spécial micro BIC, pour les activités de vente (marchandises)
+metadata:
+  short_label: Vente
+  order:
+  - plafond
+  - taux

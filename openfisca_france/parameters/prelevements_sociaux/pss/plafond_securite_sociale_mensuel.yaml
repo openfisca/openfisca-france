@@ -182,6 +182,8 @@ values:
     value: 3428
   2021-01-01:
     value: 3428
+  2022-01-01:
+    value: 3428
   2023-01-01:
     value: 3666
   2024-01-01:
@@ -424,6 +426,9 @@ metadata:
     2021-01-01:
       title: Arrêté du 22/12/2020
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042748904
+    2022-01-01:
+      title: Arrêté du 15/12/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044514684
     2023-01-01:
       title: Arrêté du 09/12/2022
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046745084
@@ -521,6 +526,7 @@ metadata:
     2019-01-01: "2018-12-15"
     2020-01-01: "2019-12-03"
     2021-01-01: "2020-12-29"
+    2022-01-01: "2021-12-18"
     2023-01-01: "2022-12-16"
     2024-01-01: "2023-12-29"
   notes:

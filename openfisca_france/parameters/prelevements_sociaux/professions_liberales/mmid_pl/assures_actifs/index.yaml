@@ -3,8 +3,8 @@ metadata:
   short_label: Assurés actifs
   label_en: SSCs for sickness and maternity benefits (professionals)
   order:
+  - dela_11_pss
   - toute_remuneration
   - sous_pss
-  - sous_4_pss
   - sous_5_pss
-  - dela_11_pss
+  - sous_4_pss

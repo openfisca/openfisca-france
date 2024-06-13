@@ -4,7 +4,7 @@ values:
     value: 61
 metadata:
   short_label: Montant minimum avant imputation des crédits d'impôts
-  last_value_still_valid_on: "2023-09-21"
+  last_value_still_valid_on: "2024-04-26"
   unit: currency_next_year
   reference:
     2002-01-01:

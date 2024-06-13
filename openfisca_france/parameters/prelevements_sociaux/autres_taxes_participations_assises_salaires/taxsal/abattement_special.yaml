@@ -18,5 +18,47 @@ values:
     value: 20262
   2016-01-01:
     value: 20283
+  2017-01-01:
+    value: 20304
+  2018-01-01:
+    value: 20507
+  2019-01-01:
+    value: 20835
+  2020-01-01:
+    value: 21044
+  2021-01-01:
+    value: 21086
+  2022-01-01:
+    value: 21381
+  2023-01-01:
+    value: 22535
+  2024-01-01:
+    value: 23616
 metadata:
+  last_value_still_valid_on: "2024-06-11"
   unit: currency
+  reference:
+    2018-01-01:
+      title: Décret 2018-500 du 20/06/2018
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037090902
+    2019-01-01:
+      title: Décret 2019-559 du 06/06/2019, art.1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038559371
+    2020-01-01:
+      title: Décret 2020-897, art 1 du 22/07/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042143210
+    2021-01-01:
+      title: Décret 2021-744, art 1 du 09/06/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043641803
+    2022-01-01:
+      title: Décret 2022-782 du 4/05/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000045757192
+    2023-01-01:
+      title: Décret n° 2023-422 du 31/05/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047618675
+    2024-01-01:
+    - title: Décret n° 2024-496 du 30/05/2024, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
+    - title: Article 1679-A du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042160214
+

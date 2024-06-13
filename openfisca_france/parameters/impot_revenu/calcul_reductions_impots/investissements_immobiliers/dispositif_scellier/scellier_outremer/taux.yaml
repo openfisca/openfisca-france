@@ -9,9 +9,9 @@ values:
   2013-01-01:
     value: null
 metadata:
-  ipp_csv_id: taux_Scellier_outremer
   short_label: Taux
   last_value_still_valid_on: "2024-03-19"
+  ipp_csv_id: taux_Scellier_outremer
   unit: /1
   reference:
     2009-01-01:

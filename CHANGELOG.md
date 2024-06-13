@@ -1,14 +1,208 @@
 # Changelog
 
-# 166.0.2 [2299](https://github.com/openfisca/openfisca-france/pull/2299)
+# 167.0.2 [2299](https://github.com/openfisca/openfisca-france/pull/2299)
 
 * Changement mineur.
 * Périodes concernées : à partir du 2024-01-01.
 * Zones impactées : `prestations_sociales.education.pass_colo`.
 * Détails :
-  - Ajout de l'aide pass colo à destination des enfants né(e) en 2013 souhaitant aller en colonie de vacances
+    - Ajout de l'aide pass colo à destination des enfants né(e) en 2013 souhaitant aller en colonie de vacances
 
-# 166.0.1 [2287](https://github.com/openfisca/openfisca-france/pull/2287)
+### 167.0.1 [2312](https://github.com/openfisca/openfisca-france/pull/2312)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux`.
+* Détails :
+  - Nettoyage des labels (dates, majuscules, description)
+
+# 167.0.0 [2286](https://github.com/openfisca/openfisca-france/pull/2286)
+
+* Évolution du système socio-fiscal et corrections.
+* Périodes concernées : toutes.
+* Détails :
+  - Actualise des paramètres monétaires existants (n'ai regardé ni les paramètres non monétaires, ni s'il y avait de nouveaux paramètres créés). Critère d'investigation d'un fichier :
+     - (1) le paramètre est existant (ne regarde pas si nouveaux paramètres)
+     - (2) il est monétaire
+     - (3) sa dernière valeur n'est pas `null`
+     - (4) sa dernière valeur est à une date antérieure à `2023-01-01`.
+  - Champ des fichiers checkés : `parameters/impot_revenu/calcul_impot_revenu` (tout était bon), `parameters/impot_revenu/calcul_revenus_imposables` (cette partie n'était pas actualisée) ; taxes sur le salaire et les boissons et limite de réduction d'impôt pour don. qui étaient mis à jour dans le décret correspondant aux paramètres précédents.
+  - Redéfinit et réagence certains paramètres et corrige certaines erreurs des dates passées (sans pour autant faire une vérification systématique de l'historique), au sein de ceux remplissant les critères susmentionnés.
+
+### 166.1.5 [2308](https://github.com/openfisca/openfisca-france/pull/2308)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `prestations_sociales.aides_logement.logement_social.plu.*`
+* Détails :
+  - Mise à jour des valeurs historiques et actuelles des aides au logement social de type PLUS.
+
+### 166.1.4 [2297](https://github.com/openfisca/openfisca-france/pull/2297)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+  - `parameters.prestations_sociales.aides_logement.allocations_logement`
+  - `parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah.age_legal_retraite`
+  - `prestations_sociales.solidarite_insertion.autre_solidarite.covid19.indemnite_ap.planch`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour.
+
+### 166.1.3 [2303](https://github.com/openfisca/openfisca-france/pull/2303)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2024.
+* Zones impactées : `parameters/prestations_sociales`.
+* Détails :
+  - Revalorisation de prestations sociales : prime d'activité, rsa, aah, ass, aer, ata, cmu
+
+### 166.1.2 [2309](https://github.com/openfisca/openfisca-france/pull/2309)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `parameters`.
+* Détails :
+  - Tri des tranches des barèmes par seuil croissant
+  - Correction de l'indentation dans une metadata
+  - Homogénéïsation des units avec les barèmes IPP et le simulateur LexImpact
+
+### 166.1.1 [2307](https://github.com/openfisca/openfisca-france/pull/2307)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Réordonne certains champs des metadata par synchronisation avec les barèmes IPP
+
+## 166.1.0 [2293](https://github.com/openfisca/openfisca-france/pull/2302)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2020.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_50_salaries_et_plus.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_moins_de_50_salaries.yaml`
+* Détails :
+  - Avec la loi PACTE, le seuil de l'effectif d'entreprise à prendre en compte pour le calcul de l'allègement est passé de 20 à 50 à partir du 1er janvier 2020 (cf. cotisation FNAL)
+
+### 166.0.11 [2304](https://github.com/openfisca/openfisca-france/pull/2304)
+
+* Changement mineur. Évolution du système socio-fiscal.
+* Périodes concernées : jusqu'au 01/01/2000
+* Zones impactées : `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial`.
+* Détails :
+  - Met des dates de début des cas d'augmentation du quotient familial antérieure à 2000 quand pertinent
+
+### 166.0.10 [2290](https://github.com/openfisca/openfisca-france/pull/2290)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    - /parameters/prestations_sociales/prestations_familiales/prestations_generales/af/*
+    - /parameters/prestations_sociales/solidarite_insertion/autre_solidarite/aefa/*
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/accident_travail/rente/taux/taux_minimum.yaml
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/css/*
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/*
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/*
+    - /parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/*
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres des prestations sociales après vérification de la validité de l'article en référence.
+
+### 166.0.9 [2305](https://github.com/openfisca/openfisca-france/pull/2305)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/csg`.
+* Détails :
+  - Élimine des doublons de documentation
+
+### 166.0.8 [2301](https://github.com/openfisca/openfisca-france/pull/2301)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux`.
+* Détails :
+  - Élimination de doublons dans les documentations
+  - Retrait d'intervalle de dates
+  - Correction des labels
+
+### 166.0.7 [2289](https://github.com/openfisca/openfisca-france/pull/2289)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    * /parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/*
+    * /parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/reduction.yaml
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres de l'impôt sur le revenu après vérification de la validité de l'article en référence.
+
+### 166.0.6 [2293](https://github.com/openfisca/openfisca-france/pull/2293)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    * /parameters/taxation_indirecte/taxes_tabacs/taxes_specifiques/montants_apres_2015/autres_tabacs_a_chauffer.yaml
+    * /parameters/taxation_indirecte/taxes_tabacs/taxes_specifiques/montants_apres_2015/tabac_rouler.yaml
+    * /parameters/taxation_indirecte/taxes_tabacs/taxes_specifiques/montants_apres_2015/tabacs_batonnets.yaml
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur certains paramètres de la taxation indirecte après vérification de la validité de l'article en référence.
+
+### 166.0.5 [2291](https://github.com/openfisca/openfisca-france/pull/2291)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/decote/borne_inferieure_decote.yaml
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/plafond_somme_reduction_pme_fcip_fip_pme.yaml
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/plafond_somme_trois_reductions_pme_fcip_fip_pme_dons.yaml
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/reduction_investissements_capital_pme/plafond_investissement_dans_pme.yaml
+    * /parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/reduction_investissements_capital_pme/taux_investissement_direct.yaml
+    * /parameters/taxation_capital/prelevements_sociaux/csg/taux_deductible/produits_de_placement.yaml
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres de la taxation du capital après vérification de la validité de l'article en référence.
+
+### 166.0.4 [2294](https://github.com/openfisca/openfisca-france/pull/2294)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+  - /parameters/impot_revenu/calcul_impot_revenu/...
+  - /parameters/impot_revenu/calcul_reductions_impots/...
+  - /parameters/impot_revenu/calcul_revenus_imposables/rpns/micro/microentreprise/regime_micro_ba/taux.yaml
+  - /parameters/impot_revenu/contributions_exceptionnelles/contribution_revenus_locatifs/seuil.yaml
+  - /parameters/impot_revenu/credits_impots/...
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres de l'impôt sur le revenu après vérification de la validité de l'article en référence.
+
+### 166.0.3 [2295](https://github.com/openfisca/openfisca-france/pull/2295)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux`.
+* Détails :
+  - Description de la fonctionnalité ajoutée ou du nouveau comportement adopté.
+  - Cas dans lesquels une erreur était constatée.
+
+### 166.0.2 [2288](https://github.com/openfisca/openfisca-france/pull/2288)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    * /parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/inv2.yaml
+    * /parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/retrocession/plaf_retro_2011_1.yaml
+    * /parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/retrocession/plaf_retro_2011_2.yaml
+    * /parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/retrocession/taux_retro_1.yaml
+    * /parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/retrocession/taux_retro_2.yaml
+    * /parameters/impot_revenu/contributions_exceptionnelles/indemnite_compensatrice_agents_assurance.yaml
+    * /parameters/impot_revenu/credits_impots/gardenf/plafond.yaml
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` sur les paramètres de l'impôt sur le revenu après vérification de la validité de l'article en référence.
+
+### 166.0.1 [2287](https://github.com/openfisca/openfisca-france/pull/2287)
 
 * Changement mineur.
 * Périodes concernées : à partir du 2023-10-01.
