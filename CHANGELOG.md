@@ -1,6 +1,14 @@
 # Changelog
 
-# 167.0.2 [2299](https://github.com/openfisca/openfisca-france/pull/2299)
+### 167.0.3 [2315](https://github.com/openfisca/openfisca-france/pull/2315)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2024.
+* Zones impactées : `prestations/jeunes/contrat_engagement_jeune.py`.
+* Détails :
+  - Actualise les montants forfaitaires du CEJ suite aux revalorisations pour le 1er avril 2024.
+
+### 167.0.2 [2299](https://github.com/openfisca/openfisca-france/pull/2299)
 
 * Changement mineur.
 * Périodes concernées : à partir du 2024-01-01.

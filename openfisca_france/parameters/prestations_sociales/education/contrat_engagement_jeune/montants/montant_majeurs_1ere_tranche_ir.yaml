@@ -6,6 +6,8 @@ values:
     value: 312
   2023-04-01:
     value: 316.8
+  2024-04-01:
+    value: 331.37
 metadata:
   unit: currency
   reference:
@@ -20,6 +22,9 @@ metadata:
     2023-04-01:
       title: Instruction interministérielle N° DSS/2B/2023/41 du 24 mars 2023
       href: https://sante.gouv.fr/fichiers/bo/2023/2023.6.sante.pdf#page=119
+    2024-04-01:
+      title: Instruction interministérielle N° DSS/2A/2C/2024/42 du 20 mars 2024
+      href: https://sante.gouv.fr/fichiers/bo/2024/2024.6.sante.pdf#page=82
 documentation: |-
   Notes:
-  Pour les revalorisations de montant, les références législatives mentionnées font référence aux dispositifs faisant l'objet d'une revalorisation annuelle en application de l'article L. 161-25 du code de la sécurité sociale. Or, une revalorisation au titre de cet article est bien mentionnée pour le CEJ (cf. IV. de l'art. D5131-19 du Code du travail).
+  L'article D5131-19 du code du travail contient les montants du dispositif à sa création. Cet article mentionne aussi que ces montants sont revalorisés le 1er avril de chaque année par application du coefficient mentionné à l'article L. 161-25 du CSS. Ce coefficient de revalorisation est publié chaque année séparément, sans que les nouveaux montants soient répercutés dans l'article D5131-19 du code du travail.
