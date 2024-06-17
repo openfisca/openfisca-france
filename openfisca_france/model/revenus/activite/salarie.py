@@ -1515,6 +1515,219 @@ class salaire_super_brut(Variable):
             + prime_partage_valeur_exoneree_exceptionnelle
             )
 
+    def formula_2024_01_01(individu, period, parameters):
+        remuneration_brute = individu('remuneration_brute', period)
+        cotisations_employeur_securite_sociale = individu('cotisations_employeur_securite_sociale', period)
+        cotisations_employeur_retraite_complementaire = individu('cotisations_employeur_retraite_complementaire', period)
+        pension_employeur = individu('pension_employeur', period)
+        rafp_employeur = individu('rafp_employeur', period)
+        cotisations_employeur_assurance_chomage = individu('cotisations_employeur_assurance_chomage', period)
+        cotisations_employeur_autres = individu('cotisations_employeur_autres', period)
+        allegement_general = individu('allegement_general', period)
+        exonerations = individu('exonerations', period)
+
+        return (
+            remuneration_brute
+            - cotisations_employeur_securite_sociale
+            - cotisations_employeur_retraite_complementaire
+            - pension_employeur
+            - rafp_employeur
+            - cotisations_employeur_assurance_chomage
+            - cotisations_employeur_autres
+            - allegement_general
+            - exonerations
+            )
+
+
+class remuneration_brute(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Rémunération brute'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2024_01_01(individu, period, parameters):
+        salaire_de_base = individu('salaire_de_base', period)
+        remuneration_principale = individu('remuneration_principale', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
+        remuneration_apprenti = individu('remuneration_apprenti', period)
+        primes = individu('primes', period)
+        indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
+        depense_cantine_titre_restaurant_employeur = individu('depense_cantine_titre_restaurant_employeur', period)
+        reintegration_titre_restaurant_employeur = individu('reintegration_titre_restaurant_employeur', period)
+
+        return (
+            salaire_de_base
+            + remuneration_principale
+            + indemnite_residence
+            + supplement_familial_traitement
+            + remuneration_apprenti
+            + primes
+            + indemnite_fin_contrat
+            + depense_cantine_titre_restaurant_employeur
+            + reintegration_titre_restaurant_employeur
+            )
+
+
+class primes(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Primes'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2024_01_01(individu, period, parameters):
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        primes_salaires = individu('primes_salaires', period)
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+        prime_partage_valeur_non_exoneree = individu('prime_partage_valeur_non_exoneree', period, options=[DIVIDE])
+
+        return (
+            primes_fonction_publique
+            + primes_salaires
+            + prime_partage_valeur_exoneree
+            + prime_partage_valeur_non_exoneree
+            )
+
+
+class cotisations_employeur_securite_sociale(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisations et contributions du régime général de la sécurité sociale'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2024_01_01(individu, period, parameters):
+        mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period)
+        vieillesse_employeur = individu('vieillesse_employeur', period)
+        famille_net_allegement = individu('famille_net_allegement', period)
+        accident_du_travail = individu('accident_du_travail', period)
+        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
+
+        return (
+            mmid_employeur_net_allegement
+            + vieillesse_employeur
+            + famille_net_allegement
+            + accident_du_travail
+            + contribution_solidarite_autonomie
+            )
+
+
+class cotisations_employeur_autres(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Autres cotisations et contributions employeur'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2024_01_01(individu, period, parameters):
+        conge_individuel_formation_cdd = individu('conge_individuel_formation_cdd', period)
+        contribution_supplementaire_apprentissage = individu('contribution_supplementaire_apprentissage', period)
+        financement_organisations_syndicales = individu('financement_organisations_syndicales', period)
+        taxe_salaires = individu('taxe_salaires', period)
+        forfait_social = individu('forfait_social', period)
+        participation_effort_construction = individu('participation_effort_construction', period)
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period)
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period)
+        versement_transport = individu('versement_transport', period)
+        contribution_unique_formation_professionnelle_alternance = individu('contribution_unique_formation_professionnelle_alternance', period)
+        fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period)
+        ati_atiacl = individu('ati_atiacl', period)
+        fnal = individu('fnal', period)
+
+        return (
+            contribution_unique_formation_professionnelle_alternance
+            + conge_individuel_formation_cdd
+            + contribution_supplementaire_apprentissage
+            + versement_transport
+            + financement_organisations_syndicales
+            + fnal
+            + participation_effort_construction
+            + prevoyance_obligatoire_cadre
+            + complementaire_sante_employeur
+            + taxe_salaires
+            + forfait_social
+            + fonds_emploi_hospitalier
+            + ati_atiacl
+            )
+
+
+class cotisations_employeur_retraite_complementaire(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisations aux régimes complémentaires de retraite'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2024_01_01(individu, period, parameters):
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
+        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
+        contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
+        apec_employeur = individu('apec_employeur', period)
+        ircantec_employeur = individu('ircantec_employeur', period)
+
+        return (
+            agirc_arrco_employeur
+            + contribution_equilibre_general_employeur
+            + contribution_equilibre_technique_employeur
+            + apec_employeur
+            + ircantec_employeur
+            )
+
+
+class cotisations_employeur_assurance_chomage(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisations employeur pour le chomage'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2024_01_01(individu, period, parameters):
+        chomage_employeur = individu('chomage_employeur', period)
+        ags = individu('ags', period)
+
+        return (
+            chomage_employeur
+            + ags
+            )
+
+
+class vieillesse_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation vieillesse plafonnée et déplafonnée (salarié)'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        vieillesse_plafonnee_salarie = individu('vieillesse_plafonnee_salarie', period)
+        vieillesse_deplafonnee_salarie = individu('vieillesse_deplafonnee_salarie', period)
+
+        return vieillesse_plafonnee_salarie + vieillesse_deplafonnee_salarie
+
+
+class vieillesse_employeur(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation vieillesse plafonnée et déplafonnée (employeur)'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+
+        return vieillesse_plafonnee_employeur + vieillesse_deplafonnee_employeur
+
 
 class exonerations(Variable):
     value_type = float
