@@ -1709,6 +1709,42 @@ class cotisations_employeur_secteur_public(Variable):
         mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period)
 
 
+class vieillesse_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation vieillesse plafonnée et déplafonnée (salarié)'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        vieillesse_plafonnee_salarie = individu('vieillesse_plafonnee_salarie', period)
+        vieillesse_deplafonnee_salarie = individu('vieillesse_deplafonnee_salarie', period)
+
+        return vieillesse_plafonnee_salarie + vieillesse_deplafonnee_salarie
+    
+
+class vieillesse_employeur(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation vieillesse plafonnée et déplafonnée (employeur)'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+
+        return vieillesse_plafonnee_employeur + vieillesse_deplafonnee_employeur
+
+
 class exonerations(Variable):
     value_type = float
     entity = Individu
