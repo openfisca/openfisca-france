@@ -1507,15 +1507,60 @@ class salaire_super_brut(Variable):
         salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
         exonerations = individu('exonerations', period)
         allegement_general = individu('allegement_general', period, options = [ADD])
-        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
-        prime_partage_valeur_exoneree_exceptionnelle = individu('prime_partage_valeur_exoneree_exceptionnelle', period, options=[DIVIDE])
         return (
             salaire_super_brut_hors_allegements
             - exonerations
             - allegement_general
-            + prime_partage_valeur_exoneree
-            + prime_partage_valeur_exoneree_exceptionnelle
             )
+    
+    def formula_2024_01_01(individu, period, parameters):
+        remuneration_brute_totale = individu(remuneration)
+        primes = individu('primes', period)
+
+class remunaration_principale_brute(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Exonérations'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2024_01_01(individu, period, parameters):
+        salaire_de_base = individu('salaire_de_base', period)
+        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        nouvelle_bonification_indiciaire = individu('nouvelle_bonification_indiciaire', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
+        remuneration_apprenti = individu('remuneration_apprenti', period)
+
+        return (
+            salaire_de_base
+            + traitement_indiciaire_brut
+            + nouvelle_bonification_indiciaire
+            + indemnite_residence
+            + supplement_familial_traitement
+            + remuneration_apprenti
+        )
+
+class primes(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Exonérations'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2024_01_01(individu, period, parameters):
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
+        prime_partage_valeur_non_exoneree = individu('prime_partage_valeur_non_exoneree', period, options=[DIVIDE])
+
+        return (
+            prime_partage_valeur_exoneree
+            + primes_fonction_publique
+            + primes_salaires_non_exonerees
+            + prime_partage_valeur_non_exoneree
+        )
+
 
 
 class exonerations(Variable):
