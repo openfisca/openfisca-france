@@ -10,34 +10,84 @@ class csg(Variable):
     label = 'Contribution sociale généralisée'
     definition_period = YEAR
 
-    def formula(individu, period):
-        csg_imposable_salaire = individu('csg_imposable_salaire', period, options = [ADD])
-        csg_deductible_salaire = individu('csg_deductible_salaire', period, options = [ADD])
-        csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
-        csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
-        csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
-        csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
-        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [ADD])
-        csg_deductible_non_salarie = individu('csg_deductible_non_salarie', period, options = [ADD])
+    def formula(individu, period, parameters):
+        csg_salaire = individu('csg_salaire', period, options = [ADD])
+        csg_chomage = individu('csg_chomage', period, options = [ADD])
+        csg_retraite = individu('csg_retraite', period, options = [ADD])
+        csg_non_salarie = individu('csg_non_salarie', period)
         csg_glo_assimile_salaire_ir_et_ps = individu('csg_glo_assimile_salaire_ir_et_ps', period)
         # CSG sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         csg_revenus_capital = individu.foyer_fiscal('csg_revenus_capital', period)
         csg_revenus_capital_projetee = csg_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
-            csg_imposable_salaire
-            + csg_deductible_salaire
-            + csg_imposable_chomage
-            + csg_deductible_chomage
-            + csg_imposable_retraite
-            + csg_deductible_retraite
-            + csg_imposable_non_salarie
-            + csg_deductible_non_salarie
+            csg_salaire
+            + csg_chomage
+            + csg_retraite
+            + csg_non_salarie
             + csg_glo_assimile_salaire_ir_et_ps
             + csg_revenus_capital_projetee
             )
 
     # TODO: manque CSG sur IJ et pré-retraites
+
+
+class csg_salaire(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Individu
+    label = 'CSG salaire'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        return (
+            individu('csg_deductible_salaire', period)
+            + individu('csg_imposable_salaire', period)
+            )
+
+
+class csg_non_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = 'CSG non salarie'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        return (
+            individu('csg_deductible_non_salarie', period)
+            + individu('csg_imposable_non_salarie', period)
+            )
+
+
+class csg_retraite(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Individu
+    label = 'CSG sur les retraites'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        return (
+            individu('csg_imposable_retraite', period)
+            + individu('csg_deductible_retraite', period)
+            )
+
+
+class csg_chomage(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Individu
+    label = 'CSG sur le chomage'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period):
+        return (
+            individu('csg_imposable_chomage', period)
+            + individu('csg_deductible_chomage', period)
+            )
 
 
 class crds(Variable):
