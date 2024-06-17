@@ -1,0 +1,104 @@
+input:
+  familles:
+    "Famille n\xB01":
+      en_couple:
+        '2023': 'true'
+        '2024': 'true'
+        '2025': 'true'
+      enfants: []
+      parents:
+      - Adulte 1
+      - Adulte 2
+  foyers_fiscaux:
+    "D\xE9claration d\u2019imp\xF4ts n\xB01":
+      declarants:
+      - Adulte 1
+      - Adulte 2
+      depcom_foyer:
+        '2023': '59350'
+        '2024': '59350'
+        '2025': '59350'
+      personnes_a_charge: []
+  individus:
+    Adulte 1:
+      activite:
+        '2023': retraite
+        '2024': retraite
+        '2025': retraite
+      categorie_salarie:
+        '2023': non_pertinent
+        '2024': non_pertinent
+        '2025': non_pertinent
+      contrat_de_travail:
+        '2023': sans_objet
+        '2024': sans_objet
+        '2025': sans_objet
+      contrat_de_travail_type:
+        '2023': aucun
+        '2024': aucun
+        '2025': aucun
+      date_naissance:
+        '2025': '1946-12-24'
+      invalidite:
+        '2023': false
+        '2024': false
+        '2025': false
+      retraite_brute:
+        '2023': 27564
+        '2024': 27564
+        '2025': 27564
+      statut_marital:
+        '2023': marie
+        '2024': marie
+        '2025': marie
+    Adulte 2:
+      activite:
+        '2023': retraite
+        '2024': retraite
+        '2025': retraite
+      categorie_salarie:
+        '2023': non_pertinent
+        '2024': non_pertinent
+        '2025': non_pertinent
+      contrat_de_travail:
+        '2023': sans_objet
+        '2024': sans_objet
+        '2025': sans_objet
+      contrat_de_travail_type:
+        '2023': aucun
+        '2024': aucun
+        '2025': aucun
+      date_naissance:
+        '2025': '1944-05-11'
+      invalidite:
+        '2023': false
+        '2024': false
+        '2025': false
+      retraite_brute:
+        '2023': 21203
+        '2024': 21203
+        '2025': 21203
+      statut_marital:
+        '2023': marie
+        '2024': marie
+        '2025': marie
+  menages:
+    "Logement principal n\xB01":
+      conjoint:
+      - Adulte 2
+      depcom:
+        '2023': '59350'
+        '2024': '59350'
+        '2025': '59350'
+      enfants: []
+      personne_de_reference:
+      - Adulte 1
+      statut_occupation_logement:
+        '2023': proprietaire
+        '2024': proprietaire
+        '2025': proprietaire
+output:
+  revenu_disponible:
+    2025: 42740
+period: 2025
+relative_error_margin: 0.001

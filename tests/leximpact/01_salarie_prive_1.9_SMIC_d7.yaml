@@ -1,0 +1,87 @@
+input:
+  familles:
+    "Famille n\xB01":
+      en_couple:
+        '2023': 'false'
+        '2024': 'false'
+        '2025': 'false'
+      enfants: []
+      parents:
+      - Adulte 1
+  foyers_fiscaux:
+    "D\xE9claration d\u2019imp\xF4ts n\xB01":
+      declarants:
+      - Adulte 1
+      depcom_foyer:
+        '2023': '86194'
+        '2024': '86194'
+        '2025': '86194'
+      personnes_a_charge: []
+  individus:
+    Adulte 1:
+      activite:
+        '2023': actif
+        '2024': actif
+        '2025': actif
+      categorie_salarie:
+        '2023': prive_non_cadre
+        '2024': prive_non_cadre
+        '2025': prive_non_cadre
+      contrat_de_travail:
+        '2023': temps_plein
+        '2024': temps_plein
+        '2025': temps_plein
+      contrat_de_travail_type:
+        '2023': cdi
+        '2024': cdi
+        '2025': cdi
+      date_naissance:
+        '2025': '1985-11-05'
+      depcom_entreprise:
+        '2023': '86194'
+        '2024': '86194'
+        '2025': '86194'
+      effectif_entreprise:
+        '2023': 20
+        '2024': 20
+        '2025': 20
+      heures_remunerees_volume:
+        '2023': 1607
+        '2024': 1607
+        '2025': 1607
+      invalidite:
+        '2023': false
+        '2024': false
+        '2025': false
+      pensions_alimentaires_percues:
+        '2025': 0
+      salaire_de_base:
+        '2023': 40286
+        '2024': 40286
+        '2025': 40286
+      statut_marital:
+        '2023': celibataire
+        '2024': celibataire
+        '2025': celibataire
+  menages:
+    "Logement principal n\xB01":
+      depcom:
+        '2023': '86194'
+        '2024': '86194'
+        '2025': '86194'
+      enfants: []
+      loyer:
+        '2023': 0
+        '2024': 0
+        '2025': 0
+      personne_de_reference:
+      - Adulte 1
+      statut_occupation_logement:
+        '2023': proprietaire
+        '2024': proprietaire
+        '2025': proprietaire
+output:
+  revenu_disponible:
+    2025: 29684
+period: 2025
+relative_error_margin: 0.001

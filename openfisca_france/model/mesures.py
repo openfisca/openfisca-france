@@ -703,7 +703,7 @@ class minima_sociaux(Variable):
         garantie_jeunes = famille.sum(garantie_jeunes_i)
 
         return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa_nette_crds + garantie_jeunes
-
+    
     def formula_2024_01_01(famille, period, parameters):
         # Certaines réformes ayant des effets de bords nécessitent que le rsa soit calculé avant la ppa
         rsa = famille('rsa', period, options = [ADD])
