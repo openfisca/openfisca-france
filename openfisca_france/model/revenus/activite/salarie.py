@@ -1514,54 +1514,37 @@ class salaire_super_brut(Variable):
             )
     
     def formula_2024_01_01(individu, period, parameters):
-        remuneration_brute_totale = individu('remuneration_brute_totale', period)
+        remuneration_brute = individu('remuneration_brute', period)
         cotisations_contributions_employeur = individu('cotisations_contributions_employeur', period)
 
-        return remuneration_brute_totale + cotisations_contributions_employeur
+        return remuneration_brute + cotisations_contributions_employeur
 
 
-class remuneration_principale_brute(Variable):
+class remuneration_brute(Variable):
     value_type = float
     entity = Individu
-    label = 'Rémunération principale brute'
+    label = 'Rémunération brute'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2024_01_01(individu, period, parameters):
         salaire_de_base = individu('salaire_de_base', period)
-        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        nouvelle_bonification_indiciaire = individu('nouvelle_bonification_indiciaire', period)
+        remuneration_principale = individu('remuneration_principale', period)
         indemnite_residence = individu('indemnite_residence', period)
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         remuneration_apprenti = individu('remuneration_apprenti', period)
-
-        return (
-            salaire_de_base
-            + traitement_indiciaire_brut
-            + nouvelle_bonification_indiciaire
-            + indemnite_residence
-            + supplement_familial_traitement
-            + remuneration_apprenti
-        )
-
-
-class remuneration_brute_totale(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Rémunération brute totale'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula_2024_01_01(individu, period, parameters):
-        remuneration_principale_brute = individu('remuneration_principale_brute', period)
         primes = individu('primes', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         depense_cantine_titre_restaurant_employeur = individu('depense_cantine_titre_restaurant_employeur', period)
         reintegration_titre_restaurant_employeur = individu('reintegration_titre_restaurant_employeur', period)
 
         return (
-            remuneration_principale_brute
-            + indemnite_fin_contrat
+            salaire_de_base
+            + remuneration_principale
+            + indemnite_residence
+            + supplement_familial_traitement
+            + remuneration_apprenti
+            + primes
             + indemnite_fin_contrat
             + depense_cantine_titre_restaurant_employeur
             + reintegration_titre_restaurant_employeur
@@ -1597,8 +1580,7 @@ class cotisations_contributions_employeur(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2024_01_01(individu, period, parameters):
-        cotisations_allegement_general = individu('cotisations_allegement_general', period)
-        allegement_general = individu('allegement_general', period)
+        cotisations_employeur_apres_reduction_generale_secteur_prive = individu('cotisations_employeur_apres_reduction_generale_secteur_prive', period)
         autres_cotisations_contributions = individu('autres_cotisations_contributions', period)
         exonerations = individu('exonerations', period)
         cotisations_employeur_secteur_public = individu('cotisations_employeur_secteur_public', period)
@@ -1617,10 +1599,10 @@ class cotisations_contributions_employeur(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             )
 
-        return prive * (cotisations_allegement_general - allegement_general + autres_cotisations_contributions - exonerations) + public * cotisations_employeur_secteur_public
+        return prive * (cotisations_employeur_apres_reduction_generale_secteur_prive + autres_cotisations_contributions - exonerations) + public * cotisations_employeur_secteur_public
 
 
-class cotisations_allegement_general(Variable):
+class cotisations_employeur_apres_reduction_generale_secteur_prive(Variable):
     value_type = float
     entity = Individu
     label = "Cotisations et contributions du secteur privé soumises à l'allègement général"
@@ -1640,6 +1622,7 @@ class cotisations_allegement_general(Variable):
         contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
         agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
         contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
+        allegement_general = individu('allegement_general', period) 
         
         return(
             ags
@@ -1654,6 +1637,7 @@ class cotisations_allegement_general(Variable):
             + contribution_equilibre_general_employeur
             + agirc_arrco_employeur
             + contribution_equilibre_technique_employeur
+            - allegement_general
         )
 
 
