@@ -1515,9 +1515,34 @@ class salaire_super_brut(Variable):
     
     def formula_2024_01_01(individu, period, parameters):
         remuneration_brute = individu('remuneration_brute', period)
-        cotisations_contributions_employeur = individu('cotisations_contributions_employeur', period)
+        cotisations_employeur_apres_reduction_generale_secteur_prive = individu('cotisations_employeur_apres_reduction_generale_secteur_prive', period)
+        cotisations_employeur_autres_secteur_prive = individu('cotisations_employeur_autres_secteur_prive', period)
+        exonerations = individu('exonerations', period)
+        cotisations_employeur_secteur_public = individu('cotisations_employeur_secteur_public', period)
 
-        return remuneration_brute + cotisations_contributions_employeur
+        categorie_salarie = individu('categorie_salarie', period)
+
+        prive = (
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
+            + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+            )
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+            )
+
+        return (
+            remuneration_brute 
+            + prive * (
+                cotisations_employeur_apres_reduction_generale_secteur_prive 
+                + cotisations_employeur_autres_secteur_prive 
+                - exonerations
+                ) 
+            + public * cotisations_employeur_secteur_public
+        )
 
 
 class remuneration_brute(Variable):
@@ -1570,36 +1595,6 @@ class primes(Variable):
             + primes_salaires_non_exonerees
             + prime_partage_valeur_non_exoneree
         )
-
-
-class cotisations_contributions_employeur(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Total des cotisations et contributions employeur'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula_2024_01_01(individu, period, parameters):
-        cotisations_employeur_apres_reduction_generale_secteur_prive = individu('cotisations_employeur_apres_reduction_generale_secteur_prive', period)
-        cotisations_employeur_autres_secteur_prive = individu('cotisations_employeur_autres_secteur_prive', period)
-        exonerations = individu('exonerations', period)
-        cotisations_employeur_secteur_public = individu('cotisations_employeur_secteur_public', period)
-
-        categorie_salarie = individu('categorie_salarie', period)
-
-        prive = (
-            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
-            + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
-            )
-        public = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
-            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-            )
-
-        return prive * (cotisations_employeur_apres_reduction_generale_secteur_prive + cotisations_employeur_autres_secteur_prive - exonerations) + public * cotisations_employeur_secteur_public
 
 
 class cotisations_employeur_apres_reduction_generale_secteur_prive(Variable):
