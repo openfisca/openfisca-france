@@ -77,6 +77,20 @@ class revenu_disponible(Variable):
             + revenus_nets_du_capital
             )
 
+    def formula_2024_01_01(menage, period, parameters):
+        revenus_nets = menage('revenus_nets', period)
+        impots_directs = menage('impots_directs', period)
+
+        # On prend en compte les prestations sociales touchées par une famille dont le demandeur est dans le ménage
+        prestations_sociales_i = menage.members.famille('prestations_sociales', period)  # PF de la famille auquel appartient chaque membre du ménage
+        prestations_sociales = menage.sum(prestations_sociales_i, role = Famille.DEMANDEUR)  # On somme seulement pour les demandeurs
+
+        return (
+            revenus_nets
+            + impots_directs
+            + prestations_sociales
+            )
+
 
 class niveau_de_vie(Variable):
     value_type = float
@@ -89,6 +103,41 @@ class niveau_de_vie(Variable):
         uc = menage('unites_consommation', period)
         return revenu_disponible / uc
 
+
+class revenus_nets(Variable):
+    value_type = float
+    entity = Menage
+    label = 'Revenus nets'
+    definition_period = YEAR
+
+    def formula_2024_01_01(menage, period):
+        pensions_nettes_i = menage.members('pensions_nettes', period)
+
+        #### PENSIONS NETTES
+        chomage_net = menage.members('chomage_net', period, options = [ADD])
+        retraite_nette = individu('retraite_nette', period, options = [ADD])
+        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period, options = [ADD])
+        pensions_invalidite = individu('pensions_invalidite', period, options = [ADD])
+
+        # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
+        foyer_fiscal = menage.members.foyer_fiscal
+        pensions_alimentaires_versees = menage.members.foyer_fiscal('pensions_alimentaires_versees', period)
+        rente_viagere_titre_onereux = menage.members.foyer_fiscal('rente_viagere_titre_onereux', period, options = [ADD])
+        pen_foyer_fiscal = pensions_alimentaires_versees + rente_viagere_titre_onereux
+        pen_foyer_fiscal_projetees = pen_foyer_fiscal * (menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL))
+
+        ####
+
+
+        revenus_nets_du_capital_i = menage.members('revenus_nets_du_capital', period)
+        revenus_nets_du_travail_i = menage.members('revenus_nets_du_travail', period)
+        pensions_nettes = menage.sum(pensions_nettes_i)
+        revenus_nets_du_capital = menage.sum(revenus_nets_du_capital_i)
+
+        csg_i = menage.members('csg', period)
+        csg = menage.sum(csg_i)
+
+        return - csg - crds
 
 class revenus_nets_du_travail(Variable):
     value_type = float
