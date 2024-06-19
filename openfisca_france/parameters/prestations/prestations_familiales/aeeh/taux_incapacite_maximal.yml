@@ -1,0 +1,6 @@
+taux_incapacite_maximal:
+  reference: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000006156691/#LEGIARTI000006750709
+  description: Taux d'incapacité maximal au dessous duquel l'enfant peut prétendre à l'aeeh
+  values:
+    2005-12-20:
+      value: 0.8
