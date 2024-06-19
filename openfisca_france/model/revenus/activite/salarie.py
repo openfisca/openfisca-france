@@ -1515,34 +1515,22 @@ class salaire_super_brut(Variable):
 
     def formula_2024_01_01(individu, period, parameters):
         remuneration_brute = individu('remuneration_brute', period)
-        cotisations_employeur_apres_reduction_generale_secteur_prive = individu('cotisations_employeur_apres_reduction_generale_secteur_prive', period)
-        cotisations_employeur_autres_secteur_prive = individu('cotisations_employeur_autres_secteur_prive', period)
+        cotisations_employeur_securite_sociale = individu('cotisations_employeur_securite_sociale', period)
+        pension_employeur = individu('pension_employeur', period)
+        cotisations_employeur_retraite_complementaire = individu('cotisations_employeur_retraite_complementaire', period)
+        cotisations_employeur_assurance_chomage = individu('cotisations_employeur_assurance_chomage', period)
+        allegement_general = individu('allegement_general', period)
         exonerations = individu('exonerations', period)
-        cotisations_employeur_secteur_public = individu('cotisations_employeur_secteur_public', period)
 
-        categorie_salarie = individu('categorie_salarie', period)
-
-        prive = (
-            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
-            + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
-            )
-        public = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
-            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-            )
-
-        return (
+        return(
             remuneration_brute
-            + prive * (
-                cotisations_employeur_apres_reduction_generale_secteur_prive
-                + cotisations_employeur_autres_secteur_prive
-                - exonerations
-                )
-            + public * cotisations_employeur_secteur_public
-            )
+            - cotisations_employeur_securite_sociale
+            - pension_employeur
+            - cotisations_employeur_retraite_complementaire
+            - cotisations_employeur_assurance_chomage
+            - allegement_general
+            - exonerations
+        )
 
 
 class remuneration_brute(Variable):
@@ -1584,62 +1572,48 @@ class primes(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2024_01_01(individu, period, parameters):
-        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
         primes_fonction_publique = individu('primes_fonction_publique', period)
-        primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
+        primes_salaires = individu('primes_salaires', period)
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
         prime_partage_valeur_non_exoneree = individu('prime_partage_valeur_non_exoneree', period, options=[DIVIDE])
 
         return (
             prime_partage_valeur_exoneree
             + primes_fonction_publique
-            + primes_salaires_non_exonerees
+            + primes_salaires
             + prime_partage_valeur_non_exoneree
             )
 
 
-class cotisations_employeur_apres_reduction_generale_secteur_prive(Variable):
+class cotisations_employeur_securite_sociale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisations et contributions du secteur privé soumises à l'allègement général"
+    label = "Cotisations et contributions du régime général de la sécurité sociale"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2024_01_01(individu, period, parameters):
-        ags = individu('ags', period)
-        apec_employeur = individu('apec_employeur', period)
-        chomage_employeur = individu('chomage_employeur', period)
-        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period)
         vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        famille_net_allegement = individu('famille_net_allegement', period)
         accident_du_travail = individu('accident_du_travail', period)
         contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
-        famille_net_allegement = individu('famille_net_allegement', period)
-        mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period)
-        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
-        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
-        contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
-        allegement_general = individu('allegement_general', period)
 
         return (
-            ags
-            + apec_employeur
-            + chomage_employeur
-            + vieillesse_deplafonnee_employeur
+            mmid_employeur_net_allegement
             + vieillesse_plafonnee_employeur
+            + vieillesse_deplafonnee_employeur
+            + famille_net_allegement
             + accident_du_travail
             + contribution_solidarite_autonomie
-            + famille_net_allegement
-            + mmid_employeur_net_allegement
-            + contribution_equilibre_general_employeur
-            + agirc_arrco_employeur
-            + contribution_equilibre_technique_employeur
-            - allegement_general
             )
 
 
-class cotisations_employeur_autres_secteur_prive(Variable):
+class cotisations_employeur_autres(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisations et contributions du secteur privé non soumises à l'allègement général"
+    label = "Autres cotisations et contributions employeur"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1654,6 +1628,9 @@ class cotisations_employeur_autres_secteur_prive(Variable):
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period)
         versement_transport = individu('versement_transport', period)
         contribution_unique_formation_professionnelle_alternance = individu('contribution_unique_formation_professionnelle_alternance', period)
+        fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period)
+        ati_atiacl = individu('ati_atiacl', period)
+        fnal = individu('fnal', period)
 
         return (
             conge_individuel_formation_cdd
@@ -1666,37 +1643,51 @@ class cotisations_employeur_autres_secteur_prive(Variable):
             + complementaire_sante_employeur
             + versement_transport
             + contribution_unique_formation_professionnelle_alternance
+            + fonds_emploi_hospitalier
+            + ati_atiacl
+            + fnal
             )
 
 
-class cotisations_employeur_secteur_public(Variable):
+class cotisations_employeur_retraite_complementaire(Variable):
     value_type = float
     entity = Individu
-    label = 'Cotisations et contributions du secteur public'
+    label = 'Cotisations aux régimes complémentaires de retraite'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2024_01_01(individu, period, parameters):
-        fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period)
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
+        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
+        contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
+        apec_employeur = individu('apec_employeur', period)
         ircantec_employeur = individu('ircantec_employeur', period)
-        pension_employeur = individu('pension_employeur', period)
         rafp_employeur = individu('rafp_employeur', period)
-        ati_atiacl = individu('ati_atiacl', period)
-        fnal = individu('fnal', period)
-        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
-        famille_net_allegement = individu('famille_net_allegement', period)
-        mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period)
 
         return (
-            fonds_emploi_hospitalier
+            agirc_arrco_employeur
+            + contribution_equilibre_general_employeur
+            + contribution_equilibre_technique_employeur
+            + apec_employeur
             + ircantec_employeur
-            + pension_employeur
             + rafp_employeur
-            + ati_atiacl
-            + fnal
-            + contribution_solidarite_autonomie
-            + famille_net_allegement
-            + mmid_employeur_net_allegement
+            )
+
+
+class cotisations_employeur_assurance_chomage(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisations employeur pour le chomage'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2024_01_01(individu, period, parameters):
+        chomage_employeur = individu('chomage_employeur', period)
+        ags = individu('ags', period)
+
+        return (
+            chomage_employeur
+            + ags
             )
 
 
