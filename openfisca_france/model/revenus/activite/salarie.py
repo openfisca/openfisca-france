@@ -1519,6 +1519,7 @@ class salaire_super_brut(Variable):
         pension_employeur = individu('pension_employeur', period)
         cotisations_employeur_retraite_complementaire = individu('cotisations_employeur_retraite_complementaire', period)
         cotisations_employeur_assurance_chomage = individu('cotisations_employeur_assurance_chomage', period)
+        cotisations_employeur_autres = individu('cotisations_employeur_autres', period)
         allegement_general = individu('allegement_general', period)
         exonerations = individu('exonerations', period)
 
@@ -1528,6 +1529,7 @@ class salaire_super_brut(Variable):
             - pension_employeur
             - cotisations_employeur_retraite_complementaire
             - cotisations_employeur_assurance_chomage
+            - cotisations_employeur_autres
             - allegement_general
             - exonerations
         )
