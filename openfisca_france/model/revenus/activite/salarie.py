@@ -1581,7 +1581,7 @@ class cotisations_contributions_employeur(Variable):
 
     def formula_2024_01_01(individu, period, parameters):
         cotisations_employeur_apres_reduction_generale_secteur_prive = individu('cotisations_employeur_apres_reduction_generale_secteur_prive', period)
-        autres_cotisations_contributions = individu('autres_cotisations_contributions', period)
+        cotisations_employeur_autres_secteur_prive = individu('cotisations_employeur_autres_secteur_prive', period)
         exonerations = individu('exonerations', period)
         cotisations_employeur_secteur_public = individu('cotisations_employeur_secteur_public', period)
 
@@ -1599,7 +1599,7 @@ class cotisations_contributions_employeur(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             )
 
-        return prive * (cotisations_employeur_apres_reduction_generale_secteur_prive + autres_cotisations_contributions - exonerations) + public * cotisations_employeur_secteur_public
+        return prive * (cotisations_employeur_apres_reduction_generale_secteur_prive + cotisations_employeur_autres_secteur_prive - exonerations) + public * cotisations_employeur_secteur_public
 
 
 class cotisations_employeur_apres_reduction_generale_secteur_prive(Variable):
@@ -1641,7 +1641,7 @@ class cotisations_employeur_apres_reduction_generale_secteur_prive(Variable):
         )
 
 
-class autres_cotisations_contributions(Variable):
+class cotisations_employeur_autres_secteur_prive(Variable):
     value_type = float
     entity = Individu
     label = "Cotisations et contributions du secteur privé non soumises à l'allègement général"
@@ -1691,6 +1691,18 @@ class cotisations_employeur_secteur_public(Variable):
         contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
         famille_net_allegement = individu('famille_net_allegement', period)
         mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period)
+
+        return (
+            fonds_emploi_hospitalier
+            + ircantec_employeur
+            + pension_employeur
+            + rafp_employeur
+            + ati_atiacl
+            + fnal
+            + contribution_solidarite_autonomie
+            + famille_net_allegement
+            + mmid_employeur_net_allegement
+        )
 
 
 class vieillesse_salarie(Variable):
