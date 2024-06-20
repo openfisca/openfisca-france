@@ -1516,8 +1516,9 @@ class salaire_super_brut(Variable):
     def formula_2024_01_01(individu, period, parameters):
         remuneration_brute = individu('remuneration_brute', period)
         cotisations_employeur_securite_sociale = individu('cotisations_employeur_securite_sociale', period)
-        pension_employeur = individu('pension_employeur', period)
         cotisations_employeur_retraite_complementaire = individu('cotisations_employeur_retraite_complementaire', period)
+        pension_employeur = individu('pension_employeur', period)
+        rafp_employeur = individu('rafp_employeur', period)
         cotisations_employeur_assurance_chomage = individu('cotisations_employeur_assurance_chomage', period)
         cotisations_employeur_autres = individu('cotisations_employeur_autres', period)
         allegement_general = individu('allegement_general', period)
@@ -1526,8 +1527,9 @@ class salaire_super_brut(Variable):
         return(
             remuneration_brute
             - cotisations_employeur_securite_sociale
-            - pension_employeur
             - cotisations_employeur_retraite_complementaire
+            - pension_employeur
+            - rafp_employeur
             - cotisations_employeur_assurance_chomage
             - cotisations_employeur_autres
             - allegement_general
@@ -1664,7 +1666,6 @@ class cotisations_employeur_retraite_complementaire(Variable):
         contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
         apec_employeur = individu('apec_employeur', period)
         ircantec_employeur = individu('ircantec_employeur', period)
-        rafp_employeur = individu('rafp_employeur', period)
 
         return (
             agirc_arrco_employeur
@@ -1672,7 +1673,6 @@ class cotisations_employeur_retraite_complementaire(Variable):
             + contribution_equilibre_technique_employeur
             + apec_employeur
             + ircantec_employeur
-            + rafp_employeur
             )
 
 
