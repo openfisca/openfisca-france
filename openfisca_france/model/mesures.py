@@ -118,7 +118,7 @@ class revenus_nets_menage(Variable):
         indemnite_compensatrice_csg = menage.sum(indemnite_compensatrice_csg_i)
         cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
         cotisations_salariales = menage.sum(cotisations_salariales_i)
-        complementaire_sante_salarie_i = menage.sum('complementaire_sante_salarie', period, options = [ADD])
+        complementaire_sante_salarie_i = menage.members('complementaire_sante_salarie', period, options = [ADD])
         complementaire_sante_salarie = menage.sum(complementaire_sante_salarie_i)
         rpns_imposables_i = menage.members('rpns_imposables', period, options = [ADD])
         rpns_imposables = menage.sum(rpns_imposables_i)
@@ -134,7 +134,7 @@ class revenus_nets_menage(Variable):
         pensions_rentes_complementaires = menage('pensions_rentes_complementaires', period)
         # revenus nets du capital
         revenus_du_capital_avant_prelevements = menage('revenus_du_capital_avant_prelevements', period)
-        prelevements_sociaux_revenus_capital_hors_csg_crds_f = menage.members.sfoyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        prelevements_sociaux_revenus_capital_hors_csg_crds_f = menage.members.foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_f)
 
         # CSG CRDS
@@ -792,11 +792,11 @@ class crds_revenus_menage(Variable):
         crds_salaire_i = menage.members('crds_salaire', period, options = [ADD])
         crds_salaire = menage.sum(crds_salaire_i)
         crds_retraite_i = menage.members('crds_retraite', period, options = [ADD])
-        crds_retraite = menage.members(crds_retraite_i)
+        crds_retraite = menage.sum(crds_retraite_i)
         crds_chomage_i = menage.members('crds_chomage', period, options = [ADD])
-        crds_chomage = menage.members(crds_chomage_i)
-        crds_non_salarie_i = menage.members('crds_non_salarie', period, options = [ADD])
-        crds_non_salarie = menage.members(crds_non_salarie_i)
+        crds_chomage = menage.sum(crds_chomage_i)
+        crds_non_salarie_i = menage.members('crds_non_salarie', period)
+        crds_non_salarie = menage.sum(crds_non_salarie_i)
 
         crds_glo_assimile_salaire_ir_et_ps_i = menage.members('crds_glo_assimile_salaire_ir_et_ps', period)
         crds_glo_assimile_salaire_ir_et_ps = menage.sum(crds_glo_assimile_salaire_ir_et_ps_i)
