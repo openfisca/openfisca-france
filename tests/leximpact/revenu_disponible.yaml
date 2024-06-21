@@ -21,7 +21,9 @@
     revenu_disponible:
       2025: 22835
     revenus_nets_menage:
-      2025: 17388
+      2025: 19090
+    cotisations_salariales:
+      2025-01: -200
 
 - period: '2024'
   name: Retraité au smic
