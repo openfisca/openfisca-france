@@ -3,12 +3,12 @@ metadata:
   short_label: Fonds national d'aide au logement (FNAL)
   label_en: Contributions to the National Fund for Housing (FNAL)
   order:
-  - tout_employeur
-  - contribution_plus_de_10_salaries
-  - contribution_moins_de_20_salaries
-  - contribution_plus_de_20_salaries
   - contribution_moins_de_50_salaries
   - contribution_plus_de_50_salaries
+  - contribution_moins_de_20_salaries
+  - contribution_plus_de_20_salaries
+  - contribution_plus_de_10_salaries
+  - cotisation
 documentation: |-
   Les employeurs de plus de 20 salariés relevant du régime agricole sont exclus de la cotisation supplémentaire.
   Pour la fonction publique, la cotisation Fnal au taux de 0,10 % et la contribution Fnal supplémentaire sont calculées par application d'un taux unique de 0,50 % appliqué sur le montant total du traitement soumis à retenue pour pension (TIB+ NBI) ou des rémunérations brutes (cotisation Fnal plafonnée à 0,10 % + contribution Fnal supplémentaire à 0,40 % sur la part des salaires plafonnés + contribution Fnal supplémentaire à 0,50 % sur la part des salaires dépassant le plafond).

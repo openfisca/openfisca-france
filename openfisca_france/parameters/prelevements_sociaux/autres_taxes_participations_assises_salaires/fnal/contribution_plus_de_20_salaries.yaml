@@ -49,3 +49,7 @@ metadata:
     2020-01-01: "2019-05-23"
   rate_unit: /1
   threshold_unit: PSS
+documentation: |-
+  Ce dispositif de contribution sur les salaires est cumulatif avec le dispositif de cotisation sur les salaires plafonnés jusqu'en 2015.
+  En 2015, la cotisation disparaît, et la contribution est élargie à toutes les entreprises,
+  mais avec un barème différent pour entreprises de plus ou moins 20 salariés (50 salariés à partir de 2020)

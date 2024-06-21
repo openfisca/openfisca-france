@@ -3,6 +3,8 @@ brackets:
 - threshold:
     1972-01-01:
       value: 0
+    2016-01-01:
+      value: null
   rate:
     1972-01-01:
       value: 0.008
@@ -92,6 +94,7 @@ metadata:
     2019-01-01:
     - title: Nouvelle contribution unique remplaçant la PEFPC et la taxe d'apprentissage. Le CIF-CDD devient CPF CDD. La loi Avenir ajoute une nouvelle exception à cette contribution, le travail saisonnier.
   rate_unit: /1
+  threshold_unit: PSS
 documentation: |-
   Champ :
   Calculé sur la masse des salaires (y compris avantages en natures) versés dans l'année.
