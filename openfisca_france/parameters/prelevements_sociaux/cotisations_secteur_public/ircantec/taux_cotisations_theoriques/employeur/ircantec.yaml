@@ -28,7 +28,7 @@ brackets:
   rate:
     1971-01-01:
       value: 0.0825
-    1992-01-01:
+    1989-01-01:
       value: 0.0924
     2011-01-01:
       value: 0.0928
@@ -46,12 +46,14 @@ brackets:
       value: 0.1004
 - threshold:
     1971-01-01:
+      value: 4.75
+    1992-01-01:
       value: 8
   rate:
     1971-01-01:
       value: 0
 metadata:
-  short_label: Contribution employeur
+  short_label: Barème
   last_value_still_valid_on: "2021-08-24"
   label_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
   ipp_csv_id:

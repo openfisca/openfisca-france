@@ -349,13 +349,11 @@ class contribution_salariale_glo_assimile_salaire(Variable):
         '''
         Existe avant 2013, mais pas codé pour cette période antérieure.
         '''
+        contribution = parameters(period).prelevements_sociaux.contributions_assises_specifiquement_accessoires_salaire.cont_sur_options.taux_plein
         f1tt_i = foyer_fiscal.members('f1tt', period)
         f1tt = foyer_fiscal.sum(f1tt_i)
         f3vn = foyer_fiscal('f3vn', period)
-        return - (f1tt + f3vn) * (
-            parameters(period).prelevements_sociaux.contribution_salariale_glo
-            )
-
+        return - (f1tt + f3vn) * contribution.taux_plein
 
 class csg_revenus_capital(Variable):
     value_type = float
