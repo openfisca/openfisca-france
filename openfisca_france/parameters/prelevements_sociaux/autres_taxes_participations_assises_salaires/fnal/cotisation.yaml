@@ -3,19 +3,25 @@ brackets:
 - threshold:
     1972-07-01:
       value: 0
+    2015-01-01:
+      value: null
   rate:
     1972-07-01:
       value: 0.001
     1986-01-01:
       value: 0.001
     2015-01-01:
-      value: 0
+      value: null
 - threshold:
     1972-07-01:
       value: 1
+    2015-01-01:
+      value: null
   rate:
     1972-07-01:
       value: 0
+    2015-01-01:
+      value: null
 metadata:
   last_value_still_valid_on: "2021-12-07"
   reference:

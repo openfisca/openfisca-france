@@ -3,19 +3,23 @@ brackets:
 - threshold:
     2015-01-01:
       value: 0
+    2020-01-01:
+      value: null
   rate:
     2015-01-01:
       value: 0.001
     2020-01-01:
-      value: 0
+      value: null
 - threshold:
     2015-01-01:
       value: 1
+    2020-01-01:
+      value: null
   rate:
     2015-01-01:
       value: 0
     2020-01-01:
-      value: 0
+      value: null
 metadata:
   short_label: Entreprises de moins de 20 salariés
   ipp_csv_id: fnal_p_m20_0_1
