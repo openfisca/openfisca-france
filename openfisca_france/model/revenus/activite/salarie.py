@@ -1524,7 +1524,7 @@ class salaire_super_brut(Variable):
         allegement_general = individu('allegement_general', period)
         exonerations = individu('exonerations', period)
 
-        return(
+        return (
             remuneration_brute
             - cotisations_employeur_securite_sociale
             - cotisations_employeur_retraite_complementaire
@@ -1534,7 +1534,7 @@ class salaire_super_brut(Variable):
             - cotisations_employeur_autres
             - allegement_general
             - exonerations
-        )
+            )
 
 
 class remuneration_brute(Variable):
@@ -1592,7 +1592,7 @@ class primes(Variable):
 class cotisations_employeur_securite_sociale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisations et contributions du régime général de la sécurité sociale"
+    label = 'Cotisations et contributions du régime général de la sécurité sociale'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1617,7 +1617,7 @@ class cotisations_employeur_securite_sociale(Variable):
 class cotisations_employeur_autres(Variable):
     value_type = float
     entity = Individu
-    label = "Autres cotisations et contributions employeur"
+    label = 'Autres cotisations et contributions employeur'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
