@@ -77,6 +77,20 @@ class revenu_disponible(Variable):
             + revenus_nets_du_capital
             )
 
+    def formula_2024_01_01(menage, period, parameters):
+        revenus_nets_menage = menage('revenus_nets_menage', period)
+        impots_directs = menage('impots_directs', period)
+
+        # On prend en compte les prestations sociales touchées par une famille dont le demandeur est dans le ménage
+        prestations_sociales_i = menage.members.famille('prestations_sociales', period)  # PF de la famille auquel appartient chaque membre du ménage
+        prestations_sociales = menage.sum(prestations_sociales_i, role = Famille.DEMANDEUR)  # On somme seulement pour les demandeurs
+
+        return (
+            revenus_nets_menage
+            + impots_directs
+            + prestations_sociales
+            )
+
 
 class niveau_de_vie(Variable):
     value_type = float
@@ -90,6 +104,62 @@ class niveau_de_vie(Variable):
         return revenu_disponible / uc
 
 
+class revenus_nets_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = 'Revenus nets'
+    definition_period = YEAR
+
+    def formula_2024_01_01(menage, period):
+        # revenus du travail nets
+        remuneration_brute_i = menage.members('remuneration_brute', period, options = [ADD])
+        remuneration_brute = menage.sum(remuneration_brute_i)
+        indemnite_compensatrice_csg_i = menage.members('indemnite_compensatrice_csg', period, options = [ADD])
+        indemnite_compensatrice_csg = menage.sum(indemnite_compensatrice_csg_i)
+        cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
+        cotisations_salariales = menage.sum(cotisations_salariales_i)
+        complementaire_sante_salarie_i = menage.sum('complementaire_sante_salarie', period, options = [ADD])
+        complementaire_sante_salarie = menage.sum(complementaire_sante_salarie_i)
+        rpns_imposables_i = menage.members('rpns_imposables', period, options = [ADD])
+        rpns_imposables = menage.sum(rpns_imposables_i)
+        microentreprise_i = menage.members.foyer_fiscal('microentreprise', period, options = [ADD]) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        microentreprise = menage.sum(microentreprise_i)
+        # pensions nettes
+        chomage_brut_i = menage.members('chomage_brut', period, options = [ADD])
+        chomage_brut = menage.sum(chomage_brut_i)
+        retraite_brute_i = menage.members('retraite_brute', period, options = [ADD])
+        retraite_brute = menage.sum(retraite_brute_i)
+        casa_i = menage.members('casa', period, options = [ADD])
+        casa = menage.sum(casa_i)
+        pensions_rentes_complementaires = menage('pensions_rentes_complementaires', period)
+        # revenus nets du capital
+        revenus_du_capital_avant_prelevements = menage('revenus_du_capital_avant_prelevements', period)
+        prelevements_sociaux_revenus_capital_hors_csg_crds_f = menage.members.sfoyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_f)
+
+        # CSG CRDS
+        csg_i = menage.members('csg', period)
+        csg = menage.sum(csg_i)
+        crds_revenus_menage = menage('crds_revenus_menage', period)
+
+        return (
+            remuneration_brute
+            + indemnite_compensatrice_csg
+            + cotisations_salariales
+            - complementaire_sante_salarie
+            + rpns_imposables
+            + microentreprise
+            + retraite_brute
+            + casa
+            + chomage_brut
+            + pensions_rentes_complementaires
+            + revenus_du_capital_avant_prelevements
+            + prelevements_sociaux_revenus_capital_hors_csg_crds
+            - csg
+            - crds_revenus_menage
+            )
+
+
 class revenus_nets_du_travail(Variable):
     value_type = float
     entity = Individu
@@ -101,6 +171,61 @@ class revenus_nets_du_travail(Variable):
         salaire_net = individu('salaire_net', period, options = [ADD])
         revenus_non_salarie_nets = individu('revenus_non_salarie_nets', period)
         return salaire_net + revenus_non_salarie_nets
+
+
+class pensions_rentes_complementaires(Variable):
+    value_type = float
+    entity = Menage
+    label = 'Pensions et revenus de remplacement  hors chomage et retraite'
+    reference = 'http://fr.wikipedia.org/wiki/Rente'
+    definition_period = YEAR
+
+    def formula(menage, period):
+        pensions_alimentaires_percues_i = menage.members('pensions_alimentaires_percues', period, options = [ADD])
+        pensions_alimentaires_percues = menage.sum(pensions_alimentaires_percues_i)
+        pensions_invalidite_i = menage.members('pensions_invalidite', period, options = [ADD])
+        pensions_invalidite = menage.sum(pensions_invalidite_i)
+
+        # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
+        pensions_alimentaires_versees_f = menage.members.foyer_fiscal('pensions_alimentaires_versees', period)
+        pensions_alimentaires_versees = menage.sum(pensions_alimentaires_versees_f * (menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)))
+        rente_viagere_titre_onereux_f = menage.members.foyer_fiscal('rente_viagere_titre_onereux', period, options = [ADD])
+        rente_viagere_titre_onereux = menage.sum(rente_viagere_titre_onereux_f * (menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)))
+
+        return (
+            pensions_alimentaires_percues
+            + pensions_invalidite
+            + pensions_alimentaires_versees
+            + rente_viagere_titre_onereux
+            )
+
+
+class revenus_du_capital_avant_prelevements(Variable):
+    value_type = float
+    entity = Menage
+    label = 'Revenus du capital avant prélèvements sociaux'
+    definition_period = YEAR
+
+    def formula_2024_01_01(menage, period):
+        assiette_csg_revenus_capital_f = menage.members.foyer_fiscal('assiette_csg_revenus_capital', period) * (menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL))
+        assiette_csg_revenus_capital = menage.sum(assiette_csg_revenus_capital_f)
+        assiette_csg_plus_values_f = menage.members.foyer_fiscal('assiette_csg_plus_values', period) * (menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL))
+        assiette_csg_plus_values = menage.sum(assiette_csg_plus_values_f)
+        plus_values_base_large_f = menage.members.foyer_fiscal('plus_values_base_large', period) * (menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL))
+        plus_values_base_large = menage.sum(plus_values_base_large_f)
+        rente_viagere_titre_onereux_net_f = menage.members.foyer_fiscal('rente_viagere_titre_onereux_net', period) * (menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL))
+        rente_viagere_titre_onereux_net = menage.sum(rente_viagere_titre_onereux_net_f)
+        # Ajoute les gains de levée d'options qui, pour les prélèvements sociaux, sont soumis aux mêmes taux que les salaires. Contrairement aux revenus ci-dessus, ces revenus sont individuels.
+        glo_assimiles_salaire_ir_et_ps_i = menage.members('f1tt', period)
+        glo_assimiles_salaire_ir_et_ps = menage.sum(glo_assimiles_salaire_ir_et_ps_i)
+
+        return (
+            assiette_csg_revenus_capital
+            - assiette_csg_plus_values
+            + plus_values_base_large
+            - rente_viagere_titre_onereux_net
+            + glo_assimiles_salaire_ir_et_ps
+            )
 
 
 class pensions_nettes(Variable):
@@ -650,3 +775,33 @@ class impots_directs(Variable):
             + isf_ifi
             + prelevement_liberatoire_autoentrepreneur
             )
+
+
+class crds_revenus_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = "Contributions au remboursement de la dette sociale sur l'ensemble des revenus des membres du ménage"
+    reference = [
+        'Ordonnance n° 96-50 du 24 janvier 1996 relative au remboursement de la dette sociale, art. 14',
+        'https://www.legifrance.gouv.fr/loda/id/LEGISCTA000006106400'
+        ]
+    definition_period = YEAR
+
+    def formula(menage, period):
+        # CRDS sur revenus individuels
+        crds_salaire_i = menage.members('crds_salaire', period, options = [ADD])
+        crds_salaire = menage.sum(crds_salaire_i)
+        crds_retraite_i = menage.members('crds_retraite', period, options = [ADD])
+        crds_retraite = menage.members(crds_retraite_i)
+        crds_chomage_i = menage.members('crds_chomage', period, options = [ADD])
+        crds_chomage = menage.members(crds_chomage_i)
+        crds_non_salarie_i = menage.members('crds_non_salarie', period, options = [ADD])
+        crds_non_salarie = menage.members(crds_non_salarie_i)
+
+        crds_glo_assimile_salaire_ir_et_ps_i = menage.members('crds_glo_assimile_salaire_ir_et_ps', period)
+        crds_glo_assimile_salaire_ir_et_ps = menage.sum(crds_glo_assimile_salaire_ir_et_ps_i)
+
+        crds_revenus_capital = menage.members.foyer_fiscal('crds_revenus_capital', period)
+        crds_revenus_capital_projetee = menage.sum(crds_revenus_capital * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL))
+
+        return crds_salaire + crds_retraite + crds_chomage + crds_non_salarie + crds_glo_assimile_salaire_ir_et_ps + crds_revenus_capital_projetee

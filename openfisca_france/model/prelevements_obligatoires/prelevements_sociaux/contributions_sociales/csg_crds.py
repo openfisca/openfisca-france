@@ -10,21 +10,30 @@ class csg(Variable):
     label = 'Contribution sociale généralisée'
     definition_period = YEAR
 
-    def formula(individu, period, parameters):
-        csg_salaire = individu('csg_salaire', period, options = [ADD])
-        csg_chomage = individu('csg_chomage', period, options = [ADD])
-        csg_retraite = individu('csg_retraite', period, options = [ADD])
-        csg_non_salarie = individu('csg_non_salarie', period)
+    def formula(individu, period):
+        csg_imposable_salaire = individu('csg_imposable_salaire', period, options = [ADD])
+        csg_deductible_salaire = individu('csg_deductible_salaire', period, options = [ADD])
+        csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
+        csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
+        csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
+        csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [ADD])
+        # csg_deductible_non_salarie = individu('csg_deductible_non_salarie', period, options = [ADD])
+        # on commente csg deductible non salarie car on part des rpns imposables
         csg_glo_assimile_salaire_ir_et_ps = individu('csg_glo_assimile_salaire_ir_et_ps', period)
         # CSG sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         csg_revenus_capital = individu.foyer_fiscal('csg_revenus_capital', period)
         csg_revenus_capital_projetee = csg_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
-            csg_salaire
-            + csg_chomage
-            + csg_retraite
-            + csg_non_salarie
+            csg_imposable_salaire
+            + csg_deductible_salaire
+            + csg_imposable_chomage
+            + csg_deductible_chomage
+            + csg_imposable_retraite
+            + csg_deductible_retraite
+            + csg_imposable_non_salarie
+            # + csg_deductible_non_salarie
             + csg_glo_assimile_salaire_ir_et_ps
             + csg_revenus_capital_projetee
             )
