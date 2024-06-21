@@ -353,7 +353,7 @@ class contribution_salariale_glo_assimile_salaire(Variable):
         f1tt_i = foyer_fiscal.members('f1tt', period)
         f1tt = foyer_fiscal.sum(f1tt_i)
         f3vn = foyer_fiscal('f3vn', period)
-        return - (f1tt + f3vn) * contribution.taux_plein
+        return - (f1tt + f3vn) * contribution.salarie.taux_plein
 
 class csg_revenus_capital(Variable):
     value_type = float
