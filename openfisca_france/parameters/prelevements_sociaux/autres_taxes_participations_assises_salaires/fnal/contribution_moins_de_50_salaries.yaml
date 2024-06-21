@@ -9,11 +9,9 @@ brackets:
 - threshold:
     2020-01-01:
       value: 1
-    2020-01-01:
-      value: null
   rate:
     2020-01-01:
-      value: null
+      value: 0
 metadata:
   short_label: Entreprises de moins de 50 salariés
   last_value_still_valid_on: "2024-03-14"

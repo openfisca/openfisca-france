@@ -355,6 +355,7 @@ class contribution_salariale_glo_assimile_salaire(Variable):
         f3vn = foyer_fiscal('f3vn', period)
         return - (f1tt + f3vn) * contribution.salarie.taux_plein
 
+
 class csg_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
