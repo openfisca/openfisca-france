@@ -1507,10 +1507,14 @@ class salaire_super_brut(Variable):
         salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
         exonerations = individu('exonerations', period)
         allegement_general = individu('allegement_general', period, options = [ADD])
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+        prime_partage_valeur_exoneree_exceptionnelle = individu('prime_partage_valeur_exoneree_exceptionnelle', period, options=[DIVIDE])
         return (
             salaire_super_brut_hors_allegements
             - exonerations
             - allegement_general
+            + prime_partage_valeur_exoneree
+            + prime_partage_valeur_exoneree_exceptionnelle
             )
 
     def formula_2024_01_01(individu, period, parameters):
