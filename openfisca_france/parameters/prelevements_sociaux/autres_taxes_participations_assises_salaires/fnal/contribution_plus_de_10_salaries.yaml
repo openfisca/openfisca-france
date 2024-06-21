@@ -3,6 +3,8 @@ brackets:
 - threshold:
     1986-01-01:
       value: 0
+    2007-01-01:
+      value: null
   rate:
     1986-01-01:
       value: 0.0013
@@ -10,6 +12,8 @@ brackets:
       value: 0.002
     1991-07-01:
       value: 0.004
+    2007-01-01:
+      value: null
 metadata:
   reference:
     1986-01-01:
@@ -29,8 +33,10 @@ metadata:
     1989-01-01: "1988-12-28"
     1991-07-01: "1991-07-27"
     2007-01-01: "2006-12-27"
-  notes:
-    0001-01-01:
-    - title: Ce dispositif de contribution sur les salaires est cumulatif avec le dispositif de cotisation sur les salaires plafonnés jusqu'en 2015. En 2007, le seuil d'effectifs pour la contribution passe de 10 à 20 salariés. En 2015, la cotisation disparaît, et la contribution est élargie à toutes les entreprises, mais avec un barème différent pour entreprises de plus ou moins 20 salariés (50 salariés à partir de 2020)
   rate_unit: /1
   threshold_unit: PSS
+documentation: |-
+   Ce dispositif de contribution sur les salaires est cumulatif avec le dispositif de cotisation sur les salaires plafonnés jusqu'en 2015. 
+   En 2007, le seuil d'effectifs pour la contribution passe de 10 à 20 salariés. 
+   En 2015, la cotisation disparaît, et la contribution est élargie à toutes les entreprises, 
+   mais avec un barème différent pour entreprises de plus ou moins 20 salariés (50 salariés à partir de 2020)
