@@ -132,7 +132,7 @@ class revenus_nets_menage(Variable):
         casa_i = menage.members('casa', period, options = [ADD])
         casa = menage.sum(casa_i)
         pensions_rentes_complementaires = menage('pensions_rentes_complementaires', period)
-        # revenus nets du capital
+        # revenus nets du capital
         revenus_du_capital_avant_prelevements = menage('revenus_du_capital_avant_prelevements', period)
         prelevements_sociaux_revenus_capital_hors_csg_crds_f = menage.members.sfoyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_f)
@@ -197,7 +197,7 @@ class pensions_rentes_complementaires(Variable):
             + pensions_invalidite
             + pensions_alimentaires_versees
             + rente_viagere_titre_onereux
-        )
+            )
 
 
 class revenus_du_capital_avant_prelevements(Variable):
@@ -775,6 +775,7 @@ class impots_directs(Variable):
             + isf_ifi
             + prelevement_liberatoire_autoentrepreneur
             )
+
 
 class crds_revenus_menage(Variable):
     value_type = float
