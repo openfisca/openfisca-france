@@ -3,6 +3,11 @@ metadata:
   short_label: Taxe sur les salaires
   label_en: Payroll tax ("tax on wages")
   order:
+  - metro
   - taux_maj
   - guy
   - mgr
+  - franchise
+  - decote_montant.yaml
+  - decote_taux
+  - abattement_special

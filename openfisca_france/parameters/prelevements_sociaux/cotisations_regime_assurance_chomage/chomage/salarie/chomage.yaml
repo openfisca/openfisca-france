@@ -135,7 +135,7 @@ brackets:
     2018-10-01:
       value: null
 metadata:
-  short_label: Taux salarié
+  short_label: Barème
   ipp_csv_id:
     rate: chom_s_0_1, chom_s_1_4
   reference:
@@ -197,10 +197,6 @@ metadata:
       title: Convention du 01/01/2001, avenant du 19/06/2002
     2003-01-01:
       title: Convention du 01/01/2001, avenant du 27/12/2002
-    2004-01-01:
-      title: Convention du 01/01/2005
-    2005-01-01:
-      title: Convention du 01/01/2004
     2006-01-01:
       title: Circulaire Unedic 2006-08 du 27/03/2006. Convention du 18/01/2006, agréé par l'arrêté du 23/02/2006
     2007-01-01:

@@ -3,10 +3,10 @@ metadata:
   short_label: Formation professionnelle
   label_en: Employer's participation to lifelong professional training
   order:
-  - employeur_tout_salaire
-  - moins_10_salaries
-  - 10_salaries_plus
   - toute_entreprise
+  - employeur_tout_salaire
+  - 10_salaries_plus
+  - moins_10_salaries
 documentation: |-
   Cette participation est calculée sur la masse des salaires (y compris avantages en natures) versés dans l'année.
 
