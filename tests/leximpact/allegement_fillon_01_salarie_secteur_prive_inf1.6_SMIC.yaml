@@ -1,10 +1,6 @@
 input:
   familles:
     "Famille n\xB01":
-      en_couple:
-        '2023': 'false'
-        '2024': 'false'
-        '2025': 'false'
       enfants: []
       parents:
       - Adulte 1
@@ -13,9 +9,9 @@ input:
       declarants:
       - Adulte 1
       depcom_foyer:
-        '2023': '75107'
-        '2024': '75107'
-        '2025': '75107'
+        '2023': '69259'
+        '2024': '69259'
+        '2025': '69259'
       personnes_a_charge: []
   individus:
     Adulte 1:
@@ -36,11 +32,11 @@ input:
         '2024': cdi
         '2025': cdi
       date_naissance:
-        '2025': '1985-11-05'
+        '2025': '1973-08-30'
       depcom_entreprise:
-        '2023': '75107'
-        '2024': '75107'
-        '2025': '75107'
+        '2023': '69259'
+        '2024': '69259'
+        '2025': '69259'
       effectif_entreprise:
         '2023': 20
         '2024': 20
@@ -53,27 +49,26 @@ input:
         '2023': false
         '2024': false
         '2025': false
-      pensions_alimentaires_percues:
-        '2025': 0
       salaire_de_base:
-        '2023': 26504
-        '2024': 26504
-        '2025': 26504
+        '2023': 33919
+        '2024': 33919
+        '2025': 33919
       statut_marital:
         '2023': celibataire
         '2024': celibataire
         '2025': celibataire
   menages:
     "Logement principal n\xB01":
+      conjoint: []
       depcom:
-        '2023': '75107'
-        '2024': '75107'
-        '2025': '75107'
+        '2023': '69259'
+        '2024': '69259'
+        '2025': '69259'
       enfants: []
       loyer:
-        '2023': 7200
-        '2024': 7200
-        '2025': 7200
+        '2023': 4800
+        '2024': 4800
+        '2025': 4800
       personne_de_reference:
       - Adulte 1
       statut_occupation_logement:
@@ -82,6 +77,6 @@ input:
         '2025': locataire_vide
 output:
   revenu_disponible:
-    2025: 21988
+    2025: 25528
 period: 2025
 relative_error_margin: 0.001

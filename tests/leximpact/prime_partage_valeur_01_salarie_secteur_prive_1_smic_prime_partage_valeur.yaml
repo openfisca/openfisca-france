@@ -1,10 +1,6 @@
 input:
   familles:
     "Famille n\xB01":
-      en_couple:
-        '2023': 'false'
-        '2024': 'false'
-        '2025': 'false'
       enfants: []
       parents:
       - Adulte 1
@@ -13,16 +9,24 @@ input:
       declarants:
       - Adulte 1
       depcom_foyer:
-        '2023': '75107'
-        '2024': '75107'
-        '2025': '75107'
+        '2023': '21166'
+        '2024': '21166'
+        '2025': '21166'
       personnes_a_charge: []
   individus:
     Adulte 1:
+      accord_interessement:
+        '2023': false
+        '2024': false
+        '2025': false
       activite:
         '2023': actif
         '2024': actif
         '2025': actif
+      allegement_cotisation_maladie_mode_recouvrement:
+        '2023': progressif
+        '2024': progressif
+        '2025': progressif
       categorie_salarie:
         '2023': prive_non_cadre
         '2024': prive_non_cadre
@@ -36,44 +40,41 @@ input:
         '2024': cdi
         '2025': cdi
       date_naissance:
-        '2025': '1985-11-05'
+        '2025': '1982-11-05'
       depcom_entreprise:
-        '2023': '75107'
-        '2024': '75107'
-        '2025': '75107'
+        '2023': '21166'
+        '2024': '21166'
+        '2025': '21166'
       effectif_entreprise:
-        '2023': 20
-        '2024': 20
-        '2025': 20
+        '2023': 8
+        '2024': 8
+        '2025': 8
       heures_remunerees_volume:
         '2023': 1607
         '2024': 1607
         '2025': 1607
-      invalidite:
-        '2023': false
-        '2024': false
-        '2025': false
-      pensions_alimentaires_percues:
-        '2025': 0
+      prime_partage_valeur:
+        '2025': 780
       salaire_de_base:
-        '2023': 26504
-        '2024': 26504
-        '2025': 26504
+        '2023': 21203
+        '2024': 21203
+        '2025': 21203
       statut_marital:
         '2023': celibataire
         '2024': celibataire
         '2025': celibataire
   menages:
     "Logement principal n\xB01":
+      conjoint: []
       depcom:
-        '2023': '75107'
-        '2024': '75107'
-        '2025': '75107'
+        '2023': '21166'
+        '2024': '21166'
+        '2025': '21166'
       enfants: []
       loyer:
-        '2023': 7200
-        '2024': 7200
-        '2025': 7200
+        '2023': 6000
+        '2024': 6000
+        '2025': 6000
       personne_de_reference:
       - Adulte 1
       statut_occupation_logement:
@@ -82,6 +83,6 @@ input:
         '2025': locataire_vide
 output:
   revenu_disponible:
-    2025: 21988
+    2025: 20346
 period: 2025
 relative_error_margin: 0.001
