@@ -8,6 +8,6 @@ metadata:
   - guy
   - mgr
   - franchise
-  - decote_montant.yaml
+  - decote_montant
   - decote_taux
   - abattement_special
