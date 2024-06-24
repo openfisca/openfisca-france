@@ -1471,10 +1471,7 @@ class salaire_super_brut_hors_allegements(Variable):
         return salaire_super_brut_hors_allegements
 
 
-
-
-
-(Variable):
+class salaire_super_brut(Variable):
     value_type = float
     entity = Individu
     label = 'Coût du travail à court terme. Inclut les exonérations et allègements de charges'
