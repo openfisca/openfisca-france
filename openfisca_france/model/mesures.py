@@ -702,6 +702,23 @@ class minima_sociaux(Variable):
         garantie_jeunes = famille.sum(garantie_jeunes_i)
 
         return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa_nette_crds + garantie_jeunes
+    
+    def formula_2024_01_01(famille, period, parameters):
+        # Certaines réformes ayant des effets de bords nécessitent que le rsa soit calculé avant la ppa
+        rsa = famille('rsa', period, options = [ADD])
+        ppa_nette_crds = famille('ppa_nette_crds', period, options = [ADD])
+        aspa = famille('aspa', period, options = [ADD])
+        asi_i = famille.members('asi', period, options = [ADD])
+        asi = famille.sum(asi_i)
+        aah_i = famille.members('aah', period, options = [ADD])
+        aah = famille.sum(aah_i)
+        ass_i = famille.members('ass', period, options = [ADD])
+        ass = famille.sum(ass_i)
+        garantie_jeunes_i = famille.members('garantie_jeunes', period, options = [ADD])
+        garantie_jeunes = famille.sum(garantie_jeunes_i)
+        aefa = famille('aefa', period)
+
+        return rsa + ppa_nette_crds + aspa + asi + aah + ass + garantie_jeunes + aefa
 
 
 class aides_logement(Variable):
