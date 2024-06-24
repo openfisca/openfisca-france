@@ -1471,7 +1471,10 @@ class salaire_super_brut_hors_allegements(Variable):
         return salaire_super_brut_hors_allegements
 
 
-class salaire_super_brut(Variable):
+
+
+
+(Variable):
     value_type = float
     entity = Individu
     label = 'Coût du travail à court terme. Inclut les exonérations et allègements de charges'
@@ -1586,9 +1589,9 @@ class primes(Variable):
         prime_partage_valeur_non_exoneree = individu('prime_partage_valeur_non_exoneree', period, options=[DIVIDE])
 
         return (
-            prime_partage_valeur_exoneree
-            + primes_fonction_publique
+            primes_fonction_publique
             + primes_salaires
+            + prime_partage_valeur_exoneree
             + prime_partage_valeur_non_exoneree
             )
 
