@@ -140,7 +140,8 @@ class revenus_nets_menage(Variable):
         # CSG CRDS
         csg_i = menage.members('csg', period)
         csg = menage.sum(csg_i)
-        crds_revenus_menage = menage('crds_revenus_menage', period)
+        crds_hors_prestations_i = menage.members('crds_hors_prestations', period)
+        crds_hors_prestations = menage.sum(crds_hors_prestations_i)
 
         return (
             remuneration_brute
@@ -155,8 +156,8 @@ class revenus_nets_menage(Variable):
             + pensions_rentes_complementaires
             + revenus_du_capital_avant_prelevements
             + prelevements_sociaux_revenus_capital_hors_csg_crds
-            - csg
-            - crds_revenus_menage
+            + csg
+            + crds_hors_prestations
             )
 
 
@@ -792,6 +793,7 @@ class impots_directs(Variable):
             + isf_ifi
             + prelevement_liberatoire_autoentrepreneur
             )
+<<<<<<< HEAD
 
 
 class crds_revenus_menage(Variable):
@@ -822,3 +824,5 @@ class crds_revenus_menage(Variable):
         crds_revenus_capital_projetee = menage.sum(crds_revenus_capital * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL))
 
         return crds_salaire + crds_retraite + crds_chomage + crds_non_salarie + crds_glo_assimile_salaire_ir_et_ps + crds_revenus_capital_projetee
+=======
+>>>>>>> 4290f4ade (change variable crds)

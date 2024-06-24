@@ -1644,19 +1644,19 @@ class cotisations_employeur_autres(Variable):
         fnal = individu('fnal', period)
 
         return (
-            conge_individuel_formation_cdd
+            contribution_unique_formation_professionnelle_alternance
+            + conge_individuel_formation_cdd
             + contribution_supplementaire_apprentissage
+            + versement_transport
             + financement_organisations_syndicales
-            + taxe_salaires
-            + forfait_social
+            + fnal
             + participation_effort_construction
             + prevoyance_obligatoire_cadre
             + complementaire_sante_employeur
-            + versement_transport
-            + contribution_unique_formation_professionnelle_alternance
+            + taxe_salaires
+            + forfait_social
             + fonds_emploi_hospitalier
             + ati_atiacl
-            + fnal
             )
 
 
