@@ -140,7 +140,8 @@ class revenus_nets_menage(Variable):
         # CSG CRDS
         csg_i = menage.members('csg', period)
         csg = menage.sum(csg_i)
-        crds_revenus_menage = menage('crds_revenus_menage', period)
+        crds_hors_prestations_i = menage.members('crds_hors_prestations', period)
+        crds_hors_prestations = menage.sum(crds_hors_prestations_i)
 
         return (
             remuneration_brute
@@ -156,7 +157,7 @@ class revenus_nets_menage(Variable):
             + revenus_du_capital_avant_prelevements
             + prelevements_sociaux_revenus_capital_hors_csg_crds
             + csg
-            + crds_revenus_menage
+            + crds_hors_prestations_i
             )
 
 
@@ -792,33 +793,3 @@ class impots_directs(Variable):
             + isf_ifi
             + prelevement_liberatoire_autoentrepreneur
             )
-
-
-class crds_revenus_menage(Variable):
-    value_type = float
-    entity = Menage
-    label = "Contributions au remboursement de la dette sociale sur l'ensemble des revenus des membres du ménage"
-    reference = [
-        'Ordonnance n° 96-50 du 24 janvier 1996 relative au remboursement de la dette sociale, art. 14',
-        'https://www.legifrance.gouv.fr/loda/id/LEGISCTA000006106400'
-        ]
-    definition_period = YEAR
-
-    def formula(menage, period):
-        # CRDS sur revenus individuels
-        crds_salaire_i = menage.members('crds_salaire', period, options = [ADD])
-        crds_salaire = menage.sum(crds_salaire_i)
-        crds_retraite_i = menage.members('crds_retraite', period, options = [ADD])
-        crds_retraite = menage.members(crds_retraite_i)
-        crds_chomage_i = menage.members('crds_chomage', period, options = [ADD])
-        crds_chomage = menage.members(crds_chomage_i)
-        crds_non_salarie_i = menage.members('crds_non_salarie', period, options = [ADD])
-        crds_non_salarie = menage.members(crds_non_salarie_i)
-
-        crds_glo_assimile_salaire_ir_et_ps_i = menage.members('crds_glo_assimile_salaire_ir_et_ps', period)
-        crds_glo_assimile_salaire_ir_et_ps = menage.sum(crds_glo_assimile_salaire_ir_et_ps_i)
-
-        crds_revenus_capital = menage.members.foyer_fiscal('crds_revenus_capital', period)
-        crds_revenus_capital_projetee = menage.sum(crds_revenus_capital * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL))
-
-        return crds_salaire + crds_retraite + crds_chomage + crds_non_salarie + crds_glo_assimile_salaire_ir_et_ps + crds_revenus_capital_projetee
