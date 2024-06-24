@@ -155,8 +155,8 @@ class revenus_nets_menage(Variable):
             + pensions_rentes_complementaires
             + revenus_du_capital_avant_prelevements
             + prelevements_sociaux_revenus_capital_hors_csg_crds
-            - csg
-            - crds_revenus_menage
+            + csg
+            + crds_revenus_menage
             )
 
 
