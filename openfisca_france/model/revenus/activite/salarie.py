@@ -1602,16 +1602,14 @@ class cotisations_employeur_securite_sociale(Variable):
 
     def formula_2024_01_01(individu, period, parameters):
         mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period)
-        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
-        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        vieillesse_employeur = individu('vieillesse_employeur', period)
         famille_net_allegement = individu('famille_net_allegement', period)
         accident_du_travail = individu('accident_du_travail', period)
         contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
 
         return (
             mmid_employeur_net_allegement
-            + vieillesse_plafonnee_employeur
-            + vieillesse_deplafonnee_employeur
+            + vieillesse_employeur
             + famille_net_allegement
             + accident_du_travail
             + contribution_solidarite_autonomie
