@@ -152,8 +152,7 @@ class cotisations_salariales_contributives(Variable):
         ircantec_salarie = individu('ircantec_salarie', period)
         pension_salarie = individu('pension_salarie', period)
         rafp_salarie = individu('rafp_salarie', period)
-        vieillesse_deplafonnee_salarie = individu('vieillesse_deplafonnee_salarie', period)
-        vieillesse_plafonnee_salarie = individu('vieillesse_plafonnee_salarie', period)
+        vieillesse_salarie = individu('vieillesse_salarie', period)
 
         cotisations_salariales_contributives = (
             # prive
@@ -167,8 +166,7 @@ class cotisations_salariales_contributives(Variable):
             + contribution_equilibre_general_salarie
             + contribution_equilibre_technique_salarie
             + cotisation_exceptionnelle_temporaire_salarie
-            + vieillesse_deplafonnee_salarie
-            + vieillesse_plafonnee_salarie
+            + vieillesse_salarie
             # public
             + ircantec_salarie
             + pension_salarie
