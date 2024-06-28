@@ -1,5 +1,16 @@
 # Changelog
 
+## 167.1.0 [2315](https://github.com/openfisca/openfisca-france/pull/2315)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/prelevements_sociaux`
+  - `openfisca_france/parameters/prestations_sociales`
+* Détails :
+  - Nettoyage et homénégisation des paramètres.
+  - Ajout des pensions d'invalidité.
+
 ### 167.0.3 [2315](https://github.com/openfisca/openfisca-france/pull/2315)
 
 * Évolution du système socio-fiscal.
