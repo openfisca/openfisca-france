@@ -1,4 +1,4 @@
-description: Majoration pour conjoint de l'Allocation aux vieux travailleurs salariés (AVTS)
+description: Majoration pour conjoint de l'allocation aux vieux travailleurs salariés (AVTS)
 values:
   1941-01-01:
     value: 1000
@@ -30,7 +30,7 @@ values:
     value: 361.9
 metadata:
   short_label: Majoration pour conjoint
-  label_en: Allowance for elderly workers (AVTS, 1941-1961)
+  label_en: Allowance for elderly workers (AVTS)
   ipp_csv_id: majconj
   unit: currency
   reference:
