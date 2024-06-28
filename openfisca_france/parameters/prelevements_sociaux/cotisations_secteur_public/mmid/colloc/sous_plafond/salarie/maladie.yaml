@@ -3,6 +3,8 @@ brackets:
 - threshold:
     1967-10-01:
       value: 0
+    1984-01-01:
+      value: null
   rate:
     1967-10-01:
       value: 0.0175
@@ -49,4 +51,3 @@ metadata:
     1984-01-01: "1983-12-31"
   rate_unit: /1
   threshold_unit: PSS
-

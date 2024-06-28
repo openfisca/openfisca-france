@@ -1,0 +1,8 @@
+description: Pensions d'invalidité du régime général
+metadata:
+  documentation_start: true
+  short_label: Pensions d'invalidité
+  label_en: Disability pensions
+  order:
+  - revalorisations_invalidite
+documentation: Les pensions d'invalidité de la Sécurité sociale sont destinées aux affiliés qui, après un accident ou une maladie survenu dans le cadre de la vie privée (origine non professionnelle), ont vu leur capacité de travail ou de gain réduite d'au moins 2/3 (66%).

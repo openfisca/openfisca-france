@@ -1,22 +1,30 @@
-description: Cotisation pour le Fonds national d'aide au logement (FNAL)
+description: Cotisation employeur pour le Fonds national d'aide au logement (FNAL)
 brackets:
 - threshold:
     1972-07-01:
       value: 0
+    2015-01-01:
+      value: null
   rate:
     1972-07-01:
       value: 0.001
     1986-01-01:
       value: 0.001
     2015-01-01:
-      value: 0
+      value: null
 - threshold:
     1972-07-01:
       value: 1
+    2015-01-01:
+      value: null
   rate:
     1972-07-01:
       value: 0
+    2015-01-01:
+      value: null
 metadata:
+  short_label: Cotisation tout employeur
+  label_en: Contributions to the National Fund for Housing (FNAL)
   last_value_still_valid_on: "2021-12-07"
   reference:
     1972-07-01:
@@ -32,8 +40,7 @@ metadata:
     1972-07-01: "1972-06-30"
     1986-01-01: "1985-12-31"
     2015-01-01: "2014-12-30"
-  notes:
-    0001-01-01:
-    - title: Ce dispositif de cotisation sur les salaires plafonnés est cumulatif avec le dispositif de contribution sur les salaires non plafonnés, spécifique aux entreprises excédant une certaine taille (d'abord 10+, puis 20+), jusqu'en 2015. En 2015, la cotisation disparaît, et la contribution est élargie à toutes les entreprises, mais avec un barème différent pour entreprises de plus ou moins 20 salariés (50 salariés à partir de 2020)
   rate_unit: /1
   threshold_unit: PSS
+documentation: |-
+  Ce dispositif de cotisation sur les salaires plafonnés est cumulatif avec le dispositif de contribution sur les salaires non plafonnés, spécifique aux entreprises excédant une certaine taille (d'abord 10+, puis 20+), jusqu'en 2015. En 2015, la cotisation disparaît, et la contribution est élargie à toutes les entreprises, mais avec un barème différent pour entreprises de plus ou moins 20 salariés (50 salariés à partir de 2020)

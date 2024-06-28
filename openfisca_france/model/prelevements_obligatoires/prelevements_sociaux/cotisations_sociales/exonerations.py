@@ -315,12 +315,17 @@ class exoneration_cotisations_employeur_zfu(Variable):
         else:
             taux_maladie = 0
 
+        if period.start.year < 2015:
+            fnal_cotisation = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation.rates[0]
+        else:
+            fnal_cotisation = 0
+
         taux_max = (
             bareme_by_name['vieillesse_deplafonnee'].rates[0]
             + bareme_by_name['vieillesse_plafonnee'].rates[0]
             + taux_maladie
             + bareme_by_name['famille'].rates[0]
-            + parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation.rates[0]
+            + fnal_cotisation
             + fnal_contrib.rates[0] * (effectif_entreprise >= fnal_contrib_seuil)
             + taux_versement_transport
             )

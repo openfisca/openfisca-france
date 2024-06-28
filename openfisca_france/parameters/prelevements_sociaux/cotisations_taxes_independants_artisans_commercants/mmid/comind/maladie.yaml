@@ -30,3 +30,6 @@ brackets:
       value: 0
     2013-01-01:
       value: null
+metadata:
+  rate_unit: /1
+  threshold_unit: PSS

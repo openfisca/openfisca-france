@@ -3,7 +3,9 @@ metadata:
   short_label: Minima sociaux
   label_en: Minimum incomes
   order:
+  - ppa
+  - rsa
+  - cs
+  - accident_travail
   - rmi
   - api
-  - rsa
-  - ppa

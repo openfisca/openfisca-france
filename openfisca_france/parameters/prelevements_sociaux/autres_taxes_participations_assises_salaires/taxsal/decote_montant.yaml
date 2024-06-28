@@ -3,4 +3,5 @@ values:
   2001-01-01:
     value: 2040
 metadata:
+  short_label: Montant d'annulation de la décôte
   unit: currency

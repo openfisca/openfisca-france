@@ -3,6 +3,8 @@ brackets:
 - threshold:
     1972-01-01:
       value: 0
+    2016-01-01:
+      value: null
   rate:
     1972-01-01:
       value: 0.008
@@ -67,8 +69,6 @@ metadata:
     2015-01-01: "2014-10-26"
     2019-01-01: "2018-09-06"
   notes:
-    1976-01-01:
-    - title: "Source: Mémento pratique Social 1976, ed. Francis Lefèbvre. Référence législative manquante."
     1978-01-01:
     - title: En 1978, 0,2 % des salaires de 1977, majoré de 8 % doit être versé au Trésor avant le 15 septembre 1978 (cf. BSP III/1978). Idem les années suivantes.
     1984-01-01:
@@ -92,6 +92,7 @@ metadata:
     2019-01-01:
     - title: Nouvelle contribution unique remplaçant la PEFPC et la taxe d'apprentissage. Le CIF-CDD devient CPF CDD. La loi Avenir ajoute une nouvelle exception à cette contribution, le travail saisonnier.
   rate_unit: /1
+  threshold_unit: PSS
 documentation: |-
   Champ :
   Calculé sur la masse des salaires (y compris avantages en natures) versés dans l'année.
