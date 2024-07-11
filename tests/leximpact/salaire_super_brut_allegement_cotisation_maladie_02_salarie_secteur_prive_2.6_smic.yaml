@@ -1,0 +1,78 @@
+input:
+  familles:
+    "Famille n\xB01":
+      enfants: []
+      parents:
+      - Adulte 1
+  foyers_fiscaux:
+    "D\xE9claration d\u2019imp\xF4ts n\xB01":
+      declarants:
+      - Adulte 1
+      depcom_foyer:
+        '2023': '75107'
+        '2024': '75107'
+        '2025': '75107'
+      personnes_a_charge: []
+  individus:
+    Adulte 1:
+      activite:
+        '2023': actif
+        '2024': actif
+        '2025': actif
+      categorie_salarie:
+        '2023': prive_non_cadre
+        '2024': prive_non_cadre
+        '2025': prive_non_cadre
+      contrat_de_travail:
+        '2023': temps_plein
+        '2024': temps_plein
+        '2025': temps_plein
+      contrat_de_travail_type:
+        '2023': cdi
+        '2024': cdi
+        '2025': cdi
+      date_naissance:
+        '2025': '1973-08-30'
+      depcom_entreprise:
+        '2023': '75107'
+        '2024': '75107'
+        '2025': '75107'
+      effectif_entreprise:
+        '2023': 3000
+        '2024': 3000
+        '2025': 3000
+      heures_remunerees_volume:
+        '2023': 1607
+        '2024': 1607
+        '2025': 1607
+      invalidite:
+        '2023': false
+        '2024': false
+        '2025': false
+      salaire_de_base:
+        '2023': 55128
+        '2024': 55128
+        '2025': 55128
+      statut_marital:
+        '2023': celibataire
+        '2024': celibataire
+        '2025': celibataire
+  menages:
+    "Logement principal n\xB01":
+      conjoint: []
+      depcom:
+        '2023': '75107'
+        '2024': '75107'
+        '2025': '75107'
+      enfants: []
+      personne_de_reference:
+      - Adulte 1
+      statut_occupation_logement:
+        '2023': proprietaire
+        '2024': proprietaire
+        '2025': proprietaire
+output:
+  salaire_super_brut:
+    2025: 79873
+period: 2025
+relative_error_margin: 0.001
