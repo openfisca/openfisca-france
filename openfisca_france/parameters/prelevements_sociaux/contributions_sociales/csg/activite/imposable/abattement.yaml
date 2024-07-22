@@ -1,4 +1,4 @@
-description: Abattement de la contribution sociale généralisée (CSG) imposable sur les revenus d'activité
+description: Abattement de l'assiette prise en compte pour le calcul de la contribution sociale généralisée (CSG) imposable sur les revenus d'activité
 brackets:
 - threshold:
     1998-01-01:
@@ -21,7 +21,7 @@ brackets:
     2011-01-01:
       value: null
 metadata:
-  short_label: Abattement
+  short_label: Abattement de l'assiette
   last_value_still_valid_on: "2021-12-15"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_abt
