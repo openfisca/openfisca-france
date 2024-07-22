@@ -1,7 +1,7 @@
 import logging
 
 from openfisca_france.model.base import *
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 log = logging.getLogger(__name__)
@@ -111,7 +111,7 @@ class csg_deductible_salaire(Variable):
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
         csg = parameters(period).prelevements_sociaux.contributions_sociales.csg
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_bareme(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
             abattement_parameter = csg.activite.abattement,
@@ -135,7 +135,7 @@ class csg_imposable_salaire(Variable):
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         csg_parameters = parameters(period).prelevements_sociaux.contributions_sociales.csg
 
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_bareme(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
             abattement_parameter = csg_parameters.activite.abattement,
@@ -161,7 +161,7 @@ class crds_salaire(Variable):
 
         law = parameters(period)
 
-        montant_crds = montant_csg_crds(
+        montant_crds = montant_csg_crds_bareme(
             law_node = law.prelevements_sociaux.contributions_sociales.crds,
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
@@ -418,39 +418,56 @@ class assiette_csg_crds_non_salarie(Variable):
 class csg_imposable_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = 'Assiette CSG des personnes non salariées'
+    label = 'CSG des personnes non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
         csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = csg.imposable.taux
-        return - taux * assiette_csg_crds_non_salarie
+
+        montant_csg = montant_csg_crds_bareme(
+            base_sans_abattement = assiette_csg_crds_non_salarie,
+            law_node = csg.imposable,
+            )
+
+        return montant_csg
 
 
 class csg_deductible_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = 'Assiette CSG des personnes non salariées'
+    label = 'CSG des personnes non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
         csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = csg.deductible.taux
-        return - taux * assiette_csg_crds_non_salarie
+
+        montant_csg = montant_csg_crds_bareme(
+            base_sans_abattement = assiette_csg_crds_non_salarie,
+            law_node = csg.deductible,
+            )
+
+        return montant_csg
 
 
 class crds_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = 'Assiette CSG des personnes non salariées'
+    label = 'CRDS des personnes non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
-        taux = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
-        return - taux * assiette_csg_crds_non_salarie
+
+        law = parameters(period)
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = assiette_csg_crds_non_salarie,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return montant_crds
 
 
 class revenus_non_salarie_nets(Variable):
