@@ -1,5 +1,13 @@
 # Changelog
 
+### 167.1.1 [2326](https://github.com/openfisca/openfisca-france/pull/2326)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2024.
+* Zones impactées : `parameters/chomage/allocations_assurance_chomage/alloc_base`.
+* Détails :
+  - Met à jour les paramètres de l'ARE pour 2024
+
 ## 167.1.0 [2315](https://github.com/openfisca/openfisca-france/pull/2315)
 
 * Amélioration technique.
