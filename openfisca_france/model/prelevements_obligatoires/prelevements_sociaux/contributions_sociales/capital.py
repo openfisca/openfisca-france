@@ -1,5 +1,7 @@
 import logging
+
 from openfisca_france.model.base import *
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 log = logging.getLogger(__name__)
 
@@ -376,7 +378,7 @@ class csg_glo_assimile_salaire_ir_et_ps(Variable):
     def formula(individu, period, parameters):
         f1tt = individu('f1tt', period)
         csg_activite = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = csg_activite.imposable + csg_activite.deductible
+        taux = csg_activite.imposable.rates[0] + csg_activite.deductible.rates[0]
         return - f1tt * taux
 
 
@@ -390,9 +392,15 @@ class crds_glo_assimile_salaire_ir_et_ps(Variable):
 
     def formula(individu, period, parameters):
         f1tt = individu('f1tt', period)
-        return - f1tt * (
-            parameters(period).prelevements_sociaux.contributions_sociales.crds
+
+        law = parameters(period)
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = f1tt,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
             )
+
+        return montant_crds
 
 
 class contribution_salariale_glo_assimile_salaire(Variable):
@@ -474,10 +482,12 @@ class crds_revenus_capital(Variable):
         crds_glo_assimile_salaire_ir_et_ps_i = foyer_fiscal.members('crds_glo_assimile_salaire_ir_et_ps', period)
         crds_glo_assimile_salaire_ir_et_ps = foyer_fiscal.sum(crds_glo_assimile_salaire_ir_et_ps_i)
 
-        return (
-            - assiette_csg_revenus_capital * taux_crds
-            + crds_glo_assimile_salaire_ir_et_ps
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = assiette_csg_revenus_capital,
+            law_node = taux_crds,
             )
+
+        return (montant_crds + crds_glo_assimile_salaire_ir_et_ps)
 
 
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
