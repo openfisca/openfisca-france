@@ -13,7 +13,7 @@ import openfisca_france
 from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesConges
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
-
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 log = logging.getLogger(__name__)
 
@@ -1733,12 +1733,16 @@ class crds_logement(Variable):
 
     def formula(famille, period, parameters):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
-        aide_logement_montant_brut_centimes = 100 * aide_logement_montant_brut
         crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = aide_logement_montant_brut,
+            law_node = crds,
+            )
 
         # La CRDS est arrondie au centime d'euro inférieur
         # https://www.ecologie.gouv.fr/sites/default/files/documents/Brochure-bareme-2024-APL.pdf (p59)
-        crds_arrondie = floor(aide_logement_montant_brut_centimes * crds) / 100
+        crds_arrondie = floor(-montant_crds * 100) / 100
 
         # La CRDS n'est pas applicable à Saint-Pierre-et-Miquelon
         # https://www.services-fiscaux975.fr/fr/38.html
