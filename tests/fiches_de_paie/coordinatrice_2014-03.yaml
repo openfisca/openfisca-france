@@ -85,7 +85,7 @@ output:
   mmid_salarie: -13.5 # regroupée avec vieillesse dans la fiche de paie
   contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: -90.19
-  salaire_net: 1405.62
+  salaire_net: 1405.63
 
   # salaire imposable
   csg_imposable_salaire: -42.44
@@ -94,4 +94,4 @@ output:
   salaire_imposable: 1456.91
   depense_cantine_titre_restaurant_employe: 0
 
-  salaire_net_a_payer: 1405.62
+  salaire_net_a_payer: 1405.63

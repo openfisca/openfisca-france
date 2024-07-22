@@ -318,7 +318,7 @@ class csg_glo_assimile_salaire_ir_et_ps(Variable):
     def formula(individu, period, parameters):
         f1tt = individu('f1tt', period)
         csg_activite = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = csg_activite.imposable.taux + csg_activite.deductible.taux
+        taux = csg_activite.imposable.taux.rates[0] + csg_activite.deductible.taux.rates[0]
         return - f1tt * taux
 
 

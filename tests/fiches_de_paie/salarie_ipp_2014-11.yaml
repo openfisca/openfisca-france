@@ -73,4 +73,4 @@ output:
   salaire_imposable: 3745.19  # salaire imposable
   depense_cantine_titre_restaurant_employe: -19 * 4.5
 
-  salaire_net_a_payer: 3527.25
+  salaire_net_a_payer: 3527.24

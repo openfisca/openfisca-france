@@ -2,7 +2,8 @@ import logging
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import (
-    montant_csg_crds
+    montant_csg_crds,
+    montant_csg_crds_bareme
     )
 log = logging.getLogger(__name__)
 
@@ -74,7 +75,7 @@ class csg_deductible_chomage(Variable):
         chomage_cotisation_retraite_complementaire = individu('chomage_cotisation_retraite_complementaire', period)
         assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire
 
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_bareme(
             base_avec_abattement = assiette_csg_chomage,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
@@ -140,7 +141,7 @@ class csg_imposable_chomage(Variable):
         chomage_cotisation_retraite_complementaire = individu('chomage_cotisation_retraite_complementaire', period)
         assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire
 
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_bareme(
             base_avec_abattement = assiette_csg_chomage,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
