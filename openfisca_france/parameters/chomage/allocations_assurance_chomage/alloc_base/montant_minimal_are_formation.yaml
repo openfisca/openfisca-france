@@ -46,6 +46,8 @@ values:
     value: 22.19
   2023-07-01:
     value: 22.61
+  2024-07-01:
+    value: 22.88
 metadata:
   short_label: Montant minimal ARE-formation
   label_en: "UI scheme: lump-sum and minimum"
@@ -107,6 +109,9 @@ metadata:
     2023-07-01:
       title: Circulaire Unedic 2023-06 du 3 juillet 2023
       href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-circulaire_2023-06_du_3_juillet_2023.pdf
+    2024-07-01:
+      title: Circulaire Unedic 2024-05 du 1 juillet 2024
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2024-05_du_1er_juillet_2024.pdf
   official_journal_date:
     2003-07-01: "2003-12-27"
     2004-07-01: "2004-05-29"
