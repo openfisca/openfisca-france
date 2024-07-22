@@ -2,6 +2,7 @@ from numpy import floor, logical_and as and_, logical_or as or_
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 class api(Variable):
@@ -184,9 +185,15 @@ class crds_rsa_activite(Variable):
 
     def formula_2009_06_01(famille, period, parameters):
         rsa_activite = famille('rsa_activite', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
 
-        return - taux_crds * rsa_activite
+        law = parameters(period)
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = rsa_activite,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return montant_crds
 
 
 class rsa_activite_net_crds(Variable):
