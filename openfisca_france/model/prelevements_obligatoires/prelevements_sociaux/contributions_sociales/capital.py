@@ -1,5 +1,7 @@
 import logging
+
 from openfisca_france.model.base import *
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 log = logging.getLogger(__name__)
 
@@ -318,7 +320,7 @@ class csg_glo_assimile_salaire_ir_et_ps(Variable):
     def formula(individu, period, parameters):
         f1tt = individu('f1tt', period)
         csg_activite = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = csg_activite.imposable.taux + csg_activite.deductible.taux
+        taux = csg_activite.imposable.taux.rates[0] + csg_activite.deductible.taux.rates[0]
         return - f1tt * taux
 
 
@@ -332,9 +334,15 @@ class crds_glo_assimile_salaire_ir_et_ps(Variable):
 
     def formula(individu, period, parameters):
         f1tt = individu('f1tt', period)
-        return - f1tt * (
-            parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+
+        law = parameters(period)
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = f1tt,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
             )
+
+        return montant_crds
 
 
 class contribution_salariale_glo_assimile_salaire(Variable):
@@ -391,15 +399,17 @@ class crds_revenus_capital(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
-
         crds_glo_assimile_salaire_ir_et_ps_i = foyer_fiscal.members('crds_glo_assimile_salaire_ir_et_ps', period)
         crds_glo_assimile_salaire_ir_et_ps = foyer_fiscal.sum(crds_glo_assimile_salaire_ir_et_ps_i)
 
-        return (
-            - assiette_csg_revenus_capital * taux_crds
-            + crds_glo_assimile_salaire_ir_et_ps
+        law = parameters(period)
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = assiette_csg_revenus_capital,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
             )
+
+        return (montant_crds + crds_glo_assimile_salaire_ir_et_ps)
 
 
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
