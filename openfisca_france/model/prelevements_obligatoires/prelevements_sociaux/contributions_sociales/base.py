@@ -1,7 +1,7 @@
 
 
 def montant_csg_crds(base_avec_abattement = None, base_sans_abattement = None, indicatrice_taux_plein = None,
-        indicatrice_taux_intermediaire = None, indicatrice_taux_reduit = None, law_node = None, plafond_securite_sociale = None):
+        indicatrice_taux_intermediaire = None, indicatrice_taux_reduit = None, abattement_parameter = None, law_node = None, plafond_securite_sociale = None):
     assert law_node is not None
     assert plafond_securite_sociale is not None
     if base_sans_abattement is None:
@@ -9,7 +9,8 @@ def montant_csg_crds(base_avec_abattement = None, base_sans_abattement = None, i
     if base_avec_abattement is None:
         base = base_sans_abattement
     else:
-        base = base_avec_abattement - law_node.abattement.calc(
+        assert abattement_parameter is not None
+        base = base_avec_abattement - abattement_parameter.calc(
             base_avec_abattement,
             factor = plafond_securite_sociale,
             round_base_decimals = 2,

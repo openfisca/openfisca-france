@@ -4,4 +4,5 @@ metadata:
   label_en: CSG - rates on work incomes
   order:
   - taux_global
-  - deductible
+  - taux_deductible
+  - abattement

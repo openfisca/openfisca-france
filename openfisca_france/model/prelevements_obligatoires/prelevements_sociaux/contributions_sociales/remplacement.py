@@ -78,6 +78,7 @@ class csg_deductible_chomage(Variable):
             base_avec_abattement = assiette_csg_chomage,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
+            abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.deductible,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
@@ -143,6 +144,7 @@ class csg_imposable_chomage(Variable):
             base_avec_abattement = assiette_csg_chomage,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
+            abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
@@ -209,6 +211,7 @@ class crds_chomage(Variable):
             )
         montant_crds = montant_csg_crds(
             base_avec_abattement = assiette_crds_chomage,
+            abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds.activite,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * eligible
