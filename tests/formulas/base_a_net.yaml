@@ -5,7 +5,7 @@
 ### privé non cadre
 
 - name: 1PSS_2018_privenoncadre
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -45,7 +45,7 @@
 ### privé cadre
 
 - name: 1PSS_2018_privecadre
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -85,7 +85,7 @@
 ### public
 
 - name: 1PSS_2018_public
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     traitement_indiciaire_brut: 3311
@@ -130,7 +130,7 @@
 ### test présence hsup
 
 - name: 1PSS_2018_privenoncadre_hsup
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -171,7 +171,7 @@
 ### temps partiel
 
 - name: 1PSS_2018_privenoncadre_tpspart
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -213,7 +213,7 @@
 ### privé non cadre
 
 - name: 4PSS_2018_privenoncadre
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     salaire_de_base: 13244
@@ -253,7 +253,7 @@
 ### privé cadre
 
 - name: 4PSS_2018_privecadre
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     salaire_de_base: 13244
@@ -293,7 +293,7 @@
 ### public
 
 - name: 4PSS_2018_public
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     traitement_indiciaire_brut: 13244
@@ -340,7 +340,7 @@
 ### privé non cadre
 
 - name: 8PSS_2018_privenoncadre
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     salaire_de_base: 3311*8
@@ -380,7 +380,7 @@
 ### privé cadre
 
 - name: 8PSS_2018_privecadre
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     salaire_de_base: 3311*8
@@ -420,7 +420,7 @@
 ### public
 
 - name: 8PSS_2018_public
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2018-01
   input:
     traitement_indiciaire_brut: 3311*8
@@ -466,7 +466,7 @@
 ## 1 PSS
 
 - name: 1PSS_2021
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2021-01
   input:
     salaire_de_base: 3428
@@ -507,7 +507,7 @@
 ## >1 PSS
 
 - name: justabove1PSS_2021
-  absolute_error_margin: 0.05
+  absolute_error_margin: 0.005
   period: 2021-01
   input:
     salaire_de_base: 3429
