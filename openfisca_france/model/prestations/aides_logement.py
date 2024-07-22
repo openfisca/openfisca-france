@@ -13,7 +13,7 @@ import openfisca_france
 from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesConges
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
-
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 log = logging.getLogger(__name__)
 
@@ -1410,8 +1410,15 @@ class crds_logement(Variable):
 
     def formula(famille, period, parameters):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
-        crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
-        return -aide_logement_montant_brut * crds
+
+        law = parameters(period)
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = aide_logement_montant_brut,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return montant_crds
 
 
 class TypesZoneApl(Enum):
