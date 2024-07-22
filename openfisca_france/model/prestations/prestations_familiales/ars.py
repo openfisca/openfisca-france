@@ -4,6 +4,7 @@ from openfisca_core.periods import Period
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 class ars(Variable):
@@ -74,9 +75,14 @@ class crds_ars(Variable):
     def formula(famille, period, parameters):
         ars = famille('ars', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        law = parameters(period)
 
-        return -(ars) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = ars,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return montant_crds
 
 
 class ars_nette_crds(Variable):
