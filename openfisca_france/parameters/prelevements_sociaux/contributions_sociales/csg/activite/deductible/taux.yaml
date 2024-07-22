@@ -1,17 +1,22 @@
 description: Taux de la contribution sociale généralisée (CSG) déductible sur les revenus d'activité
-values:
-  1997-01-01:
-    value: 0.01
-  1998-01-01:
-    value: 0.051
-  2018-01-01:
-    value: 0.068
+brackets:
+- threshold:
+    1997-02-01:
+      value: 0
+  rate:
+    1997-01-01:
+      value: 0.01
+    1998-01-01:
+      value: 0.051
+    2018-01-01:
+      value: 0.068
 metadata:
   short_label: Taux
   last_value_still_valid_on: "2024-07-22"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_act_ded
-  unit: /1
+  rate_unit: /1
+  threshold_unit: currency
   reference:
     1997-01-01:
       title: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
