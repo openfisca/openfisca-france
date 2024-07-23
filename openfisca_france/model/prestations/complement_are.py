@@ -247,7 +247,7 @@ class complement_are_csg_journaliere(Variable):
         assiette_mensuelle_csg_abattable = min_(assiette_mensuelle_csg, max_assiette_mensuelle_eligible_abattement)
         assiette_mensuelle_csg_non_abattue = max_(assiette_mensuelle_csg - max_assiette_mensuelle_eligible_abattement, 0)
 
-        abattement_assiette_csg = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement.rate[0]
+        abattement_assiette_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite.abattement.rates[0]
         assiette_journaliere_csg = (
             (assiette_mensuelle_csg_abattable * (1 - abattement_assiette_csg)) + assiette_mensuelle_csg_non_abattue
             ) / complement_are_nombre_jours_indemnisables
