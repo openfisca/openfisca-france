@@ -298,7 +298,7 @@ class csg_deductible_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_bareme(
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
@@ -322,7 +322,7 @@ class csg_deductible_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_bareme(
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
@@ -335,7 +335,7 @@ class csg_deductible_retraite(Variable):
         retraite_brute = individu('retraite_brute', period)
         parameters = parameters(period)
 
-        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.deductible.taux_plein * retraite_brute
+        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.deductible.taux_plein.rates[0] * retraite_brute
         return - montant_csg
 
 
@@ -364,7 +364,7 @@ class csg_imposable_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_bareme(
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
@@ -388,7 +388,7 @@ class csg_imposable_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_bareme(
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
@@ -401,7 +401,7 @@ class csg_imposable_retraite(Variable):
         retraite_brute = individu('retraite_brute', period)
         parameters = parameters(period)
 
-        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.imposable.taux_plein * retraite_brute
+        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.imposable.taux_plein.rates[0] * retraite_brute
         return - montant_csg
 
 
