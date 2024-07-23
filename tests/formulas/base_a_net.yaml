@@ -370,11 +370,11 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 26488
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -1785.4236 # OK  * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -630.14954 # OK  * (1 - 0.0175) * 0.024
-    crds_salaire: -131.28114 # OK  26488 - 4 PSS * 0.0175 [abatt plaf] * 0.005
-    salaire_imposable: 23533.006
-    salaire_net: 22777.137 # * 12 = 273 325.644
+    csg_deductible_salaire: -1785.4236 # OK (3311*8 - 0.0175 * 3311 * 4) * 0.068
+    csg_imposable_salaire: -630.14954 # OK (3311*8 - 0.0175 * 3311 * 4) * 0.024
+    crds_salaire: -131.28114 # OK  (3311*8 - 0.0175 * 3311 * 4) * 0.005
+    salaire_imposable: 23517.246
+    salaire_net: 22755.8158 # * 12 = 273 069.7896
     # soit net = (1 - 14%) brut
 
 ### privé cadre
@@ -410,11 +410,11 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 26488
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -1769.6633 # OK 26488 * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -624.58704 # OK 26488 * (1 - 0.0175) * 0.024
-    crds_salaire: -131.28114 # OK  26488 - 4 PSS * 0.0175 [abatt plaf] * 0.005
-    salaire_imposable: 22084.926
-    salaire_net: 21329.057 # * 12 = 255 948.684
+    csg_deductible_salaire: -1785.4236 # OK (3311*8 - 0.0175 * 3311 * 4) * 0.068
+    csg_imposable_salaire: -630.14954 # OK (3311*8 - 0.0175 * 3311 * 4) * 0.024
+    crds_salaire: -131.28114 # OK  (3311*8 - 0.0175 * 3311 * 4) * 0.005
+    salaire_imposable: 22069.166
+    salaire_net: 21307.734 # * 12 = 255 692.808
     # soit net = (1-  19.5%) brut
 
 ### public
@@ -454,11 +454,11 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 32119.348
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -2145.8936 # OK 3311 * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -757.3742 # OK 3311 * (1 - 0.0175) * 0.024
+    csg_deductible_salaire: -2168.3552 # OK (3311*8 + 5165.1597 + 264,88 + 201,3088 - 0.0175 * 3311 * 4) * 0.068
+    csg_imposable_salaire: -765.3019 # OK (3311*8 + 5165.1597 + 264,88 + 201,3088 - 0.0175 * 3311 * 4) * 0.024
     crds_salaire: -159.43788 # OK 3311 * (1 - 0.0175) * 0.005
-    salaire_imposable: 26911.445
-    salaire_net: 25994.633 # * 12 = 311 935.596
+    salaire_imposable: 26888.98
+    salaire_net: 25964.24 # * 12 = 311 935.596
     # soit net = (1- 1.9%) brut
 
 # 2021
