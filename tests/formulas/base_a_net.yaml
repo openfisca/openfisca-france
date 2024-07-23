@@ -328,11 +328,11 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 16059.674 # Prime et indemnités de résidence et compensatrice de CSG
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -1072.9471 #
-    csg_imposable_salaire: -378.68723 #
+    csg_deductible_salaire: -1076.2975 #
+    csg_imposable_salaire: -379.8697 #
     crds_salaire: -79.13952 #
-    salaire_imposable: 13455.721
-    salaire_net: 12997.894 # * 12 = 38994.42
+    salaire_imposable: 13452.371
+    salaire_net: 12993.361 # * 12 = 38994.42
     # soit net = (1 -  1.85%) brut
 
 ## 8 PSS
@@ -370,8 +370,8 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 26488
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -1769.6633 # OK  * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -624.58704 # OK  * (1 - 0.0175) * 0.024
+    csg_deductible_salaire: -1785.4236 # OK  * (1 - 0.0175) * 0.068
+    csg_imposable_salaire: -630.14954 # OK  * (1 - 0.0175) * 0.024
     crds_salaire: -131.28114 # OK  26488 - 4 PSS * 0.0175 [abatt plaf] * 0.005
     salaire_imposable: 23533.006
     salaire_net: 22777.137 # * 12 = 273 325.644
