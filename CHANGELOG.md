@@ -1,5 +1,14 @@
 # Changelog
 
+### 167.1.1 [2329](https://github.com/openfisca/openfisca-france/pull/2329)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Toujours
+* Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
+* Détails :
+  - Ajoute la prise en compte des statuts apprenti et stagiaire au calcul de l'éligibilité à la PPA.
+
 ### 167.1.1 [2326](https://github.com/openfisca/openfisca-france/pull/2326)
 
 * Évolution du système socio-fiscal.
