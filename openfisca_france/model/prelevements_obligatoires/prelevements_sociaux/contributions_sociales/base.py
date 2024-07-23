@@ -48,21 +48,9 @@ def montant_csg_crds_bareme(base_avec_abattement = None, base_sans_abattement = 
             round_base_decimals = 2,
             ) + base_sans_abattement
     if indicatrice_taux_plein is None and indicatrice_taux_reduit is None:
-        return -law_node.taux.calc(
-            base,
-            factor = base,
-            round_base_decimals = 2,
-            )
+        return -law_node.taux.calc(base)
     else:
         return -(
-            law_node.taux_plein.calc(
-                base,
-                factor = base,
-                round_base_decimals = 2,
-                ) * indicatrice_taux_plein
-            + law_node.taux_reduit.calc(
-                base,
-                factor = base,
-                round_base_decimals = 2,
-                ) * indicatrice_taux_reduit
+            law_node.taux_plein.calc(base) * indicatrice_taux_plein
+            + law_node.taux_reduit.calc(base) * indicatrice_taux_reduit
             )
