@@ -183,7 +183,7 @@ class crds_rsa_activite(Variable):
 
     def formula_2009_06_01(famille, period, parameters):
         rsa_activite = famille('rsa_activite', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
 
         return - taux_crds * rsa_activite
 

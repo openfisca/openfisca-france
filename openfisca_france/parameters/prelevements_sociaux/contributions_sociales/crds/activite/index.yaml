@@ -1,7 +1,0 @@
-description: Contribution au remboursement de la dette sociale (CRDS) sur les revenus d'activité
-metadata:
-  short_label: Revenus d'activité
-  label_en: Social contributions
-  order:
-  - taux
-  - abattement

@@ -212,7 +212,7 @@ class crds_chomage(Variable):
         montant_crds = montant_csg_crds(
             base_avec_abattement = assiette_crds_chomage,
             abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.crds.activite,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * eligible
 
@@ -431,7 +431,7 @@ class crds_retraite(Variable):
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.crds.retraite,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
 
@@ -453,7 +453,7 @@ class crds_retraite(Variable):
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.crds.retraite,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
         return montant_crds
@@ -461,7 +461,7 @@ class crds_retraite(Variable):
     def formula(individu, period, parameters):  # formula_1997_2014 à corriger (cf. commentaire au niveau de la variable)
         retraite_brute = individu('retraite_brute', period)
         parameters = parameters(period)
-        taux = parameters.prelevements_sociaux.contributions_sociales.crds.retraite.taux
+        taux = parameters.prelevements_sociaux.contributions_sociales.crds.taux
 
         return - taux * retraite_brute
 

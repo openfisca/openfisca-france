@@ -308,7 +308,7 @@ class complement_are_crds_journaliere(Variable):
         assiette_mensuelle_crds = allocation_journaliere_brute_are * complement_are_nombre_jours_indemnisables
 
         abattement_assiette_mensuelle_crds = (
-            parametres_prelevements_sociaux.contributions_sociales.crds.activite.abattement.calc(
+            parametres_prelevements_sociaux.contributions_sociales.csg.activite.abattement.calc(
                 assiette_mensuelle_crds,
                 factor = parametres_prelevements_sociaux.pss.plafond_securite_sociale_mensuel
                 )
@@ -317,7 +317,7 @@ class complement_are_crds_journaliere(Variable):
 
         # taux global par défaut : au demandeur d'emploi de suivre une démarche
         # pour la prise en compte du RFR (exonération potentielle de CRDS)
-        taux_global_crds_chomage = parametres_prelevements_sociaux.contributions_sociales.crds.taux_global
+        taux_global_crds_chomage = parametres_prelevements_sociaux.contributions_sociales.crds.taux
         crds_theorique = assiette_journaliere_crds * taux_global_crds_chomage
 
         # après la CSG, la CRDS ne doit pas faire baisser le montant net de l'allocation en-dessous du smic brut
