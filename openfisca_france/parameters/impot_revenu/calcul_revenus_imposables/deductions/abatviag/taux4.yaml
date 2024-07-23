@@ -3,4 +3,12 @@ values:
   2002-01-01:
     value: 0.3
 metadata:
+  last_value_still_valid_on: "2024-05-21"
   unit: /1
+  reference:
+    2002-01-01:
+      title: Code général des impôts - Art. 158
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042978882/2002-01-01/
+  notes:
+    2002-01-01:
+    - title: Cette valeur semblent inchangée depuis au moins 1990
