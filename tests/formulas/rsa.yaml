@@ -664,3 +664,40 @@
     rsa_forfait_logement: 67.84
     rsa_base_ressources: 943
     rsa: 0
+
+
+- name: RSA Cas période M-2 à M-4
+  period: 2025-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      aide_logement:
+        2025-01: 200
+        2024-12: 200
+        2024-11: 200
+        2024-10: 200
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2025-01: 100
+          2024-11: 100
+          2024-10: 100
+          2024-09: 100
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2025-01: 67
+          2024-11: 67
+          2024-10: 67
+          2024-09: 67
+  output:
+    rsa:
+      2025-01: 633.9946
