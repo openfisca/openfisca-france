@@ -1,4 +1,4 @@
-description: Seuil du revenu fiscal de référence de l'année N-2, pour la première part de quotient familial, impliquant l'assujettissement au taux médian de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
+description: Seuil du revenu fiscal de référence de l'année N-2, pour la première part de quotient familial, impliquant l'assujettissement au taux médian de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité et au taux plein pour les allocations chômage
 values:
   1991-02-01:
     value: null
@@ -68,8 +68,10 @@ metadata:
     2023-01-01:
       title: Lettre ministérielle D-22-024221 du 12/12/2022
       href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_12122022.pdf
-    2024-01-01:
-      title: Lettre ministérielle D23-022880 du 23/11/2023
+    2024-01-01:    
+    - title: Article L136-8 du Code de la sécurité sociale (seuils avant revalorisation)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683546
+    - title: Lettre ministérielle D23-022880 du 23/11/2023
       href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_23112023.pdf
   official_journal_date:
     1991-02-01: "1990-12-30"
