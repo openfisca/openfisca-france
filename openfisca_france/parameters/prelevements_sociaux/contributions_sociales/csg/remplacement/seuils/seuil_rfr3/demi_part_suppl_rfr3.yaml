@@ -16,7 +16,7 @@ values:
     value: 6623
 metadata:
   short_label: Majoration du seuil par demi-part de quotient familial supplémentaire
-  last_value_still_valid_on: "2024-01-15"
+  last_value_still_valid_on: "2024-07-24"
   label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red3_demip
   unit: currency

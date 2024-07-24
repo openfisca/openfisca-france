@@ -4,7 +4,7 @@ values:
     value: 1
 metadata:
   short_label: Montant minimum d'allocations chômage que la CSG chômage ne peut pas réduire
-  last_value_still_valid_on: "2002-01-01"
+  last_value_still_valid_on: "2024-07-24"
   unit: smic
   reference:
     2002-01-01:
