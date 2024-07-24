@@ -1,5 +1,23 @@
 # Changelog
 
+## 168.0.0 [2331](https://github.com/openfisca/openfisca-france/pull/2331)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/base.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+  - `openfisca_france/model/prestations/complement_are.py`
+  - `openfisca_france/model/prestations/`
+
+* Détails :
+  - Supprime des paramètres de taux de crds en doublon par rapport à la législation
+  - Supprime des doublons de fonction de calcul des montants de csg et crds
+  - Supprime des doublons de barème d'abattement sur la base ressource pour la csg + corrige ce barème
+  - Corrections des noms de label et descriptions dans les paramètres de la csg + ajout de références
+
 ### 167.1.1 [2326](https://github.com/openfisca/openfisca-france/pull/2326)
 
 * Évolution du système socio-fiscal.
