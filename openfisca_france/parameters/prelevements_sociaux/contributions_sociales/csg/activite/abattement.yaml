@@ -1,4 +1,4 @@
-description: Abattement de l'assiette prise en compte pour le calcul de la contribution sociale généralisée (CSG) sur les revenus d'activité
+description: Taux d'abattement pour frais professionnels appliqué sur l'assiette prise en compte pour le calcul de la contribution sociale généralisée (CSG) prélevée sur les salaires, selon le seuil de l'assiette comptée en plafonds de sécurité sociale (PSS)
 brackets:
 - threshold:
     1998-01-01:
@@ -21,7 +21,7 @@ brackets:
     2011-01-01:
       value: 0
 metadata:
-  short_label: Abattement de l'assiette
+  short_label: Taux d'abattement, pour frais professionnels, appliqué sur l'assiette de la CSG
   last_value_still_valid_on: "2024-07-22"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_abt
