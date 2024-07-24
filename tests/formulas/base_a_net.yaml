@@ -46,11 +46,7 @@
 ### privé cadre
 
 - name: 1PSS_2018_privecadre
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -90,11 +86,7 @@
 ### public
 
 - name: 1PSS_2018_public
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2018-01
   input:
     traitement_indiciaire_brut: 3311
@@ -139,11 +131,7 @@
 ### test présence hsup
 
 - name: 1PSS_2018_privenoncadre_hsup
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -184,11 +172,7 @@
 ### temps partiel
 
 - name: 1PSS_2018_privenoncadre_tpspart
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -230,11 +214,7 @@
 ### privé non cadre
 
 - name: 4PSS_2018_privenoncadre
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2018-01
   input:
     salaire_de_base: 13244
@@ -274,11 +254,7 @@
 ### privé cadre
 
 - name: 4PSS_2018_privecadre
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2018-01
   input:
     salaire_de_base: 13244
@@ -318,11 +294,7 @@
 ### public
 
 - name: 4PSS_2018_public
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2018-01
   input:
     traitement_indiciaire_brut: 13244
@@ -369,11 +341,7 @@
 ### privé non cadre
 
 - name: 8PSS_2018_privenoncadre
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2018-01
   input:
     salaire_de_base: 3311*8
@@ -413,11 +381,7 @@
 ### privé cadre
 
 - name: 8PSS_2018_privecadre
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2018-01
   input:
     salaire_de_base: 3311*8
@@ -503,11 +467,7 @@
 ## 1 PSS
 
 - name: 1PSS_2021
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2021-01
   input:
     salaire_de_base: 3428
@@ -548,11 +508,7 @@
 ## >1 PSS
 
 - name: justabove1PSS_2021
-<<<<<<< HEAD
-  absolute_error_margin: 0.05
-=======
   absolute_error_margin: 0.005
->>>>>>> 94ff4e023 (barémise la csg)
   period: 2021-01
   input:
     salaire_de_base: 3429
