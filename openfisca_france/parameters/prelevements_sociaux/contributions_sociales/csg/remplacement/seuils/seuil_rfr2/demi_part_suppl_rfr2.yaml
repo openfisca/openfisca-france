@@ -1,4 +1,4 @@
-description: Majoration du seuil du revenu fiscal de référence de l'année N-2, par demi-part supplémentaire de quotient familial, impliquant l'assujettissement au taux médian de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
+description: Majoration du seuil du revenu fiscal de référence de l'année N-2, par demi-part supplémentaire de quotient familial, impliquant l'assujettissement au taux médian de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité et au taux plein pour les allocations chômage
 values:
   1991-02-01:
     value: null
@@ -24,7 +24,7 @@ values:
     value: 4269
 metadata:
   short_label: Majoration du seuil par demi-part de quotient familial supplémentaire
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-07-24"
   label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red2_demip
   unit: currency

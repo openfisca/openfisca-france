@@ -4,3 +4,6 @@ metadata:
   order:
   - seuil_rfr3
   - demi_part_suppl_rfr3
+documentation: |-
+  Ce seuil concerne les pensions de retraite et d'invalidité, mais ne concerne pas les allocations chômage.
+

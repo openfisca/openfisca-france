@@ -1,8 +1,9 @@
 description: Contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
 metadata:
-  short_label: Pensions de retraite et d'invalidité
+  short_label: CSG Pensions de retraite et d'invalidité
   order:
   - taux_plein
   - taux_median
   - taux_reduit
   - deductible
+  - imposable

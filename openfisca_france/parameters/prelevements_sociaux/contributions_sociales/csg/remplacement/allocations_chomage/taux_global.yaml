@@ -8,7 +8,7 @@ values:
     value: 0.062
 metadata:
   short_label: Taux global
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2024-07-24"
   label_en: CSG - rates on unemployement incomes
   ipp_csv_id: csg_cho
   unit: /1

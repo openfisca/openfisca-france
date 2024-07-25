@@ -8,7 +8,7 @@ values:
     value: 0.038
 metadata:
   short_label: Taux réduit global
-  last_value_still_valid_on: "2024-01-15"
+  last_value_still_valid_on: "2024-07-24"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_pens_red
   unit: /1

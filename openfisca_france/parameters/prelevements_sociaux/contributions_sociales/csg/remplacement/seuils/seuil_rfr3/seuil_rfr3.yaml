@@ -16,7 +16,7 @@ values:
     value: 24813
 metadata:
   short_label: Seuil de RFR pour la première part de quotient familial
-  last_value_still_valid_on: "2024-01-15"
+  last_value_still_valid_on: "2024-07-24"
   label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red3
   unit: currency
@@ -45,7 +45,9 @@ metadata:
       title: Lettre ministérielle D-22-024221 du 12/12/2022
       href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_12122022.pdf
     2024-01-01:
-      title: Lettre ministérielle D23-022880 du 23/11/2023
+    - title: Article L136-8 du Code de la sécurité sociale (seuils avant revalorisation)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683546
+    - title: Lettre ministérielle D23-022880 du 23/11/2023
       href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_23112023.pdf
   official_journal_date:
     1991-02-01: "1990-12-30"

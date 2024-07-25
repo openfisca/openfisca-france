@@ -333,7 +333,7 @@ class crds_glo_assimile_salaire_ir_et_ps(Variable):
     def formula(individu, period, parameters):
         f1tt = individu('f1tt', period)
         return - f1tt * (
-            parameters(period).prelevements_sociaux.contributions_sociales.crds.activite.taux
+            parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
             )
 
 

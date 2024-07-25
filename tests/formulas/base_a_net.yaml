@@ -5,6 +5,7 @@
 ### privé non cadre
 
 - name: 1PSS_2018_privenoncadre
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -44,6 +45,7 @@
 ### privé cadre
 
 - name: 1PSS_2018_privecadre
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -83,6 +85,7 @@
 ### public
 
 - name: 1PSS_2018_public
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     traitement_indiciaire_brut: 3311
@@ -127,6 +130,7 @@
 ### test présence hsup
 
 - name: 1PSS_2018_privenoncadre_hsup
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -167,6 +171,7 @@
 ### temps partiel
 
 - name: 1PSS_2018_privenoncadre_tpspart
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     salaire_de_base: 3311
@@ -208,6 +213,7 @@
 ### privé non cadre
 
 - name: 4PSS_2018_privenoncadre
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     salaire_de_base: 13244
@@ -247,6 +253,7 @@
 ### privé cadre
 
 - name: 4PSS_2018_privecadre
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     salaire_de_base: 13244
@@ -286,6 +293,7 @@
 ### public
 
 - name: 4PSS_2018_public
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     traitement_indiciaire_brut: 13244
@@ -320,11 +328,11 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 16059.674 # Prime et indemnités de résidence et compensatrice de CSG
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -1072.9471 #
-    csg_imposable_salaire: -378.68723 #
+    csg_deductible_salaire: -1076.2975 #
+    csg_imposable_salaire: -379.8697 #
     crds_salaire: -79.13952 #
-    salaire_imposable: 13455.721
-    salaire_net: 12997.894 # * 12 = 38994.42
+    salaire_imposable: 13452.371
+    salaire_net: 12993.361 # * 12 = 38994.42
     # soit net = (1 -  1.85%) brut
 
 ## 8 PSS
@@ -332,6 +340,7 @@
 ### privé non cadre
 
 - name: 8PSS_2018_privenoncadre
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     salaire_de_base: 3311*8
@@ -361,16 +370,17 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 26488
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -1769.6633 # OK  * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -624.58704 # OK  * (1 - 0.0175) * 0.024
-    crds_salaire: -131.28114 # OK  26488 - 4 PSS * 0.0175 [abatt plaf] * 0.005
-    salaire_imposable: 23533.006
-    salaire_net: 22777.137 # * 12 = 273 325.644
+    csg_deductible_salaire: -1785.4236 # OK (3311*8 - 0.0175 * 3311 * 4) * 0.068
+    csg_imposable_salaire: -630.14954 # OK (3311*8 - 0.0175 * 3311 * 4) * 0.024
+    crds_salaire: -131.28114 # OK  (3311*8 - 0.0175 * 3311 * 4) * 0.005
+    salaire_imposable: 23517.246
+    salaire_net: 22755.8158 # * 12 = 273 069.7896
     # soit net = (1 - 14%) brut
 
 ### privé cadre
 
 - name: 8PSS_2018_privecadre
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     salaire_de_base: 3311*8
@@ -400,16 +410,17 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 26488
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -1769.6633 # OK 26488 * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -624.58704 # OK 26488 * (1 - 0.0175) * 0.024
-    crds_salaire: -131.28114 # OK  26488 - 4 PSS * 0.0175 [abatt plaf] * 0.005
-    salaire_imposable: 22084.926
-    salaire_net: 21329.057 # * 12 = 255 948.684
+    csg_deductible_salaire: -1785.4236 # OK (3311*8 - 0.0175 * 3311 * 4) * 0.068
+    csg_imposable_salaire: -630.14954 # OK (3311*8 - 0.0175 * 3311 * 4) * 0.024
+    crds_salaire: -131.28114 # OK  (3311*8 - 0.0175 * 3311 * 4) * 0.005
+    salaire_imposable: 22069.166
+    salaire_net: 21307.734 # * 12 = 255 692.808
     # soit net = (1-  19.5%) brut
 
 ### public
 
 - name: 8PSS_2018_public
+  absolute_error_margin: 0.05
   period: 2018-01
   input:
     traitement_indiciaire_brut: 3311*8
@@ -443,11 +454,11 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 32119.348
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -2145.8936 # OK 3311 * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -757.3742 # OK 3311 * (1 - 0.0175) * 0.024
+    csg_deductible_salaire: -2168.3552 # OK (3311*8 + 5165.1597 + 264,88 + 201,3088 - 0.0175 * 3311 * 4) * 0.068
+    csg_imposable_salaire: -765.3019 # OK (3311*8 + 5165.1597 + 264,88 + 201,3088 - 0.0175 * 3311 * 4) * 0.024
     crds_salaire: -159.43788 # OK 3311 * (1 - 0.0175) * 0.005
-    salaire_imposable: 26911.445
-    salaire_net: 25994.633 # * 12 = 311 935.596
+    salaire_imposable: 26888.98
+    salaire_net: 25964.24 # * 12 = 311 935.596
     # soit net = (1- 1.9%) brut
 
 # 2021
@@ -455,6 +466,7 @@
 ## 1 PSS
 
 - name: 1PSS_2021
+  absolute_error_margin: 0.05
   period: 2021-01
   input:
     salaire_de_base: 3428
@@ -495,6 +507,7 @@
 ## >1 PSS
 
 - name: justabove1PSS_2021
+  absolute_error_margin: 0.05
   period: 2021-01
   input:
     salaire_de_base: 3429

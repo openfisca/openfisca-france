@@ -90,7 +90,7 @@ class crds_asf(Variable):
     def formula(famille, period, parameters):
         asf = famille('asf', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
 
         return -(asf) * taux_crds
 
