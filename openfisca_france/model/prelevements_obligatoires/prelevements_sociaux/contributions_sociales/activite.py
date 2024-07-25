@@ -421,7 +421,7 @@ class assiette_csg_crds_non_salarie(Variable):
 class csg_imposable_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = 'Assiette CSG des personnes non salariées'
+    label = 'CSG des personnes non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -439,7 +439,7 @@ class csg_imposable_non_salarie(Variable):
 class csg_deductible_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = 'Assiette CSG des personnes non salariées'
+    label = 'CSG des personnes non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -457,7 +457,7 @@ class csg_deductible_non_salarie(Variable):
 class crds_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = 'Assiette CSG des personnes non salariées'
+    label = 'CRDS des personnes non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
