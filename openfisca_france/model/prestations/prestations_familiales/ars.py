@@ -71,12 +71,18 @@ class crds_ars(Variable):
     reference = 'http://www.cleiss.fr/docs/regimes/regime_francea1.html'
     definition_period = YEAR
 
+
     def formula(famille, period, parameters):
         ars = famille('ars', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        law = parameters(period)
 
-        return -(ars) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = ars,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return - montant_crds
 
 
 class ars_nette_crds(Variable):
