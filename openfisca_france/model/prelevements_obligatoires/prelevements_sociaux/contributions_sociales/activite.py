@@ -462,8 +462,15 @@ class crds_non_salarie(Variable):
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
-        taux = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
-        return - taux * assiette_csg_crds_non_salarie
+
+        law = parameters(period)
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = assiette_csg_crds_non_salarie,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return montant_crds
 
 
 class revenus_non_salarie_nets(Variable):
