@@ -522,7 +522,7 @@ class crds_ppa(Variable):
 
     def formula_2016_01_01(famille, period, parameters):
         ppa = famille('ppa', period)
-        
+
         law = parameters(period)
 
         montant_crds = montant_csg_crds_bareme(

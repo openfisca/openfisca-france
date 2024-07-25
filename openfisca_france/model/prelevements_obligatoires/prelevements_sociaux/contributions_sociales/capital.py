@@ -332,7 +332,7 @@ class crds_glo_assimile_salaire_ir_et_ps(Variable):
 
     def formula(individu, period, parameters):
         f1tt = individu('f1tt', period)
-        
+
         law = parameters(period)
 
         montant_crds = montant_csg_crds_bareme(
@@ -341,7 +341,7 @@ class crds_glo_assimile_salaire_ir_et_ps(Variable):
             )
 
         return montant_crds
-        
+
 
 class contribution_salariale_glo_assimile_salaire(Variable):
     calculate_output = calculate_output_add
@@ -398,7 +398,7 @@ class crds_revenus_capital(Variable):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         crds_glo_assimile_salaire_ir_et_ps_i = foyer_fiscal.members('crds_glo_assimile_salaire_ir_et_ps', period)
         crds_glo_assimile_salaire_ir_et_ps = foyer_fiscal.sum(crds_glo_assimile_salaire_ir_et_ps_i)
-        
+
         law = parameters(period)
 
         montant_crds = montant_csg_crds_bareme(

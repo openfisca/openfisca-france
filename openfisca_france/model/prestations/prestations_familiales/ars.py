@@ -71,7 +71,6 @@ class crds_ars(Variable):
     reference = 'http://www.cleiss.fr/docs/regimes/regime_francea1.html'
     definition_period = YEAR
 
-
     def formula(famille, period, parameters):
         ars = famille('ars', period)
 

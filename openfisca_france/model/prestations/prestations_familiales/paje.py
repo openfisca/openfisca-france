@@ -773,7 +773,6 @@ class crds_ape(Variable):
         return - montant_crds
 
 
-
 class ape_nette_crds(Variable):
     calculate_output = calculate_output_add
     value_type = float

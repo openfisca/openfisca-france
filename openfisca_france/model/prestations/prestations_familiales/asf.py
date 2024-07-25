@@ -100,7 +100,6 @@ class crds_asf(Variable):
         return - montant_crds
 
 
-
 class asf_nette_crds(Variable):
     calculate_output = calculate_output_add
     value_type = float

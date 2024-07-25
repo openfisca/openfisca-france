@@ -446,6 +446,7 @@ class crds_af(Variable):
 
         return - montant_crds
 
+
 class af_nettes_crds(Variable):
     calculate_output = calculate_output_add
     value_type = float
