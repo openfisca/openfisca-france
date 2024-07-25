@@ -3,6 +3,7 @@ from numpy import round, floor, datetime64, maximum
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 from openfisca_core.periods import Instant
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 # Prestations familiales

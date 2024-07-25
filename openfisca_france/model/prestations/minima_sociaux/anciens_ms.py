@@ -2,6 +2,7 @@ from numpy import floor, logical_and as and_, logical_or as or_
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 class api(Variable):

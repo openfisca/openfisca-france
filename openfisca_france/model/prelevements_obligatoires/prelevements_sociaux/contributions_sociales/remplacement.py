@@ -1,10 +1,8 @@
 import logging
 
 from openfisca_france.model.base import *
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import (
-    montant_csg_crds,
-    montant_csg_crds_bareme
-    )
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
+
 log = logging.getLogger(__name__)
 
 

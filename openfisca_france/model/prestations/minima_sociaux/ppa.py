@@ -1,6 +1,7 @@
 from openfisca_core.periods import Instant, Period
 from openfisca_france.model.base import *
 from numpy import round as round_, logical_or as or_, remainder as remainder_, datetime64
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 class ppa_eligibilite(Variable):
