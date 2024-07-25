@@ -437,10 +437,14 @@ class crds_af(Variable):
     def formula(famille, period, parameters):
         af = famille('af', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        law = parameters(period)
 
-        return -(af) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = af,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
 
+        return - montant_crds
 
 class af_nettes_crds(Variable):
     calculate_output = calculate_output_add
