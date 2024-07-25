@@ -396,15 +396,19 @@ class crds_revenus_capital(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        prelevements_sociaux = parameters(period).taxation_capital.prelevements_sociaux
-
         crds_glo_assimile_salaire_ir_et_ps_i = foyer_fiscal.members('crds_glo_assimile_salaire_ir_et_ps', period)
         crds_glo_assimile_salaire_ir_et_ps = foyer_fiscal.sum(crds_glo_assimile_salaire_ir_et_ps_i)
+        
+        law = parameters(period)
 
-        return (
-            - assiette_csg_revenus_capital * prelevements_sociaux.crds.produits_de_placement
-            + crds_glo_assimile_salaire_ir_et_ps
+        montant_crds_intermediaire = montant_csg_crds_bareme(
+            base_sans_abattement = assiette_csg_revenus_capital,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
             )
+        
+        montant_crds = montant_crds_intermediaire + crds_glo_assimile_salaire_ir_et_ps
+
+        return montant_crds
 
 
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
