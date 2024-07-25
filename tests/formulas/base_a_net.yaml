@@ -5,9 +5,8 @@
 ### privé non cadre
 
 - name: 1PSS_2018_privenoncadre
-  absolute_error_margin: 0.05
-  period: 2018-01
   absolute_error_margin: 0.005
+  period: 2018-01
   input:
     salaire_de_base: 3311
     heures_remunerees_volume:
