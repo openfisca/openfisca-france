@@ -522,9 +522,15 @@ class crds_ppa(Variable):
 
     def formula_2016_01_01(famille, period, parameters):
         ppa = famille('ppa', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        
+        law = parameters(period)
 
-        return - taux_crds * ppa
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = ppa,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return - montant_crds
 
 
 class ppa_nette_crds(Variable):
