@@ -401,14 +401,12 @@ class crds_revenus_capital(Variable):
         
         law = parameters(period)
 
-        montant_crds_intermediaire = montant_csg_crds_bareme(
+        montant_crds = montant_csg_crds_bareme(
             base_sans_abattement = assiette_csg_revenus_capital,
             law_node = law.prelevements_sociaux.contributions_sociales.crds,
             )
-        
-        montant_crds = montant_crds_intermediaire + crds_glo_assimile_salaire_ir_et_ps
 
-        return montant_crds
+        return (- montant_crds + crds_glo_assimile_salaire_ir_et_ps)
 
 
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
