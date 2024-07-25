@@ -763,9 +763,15 @@ class crds_ape(Variable):
     def formula(famille, period, parameters):
         ape = famille('ape', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        law = parameters(period)
 
-        return -(ape) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = ape,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return - montant_crds
+
 
 
 class ape_nette_crds(Variable):
@@ -811,9 +817,15 @@ class crds_apje(Variable):
     def formula(famille, period, parameters):
         apje = famille('apje', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        law = parameters(period)
 
-        return -(apje) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = apje,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return - montant_crds
+
 
 
 class apje_nette_crds(Variable):
@@ -988,9 +1000,14 @@ class crds_paje(Variable):
     def formula(famille, period, parameters):
         paje = famille('paje', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        law = parameters(period)
 
-        return -(paje) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = paje,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return - montant_crds
 
 
 class paje_nette_crds(Variable):
