@@ -210,7 +210,7 @@ class crds_chomage(Variable):
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit)
             + (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
             )
-        montant_crds = montant_csg_crds(
+        montant_crds = montant_csg_crds_bareme(
             base_avec_abattement = assiette_crds_chomage,
             abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
@@ -430,7 +430,7 @@ class crds_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_crds = montant_csg_crds(
+        montant_crds = montant_csg_crds_bareme(
             base_sans_abattement = retraite_brute,
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
