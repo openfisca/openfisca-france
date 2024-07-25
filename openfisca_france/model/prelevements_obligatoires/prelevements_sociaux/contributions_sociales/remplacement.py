@@ -452,7 +452,7 @@ class crds_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_crds = montant_csg_crds(
+        montant_crds = montant_csg_crds_bareme(
             base_sans_abattement = retraite_brute,
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
@@ -462,7 +462,7 @@ class crds_retraite(Variable):
     def formula(individu, period, parameters):  # formula_1997_2014 à corriger (cf. commentaire au niveau de la variable)
         retraite_brute = individu('retraite_brute', period)
         parameters = parameters(period)
-        taux = parameters.prelevements_sociaux.contributions_sociales.crds.taux
+        taux = parameters.prelevements_sociaux.contributions_sociales.crds.taux.rates[0]
 
         return - taux * retraite_brute
 
