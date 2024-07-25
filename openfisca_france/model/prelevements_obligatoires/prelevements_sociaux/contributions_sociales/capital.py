@@ -332,10 +332,16 @@ class crds_glo_assimile_salaire_ir_et_ps(Variable):
 
     def formula(individu, period, parameters):
         f1tt = individu('f1tt', period)
-        return - f1tt * (
-            parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        
+        law = parameters(period)
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = f1tt,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
             )
 
+        return montant_crds
+        
 
 class contribution_salariale_glo_assimile_salaire(Variable):
     calculate_output = calculate_output_add
