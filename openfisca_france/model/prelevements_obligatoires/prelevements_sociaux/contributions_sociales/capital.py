@@ -408,7 +408,7 @@ class crds_revenus_capital(Variable):
             law_node = law.prelevements_sociaux.contributions_sociales.crds,
             )
 
-        return (- montant_crds + crds_glo_assimile_salaire_ir_et_ps)
+        return (montant_crds + crds_glo_assimile_salaire_ir_et_ps)
 
 
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
