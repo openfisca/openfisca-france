@@ -1,7 +1,6 @@
 from numpy import datetime64, logical_and as and_, logical_or as or_
 
 from openfisca_core.periods import Period
-
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
@@ -79,58 +78,11 @@ class rsa_base_ressources_individu(Variable):
     set_input = set_input_divide_by_period
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036393176&dateTexte=&categorieLien=id'
 
+    def formula_2024_10(individu, period, parameters):
+        return rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period), parameters=parameters)
+
     def formula_2009_06_01(individu, period, parameters):
-        # Revenus professionels
-        types_revenus_pros = [
-            'chomage_net',
-            'retraite_nette',
-            ]
-
-        possede_ressources_substitution = individu('rsa_has_ressources_substitution', period)
-
-        # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
-        revenus_pro = sum(
-            individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
-                (individu(type_revenu, period) == 0)
-                * (individu(type_revenu, period.last_month) > 0)
-                * not_(possede_ressources_substitution)
-                )
-            for type_revenu in types_revenus_pros
-            )
-
-        types_revenus_non_pros = [
-            'allocation_securisation_professionnelle',
-            'dedommagement_victime_amiante',
-            'gains_exceptionnels',
-            'pensions_alimentaires_percues',
-            'pensions_invalidite',
-            'prestation_compensatoire',
-            'prime_forfaitaire_mensuelle_reprise_activite',
-            'rsa_base_ressources_patrimoine_individu',
-            'rsa_indemnites_journalieres_hors_activite',
-            ]
-
-        # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
-        # sans condition de revenu de substitution.
-        montant_de_base_du_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.montant_de_base_du_rsa
-        montant_forfaitaire_neutralisation = 3 * montant_de_base_du_rsa
-        revenus_non_pros = sum(
-            max_(
-                0,
-                individu(type_revenu, period.last_3_months, options = [ADD])
-                - (
-                    montant_forfaitaire_neutralisation
-                    * (individu(type_revenu, period) == 0)
-                    * (individu(type_revenu, period.last_month) > 0)
-                    )
-                )
-            for type_revenu in types_revenus_non_pros
-            )
-
-        rentes_viageres = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_3_months, options = [ADD])
-        revenus_foyer_fiscal_projetes = rentes_viageres * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
+        return rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months, parameters=parameters)
 
     def formula(individu, period, parameters):
         # Revenus professionels
@@ -193,15 +145,13 @@ class rsa_base_ressources_minima_sociaux(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2024_10(famille, period):
+        three_months_of_reference = last_3_months_offset_minus_1(period)
+        return calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference=three_months_of_reference)
+
     def formula(famille, period):
         three_previous_months = period.last_3_months
-        aspa = famille('aspa', period)
-
-        ass_i = famille.members('ass', three_previous_months, options = [ADD])
-        aah_i = famille.members('aah', three_previous_months, options = [ADD])
-        asi_i = famille.members('asi', three_previous_months, options = [ADD])
-        caah_i = famille.members('caah', three_previous_months, options = [ADD])
-        return aspa + famille.sum(ass_i + aah_i + asi_i + caah_i) / 3
+        return calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference=three_previous_months)
 
 
 class rsa_base_ressources_prestations_familiales(Variable):
@@ -527,43 +477,13 @@ class rsa_revenu_activite_individu(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2024_10(individu, period):
+        period_m2_m4 = last_3_months_offset_minus_1(period)
+        return rsa_revenu_activite_individu_base_formula(individu= individu, period=period, three_months_of_reference=period_m2_m4)
+
     def formula_2009_06(individu, period):
         last_3_months = period.last_3_months
-
-        # Note Auto-entrepreneurs:
-        # D'après les caisses, le revenu pris en compte pour les AE pour le RSA ne prend en compte que
-        # l'abattement standard sur le CA, mais pas les cotisations pour charges sociales.
-
-        types_revenus_activite = [
-            'salaire_net',
-            'indemnites_chomage_partiel',
-            'remuneration_apprenti',
-            'indemnites_volontariat',
-            'revenus_stage_formation_pro',
-            'bourse_recherche',
-            'hsup',
-            'etr',
-            'rpns_auto_entrepreneur_benefice',
-            'rsa_indemnites_journalieres_activite',
-            ]
-
-        possede_ressource_substitution = individu('rsa_has_ressources_substitution', period)
-
-        # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
-        revenus_moyennes = sum(
-            individu(type_revenu, last_3_months, options = [ADD]) * not_(
-                (individu(type_revenu, period) == 0)
-                * (individu(type_revenu, period.last_month) > 0)
-                * not_(possede_ressource_substitution)
-                )
-            for type_revenu in types_revenus_activite
-            ) / 3
-
-        revenus_tns_annualises = 0
-        if period.start.date >= date(2017, 1, 1):
-            revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', period.this_year)
-
-        return revenus_moyennes + revenus_tns_annualises
+        return rsa_revenu_activite_individu_base_formula(individu= individu, period=period, three_months_of_reference=last_3_months)
 
 
 class rsa_montant(Variable):
@@ -1043,3 +963,132 @@ class rsa_socle_majore(Variable):
         socle = rsa.rsa_m.montant_de_base_du_rsa
 
         return eligib * socle * taux
+
+
+def last_3_months_offset_minus_1(period) -> Period:
+    return period.last_month.last_3_months
+
+
+def rsa_revenu_activite_individu_base_formula(individu, period, three_months_of_reference):
+    revenus_moyennes = calcul_revenu_moyenne(individu= individu, period=period, three_months_of_reference=three_months_of_reference)
+    revenus_tns_annualises = calcul_revenu_tns_annualises(individu=individu, period=period)
+
+    return revenus_moyennes + revenus_tns_annualises
+
+
+def rsa_base_ressources_individu_base_formula(individu, period, three_months_of_reference, parameters):
+    revenus_pro = calcul_revenu_pro(individu=individu, period= period, three_months_of_reference= three_months_of_reference)
+    revenus_non_pros = calcul_revenu_non_pro(individu=individu, period= period, three_months_of_reference= three_months_of_reference, parameters= parameters)
+    revenus_foyer_fiscal_projetes = calcul_foyer_fiscal_projetes(individu=individu, three_months_of_reference= three_months_of_reference)
+
+    return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
+
+
+def calcul_revenu_pro(individu, period, three_months_of_reference):
+    # Revenus professionels
+    types_revenus_pros = [
+        'chomage_net',
+        'retraite_nette',
+    ]
+
+    possede_ressources_substitution = individu('rsa_has_ressources_substitution', period)
+
+    # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
+    revenus_pro = sum(
+        individu(type_revenu, three_months_of_reference, options = [ADD]) * not_(
+            (individu(type_revenu, period) == 0)
+            * (individu(type_revenu, period.last_month) > 0)
+            * not_(possede_ressources_substitution)
+        )
+        for type_revenu in types_revenus_pros
+    )
+
+    return revenus_pro
+
+def calcul_revenu_non_pro(individu, period, three_months_of_reference, parameters):
+    types_revenus_non_pros = [
+        'allocation_securisation_professionnelle',
+        'dedommagement_victime_amiante',
+        'gains_exceptionnels',
+        'pensions_alimentaires_percues',
+        'pensions_invalidite',
+        'prestation_compensatoire',
+        'prime_forfaitaire_mensuelle_reprise_activite',
+        'rsa_base_ressources_patrimoine_individu',
+        'rsa_indemnites_journalieres_hors_activite',
+    ]
+
+    # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
+    # sans condition de revenu de substitution.
+    montant_de_base_du_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.montant_de_base_du_rsa
+    montant_forfaitaire_neutralisation = 3 * montant_de_base_du_rsa
+    revenus_non_pros = sum(
+        max_(
+            0,
+            individu(type_revenu, three_months_of_reference, options = [ADD])
+            - (
+                montant_forfaitaire_neutralisation
+                * (individu(type_revenu, period) == 0)
+                * (individu(type_revenu, period.last_month) > 0)
+            )
+        )
+        for type_revenu in types_revenus_non_pros
+    )
+
+    return revenus_non_pros
+
+
+def calcul_foyer_fiscal_projetes(individu, three_months_of_reference):
+    rentes_viageres = individu.foyer_fiscal('rente_viagere_titre_onereux', three_months_of_reference, options = [ADD])
+    revenus_foyer_fiscal_projetes = rentes_viageres * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+    return revenus_foyer_fiscal_projetes
+
+
+def calcul_revenu_moyenne(individu, period, three_months_of_reference):
+    # Note Auto-entrepreneurs:
+    # D'après les caisses, le revenu pris en compte pour les AE pour le RSA ne prend en compte que
+    # l'abattement standard sur le CA, mais pas les cotisations pour charges sociales.
+
+    types_revenus_activite = [
+        'salaire_net',
+        'indemnites_chomage_partiel',
+        'remuneration_apprenti',
+        'indemnites_volontariat',
+        'revenus_stage_formation_pro',
+        'bourse_recherche',
+        'hsup',
+        'etr',
+        'rpns_auto_entrepreneur_benefice',
+        'rsa_indemnites_journalieres_activite',
+    ]
+
+    possede_ressource_substitution = individu('rsa_has_ressources_substitution', period)
+
+    # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
+    revenus_moyennes = sum(
+        individu(type_revenu, three_months_of_reference, options = [ADD]) * not_(
+            (individu(type_revenu, period) == 0)
+            * (individu(type_revenu, period.last_month) > 0)
+            * not_(possede_ressource_substitution)
+        )
+        for type_revenu in types_revenus_activite
+    ) / 3
+
+    return revenus_moyennes
+
+
+def calcul_revenu_tns_annualises(individu, period):
+    revenus_tns_annualises = 0
+    if period.start.date >= date(2017, 1, 1):
+        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', period.this_year)
+    return revenus_tns_annualises
+
+
+def calcul_minima_sociaux (famille, period, three_months_of_reference):
+    aspa = famille('aspa', period)
+
+    ass_i = famille.members('ass', three_months_of_reference, options = [ADD])
+    aah_i = famille.members('aah', three_months_of_reference, options = [ADD])
+    asi_i = famille.members('asi', three_months_of_reference, options = [ADD])
+    caah_i = famille.members('caah', three_months_of_reference, options = [ADD])
+    return aspa + famille.sum(ass_i + aah_i + asi_i + caah_i) / 3
