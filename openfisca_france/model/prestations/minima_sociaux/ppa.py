@@ -502,15 +502,11 @@ class ppa(Variable):
     # Prime pour l'Activité sur service-public.fr
     reference = 'https://www.service-public.fr/particuliers/vosdroits/F2882'
 
+    def formula_2024_10(famille, period, parameters):
+        return ppa_base_formula(famille= famille,  parameters= parameters, period= period, three_months_of_reference= last_3_months_offset_minus_1(period))
+
     def formula_2016_01_01(famille, period, parameters):
-        seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_minimum_verse
-        # éligibilité étudiants
-
-        ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)
-        ppa = famille('ppa_fictive', period.last_3_months, options = [ADD]) / 3
-        ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
-
-        return ppa
+        return ppa_base_formula(famille= famille,  parameters= parameters, period= period, three_months_of_reference= period.last_3_months)
 
 
 class crds_ppa(Variable):
@@ -576,3 +572,18 @@ class ppa_versee(Variable):
             + famille('ppa', period.last_month) * (remainder == 1)
             + famille('ppa', period.last_month.last_month) * (remainder == 2)
             )
+
+
+def last_3_months_offset_minus_1(period) -> Period:
+    return period.last_month.last_3_months
+
+
+def ppa_base_formula(famille, parameters, period, three_months_of_reference):
+    seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_minimum_verse
+    # éligibilité étudiants
+
+    ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)
+    ppa = famille('ppa_fictive', three_months_of_reference, options = [ADD]) / 3
+    ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
+
+    return ppa
