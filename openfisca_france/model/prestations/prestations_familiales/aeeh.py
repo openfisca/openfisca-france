@@ -79,7 +79,7 @@ class aes(Variable):
 
     def formula_2002_04_01(famille, period, parameters):
         janvier = period.this_year.first_month
-        isole = not_(famille('en_couple', janvier))
+        # isole = not_(famille('en_couple', janvier))
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
         base = prestations_familiales.education_presence_parentale.aes.base
@@ -90,7 +90,7 @@ class aes(Variable):
         handicap = famille.members('handicap', janvier)
         niveau_handicap = famille.members('aeeh_niveau_handicap', period)
         # Indicatrice d'isolement pour les indidivus
-        isole = famille.project(isole)
+        # isole = famille.project(isole)
 
         enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aes.age_maximum_enfant)
 
