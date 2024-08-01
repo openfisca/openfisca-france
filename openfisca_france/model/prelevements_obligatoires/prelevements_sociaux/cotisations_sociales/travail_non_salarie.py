@@ -196,7 +196,7 @@ class maladie_maternite_artisan_commercant_taux(Variable):
         taux = where(assiette_pss != 0, (
             0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
             + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
-            - (0.007 * (assiette_pss > 5) * ((assiette_pss - 5) / assiette_pss))
+            - (0.007 * (assiette_pss > 5) * ((assiette_pss - 5) / (assiette_pss + 1e-16)))
             ), 0)
 
         return artisan * taux
