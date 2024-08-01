@@ -1,5 +1,14 @@
 # Changelog
 
+## 168.0.3 [2339](https://github.com/openfisca/openfisca-france/pull/2339)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2020
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie.py`.
+* Détails :
+  - Corrige une division par zero dans la formule de `maladie_maternite_artisan_commercant_taux`
+
+
 ## 168.0.2 [2336](https://github.com/openfisca/openfisca-france/pull/2336)
 
 * Changement mineur.
