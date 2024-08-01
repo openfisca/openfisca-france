@@ -1,5 +1,13 @@
 # Changelog
 
+## 168.0.2 [2336](https://github.com/openfisca/openfisca-france/pull/2336)
+
+* Changement mineur.
+* Périodes concernées : à partir du 2024-01-01.
+* Zones impactées : `model.prestations.prestations_familiales.aeeh`.
+* Détails :
+    - Remplacement de janvier par `period` pour récupérer l'`age`, `en_couple` et `handicap`.
+
 ## 168.0.1 [2332](https://github.com/openfisca/openfisca-france/pull/2332)
 
 * Changement mineur.

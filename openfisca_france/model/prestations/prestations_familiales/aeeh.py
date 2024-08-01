@@ -13,7 +13,7 @@ class aeeh(Variable):
     value_type = float
     entity = Famille
     label = "Allocation d'éducation de l'enfant handicapé"
-    reference = 'http://vosdroits.service-public.fr/particuliers/N14808.xhtml'
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F14809'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
@@ -21,7 +21,7 @@ class aeeh(Variable):
     def formula_2006_01_01(famille, period, parameters):
         '''Allocation d'éducation de l'enfant handicapé.
 
-        Rremplace l'allocation d'éducation spéciale (AES) depus le 1er janvier 2006.
+        Remplace l'allocation d'éducation spéciale (AES) depuis le 1er janvier 2006.
         Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :
         le coût du handicap de l'enfant,
         la cessation ou la réduction d'activité professionnelle d'un ou l'autre des deux parents,
@@ -29,22 +29,20 @@ class aeeh(Variable):
         Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit
         son activité professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
         '''
-        janvier = period.this_year.first_month
-        isole = not_(famille('en_couple', janvier))
+        isole = not_(famille('en_couple', period))
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
         base = prestations_familiales.education_presence_parentale.aeeh.base
         complement_d_allocation = prestations_familiales.education_presence_parentale.aeeh.complement_allocation
         majoration = prestations_familiales.education_presence_parentale.aeeh.majoration_parent_isole
 
-        age = famille.members('age', janvier)
-        handicap = famille.members('handicap', janvier)
+        age = famille.members('age', period)
+        handicap = famille.members('handicap', period)
         niveau_handicap = famille.members('aeeh_niveau_handicap', period)
+
         # Indicatrice d'isolement pour les indidivus
         isole = famille.project(isole)
-
         enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aeeh.age_maximum_enfant)
-
         montant_par_enfant = enfant_handicape * prestations_familiales.bmaf.bmaf * (
             base
             + (niveau_handicap == 1) * complement_d_allocation._children['1ere_categorie']
@@ -81,7 +79,7 @@ class aes(Variable):
 
     def formula_2002_04_01(famille, period, parameters):
         janvier = period.this_year.first_month
-        isole = not_(famille('en_couple', janvier))
+        # isole = not_(famille('en_couple', janvier))
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
         base = prestations_familiales.education_presence_parentale.aes.base
@@ -92,7 +90,7 @@ class aes(Variable):
         handicap = famille.members('handicap', janvier)
         niveau_handicap = famille.members('aeeh_niveau_handicap', period)
         # Indicatrice d'isolement pour les indidivus
-        isole = famille.project(isole)
+        # isole = famille.project(isole)
 
         enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aes.age_maximum_enfant)
 
