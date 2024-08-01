@@ -1,5 +1,16 @@
 # Changelog
 
+## 168.0.7 [2335](https://github.com/openfisca/openfisca-france/pull/2335)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique/indemnite_residence/taux/*`
+
+* Détails :
+  - Met à jour la description
+  - Ajoute une référence, le `short_label` et `last_value_still_valid_on`
+
 ## 168.0.6 [2341](https://github.com/openfisca/openfisca-france/pull/2341)
 
 * Changement mineur.
@@ -13,7 +24,7 @@
   - Harmonisation avec les barèmes IPP
   - Nettoyage des champs note, index et documentation
 
-### 168.0.5 [2335](https://github.com/openfisca/openfisca-france/pull/2335)
+## 168.0.5 [2334](https://github.com/openfisca/openfisca-france/pull/2334)
 
 * Changement mineur.
 * Périodes concernées : toutes.
