@@ -8,6 +8,7 @@ values:
     value: 0.04
 metadata:
   short_label: Taux
+  last_value_still_valid_on: "2024-08-01"
   unit: /1
   reference:
     2023-08-01:
