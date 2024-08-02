@@ -1,5 +1,13 @@
 # Changelog
 
+## 168.0.4 [2340](https://github.com/openfisca/openfisca-france/pull/2340)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/07/2024
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/education/sante_psy/etudiant/seances_max.yaml`.
+* Détails :
+  - Passage de 8 à 12 séances gratuites de suivi avec un psychologue
+
 ## 168.0.3 [2339](https://github.com/openfisca/openfisca-france/pull/2339)
 
 * Changement mineur.
