@@ -1,6 +1,6 @@
 # Changelog
 
-### 168.0.3 [2337](https://github.com/openfisca/openfisca-france/pull/2337)
+### 155.2.5 [2337](https://github.com/openfisca/openfisca-france/pull/2337)
 
 * Corrigent ou améliorent un calcul déjà existant.
 * Périodes concernées : Après 2024/10/01
