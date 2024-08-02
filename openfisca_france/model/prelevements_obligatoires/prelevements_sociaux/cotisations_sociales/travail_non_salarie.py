@@ -1,9 +1,8 @@
 import logging
-
+import numpy as np
 
 from openfisca_core.taxscales import MarginalRateTaxScale
 from openfisca_france.model.base import *
-import numpy as np
 
 # TODO:
 # Manquent:
