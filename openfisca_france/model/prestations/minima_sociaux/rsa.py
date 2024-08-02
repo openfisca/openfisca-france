@@ -965,7 +965,7 @@ class rsa_socle_majore(Variable):
         return eligib * socle * taux
 
 
-def last_3_months_offset_minus_1(period : Period) -> Period:
+def last_3_months_offset_minus_1(period: Period) -> Period:
     return period.last_month.last_3_months
 
 
@@ -989,7 +989,7 @@ def calcul_revenu_pro(individu, period, three_months_of_reference):
     types_revenus_pros = [
         'chomage_net',
         'retraite_nette',
-    ]
+        ]
 
     possede_ressources_substitution = individu('rsa_has_ressources_substitution', period)
 
@@ -999,9 +999,9 @@ def calcul_revenu_pro(individu, period, three_months_of_reference):
             (individu(type_revenu, period) == 0)
             * (individu(type_revenu, period.last_month) > 0)
             * not_(possede_ressources_substitution)
-        )
+            )
         for type_revenu in types_revenus_pros
-    )
+        )
     return revenus_pro
 
 
@@ -1016,7 +1016,7 @@ def calcule_revenu_non_pro(individu, period, three_months_of_reference, paramete
         'prime_forfaitaire_mensuelle_reprise_activite',
         'rsa_base_ressources_patrimoine_individu',
         'rsa_indemnites_journalieres_hors_activite',
-    ]
+        ]
 
     # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
     # sans condition de revenu de substitution.
@@ -1030,10 +1030,10 @@ def calcule_revenu_non_pro(individu, period, three_months_of_reference, paramete
                 montant_forfaitaire_neutralisation
                 * (individu(type_revenu, period) == 0)
                 * (individu(type_revenu, period.last_month) > 0)
+                )
             )
-        )
         for type_revenu in types_revenus_non_pros
-    )
+        )
     return revenus_non_pros
 
 
@@ -1059,7 +1059,7 @@ def calcul_revenu_moyenne(individu, period, three_months_of_reference):
         'etr',
         'rpns_auto_entrepreneur_benefice',
         'rsa_indemnites_journalieres_activite',
-    ]
+        ]
 
     possede_ressource_substitution = individu('rsa_has_ressources_substitution', period)
 
@@ -1069,9 +1069,9 @@ def calcul_revenu_moyenne(individu, period, three_months_of_reference):
             (individu(type_revenu, period) == 0)
             * (individu(type_revenu, period.last_month) > 0)
             * not_(possede_ressource_substitution)
-        )
+            )
         for type_revenu in types_revenus_activite
-    ) / 3
+        ) / 3
 
     return revenus_moyennes
 
