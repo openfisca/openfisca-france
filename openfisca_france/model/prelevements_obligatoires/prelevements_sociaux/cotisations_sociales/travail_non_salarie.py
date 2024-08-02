@@ -3,7 +3,7 @@ import logging
 
 from openfisca_core.taxscales import MarginalRateTaxScale
 from openfisca_france.model.base import *
-
+import numpy as np
 
 # TODO:
 # Manquent:
@@ -193,11 +193,17 @@ class maladie_maternite_artisan_commercant_taux(Variable):
             ) * individu('rpns_imposables', period)
         assiette_pss = assiette / plafond_securite_sociale_annuel
 
-        taux = where(assiette_pss != 0, (
-            0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
-            + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
-            - (0.007 * (assiette_pss > 5) * ((assiette_pss - 5) / (assiette_pss + 1e-16)))
-            ), 0)
+        taux_nul = np.zeros(len(categorie_non_salarie))
+        taux = np.divide(
+            (
+                0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
+                + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
+                - (0.007 * (assiette_pss > 5) * (assiette_pss - 5))
+            ),
+            assiette_pss,
+            out = taux_nul,
+            where=assiette_pss != 0
+        )
 
         return artisan * taux
 
