@@ -970,7 +970,7 @@ def last_3_months_offset_minus_1(period : Period) -> Period:
 
 
 def rsa_revenu_activite_individu_base_formula(individu, period, three_months_of_reference):
-    revenus_moyennes = calcul_revenu_moyenne(individu= individu, period=period, three_months_of_reference=three_months_of_reference)
+    revenus_moyennes = calcul_revenu_moyenne(individu=individu, period=period, three_months_of_reference=three_months_of_reference)
     revenus_tns_annualises = calcul_revenu_tns_annualises(individu=individu, period=period)
 
     return revenus_moyennes + revenus_tns_annualises
@@ -982,7 +982,6 @@ def rsa_base_ressources_individu_base_formula(individu, period, three_months_of_
     revenus_foyer_fiscal_projetes = calcul_foyer_fiscal_projetes(individu=individu, three_months_of_reference=three_months_of_reference)
 
     return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
-
 
 
 def calcul_revenu_pro(individu, period, three_months_of_reference):
