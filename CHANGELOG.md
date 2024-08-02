@@ -1,12 +1,20 @@
 # Changelog
 
-## 168.0.4 [2340](https://github.com/openfisca/openfisca-france/pull/2340)
+## 168.0.5 [2340](https://github.com/openfisca/openfisca-france/pull/2340)
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/07/2024
 * Zones impactées : `openfisca_france/parameters/prestations_sociales/education/sante_psy/etudiant/seances_max.yaml`.
 * Détails :
-  - Passage de 8 à 12 séances gratuites de suivi avec un psychologue
+    - Passage de 8 à 12 séances gratuites de suivi avec un psychologue
+
+### 168.0.4 [2325](https://github.com/openfisca/openfisca-france/pull/2325)
+* Évolution du système socio-fiscal.
+
+* Périodes concernées : à partir du 01/08/2024.
+* Zones impactées : `openfisca_france/model/patrimoine/livret_epargne_populaire.py`.
+* Détails :
+  - Mise à jour du taux de rémunération du Livret d'Épargne Populaire
 
 ## 168.0.3 [2339](https://github.com/openfisca/openfisca-france/pull/2339)
 
@@ -15,7 +23,6 @@
 * Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie.py`.
 * Détails :
   - Corrige une division par zero dans la formule de `maladie_maternite_artisan_commercant_taux`
-
 
 ## 168.0.2 [2336](https://github.com/openfisca/openfisca-france/pull/2336)
 
