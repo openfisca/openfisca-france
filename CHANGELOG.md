@@ -1,6 +1,19 @@
 # Changelog
 
-## 168.0.5 [2335](https://github.com/openfisca/openfisca-france/pull/23135)
+## 168.0.6 [2341](https://github.com/openfisca/openfisca-france/pull/2341)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  -  `parameters/marche_travail`
+  - `parameters/taxation_capital`
+  - `parameters/prestations_sociales/education/contrat_engagement_jeune`
+
+* Détails :
+  - Harmonisation avec les barèmes IPP
+  - Nettoyage des champs note, index et documentation
+
+### 168.0.5 [2335](https://github.com/openfisca/openfisca-france/pull/2335)
 
 * Changement mineur.
 * Périodes concernées : toutes.
