@@ -1,5 +1,13 @@
 # Changelog
 
+## 168.0.10 [2342](https://github.com/openfisca/openfisca-france/pull/2342)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevemenst_sociaux`.
+* Détails :
+  - Nettoyage des notes et documentation doublonnées.
+
 ## 168.0.9 [2340](https://github.com/openfisca/openfisca-france/pull/2340)
 
 * Changement mineur.
@@ -12,7 +20,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/deductions/taux_salaires_pensions.yaml`
 
 * Détails :
@@ -22,7 +30,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique/indemnite_residence/taux/*`
 
 * Détails :
