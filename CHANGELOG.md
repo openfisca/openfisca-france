@@ -1,12 +1,55 @@
 # Changelog
 
-## 168.0.5 [2340](https://github.com/openfisca/openfisca-france/pull/2340)
+## 168.0.9 [2340](https://github.com/openfisca/openfisca-france/pull/2340)
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/07/2024
 * Zones impactées : `openfisca_france/parameters/prestations_sociales/education/sante_psy/etudiant/seances_max.yaml`.
 * Détails :
     - Passage de 8 à 12 séances gratuites de suivi avec un psychologue
+
+## 168.0.8 [2338](https://github.com/openfisca/openfisca-france/pull/2338)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/deductions/taux_salaires_pensions.yaml`
+
+* Détails :
+  - Ajoute une référence et le `last_value_still_valid_on`
+
+## 168.0.7 [2335](https://github.com/openfisca/openfisca-france/pull/2335)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique/indemnite_residence/taux/*`
+
+* Détails :
+  - Met à jour la description
+  - Ajoute une référence, le `short_label` et `last_value_still_valid_on`
+
+## 168.0.6 [2341](https://github.com/openfisca/openfisca-france/pull/2341)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  -  `parameters/marche_travail`
+  - `parameters/taxation_capital`
+  - `parameters/prestations_sociales/education/contrat_engagement_jeune`
+
+* Détails :
+  - Harmonisation avec les barèmes IPP
+  - Nettoyage des champs note, index et documentation
+
+## 168.0.5 [2334](https://github.com/openfisca/openfisca-france/pull/2334)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Nettoyage des notes et description.
+  - Retrait de références mal placées.
 
 ### 168.0.4 [2325](https://github.com/openfisca/openfisca-france/pull/2325)
 * Évolution du système socio-fiscal.
@@ -36,18 +79,18 @@
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/deductions/abatviag/*`
 
 * Détails :
   - Met à jour la description
   - Ajoute une référence, le `short_label` et `last_value_still_valid_on`
 
-## 168.0.0 [2331](https://github.com/openfisca/openfisca-france/pull/2331)
+# 168.0.0 [2331](https://github.com/openfisca/openfisca-france/pull/2331)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/base.py`

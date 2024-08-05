@@ -1,6 +1,6 @@
-description: Prélèvements libératoires sur les revenus des valeurs mobilières
+description: Prélèvements libératoires sur les revenus des valeurs mobilières à taux fixe
 metadata:
-  short_label: Prélèvements libératoires taux fixe
+  short_label: Prélèvements libératoires à taux fixe
   label_en: Levy in discharge on capital income
   order:
   - emis_avant_1_6_78
