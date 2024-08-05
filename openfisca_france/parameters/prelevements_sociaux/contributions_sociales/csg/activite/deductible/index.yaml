@@ -4,3 +4,4 @@ metadata:
   label_en: Social contributions
   order:
   - taux
+  - abattement

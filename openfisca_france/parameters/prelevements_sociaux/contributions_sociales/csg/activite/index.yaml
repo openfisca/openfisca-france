@@ -3,7 +3,5 @@ metadata:
   short_label: CSG sur les revenus d'activité
   label_en: CSG - rates on work incomes
   order:
-  - deductible
-  - imposable
-  - abattement
   - taux_global
+  - deductible

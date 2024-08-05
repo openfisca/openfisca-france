@@ -1,9 +1,9 @@
-description: Montant imposable d'allocations chômage (en multiple du smic annuel net) minimum  que la CSG sur les allocations chômage ne peut pas réduire
+description: Montant imposable d'allocations chômage (en multiple du smic annuel net) en deçà duquel un chômeur est exonéré de la contribution sociale généralisée (CSG)
 values:
   2002-01-01:
     value: 1
 metadata:
-  short_label: Montant minimum d'allocations chômage que la CSG chômage ne peut pas réduire
+  short_label: Montant imposable d'allocations chômage maximal exonéré
   last_value_still_valid_on: "2024-07-24"
   unit: smic
   reference:
