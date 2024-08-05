@@ -1,10 +1,19 @@
 # Changelog
 
-## 168.0.0 [2331](https://github.com/openfisca/openfisca-france/pull/2331)
+## 168.0.1 [2335](https://github.com/openfisca/openfisca-france/pull/23135)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Nettoyage des notes et description.
+  - Retrait de références mal placées.
+
+# 168.0.0 [2331](https://github.com/openfisca/openfisca-france/pull/2331)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/base.py`
