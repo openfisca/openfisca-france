@@ -1,5 +1,14 @@
 # Changelog
 
+## 168.0.5 [2335](https://github.com/openfisca/openfisca-france/pull/23135)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Nettoyage des notes et description.
+  - Retrait de références mal placées.
+
 ### 168.0.4 [2325](https://github.com/openfisca/openfisca-france/pull/2325)
 * Évolution du système socio-fiscal.
 
@@ -28,18 +37,18 @@
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/deductions/abatviag/*`
 
 * Détails :
   - Met à jour la description
   - Ajoute une référence, le `short_label` et `last_value_still_valid_on`
 
-## 168.0.0 [2331](https://github.com/openfisca/openfisca-france/pull/2331)
+# 168.0.0 [2331](https://github.com/openfisca/openfisca-france/pull/2331)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/base.py`

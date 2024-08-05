@@ -1,7 +1,7 @@
 description: Plafonds de revenu d'activité individuel pour le calcul de la prime pour l'emploi (PPE)
 metadata:
-  short_label: Plafonds revenu d'activité
-  label_en: Employment Allowance (2001 - 2015)
+  short_label: Plafonds revenu d'activité individuel
+  label_en: Employment Allowance
   order:
   - minimum
   - pour_taux_plein_cas_general
