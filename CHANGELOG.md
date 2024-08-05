@@ -1,5 +1,15 @@
 # Changelog
 
+## 168.0.8 [2338](https://github.com/openfisca/openfisca-france/pull/2338)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/deductions/taux_salaires_pensions.yaml`
+
+* Détails :
+  - Ajoute une référence et le `last_value_still_valid_on`
+
 ## 168.0.7 [2335](https://github.com/openfisca/openfisca-france/pull/2335)
 
 * Changement mineur.
