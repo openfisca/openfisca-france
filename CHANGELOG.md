@@ -1,6 +1,6 @@
 # Changelog
 
-## 168.0.1 [2335](https://github.com/openfisca/openfisca-france/pull/23135)
+## 168.0.5 [2335](https://github.com/openfisca/openfisca-france/pull/23135)
 
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -8,6 +8,41 @@
 * Détails :
   - Nettoyage des notes et description.
   - Retrait de références mal placées.
+
+### 168.0.4 [2325](https://github.com/openfisca/openfisca-france/pull/2325)
+* Évolution du système socio-fiscal.
+
+* Périodes concernées : à partir du 01/08/2024.
+* Zones impactées : `openfisca_france/model/patrimoine/livret_epargne_populaire.py`.
+* Détails :
+  - Mise à jour du taux de rémunération du Livret d'Épargne Populaire
+
+## 168.0.3 [2339](https://github.com/openfisca/openfisca-france/pull/2339)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2020
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie.py`.
+* Détails :
+  - Corrige une division par zero dans la formule de `maladie_maternite_artisan_commercant_taux`
+
+## 168.0.2 [2336](https://github.com/openfisca/openfisca-france/pull/2336)
+
+* Changement mineur.
+* Périodes concernées : à partir du 2024-01-01.
+* Zones impactées : `model.prestations.prestations_familiales.aeeh`.
+* Détails :
+    - Remplacement de janvier par `period` pour récupérer l'`age`, `en_couple` et `handicap`.
+
+## 168.0.1 [2332](https://github.com/openfisca/openfisca-france/pull/2332)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/deductions/abatviag/*`
+
+* Détails :
+  - Met à jour la description
+  - Ajoute une référence, le `short_label` et `last_value_still_valid_on`
 
 # 168.0.0 [2331](https://github.com/openfisca/openfisca-france/pull/2331)
 
