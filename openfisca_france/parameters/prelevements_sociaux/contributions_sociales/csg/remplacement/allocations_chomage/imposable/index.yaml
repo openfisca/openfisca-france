@@ -2,5 +2,5 @@ description: Taux de la contribution sociale généralisée (CSG) imposable sur 
 metadata:
   short_label: Taux de CSG imposable appliqués à l'assiette des allocations chômage, à compter d'un seuil de RFR
   order:
-  - taux_reduit
   - taux_plein
+  - taux_reduit

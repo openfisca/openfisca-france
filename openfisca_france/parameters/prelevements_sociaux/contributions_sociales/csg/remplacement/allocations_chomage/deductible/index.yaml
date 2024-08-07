@@ -2,5 +2,5 @@ description: Taux de la contribution sociale généralisée (CSG) déductible su
 metadata:
   short_label: Taux de CSG déductible appliqués à l'assiette des allocations chômage, à compter d'un seuil de RFR 
   order:
-  - taux_reduit
   - taux_plein
+  - taux_reduit
