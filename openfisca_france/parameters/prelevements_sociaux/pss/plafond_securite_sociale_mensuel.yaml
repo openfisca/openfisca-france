@@ -544,10 +544,3 @@ metadata:
     - title: Les plafonds annuels sont inexacts sur legislation.cnav.fr (12*montant mensuel) au lieu de la somme des plafonds mensuels sur l'année.
     1997-01-01:
     - title: Depuis 1997, revalorisation chaque début d'année.
-documentation: |-
-  Sources de la législation :
-  Légifrance.gouv.fr depuis 2001; Barème social périodique entre 1976 et 2000; Législation.cnav.fr et Légifrance avant 1976.
-  Notes :
-  La référence législative est le plafond mensuel, par quinzaine, par semaine, par jour ou par heure. C'est la périodicité de la paie qui détermine le montant des cotisations et du plafond applicable.
-  Pour autant, la régularisation de la paie est effectuée en fin d'année, en fonction d'un plafond annuel, calculé comme la somme des plafonds applicables sur l'ensemble des périodicités de la paie.
-  Depuis 2015, cette valeur mensuelle sert néanmoins explicitement de base au calcul des plafonds horaire et annuel (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025103320/2012-01-01/).

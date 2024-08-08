@@ -4,5 +4,4 @@ metadata:
   order:
   - taux_global
   - deductible
-  - imposable
   - min_exo

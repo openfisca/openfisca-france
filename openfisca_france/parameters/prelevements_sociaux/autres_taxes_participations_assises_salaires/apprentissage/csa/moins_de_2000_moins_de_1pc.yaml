@@ -11,8 +11,8 @@ values:
   2014-01-01:
     value: 0.004
 metadata:
-  last_value_still_valid_on: "2024-05-16"
   short_label: Plus de 2000, moins de 1%
+  last_value_still_valid_on: "2024-05-16"
   label_en: Apprenticeship tax (tax for the financing of apprenticeship)
   unit: /1
   reference:

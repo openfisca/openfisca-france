@@ -9,7 +9,7 @@ metadata:
     2011-01-01: "2010-12-21"
   notes:
     2011-01-01:
-    - title: "Les contributions patronales acquittées pour le financement de la prévoyance complémentaire des anciens salariés se trouvent soumises à leur tour à la taxe."
+    - title: Les contributions patronales acquittées pour le financement de la prévoyance complémentaire des anciens salariés se trouvent soumises à leur tour à la taxe.
   order:
   - taux
 documentation: |-
@@ -19,6 +19,5 @@ documentation: |-
   (Voir feuille "Forfait social")
 
   Champ : Employeurs de plus de 9 salariés
-  
-  Assiette : Toutes les contributions versées à un organisme tiers pour financer des prestations de prévoyance complétant celles servies par les régimes de base de Sécurité sociale, même pour leur fraction assujettie aux cotisations sociales.
 
+  Assiette : Toutes les contributions versées à un organisme tiers pour financer des prestations de prévoyance complétant celles servies par les régimes de base de Sécurité sociale, même pour leur fraction assujettie aux cotisations sociales.
