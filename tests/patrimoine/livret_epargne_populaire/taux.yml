@@ -9,3 +9,15 @@
     livret_epargne_populaire_eligibilite: [true, false]
   output:
     livret_epargne_populaire_taux: [6, 0]
+
+- period: 2024-02
+  input:
+    livret_epargne_populaire_eligibilite: [true, false]
+  output:
+    livret_epargne_populaire_taux: [5, 0]
+
+- period: 2024-08
+  input:
+    livret_epargne_populaire_eligibilite: [true, false]
+  output:
+    livret_epargne_populaire_taux: [4, 0]

@@ -1,4 +1,4 @@
-description: Taux employeur déplafonné de la cotisation de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV)
+description: Cotisation employeur déplafonnée pour la branche assurance vieillesse (CNAV) du régime général de sécurité sociale
 brackets:
 - threshold:
     1967-10-01:
@@ -19,7 +19,7 @@ brackets:
     2024-01-01:
       value: 0.0202
 metadata:
-  short_label: Taux sur tout le salaire
+  short_label: Déplafonnée
   last_value_still_valid_on: "2024-03-14"
   label_en: SSCs for old-age benefits
   ipp_csv_id:

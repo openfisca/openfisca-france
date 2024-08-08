@@ -5,3 +5,4 @@ metadata:
   order:
   - taux_global
   - deductible
+  - abattement

@@ -1,11 +1,11 @@
 description: Cotisations maladie spécifiques à la fonction publique d'Etat
 metadata:
   documentation_start: true
-  short_label: Fonction publique d'Etat
+  short_label: Cotisations maladie de la fonction publique d'Etat
   label_en: Health insurance contributions - central government
   order:
-  - sous_plafond
   - tout_traitement
+  - sous_plafond
 documentation: |-
   En 1981, le taux MMID a été changé en milieu de mois: le décret 81-1013 précise que la date d'application est la date de publication au JO, soit le 14/11/1981.
   Le fait générateur des cotisations sociales étant le versement des rémunérations, le nouveau taux de cotisation s'applique aux rémunérations versées après l'entrée en vigueur tel que précisée par les textes (Mémento pratique Francis Lefebvre, Paie 2012)

@@ -1,0 +1,16 @@
+description: Conditions de ressources pour les apprentis pour exonération d'Impôt sur le Revenu à partir de 2005
+values:
+  2005-01-01:
+    value: 1
+metadata:
+  short_label: Apprentis (à partir de 2005), en part du Smic brut annuel
+  ipp_csv_id: exo_apprenti_a_partir_2005
+  unit: /1
+  reference:
+    2005-01-01:
+    - title: Loi n°2005-32 du 18 janvier 2005 - art. 26
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000001097755
+    - title: Article 81 bis du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029236245
+  official_journal_date:
+    2005-01-01: "2005-01-19"

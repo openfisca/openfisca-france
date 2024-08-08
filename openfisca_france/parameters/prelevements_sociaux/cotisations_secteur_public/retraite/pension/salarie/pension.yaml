@@ -1,4 +1,4 @@
-description: Cotisations salarié au régime de Retraite de la fonction publique
+description: Retenue pour pension (cotisations de l'agent) au régime de retraite de la fonction publique
 brackets:
 - threshold:
     1925-01-01:
@@ -121,9 +121,8 @@ metadata:
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-
-  Note :
-  La Retenue pour pension est la contribution versée par les titulaires de la fonction publique d'Etat pour financer leurs prestations de retraite.
+  La retenue pour pension est la contribution versée par les titulaires de la fonction publique d'Etat pour financer leurs prestations de retraite.
   Assiette :
-  L'assiette des cotisations dues au titre des prestations servies par le régime général est constituée par le traitement soumis à retenue pour pension de l’agent, soit :
+  L’assiette des cotisations dues au titre des prestations servies par le régime général est constituée par le traitement soumis à retenue pour pension de l’agent, soit :
   le traitement indiciaire brut (TIB),
   la nouvelle bonification indiciaire (NBI).

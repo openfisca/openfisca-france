@@ -1,5 +1,6 @@
 description: Cotisations au régime de Retraite additionnelle de la fonction publique (RAFP)
 metadata:
+  documentation_start: true
   short_label: RAFP
   label_en: Contributions to the scheme of Additional pension of the public sector (RAFP)
   order:

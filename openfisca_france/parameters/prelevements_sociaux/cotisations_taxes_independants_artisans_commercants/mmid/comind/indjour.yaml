@@ -12,3 +12,6 @@ brackets:
   rate:
     2003-01-01:
       value: 0
+metadata:
+  rate_unit: /1
+  threshold_unit: PSS

@@ -1,0 +1,46 @@
+description: Montant du Pass Colo
+brackets:
+- threshold:
+    2024-01-01:
+      value: 0
+  amount:
+    2024-01-01:
+      value: 350
+- threshold:
+    2024-01-01:
+      value: 201
+  amount:
+    2024-01-01:
+      value: 300
+- threshold:
+    2024-01-01:
+      value: 701
+  amount:
+    2024-01-01:
+      value: 250
+- threshold:
+    2024-01-01:
+      value: 1200
+  amount:
+    2024-01-01:
+      value: 200
+- threshold:
+    2024-01-01:
+      value: 1500
+  amount:
+    2024-01-01:
+      value: 200
+- threshold:
+    2024-01-01:
+      value: 1501
+  amount:
+    2024-01-01:
+      value: 0
+metadata:
+  short_label: Montant
+  reference:
+    2024-03-28:
+      title: Décret n° 2024-277 du 28 mars 2024 relatif au « Pass'colo »
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049339145
+  threshold_unit: year
+  type: single_amount

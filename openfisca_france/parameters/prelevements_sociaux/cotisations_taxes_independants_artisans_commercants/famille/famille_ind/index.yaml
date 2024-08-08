@@ -4,7 +4,6 @@ metadata:
   short_label: Indépendants
   label_en: SSCs for family benefits (independent workers)
   order:
-  - revenu_professionnel_total
   - sous_pss
   - sous_10_000_frf
   - entre_10_000_frf_et_1_pss

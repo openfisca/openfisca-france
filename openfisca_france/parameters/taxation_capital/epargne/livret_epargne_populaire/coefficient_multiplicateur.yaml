@@ -4,7 +4,7 @@ values:
     value: 1.8
 metadata:
   short_label: Coefficient multiplicateur
-  last_value_still_valid_on: "2021-12-27"
+  last_value_still_valid_on: "2024-04-10"
   unit: /1
   reference:
     2014-01-01:

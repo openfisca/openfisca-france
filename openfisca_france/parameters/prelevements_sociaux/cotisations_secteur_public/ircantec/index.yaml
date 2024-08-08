@@ -1,11 +1,12 @@
 description: Cotisations à la retraite complémentaire des agents non titulaires de la fonction publique et des élus locaux (IRCANTEC)
 metadata:
   documentation_start: true
-  short_label: Cotisations à la retraite complémentaire des agents non titulaires de la fonction publique et des élus locaux (IRCANTEC)
+  short_label: IRCANTEC
   label_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
   order:
   - taux_cotisations_appeles
   - taux_cotisations_theoriques
+  - taux_appel
 documentation: |-
   L'IRCANTEC est le régime de retraite complémentaire des non-titulaires de la fonction publique.
   Les non-titulaires versent leurs cotisations pour leurs avantages de retraite de base au régime général (CNAV).

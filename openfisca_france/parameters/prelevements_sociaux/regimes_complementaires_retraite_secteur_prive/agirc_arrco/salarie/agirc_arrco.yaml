@@ -36,7 +36,3 @@ metadata:
     - title: Lex taux de 3,15% (T1) et 8,64% (T2) sont obtenus en multipliant les taux globaux (6,20% pour la T1 et 17% pour la T2) par le taux d'appel (127%, cf. art. 36 de l'ANI du 17/11/2017) puis par la part salariée (40%, cf. art. 38)
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  Le taux de cotisation est égal au taux de calcul des points multiplié par le taux d'appel.
-  La répartition du taux de cotisation total entre la part salarié et la part employeur se fait le plus souvent selon la règle de répartition "40/60", mais il existe des dérogations.

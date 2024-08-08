@@ -1,0 +1,40 @@
+description: Taux employeur sous le plafond de la sécurité sociale (PSS) de cotisations de sécurité sociale (SS) pour les accidents du travail des journalistes pigistes de la presse quotdienne hors Alsace-Moselle
+values:
+  1964-01-01:
+    value: 0.017
+  1966-10-01:
+    value: 0.0225
+  1969-01-01:
+    value: 0.024
+  1970-01-01:
+    value: 0.0256
+  1973-03-01:
+    value: 0.024
+  1974-01-01:
+    value: 0.0248
+metadata:
+  short_label: Presse quotidienne
+  last_value_still_valid_on: "1969-01-01"
+  label_en: SSCs for freelance journalists
+  ipp_csv_id: acc_pq_p_0_1
+  unit: /1
+  reference:
+    1964-01-01:
+      title: Arrêté du 09/12/1963
+    1966-10-01:
+      title: Arrêté du 15/09/1966
+    1969-01-01:
+      title: Arrêté du 31/12/1968
+    1970-01-01:
+      title: Arrêté du 31/12/1969
+    1973-03-01:
+      title: Arrêté du 31/01/1973
+    1974-01-01:
+      title: Arrêté du 15/01/1974
+  official_journal_date:
+    1964-01-01: "1963-12-22"
+    1966-10-01: "1966-09-27"
+    1969-01-01: "1969-01-01"
+    1970-01-01: "1970-01-01"
+    1973-03-01: "1973-03-17"
+    1974-01-01: "1974-02-07"

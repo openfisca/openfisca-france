@@ -1,6 +1,6 @@
 description: Cotisations salariales pour l'Association pour la gestion de la structure financière (ASF)
 metadata:
-  short_label: Barème salarié
+  short_label: Salarié
   label_en: Employee contributions to the association for the mangement of the financial structure ASF
   order:
   - asf

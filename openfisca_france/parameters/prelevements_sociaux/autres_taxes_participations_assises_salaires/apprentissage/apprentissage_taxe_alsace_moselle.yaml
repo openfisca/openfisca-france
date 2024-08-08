@@ -1,10 +1,10 @@
 description: Taxes d'apprentissage sur les salaires, pour les salariés du régime d'Alsace-Moselle
 brackets:
 - threshold:
-    1972-07-01:
+    1973-07-01:
       value: 0
   rate:
-    1972-07-01:
+    1973-07-01:
       value: null
     1979-01-01:
       value: 0.001
@@ -20,8 +20,6 @@ metadata:
   label_en: Apprenticeship tax (tax for the financing of apprenticeship)
   ipp_csv_id: appren_am_p_0_
   reference:
-    1972-07-01:
-      title: Loi 71-576 et loi 71-578, art. 3 du 16/07/1971
     1973-07-01:
       title: Décret 72-1208 du 27/12/1972
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000695977&categorieLien=id
@@ -93,8 +91,6 @@ metadata:
     2013-01-01: "2012-03-15"
     2014-01-01: 2013-12-29; 2018-09-06
   notes:
-    1972-07-01:
-    - title: La Loi 71-578 ramène le taux de la taxe d'apprentissage de 0,60% à 0,50%
     1973-07-01:
     - title: Le décret précise que les lois de 1971 sur l'apprentissage entreront en vigueur en Alsace-Moselle en 1973. Toutefois, le décret d'application 72-280 du 12/04/1972, art. 58 qui devait préciser le taux de la taxe applicable est introuvable sur Légifrance.
     1977-01-01:

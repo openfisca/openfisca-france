@@ -125,7 +125,7 @@ brackets:
     1959-01-01:
       value: 0
 metadata:
-  short_label: Barème employeur
+  short_label: Barème
   last_value_still_valid_on: "2024-03-14"
   ipp_csv_id:
     rate: chom_p_0_1, chom_p_1_4

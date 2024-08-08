@@ -13,7 +13,7 @@ brackets:
     2019-01-01:
       value: 0
 metadata:
-  short_label: Barème salarié (sous 8 PSS)
+  short_label: Barème
   last_value_still_valid_on: "2021-07-30"
   label_en: Complementary pension contributions
   reference:
@@ -27,6 +27,3 @@ metadata:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  Les taux de cotisation CET s'appliquent à l'ensemble du salaire, mais uniquement pour les salariés dont la rémunération est supérieure à T1 (1 PSS). (et dans la limite de 8 PSS)

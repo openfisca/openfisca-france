@@ -3,4 +3,5 @@ values:
   2001-01-01:
     value: 1200
 metadata:
+  short_label: Franchise (seuil de la décôte)
   unit: currency

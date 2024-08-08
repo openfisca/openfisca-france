@@ -3,5 +3,6 @@ metadata:
   short_label: Microentreprises
   order:
   - regime_micro_ba
+  - regime_micro_bic
   - regime_micro_bnc
   - montant_minimum

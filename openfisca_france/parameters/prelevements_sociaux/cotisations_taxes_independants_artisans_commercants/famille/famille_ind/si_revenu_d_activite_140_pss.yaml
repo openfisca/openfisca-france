@@ -1,7 +1,5 @@
 description: Cotisations (si revenu d'activité > 140 % PSS) de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
 values:
-  1974-04-01:
-    value: null
   2015-01-01:
     value: 0.0525
   2018-01-01:

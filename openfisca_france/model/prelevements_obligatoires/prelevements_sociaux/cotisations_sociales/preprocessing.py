@@ -83,7 +83,6 @@ def build_pat(parameters):
     commun.children['fnal_contribution_plus_de_20_salaries'] = commun.children.pop('contribution_plus_de_20_salaries')
     commun.children['fnal_contribution_plus_de_50_salaries'] = commun.children.pop('contribution_plus_de_50_salaries')
     commun.children['fnal_cotisation'] = commun.children.pop('cotisation')
-    del commun.children['tout_employeur']
     commun.metadata['order'] += [
         'fnal_contribution_plus_de_10_salaries',
         'fnal_contribution_moins_de_20_salaries',

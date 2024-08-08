@@ -33,7 +33,3 @@ metadata:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Notes :
-  Le taux de cotisation est égal au taux de calcul des points multiplié par le taux d'appel.
-  La répartition du taux de cotisation total entre la part salarié et la part employeur se fait le plus souvent selon la règle de répartition "40/60", mais il existe des dérogations.

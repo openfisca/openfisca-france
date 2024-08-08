@@ -24,3 +24,52 @@
         aeeh_niveau_handicap: 4
   output:
     aeeh: 395.04 * (.32 + .92)
+
+- name: Allocation d'éducation de l'enfant handicapé - Couple, 1 enfant, sans categorisation aeeh
+  description: Montant AEEH
+  period: 2012-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+      parent2:
+        age: 40
+      enfant1:
+        age: 9
+        handicap: true
+  output:
+    aeeh: 395.04 * (.32)
+
+- name: Allocation d'éducation de l'enfant handicapé - Seul, 1 enfant, sans categorisation aeeh, période 2024
+  description: Montant AEEH
+  period: 2024-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+    foyer_fiscal:
+      declarants: [parent1]
+      personnes_a_charge: [enfant1]
+    menage:
+      personne_de_reference: parent1
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 22
+      enfant1:
+        age: 9
+        handicap: true
+  output:
+    aeeh: 445.93  * (.32)

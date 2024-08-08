@@ -3,7 +3,6 @@ metadata:
   documentation_start: true
   short_label: Intérêts d'emprunt pour l'habitation principale
   order:
-  - annee_ir
   - cas_base
   - logements_performants_energie
   - logements_2010

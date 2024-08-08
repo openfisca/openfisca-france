@@ -100,6 +100,8 @@ values:
     value: 31
   2023-07-01:
     value: 31.59
+  2024-07-01:
+    value: 31.97
 metadata:
   short_label: Montant minimum journalier hors Mayotte
   unit: currency
@@ -198,6 +200,9 @@ metadata:
     2023-07-01:
       title: Circulaire Unedic 2023-06 du 3 juillet 2023
       href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-circulaire_2023-06_du_3_juillet_2023.pdf
+    2024-07-01:
+      title: Circulaire Unedic 2024-05 du 1 juillet 2024
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2024-05_du_1er_juillet_2024.pdf
   official_journal_date:
     1986-04-01: "1986-01-24"
     1987-10-01: "1988-09-22"

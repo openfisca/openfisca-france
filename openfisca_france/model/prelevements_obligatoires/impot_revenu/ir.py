@@ -1787,7 +1787,7 @@ class assiette_proflib(Variable):
         # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
         return foyer_fiscal.sum(ebnc_impo_i)
 
-    # assert (ebnc_impo <= P.microentreprise.regime_micro_bnc.services.plafond)
+    # assert (ebnc_impo <= P.microentreprise.regime_micro_bic.services.plafond)
 
 
 class microsocial(Variable):
@@ -1826,8 +1826,8 @@ class microentreprise(Variable):
         ebic_impv = foyer_fiscal.sum(ebic_impv_i)
         return (
             max_(0, ebnc_impo - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bnc.taux * ebnc_impo))
-            + max_(0, ebic_imps - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bnc.services.taux * ebic_imps))
-            + max_(0, ebic_impv - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bnc.marchandises.taux * ebic_impv))
+            + max_(0, ebic_imps - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bic.services.taux * ebic_imps))
+            + max_(0, ebic_impv - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bic.marchandises.taux * ebic_impv))
             )
 
 
@@ -2807,7 +2807,7 @@ class defacc(Variable):
         macc_impv = foyer_fiscal.sum(macc_impv_i)
         macc_imps = foyer_fiscal.sum(macc_imps_i)
         aacc_impn = foyer_fiscal.sum(aacc_impn_i)
-        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
+        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bic.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bic.services)
         return (
             min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
             )
@@ -2832,7 +2832,7 @@ class defacc(Variable):
         macc_impv = foyer_fiscal.sum(macc_impv_i)
         macc_imps = foyer_fiscal.sum(macc_imps_i)
         aacc_impn = foyer_fiscal.sum(aacc_impn_i)
-        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
+        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bic.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bic.services)
         return (
             min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp)
             )
@@ -2867,7 +2867,7 @@ class defncn(Variable):
         cncn_aimp = foyer_fiscal.sum(cncn_aimp_i)
         return min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
-            abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
+            abat_rpns(mncn_impo, specialbnc) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
             )  # TODO check !
 
     def formula_2023_01_01(foyer_fiscal, period, parameters):
@@ -2890,7 +2890,7 @@ class defncn(Variable):
         cncn_aimp = foyer_fiscal.sum(cncn_aimp_i)
         return min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
-            abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp
+            abat_rpns(mncn_impo, specialbnc) + mncn_pvct + cncn_aimp
             )  # TODO check !
 
 
@@ -3134,11 +3134,11 @@ class aacc_timp(Variable):
                 0,
                 (aacc_impn + (aacc_gits > 0) * max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_gits * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    aacc_gits * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
                     ))
                 + (aacc_imps > 0) * max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_imps * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
+                    aacc_imps * (1 - micro.microentreprise.regime_micro_bic.services.taux)
                     )
                 + max_(0, - alnp_defs) - aacc_defn
                 )
@@ -3159,15 +3159,15 @@ class aacc_timp(Variable):
                 0,
                 (aacc_impn + (aacc_gits > 0) * max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_gits * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    aacc_gits * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
                     ))
                 + (aacc_imps > 0) * max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_imps * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
+                    aacc_imps * (1 - micro.microentreprise.regime_micro_bic.services.taux)
                     )
                 + (nacc_meup > 0) * max_(
                     micro.microentreprise.montant_minimum,
-                    nacc_meup * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    nacc_meup * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
                     )
                 + max_(0, nacc_pres - alnp_defs) - aacc_defn
                 )
@@ -3189,19 +3189,19 @@ class aacc_timp(Variable):
                 0,
                 (aacc_impn + (aacc_gits > 0) * max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_gits * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    aacc_gits * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
                     ))
                 + (aacc_imps > 0) * max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_imps * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
+                    aacc_imps * (1 - micro.microentreprise.regime_micro_bic.services.taux)
                     )
                 + (nacc_meup > 0) * max_(
                     micro.microentreprise.montant_minimum,
-                    nacc_meup * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
+                    nacc_meup * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
                     )
                 + (nacc_meuc > 0) * max_(
                     micro.microentreprise.montant_minimum,
-                    nacc_meuc * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
+                    nacc_meuc * (1 - micro.microentreprise.regime_micro_bic.services.taux)
                     )
                 + max_(0, nacc_pres - alnp_defs) - aacc_defn
                 )
@@ -3434,15 +3434,15 @@ class rpns_imposables(Variable):
 
         # # B revenus industriels et commerciaux professionnels
         # regime micro entreprise
-        mbic_timp = abat_rpns(mbic_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(mbic_imps, micro.microentreprise.regime_micro_bnc.services)
+        mbic_timp = abat_rpns(mbic_impv, micro.microentreprise.regime_micro_bic.marchandises) + abat_rpns(mbic_imps, micro.microentreprise.regime_micro_bic.services)
         # regime micro entreprise
-        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
+        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bic.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bic.services)
         # # D revenus non commerciaux professionnels
         # regime déclaratif special ou micro-bnc
-        mbnc_timp = abat_rpns(mbnc_impo, micro.microentreprise.regime_micro_bnc.services)
+        mbnc_timp = abat_rpns(mbnc_impo, micro.microentreprise.regime_micro_bnc)
         # # E revenus non commerciaux non professionnels
         # regime déclaratif special ou micro-bnc
-        mncn_timp = abat_rpns(mncn_impo, micro.microentreprise.regime_micro_bnc.services)
+        mncn_timp = abat_rpns(mncn_impo, micro.microentreprise.regime_micro_bnc)
         macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 

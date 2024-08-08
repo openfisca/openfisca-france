@@ -1,4 +1,4 @@
-description: Taux contractuels (entreprises après 01/01/1997) des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
+description: Taux contractuels (entreprises après 01/01/1997) des cotisations au régime complémentaire de retraite des non-cadres (ARRCO) du secteur privé
 brackets:
 - threshold:
     1962-01-01:
@@ -26,8 +26,6 @@ brackets:
     1962-01-01:
       value: 1
   rate:
-    1962-01-01:
-      value: null
     1997-01-01:
       value: 0.14
     1999-01-01:
@@ -38,6 +36,16 @@ brackets:
       value: 0.161
     2015-01-01:
       value: 0.162
+    2019-01-01:
+      value: null
+- threshold:
+    1997-01-01:
+      value: 3
+    2019-01-01:
+      value: null
+  rate:
+    1997-01-01:
+      value: 0
     2019-01-01:
       value: null
 metadata:

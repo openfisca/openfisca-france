@@ -1,6 +1,6 @@
 description: Barème cadre pour les salariés des cotisations pour l'association pour la gestion du fonds de financement (AGFF) des retraites complémentaires du secteur privé
 metadata:
-  short_label: Barème cadre
-  label_en: Contributions to the financial structure AGFF (2001-2016)
+  short_label: Cadre
+  label_en: Contributions to the financial structure AGFF
   order:
   - agff

@@ -3,6 +3,8 @@ brackets:
 - threshold:
     1967-10-01:
       value: 0
+    1998-01-01:
+      value: null
   rate:
     1967-10-01:
       value: 0.01

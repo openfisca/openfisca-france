@@ -3,7 +3,7 @@ metadata:
   short_label: Assurés retraités
   label_en: SSCs for sickness and maternity benefits (professionals)
   order:
-  - pension_totale
+  - pensions_sous_5_pss
   - pensions_sous_pss
   - pensions_sous_4_pss
-  - pensions_sous_5_pss
+  - pension_totale
