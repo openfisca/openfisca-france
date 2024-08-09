@@ -1,11 +1,11 @@
 description: Cotisations à la Caisse nationale de retraite des agents des collectivités locales (CNRACL)
 metadata:
+  documentation_start: true
   short_label: CNRACL
   label_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   order:
   - employeur
   - salarie
-
 documentation: |-
   La CNRACL est le régime de retraite obligatoire de base, à points, des fonctionnaires titulaires de la fonction publique territoriale et de la fonction publique hospitalière.
   Le même taux que dans la FPE (voir barème correspondant) a été appliqué entre 1947 et 1983.

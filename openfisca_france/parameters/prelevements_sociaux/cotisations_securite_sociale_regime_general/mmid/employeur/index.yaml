@@ -5,6 +5,4 @@ metadata:
   order:
   - maladie
 documentation: |-
-  Le taux réduit sous 2,5 Smic est codé dans reductions_cotisations_sociales.alleg_gen.
-  Au lieu de calculer le taux réduit, on calcule la cotisation normale et on déduit cet allègement.
-  Les taux normaux et réduits ici sont issus de l'harmonisation avec l'IPP
+  Le taux réduit sous 2,5 Smic indiqué ici est issu du calcul la cotisation normale dont on déduit de l'allègement de cotisation sous ce seuil de revenu.

@@ -4,11 +4,11 @@ metadata:
   label_en: Reduction in SSCs
   order:
   - alleg_gen
-  - robien
-  - aubryi
-  - aubryii
   - allegement_general
-  - cice
-  - cits
   - allegement_cotisation_allocations_familiales
   - agricole
+  - cice
+  - cits
+  - aubryii
+  - aubryi
+  - robien

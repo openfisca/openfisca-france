@@ -135,11 +135,3 @@ metadata:
     - title: BSP 2001 non communicables à la BNF
   rate_unit: /1
   threshold_unit: PSS
-documentation: |-
-  Sources :
-  Barème social périodique
-  Site web de l'AGS (http://www.ags-garantie-salaires.org).
-  Note :
-  L'AGS (association pour la gestion du régime d'assurance des créances des salariés) est un
-  régime patronal fondé sur la solidarité des employeurs, financé exclusivement par leurs cotisations.
-  FNGS-GAS, Fonds de garantie salaires : sur la partie du salaire < à 4 plafonds

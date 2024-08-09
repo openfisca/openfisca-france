@@ -35,7 +35,7 @@ values:
   2024-01-01:
     value: 23616
 metadata:
-  short_label: Abattement spécial 
+  short_label: Abattement spécial
   last_value_still_valid_on: "2024-06-11"
   unit: currency
   reference:
@@ -62,4 +62,3 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
     - title: Article 1679-A du CGI
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042160214
-

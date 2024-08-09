@@ -17,8 +17,3 @@ metadata:
   notes:
     2018-01-01:
     - title: Progressivité du taux de cotisation. Le taux indiqué comprend la cotisation pour IJ
-documentation: |-
-  En 2018, entre 40 % et 110 % du PSS, le taux de cotisation est calculé comme suit :
-           taux = [(7,2% - 2,2%)/ (1,1 PSS)] × revenu + 2,2%
-  En-deçà de 40 % du PSS, le taux de cotisation est calculé comme suit :
-           taux = [(7,2% - 2,2%)/ (1,1 PSS)] × revenu + [(2,2% - 0,85%)/ (0,4 PSS)] × revenu + 0,85%

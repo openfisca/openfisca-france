@@ -11,13 +11,10 @@ metadata:
   ipp_csv_id: acc_pp_am_p_0_1
   unit: /1
   reference:
-    1964-01-01:
-      title: Arrêté du 09/12/1963
     1973-03-01:
       title: Arrêté du 31/01/1973
     1974-01-01:
       title: Arrêté du 15/01/1974
   official_journal_date:
-    1964-01-01: "1963-12-22"
     1973-03-01: "1973-03-17"
     1974-01-01: "1974-02-07"
