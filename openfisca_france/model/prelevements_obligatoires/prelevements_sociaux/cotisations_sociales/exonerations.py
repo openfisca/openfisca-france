@@ -472,7 +472,6 @@ class exoneration_cotisations_employeur_zrr(Variable):
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
         seuils = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr
         t_max_parameters = parameters(period)prelevements_sociaux
-        taux_versement_transport = individu('taux_versement_transport', period)
 
         duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to parameters file
@@ -489,13 +488,8 @@ class exoneration_cotisations_employeur_zrr(Variable):
             * duree_validite
             )
 
-        base_taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction + taux_versement_transport )
+        taux_max  = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
         
-        fnal_taux = (t_max_parameters.autres_taxes_participations_assises_salaires.fnal.contribution_moins_de_50_salaries.rates[0])
-        if effectif_entreprise < 50 else (t_max_parameters.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_50_salaries)
-
-        taux_max = base_taux_max + fnal_taux
-
         seuil_max = seuils.plafond_part_remuneration
         seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
         
