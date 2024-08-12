@@ -168,15 +168,55 @@ class exoneration_cotisations_employeur_jei(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    # Cette formule ne tient pas compte du montant maximal d'exonération dont chaque établissement peut bénéficier et qui est de 5 PSS (231 840 € en 2024)
+    def formula (individu, period, parameters):
+        assiette_allegement = individu('assiette_allegement', period)
+        jei_date_demande = individu('jei_date_demande', period)
+        jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        categorie_salarie = individu('categorie_salarie', period)
 
-    def formula(individu, period, parameters):
+        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
+        bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
+
+        exoneration = smic_proratise * 0.0
+        for bareme_name in bareme_names:
+            exoneration += apply_bareme_for_relevant_type_sal(
+                bareme_by_type_sal_name = bareme_by_type_sal_name,
+                bareme_name = bareme_name,
+                categorie_salarie = categorie_salarie,
+                base = assiette_allegement,
+                plafond_securite_sociale = plafond_securite_sociale,
+                round_base_decimals = 2,
+                )
+
+        exoneration_relative_year_passed = exoneration_relative_year(period, jei_date_demande)
+        rate_by_year_passed = {
+            0: 1,
+            1: 1,
+            2: 1,
+            3: 1,
+            4: 1,
+            5: 1,
+            6: 1,
+            7: 1,
+            }  # TODO: move to parameters file
+        for year_passed, rate in rate_by_year_passed.items():
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            if condition_on_year_passed.any():
+                exoneration[condition_on_year_passed] = rate * exoneration
+
+        return - exoneration * jeune_entreprise_innovante
+
+
+    def formula_2011_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         jei_date_demande = individu('jei_date_demande', period)
         jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         smic_proratise = individu('smic_proratise', period)
         categorie_salarie = individu('categorie_salarie', period)
+
+        # Cette formule ne tient pas compte du montant maximal d'exonération dont chaque établissement peut bénéficier et qui est de 5 PSS (231 840 € en 2024)
 
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
         bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
