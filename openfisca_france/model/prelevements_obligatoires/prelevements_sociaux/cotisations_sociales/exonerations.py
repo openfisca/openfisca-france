@@ -449,8 +449,8 @@ class exoneration_cotisations_employeur_zrd(Variable):
         entreprise_creation = individu('entreprise_creation', period)
         smic_proratise = individu('smic_proratise', period)
         zone_restructuration_defense = individu('zone_restructuration_defense', period)
-        seuils = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd
-        t_max_parameters = parameters(period)prelevements_sociaux
+        seuils = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd
+        t_max_parameters = parameters(period).prelevements_sociaux
 
         eligible = zone_restructuration_defense
 
@@ -510,8 +510,8 @@ class exoneration_cotisations_employeur_zrr(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         smic_proratise = individu('smic_proratise', period)
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
-        seuils = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr
-        t_max_parameters = parameters(period)prelevements_sociaux
+        seuils = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr
+        t_max_parameters = parameters(period).prelevements_sociaux
 
         duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to parameters file
