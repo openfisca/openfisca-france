@@ -409,11 +409,12 @@ class exoneration_cotisations_employeur_zrd(Variable):
         entreprise_creation = individu('entreprise_creation', period)
         smic_proratise = individu('smic_proratise', period)
         zone_restructuration_defense = individu('zone_restructuration_defense', period)
+        seuils = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd
 
         eligible = zone_restructuration_defense
         taux_max = .281  # TODO: move to parameters file
-        seuil_max = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd.plafond_part_remuneration
-        seuil_min = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd.plafond_exoneration_integrale_part_remuneration
+        seuil_max = seuils.plafond_part_remuneration
+        seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
 
         exoneration_relative_year_passed = exoneration_relative_year(period, entreprise_creation)
@@ -465,6 +466,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         smic_proratise = individu('smic_proratise', period)
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
+        seuils = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr
 
         duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to parameters file
@@ -482,8 +484,8 @@ class exoneration_cotisations_employeur_zrr(Variable):
             )
 
         taux_max = .281 if period.start.year < 2015 else .2655  # TODO: move to parameters file
-        seuil_max = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr.plafond_part_remuneration
-        seuil_min = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr.plafond_exoneration_integrale_part_remuneration
+        seuil_max = seuils.plafond_part_remuneration
+        seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
         exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
 
