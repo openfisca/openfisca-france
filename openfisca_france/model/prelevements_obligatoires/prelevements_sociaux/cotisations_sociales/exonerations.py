@@ -410,11 +410,15 @@ class exoneration_cotisations_employeur_zrd(Variable):
         smic_proratise = individu('smic_proratise', period)
         zone_restructuration_defense = individu('zone_restructuration_defense', period)
         seuils = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd
+        t_max_parameters = parameters(period)prelevements_sociaux
 
         eligible = zone_restructuration_defense
-        taux_max = .281  # TODO: move to parameters file
+
+        taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
+
         seuil_max = seuils.plafond_part_remuneration
         seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
+
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
 
         exoneration_relative_year_passed = exoneration_relative_year(period, entreprise_creation)
