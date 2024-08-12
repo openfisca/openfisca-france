@@ -412,8 +412,8 @@ class exoneration_cotisations_employeur_zrd(Variable):
 
         eligible = zone_restructuration_defense
         taux_max = .281  # TODO: move to parameters file
-        seuil_max = 2.4
-        seuil_min = 1.4
+        seuil_max = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd.plafond_part_remuneration
+        seuil_min = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd.plafond_exoneration_integrale_part_remuneration
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
 
         exoneration_relative_year_passed = exoneration_relative_year(period, entreprise_creation)
