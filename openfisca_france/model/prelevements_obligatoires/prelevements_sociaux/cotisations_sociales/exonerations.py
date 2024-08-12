@@ -178,6 +178,7 @@ class exoneration_cotisations_employeur_jei(Variable):
 
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
         bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
+        plafond_part_remuneration = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.jei.plafond_part_remuneration
 
         exoneration = smic_proratise * 0.0
         for bareme_name in bareme_names:
@@ -185,7 +186,7 @@ class exoneration_cotisations_employeur_jei(Variable):
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
-                base = min_(assiette_allegement, 4.5 * smic_proratise),
+                base = min_(assiette_allegement, plafond_part_remuneration * smic_proratise),
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
