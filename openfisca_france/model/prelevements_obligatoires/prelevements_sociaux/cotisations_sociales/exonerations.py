@@ -168,7 +168,7 @@ class exoneration_cotisations_employeur_jei(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula (individu, period, parameters):
+    def formula(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         jei_date_demande = individu('jei_date_demande', period)
         jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
