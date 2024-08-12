@@ -168,6 +168,8 @@ class exoneration_cotisations_employeur_jei(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    # Cette formule ne tient pas compte du montant maximal d'exonération dont chaque établissement peut bénéficier et qui est de 5 PSS (231 840 € en 2024).
+
     def formula(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         jei_date_demande = individu('jei_date_demande', period)

@@ -8,4 +8,4 @@ metadata:
     - title: BOSS.gouv.fr
       href: https://boss.gouv.fr/portail/accueil/exonerations/jeunes-entreprises-innovantes.html
 documentation: |-
-    Les entreprises ayant le statut de "jeunes entreprises innovantes" (JEI) bénéficient, sous conditions, d'exonérations fiscales et sociales spécifiques pour une durée déterminée. L'exonération s'applique selon une double limite : la part de la rémunération concernée + un montant maximal par an d'exonération par établissement employeur.
+    Les entreprises ayant le statut de "jeunes entreprises innovantes" (JEI) bénéficient, sous conditions, d'exonérations fiscales et sociales spécifiques pour une durée déterminée. L'exonération s'applique selon une double limite : la part de la rémunération concernée (paramètre disponible dans OpenFisca) + un montant maximal par an d'exonération par établissement employeur (ce paramètre n'est pas disponible dans OpenFisca).
