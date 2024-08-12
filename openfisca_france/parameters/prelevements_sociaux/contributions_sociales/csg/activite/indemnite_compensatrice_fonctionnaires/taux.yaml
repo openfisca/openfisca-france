@@ -1,9 +1,9 @@
-description: Taux de l'indémnité compensatrice de CSG versée aux fonctionnaires civils et militaires
+description: Taux de l'indemnité compensatrice de CSG versée aux fonctionnaires civils et militaires
 values:
   2018-01-01:
     value: 0.0076
 metadata:
-  short_label: Taux indémnité compensatrice
+  short_label: Taux indemnité compensatrice
   last_value_still_valid_on: "2024-08-12"
   label_en: CSG compensatory allowance rate
   ipp_csv_id: csg_act
