@@ -1,6 +1,6 @@
-description: Plafond de rémunération (en nombre de Smic) d'exonération intégrale de cotisations employeur au titre des embauches en zone de revitalisation rurale (ZRR)
+description: Plafond de rémunération (en nombre de Smic) de l'exonération intégrale de cotisations employeur au titre des embauches en zone de revitalisation rurale (ZRR)
 values:
-  2019-01-01:
+  2009-01-01:
     value: 1.5
 metadata:
   short_label: Plafond de rémunération de l'exonération intégrale
@@ -8,7 +8,7 @@ metadata:
   label_en: Remuneration ceiling for full exemption
   unit: smic
   reference:
-    2019-01-01:
+    2009-01-01:
     - title: Article 6 du décret n° 97-127 du 12 février 1997
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000037456942
     - title: BOSS.gouv.fr
