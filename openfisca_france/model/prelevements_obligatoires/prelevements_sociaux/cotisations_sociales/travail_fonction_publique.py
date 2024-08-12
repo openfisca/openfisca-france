@@ -116,7 +116,7 @@ class indemnite_compensatrice_csg(Variable):
         remuneration_principale = individu('remuneration_principale', period)
         categorie_salarie = individu('categorie_salarie', period)
         eligible = ((categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)) > 0
-        taux_indemnite = parameters(period).prelevements_sociaux.contributions_sociales.csg.activiteindemnite_compensatrice_fonctionnaires.taux
+        taux_indemnite = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite.indemnite_compensatrice_fonctionnaires.taux
 
         indem = remuneration_principale * taux_indemnite
 
