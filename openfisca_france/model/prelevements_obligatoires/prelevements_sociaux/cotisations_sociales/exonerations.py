@@ -168,7 +168,7 @@ class exoneration_cotisations_employeur_jei(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    # Cette formule ne tient pas compte du montant maximal d'exonération dont chaque établissement peut bénéficier et qui est de 5 PSS (231 840 € en 2024).
+    # Cette formule ne tient pas compte du montant maximal d'exonération dont chaque établissement peut bénéficier et qui est de 5 PSS (231 840 € en 2024)
 
     def formula(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
@@ -482,8 +482,8 @@ class exoneration_cotisations_employeur_zrr(Variable):
             )
 
         taux_max = .281 if period.start.year < 2015 else .2655  # TODO: move to parameters file
-        seuil_max = 2.4
-        seuil_min = 1.5
+        seuil_max = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr.plafond_part_remuneration
+        seuil_min = parameters(period)prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr.plafond_exoneration_integrale_part_remuneration
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
         exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
 
