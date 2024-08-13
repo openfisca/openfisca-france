@@ -455,8 +455,8 @@ class exoneration_cotisations_employeur_zrd(Variable):
 
         taux_max = .281 if period.start.year < 2019 else (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
 
-        seuil_max = seuils.plafond_part_remuneration
-        seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
+        seuil_max = 2.4 if period.start.year < 2009 else seuils.plafond_part_remuneration
+        seuil_min = 1.4 if period.start.year < 2009 else seuils.plafond_exoneration_integrale_part_remuneration
 
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
 
@@ -529,8 +529,8 @@ class exoneration_cotisations_employeur_zrr(Variable):
 
         taux_max = .281 if period.start.year < 2015 else .2655 if period.start.year < 2019 else (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
 
-        seuil_max = seuils.plafond_part_remuneration
-        seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
+        seuil_max = 2.4 if period.start.year < 2009 else seuils.plafond_part_remuneration
+        seuil_min = 1.5 if period.start.year < 2009 else seuils.plafond_exoneration_integrale_part_remuneration
 
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
         exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
