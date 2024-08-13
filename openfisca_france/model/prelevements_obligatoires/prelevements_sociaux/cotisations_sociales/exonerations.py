@@ -446,7 +446,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    # L'exonération a été créée en 2009 par la loi de finances rectificative du 30 décembre 2008 
+    # L'exonération a été créée en 2009 par la loi de finances rectificative du 30 décembre 2008.
 
     def formula_2009_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
