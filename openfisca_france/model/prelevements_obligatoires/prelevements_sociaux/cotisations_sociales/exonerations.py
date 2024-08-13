@@ -168,7 +168,7 @@ class exoneration_cotisations_employeur_jei(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+    def formula_2004_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         jei_date_demande = individu('jei_date_demande', period)
         jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
@@ -207,6 +207,8 @@ class exoneration_cotisations_employeur_jei(Variable):
                 exoneration[condition_on_year_passed] = rate * exoneration
 
         return - exoneration * jeune_entreprise_innovante
+
+    # À compter de 2011, l'exonération JEI est modifiée avec l'introduction, par l'article 175 de la LOI n° 2010-1657 du 29 décembre 2010 de finances pour 2011, d'une double limite de l'exonération. L'exonération s'applique uniquement sur la part de la rémunération inférieur à 4,5 fois le Smic, et un montant maximal par établissement est instauré.
 
     def formula_2011_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
