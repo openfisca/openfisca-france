@@ -1,6 +1,14 @@
 # Changelog
 
-## 168.0.11 [2343](https://github.com/openfisca/openfisca-france/pull2343)
+## 168.0.12 [2314](https://github.com/openfisca/openfisca-france/pull/2314)
+
+* Changement mineur.
+* Périodes concernées : A partir de 2017-01-01.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/credits_impots/assloy/taux.yaml`.
+* Détails :
+  - Neutralise le crédit impôt pour assurance loyer impayé qui n'existe plus depuis la LF 2017.
+
+## 168.0.11 [2343](https://github.com/openfisca/openfisca-france/pull/2343)
 
 * Changement mineur.
 * Périodes concernées : toutes.
