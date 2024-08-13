@@ -453,7 +453,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
 
         eligible = zone_restructuration_defense
 
-        taux_max = .281 if period.start.year < 2015 else .2655 if period.start.year < 2019 else(t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
+        taux_max = .281 if period.start.year < 2019 else (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
 
         seuil_max = seuils.plafond_part_remuneration
         seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
@@ -527,7 +527,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
             * duree_validite
             )
 
-        taux_max = .281 if period.start.year < 2019 else (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
+        taux_max = .281 if period.start.year < 2015 else .2655 if period.start.year < 2019 else (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
 
         seuil_max = seuils.plafond_part_remuneration
         seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
