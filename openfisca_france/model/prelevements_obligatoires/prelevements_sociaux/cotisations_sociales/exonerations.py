@@ -457,8 +457,10 @@ class exoneration_cotisations_employeur_zrd(Variable):
         t_max_parameters = parameters(period).prelevements_sociaux
 
         eligible = zone_restructuration_defense
-
-        taux_max = t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction
+        
+        # Paramètre T mis en dur initialement dans la formule et laissé tel quel car le paramètre reductions_cotisations_sociales.alleg_gen.mmid.taux existe uniquement depuis 2019.
+        
+        taux_max = .281 if period.start.year < 2019 else (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
 
         seuil_max = seuils.plafond_part_remuneration
         seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
@@ -543,8 +545,6 @@ class exoneration_cotisations_employeur_zrr(Variable):
         exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
 
         return exoneration_cotisations_zrr
-
-
 
     def formula_2008_03_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
