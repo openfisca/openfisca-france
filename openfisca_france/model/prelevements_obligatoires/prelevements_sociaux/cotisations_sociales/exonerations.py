@@ -501,7 +501,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
     #
     # L'employeur ne doit avoir procédé à aucun licenciement économique durant les 12 mois précédant l'embauche.
     
-     def formula_1997_01_01(individu, period, parameters):
+    def formula_1997_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         contrat_de_travail_type = individu('contrat_de_travail_type', period)
         TypesContrat = contrat_de_travail_type.possible_values
