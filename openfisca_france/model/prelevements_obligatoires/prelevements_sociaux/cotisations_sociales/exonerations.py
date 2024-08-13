@@ -457,9 +457,9 @@ class exoneration_cotisations_employeur_zrd(Variable):
         t_max_parameters = parameters(period).prelevements_sociaux
 
         eligible = zone_restructuration_defense
-        
+
         # Paramètre T mis en dur initialement dans la formule et laissé tel quel car le paramètre reductions_cotisations_sociales.alleg_gen.mmid.taux existe uniquement depuis 2019.
-        
+
         taux_max = .281 if period.start.year < 2019 else (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
 
         seuil_max = seuils.plafond_part_remuneration
@@ -506,7 +506,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
     # ou non.
     #
     # L'employeur ne doit avoir procédé à aucun licenciement économique durant les 12 mois précédant l'embauche.
-    
+
     def formula_1997_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         contrat_de_travail_type = individu('contrat_de_travail_type', period)
@@ -517,7 +517,6 @@ class exoneration_cotisations_employeur_zrr(Variable):
         smic_proratise = individu('smic_proratise', period)
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
         seuils = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr
-        t_max_parameters = parameters(period).prelevements_sociaux
 
         duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to parameters file
