@@ -174,6 +174,7 @@ class exoneration_cotisations_employeur_jei(Variable):
         jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
+        smic_proratise = individu('smic_proratise', period)
 
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
         bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
