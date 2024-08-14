@@ -168,13 +168,13 @@ class exoneration_cotisations_employeur_jei(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+    def formula_2004_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         jei_date_demande = individu('jei_date_demande', period)
         jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        smic_proratise = individu('smic_proratise', period)
         categorie_salarie = individu('categorie_salarie', period)
+        smic_proratise = individu('smic_proratise', period)
 
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
         bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
@@ -185,7 +185,52 @@ class exoneration_cotisations_employeur_jei(Variable):
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
-                base = min_(assiette_allegement, 4.5 * smic_proratise),
+                base = assiette_allegement,
+                plafond_securite_sociale = plafond_securite_sociale,
+                round_base_decimals = 2,
+                )
+
+        exoneration_relative_year_passed = exoneration_relative_year(period, jei_date_demande)
+        rate_by_year_passed = {
+            0: 1,
+            1: 1,
+            2: 1,
+            3: 1,
+            4: 1,
+            5: 1,
+            6: 1,
+            7: 1,
+            }  # TODO: move to parameters file
+        for year_passed, rate in rate_by_year_passed.items():
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            if condition_on_year_passed.any():
+                exoneration[condition_on_year_passed] = rate * exoneration
+
+        return - exoneration * jeune_entreprise_innovante
+
+    # À compter de 2011, l'exonération JEI est modifiée avec l'introduction, par l'article 175 de la LOI n° 2010-1657 du 29 décembre 2010 de finances pour 2011, d'une double limite de l'exonération. L'exonération s'applique uniquement sur la part de la rémunération inférieur à 4,5 fois le Smic, et un montant maximal par établissement est instauré.
+
+    def formula_2011_01_01(individu, period, parameters):
+        assiette_allegement = individu('assiette_allegement', period)
+        jei_date_demande = individu('jei_date_demande', period)
+        jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        smic_proratise = individu('smic_proratise', period)
+        categorie_salarie = individu('categorie_salarie', period)
+
+        # Cette formule ne tient pas compte du montant maximal d'exonération dont chaque établissement peut bénéficier et qui est de 5 PSS (231 840 € en 2024)
+
+        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
+        bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
+        plafond_part_remuneration = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.jei.plafond_part_remuneration
+
+        exoneration = smic_proratise * 0.0
+        for bareme_name in bareme_names:
+            exoneration += apply_bareme_for_relevant_type_sal(
+                bareme_by_type_sal_name = bareme_by_type_sal_name,
+                bareme_name = bareme_name,
+                categorie_salarie = categorie_salarie,
+                base = min_(assiette_allegement, plafond_part_remuneration * smic_proratise),
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
@@ -401,16 +446,25 @@ class exoneration_cotisations_employeur_zrd(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+    # L'exonération a été créée en 2009 par la loi de finances rectificative du 30 décembre 2008.
+
+    def formula_2009_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         entreprise_creation = individu('entreprise_creation', period)
         smic_proratise = individu('smic_proratise', period)
         zone_restructuration_defense = individu('zone_restructuration_defense', period)
+        seuils = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd
+        t_max_parameters = parameters(period).prelevements_sociaux
 
         eligible = zone_restructuration_defense
-        taux_max = .281  # TODO: move to parameters file
-        seuil_max = 2.4
-        seuil_min = 1.4
+
+        # Paramètre T mis en dur initialement dans la formule et laissé tel quel car le paramètre reductions_cotisations_sociales.alleg_gen.mmid.taux existe uniquement depuis 2019.
+
+        taux_max = .281 if period.start.year < 2019 else (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
+
+        seuil_max = seuils.plafond_part_remuneration
+        seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
+
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
 
         exoneration_relative_year_passed = exoneration_relative_year(period, entreprise_creation)
@@ -453,7 +507,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
     #
     # L'employeur ne doit avoir procédé à aucun licenciement économique durant les 12 mois précédant l'embauche.
 
-    def formula(individu, period, parameters):
+    def formula_1997_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         contrat_de_travail_type = individu('contrat_de_travail_type', period)
         TypesContrat = contrat_de_travail_type.possible_values
@@ -462,6 +516,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         smic_proratise = individu('smic_proratise', period)
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
+        seuils = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr
 
         duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to parameters file
@@ -478,9 +533,55 @@ class exoneration_cotisations_employeur_zrr(Variable):
             * duree_validite
             )
 
-        taux_max = .281 if period.start.year < 2015 else .2655  # TODO: move to parameters file
-        seuil_max = 2.4
-        seuil_min = 1.5
+        taux_max = .281
+        plafond = seuils.plafond_exoneration_integrale_part_remuneration
+
+        ratio_smic_salaire = smic_proratise / (assiette_allegement + 1e-16)
+        taux_exoneration = round_(
+            taux_max * max_(plafond * (1 - ratio_smic_salaire), 0),
+            4,
+            )
+        exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
+
+        return exoneration_cotisations_zrr
+
+    def formula_2008_03_01(individu, period, parameters):
+        assiette_allegement = individu('assiette_allegement', period)
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContrat = contrat_de_travail_type.possible_values
+        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        smic_proratise = individu('smic_proratise', period)
+        zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
+        seuils = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr
+        t_max_parameters = parameters(period).prelevements_sociaux
+
+        duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
+        # TODO: move to parameters file
+        contrat_de_travail_eligible = (contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible))
+
+        duree_validite = (
+            datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_debut
+            ).astype('timedelta64[Y]') < timedelta64(1, 'Y')
+
+        eligible = (
+            contrat_de_travail_eligible
+            * (effectif_entreprise <= 50)
+            * zone_revitalisation_rurale
+            * duree_validite
+            )
+
+        if period.start.year < 2015:
+            taux_max = 0.281
+        elif period.start.year < 2019:
+            taux_max = 0.2655
+        else:
+            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
+
+        seuil_max = seuils.plafond_part_remuneration
+        seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
+
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
         exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
 

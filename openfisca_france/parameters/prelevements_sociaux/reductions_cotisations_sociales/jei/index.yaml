@@ -1,0 +1,11 @@
+description: Exonération de cotisations employeur pour les jeunes entreprises innovantes (JEI)
+metadata:
+  label_en: Exonération cotisations jeunes entreprises innovantes (JEI)
+  reference:
+    2011-01-01:
+    - title: Article 131 de la loi n° 2003-1311 du 30 décembre 2003 de finances pour 2004 (1).
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000037075129
+    - title: BOSS.gouv.fr
+      href: https://boss.gouv.fr/portail/accueil/exonerations/jeunes-entreprises-innovantes.html
+documentation: |-
+    Les entreprises ayant le statut de "jeunes entreprises innovantes" (JEI) bénéficient, sous conditions, d'exonérations fiscales et sociales spécifiques pour une durée déterminée. L'exonération s'applique selon une double limite : la part de la rémunération concernée (paramètre disponible dans OpenFisca) + un montant maximal par an d'exonération par établissement employeur (ce paramètre n'est pas disponible dans OpenFisca).

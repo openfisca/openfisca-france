@@ -1,5 +1,18 @@
 # Changelog
 
+## 168.0.13 [2344](https://github.com/openfisca/openfisca-france/pull/2344)
+
+* Évolution du système socio-fiscal. | Amélioration technique. Ces changements modifient l'API publique d'OpenFisca France et ajoutent une fonctionnalité : la possibilité de modifier des paramètres actuellement en dur dans les formules.
+
+* Périodes concernées : à partir du 01/01/2011.
+* Zones impactées : 
+      * Modification formules dans `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/exonerations.py`.
+      * Modification formules dans `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique.py`
+      * Création d'un nouveau dossier de paramètre dans `prelevements_sociaux/contributions_sociales/csg/activite` pour l'`indemnite_compensatrice_fonctionnaires`
+      * Création d'un nouveau dossier de paramètre dans `prelevements_sociaux/reductions_cotisations_sociales` pour les `exonerations_geographiques_cotis` et `jei`
+      
+* Détails : Retire une partie des paramètres en dur de l'indémnité compensatrice CSG, de l'exonération JEI, et des exonération zonnées ZRR et ZRD
+
 ## 168.0.12 [2314](https://github.com/openfisca/openfisca-france/pull/2314)
 
 * Changement mineur.
