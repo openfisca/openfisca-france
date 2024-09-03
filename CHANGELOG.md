@@ -1,5 +1,13 @@
 # Changelog
 
+### 168.1.2 [2345](https://github.com/openfisca/openfisca-france/pull/2345)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/jeunes/pass_sport`.
+* Détails :
+  - Corrige les éligibilités ars et aeeh dans le calcul du montant de l'aide Pass Sport
+
 ## 168.1.1 [2351](https://github.com/openfisca/openfisca-france/pull/2351)
 
 * Correction d'un crash
