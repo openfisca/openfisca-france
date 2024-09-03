@@ -11,7 +11,7 @@
   input:
     age: [6, 5, 18]
     ars:
-      2023: [true, true, true]
+      2023: [418.48, 418.48, 418.48]
   output:
     pass_sport: [50, 0, 0]
 
@@ -19,7 +19,7 @@
   period: 2023-12
   input:
     age: [6, 5, 20]
-    aeeh: [1, 1, 1]
+    aeeh: [135.13, 135.13, 135.13]
   output:
     pass_sport: [50, 0, 0]
 
