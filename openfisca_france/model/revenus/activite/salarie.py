@@ -275,7 +275,7 @@ class contrat_de_travail(Variable):
     possible_values = TypesContratDeTravail
     default_value = TypesContratDeTravail.temps_plein
     entity = Individu
-    label = 'Type de contrat de travail'
+    label = 'Type de durée de travail'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

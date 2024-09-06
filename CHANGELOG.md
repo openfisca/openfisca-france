@@ -1,5 +1,15 @@
 # Changelog
 
+## 168.0.14 [2348](https://github.com/openfisca/openfisca-france/pull/2348)
+
+* Changement mineur : Modification d'un label
+* Périodes concernées : toutes. 
+* Zones impactées : `openfisca_france/model/revenus/activite/salarie.py`.
+* Détails : La variable `contrat_de_travail` et la variable `contrat_de_travail_type` ont le même label, pourtant elles ne représentent pas la même chose. La première concerne les types de durées de travail du contrat (Temps plein, partiel, convention, etc.) ; la seconde, le type de contrat (CDD,CDI). Cette PR change le label de la première et propose de parler de "Type de durée de travail" pour les distinguer.
+
+[Service-Public.fr](https://www.service-public.fr/particuliers/vosdroits/F19261) en parle aussi sous cette forme.
+
+
 ## 168.0.13 [2344](https://github.com/openfisca/openfisca-france/pull/2344)
 
 * Évolution du système socio-fiscal. | Amélioration technique. Ces changements modifient l'API publique d'OpenFisca France et ajoutent une fonctionnalité : la possibilité de modifier des paramètres actuellement en dur dans les formules.
