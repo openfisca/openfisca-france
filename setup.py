@@ -9,7 +9,7 @@ long_description = (this_directory / 'README.md').read_text()
 
 setup(
     name = 'OpenFisca-France',
-    version = '168.0.14',
+    version = '168.0.15',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
