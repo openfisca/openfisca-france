@@ -1,5 +1,12 @@
 # Changelog
 
+## 168.0.15 [2348](https://github.com/openfisca/openfisca-france/pull/2349)
+
+* Évolution du système socio-fiscal changement mineur.
+* Périodes concernées :  01/01/2023.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/bareme_ir_depuis_1945/bareme.yaml`.
+* Détails : Ajoute référence 2024 article codifié impôt sur le revenu
+  
 ## 168.0.14 [2348](https://github.com/openfisca/openfisca-france/pull/2348)
 
 * Changement mineur : Modification d'un label
