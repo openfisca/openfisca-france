@@ -446,12 +446,16 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
     '''
     assiette = individu('assiette_allegement', period, options = [ADD])
     smic_proratise = individu('smic_proratise', period, options = [ADD])
-    # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
-    # taille_entreprise = individu('taille_entreprise', period)
     law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
+    taux_reduction = law.reduction
+    if period < 2024:
+        plafond_reduction = law.plafond_smic * smic_proratise
+    else:
+        smic_proratise_31_12_2O23 = individu('smic_proratise', '2023-12-31', options = [ADD])
+        plafond_reduction =  max_(law.plafond_smic * smic_proratise)
 
     # Montant de l'allegment
-    return (assiette < law.plafond_smic * smic_proratise) * law.reduction * assiette
+    return (assiette < plafond_reduction) * taux_reduction * assiette
 
 
 class allegement_cotisation_maladie(Variable):
