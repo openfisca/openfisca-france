@@ -448,10 +448,10 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
     smic_proratise = individu('smic_proratise', period, options = [ADD])
     law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
     taux_reduction = law.reduction
-    if period < 2024:
+    if period.start.year < 2024:
         plafond_reduction = law.plafond_smic * smic_proratise
     else:
-        smic_proratise_2O23_12_31 = individu('smic_proratise', '2023-12-31', options = [ADD])
+        smic_proratise_2O23_12_31 = individu('smic_proratise', '2023-12', options = [ADD])
         plafond_reduction =  max_(law.plafond_smic_courant * smic_proratise, law.plafond_smic_2023_12_31 * smic_proratise_2O23_12_31)
 
     # Montant de l'allegment
