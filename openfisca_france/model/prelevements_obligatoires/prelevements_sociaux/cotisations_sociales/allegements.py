@@ -452,7 +452,7 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
         plafond_reduction = law.plafond_smic * smic_proratise
     else:
         smic_proratise_2O23_12_31 = individu('smic_proratise', '2023-12', options = [ADD])
-        plafond_reduction =  max_(law.plafond_smic_courant * smic_proratise, law.plafond_smic_2023_12_31 * smic_proratise_2O23_12_31)
+        plafond_reduction = max_(law.plafond_smic_courant * smic_proratise, law.plafond_smic_2023_12_31 * smic_proratise_2O23_12_31)
 
     # Montant de l'allegment
     return (assiette < plafond_reduction) * taux_reduction * assiette
@@ -506,7 +506,7 @@ def compute_allegement_cotisation_maladie_base(individu, period, parameters):
         plafond_allegement_mmid = allegement_mmid.plafond * smic_proratise
     else:
         smic_proratise_2O23_12_31 = individu('smic_proratise', '2023-12', options = [ADD])
-        plafond_allegement_mmid =  max_(allegement_mmid.plafond_smic_courant * smic_proratise, allegement_mmid.plafond_smic_2023_12_31 * smic_proratise_2O23_12_31)
+        plafond_allegement_mmid = max_(allegement_mmid.plafond_smic_courant * smic_proratise, allegement_mmid.plafond_smic_2023_12_31 * smic_proratise_2O23_12_31)
     
     sous_plafond = assiette_allegement <= plafond_allegement_mmid
     return sous_plafond * allegement_mmid.taux * assiette_allegement
