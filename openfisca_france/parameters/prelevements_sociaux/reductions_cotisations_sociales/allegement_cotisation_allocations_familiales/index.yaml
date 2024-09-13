@@ -5,3 +5,5 @@ metadata:
   order:
   - reduction
   - plafond_smic
+  - plafond_smic_courant
+  - plafond_smic_2023_12_31

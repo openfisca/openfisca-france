@@ -1,7 +1,7 @@
-description: Plafond de rémunération (en nombre de Smic du 31 décembre 2023) des salariés concernés par l'allègement des cotisations pour la branche famille des cotisations de Sécurité sociale (SS)
+description: Plafond de rémunération (en nombre de Smic courant) des salariés concernés par l'allègement des cotisations pour la branche famille des cotisations de Sécurité sociale (SS)
 values:
   2024-01-01:
-    value: 3.5
+    value: 2
 metadata:
   short_label: Plafond de rémunération des salariés
   last_value_still_valid_on: "2024-09-13"
