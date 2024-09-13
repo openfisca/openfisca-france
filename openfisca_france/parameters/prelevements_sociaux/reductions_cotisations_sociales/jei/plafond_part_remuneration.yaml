@@ -6,7 +6,7 @@ metadata:
   short_label: Plafond de la rémunération concernée par l'exonération
   last_value_still_valid_on: "2024-08-12"
   label_en: Maximum remuneration covered by the JEI exemption
-  unit: Smic
+  unit: smic
   reference:
     2011-01-01:
     - title: Article 131, I. de la loi n° 2003-1311 du 30 décembre 2003 de finances pour 2004 (1)
