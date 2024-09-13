@@ -10,8 +10,8 @@ metadata:
   unit: smic_annuel
   reference:
     2024-01-01:
-    - title: Article D241-1-2 du Code de la sécurité sociale
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048807182
+    - title: Article D241-3-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852528
     - title: Décret n°2023-1329 du 29/12/2023, Art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048727890
   official_journal_date:

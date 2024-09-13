@@ -502,10 +502,13 @@ def compute_allegement_cotisation_maladie_base(individu, period, parameters):
 
     assiette_allegement = individu('assiette_allegement', period, options = [ADD])
     smic_proratise = individu('smic_proratise', period, options = [ADD])
-    plafond_allegement_mmid = allegement_mmid.plafond  # en nombre de smic
-
-    sous_plafond = assiette_allegement <= (smic_proratise * plafond_allegement_mmid)
-
+    if period.start.year < 2024:
+        plafond_allegement_mmid = allegement_mmid.plafond * smic_proratise
+    else:
+        smic_proratise_2O23_12_31 = individu('smic_proratise', '2023-12', options = [ADD])
+        plafond_allegement_mmid =  max_(allegement_mmid.plafond_smic_courant * smic_proratise, allegement_mmid.plafond_smic_2023_12_31 * smic_proratise_2O23_12_31)
+    
+    sous_plafond = assiette_allegement <= plafond_allegement_mmid
     return sous_plafond * allegement_mmid.taux * assiette_allegement
 
 
