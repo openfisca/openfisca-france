@@ -1,6 +1,7 @@
 from openfisca_core.periods import Instant, Period
 from openfisca_france.model.base import *
 from numpy import round as round_, logical_or as or_, remainder as remainder_, datetime64
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 class ppa_eligibilite(Variable):
@@ -518,9 +519,15 @@ class crds_ppa(Variable):
 
     def formula_2016_01_01(famille, period, parameters):
         ppa = famille('ppa', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
 
-        return - taux_crds * ppa
+        law = parameters(period)
+
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = ppa,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return montant_crds
 
 
 class ppa_nette_crds(Variable):
