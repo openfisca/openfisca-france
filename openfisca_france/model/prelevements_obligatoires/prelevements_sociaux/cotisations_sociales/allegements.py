@@ -546,7 +546,7 @@ def compute_allegement_cotisation_maladie_base(individu, period, parameters):
     if period.start.year < 2024:
         plafond_allegement_mmid = allegement_mmid.plafond * smic_proratise
     else:
-        coefficient_proratisation = individu('coefficient_proratisation', period)
+        coefficient_proratisation = individu('coefficient_proratisation', period, options = [ADD])
         parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
         smic_horaire_brut_2023_12 = parameters_smic_2023_12.smic_b_horaire
         nbh_travail_2023_12 = parameters_smic_2023_12.nb_heures_travail_mensuel

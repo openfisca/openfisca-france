@@ -3,7 +3,7 @@ values:
   2024-01-01:
     value: 3.5
 metadata:
-  short_label: 1ère possibilité de plafond de rémunération des salariés | Retenue si > 2ème possibilité
+  short_label: 1ère possibilité de plafond de rémunération des salariés (retenue si le montant est supérieur à la 2ème possibilité)
   last_value_still_valid_on: "2024-09-13"
   label_en: Reduction in SSCs for family benefits
   ipp_csv_id: pss_red_fam
