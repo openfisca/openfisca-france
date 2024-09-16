@@ -70,3 +70,18 @@
     effectif_entreprise: 1
   output:
     allegement_cotisation_allocations_familiales: 0
+
+- period: 2024-01
+  name: Sous le plafond de 2024
+  description: A partir de janvier 2024 le montant du smic pour le plafond est figé à décembre 2023
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 6007.53 #1766.92*3.4
+    # allegement mode necessary when requesting on a 1 month salary :
+    allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail_debut: 2023-01-01
+    contrat_de_travail_fin: 2024-12-31
+    effectif_entreprise: 1
+  output:
+    allegement_cotisation_allocations_familiales: 108.14
