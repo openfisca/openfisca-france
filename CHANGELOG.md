@@ -1,5 +1,17 @@
 # Changelog
 
+## 168.1.0 [2350](https://github.com/openfisca/openfisca-france/pull/2350)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2024
+* Zones impactées : 
+    - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+    - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid/`
+    - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/`
+* Détails :
+  - Mise à jour du calcul de l'allègement de cotisations spécifiques aux allocations familiales et mmid à partir de janvier 2024.
+  - Modifications de calculs de l'article 20 de la loi de financement de la sécurité sociale pour 2024 (https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048668722)
+
 ## 168.0.16 [2337](https://github.com/openfisca/openfisca-france/pull/2337)
 
 * Évolution du système socio-fiscal.

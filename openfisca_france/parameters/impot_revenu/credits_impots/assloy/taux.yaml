@@ -11,7 +11,7 @@ values:
 metadata:
   short_label: Taux
   unit: /1
-  references:
+  reference:
     2012-01-01:
       title: Code général des impôts - Art Article 200 nonies
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025746257/2012-04-26

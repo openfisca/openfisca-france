@@ -40,3 +40,33 @@
     effectif_entreprise: 1
   output:
     allegement_cotisation_allocations_familiales: 52.47
+
+- period: 2023-12
+  name: Avant la réforme de 2024
+  description: A partir de janvier 2023 le montant du smic pour le plafond est figé à décembre 2023
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 6097.73 #1747.2*3.49 soit 3,49 smic de décembre 2023
+    # allegement mode necessary when requesting on a 1 month salary :
+    allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail_debut: 2023-01-01
+    contrat_de_travail_fin: 2024-12-31
+    effectif_entreprise: 1
+  output:
+    allegement_cotisation_allocations_familiales: 109.76
+
+- period: 2024-01
+  name: Après la réforme de 2024
+  description: A partir de janvier 2024 le montant du smic pour le plafond est figé à décembre 2023
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 6166.55 #1766.92*3.49 soit 3,49 smic de janvier 2024 mais 3,52 smic de décembre 2023
+    # allegement mode necessary when requesting on a 1 month salary :
+    allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail_debut: 2023-01-01
+    contrat_de_travail_fin: 2024-12-31
+    effectif_entreprise: 1
+  output:
+    allegement_cotisation_allocations_familiales: 0

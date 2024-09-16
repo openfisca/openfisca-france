@@ -118,12 +118,12 @@
     accident_du_travail: -39.76 # par défaut taux faible d'accident du travail
     contribution_solidarite_autonomie: -13.25
     famille_net_allegement: -152.4
-    mmid_employeur_net_allegement: -309.21
+    mmid_employeur_net_allegement: -574.25 # en 2024 l'allègement de cotisations mmid est à 2,5 SMIC de décembre 2023 donc en dessous de 2,5 SMIC de janvier 2024
     cotisations_employeur_main_d_oeuvre: -58.91
-    cotisations_employeur: -(8.83 + 254.03 + 178.9 + 58.81 + 9.28 + 89.23 + 330.37 + 39.76 + 13.25 + 152.4 + 309.21 + 58.91) # -1502.97
-    salaire_super_brut_hors_allegements: 4417.3 + 1502.97
+    cotisations_employeur: -(8.83 + 254.03 + 178.9 + 58.81 + 9.28 + 89.23 + 330.37 + 39.76 + 13.25 + 152.4 + 574.25 + 58.91) # -1768.01
+    salaire_super_brut_hors_allegements: 4417.3 + 1768.01
     allegement_general: 0
-    salaire_super_brut: 4417.3 + 1502.97 - 0
+    salaire_super_brut: 4417.3 + 1768.01 - 0
     agirc_arrco_salarie: -169.53
     contribution_equilibre_general_salarie: -39.21
     contribution_equilibre_technique_salarie: -6.18

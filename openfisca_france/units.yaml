@@ -128,6 +128,11 @@
     other: Smic horaires bruts
   parameter: marche_travail.salaire_minimum.smic.smic_b_horaire
   ratio: false
+- name: smic_2023_12_31
+  label:
+    one: Smic au 31 décembre 2023
+    other: Smic au 31 décembre 2023
+  ratio: false
 - name: year
   label:
     one: année
