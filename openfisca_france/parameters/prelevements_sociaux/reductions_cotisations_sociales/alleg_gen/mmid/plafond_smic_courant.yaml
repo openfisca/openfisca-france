@@ -1,9 +1,10 @@
-description: Plafond de rémunération (en nombre de Smic courant) des salariés concernés par l'allègement des cotisations du régime d'assurance maladie (à partir de 2024)
+description: Deuxième possibilité de plafond de rémunération (en nombre de Smic courant) des salariés concernés par l'allègement des cotisations du régime d'assurance maladie (à partir de 2024). Ce plafond est retenu si son montant est plus élevé que la première possibilité proposée dans la loi.
+
 values:
   2024-01-01:
     value: 2
 metadata:
-  short_label: Plafond de rémunération des salariés
+  short_label: 2ème possibilité de plafond de rémunération des salariés | Retenue si > 1ère possibilité
   last_value_still_valid_on: "2024-09-13"
   label_en: SSCs for sickness, maternity, disability and death benefits
   unit: smic_annuel

@@ -1,9 +1,9 @@
-description: Plafond de rémunération (en nombre de Smic courant) des salariés concernés par l'allègement des cotisations pour la branche famille des cotisations de Sécurité sociale (SS)
+description: Deuxième possibilité de plafond de rémunération (en nombre de Smic courant) des salariés concernés par l'allègement des cotisations pour la branche famille des cotisations de Sécurité sociale (SS). Ce plafond est retenu si son montant est plus élevé que la première possibilité proposée dans la loi.
 values:
   2024-01-01:
     value: 2
 metadata:
-  short_label: Plafond de rémunération des salariés
+  short_label: 2ème possibilité de plafond de rémunération des salariés | Retenue si > 1ère possibilité
   last_value_still_valid_on: "2024-09-13"
   label_en: Reduction in SSCs for family benefits
   ipp_csv_id: pss_red_fam
