@@ -1,21 +1,31 @@
 # Changelog
 
+## 168.0.16 [2337](https://github.com/openfisca/openfisca-france/pull/2337)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 2024/10/01.
+* Zones impactées :
+    - `openfisca_france/model/prestations/minima_sociaux/ppa.py.`
+    - `openfisca_france/model/prestations/minima_sociaux/rsa.py.`
+* Détails :
+    - Modification de la période de référence pour les aides RSA et PPA
+    - Refactoring du code de ces méthodes pour éviter la duplication de code
+
 ## 168.0.15 [2348](https://github.com/openfisca/openfisca-france/pull/2349)
 
 * Évolution du système socio-fiscal changement mineur.
-* Périodes concernées :  01/01/2023.
+* Périodes concernées : 01/01/2023.
 * Zones impactées : `openfisca_france/parameters/impot_revenu/bareme_ir_depuis_1945/bareme.yaml`.
 * Détails : Ajoute référence 2024 article codifié impôt sur le revenu
-  
+
 ## 168.0.14 [2348](https://github.com/openfisca/openfisca-france/pull/2348)
 
 * Changement mineur : Modification d'un label
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/model/revenus/activite/salarie.py`.
 * Détails : La variable `contrat_de_travail` et la variable `contrat_de_travail_type` ont le même label, pourtant elles ne représentent pas la même chose. La première concerne les types de durées de travail du contrat (Temps plein, partiel, convention, etc.) ; la seconde, le type de contrat (CDD,CDI). Cette PR change le label de la première et propose de parler de "Type de durée de travail" pour les distinguer.
 
 [Service-Public.fr](https://www.service-public.fr/particuliers/vosdroits/F19261) en parle aussi sous cette forme.
-
 
 ## 168.0.13 [2344](https://github.com/openfisca/openfisca-france/pull/2344)
 
