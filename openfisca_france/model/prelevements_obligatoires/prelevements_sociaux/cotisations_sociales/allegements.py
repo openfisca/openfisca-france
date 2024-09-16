@@ -345,9 +345,9 @@ def compute_allegement_general(individu, period, parameters):
     # Be careful ! Period is several months
     first_month = period.first_month
 
-    assiette = individu('assiette_allegement', period, options = [ADD])
-    smic_proratise = individu('smic_proratise', period, options = [ADD])
-    effectif_entreprise = individu('effectif_entreprise', first_month)
+    assiette = individu('assiette_allegement', period)
+    smic_proratise = individu('smic_proratise', period)
+    effectif_entreprise = individu('effectif_entreprise', period)
 
     # Calcul du taux
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
@@ -444,8 +444,8 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
     '''
         La réduction du taux de la cotisation d’allocations familiales
     '''
-    assiette = individu('assiette_allegement', period, options = [ADD])
-    smic_proratise = individu('smic_proratise', period, options = [ADD])
+    assiette = individu('assiette_allegement', period)
+    smic_proratise = individu('smic_proratise', period)
     law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
     taux_reduction = law.reduction
     if period.start.year < 2024:
@@ -505,12 +505,12 @@ def compute_allegement_cotisation_maladie_base(individu, period, parameters):
     '''
     allegement_mmid = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
 
-    assiette_allegement = individu('assiette_allegement', period, options = [ADD])
-    smic_proratise = individu('smic_proratise', period, options = [ADD])
+    assiette_allegement = individu('assiette_allegement', period)
+    smic_proratise = individu('smic_proratise', period)
     if period.start.year < 2024:
         plafond_allegement_mmid = allegement_mmid.plafond * smic_proratise
     else:
-        coefficient_proratisation = individu('coefficient_proratisation', period, options = [ADD])
+        coefficient_proratisation = individu('coefficient_proratisation', period)
         parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
         smic_horaire_brut_2023_12 = parameters_smic_2023_12.smic_b_horaire
         nbh_travail_2023_12 = parameters_smic_2023_12.nb_heures_travail_mensuel
@@ -550,7 +550,10 @@ def compute_allegement_annuel(individu, period, parameters, variable_name, compu
     if period.start.month < 12:
         return 0
     if period.start.month == 12:
-        return compute_function(individu, period.this_year, parameters)
+        return sum(
+            compute_function(individu, sub_period, parameters)
+            for sub_period in period.this_year.get_subperiods(MONTH)
+        )
 
 
 def compute_allegement_anticipe(individu, period, parameters, variable_name, compute_function):
@@ -560,9 +563,10 @@ def compute_allegement_anticipe(individu, period, parameters, variable_name, com
         cumul = individu(
             variable_name,
             Period(('month', period.start.offset('first-of', 'year'), 11)), options = [ADD])
-        return compute_function(
-            individu, period.this_year, parameters
-            ) - cumul
+        return sum(
+            compute_function(individu, sub_period, parameters)
+            for sub_period in period.this_year.get_subperiods(MONTH)
+        ) - cumul
 
 
 def compute_allegement_progressif(individu, period, parameters, variable_name, compute_function):
@@ -573,7 +577,10 @@ def compute_allegement_progressif(individu, period, parameters, variable_name, c
         up_to_this_month = Period(('month', period.start.offset('first-of', 'year'), period.start.month))
         up_to_previous_month = Period(('month', period.start.offset('first-of', 'year'), period.start.month - 1))
         cumul = individu(variable_name, up_to_previous_month, options = [ADD])
-        return compute_function(individu, up_to_this_month, parameters) - cumul
+        return sum(
+            compute_function(individu, sub_period, parameters)
+            for sub_period in up_to_this_month.get_subperiods(MONTH)
+        ) - cumul
 
 
 def taux_exo_cice(assiette_allegement, smic_proratise, cice):

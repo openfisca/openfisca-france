@@ -23,7 +23,7 @@
       2021-09: 0
       2021-10: 0
       2021-11: 0
-      2021-12: 93.27 * 9  # 0.06 * 1554.58 * 9 mois de salaire
+      2021-12: 93.27 * 9  # 0.06 * 1554.58 * 9 mois de   salaire
 
 - name: Taux complet de cotisation maladie recouvrée progressivement pour rémunération > 2.5xSmic
   period: 2021-03
