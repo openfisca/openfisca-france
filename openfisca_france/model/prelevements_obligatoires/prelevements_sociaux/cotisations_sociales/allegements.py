@@ -553,7 +553,7 @@ def compute_allegement_annuel(individu, period, parameters, variable_name, compu
         return sum(
             compute_function(individu, sub_period, parameters)
             for sub_period in period.this_year.get_subperiods(MONTH)
-        )
+            )
 
 
 def compute_allegement_anticipe(individu, period, parameters, variable_name, compute_function):
@@ -566,7 +566,7 @@ def compute_allegement_anticipe(individu, period, parameters, variable_name, com
         return sum(
             compute_function(individu, sub_period, parameters)
             for sub_period in period.this_year.get_subperiods(MONTH)
-        ) - cumul
+            ) - cumul
 
 
 def compute_allegement_progressif(individu, period, parameters, variable_name, compute_function):
@@ -580,7 +580,7 @@ def compute_allegement_progressif(individu, period, parameters, variable_name, c
         return sum(
             compute_function(individu, sub_period, parameters)
             for sub_period in up_to_this_month.get_subperiods(MONTH)
-        ) - cumul
+            ) - cumul
 
 
 def taux_exo_cice(assiette_allegement, smic_proratise, cice):
