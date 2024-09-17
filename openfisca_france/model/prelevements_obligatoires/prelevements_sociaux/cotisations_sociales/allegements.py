@@ -342,8 +342,6 @@ def compute_allegement_general(individu, period, parameters):
         Exonération générale de cotisations patronales
         https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
     '''
-    # Be careful ! Period is several months
-    first_month = period.first_month
 
     assiette = individu('assiette_allegement', period)
     smic_proratise = individu('smic_proratise', period)
