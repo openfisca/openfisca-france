@@ -103,10 +103,11 @@ def unfold_parameter(
         # Parameter is a scale.
         brackets = source_parameter['brackets']
         dates = set()
-        for key in ('amount', 'average_rate', 'base', 'rate', 'threshold'):
-            value_by_date = brackets.get(key)
-            if value_by_date is not None:
-                dates.update(value_by_date.keys())
+        for bracket in brackets:
+            for key in ('amount', 'average_rate', 'base', 'rate', 'threshold'):
+                value_by_date = bracket.get(key)
+                if value_by_date is not None:
+                    dates.update(value_by_date.keys())
         add_dated_metadata_to_parameter(
             source_parameter,
             dates,
