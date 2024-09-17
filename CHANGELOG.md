@@ -1,5 +1,14 @@
 # Changelog
 
+## 168.1.1 [2351](https://github.com/openfisca/openfisca-france/pull/2351)
+
+* Correction d'un crash
+* Périodes concernées : à partir du 01/01/2024
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+* Détails :
+  - Correction du calcul introduit de la version 168.1.0 : la variable `coefficient_de_proratisation` ne doit pas être appelé en décembre 2023 mais au moment du calcul
+  - Cette modification a entraîné des modifications de calcul car la variable `coefficient_de_proratisation` ne peut être calculée que pour un mois 
+
 ## 168.1.0 [2350](https://github.com/openfisca/openfisca-france/pull/2350)
 
 * Évolution du système socio-fiscal.
