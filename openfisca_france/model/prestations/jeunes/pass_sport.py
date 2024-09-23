@@ -23,23 +23,23 @@ class pass_sport(Variable):
         eligibilite_age_profil_boursier = age <= age_maximum_profil_boursier
         eligibilite_profil_boursier = boursier * eligibilite_age_profil_boursier
 
-        ars = individu.famille('ars', period.this_year)
+        eligibilite_ars = individu.famille('ars', period.this_year) > 0
         age_maximum_profil_ars = parametres.critere_age.age_maximum_profil_ars
         age_minimum_profil_ars = parametres.critere_age.age_minimum_profil_ars
         eligibilite_age_profil_ars = (age >= age_minimum_profil_ars) * (age <= age_maximum_profil_ars)
-        eligibilite_profil_ars = ars * eligibilite_age_profil_ars
+        eligibilite_profil_ars = eligibilite_ars * eligibilite_age_profil_ars
 
-        aeeh = individu.famille('aeeh', period)
+        eligibilite_aeeh = individu.famille('aeeh', period) > 0
         age_maximum_profil_aeeh = parametres.critere_age.age_maximum_profil_aeeh
         age_minimum_profil_aeeh = parametres.critere_age.age_minimum_profil_aeeh
         eligibilite_age_profil_aeeh = (age >= age_minimum_profil_aeeh) * (age <= age_maximum_profil_aeeh)
-        eligibilite_profil_aeeh = aeeh * eligibilite_age_profil_aeeh
+        eligibilite_profil_aeeh = eligibilite_aeeh * eligibilite_age_profil_aeeh
 
-        aah_eligibilite = individu('aah', period) > 0
+        eligibilite_aah = individu('aah', period) > 0
         age_maximum_profil_aah = parametres.critere_age.age_maximum_profil_aah
         age_minimum_profil_aah = parametres.critere_age.age_minimum_profil_aah
         eligibilite_age_profil_aah = (age >= age_minimum_profil_aah) * (age <= age_maximum_profil_aah)
-        eligibilite_profil_aah = (aah_eligibilite * eligibilite_age_profil_aah)
+        eligibilite_profil_aah = (eligibilite_aah * eligibilite_age_profil_aah)
 
         montant = parametres.montant
 
