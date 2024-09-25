@@ -6,6 +6,7 @@ metadata:
   order:
   - plafond_apa_domicile_en_part_mtp
   - seuil_revenu_en_part_mtp
+  - participation_en_part_mtp
   - part_plafond_apa_domicile
   - division_ressources_menage_couples
   - taux_de_participation

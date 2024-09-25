@@ -3,7 +3,7 @@ metadata:
   short_label: Aides au logement
   label_en: Housing allowances
   order:
-  - action_logement
   - allocations_logement
+  - action_logement
   - logement_social
   - reduction_loyer_solidarite
