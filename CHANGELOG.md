@@ -1,5 +1,16 @@
 # Changelog
 
+### 168.1.3 [2354](https://github.com/openfisca/openfisca-france/pull/2354)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters`.
+* Détails :
+  - Correction d'index.
+  - Correction de description.
+  - Correction de notes
+  - Correction de références (synchronisation avec barèmes IPP)
+
 ### 168.1.2 [2345](https://github.com/openfisca/openfisca-france/pull/2345)
 
 * Changement mineur.
@@ -15,13 +26,13 @@
 * Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
 * Détails :
   - Correction du calcul introduit de la version 168.1.0 : la variable `coefficient_de_proratisation` ne doit pas être appelé en décembre 2023 mais au moment du calcul
-  - Cette modification a entraîné des modifications de calcul car la variable `coefficient_de_proratisation` ne peut être calculée que pour un mois 
+  - Cette modification a entraîné des modifications de calcul car la variable `coefficient_de_proratisation` ne peut être calculée que pour un mois
 
 ## 168.1.0 [2350](https://github.com/openfisca/openfisca-france/pull/2350)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2024
-* Zones impactées : 
+* Zones impactées :
     - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
     - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid/`
     - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/`
@@ -61,12 +72,12 @@
 * Évolution du système socio-fiscal. | Amélioration technique. Ces changements modifient l'API publique d'OpenFisca France et ajoutent une fonctionnalité : la possibilité de modifier des paramètres actuellement en dur dans les formules.
 
 * Périodes concernées : à partir du 01/01/2011.
-* Zones impactées : 
+* Zones impactées :
       * Modification formules dans `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/exonerations.py`.
       * Modification formules dans `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique.py`
       * Création d'un nouveau dossier de paramètre dans `prelevements_sociaux/contributions_sociales/csg/activite` pour l'`indemnite_compensatrice_fonctionnaires`
       * Création d'un nouveau dossier de paramètre dans `prelevements_sociaux/reductions_cotisations_sociales` pour les `exonerations_geographiques_cotis` et `jei`
-      
+
 * Détails : Retire une partie des paramètres en dur de l'indémnité compensatrice CSG, de l'exonération JEI, et des exonération zonnées ZRR et ZRD
 
 ## 168.0.12 [2314](https://github.com/openfisca/openfisca-france/pull/2314)

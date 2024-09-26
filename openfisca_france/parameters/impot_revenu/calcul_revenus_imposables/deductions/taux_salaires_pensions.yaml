@@ -1,7 +1,5 @@
 description: Taux de l'abattement forfaitaire sur les salaires et pensions pour frais professionels
 values:
-  1942-01-01:
-    value: null
   1943-01-01:
     value: 0.1
 metadata:
