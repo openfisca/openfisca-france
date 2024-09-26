@@ -65,7 +65,7 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core @ git+https://github.com/openfisca/openfisca-core@fix-mypy-checks-periods',
+        'OpenFisca-Core @ https://github.com/openfisca/openfisca-core/archive/fix-mypy-checks-periods.zip',
         ],
     packages = find_namespace_packages(exclude = [
         'openfisca_france.tests*',
