@@ -1,5 +1,11 @@
 # Changelog
 
+### 168.2.1 [2357](https://github.com/openfisca/openfisca-france/pull/2357)
+
+* Changement mineur.
+* Détails :
+  - MàJ d'OpenFisca-Core
+
 ## 168.2.0 [2360](https://github.com/openfisca/openfisca-france/pull/2360)
 
 * Évolution du système socio-fiscal. | Correction d'un crash.

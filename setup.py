@@ -9,7 +9,7 @@ long_description = (this_directory / 'README.md').read_text()
 
 setup(
     name = 'OpenFisca-France',
-    version = '168.2.0',
+    version = '168.2.1',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -65,7 +65,7 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core @ https://github.com/openfisca/openfisca-core/archive/fix-mypy-checks-periods.zip',
+        'OpenFisca-Core >=42.0.0, <43.0',
         ],
     packages = find_namespace_packages(exclude = [
         'openfisca_france.tests*',
