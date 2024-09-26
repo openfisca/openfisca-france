@@ -51,7 +51,6 @@ setup(
             'flake8 >=6.0.0, <7.0.0',
             'flake8-print >=5.0.0, <6.0.0',
             'flake8-quotes >=3.3.2',
-            'pytest >=7.2.2, <8.0',
             'scipy >=1.10.1, <2.0',  # Only used to test de_net_a_brut reform
             'requests >=2.28.2, <3.0',
             'yamllint >=1.30.0, <2.0'
@@ -66,7 +65,7 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core >=40.0.1, <42',
+        'OpenFisca-Core @ git+https://github.com/openfisca/openfisca-core@fix-mypy-checks-periods',
         ],
     packages = find_namespace_packages(exclude = [
         'openfisca_france.tests*',
