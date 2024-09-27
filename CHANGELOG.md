@@ -7,9 +7,6 @@
 * Zones impactées : `parameters`.
 * Détails :
   - Correction d'index.
-  - Correction de description.
-  - Correction de notes
-  - Correction de références (synchronisation avec barèmes IPP)
 
 ### 168.1.4 [2355](https://github.com/openfisca/openfisca-france/pull/2355)
 
