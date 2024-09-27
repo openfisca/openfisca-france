@@ -1,6 +1,25 @@
 # Changelog
 
-### 168.1.4 [2354](https://github.com/openfisca/openfisca-france/pull/2354)
+### 168.1.5 [2358](https://github.com/openfisca/openfisca-france/pull/2358)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters`.
+* Détails :
+  - Correction d'index.
+
+### 168.1.4 [2355](https://github.com/openfisca/openfisca-france/pull/2355)
+
+* Changement mineur.
+* Périodes concernées : à partir de 2018
+* Zones impactées :
+     - `openfisca_france/parameters/taxation_capital/prelevement_forfaitaire/partir_2018/taux_prelevement_produits_assurance_vie_non_eligibles_prelevement_forfaitaire_unique.yaml`
+     - `openfisca_france/parameters/taxation_capital/prelevement_forfaitaire/partir_2018/taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc.yaml`.
+* Détails :
+  - Modifie les labels
+  - Ajoute last_value
+
+### 168.1.3 [2354](https://github.com/openfisca/openfisca-france/pull/2354)
 
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -10,18 +29,6 @@
   - Correction de description.
   - Correction de notes
   - Correction de références (synchronisation avec barèmes IPP)
-
-### 168.1.3 [2355](https://github.com/openfisca/openfisca-france/pull/2355)
-
-* Changement mineur.
-* Périodes concernées : à partir de 2018
-* Zones impactées : 
-     - `openfisca_france/parameters/taxation_capital/prelevement_forfaitaire/partir_2018/taux_prelevement_produits_assurance_vie_non_eligibles_prelevement_forfaitaire_unique.yaml`
-     - `openfisca_france/parameters/taxation_capital/prelevement_forfaitaire/partir_2018/taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc.yaml`.
-* Détails :
-  - Modifie les labels
-  - Ajoute last_value
-
 
 ### 168.1.2 [2345](https://github.com/openfisca/openfisca-france/pull/2345)
 
