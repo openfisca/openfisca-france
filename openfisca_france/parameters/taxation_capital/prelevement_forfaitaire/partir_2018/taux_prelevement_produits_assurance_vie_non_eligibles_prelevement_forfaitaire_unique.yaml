@@ -1,10 +1,11 @@
-description: Taux réduit, pour les produits d'assurance-vie non-éligibles au PFU, Prélèvements libératoires sur les revenus des valeurs mobilières
+description: Taux réduit, au titre de l'impôt sur le revenu, du prélèvement forfaitaire unique (PFU) prélevé sur les produits d'assurance-vie (versements effectués à compter du 27/09/2017) pour les contrats d'une durée égale ou supérieure à huit ans
 values:
   2018-01-01:
     value: 0.075
 metadata:
-  short_label: Taux réduit du PFU
+  short_label: Taux réduit du PFU, au titre de l'IR, prélevé sur les produits d'assurance-vie dont le contrat a plus de 8 ans
   label_en: Flat tax on capital income (from 2018)
+  last_value_still_valid_on: "2024-09-26"
   unit: /1
   reference:
     2018-01-01:

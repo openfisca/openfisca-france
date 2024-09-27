@@ -281,6 +281,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         pfu_ir_sur_assurance_vie = where(imposition_au_bareme, 0,
             (f2zz * P1_taux)
             + (max_(f2vv - abattement_residuel, 0) * P1_taux_reduit_av)
+            # Ce calcul avec le taux réduit ne semble pas prendre en compte le montant maximal des versements qui est de 150 000 euros et semble disponible dans ce paramètre : seuil_primes_applique_eligibilite_produits_assurance_vie_prelevement_forfaitaire_unique
             + (max_(f2ww - abattement_residuel2, 0) * P1_taux)
             )
 
