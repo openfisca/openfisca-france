@@ -1,5 +1,6 @@
 import logging
 
+import numpy as np
 from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
 
 from openfisca_core.periods import Period
