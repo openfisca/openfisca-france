@@ -1,0 +1,13 @@
+description: Taux d'exonération maximal dans les entreprises de moins de 50 salariés
+values:
+  2019-01-01:
+    value: 0.3194
+metadata:
+  short_label: Entreprises de moins de 50 salaries
+  last_value_still_valid_on: "2019-01-01"
+  label_en: Parameter for lodeom_competitivite_renforcee for companies with less than 50 employees
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Article R752-7 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041404691"
