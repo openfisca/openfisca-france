@@ -1,0 +1,18 @@
+description: LODEOM Competitivite
+metadata:
+  documentation_start: true
+  short_label: LODEOM Competitivite
+  label_en: LODEOM Competitiveness
+  order:
+  - seuil
+  - plafond
+  - entreprises_de_50_salaries_et_plus
+  - entreprises_de_moins_de_50_salaries
+  - seuil_entreprises_de_11_salaries_et_plus
+  - seuil_entreprises_de_moins_de_11_salaries
+  - seuil_intermediaire_entreprises_de_moins_de_11_salaries
+  - plafond_entreprises_de_11_salaries_et_plus
+  - plafond_entreprises_de_moins_de_11_salaries
+  - pente_entreprises_de_11_salaries_et_plus
+  - pente_entreprises_de_moins_de_11_salaries
+  - taux

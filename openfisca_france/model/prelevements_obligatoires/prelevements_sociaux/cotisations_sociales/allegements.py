@@ -1,5 +1,6 @@
 import logging
 
+import numpy as np
 from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
 
 from openfisca_core.periods import Period
@@ -131,17 +132,27 @@ class credit_impot_competitivite_emploi(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037992483'
 
     def formula_2013_01_01(individu, period, parameters):
+        # Extraction des variables d'intérêt
         assiette_allegement = individu('assiette_allegement', period)
-        jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)  # noqa F841
+        association = individu('entreprise_est_association_non_lucrative', period)
         smic_proratise = individu('smic_proratise', period)
         stagiaire = individu('stagiaire', period)
-        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, parameters(period).prelevements_sociaux.reductions_cotisations_sociales.cice)
-        credit_impot_competitivite_emploi = taux_cice * assiette_allegement
-        non_cumul = not_(stagiaire)
-        association = individu('entreprise_est_association_non_lucrative', period)
+        depcom_entreprise = individu('depcom_entreprise', period)
 
-        return credit_impot_competitivite_emploi * non_cumul * not_(association)
+        # Extraction des paramètres d'intérêt
+        cice = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.cice
 
+        # Définition de l'appartenance à la Guadeloupe, la Guyane, la Martinique et la Réunion
+        dep_drom = np.array([depcom_cell[:2] == '97' if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:2] == '97' for depcom_cell in depcom_entreprise])
+        # Taux de CICE
+        taux_cice = np.where(dep_drom, cice.taux_om, cice.taux)
+        # Calcul du taux applicable
+        taux_applicable_cice = ((assiette_allegement/(smic_proratise+1e-16)) <= cice.plafond_smic) * taux_cice
+        # Calcul du montant du crédit d'impôt
+        credit_impot_competitivite_emploi = taux_applicable_cice * assiette_allegement
+
+        return credit_impot_competitivite_emploi * not_(stagiaire) * not_(association)
+        
 
 class aide_premier_salarie(Variable):
     value_type = float
@@ -320,12 +331,14 @@ class allegement_general(Variable):
     # Attention : cet allègement a des règles de cumul spécifiques
 
     def formula_2005_07_01(individu, period, parameters):
+        # Extraction des caractéristiques d'intérêt de l'individu
         stagiaire = individu('stagiaire', period)
         apprenti = individu('apprenti', period)
         allegement_mode_recouvrement = individu('allegement_general_mode_recouvrement', period)
         exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
         exoneration_cotisations_employeur_tode = individu('exoneration_cotisations_employeur_tode', period)
-        non_cumulee = not_(exoneration_cotisations_employeur_jei + exoneration_cotisations_employeur_tode)
+        exoneration_lodeom = individu('exoneration_lodeom', period)
+        non_cumulee = not_(exoneration_cotisations_employeur_jei+exoneration_cotisations_employeur_tode+exoneration_lodeom)
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(

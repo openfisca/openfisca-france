@@ -1,5 +1,14 @@
 # Changelog
 
+### 13.1.5 - [2364](https://github.com/openfisca/openfisca-france/pull/2364)
+
+* Périodes concernées : Jusqu'au 01/01/2009.
+* Zones impactées : `prelevements_sociaux/cotisations_sociales`
+* Détails :
+  - Implémentation des exonérations LODEOM (competivité, compétitivité renforcée, innovation et croissance) parmi les exonérations géographiques
+  - Mise en conformité de l'allègement général étant données ces nouvelles exonérations
+  - Ajout des taux spécifiques aux outre-mer pour le CICE
+
 ### 168.1.5 [2358](https://github.com/openfisca/openfisca-france/pull/2358)
 
 * Changement mineur.

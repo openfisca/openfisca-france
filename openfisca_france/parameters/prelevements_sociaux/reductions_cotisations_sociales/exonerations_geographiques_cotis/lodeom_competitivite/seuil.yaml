@@ -1,0 +1,13 @@
+description: Seuil d'exonération intégrale dans le dispositif de LODEOM - COmpétitivité
+values:
+  2019-01-01:
+    value: 1.3
+metadata:
+  short_label: Seuil
+  last_value_still_valid_on: "2019-01-01"
+  label_en: Seuil parameter for lodeom_competitivite
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Article D752-7 du COde de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041404691

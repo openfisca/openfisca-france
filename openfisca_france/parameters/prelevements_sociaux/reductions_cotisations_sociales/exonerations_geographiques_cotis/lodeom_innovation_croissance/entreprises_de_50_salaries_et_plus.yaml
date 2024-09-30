@@ -1,0 +1,13 @@
+description: Taux d'exonération maximal dans les entreprises de 50 salariés et plus
+values:
+  2019-01-01:
+    value: 0.3234
+metadata:
+  short_label: Entreprises de 50 salaries et plus
+  last_value_still_valid_on: "2019-01-01"
+  label_en: Parameter for lodeom_innovation_croissance for companies with 50 or more employees
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Article R752-7 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041404691"

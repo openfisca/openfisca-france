@@ -1,0 +1,12 @@
+description: LODEOM Competitivite renforcee
+metadata:
+  documentation_start: true
+  short_label: LODEOM Competitivite renforcee
+  label_en: LODEOM reenforced Competitiveness
+  order:
+  - seuil
+  - seuil_intermediaire
+  - plafond
+  - entreprises_de_50_salaries_et_plus
+  - entreprises_de_moins_de_50_salaries
+  - taux
