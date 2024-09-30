@@ -1,0 +1,11 @@
+description: LODEOM Innovation-croissance
+metadata:
+  documentation_start: true
+  short_label: LODEOM Innovation-croissance
+  label_en: LODEOM innovation and growth
+  order:
+  - seuil
+  - seuil_intermediaire
+  - plafond
+  - entreprises_de_50_salaries_et_plus
+  - entreprises_de_moins_de_50_salaries

@@ -849,7 +849,7 @@ class eligibilite_lodeom_competitivite(Variable) :
     value_type=bool
     entity=Individu
     label="Eligibilité au dispositif compétitivité de LODEOM"
-    reference=''
+    reference='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683758'
     definition_period=MONTH
     set_input=set_input_dispatch_by_period
     # Sont concernés :
@@ -905,7 +905,7 @@ class exoneration_lodeom_competitivite(Variable) :
     value_type=float
     entity=Individu
     label="Montant d'exonération associé au dispositif compétitivité de LODEOM"
-    reference=''
+    reference='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041404691'
     definition_period=MONTH
     set_input=set_input_divide_by_period
 
@@ -916,7 +916,7 @@ class exoneration_lodeom_competitivite(Variable) :
         smic_proratise = individu('smic_proratise', period)
         assiette_allegement = individu('assiette_allegement', period) # individu('salaire_de_base', period)
         # Extraction des paramètres d'intérêt
-        lodeom_competitivite = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.lodeom_competitivite
+        lodeom_competitivite = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.lodeom_competitivite
 
         # A partir du 1 janvier 2009
         if date(2009, 1, 1) <= period.start.date <= date(2009, 4, 30) :
@@ -1043,7 +1043,7 @@ class secteur_activite_employeur_199undeciesBCGI(Variable):
     default_value = TypesSecteurActivite199UndeciesBCGI.non_renseigne
     entity=Individu
     label="Secteurs d'activité définissant l'éligibilité à la réduction d'impôt au titre d'investissements réalisés en outre-mer"
-    reference=''
+    reference='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041524650'
     definition_period=MONTH
     set_input=set_input_dispatch_by_period
 
@@ -1053,7 +1053,7 @@ class eligibilite_199undeciesBCGI(Variable):
     value_type=bool 
     entity=Individu
     label="Eligibilité à la réduction d'impôt révue à l'article 199 undecies B du CGI"
-    reference=''
+    reference='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041524650'
     definition_period=MONTH
     set_input=set_input_dispatch_by_period
 
@@ -1078,7 +1078,7 @@ class eligibilite_199undeciesBCGI(Variable):
             # Extraction de la variable d'intérêt
             entreprise_chiffre_affaire = individu('entreprise_chiffre_affaire', period)
             # Extraction des paramètres d'intérêt
-            seuil = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.reduction_impot_199undeciesBCGI.seuil
+            seuil = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.reduction_impot_199undeciesBCGI.seuil
             # Critère sur le chiffre d'affaires
             chiffre_affaires_inferieur_seuil = entreprise_chiffre_affaire < seuil
             # Eligibilité
@@ -1092,7 +1092,7 @@ class eligibilite_lodeom_competitivite_renforcee(Variable) :
     value_type=bool
     entity=Individu
     label="Eligibilité au dispositif compétitivité renforcée de LODEOM"
-    reference=''
+    reference='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683758'
     definition_period=MONTH
     set_input=set_input_dispatch_by_period
     # Sont concernés :
@@ -1168,87 +1168,104 @@ class exoneration_lodeom_competitivite_renforcee(Variable) :
     value_type=float
     entity=Individu
     label="Montant d'exonération associé au dispositif compétitivité renforcée de LODEOM"
-    reference=''
+    reference='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041404691'
     definition_period=MONTH
     set_input=set_input_divide_by_period
 
-    def formula(individu, period, parameters) :
+    def formula_2009_01_01(individu, period, parameters) :
         # Extraction des variables d'intérêt
         eligibilite_lodeom_competitivite_renforcee = individu('eligibilite_lodeom_competitivite_renforcee', period)
         smic_proratise = individu('smic_proratise', period)
         assiette_allegement = individu('assiette_allegement', period)
         # Extraction des paramètres d'intérêt
-        lodeom_competitivite_renforcee = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.lodeom_competitivite_renforcee
+        lodeom_competitivite_renforcee = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.lodeom_competitivite_renforcee
         
-        # Règles en vigueur avant le 30 avril 2009
-        if period.start.date <= date(2009, 4, 30):
-            # Valorisation des paramètres d'intérêt
-            seuil = lodeom_competitivite_renforcee.seuil
-            plafond = lodeom_competitivite_renforcee.plafond
-            taux = lodeom_competitivite_renforcee.taux
+        # Valorisation des paramètres d'intérêt
+        seuil = lodeom_competitivite_renforcee.seuil
+        plafond = lodeom_competitivite_renforcee.plafond
+        taux = lodeom_competitivite_renforcee.taux
 
-            # Ratio smic/salaire
-            ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
+        # Ratio smic/salaire
+        ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
 
-            # Formule de calcul du taux d'exonération
-            # Règle d'arrondi : 4 décimales la plus proche
-            taux_exoneration = round_(taux * min_(1, seuil / (plafond-seuil) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
+        # Formule de calcul du taux d'exonération
+        # Règle d'arrondi : 4 décimales la plus proche
+        taux_exoneration = round_(taux * min_(1, seuil / (plafond-seuil) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
 
-            return eligibilite_lodeom_competitivite_renforcee * taux_exoneration * assiette_allegement
-        # Règles en vigueur avant le 31 décembre 2013
-        elif  date(2009, 4, 30) < period.start.date <= date(2013, 12, 31) :
-            # Ratio smic/salaire
-            ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
-            # Valorisation des paramètres
-            seuil = lodeom_competitivite_renforcee.seuil
-            seuil_intermediaire = lodeom_competitivite_renforcee.seuil_intermediaire
-            plafond = lodeom_competitivite_renforcee.plafond
-            taux = lodeom_competitivite_renforcee.taux
-            # Calcul du taux d'exonération applicable entre le seuil intermédiaire et le plafond
-            taux_exoneration_intermediaire_plafond = round_(taux * min_(1, seuil / (plafond-seuil_intermediaire) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
-            # Calcul du montant d'exonération
-            montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil), taux * seuil * smic_proratise, taux * assiette_allegement)
-            montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil_intermediaire), taux_exoneration_intermediaire_plafond * assiette_allegement, montant_exoneration)
-            
-            return eligibilite_lodeom_competitivite_renforcee * montant_exoneration
-        # Règles en vigueur avant le 31 décembre 2018
-        elif  date(2013, 12, 31) < period.start.date <= date(2018, 12, 31) :
-            # Ratio smic/salaire
-            ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
-            # Valorisation des paramètres
-            seuil = lodeom_competitivite_renforcee.seuil
-            seuil_intermediaire = lodeom_competitivite_renforcee.seuil_intermediaire
-            plafond = lodeom_competitivite_renforcee.plafond
-            taux = lodeom_competitivite_renforcee.taux
-            # Calcul du taux d'exonération applicable entre le seuil intermédiaire et le plafond
-            taux_exoneration_intermediaire_plafond = round_(taux * min_(1, seuil * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
-            # Calcul du montant d'exonération
-            montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil), taux * seuil * smic_proratise, taux * assiette_allegement)
-            montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil_intermediaire), taux_exoneration_intermediaire_plafond * assiette_allegement, montant_exoneration)
-            
-            return eligibilite_lodeom_competitivite_renforcee * montant_exoneration
+        return eligibilite_lodeom_competitivite_renforcee * taux_exoneration * assiette_allegement
+        
+    def formula_2009_05_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        eligibilite_lodeom_competitivite_renforcee = individu('eligibilite_lodeom_competitivite_renforcee', period)
+        smic_proratise = individu('smic_proratise', period)
+        assiette_allegement = individu('assiette_allegement', period)
+        # Extraction des paramètres d'intérêt
+        lodeom_competitivite_renforcee = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.lodeom_competitivite_renforcee
 
-        # Période postérieure au 1er janvier 2019
-        else :
-            # Extraction des variables d'intérêt
-            effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
-            # Définition de la petite entreprise
-            petite_entreprise = (effectif_entreprise_drom < 50)
-            # Valorisation des paramètres d'intérêt
-            seuil = lodeom_competitivite_renforcee.seuil
-            plafond = lodeom_competitivite_renforcee.plafond
-            tx_max = (
-                lodeom_competitivite_renforcee.entreprises_de_50_salaries_et_plus * not_(petite_entreprise)
-                + lodeom_competitivite_renforcee.entreprises_de_moins_de_50_salaries * petite_entreprise
-            )
-            # Ratio smic/salaire
-            ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
+        # Ratio smic/salaire
+        ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
+        # Valorisation des paramètres
+        seuil = lodeom_competitivite_renforcee.seuil
+        seuil_intermediaire = lodeom_competitivite_renforcee.seuil_intermediaire
+        plafond = lodeom_competitivite_renforcee.plafond
+        taux = lodeom_competitivite_renforcee.taux
+        # Calcul du taux d'exonération applicable entre le seuil intermédiaire et le plafond
+        taux_exoneration_intermediaire_plafond = round_(taux * min_(1, seuil / (plafond-seuil_intermediaire) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
+        # Calcul du montant d'exonération
+        montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil), taux * seuil * smic_proratise, taux * assiette_allegement)
+        montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil_intermediaire), taux_exoneration_intermediaire_plafond * assiette_allegement, montant_exoneration)
+        
+        return eligibilite_lodeom_competitivite_renforcee * montant_exoneration
+    
+    def formula_2014_01_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        eligibilite_lodeom_competitivite_renforcee = individu('eligibilite_lodeom_competitivite_renforcee', period)
+        smic_proratise = individu('smic_proratise', period)
+        assiette_allegement = individu('assiette_allegement', period)
+        # Extraction des paramètres d'intérêt
+        lodeom_competitivite_renforcee = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.lodeom_competitivite_renforcee
 
-            # Formule de calcul du taux d'exonération
-            # Règle d'arrondi : 4 décimales la plus proche
-            taux_exoneration = round_(tx_max * min_(1, seuil / (plafond-seuil) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
+        # Ratio smic/salaire
+        ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
+        # Valorisation des paramètres
+        seuil = lodeom_competitivite_renforcee.seuil
+        seuil_intermediaire = lodeom_competitivite_renforcee.seuil_intermediaire
+        plafond = lodeom_competitivite_renforcee.plafond
+        taux = lodeom_competitivite_renforcee.taux
+        # Calcul du taux d'exonération applicable entre le seuil intermédiaire et le plafond
+        taux_exoneration_intermediaire_plafond = round_(taux * min_(1, seuil * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
+        # Calcul du montant d'exonération
+        montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil), taux * seuil * smic_proratise, taux * assiette_allegement)
+        montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil_intermediaire), taux_exoneration_intermediaire_plafond * assiette_allegement, montant_exoneration)
+        
+        return eligibilite_lodeom_competitivite_renforcee * montant_exoneration
+    
+    def formula_2019_01_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        eligibilite_lodeom_competitivite_renforcee = individu('eligibilite_lodeom_competitivite_renforcee', period)
+        smic_proratise = individu('smic_proratise', period)
+        assiette_allegement = individu('assiette_allegement', period)
+        # Extraction des paramètres d'intérêt
+        lodeom_competitivite_renforcee = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.lodeom_competitivite_renforcee
+        # Extraction des variables d'intérêt
+        effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
+        # Définition de la petite entreprise
+        petite_entreprise = (effectif_entreprise_drom < 50)
+        # Valorisation des paramètres d'intérêt
+        seuil = lodeom_competitivite_renforcee.seuil
+        plafond = lodeom_competitivite_renforcee.plafond
+        tx_max = (
+            lodeom_competitivite_renforcee.entreprises_de_50_salaries_et_plus * not_(petite_entreprise)
+            + lodeom_competitivite_renforcee.entreprises_de_moins_de_50_salaries * petite_entreprise
+        )
+        # Ratio smic/salaire
+        ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
 
-            return eligibilite_lodeom_competitivite_renforcee * taux_exoneration * assiette_allegement
+        # Formule de calcul du taux d'exonération
+        # Règle d'arrondi : 4 décimales la plus proche
+        taux_exoneration = round_(tx_max * min_(1, seuil / (plafond-seuil) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
+
+        return eligibilite_lodeom_competitivite_renforcee * taux_exoneration * assiette_allegement
 
 
   # Définition des types d'occupation de salariés
@@ -1279,7 +1296,7 @@ class eligibilite_lodeom_innovation_croissance(Variable) :
     value_type=bool
     entity=Individu
     label="Eligibilité au dispositif innovation et croissance de LODEOM"
-    reference=''
+    reference='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683758'
     definition_period=MONTH
     set_input=set_input_dispatch_by_period
     # Sont concernés
@@ -1315,47 +1332,43 @@ class exoneration_lodeom_innovation_croissance(Variable) :
     value_type=float
     entity=Individu
     label="Montant d'exonération associé au dispositif innovation et croissance de LODEOM"
-    reference=''
+    reference='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041404691'
     definition_period=MONTH
     set_input=set_input_divide_by_period
 
     def formula_2019_01_01(individu, period, parameters) :
         # Extraction des variables d'intérêt
         eligibilite_lodeom_innovation_croissance = individu('eligibilite_lodeom_innovation_croissance', period)
-        # Distinction suivant la période
-        if period.start.date <= date(2018, 12, 31) :
-            return  eligibilite_lodeom_innovation_croissance*0
-        else :
-            effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
-            smic_proratise = individu('smic_proratise', period)
-            assiette_allegement = individu('assiette_allegement', period)
-            # Définition de la petite entreprise
-            petite_entreprise = (effectif_entreprise_drom < 50)
-            # Extraction des paramètres d'intérêt
-            lodeom_innovation_croissance = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.lodeom_innovation_croissance
-            seuil = lodeom_innovation_croissance.seuil
-            seuil_intermediaire = lodeom_innovation_croissance.seuil_intermediaire
-            plafond = lodeom_innovation_croissance.plafond
-            tx_max = (
-                lodeom_innovation_croissance.entreprises_de_50_salaries_et_plus * not_(petite_entreprise)
-                + lodeom_innovation_croissance.entreprises_de_moins_de_50_salaries * petite_entreprise
-            )
-            # Ratio smic/salaire
-            ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
-            
-            # Formule de calcul du taux d'exonération
-            # Règle d'arrondi : 4 décimales la plus proche
-            # Calcul du taux d'exonération entre le seuil et le seuil intermédiaire
-            taux_exoneration_seuil_intermediaire = round_(tx_max * seuil / seuil_intermediaire, 4)
-            
-            # Taux d'exonération entre le seuil intermédiaire et le plafond
-            taux_exoneration = round_(taux_exoneration_seuil_intermediaire * min_(1, seuil_intermediaire / (plafond-seuil_intermediaire) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
+        effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
+        smic_proratise = individu('smic_proratise', period)
+        assiette_allegement = individu('assiette_allegement', period)
+        # Définition de la petite entreprise
+        petite_entreprise = (effectif_entreprise_drom < 50)
+        # Extraction des paramètres d'intérêt
+        lodeom_innovation_croissance = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.lodeom_innovation_croissance
+        seuil = lodeom_innovation_croissance.seuil
+        seuil_intermediaire = lodeom_innovation_croissance.seuil_intermediaire
+        plafond = lodeom_innovation_croissance.plafond
+        tx_max = (
+            lodeom_innovation_croissance.entreprises_de_50_salaries_et_plus * not_(petite_entreprise)
+            + lodeom_innovation_croissance.entreprises_de_moins_de_50_salaries * petite_entreprise
+        )
+        # Ratio smic/salaire
+        ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
+        
+        # Formule de calcul du taux d'exonération
+        # Règle d'arrondi : 4 décimales la plus proche
+        # Calcul du taux d'exonération entre le seuil et le seuil intermédiaire
+        taux_exoneration_seuil_intermediaire = round_(tx_max * seuil / seuil_intermediaire, 4)
+        
+        # Taux d'exonération entre le seuil intermédiaire et le plafond
+        taux_exoneration = round_(taux_exoneration_seuil_intermediaire * min_(1, seuil_intermediaire / (plafond-seuil_intermediaire) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
 
-            # Calculant du montant d'exonération
-            montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil), tx_max * seuil * smic_proratise, tx_max * assiette_allegement)
-            montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil_intermediaire), taux_exoneration * assiette_allegement, montant_exoneration)
-            
-            return eligibilite_lodeom_innovation_croissance * montant_exoneration
+        # Calculant du montant d'exonération
+        montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil), tx_max * seuil * smic_proratise, tx_max * assiette_allegement)
+        montant_exoneration = np.where((assiette_allegement/smic_proratise >= seuil_intermediaire), taux_exoneration * assiette_allegement, montant_exoneration)
+        
+        return eligibilite_lodeom_innovation_croissance * montant_exoneration
 
 
 # Définition du montant d'exonération LODEOM quelque soit le dispositif
@@ -1363,7 +1376,7 @@ class exoneration_lodeom(Variable):
     value_type=float
     entity=Individu
     label="Montant d'exonération LODEOM"
-    reference=''
+    reference='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041404691'
     definition_period=MONTH
     set_input=set_input_divide_by_period
 
