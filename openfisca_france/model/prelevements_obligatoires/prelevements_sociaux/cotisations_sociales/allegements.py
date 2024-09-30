@@ -330,12 +330,14 @@ class allegement_general(Variable):
     # Attention : cet allègement a des règles de cumul spécifiques
 
     def formula_2005_07_01(individu, period, parameters):
+        # Extraction des caractéristiques d'intérêt de l'individu
         stagiaire = individu('stagiaire', period)
         apprenti = individu('apprenti', period)
         allegement_mode_recouvrement = individu('allegement_general_mode_recouvrement', period)
         exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
         exoneration_cotisations_employeur_tode = individu('exoneration_cotisations_employeur_tode', period)
-        non_cumulee = not_(exoneration_cotisations_employeur_jei + exoneration_cotisations_employeur_tode)
+        exoneration_lodeom = individu('exoneration_lodeom', period)
+        non_cumulee = not_(exoneration_cotisations_employeur_jei+exoneration_cotisations_employeur_tode+exoneration_lodeom)
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
