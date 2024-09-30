@@ -856,7 +856,7 @@ class eligibilite_lodeom_competitivite(Variable) :
     # - les employeurs de moins de 11 salariés
     # - les employeurs des secteurs du bâtiment, des travaux publics, des transports aériens pour certaines liaisons et ceux assurant la desserte maritime entre certains points
 
-    def formula(individu, period, parameters) :
+    def formula_2009_01_01(individu, period, parameters) :
         # Extraction des variables d'intérêt
         depcom_entreprise = individu('depcom_entreprise', period)
         effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
@@ -874,28 +874,42 @@ class eligibilite_lodeom_competitivite(Variable) :
 
         # Distinction suivant la période
         # Avant le 1er janvier 2019 tous les salariés dans les DROM sont éligibles
-        if period.start.date <= date(2018, 12, 31) :
-            # Définition de l'appartenance à certains secteurs
-            secteur_presse = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.presse
-            secteur_audiovisuel = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.audiovisuel
-            secteur_divers_eligible = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.divers
+        # Définition de l'appartenance à certains secteurs
+        secteur_presse = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.presse
+        secteur_audiovisuel = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.audiovisuel
+        secteur_divers_eligible = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.divers
 
-            # Définition de l'éligibilité
-            eligibilite = dep_drom * (effectif_moins_11_salaries + secteur_batiment + secteur_aerien + secteur_maritime + secteur_presse + secteur_audiovisuel + secteur_divers_eligible)
+        # Définition de l'éligibilité
+        eligibilite = dep_drom * (effectif_moins_11_salaries + secteur_batiment + secteur_aerien + secteur_maritime + secteur_presse + secteur_audiovisuel + secteur_divers_eligible)
 
-            return eligibilite
+        return eligibilite
+        
+    def formula_2019_01_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        depcom_entreprise = individu('depcom_entreprise', period)
+        effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
+        secteur_activite_employeur_lodeom = individu('secteur_activite_employeur_lodeom', period)
+
+        # Définition de l'appartenance à la Guadeloupe, la Guyane, la Martinique et la Réunion
+        dep_drom = np.array([depcom_cell[:3] in ['971', '972', '973', '974'] if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] in ['971', '972', '973', '974'] for depcom_cell in depcom_entreprise])
+
+        # Définition de l'éligibilité suivant l'effectif de l'entreprise
+        effectif_moins_11_salaries = effectif_entreprise_drom < 11 # Ajouter dans les paramètres
+        # Définition de l'appartenance à certains secteurs
+        secteur_batiment = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.batiment
+        secteur_aerien = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.transport_aerien
+        secteur_maritime = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.desserte_maritime
         # A partir du premier janvier 2019, restriction à certains secteurs pour les plus de 11 salariés
-        else :
-            # Extraction des variables d'intérêt
-            perfectionnement_actif = individu('perfectionnement_actif', period)
+        # Extraction des variables d'intérêt
+        perfectionnement_actif = individu('perfectionnement_actif', period)
 
-            # Définition de l'éligibilité au régime de perfectionnement actif
-            beneficiaire_perfectionnement_actif = perfectionnement_actif == TypesPerfectionnementActif.beneficiaire
-            
-            # Définition de l'éligibilité
-            eligibilite = dep_drom * (effectif_moins_11_salaries + secteur_batiment + secteur_aerien + secteur_maritime + beneficiaire_perfectionnement_actif)
+        # Définition de l'éligibilité au régime de perfectionnement actif
+        beneficiaire_perfectionnement_actif = perfectionnement_actif == TypesPerfectionnementActif.beneficiaire
+        
+        # Définition de l'éligibilité
+        eligibilite = dep_drom * (effectif_moins_11_salaries + secteur_batiment + secteur_aerien + secteur_maritime + beneficiaire_perfectionnement_actif)
 
-            return eligibilite
+        return eligibilite
 
 
 
@@ -909,7 +923,7 @@ class exoneration_lodeom_competitivite(Variable) :
     definition_period=MONTH
     set_input=set_input_divide_by_period
 
-    def formula(individu, period, parameters) :
+    def formula_2009_01_01(individu, period, parameters) :
         # Extraction des variables d'intérêt
         eligibilite_lodeom_competitivite = individu('eligibilite_lodeom_competitivite', period)
         effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
@@ -918,102 +932,113 @@ class exoneration_lodeom_competitivite(Variable) :
         # Extraction des paramètres d'intérêt
         lodeom_competitivite = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.lodeom_competitivite
 
-        # A partir du 1 janvier 2009
-        if date(2009, 1, 1) <= period.start.date <= date(2009, 4, 30) :
-            # Définition de la petite entreprise
-            petite_entreprise = (effectif_entreprise_drom < 11)
-            # Valorisation des paramètres d'intérêt
-            # Moins de 11 salariés
-            seuil_moins_de_11_salaries = lodeom_competitivite.seuil_entreprises_de_moins_de_11_salaries
-            pente_moins_de_11_salaries = lodeom_competitivite.pente_entreprises_de_moins_de_11_salaries
-            plafond_moins_de_11_salaries = lodeom_competitivite.plafond_entreprises_de_moins_de_11_salaries
-            # Plus de 11 salariés
-            seuil_11_salaries_et_plus = lodeom_competitivite.seuil_entreprises_de_11_salaries_et_plus
-            pente_11_salaries_et_plus = lodeom_competitivite.pente_entreprises_de_11_salaries_et_plus
-            plafond_11_salaries_et_plus = lodeom_competitivite.plafond_entreprises_de_11_salaries_et_plus
-            # Communs
-            taux = lodeom_competitivite.taux
+        # Définition de la petite entreprise
+        petite_entreprise = (effectif_entreprise_drom < 11)
+        # Valorisation des paramètres d'intérêt
+        # Moins de 11 salariés
+        seuil_moins_de_11_salaries = lodeom_competitivite.seuil_entreprises_de_moins_de_11_salaries
+        pente_moins_de_11_salaries = lodeom_competitivite.pente_entreprises_de_moins_de_11_salaries
+        plafond_moins_de_11_salaries = lodeom_competitivite.plafond_entreprises_de_moins_de_11_salaries
+        # Plus de 11 salariés
+        seuil_11_salaries_et_plus = lodeom_competitivite.seuil_entreprises_de_11_salaries_et_plus
+        pente_11_salaries_et_plus = lodeom_competitivite.pente_entreprises_de_11_salaries_et_plus
+        plafond_11_salaries_et_plus = lodeom_competitivite.plafond_entreprises_de_11_salaries_et_plus
+        # Communs
+        taux = lodeom_competitivite.taux
 
-            # Définition des paramètres applicables
-            seuil = (
-                seuil_11_salaries_et_plus * not_(petite_entreprise)
-                + seuil_moins_de_11_salaries * petite_entreprise
-            )
-            plafond = (
-                plafond_11_salaries_et_plus * not_(petite_entreprise)
-                + plafond_moins_de_11_salaries * petite_entreprise
-            )
-            pente = (
-                pente_11_salaries_et_plus * not_(petite_entreprise)
-                + pente_moins_de_11_salaries * petite_entreprise
-            )
-            # Ratio smic/salaire
-            ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
+        # Définition des paramètres applicables
+        seuil = (
+            seuil_11_salaries_et_plus * not_(petite_entreprise)
+            + seuil_moins_de_11_salaries * petite_entreprise
+        )
+        plafond = (
+            plafond_11_salaries_et_plus * not_(petite_entreprise)
+            + plafond_moins_de_11_salaries * petite_entreprise
+        )
+        pente = (
+            pente_11_salaries_et_plus * not_(petite_entreprise)
+            + pente_moins_de_11_salaries * petite_entreprise
+        )
+        # Ratio smic/salaire
+        ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
 
-            # Formule de calcul du taux d'exonération
-            # Règle d'arrondi : 4 décimales la plus proche
-            taux_exoneration = round_(taux * min_(1, seuil / pente * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
+        # Formule de calcul du taux d'exonération
+        # Règle d'arrondi : 4 décimales la plus proche
+        taux_exoneration = round_(taux * min_(1, seuil / pente * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
 
-            return eligibilite_lodeom_competitivite * taux_exoneration * assiette_allegement
+        return eligibilite_lodeom_competitivite * taux_exoneration * assiette_allegement
 
-        # Entre le 1er mai 2009 et le 31 décembre 2018
-        elif  date(2009, 4, 30) < period.start.date <= date(2018, 12, 31) :
-            # Extraction des variables d'intérêt
-            
-            # Ratio smic/salaire
-            ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
-            # Distinction suivant l'effectif de l'entreprise
-            # Valorisation des paramètres d'intérêt
-            # Moins de 11 salariés
-            seuil_moins_de_11_salaries = lodeom_competitivite.seuil_entreprises_de_moins_de_11_salaries
-            seuil_intermediaire_moins_de_11_salaries = lodeom_competitivite.seuil_intermediaire_entreprises_de_moins_de_11_salaries
-            pente_moins_de_11_salaries = lodeom_competitivite.pente_entreprises_de_moins_de_11_salaries
-            plafond_moins_de_11_salaries = lodeom_competitivite.plafond_entreprises_de_moins_de_11_salaries
-            # Plus de 11 salariés
-            seuil_11_salaries_et_plus = lodeom_competitivite.seuil_entreprises_de_11_salaries_et_plus
-            pente_11_salaries_et_plus = lodeom_competitivite.pente_entreprises_de_11_salaries_et_plus
-            plafond_11_salaries_et_plus = lodeom_competitivite.plafond_entreprises_de_11_salaries_et_plus
-            # Communs
-            taux = lodeom_competitivite.taux
-            
+    def formula_2009_05_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        eligibilite_lodeom_competitivite = individu('eligibilite_lodeom_competitivite', period)
+        effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
+        smic_proratise = individu('smic_proratise', period)
+        assiette_allegement = individu('assiette_allegement', period) # individu('salaire_de_base', period)
+        # Extraction des paramètres d'intérêt
+        lodeom_competitivite = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.lodeom_competitivite
 
-            # Calculs moins de 11 salariés
-            # Calcul du taux d'exonération entre le seuil intermédiaire et le plafond
-            taux_exoneration_intermediaire_plafond = round_(taux * min_(1, seuil_moins_de_11_salaries / pente_moins_de_11_salaries * max_(plafond_moins_de_11_salaries * ratio_smic_salaire - 1, 0)), 4)
-            # Calcul des montants d'exonération
-            montant_exoneration_moins_de_11_salaries = np.where((assiette_allegement/smic_proratise >= seuil_moins_de_11_salaries), taux * seuil_moins_de_11_salaries * smic_proratise, taux * assiette_allegement)
-            montant_exoneration_moins_de_11_salaries = np.where((assiette_allegement/smic_proratise >= seuil_intermediaire_moins_de_11_salaries), taux_exoneration_intermediaire_plafond * assiette_allegement, montant_exoneration_moins_de_11_salaries)
-            
-            # Calculs plus de 11 salariés
-            # Calcul du taux d'exonération
-            taux_exoneration = round_(taux * min_(1, seuil_11_salaries_et_plus / pente_11_salaries_et_plus * max_(plafond_11_salaries_et_plus * ratio_smic_salaire - 1, 0)), 4)
-            # Calcul du montant d'exonération
-            montant_exoneration_11_salaries_et_plus = taux_exoneration * assiette_allegement
+        # Extraction des variables d'intérêt
+        # Ratio smic/salaire
+        ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
+        # Distinction suivant l'effectif de l'entreprise
+        # Valorisation des paramètres d'intérêt
+        # Moins de 11 salariés
+        seuil_moins_de_11_salaries = lodeom_competitivite.seuil_entreprises_de_moins_de_11_salaries
+        seuil_intermediaire_moins_de_11_salaries = lodeom_competitivite.seuil_intermediaire_entreprises_de_moins_de_11_salaries
+        pente_moins_de_11_salaries = lodeom_competitivite.pente_entreprises_de_moins_de_11_salaries
+        plafond_moins_de_11_salaries = lodeom_competitivite.plafond_entreprises_de_moins_de_11_salaries
+        # Plus de 11 salariés
+        seuil_11_salaries_et_plus = lodeom_competitivite.seuil_entreprises_de_11_salaries_et_plus
+        pente_11_salaries_et_plus = lodeom_competitivite.pente_entreprises_de_11_salaries_et_plus
+        plafond_11_salaries_et_plus = lodeom_competitivite.plafond_entreprises_de_11_salaries_et_plus
+        # Communs
+        taux = lodeom_competitivite.taux
+    
+        # Calculs moins de 11 salariés
+        # Calcul du taux d'exonération entre le seuil intermédiaire et le plafond
+        taux_exoneration_intermediaire_plafond = round_(taux * min_(1, seuil_moins_de_11_salaries / pente_moins_de_11_salaries * max_(plafond_moins_de_11_salaries * ratio_smic_salaire - 1, 0)), 4)
+        # Calcul des montants d'exonération
+        montant_exoneration_moins_de_11_salaries = np.where((assiette_allegement/smic_proratise >= seuil_moins_de_11_salaries), taux * seuil_moins_de_11_salaries * smic_proratise, taux * assiette_allegement)
+        montant_exoneration_moins_de_11_salaries = np.where((assiette_allegement/smic_proratise >= seuil_intermediaire_moins_de_11_salaries), taux_exoneration_intermediaire_plafond * assiette_allegement, montant_exoneration_moins_de_11_salaries)
+        
+        # Calculs plus de 11 salariés
+        # Calcul du taux d'exonération
+        taux_exoneration = round_(taux * min_(1, seuil_11_salaries_et_plus / pente_11_salaries_et_plus * max_(plafond_11_salaries_et_plus * ratio_smic_salaire - 1, 0)), 4)
+        # Calcul du montant d'exonération
+        montant_exoneration_11_salaries_et_plus = taux_exoneration * assiette_allegement
 
-            # Calcul du montant total d'exonération
-            montant_exoneration = np.where(effectif_entreprise_drom < 11, montant_exoneration_moins_de_11_salaries, montant_exoneration_11_salaries_et_plus)
+        # Calcul du montant total d'exonération
+        montant_exoneration = np.where(effectif_entreprise_drom < 11, montant_exoneration_moins_de_11_salaries, montant_exoneration_11_salaries_et_plus)
 
-            return  eligibilite_lodeom_competitivite * montant_exoneration
+        return eligibilite_lodeom_competitivite * montant_exoneration
+
+    def formula_2019_01_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        eligibilite_lodeom_competitivite = individu('eligibilite_lodeom_competitivite', period)
+        effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
+        smic_proratise = individu('smic_proratise', period)
+        assiette_allegement = individu('assiette_allegement', period) # individu('salaire_de_base', period)
+        # Extraction des paramètres d'intérêt
+        lodeom_competitivite = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.lodeom_competitivite
 
         # A partir du 1er janvier 2019
-        else :
-            # Définition de la petite entreprise
-            petite_entreprise = (effectif_entreprise_drom < 50)
-            # Valorisation des paramèetres d'intérêt
-            seuil = lodeom_competitivite.seuil
-            plafond = lodeom_competitivite.plafond
-            tx_max = (
-                lodeom_competitivite.entreprises_de_50_salaries_et_plus * not_(petite_entreprise)
-                + lodeom_competitivite.entreprises_de_moins_de_50_salaries * petite_entreprise
-            )
-            # Ratio smic/salaire
-            ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
+        # Définition de la petite entreprise
+        petite_entreprise = (effectif_entreprise_drom < 50)
+        # Valorisation des paramèetres d'intérêt
+        seuil = lodeom_competitivite.seuil
+        plafond = lodeom_competitivite.plafond
+        tx_max = (
+            lodeom_competitivite.entreprises_de_50_salaries_et_plus * not_(petite_entreprise)
+            + lodeom_competitivite.entreprises_de_moins_de_50_salaries * petite_entreprise
+        )
+        # Ratio smic/salaire
+        ratio_smic_salaire = smic_proratise/(assiette_allegement+1e-16)
 
-            # Formule de calcul du taux d'exonération
-            # Règle d'arrondi : 4 décimales la plus proche
-            taux_exoneration = round_(tx_max * min_(1, seuil / (plafond-seuil) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
+        # Formule de calcul du taux d'exonération
+        # Règle d'arrondi : 4 décimales la plus proche
+        taux_exoneration = round_(tx_max * min_(1, seuil / (plafond-seuil) * max_(plafond * ratio_smic_salaire - 1, 0)), 4)
 
-            return eligibilite_lodeom_competitivite * taux_exoneration * assiette_allegement
+        return eligibilite_lodeom_competitivite * taux_exoneration * assiette_allegement
 
 
 # Types de secteurs d'activité de l'employeur
@@ -1057,7 +1082,7 @@ class eligibilite_199undeciesBCGI(Variable):
     definition_period=MONTH
     set_input=set_input_dispatch_by_period
 
-    def formula(individu, period, parameters) :
+    def formula_2009_01_01(individu, period, parameters) :
         # Extraction des variables d'intérêt
         secteur_activite_employeur_199undeciesBCGI = individu('secteur_activite_employeur_199undeciesBCGI', period)
         depcom_entreprise = individu('depcom_entreprise', period)
@@ -1071,18 +1096,32 @@ class eligibilite_199undeciesBCGI(Variable):
         # Définition de l'éligibilite
         eligibilite = dep_eligible * secteur_eligible
 
+        return eligibilite
+
+    def formula_2014_07_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        secteur_activite_employeur_199undeciesBCGI = individu('secteur_activite_employeur_199undeciesBCGI', period)
+        depcom_entreprise = individu('depcom_entreprise', period)
+
+        # Définition de l'appartenance à la Guadeloupe, la Guyane, la Martinique et la Réunion, à Mayotte, à Saint-Pierre et Miquelon, en Nouvelle-Calédonie, En Polynésie Française, à Saint Martin, à Saint Barthélémy, à Wallis-et-Futuna, dans les Terres australes et antarctiques françaises
+        dep_eligible = np.array([depcom_cell[:3] in ['971', '972', '973', '974', '975', '976', '977', '978', '984', '986', '987', '988'] if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] in ['971', '972', '973', '974', '975', '976', '977', '978', '984', '986', '987', '988'] for depcom_cell in depcom_entreprise])
+        
+        # Critère sur le secteur d'activité
+        secteur_eligible = secteur_activite_employeur_199undeciesBCGI == TypesSecteurActivite199UndeciesBCGI.autre_secteur
+
+        # Définition de l'éligibilite
+        eligibilite = dep_eligible * secteur_eligible
         # A partir du 1er juillet 2014, il y a un critère additionnel sur le chiffre d'affaire dans les départements d'outre-mer
-        if period.start.date >= date(2014, 7, 1) :
-            # Définition de l'appartenance à un département d'outre-mer (Guadeloupe, la Guyane, la Martinique et la Réunion, à Mayotte)
-            dep_drom = np.array([depcom_cell[:3] in ['971', '972', '973', '974', '976'] if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] in ['971', '972', '973', '974', '976'] for depcom_cell in depcom_entreprise])
-            # Extraction de la variable d'intérêt
-            entreprise_chiffre_affaire = individu('entreprise_chiffre_affaire', period)
-            # Extraction des paramètres d'intérêt
-            seuil = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.reduction_impot_199undeciesBCGI.seuil
-            # Critère sur le chiffre d'affaires
-            chiffre_affaires_inferieur_seuil = entreprise_chiffre_affaire < seuil
-            # Eligibilité
-            eligibilite = not_(dep_drom) * eligibilite + dep_drom*chiffre_affaires_inferieur_seuil
+        # Définition de l'appartenance à un département d'outre-mer (Guadeloupe, la Guyane, la Martinique et la Réunion, à Mayotte)
+        dep_drom = np.array([depcom_cell[:3] in ['971', '972', '973', '974', '976'] if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] in ['971', '972', '973', '974', '976'] for depcom_cell in depcom_entreprise])
+        # Extraction de la variable d'intérêt
+        entreprise_chiffre_affaire = individu('entreprise_chiffre_affaire', period)
+        # Extraction des paramètres d'intérêt
+        seuil = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.reduction_impot_199undeciesBCGI.seuil
+        # Critère sur le chiffre d'affaires
+        chiffre_affaires_inferieur_seuil = entreprise_chiffre_affaire < seuil
+        # Eligibilité
+        eligibilite = not_(dep_drom) * eligibilite + dep_drom*chiffre_affaires_inferieur_seuil
         
         return eligibilite        
 
@@ -1099,7 +1138,7 @@ class eligibilite_lodeom_competitivite_renforcee(Variable) :
     # - les employeurs de moins de 250 salariés au chiffre d'affaire annuel inférieur à 50 millions d'euros
     # - les employeurs des secteurs du bâtiment, des travaux publics, des transports aériens pour certaines liaisons et ceux assurant la desserte maritime entre certains points
 
-    def formula(individu, period, parameters) :
+    def formula_2009_01_01(individu, period, parameters) :
         # Extraction des variables d'intérêt
         effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
         entreprise_chiffre_affaire = individu('entreprise_chiffre_affaire', period)
@@ -1119,45 +1158,101 @@ class eligibilite_lodeom_competitivite_renforcee(Variable) :
         # Définition de l'éligibilité
         eligibilite = dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m *(secteur_divers_eligible + beneficiaire_perfectionnement_actif)
 
-        # Définition de l'éligibilité
-        # if date() :
-        
-        # Avant le 1er janvier 2019
-        if period.start.date <= date(2018, 12, 31) :
-            # Ajout de l'éligibilité si éligible au 199 undecies B
-            eligibilite += dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m * eligibilite_199undeciesBCGI
-        # Entre le 1er janvier 2019 et le 31 décembre 2019
-        elif date(2019,1, 1) <= period.start.date <= date(2019, 12, 31) :
-            # Appartenance au département de la Guyane
-            dep_guyane = np.array([depcom_cell[:3] == '973' if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] == '973' for depcom_cell in depcom_entreprise])
-            # Appartenance au secteur "comptabilité-conseil"
-            secteur_compta_conseil =  secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.compta_conseil
-            # Ajout de l'éligibilité
-            eligibilite += dep_guyane * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m * (secteur_compta_conseil + eligibilite_199undeciesBCGI)
-        # Entre le 1er janvier 2020 et le 31 décembre 2020
-        elif date(2020, 1, 1) <= period.start.date <= date(2020, 12, 31):
-            # Appartenance au département de la Guyane
-            dep_guyane = np.array([depcom_cell[:3] == '973' if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] == '973' for depcom_cell in depcom_entreprise])
-            # Appartenance au secteur "comptabilité-conseil"
-            secteur_compta_conseil =  secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.compta_conseil
-            # Appartenance au secteur de la presse
-            secteur_presse = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.presse
-            # Ajout du secteur de la presse
-            eligibilite += dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m * (secteur_presse + dep_guyane * (secteur_compta_conseil + eligibilite_199undeciesBCGI))
+        # Ajout de l'éligibilité si éligible au 199 undecies B
+        eligibilite += dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m * eligibilite_199undeciesBCGI
 
-        # Après le 1er janvier 2021
-        elif date(2021, 1, 1) <= period.start.date :
-            # Appartenance au département de la Guyane
-            dep_guyane = np.array([depcom_cell[:3] == '973' if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] == '973' for depcom_cell in depcom_entreprise])
-            # Appartenance au secteur "comptabilité-conseil"
-            secteur_compta_conseil =  secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.compta_conseil
-            # Appartenance au secteur audiovisuel
-            secteur_audiovisuel = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.audiovisuel
-            # Appartenance au secteur de la presse
-            secteur_presse = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.presse
-            # Ajout du secteur audiovisuel parmi les secteurs éligibles
-            eligibilite += dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m * (secteur_audiovisuel + secteur_presse + dep_guyane * (secteur_compta_conseil + eligibilite_199undeciesBCGI))
+        return eligibilite
+    
+    def formula_2019_01_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
+        entreprise_chiffre_affaire = individu('entreprise_chiffre_affaire', period)
+        secteur_activite_employeur_lodeom = individu('secteur_activite_employeur_lodeom', period)
+        depcom_entreprise = individu('depcom_entreprise', period)
+        eligibilite_199undeciesBCGI = individu('eligibilite_199undeciesBCGI', period)
         
+        # Définition de l'appartenance à la Guadeloupe, la Guyane, la Martinique et la Réunion
+        dep_drom = np.array([depcom_cell[:3] in ['971', '972', '973', '974'] if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] in ['971', '972', '973', '974'] for depcom_cell in depcom_entreprise])
+        
+        # Définition de l'éligibilité suivant l'effectif de l'entreprise
+        effectif_moins_250_salaries = effectif_entreprise_drom < 250
+        chiffre_affaire_inferieur_50m = entreprise_chiffre_affaire < 50000000
+        # Définition de l'appartenance à certains secteurs
+        secteur_divers_eligible = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.divers
+        beneficiaire_perfectionnement_actif = perfectionnement_actif == TypesPerfectionnementActif.beneficiaire
+        # Définition de l'éligibilité
+        eligibilite = dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m *(secteur_divers_eligible + beneficiaire_perfectionnement_actif)
+
+        # Appartenance au département de la Guyane
+        dep_guyane = np.array([depcom_cell[:3] == '973' if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] == '973' for depcom_cell in depcom_entreprise])
+        # Appartenance au secteur "comptabilité-conseil"
+        secteur_compta_conseil =  secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.compta_conseil
+        # Ajout de l'éligibilité
+        eligibilite += dep_guyane * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m * (secteur_compta_conseil + eligibilite_199undeciesBCGI)
+
+        return eligibilite
+
+    def formula_2020_01_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
+        entreprise_chiffre_affaire = individu('entreprise_chiffre_affaire', period)
+        secteur_activite_employeur_lodeom = individu('secteur_activite_employeur_lodeom', period)
+        depcom_entreprise = individu('depcom_entreprise', period)
+        eligibilite_199undeciesBCGI = individu('eligibilite_199undeciesBCGI', period)
+        
+        # Définition de l'appartenance à la Guadeloupe, la Guyane, la Martinique et la Réunion
+        dep_drom = np.array([depcom_cell[:3] in ['971', '972', '973', '974'] if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] in ['971', '972', '973', '974'] for depcom_cell in depcom_entreprise])
+        
+        # Définition de l'éligibilité suivant l'effectif de l'entreprise
+        effectif_moins_250_salaries = effectif_entreprise_drom < 250
+        chiffre_affaire_inferieur_50m = entreprise_chiffre_affaire < 50000000
+        # Définition de l'appartenance à certains secteurs
+        secteur_divers_eligible = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.divers
+        beneficiaire_perfectionnement_actif = perfectionnement_actif == TypesPerfectionnementActif.beneficiaire
+        # Définition de l'éligibilité
+        eligibilite = dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m *(secteur_divers_eligible + beneficiaire_perfectionnement_actif)
+
+        # Appartenance au département de la Guyane
+        dep_guyane = np.array([depcom_cell[:3] == '973' if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] == '973' for depcom_cell in depcom_entreprise])
+        # Appartenance au secteur "comptabilité-conseil"
+        secteur_compta_conseil =  secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.compta_conseil
+        # Appartenance au secteur de la presse
+        secteur_presse = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.presse
+        # Ajout du secteur de la presse
+        eligibilite += dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m * (secteur_presse + dep_guyane * (secteur_compta_conseil + eligibilite_199undeciesBCGI))
+
+        return eligibilite
+
+    def formula_2021_01_01(individu, period, parameters) :
+        # Extraction des variables d'intérêt
+        effectif_entreprise_drom = individu('effectif_entreprise_drom', period)
+        entreprise_chiffre_affaire = individu('entreprise_chiffre_affaire', period)
+        secteur_activite_employeur_lodeom = individu('secteur_activite_employeur_lodeom', period)
+        depcom_entreprise = individu('depcom_entreprise', period)
+        eligibilite_199undeciesBCGI = individu('eligibilite_199undeciesBCGI', period)
+        
+        # Définition de l'appartenance à la Guadeloupe, la Guyane, la Martinique et la Réunion
+        dep_drom = np.array([depcom_cell[:3] in ['971', '972', '973', '974'] if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] in ['971', '972', '973', '974'] for depcom_cell in depcom_entreprise])
+        
+        # Définition de l'éligibilité suivant l'effectif de l'entreprise
+        effectif_moins_250_salaries = effectif_entreprise_drom < 250
+        chiffre_affaire_inferieur_50m = entreprise_chiffre_affaire < 50000000
+        # Définition de l'appartenance à certains secteurs
+        secteur_divers_eligible = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.divers
+        beneficiaire_perfectionnement_actif = perfectionnement_actif == TypesPerfectionnementActif.beneficiaire
+        # Définition de l'éligibilité
+        eligibilite = dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m *(secteur_divers_eligible + beneficiaire_perfectionnement_actif)
+
+        # Appartenance au département de la Guyane
+        dep_guyane = np.array([depcom_cell[:3] == '973' if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8')[:3] == '973' for depcom_cell in depcom_entreprise])
+        # Appartenance au secteur "comptabilité-conseil"
+        secteur_compta_conseil = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.compta_conseil
+        # Appartenance au secteur audiovisuel
+        secteur_audiovisuel = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.audiovisuel
+        # Appartenance au secteur de la presse
+        secteur_presse = secteur_activite_employeur_lodeom == TypesSecteurActiviteLODEOM.presse
+        # Ajout du secteur audiovisuel parmi les secteurs éligibles
+        eligibilite += dep_drom * effectif_moins_250_salaries * chiffre_affaire_inferieur_50m * (secteur_audiovisuel + secteur_presse + dep_guyane * (secteur_compta_conseil + eligibilite_199undeciesBCGI))
         
         return eligibilite
 
