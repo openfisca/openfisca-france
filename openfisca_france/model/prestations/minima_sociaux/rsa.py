@@ -79,7 +79,7 @@ class rsa_base_ressources_individu(Variable):
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036393176&dateTexte=&categorieLien=id'
 
     def formula_2024_10(individu, period, parameters):
-        departement_experimentation_rsa = famille('departement_experimentation_rsa', period)
+        departement_experimentation_rsa = individu.famille('departement_experimentation_rsa', period)
         three_months_of_reference = where(departement_experimentation_rsa, last_3_months_offset_minus_1, period.last_3_months)
         return rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= three_months_of_reference, parameters=parameters)
 
@@ -481,7 +481,7 @@ class rsa_revenu_activite_individu(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2024_10(individu, period):
-        departement_experimentation_rsa = famille('departement_experimentation_rsa', period)
+        departement_experimentation_rsa = individu.famille('departement_experimentation_rsa', period)
         three_months_of_reference = where(departement_experimentation_rsa, last_3_months_offset_minus_1, period.last_3_months)
         return rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= three_months_of_reference)
 
