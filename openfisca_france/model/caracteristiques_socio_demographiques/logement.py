@@ -290,3 +290,11 @@ class residence(Variable):
                 ],
             default=TypesLieuResidence.metropole
             )
+
+class departement_experimentation_rsa(Variable):
+    value_type = bool
+    entity = Famille
+    default_value = False
+    label = "Résidence dans un département expérimentant le préremplissage du RSA"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
