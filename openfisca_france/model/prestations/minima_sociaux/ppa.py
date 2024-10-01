@@ -504,7 +504,7 @@ class ppa(Variable):
 
     def formula_2024_10(famille, period, parameters):
         departement_experimentation_rsa = famille('departement_experimentation_rsa', period)
-        three_months_of_reference = where(departement_experimentation_rsa, last_3_months_offset_minus_1, period.last_3_months)
+        three_months_of_reference = where(departement_experimentation_rsa, last_3_months_offset_minus_1(period), period.last_3_months)
         return ppa_base_formula(famille=famille, parameters=parameters, period=period, three_months_of_reference=three_months_of_reference)
 
     def formula_2016_01_01(famille, period, parameters):
