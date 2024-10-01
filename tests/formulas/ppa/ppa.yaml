@@ -1038,6 +1038,7 @@
     famille:
       parents: [parent1, parent2]
       ppa_eligibilite: true
+      departement_experimentation_rsa: true
       aide_logement:
         2025-01: 200
         2024-12: 200
