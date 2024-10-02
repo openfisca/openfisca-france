@@ -1,5 +1,20 @@
 # Changelog
 
+### 168.2.1 [2361](https://github.com/openfisca/openfisca-france/pull/2361)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2021.
+* Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/cs/ressources.py`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/css/`
+* Détails :
+  Prise en compte des abattements pour palier les revalorisations exceptionnelles de 
+  - l’allocation aux adultes handicapés (AAH),
+  - l’allocation de solidarité aux personnes âgées (ASPA),
+  - l’allocation supplémentaire vieillesse (ASV),
+  - l’allocation supplémentaire d’invalidité (ASI)
+
+
 ## 168.2.0 [2360](https://github.com/openfisca/openfisca-france/pull/2360)
 
 * Évolution du système socio-fiscal. | Correction d'un crash.
@@ -862,7 +877,7 @@ Zones impactées :
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2024.
-* Zones impactées :
+* Zones impactées : 
   - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/charges_deductibles/pensions_alimentaires/plafond.yaml`.
   - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/charges_deductibles/pensions_alimentaires/plafond.yaml`
 * Détails :
@@ -878,7 +893,7 @@ Zones impactées :
 
 ### 155.2.1 [2237](https://github.com/openfisca/openfisca-france/pull/2237)
 
-* Amélioration technique.
+* Amélioration technique. 
 * Périodes concernées : à partir du 01/07/2022.
 * Zones impactées : `openfisca_france/model/revenus/activite/salarie.py`
 * Détails :
@@ -886,9 +901,9 @@ Zones impactées :
 
 ### 155.2.0 [2232](https://github.com/openfisca/openfisca-france/pull/2232)
 
-* Amélioration technique.
+* Amélioration technique. 
 * Périodes concernées : toutes.
-* Zones impactées :
+* Zones impactées : 
   - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
   - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
   - `openfisca_france/model/prestations/minima_sociaux/anciens_ms.py`
@@ -4218,7 +4233,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
   - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/famille`
   - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/csa`
 * Détails :
-  - Met à jour certaines valeurs et références de cotisations employeur, dont : la contribution apprentissage, la contribution solidarité autonomie, les cotisations famille, la contribution au dialogue social et le versement transport
+  - Met à jour certaines valeurs et références de cotisations employeur, dont : la Contribution apprentissage, la Contribution solidarité autonomie, les cotisations famille, la contribution au dialogue social et le versement transport
 
 ## 80.4.0 [#1725](https://github.com/openfisca/openfisca-france/pull/1725)
 
