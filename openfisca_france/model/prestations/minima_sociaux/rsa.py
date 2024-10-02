@@ -79,7 +79,10 @@ class rsa_base_ressources_individu(Variable):
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036393176&dateTexte=&categorieLien=id'
 
     def formula_2024_10(individu, period, parameters):
-        return rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period), parameters=parameters)
+        departement_experimentation_rsa = individu.famille('departement_experimentation_rsa', period)
+        experimentation = rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period), parameters=parameters)
+        normal = rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months, parameters=parameters)
+        return where(departement_experimentation_rsa, experimentation, normal)
 
     def formula_2009_06_01(individu, period, parameters):
         return rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months, parameters=parameters)
@@ -146,8 +149,10 @@ class rsa_base_ressources_minima_sociaux(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2024_10(famille, period):
-        three_months_of_reference = last_3_months_offset_minus_1(period)
-        return calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference=three_months_of_reference)
+        departement_experimentation_rsa = famille('departement_experimentation_rsa', period)
+        experimentation = calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference= last_3_months_offset_minus_1(period))
+        normal = calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference= period.last_3_months)
+        return where(departement_experimentation_rsa, experimentation, normal)
 
     def formula(famille, period):
         three_previous_months = period.last_3_months
@@ -478,8 +483,10 @@ class rsa_revenu_activite_individu(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2024_10(individu, period):
-        period_m2_m4 = last_3_months_offset_minus_1(period)
-        return rsa_revenu_activite_individu_base_formula(individu= individu, period=period, three_months_of_reference=period_m2_m4)
+        departement_experimentation_rsa = individu.famille('departement_experimentation_rsa', period)
+        experimentation = rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period))
+        normal = rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months)
+        return where(departement_experimentation_rsa, experimentation, normal)
 
     def formula_2009_06(individu, period):
         last_3_months = period.last_3_months

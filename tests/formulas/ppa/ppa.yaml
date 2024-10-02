@@ -1038,6 +1038,7 @@
     famille:
       parents: [parent1, parent2]
       ppa_eligibilite: true
+      departement_experimentation_rsa: true
       aide_logement:
         2025-01: 200
         2024-12: 200
@@ -1073,6 +1074,48 @@
   output:
     ppa: 366
 
+- name: Cas PPA period > Oct 2024 et département hors expérimentation
+  period: 2025-01
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ppa_eligibilite: true
+      departement_experimentation_rsa: false
+      aide_logement:
+        2025-01: 200
+        2024-12: 200
+        2024-11: 200
+        2024-10: 200
+    individus:
+      parent1:
+        age: 40
+        salaire_net:
+          2024-11: 300
+          2024-10: 300
+          2024-09: 300
+      parent2:
+        age: 40
+        salaire_net:
+          2024-11: 300
+          2024-10: 300
+          2024-09: 300
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+          - parent1
+      foyer_fiscal_1:
+        declarants:
+          - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+          - parent1
+      menage_1:
+        personne_de_reference:
+          - parent2
+  output:
+    ppa: 244
 
 - name: Cas PPA period < Oct 2024 et ressources sur M-1 M-3 ( à jumeler avec un test avant Octobre 2024 en M-2 M-4)
   period: 2024-09
