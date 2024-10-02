@@ -506,7 +506,7 @@ class ppa(Variable):
         departement_experimentation_rsa = famille('departement_experimentation_rsa', period)
         experimentation = ppa_base_formula(famille=famille, parameters=parameters, period=period, three_months_of_reference=last_3_months_offset_minus_1(period))
         normal = ppa_base_formula(famille=famille, parameters=parameters, period=period, three_months_of_reference=period.last_3_months)
-        return departement_experimentation_rsa * experimentation + (1 - experimentation) * normal
+        return departement_experimentation_rsa * experimentation + (1 - departement_experimentation_rsa) * normal
 
     def formula_2016_01_01(famille, period, parameters):
         return ppa_base_formula(famille=famille, parameters=parameters, period=period, three_months_of_reference=period.last_3_months)
