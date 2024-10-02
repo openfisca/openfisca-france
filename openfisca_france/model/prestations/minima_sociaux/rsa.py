@@ -1,4 +1,4 @@
-from numpy import datetime64, logical_and as and_, logical_or as or_, array
+from numpy import datetime64, logical_and as and_, logical_or as or_
 
 from openfisca_core.periods import Period
 from openfisca_france.model.base import *
@@ -487,7 +487,6 @@ class rsa_revenu_activite_individu(Variable):
         experimentation = rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period))
         normal = rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months)
         return departement_experimentation_rsa * experimentation + (1 - departement_experimentation_rsa) * normal
-
 
     def formula_2009_06(individu, period):
         last_3_months = period.last_3_months
