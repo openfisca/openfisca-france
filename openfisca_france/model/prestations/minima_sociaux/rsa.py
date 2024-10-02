@@ -1,4 +1,4 @@
-from numpy import datetime64, logical_and as and_, logical_or as or_
+from numpy import datetime64, logical_and as and_, logical_or as or_, array
 
 from openfisca_core.periods import Period
 from openfisca_france.model.base import *
@@ -80,8 +80,9 @@ class rsa_base_ressources_individu(Variable):
 
     def formula_2024_10(individu, period, parameters):
         departement_experimentation_rsa = individu.famille('departement_experimentation_rsa', period)
-        three_months_of_reference = where(departement_experimentation_rsa, last_3_months_offset_minus_1(period), period.last_3_months)
-        return rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= three_months_of_reference, parameters=parameters)
+        experimentation = rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period), parameters=parameters)
+        normal = rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months, parameters=parameters)
+        return departement_experimentation_rsa * experimentation + (1 - departement_experimentation_rsa) * normal
 
     def formula_2009_06_01(individu, period, parameters):
         return rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months, parameters=parameters)
@@ -149,8 +150,9 @@ class rsa_base_ressources_minima_sociaux(Variable):
 
     def formula_2024_10(famille, period):
         departement_experimentation_rsa = famille('departement_experimentation_rsa', period)
-        three_months_of_reference = where(departement_experimentation_rsa, last_3_months_offset_minus_1(period), period.last_3_months)
-        return calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference=three_months_of_reference)
+        experimentation = calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference= last_3_months_offset_minus_1(period))
+        normal = calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference= period.last_3_months)
+        return departement_experimentation_rsa * experimentation + (1 - departement_experimentation_rsa) * normal
 
     def formula(famille, period):
         three_previous_months = period.last_3_months
@@ -482,8 +484,10 @@ class rsa_revenu_activite_individu(Variable):
 
     def formula_2024_10(individu, period):
         departement_experimentation_rsa = individu.famille('departement_experimentation_rsa', period)
-        three_months_of_reference = where(departement_experimentation_rsa, last_3_months_offset_minus_1(period), period.last_3_months)
-        return rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= three_months_of_reference)
+        experimentation = rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period))
+        normal = rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months)
+        return departement_experimentation_rsa * experimentation + (1 - departement_experimentation_rsa) * normal
+
 
     def formula_2009_06(individu, period):
         last_3_months = period.last_3_months
