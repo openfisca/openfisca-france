@@ -1,0 +1,185 @@
+- name: "CSS: Base de ressource ASPA d'une personne seule"
+  period: 2023-12
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1973-05-01
+    famille:
+      parents: [parent1]
+      aide_logement: 0
+      rsa: 0
+      aspa:
+        2023-10: 1071
+        2023-09: 0
+        2023-08: 1071
+        2023-07: 1071
+        2023-06: 1071
+        2023-05: 1071
+        2023-04: 1071
+        2023-03: 1071
+        2023-02: 1071
+        2023-01: 1071
+        2022-12: 1071
+        2022-11: 1071
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 11000
+
+- name: "CSS: Base de ressource ASPA d'une personne seule avec des ressources inférieures à l'abattement"
+  period: 2023-12
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1973-05-01
+    famille:
+      parents: [parent1]
+      aide_logement: 0
+      rsa: 0
+      aspa:
+        2023-10: 50
+        2023-09: 0
+        2023-08: 50
+        2023-07: 50
+        2023-06: 50
+        2023-05: 50
+        2023-04: 171
+        2023-03: 50
+        2023-02: 50
+        2023-01: 50
+        2022-12: 50
+        2022-11: 50
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 100
+
+- name: "CSS: Base de ressource de deux personnes"
+  period: 2023-12
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1961-01-01
+      parent2:
+        date_naissance: 1951-05-01
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      aspa:
+        2023-10: 1110
+        2023-09: 1110
+        2023-08: 0
+        2023-07: 1110
+        2023-06: 1110
+        2023-05: 1110
+        2023-04: 1110
+        2023-03: 1110
+        2023-02: 1110
+        2023-01: 1110
+        2022-12: 1110
+        2022-11: 1110
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 11000
+
+- name: "CSS: Base de ressource de cinq personnes"
+  period: 2023-12
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1994-01-01
+      parent2:
+        date_naissance: 1984-02-01
+      enfant1:
+        date_naissance: 2009-07-01
+      enfant2:
+        date_naissance: 2015-02-25
+      enfant3:
+        date_naissance: 2011-06-01
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement: 0
+      rsa: 0
+      af:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+      cf:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+      asf:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+      aspa:
+        2023-10: 1110
+        2023-09: 1110
+        2023-08: 0
+        2023-07: 1110
+        2023-06: 1110
+        2023-05: 1110
+        2023-04: 1110
+        2023-03: 1110
+        2023-02: 1110
+        2023-01: 1110
+        2022-12: 1110
+        2022-11: 1110
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 11000
