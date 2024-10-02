@@ -1,5 +1,13 @@
 # Changelog
 
+## 168.2.0 [2360](https://github.com/openfisca/openfisca-france/pull/2360)
+
+* Évolution du système socio-fiscal. | Correction d'un crash.
+* Périodes concernées : à partir du 01/10/2024.
+* Zones impactées : `model/prestations/minima_sociaux/ppa.`.
+* Détails :
+  - Une expérimentation sur le pré-remplissage des revenus pour calculer la prime d'activité et le RSA n'était pas limitée aux départments concernés dans https://github.com/openfisca/openfisca-france/pull/2337/files.
+
 ### 168.1.5 [2358](https://github.com/openfisca/openfisca-france/pull/2358)
 
 * Changement mineur.
