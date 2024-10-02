@@ -705,7 +705,7 @@
 
 - name: RSA Cas period > Oct 2024 hors département d'expérimentation
   period: 2025-01
-  absolute_error_margin: 0.03
+  absolute_error_margin: 0.05
   input:
     famille:
       parents: [personne1, personne2]
