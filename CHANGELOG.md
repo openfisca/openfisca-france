@@ -1,5 +1,15 @@
 # Changelog
 
+## 168.2.1 [2363](https://github.com/openfisca/openfisca-france/pull/2363)
+
+* Changement mineur.
+* Périodes concernées : à partir 2011.
+* Zones impactées : `impot_revenu/contributions_exceptionnelles/contribution_exceptionnelle_hauts_revenus.yaml`.
+* Détails :
+  - Ajoute last_review
+  - Modifie label
+  - Ajoute référence du Code
+
 ## 168.2.0 [2360](https://github.com/openfisca/openfisca-france/pull/2360)
 
 * Évolution du système socio-fiscal. | Correction d'un crash.
