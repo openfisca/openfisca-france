@@ -1,0 +1,39 @@
+- period: 2012-01
+  description: LODEOM Competitivite en 2012
+  relative_error_margin: 0.001
+  input:
+    effectif_entreprise: 500
+    salaire_de_base: 2500
+    eligibilite_lodeom_competitivite: true
+  output:
+    exoneration_lodeom_competitivite: 550.1296
+
+- period: 2015-01
+  description: LODEOM Competitivite en 2015
+  relative_error_margin: 0.001
+  input:
+    effectif_entreprise: 500
+    salaire_de_base: 2500
+    eligibilite_lodeom_competitivite: true
+  output:
+    exoneration_lodeom_competitivite: 573.39966
+
+- period: 2017-01
+  description: LODEOM Competitivite en 2017
+  relative_error_margin: 0.001
+  input:
+    effectif_entreprise: 500
+    salaire_de_base: 2500
+    eligibilite_lodeom_competitivite: true
+  output:
+    exoneration_lodeom_competitivite: 484.75
+
+- period: 2022-01
+  description: LODEOM Competitivite en 2022
+  relative_error_margin: 0.001
+  input:
+    effectif_entreprise: 500
+    salaire_de_base: 2500
+    eligibilite_lodeom_competitivite: true
+  output:
+    exoneration_lodeom_competitivite: 473.75
