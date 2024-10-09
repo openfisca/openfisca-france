@@ -22,13 +22,12 @@ build:
 requirements:
   host:
     - python
+    - numpy >=1.24.2,<2.0
     - pip
   run:
     {% for req in data.get('install_requires', []) %}
     - {{ req }}
     {% endfor %}
-    # - python >=3.9,<4.0
-    # - OpenFisca-Core >=40,<41
 
 
 test:
