@@ -16,7 +16,7 @@ jobs:
         openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -50,7 +50,7 @@ jobs:
         dependencies-version: [maximal]
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
@@ -79,7 +79,7 @@ jobs:
         python-version: ["3.9.9", "3.10.6"]
         openfisca-dependencies: [minimal, maximal]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -98,7 +98,7 @@ jobs:
   test-path-length:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -119,7 +119,7 @@ jobs:
         openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -148,7 +148,7 @@ jobs:
         dependencies-version: [maximal]
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -166,7 +166,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [ lint-files, test-python, test-yaml, test-api ] # Last job to run
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
@@ -186,7 +186,7 @@ jobs:
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
@@ -207,7 +207,7 @@ jobs:
       PYPI_USERNAME: __token__
       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
@@ -244,7 +244,7 @@ jobs:
           # Add conda-forge for OpenFisca-Core
           channels: openfisca,conda-forge
           activate-environment: true
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Update meta.yaml
         run: |
           python3 -m pip install requests argparse
