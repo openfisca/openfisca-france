@@ -268,14 +268,14 @@ jobs:
     runs-on: "windows-latest"
     needs: [ build-conda ]
     steps:
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
           python-version: "3.9.9"
           # Add conda-forge for OpenFisca-Core
           channels: openfisca,conda-forge
           activate-environment: true
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Test max path length
         run: "python3 openfisca_france/scripts/check_path_length.py"
       - name: Get version
@@ -298,7 +298,7 @@ jobs:
     runs-on: "ubuntu-20.04"
     needs: [ deploy ]
     steps:
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
           python-version: "3.9.9"
@@ -306,7 +306,7 @@ jobs:
           channels: conda-forge
           activate-environment: true
       - name: Get source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Get version
         run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
       # Get the last commit hash on the PR (-2 : before the merge commit)
