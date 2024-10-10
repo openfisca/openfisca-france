@@ -383,7 +383,7 @@
   period: 2023
   relative_error_margin: 0.01
   input:
-    categorie_salarie: [salarie, salarie, salarie]
+    categorie_salarie: [prive_non_cadre, prive_non_cadre, prive_non_cadre]
     # Pour un même salaire on fait varier la quotité de travail
     quotite_de_travail:
       2022: [12, 11.9, 12.1]

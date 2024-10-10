@@ -1,7 +1,7 @@
 all: test
 
 uninstall:
-	pip freeze | grep -v "^-e" | xargs pip uninstall -y
+	pip freeze | grep -v "^-e" | sed "s/@.*//" | xargs pip uninstall -y
 
 clean:
 	rm -rf build dist
