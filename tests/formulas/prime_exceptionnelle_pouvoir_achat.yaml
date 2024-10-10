@@ -1,7 +1,7 @@
 - name: Prime exceptionnelle de pouvoir d'achat d'un montant de 1000 € et un salaire mensuel de 5000 € #  (cas 4 : exonérée jusqu'à 1000 seulement)
   period: 2021
   input:
-    categorie_salarie: [salarie, salarie]
+    categorie_salarie: [prive_non_cadre, prive_non_cadre]
     prime_exceptionnelle_pouvoir_achat:
       2021: [1000, 0]
     salaire_de_base:
@@ -22,7 +22,7 @@
 - name: Prime exceptionnelle de pouvoir d'achat d'un montant de 1500 € sans accord d'interessement et effectif entreprise > 50 et 2000 € sans accord et effectif < 50 #  cas 4 : exonérée jusqu'à 1000 seulement
   period: 2020
   input:
-    categorie_salarie: [salarie, salarie]
+    categorie_salarie: [prive_non_cadre, prive_non_cadre]
     prime_exceptionnelle_pouvoir_achat: [2000, 1500]
     effectif_entreprise: [30, 65]
     accord_interessement: [false, false]
@@ -46,7 +46,7 @@
 - name: Prime exceptionnelle de pouvoir d'achat d'un montant de 2200 € avec accord d'interessement et < 50 salariés #  (cas 5 : exonérée jusqu'à 2000 seulement)
   period: 2021
   input:
-    categorie_salarie: salarie
+    categorie_salarie: prive_non_cadre
     prime_exceptionnelle_pouvoir_achat: 2200
     effectif_entreprise: 22
     accord_interessement: true
@@ -65,7 +65,7 @@
 - name: Prime exceptionnelle de pouvoir d'achat d'un montant inférieur à 1000 € avec et sans accord d'interessement #  (cas 2 : exonérée)
   period: 2021
   input:
-    categorie_salarie: [salarie, salarie]
+    categorie_salarie: [prive_non_cadre, prive_non_cadre]
     prime_exceptionnelle_pouvoir_achat: [2000, 2000]
     effectif_entreprise: [28, 28]
     #  L'accord d'intéressement ne doit pas avoir d'effet sur les entreprises de moins de 50 salariés.
@@ -123,7 +123,7 @@
 - name: Prime exceptionnelle de pouvoir d'achat au plafond de 2000 € (cas avec accord d'interessement) #  (cas 3 : exonérée)
   period: 2021
   input:
-    categorie_salarie: [salarie, salarie]
+    categorie_salarie: [prive_non_cadre, prive_non_cadre]
     prime_exceptionnelle_pouvoir_achat: [2000, 2000]
     salaire_de_base:
       2020: [24_000, 65_000]
@@ -154,7 +154,7 @@
   period: 2021
   relative_error_margin: 0.01
   input:
-    categorie_salarie: [salarie, salarie, salarie]
+    categorie_salarie: [prive_non_cadre, prive_non_cadre, prive_non_cadre]
     # Pour un même salaire on fait varier la quotité de travail
     quotite_de_travail:
       2020: [12, 11.9, 12.1]
@@ -182,7 +182,7 @@
 - name: Prime exceptionnelle de pouvoir d'achat pour une personne avec un salaire de 45 000 € sur 12 mois glissant
   period: 2022
   input:
-    categorie_salarie: [salarie, salarie]
+    categorie_salarie: [prive_non_cadre, prive_non_cadre]
     salaire_de_base:
       2021-01: [1, 45000]
       2021-02: [2, 2]
@@ -207,7 +207,7 @@
 - name: Prime exceptionnelle de pouvoir d'achat pour une personne avec un salaire de 65 000 € (>3 x Smic) visible en mensuel
   period: 2021
   input:
-    categorie_salarie: [salarie, salarie]
+    categorie_salarie: [prive_non_cadre, prive_non_cadre]
     salaire_de_base:
       2020-01: [1, 65000]
       2020-02: [2, 2]
@@ -235,7 +235,7 @@
 - name: Prime exceptionnelle de pouvoir d'achat exonérée pour un salaire de 150 000 € car on prend pas en compte le mois en cours
   period: 2021
   input:
-    categorie_salarie: [salarie, salarie]
+    categorie_salarie: [prive_non_cadre, prive_non_cadre]
     salaire_de_base: [1000, 150000]
     prime_exceptionnelle_pouvoir_achat: [2000, 2000]
     accord_interessement: [true, true]
@@ -252,7 +252,7 @@
   period: 2021
   input:
     categorie_salarie:
-      month:2019-09:24: [salarie, salarie]
+      month:2019-09:24: [prive_non_cadre, prive_non_cadre]
     salaire_de_base:
       month:2019-09:24: [100_000, 100_000]  # ≈ 4167 * 24
     prime_exceptionnelle_pouvoir_achat: [10500, 0]
