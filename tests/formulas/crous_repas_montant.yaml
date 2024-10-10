@@ -1,7 +1,7 @@
 - name: Montant du repas au restaurant universitaire
   period: 2023-09
   input:
-    scolarite: [non_renseigne, enseignement_superieur, enseignement_superieur]
+    scolarite: [inconnue, enseignement_superieur, enseignement_superieur]
     boursier: [false, false, true]
   output:
     crous_repas_montant: [0, 3.30, 1]
