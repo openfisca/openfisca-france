@@ -3,7 +3,7 @@ values:
   1951-01-01:
     value: 0.5
   1995-01-01:
-    value: 1
+    value: 3
 metadata:
   short_label: À partir du troisième enfant inclus
   last_value_still_valid_on: "2024-04-26"
