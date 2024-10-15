@@ -174,7 +174,7 @@ Pour faire tourner les tests d'OpenFisca-France, exécutez la commande suivante�
 make test
 ```
 
-Vous pouevez aussi faire tourner les tests de manière parallèle avec la commande suivante :
+Vous pouvez aussi exécuter les tests en parallèle avec la commande suivante :
 
 ```sh
 make test-parallel
