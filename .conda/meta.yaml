@@ -21,11 +21,13 @@ build:
 
 requirements:
   host:
-    - python
-    - numpy >=1.24.2,<2.0
+    - numpy
     - pip
+    - python
+    - setuptools >=61.0
   run:
-    {% for req in data.get('install_requires', []) %}
+    - python
+    {% for req in data['install_requires'] %}
     - {{ req }}
     {% endfor %}
 
@@ -46,9 +48,12 @@ outputs:
       noarch: python
     requirements:
       host:
+        - numpy
         - python
+        - scipy
       run:
-        - scipy >=1.10.1,<2.0
+        - python
+        - scipy
         - {{ pin_subpackage('openfisca-france', exact=True) }}
 
   - name: openfisca-france-dev
@@ -56,13 +61,16 @@ outputs:
       noarch: python
     requirements:
       host:
+        - numpy
         - python
+        - scipy
       run:
-        - python >=3.9,<4.0
-        {% for req in data.get('dev_requirements', []) %}
+        - python
+        - scipy
+        {% for req in  data['extras_require']['dev'] %}
         - {{ req }}
         {% endfor %}
-        - {{ pin_subpackage('openfisca-france-scipy', exact=True) }}
+        - {{ pin_subpackage('openfisca-france', exact=True) }}
 
 about:
   home: https://fr.openfisca.org/
