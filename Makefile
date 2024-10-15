@@ -1,5 +1,5 @@
 # The number of CPUs available.
-ncpus = $$(nproc)
+ncpus = $$(which nproc && nproc || sysctl -n hw.logicalcpu)
 
 all: test
 
