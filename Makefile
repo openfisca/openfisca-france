@@ -73,7 +73,7 @@ test-parallel: ;
 	@$(foreach step, ${NODES}, ${MAKE} test-parallel-${step} ncpus=${ncpus})
 
 test-parallel-%: PYTEST = ${PYTEST_ADDOPTS} -qx
-test-parallel-%: SPLITS = --splits ${ncpus} --splitting-algorithm least_duration --durations-path .test-durations
+test-parallel-%: TESTS = $(shell python .github/split_tests.py ${ncpus} $(shell echo $$(($* - 1))))
 test-parallel-%: ;
 	@# Launch a specific test group, useful for test-driven developement.
 	@#
@@ -83,4 +83,6 @@ test-parallel-%: ;
 	@# 		make test-parallel-4 ncpus=16  # It will split tests in 16 and launch de 4th group.
 	@# 		make test-parallel-2 ncpus=1  # This fails because the group is out of bounds.
 	@#
-	@PYTEST_ADDOPTS="${PYTEST} ${SPLITS} --group $*" openfisca test --country-package openfisca_france tests
+	@echo "[$*/${ncpus}] Starting tests..."
+	@PYTEST_ADDOPTS="${PYTEST}" openfisca test --country-package openfisca_france ${TESTS}
+	@echo "[$*/${ncpus}] Finished!"
