@@ -56,33 +56,14 @@ check-all-yaml:
 	yamllint tests
 
 test: clean check-syntax-errors check-style
+test: MAKEFLAGS = --output-sync -j -l $(shell echo $$((${ncpus} + 1))) --silent
+test: NODES = $(shell seq ${ncpus})
+test: ;
 	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
 	@# before parsing source files containing formulas.
-	openfisca test --country-package openfisca_france tests
+	@$(foreach step, ${NODES}, ${MAKE} _test-group-${step} ncpus=${ncpus})
 
-test-parallel: MAKEFLAGS = --output-sync -j -l $(shell echo $$((${ncpus} + 1))) --silent
-test-parallel: NODES = $(shell seq ${ncpus})
-test-parallel: ;
-	@# Launch tests in parallel.
-	@#
-	@# Usage:
-	@#
-	@# 		make test-parallel  # It will use the number of CPUs available.
-	@# 		make test-parallel ncpus=4  # It will split tests in 4 parallel groups.
-	@#
-	@$(foreach step, ${NODES}, ${MAKE} test-parallel-${step} ncpus=${ncpus})
-
-test-parallel-%: PYTEST = ${PYTEST_ADDOPTS} -qx
-test-parallel-%: TESTS = $(shell python .github/split_tests.py ${ncpus} $(shell echo $$(($* - 1))))
-test-parallel-%: ;
-	@# Launch a specific test group, useful for test-driven developement.
-	@#
-	@# Usage:
-	@#
-	@# 		make test-parallel-8  # Assuming you have 8 CPUs, it will launch the last test group.
-	@# 		make test-parallel-4 ncpus=16  # It will split tests in 16 and launch de 4th group.
-	@# 		make test-parallel-2 ncpus=1  # This fails because the group is out of bounds.
-	@#
-	@echo "[$*/${ncpus}] Starting tests..."
+_test-group-%: PYTEST = ${PYTEST_ADDOPTS} --quiet
+_test-group-%: TESTS = $(shell python .github/split_tests.py ${ncpus} $(shell echo $$(($* - 1))))
+_test-group-%: ;
 	@PYTEST_ADDOPTS="${PYTEST}" openfisca test --country-package openfisca_france ${TESTS}
-	@echo "[$*/${ncpus}] Finished!"
