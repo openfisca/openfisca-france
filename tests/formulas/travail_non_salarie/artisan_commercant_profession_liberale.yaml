@@ -9,16 +9,17 @@
     deces_artisan_commercant: -130
     formation_artisan_commercant: -29
     retraite_complementaire_artisan_commercant: -700
-    maladie_maternite_artisan_commercant: -459
+    maladie_maternite_artisan_commercant: -497
     vieillesse_artisan_commercant: -.1775 * 10000
-    famille_independant: 0
+    famille_independant: -215
     formation_profession_liberale: 0
     maladie_maternite_profession_liberale: 0
     vieillesse_profession_liberale: 0
-    assiette_csg_crds_non_salarie: 10000 + 700 + 459 + .1775 * 10000
-    csg_non_salarie: -.075 * (10000 + 700 + 459 + .1775 * 10000)
-    crds_non_salarie: -.005 * (10000 + 700 + 459 + .1775 * 10000)
-    revenus_nets_du_travail: 10000 - (.075 + .005) * (10000 + 700 + 459 + .1775 * 10000) - (700 + 459 + 0.1775 * 10000 + 130 + 29)
+    assiette_csg_crds_non_salarie: 10000 + 700 + 497 + .1775 * 10000 +215
+    csg_imposable_non_salarie: -.024 * (10000 + 700 + 497 + .1775 * 10000 +215)
+    csg_deductible_non_salarie: -.051 * (10000 + 700 + 497 + .1775 * 10000 +215)
+    crds_non_salarie: -.005 * (10000 + 700 + 497 + .1775 * 10000 +215)
+    revenus_nets_du_travail: 10000 - (.024 + .005) * (10000 + 700 + 497 + .1775 * 10000 + 215)
 
 
 - name: Commerçant sous PSS
@@ -32,16 +33,17 @@
     deces_artisan_commercant: -130
     formation_artisan_commercant: -25
     retraite_complementaire_artisan_commercant: -700
-    maladie_maternite_artisan_commercant: -459
+    maladie_maternite_artisan_commercant: -497
     vieillesse_artisan_commercant: -.1775 * 10000
-    famille_independant: 0
+    famille_independant: -215
     formation_profession_liberale: 0
     maladie_maternite_profession_liberale: 0
     vieillesse_profession_liberale: 0
-    assiette_csg_crds_non_salarie: 10000 + 700 + 459 + .1775 * 10000
-    csg_non_salarie: -.075 * (10000 + 700 + 459 + .1775 * 10000)
-    crds_non_salarie: -.005 * (10000 + 700 + 459 + .1775 * 10000)
-    revenus_nets_du_travail: 10000 - (.075 + .005) * (10000 + 700 + 459 + .1775 * 10000) - (700 + 459 + 0.1775 * 10000 + 130 + 25)
+    assiette_csg_crds_non_salarie: 10000 + 700 + 497 + .1775 * 10000 + 215
+    csg_imposable_non_salarie: -.024 * (10000 + 700 + 497 + .1775 * 10000 + 215)
+    csg_deductible_non_salarie: -.051 * (10000 + 700 + 497 + .1775 * 10000 + 215)
+    crds_non_salarie: -.005 * (10000 + 700 + 497 + .1775 * 10000 + 215)
+    revenus_nets_du_travail: 10000 - (.024 + .005) * (10000 + 700 + 497 + .1775 * 10000 + 215)
 
 
 - name: Commerçant sous PSS
@@ -55,16 +57,17 @@
     deces_artisan_commercant: -130
     formation_artisan_commercant: -25
     retraite_complementaire_artisan_commercant: -700
-    maladie_maternite_artisan_commercant: -454
+    maladie_maternite_artisan_commercant: -289
     vieillesse_artisan_commercant: -.1775 * 10000
     famille_independant: 0
     formation_profession_liberale: 0
     maladie_maternite_profession_liberale: 0
     vieillesse_profession_liberale: 0
-    assiette_csg_crds_non_salarie: 10000 + 700 + 454 + .1775 * 10000
-    csg_non_salarie: -.092 * (10000 + 700 + 454 + .1775 * 10000)
-    crds_non_salarie: -.005 * (10000 + 700 + 454 + .1775 * 10000)
-    revenus_nets_du_travail: 10000 - (.092 + .005) * (10000 + 700 + 454 + .1775 * 10000) - (700 + 454 + 0.1775 * 10000 + 130 + 25)
+    assiette_csg_crds_non_salarie: 10000 + 700 + 289 + .1775 * 10000
+    csg_imposable_non_salarie: -.024 * (10000 + 700 + 289 + .1775 * 10000)
+    csg_deductible_non_salarie: -.068 * (10000 + 700 + 289 + .1775 * 10000)
+    crds_non_salarie: -.005 * (10000 + 700 + 289 + .1775 * 10000)
+    revenus_nets_du_travail: 10000 - (.024 + .005) * (10000 + 700 + 289 + .1775 * 10000)
 
 
 - name: Profession libérale
@@ -76,19 +79,20 @@
     retraite_complementaire_profession_liberale: 0  # Forcée à 0
     categorie_non_salarie: profession_liberale
   output:
-    famille_independant: 0
+    famille_independant: -215
     deces_artisan_commercant: 0
     formation_artisan_commercant: 0
     retraite_complementaire_artisan_commercant: 0
     maladie_maternite_artisan_commercant: 0
     vieillesse_artisan_commercant: 0
     formation_profession_liberale: -25
-    maladie_maternite_profession_liberale: -266
+    maladie_maternite_profession_liberale: -427
     vieillesse_profession_liberale: -823
-    assiette_csg_crds_non_salarie: (10000 + 823 + 266 + 0)
-    csg_non_salarie: -.075 * (10000 + 823 + 266 + 0)
-    crds_non_salarie: -.005 * (10000 + 823 + 266 + 0)
-    revenus_nets_du_travail: 10000 - (.075 + .005) * (10000 + 823 + 266 + 0) - (823 + 266 + 25)
+    assiette_csg_crds_non_salarie: (10000 + 823 + 427 + 0 + 215)
+    csg_imposable_non_salarie: -.024 * (10000 + 823 + 427 + 0 + 215)
+    csg_deductible_non_salarie: -.051 * (10000 + 823 + 427 + 0 + 215)
+    crds_non_salarie: -.005 * (10000 + 823 + 427 + 0 + 215)
+    revenus_nets_du_travail: 10000 - (.024 + .005) * (10000 + 823 + 427 + 0 + 215)
 
 - name: Profession libérale
   description: Profession libérale sous PSS
@@ -109,6 +113,7 @@
     maladie_maternite_profession_liberale: -264
     vieillesse_profession_liberale: -823
     assiette_csg_crds_non_salarie: (10000 + 823 + 264 + 0)
-    csg_non_salarie: -.092 * (10000 + 823 + 264 + 0)
+    csg_imposable_non_salarie: -.024 * (10000 + 823 + 264 + 0)
+    csg_deductible_non_salarie: -.068 * (10000 + 823 + 264 + 0)
     crds_non_salarie: -.005 * (10000 + 823 + 264 + 0)
-    revenus_nets_du_travail: 10000 - (.092 + .005) * (10000 + 823 + 264 + 0) - (823 + 264 + 25)
+    revenus_nets_du_travail: 10000 - (.024 + .005) * (10000 + 823 + 264 + 0)

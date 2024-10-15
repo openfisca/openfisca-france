@@ -1,0 +1,9 @@
+description: Conditions et montants de l'Allocation d'éducation spéciale (AES)
+metadata:
+  documentation_start: true
+  short_label: Allocation d'éducation spéciale (AES)
+  label_en: "Special education allowance (AES): Conditions and amounts"
+  order:
+  - age_maximum_enfant
+  - base
+  - complement_allocation

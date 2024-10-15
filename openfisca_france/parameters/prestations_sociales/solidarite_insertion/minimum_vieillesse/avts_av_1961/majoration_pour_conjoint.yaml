@@ -1,0 +1,87 @@
+description: Majoration pour conjoint de l'allocation aux vieux travailleurs salariés (AVTS)
+values:
+  1941-01-01:
+    value: 1000
+  1945-01-01:
+    value: 2000
+  1946-01-01:
+    value: 3000
+  1946-07-01:
+    value: 4000
+  1947-08-01:
+    value: 5000
+  1948-07-01:
+    value: 14500
+  1948-10-01:
+    value: 17000
+  1949-04-01:
+    value: 19500
+  1950-01-01:
+    value: 22500
+  1951-01-01:
+    value: 26000
+  1951-10-01:
+    value: 29900
+  1954-01-01:
+    value: 32900
+  1956-01-01:
+    value: 36190
+  1960-01-01:
+    value: 361.9
+metadata:
+  short_label: Majoration pour conjoint
+  label_en: Allowance for elderly workers (AVTS)
+  ipp_csv_id: majconj
+  unit: currency
+  reference:
+    1941-01-01:
+      title: Loi du 14/03/1941
+    1945-01-01:
+      title: Ordonnance 45-170 du 02/02/1945 mise en application par l'arrêté du 01/06/1945.
+    1946-01-01:
+      title: Loi 46-1 du 03/01/1946
+    1946-07-01:
+      title: Loi 46-2153 du 07/10/1946
+    1947-08-01:
+      title: Loi 47-1127 du 25/06/1947, art. 19
+    1948-07-01:
+      title: Loi 48-1306 du 23/08/1948
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684490
+    1948-10-01:
+      title: Loi 49-244 du 24/02/1949
+    1949-04-01:
+      title: Loi 49-922 du 13/07/1949
+    1950-01-01:
+      title: Loi 50-147 du 03/02/1950
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878353
+    1951-01-01:
+      title: Loi 51-374 du 27/03/1951
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336226
+    1951-10-01:
+      title: Loi 15-1126 du 26/09/1951
+    1954-01-01:
+      title: Loi 54-301 du 20/03/1954
+    1956-01-01:
+      title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
+    1960-01-01:
+      title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
+  official_journal_date:
+    1941-01-01: "1941-03-15"
+    1945-01-01: "1945-06-03"
+    1946-01-01: "1946-01-04"
+    1946-07-01: "1946-10-08"
+    1947-08-01: "1947-06-26"
+    1948-07-01: "1948-08-24"
+    1948-10-01: "1949-02-25"
+    1949-04-01: "1949-07-14"
+    1950-01-01: "1950-02-04"
+    1951-01-01: "1951-03-29"
+    1951-10-01: "1951-09-27"
+    1954-01-01: "1954-03-21"
+    1956-01-01: "1956-03-31"
+    1960-01-01: "1956-03-31"
+  notes:
+    1960-01-01:
+    - title: "Un décret du 14 avril 1962 supprime les différences pour la France. Sources: site législation CNAV depuis 1956, Sécurité sociales - son histoire à travers les textes p 242 avant."

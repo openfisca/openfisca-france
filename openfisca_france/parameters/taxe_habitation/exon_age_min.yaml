@@ -1,0 +1,10 @@
+description: Âge minimal pour être considéré comme personne âgée pouvant être exonérée de TH sous condition de RFR
+values:
+  2017-01-01:
+    value: 60
+  2023-01-01:
+    value: null
+metadata:
+  unit: /1
+  reference:
+    title: art. 1414 du CGI

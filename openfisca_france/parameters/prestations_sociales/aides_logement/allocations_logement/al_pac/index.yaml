@@ -1,0 +1,9 @@
+description: Conditions pour qu'une personne vivant au foyer, soit considérée à charge pour les allocations logement (AL)
+metadata:
+  short_label: Conditions d'une personne vivant au foyer pour être considérée à charge
+  label_en: Definition of dependants
+  order:
+  - age_limite_enfants_charge
+  - pourcentage_min_handicap
+  - plaf_de_ressources_pac_autres
+  - age_minimal

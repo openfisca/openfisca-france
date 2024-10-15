@@ -1,0 +1,22 @@
+description: Formule de calcul - taux (en % de l'impôt) des minorations exceptionnelles d'impôt
+values:
+  1965-01-01:
+    value: null
+  1985-01-01:
+    value: 0.17
+  1986-01-01:
+    value: 0.14
+  1993-01-01:
+    value: null
+metadata:
+  short_label: Taux (% impôt)
+  ipp_csv_id: param_mintx
+  unit: /1
+  reference:
+    1993-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+  official_journal_date:
+    1993-01-01: "1993-12-31"
+  notes:
+    1985-01-01:
+    - title: En 1985, quand l'impot est compris entre 22730 FRF et 28410 FRF, la minoration est égale à 4 fois la différence entre 1420 FRF et 4.25 % de l'impot. Pour rester coherent avec les années suivantes, j'ai directement multiplié par 4 les deux paramètres.

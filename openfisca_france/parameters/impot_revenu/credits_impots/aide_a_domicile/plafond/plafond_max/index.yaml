@@ -1,0 +1,7 @@
+description: Plafond de dépenses maximal après majoration, utilisé dans le calcul du crédit d'impôt pour l'aide à domicile
+metadata:
+  short_label: Plafond de dépenses maximal après majoration
+  label_en: Tax credits for personal care assistant employment
+  order:
+  - plaf_max_annee_1
+  - plaf_max_annee_supp

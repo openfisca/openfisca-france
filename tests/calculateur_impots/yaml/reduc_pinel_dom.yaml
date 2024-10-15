@@ -12,8 +12,8 @@
       caseW: false
       declarants:
       - ind0
-      f7qc: 0
-      f7qd: 200000
+      f7qc_2018: 0
+      f7qd_2018: 200000
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -33,7 +33,7 @@
       personne_de_reference: ind0
   output:
     iai: 1417.0
-    irpp: -1417.0
+    impot_revenu_restant_a_payer: -1417.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 45000.0
@@ -54,10 +54,10 @@
       caseW: false
       declarants:
       - ind0
-      f7ci: 500
+      f7ci_2019: 500
       f7di: 500
-      f7qc: 0
-      f7qd: 100000
+      f7qc_2018: 0
+      f7qd_2018: 100000
       f7qg: 100000
       f7qh: 100000
       nbF: 0.0
@@ -78,7 +78,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    irpp: -0.0
+    impot_revenu_restant_a_payer: -0.0
     nbptr: 1.0
     rbg: 45000.0
     reductions: 7855.0
@@ -98,16 +98,16 @@
       caseW: false
       declarants:
       - ind0
-      f7ci: 500
+      f7ci_2019: 500
       f7di: 500
       f7dz: 500
       f7ez: 500
-      f7qc: 0
-      f7qd: 10000
+      f7qc_2018: 0
+      f7qd_2018: 10000
       f7qg: 10000
       f7qh: 10000
-      f7qk: 10000
-      f7ql: 10000
+      f7qk_2019: 10000
+      f7ql_2019: 10000
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -128,7 +128,7 @@
   output:
     reductions: 3734.0
     iai: 4116.0
-    irpp: -4116.0
+    impot_revenu_restant_a_payer: -4116.0
     nbptr: 1.0
     rbg: 45000.0
     rfr: 45000.0
@@ -147,16 +147,16 @@
       caseW: false
       declarants:
       - ind0
-      f7ci: 500
+      f7ci_2019: 500
       f7di: 500
       f7dz: 500
       f7ez: 500
-      f7qc: 0
-      f7qd: 10000
+      f7qc_2018: 0
+      f7qd_2018: 10000
       f7qg: 10000
       f7qh: 10000
-      f7qk: 10000
-      f7ql: 10000
+      f7qk_2019: 10000
+      f7ql_2019: 10000
       f7qo: 10000
       f7qp: 10000
       f7sz: 500
@@ -181,11 +181,64 @@
   output:
     reductions: 5437.0
     iai: 2356.0
-    irpp: -2356.0
+    impot_revenu_restant_a_payer: -2356.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0
+- name: reduc_pinel_dom - test plafond 300 000
+  period: 2017
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7ci_2019: 0
+      f7di: 0
+      f7dz: 0
+      f7ez: 0
+      f7qc_2018: 0
+      f7qd_2018: 10000
+      f7qg: 10000
+      f7qh: 10000
+      f7qk_2019: 200000
+      f7ql_2019: 200000
+      f7qo: 200000
+      f7qp: 200000
+      f7sz: 500
+      f7tz: 500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    reductions: 18000.0
+    iai: 24760.0
+    impot_revenu_restant_a_payer: -24760.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 137695.0
+    rfr: 137695.0
 - name: reduc_pinel_dom
   period: 2018
   absolute_error_margin: 0.1
@@ -200,18 +253,18 @@
       caseW: false
       declarants:
       - ind0
-      f7ci: 500
+      f7ci_2019: 500
       f7di: 500
       f7dz: 500
       f7ez: 500
       f7rc: 200
       f7rd: 200
-      f7qc: 0
-      f7qd: 0
+      f7qc_2018: 0
+      f7qd_2018: 0
       f7qg: 0
       f7qh: 10000
-      f7qk: 10000
-      f7ql: 10000
+      f7qk_2019: 10000
+      f7ql_2019: 10000
       f7qo: 10000
       f7qp: 10000
       f7qu: 10000
@@ -238,8 +291,192 @@
   output:
     reductions: 6221.0
     iai: 1481.0
-    irpp: -1481.0
+    impot_revenu_restant_a_payer: -1481.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0
+- name: reduc_pinel_dom
+  period: 2019
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7ci_2019: 500
+      f7di: 500
+      f7dz: 500
+      f7ez: 500
+      f7rc: 200
+      f7rd: 200
+      f7qc: 0
+      f7qd: 0
+      f7qk_2019: 10000
+      f7ql_2019: 10000
+      f7qo: 10000
+      f7qp: 10000
+      f7qu: 10000
+      f7qt: 20000
+      f7qy: 0
+      f7qq: 0
+      f7nc: 10000
+      f7nd: 30000
+      f7sz: 500
+      f7tz: 500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    reductions: 7249.0
+    iai: 395.0
+    impot_revenu_restant_a_payer: -395.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    rfr: 45000.0
+- name: reduc_pinel_dom
+  period: 2020
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7di: 500
+      f7dz: 500
+      f7ez: 500
+      f7rc: 200
+      f7rd: 200
+      f7qc: 0
+      f7qd: 0
+      f7qo: 10000
+      f7qp: 10000
+      f7qu: 10000
+      f7qt: 20000
+      f7qy: 0
+      f7qq: 0
+      f7nc: 0
+      f7nd: 0
+      f7na: 15000
+      f7nb: 75000
+      f7ne: 0
+      f7nf: 0
+      f7ng: 22000
+      f7nh: 6000
+      f7sz: 500
+      f7tz: 500
+      f7jc: 100
+      f7jd: 100
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    reductions: 7506.0
+    iai: 0.0
+    impot_revenu_restant_a_payer: -0.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    rfr: 45000.0
+- name: reduc_pinel_dom
+  period: 2021
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7di: 500
+      f7ez: 500
+      f7rc: 200
+      f7rd: 200
+      f7rs: 56000
+      f7ry: 64500
+      f7nc: 0
+      f7nd: 0
+      f7na: 150000
+      f7nb: 75000
+      f7ne: 0
+      f7nf: 0
+      f7ng: 22000
+      f7nh: 60000
+      f7ni: 40000
+      f7nj: 0
+      f7nk: 0
+      f7nl: 45000
+      f7sz: 500
+      f7tz: 500
+      f7jc: 100
+      f7jd: 100
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    reductions: 12696.0
+    # iai: 29266.0
+    # impot_revenu_restant_a_payer: -29266.0
+    # nbptr: 1.0
+    # protection_patrimoine_naturel: 0.0
+    # rbg: 137171.0
+    # rfr: 137171.0

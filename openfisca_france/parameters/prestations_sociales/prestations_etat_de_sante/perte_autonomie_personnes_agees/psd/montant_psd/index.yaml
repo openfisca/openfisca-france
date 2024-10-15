@@ -1,0 +1,11 @@
+description: Montant mensuel versé de la Prestation spécifique dépendance (PSD)
+metadata:
+  short_label: Montant mensuel versé
+  label_en: Attendance allowance (PSD)
+  order:
+  - maximal
+  - seuil
+documentation: |-
+  Notes:
+  (1) Les personnes éligibles à la PSD doivent être âgées d'au moins 60 ans et faire partie des groupes iso-ressources 1, 2 ou 3.
+  (2) La PSD attribuable comprend les dépenses d'aide à la personne engagées par le contribuable, dans la limite de la majoration pour aide constante d'une tierce personne (qui équivaut au montant maximal de PSD pouvant être versé). Le montant effectivement versé dépend des ressources du bénéficiaire. Le bénéfice pour un contribuable au seuil de ressources est de 80% du MTP. Le plafond de l'allocation est réduit d'un franc pour tout franc de revenu au-delà de ce seuil. Dans l'autre sens (les contribuables en-deça du seuil de ressources), le plafond de PSD versée est augmenté de un euro pour chaque euro de différence entre les ressources du bénéficiaire et le seuil de ressources, dans la limite de 100% du MTP. On parle d'allocation différentielle.

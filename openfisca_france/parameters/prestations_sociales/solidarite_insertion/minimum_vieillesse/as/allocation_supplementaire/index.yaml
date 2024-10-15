@@ -1,0 +1,7 @@
+description: Montants annuels de l'Allocation supplémentaire - Minimum vieillesse
+metadata:
+  short_label: Montant annuel
+  label_en: Extra allowance (AS)
+  order:
+  - as_personne_seule
+  - as_menage

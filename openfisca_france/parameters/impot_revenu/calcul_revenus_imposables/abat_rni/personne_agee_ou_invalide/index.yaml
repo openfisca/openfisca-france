@@ -1,0 +1,15 @@
+description: Abattement de l'impôt sur le revenu, pour les personnes âgées ou invalides à charge
+metadata:
+  short_label: Abattement pour personnes agées de + de 65 ans ou invalide
+  label_en: Tax allowance for net taxable income
+  order:
+  - montant_1
+  - montant_2
+  - plafond_1
+  - plafond_2
+documentation: |-
+  Les ressources à considérer sont le revenu net global du foyer fiscal.
+  Abattement et plafond de ressources pour personne âgée : art. 157 bis du CGI (abattement doublé si le conjoint répond aux mêmes conditions)
+  Les invalides qui bénéficient d'une pension militaire d'invalidité pour une invalidité d'au moins 40 % ou d'une pension d'invalidité pour un accident du travail d'au moins 40 % ou de la carte d'invalidité
+  Les abattements et plafonds de revenus sont relevés chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu. Les montants obtenus sont arrondis, s'il y a lieu, à l'euro supérieur en ce qui concerne les abattements et à la dizaine d'euros supérieure en ce qui concerne les plafonds de revenus.
+  Ref - https://bofip.impots.gouv.fr/bofip/2036-PGP.html/identifiant=BOI-IR-BASE-40-20220516

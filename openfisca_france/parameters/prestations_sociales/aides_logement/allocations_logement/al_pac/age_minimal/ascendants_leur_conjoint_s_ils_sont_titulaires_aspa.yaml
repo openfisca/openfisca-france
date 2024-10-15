@@ -1,0 +1,31 @@
+description: Âge minimal de l'ascendant du bénéficiaire ou de son conjoint, si titulaire de l'ASPA, pour être considéré personne à charge pour les allocations logement (AL)
+values:
+  1991-11-11:
+    value: null
+  2016-07-01:
+    value: 65
+metadata:
+  short_label: Ascendant titulaire de l'ASPA
+  last_value_still_valid_on: "2023-02-09"
+  label_en: Definition of dependants
+  unit: year
+  reference:
+    1991-11-11:
+      title: Décret 91-1159 du 08/11/1991, art. 1 (modif art. D542-4 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776071&cidTexte=JORFTEXT000000701067
+    2016-07-01:
+    - title: Article R823-4, 2°a) du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878933
+    - title: Décret 2013-140 du 14/02/2013, art. 2 (modifie art.D542-4 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000027069681&cidTexte=JORFTEXT000027068336
+  official_journal_date:
+    1991-11-11: "1991-11-10"
+  notes:
+    2016-07-01:
+    - title: Réforme des âges minimals pour les ascendants et leur conjoint (alignement sur les âges de départ à la retraite à taux plein)
+    - title: référence suivante retirée car aucun lien trouvé. Décret 2010-1734 du 30/12/2010, art. 5 - https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023383419&cidTexte=JORFTEXT000023334246
+documentation: |-
+  Notes :
+  (1) "Plafonds indiqués à l'art. L815-9 du CSS (législation sur les allocations aux personnes âgées)". Ces plafonds seront multipliés par 1,25 à partir de 2007
+  (2) A partir du 01/07/2016, les âges indiqués sont ceux en vigueur pour les personnes nés à partir du 1er janvier 1955. Pour les générations d'avant, cet âge minimal varie de manière croissante. Cf. l'article. L16117-2 du CSS pour les détails
+  (3) À partir de 2019, l'âge minimal est inscrit dans le Code de la construction et de l'habitation

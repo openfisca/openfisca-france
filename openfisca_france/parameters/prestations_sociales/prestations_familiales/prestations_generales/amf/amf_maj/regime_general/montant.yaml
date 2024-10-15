@@ -1,0 +1,23 @@
+description: Montant de la majoration pour le régime général des Allocation de la mère au foyer (AMF)
+values:
+  1976-07-01:
+    value: 194.1
+  1978-01-01:
+    value: null
+metadata:
+  short_label: Montant
+  label_en: Amount
+  ipp_csv_id: maj_gene_montant
+  unit: currency
+  reference:
+    1976-07-01:
+      title: Décret 76-1084 du 29/11/1976 (majoration)
+    1978-01-01:
+      title: Loi 77-765 du 12/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
+  official_journal_date:
+    1976-07-01: "1976-12-01"
+    1978-01-01: "1977-07-13"
+  notes:
+    1976-07-01:
+    - title: Remplacé par le "complément familial" depuis 01/01/1978

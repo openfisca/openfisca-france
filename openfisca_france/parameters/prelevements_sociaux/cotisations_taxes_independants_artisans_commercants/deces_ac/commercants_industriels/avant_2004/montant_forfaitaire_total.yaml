@@ -1,0 +1,155 @@
+description: Montant forfaitaire total des cotisations invalidité-décès de sécurité sociale (SS) des indépendants artisans-commerçants
+values:
+  1975-01-01:
+    value: 150
+  1979-01-01:
+    value: 157
+  1980-01-01:
+    value: 168
+  1981-01-01:
+    value: 191
+  1982-01-01:
+    value: 217
+  1983-01-01:
+    value: 234
+  1984-01-01:
+    value: 412
+  1985-01-01:
+    value: 444
+  1986-01-01:
+    value: 462
+  1987-01-01:
+    value: 502
+  1988-01-01:
+    value: 588
+  1989-01-01:
+    value: 604
+  1990-01-01:
+    value: 620
+  1991-01-01:
+    value: 638
+  1992-01-01:
+    value: 656
+  1993-01-01:
+    value: 676
+  1994-01-01:
+    value: 692
+  1995-01-01:
+    value: 700
+  1996-01-01:
+    value: 712
+  1997-01-01:
+    value: 724
+  1998-01-01:
+    value: 796
+  2000-01-01:
+    value: 800
+  2004-08-24:
+    value: null
+metadata:
+  short_label: Montant forfaitaire total
+  label_en: SSCs for disability and death benefits (sales retailers and craftsmen)
+  ipp_csv_id: id_ic_forfait
+  unit: currency
+  reference:
+    1975-01-01:
+    - title: Décret 75-969 du 16/10/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000683438
+    - title: Décret 75-19 du 8/01/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000883429
+    1979-01-01:
+      title: Décret 79-412 du 21/05/1979
+    1980-01-01:
+      title: Décret 80-430 du 11/06/1980
+    1981-01-01:
+      title: Décret 81-490 du 08/05/1981
+    1982-01-01:
+    - title: Décret 82-168 du 15/02/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000879564
+    - title: Décret 82-170 du 17/02/1982
+    1983-01-01:
+      title: Décret 83-202 du 15/03/1983
+    1984-01-01:
+      title: Décret 84-1039 du 26/11/1984
+    1985-01-01:
+      title: Décret 85-555 du 28/05/1985
+    1985-12-21:
+      title: Décret 85-1354 17/12/1985 art. 1
+    1986-01-01:
+    - title: Décret 86-232 du 18/02/1986 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006769903&cidTexte=JORFTEXT000000700920
+    - title: Décret 86-852 du 17/07/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517698
+    1987-01-01:
+      title: Décret 87-47 du 30/01/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517048
+    1988-01-01:
+      title: Décret 88-102 du 28/01/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000692151&categorieLien=id
+    1989-01-01:
+    - title: Décret 89-47 27/01/1989 art. 1, art. 2
+    - title: Décret 89-191 du 28/03/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509671
+    1990-01-01:
+      title: Décret 90-2400 du 14/03/1990
+    1991-01-01:
+      title: Décret 91-319 du 26/03/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000873332&categorieLien=id
+    1992-01-01:
+      title: Décret 92-351 du 01/04/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000356523
+    1993-01-01:
+      title: Décret 93-456 du 23/03/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000345869&categorieLien=id
+    1994-01-01:
+      title: Décret 94-766 du 31/08/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000714796&categorieLien=id
+    1995-01-01:
+    - title: Décret 94-896 du 12/10/1994 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006777734&cidTexte=JORFTEXT000000349187
+    - title: Décret 95-362 du 31/03/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000735957
+    1996-01-01:
+      title: Décret 96-451 du 23/05/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000193413&categorieLien=id
+    1997-01-01:
+      title: Décret 97-1216 du 26/12/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000204230&categorieLien=id
+    1998-01-01:
+      title: Décret 97-1216 du 26/12/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000204230&categorieLien=id
+    1999-01-01:
+      title: Décret 99-1103 du 21/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000580171&categorieLien=id
+    2000-01-01:
+      title: Décret 99-1103 du 21/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000580171&categorieLien=id
+    2004-08-24:
+      title: Décret 2004-848 du 23/08/2004 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006233585&cidTexte=JORFTEXT000000625026
+  official_journal_date:
+    1975-01-01: "1975-01-18"
+    1979-01-01: "1979-05-27"
+    1980-01-01: "1980-06-18"
+    1981-01-01: "1981-05-13"
+    1982-01-01: 1982-02-18; 1982-02-19
+    1983-01-01: "1983-03-17"
+    1984-01-01: "1984-11-27"
+    1985-01-01: "1985-05-30"
+    1985-12-21: "1985-12-21"
+    1986-01-01: 1986-02-21; 1986-07-19
+    1987-01-01: "1987-01-31"
+    1988-01-01: "1988-01-30"
+    1989-01-01: 1989-01-29; 1989-03-30
+    1990-01-01: "1990-03-20"
+    1991-01-01: "1991-03-28"
+    1992-01-01: "1992-04-02"
+    1993-01-01: "1993-03-25"
+    1994-01-01: "1994-09-04"
+    1995-01-01: 1994-10-19; 1995-04-07
+    1996-01-01: "1996-05-26"
+    1997-01-01: "1997-12-28"
+    1998-01-01: "1997-12-28"
+    1999-01-01: "1999-12-26"
+    2000-01-01: "1999-12-26"
+    2004-08-24: "2004-08-24"

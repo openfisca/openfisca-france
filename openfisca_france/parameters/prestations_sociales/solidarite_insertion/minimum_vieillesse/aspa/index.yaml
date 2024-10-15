@@ -1,0 +1,20 @@
+description: Allocation solidarité aux personne agées (ASPA) - Minimum vieillesse
+metadata:
+  short_label: Allocation solidarité aux personne agées (ASPA)
+  label_en: Solidarity income for elderly (ASPA)
+  order:
+  - abattement_forfaitaire
+  - montant_maximum_annuel
+  - plafond_ressources
+  - age_min
+  - duree_min_titre_sejour
+  - maj_3enf
+  - taux_incapacite_aspa_anticipe
+documentation: |-
+  Le barème "personnes seules" concerne également les couples si un seul des conjoints bénéficie de l'ASPA.
+  Le barème "couples" est appliqué si un seul conjoint est bénéficiaire de l'ASPA et l'autre de l'allocation supplémentaire d'invalidité.
+  L'ASPA vise à remplacer le minimum vieillesse et une série de dispositifs destinés aux personnes âgées disposant de faibles ressources.
+  L'ASPA est ouverte à toute personne de plus de 65 ans, cette condition d'âge étant abaissée à l'âge minimun de départ en retraite pour les personnes reconnues inaptes au travail (incapcité d'au moins 50%) et les bénéficiaires d'une retraite anticipée pour handicap. Par ailleurs, le demandeur doit satisfaire aux conditions de ressources et de résidence (régulière en métropole ou dans les départements d'outre-mer).
+  https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029619577/#LEGIARTI000020562591
+  Les montants de l'allocation et des plafonds de ressources prévus pour son attribution sont revalorisés au 1er janvier de chaque année
+  (Article L816-2 https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036393188)

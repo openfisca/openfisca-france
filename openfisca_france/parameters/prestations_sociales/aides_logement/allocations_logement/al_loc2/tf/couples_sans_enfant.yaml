@@ -1,0 +1,36 @@
+description: Taux « TF » pour les couples sans personne à charge, pris en compte dans le taux de participation personnel du ménage « Tp » pour le calcul des allocations logement
+values:
+  2001-01-01:
+    value: 0.0331
+  2002-01-01:
+    value: 0.0394
+  2007-07-01:
+    value: 0.0315
+metadata:
+  short_label: Couples sans personne à charge
+  last_value_still_valid_on: "2023-02-22"
+  label_en: Parameters for the rental sector (after the 2001 reform)
+  ipp_csv_id: tf_coup
+  unit: /1
+  reference:
+    2001-01-01:
+    - title: Décret 2000-1269, art. 2 du 26/12/2000 (crée art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779920&cidTexte=JORFTEXT000000578227
+    - title: Arrêté du 26/12/2000
+    2002-01-01:
+    - title: Décret 2001-698, art. 6 du 31/07/2001 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006780031&cidTexte=JORFTEXT000000393997
+    - title: Arrêté du 31/07/2001
+    2007-07-01:
+    - title: Arrêté du 27/09/2019, article 14, 1°
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206208/2022-07-01/#LEGIARTI000046206208
+    - title: Arrêté du 10/07/2007
+  official_journal_date:
+    2001-01-01: "2000-12-28"
+    2002-01-01: "2001-08-02"
+    2007-07-01: "2007-07-12"
+  notes:
+    2001-01-01:
+    - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
+    2002-01-01:
+    - title: Changement de la participation minimale forfaitaire (composante de Po)

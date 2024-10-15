@@ -1,0 +1,9 @@
+description: Plafond (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie (APA) à domicile
+metadata:
+  short_label: Plafond (en part de la MTP)
+  label_en: Attendance allowance for individuals living at home (APA)
+  order:
+  - gir_1
+  - gir_2
+  - gir_3
+  - gir_4

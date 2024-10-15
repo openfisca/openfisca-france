@@ -1,0 +1,7 @@
+description: Prestations liées à l'état de santé
+metadata:
+  short_label: Prestations liées à l'état de santé
+  label_en: Health related allowances
+  order:
+  - invalidite
+  - perte_autonomie_personnes_agees

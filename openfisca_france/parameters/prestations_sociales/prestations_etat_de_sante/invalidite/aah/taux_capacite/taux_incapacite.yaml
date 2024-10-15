@@ -1,0 +1,11 @@
+description: Taux d'incapacité minimum pour bénéficier de l'AAH
+values:
+  2000-01-01:
+    value: 0.8
+metadata:
+  short_label: Taux d'incapacité minimum
+  label_en: Adult disability allowance (AAH)
+  unit: /1
+documentation: |-
+  L'AAH est ouverte sans condition d'âge maximal, pour une durée de 1 à 10 ans renouvelables, aux personnes dont le taux d'incapacité déterminé par la CDAPH est au moins égal à 80 % en incapacité temporaire.
+  Le renouvellement est sans limite pour les personnes dont les limitations d’activités ne sont pas susceptibles d'évoluer favorablement.

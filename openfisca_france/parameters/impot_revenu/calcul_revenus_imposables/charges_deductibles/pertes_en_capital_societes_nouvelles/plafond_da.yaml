@@ -1,0 +1,24 @@
+description: Plafond 2 des pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (Case DA)
+values:
+  1973-01-01:
+    value: null
+  2003-01-01:
+    value: 30000
+  2007-01-01:
+    value: null
+metadata:
+  short_label: Plafond 2
+  ipp_csv_id: plaf_capital_soc2
+  unit: currency_next_year
+  reference:
+    2003-01-01:
+    - title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000612133
+    - title: BOI 5 B-8-04 n°37 du 25/02/2004
+    2007-01-01:
+    - title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017853368
+    - title: BOI 5 B-11-08 n°28 du 04/03/2008
+  official_journal_date:
+    2003-01-01: "2003-12-31"
+    2007-01-01: "2007-12-27"

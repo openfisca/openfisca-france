@@ -1,4 +1,9 @@
-description: Contribution d'équilibre technique (CET) aux régimes complémentaires de retraite (secteur privé)
+description: Contribution d'équilibre technique (CET) des régimes complémentaires de retraite du secteur privé
 metadata:
-  ux_name: Contribution d'équilibre technique (CET)
-  description_en: Complementary pension schemes (private sector)
+  short_label: Contribution d'équilibre technique (CET)
+  label_en: Complementary pension schemes (private sector)
+  order:
+  - total
+  - salarie
+  - employeur
+documentation: Les taux de cotisation CET s'appliquent à l'ensemble du salaire, mais uniquement pour les salariés dont la rémunération est supérieure à T1 (1 PSS)

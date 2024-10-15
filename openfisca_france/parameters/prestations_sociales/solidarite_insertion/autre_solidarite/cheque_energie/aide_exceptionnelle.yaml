@@ -1,0 +1,56 @@
+description: Aides exceptionnelles du chèque énergie en 2021-2022
+brackets:
+- threshold:
+    2021-12-01:
+      value: 0
+    2023-01-01:
+      value: null
+  amount:
+    2021-12-01:
+      value: 100
+    2022-01-01:
+      value: 0
+    2022-12-01:
+      value: 200
+    2023-01-01:
+      value: null
+- threshold:
+    2021-12-01:
+      value: 10800
+    2023-01-01:
+      value: null
+  amount:
+    2021-12-01:
+      value: 0
+    2022-12-01:
+      value: 100
+    2023-01-01:
+      value: null
+- threshold:
+    2022-12-01:
+      value: 17400
+    2023-01-01:
+      value: null
+  amount:
+    2022-12-01:
+      value: 0
+    2023-01-01:
+      value: null
+metadata:
+  short_label: Aides exceptionnelles 2021-2022
+  reference:
+    2021-12-01:
+      title: Décret n°2021-1541 du 29/11/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044387624
+    2022-01-01:
+      title: Décret n° 2022-1552 du 10/12/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046720566
+  official_journal_date:
+    2021-12-01: "2021-12-01"
+    2022-12-01: "2022-12-11"
+  amount_unit: currency
+  threshold_unit: currency
+  type: single_amount
+documentation: |-
+  https://www.service-public.fr/particuliers/actualites/A15168
+  https://www.ecologie.gouv.fr/cheques-energie-exceptionnels#e2

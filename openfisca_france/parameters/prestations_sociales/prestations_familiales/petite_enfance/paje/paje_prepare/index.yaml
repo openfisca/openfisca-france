@@ -1,0 +1,11 @@
+description: Prestation partagée d'éducation de l'enfant (PreParE) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  documentation_start: true
+  short_label: PreParE
+  label_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
+  order:
+  - age_max_plus_jeune_enfant
+  - periode_ref_8_trimestres_cotis_vieillesse
+  - prestation_partagee_education_enfant
+  - condition_prepare_majoree
+  - prepare_majoree

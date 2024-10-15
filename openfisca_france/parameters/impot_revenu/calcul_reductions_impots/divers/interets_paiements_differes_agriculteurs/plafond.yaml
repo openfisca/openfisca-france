@@ -1,0 +1,11 @@
+description: Plafond de la réduction d'impôt sur les intérêts de paiements différés accordés aux agriculteurs
+values:
+  1977-01-01:
+    value: null
+  2005-01-01:
+    value: 5000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_intagri
+  unit: currency_next_year
+documentation: "Intérêts pour paiement différé accordé aux agriculteurs : plafond à doubler pour couple"

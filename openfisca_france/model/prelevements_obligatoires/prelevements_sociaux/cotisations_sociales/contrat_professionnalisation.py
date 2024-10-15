@@ -5,7 +5,7 @@ class professionnalisation(Variable):
     value_type = bool
     entity = Individu
     label = "L'individu est en contrat de professionnalisation"
-    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031088014/2016-01-01/"
+    reference = 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031088014/2016-01-01/'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -26,17 +26,17 @@ class professionnalisation(Variable):
 class qualifie(Variable):
     value_type = bool
     entity = Individu
-    label = "Etat du niveau de formation ou de qualification avant le contrat de professionnalisation"
+    label = 'Etat du niveau de formation ou de qualification avant le contrat de professionnalisation'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/contrat-de-professionnalisation"
+    reference = 'https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/contrat-de-professionnalisation'
 
 
 class remuneration_professionnalisation(Variable):
     value_type = float
     entity = Individu
     label = "Rémunération de l'apprenti sous contrat de professionalisation"
-    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -60,7 +60,7 @@ class remuneration_professionnalisation(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        smic = parameters(period).marche_travail.salaire_minimum.smic_h_b * 52 * 35 / 12
+        smic = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire * 52 * 35 / 12
         professionnalisation = individu('professionnalisation', period)
         qualifie = individu('qualifie', period)
         salaire_en_smic = [
@@ -102,7 +102,7 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
     value_type = float
     entity = Individu
     label = "Exonération de cotisations patronales pour l'emploi d'un apprenti"
-    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -123,8 +123,8 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        mmid_employeur = individu('mmid_employeur', period)
-        famille = individu('famille', period)
+        mmid_employeur = individu('mmid_employeur_net_allegement', period)
+        famille = individu('famille_net_allegement', period)
         vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
         # FIXME: correspond bien à vieillesse de base ?
         cotisations_exonerees = mmid_employeur + famille + vieillesse_plafonnee_employeur

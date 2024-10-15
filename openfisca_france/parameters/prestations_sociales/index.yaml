@@ -1,0 +1,11 @@
+description: Prestations sociales
+metadata:
+  short_label: Prestations sociales
+  label_en: Social Benefits
+  order:
+  - prestations_familiales
+  - aides_logement
+  - prestations_etat_de_sante
+  - solidarite_insertion
+  - transport
+  - education

@@ -1,0 +1,24 @@
+description: Taux pour 5 enfants à charge de l'Allocation de la mère au foyer (AMF)
+values:
+  1955-06-01:
+    value: 0.4
+  1974-07-01:
+    value: null
+metadata:
+  short_label: 5 enfants à charge
+  label_en: 5 dependant children
+  ipp_csv_id: tx_amf_5enf
+  unit: /1
+  reference:
+    1955-06-01:
+    - title: Loi 55-1045 du 06/08/1955, art. 2
+    - title: Décret 55-1429 du 02/11/1955
+    1974-07-01:
+    - title: Loi 72-8 du 03/01/1972
+    - title: Décret 72-528 et 530 du 9/06/1972 (AMF)
+  official_journal_date:
+    1955-06-01: 1955-05-09; 1955-11-03
+    1974-07-01: 1972-01-05; 1972-06-30
+  notes:
+    1955-06-01:
+    - title: Création de l'AMF

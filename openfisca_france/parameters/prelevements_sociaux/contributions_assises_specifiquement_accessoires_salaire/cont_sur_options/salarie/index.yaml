@@ -1,0 +1,7 @@
+description: Contributions salariales sur options et actions attribuées gratuitement
+metadata:
+  short_label: Salarié
+  label_en: Contribution levied on options and shares granted for free
+  order:
+  - taux_plein
+  - taux_reduit

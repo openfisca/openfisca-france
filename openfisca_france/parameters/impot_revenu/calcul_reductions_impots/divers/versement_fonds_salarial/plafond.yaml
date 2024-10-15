@@ -1,0 +1,15 @@
+description: Plafond de la réduction d'impôt sur les versements à un fonds salarial
+values:
+  1977-01-01:
+    value: null
+  1996-01-01:
+    value: 5000
+  1998-01-01:
+    value: null
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_salarial
+  unit: currency_next_year
+  notes:
+    1996-01-01:
+    - title: tx_formachef n'est à appliquer que sur l'excédent des frais de formation par rapport à ceux de l'année précédente

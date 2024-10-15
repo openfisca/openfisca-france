@@ -1,0 +1,7 @@
+description: Seuil de ressources de la prestation spécifique dépendance (PSD)
+metadata:
+  short_label: Seuil de ressources
+  label_en: Attendance allowance (PSD)
+  order:
+  - personne_seule
+  - personne_en_couple

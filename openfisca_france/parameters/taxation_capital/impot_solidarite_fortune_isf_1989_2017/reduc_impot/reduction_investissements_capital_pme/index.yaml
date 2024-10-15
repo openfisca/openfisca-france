@@ -1,0 +1,7 @@
+description: Réduction pour investissements au capital de PME de l'impôt de solidarité sur la fortune
+metadata:
+  short_label: Réduction pour investissements au capital de PME
+  label_en: Tax reductions for investment and donations
+  order:
+  - plafond_investissement_dans_pme
+  - taux_investissement_direct

@@ -1,0 +1,58 @@
+description: Taux majoré (en % de la BMAF) du complément familial (CF)
+values:
+  1978-01-01:
+    value: null
+  2014-04-01:
+    value: 0.4582
+  2015-04-01:
+    value: 0.4999
+  2016-04-01:
+    value: 0.5416
+  2017-04-01:
+    value: 0.5833
+  2018-04-01:
+    value: 0.6248
+metadata:
+  short_label: Taux majoré
+  last_value_still_valid_on: "2023-05-11"
+  label_en: Increased rate
+  ipp_csv_id: tx_cf_maj
+  unit: BMAF
+  reference:
+    1978-01-01:
+    - title: Loi 77-765 du 12/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
+    - title: Décret 77-1265 du 16/11/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518801
+    - title: Décret 78-957 du 05/09/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000331149
+    2014-04-01:
+      title: Article D522-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028871906/2014-04-01/
+    2015-04-01:
+    - title: Décret 2015-314 du 19/03/2015, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030379021&cidTexte=JORFTEXT000030377944
+    - title: Article D522-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030381069/2015-04-01/
+    2016-04-01:
+    - title: Circulaire DSS/SD2B/2016/77 du 15/03/2016
+    - title: Article D522-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032363890/2016-04-03/
+    2017-04-01:
+    - title: Circulaire DSS/SD2B/2017/97 du 21/03/2017
+    - title: Article D522-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034427374/2017-04-15/
+    2018-04-01:
+    - title: Article D522-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038249420/2022-09-27/
+    - title: Circulaire DSS/SD2B/2018/81 du 22/03/2018, III.
+      href: https://www.legifrance.gouv.fr/download/pdf/circ?id=43190
+  official_journal_date:
+    1978-01-01: 1977-07-13; 1977-11-17; 1978-09-06
+    2003-12-19: "2003-12-19"
+    2015-04-01: "2015-03-19"
+  notes:
+    1978-01-01:
+    - title: Au moins un enfant de moins de 3 ans ou alors 3+ enfants.; Le complément familial remplace l'AFG et l'AMF à compter du 01/01/1978
+    2014-04-01:
+    - title: Majoration progressive de 50 % d'ici à 2018 du CF

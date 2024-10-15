@@ -1,0 +1,10 @@
+description: Plafonds annuels du 1er échelon pour bénéficier de l'Aide au financement du permis B pro BTP
+values:
+  2021-01-01:
+    value: 15000
+metadata:
+  short_label: 1er échelon
+  unit: currency
+  reference:
+    2021-01-01:
+      href: https://www.probtp.com/part/apprenti/aide-permis.html

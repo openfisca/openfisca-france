@@ -1,4 +1,8 @@
-description: Dispositifs de réductions des cotisations famille (1993-1996) des allègements généraux de cotisations de Sécurité sociale (SS)
+description: Dispositifs de réductions des cotisations famille des allègements généraux de cotisations de Sécurité sociale (SS)
 metadata:
-  ux_name: Réductions des cotisations famille
-  description_en: Reduction in SSCs
+  short_label: Réductions des cotisations famille
+  label_en: Reduction in SSCs
+  order:
+  - 0_1_1_smic
+  - 1_1_1_2_smic
+  - 1_2_1_3_smic

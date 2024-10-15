@@ -1,0 +1,17 @@
+description: Taux du crédit d'impôt pour les dépenses de prévention des risques technologiques
+values:
+  2010-01-01:
+    value: 0.3
+  2013-01-01:
+    value: 0.4
+metadata:
+  short_label: Prévention des risques technologiques
+  ipp_csv_id: tx_risques_techno
+  unit: /1
+  reference:
+    2010-01-01:
+      title: Loi n° 2010-1657 du 29 décembre 2010  (LF 2011), art. 99
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000023314376&idArticle=LEGIARTI000023347489&dateTexte=20111231&categorieLien=id#LEGIARTI000023347489
+    2013-01-01:
+      title: Loi n° 2012-1509 du 29 décembre 2012 (LF 2013), art. 7
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000026856853&idArticle=LEGIARTI000026872649&dateTexte=20130606&categorieLien=id#LEGIARTI000026872649

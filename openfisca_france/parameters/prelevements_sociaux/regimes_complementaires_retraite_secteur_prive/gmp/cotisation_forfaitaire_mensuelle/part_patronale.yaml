@@ -1,0 +1,117 @@
+description: Part patronale de la cotisation forfaitaire mensuelle pour la garantie minimale de points (GMP) aux régimes complémentaires de retraite du secteur privé
+values:
+  1989-01-01:
+    value: 177.6875
+  1990-01-01:
+    value: 191.75
+  1991-01-01:
+    value: 199.75625
+  1992-01-01:
+    value: 204.80625
+  1993-01-01:
+    value: 206.70625
+  1994-01-01:
+    value: 186.9222222222222
+  1995-01-01:
+    value: 196.8403846153846
+  1996-01-01:
+    value: 193.1464285714285
+  1997-01-01:
+    value: 176.225
+  1998-01-01:
+    value: 180.46875
+  1999-01-01:
+    value: 192.89
+  2000-01-01:
+    value: 206.171875
+  2001-01-01:
+    value: 209.2912803125
+  2002-01-01:
+    value: 32.421875
+  2003-01-01:
+    value: 32.96875
+  2004-01-01:
+    value: 33.75
+  2005-01-01:
+    value: 34.58333333333334
+  2006-01-01:
+    value: 35.27
+  2007-01-01:
+    value: 36.57
+  2008-01-01:
+    value: 37.81
+  2009-01-01:
+    value: 38.48
+  2010-01-01:
+    value: 38.99
+  2011-01-01:
+    value: 39.84
+  2012-01-01:
+    value: 40.74
+  2013-01-01:
+    value: 41.13
+  2014-01-01:
+    value: 41.17
+  2016-01-01:
+    value: 42.23
+  2017-01-01:
+    value: 43.67
+  2018-01-01:
+    value: 45.11
+  2019-01-01:
+    value: null
+metadata:
+  short_label: Part patronale
+  last_value_still_valid_on: "2021-07-30"
+  label_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
+  ipp_csv_id: gmp_cot_f_m_p
+  unit: currency
+  reference:
+    1989-01-01:
+      title: CCN des Cadres du 14/03/1947, art. 6 (§2, F.)
+    2005-01-01:
+      title: Circulaires 2005-2-DT du 21/03/2005 et 2005-9-DRE du 09/12/2005
+    2006-01-01:
+      title: Circulaire 2006-2-DRE du 19/05/2006
+    2007-01-01:
+      title: Circulaire 2007-1-DT du 14/03/2007
+    2008-01-01:
+      title: Circulaire 2008-4-DT du 14/03/2008
+    2009-01-01:
+      title: Circulaire 2009-1-DT du 18/03/2009
+    2010-01-01:
+      title: Circulaire 2010-2-DT du 18/03/2010
+    2011-01-01:
+      title: Circulaire 2011-02-DT du 18/03/2011
+    2012-01-01:
+      title: Circulaire 2012-09-DT du 20/03/2012
+    2013-01-01:
+      title: Circulaire 2013-6-DT du 02/04/2013
+    2014-01-01:
+      title: Circulaire 2014-2-DT du 20/03/2014
+    2016-01-01:
+      title: Circulaire 2015-15-DRJ du 28/12/2015
+    2017-01-01:
+      title: Circulaire 2016-4-DT du 10/10/2016
+    2018-01-01:
+      title: Circulaire 2017-07-DT du 16/10/2017
+      href: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+  notes:
+    1995-01-01:
+    - title: BSP n° 32 du 31/01/1996
+    1996-01-01:
+    - title: BSP n° 36 du 31/01/1997
+    1997-01-01:
+    - title: BSP n° 36 du 31/01/1997 et BSP n°40 du 31/01/1998
+    1998-01-01:
+    - title: BSP n° 40 du 31/01/1998 et BSP n°44 du 31/01/1999
+    1999-01-01:
+    - title: BSP n° 44 du 31/01/1999
+    2000-01-01:
+    - title: BSP n° 48 du 31/01/2000
+    2004-01-01:
+    - title: Les valeurs des paramètres pour les années 2005 et antérieures sont tirées de barèmes communiqués par l'AGIRC-ARRCO.
+    2019-01-01:
+    - title: Suppression de la GMP avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)

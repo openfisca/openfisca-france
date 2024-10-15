@@ -1,0 +1,17 @@
+description: Allocation aux vieux travailleurs salariés (AVTS) avant 1961
+metadata:
+  short_label: Allocation aux vieux travailleurs salariés (AVTS) avant 1961
+  label_en: Allowance for elderly workers (AVTS) before 1961
+  order:
+  - villes_de_plus_de_5000_ha
+  - villes_de_moins_de_5000_ha
+  - majoration_pour_conjoint
+  - region_parisienne
+documentation: |-
+  Condition d'attribution de l'AVTS : Le bénéficiaire doit être âgé de plus de 65 ans (de plus de 60 ans en cas d'invalidité ou de résidence dans un département d'outre-mer). Il doit également avoir été salarié pendant 15 ans après l'âge de 50 ans ou 25 années au cours de son activité, sachant que pour être comptabilisées, les périodes d'activité salariées doivent avoir été exercées en France (ou en Algérie ou à Monaco selon certaines conditions) et avoir procuré au demandeur une rémunération annuelle minimum.
+  Condition d'attribution de l'allocation spéciale : Elle est égale au montant de l'AVTS et vise les personnes de plus de 65 ans qui n'ont droit à aucune prestation vieillesse. Elle peut ainsi être attribuée aux personnes ne relevant d'aucun régime de vieillesse de base (toutes les dépenses qui se rattachent au service de cette allocation sont également prises en charge par le FSV).
+  Condition d'attribution de l'AMF : l'Allocation aux mères de famille est attribuée selon les mêmes montants et plafonds que l'AVTS. Elle est destinée aux femmes de salariés qui ont élevé au moins 5 enfants. (Voir aussi secours viagier, alligné sur ATVS).
+  Condition d'attribution de l'allocation aux vieux travailleurs non salariés (AVTNS): Elle correspond à l'extension de l'AVTS aux personnes relevant des régimes de non salariés des professions artisanales, industrielles et commerciales.
+  Attention : Ces conditions sont celles en vigueur à partir de 1956. Pour les évolutions législatives, notamment pour l'allongement progressif de la durée de travail salarié après 50 ans, se référer à la loi du 14 mars 1941 qui créé l'allocation puis à l'ordonnance 45/170 du 2/02/1945.
+  Sources:
+  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe A.

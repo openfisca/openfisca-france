@@ -1,4 +1,20 @@
-description: Cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
+description: Taux effectifs (salariés/employeurs) des cotisations au régime complémentaire de retraite des non-cadres (ARRCO) du secteur privé
 metadata:
-  ux_name: Cotisations retraites des non-cadres (ARRCO)
-  description_en:
+  documentation_start: true
+  short_label: Taux effectifs (salariés/employeurs) (ARRCO)
+  label_en: Pension contributions for non-executives (ARRCO)
+  order:
+  - taux_appel
+  - taux_contractuels
+  - taux_effectifs
+  - taux_effectifs_salaries_employeurs
+documentation: |-
+  Tranche 1: Sous PSS
+  Tranche 2: Entre 1 et 3 PSS.
+  Taux contractuels: taux qui servent à calculer les points de retraite des salariés.
+  Taux d'appel: taux appliqué au taux contractuels pour obtenir le taux effectif de cotisation.
+  Champ :
+  Tous les salariés (cadres et non-cadres) cotisent à l'Arrco sur la tranche 1, mais seuls les non-cadres cotisent sur la tranche 2.
+  Sources :
+  Document faxé par l'ARRCO "Paramètres de fonctionnement pratique depuis la création de l'Arrco au titre des opérations obligatoires (1962-1999)"
+  Site web de l'Arrco depuis 1999.

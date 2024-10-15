@@ -1,0 +1,20 @@
+description: 4e Trimestre de la partie proportionnelle de l'allocation journalière spéciale d'assurance chômage
+values:
+  1979-07-01:
+    value: 0.5
+  1983-01-01:
+    value: null
+metadata:
+  short_label: 4e Trimestre
+  label_en: Special UI scheme for economic layoffs
+  ipp_csv_id: journ_4
+  unit: /1
+  reference:
+    1979-07-01:
+      title: Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+    1983-01-01:
+      title: Décret 82-991 du 24/11/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701672&categorieLien=id
+  official_journal_date:
+    1979-07-01: "1979-05-20"
+    1983-01-01: "1982-11-25"

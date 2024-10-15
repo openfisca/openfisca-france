@@ -1,0 +1,38 @@
+description: Allocation aux vieux travailleurs salariés (AVTS) pour la région parisienne
+values:
+  1941-01-01:
+    value: 1600
+  1946-01-01:
+    value: 2400
+  1946-07-01:
+    value: 3000
+  1951-10-01:
+    value: 3400
+  1960-01-01:
+    value: 34
+metadata:
+  short_label: Région parisienne
+  label_en: Allowance for elderly workers (AVTS, 1941-1961)
+  ipp_csv_id: ildf
+  unit: currency
+  reference:
+    1941-01-01:
+      title: Loi du 14/03/1941
+    1946-01-01:
+      title: Loi 46-1 du 03/01/1946
+    1946-07-01:
+      title: Loi 46-2153 du 07/10/1946
+    1951-10-01:
+      title: Loi 15-1126 du 26/09/1951
+    1960-01-01:
+      title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
+  official_journal_date:
+    1941-01-01: "1941-03-15"
+    1946-01-01: "1946-01-04"
+    1946-07-01: "1946-10-08"
+    1951-10-01: "1951-09-27"
+    1960-01-01: "1956-03-31"
+  notes:
+    1960-01-01:
+    - title: "Un décret du 14 avril 1962 supprime les différences pour la France. Sources: site législation CNAV depuis 1956, Sécurité sociales - son histoire à travers les textes p 242 avant."

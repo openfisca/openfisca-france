@@ -1,0 +1,6 @@
+description: Taux (VU)
+values:
+  2013-01-01:
+    value: 0.25
+metadata:
+  unit: /1

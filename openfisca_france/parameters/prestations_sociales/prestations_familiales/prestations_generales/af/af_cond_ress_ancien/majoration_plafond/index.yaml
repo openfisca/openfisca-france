@@ -1,0 +1,7 @@
+description: Majoration du plafond de ressources (1998) des allocations familiales (AF)
+metadata:
+  short_label: Majoration du plafond
+  label_en: "Family allowances (AF): Thresholds for means-testing"
+  order:
+  - couples_biactifs_et_parents_isoles
+  - par_enfant_supplementaire

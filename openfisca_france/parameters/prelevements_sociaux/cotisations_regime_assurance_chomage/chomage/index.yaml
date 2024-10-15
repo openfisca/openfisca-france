@@ -1,4 +1,17 @@
 description: Cotisations au régime de l'assurance chômage
 metadata:
-  ux_name: Cotisations assurance chômage
-  description_en: Unemployment insurance scheme contribution
+  short_label: Cotisations assurance chômage
+  label_en: Unemployment insurance scheme contribution
+  order:
+  - salarie
+  - employeur
+documentation: |-
+  La tranche A correspond au salaire en-dessous du PSS et tranche B le salaire de 1 à 4 plafonds.
+  Sources :
+  Assedic, service Internet unijuris
+  Barème social périodique (1976-2001)
+  Droit de la Sécurité Sociale - JJ Dupeyroux - Précis Dalloz (1984, 1986, 1993)
+  Unedic Historique du régime d'Assurance chômage 1959-1982 (1983)
+  J. Boutault L'assurance chômage en France: Unedic-Assedic (1999)
+  V. Drouin et X. Greffe L'assurance-chômage, Filet de sécurité ou parapluie percée ? (1985) Economica
+  Bulletin de liaison de l'Unedic (consulté au service documentaire de l'Unedic).

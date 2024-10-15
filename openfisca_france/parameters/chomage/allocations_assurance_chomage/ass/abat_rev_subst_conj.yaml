@@ -1,0 +1,11 @@
+description: Abattement appliqué aux revenus interrompus et substitués du conjoint pour l'allocation de solidarité spécifique (ASS)
+values:
+  2005-01-01:
+    value: 0
+  2008-05-01:
+    value: 0.3
+metadata:
+  short_label: Abattement revenus interrompus et substitués
+  label_en: Special UI scheme
+  unit: /1
+documentation: En cas de licenciement, départ en retraite, etc.

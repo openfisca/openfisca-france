@@ -1,0 +1,8 @@
+description: Multiplicateur de N - Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
+metadata:
+  short_label: Multiplicateur de N
+  label_en: Parameters for new home-buyers (APL)
+  order:
+  - dans_formule_ka
+  - dans_formule_kl
+  - dans_formule_kl_numerateur

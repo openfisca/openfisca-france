@@ -1,0 +1,9 @@
+description: Barème de l'impôt sur le revenu (depuis 1945)
+metadata:
+  short_label: Barème de l'impôt sur le revenu
+  label_en: Thresholds and marginal tax rates
+  order:
+  - bareme
+  - bareme_taux_neutre
+  - taxe_complementaire_tc
+  - taxe_proportionnelle_tp

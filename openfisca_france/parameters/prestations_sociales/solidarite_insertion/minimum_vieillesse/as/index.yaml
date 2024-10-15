@@ -1,0 +1,14 @@
+description: Allocation supplémentaire - Minimum vieillesse
+metadata:
+  short_label: Allocation supplémentaire
+  label_en: Extra allowance (AS)
+  order:
+  - allocation_supplementaire
+  - complement_exceptionnel
+  - plafond_ressources
+documentation: |-
+  Le complément versé entre 1958 et 1962 est à ajouter au montant de l'allocation supplémentaire. Il s'agit de compléments cumulés.
+  A partir de 1963, il y a simple revalorisation. Après 1962, le complément est une majoration exceptionnelle.
+  Sources :
+  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe A.
+  CNAV, site web législation - barèmes.

@@ -1,0 +1,10 @@
+description: Période de référence pour justifier les 8 trimestres de cotisation vieillesse, pour 2 enfants, pour le Complément de libre choix d'activité (CLCA) de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 4
+  2015-01-01:
+    value: null
+metadata:
+  short_label: 2 enfants
+  label_en: 2 children
+  ipp_csv_id: periode_ref_cotisations_vieillesse_clca_2enf

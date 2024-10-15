@@ -1,0 +1,16 @@
+description: Prime pour l'emploi (PPE)
+metadata:
+  documentation_start: true
+  short_label: PPE
+  label_en: Employment Allowance
+  order:
+  - seuils_revenu_activite
+  - seuils_rfr_eligibilite
+  - taux
+  - coefficient_majoration_ppe_temps_partiel
+  - supplements
+  - montant_minimum
+  - TP_nbh
+  - TP_nbj
+  - abatns
+documentation: Art. 200 sexies du CGI

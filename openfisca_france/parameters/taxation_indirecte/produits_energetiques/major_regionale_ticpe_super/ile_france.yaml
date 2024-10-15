@@ -1,0 +1,12 @@
+description: Majoration régionale TICPE Super en Ile-de-France
+values:
+  2007-01-01:
+    value: 1.77
+  2012-01-01:
+    value: 2.5
+  2017-01-01:
+    value: 4.39
+metadata:
+  short_label: Ile-de-France
+  ipp_csv_id: maj_ticpe_super_idf
+  unit: currency

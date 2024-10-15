@@ -1,0 +1,22 @@
+description: Taux sur les stock-options des contributions patronales sur options et actions attribuées gratuitement
+values:
+  2007-10-16:
+    value: null
+  2015-08-08:
+    value: 0.3
+metadata:
+  short_label: Taux stock-options
+  label_en: Contribution levied on options and shares granted for free
+  unit: /1
+  reference:
+    2007-10-16:
+      title: Articles L 137-13 et L 137-14 du CSS, créés par la Loi 2007-1786 du 19/12/2007 (LFSS pour 2008), art. 13
+    2015-08-08:
+      title: Loi 2015-990 du 06/08/2015, art. 135
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030981962&cidTexte=JORFTEXT000030978561
+  official_journal_date:
+    2007-10-16: "2007-12-21"
+    2015-08-08: "2015-08-07"
+  notes:
+    2015-08-08:
+    - title: Distingue les taux pour les stock-options et les attributions gratuites d'options acquises postérieurement à la loi dite "loi Macron"

@@ -1,0 +1,8 @@
+description: Taux appliqués aux différentes tranches d'âge, de la majoration pour les enfants (en % de la BMAF) des allocations familiales (AF)
+metadata:
+  short_label: Taux
+  label_en: "Family allowances (AF): Extra allowances"
+  order:
+  - taux_de_la_tranche_1
+  - taux_de_la_tranche_2
+documentation: Il faut appliquer à ces taux la modulation liée à la tranche de revenu à laquelle appartient le demandeur de l'AF (à savoir, 100% pour la 1ère tranche, 50% pour la 2ème et 25% pour la 3e. cfAF_cond)

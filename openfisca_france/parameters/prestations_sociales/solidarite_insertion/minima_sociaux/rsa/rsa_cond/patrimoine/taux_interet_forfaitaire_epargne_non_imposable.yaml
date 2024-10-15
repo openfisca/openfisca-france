@@ -1,0 +1,11 @@
+description: Taux d'intérêt forfaitaire appliqué à l'épargne générant des revenus non imposables
+values:
+  2009-01-01:
+    value: 0.03
+metadata:
+  last_value_still_valid_on: "2022-04-04"
+  unit: /1
+  reference:
+    2009-01-01:
+      title: Article R132-2 du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178301/

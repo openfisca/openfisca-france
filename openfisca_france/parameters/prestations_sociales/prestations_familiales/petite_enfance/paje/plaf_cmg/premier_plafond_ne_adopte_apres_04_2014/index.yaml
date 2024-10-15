@@ -1,0 +1,8 @@
+description: Premier plafond (enfant né ou adopté après le 1er avril 2014) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  short_label: Premier plafond (né ou adopté après avril 2014)
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
+  order:
+  - enfant
+  - deux_enfants
+  - majoration_enfant_supp

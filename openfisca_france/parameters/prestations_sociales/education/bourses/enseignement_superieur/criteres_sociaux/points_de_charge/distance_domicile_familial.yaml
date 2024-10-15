@@ -1,0 +1,27 @@
+description: Nombre de points de charge pour la bourse du supérieur sur critères sociaux selon le nombre de kilomètres entre le domicile familial et l'institution d'enseignement supérieur
+brackets:
+- threshold:
+    2006-03-31:
+      value: 0
+  amount:
+    2006-03-31:
+      value: 0
+- threshold:
+    2006-03-31:
+      value: 30
+  amount:
+    2006-03-31:
+      value: 1
+- threshold:
+    2006-03-31:
+      value: 250
+  amount:
+    2006-03-31:
+      value: 2
+metadata:
+  short_label: Selon déplacmement
+  reference:
+    2006-03-31:
+    - href: https://www.education.gouv.fr/bo/2006/15/MENS0600981C.htm
+    - href: https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm
+  type: single_amount

@@ -1,0 +1,9 @@
+description: Montant minimum du coût du séjour à régler pour les bénéficiaires de l'aide Départ 18-25
+values:
+  2014-09-05:
+    value: 50
+metadata:
+  short_label: Reste à charge minimum
+  unit: currency
+  reference:
+    href: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans

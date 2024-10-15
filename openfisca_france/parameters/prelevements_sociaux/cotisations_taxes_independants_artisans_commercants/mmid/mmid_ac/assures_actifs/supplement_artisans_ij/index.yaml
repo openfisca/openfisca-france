@@ -1,0 +1,6 @@
+description: Supplément pour les artisans, versé au titre des indemnités journalières (IJ) des otisation de sécurité sociale (SS) pour les assurés actifs, branche maladie, maternité, invalidité, décès des artisans-commerçants
+metadata:
+  short_label: Supplément indemnités journalières (artisans)
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  order:
+  - sous_5_pss

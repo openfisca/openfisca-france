@@ -1,0 +1,6 @@
+description: Imposition des gains de cession de titres souscrits en exercice de bons de souscription de parts de créateur d’entreprise (BSPCE) pour une activité exercée dans la société depuis plus de 3 ans
+metadata:
+  short_label: Taux plus de 3ans
+  order:
+  - pre_2018
+  - post_2018

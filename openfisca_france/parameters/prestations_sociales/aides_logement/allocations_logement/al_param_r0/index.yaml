@@ -1,0 +1,9 @@
+description: Paramètres de calcul du montant forfaitaire R0 (que l'on déduit des ressources) - secteur locatif (après 2001)
+metadata:
+  short_label: Calcul du montant forfaitaire R0
+  label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
+  order:
+  - r0
+  - r1_en_rsa_socle_1
+  - r2_en_bmaf_1
+  - plafond_r0

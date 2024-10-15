@@ -1,21 +1,64 @@
-description: Abattement notamment pour les associations à but non lucratif
-unit: currency
+description: Abattement spécial, notamment pour les associations à but non lucratif
 values:
   2002-01-01:
-    value: 5185.0
+    value: 5185
   2007-01-01:
-    value: 5651.0
+    value: 5651
   2008-01-01:
-    value: 5724.0
+    value: 5724
   2009-01-01:
-    value: 5890.0
+    value: 5890
   2010-01-01:
-    value: 5913.0
+    value: 5913
   2011-01-01:
-    value: 6002.0
+    value: 6002
   2014-01-01:
-    value: 20161.0
+    value: 20161
   2015-01-01:
-    value: 20262.0
+    value: 20262
   2016-01-01:
-    value: 20283.0
+    value: 20283
+  2017-01-01:
+    value: 20304
+  2018-01-01:
+    value: 20507
+  2019-01-01:
+    value: 20835
+  2020-01-01:
+    value: 21044
+  2021-01-01:
+    value: 21086
+  2022-01-01:
+    value: 21381
+  2023-01-01:
+    value: 22535
+  2024-01-01:
+    value: 23616
+metadata:
+  short_label: Abattement spécial
+  last_value_still_valid_on: "2024-06-11"
+  unit: currency
+  reference:
+    2018-01-01:
+      title: Décret 2018-500 du 20/06/2018
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037090902
+    2019-01-01:
+      title: Décret 2019-559 du 06/06/2019, art.1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038559371
+    2020-01-01:
+      title: Décret 2020-897, art 1 du 22/07/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042143210
+    2021-01-01:
+      title: Décret 2021-744, art 1 du 09/06/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043641803
+    2022-01-01:
+      title: Décret 2022-782 du 4/05/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000045757192
+    2023-01-01:
+      title: Décret n° 2023-422 du 31/05/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047618675
+    2024-01-01:
+    - title: Décret n° 2024-496 du 30/05/2024, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
+    - title: Article 1679-A du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042160214

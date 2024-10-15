@@ -1,0 +1,8 @@
+description: Abattement exceptionnel en faveur des personnes âgées ou invalides pour le calcul du revenu imposable
+metadata:
+  short_label: Personnes âgées/invalides
+  order:
+  - seuil_1_revenu_net_global
+  - seuil_2_revenu_net_global
+  - abattement_1
+  - abattement_2

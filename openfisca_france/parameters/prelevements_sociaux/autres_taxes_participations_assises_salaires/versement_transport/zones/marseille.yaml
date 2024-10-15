@@ -1,0 +1,34 @@
+description: Versement transport (VT) pour la zone de Marseille
+values:
+  1974-01-01:
+    value: 0.015
+  1989-01-01:
+    value: 0.0175
+  2001-01-01:
+    value: 0.018
+  2011-01-01:
+    value: 0.02
+metadata:
+  short_label: Marseille
+  last_value_still_valid_on: "2021-12-07"
+  label_en: Transport tax (VT) (contribution to public transports)
+  ipp_csv_id: vt_marseille
+  unit: /1
+  reference:
+    1974-01-01:
+    - title: Loi 73-640 du 11/07/1973, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006399843&cidTexte=JORFTEXT000000334814
+    - title: décret 74-66 du 29/01/1974
+    1989-01-01:
+      title: Loi 88-1193 du 29/12/1988 - art. 45
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275526&cidTexte=JORFTEXT000000509064
+    2001-01-01:
+      title: Référence manquante
+    2011-01-01:
+      title: Référence manquante
+  official_journal_date:
+    1974-01-01: 1973-07-12; 1974-01-30
+    1989-01-01: "1988-12-30"
+  notes:
+    1974-01-01:
+    - title: La loi 73-640 autorise les communes de plus de 300 000 habitants à instaurer un VT, dont le taux (au maximum de 1,5%) sera fixé par décret.

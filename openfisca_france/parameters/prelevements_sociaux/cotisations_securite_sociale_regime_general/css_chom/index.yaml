@@ -1,4 +1,13 @@
 description: Cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
 metadata:
-  ux_name: Cotisations sur les allocations chômage
-  description_en: SSCs on unemployment benefits
+  documentation_start: true
+  short_label: Cotisations sur les allocations chômage
+  label_en: SSCs on unemployment benefits
+  order:
+  - cotisation_speciale_assurance_maladie
+  - participation_retraite_complementaire
+documentation: |-
+  Pour la cotisation d'assurance maladie, l'assiette est égale à l'allocation de base brute. Disparait en décembre 1997.
+  Exonération de cotisation pour la retraite complémentaire si l'ARE est inférieure à l'ARE minimale :
+       cf article 19 de l'arrêté du 25/06/2014 "portant agrément de la convention du 14 mai 2014 relative à l'indemnisation du chômage et les textes qui lui sont associés"
+       cf réglement général de l'Unédic, art. 19

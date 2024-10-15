@@ -1,0 +1,112 @@
+description: Taux 2 des cotisations employeurs du régime de retraite de la SNCF
+values:
+  2007-01-01:
+    value: 0.1196
+  2008-01-01:
+    value: 0.1227
+  2009-01-01:
+    value: 0.1262
+  2010-01-01:
+    value: 0.1273
+  2011-01-01:
+    value: 0.1126
+  2013-01-01:
+    value: 0.1135
+  2014-01-01:
+    value: 0.1158
+  2015-01-01:
+    value: 0.1172
+  2016-01-01:
+    value: 0.1181
+  2017-01-01:
+    value: 0.1185
+  2017-05-01:
+    value: 0.1385
+  2019-01-01:
+    value: 0.1399
+  2021-01-01:
+    value: null
+metadata:
+  short_label: Taux 2
+  label_en: Contributions to the SNCF scheme (public railway company)
+  unit: /1
+  reference:
+    2007-01-01:
+    - title: Décret 2007-1056 du 28/06/2007.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000467954
+    - title: Arrêté du 06/05/2008 fixant les composantes T1 définitive pour 2007 et provisionnelle pour 2008
+    2008-01-01:
+    - title: Décret 2007-1056 du 28/06/2007.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000467954
+    - title: Arrêté du 23/12/2009 fixant les composantes T1 définitive pour 2008 et provisionnelle pour 2009
+    2009-01-01:
+    - title: Décret 2007-1056 du 28/06/2007.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000467954
+    - title: Arrêté du 04/01/2011 fixant les composantes T1 définitive pour 2009 et provisionnelle pour 2010
+    2010-01-01:
+    - title: Décret 2007-1056 du 28/06/2007.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000467954
+    - title: Arrêté du 28/12/2011 fixant les composantes T1 définitive pour 2010 et provisionnelle pour 2011
+    2011-01-01:
+    - title: Décret 2011-129 du 31/01/2011, art. 1.
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023507862&cidTexte=JORFTEXT000023492740
+    - title: Arrêté du 12/12/2012 fixant les composantes T1 définitive pour 2011 et provisionnelle pour 2012
+    2013-01-01:
+    - title: Arrêté du 16/07/2014 fixant les composantes T1 définitive pour 2013 et provisionnelle pour 2014.
+    - title: Lettre ministérielle du 02/01/2013 fixant le taux T2 pour 2013
+    2014-01-01:
+    - title: Arrêté du 16/07/2014 fixant les composantes T1 définitive pour 2013 et provisionnelle pour 2014
+    - title: Décret 2013-1290 du 27/12/2013, art. 7
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028420114&cidTexte=JORFTEXT000028408271
+    - title: Lettre ministérielle du 23/01/2014
+    2015-01-01:
+    - title: Décret 2014-1531 du 17/12/2014, art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    - title: Arrêté du 27/07/2015 fixant le taux T1
+    - title: Lettre ministérielle du 15/12/2014 fixant le taux T2 pour l’année 2015
+    2016-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2017-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2017-05-01:
+    - title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    - title: Décret 2017-691 du 2/05/2017 (taux employeur T2).
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034539736
+    2019-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2021-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+  official_journal_date:
+    2007-01-01: 2007-06-29; 2008-05-16
+    2008-01-01: 2007-06-29; 2009-12-30
+    2009-01-01: 2007-06-29; 2011-02-01
+    2010-01-01: 2007-06-29; 2012-01-14
+    2011-01-01: 2011-02-01; 2012-12-18
+    2013-01-01: "2014-07-26"
+    2014-01-01: 2014-07-26; 2013-12-31
+    2015-01-01: 2014-12-19; 2015-08-04
+    2016-01-01: "2014-12-19"
+    2017-01-01: "2014-12-19"
+    2017-05-01: 2014-12-19; 2017-05-03
+    2019-01-01: "2014-12-19"
+    2021-01-01: "2014-12-19"
+  notes:
+    2013-01-01:
+    - title: Lettre ministérielle citée par les Comptes combinés 2013 de l'ACOSS
+    2014-01-01:
+    - title: Lettre ministérielle citée par les Comptes combinés 2014 de l'ACOSS
+    2015-01-01:
+    - title: Le décret fixe les taux à la charge de l'employeur jusqu'en 2026. Valeur T2 mise à jour avec Chiffres clés CPRPSNCF 2017
+    2016-01-01:
+    - title: "Référence législative manquante pour les taux T1 et T2. Source : Chiffres clés 2016. Valeur T2 mise à jour avec Chiffres clés CPRPSNCF 2018"
+    2017-01-01:
+    - title: "Référence législative manquante pour les taux T1 et T2. Source : Avis 143 (2016-2017) du Sénat, II, A, 1. Valeur T2 mise à jour avec Chiffres clés CPRPSNCF 2018"
+    2017-05-01:
+    - title: Référence législative manquante pour taux T1 et T2.
+    2019-01-01:
+    - title: "Valeur T2 provient du rapport du Sénat sur le PLF 2020 : https://www.senat.fr/rap/l19-140-324/l19-140-3244.html  Valeur régime prévoyance provient d'un rapport de l'IGAS : http://www.igas.gouv.fr/IMG/pdf/Rapport_prevoyance_branche_ferroviaire.pdf"

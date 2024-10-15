@@ -2,6 +2,8 @@ import logging
 
 from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
 
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
@@ -10,7 +12,7 @@ log = logging.getLogger(__name__)
 class assiette_allegement(Variable):
     value_type = float
     entity = Individu
-    label = "Assiette des allègements de cotisations sociales employeur"
+    label = 'Assiette des allègements de cotisations sociales employeur'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -26,7 +28,7 @@ class assiette_allegement(Variable):
 class coefficient_proratisation(Variable):
     value_type = float
     entity = Individu
-    label = "Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
+    label = 'Coefficient de proratisation du salaire notamment pour le calcul du Smic'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -76,10 +78,12 @@ class coefficient_proratisation(Variable):
             weekmask='1111100'
             )
 
-        duree_legale_mensuelle = parameters(period).marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        duree_legale_mensuelle = parameters(period).marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
-        heures_temps_plein = switch(heures_duree_collective_entreprise,
-                                    {0: duree_legale_mensuelle, 1: heures_duree_collective_entreprise})
+        heures_temps_plein = where(heures_duree_collective_entreprise,
+                                   heures_duree_collective_entreprise,
+                                   duree_legale_mensuelle
+                                   )
 
         jours_absence = heures_non_remunerees_volume / 7
 
@@ -119,11 +123,12 @@ class coefficient_proratisation(Variable):
 class credit_impot_competitivite_emploi(Variable):
     value_type = float
     entity = Individu
-    label = "Crédit d'impôt pour la compétitivité et l'emploi"
+    label = "Crédit d'impôt pour la compétitivité et l'emploi (CICE)"
     end = '2018-12-31'
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037992483'
 
     def formula_2013_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
@@ -141,7 +146,7 @@ class credit_impot_competitivite_emploi(Variable):
 class aide_premier_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Aide à l'embauche d'un premier salarié"
+    label = "Aide à l'embauche du premier salarié"
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
@@ -149,8 +154,8 @@ class aide_premier_salarie(Variable):
     def formula_2015_06_09(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
         apprenti = individu('apprenti', period)
-        contrat_de_travail_duree = individu('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContrat = contrat_de_travail_type.possible_values
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
         coefficient_proratisation = individu('coefficient_proratisation', period)
@@ -161,26 +166,27 @@ class aide_premier_salarie(Variable):
         # implémenter comme des params xml.
 
         eligible_contrat = and_(
-            contrat_de_travail_debut >= datetime64("2015-06-09"),
-            contrat_de_travail_debut <= datetime64("2016-12-31")
+            contrat_de_travail_debut >= datetime64('2015-06-09'),
+            contrat_de_travail_debut <= datetime64('2016-12-31')
             )
 
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
             # durée indéterminée
-            contrat_de_travail_duree == TypesContratDeTravailDuree.cdi,
+
+            contrat_de_travail_type == TypesContrat.cdi,
             # durée déterminée supérieure à 1 an
-            and_(
-                contrat_de_travail_duree == TypesContratDeTravailDuree.cdd,
+            and_(contrat_de_travail_type == TypesContrat.cdd,
+
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 # Initialement, la condition était d'un contrat >= 12 mois,
                 # pour les demandes transmises jusqu'au 26 janvier.
-                )
+                 )
             )
 
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
-        eligible = \
+        eligible =\
             (effectif_entreprise == 1) * not_(apprenti) * eligible_contrat * eligible_duree * eligible_date
 
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
@@ -205,8 +211,8 @@ class aide_premier_salarie(Variable):
 class aide_embauche_pme(Variable):
     value_type = float
     entity = Individu
-    label = "Aide à l'embauche d'un salarié pour les PME"
-    reference = "http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
+    label = "Aide à l'embauche TPE/PME"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031909980/'
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
@@ -214,8 +220,8 @@ class aide_embauche_pme(Variable):
     def formula_2016_01_18(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
         apprenti = individu('apprenti', period)
-        contrat_de_travail_duree = individu('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContrat = contrat_de_travail_type.possible_values
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
         coefficient_proratisation = individu('coefficient_proratisation', period)
@@ -243,18 +249,18 @@ class aide_embauche_pme(Variable):
             )
 
         eligible_contrat = and_(
-            contrat_de_travail_debut >= datetime64("2016-01-18"),
-            contrat_de_travail_debut <= datetime64("2017-06-30")
+            contrat_de_travail_debut >= datetime64('2016-01-18'),
+            contrat_de_travail_debut <= datetime64('2017-06-30')
             )
 
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
             # durée indéterminée
-            contrat_de_travail_duree == TypesContratDeTravailDuree.cdi,
+            contrat_de_travail_type == TypesContrat.cdi,
             # durée déterminée supérieure à 1 an
             and_(
                 # CDD
-                contrat_de_travail_duree == TypesContratDeTravailDuree.cdd,
+                contrat_de_travail_type == TypesContrat.cdd,
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 )
@@ -287,26 +293,26 @@ class aide_embauche_pme(Variable):
 class smic_proratise(Variable):
     value_type = float
     entity = Individu
-    label = "SMIC proratisé (mensuel)"
+    label = 'Smic proratisé (mensuel)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         coefficient_proratisation = individu('coefficient_proratisation', period)
         parameters = parameters(period)
-        smic_horaire_brut = parameters.marche_travail.salaire_minimum.smic_h_b
-        nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        smic_horaire_brut = parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
+        nbh_travail = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
         smic_proratise = coefficient_proratisation * smic_horaire_brut * nbh_travail
 
         return smic_proratise
 
 
-class allegement_fillon(Variable):
+class allegement_general(Variable):
     value_type = float
     entity = Individu
-    label = "Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
-    reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
+    label = 'Réduction générale des cotisations patronales (dite réduction Fillon)'
+    reference = 'https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542'
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
@@ -316,38 +322,30 @@ class allegement_fillon(Variable):
     def formula_2005_07_01(individu, period, parameters):
         stagiaire = individu('stagiaire', period)
         apprenti = individu('apprenti', period)
-        allegement_mode_recouvrement = individu('allegement_fillon_mode_recouvrement', period)
+        allegement_mode_recouvrement = individu('allegement_general_mode_recouvrement', period)
         exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
-
-        non_cumulee = not_(exoneration_cotisations_employeur_jei)
+        exoneration_cotisations_employeur_tode = individu('exoneration_cotisations_employeur_tode', period)
+        non_cumulee = not_(exoneration_cotisations_employeur_jei + exoneration_cotisations_employeur_tode)
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
             individu, period, parameters,
             allegement_mode_recouvrement,
-            "allegement_fillon",
+            'allegement_general',
             )
 
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 
-def compute_allegement_fillon(individu, period, parameters):
-    """
-        Exonération Fillon
+def compute_allegement_general(individu, period, parameters):
+    '''
+        Exonération générale de cotisations patronales
         https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
-    """
-    # Be careful ! Period is several months
-    first_month = period.first_month
+    '''
 
-    assiette = individu('assiette_allegement', period, options = [ADD])
-    smic_proratise = individu('smic_proratise', period, options = [ADD])
-    taille_entreprise = individu('taille_entreprise', first_month)
-    TypesTailleEntreprise = taille_entreprise.possible_values
-    majoration = (
-        (taille_entreprise == TypesTailleEntreprise.non_pertinent)
-        + (taille_entreprise == TypesTailleEntreprise.moins_de_10)
-        + (taille_entreprise == TypesTailleEntreprise.de_10_a_19)
-        )  # majoration éventuelle pour les petites entreprises
+    assiette = individu('assiette_allegement', period)
+    smic_proratise = individu('smic_proratise', period)
+    effectif_entreprise = individu('effectif_entreprise', period)
 
     # Calcul du taux
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
@@ -359,21 +357,31 @@ def compute_allegement_fillon(individu, period, parameters):
     # au titre des salariés temporaires pour lesquels elle est tenue à
     # l’obligation d’indemnisation compensatrice de congés payés.
 
-    fillon = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.fillon
+    allegement_general = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
 
     # Du 2003-07-01 au 2005-06-30
     if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
-        seuil = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
-        tx_max = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
-    # Après le 2005-07-01
-
-    else:
-        seuil = fillon.ensemble_des_entreprises.plafond
+        seuil = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+        tx_max = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+    # Du 2005-07-01 au 2019-12-31
+    elif date(2005, 7, 1) <= period.start.date <= date(2019, 12, 31):
+        seuil = allegement_general.ensemble_des_entreprises.plafond
+        petite_entreprise = (effectif_entreprise < 20)
         tx_max = (
-            fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_20_salaries_et_plus
-            * not_(majoration)
-            + fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_moins_de_20_salaries
-            * majoration
+            allegement_general.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
+            * not_(petite_entreprise)
+            + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
+            * petite_entreprise
+            )
+    # Après le 2019-12-31
+    else:
+        seuil = allegement_general.ensemble_des_entreprises.plafond
+        petite_entreprise = (effectif_entreprise < 50)
+        tx_max = (
+            allegement_general.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus
+            * not_(petite_entreprise)
+            + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries
+            * petite_entreprise
             )
 
     if seuil <= 1:
@@ -382,51 +390,133 @@ def compute_allegement_fillon(individu, period, parameters):
     ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
 
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
-    taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
+    taux_allegement_general = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
 
     # Montant de l'allegment
-    return taux_fillon * assiette
+    return taux_allegement_general * assiette
 
 
 class allegement_cotisation_allocations_familiales(Variable):
     value_type = float
-    label = "Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
+    label = "Allègement des cotisations d'allocations familiales sur les bas et moyens salaires"
     entity = Individu
-    reference = "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
+    reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2015_01_01(individu, period, parameters):
+        allegement_cotisation_allocations_familiales_base = individu('allegement_cotisation_allocations_familiales_base', period)
+        # Si l'employeur fait le choix de la TO-DE alors celle-ci remplace l'allègement de cotisation des allocations familiales.
+        choix_exoneration_cotisations_employeur_agricole = individu('choix_exoneration_cotisations_employeur_agricole', period)
+        return allegement_cotisation_allocations_familiales_base * not_(choix_exoneration_cotisations_employeur_agricole)
+
+
+class allegement_cotisation_allocations_familiales_base(Variable):
+    value_type = float
+    label = "Allègement des cotisations d'allocations familiales sur les bas et moyens salaires"
+    entity = Individu
+    reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2015_01_01(individu, period, parameters):
         stagiaire = individu('stagiaire', period)
         apprenti = individu('apprenti', period)
-        allegement_mode_recouvrement = \
+        allegement_mode_recouvrement =\
             individu('allegement_cotisation_allocations_familiales_mode_recouvrement', period)
         exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
 
         non_cumulee = not_(exoneration_cotisations_employeur_jei)
 
-        # switch on 3 possible payment options
+        # propose 3 modes de paiement possibles
         allegement = switch_on_allegement_mode(
             individu, period, parameters,
             allegement_mode_recouvrement,
-            "allegement_cotisation_allocations_familiales",
+            'allegement_cotisation_allocations_familiales_base',
             )
 
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 
-def compute_allegement_cotisation_allocations_familiales(individu, period, parameters):
-    """
+def compute_allegement_cotisation_allocations_familiales_base(individu, period, parameters):
+    '''
         La réduction du taux de la cotisation d’allocations familiales
-    """
-    assiette = individu('assiette_allegement', period, options = [ADD])
-    smic_proratise = individu('smic_proratise', period, options = [ADD])
-    # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
-    # taille_entreprise = individu('taille_entreprise', period)
+    '''
+    assiette = individu('assiette_allegement', period)
+    smic_proratise = individu('smic_proratise', period)
     law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
+    taux_reduction = law.reduction
+    if period.start.year < 2024:
+        plafond_reduction = law.plafond_smic * smic_proratise
+    else:
+        coefficient_proratisation = individu('coefficient_proratisation', period)
+        parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
+        smic_horaire_brut_2023_12 = parameters_smic_2023_12.smic_b_horaire
+        nbh_travail_2023_12 = parameters_smic_2023_12.nb_heures_travail_mensuel
+
+        smic_proratise_2O23_12 = coefficient_proratisation * smic_horaire_brut_2023_12 * nbh_travail_2023_12
+        plafond_reduction = max_(law.plafond_smic_courant * smic_proratise, law.plafond_smic_2023_12_31 * smic_proratise_2O23_12)
 
     # Montant de l'allegment
-    return (assiette < law.plafond_smic * smic_proratise) * law.reduction * assiette
+    return (assiette < plafond_reduction) * taux_reduction * assiette
+
+
+class allegement_cotisation_maladie(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    label = 'Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559'
+
+    def formula_2019_01_01(individu, period, parameters):
+        allegement_cotisation_maladie_base = individu('allegement_cotisation_maladie_base', period)
+        # Si l'employeur fait le choix de la TO-DE alors celle-ci remplace l'allègement de cotisation maladie.
+        choix_exoneration_cotisations_employeur_agricole = individu('choix_exoneration_cotisations_employeur_agricole', period)
+        return allegement_cotisation_maladie_base * not_(choix_exoneration_cotisations_employeur_agricole)
+
+
+class allegement_cotisation_maladie_base(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    label = 'Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559'
+
+    def formula_2019_01_01(individu, period, parameters):
+        # propose 3 modes de paiement possibles
+        allegement_mode_recouvrement = individu('allegement_cotisation_maladie_mode_recouvrement', period)
+
+        allegement = switch_on_allegement_mode(
+            individu, period, parameters,
+            allegement_mode_recouvrement,
+            'allegement_cotisation_maladie_base',
+            )
+
+        return allegement
+
+
+def compute_allegement_cotisation_maladie_base(individu, period, parameters):
+    '''
+        Le calcul de l'allègement de cotisation maladie sur les bas et moyens salaires (Ex-CICE).
+    '''
+    allegement_mmid = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
+
+    assiette_allegement = individu('assiette_allegement', period)
+    smic_proratise = individu('smic_proratise', period)
+    if period.start.year < 2024:
+        plafond_allegement_mmid = allegement_mmid.plafond * smic_proratise
+    else:
+        coefficient_proratisation = individu('coefficient_proratisation', period)
+        parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
+        smic_horaire_brut_2023_12 = parameters_smic_2023_12.smic_b_horaire
+        nbh_travail_2023_12 = parameters_smic_2023_12.nb_heures_travail_mensuel
+        smic_proratise_2O23_12 = coefficient_proratisation * smic_horaire_brut_2023_12 * nbh_travail_2023_12
+        plafond_allegement_mmid = max_(allegement_mmid.plafond_smic_courant * smic_proratise, allegement_mmid.plafond_smic_2023_12_31 * smic_proratise_2O23_12)
+
+    sous_plafond = assiette_allegement <= plafond_allegement_mmid
+    return sous_plafond * allegement_mmid.taux * assiette_allegement
 
 
 ###############################
@@ -435,12 +525,12 @@ def compute_allegement_cotisation_allocations_familiales(individu, period, param
 
 
 def switch_on_allegement_mode(individu, period, parameters, mode_recouvrement, variable_name):
-    """
+    '''
         Switch on 3 possible payment options for allegements
 
         Name of the computation method specific to the allegement
         should precisely be the variable name prefixed with 'compute_'
-    """
+    '''
     compute_function = globals()['compute_' + variable_name]
     TypesAllegementModeRecouvrement = mode_recouvrement.possible_values
     recouvrement_fin_annee = (mode_recouvrement == TypesAllegementModeRecouvrement.fin_d_annee)
@@ -458,7 +548,10 @@ def compute_allegement_annuel(individu, period, parameters, variable_name, compu
     if period.start.month < 12:
         return 0
     if period.start.month == 12:
-        return compute_function(individu, period.this_year, parameters)
+        return sum(
+            compute_function(individu, sub_period, parameters)
+            for sub_period in period.this_year.get_subperiods(MONTH)
+            )
 
 
 def compute_allegement_anticipe(individu, period, parameters, variable_name, compute_function):
@@ -467,9 +560,10 @@ def compute_allegement_anticipe(individu, period, parameters, variable_name, com
     if period.start.month == 12:
         cumul = individu(
             variable_name,
-            period.start.offset('first-of', 'year').period('month', 11), options = [ADD])
-        return compute_function(
-            individu, period.this_year, parameters
+            Period(('month', period.start.offset('first-of', 'year'), 11)), options = [ADD])
+        return sum(
+            compute_function(individu, sub_period, parameters)
+            for sub_period in period.this_year.get_subperiods(MONTH)
             ) - cumul
 
 
@@ -478,10 +572,13 @@ def compute_allegement_progressif(individu, period, parameters, variable_name, c
         return compute_function(individu, period.first_month, parameters)
 
     if period.start.month > 1:
-        up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
-        up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
+        up_to_this_month = Period(('month', period.start.offset('first-of', 'year'), period.start.month))
+        up_to_previous_month = Period(('month', period.start.offset('first-of', 'year'), period.start.month - 1))
         cumul = individu(variable_name, up_to_previous_month, options = [ADD])
-        return compute_function(individu, up_to_this_month, parameters) - cumul
+        return sum(
+            compute_function(individu, sub_period, parameters)
+            for sub_period in up_to_this_month.get_subperiods(MONTH)
+            ) - cumul
 
 
 def taux_exo_cice(assiette_allegement, smic_proratise, cice):

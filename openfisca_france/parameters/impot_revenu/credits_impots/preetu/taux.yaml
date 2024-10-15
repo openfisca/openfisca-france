@@ -1,0 +1,7 @@
+description: Taux du crédit d'impôt sur la souscription de prêts étudiants
+values:
+  2005-01-01:
+    value: 0.25
+metadata:
+  short_label: Taux
+  unit: /1

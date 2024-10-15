@@ -1,0 +1,14 @@
+description: Maximum par personne de la déduction pour versements sur un Plan Epargne Retraite Populaire (PERP), en part de PSS annuel
+values:
+  2004-01-01:
+    value: 0.8
+metadata:
+  short_label: Maximum
+  ipp_csv_id: max_deduc_perp
+  unit: /1
+  reference:
+    2004-01-01:
+    - title: Loi 2003-1311 du 30 décembre 2003 (LF pour 2004), art. 82
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000612133
+  official_journal_date:
+    2004-01-01: "2003-12-31"

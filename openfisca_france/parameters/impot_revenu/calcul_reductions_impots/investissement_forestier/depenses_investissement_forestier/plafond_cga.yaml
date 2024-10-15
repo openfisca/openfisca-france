@@ -1,0 +1,6 @@
+description: Plafond de dépenses de contrat de gestion (CGA) de dépenses d'investissement forestier
+values:
+  2009-01-01:
+    value: 2000
+metadata:
+  unit: currency_next_year

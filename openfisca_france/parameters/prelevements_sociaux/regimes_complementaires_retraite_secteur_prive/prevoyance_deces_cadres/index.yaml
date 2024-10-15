@@ -1,0 +1,16 @@
+description: Cotisations décès cadres aux régimes complémentaires de retraite du secteur privé
+metadata:
+  short_label: Cotisations décès cadres
+  label_en: Death contribution - executives
+  order:
+  - employeur_sous_plafond
+documentation: |-
+  (i) Il s'agit d'une cotisation sociale patronale dite "obligatoire" ; en cas de défaut, l'employeur doit alors aux ayants droit du cadre décédé une somme égale à trois fois le plafond annuel des cotisations sociales au moment du décès.
+  (ii) Pour être en conformité avec la convention collective nationale des cadres (art 7 CCN 1947), les entreprises doivent obligatoirement souscrire au profit de l'ensemble des salariés cadres, un régime de prévoyance collective
+  dont la cotisation est au moins égale à 1,50% de la tranche A du salaire limité au Plafond Annuel de la Sécurité sociale (affectée en priorité à la couverture du risque décès).
+  (iii) Il s'agit d'une cotisation à un régime de prévoyance, qui doit être affectée "en priorité" à la couverture du risque décès (art. 7 de la Convention Collective Nationale de Retraite et de Prévoyance des Cadres du 14/03/1947), signifiant plus
+  précisément qu'au moins la moitié doit être affectée à la garantie décès (lettre AGIRC du 26/08/1994).
+  Autres références :
+  La sécurité sociale. Son histoire à travers les textes, tome III, p. 315.
+  Convention Collective Nationale de Retraite et de Prévoyance des Cadres du 14/03/1947
+  Lettre AGIRC du 26/08/1994, citée par la Note de doctrine AXA sur la CCN 1947 mentionnée ci-dessus

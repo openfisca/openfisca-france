@@ -1,0 +1,7 @@
+description: Montant dans le calcul du RSA et de la PPA (en % de la BMAF) de l'Allocation de soutien familial (ASF)
+metadata:
+  short_label: Montant dans le calcul du RSA et de la PPA
+  label_en: "Family support allowance (ASF): Amounts"
+  order:
+  - orphelin_assimile_seul_parent
+  - orphelin_assimile_deux_parents

@@ -1,0 +1,34 @@
+description: Condition d'heures d'activité exercée pour les jeunes (en heure) pour être éligile au revenu de solidarité active (RSA)
+values:
+  2009-06-01:
+    value: null
+  2010-09-01:
+    value: 3214
+metadata:
+  short_label: Heures du RSA jeune
+  last_value_still_valid_on: "2022-03-28"
+  label_en: "Active solidarity income (RSA): General conditions"
+  ipp_csv_id: rsa_jeune_activite
+  unit: hour
+  reference:
+    2009-06-01:
+    - title: Loi 2008-1249 du 01/12/2008, art. 3 (modif art. L262-4 du CASF)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000019861526&cidTexte=JORFTEXT000019860428
+    - title: Décret 2009-404 du 15/04/2009, art. 2 (modif art. R262-2 du CASF)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522717&cidTexte=JORFTEXT000020521930
+    2010-09-01:
+    - title: Décret 2010-961 du 25/08/2010, art. 1 (crée art. D262-25-1 du CASF)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000022741770&cidTexte=JORFTEXT000022741137
+    - title: Article D262-25-1 du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033516276/2017-01-01/
+    - title: Article L3122-4 du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019356968/2008-08-22/
+    - title: Article L3122-4 du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020174/
+  official_journal_date:
+    2009-06-01: 2008-12-03; 2009-04-16
+    2010-09-01: "2010-08-26"
+  notes:
+    2009-06-01:
+    - title: RSA créé par Loi 2008-1249 du 01/12/2008
+documentation: Activité préalable pendant les 3 dernières années si non respect de la condition d'âge minimal ou d'enfant à charge. 3214 heures car cela correspond au nombre d'heures à temps plein sur une année multiplié par deux, 1607*2 = 3214

@@ -1,0 +1,70 @@
+description: Zone sans abattement du SMIG horaire brut
+values:
+  1950-09-01:
+    value: 78
+  1951-04-01:
+    value: 87
+  1951-09-01:
+    value: 100
+  1954-02-01:
+    value: 115
+  1954-10-01:
+    value: 121.5
+  1955-04-01:
+    value: 126
+  1957-08-01:
+    value: 133.45
+  1958-01-01:
+    value: 139.2
+  1958-03-01:
+    value: 144.8
+  1958-06-01:
+    value: 149.25
+  1959-02-01:
+    value: 156
+  1959-11-01:
+    value: 160.15
+  1960-10-01:
+    value: 1.6385
+  1961-12-01:
+    value: 1.6865
+  1962-06-01:
+    value: 1.728
+  1962-11-01:
+    value: 1.806
+  1963-07-01:
+    value: 1.882
+  1964-10-01:
+    value: 1.9295
+  1965-03-01:
+    value: 1.968
+  1965-09-01:
+    value: 2.0075
+  1966-03-01:
+    value: 2.05
+  1966-10-01:
+    value: 2.1
+  1967-07-01:
+    value: 2.15
+  1968-01-01:
+    value: 2.22
+  1968-06-01:
+    value: 3
+  1968-12-01:
+    value: 3.08
+  1969-04-01:
+    value: 3.15
+  1969-10-01:
+    value: 3.27
+  1970-01-01:
+    value: null
+metadata:
+  short_label: Zone sans abattement
+  label_en: Minimum wage
+  ipp_csv_id: smig_h_sans_ab
+  unit: currency
+  notes:
+    1959-11-01:
+    - title: Les montants sont exprimés en anciens Francs de 1950 à 1959.
+    1970-01-01:
+    - title: Remplacé par le Smic

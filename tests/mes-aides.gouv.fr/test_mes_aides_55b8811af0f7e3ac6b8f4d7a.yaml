@@ -1,4 +1,4 @@
-name: Personne isolée 2 enfts à charge salariée
+name: Personne celibataire, à charge de ses parents, avec 2 enfants à charge et salariée
 keywords:
 - recette
 - rsa
@@ -190,6 +190,7 @@ input:
       2015-04: 0
       2015-05: 0
       2015-06: 0
+      2015-07: 0
     aspa:
       2014-07: 0
       2014-08: 0
@@ -292,4 +293,4 @@ input:
     personne_de_reference: 55b8807e40cf7dab6b31aa21
     statut_occupation_logement: loge_gratuitement
 output:
-  rsa: 452.81
+  rsa: 462

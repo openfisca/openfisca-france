@@ -6,7 +6,7 @@ from openfisca_france.model.base import *
 class cf_enfant_a_charge(Variable):
     value_type = bool
     entity = Individu
-    label = "Complément familial - Enfant considéré à charge"
+    label = 'Complément familial - Enfant considéré à charge'
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -14,9 +14,9 @@ class cf_enfant_a_charge(Variable):
         autonomie_financiere = individu('autonomie_financiere', period)
         age = individu('age', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= 0) * (age < pfam.cf.age_max)
+        condition_age = (age >= 0) * (age < cf.cf_cm.age_max)
         condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
 
         return condition_age * condition_situation
@@ -34,15 +34,16 @@ class cf_enfant_eligible(Variable):
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        enfants = parameters(period).prestations_sociales.prestations_familiales.def_pac.enfants
+        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
         condition_enfant = (
-            (age >= pfam.cf.age_min)
-            * (age < pfam.enfants.age_intermediaire)
+            (age >= cf.cf_cm.age_min)
+            * (age < enfants.age_intermediaire)
             * rempli_obligation_scolaire
             )
 
-        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.cf.age_max)
+        condition_jeune = (age >= enfants.age_intermediaire) * (age < cf.cf_cm.age_max)
 
         return or_(condition_enfant, condition_jeune) * cf_enfant_a_charge
 
@@ -59,9 +60,9 @@ class cf_dom_enfant_eligible(Variable):
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= pfam.cf.age_minimal_dom) * (age < pfam.cf.age_maximal_dom)
+        condition_age = (age >= cf.cf_cm_dom.age_minimal_dom) * (age < cf.cf_cm_dom.age_maximal_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
 
         return condition_age * condition_situation
@@ -70,7 +71,7 @@ class cf_dom_enfant_eligible(Variable):
 class cf_dom_enfant_trop_jeune(Variable):
     value_type = bool
     entity = Individu
-    label = "Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit"
+    label = 'Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -78,9 +79,9 @@ class cf_dom_enfant_trop_jeune(Variable):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         age = individu('age', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= 0) * (age < pfam.cf.age_min)
+        condition_age = (age >= 0) * (age < cf.cf_cm.age_min)
 
         return condition_age * est_enfant_dans_famille
 
@@ -108,7 +109,8 @@ class cf_plafond(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        pfam = parameters(period).prestations.prestations_familiales
+        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
+        ars = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.ars
 
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
@@ -122,9 +124,9 @@ class cf_plafond(Variable):
         # Calcul du taux à appliquer au plafond de base pour la France métropolitaine
         taux_plafond_metropole = (
             1
-            + pfam.cf.majoration_plafond_2_premiers_enf
+            + cf.cf_plaf.majoration.deux_premiers_enf
             * min_(cf_nbenf, 2)
-            + pfam.cf.majoration_plafond_3eme_enf_et_plus
+            + cf.cf_plaf.majoration.troisieme_enf_et_plus
             * max_(cf_nbenf - 2, 0)
             )
 
@@ -133,17 +135,17 @@ class cf_plafond(Variable):
 
         # Calcul du plafond pour la France métropolitaine
         plafond_metropole = (
-            pfam.cf.plafond_de_ressources_0_enfant
+            cf.cf_plaf.plafond_ressources_0_enfant
             * taux_plafond_metropole
-            + pfam.cf.majoration_plafond_biact_isole
+            + cf.cf_plaf.majoration.biactifs_isoles
             * majoration_plafond
             )
 
         # Calcul du taux à appliquer au plafond de base pour les DOM
-        taux_plafond_dom = 1 + cf_nbenf * pfam.ars.majoration_par_enf_supp
+        taux_plafond_dom = 1 + cf_nbenf * ars.ars_plaf.majoration_par_enf_supp
 
         # Calcul du plafond pour les DOM
-        plafond_dom = pfam.ars.plafond_ressources * taux_plafond_dom
+        plafond_dom = ars.ars_plaf.plafond_ressources * taux_plafond_dom
 
         plafond = (
             eligibilite_base
@@ -164,8 +166,8 @@ class cf_majore_plafond(Variable):
 
     def formula_2014_04_01(famille, period, parameters):
         plafond_base = famille('cf_plafond', period)
-        pfam = parameters(period).prestations.prestations_familiales
-        return plafond_base * pfam.cf.plafond_cf_majore
+        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
+        return plafond_base * cf.cf_plaf.plafond_cf_majore
 
 
 class cf_base_ressources(Variable):
@@ -185,7 +187,7 @@ class cf_base_ressources(Variable):
 class cf_eligibilite_base(Variable):
     value_type = bool
     entity = Famille
-    label = "Éligibilité au complément familial sous condition de ressources et avant cumul"
+    label = 'Éligibilité au complément familial sous condition de ressources et avant cumul'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -201,7 +203,7 @@ class cf_eligibilite_base(Variable):
 class cf_eligibilite_dom(Variable):
     value_type = bool
     entity = Famille
-    label = "Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
+    label = 'Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -224,7 +226,7 @@ class cf_eligibilite_dom(Variable):
 class cf_non_majore_avant_cumul(Variable):
     value_type = float
     entity = Famille
-    label = "Complément familial non majoré avant cumul"
+    label = 'Complément familial non majoré avant cumul'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -234,15 +236,16 @@ class cf_non_majore_avant_cumul(Variable):
         ressources = famille('cf_base_ressources', period)
         plafond = famille('cf_plafond', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
         montant = (
-            pfam.af.bmaf * (
-                pfam.cf.taux_cf_base * eligibilite_base
-                + pfam.cf.taux_base_dom * eligibilite_dom
+            bmaf * (
+                cf.cf_cm.complement_familial.taux_cf_base * eligibilite_base
+                + cf.cf_cm_dom.complement_familial_dom.taux_base_dom * eligibilite_dom
                 )
             )
 
@@ -266,7 +269,7 @@ class cf_non_majore_avant_cumul(Variable):
 class cf_majore_avant_cumul(Variable):
     value_type = float
     entity = Famille
-    label = "Complément familial majoré avant cumul"
+    label = 'Complément familial majoré avant cumul'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -276,15 +279,16 @@ class cf_majore_avant_cumul(Variable):
         ressources = famille('cf_base_ressources', period)
         plafond_majore = famille('cf_majore_plafond', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
         montant = (
-            pfam.af.bmaf * (
-                pfam.cf.taux_cf_majore * eligibilite_base
-                + pfam.cf.taux_majore_dom * eligibilite_dom
+            bmaf * (
+                cf.cf_cm.complement_familial.taux_cf_majore * eligibilite_base
+                + cf.cf_cm_dom.complement_familial_dom.taux_majore_dom * eligibilite_dom
                 )
             )
 
@@ -311,16 +315,18 @@ class cf(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "Complément familial"
-    reference = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
+    label = 'Complément familial'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F13214.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         '''
-        L'allocation de base de la paje n'est pas cumulable avec le complément familial
+        Pour les règles de non-cumul du CF avec les autres prestations, voir notamment les art. L532-1 et L532-2 du CSS
         '''
         paje_base = famille('paje_base', period)
+        paje_clca = famille('paje_clca', period)
+        paje_prepare = famille('paje_prepare', period)
         apje_avant_cumul = famille('apje_avant_cumul', period)
         ape_avant_cumul = famille('ape_avant_cumul', period)
         cf_montant = famille('cf_montant', period)
@@ -328,9 +334,40 @@ class cf(Variable):
 
         cf_brut = (
             not_(paje_base)
+            * not_(paje_clca)
+            * not_(paje_prepare)
             * (apje_avant_cumul <= cf_montant)
             * (ape_avant_cumul <= cf_montant)
             * cf_montant
             )
 
         return not_(residence_mayotte) * round(cf_brut, 2)
+
+
+class crds_cf(Variable):
+    value_type = float
+    entity = Famille
+    label = 'CRDS sur le complément familial'
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        cf = famille('cf', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+
+        return -(cf) * taux_crds
+
+
+class cf_net_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = 'Complément familial net de CRDS'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        cf = famille('cf', period)
+        crds_cf = famille('crds_cf', period)
+
+        return cf + crds_cf

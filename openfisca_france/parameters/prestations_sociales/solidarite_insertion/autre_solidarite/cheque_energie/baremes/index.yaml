@@ -1,0 +1,8 @@
+description: Barèmes des montants du chèque énergie, prestations sociales de solidarité insertion
+metadata:
+  short_label: Barèmes
+  label_en: Help for energy expenses voucher
+  order:
+  - une_uc
+  - une_uc_a_deux_uc
+  - plus_de_deux_ucs

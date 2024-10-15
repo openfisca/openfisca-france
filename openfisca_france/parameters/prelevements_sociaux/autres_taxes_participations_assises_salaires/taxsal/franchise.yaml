@@ -1,5 +1,7 @@
 description: La taxe sur les salaires n'est pas exigible en-dessous de ce montant
-unit: currency
 values:
   2001-01-01:
-    value: 1200.0
+    value: 1200
+metadata:
+  short_label: Franchise (seuil de la décôte)
+  unit: currency

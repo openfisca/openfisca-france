@@ -1,0 +1,29 @@
+description: Taux de l'abattement
+values:
+  1942-01-01:
+    value: null
+  1953-01-01:
+    value: 0.1
+  1954-01-01:
+    value: 0.15
+  1959-01-01:
+    value: 0.19
+  1960-01-01:
+    value: 0.2
+  2006-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_ded_sal
+  unit: /1
+  reference:
+    2006-01-01:
+    - title: LF pour 2007
+    - title: BOI 5 B-10-07 n°47 du 29/03/2007
+  official_journal_date:
+    2006-01-01: "2006-12-27"
+  notes:
+    1953-01-01:
+    - title: Création d'un abattement supplémentaire pour les salaires inférieurs au seuil (colonne D)
+    2006-01-01:
+    - title: Intégration de l'abattement de 20% au barème de l'impôt sur le revenu

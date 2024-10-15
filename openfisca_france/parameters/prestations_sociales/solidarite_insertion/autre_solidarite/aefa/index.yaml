@@ -1,0 +1,15 @@
+description: Aide exceptionnelle de fin d'année (AEFA) dite "prime de Noël"
+metadata:
+  documentation_start: true
+  label_en: "Exceptional end-of-year benefit (AEFA): amount"
+  order:
+  - montant_prime
+  - taux_majoration
+documentation: |-
+  La prime existe depuis 1988 mais nous n'avons pu remonter que jusqu'à 2003
+  https://www.service-public.fr/particuliers/vosdroits/F1325
+  Décret 2015-1870 du 30/12/2015
+  Décret 2014-1709 du 30/12/2014
+  Décret 2013-1294 du 30/12/2013
+  Décret 2010-1677 du 29/12/2010
+  Décret 2003-1283 du 26/12/2003

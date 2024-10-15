@@ -1,0 +1,10 @@
+description: Rente viagère sous conditions
+values:
+  1979-07-01:
+    value: 0.024
+  1990-01-01:
+    value: null
+metadata:
+  ipp_csv_id: taxe_rente_viagere_cond
+  unit: /1
+documentation: Art. L211-1 code des assurances

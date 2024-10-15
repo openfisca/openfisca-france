@@ -1,0 +1,12 @@
+description: Plafond de la réduction d'impôt liées aux intérêts d'emprunts
+values:
+  1978-01-01:
+    value: null
+  1984-01-01:
+    value: 9000
+  2001-01-01:
+    value: null
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_int_emp
+  unit: currency_next_year

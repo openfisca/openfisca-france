@@ -1,0 +1,5 @@
+description: Niveau de loyer "social" ou "très social"
+metadata:
+  order:
+  - zone_A
+  - zone_B

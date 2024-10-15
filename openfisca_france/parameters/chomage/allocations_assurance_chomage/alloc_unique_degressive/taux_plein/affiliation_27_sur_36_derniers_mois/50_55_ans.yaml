@@ -1,0 +1,13 @@
+description: Durée d'indemnisation au taux plein (50-55 ans, affiliation de 27 mois au cours des 36 derniers mois) de l'allocation unique dégressive des allocations d'assurance chômage
+values:
+  1993-01-01:
+    value: 20
+metadata:
+  short_label: 50-55 ans
+  label_en: UI scheme - degressive schedule
+  unit: month
+  reference:
+    1993-01-01:
+      title: "Arrêté du 17/08/1992 portant agrément de l'avenant n°2 du 24/07/1992 à la convention du 01/01/1990 et de l'avenant n°10 du 24/07/1992 au règlement annexé à cette convention\_+ Arrêt du 04/01/1993 portant agrément de la convention du 01/01/1993"
+  official_journal_date:
+    1993-01-01: 1992-08-18; 1993-01-04

@@ -1,0 +1,19 @@
+description: Taux au-delà de 5 PSS, dont IJ de la cotisation de sécurité sociale (SS) pour les assurés actifs, branche maladie, maternité, invalidité, décès des artisans-commerçants
+values:
+  1970-04-01:
+    value: null
+  2018-01-01:
+    value: 0.0735
+metadata:
+  short_label: Au-delà de 5 PSS, dont IJ
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  unit: /1
+  reference:
+    2018-01-01:
+      title: Décret 2017-1894 du 30/12/2017, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036456544&cidTexte=JORFTEXT000036342439
+  official_journal_date:
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: Progressivité du taux de cotisation. Le taux indiqué comprend la cotisation pour IJ

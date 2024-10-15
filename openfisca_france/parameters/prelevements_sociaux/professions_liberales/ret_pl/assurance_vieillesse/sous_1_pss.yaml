@@ -1,0 +1,15 @@
+description: Taux sous 1 PSS de la cotisation de sécurité sociale (SS) branche vieillesse des professions libérales
+values:
+  2015-01-01:
+    value: 0.0823
+metadata:
+  short_label: Taux sous 1 PSS
+  label_en: SSCs for old-age insurance (professionals)
+  ipp_csv_id: ret_plib_1
+  unit: /1
+  reference:
+    2015-01-01:
+      title: Décret 2014-1413 du 27/11/2014
+      href: https://www.legifrance.gouv.fr/eli/decret/2014/11/27/2014-1413/jo/texte
+  official_journal_date:
+    2015-01-01: "2014-11-29"

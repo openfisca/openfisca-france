@@ -1,4 +1,4 @@
-- name: reduc_locmeu
+- name: reduc_location_meublee
   period: 2014
   absolute_error_margin: 2
   input:
@@ -13,18 +13,18 @@
       declarants:
       - ind0
       f7id: 10000
-      f7ie: 10000
-      f7if: 10000
-      f7ig: 10000
+      f7ie_2016: 10000
+      f7if_2016: 10000
+      f7ig_2016: 10000
       f7ij: 10000
       f7il: 10000
       f7im: 10000
       f7in: 10000
-      f7io: 10000
-      f7iv: 10000
-      f7iw: 10000
-      f7jt: 10000
-      f7ju: 10000
+      f7io_2015: 10000
+      f7iv_2016: 10000
+      f7iw_2016: 10000
+      f7jt_2019: 10000
+      f7ju_2016: 10000
       f7ou: 10000
       nbF: 0.0
       nbG: 0.0
@@ -44,15 +44,15 @@
     menage:
       personne_de_reference: ind0
   output:
-    iai: 40296.0
-    irpp: -40296.0
-    nbptr: 1.0
-    ppe: 0.0
-    rbg: 137843.0
     reductions: 2688.0
+    rbg: 137843.0
     rfr: 137843.0
     rni: 137843.0
-- name: reduc_locmeu
+    nbptr: 1.0
+    ppe: 0.0
+    iai: 40296.0
+    impot_revenu_restant_a_payer: -40296.0
+- name: reduc_location_meublee
   period: 2015
   absolute_error_margin: 2
   input:
@@ -67,18 +67,18 @@
       declarants:
       - ind0
       f7id: 10000
-      f7ie: 10000
-      f7if: 10000
-      f7ig: 10000
+      f7ie_2016: 10000
+      f7if_2016: 10000
+      f7ig_2016: 10000
       f7ij: 10000
       f7il: 10000
       f7im: 10000
       f7in: 10000
-      f7io: 10000
-      f7iv: 10000
-      f7iw: 10000
-      f7jt: 10000
-      f7ju: 10000
+      f7io_2015: 10000
+      f7iv_2016: 10000
+      f7iw_2016: 10000
+      f7jt_2019: 10000
+      f7ju_2016: 10000
       f7ou: 10000
       f7ov: 10000
       nbF: 0.0
@@ -100,13 +100,13 @@
       personne_de_reference: ind0
   output:
     iai: 40155.0
-    irpp: -40155.0
+    impot_revenu_restant_a_payer: -40155.0
     nbptr: 1.0
     rbg: 137830.0
     reductions: 2810.0
     rfr: 137830.0
     rni: 137830.0
-- name: reduc_locmeu
+- name: reduc_location_meublee
   period: 2016
   absolute_error_margin: 2
   input:
@@ -121,17 +121,17 @@
       declarants:
       - ind0
       f7id: 10000
-      f7ie: 10000
-      f7if: 10000
-      f7ig: 10000
+      f7ie_2016: 10000
+      f7if_2016: 10000
+      f7ig_2016: 10000
       f7ij: 10000
       f7il: 10000
       f7im: 10000
       f7in: 10000
-      f7iv: 10000
-      f7iw: 10000
-      f7jt: 10000
-      f7ju: 10000
+      f7iv_2016: 10000
+      f7iw_2016: 10000
+      f7jt_2019: 10000
+      f7ju_2016: 10000
       f7ou: 10000
       f7ov: 10000
       f7ow: 10000
@@ -154,13 +154,13 @@
       personne_de_reference: ind0
   output:
     iai: 40292.0
-    irpp: -40292.0
+    impot_revenu_restant_a_payer: -40292.0
     nbptr: 1.0
     rbg: 137817.0
     reductions: 2654.0
     rfr: 137817.0
     rni: 137817.0
-- name: reduc_locmeu
+- name: reduc_location_meublee
   period: 2017
   absolute_error_margin: 2
   input:
@@ -176,7 +176,7 @@
       - ind0
       f7id: 10000
       f7ij: 10000
-      f7jt: 10000
+      f7jt_2019: 10000
       f7ou: 10000
       f7ov: 10000
       f7ow: 10000
@@ -200,9 +200,9 @@
       personne_de_reference: ind0
   output:
     iai: 41828.0
-    irpp: -41828.0
+    impot_revenu_restant_a_payer: -41828.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 137695.0
     reductions: 932.0
     rfr: 137695.0

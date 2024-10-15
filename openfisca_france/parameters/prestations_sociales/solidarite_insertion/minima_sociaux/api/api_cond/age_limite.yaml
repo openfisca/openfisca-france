@@ -1,0 +1,29 @@
+description: Limite d'âge des enfants pour prolongation du droit à l'allocation parent isolé (API)
+values:
+  1976-10-01:
+    value: 3
+  2009-06-01:
+    value: null
+metadata:
+  short_label: Âge max enfants
+  last_value_still_valid_on: "2022-03-14"
+  label_en: "Single parent allowance (API): General conditions"
+  ipp_csv_id: api_ageenf_max
+  unit: year
+  reference:
+    1976-10-01:
+      title: Décret 76-893 du 28/09/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000689445&categorieLien=id
+    2009-06-01:
+    - title: Décret 2009-404 du 15/04/2009, art. 4 (abroge art. R524-18 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522721&cidTexte=JORFTEXT000020521930
+    - title: Article 524-18 (abrogé) du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750669/2006-10-01
+  official_journal_date:
+    1976-10-01: "1976-09-30"
+    2009-06-01: "2009-04-16"
+  notes:
+    1976-10-01:
+    - title: API créée par la loi 76-617, en insérant un chapitre V-3 au CSS
+    2009-06-01:
+    - title: Abrogation de l'API

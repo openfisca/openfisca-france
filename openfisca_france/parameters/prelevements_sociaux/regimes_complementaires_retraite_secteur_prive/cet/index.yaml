@@ -1,4 +1,14 @@
-description: Cotisations retraites exceptionnelle et temporaire (CET) aux régimes complémentaires de retraite (secteur privé) (1997-2018)
+description: Cotisations retraites exceptionnelle et temporaire (CET) des régimes complémentaires de retraite du secteur privé
 metadata:
-  ux_name: Cotisations retraites exceptionnelle et temporaire (CET) (1997-2018)
-  description_en:
+  short_label: Cotisations retraites exceptionnelle et temporaire (CET)
+  label_en: Exceptional and temporary pension contribution (CET)
+  order:
+  - salarie
+  - employeur
+documentation: |-
+  CET: Cotisation Exceptionnelle et Temporaire, cotisation pour le régime Agirc (pour les cadres uniquement).
+  Elle a été instaurée par les accords AGIRC du 25/04/1996.
+  Non génératrice de droits; non soumise au pourcentage d’appel des cotisations (donc taux contractuel = taux effectif). Elle est répartie entre employeur et cadre de la même façon que la cotisation Agirc sur la tranche B.
+  Pour 2017, circulaire 2016-11-DRJ du 16/12/2016
+  Pour 2018, circulaire 2017-12-DRJ du 13/12/2017
+  L'article Article 4-1 de l'accord du 30 octobre 2015 relatif aux retraites complémentaires Agirc-Arrco-AGFF fixe le taux total CET pour les années 2016, 2017 et 2018.

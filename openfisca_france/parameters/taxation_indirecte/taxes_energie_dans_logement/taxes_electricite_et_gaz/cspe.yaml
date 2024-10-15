@@ -1,0 +1,23 @@
+description: Contribution au service public de l'électricité (CSPE)
+values:
+  2003-01-01:
+    value: null
+  2004-01-01:
+    value: 4.5
+  2011-01-01:
+    value: 7.5
+  2011-07-31:
+    value: 9
+  2012-07-01:
+    value: 10.5
+  2013-01-01:
+    value: 13.5
+  2014-01-01:
+    value: 16.5
+  2015-01-01:
+    value: 19.5
+  2016-01-01:
+    value: 22.5
+metadata:
+  ipp_csv_id: cspe
+  unit: currency

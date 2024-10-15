@@ -19,11 +19,11 @@
       personne_de_reference: ind0
   output:
     rbg: 25000.0
-    prelevement_forfaitaire_unique_ir: -5120.0
+    prelevement_forfaitaire_unique_ir: 0
     nbptr: 1.0
     rfr: 65000.0
-    irpp: -2091.0
-    prelevements_sociaux_revenus_capital: -6600.0
+    impot_revenu_restant_a_payer: -7211.0
+    prelevements_sociaux_revenus_capital: -6880.0
 
 - name: Imposition des plus-values des revenus de professions non-salariées - Régime du bénéfice réel
   period: 2019
@@ -47,11 +47,11 @@
       personne_de_reference: ind0
   output:
     rbg: 25000.0
-    prelevement_forfaitaire_unique_ir: -3200.0
+    prelevement_forfaitaire_unique_ir: 0
     nbptr: 1.0
     rfr: 75000.0
-    irpp: -4591.0
-    prelevements_sociaux_revenus_capital: -4125.0
+    impot_revenu_restant_a_payer: -7791.0
+    prelevements_sociaux_revenus_capital: -4300.0
 
 - name: Imposition des plus-values des revenus de professions non-salariées - Régime Micro BIC
   period: 2019
@@ -75,11 +75,11 @@
       personne_de_reference: ind0
   output:
     rbg: 40000.0
-    prelevement_forfaitaire_unique_ir: -2560.0
+    prelevement_forfaitaire_unique_ir: 0
     nbptr: 1.0
     rfr: 60000.0
-    irpp: -6144.0
-    prelevements_sociaux_revenus_capital: -3300.0
+    impot_revenu_restant_a_payer: -8704.0
+    prelevements_sociaux_revenus_capital: -3440.0
 
 - name: Imposition des plus-values des revenus de professions non-salariées - Régime RIC pro bénéfice réel
   period: 2019
@@ -103,11 +103,11 @@
       personne_de_reference: ind0
   output:
     rbg: 40000.0
-    prelevement_forfaitaire_unique_ir: -2560.0
+    prelevement_forfaitaire_unique_ir: 0
     nbptr: 1.0
     rfr: 80000.0
-    irpp: -8144.0
-    prelevements_sociaux_revenus_capital: -3300.0
+    impot_revenu_restant_a_payer: -10704.0
+    prelevements_sociaux_revenus_capital: -3440.0
 
 - name: Imposition des plus-values des revenus de professions non-salariées - Régime RIC non pro micro
   period: 2019
@@ -131,8 +131,8 @@
       personne_de_reference: ind0
   output:
     rbg: 20000.0
-    prelevement_forfaitaire_unique_ir: -2560.0
+    prelevement_forfaitaire_unique_ir: 0
     nbptr: 1.0
     rfr: 60000.0
-    irpp: -1226.0
-    prelevements_sociaux_revenus_capital: -3300.0
+    impot_revenu_restant_a_payer: -3786.0
+    prelevements_sociaux_revenus_capital: -3440.0

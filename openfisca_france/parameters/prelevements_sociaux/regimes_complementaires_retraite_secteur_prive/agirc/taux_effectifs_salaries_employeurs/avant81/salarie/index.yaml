@@ -1,0 +1,6 @@
+description: Taux effectifs salarié (Entreprises avant 1981) des cotisations de régimes complémentaire de retraite des cades (AGIRC)
+metadata:
+  short_label: Barème salarié
+  label_en: Pension contributions for executives (AGIRC)
+  order:
+  - agirc

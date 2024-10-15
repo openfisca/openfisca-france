@@ -1,0 +1,240 @@
+description: Barème marginal de l'imposition au taux neutre pour les contribuables domiciliés en Guyane ou à Mayotte
+brackets:
+- threshold:
+    2019-01-01:
+      value: 0
+  rate:
+    2019-01-01:
+      value: 0
+- threshold:
+    2019-01-01:
+      value: 1724
+    2020-01-01:
+      value: 1741
+    2021-01-01:
+      value: 1745
+  rate:
+    2019-01-01:
+      value: 0.005
+- threshold:
+    2019-01-01:
+      value: 1833
+    2020-01-01:
+      value: 1883
+    2021-01-01:
+      value: 1887
+  rate:
+    2019-01-01:
+      value: 0.015
+    2020-01-01:
+      value: 0.013
+- threshold:
+    2019-01-01:
+      value: 1974
+    2020-01-01:
+      value: 2100
+    2021-01-01:
+      value: 2104
+  rate:
+    2019-01-01:
+      value: 0.025
+    2020-01-01:
+      value: 0.021
+- threshold:
+    2019-01-01:
+      value: 2167
+    2020-01-01:
+      value: 2367
+    2021-01-01:
+      value: 2371
+  rate:
+    2019-01-01:
+      value: 0.035
+    2020-01-01:
+      value: 0.029
+- threshold:
+    2019-01-01:
+      value: 2402
+    2020-01-01:
+      value: 2458
+    2021-01-01:
+      value: 2463
+  rate:
+    2019-01-01:
+      value: 0.045
+    2020-01-01:
+      value: 0.035
+- threshold:
+    2019-01-01:
+      value: 2647
+    2020-01-01:
+      value: 2542
+    2021-01-01:
+      value: 2547
+  rate:
+    2019-01-01:
+      value: 0.06
+    2020-01-01:
+      value: 0.041
+- threshold:
+    2019-01-01:
+      value: 3067
+    2020-01-01:
+      value: 2625
+    2021-01-01:
+      value: 2630
+  rate:
+    2019-01-01:
+      value: 0.075
+    2020-01-01:
+      value: 0.053
+- threshold:
+    2019-01-01:
+      value: 3647
+    2020-01-01:
+      value: 2917
+    2021-01-01:
+      value: 2922
+  rate:
+    2019-01-01:
+      value: 0.09
+    2020-01-01:
+      value: 0.075
+- threshold:
+    2019-01-01:
+      value: 4495
+    2020-01-01:
+      value: 4025
+    2021-01-01:
+      value: 4033
+  rate:
+    2019-01-01:
+      value: 0.105
+    2020-01-01:
+      value: 0.099
+- threshold:
+    2019-01-01:
+      value: 5210
+    2020-01-01:
+      value: 5208
+    2021-01-01:
+      value: 5219
+  rate:
+    2019-01-01:
+      value: 0.12
+    2020-01-01:
+      value: 0.119
+- threshold:
+    2019-01-01:
+      value: 5860
+    2020-01-01:
+      value: 5875
+    2021-01-01:
+      value: 5887
+  rate:
+    2019-01-01:
+      value: 0.14
+    2020-01-01:
+      value: 0.138
+- threshold:
+    2019-01-01:
+      value: 6830
+    2020-01-01:
+      value: 6817
+    2021-01-01:
+      value: 6830
+  rate:
+    2019-01-01:
+      value: 0.16
+    2020-01-01:
+      value: 0.158
+- threshold:
+    2019-01-01:
+      value: 7520
+    2020-01-01:
+      value: 7500
+    2021-01-01:
+      value: 7515
+  rate:
+    2019-01-01:
+      value: 0.18
+    2020-01-01:
+      value: 0.179
+- threshold:
+    2019-01-01:
+      value: 8360
+    2020-01-01:
+      value: 8308
+    2021-01-01:
+      value: 8325
+  rate:
+    2019-01-01:
+      value: 0.2
+- threshold:
+    2019-01-01:
+      value: 10050
+    2020-01-01:
+      value: 9642
+    2021-01-01:
+      value: 9661
+  rate:
+    2019-01-01:
+      value: 0.24
+- threshold:
+    2019-01-01:
+      value: 12830
+    2020-01-01:
+      value: 12971
+    2021-01-01:
+      value: 12997
+  rate:
+    2019-01-01:
+      value: 0.28
+- threshold:
+    2019-01-01:
+      value: 17150
+    2020-01-01:
+      value: 16500
+    2021-01-01:
+      value: 16533
+  rate:
+    2019-01-01:
+      value: 0.33
+- threshold:
+    2019-01-01:
+      value: 26180
+    2020-01-01:
+      value: 26443
+    2021-01-01:
+      value: 26496
+  rate:
+    2019-01-01:
+      value: 0.38
+- threshold:
+    2019-01-01:
+      value: 55260
+    2020-01-01:
+      value: 55815
+    2021-01-01:
+      value: 55926
+  rate:
+    2019-01-01:
+      value: 0.43
+metadata:
+  short_label: Barème Guyane ou Mayotte
+  reference:
+    2019-01-01:
+      title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
+    2020-01-01:
+      title: Loi 2019-1479, art. 2 du 28/12/2019 (LF pour 2020)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039683923&dateTexte=&categorieLien=id
+    2021-01-01:
+      title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+  official_journal_date:
+    2019-01-01: "2018-12-30"
+    2020-01-01: "2019-12-29"
+    2021-01-01: "2020-12-30"
+  rate_unit: /1
+  threshold_unit: currency_next_year

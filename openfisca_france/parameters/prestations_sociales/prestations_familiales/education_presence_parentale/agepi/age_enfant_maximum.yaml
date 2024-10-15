@@ -1,0 +1,10 @@
+description: Âge maximal de l'enfant pour l'éligibilité à l'AGEPI de la Prestation sociale familiale d'Aide à la garde des enfants de parents isolés (AGEPI) de Pôle Emploi
+values:
+  2014-01-20:
+    value: 10
+metadata:
+  short_label: Âge maximal enfant
+  unit: year
+  reference:
+    2014-01-20:
+      href: http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20

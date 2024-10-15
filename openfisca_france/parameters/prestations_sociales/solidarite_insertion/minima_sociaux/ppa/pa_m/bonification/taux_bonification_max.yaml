@@ -1,0 +1,29 @@
+description: Montant maximal de la bonification (en % de la base RSA) pour la prime pour l'activité (PPA)
+values:
+  2016-01-01:
+    value: 0.12782
+  2019-01-01:
+    value: 0.29101
+metadata:
+  short_label: Montant maximal de la bonification (en % de la base RSA)
+  last_value_still_valid_on: "2022-08-03"
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
+  ipp_csv_id: pa_bonification
+  unit: /1
+  reference:
+    2016-01-01:
+    - title: Article D843-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
+    - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
+    2019-01-01:
+      title: Décret nº2018-1197 du 21/12/2018
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037846000
+  official_journal_date:
+    2016-01-01: "2015-12-22"
+    2019-01-01: "2018-12-22"
+  notes:
+    2016-01-01:
+    - title: Création de la prime d'activité.
+    2019-01-01:
+    - title: Revalorisation de la prime d'activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La prime d'activité augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.

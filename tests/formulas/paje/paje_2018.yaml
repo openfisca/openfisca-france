@@ -401,7 +401,7 @@
 
 - name: PAJE - PPN - Cas N°1
   description: Montant PAJE
-  period: 2018-03
+  period: 2018-01
   absolute_error_margin: 0.03
   input:
     famille:
@@ -430,12 +430,12 @@
           2017: 15000
           2018: 15000
       enfant1:
-        date_naissance: 2018-01-01
+        date_naissance: 2018-03-01
   output:
     paje: 923.08 / (1 - 0.005) + 92.31 / (1 - 0.005)
 - name: PAJE - PPN - Cas N°2
   description: Montant PAJE
-  period: 2018-03
+  period: 2018-01
   absolute_error_margin: 0.03
   input:
     famille:
@@ -464,14 +464,14 @@
           2017: 15000
           2018: 15000
       enfant1:
-        date_naissance: 2018-01-01
+        date_naissance: 2018-03-01
       enfant2:
-        date_naissance: 2018-01-01
+        date_naissance: 2018-03-01
   output:
     paje: 1846.16 / (1 - 0.005) + 92.31 / (1 - 0.005)
 - name: PAJE - PPN - Cas N°3
   description: Montant PAJE
-  period: 2018-03
+  period: 2018-01
   absolute_error_margin: 0.03
   input:
     famille:
@@ -500,11 +500,11 @@
           2017: 15000
           2018: 15000
       enfant1:
-        date_naissance: 2018-01-01
+        date_naissance: 2018-03-01
       enfant2:
-        date_naissance: 2018-01-01
+        date_naissance: 2018-03-01
       enfant3:
-        date_naissance: 2018-01-01
+        date_naissance: 2018-03-01
   output:
     paje: 2769.24 / (1 - 0.005) + 92.31 / (1 - 0.005)
 - name: PAJE - PPN Non Passant - Cas N°1
@@ -538,7 +538,7 @@
           2017: 20000
           2018: 20000
       enfant1:
-        date_naissance: 2018-01-01
+        date_naissance: 2018-03-01
   output:
     paje: 0
 
@@ -575,6 +575,6 @@
       enfant1:
         age: 1
       enfant2:
-        date_naissance: 2018-01-01
+        date_naissance: 2018-03-01
   output:
     paje: 0

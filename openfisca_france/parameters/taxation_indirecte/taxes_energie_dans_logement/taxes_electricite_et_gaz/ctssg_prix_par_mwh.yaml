@@ -1,0 +1,19 @@
+description: CTSSG - prix par MWh
+values:
+  2003-01-01:
+    value: null
+  2008-01-01:
+    value: 0.026
+  2009-01-01:
+    value: 0.089
+  2010-01-01:
+    value: 0.045
+  2013-01-01:
+    value: 0.1
+  2014-01-01:
+    value: 0.2
+  2016-01-01:
+    value: null
+metadata:
+  ipp_csv_id: ctssg
+  unit: currency

@@ -1,0 +1,30 @@
+description: Taux de la cotisation de sécurité sociale (SS) des notaires de Colmar-Metz pour la retraite complémentaire
+values:
+  1951-01-01:
+    value: 0.02
+  1963-01-01:
+    value: 0.04
+  2015-01-01:
+    value: 0.036
+metadata:
+  short_label: Colmar-Metz
+  label_en: Contribution for complementary pension scheme (professionals)
+  ipp_csv_id: retc_not_cm_0_
+  unit: /1
+  reference:
+    1951-01-01:
+    - title: Décret 51-310 du 03/03/1951
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000508413
+    - title: Arrêté du 4/03/1951
+    1963-01-01:
+      title: Décret 63-106 du 8/02/1963
+    2015-01-01:
+      title: Décret 2015-1802 du 29/12/2015
+      href: https://www.legifrance.gouv.fr/eli/decret/2015/12/29/2015-1802/jo/texte
+  official_journal_date:
+    1951-01-01: "1951-03-20"
+    1963-01-01: "1963-02-13"
+    2015-01-01: "2015-12-30"
+  notes:
+    1951-01-01:
+    - title: Création d'un régime supplémentaire pour les notaires du ressort de la Cour d'appel de Colmar. L'assiette est la moyenne des produits de base de l'office des 3 dernières années, limitée à 3 * moyenne générale des produits des offices de France.

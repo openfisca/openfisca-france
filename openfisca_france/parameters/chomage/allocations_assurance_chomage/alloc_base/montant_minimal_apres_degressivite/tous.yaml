@@ -1,0 +1,67 @@
+description: Montant minimal après dégressivité pour tous de l'allocation de base d'assurance chômage -  partie fixe et minimum
+values:
+  1968-07-22:
+    value: null
+  1991-07-01:
+    value: 81.3
+  1992-07-01:
+    value: 83.5
+  1994-07-01:
+    value: 85.25
+  1995-07-01:
+    value: 88.66
+  1996-07-01:
+    value: 101.92
+  1997-07-01:
+    value: 104.16
+  1998-07-01:
+    value: 106.14
+  1999-07-01:
+    value: 107.43
+  2000-07-01:
+    value: null
+metadata:
+  short_label: Tous
+  label_en: "UI scheme: lump-sum and minimum"
+  unit: currency
+  reference:
+    1968-07-22:
+      title: Circulaire 68-35 - décision du 25/06/1968
+    1991-07-01:
+    - title: Arrêté du 17/08/1992 portant agrément de l'avenant n°2 du 24/07/1992 à la convention du 01/01/1990 et de l'avenant n°10 du 24/07/1992 au règlement annexé à cette convention
+    - title: Arrêt du 04/01/1993 portant agrément de la convention du 01/01/1993
+    - title: Circulaire 91-15 - décision du 12/07/1991
+    1992-07-01:
+    - title: Arrêté du 04/01/1994 portant agrément de la convention du 01/01/1994
+    - title: Circulaire 92-13 - décision du 30/07/1992
+    1994-07-01:
+    - title: Arrêté du 04/01/1994 portant agrément de la convention du 01/01/1994
+    - title: Circulaire 94-08 - décision du 28/06/1994
+    1995-07-01:
+    - title: Arrêté du 04/01/1994 portant agrément de la convention du 01/01/1994
+    - title: Circulaire 95-12 - décision du 29/06/1995
+    1996-07-01:
+    - title: Arrêté du 18/02/1997 portant agrément de la convention du 01/01/1997
+    - title: Circulaire 96-13 - décision du 04/07/1996
+    1997-07-01:
+      title: Circulaire 97-12 du 16/07/1997
+    1998-07-01:
+    - title: Circulaire 98-13 - décision du 01/07/1998
+    - title: "Circulaire DH/FH 1 98-545 du 26/08/1998\_relative à diverses revalorisations concernant les allocations pour perte d'emploi"
+    1999-07-01:
+    - title: Arrêté du 18/02/1997 portant agrément de la Convention Unédic du 01/01/1997
+    - title: Circulaire 99-12 - décision du 01/07/1999
+    2000-07-01:
+    - title: Circulaire Unédic 00-10 du 07/07/2000
+    - title: Arrêté du 04/12/2000 portant agrément de la convention du 01/01/2001
+  official_journal_date:
+    1991-07-01: 1992-08-18; 1993-01-04
+    1992-07-01: "1994-01-08"
+    1994-07-01: "1994-01-08"
+    1995-07-01: "1994-01-08"
+    1996-07-01: "1997-03-20"
+    1999-07-01: "1997-03-20"
+    2000-07-01: "2000-12-06"
+  notes:
+    1992-07-01:
+    - title: Protocole d'accord du 18/07/1992 et Convention du 01/01/1993 créent l'allocation unique dégressive

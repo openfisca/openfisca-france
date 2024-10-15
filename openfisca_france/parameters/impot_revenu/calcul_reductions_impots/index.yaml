@@ -1,0 +1,20 @@
+description: Calcul des réductions d'impôts
+metadata:
+  documentation_start: true
+  label_en: Tax reductions
+  order:
+  - prestations_compensatoires
+  - enfants_scolarises
+  - emploi_salarie_domicile
+  - dons
+  - cotisations_syndicales
+  - souscriptions
+  - accueil_dans_etablissement_personnes_agees
+  - investissements_immobiliers
+  - location_meublee
+  - outremer_investissement
+  - reduction_domtom
+  - investissement_forestier
+  - compte_epargne_co_developpement
+  - reduction_impot_exceptionnelle
+  - divers

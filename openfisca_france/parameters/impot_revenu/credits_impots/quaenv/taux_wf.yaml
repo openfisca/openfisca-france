@@ -1,0 +1,12 @@
+description: Taux (WF)
+values:
+  2005-01-01:
+    value: 0.4
+  2006-01-01:
+    value: 0.5
+  2011-01-01:
+    value: 0.45
+  2012-01-01:
+    value: null
+metadata:
+  unit: /1

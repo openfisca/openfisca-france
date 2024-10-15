@@ -1,0 +1,33 @@
+description: Montant (en % de la BMAF) de l'Allocation d'adoption (AA), prestations familiales pour la petite enfance
+values:
+  1995-01-01:
+    value: 0.3
+  1996-08-01:
+    value: 0.4595
+  2007-01-01:
+    value: null
+metadata:
+  short_label: Montant
+  label_en: "Adoption allowance (AA): General conditions and amounts"
+  ipp_csv_id: aa_montant
+  unit: /1
+  reference:
+    1995-01-01:
+      title: Décret 95-165 du 16/02/1995, art. 3 (crée art R 535-1, R 755-14-3 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006777834&cidTexte=JORFTEXT000000734955
+    1996-08-01:
+      title: Loi 96-604 du 05/07/1996, art. 51 et 49 (modif art. L535-1 et L535-2 du CSS)
+    2007-01-01:
+      title: Loi 2003-1199 du 18/12/2003, art. 60 II (abroge art. L535-1 et L535-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+  official_journal_date:
+    1995-01-01: "1995-02-17"
+    1996-08-01: "1996-07-06"
+    2007-01-01: "2003-12-19"
+  notes:
+    1995-01-01:
+    - title: Pas cumulable avec l'ASF. Pour les enfants nés à partir du 01/01/1995; Le décret 95-165 du 16/02/1995 crée l'Allocation à l'Adoption
+    1996-08-01:
+    - title: Loi qui assure la parité des droits sociaux attachés à la naissance et à l'adoption.; Loi qui aligne l'allocation d'adoption sur l'APJE. Mêmes montants et mêmes plafonds (par contre, durée de l'aide, à fixer par décret).
+    2007-01-01:
+    - title: La PAJE remplace en partie l'allocation d'adoption. Mais, transition progressive, jusqu'à fin 2006 (cf. art. 60, VIII de la loi).

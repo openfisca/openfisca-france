@@ -1,0 +1,34 @@
+description: Plafonds de ressources pour un revenu et un enfant (brut imposable) entre 1978 et 1986 du Complément familial (CF)
+values:
+  1978-01-01:
+    value: 44270
+  1978-07-01:
+    value: 50034
+  1983-01-01:
+    value: 87242
+  1986-07-01:
+    value: 105528
+metadata:
+  short_label: 1 enfant
+  label_en: 1 child
+  ipp_csv_id: plaf_1enf_monoact
+  unit: currency
+  reference:
+    1978-01-01:
+      title: Loi 77-765 du 12/07/1977Décret 77-1265 du 16/11/1977
+    1978-07-01:
+      title: Décret 78-728 du 11/07/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516812&categorieLien=id
+    1983-01-01:
+      title: Décret 82-1137 du 29/12/82 (Taux)
+    1986-07-01:
+    - title: Loi 04/01/1985 (art. L 524-526 du CSS)
+    - title: Décret 85-477 du 26/04/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516768
+    - title: Décret 85-478 du 26/04/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700301
+  official_journal_date:
+    1978-01-01: 1977-07-13; 1977-11-17
+    1978-07-01: "1978-07-12"
+    1983-01-01: "1982-12-30"
+    1986-07-01: "1985-05-04"

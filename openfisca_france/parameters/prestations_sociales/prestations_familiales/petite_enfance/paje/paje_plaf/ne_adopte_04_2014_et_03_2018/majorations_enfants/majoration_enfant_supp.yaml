@@ -1,0 +1,27 @@
+description: Majorations du plafond par enfant (à appliquer au plafond 0 enfant correspondant au cas de figure) pour enfants nés ou adoptés entre le 01/04/2014 et le 31/03/2018 de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: null
+  2014-04-01:
+    value: 0.22
+  2021-04-01:
+    value: null
+metadata:
+  short_label: Majoration pour enfant supplémentaire
+  label_en: Additional child allowance
+  ipp_csv_id: maj_plaf_paje_enf_entre_20140401_20180331
+  unit: /1
+  reference:
+    2004-01-01:
+      title: Décret 2003-1393 du 31/12/2003, art. 2 (modif art. R531-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
+    2014-04-01:
+      title: Décret 2014-422 du 24/04/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028879156
+  official_journal_date:
+    2004-01-01: "2004-01-01"
+  notes:
+    2004-01-01:
+    - title: "Création de la PAJE. Mais entrée en vigueur progressive : de janvier 2004 à décembre 2006 inclus (cf. art. 60, VIII de la loi 2003-1199)"
+    2021-04-01:
+    - title: Les dispositions de la PAJE pour les enfants nés ou adoptés avant le 01/04/2018 ne s'appliquent plus (naissance ou adoption depuis plus de 3 ans).

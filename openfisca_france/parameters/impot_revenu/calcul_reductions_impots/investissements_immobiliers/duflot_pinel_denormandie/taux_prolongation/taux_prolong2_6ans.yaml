@@ -1,0 +1,14 @@
+description: Taux de la réduction d'impôt en cas de prolongation d'engagement de location pour la seconde période triennale (engagement initial de 6 ans)
+values:
+  2023-01-01:
+    value: 0.03
+metadata:
+  short_label: Seconde période triennale pour un engagement initial de 6 ans
+  last_value_still_valid_on: "2024-04-26"
+  unit: /1
+  reference:
+    2023-01-01:
+    - title: Loi 2014-1654 du 29/12/2014 - art. 5 (V) (modifie Art. 199 novovicies du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000029994821/2015-01-01/
+    - title: Art. 199 novovicies, VII bis. A. 1° du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044991962

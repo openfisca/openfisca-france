@@ -1,0 +1,12 @@
+description: Majoration régionale TICPE Super en Aquitaine
+values:
+  2007-01-01:
+    value: 1.12
+  2008-01-01:
+    value: 1.77
+  2011-01-01:
+    value: 2.5
+metadata:
+  short_label: Aquitaine
+  ipp_csv_id: maj_ticpe_super_aqui
+  unit: currency

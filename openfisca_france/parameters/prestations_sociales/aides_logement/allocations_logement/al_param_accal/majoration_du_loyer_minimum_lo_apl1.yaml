@@ -1,0 +1,11 @@
+description: Majoration de l'équivalence de loyer et charges locatives minimales (paramètre « E0 »)
+values:
+  2007-11-01:
+    value: 45.57
+metadata:
+  short_label: Majoration
+  unit: currency
+  reference:
+    2007-07-01:
+      title: Arrêté du 08/11/2007, article 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002479892

@@ -1,0 +1,5 @@
+description: Crédit d'impôt aide à la mobilité
+metadata:
+  short_label: Aide à la mobilité
+  order:
+  - montant

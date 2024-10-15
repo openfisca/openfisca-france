@@ -1,0 +1,11 @@
+description: Incrément
+values:
+  1978-01-01:
+    value: null
+  1984-01-01:
+    value: 1500
+  2001-01-01:
+    value: null
+metadata:
+  ipp_csv_id: inc_int_emp
+  unit: currency_next_year

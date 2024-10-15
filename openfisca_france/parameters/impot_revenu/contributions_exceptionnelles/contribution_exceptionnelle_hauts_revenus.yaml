@@ -1,0 +1,38 @@
+description: Barème de la contribution exceptionnelle sur les hauts revenus
+brackets:
+- threshold:
+    2011-01-01:
+      value: 0
+  rate:
+    2011-01-01:
+      value: 0
+- threshold:
+    2011-01-01:
+      value: 250000
+  rate:
+    2011-01-01:
+      value: 0.03
+- threshold:
+    2011-01-01:
+      value: 500000
+  rate:
+    2011-01-01:
+      value: 0.04
+metadata:
+  short_label: Barème contrib. hauts revenus
+  label_en: Exceptional tax on high incomes
+  reference:
+    2011-01-01:
+      title: Loi 2011-1977 du 28/12/2011 (LF pour 2012) - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025044460#LEGIARTI000025048418
+  official_journal_date:
+    2011-01-01: "2011-12-28"
+  notes:
+    2011-01-01:
+    - title: Décret 2012-653 du 4 mai 2012 - art. 1
+  rate_unit: /1
+  threshold_unit: currency_next_year
+documentation: |-
+  Les seuils du barème exprimés ici sont pour les célibataires. Il faut donc les doubler pour les couples mariés ou pacsés.
+  L'assiette est égale revenu fiscal de référence.
+  Voir Art. 223 sexies du CGI

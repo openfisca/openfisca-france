@@ -1,0 +1,24 @@
+description: Seuil minimum d'imposition sur le revenu pour être éligible
+values:
+  1996-01-01:
+    value: 0.3
+  1999-01-01:
+    value: null
+metadata:
+  short_label: Seuil minimum
+  ipp_csv_id: seuil_eligibilite_perissol
+  unit: /1
+  reference:
+    1996-01-01:
+      title: Loi n° 96-314 du 12 avril 1996 (DDOEF), art. 29
+    1999-01-01:
+      title: Loi n° 98-1266 du 30 décembre 1998 (LF pour 1999), art.38
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044&dateTexte=20000330&categorieLien=id#JORFTEXT000000209044
+  official_journal_date:
+    1996-01-01: "1996-04-13"
+    1999-01-01: "1998-12-31"
+  notes:
+    1996-01-01:
+    - title: Pour le dispositif Périssol, le plafond de déficit foncier imputable sur le revenu imposable est relevé de 70,000 F (10,700 E) à 100,000 F (15,300 E). Avec ce dispositif, 80% de l'investissement est déduit des revenus imposables au bout de 24 ans.
+    1999-01-01:
+    - title: La déduction totale du coût de l'investissement du revenu imposable avec le dispositif Besson neuf est de 50% sur 9 ans, 57.5% sur 12 ans et 65% sur 15 ans.

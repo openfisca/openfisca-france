@@ -1,0 +1,165 @@
+description: Revalorisation du salaire de référence pour le calcul des allocations de préretraites FNE-ARPE
+values:
+  1981-10-01:
+    value: 0.0743
+  1982-04-01:
+    value: 0.0831
+  1983-04-01:
+    value: 0.04
+  1984-04-01:
+    value: 0.018
+  1984-10-01:
+    value: 0.022
+  1985-01-01:
+    value: 0.028
+  1986-01-01:
+    value: 0.013
+  1986-07-01:
+    value: 0
+  1986-10-01:
+    value: 0.005
+  1987-01-01:
+    value: 0.018
+  1987-07-01:
+    value: 0.01
+  1988-01-01:
+    value: 0.026
+  1988-07-01:
+    value: 0.013
+  1989-07-01:
+    value: 0.012
+  1990-01-01:
+    value: 0.0215
+  1990-07-01:
+    value: 0.013
+  1991-01-01:
+    value: 0.017
+  1991-07-01:
+    value: 0.008
+  1992-01-01:
+    value: 0.01
+  1992-07-01:
+    value: 0.018
+  1993-01-01:
+    value: 0.013
+  1994-01-01:
+    value: 0.02
+  1995-01-01:
+    value: 0.012
+  1995-07-01:
+    value: 0.005
+  1996-01-01:
+    value: 0.02
+  1997-01-01:
+    value: 0.012
+  1998-01-01:
+    value: 0.011
+  1999-01-01:
+    value: 0.012
+  2000-01-01:
+    value: 0.005
+  2001-01-01:
+    value: 0.022
+  2003-01-01:
+    value: 0.015
+  2004-01-01:
+    value: 0.017
+  2005-01-01:
+    value: 0.02
+  2006-01-01:
+    value: 0.018
+  2007-07-01:
+    value: 0.0195
+  2008-07-01:
+    value: 0.025
+  2009-07-01:
+    value: 0.01
+  2010-07-01:
+    value: 0.012
+metadata:
+  short_label: Revalorisation du salaire de référence
+  label_en: Indexation of reference wage for FNE early retirement benefit
+  ipp_csv_id: sr_fne
+  unit: /1
+  reference:
+    1981-10-01:
+      title: Arrêté du 08/02/1982
+    1982-04-01:
+      title: Arrêté du 26/08/1982
+    1983-04-01:
+    - title: Arrêté du 01/07/1983
+    - title: Arrêté du 27/12/1983
+    1984-04-01:
+      title: Décret 84-495 du 25/06/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000337265&categorieLien=id
+    1984-10-01:
+      title: Décret 84-523 du 28/06/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699391&categorieLien=id
+    1985-01-01:
+      title: Arrêté du 12/03/1985
+    1986-01-01:
+      title: Arrêté du 15/01/1986
+    1986-07-01:
+      title: Décret 86-791 du 30/06/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699775
+    1986-10-01:
+      title: Arrêté du 01/12/1986
+    1987-01-01:
+      title: Loi du 27/01/1987
+    1987-07-01:
+      title: Loi du 27/01/1987
+    1988-01-01:
+      title: Loi du 05/01/1988
+    1988-07-01:
+      title: Loi du 05/01/1988
+    1989-07-01:
+      title: Loi du 13/01/1989
+    1990-01-01:
+      title: Loi du 23/01/1990
+    1990-07-01:
+      title: Loi du 23/01/1990
+    1991-01-01:
+      title: Loi du 18/01/1991
+    1991-07-01:
+      title: Loi du 31/07/1991
+    1992-01-01:
+      title: Loi du 31/12/1991
+    1992-07-01:
+      title: Loi du 31/12/1991
+    1993-01-01:
+      title: Arrêté du 22/01/1993
+    1994-01-01:
+      title: Arrêté du 24/01/1994
+    1995-01-01:
+      title: Arrêté du 27/01/1995
+    1995-07-01:
+      title: Arrêté du 31/07/1995
+    1996-01-01:
+      title: Arrêté du 30/01/1996
+    1997-01-01:
+      title: Arrêté du 30/12/1996
+    1998-01-01:
+      title: Arrêté du 29/12/1997
+    1999-01-01:
+      title: Arrêté du 29/12/1998
+    2000-01-01:
+      title: Arrêté du 29/12/1999
+    2001-01-01:
+      title: Arrêté du 26/12/2000
+    2003-01-01:
+    - title: Arrêté du 25/12/2002
+    - title: Arrêté du 31/12/2002
+    2004-01-01:
+      title: Arrêté du 23/12/2003
+    2005-01-01:
+      title: Arrêté du 16/12/2004
+    2006-01-01:
+      title: Arrêté du 23/12/2005
+    2007-07-01:
+      title: Circulaire 2007-09 du 26/06/2007 - décision du 21/06/2007
+    2008-07-01:
+      title: Circulaire 2008-04 du 01/07/2008 - décision du 24/06/2008
+    2009-07-01:
+      title: Circulaire 2009-16 du 09/07/2009 -décision du 26/06/2009
+    2010-07-01:
+      title: Circulaire 2010-10 - décision du 29/06/2010

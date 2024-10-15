@@ -1,0 +1,25 @@
+description: Seuil de la réduction d'impôt sur les souscriptions en numéraire au capital initial ou aux augmentations de capital de sociétés
+values:
+  2001-01-01:
+    value: 6000
+  2002-01-01:
+    value: 20000
+  2023-03-12:
+    value: 50000
+metadata:
+  short_label: Seuil de souscription en numéraire au capital de sociétés
+  last_value_still_valid_on: "2024-04-26"
+  unit: currency_next_year
+  reference:
+    2001-01-01:
+      title: Article 199 terdecies-0 A, II, du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303139/2002-03-31/
+    2002-01-01:
+    - title: Article 199 terdecies-0 A, II, du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303140/2003-08-31/
+    - title: Article 199 terdecies-0 A, II, du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000021629212/2010-01-01/
+    2023-03-12:
+      title: Article 199 terdecies-0 A, II, du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000021629212/2023-10-17/
+documentation: Seuil pour les contribuables célibataires, veufs ou divorcés. Il est doublé pour les contribuables mariés soumis à imposition commune.

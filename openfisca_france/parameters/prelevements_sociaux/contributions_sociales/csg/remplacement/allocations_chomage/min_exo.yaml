@@ -1,0 +1,13 @@
+description: Montant imposable d'allocations chômage (en multiple du smic annuel net) en deçà duquel un chômeur est exonéré de la contribution sociale généralisée (CSG)
+values:
+  2002-01-01:
+    value: 1
+metadata:
+  short_label: Montant imposable d'allocations chômage maximal exonéré
+  last_value_still_valid_on: "2024-07-24"
+  unit: smic
+  reference:
+    2002-01-01:
+      title: Article L136-1-2, II.4°, du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047770460
+documentation: Tel que spécifié dans l'article L136-1-2, au 4° du II, "la contribution due sur ces allocations [...] ne peut avoir pour effet de porter leur montant [...] en deçà du montant du salaire minimum de croissance"

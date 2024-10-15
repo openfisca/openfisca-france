@@ -1,0 +1,9 @@
+description: Cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès des artisans-commerçants
+metadata:
+  short_label: Assurés retraités
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  order:
+  - pension_totale
+  - sous_pss
+  - sous_4_pss
+  - pensions_sous_5_pss

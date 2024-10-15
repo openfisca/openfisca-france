@@ -1,0 +1,20 @@
+description: Allocation aux adultes handicapés (AAH)
+metadata:
+  documentation_start: true
+  short_label: Allocation aux adultes handicapés (AAH)
+  label_en: Adult disability allowance (AAH)
+  order:
+  - age_minimal
+  - age_fin_educ
+  - montant
+  - pourcentage_aah
+  - abattement_special
+  - abattement_conjoint
+  - travail_esat
+  - travail_ordinaire
+  - majoration_plafond
+documentation: |-
+  Dispositif créé par la loi 75-534 du 30 juin 1975
+  Les dispositions générales relatives à la revalorisation du montant d'AAH sont précisées à l'art. L821-3-1 du CSS.
+  Pour les ressources hors activité du bénéficiaire et du conjoint, on applique uniquement l'abattement de 10 % du droit fiscal commun, à l'exception des pensions et rentes viagères qui bénéficient d'un abattement supplémentaire de 20%. Une fois l'assiette de revenus déterminée, le montant de l'AAH versé est égal à la différence entre le plafond de ressources et l'assiette de revenus prise en compte.
+  Jusqu'au 31 décembre 2010, les titulaires d'une carte d'invalidité bénéficiaient de l'abattement pour invalides mentionné à l'article 157 bis du CGI dans la prise en compte de leurs ressources.

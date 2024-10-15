@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur le revenu pour la Guadeloupe, la Martinique et la Réunion
+metadata:
+  short_label: Guadeloupe, Martinique, Réunion
+  order:
+  - taux
+  - plafond

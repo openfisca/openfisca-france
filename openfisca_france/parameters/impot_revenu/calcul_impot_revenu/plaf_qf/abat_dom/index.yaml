@@ -1,0 +1,8 @@
+description: Abattements spécifiques aux départements d'outre-mer (DOM)
+metadata:
+  short_label: Abattements spécifiques DOM
+  order:
+  - taux_GuadMarReu
+  - plaf_GuadMarReu
+  - taux_GuyMay
+  - plaf_GuyMay

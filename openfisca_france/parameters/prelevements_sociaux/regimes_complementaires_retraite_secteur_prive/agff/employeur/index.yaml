@@ -1,4 +1,7 @@
-description: Barème pour les employeurs des cotisations aux régimes complémentaires de retraite (secteur privé) pour la structure financière de l'AGFF (2001-2018)
+description: Barème pour les employeurs des cotisations pour l'association pour la gestion du fonds de financement (AGFF) des retraites complémentaires du secteur privé
 metadata:
-  ux_name: Barème employeur
-  description_en:
+  short_label: Employeur
+  label_en: Contributions to the financial structure AGFF
+  order:
+  - cadre
+  - noncadre

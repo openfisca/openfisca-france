@@ -1,0 +1,19 @@
+description: Allocation de solidarité spécifique (ASS)
+metadata:
+  short_label: ASS
+  label_en: Special UI scheme
+  order:
+  - montant_plein
+  - montant_maj
+  - plafond_ressources_mensuel
+documentation: |-
+  Allocation versée sous la forme d'un différentiel (différence entre le plafond et les ressources, si les ressources sont supérieures à un seuil minimum), le maximum étant calculé en multipliant d'un coefficient le montant de l'allocation de base
+  Majoration s'appliquait pour les personnes de 50 ans ou plus justifiant de 10 ans d'activité professionnelle (50%) et les personnes de 55 ans ou plus justifiant de 20 ans d'activité professionnelle (100%)
+  Depuis le 30 juin 1985, majoration de 100% pour les 55 ans et plus justifiant de plus de 10 ans d'activité salariée, et pour les 57.5 ans et plus justifiant de plus de 20 ans d'activité salariée. Pour les autre bénéficiaires, l'allocation est majorée de 50%.
+  Depuis le 10 mai 1987, la majoration s'applique aux 55 ans et plus justifiant de 20 ans d'activité salariée, ou aux 57.5 ans et plus justifiant de 10 ans d'activité salariée. Majoration fixée par décret.
+  Depuis le 1er juin 1998, la majoration s'applique aux 55 ans et plus justifiant de 20 ans d'activité salariée, ou aux 57.5 ans et plus justifiant de 10 ans d'activité salariée et de 160 trimestres du durée d'assurance
+  Depuis le 1er janvier 2004, la majoration est supprimée, sauf pour ceux qui en bénéficiaient à la fin 2003
+  En 1987: coefficient de 2.2186 pour les plus de 57 ans, 1.5449 pour les autres
+  En 1988: coefficient de 2.1535 pour les plus de 57 ans, 1.5 pour les autres
+  Plafond de ressources = 70 * montant journalier alloc pour une personne seule et 110 * montant journalier alloc pour un couple
+  Sources: Légifrance

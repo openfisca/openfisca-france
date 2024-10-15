@@ -1,0 +1,11 @@
+description: Critère d'âge maximum pour la garantie jeunes
+values:
+  2009-01-01:
+    value: 25
+metadata:
+  short_label: Maximum
+  unit: year
+  reference:
+    2009-01-01:
+      title: Article L5131-3 du code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033023861/

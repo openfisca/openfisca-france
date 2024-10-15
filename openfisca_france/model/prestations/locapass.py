@@ -1,4 +1,5 @@
 from openfisca_france.model.base import Individu, Menage, TypesActivite, TypesStatutOccupationLogement, Variable, MONTH, set_input_dispatch_by_period
+from numpy import datetime64
 
 
 class locapass_eligibilite(Variable):
@@ -8,10 +9,13 @@ class locapass_eligibilite(Variable):
     definition_period = MONTH
     reference = 'https://www.actionlogement.fr/l-avance-loca-pass'
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
+        params = parameters(period).prestations_sociales.aides_logement.action_logement.locapass
+
         eligibilite_individu = individu('locapass_eligibilite_individu', period)
         eligibilite_logement = individu.menage('locapass_eligibilite_logement', period)
-        return eligibilite_individu * eligibilite_logement
+        eligibilite_date_entree_logement = individu.menage('date_entree_logement', period) >= datetime64(period.offset(-params.delai_max, 'month').start)
+        return eligibilite_individu * eligibilite_logement * eligibilite_date_entree_logement
 
 
 class locapass_eligibilite_logement(Variable):
@@ -64,7 +68,7 @@ class locapass_eligibilite_jeunes(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        age_max = parameters(period).action_logement.locapass.jeunes.age_max
+        age_max = parameters(period).prestations_sociales.aides_logement.action_logement.locapass.age_max
         eligibilite_age = age <= age_max
 
         activite = individu('activite', period)
@@ -83,7 +87,7 @@ class locapass_eligibilite_etudiant_contrat(Variable):
     '''
     entity = Individu
     value_type = bool
-    label = "Satisfaction de la condition de loca-pass relative au contrat de travail pour les étudiants"
+    label = 'Satisfaction de la condition de loca-pass relative au contrat de travail pour les étudiants'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

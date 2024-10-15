@@ -1,0 +1,14 @@
+description: Montant minimum (en % SJR) d'allocation journalière spéciale de l'assurance chômage
+values:
+  1979-07-01:
+    value: 0.65
+metadata:
+  short_label: 3eme trimestre
+  label_en: Special UI scheme for economic layoffs
+  ipp_csv_id: journ_min_3
+  unit: /1
+  reference:
+    1979-07-01:
+      title: Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+  official_journal_date:
+    1979-07-01: "1979-05-20"

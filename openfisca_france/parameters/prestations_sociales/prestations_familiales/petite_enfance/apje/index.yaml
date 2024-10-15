@@ -1,0 +1,7 @@
+description: Allocation pour jeune enfant (APJE)
+metadata:
+  short_label: APJE
+  label_en: "Allowance for Young Children (APJE): General conditions and amount"
+  order:
+  - apje_cm
+  - apje_plaf

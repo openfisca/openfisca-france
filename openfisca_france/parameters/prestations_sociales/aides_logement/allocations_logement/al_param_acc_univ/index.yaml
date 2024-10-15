@@ -1,0 +1,18 @@
+description: Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
+metadata:
+  short_label: Paramètres de calcul du montant des accédants et étudiants en résidence universitaire
+  label_en: Parameters for new home-buyers and students residences
+  order:
+  - constante_coefficient_k
+  - multiplicateur_n_dans_formule_k
+  - menage_0_personnes_charge
+  - 1_personne_charge
+  - 2_personnes_charge
+  - 3_personnes_charge
+  - 4_personnes_charge
+  - majoration_n_par_personne_charge_supplementaire
+  - taux_loyer_minimum_lo_en_al_accession
+  - seuils
+  - majoration_loyer_minimum_lo
+  - intervalles_ressources_consideres
+  - montant_forfaitaire_mf0

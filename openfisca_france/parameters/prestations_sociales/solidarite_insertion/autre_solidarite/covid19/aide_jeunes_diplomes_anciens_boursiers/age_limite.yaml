@@ -1,0 +1,12 @@
+description: Âge limite pour l'Aide exceptionnelle à destination des jeunes diplômés en recherche d'emploi anciennement boursiers de l'enseignement supérieur de solidarité covid-19
+values:
+  2021-02-05:
+    value: 30
+metadata:
+  short_label: Âge maximal d'éligibilité
+  unit: year
+  reference:
+    2021-02-05:
+      title: Décret 2020-769 du 24/06/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043728077
+documentation: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/1-jeune-1-solution-mesures-jeunes/article/aide-aux-jeunes-diplomes-et-anciens-boursiers

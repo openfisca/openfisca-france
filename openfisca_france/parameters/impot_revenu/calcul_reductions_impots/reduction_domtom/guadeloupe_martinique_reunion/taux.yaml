@@ -1,0 +1,14 @@
+description: Taux de la réduction d'impôt sur le revenu pour les DOM en Guadeloupe, Martinique et à la Réunion
+values:
+  1978-01-01:
+    value: 0.3
+metadata:
+  short_label: Taux
+  ipp_csv_id: taux_reduction_ir_guadmartreunion
+  unit: /1
+  reference:
+    1978-01-01:
+      title: Loi n° 77-1467 du 30 décembre 1977 (LF pour 1978), art. 2
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000704549&dateTexte=19771231&categorieLien=id#JORFTEXT000000704549
+  official_journal_date:
+    1978-01-01: "1977-12-31"

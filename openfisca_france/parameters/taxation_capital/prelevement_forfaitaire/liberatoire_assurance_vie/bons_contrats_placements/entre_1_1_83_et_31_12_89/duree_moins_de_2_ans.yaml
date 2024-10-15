@@ -1,0 +1,26 @@
+description: Prélèvement libératoire sur les bons ou contrats de capitalisation et placements de même nature (assurance-vie), souscrits entre le 1/1/83 et le 31/12/89, durée de moins de 2 ans, lors du dénouement du contrat
+values:
+  1983-01-01:
+    value: 0.45
+  1998-01-01:
+    value: null
+metadata:
+  short_label: Durée < 2 ans
+  last_value_still_valid_on: "2022-02-16"
+  label_en: Levy in discharge on life insurance
+  ipp_csv_id: tx_pl_av_2
+  unit: /1
+  reference:
+    1983-01-01:
+    - title: Code général des impôts, art. 125-0 A
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044989424
+    - title: Loi 82-1126 du 29/12/1982, art. 14 (LF pour 1983)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273726&cidTexte=JORFTEXT000000503959
+  official_journal_date:
+    1983-01-01: "1997-12-30"
+    1998-01-01: "1997-12-31"
+  notes:
+    1983-01-01:
+    - title: Création de l'art. 125-0 A du CGI
+    1998-01-01:
+    - title: Les bons ou contrats principalement investis en actions sont exonérés d'IR après huit ans.

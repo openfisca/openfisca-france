@@ -1,0 +1,13 @@
+description: Taxes sur les alcools et autres boissons
+metadata:
+  label_en: Excises on alcohol and other drinks
+  order:
+  - alcools_fermentes
+  - bieres
+  - produits_intermediaires
+  - autres_alcools
+  - premix_contribution_secu
+  - boissons_sucrees_energisantes
+  - contrib_sur_boissons_sucrees
+  - droit_specifique_boissons_non_alcooliques
+  - alcool_cotisation_secu

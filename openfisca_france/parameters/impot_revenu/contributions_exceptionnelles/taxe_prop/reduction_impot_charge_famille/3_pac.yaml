@@ -1,0 +1,10 @@
+description: 3 pac
+values:
+  1947-01-01:
+    value: null
+  1948-01-01:
+    value: 0.75
+  1959-01-01:
+    value: null
+metadata:
+  ipp_csv_id: tp_reduc3

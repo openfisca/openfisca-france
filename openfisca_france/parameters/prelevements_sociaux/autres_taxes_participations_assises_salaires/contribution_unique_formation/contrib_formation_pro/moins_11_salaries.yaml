@@ -1,0 +1,20 @@
+description: Taux de la contribution à la formation professionnelle pour les employeurs de moins de 11 salariés
+values:
+  2019-01-01:
+    value: 0.0055
+metadata:
+  short_label: Employeur de moins de 11 salariés
+  last_value_still_valid_on: "2024-03-14"
+  label_en: Unique employer's participation to lifelong professional training and apprenticeship
+  unit: /1
+  reference:
+    2019-01-01:
+    - title: Article L6331-1 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000043701773/2022-01-01/
+    - title: Loi 2018-771 du 5/09/2018, art. 37
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037368540&cidTexte=JORFTEXT000037367660
+  official_journal_date:
+    2019-01-01: "2018-09-06"
+  notes:
+    2019-01-01:
+    - title: Nouvelle contribution unique remplaçant la PEFPC et la taxe d'apprentissage

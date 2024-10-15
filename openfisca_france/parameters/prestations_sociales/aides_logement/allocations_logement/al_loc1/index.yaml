@@ -1,0 +1,8 @@
+description: Plafonds de loyer (avant la réforme de 2001) des Allocations logement (AL)
+metadata:
+  short_label: Plafonds de loyer (avant 2001)
+  label_en: Parameters for the rental sector (before the 2001 reform)
+  order:
+  - plafonds_de_loyer_en_zone_1
+  - plafonds_de_loyer_en_zone_2
+  - plafonds_de_loyer_en_zone_3

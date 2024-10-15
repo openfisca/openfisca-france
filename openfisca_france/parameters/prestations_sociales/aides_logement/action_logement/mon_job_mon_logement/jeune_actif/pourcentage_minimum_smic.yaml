@@ -1,0 +1,12 @@
+description: Pourcentage minimum du Smic mensuel brut pour être éligible à l'aide mon job mon logement en tant que jeune actif.
+values:
+  2021-02-18:
+    value: 0.3
+metadata:
+  short_label: Revenu min
+  unit: smic_mensuel_brut
+  reference:
+    2021-02-18:
+      title: Décret 2016-1769 du 19/12/2016
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000033652118#JORFARTI000033652118
+documentation: https://www.actionlogement.fr/aide-mon-job-mon-logement https://dora.fabrique.social.gouv.fr/services/action-logement-serv-gbaf-aide-mon-job-mon-log

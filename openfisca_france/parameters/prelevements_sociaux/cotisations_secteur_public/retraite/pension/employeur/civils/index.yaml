@@ -1,0 +1,6 @@
+description: Pensions civiles (TI et NBI) - cotisations employeur retraite spécifiques à la fonction publique
+metadata:
+  short_label: Civils
+  label_en: Contributions for pensions - central government
+  order:
+  - pension

@@ -1,0 +1,15 @@
+description: Plafond de ressources de base de la famille pour bénéficier de la prise en charge du séjour pour les bénéficiaires de l'aide Départ 18-25
+values:
+  2014-09-05:
+    value: 17000
+  2021-01-01:
+    value: 17280
+metadata:
+  short_label: base
+  unit: currency
+  reference:
+    2014-09-05:
+      href: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
+  notes:
+    2021-01-01:
+    - title: Date approximative

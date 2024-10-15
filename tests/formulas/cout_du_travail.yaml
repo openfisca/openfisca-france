@@ -9,17 +9,17 @@
   input:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output:
     salaire_super_brut: 1625.1
     cout_du_travail: 1370.16
-    salaire_super_brut_hors_allegements: 2058.56
+    salaire_super_brut_hors_allegements: 2032.45
     salaire_net: 1136
-    cotisations_employeur: -601.06
-    allegement_fillon: 407
+    cotisations_employeur: -574.93
+    allegement_general: 407
     aide_premier_salarie: 166.7
     credit_impot_competitivite_emploi: 87.5
 
@@ -29,7 +29,7 @@
   input:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     effectif_entreprise: 2
     contrat_de_travail_debut: 2015-07-01
@@ -43,24 +43,22 @@
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     effectif_entreprise: 249
     contrat_de_travail_debut: 2016-01-25
   output:
-    allegement_fillon: 416.63
+    allegement_general: 416.63
     allegement_cotisation_allocations_familiales: 26.406
     exoneration_cotisations_employeur_geographiques: 0
     exoneration_cotisations_employeur_jei: 0
     exoneration_cotisations_employeur_apprenti: 0
     exoneration_cotisations_employeur_stagiaire: 0
-    cotisations_employeur_contributives: -300.74002
     taux_accident_travail: 0.01
     accident_du_travail: -14.67
-    cotisations_employeur_non_contributives: -284.45
     cotisations_employeur_main_d_oeuvre: -38.82
-    cotisations_employeur: -624.0101
-    salaire_super_brut_hors_allegements: 2091.01
+    cotisations_employeur: -597.60
+    salaire_super_brut_hors_allegements: 2064.6
     salaire_super_brut: 1647.9761
     cout_differe: 254.69
     cout_du_travail: 1393.2894

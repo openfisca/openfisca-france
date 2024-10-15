@@ -1,0 +1,5 @@
+description: Déduction des charges
+metadata:
+  order:
+  - plafond
+  - increment

@@ -1,0 +1,8 @@
+description: Cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans-commerçants
+metadata:
+  short_label: Artisans, industriels et commercants
+  label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
+  order:
+  - sous_plafond_rci
+  - entre_1_plafond_rci_et_4_plafonds_pss
+  - montant_du_plafond_rci

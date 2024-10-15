@@ -1,0 +1,62 @@
+description: Plafond de ressources - sans enfant pour le Prêt aux jeunes ménages (PJM)
+values:
+  1978-01-01:
+    value: 36560
+  1978-07-01:
+    value: 40820
+  1979-04-01:
+    value: 46220
+  1980-07-01:
+    value: 59640
+  1981-07-01:
+    value: 71227.2
+  1982-07-01:
+    value: 83666.40000000001
+  1983-01-01:
+    value: 53564
+  1983-07-01:
+    value: 57935
+  1984-07-01:
+    value: 63323
+  1985-05-16:
+    value: null
+metadata:
+  short_label: Plafond de ressources - sans enfant
+  label_en: "Loans to young household (PJM): Thresholds for means-testing"
+  ipp_csv_id: plaf_0enf
+  unit: currency
+  reference:
+    1978-01-01:
+      title: Arrêté du 17/11/1972
+    1978-07-01:
+      title: Décret 77-1452 du 27/12/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000696375
+    1979-04-01:
+      title: Décret 76-117 du 03/02/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000307312
+    1982-07-01:
+      title: Références manquantes
+    1983-07-01:
+      title: Décret 82-1139 du 29/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701668
+    1984-07-01:
+      title: Décret 82-1139 du 29/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701668
+    1985-05-16:
+      title: Décret 85-526 du 13/05/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700484&categorieLien=id
+  official_journal_date:
+    1978-01-01: 1972-11-18; 1975-01-04; 1976-02-05; 1977-12-29
+    1978-07-01: "1977-12-29"
+    1979-04-01: "1976-02-05"
+    1983-07-01: "1982-12-30"
+    1984-07-01: "1982-12-30"
+    1985-05-16: "1985-05-16"
+  notes:
+    1978-01-01:
+    - title: Le décret 77-1452 institue un plafond propre au prêt aux jeunes ménages. Il n'est plus conditionné au plafond de ressources de l'allocation pour frais de garde
+    1983-07-01:
+    - title: Le plafonnement n'est plus indexé sur le Smic du 1er juillet de l'année de ref mais selon le coeff de revalorisation des pensions d'invalidité
+    1985-05-16:
+    - title: Décret 85-526 abroge le décret 76-117.
+documentation: "Le plafond se calcule sur la base du Smic en vigueur au 1er juillet de l'année de référence selon la formule suivante pour les couples sans enfants: (Smic*4260*25%)*4"

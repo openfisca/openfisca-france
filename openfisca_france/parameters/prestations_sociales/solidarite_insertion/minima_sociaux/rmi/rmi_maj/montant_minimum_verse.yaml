@@ -1,0 +1,29 @@
+description: Montant minimum versé du revenu minimum d'insertion (RMI)
+values:
+  1988-12-14:
+    value: 40
+  2002-01-01:
+    value: 6
+  2009-06-01:
+    value: null
+metadata:
+  short_label: Montant minimum versé
+  label_en: "Minimum insertion income (RMI): Extra allowance and minimal amount"
+  ipp_csv_id: min_rmi
+  unit: currency
+  reference:
+    1988-12-14:
+      title: Décret 88-1111 du 12/12/1988, art. 1 (pour les majorations)Décret 88-1112 du 12/12/1988, art. 2 (pour le montant minimum)
+    2002-01-01:
+      title: Décret 2001-1203 du 17/12/2001, art. 2 (modif Décret 88-1112, art. 2 du 12/12/1988) (pour le montant minimum)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006780529&cidTexte=JORFTEXT000000580421
+    2009-06-01:
+      title: Loi 2008-1249 du 01/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019860428
+  official_journal_date:
+    1988-12-14: "1988-12-13"
+    2002-01-01: "2001-12-19"
+    2009-06-01: "2008-12-03"
+  notes:
+    2009-06-01:
+    - title: Création du RSA qui remplace le RMI

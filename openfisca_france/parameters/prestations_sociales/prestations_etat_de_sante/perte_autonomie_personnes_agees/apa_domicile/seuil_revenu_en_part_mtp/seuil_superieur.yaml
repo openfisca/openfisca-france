@@ -1,0 +1,20 @@
+description: Seuil supérieur de revenu (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie (APA) à domicile
+values:
+  2002-01-01:
+    value: 3.4
+  2004-10-26:
+    value: 2.67
+metadata:
+  short_label: Seuil supérieur
+  label_en: Attendance allowance for individuals living at home (APA)
+  unit: /1
+  reference:
+    2002-01-01:
+      title: Décret 2001-1084 du 20/11/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000588742
+    2004-10-26:
+      title: Décret 2004-1136 du 21/10/2004
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000441044
+  official_journal_date:
+    2002-01-01: "2001-11-21"
+    2004-10-26: "2004-10-26"

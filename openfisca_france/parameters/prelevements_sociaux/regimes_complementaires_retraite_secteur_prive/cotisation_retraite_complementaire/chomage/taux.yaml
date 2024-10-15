@@ -1,0 +1,36 @@
+description: Taux de cotisation à la retraite complémentaire pour demandeur d'emploi ou repreneur d'activité
+values:
+  2001-07-01:
+    value: 0.03
+metadata:
+  short_label: Taux de cotisation à la retraite complémentaire
+  last_value_still_valid_on: "2022-08-31"
+  reference:
+    2001-07-01:
+    - title: Arrêté du 4 décembre 2000 portant agrément de la convention du 1er janvier 2001 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage et du règlement annexé à cette convention
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002221609
+    - title: Règlement annexé à la Convention du 1er janvier 2001 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage
+      href: https://www.unedic.org/ged/documents/regulatory_texts/pdf/RglACh01.pdf
+    2006-07-21:
+      title: Circulaire Unédic n°2006-14 du 21 juillet 2006
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci200614.pdf
+    2009-04-22:
+      title: Circulaire Unédic n°2009-10 du 22 avril 2009
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci200910.pdf
+    2011-05-06:
+      title: Circulaire Unédic n°2011-25 DU 7 juillet 2011
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201125.pdf
+    2014-09-30:
+      title: Circulaire Unédic n°2014-26 DU 30 septembre 2014
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201426.pdf
+    2017-07-24:
+      title: Circulaire Unédic n°2017-20 du 24 juillet 2017
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Ci2017-20.pdf
+    2019-07-29:
+    - title: Article 31 du Décret n° 2019-797 du 26 juillet 2019 relatif au régime d'assurance chômage
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038869252
+    - title: Circulaire Unédic n°2019-12 du 1er novembre 2019
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n2019-12_du_1er_novembre_2019.pdf
+    2021-10-01:
+      title: Circulaire Unédic n°2021-13 du 19 octobre 2021
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf

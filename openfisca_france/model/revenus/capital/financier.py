@@ -12,22 +12,22 @@ from openfisca_france.model.base import *
 # Revenus des valeurs et capitaux mobiliers taxés au prélèvement libératoire
 
 class f2da(Variable):
-    cerfa_field = "2DA"
+    cerfa_field = '2DA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Revenus des actions et parts soumis au prélèvement libératoire de 21 %"
+    label = 'Revenus des actions et parts soumis au prélèvement libératoire de 21 %'
     # start_date = date(2008, 1, 1)
     end = '2012-12-31'
     definition_period = YEAR
 
 
 class f2dh(Variable):
-    cerfa_field = "2DH"
+    cerfa_field = '2DH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %"
+    label = 'Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %'
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):
@@ -49,11 +49,11 @@ class f2dh(Variable):
 
 
 class f2ee(Variable):
-    cerfa_field = "2EE"
+    cerfa_field = '2EE'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Autres produits de placement soumis aux prélèvements libératoires"
+    label = 'Autres produits de placement soumis aux prélèvements libératoires'
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):
@@ -97,7 +97,7 @@ class f2ee(Variable):
 
 
 class f2xx(Variable):
-    cerfa_field = "2XX"
+    cerfa_field = '2XX'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -109,25 +109,35 @@ class f2xx(Variable):
 # Revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
 
 class f2dc(Variable):
-    cerfa_field = "2DC"
+    cerfa_field = '2DC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Revenus des actions et parts donnant droit à abattement"
+    label = 'Revenus des actions et parts donnant droit à abattement'
     definition_period = YEAR
 
 
 class f2fu(Variable):
-    cerfa_field = "2FU"
+    cerfa_field = '2FU'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement"
+    label = 'Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement'
+    definition_period = YEAR
+
+
+class f2tq(Variable):
+    cerfa_field = '2TQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Intérêts imposables des obligations remboursables en actions détenues dans le PEA-PME'
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
 class f2ch(Variable):
-    cerfa_field = "2CH"
+    cerfa_field = '2CH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -138,7 +148,7 @@ class f2ch(Variable):
 # Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 
 class f2ts(Variable):
-    cerfa_field = "2TS"
+    cerfa_field = '2TS'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -147,7 +157,7 @@ class f2ts(Variable):
 
 
 class f2go(Variable):
-    cerfa_field = "2GO"
+    cerfa_field = '2GO'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -156,7 +166,7 @@ class f2go(Variable):
 
 
 class f2tr(Variable):
-    cerfa_field = "2TR"
+    cerfa_field = '2TR'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -164,8 +174,18 @@ class f2tr(Variable):
     definition_period = YEAR
 
 
+class f2tz(Variable):
+    cerfa_field = '2TZ'
+    value_type = float
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Produits des plans d'épargne retraite - sortie en capital"
+    definition_period = YEAR
+    # start_date = date(2020, 1, 1)
+
+
 class f2yy(Variable):
-    cerfa_field = "2YY"
+    cerfa_field = '2YY'
     value_type = float
     entity = FoyerFiscal
     label = "Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et qui n'ont pas été soumis au prélèvement libératoire"
@@ -176,7 +196,7 @@ class f2yy(Variable):
 # Autres revenus des valeurs et capitaux mobiliers
 
 class f2fa(Variable):
-    cerfa_field = "2FA"
+    cerfa_field = '2FA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -187,18 +207,18 @@ class f2fa(Variable):
 
 
 class f2tt_2016(Variable):
-    cerfa_field = "2TT"
+    cerfa_field = '2TT'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Intérêts des prêts participatifs"
+    label = 'Intérêts des prêts participatifs'
     # start_date = date(2016, 1, 1)
     end = '2016-12-31'
     definition_period = YEAR
 
 
 class f2tt(Variable):
-    cerfa_field = "2TT"
+    cerfa_field = '2TT'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -208,18 +228,18 @@ class f2tt(Variable):
 
 
 class f2tu_2016(Variable):
-    cerfa_field = "2TU"
+    cerfa_field = '2TU'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Pertes en capital sur prêts participatifs en 2016"
+    label = 'Pertes en capital sur prêts participatifs en 2016'
     # start_date = date(2016, 1, 1)
     end = '2016-12-31'
     definition_period = YEAR
 
 
 class f2tu(Variable):
-    cerfa_field = "2TU"
+    cerfa_field = '2TU'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -229,7 +249,7 @@ class f2tu(Variable):
 
 
 class f2tv(Variable):
-    cerfa_field = "2TV"
+    cerfa_field = '2TV'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -239,7 +259,7 @@ class f2tv(Variable):
 
 
 class f2tw(Variable):
-    cerfa_field = "2TW"
+    cerfa_field = '2TW'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -249,35 +269,45 @@ class f2tw(Variable):
 
 
 class f2cg(Variable):
-    cerfa_field = "2CG"
+    cerfa_field = '2CG'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible"
+    label = 'Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible'
     definition_period = YEAR
 
 
 class f2bh(Variable):
-    cerfa_field = "2BH"
+    cerfa_field = '2BH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible"
+    label = 'Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible'
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
-class f2ca(Variable):
-    cerfa_field = "2CA"
+class f2df(Variable):
+    cerfa_field = '2DF'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Frais et charges déductibles"
+    label = 'Autres revenus déjà soumis aux prélèvements sociaux avec CSG déductible'
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f2ca(Variable):
+    cerfa_field = '2CA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Frais et charges déductibles'
     definition_period = YEAR
 
 
 class f2ck(Variable):
-    cerfa_field = "2CK"
+    cerfa_field = '2CK'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -287,7 +317,7 @@ class f2ck(Variable):
 
 
 class f2ab(Variable):
-    cerfa_field = "2AB"
+    cerfa_field = '2AB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -296,7 +326,7 @@ class f2ab(Variable):
 
 
 class f2bg(Variable):
-    cerfa_field = "2BG"
+    cerfa_field = '2BG'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -306,67 +336,67 @@ class f2bg(Variable):
 
 
 class f2aa(Variable):
-    cerfa_field = "2AA"
+    cerfa_field = '2AA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Déficits des années antérieures non encore déduits"
+    label = 'Déficits des années antérieures non encore déduits'
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
 class f2al(Variable):
-    cerfa_field = "2AL"
+    cerfa_field = '2AL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Déficits des années antérieures non encore déduits"
+    label = 'Déficits des années antérieures non encore déduits'
     # start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
 class f2am(Variable):
-    cerfa_field = "2AM"
+    cerfa_field = '2AM'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Déficits des années antérieures non encore déduits"
+    label = 'Déficits des années antérieures non encore déduits'
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
 class f2an(Variable):
-    cerfa_field = "2AN"
+    cerfa_field = '2AN'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Déficits des années antérieures non encore déduits"
+    label = 'Déficits des années antérieures non encore déduits'
     # start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
 class f2aq(Variable):
-    cerfa_field = "2AQ"
+    cerfa_field = '2AQ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Déficits des années antérieures non encore déduits"
+    label = 'Déficits des années antérieures non encore déduits'
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
 class f2ar(Variable):
-    cerfa_field = "2AR"
+    cerfa_field = '2AR'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Déficits des années antérieures non encore déduits"
+    label = 'Déficits des années antérieures non encore déduits'
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
 class f2dm(Variable):
-    cerfa_field = "2DM"
+    cerfa_field = '2DM'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -376,7 +406,7 @@ class f2dm(Variable):
 
 
 class f2gr(Variable):
-    cerfa_field = "2GR"
+    cerfa_field = '2GR'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -391,17 +421,17 @@ class f2gr(Variable):
 class livret_a(Variable):
     value_type = float
     entity = Individu
-    label = "Épargne sur Livret A"
+    label = 'Épargne sur Livret A'
     definition_period = MONTH
     is_period_size_independent = True
     set_input = set_input_dispatch_by_period
 
 
 class epargne_revenus_non_imposables(Variable):
-    """ NB : cette variable est définie indépendemment des variables commençant par interets_plan_epargne_logement et interets_compte_epargne_logement """
+    ''' NB : cette variable est définie indépendemment des variables commençant par interets_plan_epargne_logement et interets_compte_epargne_logement '''
     value_type = float
     entity = Individu
-    label = "Épargne générant des revenus non imposables hors Livret A"
+    label = 'Épargne générant des revenus non imposables hors Livret A'
     definition_period = MONTH
     is_period_size_independent = True
     set_input = set_input_dispatch_by_period
@@ -410,7 +440,7 @@ class epargne_revenus_non_imposables(Variable):
 class epargne_revenus_imposables(Variable):
     value_type = float
     entity = Individu
-    label = "Épargne générant des revenus imposables"
+    label = 'Épargne générant des revenus imposables'
     definition_period = MONTH
     is_period_size_independent = True
     set_input = set_input_dispatch_by_period
@@ -421,9 +451,9 @@ class epargne_revenus_imposables(Variable):
 class revenus_capitaux_prelevement_bareme(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenus du capital imposés au barème (montants bruts)"
+    label = 'Revenus du capital imposés au barème (montants bruts)'
     set_input = set_input_divide_by_period
-    reference = "http://bofip.impots.gouv.fr/bofip/3775-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/3775-PGP'
     definition_period = MONTH
 
     def formula(foyer_fiscal, period, parameters):
@@ -435,7 +465,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2go = foyer_fiscal('f2go', year)
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2gr + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu) / 12
 
@@ -447,7 +477,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2go = foyer_fiscal('f2go', year)
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu) / 12
 
@@ -460,7 +490,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
         f2tt_2016 = foyer_fiscal('f2tt_2016', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt_2016) / 12
 
@@ -478,24 +508,101 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
         f2tt = foyer_fiscal('f2tt', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt) / 12
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
+        imposition_au_bareme = foyer_fiscal('f2op', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
+
+        # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
         f2ch = foyer_fiscal('f2ch', year)
         f2yy = foyer_fiscal('f2yy', year)
 
-        return (f2ch + f2yy) / 12
+        # Revenus à prendre en compte dans un seul cas: imposition au barème
+        f2dc = foyer_fiscal('f2dc', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        f2vv = foyer_fiscal('f2vv', year)
+        f2ww = foyer_fiscal('f2ww', year)
+        f2zz = foyer_fiscal('f2zz', year)
+        pre_result = where(imposition_au_bareme, f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz, 0)
+
+        return (f2ch + f2yy + pre_result) / 12
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Seule différence avec la formule précédente :
+            On ajoute la case 2TQ qui représente des revenus qui étaient comptés dans 2TR jusqu'en 2018.
+            Source : Brochure pratique revenus 2019 page 123 et 340: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2020/accueil.htm
+        '''
+        year = period.this_year
+        imposition_au_bareme = foyer_fiscal('f2op', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
+
+        # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
+        f2ch = foyer_fiscal('f2ch', year)
+        f2yy = foyer_fiscal('f2yy', year)
+
+        # Revenus à prendre en compte dans un seul cas: imposition au barème
+        f2dc = foyer_fiscal('f2dc', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        f2vv = foyer_fiscal('f2vv', year)
+        f2ww = foyer_fiscal('f2ww', year)
+        f2zz = foyer_fiscal('f2zz', year)
+        f2tq = foyer_fiscal('f2tq', year)
+
+        pre_result = where(imposition_au_bareme, f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz + f2tq, 0)
+
+        return (f2ch + f2yy + pre_result) / 12
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Seule différence avec la formule précédente :
+            On ajoute la case 2TZ qui représente des revenus qui étaient comptés dans 1AI jusqu'en 2018 et n'étaient pas éligibles au pfu.
+            Source : Brochure pratique revenus 2020 page 119, 132 et 364: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2021/accueil.htm
+        '''
+        year = period.this_year
+        imposition_au_bareme = foyer_fiscal('f2op', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
+
+        # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
+        f2ch = foyer_fiscal('f2ch', year)
+        f2yy = foyer_fiscal('f2yy', year)
+
+        # Revenus à prendre en compte dans un seul cas: imposition au barème
+        f2dc = foyer_fiscal('f2dc', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        f2vv = foyer_fiscal('f2vv', year)
+        f2ww = foyer_fiscal('f2ww', year)
+        f2zz = foyer_fiscal('f2zz', year)
+        f2tq = foyer_fiscal('f2tq', year)
+        f2tz = foyer_fiscal('f2tz', year)
+
+        pre_result = where(imposition_au_bareme, f2dc + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt + f2vv + f2ww + f2zz + f2tq + f2tz, 0)
+
+        return (f2ch + f2yy + pre_result) / 12
 
 
 class revenus_capitaux_prelevement_liberatoire(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu du capital imposé au prélèvement libératoire (montants bruts)"
+    label = 'Revenu du capital imposé au prélèvement libératoire (montants bruts)'
     set_input = set_input_divide_by_period
-    reference = "http://bofip.impots.gouv.fr/bofip/3817-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/3817-PGP'
     definition_period = MONTH
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -529,7 +636,7 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
 class revenus_capital(Variable):
     value_type = float
     entity = Individu
-    label = "Revenus du capital"
+    label = 'Revenus du capital'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -538,6 +645,6 @@ class revenus_capital(Variable):
             max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period))
             + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period))
             + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period))
-            )
+            ) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return revenus_capitaux

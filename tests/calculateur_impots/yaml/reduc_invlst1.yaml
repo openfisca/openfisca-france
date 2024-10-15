@@ -12,7 +12,7 @@
       caseW: false
       declarants:
       - ind0
-      f7xi: 10000
+      f7xi_2015: 10000
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -32,7 +32,7 @@
       personne_de_reference: ind0
   output:
     iai: 5361.0
-    irpp: -5361.0
+    impot_revenu_restant_a_payer: -5361.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 45000.0
@@ -53,7 +53,7 @@
       caseW: false
       declarants:
       - ind0
-      f7xi: 10000
+      f7xi_2015: 10000
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -73,7 +73,7 @@
       personne_de_reference: ind0
   output:
     iai: 5355.0
-    irpp: -5355.0
+    impot_revenu_restant_a_payer: -5355.0
     nbptr: 1.0
     rbg: 45000.0
     reductions: 2500.0
@@ -93,7 +93,7 @@
       caseW: false
       declarants:
       - ind0
-      f7xp: 10000
+      f7xp_2016: 10000
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -113,7 +113,7 @@
       personne_de_reference: ind0
   output:
     iai: 5350.0
-    irpp: -5350.0
+    impot_revenu_restant_a_payer: -5350.0
     nbptr: 1.0
     rbg: 45000.0
     reductions: 2500.0
@@ -153,9 +153,9 @@
       personne_de_reference: ind0
   output:
     iai: 5293.0
-    irpp: -5293.0
+    impot_revenu_restant_a_payer: -5293.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 2500.0
     rfr: 45000.0

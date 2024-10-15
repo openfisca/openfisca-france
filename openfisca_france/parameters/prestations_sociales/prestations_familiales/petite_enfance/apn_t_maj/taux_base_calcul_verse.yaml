@@ -1,0 +1,26 @@
+description: Taux de la base de calcul versé de l'Allocations postnatales (APN)
+values:
+  1975-04-25:
+    value: 2.6
+  1983-01-01:
+    value: 2.42
+  1985-01-01:
+    value: null
+metadata:
+  short_label: Taux de la base de calcul versé
+  label_en: "Postnatal allowance (APN): Rate and payment"
+  ipp_csv_id: tx_base
+  unit: /1
+  reference:
+    1975-04-25:
+      title: Loi 75-6 du 03/01/1975Décret 75-244 du 24/04/1975
+    1983-01-01:
+      title: Décret 82-1138 du 29/12/1982, art. 3(modif art. L516 du CSS)
+  official_journal_date:
+    1975-04-25: 1975-01-04; 1975-04-15
+    1983-01-01: "1982-12-30"
+  notes:
+    1975-04-25:
+    - title: La loi 75-6 du 3 janvier 1975 crée l'APN
+    1985-01-01:
+    - title: "Allocation remplacée par Allocation au jeune enfant le 01/01/1985 : majoration pour 3e naissance ou plus supprimée pour les enfants conçus après le 31/12/84."

@@ -1,0 +1,11 @@
+description: Âge maximal des alternants pour lequel le repas à un euro peut être pris en charge par le CROUS
+values:
+  2011-07-28:
+    value: 26
+metadata:
+  short_label: Âge maximal
+  unit: year
+  reference:
+    2011-07-28:
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024410525/2011-07-30/
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031088014/

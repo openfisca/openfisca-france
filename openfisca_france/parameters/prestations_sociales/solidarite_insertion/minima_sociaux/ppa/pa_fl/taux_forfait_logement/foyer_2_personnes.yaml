@@ -1,0 +1,16 @@
+description: Taux du forfait logement pour un foyer de 2 personnes, pour la prime pour l'activité (PPA)
+values:
+  2016-01-01:
+    value: 0.16
+metadata:
+  short_label: Foyer 2 pers.
+  last_value_still_valid_on: "2022-01-10"
+  label_en: "Activity premium (PPA) : accomodation allowance"
+  ipp_csv_id: pa_logt2
+  unit: /1
+  reference:
+    2016-01-01:
+      title: Art. R262-9 du CASF (modifié par Décret 2015-1709 du 21/12/2015, art. 2)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031694445/
+  official_journal_date:
+    2016-01-01: "2015-12-22"

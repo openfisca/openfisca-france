@@ -1,0 +1,27 @@
+description: Taux pour les entreprises comprenant plus de 250 et moins de 2000 salariés, et dont le pourcentage d'alternants est compris entre 3 et 4%
+values:
+  2011-01-01:
+    value: 0.0005
+  2015-01-01:
+    value: 0.0005
+metadata:
+  last_value_still_valid_on: "2024-05-16"
+  unit: /1
+  reference:
+    2011-01-01:
+    - title: Article 230H - II-3º du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024430161/2011-07-31
+    - title: art.23, Loi n° 2011-900 du 29 juillet 2011 de finances rectificative pour 2011
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000024413922
+    2015-01-01:
+    - title: Article L6242-1, IV.4° du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000043701827/2022-01-01
+    - title: Article 230H, II.3° du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025516217/2012-03-16/
+    - title: LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012, art.22
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
+    - title: Article L6242-1 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043701803/2024-05-16/
+  official_journal_date:
+    2011-01-01: "2011-07-30"
+    2015-01-01: "2012-03-15"

@@ -1,0 +1,31 @@
+description: Montant de base de l'Allocation de salaire unique (ASU)
+values:
+  1941-04-01:
+    value: null
+  1959-01-01:
+    value: 180
+  1976-07-01:
+    value: 194.5
+  1978-01-01:
+    value: null
+metadata:
+  short_label: Base
+  label_en: Base
+  ipp_csv_id: base_asu
+  unit: currency
+  reference:
+    1976-07-01:
+    - title: Loi 72-8 du 03/01/1972
+    - title: Décret 72-530 du 29/06/1972 (S.U.)
+    - title: Décret 76-767 du 16/08/1976 ("Majoration")
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000507293
+    1978-01-01:
+      title: Loi 77-765 du 12/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
+  official_journal_date:
+    1976-07-01: 1972-01-05; 1972-06-30; 1976-08-17
+    1978-01-01: "1977-07-13"
+  notes:
+    1976-07-01:
+    - title: Réservé aux ménages avec un seul revenu, sauf si l'autre conjoint a un revenu ne dépassant pas la moitié de la base de calcul des AF soit 347,25
+documentation: La base est identique à celle des allocations familiales (au salaire moyen départemental) jusqu'en 1954, puis une base inférieure à celle des AF est créée en 1955(égale à 180 FRF en 1959 pour la région parisienne, 162FRF pour la dernière zone contre 210FRF et 189FRF respectivement pour les AF)

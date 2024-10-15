@@ -1,0 +1,8 @@
+description: Intervalle (en mois) considéré pour le calcul du nombre d'années d'activité précédant la demande d'Allocation parentale d'éducation (APE, 1985-2004)
+metadata:
+  documentation_start: true
+  short_label: Intervalle pour calcul d'années d'activité
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
+  order:
+  - pour_le_2e_enfant
+  - pour_le_3e_enfant

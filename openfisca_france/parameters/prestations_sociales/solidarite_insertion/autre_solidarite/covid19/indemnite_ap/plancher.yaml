@@ -1,0 +1,44 @@
+description: Montant horaire minimum de l'allocation d'activité partielle de l'aide exceptionnelle covid-19
+values:
+  2020-03-01:
+    value: 8.03
+  2021-01-01:
+    value: 8.11
+  2021-02-01:
+    value: 7.3
+  2021-10-01:
+    value: 7.47
+  2022-01-01:
+    value: 7.53
+  2024-01-01:
+    value: 8.3
+metadata:
+  short_label: Montant horaire minimum
+  last_value_still_valid_on: "2024-05-01"
+  label_en: Exceptional benefit - covid-19 crisis
+  unit: currency
+  reference:
+    2020-03-01:
+      title: Article D5122-13 du Code du Travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041757491/2020-03-26
+    2021-01-01:
+      title: Article D5122-13 du Code du Travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042979946/2021-01-01/
+    2021-02-01:
+      title: Article D5122-13 du Code du Travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042486214/2021-02-01/
+    2021-10-01:
+      title: Article D5122-13 du Code du Travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042486214/2021-10-01/
+    2022-01-01:
+    - title: Décret 2021-1878 du 29/12/2021
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000044842453/2021-12-31/
+    - title: Article D5122-13 du Code du Travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044877405/2021-12-31/
+    2024-01-01:
+    - title: Code du travail - D5122-13
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048723703/2024-01-01/
+    - title: Décret n°2023-1305 du 27/12/2023
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048707152
+  official_journal_date:
+    2022-01-01: "2021-12-30"

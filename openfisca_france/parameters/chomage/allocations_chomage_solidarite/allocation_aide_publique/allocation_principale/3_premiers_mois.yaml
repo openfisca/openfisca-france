@@ -1,0 +1,73 @@
+description: Allocation principale d'aide publique pour les 3 premiers mois
+values:
+  1967-10-01:
+    value: 6.05
+  1968-06-01:
+    value: 6.3
+  1968-09-30:
+    value: 7.3
+  1970-07-06:
+    value: 7.75
+  1972-01-31:
+    value: 8.3
+  1973-01-29:
+    value: 8.9
+  1974-01-14:
+    value: 10
+  1975-01-13:
+    value: 12
+  1976-02-23:
+    value: 13.5
+  1977-04-04:
+    value: 15
+  1978-02-20:
+    value: 16.5
+  1979-04-02:
+    value: 18
+metadata:
+  short_label: 3 premiers mois
+  label_en: Public aid allowance
+  ipp_csv_id: aide_pu_0_3
+  unit: currency
+  reference:
+    1967-10-01:
+      title: Décret 67-667 du 04/08/1967
+    1968-06-01:
+      title: Décret 68-764 du 23/08/1968
+    1968-09-30:
+      title: Décret 68-846 du 28/09/1968
+    1970-07-06:
+      title: Décret 70-577 du 03/07/1970
+    1972-01-31:
+      title: Décret 72-94 du 31/01/1972
+    1973-01-29:
+      title: Décret 73-107 du 02/02/1973
+    1974-01-14:
+      title: Décret 74-55 du 25/01/1974
+    1975-01-13:
+      title: Décret 75-10 du 7/01/1975
+    1976-02-23:
+      title: Décret 76-229 du 09/03/1976
+    1977-04-04:
+      title: Décret 77-314 du 28/03/1977
+    1978-02-20:
+      title: Décret 78-196 du 24/02/1978
+    1979-04-02:
+      title: Décret 79-530 du 03/07/1979
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000338371
+  official_journal_date:
+    1967-10-01: "1967-08-08"
+    1968-06-01: "1968-08-28"
+    1968-09-30: "1968-09-29"
+    1970-07-06: "1970-07-05"
+    1972-01-31: "1972-02-02"
+    1973-01-29: "1973-02-04"
+    1974-01-14: "1974-01-26"
+    1975-01-13: "1975-01-08"
+    1976-02-23: "1976-03-10"
+    1977-04-04: "1977-03-30"
+    1978-02-20: "1978-02-26"
+    1979-04-02: "1979-07-04"
+  notes:
+    1979-04-02:
+    - title: "Allocation d'aide publique supprimée par Loi cadre n° 79-32 du 16 janvier 1979: nouveau système où régimes d'assurance et de solidarité sont rassemblés"

@@ -1,4 +1,3 @@
 description: Paramètres régissant l'assiette des cotisations sociales du régime général
 metadata:
-  ux_name: Paramètres de l'assiette de cotisations
-  description_en:
+  short_label: Paramètres de l'assiette de cotisations

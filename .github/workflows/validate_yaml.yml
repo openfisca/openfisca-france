@@ -1,0 +1,15 @@
+name: Validate YAML
+
+on:
+  push:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  validate_yaml:
+    uses: tax-benefit/actions/.github/workflows/validate_yaml.yml@v1
+    with:
+      parameters_path: "openfisca_france/parameters"
+    secrets:
+      token: ${{ secrets.CONTROL_CENTER_TOKEN }}

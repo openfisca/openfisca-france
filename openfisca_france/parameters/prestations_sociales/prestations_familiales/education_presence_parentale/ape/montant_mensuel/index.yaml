@@ -1,0 +1,9 @@
+description: Montant mensuel (en % de la BMAF) de l'Allocation parentale d'éducation (APE, 1985-2004)
+metadata:
+  documentation_start: true
+  short_label: APE
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
+  order:
+  - taux_inactivite
+  - taux_activite_sup_80
+  - taux_activite_sup_50

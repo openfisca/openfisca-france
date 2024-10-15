@@ -1,0 +1,8 @@
+description: Prestations famililaes relatives au logement et au cadre de vie
+metadata:
+  short_label: Logement et cadre de vie
+  label_en: Housing and living environment
+  order:
+  - pd
+  - pjm_c_plaf
+  - pjm_prets

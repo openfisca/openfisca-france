@@ -1,0 +1,12 @@
+description: Abattement sur les revenus d'activité en cas de chômage de la couverture maladie universelle (CMU)
+values:
+  2000-01-01:
+    value: 0.3
+metadata:
+  short_label: Abattement
+  last_value_still_valid_on: "2022-04-19"
+  unit: /1
+  reference:
+    2000-01-01:
+      title: Article R822-13 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977

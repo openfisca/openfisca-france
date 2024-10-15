@@ -1,0 +1,53 @@
+description: Taux d'appel des cotisations de régimes complémentaire de retraite des cades (AGIRC)
+values:
+  1948-01-01:
+    value: 1
+  1952-01-01:
+    value: 0.78
+  1953-01-01:
+    value: 0.8
+  1955-01-01:
+    value: 0.85
+  1961-01-01:
+    value: 0.9
+  1965-01-01:
+    value: 0.95
+  1966-01-01:
+    value: 1
+  1979-01-01:
+    value: 1.03
+  1986-01-01:
+    value: 1.06
+  1987-01-01:
+    value: 1.1
+  1989-01-01:
+    value: 1.134
+  1990-01-01:
+    value: 1.17
+  1994-01-01:
+    value: 1.21
+  1995-01-01:
+    value: 1.25
+  2019-01-01:
+    value: null
+metadata:
+  short_label: Taux d'appel
+  last_value_still_valid_on: "2021-07-30"
+  label_en: Pension contributions for executives (AGIRC)
+  unit: /1
+  reference:
+    1948-01-01:
+      title: Convention AGIRC du 14/03/1947
+    1994-01-01:
+      title: Accord AGIRC du 09/02/1994
+    1995-01-01:
+      title: Accord AGIRC du 09/02/1994
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+  official_journal_date:
+    1986-01-01: "1987-05-13"
+  notes:
+    1979-01-01:
+    - title: "Ecrit en toutes lettres dans le BSP : \"2 % à la charge du salarié, 6 % à la charge de l'employeur\" (p.71 de I/1976)"
+    2019-01-01:
+    - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)

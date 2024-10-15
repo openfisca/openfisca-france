@@ -1,0 +1,17 @@
+description: Première possibilité de plafond de rémunération (en nombre de Smic de décembre 2023) des salariés concernés par l'allègement des cotisations du régime d'assurance maladie (à partir de 2024). Ce plafond est retenu si son montant est plus élevé que la second possibilité proposée dans la loi.
+values:
+  2024-01-01:
+    value: 2.5
+metadata:
+  short_label: 1ère possibilité de plafond de rémunération des salariés (retenue si le montant est supérieur à la 2ème possibilité)
+  last_value_still_valid_on: "2024-09-13"
+  label_en: SSCs for sickness, maternity, disability and death benefits
+  unit: smic_2023_12_31
+  reference:
+    2024-01-01:
+    - title: Article D241-1-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048807182
+    - title: Décret n°2023-1329 du 29/12/2023, Art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048727890
+  official_journal_date:
+    2024-01-01: "2023-12-30"

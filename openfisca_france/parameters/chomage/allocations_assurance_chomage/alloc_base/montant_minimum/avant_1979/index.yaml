@@ -1,0 +1,8 @@
+description: Montant minimum de l'allocation de base d'assurance chômage - minimum avant 2002
+metadata:
+  short_label: Montant minimum avant 1979
+  label_en: UI scheme - lump-sum and minimum
+  order:
+  - 3_premiers_mois
+  - apres_3_mois
+documentation: Le montant minimum dépendait jusqu'en juillet 1979 de la durée d'allocation, à partir de juillet 1979 la seule différenciation reste entre Mayotte et le reste de la France.

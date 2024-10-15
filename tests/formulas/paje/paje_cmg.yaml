@@ -117,6 +117,6 @@
         conjoint: parent4
         enfants: [enfant3, enfant4]
   output:
-    paje_base: 0.4165 * 411.92
+    paje_base: 0.4595 * 411.92
     paje_cmg: 1.7257 * 411.92 + 355.43
-    paje: (0.4165 * 411.92) + (1.7257 * 411.92 + 355.43)
+    paje: (0.4595 * 411.92) + (1.7257 * 411.92 + 355.43)

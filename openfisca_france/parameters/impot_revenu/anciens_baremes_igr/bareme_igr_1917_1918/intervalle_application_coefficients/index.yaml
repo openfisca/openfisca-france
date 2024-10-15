@@ -1,0 +1,10 @@
+description: Intervalles d'application du coefficient de progression pour l'imposition au titre du barème de l'impôt général sur le revenu (IGR, 1917-1918)
+metadata:
+  short_label: Intervalles d'application
+  label_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
+  order:
+  - tranche_1
+  - tranche_2
+  - tranche_3
+  - tranche_4
+  - tranche_5

@@ -1,0 +1,130 @@
+description: Montant journalier de l'allocation temporaire d'attente (ATA)
+values:
+  2006-11-16:
+    value: 10.04
+  2007-01-01:
+    value: 10.22
+  2008-01-01:
+    value: 10.38
+  2009-01-01:
+    value: 10.54
+  2010-01-01:
+    value: 10.67
+  2011-01-01:
+    value: 10.83
+  2012-01-01:
+    value: 11.01
+  2013-01-01:
+    value: 11.2
+  2014-01-01:
+    value: 11.35
+  2015-01-01:
+    value: 11.45
+  2015-11-01:
+    value: null
+  2016-04-01:
+    value: 11.46
+  2017-04-01:
+    value: 11.49
+  2018-04-01:
+    value: 11.6
+  2019-04-01:
+    value: 11.79
+  2020-04-01:
+    value: 11.9
+  2021-04-01:
+    value: 11.91
+  2022-04-01:
+    value: 12.12
+  2023-04-01:
+    value: 12.8
+  2024-04-01:
+    value: 13.39
+metadata:
+  short_label: Montant journalier
+  label_en: "Temporary waiting allowance (ATA): Amounts"
+  ipp_csv_id: ata_fixe
+  unit: currency
+  reference:
+    2006-11-16:
+      title: Décret 2006-1381 du 13/11/2006
+      href: https://www.legifrance.gouv.fr/eli/decret/2006/11/13/2006-1381/jo/texte
+    2007-01-01:
+      title: Décret 2007-32 du 08/01/2007
+      href: https://www.legifrance.gouv.fr/eli/decret/2007/1/8/2007-32/jo/texte
+    2008-01-01:
+      title: Décret 2008-52 du 16/01/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/1/16/2008-52/jo/texte
+    2009-01-01:
+      title: Décret 2009-124 du 04/02/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/2/4/2009-124/jo/texte
+    2010-01-01:
+      title: Décret 2009-1703 du 30/12/2009
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021569821
+    2011-01-01:
+      title: Décret 2011-123 du 29/01/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/1/29/2011-123/jo/texte
+    2012-01-01:
+      title: Décret 2012-196 du 09/02/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/2/9/2012-196/jo/texte
+    2013-01-01:
+      title: Décret 2012-1496 du 28/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/28/2012-1496/jo/texte
+    2014-01-01:
+      title: Décret 2013-1274 du 27/12/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1274/jo/texte
+    2015-01-01:
+    - title: Décret 2014-1719 du 31/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030005607
+    - title: Loi du 29/07/2015, art. 23
+    2016-04-01:
+      title: Décret 2016-540 du 03/05/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte
+    2017-04-01:
+      title: Décret 2017-1022 du 10/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034678225
+    2018-04-01:
+      title: Décret 2018-446 du 05/06/2018
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/6/5/2018-446/jo/texte
+    2019-04-01:
+      title: Décret 2019-466 du 16/05/2019
+      href: https://www.legifrance.gouv.fr/eli/decret/2019/5/16/2019-466/jo/texte
+    2020-04-01:
+      title: Décret 2020-669 du 02/06/2020
+      href: https://www.legifrance.gouv.fr/eli/decret/2020/6/2/2020-669/jo/texte
+    2021-04-01:
+      title: Décret n° 2021-523 du 29/04/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459270
+    2022-04-01:
+      title: Décret n° 2022-493 du 6 avril 2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045522919
+    2023-04-01:
+      title: Décret n° 2023-301 du 22/04/2023
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047478020
+    2024-04-01:
+      title: Décret n° 2024-391 du 12 avril 2024
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049410777
+  official_journal_date:
+    2006-11-16: "2006-11-15"
+    2007-01-01: "2007-01-09"
+    2008-01-01: "2008-01-17"
+    2009-01-01: "2009-02-05"
+    2010-01-01: "2009-12-31"
+    2011-01-01: "2011-01-30"
+    2012-01-01: "2012-10-02"
+    2013-01-01: "2012-12-29"
+    2014-01-01: "2013-12-29"
+    2015-01-01: "2014-12-31"
+    2015-11-01: "2015-07-30"
+    2016-04-01: "2016-05-04"
+    2017-04-01: "2017-05-11"
+    2018-04-01: "2018-06-06"
+    2019-04-01: "2019-05-18"
+    2020-04-01: "2020-06-04"
+    2021-04-01: "2021-04-30"
+    2022-04-01: "2022-04-07"
+    2023-04-01: "2023-04-22"
+    2024-04-01: "2024-04-14"
+  notes:
+    2015-11-01:
+    - title: Remplacée par l'allocation pour demandeur d'asile (ADA). Les autres allocataires continuent de la percevoir, mais il n'y en a plus de nouveaux depuis septembre 2017. https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-01/Fiche%2026%20-%20L%E2%80%99allocation%20temporaire%20d%E2%80%99attente%20%28ATA%29.pdf#:~:text=L%E2%80%99allocation%20temporaire%20d%E2%80%99attente%20%28ATA%29%20est%20une%20allo-%20cation,encore%20en%20b%C3%A9n%C3%A9ficier%20jusqu%E2%80%99%C3%A0%20expiration%20de%20leurs%20droits%08

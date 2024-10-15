@@ -1,0 +1,233 @@
+- name: option_prelevement_forfaitaire_unique
+  description: Test prélèvement forfaitaire unique sans abattements
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2dc: 10000
+      f2fu: 10000
+      f2ts: 20000
+      f2tr: 20000
+      f2tt: 20000
+      f2vv: 10000
+      f2ww: 10000
+      f2zz: 10000
+      f2go: 10000
+      f3sb: 20000
+      f3ua: 20000
+      f3vg: 20000
+      f3tj: 20000
+      f2ch: 5000
+      f2ca: 5000
+      f2op: false
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: -25070  # 190 000 * 0.128 (pfu) + 10 000 (f2vv) * 0.075 (taux réduit)
+    impot_revenu_restant_a_payer: -25070  # Tous les revenus sont éligibles au pfu sauf 2ch mais qui bénéficie d'un abattement de 4600 euros ce qui donne un revenu imposable net à 400 euros donc pas imposable
+    rfr: 180400
+
+- name: option_imposition_bareme
+  description: Test imposition au barème sans abattements
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2dc: 10000
+      f2fu: 10000
+      f2ts: 20000
+      f2tr: 20000
+      f2tt: 20000
+      f2vv: 10000
+      f2ww: 10000
+      f2zz: 10000
+      f2go: 10000
+      f3sb: 20000
+      f3ua: 20000
+      f3vg: 20000
+      f3tj: 20000
+      f2ch: 5000
+      f2ca: 5000
+      f2op: true
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: 0  # option bareme
+    impot_revenu_restant_a_payer: -65292  # taxation au barème des revenus éligibles au pfu
+    rfr: 177900
+
+- name: option_prelevement_forfaitaire_unique_abattement_fixe
+  description: Test 3 prélèvement forfaitaire unique avec abattement fixe
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f3ua: 700000
+      f3va: 500000
+      f2op: false
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: -25600  # (700000 - 500000)*0.128
+    rfr: 700000
+    impot_revenu_restant_a_payer: -41100  # pfu + cehr
+
+- name: option_bareme_abattement_fixe
+  description: Test imposition bareme avec abattement fixe
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f3ua: 700000
+      f3va: 500000
+      f2op: true
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: 0  # option bareme
+    impot_revenu_restant_a_payer: -85337
+    rfr: 700000
+
+- name: option_prelevement_forfaitaire_unique_abattements_plus_values_2019
+  description: Test pfu pour 2019 avec abattements plus-values
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f3ua: 220000
+      f3sl: 20000
+      f3vg: 20000
+      f3sg: 10000
+      f3tj: 100000
+      f3tk: 100000
+      f3vt: 30000
+      f3an: 20000
+      f2op: false
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: -37120
+    impot_revenu_restant_a_payer: -41320  # pfu + cehr
+    rfr: 390000
+
+- name: option_imposition_bareme_abattements_plus_values_2019
+  description: Test imposition bareme pour 2019 avec abattements plus-values
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f3ua: 220000
+      f3sl: 20000
+      f3vg: 20000
+      f3sg: 10000
+      f3tj: 100000
+      f3tk: 100000
+      f3vt: 30000
+      f3an: 20000
+      f2op: true
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: -2560  # pfu des actifs numériques f3an qui ne peuvent pas être imposé au barème
+    rfr: 390000
+    impot_revenu_restant_a_payer: -94395  # pfu des an + taxation au barème des revenus éligibles au pfu
+
+- name: option_prelevement_forfaitaire_unique_capital_2019
+  description: Test pfu pour 2019 avec des revenus de capital
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2go: 10000
+      f2tt: 50000
+      f2tq: 20000
+      f2op: false
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    rfr: 80000
+    prelevement_forfaitaire_unique_ir: -10240  # 80000*0.128
+    impot_revenu_restant_a_payer: -10240  # pfu
+
+- name: option_imposition_bareme_capital_2019
+  description: Test imposition bareme pour 2019 avec des revenus de capital
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2go: 10000
+      f2tt: 50000
+      f2tq: 20000
+      f2op: true
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: 0  # option barème
+    rfr: 82500  # 10000*1.25 (2go majoré si taxation au barème) + 50000 + 20000
+    impot_revenu_restant_a_payer: -19772
+
+- name: option_prelevement_forfaitaire_unique_capital_2020
+  description: Test pfu pour 2020 avec des revenus de capital
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2go: 10000
+      f2tt: 40000
+      f2tq: 20000
+      f2tz: 10000
+      f2op: false
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: -10560  # (10000*1.25 (2go majoré dans tous les cas, pfu ou barème, à partir de 2020) + 70000)*0.128
+    impot_revenu_restant_a_payer: -10560  # pfu
+    rfr: 82500
+
+- name: option_imposition_bareme_capital_2020
+  description: Test imposition bareme pour 2020 avec des revenus de capital
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2go: 10000
+      f2tt: 40000
+      f2tq: 20000
+      f2tz: 10000
+      f2op: true
+    individus:
+      ind0:
+        statut_marital: celibataire
+  output:
+    prelevement_forfaitaire_unique_ir: 0  # option barème
+    rfr: 82500
+    impot_revenu_restant_a_payer: -19744

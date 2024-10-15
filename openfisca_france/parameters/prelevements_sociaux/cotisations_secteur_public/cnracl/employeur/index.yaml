@@ -1,4 +1,9 @@
-description: Cotisations employeur à la Caisse nationale de retraite des agents des collectivités locales (CNRACL) 
+description: Cotisations employeur à la Caisse nationale de retraite des agents des collectivités locales (CNRACL)
 metadata:
-  ux_name: Cotisations employeur
-  description_en:
+  short_label: Cotisations employeur
+  label_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
+  order:
+  - cnracl
+  - atiacl
+  - territoriale
+  - hospitaliere

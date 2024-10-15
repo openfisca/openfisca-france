@@ -1,0 +1,12 @@
+description: Âge mininimal de l'enfant ouvrant droit aux prestations familiales
+values:
+  1985-12-22:
+    value: 0
+metadata:
+  short_label: Âge minimal de l'enfant
+  last_value_still_valid_on: "2023-01-27"
+  unit: year
+  reference:
+    1985-12-22:
+      title: Article L512-3 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743276/1985-12-21/

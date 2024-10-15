@@ -1,0 +1,28 @@
+description: Taxe spéciale sur les contributions patronales de prévoyance
+values:
+  1996-01-01:
+    value: 0.06
+  1998-01-01:
+    value: 0.08
+  2012-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  label_en: Special tax on employer's contributions to life-insurance contracts
+  ipp_csv_id: prev_p
+  unit: /1
+  reference:
+    1996-01-01:
+      title: Ordonnance 96-51 du 24/01/96
+    1998-01-01:
+      title: Loi 97-1164de FSS du 19/12/1997
+    2012-01-01:
+      title: Circulaire Acoss du 20/02/2012
+  official_journal_date:
+    1996-01-01: "1996-01-25"
+    1998-01-01: "1997-12-23"
+  notes:
+    1998-01-01:
+    - title: Exonération pour les entreprises de moins de 10 salariés
+    2012-01-01:
+    - title: Depuis le 01/01/2012, la taxe spécifique sur les contributions patronales de prévoyance a été remplacée par le forfait social.

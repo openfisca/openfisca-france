@@ -1,0 +1,6 @@
+description: Réductions et abattements de l'impôt sur la fortune immobilière
+metadata:
+  short_label: Réductions et abattements
+  label_en: Discount and rebate
+  order:
+  - abattement_residence_principale

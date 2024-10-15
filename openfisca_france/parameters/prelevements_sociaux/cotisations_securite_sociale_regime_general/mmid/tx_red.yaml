@@ -1,0 +1,19 @@
+description: Taux réduit (salaire inférieur à 2,5 Smic) des cotisations du régime d'assurance maladie
+values:
+  2019-01-01:
+    value: 0.07
+metadata:
+  short_label: Taux réduit
+  last_value_still_valid_on: "1977-01-01"
+  label_en: SSCs for sickness, maternity, disability and death benefits
+  ipp_csv_id: mmid_p_0_250
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 9
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358458&cidTexte=JORFTEXT000036339090
+  official_journal_date:
+    2019-01-01: "2017-12-31"
+  notes:
+    2019-01-01:
+    - title: Taux réduit pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.

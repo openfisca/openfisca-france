@@ -1,0 +1,7 @@
+description: Pas annuel du taux (après seuil 2)
+values:
+  2012-02-01:
+    value: 0.04
+metadata:
+  short_label: Taux (Seuil 2)
+  unit: /1

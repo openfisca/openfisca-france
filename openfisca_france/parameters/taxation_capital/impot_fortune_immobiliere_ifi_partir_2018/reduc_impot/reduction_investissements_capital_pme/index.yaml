@@ -1,0 +1,8 @@
+description: Réduction pour investissements au capital de PME de l'impôt sur la fortune immobilière
+metadata:
+  short_label: Réduction pour investissements au capital de PME
+  label_en: Tax reductions for investment and donations
+  order:
+  - plafond_investissement_dans_pme
+  - taux_investissement_direct
+documentation: "Les réductions d'impôt pour investissement dans les PME, les FCPI et les FIP sont supprimées avec le passage à l'IFI. Néanmoins, à titre dérogatoire et exceptionnel, ces dépenses d'investissement réalisées avant le 31/12/2017 peuvent donner lieu à ces mêmes réductions pour l'IFI 2018 : cf. art. 31 de la loi 2017-1837, fin de l'article : \"Par dérogation au B du présent IX, le 34° du B du I est applicable à compter du 1er janvier 2018. Par exception, les dons et versements ouvrant droit aux avantages fiscaux prévus aux articles 885-0 V bis, 885-0 V bis A et 885-0 V bis B du code général des impôts, dans leur rédaction en vigueur au 31 décembre 2017, effectués entre la date limite de dépôt des déclarations mentionnées à l'article 885 W du même code, dans sa rédaction en vigueur au 31 décembre 2017, au titre de l'impôt de solidarité sur la fortune dû au titre de l'année 2017, et le 31 décembre 2017, sont imputables, dans les conditions prévues aux articles 885-0 V bis, 885-0 V bis A et 885-0 V bis B précités dans leur rédaction en vigueur au 31 décembre 2017, sur l'impôt sur la fortune immobilière dû au titre de l'année 2018.\""

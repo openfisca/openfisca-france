@@ -1,0 +1,18 @@
+description: Taux
+values:
+  1978-01-01:
+    value: null
+  1984-01-01:
+    value: 0.25
+  1997-01-01:
+    value: 0.2
+  2000-01-01:
+    value: null
+metadata:
+  ipp_csv_id: tx_grostravaux
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  notes:
+    1997-01-01:
+    - title: Dépenses de gros travaux avec même incrément que habitat et majoration comme dans 2 et 3

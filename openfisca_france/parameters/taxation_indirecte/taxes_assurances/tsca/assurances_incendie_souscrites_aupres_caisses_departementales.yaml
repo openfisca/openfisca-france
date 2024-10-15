@@ -1,0 +1,7 @@
+description: Assurances incendie souscrites auprès des caisses départementales
+values:
+  1979-07-01:
+    value: 0.24
+metadata:
+  ipp_csv_id: taxe_assu_incendie_caisse_dep
+  unit: /1

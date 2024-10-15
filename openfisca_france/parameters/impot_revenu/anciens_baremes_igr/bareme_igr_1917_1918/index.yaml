@@ -1,0 +1,9 @@
+description: Seuils, Taux, Coefficients et Intervalles de progression au titre du barème de l'impôt général sur le revenu (IGR, 1917-1918)
+metadata:
+  short_label: Barème IGR (1917-1918)
+  label_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
+  order:
+  - seuils
+  - taux_effectifs
+  - coefficients_progression
+  - intervalle_application_coefficients

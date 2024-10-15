@@ -1,0 +1,18 @@
+description: Taux réduit de l'impôt sur les bénéfices des sociétés et autres personnes morales
+values:
+  2001-01-01:
+    value: 0.25
+  2002-01-01:
+    value: 0.15
+metadata:
+  unit: /1
+  reference:
+    2001-01-01:
+      title: Article 219 CGI, paragraphe I-2-b, modifié par la loi 2000-1352 du 30/12/2000 de finances pour 2001, art. 7-9
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046868562#:~:text=Par%20exception%20au%20deuxième%20alinéa%20du%20présent%20I%20et%20au%20premier%20alinéa%20du%20a%2C%20pour%20les%20redevables%20ayant%20réalisé%20un%20chiffre%20d%27affaires%20n%27excédant%20pas%2010%20millions%20d%27euros%20au%20cours%20de%20l%27exercice%20ou%20de%20la%20période%20d%27imposition%2C%20ramené%20s%27il%20y%20a%20lieu%20à%20douze%20mois%2C%20le%20taux%20de%20l%27impôt%20applicable%20au%20bénéfice%20imposable%20est%20fixé%2C%20dans%20la%20limite%20de%2042%20500%20€%20de%20bénéfice%20imposable%20par%20période%20de%20douze%20mois%2C%20à%2025%20%25%20pour%20les%20exercices%20ouverts%20en%202001%20et%20à%2015%20%25%20pour%20les%20exercices%20ouverts%20à%20compter%20du%201er%20janvier%202002.
+    2002-01-01:
+      title: Article 219 CGI, paragraphe I-2-b, modifié par la loi 2000-1352 du 30/12/2000 de finances pour 2001, art. 7-9
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046868562#:~:text=Par%20exception%20au%20deuxième%20alinéa%20du%20présent%20I%20et%20au%20premier%20alinéa%20du%20a%2C%20pour%20les%20redevables%20ayant%20réalisé%20un%20chiffre%20d%27affaires%20n%27excédant%20pas%2010%20millions%20d%27euros%20au%20cours%20de%20l%27exercice%20ou%20de%20la%20période%20d%27imposition%2C%20ramené%20s%27il%20y%20a%20lieu%20à%20douze%20mois%2C%20le%20taux%20de%20l%27impôt%20applicable%20au%20bénéfice%20imposable%20est%20fixé%2C%20dans%20la%20limite%20de%2042%20500%20€%20de%20bénéfice%20imposable%20par%20période%20de%20douze%20mois%2C%20à%2025%20%25%20pour%20les%20exercices%20ouverts%20en%202001%20et%20à%2015%20%25%20pour%20les%20exercices%20ouverts%20à%20compter%20du%201er%20janvier%202002.
+  official_journal_date:
+    2001-01-01: "2000-12-31"
+    2002-01-01: "2000-12-31"

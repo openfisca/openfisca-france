@@ -1,0 +1,19 @@
+description: Montant maximal du taux de majoration pour un couple avec 1 enfant, ou pour le deuxième enfant (en % de la base) du revenu de solidarité active (RSA)
+values:
+  2009-06-01:
+    value: 0.3
+metadata:
+  short_label: Couple avec 1 enfant - ou 2e enfant
+  last_value_still_valid_on: "2022-03-31"
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  ipp_csv_id: rsa_rmi_enf2
+  unit: /1
+  reference:
+    2009-06-01:
+    - title: Décret 2009-404 du 15/04/2009, art. 2 (modif art. R262-1 du CASF)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522717&cidTexte=JORFTEXT000020521930
+    - title: Article D843-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/2016-01-01
+  official_journal_date:
+    2009-06-01: "2009-04-16"
+documentation: Couple avec 1 enfant ou pour le deuxième enfant, quel que soit le type de ménage.

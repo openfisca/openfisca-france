@@ -1,0 +1,6 @@
+description: TICPE - produits énergétiques, autres Gaz de pétrole liquéfiés utilisés comme carburants
+metadata:
+  label_en: TICPE - Energy products
+  order:
+  - sous_conditions_100kg
+  - autres_100kg

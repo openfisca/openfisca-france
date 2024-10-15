@@ -1,0 +1,15 @@
+description: Plafond de rémunération (en nombre de Smic) de l'exonération de cotisations employeur au titre des embauches en zone de restructuration de la défense (ZRD)
+values:
+  2009-01-01:
+    value: 2.4
+metadata:
+  short_label: Plafond de rémunération de l'exonération (Point d'annulation)
+  last_value_still_valid_on: "2024-08-12"
+  label_en: Remuneration ceiling for exemption
+  unit: smic
+  reference:
+    2009-01-01:
+    - title: Article 34 de la loi n° 2008-1443 du 30 décembre 2008 de finances rectificative pour 2008 (1)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000037075159/
+    - title: BOSS.gouv.fr
+      href: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-3--exoneration-applicab

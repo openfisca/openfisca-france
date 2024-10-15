@@ -1,0 +1,7 @@
+description: Coefficient à rajouter, pour chaque enfant à charge, aux plafonds de la bourse de l'Éducation nationale pour le collège (avant 2016)
+values:
+  2014-01-01:
+    value: 0.3
+metadata:
+  short_label: Coef par enfant supp.
+  unit: /1

@@ -1,0 +1,8 @@
+description: Limite d'âge des enfants comptés à charge
+values:
+  1977-10-01:
+    value: 24
+metadata:
+  short_label: Âge des personnes à charge
+  label_en: "Minimum insertion income (RMI): General conditions"
+  unit: year

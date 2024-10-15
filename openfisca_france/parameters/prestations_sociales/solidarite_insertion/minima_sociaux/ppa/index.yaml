@@ -1,0 +1,8 @@
+description: Prime pour l'activité (PPA)
+metadata:
+  short_label: PPA
+  label_en: Activity premium (PPA)
+  order:
+  - pa_cond
+  - pa_m
+  - pa_fl

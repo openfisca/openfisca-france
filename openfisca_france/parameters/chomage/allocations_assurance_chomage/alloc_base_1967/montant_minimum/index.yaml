@@ -1,0 +1,8 @@
+description: Montant minimum de l'allocation de base d'assurance chômage
+metadata:
+  short_label: Montant minimum
+  label_en: UI scheme
+  order:
+  - paris
+  - villes_plus_5000_hab
+  - villes_moins_5000_hab

@@ -1,0 +1,18 @@
+description: Propane utilisé comme carburants, usages autres que comme carburant (100kg nets)
+values:
+  1993-01-01:
+    value: null
+  2018-01-01:
+    value: 6.63
+metadata:
+  unit: currency
+  reference:
+    1993-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    1993-01-01: "1992-12-31"
+    2018-01-01: "2017-12-31"

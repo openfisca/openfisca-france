@@ -1,0 +1,8 @@
+description: "Allocations prénatales (APrN) : taux et versement"
+metadata:
+  documentation_start: true
+  short_label: Allocations prénatales (APrN)
+  label_en: "Prenatal allowance (APrN): Rate and payment"
+  order:
+  - taux
+documentation: Les allocations prénatales sont instituées par la loi 46-1835 fixant le régime des prestations familiales (articles 14 à 16)

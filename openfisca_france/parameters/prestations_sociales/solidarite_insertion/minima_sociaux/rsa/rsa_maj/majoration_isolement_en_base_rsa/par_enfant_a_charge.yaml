@@ -1,0 +1,28 @@
+description: Majoration par enfant à charge pour les parents isolés (en % de la base) du revenu de solidarité active (RSA)
+values:
+  2009-06-01:
+    value: 0.428
+  2016-01-01:
+    value: 0.42804
+metadata:
+  short_label: Majoration par enfant à charge
+  last_value_still_valid_on: "2024-04-26"
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  ipp_csv_id: rsa_isole_enf
+  unit: /1
+  reference:
+    2009-06-01:
+      title: Décret 2009-404 du 15/04/2009, art. 2 (modif art. R262-1 du CASF)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522717&cidTexte=JORFTEXT000020521930
+    2016-01-01:
+    - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031673709&cidTexte=JORFTEXT000031665094
+    - title: Article D843-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/2016-01-01
+  official_journal_date:
+    2009-06-01: "2009-04-16"
+    2016-01-01: "2015-12-22"
+  notes:
+    2016-01-01:
+    - title: Remplacement du RSA activité par la Prime d'activité
+documentation: Le terme de "parents isolés" est défini dans l'article L. 842-7.

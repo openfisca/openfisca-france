@@ -1,0 +1,22 @@
+description: Taux pour les primes d'assurances pour loyers impayés
+values:
+  2005-01-01:
+    value: 0.5
+  2011-01-01:
+    value: 0.45
+  2012-01-01:
+    value: 0.38
+  2017-01-01:
+    value : null
+metadata:
+  short_label: Taux
+  unit: /1
+  reference:
+    2012-01-01:
+      title: Code général des impôts - Art Article 200 nonies
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025746257/2012-04-26
+    2017-01-01:
+      title: LOI n° 2016-1917 du 29 décembre 2016 de finances pour 2017 - Art 32
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000033760848/2017-01-01
+documentation: |
+  Abrogé par la LF 2017 : https://bofip.impots.gouv.fr/bofip/10813-PGP.html/identifiant%3DACTU-2017-00011

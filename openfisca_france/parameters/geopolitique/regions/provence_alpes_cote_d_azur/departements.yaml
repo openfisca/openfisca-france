@@ -1,0 +1,12 @@
+description: Liste des départements membre de la région Provence Alpes Côtes d'Azur
+values:
+  2015-01-16:
+    value:
+    - "04"
+    - "05"
+    - "06"
+    - "13"
+    - "83"
+    - "84"
+metadata:
+  unit: codes départements

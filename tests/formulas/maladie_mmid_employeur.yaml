@@ -1,7 +1,51 @@
-- period: 2017-02
-  name: Cotisation maladie MMID employeur
+- name: Cotisation maladie MMID employeur avant 2017
+  period: 2017-02
   relative_error_margin: 0.001
   input:
     salaire_de_base: 2300
   output:
     mmid_employeur: -.1289 * 2300
+
+- name: Cotisation maladie MMID employeur pour rémunération 1xSmic <= 2.5xSmic
+  period: 2021-02
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base:
+      month:2021-01:9: 1554.58 * 9
+    allegement_cotisation_maladie_mode_recouvrement:
+      2021-09: fin_d_annee
+      2021-10: fin_d_annee
+      2021-11: fin_d_annee
+      2021-12: fin_d_annee
+  output:
+    assiette_allegement:
+      2021-09: 1554.58
+      2021-10: 0
+    allegement_cotisation_maladie:
+      2021-09: 0
+      2021-10: 0
+      2021-11: 0
+      2021-12: 93.27 * 9  # 0.06 * 1554.58 * 9 mois de salaire
+    mmid_employeur: -.13 * 1554.58
+
+- name: Cotisation maladie MMID employeur pour rémunération > 2.5xSmic
+  period: 2021-03
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base:
+      2021-01: 3886.55  # 1554.58 * 2.5 + 0.1
+      2021-02: 3886.55
+      2021-03: 3886.55
+    allegement_cotisation_maladie_mode_recouvrement:
+      2021-09: progressif
+      2021-10: progressif
+      2021-11: progressif
+      2021-12: progressif
+  output:
+    assiette_allegement:
+      2021-01: 3886.55
+      2021-02: 3886.55
+      2021-03: 3886.55
+    allegement_cotisation_maladie:
+      2021-03: 0
+    mmid_employeur: -.13 * 3886.55

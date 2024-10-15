@@ -1,6 +1,7 @@
 from numpy import datetime64, timedelta64
 
 from openfisca_france.model.base import *
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
 
@@ -13,11 +14,135 @@ class jei_date_demande(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class exoneration_cotisations_employeur_tode_eligibilite(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Éligibilité à l'exonération de cotisations employeur agricole pour travailleur occasionnel demandeur d'emploi (TO-DE)"
+    reference = [
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947610/',
+        'https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels'
+        ]
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    end = '2025-12-31'
+    documentation = '''
+        Non modélisé (2022), tout employeur MSA sauf ces employeurs :
+        Coopératives d'utilisation de matériel agricole (CUMA).
+        Coopératives de transformation, conditionnement et commercialisation.
+        Entreprises paysagistes.
+        Structures exerçant des activités de tourisme à la ferme.
+        Entreprises de service (Crédit agricole, Groupama, caisses de MSA, groupements professionnels agricoles, Chambres d'agriculture…).
+        Artisans ruraux.
+        Entreprises de travail temporaire (ETT) et les entreprises de travail temporaire d'insertion (ETTI).
+        Entreprises de travaux agricoles, ruraux et forestiers (ETARF).
+    '''
+
+    def formula_2019(individu, period):
+        # employeur relevant de la MSA
+        secteur_agricole = individu('secteur_activite_employeur', period) == TypesSecteurActivite.agricole
+        regime_agricole = individu('regime_securite_sociale', period) == RegimeSecuriteSociale.regime_agricole
+
+        # salarié travailleur occasionnel agricole
+        travailleur_occasionnel_agricole = individu('travailleur_occasionnel_agricole', period)
+
+        return (secteur_agricole + regime_agricole) * travailleur_occasionnel_agricole
+
+
+class exoneration_cotisations_employeur_tode(Variable):
+    value_type = float
+    entity = Individu
+    label = "Exonération de cotisations employeur agricole pour travailleur occasionnel demandeur d'emploi (TO-DE)"
+    reference = [
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947610/',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038026966'
+        ]
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    end = '2025-12-31'
+    documentation = '''
+        Exonération de cotisations et contributions employeur sur les bas salaires.
+
+        Non modélisé (2022):
+        La durée maximale d’application de l’exonération TO-DE est fixée à 119 jours
+        consécutifs ou non, par employeur, par salarié et par année civile.
+    '''
+
+    def formula_2019(individu, period, parameters):
+        # l'individu est le travailleur occasionnel
+        eligible = individu('exoneration_cotisations_employeur_tode_eligibilite', period)
+
+        # cotisations assurances sociales agricoles (ASA) - identiques régime général
+        mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period)
+
+        famille = individu('famille_net_allegement', period)
+        accident_du_travail = individu('accident_du_travail', period)
+        fnal = individu('fnal', period)
+
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
+        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
+
+        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
+        chomage_employeur = individu('chomage_employeur', period)
+
+        # les cotisations sont des prélèvements, l'exonération leur opposé
+        assiette_exoneration = -1 * (
+            mmid_employeur_net_allegement
+            + famille
+            + accident_du_travail
+            + fnal
+            + vieillesse_deplafonnee_employeur
+            + vieillesse_plafonnee_employeur
+            + agirc_arrco_employeur
+            + contribution_equilibre_general_employeur
+            + contribution_solidarite_autonomie
+            + chomage_employeur
+            )
+
+        # Exonération totale à <= 1.2 Smic
+        # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du Smic/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
+        # Devient nulle à >= 1.6 Smic
+
+        salaire_de_base = individu('salaire_de_base', period)
+        smic_proratise = individu('smic_proratise', period)
+
+        parameters_tode = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.agricole.tode
+        coefficient_degressivite = parameters_tode.plafond - parameters_tode.plafond_exoneration_integrale
+        exoneration_degressive = parameters_tode.plafond_exoneration_integrale * (assiette_exoneration / coefficient_degressivite) * (parameters_tode.plafond * smic_proratise / salaire_de_base - 1)
+
+        sous_plancher = salaire_de_base <= (parameters_tode.plafond_exoneration_integrale * smic_proratise)
+        sous_plafond = salaire_de_base < (parameters_tode.plafond * smic_proratise)
+        exoneration = where(sous_plancher, assiette_exoneration, sous_plafond * exoneration_degressive)
+
+        # non cumul avec l'allègement général de cotisations employeur sur les bas salaires (Fillon)
+        choix_exoneration_cotisations_employeur_agricole = individu('choix_exoneration_cotisations_employeur_agricole', period)
+
+        return choix_exoneration_cotisations_employeur_agricole * eligible * exoneration
+
+
+class choix_exoneration_cotisations_employeur_agricole(Variable):
+    value_type = bool
+    default_value = False
+    entity = Individu
+    label = "L'employeur agricole choisit une exonération de cotisations employeur spécifique au secteur agricole"
+    reference = 'https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    documentation = '''
+    Pour un travailleur occasionnel, l'employeur agricole a le choix
+    entre la réduction générale de cotisations sur les bas salaires (Fillon)
+    et la TO-DE.
+    La TO-DE est plus avantageuse mais à son arrêt au 12.2022,
+    la réduction Fillon sera applicable.
+    '''
+
+
 class exoneration_cotisations_employeur_geographiques(Variable):
     value_type = float
     entity = Individu
     label = "Exonérations de cotisations employeur dépendant d'une zone géographique"
-    reference = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
+    reference = 'https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -38,18 +163,18 @@ class exoneration_cotisations_employeur_geographiques(Variable):
 class exoneration_cotisations_employeur_jei(Variable):
     value_type = float
     entity = Individu
-    label = "Exonérations de cotisations employeur pour une jeune entreprise innovante"
-    reference = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
+    label = 'Exonération de cotisations employeur pour JEI (jeune entreprise innovante)'
+    reference = 'http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+    def formula_2004_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         jei_date_demande = individu('jei_date_demande', period)
         jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        smic_proratise = individu('smic_proratise', period)
         categorie_salarie = individu('categorie_salarie', period)
+        smic_proratise = individu('smic_proratise', period)
 
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
         bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
@@ -60,7 +185,52 @@ class exoneration_cotisations_employeur_jei(Variable):
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
-                base = min_(assiette_allegement, 4.5 * smic_proratise),
+                base = assiette_allegement,
+                plafond_securite_sociale = plafond_securite_sociale,
+                round_base_decimals = 2,
+                )
+
+        exoneration_relative_year_passed = exoneration_relative_year(period, jei_date_demande)
+        rate_by_year_passed = {
+            0: 1,
+            1: 1,
+            2: 1,
+            3: 1,
+            4: 1,
+            5: 1,
+            6: 1,
+            7: 1,
+            }  # TODO: move to parameters file
+        for year_passed, rate in rate_by_year_passed.items():
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            if condition_on_year_passed.any():
+                exoneration[condition_on_year_passed] = rate * exoneration
+
+        return - exoneration * jeune_entreprise_innovante
+
+    # À compter de 2011, l'exonération JEI est modifiée avec l'introduction, par l'article 175 de la LOI n° 2010-1657 du 29 décembre 2010 de finances pour 2011, d'une double limite de l'exonération. L'exonération s'applique uniquement sur la part de la rémunération inférieur à 4,5 fois le Smic, et un montant maximal par établissement est instauré.
+
+    def formula_2011_01_01(individu, period, parameters):
+        assiette_allegement = individu('assiette_allegement', period)
+        jei_date_demande = individu('jei_date_demande', period)
+        jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        smic_proratise = individu('smic_proratise', period)
+        categorie_salarie = individu('categorie_salarie', period)
+
+        # Cette formule ne tient pas compte du montant maximal d'exonération dont chaque établissement peut bénéficier et qui est de 5 PSS (231 840 € en 2024)
+
+        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
+        bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
+        plafond_part_remuneration = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.jei.plafond_part_remuneration
+
+        exoneration = smic_proratise * 0.0
+        for bareme_name in bareme_names:
+            exoneration += apply_bareme_for_relevant_type_sal(
+                bareme_by_type_sal_name = bareme_by_type_sal_name,
+                bareme_name = bareme_name,
+                categorie_salarie = categorie_salarie,
+                base = min_(assiette_allegement, plafond_part_remuneration * smic_proratise),
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
@@ -87,8 +257,8 @@ class exoneration_cotisations_employeur_jei(Variable):
 class exoneration_cotisations_employeur_zfu(Variable):
     value_type = float
     entity = Individu
-    label = "Exonérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
-    reference = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
+    label = "Exonération de cotisations employeur pour l'embauche en ZFU (zone franche urbaine)"
+    reference = 'http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -146,8 +316,8 @@ class exoneration_cotisations_employeur_zfu(Variable):
 
     def formula(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
-        contrat_de_travail_duree = individu('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContrat = contrat_de_travail_type.possible_values
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -163,11 +333,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
 
         duree_cdd_eligible = (contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D'))
         # TODO: move to parameters file
-        contrat_de_travail_eligible = (contrat_de_travail_debut <= datetime64("2014-12-31")) * (
-            (contrat_de_travail_duree == TypesContratDeTravailDuree.cdi) + (
-                (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * (duree_cdd_eligible)
-                )
-            )
+        contrat_de_travail_eligible = (contrat_de_travail_debut <= datetime64('2014-12-31')) * ((contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible)))
         # TODO: move to parameters file
 
         eligible = (
@@ -194,12 +360,17 @@ class exoneration_cotisations_employeur_zfu(Variable):
         else:
             taux_maladie = 0
 
+        if period.start.year < 2015:
+            fnal_cotisation = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation.rates[0]
+        else:
+            fnal_cotisation = 0
+
         taux_max = (
             bareme_by_name['vieillesse_deplafonnee'].rates[0]
             + bareme_by_name['vieillesse_plafonnee'].rates[0]
             + taux_maladie
             + bareme_by_name['famille'].rates[0]
-            + parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation.rates[0]
+            + fnal_cotisation
             + fnal_contrib.rates[0] * (effectif_entreprise >= fnal_contrib_seuil)
             + taux_versement_transport
             )
@@ -270,21 +441,30 @@ class exoneration_cotisations_employeur_zfu(Variable):
 class exoneration_cotisations_employeur_zrd(Variable):
     value_type = float
     entity = Individu
-    label = "Exonérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
-    reference = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
+    label = "Exonération de cotisations employeur pour l'embauche en ZRD (zone de restructuration de la Défense)"
+    reference = 'http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+    # L'exonération a été créée en 2009 par la loi de finances rectificative du 30 décembre 2008.
+
+    def formula_2009_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         entreprise_creation = individu('entreprise_creation', period)
         smic_proratise = individu('smic_proratise', period)
         zone_restructuration_defense = individu('zone_restructuration_defense', period)
+        seuils = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrd
+        t_max_parameters = parameters(period).prelevements_sociaux
 
         eligible = zone_restructuration_defense
-        taux_max = .281  # TODO: move to parameters file
-        seuil_max = 2.4
-        seuil_min = 1.4
+
+        # Paramètre T mis en dur initialement dans la formule et laissé tel quel car le paramètre reductions_cotisations_sociales.alleg_gen.mmid.taux existe uniquement depuis 2019.
+
+        taux_max = .281 if period.start.year < 2019 else (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
+
+        seuil_max = seuils.plafond_part_remuneration
+        seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
+
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
 
         exoneration_relative_year_passed = exoneration_relative_year(period, entreprise_creation)
@@ -309,8 +489,8 @@ class exoneration_cotisations_employeur_zrd(Variable):
 class exoneration_cotisations_employeur_zrr(Variable):
     value_type = float
     entity = Individu
-    label = "Exonérations de cotisations employeur pour l'embauche en zone de revitalisation rurale (ZRR)"
-    reference = "http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1"
+    label = "Exonération de cotisations employeur pour l'embauche en ZRR (zone de revitalisation rurale)"
+    reference = 'http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -327,22 +507,20 @@ class exoneration_cotisations_employeur_zrr(Variable):
     #
     # L'employeur ne doit avoir procédé à aucun licenciement économique durant les 12 mois précédant l'embauche.
 
-    def formula(individu, period, parameters):
+    def formula_1997_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
-        contrat_de_travail_duree = individu('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContrat = contrat_de_travail_type.possible_values
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         smic_proratise = individu('smic_proratise', period)
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
+        seuils = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr
 
         duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to parameters file
-        contrat_de_travail_eligible = (
-            contrat_de_travail_duree == TypesContratDeTravailDuree.cdi) + (
-            (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * (duree_cdd_eligible)
-            )
+        contrat_de_travail_eligible = (contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible))
 
         duree_validite = (
             datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_debut
@@ -355,9 +533,55 @@ class exoneration_cotisations_employeur_zrr(Variable):
             * duree_validite
             )
 
-        taux_max = .281 if period.start.year < 2015 else .2655  # TODO: move to parameters file
-        seuil_max = 2.4
-        seuil_min = 1.5
+        taux_max = .281
+        plafond = seuils.plafond_exoneration_integrale_part_remuneration
+
+        ratio_smic_salaire = smic_proratise / (assiette_allegement + 1e-16)
+        taux_exoneration = round_(
+            taux_max * max_(plafond * (1 - ratio_smic_salaire), 0),
+            4,
+            )
+        exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
+
+        return exoneration_cotisations_zrr
+
+    def formula_2008_03_01(individu, period, parameters):
+        assiette_allegement = individu('assiette_allegement', period)
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContrat = contrat_de_travail_type.possible_values
+        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        smic_proratise = individu('smic_proratise', period)
+        zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
+        seuils = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.exonerations_geographiques_cotis.zrr
+        t_max_parameters = parameters(period).prelevements_sociaux
+
+        duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
+        # TODO: move to parameters file
+        contrat_de_travail_eligible = (contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible))
+
+        duree_validite = (
+            datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_debut
+            ).astype('timedelta64[Y]') < timedelta64(1, 'Y')
+
+        eligible = (
+            contrat_de_travail_eligible
+            * (effectif_entreprise <= 50)
+            * zone_revitalisation_rurale
+            * duree_validite
+            )
+
+        if period.start.year < 2015:
+            taux_max = 0.281
+        elif period.start.year < 2019:
+            taux_max = 0.2655
+        else:
+            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
+
+        seuil_max = seuils.plafond_part_remuneration
+        seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
+
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
         exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
 
@@ -378,17 +602,15 @@ class exoneration_is_creation_zrr(Variable):
         effectif_entreprise = individu('effectif_entreprise', decembre)
         entreprise_benefice = individu('entreprise_benefice', period, options = [ADD])
         # TODO: MODIFIER avec création d'entreprise
-        contrat_de_travail_duree = individu('contrat_de_travail_duree', decembre)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+        contrat_de_travail_type = individu('contrat_de_travail_type', decembre)
+
+        TypesContrat = contrat_de_travail_type.possible_values
 
         contrat_de_travail_debut = individu('contrat_de_travail_debut', decembre)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', decembre)
         duree_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to parameters file
-        contrat_de_travail_eligible = (
-            contrat_de_travail_duree == TypesContratDeTravailDuree.cdi) + (
-            (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * (duree_eligible)
-            )
+        contrat_de_travail_eligible = (contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_eligible))
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', decembre)
 
         eligible = (
@@ -484,7 +706,7 @@ class jeune_entreprise_innovante(Variable):
         jeune_entreprise_innovante = (
             independance
             * (effectif_entreprise < 250)
-            * (entreprise_creation <= datetime64("2016-12-31"))
+            * (entreprise_creation <= datetime64('2016-12-31'))
             * ((jei_date_demande + timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') < timedelta64(8, 'Y'))
             * (entreprise_chiffre_affaire < 50e6)
             * (entreprise_bilan < 43e6)

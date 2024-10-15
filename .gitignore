@@ -20,6 +20,7 @@ build
 /.project
 /.settings
 /.vscode
+.history/
 /build
 /cover
 /dist
@@ -27,4 +28,4 @@ build
 /openfisca_france/assets/apl/france2014.zip
 /tags
 .spyproject
-chemins_trop_longs.json
+path_too_long_list.txt

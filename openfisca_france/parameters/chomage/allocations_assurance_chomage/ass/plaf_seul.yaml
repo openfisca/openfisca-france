@@ -1,0 +1,15 @@
+description: Multiple pour une personne seule, pour passer du montant journalier à taux plein au plafond de ressources mensuel de l'allocation de solidarité spécifique (ASS)
+values:
+  2005-01-01:
+    value: 70
+metadata:
+  short_label: Multiple personne seule
+  last_value_still_valid_on: "2024-03-12"
+  label_en: Special UI scheme
+  reference:
+    2005-01-01:
+      title: Code du Travail, Article R5423-1
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018525084
+  notes:
+    2005-01-01:
+    - title: "Avant 2008, ce paramètre était défini dans l'article R351-13 du Code du Travail"

@@ -1,4 +1,12 @@
-description: Crédit d'impot sur la compétitivité et l'emploi (CICE, 2013-2018) des cotisations de Sécurité sociale (SS)
+description: Crédit d'impot sur la compétitivité et l'emploi (CICE)
 metadata:
-  ux_name: CICE (2013-2018)
-  description_en: Tax credit for competitivness and employment (CICE)
+  documentation_start: true
+  short_label: CICE
+  label_en: Tax credit for competitivness and employment (CICE)
+  order:
+  - taux
+  - plafond_smic
+documentation: |-
+  Formellement le CICE est une réduction de l'impôt sur les sociétés (IS) calculée en proportion des salaires versées par l'entreprise en dessous du plafond.
+  En pratique, ce dispositif fonctionne comme un allègement des cotisations patronales.
+  Références législatives : Article 244 quater C du CGI.

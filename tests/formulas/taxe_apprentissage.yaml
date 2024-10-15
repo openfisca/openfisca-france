@@ -1,79 +1,76 @@
-- period: 2016-06
+- period: 2016-06 # Test 1
   name: Taxe d'apprentissage / Contribution supplémentaire à l'apprentissage
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 89
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.015
   output:
     taxe_apprentissage: -.0068 * 1467
     contribution_supplementaire_apprentissage: 0 # parce que < 250 employés -> non applicable
 
-- period: 2016-06
+- period: 2016-06 # Test 2
   name: Taxe d'apprentissage / CSA non applicable car ratio 0.05
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 250
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.05
   output:
     taxe_apprentissage: -.0068 * 1467
     contribution_supplementaire_apprentissage: 0 # parce que ratio alternants >= 0.05 -> non applicable
 
-
-- period: 2016-06
+- period: 2016-06 # Test 3
   name: Taxe d'apprentissage / CSA ratio 0.036
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 250
     categorie_salarie: prive_non_cadre # non cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.036
   output:
     taxe_apprentissage: -.0068 * 1467
     contribution_supplementaire_apprentissage: -.0005 * 1467
 
-
-- period: 2016-06
+- period: 2016-06 # Test 4
   name: Taxe d'apprentissage / CSA. Grosse entreprise, faible ratio alternants
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 2000
     categorie_salarie: prive_non_cadre # non cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.0008
   output:
     contribution_supplementaire_apprentissage: -.006 * 1467
 
-
-- period: 2016-06
+- period: 2016-06 # Test 5
   name: Taxe d'apprentissage / CSA pour une association
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 89
     categorie_salarie: prive_non_cadre # non cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     entreprise_est_association_non_lucrative: 1
     ratio_alternants: 0.015
   output:
@@ -81,18 +78,84 @@
     contribution_supplementaire_apprentissage: 0
 
 
-- period: 2016-06
+- period: 2016-06 # Test 6
   description: Taxe d'apprentissage / CSA A-M
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 250
     categorie_salarie: prive_non_cadre # non cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     ratio_alternants: 0.0178
     salarie_regime_alsace_moselle: 1
   output:
     taxe_apprentissage: -.0044 * 1467
     contribution_supplementaire_apprentissage: -.00104 * 1467
+
+- period: 2020-06 # Test 7
+  description: Contribution de Formation Professionnelle (CFP) < 11 salaries
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_general_mode_recouvrement: anticipe
+    effectif_entreprise: 8
+    categorie_salarie: prive_non_cadre # non cadre
+    ratio_alternants: 0.0178
+    contrat_de_travail_type: cdi
+  output:
+    taxe_apprentissage: -0.0068 * 1467
+    contribution_supplementaire_apprentissage: 0
+    contribution_formation_professionnelle: -0.0055 * 1467
+
+- period: 2020-06 # Test 8
+  description: Contribution de Formation Professionnelle (CFP) < 11 salaries et apprenti
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_general_mode_recouvrement: anticipe
+    effectif_entreprise: 8
+    categorie_salarie: prive_non_cadre # non cadre
+    ratio_alternants: 0.0178
+    apprenti: 1
+  output:
+    taxe_apprentissage: -0.0068 * 1467
+    contribution_supplementaire_apprentissage: 0
+    contribution_formation_professionnelle: 0
+
+- period: 2020-06 # Test 9
+  description: Contribution de Formation Professionnelle (CFP) > 11 salaries
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_general_mode_recouvrement: anticipe
+    effectif_entreprise: 250
+    categorie_salarie: prive_non_cadre # non cadre
+    ratio_alternants: 0.0178
+    contrat_de_travail_type: cdi
+  output:
+    taxe_apprentissage: -0.0068 * 1467
+    contribution_supplementaire_apprentissage: -0.002* 1467
+    contribution_formation_professionnelle: -0.01 * 1467
+    contribution_unique_formation_professionnelle_alternance: -0.0068 * 1467 - 0.01 * 1467
+
+- period: 2019-06 # Test 10
+  description: Test année blanche (2019) de taxe apprentissage
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_general_mode_recouvrement: anticipe
+    effectif_entreprise: 250
+    categorie_salarie: prive_non_cadre # non cadre
+    ratio_alternants: 0.0178
+    contrat_de_travail_type: cdi
+  output:
+    taxe_apprentissage: 0
+    contribution_supplementaire_apprentissage: -0.002* 1467
+    contribution_formation_professionnelle: -0.01 * 1467
+    contribution_unique_formation_professionnelle_alternance: -0.01 * 1467

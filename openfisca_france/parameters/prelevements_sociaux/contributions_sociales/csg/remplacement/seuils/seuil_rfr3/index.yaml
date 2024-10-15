@@ -1,0 +1,6 @@
+description: Seuil du revenu fiscal de référence de l'année N-2 impliquant l'assujettissement au taux plein de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
+metadata:
+  short_label: Seuil de RFR du taux plein
+  order:
+  - seuil_rfr3
+  - demi_part_suppl_rfr3

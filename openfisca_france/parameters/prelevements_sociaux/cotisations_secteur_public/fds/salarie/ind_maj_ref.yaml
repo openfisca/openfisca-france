@@ -1,42 +1,113 @@
-unit: currency
+description: Indice majoré de référence des cotisations salarié au Fonds de solidarité (FDS) de la fonction publique
 values:
   1982-11-01:
     value: null
   1989-09-01:
-    value: 254.0
+    value: 254
   1991-02-01:
-    value: 259.0
+    value: 259
   1991-08-01:
-    value: 261.0
+    value: 261
   1998-01-01:
-    value: 280.0
+    value: 280
   1998-07-01:
-    value: 282.0
+    value: 282
   1999-04-01:
-    value: 283.0
+    value: 283
   1999-07-01:
-    value: 285.0
+    value: 285
   1999-12-01:
-    value: 286.0
+    value: 286
   2001-05-01:
-    value: 288.0
+    value: 288
   2006-11-01:
-    value: 289.0
+    value: 289
   2008-07-01:
-    value: 290.0
+    value: 290
   2009-07-01:
-    value: 292.0
+    value: 292
   2011-01-01:
-    value: 295.0
+    value: 295
   2012-01-01:
-    value: 302.0
+    value: 302
   2012-07-01:
-    value: 308.0
+    value: 308
   2013-01-01:
-    value: 309.0
+    value: 309
   2018-01-01:
     value: null
 metadata:
-  ux_name: Indice majoré de référence
-  description: Cotisations au Fonds de solidarité (FDS) spécifique à la fonction publique (1982-2017) Indice majoré de référence
-  last_review: 2021-08-24
+  short_label: Indice majoré de référence
+  last_value_still_valid_on: "2021-08-24"
+  label_en: Contributions to the Solidarity Fund (FDS)
+  ipp_csv_id: ind_maj_ref
+  unit: currency
+  reference:
+    1989-09-01:
+      title: Décret 89-598 du 30/08/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700022
+    1991-08-01:
+      title: Décret 91-1191 du 19/11/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000538342
+    1998-07-01:
+      title: Décret 98-462 du 10/06/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000740811
+    1999-04-01:
+      title: Décret 99-208 du 17/03/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000393446&categorieLien=id
+    1999-07-01:
+      title: Décret 99-941 du 10/06/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000580505
+    1999-12-01:
+      title: Décret 99-943 du 12/11/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000397436&categorieLien=id
+    2001-05-01:
+      title: Décret 2001-370 du 25/04/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000210853&categorieLien=id
+    2006-11-01:
+      title: Décret 2006-1283 du 19/10/2006
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615828
+    2008-07-01:
+      title: Décret 2008-622 du 27/06/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/6/27/2008-622/jo/texte
+    2009-07-01:
+      title: Décret 2009-824 du 03/07/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/7/3/2009-824/jo/texte
+    2011-01-01:
+      title: Décret 2011-51 du 13/01/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/1/13/2011-51/jo/texte
+    2012-01-01:
+      title: Décret 2012-37 du 11/01/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/1/11/2012-37/jo/texte
+    2012-07-01:
+      title: Décret 2012-853 du 5/07/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/7/5/2012-853/jo/texte
+    2013-01-01:
+      title: "Décret 2013-33 du\_10/01/2013"
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026924624
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    1989-09-01: "1989-08-31"
+    1991-08-01: "1991-11-27"
+    1998-07-01: "1998-06-14"
+    1999-04-01: "1999-03-20"
+    1999-07-01: "1999-06-13"
+    1999-12-01: "1999-11-14"
+    2001-05-01: "2001-04-28"
+    2006-11-01: "2006-10-20"
+    2008-07-01: "2008-06-28"
+    2009-07-01: "2009-07-04"
+    2011-01-01: "2011-01-14"
+    2012-01-01: "2012-01-12"
+    2012-07-01: "2013-07-06"
+    2013-01-01: "2013-01-11"
+    2018-01-01: "2017-12-31"
+  notes:
+    1991-08-01:
+    - title: La date d'effet est bien le 1er août 1991
+    1998-01-01:
+    - title: Référence à l'Indice Brut 296 loi 97-1239, art. 30
+    2018-01-01:
+    - title: Suppression de la contribution exceptionnelle de solidarité en compensation de la hausse de CSG. La suppression du Fonds de solidarité était prévue par l'art. 143 de la loi 2016-1918 du 29/12/2016 (LFR pour 2016)

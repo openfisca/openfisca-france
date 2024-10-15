@@ -1,0 +1,10 @@
+description: Dons aux partis politiques
+metadata:
+  short_label: Partis politiques
+  label_en: Gifts
+  order:
+  - taux
+  - plafond_en_revenu_net_global
+  - plafond_foyer
+  - plafond_seul
+documentation: "Dons aux partis politiques : 3. de l'art. 200 du CGI."

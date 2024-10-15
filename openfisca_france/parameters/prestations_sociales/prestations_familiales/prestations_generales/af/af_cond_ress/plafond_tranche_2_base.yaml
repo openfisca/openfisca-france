@@ -1,0 +1,44 @@
+description: Plafond annuel de ressources n°2
+values:
+  2015-07-01:
+    value: 78300
+  2016-01-01:
+    value: 78613
+  2018-01-01:
+    value: 78770
+  2019-01-01:
+    value: 79558
+  2020-01-01:
+    value: 80831
+  2021-01-01:
+    value: 81558
+  2022-01-01:
+    value: 81721
+  2023-01-01:
+    value: 83029
+metadata:
+  short_label: Plafond nº2
+  last_value_still_valid_on: "2023-01-31"
+  unit: currency
+  reference:
+    2016-01-01:
+      title: Arrêté du 08/12/2015, art. 1
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031634884/#LEGIARTI000031634884
+    2018-01-01:
+      title: Arrêté du 27/12/2017, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299563
+    2019-01-01:
+      title: Arrêté du 21/12/2018, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864990
+    2020-01-01:
+      title: Arrêté du 20/12/2019, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039663224
+    2021-01-01:
+      title: Arrêté du 14/12/2020, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694985
+    2022-01-01:
+      title: Arrêté du 16 décembre 2021 relatif aux plafonds de ressources de certaines prestations familiales
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572366
+    2023-01-01:
+      title: Arrêté du 21 décembre 2022 relatif aux plafonds de ressources de certaines prestations familiales
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210

@@ -1,0 +1,9 @@
+description: Assurances incendie risques agricoles non exonérés
+values:
+  1979-07-01:
+    value: 0.18
+  1989-01-01:
+    value: 0.07
+metadata:
+  ipp_csv_id: taxe_assu_incendie_agricole
+  unit: /1

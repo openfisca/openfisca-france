@@ -1,0 +1,20 @@
+description: Seuil supérieur (en part de la MTP)  de l'allocation personnalisée d'autonomie (APA) en institution
+values:
+  2002-01-01:
+    value: 3.4
+metadata:
+  short_label: Seuil supérieur
+  label_en: Attendance allowance for individuals living in a nursing home (APA)
+  ipp_csv_id: seuil_superieur
+  unit: /1
+  reference:
+    2002-01-01:
+    - title: Art. R232-19 du CASF
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032138500
+    - title: Décret 2001-1084 du 20/11/2001 (abrogé)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000588742
+  official_journal_date:
+    2002-01-01: "2001-11-21"
+documentation: |-
+  Les seuils déterminent le calcul de la participation du bénéficiaire et de la part prise en charge par l'APA. Lorsque les revenus mensuels du bénéficiaire sont en dessous du seuil inférieur, sa participation est égale au montant mensuel du tarif dépendance de l'établissement pour les GIR 5 et 6, le reste est pris charge par l'APA. Lorsque les revenus mensuels sont entre le seuil inférieur et le seuil supérieur, la participation du bénéficiaire est égale à la somme du tarif dépendance de l'établissement pour les GIR 5 et 6 et d'une part du tarif dépendance correspondant au GIR du bénéficiaire (entre 0% et 80% selon le niveau de revenus). Lorsque les revenus mensuels du bénéficaire sont au dessus du seuil supérieur, sa participation est égale à la somme du montant du tarif dépendance pour les GIR 5 et 6 et 80% du tarif dépendance de l'établissement correspondant au GIR du bénéficiaire.
+  MTP : majoration pour aide constante d'une tierce personne

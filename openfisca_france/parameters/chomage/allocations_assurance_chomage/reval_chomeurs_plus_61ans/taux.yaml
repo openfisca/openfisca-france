@@ -1,0 +1,76 @@
+description: Taux de revalorisation du salaire de références des chômeurs de plus de 61 ans pour les allocations chômage
+values:
+  1965-01-11:
+    value: 0.075
+  1965-03-08:
+    value: 0.02
+  1967-01-09:
+    value: 0.04
+  1967-07-10:
+    value: 0.025
+  1968-02-08:
+    value: 0.045
+  1969-01-06:
+    value: 0.07
+  1970-01-05:
+    value: 0.08
+  1970-07-06:
+    value: 0.04
+  1971-01-04:
+    value: 0.05
+  1971-08-02:
+    value: 0.06
+  1972-01-03:
+    value: 0.03
+  1972-07-03:
+    value: 0.06
+  1973-12-31:
+    value: 0.08
+  1974-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  label_en: Indexation of UI reference wage for older unemployed - above age 61
+  ipp_csv_id: sr_61
+  unit: /1
+  reference:
+    1965-01-11:
+      title: Circulaire 64-30 - décision du 26/11/1964
+    1965-03-08:
+      title: Circulaire 65-18 - décision du 25/03/1965
+    1965-09-06:
+      title: Circulaire 65-46 - décision du 25/11/1965
+    1966-01-10:
+      title: Circulaire 65-46 - décision du 25/11/1965
+    1966-03-07:
+      title: Circulaire 66-12 - décision du 24/02/1966
+    1967-01-09:
+      title: Circulaire 66-40 - décision du 24/11/1966
+    1967-07-10:
+      title: Circulaire 67-15 - décision du 19/07/1967
+    1968-02-08:
+      title: Circulaire 67-53 - décision du 19/12/1967
+    1969-01-06:
+      title: Circulaire 68-60 - décision du 12/12/1968
+    1969-07-08:
+      title: Circulaire 68-35 - décision du 25/06/1968
+    1970-01-05:
+      title: Circulaire 69-37 - décision du 04/12/1969
+    1970-07-06:
+      title: Circulaire 70-27 - décision du 25/06/1970
+    1971-01-04:
+      title: Circulaire 70-39 - décision du 04/12/1970
+    1971-08-02:
+      title: Circulaire 71-13 - décision du 29/07/1971
+    1972-01-03:
+      title: Circulaire 71-20 - décision du 24/11/1971
+    1972-07-03:
+      title: Circulaire 72-19 - décision du 20/06/1972
+    1973-12-31:
+      title: Circulaire 73-30 - décision du 04/12/1973
+documentation: |-
+  Revalorisation des salaires de référence des allocataires du régime d'assurance chômage de plus de 61 ans est définie par l'avenant du 28/11/1963, appliquée qu'aux bénéficiaires dont le salaire de référence est entièrement consituté de rémunérations antérieures
+   à au moins 1 an.
+  Depuis 1972, cette revalorisation détermine celle des bénéficiaires de la garantie de ressources, même s'ils ont moins de 61 ans. En 1974 la revalorisation du salaire de référence est étendue à tous les allocataires - avant cette date, leur salaire de référence n’´etait pas revalorisé.
+  Sources :
+  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe B.

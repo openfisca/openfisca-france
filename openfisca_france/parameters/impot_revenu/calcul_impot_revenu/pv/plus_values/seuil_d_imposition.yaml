@@ -1,0 +1,50 @@
+description: Seuil d'imposition
+values:
+  1978-01-01:
+    value: 150000
+  1980-01-01:
+    value: 168000
+  1981-01-01:
+    value: 190700
+  1984-01-01:
+    value: 265000
+  1985-01-01:
+    value: 272000
+  1986-01-01:
+    value: 281000
+  1988-01-01:
+    value: 298000
+  1989-01-01:
+    value: 307600
+  1990-01-01:
+    value: 316900
+  1991-01-01:
+    value: 325800
+  1994-01-01:
+    value: 336700
+  1995-01-01:
+    value: 342800
+  1996-01-01:
+    value: 200000
+  1997-01-01:
+    value: 100000
+  1998-01-01:
+    value: 50000
+  2001-01-01:
+    value: 7650
+  2002-01-01:
+    value: 15000
+  2007-01-01:
+    value: 20000
+  2008-01-01:
+    value: 25000
+  2009-01-01:
+    value: 25730
+  2010-01-01:
+    value: 25830
+  2011-01-01:
+    value: null
+metadata:
+  unit: currency_next_year
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

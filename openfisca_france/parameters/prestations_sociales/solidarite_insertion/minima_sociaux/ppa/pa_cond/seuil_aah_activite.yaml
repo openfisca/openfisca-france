@@ -1,0 +1,7 @@
+description: Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut
+values:
+  2015-10-01:
+    value: 29
+metadata:
+  short_label: Seuil AAH activité
+  unit: smic_horaire_brut

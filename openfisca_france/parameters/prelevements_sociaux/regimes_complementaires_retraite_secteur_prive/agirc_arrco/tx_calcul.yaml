@@ -1,0 +1,35 @@
+description: Taux de calcul de points des cotisations aux régimes complémentaires de retraite après fusion de l'AGIRC et de l'ARRCO (secteur privé)
+brackets:
+- threshold:
+    2019-01-01:
+      value: 0
+  rate:
+    2019-01-01:
+      value: 0.062
+- threshold:
+    2019-01-01:
+      value: 1
+  rate:
+    2019-01-01:
+      value: 0.17
+- threshold:
+    2019-01-01:
+      value: 8
+  rate:
+    2019-01-01:
+      value: 0
+metadata:
+  short_label: Taux de calcul de points
+  last_value_still_valid_on: "2021-08-02"
+  label_en: Complementary pension contributions
+  reference:
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+      href: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2017/ANI_Retraite_17nov2017_01012019.pdf
+  official_journal_date:
+    2019-01-01: "2017-11-19"
+  notes:
+    2019-01-01:
+    - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
+  rate_unit: /1
+  threshold_unit: PSS

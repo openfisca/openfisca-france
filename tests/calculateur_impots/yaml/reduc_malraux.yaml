@@ -16,10 +16,10 @@
       f7rb_2015: 500
       f7rc_2015: 500
       f7rd_2015: 500
-      f7re: 500
-      f7rf: 500
-      f7sx: 500
-      f7sy: 500
+      f7re_2016: 500
+      f7rf_2016: 500
+      f7sx_2017: 500
+      f7sy_2017: 500
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -39,12 +39,12 @@
       personne_de_reference: ind0
   output:
     iai: 6676.0
-    irpp: -6676.0
+    impot_revenu_restant_a_payer: -6676.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 45000.0
     reductions: 1185.0
-    resimm: 1185.0
+    restauration_patrimoine_bati: 1185.0
     rfr: 45000.0
     rni: 45000.0
 - name: reduc_malraux
@@ -65,10 +65,10 @@
       f7rb_2015: 500
       f7rc_2015: 500
       f7rd_2015: 500
-      f7re: 500
-      f7rf: 500
-      f7sx: 500
-      f7sy: 500
+      f7re_2016: 500
+      f7rf_2016: 500
+      f7sx_2017: 500
+      f7sy_2017: 500
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -88,11 +88,11 @@
       personne_de_reference: ind0
   output:
     iai: 6670.0
-    irpp: -6670.0
+    impot_revenu_restant_a_payer: -6670.0
     nbptr: 1.0
     rbg: 45000.0
     reductions: 1185.0
-    resimm: 1185.0
+    restauration_patrimoine_bati: 1185.0
     rfr: 45000.0
     rni: 45000.0
 - name: reduc_malraux
@@ -111,10 +111,10 @@
       - ind0
       f7nx: 500
       f7ny: 500
-      f7re: 500
-      f7rf: 500
-      f7sx: 500
-      f7sy: 500
+      f7re_2016: 500
+      f7rf_2016: 500
+      f7sx_2017: 500
+      f7sy_2017: 500
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -134,11 +134,11 @@
       personne_de_reference: ind0
   output:
     iai: 7070.0
-    irpp: -7070.0
+    impot_revenu_restant_a_payer: -7070.0
     nbptr: 1.0
     rbg: 45000.0
     reductions: 780.0
-    resimm: 780.0
+    restauration_patrimoine_bati: 780.0
     rfr: 45000.0
     rni: 45000.0
 - name: reduc_malraux
@@ -156,11 +156,11 @@
       declarants:
       - ind0
       f7nx: 500
-      f7ny: 500
-      f7sx: 500
-      f7sy: 500
+      f7ny: 600
+      f7sx_2017: 400
+      f7sy_2017: 500
       f7tx: 500
-      f7ty: 500
+      f7ty: 200
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -179,10 +179,56 @@
     menage:
       personne_de_reference: ind0
   output:
-    iai: 7013.0
-    irpp: -7013.0
+    iai: 7079.0
+    impot_revenu_restant_a_payer: -7079.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
-    reductions: 780.0
+    reductions: 714.0
+    rfr: 45000.0
+- name: reduc_malraux
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7nx: 500
+      f7ny: 600
+      f7tx: 500
+      f7ty: 500
+      f7kz: 400
+      f7ky: 500
+      f7kx: 200
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    # iai: 5864.0
+    # impot_revenu_restant_a_payer: -5864.0
+    # nbptr: 1.0
+    # protection_patrimoine_naturel: 0.0
+    # rbg: 45000.0
+    reductions: 1642.0
     rfr: 45000.0

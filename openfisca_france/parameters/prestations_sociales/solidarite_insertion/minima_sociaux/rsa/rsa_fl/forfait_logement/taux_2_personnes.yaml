@@ -1,0 +1,21 @@
+description: Taux pour 2 personnes du forfait logement du revenu de solidarité active (RSA)
+values:
+  2009-06-01:
+    value: 0.16
+metadata:
+  short_label: 2 personnes
+  last_value_still_valid_on: "2022-03-29"
+  label_en: "Active solidarity income (RSA): accomodation allowance"
+  ipp_csv_id: rsa_rmi_logt2
+  unit: /1
+  reference:
+    2009-06-01:
+    - title: Article R262-9 2. du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020526192/2022-01-21/
+    - title: Décret 2009-404 du 15/04/2009, art. 2 (modif art. R262-9 et R262-10 du CASF)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522717&cidTexte=JORFTEXT000020521930
+  official_journal_date:
+    2009-06-01: "2009-04-16"
+  notes:
+    2009-06-01:
+    - title: "Art. R262-9 : pour les propriétaires sans AL et les logés à titre gratuit (on entend par AL les 3 types d'aides au logement).; Art. R262-10 : pour les bénéficiaires des AL."

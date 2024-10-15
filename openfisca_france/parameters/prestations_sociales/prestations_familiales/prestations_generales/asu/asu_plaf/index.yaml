@@ -1,0 +1,11 @@
+description: Plafond de ressources de l'Allocation de salaire unique (ASU)
+metadata:
+  documentation_start: true
+  short_label: Plafond de ressources
+  label_en: "Single earner allowance (ASU): Thresholds for means-testing"
+  order:
+  - plafond_droit_au_salaire_unique
+  - plafond_majoration_salaire_unique
+documentation: |-
+  Majoration pour les ménages avec 4 enfants et plus ou au moins 1 enfant de moins de 3 ans et des ressources ne dépassant pas le plafond.
+  La loi 72-8 du 3 janvier 1972 met en place les plafonds des ressource auxquels est conditionnée l'allocation de salaire unique

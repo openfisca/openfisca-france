@@ -1,0 +1,11 @@
+description: Taxe sur les fonds de garantie des assurances obligatoires (FGAO)
+metadata:
+  documentation_start: true
+  label_en: Tax on guarantee fund for compulsory insurance
+  order:
+  - contribution_assures_en_pourcentage_primes
+  - cotisation_responsables_accidents_non_assures_taux_normal
+  - cotisation_responsables_accidents_non_assures_taux_reduit
+  - contributions_entreprises_assurances
+  - contributions_entreprises_assurances_automobiles
+documentation: Données renseignées dans l'article A421-3 du code des assurances

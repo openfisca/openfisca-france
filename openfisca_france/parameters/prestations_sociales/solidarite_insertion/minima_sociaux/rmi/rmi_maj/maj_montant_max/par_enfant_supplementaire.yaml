@@ -1,0 +1,30 @@
+description: Majoration du montant maximal par enfant supplémentaire (en % de la base) du revenu minimum d'insertion (RMI)
+values:
+  1988-12-14:
+    value: 0.3
+  1990-04-01:
+    value: 0.4
+  2009-06-01:
+    value: null
+metadata:
+  short_label: Par enfant supplémentaire
+  label_en: "Minimum insertion income (RMI): Extra allowance and minimal amount"
+  ipp_csv_id: rmi_enf3
+  unit: /1
+  reference:
+    1988-12-14:
+      title: Décret 88-1111 du 12/12/1988, art. 1 (pour les majorations)Décret 88-1112 du 12/12/1988, art. 2 (pour le montant minimum)
+    1990-04-01:
+      title: Décret 90-386 du 09/05/1990, art. 1 (modif Décret 88-1111 du 12/12/1988, art. 1) (pour les majorations)Décret 88-1112 du 12/12/1988, art. 2 (pour le montant minimum)
+    2009-06-01:
+      title: Loi 2008-1249 du 01/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019860428
+  official_journal_date:
+    1988-12-14: "1988-12-13"
+    1990-04-01: "1990-05-11"
+    2009-06-01: "2008-12-03"
+  notes:
+    1990-04-01:
+    - title: Le décret 2004-1136, art. 4 abroge en 2004 le décret 88-1111 et crée l'art. R262-1 du CASF
+    2009-06-01:
+    - title: Création du RSA qui remplace le RMI

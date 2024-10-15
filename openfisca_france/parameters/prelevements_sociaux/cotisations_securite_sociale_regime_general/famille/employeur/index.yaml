@@ -1,0 +1,6 @@
+description: Barème employeur des cotisations de sécurité sociale (SS) du régime général pour la branche famille
+metadata:
+  short_label: Barème employeur
+  label_en: SSCs for family benefits
+  order:
+  - famille

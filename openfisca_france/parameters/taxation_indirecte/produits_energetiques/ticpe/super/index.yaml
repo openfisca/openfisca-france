@@ -1,0 +1,8 @@
+description: TICPE - produits énergétiques, propane utilisé comme carburants
+metadata:
+  label_en: TICPE - Energy products
+  order:
+  - super_95_98
+  - super_e_85_utilise_comme_carburant_hectolitre
+  - super_e10
+  - super_plombe

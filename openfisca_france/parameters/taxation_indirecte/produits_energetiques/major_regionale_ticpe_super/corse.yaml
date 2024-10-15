@@ -1,0 +1,14 @@
+description: Majoration régionale TICPE Super en Corse
+values:
+  2007-01-01:
+    value: 0
+  2009-01-01:
+    value: 1.01
+  2010-01-01:
+    value: 0
+  2017-01-01:
+    value: 0.77
+metadata:
+  short_label: Corse
+  ipp_csv_id: maj_ticpe_super_cor
+  unit: currency

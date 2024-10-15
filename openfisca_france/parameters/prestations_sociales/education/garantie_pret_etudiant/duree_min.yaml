@@ -1,0 +1,10 @@
+description: Durée minimale du prêt garanti par l'État dans le cadre d'un prêt étudiant
+values:
+  2020-06-08:
+    value: 2
+metadata:
+  short_label: Durée minimale
+  unit: year
+  reference:
+    2020-06-08:
+      href: https://www.service-public.fr/particuliers/vosdroits/F986

@@ -1,4 +1,4 @@
-- name: "Personne âgée née avant 1931, application de l'abattement spécial accordé aux personnes âgées nées avant 1930 ou en 1930 "
+- name: "Personne âgée née avant 1931, application de l'abattement spécial accordé aux personnes âgées nées avant 1930 ou en 1930"
   period: 2021-02
   relative_error_margin: 0.01
   input:

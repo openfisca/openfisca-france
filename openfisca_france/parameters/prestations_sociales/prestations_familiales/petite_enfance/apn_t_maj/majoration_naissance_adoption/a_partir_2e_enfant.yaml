@@ -1,0 +1,33 @@
+description: Majoration naissance ou adoption, à partir du 2e enfant, de l'Allocations postnatales (APN)
+values:
+  1975-04-25:
+    value: null
+  1980-07-01:
+    value: 0
+  1983-01-01:
+    value: 1.845
+  1985-01-01:
+    value: null
+metadata:
+  short_label: A partir du 2e enfant
+  label_en: "Postnatal allowance (APN): Rate and payment"
+  ipp_csv_id: majo_naiss_adop
+  unit: /1
+  reference:
+    1975-04-25:
+      title: Loi 75-6 du 03/01/1975Décret 75-244 du 24/04/1975
+    1980-07-01:
+      title: "Loi\_80-545 du\_17 juillet 1980"
+    1983-01-01:
+      title: Décret 82-1138 du 29/12/1982, art. 3(modif art. L516 du CSS)
+  official_journal_date:
+    1975-04-25: 1975-01-04; 1975-04-15
+    1980-07-01: "1980-07-18"
+    1983-01-01: "1982-12-30"
+  notes:
+    1975-04-25:
+    - title: La loi 75-6 du 3 janvier 1975 crée l'APN
+    1980-07-01:
+    - title: Majoration pour le 3e enfant de façon à porter à 10000 le montant cumulé des prestations familiales afférant à la naissance
+    1985-01-01:
+    - title: "Allocation remplacée par Allocation au jeune enfant le 01/01/1985 : majoration pour 3e naissance ou plus supprimée pour les enfants conçus après le 31/12/84."

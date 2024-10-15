@@ -2,7 +2,7 @@
   period: 2014-07
   absolute_error_margin: 0.005
   input:
-    allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
+    allegement_general_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     assujettie_taxe_salaires: false
     avantage_en_nature_valeur_reelle: 0
@@ -10,7 +10,7 @@
     contrat_de_travail: temps_plein
     contrat_de_travail_debut: '2014-01-01'
     contrat_de_travail_fin: '2014-12-31'
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     depcom_entreprise: '75114'
     effectif_entreprise: 3000
     heures_non_remunerees_volume: 0
@@ -22,7 +22,7 @@
     prevoyance_obligatoire_cadre_taux_employeur: 59.02/3000  # 1.5% est le minimum
     primes_salaires: 0
     prise_en_charge_employeur_retraite_complementaire: 0
-    prise_en_charge_employeur_prevoyance_complementaire: 0
+    prevoyance_complementaire_employeur: 0
     prise_en_charge_employeur_retraite_supplementaire: 0
     ratio_alternants: 0.1
     redevable_taxe_apprentissage: 1
@@ -51,13 +51,12 @@
     contribution_supplementaire_apprentissage: 0
     fnal: -15
 
-    # cotisations_employeur_contributives: 0
     ags: -9
     agff_employeur: -36.00
     agirc_gmp_employeur: -41.17
     agirc_employeur: 0
     apec_employeur: -1.08
-    arrco_employeur: -137.4
+    arrco_employeur: -137.25
     chomage_employeur: -120
     cotisation_exceptionnelle_temporaire_employeur: -6.60
     vieillesse_deplafonnee_employeur: -3000 * 0.0175  # est aggrégé avec maladie et csa
@@ -70,7 +69,7 @@
     taux_versement_transport: 0.027
     versement_transport: -81
 
-    allegement_fillon: 0
+    allegement_general: 0
     credit_impot_competitivite_emploi: 180
     forfait_social: -4.72
     tehr:
@@ -97,7 +96,6 @@
     mmid_salarie: -3000 * 0.0075  # est agrégée avec vieillesse déplaf. sur la fiche de paie
     contribution_exceptionnelle_solidarite: 0
     csg_deductible_salaire: -150.32 - 3.01
-    mhsup: 0
     salaire_net: 3000 - (722.46 - 30.82) - 0.17 # moitié de la mutuelle et erreur de 0.17 gmp
 
 

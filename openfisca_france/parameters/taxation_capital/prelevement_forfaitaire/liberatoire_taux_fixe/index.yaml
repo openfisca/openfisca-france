@@ -1,0 +1,20 @@
+description: Prélèvements libératoires sur les revenus des valeurs mobilières
+metadata:
+  documentation_start: true
+  short_label: Revenus des valeurs mobilières
+  label_en: Levy in discharge on capital income
+  order:
+  - obligations_titres_participatifs_fonds_salariaux
+  - dividendes
+  - titres_de_creances_negociables_et_autres
+  - bons_banque_tresor_epargne_ptt
+  - autres_produits_de_placement_a_revenu_fixe
+  - plan_d_epargne_populaire
+  - produits_placement_revenu_fixe_inf2000
+  - produits_epargne_solidaire_partage
+  - produits_dans_etats_non_cooperatifs
+documentation: |-
+  Le prélèvement forfaitaire libératoire est instauré au 1er janvier 1965. Il est remplacé au 1er janvier 2013 par un prélèvement forfaitaire obligatoire (acompte de l'impôt sur le revenu).
+  Le prélèvement forfaitaire sur les revenus de capitaux à taux fixe cesse d'être libératoire au 01/01/2013, excepté pour les personnes physiques dont le montant des intérêts sur l'année n'excède pas 2000 € (taux de 24%). Il constitue un acompte sur l'imposition de ces revenus au barème de l'IR. Il existe des dispenses possibles de cet acompte, si le revenu fiscal de référence de l'avant-dernière année est en-dessous d'un certain seuil. Pour les produits de placements à revenu fixe, ce seuil est de 25 000 euros, 50 000 euros pour un couple (cf. art 125-A du CGI). Pour les dividendes, il est de 50 000 euros, 75 000 pour un couple (art. 117 quater du CGI). En cas de dispense, les revenus sont imposés directement à l'IR. Le prélèvement (retenu à la source) s'impute sur l'impôt sur le revenu dû au titre de l'année au cours de laquelle il a été opéré. S'il excède l'impôt dû, l'excédent est restitué.
+
+  Références du Code général des impôts : l'article 125 A du CGI régit le prélèvement sur les produits de placements à revenu fixe tandis que l'article 117 quater régit le prélèvement sur les dividendes.

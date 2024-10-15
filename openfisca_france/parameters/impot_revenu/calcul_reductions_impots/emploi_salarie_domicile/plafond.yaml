@@ -1,0 +1,54 @@
+description: Plafond (cas géneral) de la réduction d'impôts pour emploi d'un salarié à domicile
+values:
+  1990-01-01:
+    value: null
+  1991-01-01:
+    value: 25000
+  1993-01-01:
+    value: 26000
+  1995-01-01:
+    value: 90000
+  1997-01-01:
+    value: 45000
+  2001-01-01:
+    value: 6900
+  2002-01-01:
+    value: 7400
+  2003-01-01:
+    value: 10000
+  2005-01-01:
+    value: 12000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plafsaldomicile
+  unit: currency_next_year
+  reference:
+    1991-01-01:
+      title: Loi 91-1322 du 30/12/1991 (LF pour 1992)
+    1993-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+    1995-01-01:
+      title: Loi 95-1346 du 30/12/1995 (LF pour 1996)
+    1997-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+    2001-01-01:
+      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+    2003-01-01:
+    - title: Loi 2002-1575 du 30/12/2002 (LF pour 2003) - art. 8
+    - title: BOI 5 B-8-03; n°34 du 21/02/2003
+    2005-01-01:
+    - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005) - art. 87
+    - title: BOI 5 B-20-05; n°121 du 15/07/2005
+  official_journal_date:
+    1991-01-01: "1991-12-31"
+    1993-01-01: "1993-12-31"
+    1995-01-01: "1995-12-31"
+    1997-01-01: "1997-12-31"
+    2001-01-01: "2001-12-29"
+    2003-01-01: "2003-12-31"
+    2005-01-01: "2005-12-31"
+  notes:
+    1991-01-01:
+    - title: Création du dispositif pour l'imposition des revenus de 1991. ; Le contribuable doit choisir entre la réduction d'impôt pour l'emploi d'un salarié travaillant à la résidence d'un ascendant et le bénéfice des dispositions relatives aux pensions alimentaires, pour la pension versée à ce même ascendant. Le choix effectué en faveur de la réduction d'impôt entraîne renonciation à la déduction de l'ensemble des sommes versées à titre de pension alimentaire pour un même ascendant et non pas seulement à la fraction relative aux frais d'emploi du salarié à domicile.
+    1997-01-01:
+    - title: Création d'un plafond supérieur pour les invalides

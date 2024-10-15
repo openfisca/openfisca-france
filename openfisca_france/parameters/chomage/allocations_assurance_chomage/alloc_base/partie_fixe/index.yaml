@@ -1,0 +1,7 @@
+description: Partie fixe de l'allocation de base d'assurance chômage
+metadata:
+  short_label: Partie fixe
+  label_en: UI scheme - lump-sum and minimum
+  order:
+  - apres_1992
+  - avant_1992

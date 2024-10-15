@@ -1,0 +1,24 @@
+description: Taux (minorant pour la 2e tranche) de participation personnel complémentaire (TL) (après la réforme de 2001) des Allocations Logement (AL)
+values:
+  2001-01-01:
+    value: null
+  2013-01-01:
+    value: 20.25
+metadata:
+  short_label: Minorant pour la 2e tranche
+  label_en: Parameters for the rental sector (after the 2001 reform)
+  ipp_csv_id: tl_min_tr1
+  reference:
+    2001-01-01:
+    - title: Décret 2000-1269, art. 2 du 26/12/2000 (crée art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779920&cidTexte=JORFTEXT000000578227
+    - title: Arrêté du 26/12/2000
+    2013-01-01:
+      title: Arrêté du 28/12/2012
+  official_journal_date:
+    2001-01-01: "2000-12-28"
+    2013-01-01: "2012-12-30"
+  notes:
+    2001-01-01:
+    - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
+documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

@@ -1,0 +1,16 @@
+description: Allocation supplémentaire d'invalidité (ASI)
+metadata:
+  documentation_start: true
+  short_label: Allocation supplémentaire d'invalidité (ASI)
+  label_en: Supplementary disability allowance (ASI)
+  order:
+  - taux_minimum_d_invalidite
+  - montant_seul
+  - montant_couple
+  - plafond_ressource_seul
+  - plafond_ressource_couple
+documentation: |-
+  Il n'y a pas de minimum d'âge, toutefois il n'est plus possible de bénéficier de l'ASI une fois l'âge pour bénéficier de l'ASPA atteint: à 65 ans ou à l'âge minimun de départ en retraite pour les personnes reconnues inaptes au travail (incapcité d'au moins 50%) et les bénéficiaires d'une retraite anticipée pour handicap.
+  Modification du calcul de l'ASI en 2020:
+  - Du 1er janvier 2006 au 31 mars 2020, l'ASI est due à son montant maximal si la somme de l'ASI et des ressources de l'intéressé ou du couple, ne dépasse pas le plafond correspondant à la situation maritale. Lorsque cette somme dépasse le plafond, l'allocation est réduite du dépassement.
+  - A partir du 1er avril 2020, le montant de l'ASI est défini comme la différence entre le plafond et les ressources de l'intéressé ou du couple (concubinage, PACS ou mariage).

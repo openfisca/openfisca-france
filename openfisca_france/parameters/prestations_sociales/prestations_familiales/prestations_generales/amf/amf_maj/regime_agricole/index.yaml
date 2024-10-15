@@ -1,0 +1,7 @@
+description: Majoration pour le régime agricole des Allocation de la mère au foyer (AMF)
+metadata:
+  short_label: Régime agricole
+  label_en: Agricultural system
+  order:
+  - base
+  - montant

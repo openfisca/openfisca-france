@@ -1,0 +1,73 @@
+description: Taux artisans des cotisations invalidité-décès de sécurité sociale (SS) des indépendants artisans-commerçants
+values:
+  1975-01-01:
+    value: 0.009
+  1982-01-01:
+    value: 0.01
+  1986-01-01:
+    value: 0.0145
+  1989-01-01:
+    value: 0.0165
+  1995-01-01:
+    value: 0.02
+  2007-01-01:
+    value: 0.018
+  2013-01-01:
+    value: 0.016
+  2015-01-01:
+    value: 0.013
+metadata:
+  short_label: Taux artisan
+  label_en: SSCs for disability and death benefits (sales retailers and craftsmen)
+  ipp_csv_id: id_art_0_1
+  unit: /1
+  reference:
+    1975-01-01:
+    - title: Décret 75-969 du 16/10/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000683438
+    - title: Décret 75-19 du 8/01/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000883429
+    1982-01-01:
+    - title: Décret 82-168 du 15/02/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000879564
+    - title: Décret 82-170 du 17/02/1982
+    1986-01-01:
+    - title: Décret 85-1354 17/12/1985 art. 1
+    - title: Décret 86-232 du 18/02/1986 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006769903&cidTexte=JORFTEXT000000700920
+    - title: Décret 86-852 du 17/07/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517698
+    1989-01-01:
+    - title: Décret 89-47 27/01/1989 art. 1, art. 2
+    - title: Décret 89-191 du 28/03/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509671
+    1995-01-01:
+    - title: Décret 94-896 du 12/10/1994 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006777734&cidTexte=JORFTEXT000000349187
+    - title: Décret 95-362 du 31/03/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000735957
+    2007-01-01:
+      title: Décret 2007-50 du 11/01/2007 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006259309&cidTexte=JORFTEXT000000427775
+    2013-01-01:
+    - title: Décret 2012-139 du 30/01/2012 - art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025258796&cidTexte=JORFTEXT000025241814
+    - title: Décret 2012-1520 du 28/12/2012 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026882747&cidTexte=JORFTEXT000026863074
+    2015-01-01:
+      title: Décret 2014-775 du 4/07/2014 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029206769&cidTexte=JORFTEXT000029205496
+  official_journal_date:
+    1975-01-01: "1975-01-18"
+    1982-01-01: 1982-02-18; 1982-02-19
+    1986-01-01: 1985-12-21; 1986-02-21; 1986-07-19
+    1989-01-01: 1989-01-29; 1989-03-30
+    1995-01-01: 1994-10-19; 1995-04-07
+    2007-01-01: "2007-01-12"
+    2013-01-01: 2012-01-31; 2012-12-30
+    2015-01-01: "2014-07-08"
+  notes:
+    1975-01-01:
+    - title: Institution d'un régime invalidité décès pour les travailleurs non salariés des professions industrielles et commerciales
+    2013-01-01:
+    - title: Le premier décret, prenant effet au 01/01/2013, prévoyait un taux de 1,10 % décomposé en 1 % et 0,1 %.; Le second décret, prenant effet à la même date, supprime la décomposition.

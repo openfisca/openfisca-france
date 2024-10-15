@@ -1,0 +1,7 @@
+description: Logements sous le dispositif Borloo ancien (ou conventionnement ANAH)
+metadata:
+  order:
+  - intermediaire
+  - social
+  - location_specifique
+documentation: "Dispositif Borloo ancien: Le dispositif Borloo ancien concerne des baux de location conventionnés par l'Anah, entre le 1er Octobre 2006 et le 1er Janvier 2017, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 6 ans, reconductibles 3 ans. Les particuliers éligibles à ces locations doivent avoir des revenus en dessous d'un certain plafond et ne peuvent être des ascendants ou descendants du propriétaire. Il existe plusieurs secteurs de conventionnement Anah, à savoir secteur intermédiaire, social et très social, avec des restrictions croissantes en termes de plafonnement de loyer et d'encadrement du revenu des locataires. De plus, louer à un organisme public ou privé qui lui-même sous-loue ou héberge des personnes en grande difficulté (personnes mentionnées au II de l'article L. 301-1 du CCH) amène à une déduction spécifique de 70%."

@@ -1,0 +1,32 @@
+description: Premier plafond (pour un enfant né ou adopté après le 1er avril 2014) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: null
+  2015-01-01:
+    value: 20247
+  2016-01-01:
+    value: 20509
+  2018-01-01:
+    value: 20550
+metadata:
+  short_label: Un enfant
+  label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
+  ipp_csv_id: clcmg_03ans_rev1_apres_2014
+  unit: currency
+  reference:
+    2015-01-01:
+    - title: Arrêté du 11/12/2014 - art. 2 (V)
+    - title: Circulaire DSS/SD2B/2014/345 du 16/12/2014
+    2016-01-01:
+      title: Circulaire DSS/SD2B/2015/371 du 18/12/2015
+    2018-01-01:
+      title: Circulaire DSS/SD2B/2017/352 du 22/12/2017
+  official_journal_date:
+    2015-01-01: "2014-12-16"
+    2016-01-01: "2015-12-25"
+    2018-01-01: "2017-12-29"
+  notes:
+    2016-01-01:
+    - title: Date de mise en ligne sur légifrance; Pas de changement en 2017 cf. circulaire DSS/SD2B/2016/396 du 21/12/2016
+    2018-01-01:
+    - title: Revalorisation des plafonds de 0,2%. Plus de distinction avant/après 1 avril 2014

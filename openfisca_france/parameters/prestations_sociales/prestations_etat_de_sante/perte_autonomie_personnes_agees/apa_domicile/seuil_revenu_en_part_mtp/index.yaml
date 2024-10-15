@@ -1,0 +1,11 @@
+description: Seuil de revenu (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie (APA) à domicile
+metadata:
+  short_label: Seuil de revenu
+  label_en: Attendance allowance for individuals living at home (APA)
+  order:
+  - seuil_inferieur
+  - seuil_superieur
+documentation: |-
+  L'APA correspond au montant dont bénéficie effectivement le bénéficiaire moins la participation laissée à la charge du bénéficiaire.
+  Les seuils déterminent le calcul de la participation du bénéficiaire et de la part prise en charge par l'APA. Les bénéficiaires dont les revenus mensuels sont en dessous du seuil inférieur participent au taux de participation minimum. Les bénéficiaires qui ont des revenus mensuels entre le seuil inférieur et le seuil supérieur ont un taux de participation compris entre le taux minimum et le taux maximum selon leurs ressources. Les bénéficiaires qui ont des revenus au-dessus du seuil supérieur participent au taux de participation maximum.
+  MTP : majoration pour aide constante d'une tierce personne

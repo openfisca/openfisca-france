@@ -1,0 +1,23 @@
+description: Majoration spécifique pour parent isolé lorqu'un complément de 4ème catégorie a été versé - Allocation d'éducation de l'enfant handicapé (AEEH)
+values:
+  2006-01-01:
+    value: 0.57
+metadata:
+  short_label: Si complément de 4ème catégorie versé
+  last_value_still_valid_on: "2023-05-09"
+  label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
+  ipp_csv_id: aeeh_majo4
+  unit: BMAF
+  reference:
+    2006-01-01:
+    - title: Article D541-4 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737172/2006-01-01/
+    - title: Loi 2005-102 du 11/02/2005, art. 68 (modif. Art. L541 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682303&cidTexte=JORFTEXT000000809647
+    - title: Décret 2005-1761 du 29/12/2005, art. 12
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000268753
+  official_journal_date:
+    2006-01-01: 2005-02-12; 2006-01-01
+  notes:
+    2006-01-01:
+    - title: Création de l'Allocation d'éducation de l'enfant handicapé

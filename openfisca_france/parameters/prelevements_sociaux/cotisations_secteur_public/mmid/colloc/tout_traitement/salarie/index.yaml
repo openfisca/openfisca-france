@@ -1,0 +1,6 @@
+description: Cotisations maladie (agent, tout traitement) spécifiques à la fonction publique hospitalière et aux collectivités locales
+metadata:
+  short_label: Agent
+  label_en: Health insurance contributions - local governments and hospital administration
+  order:
+  - maladie

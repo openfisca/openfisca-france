@@ -1,0 +1,10 @@
+description: Complément de l'allocation aux adulte handicapé (CAAH)
+metadata:
+  documentation_start: true
+  label_en: Additional adult disability allowance (CAAH)
+  order:
+  - majoration_vie_autonome
+  - montant_complement_ressources
+  - taux_montant_complement_ressources
+  - garantie_ressources
+documentation: Dispositif créé par la loi 75-534 du 30 Juin 1975

@@ -1,0 +1,8 @@
+description: Seuil3
+values:
+  2004-01-01:
+    value: 45760
+  2005-01-01:
+    value: 50000
+metadata:
+  unit: currency_next_year

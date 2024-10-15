@@ -1,0 +1,57 @@
+description: Montant du plafond RCI de la cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans-commerçants
+values:
+  2013-01-01:
+    value: 37032
+  2014-01-01:
+    value: 37513
+  2016-01-01:
+    value: 37546
+  2018-01-01:
+    value: 37846
+  2019-01-01:
+    value: 37960
+  2020-01-01:
+    value: 38340
+  2021-01-01:
+    value: 38493
+  2022-01-01:
+    value: 38916
+  2023-01-01:
+    value: 40784
+metadata:
+  short_label: Montant du plafond RCI
+  label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
+  ipp_csv_id: plaf_retc_rci
+  unit: currency
+  reference:
+    2013-01-01:
+    - title: Décret 2012-443 du 03/04/2012
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025626696
+    - title: Circulaire RSI 2013-004 du 17/01/2013
+    2014-01-01:
+      title: Décret 2012-139 du 30/01/2012
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025241814
+  official_journal_date:
+    2013-01-01: "2012-04-04"
+    2014-01-01: "2012-12-31"
+  notes:
+    2013-01-01:
+    - title: Depuis le 1er janvier 2013, le taux de cotisations est unifié pour les différentes catégories d'independants.
+    2014-01-01:
+    - title: Rétabli l'article D. 635-7 du CSS donnant les taux.
+    2016-01-01:
+    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: service-public.fr"
+    2018-01-01:
+    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: service-public.fr"
+    2019-01-01:
+    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: service-public.fr"
+    2020-01-01:
+    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: secu-independants.fr"
+    2021-01-01:
+    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: secu-independants.fr"
+    2022-01-01:
+    - title: Circulaire Cnav 2021-36
+    - href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2021_36_21122021.pdf
+    2023-01-01:
+    - title: Circulaire Cnav 2022-37
+    - href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2022_37_20122022.pdf

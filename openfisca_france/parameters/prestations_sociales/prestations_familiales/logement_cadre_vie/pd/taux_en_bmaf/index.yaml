@@ -1,0 +1,13 @@
+description: Taux de montant maximum de la Prime de déménagement (PD)
+metadata:
+  short_label: Taux de montant maximum
+  label_en: Relocation allowance (PD) - Rate and maximum amount
+  order:
+  - 1_enfant
+  - 2_enfants
+  - 3_enfants
+  - 4_enfants
+  - 5_enfants
+  - par_enfants_en_plus
+  - personne_agee_ou_infirme
+  - jeune_travailleur_salarie

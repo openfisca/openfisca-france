@@ -1,0 +1,6 @@
+description: Forfait de l'allocation de soutien familial (ASF) pris en compte dans la base de ressources du revenu de solidarité active (RSA) si le ménage est composé d'un orphelin ou situation assimilée
+metadata:
+  short_label: Forfait allocation de soutien familial (ASF)
+  order:
+  - taux1
+  - taux2

@@ -1,4 +1,12 @@
 description: Cotisations au régime de Retraite additionnelle de la fonction publique (RAFP)
 metadata:
-  ux_name: Retraite additionnelle de la fonction publique (RAFP)
-  description_en: Contributions to the scheme of Additional pension
+  documentation_start: true
+  short_label: RAFP
+  label_en: Contributions to the scheme of Additional pension of the public sector (RAFP)
+  order:
+  - salarie
+  - employeur
+  - rafp_plaf_assiette
+documentation: |-
+  Le RAFP est un régime obligatoire à points permettant aux fonctionnaires d'acquérir une retraite additionnelle.
+  Assiette : Ensemble des rémunérations soumises à CSG mais non soumises au régime de retraite de base de la fonction publique (i.e. primes et indemnités). L'assiette est plafonnée à un pourcentage du traitement indiciaire brut de l'année. Seule la garantie individuelle du pouvoir d'achat (GIPA) n'est pas soumise à ce plafonnement.

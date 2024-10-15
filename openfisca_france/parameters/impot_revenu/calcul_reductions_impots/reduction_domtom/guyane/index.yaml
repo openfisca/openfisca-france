@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur le revenu pour la Guyane
+metadata:
+  short_label: Guyane
+  order:
+  - taux
+  - plafond

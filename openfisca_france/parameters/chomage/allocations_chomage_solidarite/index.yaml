@@ -1,0 +1,7 @@
+description: Allocations chômage de solidarité
+metadata:
+  short_label: Allocations chômage solidarité
+  label_en: Unemployment benefits (means-tested)
+  order:
+  - allocation_aide_publique
+  - allocation_insertion

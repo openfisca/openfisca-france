@@ -13,9 +13,32 @@
   description: Cas donnés sur actionlogement.fr/l-aide-mobili-jeune
   period: 2021-03
   input:
-    age: [ 18, 18, 18, 18 ]
-    mobili_jeune_eligibilite: [ true, true, true, false ]
-    loyer: [ 350, 350, 250, 350 ]
-    apl: [ 220, 280, 245, 220 ]
+    age: [18, 18, 18, 18]
+    mobili_jeune_eligibilite: [true, true, true, false]
+    loyer: [350, 350, 250, 350]
+    apl: [220, 280, 245, 220]
   output:
-    mobili_jeune: [ 100, 70, 0, 0 ]
+    mobili_jeune: [100, 70, 0, 0]
+
+- name: Éligibilité à l'aide au logement mobili-jeune
+  period: 2022-06
+  input:
+    age: [16, 30, 29, 29, 29, 29]
+    alternant: [true, true, false, true, true, true]
+    salaire_de_base: [1554.58, 1554.58, 1554.58, 1700, 1554.58, 1554.58]
+    peec_employeur: [true, true, true, true, false, true]
+    statut_occupation_logement: ['locataire_meuble', 'locataire_vide', 'locataire_hlm', 'locataire_foyer', 'locataire_foyer', 'non_renseigne']
+  output:
+    mobili_jeune_eligibilite: [true, false, false, false, false, false]
+
+- name: Montant de l'aide au logement mobili-jeune
+  description: Cas donnés sur actionlogement.fr/l-aide-mobili-jeune
+  period: 2022-06
+  input:
+    age: [18, 18, 18, 18, 18, 18]
+    mobili_jeune_eligibilite: [true, true, true, true, true, false]
+    loyer: [650, 350, 350, 350, 250, 350]
+    apl: [220, 220, 220, 280, 245, 220]
+    secteur_activite_employeur: ["agricole", "agricole", "non_agricole", "non_agricole", "non_agricole", "non_agricole"]
+  output:
+    mobili_jeune: [300, 130, 100, 70, 0, 0]

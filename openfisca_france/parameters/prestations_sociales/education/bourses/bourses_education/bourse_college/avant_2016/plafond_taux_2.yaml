@@ -1,0 +1,11 @@
+description: Plafond de référence pour le taux 2 de la bourse de l'Éducation nationale pour le collège (avant 2016)
+values:
+  2014-01-01:
+    value: 6083
+  2015-07-01:
+    value: 6102
+  2016-07-01:
+    value: null
+metadata:
+  short_label: Plafond taux 2
+  unit: currency

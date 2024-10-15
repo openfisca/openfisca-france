@@ -1,0 +1,9 @@
+description: Seuils de revenu fiscal de référence N-2 déterminant le taux de la contribution sociale généralisée (CSG) sur les allocations chômage, les pensions de retraite et d'invalidité
+metadata:
+  short_label: Seuils de revenu fiscal de référence de l'année N-2 déterminant le taux de CSG
+  order:
+  - seuil_ir
+  - seuil_rfr1
+  - seuil_rfr2
+  - seuil_rfr3
+documentation: Les seuils sont revalorisés au 1er janvier de chaque année, conformément à l'évolution en moyenne annuelle des prix à la consommation, hors tabac, constatée pour l'avant-dernière année et arrondis à l'euro le plus proche, la fraction d'euro égale à 0,50 étant comptée pour 1.

@@ -1,0 +1,17 @@
+description: Allocation pour demandeur d'asile (ADA)
+metadata:
+  short_label: ADA
+  label_en: Asylum-seeker allowance (ADA)
+  order:
+  - montant_journalier_pour_une_personne
+  - majoration_pers_supp
+  - supplement_non_hebergement
+documentation: |-
+  La loi du 29/07/2015, art. 23 (JO du 2015-07-30) créé l'allocation pour demandeur d'asile (ADA). Remplace l'allocation temporaire d'attente (ATA) versée par Pôle Emploi, et l'allocation mensuelle de subsistance (AMS).
+  L'ADA est gérée par l'Office français de l'immigration et de l'intégration (OFII).
+  "Son montant est révisé, le cas échéant, une fois par an, en fonction de l'évolution des prix, hors tabac, prévue dans le rapport économique, social et financier annexé au projet de loi de finances de l'année."
+  "Un décret définit le barème de l'allocation pour demandeur d'asile, en prenant en compte les ressources de l'intéressé, son mode d'hébergement et, le cas échéant, les prestations offertes par son lieu d'hébergement.
+   Le barème de l'allocation pour demandeur d'asile prend en compte le nombre d'adultes et d'enfants composant la famille du demandeur d'asile et accompagnant celui-ci."
+  Sources :
+  Code de l'entrée et du séjour des étrangers et du droit d'asile (CESEDA), titre IV, chapitre IV, Section 4.
+  CESEDA, Annexe 7.1

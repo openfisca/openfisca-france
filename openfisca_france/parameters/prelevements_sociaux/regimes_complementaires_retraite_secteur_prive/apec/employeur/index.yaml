@@ -1,4 +1,7 @@
 description: Part employeur des cotisations pour l'association pour l'emploi des cades (APEC), régimes complémentaires de retraite (secteur privé)
 metadata:
-  ux_name: Part employeur
-  description_en:
+  short_label: Part employeur
+  label_en: Contributions for the Association for the employment of executives (APEC)
+  order:
+  - apec
+  - forfait_annuel

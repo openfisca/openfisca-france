@@ -1,0 +1,20 @@
+description: Base de calcul pour les bénéficiaires de l'allocation aux adultes handicapés (AAH) ayant des revenus professionnels dans le milieu ordinaire
+metadata:
+  short_label: Base de calcul (revenus ordinaires)
+  label_en: Disability
+  order:
+  - plafond_ressources
+  - abattement_30
+  - abattement_sup
+  - abattement_300
+  - abattement_700
+  - abattement_1100
+  - abattement_1500
+  - tranche_smic
+  - tranche_smic_horaire1
+  - tranche_smic_horaire2
+  - tranche_smic_horaire3
+  - tranche_smic_horaire4
+documentation: |-
+  Entre le 1 juillet 2005 et le 17 novembre 2010, quatre seuils étaient utilisés pour déterminer les taux d'abattement des revenus d'activité
+  en milieu ordinaire (hors ESAT notamment).

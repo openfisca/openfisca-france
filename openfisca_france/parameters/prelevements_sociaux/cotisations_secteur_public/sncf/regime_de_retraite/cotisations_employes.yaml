@@ -1,0 +1,113 @@
+description: Cotisations salariés du régime de retraite de la SNCF publique
+values:
+  2007-01-01:
+    value: 0.0785
+  2014-01-01:
+    value: 0.0805
+  2015-01-01:
+    value: 0.0815
+  2016-01-01:
+    value: 0.082
+  2017-01-01:
+    value: 0.0852
+  2018-01-01:
+    value: 0.0879
+  2019-01-01:
+    value: 0.0906
+  2020-01-01:
+    value: 0.0933
+  2021-01-01:
+    value: 0.096
+  2022-01-01:
+    value: 0.0987
+  2023-01-01:
+    value: 0.1014
+  2024-01-01:
+    value: 0.1041
+  2025-01-01:
+    value: 0.1068
+  2026-01-01:
+    value: 0.1095
+metadata:
+  short_label: Cotisations salariés
+  label_en: Contributions to the SNCF scheme (public railway company)
+  unit: /1
+  reference:
+    2007-01-01:
+    - title: Décret 2007-1056 du 28/06/2007.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000467954
+    - title: Arrêté du 06/05/2008 fixant les composantes T1 définitive pour 2007 et provisionnelle pour 2008
+    2014-01-01:
+    - title: Arrêté du 16/07/2014 fixant les composantes T1 définitive pour 2013 et provisionnelle pour 2014
+    - title: Décret 2013-1290 du 27/12/2013, art. 7
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028420114&cidTexte=JORFTEXT000028408271
+    - title: Lettre ministérielle du 23/01/2014
+    2015-01-01:
+    - title: Décret 2014-1531 du 17/12/2014, art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    - title: Arrêté du 27/07/2015 fixant le taux T1
+    - title: Lettre ministérielle du 15/12/2014 fixant le taux T2 pour l’année 2015
+    2016-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2017-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2018-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2019-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2020-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2021-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2022-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2023-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2024-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2025-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+    2026-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 10 (taux employés)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921996&cidTexte=JORFTEXT000029920824
+  official_journal_date:
+    2007-01-01: 2007-06-29; 2008-05-16
+    2014-01-01: 2014-07-26; 2013-12-31
+    2015-01-01: 2014-12-19; 2015-08-04
+    2016-01-01: "2014-12-19"
+    2017-01-01: "2014-12-19"
+    2018-01-01: 2014-12-19; 2017-05-03
+    2019-01-01: "2014-12-19"
+    2020-01-01: "2014-12-19"
+    2021-01-01: "2014-12-19"
+    2022-01-01: "2014-12-19"
+    2023-01-01: "2014-12-19"
+    2024-01-01: "2014-12-19"
+    2025-01-01: "2014-12-19"
+    2026-01-01: "2014-12-19"
+  notes:
+    2014-01-01:
+    - title: Lettre ministérielle citée par les Comptes combinés 2014 de l'ACOSS
+    2015-01-01:
+    - title: Le décret fixe les taux à la charge de l'employeur jusqu'en 2026. Valeur T2 mise à jour avec Chiffres clés CPRPSNCF 2017
+    2016-01-01:
+    - title: "Référence législative manquante pour les taux T1 et T2. Source : Chiffres clés 2016. Valeur T2 mise à jour avec Chiffres clés CPRPSNCF 2018"
+    2017-01-01:
+    - title: "Référence législative manquante pour les taux T1 et T2. Source : Avis 143 (2016-2017) du Sénat, II, A, 1. Valeur T2 mise à jour avec Chiffres clés CPRPSNCF 2018"
+    2018-01-01:
+    - title: Référence législative manquante pour le taux T1. Valeur issue des Chiffres clés CPRPSNCF 2018
+    2019-01-01:
+    - title: "Valeur T2 provient du rapport du Sénat sur le PLF 2020 : https://www.senat.fr/rap/l19-140-324/l19-140-3244.html  Valeur régime prévoyance provient d'un rapport de l'IGAS : http://www.igas.gouv.fr/IMG/pdf/Rapport_prevoyance_branche_ferroviaire.pdf"
+    2020-01-01:
+    - title: Valeurs manquantes pour régime prévoyance. Valeur T2 provient du rapport du Sénat sur le PLF 2020
+      href: https://www.senat.fr/rap/l19-140-324/l19-140-3244.html

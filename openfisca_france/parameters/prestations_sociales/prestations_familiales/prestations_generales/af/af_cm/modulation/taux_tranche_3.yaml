@@ -1,0 +1,25 @@
+description: Taux (en % de la BMAF) de Modulation (tranche 3), en fonction des ressources, des allocations familiales (AF)
+values:
+  1946-09-01:
+    value: null
+  2015-07-01:
+    value: 0.25
+metadata:
+  short_label: Taux Tranche 3
+  last_value_still_valid_on: "2022-09-27"
+  label_en: "Family allowances (AF): General conditions and amount"
+  ipp_csv_id: af_modulation_taux2
+  unit: BMAF
+  reference:
+    1946-09-01:
+      title: Loi du 22 aout 1946
+    2015-07-01:
+    - title: Article D521-1 1) du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/2015-07-01/
+    - title: Décret 2015-611 du 03/06/2015
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030674064
+    - title: Circulaire DSS/SD2B/2016/77 du 15/03/2016
+    - title: Article L531-3 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030055650/2015-01-01/
+  official_journal_date:
+    2015-07-01: "2015-06-05"

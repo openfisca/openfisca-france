@@ -1,0 +1,11 @@
+description: Montant par personne du crédit d'impôt aide à la mobilité
+values:
+  2005-01-01:
+    value: 1500
+  2007-01-01:
+    value: 2000
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Montant par personne
+  unit: currency_next_year

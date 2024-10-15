@@ -1,0 +1,85 @@
+description: Montant maximal de la prise en charge pour un enfant de moins de 3 ans du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: null
+  2007-07-01:
+    value: 402
+  2009-01-01:
+    value: 408
+  2010-01-01:
+    value: 419
+  2012-01-01:
+    value: 425
+  2013-01-01:
+    value: 434
+  2014-01-01:
+    value: 442
+  2015-01-01:
+    value: 445
+  2016-01-01:
+    value: 447
+  2018-01-01:
+    value: 448
+  2019-01-01:
+    value: 452
+  2020-01-01:
+    value: 459
+  2021-01-01:
+    value: 463
+metadata:
+  short_label: Enfant < 3ans
+  label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
+  unit: currency
+  reference:
+    2007-07-01:
+      title: Circulaire DSS/2B/2007-251 du 21/06/2007
+    2009-01-01:
+    - title: Arrêté du 31/12/2008 - art. 2 (V)
+    - title: Circulaire DSS/2B/2008/371 du 22/12/2008
+    2010-01-01:
+      title: Circulaire DSS/2B/2009/376 du 15/12/2009
+    2012-01-01:
+      title: Circulaire DSS/2B/2011/481 du 23/12/2011
+    2013-01-01:
+    - title: Arrêté du 24/12/2012 - art. 2 (V)
+    - title: Circulaire DSS/2B/2012/422 du 18/12/2012
+    2014-01-01:
+    - title: Arrêté du 19/12/2013 - art. 2 (V)
+    - title: Circulaire DSS/SD2B/2013/416 du 19/12/2013
+    2015-01-01:
+    - title: Arrêté du 11/12/2014 - art. 2 (V)
+    - title: Circulaire DSS/SD2B/2014/345 du 16/12/2014
+    2016-01-01:
+      title: Circulaire DSS/SD2B/2015/371 du 18/12/2015
+    2018-01-01:
+    - title: Circulaire DSS/SD2B/2017/352 du 22/12/2017
+    - title: Arrêté du 27/12/2017,  art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299569
+    2019-01-01:
+      title: Arrêté du 21/12/2018, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864995
+    2020-01-01:
+      title: Arrêté du 20/12/2018, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039663229
+    2021-01-01:
+      title: Arrêté du 14/12/2018, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694990
+  official_journal_date:
+    2009-01-01: "2009-01-01"
+    2012-01-01: "2011-12-28"
+    2013-01-01: "2012-12-29"
+    2014-01-01: "2014-01-01"
+    2015-01-01: "2014-12-16"
+    2016-01-01: "2015-12-25"
+    2018-01-01: "2017-12-29"
+  notes:
+    2007-07-01:
+    - title: Date de mise en ligne indisponible sur légifrance
+    2010-01-01:
+    - title: Date de mise en ligne indisponible sur légifrance
+    2012-01-01:
+    - title: Date de mise en ligne sur légifrance
+    2016-01-01:
+    - title: Date de mise en ligne sur légifrance; Pas de changement en 2017 cf. circulaire DSS/SD2B/2016/396 du 21/12/2016
+    2018-01-01:
+    - title: Revalorisation des plafonds de 0,2%. Plus de distinction avant/après 1 avril 2014

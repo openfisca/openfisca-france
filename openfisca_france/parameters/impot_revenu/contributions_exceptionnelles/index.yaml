@@ -1,0 +1,10 @@
+description: Contributions exceptionnelles
+metadata:
+  short_label: Taxes exceptionnelles
+  label_en: Exceptional contributions
+  order:
+  - contribution_exceptionnelle_hauts_revenus
+  - majorations_exceptionnelles
+  - minorations_exceptionnelles
+  - taxe_prop
+  - indemnite_compensatrice_agents_assurance

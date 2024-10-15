@@ -1,0 +1,15 @@
+description: Seuil minimal de versement (en part du salaire horaire brut minimum de croissance) de la prestation spécifique dépendance (PSD)
+values:
+  1997-05-01:
+    value: 3
+  2002-01-01:
+    value: null
+metadata:
+  short_label: Seuil minimal
+  label_en: Attendance allowance (PSD)
+  unit: smic_horaire_brut
+  reference:
+    1997-05-01:
+      title: Arrêté du 28/04/1997
+  official_journal_date:
+    1997-05-01: "1997-04-30"

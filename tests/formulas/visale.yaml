@@ -3,6 +3,7 @@
   input:
     age: [ 16, 17, 30, 31 ]
     mineur_emancipe: [ true, false, false, false ]
+    date_entree_logement: [2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01]
   output:
     visale_eligibilite: [ true, false, true, false ]
 
@@ -10,15 +11,26 @@
   period: 2021-03
   input:
     age: [ 18, 18, 18, 18, 18, 18 ]
+    date_entree_logement: [2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01]
     etudiant: [ false, false, false, false, false, true ]  # on fait l'hypothèse que le visa long séjour est acquis pour un étudiant hors UE
     nationalite: [ FR, DE, CH, MC, NZ, NZ ]
   output:
     visale_eligibilite: [ true, true, true, true, false, true ]
 
+- name: Condition de date d'entrée dans le logement pour l'éligibilité
+  period: 2021-10
+  input:
+    age: [ 16, 16 ]
+    mineur_emancipe: [ true, true ]
+    date_entree_logement: [2021-11-01, 2021-08-01]
+  output:
+    visale_eligibilite: [true, false]
+
 - name: Condition de ressources pour Visale étudiant hors Île-de-France
   period: 2021-03
   input:
     age: [ 18, 18, 18, 18, 18 ]
+    date_entree_logement: [2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01]
     etudiant: [ true, true, true, true, true ]
     depcom: [ false, false, false, false, false ]
     salaire_net:
@@ -32,6 +44,7 @@
   period: 2021-03
   input:
     age: [ 18, 18, 18, 18, 18 ]
+    date_entree_logement: [2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01]
     etudiant: [ true, true, true, true, true ]
     depcom: [ "75112", "75112", "75112", "75112", "75112" ]
     salaire_net:
@@ -45,6 +58,7 @@
   period: 2021-03
   input:
     age: [ 18, 18, 18, 18 ]
+    date_entree_logement: [2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01]
     etudiant: [ false, false, false, false ]
     depcom: [ "06088", "06088", "06088", "06088" ]
     salaire_net:
@@ -58,6 +72,7 @@
   period: 2021-03
   input:
     age: [ 18, 18, 18, 18 ]
+    date_entree_logement: [2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01]
     etudiant: [ false, false, false, false ]
     depcom: [ "75112", "75112", "75112", "75112" ]
     salaire_net:
@@ -71,6 +86,7 @@
   period: 2021-03
   input:
     age: [ 18, 18, 18 ]
+    date_entree_logement: [2021-11-01, 2021-11-01, 2021-11-01]
     etudiant: [ false, false, false ]
     depcom: [ "06088", "06088", "06088" ]
     salaire_net:
@@ -85,6 +101,7 @@
   period: 2021-03
   input:
     age: [ 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18 ]
+    date_entree_logement: [2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01, 2021-11-01]
     garantie_jeunes:
       2021-02: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]  # on force à 0 pour simplifier les tests en évitant un déclenchement intempestif
     salaire_net:
@@ -112,7 +129,7 @@
     ada:
       2021-02: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0 ]
     rpns_imposables:
-      2020:    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12000 ]
+      2020: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12000 ]
   output:
     visale_base_ressources_individuelle: [ 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 0, 0, 1000 ]
 

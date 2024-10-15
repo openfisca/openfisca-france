@@ -1,0 +1,6 @@
+description: Primes exceptionnelles
+metadata:
+  short_label: Primes exceptionnelles
+  order:
+  - prime_pepa
+  - prime_partage_valeur

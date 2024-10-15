@@ -1,0 +1,7 @@
+description: Prêt locatif à usage social (PLUS)
+metadata:
+  short_label: PLUS
+  label_en: Social housing
+  order:
+  - par_categorie_de_menage
+  - par_personne_supplementaire

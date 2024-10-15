@@ -1,0 +1,25 @@
+description: Allocation de base d'assurance chômage - partie fixe et minimum
+metadata:
+  short_label: Partie fixe et minimum
+  label_en: UI scheme - lump-sum and minimum
+  order:
+  - partie_fixe
+  - montant_minimum
+  - montant_minimal_apres_degressivite
+  - montant_minimal_are_formation
+documentation: |-
+  L'allocation est égale au maximum entre un premier pourcentage du salaire journalier de référence, plus une partie fixe, ou un pourcentage plus élevé du salaire journalier de référence sans partie fixe.
+  Le montant fixe et l'allocation minimale sont réduits proportionnellement si le salarié travaillait à temps partiel.
+  Avant 1979 :
+  Le salaire de référence est pris seulement sur les 3 derniers mois d'activité, et divisé par 90 pour obtenir le salaire journalier de référence.
+  La majoration de 15% du taux des allocations d'assurance s'applique pour les 3 premiers mois, et revient donc à remplacer 35% par 40%. Après l'avenant de 1973, la majoration de trois mois est portée à 6 mois pour les 50-55 ans, 12 mois pour 55-58 ans, 24 mois pour 58 ans et plus.
+  Le montant maximal en pourcentage du salaire de référence correspond au maximum des allocations d'assurance et d'aide publique cumulées.
+  En 1968 : le montant minimum est en Ancien Franc.
+  En 1984 : si la durée d'affiliation est comprise entre 3 et 6 mois, les montants minimum et maximum de l'allocation sont minorés de 25% et l'allocation vaut la somme de la partie proportionnelle et de la partie fixe.
+  En 1992 : le montant minimal après degressivité est plus élevé pour les plus de 52 ans, au chômage depuis plus d'un an, ayant été affilié depuis au moins 20 ans, justifiant d'une année continue ou de deux années discontinues d'appartenance à une ou plusieurs entreprises au cours des 5 dernières années.
+  Seuil exonération CSG/CRDS = (Smic horaire * 35)/7 approximativement
+  Sources:
+  - Légifrance, Site internet Assedic.fr unijuridis depuis 1994
+  - Document Revalorisations depuis avril 1978 du service juridique de l'Unedic et Historique du régime d'assurance chômage 1982-1986 (p. 138-139)
+  - Consultation des circulaires Unedic au service de documentation de l'Unedic.
+  - Barème social périodique

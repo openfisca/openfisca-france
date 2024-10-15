@@ -1,0 +1,27 @@
+description: Montant pour 2 enfants à charge de l'Indemnité compensatrice des avantages fiscaux (ICAF)
+values:
+  1948-10-01:
+    value: 650
+  1958-01-01:
+    value: 981
+  1978-01-01:
+    value: null
+metadata:
+  short_label: 2 enfants à charge
+  label_en: 2 dependent children
+  ipp_csv_id: icaf_enf
+  unit: currency
+  reference:
+    1958-01-01:
+      title: Décret 58-962 du 27/09/1958
+    1978-01-01:
+      title: Loi 77-765 du 12/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
+  official_journal_date:
+    1958-01-01: 1958-10-16; 1958-11-11
+    1978-01-01: "1977-07-13"
+  notes:
+    1948-10-01:
+    - title: Pour les salariés uniquement
+    1978-01-01:
+    - title: Remplacée par le complément familial à partir du 01/01/1978

@@ -1,0 +1,17 @@
+description: Plafond 3 de la réduction d'impôt pour les dépenses de gros travaux, les intérêts d'emprunt et les ravalements
+values:
+  1978-01-01:
+    value: null
+  1991-01-01:
+    value: 20000
+  2001-01-01:
+    value: 3049
+  2003-01-01:
+    value: null
+metadata:
+  short_label: Plafond 3
+  ipp_csv_id: plaf_habitat3
+  unit: currency_next_year
+  notes:
+    2001-01-01:
+    - title: "Majoration sur les revenus 2001 : 381 euros pour le 2° enfant et 457 à partir du 3°"

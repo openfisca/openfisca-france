@@ -1,0 +1,11 @@
+description: Abattement sur la rémunération garantie nette perçue pour les bénéficiaires travaillant dans un établissement et service d'aide par le travail (Esat) pour l'allocation aux adultes handicapés (AAH)
+metadata:
+  short_label: Abattement sur la rémunération garantie nette perçue
+  label_en: Disability
+  order:
+  - esat_5_10
+  - esat_10_15
+  - esat_15_20
+  - esat_20_25
+  - esat_25_50
+  - esat_20_50

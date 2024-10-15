@@ -1,0 +1,16 @@
+description: Liste des départements membre de la région Grand-Est
+values:
+  2015-01-16:
+    value:
+    - "08"
+    - "10"
+    - "51"
+    - "52"
+    - "54"
+    - "55"
+    - "57"
+    - "67"
+    - "68"
+    - "88"
+metadata:
+  unit: codes départements

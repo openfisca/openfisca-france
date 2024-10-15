@@ -1,0 +1,23 @@
+description: Taux de montant maximum (en % de la BMAF) pour 2 enfants de la prime de déménagement (PD)
+values:
+  1976-08-01:
+    value: 2.2
+  1995-01-01:
+    value: null
+metadata:
+  short_label: 2 enfants
+  label_en: "Relocation allowance (PD): Rate and maximum amount"
+  ipp_csv_id: tx_2enf
+  unit: BMAF
+  reference:
+    1976-08-01:
+      title: Décret 76-768 du 16/08/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
+    1995-01-01:
+      title: art. R542-31 du CSS
+  official_journal_date:
+    1976-08-01: "1976-08-17"
+    1995-01-01: "1995-01-03"
+  notes:
+    1976-08-01:
+    - title: "Montant maximum: Taux*Base"

@@ -1,0 +1,21 @@
+description: Seuil 1 pour faible nombre de part de la décote de l'impôt sur le revenu
+values:
+  1950-01-01:
+    value: null
+  1964-01-01:
+    value: 120
+  1965-01-01:
+    value: 160
+  1966-01-01:
+    value: 190
+  1967-01-01:
+    value: null
+  1969-01-01:
+    value: 230
+  1973-01-01:
+    value: null
+metadata:
+  short_label: Seuil 1 faible nb de parts
+  last_value_still_valid_on: "2023-01-05"
+  ipp_csv_id: decote_x_qf
+  unit: currency_next_year

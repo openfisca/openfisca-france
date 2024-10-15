@@ -1,0 +1,10 @@
+description: Taux spécifique de la taxe sur les tabacs
+metadata:
+  label_en: Tobacco specific rates
+  order:
+  - cigarettes
+  - cigares
+  - tabac_rouler
+  - autres_tabacs
+  - tabacs_priser
+  - tabacs_chiquer

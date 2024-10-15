@@ -1,0 +1,13 @@
+description: Zone 1 - Plafonds d'annuités de remboursement pour les accédants à la propriété des Allocations logement (AL)
+metadata:
+  short_label: Zone 1
+  label_en: Annual ceiling of reimbursement for new homebuyers
+  order:
+  - personne_isolee_sans_enfant
+  - menage_seul
+  - menage_ou_isole_avec_1_enfant
+  - menage_ou_isole_avec_2_enfants
+  - menage_ou_isole_avec_3_enfants
+  - menage_ou_isole_avec_4_enfants
+  - menage_ou_isole_avec_5_enfants
+  - menage_ou_isole_par_enfant_en_plus

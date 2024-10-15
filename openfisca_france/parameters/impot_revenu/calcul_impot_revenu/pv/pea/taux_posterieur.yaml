@@ -1,0 +1,24 @@
+description: Taux entre 2 et 5 ans
+values:
+  1977-01-01:
+    value: null
+  1978-01-01:
+    value: 0.15
+  1984-01-01:
+    value: 0.16
+  2013-01-01:
+    value: 0.19
+  2019-01-01:
+    value: 0.128
+metadata:
+  ipp_csv_id: tx_pea_post
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Loi n° 2018-1317 du 28/12/2018 (LF 2019) - art.44
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000037882395
+  notes:
+    2013-01-01:
+    - title: "Les plus-values mobilières sont intégrées à l'assiette de l'IR et donc imposées au barème avec des abattements dépendant de la durée de détention: 20 % (détention 2 à 4 ans), 30 % (4-6 ans), 40% (au-delà)"
+    2019-01-01:
+    - title: Pour les opérations survenues après le 1er Janvier 2019, les plus-values mobilières issues de clôture de PEA avant 5 ans de détention sont taxées au nouveau régime du prélèvement forfaitaire unique (PFU)

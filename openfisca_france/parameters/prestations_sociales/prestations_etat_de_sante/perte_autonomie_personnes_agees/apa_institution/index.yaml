@@ -1,0 +1,14 @@
+description: Allocation personnalisée d'autonomie en institution (APA)
+metadata:
+  documentation_start: true
+  short_label: Allocation personnalisée d'autonomie en institution (APA)
+  label_en: Attendance allowance for individuals living in a nursing home (APA)
+  order:
+  - seuil_inferieur
+  - seuil_superieur
+  - part_tarif_dependance
+  - condition_age
+  - division_ressources_menage_couples
+  - taux_reste_a_vivre
+  - seuil_versement_en_part_smic_brut_horaire
+documentation: "L'APA aide son bénéficiaire à s'acquitter de la partie relative à la prise en charge de la dépendance dans la structure d'accueil. Dans chaque établissement, il existe trois tarifs dépendance (selon le degré d'autonomie : GIR 1 et 2, GIR 3 et 4 et GIR 5 et 6). Le classement en GIR 5 et 6 n'ouvre pas de droit à l'APA."

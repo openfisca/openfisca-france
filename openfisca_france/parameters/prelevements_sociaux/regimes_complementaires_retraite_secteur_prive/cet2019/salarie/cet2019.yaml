@@ -1,30 +1,29 @@
 description: Barème salarié de la contribution d'équilibre technique (CET) aux régimes complémentaires de retraite (secteur privé)
 brackets:
-- rate:
+- threshold:
+    2019-01-01:
+      value: 0
+  rate:
     2019-01-01:
       value: 0.0014
-  threshold:
+- threshold:
     2019-01-01:
-      value: 0.0
-- rate:
+      value: 8
+  rate:
     2019-01-01:
-      value: 0.0
-  threshold:
-    2019-01-01:
-      value: 8.0
+      value: 0
 metadata:
-  ux_name: Barème salarié
-  last_review:
-    2021-07-30
+  short_label: Barème
+  last_value_still_valid_on: "2021-07-30"
+  label_en: Complementary pension contributions
+  reference:
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+      href: https://www.agirc-arrco.fr/wp-content/uploads/2021/10/ANI_Retraite_17nov2017_01012019.pdf
+  official_journal_date:
+    2019-01-01: "2017-11-19"
+  notes:
+    2019-01-01:
+    - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
   rate_unit: /1
   threshold_unit: PSS
-  reference:
-    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
-  official_journal_date:
-    2019-01-01: 2017-11-19
-  notes:
-    2019-01-01: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
-  description_en: Complementary pension contributions
-documentation: |
-  Notes :
-  Les taux de cotisation CET s'appliquent à l'ensemble du salaire, mais uniquement pour les salariés dont la rémunération est supérieure à T1 (1 PSS).

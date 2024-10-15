@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 class assiette_cotisations_sociales(Variable):
     value_type = float
     entity = Individu
-    label = "Assiette des cotisations sociales des salaries"
+    label = 'Assiette des cotisations sociales des salaries'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -36,7 +36,7 @@ class assiette_cotisations_sociales(Variable):
 class assiette_cotisations_sociales_prive(Variable):
     value_type = float
     entity = Individu
-    label = "Assiette des cotisations sociales des salaries du prive"
+    label = 'Assiette des cotisations sociales des salaries du prive'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -46,10 +46,10 @@ class assiette_cotisations_sociales_prive(Variable):
         indemnites_compensatrices_conges_payes = individu('indemnites_compensatrices_conges_payes', period)
         indemnite_residence = individu('indemnite_residence', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
-        primes_salaires = individu('primes_salaires', period)
+        primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         reintegration_titre_restaurant_employeur = individu(
-            "reintegration_titre_restaurant_employeur", period
+            'reintegration_titre_restaurant_employeur', period
             )
         remuneration_apprenti = individu('remuneration_apprenti', period)
         salaire_de_base = individu('salaire_de_base', period)
@@ -57,7 +57,7 @@ class assiette_cotisations_sociales_prive(Variable):
 
         assiette = (
             salaire_de_base
-            + primes_salaires
+            + primes_salaires_non_exonerees
             + avantage_en_nature
             + hsup
             + indemnites_compensatrices_conges_payes
@@ -75,14 +75,14 @@ class assiette_cotisations_sociales_prive(Variable):
 class indemnite_fin_contrat(Variable):
     value_type = float
     entity = Individu
-    label = "Indemnité de fin de contrat"
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F40"
+    label = 'Indemnité de fin de contrat'
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F40'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        contrat_de_travail_duree = individu('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContrat = contrat_de_travail_type.possible_values
         salaire_de_base = individu('salaire_de_base', period)
         categorie_salarie = individu('categorie_salarie', period)
         apprenti = individu('apprenti', period)
@@ -92,11 +92,13 @@ class indemnite_fin_contrat(Variable):
         # Pour l'instant, cette variable d'entrée peut les remplacer
         # Elle est cependant fixée à False par défaut
         indemnite_fin_contrat_due = individu('indemnite_fin_contrat_due', period)
-        taux = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.indemnite_fin_contrat.taux
+        taux = parameters(period).marche_travail.indemnite_fin_contrat.taux
 
         result = (
             # CDD
-            (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd)
+
+            (contrat_de_travail_type == TypesContrat.cdd)
+
             # non fonction publique
             * (
                 (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
@@ -120,8 +122,8 @@ class reintegration_titre_restaurant_employeur(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
-        volume = individu("titre_restaurant_volume", period)
+        valeur_unitaire = individu('titre_restaurant_valeur_unitaire', period)
+        volume = individu('titre_restaurant_volume', period)
         taux_employeur = individu('titre_restaurant_taux_employeur', period)
         cantines_titres_restaurants = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.assiette.cantines_titres_restaurants
 
@@ -164,16 +166,16 @@ class penibilite(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "penibilite_base",
+            cotisation_type = 'employeur',
+            bareme_name = 'penibilite_base',
             variable_name = 'penibilite',
             )
         cotisation_additionnelle = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "penibilite_additionnelle",
+            cotisation_type = 'employeur',
+            bareme_name = 'penibilite_additionnelle',
             variable_name = 'penibilite',
             )
 
@@ -195,7 +197,7 @@ class penibilite(Variable):
 class accident_du_travail(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisations employeur accident du travail et maladie professionelle"
+    label = 'Cotisations employeur accident du travail et maladie professionelle'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -215,10 +217,10 @@ class accident_du_travail(Variable):
 class agff_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation retraite AGFF tranche A (salarié)"
+    label = 'Cotisation retraite AGFF tranche A (salarié)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
     def formula(individu, period, parameters):
@@ -226,9 +228,9 @@ class agff_salarie(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "salarie",
-            bareme_name = "agff",
-            variable_name = "agff_salarie"
+            cotisation_type = 'salarie',
+            bareme_name = 'agff',
+            variable_name = 'agff_salarie'
             )
         return cotisation
 
@@ -236,10 +238,10 @@ class agff_salarie(Variable):
 class agff_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation retraite AGFF tranche A (employeur)"
+    label = 'Cotisation retraite AGFF tranche A (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: améliorer pour gérer mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -252,7 +254,7 @@ class agff_employeur(Variable):
 
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = law.cotsoc.cotisations_employeur,
-            bareme_name = "agffnc",
+            bareme_name = 'agffnc',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
@@ -260,7 +262,7 @@ class agff_employeur(Variable):
 
         cotisation_cadre = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = law.cotsoc.cotisations_employeur,
-            bareme_name = "agffc",
+            bareme_name = 'agffc',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
@@ -271,7 +273,7 @@ class agff_employeur(Variable):
 class quotite_de_travail(Variable):
     value_type = float
     entity = Individu
-    label = "Quotité de travail"
+    label = 'Quotité de travail'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     # TODO: gestion annuel/mensuel
@@ -280,7 +282,7 @@ class quotite_de_travail(Variable):
         contrat_de_travail = individu('contrat_de_travail', period)
         TypesContratDeTravail = contrat_de_travail.possible_values
         parameters = parameters(period)
-        heures_temps_plein = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        heures_temps_plein = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
         forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
         return switch(
@@ -297,10 +299,10 @@ class quotite_de_travail(Variable):
 class agirc_gmp_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
+    label = 'Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: gestion annuel/mensuel
 
     def formula(individu, period, parameters):
@@ -315,7 +317,7 @@ class agirc_gmp_salarie(Variable):
             )
 
         gmp = parameters(period).prelevements_sociaux.regimes_complementaires_retraite_secteur_prive.gmp
-        cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
+        cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle.part_salariale
         cotisation_forfaitaire = cotisation_forfaitaire_temps_plein * quotite
 
         # Sachant:
@@ -329,10 +331,10 @@ class agirc_gmp_salarie(Variable):
 class agirc_gmp_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)"
+    label = 'Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: gestion annuel/mensuel
 
     def formula(individu, period, parameters):
@@ -347,7 +349,7 @@ class agirc_gmp_employeur(Variable):
             )
 
         gmp = parameters(period).prelevements_sociaux.regimes_complementaires_retraite_secteur_prive.gmp
-        cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_patronale
+        cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle.part_patronale
         cotisation_forfaitaire = cotisation_forfaitaire_temps_plein * quotite
 
         # Sachant:
@@ -361,18 +363,18 @@ class agirc_gmp_employeur(Variable):
 class agirc_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation AGIRC tranche B (salarié)"
+    label = 'Cotisation AGIRC tranche B (salarié)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = "salarie",
-            bareme_name = "agirc",
+            cotisation_type = 'salarie',
+            bareme_name = 'agirc',
             variable_name = 'agirc_salarie'
             )
         categorie_salarie = individu('categorie_salarie', period)
@@ -382,18 +384,18 @@ class agirc_salarie(Variable):
 class agirc_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation AGIRC tranche B (employeur)"
+    label = 'Cotisation AGIRC tranche B (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "agirc",
+            cotisation_type = 'employeur',
+            bareme_name = 'agirc',
             variable_name = 'agirc_employeur'
             )
         categorie_salarie = individu('categorie_salarie', period)
@@ -403,7 +405,7 @@ class agirc_employeur(Variable):
 class agirc_arrco_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation AGIRC-ARRCO (après la fusion, salarié)"
+    label = 'Cotisation AGIRC-ARRCO (après la fusion, salarié)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -412,8 +414,8 @@ class agirc_arrco_salarie(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "salarie",
-            bareme_name = "agirc_arrco",
+            cotisation_type = 'salarie',
+            bareme_name = 'agirc_arrco',
             variable_name = 'agirc_arrco_salarie'
             )
         return cotisation
@@ -422,7 +424,7 @@ class agirc_arrco_salarie(Variable):
 class agirc_arrco_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation AGIRC-ARRCO (après la fusion, employeur)"
+    label = 'Cotisation AGIRC-ARRCO (après la fusion, employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -431,8 +433,8 @@ class agirc_arrco_employeur(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "agirc_arrco",
+            cotisation_type = 'employeur',
+            bareme_name = 'agirc_arrco',
             variable_name = 'agirc_arrco_employeur'
             )
         return cotisation
@@ -450,8 +452,8 @@ class ags(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "ags",
+            cotisation_type = 'employeur',
+            bareme_name = 'ags',
             variable_name = 'ags',
             )
         return cotisation
@@ -470,8 +472,8 @@ class apec_salarie(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "salarie",
-            bareme_name = "apec",
+            cotisation_type = 'salarie',
+            bareme_name = 'apec',
             variable_name = 'apec_salarie',
             )
         return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)  # TODO: check public notamment contractuel
@@ -489,8 +491,8 @@ class apec_employeur(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "apec",
+            cotisation_type = 'employeur',
+            bareme_name = 'apec',
             variable_name = 'apec_employeur',
             )
         return cotisation  # TODO: check public notamment contractuel
@@ -499,10 +501,10 @@ class apec_employeur(Variable):
 class arrco_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation ARRCO tranche 1 (salarié)"
+    label = 'Cotisation ARRCO tranche 1 (salarié)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: check gestion mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -510,8 +512,8 @@ class arrco_salarie(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "salarie",
-            bareme_name = "arrco",
+            cotisation_type = 'salarie',
+            bareme_name = 'arrco',
             variable_name = 'arrco_salarie',
             )
         arrco_tranche_a_taux_salarie = individu('arrco_tranche_a_taux_salarie', period)
@@ -540,10 +542,10 @@ class arrco_salarie(Variable):
 class arrco_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation ARRCO tranche 1 (employeur)"
+    label = 'Cotisation ARRCO tranche 1 (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: check gestion mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -551,8 +553,8 @@ class arrco_employeur(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "arrco",
+            cotisation_type = 'employeur',
+            bareme_name = 'arrco',
             variable_name = 'arrco_employeur',
             )
         arrco_tranche_a_taux_employeur = individu('arrco_tranche_a_taux_employeur', period)
@@ -578,7 +580,7 @@ class arrco_employeur(Variable):
 class chomage_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation chômage (salarié)"
+    label = 'Cotisation chômage (salarié)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     end = '2018-09-30'
@@ -588,17 +590,17 @@ class chomage_salarie(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "salarie",
-            bareme_name = "chomage",
-            variable_name = "chomage_salarie",
+            cotisation_type = 'salarie',
+            bareme_name = 'chomage',
+            variable_name = 'chomage_salarie',
             )
         asf = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = "salarie",
-            bareme_name = "asf",
-            variable_name = "chomage_salarie",
+            cotisation_type = 'salarie',
+            bareme_name = 'asf',
+            variable_name = 'chomage_salarie',
             )
 
         return cotisation_chomage + asf
@@ -607,7 +609,7 @@ class chomage_salarie(Variable):
 class chomage_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation chômage (employeur)"
+    label = 'Cotisation chômage (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -616,17 +618,17 @@ class chomage_employeur(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "chomage",
-            variable_name = "chomage_employeur",
+            cotisation_type = 'employeur',
+            bareme_name = 'chomage',
+            variable_name = 'chomage_employeur',
             )
         asf = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "asf",
-            variable_name = "chomage_salarie",
+            cotisation_type = 'employeur',
+            bareme_name = 'asf',
+            variable_name = 'chomage_salarie',
             )
 
         return cotisation_chomage + asf
@@ -675,7 +677,7 @@ class contribution_equilibre_general_employeur(Variable):
 class contribution_solidarite_autonomie(Variable):
     value_type = float
     entity = Individu
-    label = "Contribution solidarité autonomie (employeur)"
+    label = 'Contribution solidarité autonomie (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -684,17 +686,17 @@ class contribution_solidarite_autonomie(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "csa",
+            cotisation_type = 'employeur',
+            bareme_name = 'csa',
             variable_name = 'contribution_solidarite_autonomie',
             )
         return cotisation
 
 
-class cotisation_equilibre_technique_salarie(Variable):
+class contribution_equilibre_technique_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation d'équilibre technique (salarie)"
+    label = "Contribution d'équilibre technique (salarie)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -709,15 +711,15 @@ class cotisation_equilibre_technique_salarie(Variable):
             parameters,
             cotisation_type = 'salarie',
             bareme_name = 'cet2019',
-            variable_name = 'cotisation_equilibre_technique_salarie',
+            variable_name = 'contribution_equilibre_technique_salarie',
             )
         return cotisation * (assiette_cotisations_sociales > plafond_securite_sociale)
 
 
-class cotisation_equilibre_technique_employeur(Variable):
+class contribution_equilibre_technique_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation d'équilibre technique (employeur)"
+    label = "Contribution d'équilibre technique (employeur)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -732,7 +734,7 @@ class cotisation_equilibre_technique_employeur(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'cet2019',
-            variable_name = 'cotisation_equilibre_technique_employeur',
+            variable_name = 'contribution_equilibre_technique_employeur',
             )
         return cotisation * (assiette_cotisations_sociales > plafond_securite_sociale)
 
@@ -740,10 +742,10 @@ class cotisation_equilibre_technique_employeur(Variable):
 class cotisation_exceptionnelle_temporaire_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation_exceptionnelle_temporaire (salarie)"
+    label = 'Cotisation_exceptionnelle_temporaire (salarie)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -760,10 +762,10 @@ class cotisation_exceptionnelle_temporaire_salarie(Variable):
 class cotisation_exceptionnelle_temporaire_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation exceptionnelle temporaire (employeur)"
+    label = 'Cotisation exceptionnelle temporaire (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -780,7 +782,7 @@ class cotisation_exceptionnelle_temporaire_employeur(Variable):
 class famille(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation famille (employeur)"
+    label = 'Cotisation famille (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -799,17 +801,32 @@ class famille(Variable):
         return cotisation
 
 
+class famille_net_allegement(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation famille (employeur) avec prise en compte du taux réduit en dessous de 3,5 SMIC'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        cotisation = individu('famille', period)
+        allegement = individu('allegement_cotisation_allocations_familiales', period)
+
+        return cotisation + allegement
+
+
 class mmid_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation maladie (salarié)"
+    label = 'Cotisation maladie (salarié)'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036390317/ et https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036679615'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2018(individu, period, parameters):
-        """
+        '''
         La cotisation maladie (hors Alsace-Moselle) disparaît à partir du 1er janvier 2018
-        """
+        '''
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
         cotisation_regime_alsace_moselle = apply_bareme(
             individu,
@@ -853,8 +870,8 @@ class mmid_salarie(Variable):
 class mmid_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation maladie (employeur)"
-    reference = "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html"
+    label = 'Cotisation maladie (employeur)'
+    reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -870,43 +887,25 @@ class mmid_employeur(Variable):
         return cotisation
 
 
-class mmida_employeur(Variable):
+class mmid_employeur_net_allegement(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation maladie (employeur)"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    # Note: this formula is used only to check fiche_de_paie from memento
-
-    def formula(individu, period, parameters):
-        cotisation = apply_bareme(
-            individu,
-            period,
-            parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'maladie',
-            variable_name = 'mmida_employeur',
-            )
-        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
-        return cotisation + contribution_solidarite_autonomie
-
-
-class mhsup(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Individu
-    label = "Heures supplémentaires comptées négativement"
+    label = 'Cotisation maladie (employeur) avec prise en compte du taux réduit en dessous de 2,5 SMIC'
+    reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        return - individu('hsup', period)
+        cotisation = individu('mmid_employeur', period)
+        allegement = individu('allegement_cotisation_maladie', period)
+
+        return cotisation + allegement
 
 
 class plafond_securite_sociale(Variable):
     value_type = float
     entity = Individu
-    label = "Plafond de la securite sociale"
+    label = 'Plafond de la sécurite sociale'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     # TODO gérer les plafonds mensuel, trimestriel, annuel
@@ -932,9 +931,12 @@ class plafond_securite_sociale(Variable):
 class prevoyance_obligatoire_cadre(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation de prévoyance pour les cadres et assimilés"
+    label = 'Contribution de prévoyance obligatoire pour les cadres et assimilés'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    '''
+    La prévoyance obligatoire des cadres n'est pas soumise à CSG/CRDS ni à cotisations sociales.
+    '''
     # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -943,12 +945,37 @@ class prevoyance_obligatoire_cadre(Variable):
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         prevoyance_obligatoire_cadre_taux_employeur = individu(
             'prevoyance_obligatoire_cadre_taux_employeur', period)
+        minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.prevoyance.prevoyance_obligatoire
+        taux = max_(minimum, prevoyance_obligatoire_cadre_taux_employeur)
 
         cotisation = - (
             (categorie_salarie == TypesCategorieSalarie.prive_cadre)
             * min_(assiette_cotisations_sociales, plafond_securite_sociale)
-            * prevoyance_obligatoire_cadre_taux_employeur
+            * taux
             )
+        return cotisation
+
+
+class prevoyance_complementaire_employeur(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Contributions de prévoyance complémentaire'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    '''
+    On définit la prévoyance complémentaire par référence à la prévoyance obligatoire : c'est la partie non obligatoire des contributions de prévoyance totales versées par l'employeur.
+    La prévoyance complémentaire est assujettie à CSG et au forfait social, ce qui n'est pas le cas de la prévoyance obligatoire.
+    '''
+
+    def formula(individu, period):
+        prevoyance_totale = individu('prevoyance_employeur', period)
+        prevoyance_obligatoire = individu('prevoyance_obligatoire_cadre', period)
+        cotisation = - max_(
+            0,
+            prevoyance_totale
+            - (-prevoyance_obligatoire)
+            )
+
         return cotisation
 
 
@@ -956,15 +983,24 @@ class complementaire_sante_employeur(Variable):
     value_type = float
     entity = Individu
     label = "Couverture complémentaire santé collective d'entreprise - part employeur"
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038610242'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
-        complementaire_sante_taux_employeur = individu(
-            'complementaire_sante_taux_employeur', period)
+    def formula_2016_01_01(individu, period, parameters):
+        complementaire_sante_part_employeur = individu('complementaire_sante_part_employeur', period)
+        minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.complementaire_sante.part_employeur
+        part_employeur = max_(complementaire_sante_part_employeur, minimum)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - part_employeur * complementaire_sante_montant
 
-        cotisation = - complementaire_sante_taux_employeur * complementaire_sante_montant
+        return cotisation
+
+    def formula(individu, period):
+        part_employeur = individu('complementaire_sante_part_employeur', period)
+        complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - part_employeur * complementaire_sante_montant
+
         return cotisation
 
 
@@ -972,25 +1008,34 @@ class complementaire_sante_salarie(Variable):
     value_type = float
     entity = Individu
     label = "Couverture complémentaire santé collective d'entreprise - part salarié"
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038610242'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
-        complementaire_sante_taux_employeur = individu(
-            'complementaire_sante_taux_employeur', period)
+    def formula_2016_01_01(individu, period, parameters):
+        complementaire_sante_part_employeur = individu('complementaire_sante_part_employeur', period)
+        minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.complementaire_sante.part_employeur
+        part_employeur = max_(complementaire_sante_part_employeur, minimum)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - (1 - part_employeur) * complementaire_sante_montant
 
-        cotisation = - (1 - complementaire_sante_taux_employeur) * complementaire_sante_montant
+        return cotisation
+
+    def formula(individu, period):
+        part_employeur = individu('complementaire_sante_part_employeur', period)
+        complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - (1 - part_employeur) * complementaire_sante_montant
+
         return cotisation
 
 
 class TypesTailleEntreprise(Enum):
     __order__ = 'non_pertinent moins_de_10 de_10_a_19 de_20_a_249 plus_de_250'  # Needed to preserve the enum order in Python 2
-    non_pertinent = "Non pertinent"
-    moins_de_10 = "Moins de 10 salariés"
-    de_10_a_19 = "De 10 à 19 salariés"
-    de_20_a_249 = "De 20 à 249 salariés"
-    plus_de_250 = "Plus de 250 salariés"
+    non_pertinent = 'Non pertinent'
+    moins_de_10 = 'Moins de 10 salariés'
+    de_10_a_19 = 'De 10 à 19 salariés'
+    de_20_a_249 = 'De 20 à 249 salariés'
+    plus_de_250 = 'Plus de 250 salariés'
 
 
 class taille_entreprise(Variable):
@@ -999,7 +1044,7 @@ class taille_entreprise(Variable):
     default_value = TypesTailleEntreprise.non_pertinent
     entity = Individu
     label = "Catégorie de taille d'entreprise"
-    reference = "http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
+    reference = 'http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -1055,7 +1100,11 @@ class taux_accident_travail(Variable):
 class vieillesse_deplafonnee_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation vieillesse déplafonnée (salarié)"
+    label = 'Cotisation vieillesse déplafonnée (salarié)'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1074,7 +1123,11 @@ class vieillesse_deplafonnee_salarie(Variable):
 class vieillesse_plafonnee_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation vieillesse plafonnée (salarié)"
+    label = 'Cotisation vieillesse plafonnée (salarié)'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1093,9 +1146,13 @@ class vieillesse_plafonnee_salarie(Variable):
 class vieillesse_deplafonnee_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation vieillesse déplafonnée"
+    label = 'Cotisation vieillesse déplafonnée'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -1112,9 +1169,13 @@ class vieillesse_deplafonnee_employeur(Variable):
 class vieillesse_plafonnee_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation vieillesse plafonnée (employeur)"
+    label = 'Cotisation vieillesse plafonnée (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -1134,7 +1195,7 @@ class peec_employeur(Variable):
     label = "Participation de l'employeur à l'effort de construction (PEEC) communément appelé le 1% logement (employeur)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583"
+    reference = 'https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583'
 
 
 class secteur_activite_employeur(Variable):
@@ -1144,5 +1205,5 @@ class secteur_activite_employeur(Variable):
     entity = Individu
     label = "Secteur d'activité (employeur)"
     definition_period = MONTH
-    reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/N24269"
+    reference = 'https://www.service-public.fr/professionnels-entreprises/vosdroits/N24269'
     set_input = set_input_dispatch_by_period

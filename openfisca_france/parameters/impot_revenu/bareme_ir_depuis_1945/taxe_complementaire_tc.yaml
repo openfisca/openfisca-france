@@ -1,0 +1,55 @@
+description: Taxe complémentaire (TC) d'imposition au titre du barème de l'IR
+values:
+  1945-01-01:
+    value: null
+  1959-01-01:
+    value: 0.09
+  1960-01-01:
+    value: 0.08
+  1961-01-01:
+    value: 0.06
+  1970-01-01:
+    value: null
+metadata:
+  short_label: Taxe complémentaire
+  ipp_csv_id: taxe_comp
+  unit: /1
+  reference:
+    1959-01-01:
+      title: Loi 59-1454 du 26/12/1959 (LF pour 1960)
+    1960-01-01:
+      title: Loi 60-1384 du 23/12/1960 (LF pour 1961)
+    1961-01-01:
+      title: Loi 61-1396 du 21/12/1961 (LF pour 1962)
+    1970-01-01:
+      title: Loi 70-1199 du 21/12/1970 (LF pour 1971)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000693424
+  official_journal_date:
+    1959-01-01: "1959-12-31"
+    1960-01-01: "1960-12-24"
+    1961-01-01: "1961-12-22"
+    1970-01-01: "1970-12-22"
+  notes:
+    1959-01-01:
+    - title: Les montants sont en anciens Francs avant 1960. Création d'un « taxe complémentaire » (TC).
+    1968-01-01:
+    - title: Taux réduit à 3 % de la TC pour les « artisans et assimilés » et BNC « autres que les produits des charges et offices ».
+    1969-01-01:
+    - title: Suppression de la TC en 1970. Abattement général de 30 000 FRF sur les revenus 1969.
+documentation: |-
+  Référence générale :
+  T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001).
+  Voir notamment tableaux 4-5 p. 296-298.
+
+  Notes :
+  (1) L'imposition des revenus en France a été instaurée au 01/01/1915 sur les revenus 1914. La loi du 15/07/1914 crée l'impôt général sur le revenu (IGR). La loi du 26/12/1914 repousse son application au 01/01/1916 sur les revenus 1915.
+  (2) Entre 1914 et 1947, il a existé six impôts cédulaires qui ont été progressivement remplacés par les impôts actuels. Ils sont dits cédulaires car ils sont indépendants et s'appliquent à différents types de revenus (déclarés sur des feuillets indépendants dit «cédules»). Ils sont à taux proportionnels et s'ajoutent à l'impôt général sur les revenus.
+  (3) La loi du 29/03/1914 modifie des contributions existantes en créant les deux impôts cédulaires :
+    - l'impôt foncier des propriétés bâties et des propriétés non bâties (taux initial : 5 %)
+    - l'impôt sur le revenu des valeurs mobilières (taux initial : 6 %)
+  (4) La loi du 31/07/1917 crée quatre impôts cédulaires en remplacement des impôts directs existants :
+    - l'impôt sur les traitements et salaires (taux initial : 3,75 %)
+    - l'impôt sur les bénéfices de l'exploitation agricole (taux initial : 3,75 %).
+    - l'impôt sur les bénéfices industriels et commerciaux (taux initial : 4,5 % avec différentes contributions par tranches)
+    - l'impôt sur les bénéfices des professions non commerciales (taux initial : 3,75 %)
+  (5) À sa création l'IRPP (1948) se compose d'une « surtaxe progressive » (SP) et d'une taxe proportionnelle (TP). Elles sont supprimées en 1959.

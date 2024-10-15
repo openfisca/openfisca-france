@@ -1,0 +1,8 @@
+description: Taux plein imposable de la contribution sociale généralisée (CSG) imposable sur les allocations de préretraite
+values:
+  1998-01-01:
+    value: 0.024
+metadata:
+  short_label: Taux plein
+  last_value_still_valid_on: "2021-07-22"
+  unit: /1

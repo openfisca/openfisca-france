@@ -1,0 +1,35 @@
+description: Taux de la réduction d'impôt pour les souscriptions de parts de FIP investis en Outre-mer
+values:
+  2011-01-01:
+    value: 0.5
+  2012-01-01:
+    value: 0.42
+  2017-01-01:
+    value: 0.38
+  2020-08-10:
+    value: 0.3
+metadata:
+  short_label: Taux Outre-mer
+  last_value_still_valid_on: "2022-10-11"
+  unit: /1
+  reference:
+    2011-01-01:
+    - title: Loi 2011-900 du 29/07/2011 de finances rectificative pour 2011 (1) art. 42-43 (modifie art. 199 terdecies-0 A du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000024415853/2011-07-31/
+    - title: Art. 199 terdecies-0 A, VI ter A. du CGI
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006303146/2011-11-04/
+    2012-01-01:
+    - title: Décret n° 2012-547 du 23/04/2012 - art 1 (modifie art. 199 terdecies-0 A du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000025744568/2012-04-26/
+    - title: Art. 199 terdecies-0 A, VI ter A. du CGI
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006303146/2012-11-04/
+    2017-01-01:
+    - title: Loi 2017-256 du 28/02/2017 - art. 131 (modifie art. 199 terdecies-0 A du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000034105631/2017-03-02/
+    - title: Art. 199 terdecies-0 A, VI ter A. du CGI
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006303146/2017-11-04/
+    2020-01-01:
+    - title: Loi 2019-1479 du 28/12/2019 de finances pour 2020 (1) - art. 137 (modifie art. 199 terdecies-0 A du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000039793005/2019-12-30/
+    - title: Art. 199 terdecies-0 A, VI ter A. du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042912844/2020-12-31/

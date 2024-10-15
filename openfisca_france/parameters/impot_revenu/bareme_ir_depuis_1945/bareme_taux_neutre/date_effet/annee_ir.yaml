@@ -1,0 +1,26 @@
+description: Date d'effet d'imposition du barème d'impôt au taux neutre (2019 -)
+values:
+  2019-01-01:
+    value: 2019
+  2020-01-01:
+    value: 2020
+  2021-01-01:
+    value: 2021
+  2022-01-01:
+    value: 2022
+metadata:
+  short_label: Année d'imposition
+  reference:
+    2019-01-01:
+      title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
+    2020-01-01:
+      title: Loi 2019-1479, art. 2 du 28/12/2019 (LF pour 2020)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039683923&dateTexte=&categorieLien=id
+    2021-01-01:
+      title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+  official_journal_date:
+    2019-01-01: "2018-12-30"
+    2020-01-01: "2019-12-29"
+    2021-01-01: "2020-12-30"

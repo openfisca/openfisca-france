@@ -1,0 +1,11 @@
+description: Autres produits de placement à revenu fixe, Comptes sur livrets, Créances, Dépôts, Cautionnement et comptes courants
+metadata:
+  short_label: Autres produits de placement à revenu fixe
+  label_en: Levy in discharge on capital income
+  order:
+  - courus_entre_le_16_7_78_et_31_12_79
+  - courus_entre_le_1_1_80_et_31_12_82
+  - courus_entre_le_1_1_83_et_31_12_89
+  - courus_entre_le_1_1_90_et_31_12_94
+  - courus_entre_le_1_1_95_et_apres
+documentation: Comptes sur livrets, créances, dépôts, cautionnement et comptes courants etc.

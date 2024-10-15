@@ -96,11 +96,11 @@
       2012-01: 1500
     prelevements_sociaux_revenus_capital:
     # TODO si haut je pensais plutôt à 15.5 ?
-      2012: -12 * 1500 * 0.175
+      2012: -12 * 1500 * 0.135
     prelevement_forfaitaire_liberatoire:
       2012: -12 * 1500 * 0.24
     revenus_nets_du_capital:
-      2012: 14850
+      2012: 15570
     # start prestations_sociales
     aspa:
       2012-01: 0
@@ -114,7 +114,7 @@
     impots_directs:
       2012: -4320
     revenu_disponible:
-      2012: 10530
+      2012: 11250
     aides_logement:
       '2012': 0
 
@@ -145,11 +145,11 @@
       2012-01: 0
     prelevements_sociaux_revenus_capital:
     # TODO si haut je pensais plutôt à 15.5 ?
-      2012: -12 * 2500 * 0.175
+      2012: -12 * 2500 * 0.135
     prelevement_forfaitaire_liberatoire:
       2012: 0
     revenus_nets_du_capital:
-      2012: 2500 * 12 * (1 - 0.175)
+      2012: 2500 * 12 * (1 - 0.135)
     # start prestations_sociales
     aspa:
       2012-01: 0
@@ -163,7 +163,7 @@
     impots_directs:
       2012: -1019
     revenu_disponible:
-      2012: 2500 * 12 * (1 - 0.175) - 1019
+      2012: 2500 * 12 * (1 - 0.135) - 1019
     aides_logement:
       '2012': 0
 
@@ -176,12 +176,12 @@
     f4ba: 20000
     rsa: 0
   output:
-    prelevements_sociaux_revenus_capital: -7052 # -(0.7*30000 + 20000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
-    revenus_nets_du_capital: (20000 - 7052)
+    prelevements_sociaux_revenus_capital: -6355 # -(0.7*30000 + 20000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+    revenus_nets_du_capital: (20000 - 6355)
     pensions_nettes: 30000
-    irpp: -6593 # Montant calculé sur le simulateur de la DGFiP
+    impot_revenu_restant_a_payer: -6593 # Montant calculé sur le simulateur de la DGFiP
     impots_directs: -6593 # Montant calculé sur le simulateur de la DGFiP
-    revenu_disponible: (20000 - 7052) + 30000 - 6593
+    revenu_disponible: (20000 - 6355) + 30000 - 6593
 
 - name: acomptes_ir_2016
   description: Montant d'impôt et revenu disponible en cas d'acomptes pour l'IR en 2016 (prélèvement forfaitaire non libératoire et acomptes pour élus locaux). Attention, on n'a pas regardé les cotisations sociales et donc, on ne teste pas revenu_disponible ici...'
@@ -195,7 +195,7 @@
   output:
     acomptes_ir: 13000
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.082))
-    irpp: -7266 # Montant calculé sur le simulateur de la DGFiP
+    impot_revenu_restant_a_payer: -7266 # Montant calculé sur le simulateur de la DGFiP
     impots_directs: -7266-13000
 
 - name: acomptes_ir_2017
@@ -209,10 +209,10 @@
   output:
     prelevement_forfaitaire_non_liberatoire: 10000
     acomptes_ir: 10000
-    revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.099))
-    irpp: -2293 # Montant calculé sur le simulateur de la DGFiP
+    revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.082))
+    impot_revenu_restant_a_payer: -2293 # Montant calculé sur le simulateur de la DGFiP
     impots_directs: -(2293+10000)
-    revenu_disponible: 100000*(1-(0.045+0.02+0.003+0.005+0.099))-(2293+10000)
+    revenu_disponible: 100000*(1-(0.045+0.02+0.003+0.005+0.082))-(2293+10000)
 
 - name: plus_values_immobilières_2017
   description: Montant d'impôt et revenu disponible pour les plus-values immobilières (3VZ)
@@ -221,10 +221,10 @@
   input:
     f3vz: 100000
   output:
-    prelevements_sociaux_revenus_capital: -100000*(0.045+0.02+0.003+0.005+0.099)
-    revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.099))
+    prelevements_sociaux_revenus_capital: -100000*(0.045+0.02+0.003+0.005+0.082)
+    revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.082))
     ir_pv_immo: -0.19*100000
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
     impots_directs: -0.19*100000
 
 - name: pfu_av_2018
@@ -244,11 +244,11 @@
     f2ww: 750000
     rsa: 0
   output:
-    prelevements_sociaux_revenus_capital: -742500 # -4500000*(0.045+0.02+0.003+0.005+0.092)
-    revenus_nets_du_capital: 4500000 - 742500
+    prelevements_sociaux_revenus_capital: -774000 # -4500000*(0.045+0.02+0.003+0.005+0.099)
+    revenus_nets_du_capital: 4500000 - 774000
     prelevement_forfaitaire_unique_ir_sur_assurance_vie: -209305.0 # ((150000 - 4600)  * 0.075 + 800000 * 0.128 + 750000 * 0.128)
-    impots_directs: -209305.0
-    revenu_disponible: 4500000 - 742500 - 209305.0
+    impots_directs: -376805  # Simulation dgfip
+    revenu_disponible: 4500000 - 774000 - 376805
 
 - name: pfu_hors_av_epargne_non_solidaire_etats_non_cooperatifs_2018
   description: Test du prélèvement forfaitaire unique en 2018 hors assurance-vie, produits d'épargne solidaire et produits des états non-coopératifs'
@@ -256,19 +256,18 @@
   absolute_error_margin: 1
   input:
     f2dc: 20000
-    f3sa: 30000
+    f3sb: 30000 # Correspond à f3sa apres abattement. Pas besoin de spécifier f3sa car jamais utilisée dans OFF (vu que ces revenus sont juste utilisés pour l'IR, pour leur montant après abattement, mais n'entrent pas dans les revenus courants : voir explications dans docstring de plus_values_base_large)
     f3vg: 40000
     f3vd: 50000
-    interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018: 60000
-    interets_compte_epargne_logement_ouvert_a_partir_de_2018: 70000
+    f2tr: 130000
     rsa: 0
   output:
-    prelevements_sociaux_revenus_capital: -39600
-    revenus_nets_du_capital: 270000 - 39600
-    prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs: -28160 #-(22000*0.128) 3VD est un gain taxé forfaitairement au taux de 18% et non au PFU
+    prelevements_sociaux_revenus_capital: -41280
+    revenus_nets_du_capital: (270000 - 30000) - 41280 # car les revenus associés à 3SA et 3SB ne sont pas dans les revenus courants : voir docstring de plus_values_base_large
+    prelevement_forfaitaire_unique_ir_hors_assurance_vie: -28160 #-(220000*0.128) 3VD est un gain taxé forfaitairement au taux de 18% et non au PFU
     taxation_plus_values_hors_bareme: 9000 #50000 * 0.18
     impots_directs: -28160 - 9000
-    revenu_disponible: 270000 - 39600 - 28160 - 9000
+    revenu_disponible: (270000 - 30000) - 41280 - 28160 - 9000 # car les revenus associés à 3SA et 3SB ne sont pas dans les revenus courants : voir docstring de plus_values_base_large
 
 - name: plus_values_immobilières_2018
   description: Montant d'impôt et revenu disponible pour les plus-values immobilières (3VZ)
@@ -277,10 +276,10 @@
   input:
     f3vz: 100000
   output:
-    prelevements_sociaux_revenus_capital: -100000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.092)
-    revenus_nets_du_capital: 100000 * (1 - (0.045 + 0.02 + 0.003 + 0.005 + 0.092))
+    prelevements_sociaux_revenus_capital: -100000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.099)
+    revenus_nets_du_capital: 100000 * (1 - (0.045 + 0.02 + 0.003 + 0.005 + 0.099))
     ir_pv_immo: -0.19 * 100000
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
     impots_directs: -0.19 *  100000
     # revenu_disponible: 100000*(1-(0.19+0.045+0.02+0.003+0.005+0.099))
 

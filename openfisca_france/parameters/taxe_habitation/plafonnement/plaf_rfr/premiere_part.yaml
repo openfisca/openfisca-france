@@ -1,0 +1,14 @@
+description: Plafond de revenu fiscal de référence pour le plafonnement de la taxe d'habitation - 1ère part
+values:
+  2017-01-01:
+    value: 25180
+  2018-01-01:
+    value: 25432
+  2019-01-01:
+    value: 25839
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Majoration 1ère part
+  unit: currency
+documentation: Voir II de l'art. 1417 du CGI

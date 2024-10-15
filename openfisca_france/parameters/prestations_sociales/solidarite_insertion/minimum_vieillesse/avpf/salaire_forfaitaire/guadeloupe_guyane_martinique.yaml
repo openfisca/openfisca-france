@@ -1,0 +1,126 @@
+description: Salaire forfaitaire de l'Assurance vieillesse des parents au foyer (AVPF) pour la Guadeloupe, la Guyane et la Martinique
+values:
+  1978-01-01:
+    value: 1354.2
+  1979-01-01:
+    value: 1534.63
+  1980-01-01:
+    value: 1719.18
+  1981-01-01:
+    value: 1980.88
+  1982-01-01:
+    value: 2367.42
+  1983-01-01:
+    value: 2737.42
+  1984-01-01:
+    value: 3082.22
+  1985-01-01:
+    value: 3356.35
+  1986-01-01:
+    value: 3665.86
+  1987-01-01:
+    value: 3790.13
+  1988-01-01:
+    value: 3918.99
+  1989-01-01:
+    value: 4048.8
+  1990-01-01:
+    value: 4210.79
+  1991-01-01:
+    value: 4404.34
+  1992-01-01:
+    value: 4691.68
+  1993-01-01:
+    value: 4995.64
+  1994-01-01:
+    value: 5260.97
+  1995-01-01:
+    value: 5370.82
+  1996-01-01:
+    value: 5854.16
+  1997-01-01:
+    value: 6406.79
+  1998-01-01:
+    value: 6663.67
+  1999-01-01:
+    value: 6797.18
+  2000-01-01:
+    value: 6881.68
+  2001-01-01:
+    value: 7101.38
+  2002-01-01:
+    value: 1127.23
+  2003-01-01:
+    value: 1154.27
+  2004-01-01:
+    value: 1215.11
+  2005-01-01:
+    value: 1286.09
+  2006-01-01:
+    value: 1357.07
+  2007-01-01:
+    value: 1397.63
+  2008-01-01:
+    value: 1426.36
+  2009-01-01:
+    value: 1471.99
+  2010-01-01:
+    value: 1490.58
+  2011-01-01:
+    value: 1497.34
+  2012-01-01:
+    value: 1521
+  2013-01-01:
+    value: 1588.6
+  2014-01-01:
+    value: 1594
+  2015-01-01:
+    value: 1610.57
+  2016-01-01:
+    value: 1624.09
+  2017-01-01:
+    value: 1634.23
+  2018-01-01:
+    value: 1649.44
+  2019-01-01:
+    value: 1669.72
+  2020-01-01:
+    value: 1695.07
+  2021-01-01:
+    value: 1715.35
+metadata:
+  short_label: Guadeloupe Guyane Martinique
+  last_value_still_valid_on: "2021-01-01"
+  label_en: Elderly insurance for stay-at-home parents (AVPF )
+  ipp_csv_id: avpf_ggm
+  unit: currency
+  reference:
+    2014-01-01:
+      title: Circulaire Cnav 2014/27 du 03/04/2014
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?ID=63805
+    2015-01-01:
+      title: Circulaire CNAV 2015/4 du 26/01/2015
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_04_26012015.pdf
+    2016-01-01:
+      title: Circulaire CNAV 2015/64 du 18/12/2015
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_64_18122015.pdf
+    2017-01-01:
+      title: Circulaire CNAV 2016/55 du 30/12/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_55_30122016.pdf
+    2018-01-01:
+      title: Circulaire CNAV 2017/32 du 27/12/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_44_27122017.pdf
+    2019-01-01:
+      title: Circulaire CNAV 2018/32 du 27/12/2018
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2018_32_27122018.pdf
+    2020-01-01:
+      title: Circulaire CNAV 2019/34 du 30/12/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_34_30122019.pdf
+    2021-01-01:
+      title: Circulaire CNAV 2020/40 du 22/12/2020
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2020_40_22122020.pdf
+  notes:
+    2001-01-01:
+    - title: Convergence des trois montants
+    2016-01-01:
+    - title: "Le salaire forfaitaire est calculé sur la base du Smic: Smic horaire en vigueur au 1er juillet de l’année précédente * 169 (durée hebdomadaire légale du travail (39h) * 52 / 12); cf. article Article R381-3 du CSS"

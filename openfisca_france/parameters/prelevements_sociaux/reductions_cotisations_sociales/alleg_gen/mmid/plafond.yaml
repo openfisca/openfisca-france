@@ -1,0 +1,29 @@
+description: Plafond de rémunération (en nombre de Smic annuels) des salariés concernés par l'allègement des cotisations du régime d'assurance maladie (à partir de 2019)
+values:
+  2019-01-01:
+    value: 2.5
+  2024-01-01:
+    value: null
+metadata:
+  short_label: Plafond de rémunération des salariés
+  last_value_still_valid_on: "2024-09-13"
+  label_en: SSCs for sickness, maternity, disability and death benefits
+  unit: smic_annuel
+  reference:
+    2019-01-01:
+    - title: Article L241-2-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559
+    - title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 9
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358458&cidTexte=JORFTEXT000036339090
+    2024-01-01:
+    - title: Loi 2023-1250 de financement de la sécurité sociale pour 2024, art. 20
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048668722
+  official_journal_date:
+    2019-01-01: "2017-12-31"
+    2024-01-01: "2023-12-27"
+  notes:
+    2019-01-01:
+    - title: Plafond de rémunération en nombre de Smic en-dessous de laquelle l'allègement pour salaire est appliqué et constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
+documentation: |-
+  A partir de 2019, un allègement sur le taux normal de cotisation MMID est appliqué
+  contrairement à précédemment où des taux d'imposition par tranche étaient en vigueur.

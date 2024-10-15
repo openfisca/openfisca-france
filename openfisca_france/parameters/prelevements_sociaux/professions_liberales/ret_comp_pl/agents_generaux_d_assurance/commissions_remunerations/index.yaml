@@ -1,0 +1,8 @@
+description: Cotisation sur commissions et rémunérations brutes dans la limite d'un plafond des agents généraux d'assurance pour la retraite complémentaire
+metadata:
+  short_label: Sur commissions et rémunérations brutes dans la limite d'un plafond
+  label_en: Contribution for complementary pension scheme (professionals)
+  order:
+  - taux_contractuel
+  - taux_effectif
+  - taux_inv_deces

@@ -1,0 +1,177 @@
+description: Base du plafond de ressources (sans avoir compté les majorations par enfant) de l'allocation de rentrée scolaire (ARS)
+values:
+  1978-07-13:
+    value: 25500
+  1986-07-01:
+    value: 72104
+  1997-07-01:
+    value: 77182
+  1998-07-01:
+    value: 78031
+  1999-07-01:
+    value: 78499
+  2000-07-01:
+    value: 78891
+  2001-07-01:
+    value: 80153
+  2002-07-01:
+    value: 12415
+  2003-07-01:
+    value: 12626
+  2004-07-01:
+    value: 12866
+  2005-07-01:
+    value: 13085
+  2006-07-01:
+    value: 13307
+  2007-07-01:
+    value: 16916
+  2008-10-10:
+    value: 18947
+  2009-01-01:
+    value: 17170
+  2010-01-01:
+    value: 17651
+  2011-01-01:
+    value: 17669
+  2012-01-01:
+    value: 17846
+  2013-01-01:
+    value: 18221
+  2014-01-01:
+    value: 18567
+  2015-01-01:
+    value: 18697
+  2016-01-01:
+    value: 18772
+  2018-01-01:
+    value: 18810
+  2019-01-01:
+    value: 18998
+  2020-01-01:
+    value: 19302
+  2021-01-01:
+    value: 19476
+  2022-01-01:
+    value: 19515
+  2023-01-01:
+    value: 19827
+  2024-01-01:
+    value: 20878
+metadata:
+  short_label: Base du plafond de ressources
+  last_value_still_valid_on: "2024-01-26"
+  label_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
+  ipp_csv_id: plaf_ars_0enf
+  unit: currency
+  reference:
+    1978-07-13:
+      title: Décret 85-1353 du 17/12/1985, art. 1 (crée art. R543-2 du CSS)
+    1997-07-01:
+      title: Arrêté du 14/05/1997
+    1998-07-01:
+      title: Circulaire DSS/4 A 98-395 du 30/061998
+    1999-07-01:
+      title: Décret 99-534 du 25/06/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000212012&categorieLien=id
+    2000-07-01:
+      title: Arrêté du 30/06/2000
+    2001-07-01:
+      title: Arrêté du 28/06/2001
+    2002-07-01:
+      title: Arrêté du 29/04/2002
+    2003-07-01:
+      title: Arrêté du 26/06/2003
+    2004-07-01:
+      title: Arrêté du 16/07/2004
+    2005-07-01:
+      title: Arrêté du 01/08/2005
+    2006-07-01:
+      title: Arrêté du 17/07/2006
+    2007-07-01:
+      title: Arrêté du 10/07/2007
+    2008-10-10:
+    - title: Décret 2008-1025 du 07/10/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019591453
+    - title: Décret 2008-767 du 30/07/2008, art. 1 (modif art. D543-1)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000019281032&cidTexte=JORFTEXT000019278186
+    2009-01-01:
+      title: Arrêté du 31/12/2008
+    2010-01-01:
+      title: Arrêté du 29/12/2009
+    2011-01-01:
+      title: Arrêté du 30/12/2010
+    2012-01-01:
+      title: Arrêté du 28/12/2011, art. 3
+    2013-01-01:
+      title: Circulaire DSS/SD2B/2012/423
+    2014-01-01:
+      title: Circulaire DSS/SD2B/2013/417
+    2015-01-01:
+      title: Circulaire DSS/SD2B/2014/345
+    2016-01-01:
+      title: Circulaire DSS/SD2B/2015/371 du 18/12/2015
+    2017-01-01:
+      title: Circulaire DSS/SD2B/2016/396 du 21/12/2016
+    2018-01-01:
+    - title: Article 4
+      href: https://www.legifrance.gouv.fr/loda/article_lc/JORFARTI000036299573/#JORFARTI000036299573
+    - title: Circulaire DSS/SD2B/2017/352du 22/12/2017
+    - title: Arrêté du 27/12/2017
+    2019-01-01:
+      title: Arrêté du 21/12/2018, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037864986
+    2020-01-01:
+      title: Arrêté du 20/12/2019, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039663220&categorieLien=id
+    2021-01-01:
+      title: Arrêté du 14/12/2020, art. 5
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694995
+    2022-01-01:
+      title: Arrêté du 16/12/2021, art. 4
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044572377
+    2023-01-01:
+    - title: Article L543-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951022
+    - title: Arrêté du 21/12/2022, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
+    2024-01-01:
+    - title: Article L543-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951022
+    - title: Arrêté du 22/12/2023, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048680633
+  official_journal_date:
+    1978-07-13: "1985-12-21"
+    1997-07-01: "1997-05-27"
+    1999-07-01: "1999-06-29"
+    2000-07-01: "2000-07-01"
+    2001-07-01: "2001-06-29"
+    2002-07-01: "2002-05-02"
+    2003-07-01: "2003-06-28"
+    2004-07-01: "2004-07-18"
+    2005-07-01: "2005-08-03"
+    2006-07-01: "2006-07-19"
+    2007-07-01: "2007-07-12"
+    2008-10-10: 2008-10-09; 2008-08-02
+    2009-01-01: "2009-01-01"
+    2010-01-01: "2009-12-31"
+    2011-01-01: "2010-01-01"
+    2013-01-01: "2012-11-18"
+    2018-01-01: "2017-12-29"
+    2019-01-01: "2018-12-28"
+    2020-01-01: "2019-12-24"
+    2021-01-01: "2020-12-18"
+    2022-01-01: "2021-12-28"
+    2023-01-01: "2022-12-24"
+    2024-01-01: "2023-12-28"
+  notes:
+    1978-07-13:
+    - title: "Plafond: 2,130 fois le salaire minimum de croissance prévu à l'article L 141-4 du code du travail en vigueur au 01/07 de l'année de référence, majoré de 30% à partir du premier enfant, par enfant à charge"
+    2001-07-01:
+    - title: Le montant est en francs bien qu'il soit valable du 1/07/2001 au 31/12/2001 mais aussi du 01/01/2002 au 30/06/2002. En fait, une simple conversion sans revalorisation suffit pour avoir le montant en euros de début 2002.
+    2016-01-01:
+    - title: Pas de modification en 2017 cf. circulaire DSS/SD2B/2016/396 du 21/12/2016
+    2018-01-01:
+    - title: Revalorisation des plafonds de 0,2%
+    2022-01-01:
+    - title: Revalorisation des plafonds de 0,2%

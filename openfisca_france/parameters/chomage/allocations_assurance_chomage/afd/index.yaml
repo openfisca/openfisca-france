@@ -1,0 +1,13 @@
+description: Allocation de fin de droits
+metadata:
+  short_label: Allocation de fin de droits
+  label_en: UI for long term unemployment ("Allocation de fin de droits")
+  order:
+  - montant_base
+documentation: |-
+  Avant 1984, l'allocation de fin de droits est égale à la partie fixe de l'allocation de base
+  Certains chômeurs agês, c'est-à-dire: les personnes de plus de 55 ans, si 1 an de chômage, si 20 ans d'activité salariée dont 1 an continu ou 2 ans discontinus au cours des 5 dernières années de travail, ont droit à une majoration
+  Sources:
+  Légifrance
+  Barème social périodique
+  Mémento social, Francis Lefebvre

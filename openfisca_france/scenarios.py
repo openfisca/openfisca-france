@@ -40,9 +40,9 @@ def init_single_entity(scenario, axes = None, enfants = None, famille = None, fo
                 menage_nth.setdefault('enfants', []).append(id)
 
         count_so_far += len(group)
-        familles["f{}".format(nth)] = famille_nth
-        foyers_fiscaux["ff{}".format(nth)] = foyer_fiscal_nth
-        menages["m{}".format(nth)] = menage_nth
+        familles['f{}'.format(nth)] = famille_nth
+        foyers_fiscaux['ff{}'.format(nth)] = foyer_fiscal_nth
+        menages['m{}'.format(nth)] = menage_nth
 
     test_data = {
         'period': period,

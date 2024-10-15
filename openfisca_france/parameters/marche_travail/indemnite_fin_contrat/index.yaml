@@ -1,0 +1,5 @@
+description: Indemnité de fin de contrat (CDD)
+metadata:
+  short_label: Indemnité fin de contrat
+  order:
+  - taux

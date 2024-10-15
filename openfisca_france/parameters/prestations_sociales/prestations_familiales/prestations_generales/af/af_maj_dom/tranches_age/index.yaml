@@ -1,0 +1,7 @@
+description: Seuils pour la majoration du premier enfant pour les DOM - allocations familiales (AF)
+metadata:
+  short_label: Seuils d'âge pour la majoration premier enfant
+  label_en: Family allowances (AF)
+  order:
+  - age_debut_premiere_tranche
+  - age_debut_deuxieme_tranche

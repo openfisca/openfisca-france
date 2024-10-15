@@ -1,0 +1,7 @@
+description: Majoration du montant de l'Allocation de salaire unique (ASU)
+metadata:
+  short_label: Majoration
+  label_en: Increase
+  order:
+  - base
+  - montant

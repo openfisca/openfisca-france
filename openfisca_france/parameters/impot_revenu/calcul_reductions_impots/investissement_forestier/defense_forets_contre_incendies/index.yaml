@@ -1,0 +1,7 @@
+description: Réduction d'impôt pour la défense des forêts contre les incendies
+metadata:
+  short_label: Défense forêt contre incendies
+  order:
+  - taux
+  - plafond
+documentation: "Réduction pour la défense des fôrets contre les incendies : art. 200 decies A du CGI"

@@ -1,0 +1,65 @@
+description: Indice majoré plancher
+values:
+  1985-11-01:
+    value: 380
+  1988-02-07:
+    value: 382
+  1988-03-01:
+    value: 440
+  1988-10-01:
+    value: 442
+  1990-01-01:
+    value: 444
+  1990-02-01:
+    value: 443
+  1991-08-01:
+    value: 446
+  1999-03-20:
+    value: 447
+  2002-01-01:
+    value: 448
+  2006-11-01:
+    value: 449
+metadata:
+  short_label: Indice majoré plancher
+  label_en: Lower increased index
+  ipp_csv_id: im_plancher
+  reference:
+    1985-11-01:
+      title: Décret 85-1148 du 24/10/1985 - art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006454594&cidTexte=JORFTEXT000000872483
+    1988-02-07:
+      title: Décret 86-167 du 31/01/1986, art. 1 VI
+    1988-03-01:
+      title: Décret 88-229 du 09/03/1988, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006455867&cidTexte=JORFTEXT000000315254
+    1988-10-01:
+      title: Décret 88-1067 du 23/11/1988, art. 2
+    1990-01-01:
+      title: Décret 90-321 du 05/04/1990, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006458283&cidTexte=JORFTEXT000000166950
+    1990-02-01:
+      title: Décret 89-64 du 04/02/1989, art. 2
+    1991-08-01:
+      title: Décret 91-1191 du 18/11/1991, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006467308&cidTexte=JORFTEXT000000538342
+    1999-03-20:
+      title: Décret 99-491 du 10/06/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000394805
+    2002-01-01:
+      title: Décret 2001-895 du 26/09/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000773694&categorieLien=id
+    2006-11-01:
+      title: Décret 2006-1283 du 19/10/2006
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615828
+  official_journal_date:
+    1985-11-01: "1985-11-05"
+    1988-02-07: "1986-02-07"
+    1988-03-01: "1988-03-13"
+    1988-10-01: "1988-11-29"
+    1990-01-01: "1990-04-11"
+    1990-02-01: "1989-02-05"
+    1991-08-01: "1991-11-27"
+    1999-03-20: "1999-06-13"
+    2002-01-01: "2001-09-29"
+    2006-11-01: "2006-10-20"

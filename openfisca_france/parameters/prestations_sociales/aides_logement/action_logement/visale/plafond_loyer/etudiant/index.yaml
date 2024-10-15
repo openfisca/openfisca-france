@@ -1,0 +1,6 @@
+description: Montant maximum du loyer éligible à la caution Visale pour les personnes disposant d'un statut étudiant
+metadata:
+  short_label: Étudiants
+  order:
+  - hors_ile_de_france
+  - ile_de_france

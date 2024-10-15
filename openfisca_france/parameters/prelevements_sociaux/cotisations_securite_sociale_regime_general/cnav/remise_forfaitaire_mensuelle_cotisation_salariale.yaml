@@ -1,0 +1,30 @@
+description: Remise forfaitaire mensuelle (sur cotisation salariale) de la cotisations de la branche assurance vieillesse
+values:
+  1991-02-01:
+    value: 42
+  1995-09-01:
+    value: null
+metadata:
+  short_label: Remise forfaitaire
+  label_en: SSCs for old-age benefits
+  ipp_csv_id: cnav_remise_forf
+  unit: currency
+  reference:
+    1967-10-01:
+      title: Décret 67-803 du 20/09/1967
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000330826
+    1991-02-01:
+      title: Décret 91-91 du 23/01/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000718256&categorieLien=id
+    1995-09-01:
+      title: Loi 95-882 du 04/08/1995, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757266&cidTexte=JORFTEXT000000371685
+  official_journal_date:
+    1967-10-01: "1967-09-24"
+    1991-02-01: "1991-01-24"
+    1995-09-01: "1995-08-05"
+documentation: |-
+  En 1991, la baisse de la cotisation salariale de 7,60% à 6,55% est assortie d'une remise forfaitaire de 42F/mois pour temps complet, proratisée pour temps partiel (Loi 91-73 du 18/01/91, art. 28, JO du 20/01/91; Décret 91-91 du 23/01/91, JO 24/01/91).
+  Des circulaires datant du 16/01/1991 et du 25/01/1991 (JO des 17/01/1991 et 27/01/1991) précisent les modalités de son calcul.
+  En bénéficient les assurés redevables de cotisations vieillesse au régime général à titre obligatoire assises sur leur salaire réel (salariés du régime général), les fonctionnaires et certains non-salariés.
+  Elle disparaît en 1995.

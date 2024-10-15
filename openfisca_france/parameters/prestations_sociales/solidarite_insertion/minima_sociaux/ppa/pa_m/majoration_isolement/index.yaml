@@ -1,0 +1,7 @@
+description: Majoration pour personnes isolées du montant de la prime pour l'activité (PPA)
+metadata:
+  short_label: Personnes isolées
+  label_en: Activity premium (PPA)
+  order:
+  - femmes_enceintes
+  - par_enfant_charge

@@ -1,0 +1,13 @@
+description: Taux plein (durée de l'arrêt prédéterminée) du Complément optionnel de libre choix d'activité (CLCA) pour les bénéficiaires de l'allocation de base (enfant né ou adopté après avril 2014) de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 1.5793
+  2015-01-01:
+    value: 1.5793
+  2018-01-01:
+    value: null
+metadata:
+  short_label: Taux partiel <50%
+  label_en: Partial rate <50%
+  ipp_csv_id: colca_tx_plein
+  unit: /1

@@ -1,0 +1,1160 @@
+- name: PPA - Pas d'éligibilité si moins de 18 ans
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
+    salaire_net:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  output:
+    ppa: 0
+    ppa_eligibilite:
+      2015-12: false
+      2015-11: false
+      2015-10: false
+
+- name: PPA - Eligibilité si age > 18
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1997-01-01' # age > 18 sur le trimestre de référence
+    salaire_net:
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
+  output:
+    ppa: 177.21 + 67
+    ppa_eligibilite:
+      2015-12: true
+      2015-11: true
+      2015-10: true
+
+- name: PPA - Eligibilité sur certains mois seulement
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1997-11-15' # age > 18 seulemet sur 1 mois du TR
+    salaire_net:
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
+  output:
+    ppa: 80.77
+    ppa_revenu_activite:
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
+    ppa_eligibilite:
+      2015-12: true
+      2015-11: false
+      2015-10: false
+
+- name: Pas de PPA avant 2016
+  period: 2015-12
+  input:
+    age: 40
+    salaire_net:
+      2015-11: 500
+      2015-10: 500
+      2015-09: 500
+  output:
+    ppa: 0
+
+- name: PPA personne seule, pas de bonification
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  output:
+    rsa: 524.16 - 500 # Pas de pente sur le RSA socle
+    ppa: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
+
+- name: PPA personne en couple, pas de bonification
+  period: 2016-01
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+      parent2:
+        age: 40
+        salaire_net:
+          2016-01: 500
+          2015-12: 500
+          2015-11: 500
+          2015-10: 500
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    ppa: 786.24 - 0.38 * 500 - (786.24 - 500)
+    ppa_montant_forfaitaire_familial_non_majore:
+      2015-12: 524.16 * (1 + 0.5) # = 786.24
+    rsa_majore_eligibilite: false
+    rsa: 786.24 - 500
+
+- name: PPA en couple avec 1 enfant, pas de bonification
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+        salaire_net:
+          2016-01: 500
+          2015-12: 500
+          2015-11: 500
+          2015-10: 500
+      parent2:
+        age: 40
+      enfant1:
+        age: 10
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+      menage_2:
+        personne_de_reference:
+        - enfant1
+  output:
+    ppa: 943.49 - 0.38 * 500 - (943.49 - 500)
+    ppa_montant_forfaitaire_familial_non_majore:
+      2015-12: 524.16 * (1 + 0.5 + 0.3) # = 943.49
+    rsa_majore_eligibilite: false
+    rsa: 943.49 - 500
+
+- name: PPA en couple avec 3 enfant, pas de bonification
+  period: 2016-01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+      rsa_base_ressources_prestations_familiales: 0 # On ne prend pas en comptes les prestations CAF pour ce test
+    individus:
+      parent1:
+        age: 40
+      parent2:
+        age: 40
+        salaire_net:
+          2016-01: 500
+          2015-12: 500
+          2015-11: 500
+          2015-10: 500
+      enfant1:
+        age: 10
+      enfant2:
+        age: 11
+      enfant3:
+        age: 12
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+      foyer_fiscal_4:
+        declarants:
+        - enfant3
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+      menage_2:
+        personne_de_reference:
+        - enfant1
+      menage_3:
+        personne_de_reference:
+        - enfant2
+      menage_4:
+        personne_de_reference:
+        - enfant3
+  output:
+    ppa: 1310.40 - 0.38 * 500 - (1310.40 - 500)
+    ppa_montant_forfaitaire_familial_non_majore:
+      2015-12: 524.16 * (1 + 0.5 + 2 * 0.3 + 0.4) # =1310.40
+    rsa_majore_eligibilite: false
+    rsa: 1310.40 - 500
+
+- name: 'PPA majoré: personne seule avec 1 enfant de moins de 3 ans'
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+      rsa_base_ressources_prestations_familiales: 0 # On ne prend pas en comptes les prestations CAF pour ce test
+    individus:
+      parent1:
+        age: 40
+        salaire_net:
+          2016-01: 500
+          2015-12: 500
+          2015-11: 500
+          2015-10: 500
+      enfant1:
+        age: 2
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - enfant1
+  output:
+    ppa: 897.45 - 0.38 * 500 - (897.45 - 500)
+    ppa_montant_forfaitaire_familial_majore:
+      2015-12: 524.16 * (1.28412 + 0.42804) # =897.45
+    rsa_majore_eligibilite: true
+    rsa: 897.45 - 500
+
+- name: 'PPA: pas de moyennisation des ressources'
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    salaire_net:
+      2015-12: 10000
+      2015-11: 918
+      2015-10: 0
+  output:
+    ppa: 244.21 / 3
+    ppa_fictive:
+      2015-12: 0
+      2015-11: 244.21
+      2015-10: 0
+
+- name: PPA personne seule, revenus variables, pas de bonification
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 450
+      2015-10: 550
+  output:
+    ppa: (310 + 279 + 315) / 3
+    ppa_fictive:
+      2015-12: 524.16 - 0.38 * 500 - (524.16 - 500) # =310
+      2015-11: 524.16 - 0.38 * 450 - (524.16 - 450) # =279
+      2015-10: 524.16 - 0.38 * 550 - 0 # =315, pas de second terme car < 0
+    rsa: 524.16 - 500
+
+- name: PPA personne en couple avec deux sources de revenus, pas de bonification
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ppa_eligibilite: true
+      aides_logement:
+        2016: 0
+    individus:
+      parent1:
+        age: 40
+        salaire_net:
+          2016-01: 300
+          2015-12: 300
+          2015-11: 300
+          2015-10: 300
+      parent2:
+        age: 40
+        salaire_net:
+          2016-01: 300
+          2015-12: 300
+          2015-11: 300
+          2015-10: 300
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    ppa: 786.24 - 0.38 * 600 - (786.24 - 600)
+    ppa_montant_forfaitaire_familial_non_majore:
+      2015-12: 524.16 * 1.5 # =786.24
+    rsa_majore_eligibilite: false
+    rsa: 786.24 - 600
+
+- name: PPA personne seule avec revenus bonifiés (>95 Smic horaire brut)
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    age: 40
+    salaire_net:
+      2016-01: 918 # > 95 smic horaire brut
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
+  output:
+    ppa: 524.16 + 67 - 0.38 * 918 # =244.21
+    ppa_bonification:
+      2015-12: 67
+      2015-11: 67
+      2015-10: 67
+    rsa: 0
+
+- name: PPA personne seule avec revenus bonifiés (>59 Smic horaire brut)
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    age: 40
+    salaire_net:
+      2016-01: 800 # > 59 smic horaire brut, < 95
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  output:
+    ppa: 524.16 + 44 - 0.38 * 800
+    ppa_bonification:
+      2015-12: 44
+      2015-11: 44
+      2015-10: 44
+    rsa: 0
+
+- name: PPA personne en couple avec deux sources de revenus
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ppa_eligibilite: true
+      aides_logement:
+        2016: 0
+    individus:
+      parent1:
+        age: 40
+        salaire_net:
+          2016-01: 918
+          2015-12: 918
+          2015-11: 918
+          2015-10: 918
+      parent2:
+        age: 40
+        salaire_net:
+          2016-01: 800
+          2015-12: 800
+          2015-11: 800
+          2015-10: 800
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    ppa: 786.24 - 0.38 * (800 + 918) + 67 + 44
+    ppa_montant_forfaitaire_familial_non_majore:
+      2015-12: 524.16 * 1.5 # =786.24
+    rsa_majore_eligibilite: false
+    rsa: 0
+
+- name: PPA/RSA forfait logement 1 personne
+  period: 2017-10
+  absolute_error_margin: 0.005
+  input:
+    statut_occupation_logement: proprietaire
+    age: 40
+  output:
+    ppa_forfait_logement: 63.15
+    rsa_forfait_logement: 65.46
+
+- name: PPA forfait logement 2 personnes
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: proprietaire
+    individus:
+      parent1:
+        age: 40
+      parent2:
+        age: 40
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+  output:
+    ppa_forfait_logement:
+      2016-01: 125.80
+
+- name: PPA forfait logement 3 personnes
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      statut_occupation_logement: proprietaire
+    individus:
+      parent1:
+        age: 40
+      parent2:
+        age: 40
+      enfant1:
+        age: 15
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+  output:
+    ppa_forfait_logement:
+      2016-01: 155.68
+
+- name: PPA/RSA forfait logement 1 personne accédant à la propriété
+  period: 2017-10
+  absolute_error_margin: 0.005
+  input:
+    statut_occupation_logement: primo_accedant
+    age: 40
+  output:
+    ppa_forfait_logement: 63.15
+    rsa_forfait_logement: 65.46
+
+- name: Prise en compte du forfait logement
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    age: 40
+    statut_occupation_logement:
+      year:2015:2: proprietaire
+    salaire_net:
+      2016-01: 918 # > 95 smic horaire brut
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
+  output:
+    ppa: 244.21 - 62.90
+    ppa_forfait_logement: 62.90
+
+- name: PPA < seuil de versement
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    age: 40
+    statut_occupation_logement: locataire_vide
+    salaire_net:
+      2015-12: 1520
+      2015-11: 1520
+      2015-10: 1520
+    ppa_eligibilite: true
+  output:
+    ppa:
+      2016-01: 0 # 524.16 + 67 - 0.38 * 1520 = 14.40 < 15
+
+- name: "PPA: ressources prises en compte pour l'activité"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    salaire_net:
+      2015-12: 500
+    revenus_stage_formation_pro:
+      2015-12: 500
+    bourse_recherche:
+      2015-12: 500
+    indemnites_journalieres_maternite:
+      2015-12: 500
+    indemnites_chomage_partiel:
+      2015-12: 500
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 2500
+
+- name: 'PPA: ressources prises en compte hors activité (M-1)'
+  period: 2016-02
+  input:
+    # Les ressources prises en compte le sont sur le mois M-1
+    af_base:
+      2016-01: 100
+    ass:
+      2016-01: 100
+    aspa:
+      2016-01: 100
+    asi:
+      2016-01: 100
+    paje_base:
+      2016-01: 100
+    paje_clca:
+      2016-01: 100
+    paje_prepare:
+      2016-01: 100
+    paje_colca:
+      2016-01: 100
+    rsa_forfait_asf:
+      2016-01: 91.40 # 0.225 * 406.21
+    chomage_net:
+      2016-01: 100
+    retraite_nette:
+      2016-01: 100
+    retraite_combattant:
+      2016-01: 100
+    pensions_alimentaires_percues:
+      2016-01: 100
+    prestation_compensatoire:
+      2016-01: 100
+    pensions_invalidite:
+      2016-01: 100
+    revenus_locatifs:
+      2014-01: 120
+    prime_forfaitaire_mensuelle_reprise_activite:
+      2016-01: 100
+  output:
+    ppa:
+      2016-02: 0
+    ppa_ressources_hors_activite_individu:
+      2016-01: 810 # Car pour revenus locatifs, on prend le douzième des revenus totaux de l'année N-2
+    ppa_ressources_hors_activite:
+      2016-01: 1601.40 # Car pour revenus locatifs, on prend le douzième des revenus totaux de l'année N-2
+
+- name: 'PPA: étudiant éligible (ressources > plancher)'
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    salaire_net:
+      2015-12: 900
+      2015-11: 900
+      2015-10: 900
+    etudiant: true
+  output:
+    ppa_eligibilite_etudiants: true
+    ppa: 244.21
+
+- name: 'PPA: étudiant non éligible (ressources < plancher)'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 890
+      2015-11: 890
+      2015-10: 890
+    etudiant: true
+  output:
+    ppa_eligibilite_etudiants: false
+    ppa: 0
+
+- name: 'PPA: étudiant éligible (majoré)'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 890
+      2015-11: 890
+      2015-10: 890
+    etudiant: true
+    rsa_majore_eligibilite: true
+  output:
+    ppa_eligibilite_etudiants: true
+
+- name: 'PPA: étudiant non éligible car plancher non atteint pour un mois du trimestre de référence'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 800
+      2015-11: 900
+      2015-10: 900
+    etudiant: true
+  output:
+    ppa_eligibilite_etudiants: false
+    ppa: 0
+
+- name: "PPA: couple d'étudiants avec enfant:  pas de ppa"
+  period: 2016-01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+        etudiant: true
+        salaire_net:
+          2015-12: 800
+          2015-11: 800
+          2015-10: 800
+      parent2:
+        age: 40
+        etudiant: true
+        salaire_net:
+          2015-12: 800
+          2015-11: 800
+          2015-10: 800
+      enfant1: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+      menage_2:
+        personne_de_reference:
+        - enfant1
+  output:
+    ppa: 0
+
+- name: 'PPA: Exploitant agricole, prise en compte du dernier bénéfice agricole connu'
+  period: 2016-01
+  input:
+    rpns_benefice_exploitant_agricole:
+      2014: 36000
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 3000
+
+- name: 'PPA: Auto-entrepreneur - activité libérale (BNC)'
+  period: 2016-01
+  relative_error_margin: 0.001
+  input:
+    rpns_auto_entrepreneur_CA_bnc: # Abattement de 34%
+      2015-12: 3000
+      2015-11: 3000
+      2015-10: 3000
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 1980
+      2015-11: 1980
+      2015-10: 1980
+
+
+- name: 'PPA: Travailleur non salarié, prise en compte des derniers revenus déclarés. (Dans mes-aides, N-2)'
+  period: 2016-01
+  input:
+    rpns_autres_revenus:
+      2014: 36000
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 3000
+
+- name: "PPA: Travailleur non salarié en micro-entreprise, on applique l'abattement sur le CA"
+  period: 2016-01
+  input:
+    rpns_micro_entreprise_CA_bnc_imp: # Abattement de 34%
+      2014: 36000
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 3000 * (1 - 0.34)
+
+
+- name: "Prise en compte de l'AAH: revenus d'activité > 29 * smic horaire brut"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    age: 40
+    salaire_net:
+      2016-01: 300
+      2015-12: 300
+      2015-11: 300
+      2015-10: 300
+    aah:
+      2016-01: 800
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  output:
+    ppa: 524.16 + 67 - 0.38 * 1100 # =240
+    ppa_bonification:
+      2015-12: 67
+      2015-11: 67
+      2015-10: 67
+    rsa: 0
+    ppa_revenu_activite_individu:
+      2015-12: 1100
+    ppa_ressources_hors_activite_individu:
+      2015-12: 0
+
+- name: "Prise en compte de l'AAH: revenus d'activité < 29 * smic horaire brut"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    age: 40
+    salaire_net:
+      2016-01: 250
+      2015-12: 250
+      2015-11: 250
+      2015-10: 250
+    aah:
+      2016-01: 800
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  output:
+    ppa: 0 # 524.16 + - 0.38 * 250 - 800 < 0
+    ppa_bonification:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 0
+    rsa: 0
+    ppa_revenu_activite_individu:
+      2015-12: 250
+    ppa_ressources_hors_activite_individu:
+      2015-12: 800
+
+- name: 'PPA - Les IJSS sont considérés comme un revenu de remplacement après 3 mois '
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1980-01-01'
+    indemnites_journalieres_maladie:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+    date_arret_de_travail: 2015-07-01
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 0
+    ppa_base_ressources:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+
+
+- name: "PPA - Les IJSS sont considérés comme un revenu d'activité les 3 premiers mois "
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1980-01-01'
+    indemnites_journalieres_maladie:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+    indemnites_journalieres_accident_travail:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+    indemnites_journalieres_maladie_professionnelle:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+    date_arret_de_travail: 2015-08-01
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 3000
+
+- name: "PPA - Si aucune date n'est déclarée et qu'il y a des IJSS à M-3, on considère les IJSS comme un revenu de remplacement "
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1980-01-01'
+    indemnites_journalieres_maladie:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 1000
+      2015-08: 1000
+      2015-07: 1000
+    indemnites_journalieres_accident_travail:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 1000
+      2015-08: 1000
+      2015-07: 1000
+    indemnites_journalieres_maladie_professionnelle:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 1000
+      2015-08: 1000
+      2015-07: 1000
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 0
+
+- name: "PPA - Si aucune date n'est déclarée et qu'il n'y a pas d'IJSS à M-3, on considère les IJSS comme un revenu d'activité "
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1980-01-01'
+    indemnites_journalieres_maladie:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 0
+    indemnites_journalieres_accident_travail:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 0
+    indemnites_journalieres_maladie_professionnelle:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 0
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 3000
+      2015-11: 3000
+      2015-10: 3000
+    ppa_fictive:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 0
+
+- name: PPA - Les IJSS maternité/paternité/adoptions sont toujours considérés comme un revenu d'activité
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1980-01-01' # age < 18 sur le trimestre de référence
+    indemnites_journalieres_maternite:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+    indemnites_journalieres_paternite:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+    indemnites_journalieres_adoption:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+    date_arret_de_travail: 2015-01-01
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 3000
+      2015-11: 3000
+      2015-10: 3000
+    ppa_fictive:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 0
+
+- name: PPA - Les IJSS sont toujours considérés comme un revenu d'activité quand un autre revenu d'activité est perçu
+  period: 2016-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1980-01-01'
+    indemnites_journalieres_maladie:
+      2015-12: 2000
+      2015-11: 2000
+      2015-10: 2000
+    salaire_net:
+      2015-12: 300
+      2015-11: 300
+      2015-10: 300
+    date_arret_de_travail: 2015-01-01
+  output:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 2300
+      2015-11: 2300
+      2015-10: 2300
+
+- name: PPA avec revenu d'apprenti
+  period: 2020-04
+  relative_error_margin: 0.05
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+        2020-03: 250
+        2020-02: 250
+        2020-01: 250
+    foyer_fiscal:
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        remuneration_apprenti:
+          2020-03: 960
+          2020-02: 960
+          2020-01: 960
+        salaire_imposable:
+          2020-03: 0
+          2020-02: 0
+          2020-01: 0
+  output:
+    ppa:
+      2020-04: 207.52
+
+- name: PPA avec revenu d'apprenti - la condition d'accés est remplie sur les 3 ans qui précède la demande soit les 3214 heures d'activité
+  period: 2020-04
+  relative_error_margin: 0.05
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+        2020-01: 120
+        2020-02: 120
+        2020-03: 120
+    foyer_fiscal:
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 2000-01-01
+        remuneration_apprenti:
+          2020-01: 943
+          2020-02: 943
+          2020-03: 943
+        rsa_jeune_condition_heures_travail_remplie: true
+        salaire_imposable:
+          2020-01: 0
+          2020-02: 0
+          2020-03: 0
+  output:
+    ppa:
+      2020-04: 209.69
+
+- name: PPA - Revalorisation 2022
+  period: 2023-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1997-01-01' # age > 18 sur le trimestre de référence
+    salaire_net:
+      2022: 1583.1951*12  # Correspond à un salaire_de_base de 2 000 € / mois
+  output:
+    # bonification_max = round_(P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.taux_bonification_max * ppa_base, 2)
+    # bonification_max = 0.29101 * 586.23 = 170.59
+    # seuil_1 = smic 11.07 * 59 = 653.19
+    # seuil_2 = smic 11.07 * 120 = 1 328,4
+    # bonification = bonification_max * (salaire_net - seuil_1) / (seuil_2 - seuil_1)
+    # bonification = 170.59 * (1583.1951 - 653.19) / (1_328.4 - 653.19) = 234.96
+    # bonification = min_(bonification, bonification_max) => 170.59
+    # Montant de la prime d'activité = (montant forfaitaire éventuellement majoré + 61 % des revenus professionnels du foyer + bonifications individuelles) – les ressources prises en compte du foyer.
+    # => (586.23 + 1583.1951*0.61 + 170.59) - 1583.1951 = 139.3739
+    ppa: 139.38394
+    ppa_eligibilite:
+      2022-10: true
+      2022-11: true
+      2022-12: true
+
+
+- name: Cas PPA period > Oct 2024 et ressource sur M-2 M-4 ( à jumeler avec un test avant Octobre 2024 en M-1 M-3)
+  period: 2025-01
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ppa_eligibilite: true
+      departement_experimentation_rsa: true
+      aide_logement:
+        2025-01: 200
+        2024-12: 200
+        2024-11: 200
+        2024-10: 200
+    individus:
+      parent1:
+        age: 40
+        salaire_net:
+          2024-11: 300
+          2024-10: 300
+          2024-09: 300
+      parent2:
+        age: 40
+        salaire_net:
+          2024-11: 300
+          2024-10: 300
+          2024-09: 300
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+          - parent1
+      foyer_fiscal_1:
+        declarants:
+          - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+          - parent1
+      menage_1:
+        personne_de_reference:
+          - parent2
+  output:
+    ppa: 366
+
+- name: Cas PPA period > Oct 2024 et département hors expérimentation
+  period: 2025-01
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ppa_eligibilite: true
+      departement_experimentation_rsa: false
+      aide_logement:
+        2025-01: 200
+        2024-12: 200
+        2024-11: 200
+        2024-10: 200
+    individus:
+      parent1:
+        age: 40
+        salaire_net:
+          2024-11: 300
+          2024-10: 300
+          2024-09: 300
+      parent2:
+        age: 40
+        salaire_net:
+          2024-11: 300
+          2024-10: 300
+          2024-09: 300
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+          - parent1
+      foyer_fiscal_1:
+        declarants:
+          - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+          - parent1
+      menage_1:
+        personne_de_reference:
+          - parent2
+  output:
+    ppa: 244
+
+- name: Cas PPA period < Oct 2024 et ressources sur M-1 M-3 ( à jumeler avec un test avant Octobre 2024 en M-2 M-4)
+  period: 2024-09
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ppa_eligibilite: true
+      aide_logement:
+        2024-09: 200
+        2024-08: 200
+        2024-07: 200
+        2024-06: 200
+    individus:
+      parent1:
+        age: 40
+        salaire_net:
+          2024-08: 300
+          2024-07: 300
+          2024-06: 300
+      parent2:
+        age: 40
+        salaire_net:
+          2024-08: 300
+          2024-07: 300
+          2024-06: 300
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+          - parent1
+      foyer_fiscal_1:
+        declarants:
+          - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+          - parent1
+      menage_1:
+        personne_de_reference:
+          - parent2
+  output:
+    ppa: 366

@@ -1,0 +1,16 @@
+description: Définition du revenu professionnel plancher, en pourcentage du PSS, pour les couples biactifs, pour les prestations familiales
+values:
+  1979-01-01:
+    value: null
+  2011-11-01:
+    value: 0.136
+metadata:
+  short_label: En pourcentage du PSS
+  label_en: Definition of a biactive couple
+  ipp_csv_id: facteur_yamin_biact_pss
+  unit: PSS
+  reference:
+    1979-01-01:
+      title: Références manquantes
+    2011-11-01:
+      title: Circulaire DSS/2B/2011/447 du 01/12/2011

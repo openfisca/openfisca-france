@@ -1,0 +1,12 @@
+description: Chèque énergie, prestations sociales de solidarité insertion
+metadata:
+  documentation_start: true
+  short_label: Chèque énergie
+  label_en: Help for energy expenses voucher
+  order:
+  - baremes
+  - montant_social
+documentation: |-
+  Le chèque est codifié aux articles R.124-1 à R.124-17 du code de l’énergie.
+  Les dépenses payables avec le chèque énergie sont les factures d'énergie, les charges de chauffage pour certains logements et certains travaux de rénovation énergétique. Les professionnels concernés ont l’obligation d’accepter le chèque énergie, conformément à l’article L. 124-1 du code de l’énergie. Le chèque énergie est valable jusqu’au 31 mars de l’année suivant sa date d’émission. Le chèque énergie est cumulable avec MaPrimeRénov'.
+  Le revenu fiscal de référence est rapporté au nombre d'unités de consommation (UC) qui composent le foyer. La première personne compte pour une unité, la deuxième pour 0,5 et chaque personne supplémentaire pour 0,3 (les enfants en garde partagée n'apportent que 0,15 UC).

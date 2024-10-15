@@ -1,0 +1,8 @@
+description: Taxation des produits énergétiques
+metadata:
+  label_en: Taxes and excises on energy products
+  order:
+  - ticpe
+  - tgap_carburants
+  - major_regionale_ticpe_gazole
+  - major_regionale_ticpe_super

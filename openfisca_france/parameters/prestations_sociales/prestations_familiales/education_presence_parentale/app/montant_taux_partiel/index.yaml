@@ -1,0 +1,10 @@
+description: Montant à taux partiel (en % de la BMAF) de l'Allocation de présence parentale (APP)
+metadata:
+  documentation_start: true
+  short_label: Montant à taux partiel
+  label_en: "Parental presence allowance (AA): Amounts"
+  order:
+  - 80_duree_legale_couple
+  - 80_duree_legale_seul
+  - 50_duree_legale_couple
+  - 50_duree_legale_seul

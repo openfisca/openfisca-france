@@ -1,0 +1,7 @@
+description: Taux effectifs (Entreprises avant 1981) des cotisations de régimes complémentaire de retraite des cades (AGIRC)
+metadata:
+  short_label: Entreprises avant 1981
+  label_en: Pension contributions for executives (AGIRC)
+  order:
+  - salarie
+  - employeur

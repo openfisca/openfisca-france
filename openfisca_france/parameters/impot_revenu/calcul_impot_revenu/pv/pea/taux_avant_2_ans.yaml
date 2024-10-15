@@ -1,0 +1,18 @@
+description: Taux avant 2 ans (Clôture PEA avant 2 ans (3VM)
+values:
+  1977-01-01:
+    value: null
+  1991-01-01:
+    value: 0.225
+  2019-01-01:
+    value: 0.128
+metadata:
+  ipp_csv_id: tx_pea
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Loi n° 2018-1317 du 28/12/2018 (LF 2019) - art.44
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000037882395
+  notes:
+    2019-01-01:
+    - title: Pour les opérations survenues après le 1er Janvier 2019, les plus-values mobilières issues de clôture de PEA avant 5 ans de détention sont taxées au nouveau régime du prélèvement forfaitaire unique (PFU)

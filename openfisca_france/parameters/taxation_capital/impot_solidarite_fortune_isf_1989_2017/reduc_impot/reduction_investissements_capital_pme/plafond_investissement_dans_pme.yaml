@@ -1,0 +1,28 @@
+description: Plafond ds réduction pour investissements au capital de PME de l'impôt de solidarité sur la fortune
+values:
+  2008-01-01:
+    value: 50000
+  2011-01-01:
+    value: 45000
+  2018-01-01:
+    value: null
+metadata:
+  short_label: Plafond
+  label_en: Tax reductions for investment and donations
+  ipp_csv_id: plaf_taux_imp_isf
+  unit: currency
+  reference:
+    2008-01-01:
+      title: Loi 2007-1223 du 21/08/2007 - art. 16 (V)
+    2011-01-01:
+      title: Article 885-0 V bis Amodifié par Loi 2010-1657 du 29/12/2010 - art. 40 (V)
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 885-0 V bis et885-0 V bis A du CGI).
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    2008-01-01: "2007-08-22"
+    2011-01-01: "2010-12-30"
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.

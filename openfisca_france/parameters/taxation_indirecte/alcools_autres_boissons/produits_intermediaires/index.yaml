@@ -1,0 +1,8 @@
+description: Produits intermédiaires (vins de liqueurs, vins doux naturels, etc.)
+metadata:
+  documentation_start: true
+  label_en: Intermediary products (liquor wine, etc.)
+  order:
+  - vins_doux_naturels_vins_liqueurs_etc
+  - autres_produits_intermediaires
+documentation: Données renseignées dans l'article 402 bis du code général des impôts.

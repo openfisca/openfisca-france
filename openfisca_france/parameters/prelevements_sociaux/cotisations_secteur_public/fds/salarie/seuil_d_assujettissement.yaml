@@ -1,4 +1,4 @@
-unit: currency
+description: Seuil d'assujettissement à la contribution exceptionnelle de solidarité spécifique à la fonction publique
 values:
   1982-11-01:
     value: 4485.25
@@ -9,7 +9,7 @@ values:
   1983-04-04:
     value: 4751.66
   1983-07-06:
-    value: 4843.0
+    value: 4843
   1983-11-07:
     value: 4983.75
   1984-01-08:
@@ -27,17 +27,17 @@ values:
   1986-02-18:
     value: 5505.83
   1987-03-22:
-    value: 5539.0
+    value: 5539
   1987-05-23:
-    value: 5594.0
+    value: 5594
   1987-08-24:
     value: 5621.5
   1988-03-21:
     value: 5677.75
   1988-09-23:
-    value: 5734.0
+    value: 5734
   1989-09-01:
-    value: 5954.0
+    value: 5954
   1990-01-01:
     value: 5983.83
   1990-04-01:
@@ -51,7 +51,7 @@ values:
   1991-11-01:
     value: 6396.25
   1992-02-01:
-    value: 6478.0
+    value: 6478
   1992-10-01:
     value: 6566.33
   1993-02-01:
@@ -71,7 +71,7 @@ values:
   1997-10-01:
     value: 7083.33
   1998-01-01:
-    value: 7599.0
+    value: 7599
   1998-04-01:
     value: 7659.83
   1998-07-01:
@@ -81,13 +81,13 @@ values:
   1999-04-01:
     value: 7819.08
   1999-07-01:
-    value: 7937.0
+    value: 7937
   1999-12-01:
     value: 7964.83
   2000-12-01:
     value: 8004.66
   2001-05-01:
-    value: 8101.0
+    value: 8101
   2001-11-01:
     value: 8157.58
   2002-01-01:
@@ -107,7 +107,7 @@ values:
   2006-07-01:
     value: 1295.5
   2006-11-01:
-    value: 1300.0
+    value: 1300
   2007-02-01:
     value: 1310.4
   2008-03-01:
@@ -137,6 +137,220 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Seuil d'assujettissement
-  description: Seuil d'assujettissement contribution exceptionnelle de solidarité spécifique à la fonction publique (1982-2017)
-  last_review: 2021-08-24
+  short_label: Seuil d'assujettissement
+  last_value_still_valid_on: "2021-08-24"
+  label_en: Contributions to the Solidarity Fund (FDS)
+  ipp_csv_id: fds_seuil
+  unit: currency
+  reference:
+    1989-09-01:
+      title: Décret 89-598 du 30/08/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700022
+    1990-01-01:
+      title: Décret 90-321 du 05/04/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000166950
+    1990-04-01:
+      title: Décret 90-332 du 05/04/1990
+    1990-12-01:
+      title: Décret 90-1058 du 22/11/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000352399&categorieLien=id
+    1991-08-01:
+      title: Décret 91-1191 du 19/11/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000538342
+    1991-11-01:
+      title: Décret 91-1191 du 19/11/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000538342
+    1992-02-01:
+      title: Décret 92-107 du 30/01/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000710574
+    1992-10-01:
+      title: Décret 92-993 du 18/09/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000177462&categorieLien=id
+    1993-02-01:
+      title: Décret 93-93 du 25/01/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000725384&categorieLien=id
+    1994-01-01:
+      title: Décret 93-1317 du 20/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000881133
+    1994-08-01:
+      title: Décret 93-1317 du 20/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000881133
+    1994-12-01:
+      title: Décret 94-599 du 15/07/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000531157&categorieLien=id
+    1995-03-01:
+      title: Décret 95-167 du 17/02/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000735678&categorieLien=id
+    1995-11-01:
+      title: Décret 95-1099 du 9/10/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000189590
+    1997-03-01:
+      title: Décret 97-141 du 13/02/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000564762&categorieLien=id
+    1997-10-01:
+      title: Décret 97-877 du 25/09/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000202306&categorieLien=id
+    1998-04-01:
+      title: Décret 98-143 du 04/03/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000556219
+    1998-07-01:
+      title: Décret 98-462 du 10/06/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000740811
+    1998-11-01:
+      title: Décret 98-945 du 21/10/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000557774
+    1999-04-01:
+      title: Décret 99-208 du 17/03/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000393446&categorieLien=id
+    1999-07-01:
+      title: Décret 99-941 du 10/06/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000580505
+    1999-12-01:
+      title: Décret 99-943 du 12/11/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000397436&categorieLien=id
+    2000-12-01:
+      title: Décret 2000-1154 du 29/11/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000587481&categorieLien=id
+    2001-05-01:
+      title: Décret 2001-370 du 25/04/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000210853&categorieLien=id
+    2001-11-01:
+      title: Décret 2001-895 du 26/09/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000773694
+    2002-01-01:
+      title: Décret 2001-895 du 26/09/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000773694
+    2002-03-01:
+      title: Décret 2002-203 du 14/02/2002
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000226175
+    2002-12-01:
+      title: Décret 2002-1295 du 24/10/2002
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000227909
+    2004-01-01:
+      title: Décret 2003-1170 du 08/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000431431
+    2005-02-01:
+      title: Décret 2005-31 du 15/01/2005
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000445092
+    2005-07-01:
+      title: Décret 2005-726 du 29/06/2005
+      href: https://www.legifrance.gouv.fr/eli/decret/2005/6/29/2005-726/jo/texte
+    2005-11-01:
+      title: Décret 2005-1301 du 20/10/2005
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000240944
+    2006-07-01:
+      title: Décret 2006-759 du 29/06/2006
+      href: https://www.legifrance.gouv.fr/eli/decret/2006/6/29/2006-759/jo/texte
+    2006-11-01:
+      title: Décret 2006-1283 du 19/10/2006
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615828
+    2007-02-01:
+      title: Décret 2007-96 du 25/01/2007
+      href: https://www.legifrance.gouv.fr/eli/decret/2007/1/25/2007-96/jo/texte
+    2008-03-01:
+      title: Décret 2008-198 du 27/02/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/2/27/2008-198/jo/texte
+    2008-07-01:
+      title: Décret 2008-622 du 27/06/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/6/27/2008-622/jo/texte
+    2008-10-01:
+      title: Décret 2008-1016 du 02/10/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019564067
+    2009-07-01:
+      title: Décret 2009-824 du 03/07/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/7/3/2009-824/jo/texte
+    2009-10-01:
+      title: Décret 2009-1158 du 30/09/2009
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021089930
+    2010-07-01:
+      title: Décret 2010-761 du 07/07/2010
+      href: https://www.legifrance.gouv.fr/eli/decret/2010/7/7/2010-761/jo/texte
+    2011-01-01:
+      title: Décret 2011-51 du 13/01/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/1/13/2011-51/jo/texte
+    2012-01-01:
+      title: Décret 2012-37 du 11/01/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/1/11/2012-37/jo/texte
+    2012-07-01:
+      title: Décret 2012-853 du 5/07/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/7/5/2012-853/jo/texte
+    2013-01-01:
+      title: "Décret 2013-33 du\_10/01/2013"
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026924624
+    2016-07-01:
+      title: Décret 2016-670 du 25/05/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/5/25/2016-670/jo/texte
+    2017-02-01:
+      title: Décret 2016-670 du 25/05/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/5/25/2016-670/jo/texte
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    1989-09-01: "1989-08-31"
+    1990-01-01: "1990-04-11"
+    1990-04-01: "1990-04-11"
+    1990-12-01: "1990-11-30"
+    1991-08-01: "1991-11-27"
+    1991-11-01: "1991-11-27"
+    1992-02-01: "1992-02-04"
+    1992-10-01: "1992-09-19"
+    1993-02-01: "1993-01-26"
+    1994-01-01: "1993-12-21"
+    1994-08-01: "1993-12-21"
+    1994-12-01: "1994-07-19"
+    1995-03-01: "1995-02-18"
+    1995-11-01: "1995-10-13"
+    1997-03-01: "1997-02-15"
+    1997-10-01: "1997-09-27"
+    1998-04-01: "1998-03-08"
+    1998-07-01: "1998-06-14"
+    1998-11-01: "1998-10-21"
+    1999-04-01: "1999-03-20"
+    1999-07-01: "1999-06-13"
+    1999-12-01: "1999-11-14"
+    2000-12-01: "2000-11-30"
+    2001-05-01: "2001-04-28"
+    2001-11-01: "2001-09-29"
+    2002-01-01: "2001-09-29"
+    2002-03-01: "2002-02-16"
+    2002-12-01: "2002-12-26"
+    2004-01-01: "2003-12-09"
+    2005-02-01: "2005-01-18"
+    2005-07-01: "2005-06-30"
+    2005-11-01: "2005-10-21"
+    2006-07-01: "2006-06-30"
+    2006-11-01: "2006-10-20"
+    2007-02-01: "2007-01-26"
+    2008-03-01: "2008-02-29"
+    2008-07-01: "2008-06-28"
+    2008-10-01: "2008-10-03"
+    2009-07-01: "2009-07-04"
+    2009-10-01: "2009-10-10"
+    2010-07-01: "2010-07-08"
+    2011-01-01: "2011-01-14"
+    2012-01-01: "2012-01-12"
+    2012-07-01: "2013-07-06"
+    2013-01-01: "2013-01-11"
+    2016-07-01: "2016-05-26"
+    2017-02-01: "2016-05-26"
+    2018-01-01: "2017-12-31"
+  notes:
+    1988-09-23:
+    - title: Les valeurs du seuil pour les années 1988 et antérieures sont issues de documents fournis par le FDS.
+    1990-01-01:
+    - title: La date d'effet est bien le 1er janvier 1990
+    1990-04-01:
+    - title: La date d'effet est le 1er avril 1990
+    1991-08-01:
+    - title: La date d'effet est bien le 1er août 1991
+    1991-11-01:
+    - title: La date d'effet est bien le 1er novembre 1991
+    1992-02-01:
+    - title: La date d'effet est bien le 1er février 1992
+    1998-01-01:
+    - title: Référence à l'Indice Brut 296 loi 97-1239, art. 30
+    2002-01-01:
+    - title: Conversion en Euros
+    2018-01-01:
+    - title: Suppression de la contribution exceptionnelle de solidarité en compensation de la hausse de CSG. La suppression du Fonds de solidarité était prévue par l'art. 143 de la loi 2016-1918 du 29/12/2016 (LFR pour 2016)

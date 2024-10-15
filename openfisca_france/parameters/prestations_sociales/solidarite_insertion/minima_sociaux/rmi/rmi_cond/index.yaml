@@ -1,0 +1,9 @@
+description: Conditions générales pour pouvoir prétendre au revenu minimum d'insertion (RMI)
+metadata:
+  short_label: Conditions générales
+  label_en: "Minimum insertion income (RMI): General conditions"
+  order:
+  - condition_age_allocataire
+  - nombre_minimal_enfant_si_condition_age_n_est_pas_respectee
+  - patrimoine
+  - duree_min_titre_sejour

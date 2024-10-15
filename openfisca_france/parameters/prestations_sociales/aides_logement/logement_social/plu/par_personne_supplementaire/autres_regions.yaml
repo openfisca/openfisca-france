@@ -1,0 +1,140 @@
+description: Autres régions - Par personne supplémentaire
+values:
+  1987-08-19:
+    value: 14716
+  1999-08-25:
+    value: 22394
+  2002-01-01:
+    value: 3711
+  2008-01-01:
+    value: 5871
+  2009-06-01:
+    value: 5435
+  2010-01-01:
+    value: 5452
+  2011-01-01:
+    value: 5512
+  2012-01-01:
+    value: 5567
+  2013-01-01:
+    value: 5687
+  2014-01-01:
+    value: 5738
+  2015-01-01:
+    value: 5765
+  2016-01-01:
+    value: 5766
+  2017-01-01:
+    value: 5769
+  2018-01-01:
+    value: 5821
+  2019-01-01:
+    value: 5912
+  2020-01-01:
+    value: 5983
+  2021-01-01:
+    value: 6011
+  2022-01-01:
+    value: 6061
+  2023-01-01:
+    value: 6273
+  2024-01-01:
+    value: 6492
+metadata:
+  last_value_still_valid_on: "2024-05-24"
+  unit: currency
+  reference:
+    1987-08-19:
+      title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006829032/1987-08-19/
+    1999-08-25:
+      title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006829035/1999-08-25/
+    2002-01-01:
+      title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006829036/2002-01-01/
+    2008-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000017817036/2008-01-01/
+    - title: Arrêté du 3 décembre 2007 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000017641981
+    2009-06-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020749715/2009-06-01/
+    - title: Arrêté du 29 mai 2009 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000020728789
+    2010-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000022317980/2010-01-01/
+    - title: Arrêté du 30 avril 2010 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000022308375
+    2011-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023441748/2011-01-01/
+    - title: Arrêté du 28 décembre 2010 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023332920
+    2012-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025041425/2012-01-01/
+    - title: Arrêté du 22 décembre 2011 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025037332
+    2013-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000026913686/2013-01-01/
+    - title: Arrêté du 28 décembre 2012 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000026863718
+    2014-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028449704/2014-01-01/
+    - title: Arrêté du 23 décembre 2013 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000028398555
+    2015-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030082849/2015-01-01/
+    - title: ARRÊTÉ du 30 décembre 2014 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000030007690
+    2016-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031842350/2016-01-01/
+    - title: Arrêté du 22 décembre 2015 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031690428
+    2017-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033715897/2017-01-01/
+    - title: Arrêté du 22 décembre 2016 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033681769
+    2018-01-01:
+    - title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000036484518/2018-01-01/
+    - title: Arrêté du 28 décembre 2017 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036335544
+    2019-01-01:
+    - title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000038053742/2019-01-01/
+    - title: Arrêté du 28 décembre 2018 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037885188
+    2020-01-01:
+    - title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000041461671/2020-01-02/
+    - title: Arrêté du 26 décembre 2019 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039728497
+    2021-01-01:
+    - title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000043030087/2021-01-01/
+    - title: Arrêté du 24 décembre 2020 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042760888
+    2022-01-01:
+    - title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000045015082/2022-01-01/
+    - title: Arrêté du 27 décembre 2021 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044616436
+    2023-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Art. Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046905006/2023-01-01/
+    - title: Arrêté du 27 décembre 2022 - art.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046850762
+    2024-01-01:
+    - title: Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif - Annexe I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048667288/2024-01-01/
+    - title: Arrêté du 18 décembre 2023
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048658284

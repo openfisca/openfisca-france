@@ -1,0 +1,31 @@
+description: Indice majoré plafond
+values:
+  1985-11-01:
+    value: 621
+  1988-02-07:
+    value: 623
+  1988-03-01:
+    value: 716
+  2006-11-01:
+    value: 717
+metadata:
+  short_label: IM Plafond
+  label_en: Maximal increased index
+  ipp_csv_id: im_plafond
+  reference:
+    1985-11-01:
+      title: Décret 85-1148 du 24/10/1985 - art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006454594&cidTexte=JORFTEXT000000872483
+    1988-02-07:
+      title: Décret 86-167 du 31/01/1986, art. 1 VI
+    1988-03-01:
+      title: Décret 88-229 du 09/03/1988, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006455867&cidTexte=JORFTEXT000000315254
+    2006-11-01:
+      title: Décret 2006-1283 du 19/10/2006
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615828
+  official_journal_date:
+    1985-11-01: "1985-11-05"
+    1988-02-07: "1986-02-07"
+    1988-03-01: "1988-03-13"
+    2006-11-01: "2006-10-20"

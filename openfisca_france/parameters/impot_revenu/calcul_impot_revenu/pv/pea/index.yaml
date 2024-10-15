@@ -1,0 +1,6 @@
+description: PEA
+metadata:
+  order:
+  - taux_avant_2_ans
+  - taux_posterieur
+documentation: Taux d'imposition des plus-values, gain de levée d'options, gain d'acquisition d'actions gratuites et des PEA à l'article 200-A du CGI. Les plus-values réalisées suite à un retrait d'un PEA ancien de plus de 5 ans sont exonérées d'imposition sur le revenu.

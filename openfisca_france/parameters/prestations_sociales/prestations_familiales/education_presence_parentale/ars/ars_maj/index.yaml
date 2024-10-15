@@ -1,0 +1,11 @@
+description: Majoration exceptionnelle de l'Allocation de rentrée scolaire (ARS)
+metadata:
+  documentation_start: true
+  short_label: Majoration exceptionnelle
+  label_en: "Back-to-school allowance (ARS): Exceptionnal extra allowance"
+  order:
+  - montant_majoration_exceptionnelle
+  - taux_majoration_exceptionnelle
+documentation: |-
+  La majoration de 2020 s'inscrit dans le contexte particulier de la crise sanitaire et a été décidée dans une situation bien disctinte des majorations avant 2001.
+  Les majorations jusqu'en 2001 étaient exceptionnelles et ne concernaient qu'une année à chaque fois. L'absence de nouveau décret en 2001 signifie qu'il n'y a plus de majoration.

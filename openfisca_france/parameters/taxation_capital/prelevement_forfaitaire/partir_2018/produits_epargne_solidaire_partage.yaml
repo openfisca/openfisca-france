@@ -1,0 +1,17 @@
+description: Produits d'épargne solidaire de partage, Prélèvements libératoires sur les revenus des valeurs mobilières
+values:
+  2018-01-01:
+    value: 0.05
+metadata:
+  short_label: Produits d'épargne solidaire de partage
+  label_en: Flat tax on capital income (from 2018)
+  unit: /1
+  reference:
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 - art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: Le prélèvement libératoire est remplacé par un prélèvement forfaitaire unique non-libératoire, dont la valeur est telle que la somme du taux de ce prélèvement et des prélèvements sociaux est de 30%.

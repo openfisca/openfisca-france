@@ -1,0 +1,52 @@
+description: Taux d'abattement pour frais professionnels appliqué sur l'assiette prise en compte pour le calcul de la contribution sociale généralisée (CSG) prélevée sur les salaires, selon le seuil de l'assiette comptée en plafonds de sécurité sociale (PSS)
+brackets:
+- threshold:
+    1998-01-01:
+      value: 0
+  rate:
+    1991-02-01:
+      value: 0.05
+    2005-01-01:
+      value: 0.03
+    2012-01-01:
+      value: 0.0175
+- threshold:
+    2011-01-01:
+      value: 4
+  rate:
+    2011-01-01:
+      value: 0
+metadata:
+  short_label: Taux d'abattement, pour frais professionnels, appliqué sur l'assiette de la CSG
+  last_value_still_valid_on: "2024-07-22"
+  label_en: CSG - rates on work incomes
+  ipp_csv_id: csg_abt
+  reference:
+    1991-02-01:
+      title: Loi 90-1168 du 29/12/90, art. 127 à 135 (LF pour 1991)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000001948311
+    1998-01-01:
+      title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757359&cidTexte=JORFTEXT000000569121
+    2005-01-01:
+      title: Loi 2004-810 du 13/08/2004, art. 72
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006759004&cidTexte=JORFTEXT000000625158
+    2011-01-01:
+      title: Loi 2010-1594 du 20/12/2010, art. 20 (LFSS pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023262256&cidTexte=JORFTEXT000023261006
+    2012-01-01:
+    - title: Article L136-2 du Code de la Sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025013432/2024-03-13/
+    - title: Loi 2011-1906 du 28/12/2011, art. 17 (LFSS pour 2012)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007624&cidTexte=JORFTEXT000025005833
+  official_journal_date:
+    1991-02-01: "1990-12-30"
+    1998-01-01: "1997-12-23"	
+    2005-01-01: "2004-08-17"
+    2011-01-01: "2010-12-21"
+    2012-01-01: "2011-12-29"
+  notes:
+    1991-02-01:
+    - title: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.
+  rate_unit: /1
+  threshold_unit: PSS

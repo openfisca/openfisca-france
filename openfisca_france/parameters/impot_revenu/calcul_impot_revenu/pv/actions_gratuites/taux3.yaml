@@ -1,0 +1,8 @@
+description: Imposition des gains d'acquisition d'actions gratuites attribuées avant le 28 septembre 2012
+values:
+  1995-01-01:
+    value: 0.3
+metadata:
+  short_label: Taux 30%
+  ipp_csv_id: tx_actions_gratuites
+  unit: /1

@@ -1,0 +1,15 @@
+description: Plafond 2 de la réduction d'impôt pour les dépenses de gros travaux, les intérêts d'emprunt et les ravalements
+values:
+  1978-01-01:
+    value: null
+  1986-01-01:
+    value: 30000
+  1997-01-01:
+    value: null
+metadata:
+  short_label: Plafond 2
+  ipp_csv_id: plaf_habitat2
+  unit: currency_next_year
+  notes:
+    1997-01-01:
+    - title: Dépenses de gros travaux avec même incrément que habitat et majoration comme dans 2 et 3

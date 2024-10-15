@@ -1,0 +1,8 @@
+description: Définition du revenu professionnel plancher pour les couples biactifs, pour les prestations familiales
+metadata:
+  short_label: Revenu professionnel plancher
+  label_en: Definition of a biactive couple
+  order:
+  - en_pourcentage_pss
+  - en_nombre_fois_bmaf
+documentation: Les revenus professionnels pris en compte sont ceux de l'année N-2 jusqu'au 01/01/2012, puis ceux de l'année N à partir de cette date.

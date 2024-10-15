@@ -1,0 +1,93 @@
+description: Complément de sixième catégorie de l'allocation d'éducation de l'enfant handicapé (AEEH)
+values:
+  2006-01-01:
+    value: 964.78
+  2006-04-01:
+    value: 982.15
+  2007-04-01:
+    value: 999.83
+  2008-04-01:
+    value: 1010.82
+  2008-10-01:
+    value: 1018.91
+  2009-04-01:
+    value: 1029.1
+  2010-04-01:
+    value: 1038.36
+  2011-04-01:
+    value: 1060.16
+  2012-04-01:
+    value: 1082.43
+  2013-04-01:
+    value: 1096.5
+  2014-04-01:
+    value: 1103.08
+  2016-04-01:
+    value: 1104.18
+  2017-04-01:
+    value: 1107.49
+  2018-04-01:
+    value: 1118.57
+  2019-04-01:
+    value: 1121.92
+  2020-04-01:
+    value: 1125.29
+  2021-04-01:
+    value: 1126.41
+  2022-04-01:
+    value: 1146.69
+  2022-07-01:
+    value: 1192.55
+  2023-04-01:
+    value: 1210.9
+metadata:
+  short_label: 6ème catégorie
+  last_value_still_valid_on: "2023-05-09"
+  label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
+  ipp_csv_id: aeeh_cplt6
+  unit: currency
+  reference:
+    2006-01-01:
+    - title: Article D541-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737170/2006-01-01/
+    - title: Loi 2005-102 du 11/02/2005, art. 68 (modif. Art. L541 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682303&cidTexte=JORFTEXT000000809647
+    - title: Décret 2005-1761 du 29/12/2005, art. 12
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000268753
+    2013-04-01:
+      title: Circulaire DSS/SD2B/2013/111 du 19/03/2013
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2013/13-04/ste_20130004_0100_0113.pdf
+    2014-04-01:
+      title: Circulaire DSS/SD2B/2014/84 du 20/03/2014
+      href: http://circulaire.legifrance.gouv.fr/pdf/2014/03/cir_38102.pdf
+    2016-04-01:
+      title: Circulaire DSS/SD2B/2016/77 du 15/03/2016
+    2017-04-01:
+      title: Circulaire DSS/SD2B/2017/97 du 21/03/2017
+    2018-04-01:
+      title: Circulaire DSS/SD2B/2018/81 du 22/03/2018
+    2019-04-01:
+      title: Circulaire DSS/SD2B/2019/65 du 25/03/2019
+    2020-04-01:
+      title: Circulaire Cnav 2020/20 du 03/04/2020
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2020_20_03042020.pdf
+    2021-04-01:
+      title: Circulaire Cnav 2021/14 du 01/04/2020
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_14_01042021.pdf
+    2022-04-01:
+      title: ​Circulaire Cnav 2022/9 du 05/04/2022
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_09_05042022.pdf
+    2022-07-01:
+      title: ​Circulaire Cnav 2022/20 du 19/08/2022
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_20_19082022.pdf
+    2023-04-01:
+    - title: Article D541-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737170
+    - title: Circulaire Cnav 2023/8 du 11/04/2023
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2023_08_11042023.pdf
+  official_journal_date:
+    2006-01-01: 2005-02-12; 2006-01-01
+  notes:
+    2006-01-01:
+    - title: Création de l'Allocation d'éducation de l'enfant handicapé
+documentation: Le montant du complément de la sixième catégorie de l'allocation d'éducation de l'enfant handicapé est égal au montant de la majoration pour tierce personne accordée aux invalides de la 3e catégorie définis à l'article L 341-4 du CSS.

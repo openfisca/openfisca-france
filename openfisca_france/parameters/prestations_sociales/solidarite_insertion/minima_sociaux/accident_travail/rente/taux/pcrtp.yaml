@@ -1,0 +1,77 @@
+description: Montant de la prestation complémentaire versé en fonction de besoins d'assistance
+metadata:
+  short_label: Montant prestation complémentaire
+  last_value_still_valid_on: "2022-03-25"
+  unit: currency
+  reference:
+    2013-03-01:
+    - title: Article D434-2 I. du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027267037
+    - title: Décret 2013-278 du 2/04/2013
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000027267016/2013-04-05/
+0:
+  values:
+    1985-12-21:
+      value: 0
+    2013-03-01:
+      value: 0
+1:
+  values:
+    1985-12-21:
+      value: 0
+    2013-03-01:
+      value: 0
+2:
+  values:
+    1985-12-21:
+      value: 0
+    2013-03-01:
+      value: 0
+3:
+  values:
+    1985-12-21:
+      value: 559.26
+    2013-03-01:
+      value: 541.22
+4:
+  values:
+    1985-12-21:
+      value: 559.26
+    2013-03-01:
+      value: 541.22
+5:
+  values:
+    1985-12-21:
+      value: 1118.54
+    2013-03-01:
+      value: 1082.43
+6:
+  values:
+    1985-12-21:
+      value: 1118.54
+    2013-03-01:
+      value: 1082.43
+7:
+  values:
+    1985-12-21:
+      value: 1677.83
+    2013-03-01:
+      value: 1623.65
+8:
+  values:
+    1985-12-21:
+      value: 1677.83
+    2013-03-01:
+      value: 1623.65
+9:
+  values:
+    1985-12-21:
+      value: 1677.83
+    2013-03-01:
+      value: 1623.65
+10:
+  values:
+    1985-12-21:
+      value: 1677.83
+    2013-03-01:
+      value: 1623.65

@@ -1,0 +1,45 @@
+description: Taux d'appel des cotisations au régimes complémentaire de retraite des non-cadres (ARRCO)
+values:
+  1962-01-01:
+    value: 1
+  1971-01-01:
+    value: 1.025
+  1972-01-01:
+    value: 1.05
+  1973-01-01:
+    value: 1.075
+  1974-01-01:
+    value: 1.1
+  1983-01-01:
+    value: 1.15
+  1987-01-01:
+    value: 1.175
+  1988-01-01:
+    value: 1.2
+  1991-01-01:
+    value: 1.23
+  1992-01-01:
+    value: 1.25
+  2019-01-01:
+    value: null
+metadata:
+  short_label: Taux d'appel
+  last_value_still_valid_on: "2021-01-01"
+  label_en: Pension contributions for non-executives (ARRCO)
+  unit: /1
+  reference:
+    1983-01-01:
+      title: Lettre-circulaire ARRCO 82-28 du 09/07/82
+    1987-01-01:
+      title: Accords ARRCO du 12/11/86
+    1988-01-01:
+      title: Accords ARRCO du 12/11/86
+    1991-01-01:
+      title: Accords ARRCO du 12/11/86 et du 01/12/89
+    1992-01-01:
+      title: Accords ARRCO du 12/11/86 et du 01/12/89
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+  notes:
+    2019-01-01:
+    - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)

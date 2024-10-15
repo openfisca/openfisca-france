@@ -1,0 +1,14 @@
+description: Calcul des revenus imposables
+metadata:
+  label_en: Computation of taxable income
+  order:
+  - deductions
+  - rvcm
+  - rpns
+  - charges_deductibles
+  - abat_rni
+  - exo_ir
+  - deduc_invest_locatif
+  - exo_maire_autres
+  - foncier_deduc
+  - abat_exceptionnel

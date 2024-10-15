@@ -1,0 +1,6 @@
+description: Abattement des revenus pour certaines professions
+metadata:
+  documentation_start: true
+  order:
+  - abattement_elus_locaux
+  - abattement_journalistes

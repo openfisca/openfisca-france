@@ -1,0 +1,7 @@
+description: Barème de la réduction d'impôt Scellier pour les logements en Nouvelle-Calédonie, Polynésie et Wallis & Futuna
+metadata:
+  short_label: Barème pour les logements en Nouvelle-Calédonie, Polynésie et Wallis & Futuna
+  order:
+  - taux
+  - duree_reduction
+documentation: Les investissements dans des logements situés dans les départements d'outre-mer, Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon bénéficient d'une réduction d'impôt étalée sur 9 ans contre un étalement de la même réduction sur 5 années pour les logements situés en Polynésie Française, Nouvelle-Calédonie ou dans les îles Wallis et Futuna.

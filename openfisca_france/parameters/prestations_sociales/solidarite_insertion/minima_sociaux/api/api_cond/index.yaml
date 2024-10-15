@@ -1,0 +1,10 @@
+description: Conditions générales de l'allocation parent isolé (API)
+metadata:
+  documentation_start: true
+  short_label: Conditions générales
+  label_en: "Single parent allowance (API): General conditions"
+  order:
+  - duree_du_droit
+  - limite_de_duree
+  - age_limite
+  - age_pac

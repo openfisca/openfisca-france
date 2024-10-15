@@ -1,0 +1,15 @@
+description: Plafond de ressources (en nombre de Smic) pour exonération travailleur occasionnel demandeur d'emploi (TO-DE) du secteur agricole
+values:
+  2019-01-01:
+    value: 1.6
+metadata:
+  short_label: Point d'annulation TO-DE
+  last_value_still_valid_on: "2022-09-21"
+  label_en: Ceiling of resources in SSCs exemption for casual worker job seeker (TO-DE, agricultural worker)
+  unit: smic
+  reference:
+    2019-01-01:
+    - title: Article L741-16 du Code rural et de la pêche maritime
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006585701/2019-01-01/
+    - title: Article D741-60 du Code rural et de la pêche maritime
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038026966

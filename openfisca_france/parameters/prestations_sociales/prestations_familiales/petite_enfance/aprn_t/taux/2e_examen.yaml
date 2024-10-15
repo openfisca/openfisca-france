@@ -1,0 +1,29 @@
+description: Taux (en % de la base) pour le 2e examen de l'Allocations prénatales (APrN, 1976-1985)
+values:
+  1976-08-01:
+    value: 0.88
+  1983-01-01:
+    value: 0.205
+  1985-01-01:
+    value: null
+metadata:
+  short_label: 2e examen
+  label_en: "Prenatal allowance (APrN): Rate and payment"
+  ipp_csv_id: tx_2exam
+  unit: /1
+  reference:
+    1976-08-01:
+      title: Décret 76-768 du 16/08/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
+    1978-01-01:
+      title: Décret 78-728 du 11/07/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516812&categorieLien=id
+    1983-01-01:
+      title: Décret 82-1138 du 29/12/1982, art. 2 (modif art. L516 du CSS)
+  official_journal_date:
+    1976-08-01: "1976-08-17"
+    1978-01-01: "1978-07-12"
+    1983-01-01: "1982-12-30"
+  notes:
+    1985-01-01:
+    - title: Remplacée par l'allocation au jeune enfant à partir du 01/01/1985

@@ -1,0 +1,14 @@
+description: Taux de la réduction d'impôt sur les rachats d'entreprises
+values:
+  1977-01-01:
+    value: null
+  1987-01-01:
+    value: 0
+  1992-01-01:
+    value: 0.25
+  2000-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_rachat
+  unit: /1

@@ -1,0 +1,6 @@
+description: Seuil du revenu fiscal de référence de l'année N-2 impliquant l'assujettissement au taux médian de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité et au taux plein pour les allocations chômage
+metadata:
+  short_label: Seuil de RFR du taux médian (CSG retraite et invalidité) ou du taux plein (CSG chômage)
+  order:
+  - seuil_rfr2
+  - demi_part_suppl_rfr2

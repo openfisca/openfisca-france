@@ -1,0 +1,12 @@
+description: Revalorisation du salaire de référence pour le calcul FNE
+metadata:
+  short_label: Revalorisation FNE
+  label_en: Indexation of reference wage for FNE early retirement benefit
+  order:
+  - revalorisation_sr
+documentation: |-
+  La revalorisation du salaire de référence (SR) des préretraites du FNE est
+  décidée par les pouvoirs publics et depuis 1987 la revalorisation est la même que pour les retraites
+  du régime général (voir les décrets 98-1024 du 12 novembre 1998 et 93-451 du 24 mars 1993).
+  Sources:
+  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe B.

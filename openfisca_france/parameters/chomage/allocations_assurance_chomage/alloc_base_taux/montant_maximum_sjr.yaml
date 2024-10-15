@@ -1,0 +1,28 @@
+description: Montant maximum (% SJR) de l'allocation de base d'assurance chômage
+values:
+  1968-07-22:
+    value: null
+  1979-07-01:
+    value: 0.9
+  1983-10-01:
+    value: 0.8
+  1984-04-01:
+    value: 0.75
+metadata:
+  short_label: Montant maximum (% SJR)
+  label_en: "UI scheme: rates and maximum"
+  ipp_csv_id: base_max
+  unit: /1
+  reference:
+    1968-07-22:
+    - title: Ordonnance 67-580 du 13/07/1967
+    - title: Avenant du 10/07/1967
+    1979-07-01:
+    - title: Loi cadre 79-32 du 16/01/1979
+    - title: Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+    1984-04-01:
+      title: Arrêté du 24/02/1984 portant agrément de la convention du 24/02/1984
+  official_journal_date:
+    1968-07-22: "1967-07-19"
+    1979-07-01: 1979-01-17; 1979-05-20
+    1984-04-01: "1984-04-04"

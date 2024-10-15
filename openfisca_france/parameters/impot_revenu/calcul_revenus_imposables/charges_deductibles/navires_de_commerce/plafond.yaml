@@ -1,0 +1,24 @@
+description: Plafond de la déduction pour navires de commerce
+values:
+  1973-01-01:
+    value: null
+  1996-01-01:
+    value: 500000
+  2001-01-01:
+    value: null
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_navirecom
+  unit: currency_next_year
+  reference:
+    1996-01-01:
+      title: Loi 96-1181 du 30/12/1996 (LF pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000380034
+    2001-01-01:
+    - title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+    - title: BOI 5 B-3-02 n°18 du 25/01/2002
+  official_journal_date:
+    1996-01-01: "1996-12-31"
+    2001-01-01: "2001-12-29"
+documentation: "Souscriptions de parts de copropriété de navires de commerce soumise à agrément : plaf_navirecom (à doubler pour couples mariés ou pacsés)"

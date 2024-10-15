@@ -1,0 +1,87 @@
+- name: Taux réduit de cotisation maladie recouvrée de façon anticipée et pour rémunération 1xSmic <= 2.5xSmic
+  period: 2021-09
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 1554.58
+    allegement_cotisation_maladie_mode_recouvrement: anticipe
+  output:
+    assiette_allegement: 1554.58
+    allegement_cotisation_maladie: 0.06 * 1554.58
+
+- name: Taux réduit de cotisation maladie recouvrée en fin d'année et pour rémunération 1xSmic <= 2.5xSmic
+  period: 2021
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base:
+      month:2021-01:9: 1554.58 * 9
+    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
+  output:
+    assiette_allegement:
+      2021-09: 1554.58
+      2021-10: 0
+    allegement_cotisation_maladie:
+      2021-09: 0
+      2021-10: 0
+      2021-11: 0
+      2021-12: 93.27 * 9  # 0.06 * 1554.58 * 9 mois de   salaire
+
+- name: Taux complet de cotisation maladie recouvrée progressivement pour rémunération > 2.5xSmic
+  period: 2021-03
+  input:
+    salaire_de_base:
+      2021-01: 3886.55  # 1554.58 * 2.5 + 0.1
+      2021-02: 3886.55
+      2021-03: 3886.55
+    allegement_cotisation_maladie_mode_recouvrement: progressif
+  output:
+    assiette_allegement:
+      2021-01: 3886.55
+      2021-02: 3886.55
+      2021-03: 3886.55
+    allegement_cotisation_maladie:
+      2021-03: 0
+
+- period: 2023-12
+  name: Avant la réforme de 2024
+  description: A partir de janvier 2023 le montant du smic pour le plafond est figé à décembre 2023
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 4350.53 #1747.2*2.49 soit 2,49 smic de décembre 2023
+    # allegement mode necessary when requesting on a 1 month salary :
+    allegement_cotisation_maladie_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail_debut: 2023-01-01
+    contrat_de_travail_fin: 2024-12-31
+    effectif_entreprise: 1
+  output:
+    allegement_cotisation_maladie: 261.03
+
+- period: 2024-01
+  name: Après la réforme de 2024
+  description: A partir de janvier 2024 le montant du smic pour le plafond est figé à décembre 2023
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 4399.63 #1766.92*2.49 soit 2,49 smic de janvier 2024 mais 2,52 smic de décembre 2023
+    # allegement mode necessary when requesting on a 1 month salary :
+    allegement_cotisation_maladie_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail_debut: 2023-01-01
+    contrat_de_travail_fin: 2024-12-31
+    effectif_entreprise: 1
+  output:
+    allegement_cotisation_maladie: 0
+
+- period: 2024-01
+  name: En dessous du plafond de 2024
+  description: A partir de janvier 2024 le montant du smic pour le plafond est figé à décembre 2023
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 4240.61 #1766.92*2.4
+    # allegement mode necessary when requesting on a 1 month salary :
+    allegement_cotisation_maladie_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail_debut: 2023-01-01
+    contrat_de_travail_fin: 2024-12-31
+    effectif_entreprise: 1
+  output:
+    allegement_cotisation_maladie: 254.44

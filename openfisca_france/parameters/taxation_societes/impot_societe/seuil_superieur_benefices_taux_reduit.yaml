@@ -1,0 +1,28 @@
+description: Seuil supérieur de bénéfices sur lesquels le taux réduit d'IS est applicable (si CAHT < plafond CA)
+values:
+  2001-01-01:
+    value: 250000
+  2002-03-31:
+    value: 38120
+  2022-01-01:
+    value: 42500
+metadata:
+  last_value_still_valid_on: "2023-01-05"
+  unit: currency
+  reference:
+    2001-01-01:
+      title: Article 219 CGI modifié par la loi 2000-1352 du 30/12/2000 de finances pour 2001, art. 7-9
+    2002-03-31:
+      title: Règlement CE 974-98 1998-05-03 - art. 14
+    2022-01-01:
+    - title: Article 219, I.3°)b. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046868562
+    - title: Article 37 de la Loi n° 2022-1726 du 30/12/2022 (LF pour 2023)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845675
+  official_journal_date:
+    2001-01-01: "2000-12-31"
+    2002-03-31: "1998-05-11"
+    2022-01-01: "2022-12-31"
+  notes:
+    2002-03-31:
+    - title: Référence parue dans JOCE et non JORF.

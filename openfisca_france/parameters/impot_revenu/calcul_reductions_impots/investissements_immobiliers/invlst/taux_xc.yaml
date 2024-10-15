@@ -1,0 +1,7 @@
+description: Taux (XC)
+values:
+  2004-01-01:
+    value: 0.25
+  2013-01-01: expected
+metadata:
+  unit: /1

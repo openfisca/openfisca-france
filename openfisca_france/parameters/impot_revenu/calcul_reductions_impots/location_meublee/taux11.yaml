@@ -1,0 +1,11 @@
+description: Taux de la réduction d'impôt "Censi-Bouvard" pour l'investissement locatif meublé exercé à titre non professionnel dans certaines résidences acquises à compter de 2012
+values:
+  2012-01-01:
+    value: 0.11
+metadata:
+  short_label: Taux pour les logements acquis à compter de 2012
+  unit: /1
+  reference:
+    2012-01-01:
+      title: Loi n° 2012-1509 du 29 décembre 2012 (LF pour 2013), art.77
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000026856853&idArticle=LEGIARTI000026872827&dateTexte=20161231&categorieLien=id#LEGIARTI000026872827

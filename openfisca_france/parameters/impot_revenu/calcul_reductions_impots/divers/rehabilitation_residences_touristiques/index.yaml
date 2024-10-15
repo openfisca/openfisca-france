@@ -1,0 +1,10 @@
+description: Réduction d'impôt sur les travaux de réhabilitation des résidences de tourisme
+metadata:
+  short_label: Réhabilitation résidences tourisme
+  order:
+  - taux
+  - plafond
+documentation: |-
+  Travaux de réhabilitation des résidences de tourisme : Article 199 decies G bis.
+  Pour les travaux effectués entre le 1er Janvier 2017 et le 31 Décembre 2019 par des propriétaires de logements situés dans une résidence touristique,
+  destiné à la location et achevé depuis au moins 15 ans. La décision d'effectuer les travaux doit être décidée en assemblée générale des copropriétaires.

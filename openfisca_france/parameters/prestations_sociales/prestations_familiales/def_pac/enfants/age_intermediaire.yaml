@@ -1,0 +1,7 @@
+description: Âge intermédiaire à partir duquel une condition de ressource s'applique pour être considéré comme enfant à charge
+values:
+  2001-01-01:
+    value: 16
+metadata:
+  short_label: Âge intermédiaire
+  unit: year

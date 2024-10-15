@@ -1,0 +1,73 @@
+description: TICPE - produits énergétiques, Fioul lourd HTS (100kg)
+values:
+  1993-01-01:
+    value: null
+  1993-04-15:
+    value: 12.9
+  1994-01-01:
+    value: 14.01
+  1995-01-01:
+    value: 14.25
+  1996-01-01:
+    value: 14.52
+  1997-01-01:
+    value: 14.82
+  1998-01-01:
+    value: 15.01
+  1999-01-01:
+    value: 15.15
+  2000-01-01:
+    value: 15.23
+  2002-01-01:
+    value: 2.32
+  2003-01-01:
+    value: null
+metadata:
+  ipp_csv_id: ticpe_fioul_lourd_hts
+  unit: currency
+  reference:
+    1993-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1993-04-15:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1994-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509319
+    1995-01-01:
+      title: Loi 94-1162 du 29/12/1994 (LF pour 1995)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000367398
+    1996-01-01:
+      title: Loi 95-1346 du 30/12/1995 (LF pour 1996)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000191068
+    1997-01-01:
+      title: Loi 96-1181 du 30/12/1996 (LF pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000380034
+    1998-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
+    1999-01-01:
+      title: Loi 98-1266 du 30/12/1998 (LF pour 1999)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044
+    2000-01-01:
+      title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
+    2002-01-01:
+      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+    2003-01-01:
+      title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
+  official_journal_date:
+    1993-01-01: "1992-12-31"
+    1993-04-15: "1992-12-31"
+    1994-01-01: "1993-12-31"
+    1995-01-01: "1994-12-30"
+    1996-01-01: "1995-12-31"
+    1997-01-01: "1996-12-31"
+    1998-01-01: "1997-12-31"
+    1999-01-01: "1998-12-31"
+    2000-01-01: "1999-12-31"
+    2002-01-01: "2001-12-29"
+    2003-01-01: "2002-12-31"

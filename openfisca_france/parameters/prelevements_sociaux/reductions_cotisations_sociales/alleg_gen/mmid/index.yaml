@@ -1,0 +1,8 @@
+description: Réduction des cotisations patronales du régime d'assurance maladie-maternité-invalidité-décès (MMID)
+metadata:
+  short_label: Allègement des cotisations employeur d’assurance maladie
+  label_en: Reduction in SSCs
+  order:
+  - plafond_smic_courant
+  - plafond_smic_2023_12_31
+  - plafond

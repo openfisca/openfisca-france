@@ -2,7 +2,7 @@
   name: Temps partiel
   relative_error_margin: 0.001
   input:
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     salaire_de_base: 3428.6 # supérieur en équivalent temps plein (4000) au plafond_securite_sociale
     heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
@@ -18,7 +18,7 @@
   name: Temps plein
   relative_error_margin: 0.001
   input:
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 1
     salaire_de_base: 3428.6
     contrat_de_travail: temps_plein

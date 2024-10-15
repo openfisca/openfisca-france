@@ -1,0 +1,9 @@
+description: Impôts indirects
+metadata:
+  order:
+  - tva
+  - taxes_tabacs
+  - produits_energetiques
+  - alcools_autres_boissons
+  - taxes_assurances
+  - taxes_energie_dans_logement

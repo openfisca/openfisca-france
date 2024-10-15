@@ -1,0 +1,26 @@
+description: Taxe spéciale sur les conventions d'assurance (TSCA)
+metadata:
+  documentation_start: true
+  label_en: Taxes on insurance contracts
+  order:
+  - assurances_incendie_particuliers
+  - assurances_incendie_risques_agricoles_non_exoneres
+  - assurances_incendie_souscrites_aupres_caisses_departementales
+  - assurance_pertes_exploitations_dues_incendie_industrie_etc
+  - contrats_assurance_maladie_individuelles_collectives_solidaires_responsables
+  - contrats_assurance_maladie_individuelles_collectives_cas_general
+  - assurance_bateaux_sport_plaisance
+  - assurance_risques_non_exoneres_navigation_fluviale_etc
+  - assurances_vie_assimilees
+  - rente_viagere_sous_conditions
+  - assurances_credit_exportation
+  - contribution_secu_assurances_automobiles
+  - assurance_vehicules_terrestres_moteurs_particuliers
+  - assurances_protection_juridique
+  - assurance_vehicules_terrestres_moteur_lourds
+  - assurances_vehicules_terrestres_moteur
+  - autres_assurances
+documentation: |-
+  Déductions pour les véhicules de plus de 3,5 tonnes
+  Les assurances dépendance sont exonérées de la TSCA
+  NB : données renseignées dans l'article 1001 du code général des impôts, et L137-6 du code de la sécurité sociale.

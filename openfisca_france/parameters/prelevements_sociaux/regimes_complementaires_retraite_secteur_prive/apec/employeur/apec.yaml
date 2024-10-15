@@ -1,43 +1,45 @@
 description: Barème employeur des cotisations pour l'association pour l'emploi des cades (APEC), régimes complémentaires de retraite (secteur privé)
 brackets:
-- rate:
+- threshold:
     1971-01-01:
-      value: 0.0
+      value: 0
+  rate:
+    1971-01-01:
+      value: 0
     2011-01-01:
       value: 0.00036
-  threshold:
+- threshold:
     1971-01-01:
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     1971-01-01:
       value: 0.00024
     1975-01-01:
       value: 0.00036
-  threshold:
+- threshold:
     1971-01-01:
-      value: 1.0
-- rate:
+      value: 4
+  rate:
     1971-01-01:
-      value: 0.0
-  threshold:
-    1971-01-01:
-      value: 4.0
+      value: 0
 metadata:
-  ux_name: Barème employeur
-  last_review:
-    2021-07-30
-  rate_unit: /1
-  threshold_unit:
+  short_label: Barème employeur
+  last_value_still_valid_on: "2021-07-30"
+  label_en: Contributions for the Association for the employment of executives (APEC)
+  ipp_csv_id:
+    rate: apec_p_0_4, apec_p_1_4,
   reference:
-    2011-01-01: Circulaire AGIRC 2010-5-DF du 29/07/2010
+    2011-01-01:
+      title: Circulaire AGIRC 2010-5-DF du 29/07/2010
+      href: https://web.archive.org/web/20160627184906/https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc/201005df.pdf
   official_journal_date:
-    1976-01-01: 1976-02-26
+    1976-01-01: "1976-02-26"
   notes:
-    2011-01-01: Remplacement de la cotisation forfaitaire par un taux proportionnel sous plafond.
-    1975-01-01: Augmentation du taux de 0,04 % à 0,06 % pour la tranche B. Incertitude pour la référence législative.
-    1971-01-01: Passage d'une cotisation forfaitaire à une cotisation proportionnelle.
-  description_en: Contributions for the Association for the employment of executives (APEC)
-documentation: |
-  Note :
-  L'Association pour l'emploi des cadres (APEC) a été mise en place par la convention du 18/11/1966.
-  La cotisation APEC est recouvrée par l'AGIRC.
+    1971-01-01:
+    - title: Passage d'une cotisation forfaitaire à une cotisation proportionnelle.
+    1975-01-01:
+    - title: Augmentation du taux de 0,04 % à 0,06 % pour la tranche B. Incertitude pour la référence législative.
+    2011-01-01:
+    - title: Remplacement de la cotisation forfaitaire par un taux proportionnel sous plafond.
+  rate_unit: /1
+  threshold_unit: PSS

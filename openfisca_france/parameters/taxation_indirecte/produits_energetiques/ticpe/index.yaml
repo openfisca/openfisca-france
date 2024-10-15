@@ -1,0 +1,78 @@
+description: Taxe intérieure de consommation sur les produits énergétiques (TICPE)
+metadata:
+  documentation_start: true
+  short_label: TICPE
+  label_en: TICPE - Energy products
+  order:
+  - goudrons_utilises_comme_combustibles
+  - white_spirit_utilise_comme_combustible
+  - essences_speciales_utilisees_comme_carburants_combustibles
+  - super
+  - essence_normale
+  - carburateurs
+  - huiles
+  - petrole_lampant
+  - gazole
+  - fioul
+  - propane_carburants
+  - butanes_liquefies
+  - autres_gaz_petrole_liquefies_utilises_comme_carburants
+  - gaz_naturel_etat_gazeux_utilises_comme_carburants
+  - gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+  - emulsion_eau_gazole
+  - carburant_constitue_minimum_90_alcool_ethylique_agricole
+  - carburant_constitue_100_estars_methyliques_acides_gras
+documentation: |-
+  Ces barèmes font l''objet de majorations dans la plupart des régions de France
+  une première tranche de 1,77€/hl puis une seconde de 0,73€/hl (deuxième tranche
+  destinée uniquement à des financements d''infrastructures spécifiques
+
+  NB : données renseignées dans l''article 265 du code des douanes
+
+  NB : les produits énergétiques sont rangés dans l''ordre de leur numérotation dans
+  l''article 265 du code des douanes avec pour seul objectif la lisibilité.
+
+  NB : en 2011 le nom de TIPP (taxe intérieure de consommation sur les produits pétroliers)
+  change pour TICPE (taxe intérieure de consommation sur les produits énergétiques).
+  L''objectif est de souligner le changement d''assiette récent qui incorpore désormais
+  les biocarburants.
+
+  Attention : 28 aout 2012, baisse de la TICPE sur les carburants de 3 centimes. La
+  baisse est ramenée à 2 centimes le 1er décembre 2012, 1,5c le 11 décembre, 1c le
+  21 décembre et prend fin le 11 janvier 2013
+
+  Dans le code des douanes, les produits énergétiques sont désignés par les indices
+  suivants :
+
+  1 - Goudrons utilisés comme combustibles
+  4 bis - White Spirit utilisé comme combustible
+  6 - essences spéciales utilisées comme carburants et combustibles
+  10 - huiles légères et préparation, essence d''aviation
+  11 - supercarburants dont SP95 et SP98
+  11 bis - supercarburants contenant un additif
+  11 ter - superE10
+  12 - essence normale
+  17 - carburéacteurs, type pétrole lampant , sous conditions
+  17 bis - carburéacteurs, type pétrole lampant, carburant moteurs d''avion
+  17 ter - carburéacteurs, type pétrole lampant, autres
+  18 - autres huiles moyennes
+  20 - gazole comme carburants sous conditions
+  21 - gazole, fioul domestique
+  22 - gazole, autres
+  24 - fioul lourd
+  26 - fioul avec point d''éclair inférieur à 120° C
+  28 - fioul lourd HTS
+  28 bis - fioul lourd BTS
+  30 bis - propane utilisé comme carburants, sous conditions
+  30 ter - propane utilisé comme carburants, autres
+  31 bis - butanes liquéfiés, sous condition
+  31 ter - butanes liquéfiés, autres
+  33 bis - Autres gaz de pétrole liquéfiés utilisés comme carburants, sous conditions
+  34 - Autres gaz de pétrole liquéfiés utilisés comme carburants, autres
+  36 - Gaz naturel à l'état gazeux, utilisés comme carburants
+  36 bis - Gaz naturel à l'état gazeux, utilisé sous conditions aux moteurs stationnaires
+  38 bis - Autres gaz de pétrole et autres hydrocarbures à l'état gazeux : même tarification que 36 ou 36 bis selon condition d'emploi
+  52 - Emulsion d'eau dans du gazole …, sous conditions
+  53 - Emulsion d'eau dans du gazole …, autres
+  55 - Super E 85 utilisé comme carburant
+  56 - Carburant constitué d'un mélange d'au minimum 90 % d'alcool éthylique d'origine agricole, d'eau et d'additifs

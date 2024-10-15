@@ -1,0 +1,491 @@
+description: Montant de l'indemnité en capital attribuée à la victime d'un accident du travail
+brackets:
+- threshold:
+    2002-04-01:
+      value: 0
+  amount:
+    2002-04-01:
+      value: 0
+- threshold:
+    2002-04-01:
+      value: 1
+  amount:
+    2002-04-01:
+      value: 342.94
+    2003-04-01:
+      value: 342.95
+    2004-04-01:
+      value: 354.68
+    2005-04-01:
+      value: 362.49
+    2006-04-01:
+      value: 369
+    2007-04-01:
+      value: 375.27
+    2008-04-01:
+      value: 379.03
+    2009-04-01:
+      value: 390.4
+    2010-04-01:
+      value: 394.3
+    2011-04-01:
+      value: 398.25
+    2012-04-01:
+      value: 402.23
+    2013-04-01:
+      value: 407.05
+    2014-04-01:
+      value: 409.46
+    2015-04-01:
+      value: 409.46
+    2016-04-01:
+      value: 411.12
+    2017-04-01:
+      value: 415.21
+    2018-04-01:
+      value: 416.46
+    2019-04-01:
+      value: 417.7
+    2020-04-01:
+      value: 418.12
+    2021-04-01:
+      value: 418.54
+    2022-04-01:
+      value: 425.65
+- threshold:
+    2002-04-01:
+      value: 2
+  amount:
+    2002-04-01:
+      value: 557.34
+    2003-04-01:
+      value: 557.35
+    2004-04-01:
+      value: 576.41
+    2005-04-01:
+      value: 589.09
+    2006-04-01:
+      value: 599.7
+    2007-04-01:
+      value: 609.89
+    2008-04-01:
+      value: 615.99
+    2009-04-01:
+      value: 634.47
+    2010-04-01:
+      value: 640.81
+    2011-04-01:
+      value: 647.22
+    2012-04-01:
+      value: 653.69
+    2013-04-01:
+      value: 661.54
+    2014-04-01:
+      value: 665.44
+    2015-04-01:
+      value: 672.09
+    2016-04-01:
+      value: 668.2
+    2017-04-01:
+      value: 674.79
+    2018-04-01:
+      value: 681.53
+    2019-04-01:
+      value: 683.58
+    2020-04-01:
+      value: 685.63
+    2021-04-01:
+      value: 686.32
+    2022-04-01:
+      value: 698.67
+- threshold:
+    2002-04-01:
+      value: 3
+  amount:
+    2002-04-01:
+      value: 814.41
+    2003-04-01:
+      value: 814.43
+    2004-04-01:
+      value: 842.29
+    2005-04-01:
+      value: 860.82
+    2006-04-01:
+      value: 876.31
+    2007-04-01:
+      value: 891.21
+    2008-04-01:
+      value: 900.12
+    2009-04-01:
+      value: 927.13
+    2010-04-01:
+      value: 936.4
+    2011-04-01:
+      value: 945.76
+    2012-04-01:
+      value: 955.22
+    2013-04-01:
+      value: 966.68
+    2014-04-01:
+      value: 972.39
+    2015-04-01:
+      value: 972.39
+    2016-04-01:
+      value: 976.44
+    2017-04-01:
+      value: 976.55
+    2018-04-01:
+      value: 986.04
+    2019-04-01:
+      value: 989
+    2020-04-01:
+      value: 991.97
+    2021-04-01:
+      value: 992.96
+    2022-04-01:
+      value: 1010.83
+- threshold:
+    2002-04-01:
+      value: 4
+  amount:
+    2002-04-01:
+      value: 1285.37
+    2003-04-01:
+      value: 1285.41
+    2004-04-01:
+      value: 1329.37
+    2005-04-01:
+      value: 1358.62
+    2006-04-01:
+      value: 1383.07
+    2007-04-01:
+      value: 1406.58
+    2008-04-01:
+      value: 1420.65
+    2009-04-01:
+      value: 1463.27
+    2010-04-01:
+      value: 1477.9
+    2011-04-01:
+      value: 1492.68
+    2012-04-01:
+      value: 1507.61
+    2013-04-01:
+      value: 1525.7
+    2014-04-01:
+      value: 1534.7
+    2015-04-01:
+      value: 1550.05
+    2016-04-01:
+      value: 1541.13
+    2017-04-01:
+      value: 1556.25
+    2018-04-01:
+      value: 1571.82
+    2019-04-01:
+      value: 1576.53
+    2020-04-01:
+      value: 1581.26
+    2021-04-01:
+      value: 1582.84
+    2022-04-01:
+      value: 1611.33
+- threshold:
+    2002-04-01:
+      value: 5
+  amount:
+    2002-04-01:
+      value: 1628.31
+    2003-04-01:
+      value: 1628.36
+    2004-04-01:
+      value: 1684.05
+    2005-04-01:
+      value: 1721.09
+    2006-04-01:
+      value: 1752.07
+    2007-04-01:
+      value: 1781.86
+    2008-04-01:
+      value: 1799.67
+    2009-04-01:
+      value: 1853.67
+    2010-04-01:
+      value: 1872.21
+    2011-04-01:
+      value: 1890.93
+    2012-04-01:
+      value: 1909.84
+    2013-04-01:
+      value: 1932.76
+    2014-04-01:
+      value: 1944.16
+    2015-04-01:
+      value: 1963.6
+    2016-04-01:
+      value: 1952.33
+    2017-04-01:
+      value: 1952.33
+    2018-04-01:
+      value: 1991.17
+    2019-04-01:
+      value: 1991.17
+    2020-04-01:
+      value: 2003.14
+    2021-04-01:
+      value: 2005.14
+    2022-04-01:
+      value: 2041.24
+- threshold:
+    2002-04-01:
+      value: 6
+  amount:
+    2002-04-01:
+      value: 2013.92
+    2003-04-01:
+      value: 2013.98
+    2004-04-01:
+      value: 2082.86
+    2005-04-01:
+      value: 2128.68
+    2006-04-01:
+      value: 2166.99
+    2007-04-01:
+      value: 2203.83
+    2008-04-01:
+      value: 2225.87
+    2009-04-01:
+      value: 2292.65
+    2010-04-01:
+      value: 2315.57
+    2011-04-01:
+      value: 2338.73
+    2012-04-01:
+      value: 2362.12
+    2013-04-01:
+      value: 2390.46
+    2014-04-01:
+      value: 2404.57
+    2015-04-01:
+      value: 2428.61
+    2016-04-01:
+      value: 2431.04
+    2017-04-01:
+      value: 2438.33
+    2018-04-01:
+      value: 2462.72
+    2019-04-01:
+      value: 2470.11
+    2020-04-01:
+      value: 2477.51
+    2021-04-01:
+      value: 2479.99
+    2022-04-01:
+      value: 2524.63
+- threshold:
+    2002-04-01:
+      value: 7
+  amount:
+    2002-04-01:
+      value: 2442.21
+    2003-04-01:
+      value: 2442.28
+    2004-04-01:
+      value: 2525.81
+    2005-04-01:
+      value: 2581.37
+    2006-04-01:
+      value: 2627.84
+    2007-04-01:
+      value: 2672.51
+    2008-04-01:
+      value: 2699.24
+    2009-04-01:
+      value: 2780.21
+    2010-04-01:
+      value: 2808.02
+    2011-04-01:
+      value: 2836.09
+    2012-04-01:
+      value: 2864.46
+    2013-04-01:
+      value: 2898.83
+    2014-04-01:
+      value: 2915.93
+    2015-04-01:
+      value: 2945.09
+    2016-04-01:
+      value: 2928.25
+    2017-04-01:
+      value: 2956.88
+    2018-04-01:
+      value: 2986.45
+    2019-04-01:
+      value: 2995.41
+    2020-04-01:
+      value: 3004.39
+    2021-04-01:
+      value: 3007.4
+    2022-04-01:
+      value: 3061.53
+- threshold:
+    2002-04-01:
+      value: 8
+  amount:
+    2002-04-01:
+      value: 2913.69
+    2003-04-01:
+      value: 2913.77
+    2004-04-01:
+      value: 3013.42
+    2005-04-01:
+      value: 3079.72
+    2006-04-01:
+      value: 3135.15
+    2007-04-01:
+      value: 3188.45
+    2008-04-01:
+      value: 3220.34
+    2009-04-01:
+      value: 3316.95
+    2010-04-01:
+      value: 3350.11
+    2011-04-01:
+      value: 3383.62
+    2012-04-01:
+      value: 3417.45
+    2013-04-01:
+      value: 3458.46
+    2014-04-01:
+      value: 3478.86
+    2015-04-01:
+      value: 3513.65
+    2016-04-01:
+      value: 3493.59
+    2017-04-01:
+      value: 3527.72
+    2018-04-01:
+      value: 3562.99
+    2019-04-01:
+      value: 3573.68
+    2020-04-01:
+      value: 3584.4
+    2021-04-01:
+      value: 3587.99
+    2022-04-01:
+      value: 3652.57
+- threshold:
+    2002-04-01:
+      value: 9
+  amount:
+    2002-04-01:
+      value: 3427.84
+    2003-04-01:
+      value: 3427.94
+    2004-04-01:
+      value: 3545.17
+    2005-04-01:
+      value: 3623.17
+    2006-04-01:
+      value: 3688.39
+    2007-04-01:
+      value: 3751.09
+    2008-04-01:
+      value: 3788.59
+    2009-04-01:
+      value: 3902.26
+    2010-04-01:
+      value: 3941.28
+    2011-04-01:
+      value: 3980.69
+    2012-04-01:
+      value: 4020.49
+    2013-04-01:
+      value: 4068.74
+    2014-04-01:
+      value: 4092.75
+    2015-04-01:
+      value: 4133.68
+    2016-04-01:
+      value: 4137.81
+    2017-04-01:
+      value: 4150.22
+    2018-04-01:
+      value: 4191.73
+    2019-04-01:
+      value: 4204.3
+    2020-04-01:
+      value: 4216.92
+    2021-04-01:
+      value: 4221.13
+    2022-04-01:
+      value: 4297.11
+- threshold:
+    2002-04-01:
+      value: 10
+  amount:
+    2002-04-01:
+      value: 0
+metadata:
+  short_label: Montant indemnité
+  last_value_still_valid_on: "2022-04-13"
+  reference:
+    2002-04-01:
+    - title: Article D434-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006736995/2002-03-30/
+    - title: Article L434-17 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743074/1998-12-27/
+    2016-04-01:
+    - title: Article D431-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006172216/
+    - title: Article L434-17 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/2015-12-23/
+    2022-04-01:
+    - title: Article L434-17 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
+    - title: Article L161-25 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781092/
+  notes:
+    2003-04-01:
+    - title: Revalorisation de 0,0029%
+    2004-04-01:
+    - title: Revalorisation de 3,42%
+    2005-04-01:
+    - title: Revalorisation de 2,2%
+    2006-04-01:
+    - title: Revalorisation de 1,8%
+    2007-04-01:
+    - title: Revalorisation de 1,7%
+    2008-04-01:
+    - title: Revalorisation de 1 %
+    2009-04-01:
+    - title: Revalorisation de 3 %
+    2010-04-01:
+    - title: Revalorisation de 1 %
+    2011-04-01:
+    - title: Revalorisation de 1 %
+    2012-04-01:
+    - title: Revalorisation de 1 %
+    2013-04-01:
+    - title: Revalorisation de 1,2 %
+    2014-04-01:
+    - title: Revalorisation de 0,59 %
+    2015-04-01:
+    - title: Revalorisation de 1 %
+    2016-04-01:
+    - title: Revalorisation de 0,1 %
+    2017-04-01:
+    - title: Revalorisation de 0,3 %
+    2018-04-01:
+    - title: Revalorisation de 1 %
+    2019-04-01:
+    - title: Revalorisation de 0,3% (sous-revalorisation par rapport au niveau de l'inflation)
+    2020-04-01:
+    - title: Revalorisation de 0,3%
+    2021-04-01:
+    - title: Revalorisation de 0,1%
+    2022-04-01:
+    - title: Revalorisation de 1,8%
+  amount_unit: currency
+  type: single_amount
+documentation: https://www.unsaaerien.com/wp-content/uploads/2021/04/20210419_Accidents-du-travail_Revalorisations-rentes-AT-MP.pdf circulaire CNAM numéro 10/2021 du 24 mars 2021 - Barème des indemnités en capital 1/04/2021 Pour le calcul j'ai utilisé les taux d'inflation utilisé par le gouvernement qu'on trouve dans le paramètre BMAF qui est aussi revalorisé en fonction de l'inflation valeurs pour 1986 - https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006736994/1986-10-30/ revalorisation entre 1986 et 1998 - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743073/1985-12-21/

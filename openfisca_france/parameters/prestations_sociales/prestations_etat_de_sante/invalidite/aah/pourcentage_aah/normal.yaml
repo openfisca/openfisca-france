@@ -1,0 +1,9 @@
+description: Personne sans ressources, pourcentage perçu de l'allocation pour adulte handicapé (AAH)
+values:
+  2001-01-01:
+    value: 1
+metadata:
+  short_label: Normal (sans ressources)
+  label_en: Adult disability allowance (AAH)
+  ipp_csv_id: pourcentage_aah_normal
+  unit: /1

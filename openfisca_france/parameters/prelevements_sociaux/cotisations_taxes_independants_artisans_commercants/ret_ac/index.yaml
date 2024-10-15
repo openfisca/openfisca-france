@@ -1,0 +1,14 @@
+description: Cotisation de sécurité sociale (SS) de la branche vieillesse des indépendants artisans-commerçants
+metadata:
+  short_label: Branche Vieillesse
+  label_en: SSCs for old-age insurance (sales retailers and craftsmen)
+  order:
+  - artisans
+  - industriels_et_commercants
+  - tous_independants
+documentation: |-
+  Jusqu'en 2013, le taux est égal au total des taux de cotisation vieillesse du régime général (employeur et salarié, plafonnés et déplafonnés).
+  Références législatives :
+  Les dispositions relatives aux cotisations à l'assurance-vieillesse des professions artisanales, industrielles et commerciales sont régies par l'art. L633-10 du CSS
+  (créé par l'art. 1 du décret 85-1353 du 17/12/1985, JO du 21/12/1985).
+  L'art. L633-10 du CSS a été modifié par la loi 2013-1203 du 23/12/2013 (art. 10, §2) pour instaurer une cotisation déplafonnée en plus de la cotisation plafonnée.

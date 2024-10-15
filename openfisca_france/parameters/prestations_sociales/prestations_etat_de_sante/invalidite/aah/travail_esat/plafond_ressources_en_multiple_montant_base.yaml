@@ -1,0 +1,15 @@
+description: Plafond de ressources (en multiple du montant de base) pour les bénéficiaires travaillant dans un établissement et service d'aide par le travail (Esat) pour l'allocation aux adultes handicapés (AAH)
+values:
+  2005-07-01:
+    value: 12
+metadata:
+  short_label: Plafond de ressources
+  label_en: Adult disability allowance (AAH)
+  ipp_csv_id: plaf_ressources_aah_non_activite
+  unit: /1
+  reference:
+    2005-07-01:
+      title: Décret 2005-725 du 29/06/2005 art. 6 créé art. D821-9 du CSS
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006242585/2005-06-30
+  official_journal_date:
+    2005-07-01: "2005-07-01"

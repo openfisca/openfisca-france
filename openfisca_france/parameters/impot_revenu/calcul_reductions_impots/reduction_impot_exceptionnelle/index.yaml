@@ -1,0 +1,8 @@
+description: Réduction d'impôt exceptionnelle (2013)
+metadata:
+  documentation_start: true
+  label_en: Temporary tax reduction (2013)
+  order:
+  - seuil
+  - majoration_seuil
+  - montant_plafond

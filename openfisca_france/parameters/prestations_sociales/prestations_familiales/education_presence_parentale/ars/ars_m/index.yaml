@@ -1,0 +1,12 @@
+description: Montants de l'allocation de rentrée scolaire (ARS)
+metadata:
+  documentation_start: true
+  short_label: Montants
+  label_en: "Back-to-school allowance (ARS): Amounts"
+  order:
+  - taux_primaire
+  - taux_college
+  - taux_lycee
+documentation: |-
+  L'ARS a un plafond variable selon le nombre d'enfants dès 1974 (Loi 74-644 du 16/07/1974)
+  Décret 2002-1059, art 1 du 07/08/2002 (JORF 08/08/2002): L'allocation différentielle de rentrée scolaire est égale, pour chaque enfant, à la différence entre, d'une part, le plafond défini au deuxième alinéa de l'article R. 543-5, majoré du montant de l'allocation de rentrée scolaire en vigueur au 1er juillet de l'année en cours multiplié par le nombre d'enfants y ouvrant droit au titre de la rentrée scolaire en cours et, d'autre part, le montant des ressources, cette différence étant divisée par le nombre d'enfants à charge ouvrant droit à cette allocation.

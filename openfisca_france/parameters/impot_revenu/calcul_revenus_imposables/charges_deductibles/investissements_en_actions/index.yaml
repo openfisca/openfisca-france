@@ -1,0 +1,6 @@
+description: Déductions pour investissements en actions
+metadata:
+  order:
+  - plafond
+  - supplement_par_enfant
+documentation: "Détaxation du revenu investi en actions : détaxation limitée à plaf_action + increment_action par enfant jusqu'au deuxième + 2*increment_action par enfant à charge à partir du 3ème enfant\""

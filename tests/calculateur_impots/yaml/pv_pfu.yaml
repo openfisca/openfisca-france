@@ -22,8 +22,8 @@
     prelevement_forfaitaire_unique_ir: -6400.0
     nbptr: 1.0
     rfr: 50000.0
-    irpp: 0.0
-    prelevements_sociaux_revenus_capital: -8250.0
+    impot_revenu_restant_a_payer: -6400
+    prelevements_sociaux_revenus_capital: -8600.0
 
 - name: Cas d'un foyer fiscal sujet à la fois au PFU sur plus-values et à des taxations hors barème et hors PFU sur plus-values
   period: 2019
@@ -49,8 +49,8 @@
     prelevement_forfaitaire_unique_ir: -5120.0
     nbptr: 1.0
     rfr: 60000.0
-    irpp: -10000.0
-    prelevements_sociaux_revenus_capital: -9900.0
+    impot_revenu_restant_a_payer: -15120.0
+    prelevements_sociaux_revenus_capital: -10320.0
 
 - name: Cas d'imposition hors barème de plus-values non imposable au PFU
   period: 2018
@@ -61,12 +61,12 @@
       - ind0
       f3sk: 20000.0
       f3vt: 20000.0
+      f3vi: 10000.0
     individus:
       ind0:
         activite: actif
         date_naissance: '1970-01-01'
         statut_marital: celibataire
-        f3vi: 10000.0
     famille:
       parents:
       - ind0
@@ -76,5 +76,5 @@
     prelevement_forfaitaire_unique_ir: 0.0
     nbptr: 1.0
     rfr: 50000.0
-    irpp: -12800.0
-    prelevements_sociaux_revenus_capital: -8250.0
+    impot_revenu_restant_a_payer: -12800.0
+    prelevements_sociaux_revenus_capital: -8600.0

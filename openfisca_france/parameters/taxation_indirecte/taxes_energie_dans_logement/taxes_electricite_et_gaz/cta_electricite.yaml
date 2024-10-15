@@ -1,0 +1,11 @@
+description: Contribution tarifaire d'acheminement (CTA) portant sur la distribution d'électricité
+values:
+  2003-01-01:
+    value: null
+  2006-01-01:
+    value: 0.21
+  2013-05-01:
+    value: 0.2704
+metadata:
+  ipp_csv_id: cta
+  unit: /1

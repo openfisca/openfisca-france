@@ -1,0 +1,12 @@
+description: Taux d'incapacité permanente maximum pour toucher une indemnité en capital à une victime d'un accident du travail
+values:
+  1985-12-21:
+    value: 0.1
+metadata:
+  short_label: Taux d'incapacité max
+  last_value_still_valid_on: "2024-04-26"
+  unit: /1
+  reference:
+    1985-12-21:
+      title: Article R434-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750335

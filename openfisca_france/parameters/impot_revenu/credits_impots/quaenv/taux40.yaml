@@ -1,0 +1,6 @@
+description: Taux 40%
+values:
+  2012-01-01:
+    value: 0.4
+metadata:
+  unit: /1

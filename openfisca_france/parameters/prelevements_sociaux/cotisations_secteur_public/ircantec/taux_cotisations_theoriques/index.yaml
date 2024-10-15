@@ -1,0 +1,7 @@
+description: Taux de cotisation théoriques des cotisations à la retraite complémentaire des agents non titulaires de la fonction publique et des élus locaux (IRCANTEC)
+metadata:
+  short_label: Taux de cotisation théoriques
+  label_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
+  order:
+  - employeur
+  - salarie

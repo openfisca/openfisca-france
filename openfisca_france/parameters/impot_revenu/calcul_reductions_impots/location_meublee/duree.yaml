@@ -1,0 +1,11 @@
+description: Nombre d'années sur lesquelles s'étalent la réduction d'impôt "Censi-Bouvard" pour l'investissement locatif meublé exercé à titre non professionnel dans certaines résidences (2009-)
+values:
+  2009-01-01:
+    value: 9
+metadata:
+  short_label: Durée
+  ipp_csv_id: duree_locmeu
+  reference:
+    2009-01-01:
+      title: Loi n° 2008-1425 du 27 décembre 2008 (LF pour 2009), art.90
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000019995721&idArticle=LEGIARTI000020000213&dateTexte=20090409&categorieLien=id#LEGIARTI000020000213

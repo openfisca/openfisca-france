@@ -1,0 +1,10 @@
+description: Rémunération dans la fonction publique
+metadata:
+  short_label: Rémunération Fonction publique
+  label_en: Pays in the public sector
+  order:
+  - sft
+  - indemnite_residence
+  - indicefp
+  - gipa
+  - indice_majore_minimal

@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-"""Open a variable in the DGFIP website in a browser."""
+'''Open a variable in the DGFIP website in a browser.'''
 
 
 import argparse
@@ -22,16 +22,16 @@ def inspect_dgfip_variable(variable, year, browser_name):
     assert matched is not None, 'Invalid variable: {}'.format(variable)
     section_number = variable[1]
     case = variable[2:4].upper()
-    log.info("section %s, case %s", section_number, case)
-    url_base = "http://www3.impots.gouv.fr/simulateur/calcul_impot/" + str(year + 1) + "/aides/"
+    log.info('section %s, case %s', section_number, case)
+    url_base = 'http://www3.impots.gouv.fr/simulateur/calcul_impot/' + str(year + 1) + '/aides/'
     url_section = {
-        '2': "capitaux_mobiliers.htm",
-        '3': "gains_c.htm",
-        '4': "fonciers.htm",
+        '2': 'capitaux_mobiliers.htm',
+        '3': 'gains_c.htm',
+        '4': 'fonciers.htm',
         # '5': "charges_s.htm",
-        '6': "charges.htm",
-        '7': "reductions.htm",
-        '8': "autres_imputations.htm",
+        '6': 'charges.htm',
+        '7': 'reductions.htm',
+        '8': 'autres_imputations.htm',
         }.get(section_number)
     assert url_section is not None, 'Unhandled section number: {}'.format(section_number)
     url = url_base + url_section
@@ -48,7 +48,7 @@ def main():
     parser.add_argument('--browser', dest = 'browser_name', default = 'chromium', help = 'Open links in this browser')
     parser.add_argument('--min-year', default = None, help = 'Year to start from', type = int)
     parser.add_argument('--max-year', default = None, help = 'Year to stop to', type = int)
-    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "Increase output verbosity")
+    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = 'Increase output verbosity')
     parser.add_argument('--year', default = None, help = 'Inspect the variable for the given year', type = int)
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)

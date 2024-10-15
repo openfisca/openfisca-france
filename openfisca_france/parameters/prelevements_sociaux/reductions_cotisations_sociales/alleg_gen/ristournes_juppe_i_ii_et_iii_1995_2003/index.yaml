@@ -1,4 +1,8 @@
-description: Ristournes Juppé (I, II et III) (1995-2003) des allègements généraux de cotisations de Sécurité sociale (SS)
+description: Ristournes Juppé (I, II et III) des allègements généraux de cotisations de Sécurité sociale (SS)
 metadata:
-  ux_name: Ristournes Juppé (I, II et III)
-  description_en: Reduction in SSCs
+  short_label: Ristournes Juppé (I, II et III)
+  label_en: Reduction in SSCs
+  order:
+  - taux
+  - taux_max_au_smic
+  - plafond_en_nombre_de_smic

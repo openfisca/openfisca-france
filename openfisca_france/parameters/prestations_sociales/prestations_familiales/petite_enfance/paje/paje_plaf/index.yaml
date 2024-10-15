@@ -1,0 +1,9 @@
+description: Plafonds de ressources - Allocation de base, prime à la naissance, prime à l'adoption de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  documentation_start: true
+  short_label: Plafonds de ressources
+  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  order:
+  - ne_adopte_apres_04_2018
+  - ne_adopte_04_2014_et_03_2018
+  - ne_adopte_avant_04_2014

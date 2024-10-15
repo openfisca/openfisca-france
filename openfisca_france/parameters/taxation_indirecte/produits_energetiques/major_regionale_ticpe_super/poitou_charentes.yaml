@@ -1,0 +1,10 @@
+description: Majoration régionale TICPE Super en Poitou-Charentes
+values:
+  2007-01-01:
+    value: 0
+  2016-07-01:
+    value: 2.5
+metadata:
+  short_label: Poitou-Charentes
+  ipp_csv_id: maj_ticpe_super_p_c
+  unit: currency

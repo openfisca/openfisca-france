@@ -1,0 +1,14 @@
+description: Taux et montant mensuel de l'Allocation de la mère au foyer (AMF)
+metadata:
+  documentation_start: true
+  short_label: Taux et montant mensuel
+  label_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
+  order:
+  - regime_general
+  - regime_agricole
+  - 2_enfants_charge
+  - 3_enfants_charge
+  - 4_enfants_charge
+  - 5_enfants_charge
+  - 6_enfants_charge
+documentation: Le salaire de base auquel s'appliquent ces taux est le même qu'en matière d'allocation de salaire unique

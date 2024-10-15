@@ -1,0 +1,8 @@
+description: Taux de la Prime pour l'emploi
+metadata:
+  short_label: Taux
+  label_en: Employment Allowance
+  order:
+  - phase_in
+  - phase_out_cas_general
+  - phase_out_couples_mono_emploi

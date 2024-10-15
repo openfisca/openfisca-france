@@ -1,0 +1,20 @@
+description: Plafond
+values:
+  1975-01-01:
+    value: null
+  2019-01-01:
+    value: 1000
+metadata:
+  ipp_csv_id: plaf_ND
+  unit: currency_next_year
+  reference:
+    2019-01-01:
+    - title: Loi n° 2019-803 du 29 juillet 2019 pour la conservation et la restauration de la cathédrale Notre-Dame de Paris et instituant une souscription nationale à cet effet - art. 5
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000038843054
+    - title: Loi 2019-1479 du 28/12/2019
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039683923&categorieLien=id
+  official_journal_date:
+    2019-01-01: 2019-07-30; 2019-12-29
+  notes:
+    2019-01-01:
+    - title: Les dons effectués du 16 avril au 31 décembre 2019 pour participer aux travaux de conservation et de restauration de la cathédrale Notre-Dame de Paris et de son mobilier ouvrent droit à une réduction d’impôt de 75 % des versements dans la limite de 1 000 €

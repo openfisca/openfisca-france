@@ -1,0 +1,24 @@
+description: Majoration des ressources sur les revenus d'activité (pente) pour la prime pour l'activité (PPA)
+values:
+  2016-01-01:
+    value: 0.62
+  2018-08-01:
+    value: 0.61
+metadata:
+  short_label: pente de la PPA
+  last_value_still_valid_on: "2022-08-03"
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
+  ipp_csv_id: pa_maj_revenu
+  unit: /1
+  reference:
+    2016-01-01:
+    - title: Article D843-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
+    - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
+    2018-08-01:
+      title: Décret 2018-836 du 03/10/2018, art. 1 et 2
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/10/3/SSAA1822062D/jo/texte
+  official_journal_date:
+    2016-01-01: "2015-12-22"
+    2018-08-01: "2018-10-04"

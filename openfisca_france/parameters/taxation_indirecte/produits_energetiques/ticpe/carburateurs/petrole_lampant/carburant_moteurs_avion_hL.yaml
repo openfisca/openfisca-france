@@ -1,0 +1,72 @@
+description: Carburéacteurs, type pétrole lampant, carburant moteurs d'avion (hectolitre)
+values:
+  1993-01-01:
+    value: null
+  2000-01-01:
+    value: 255.18
+  2002-01-01:
+    value: 38.9
+  2003-01-01:
+    value: 39.19
+  2004-01-01:
+    value: 41.69
+  2006-01-01:
+    value: 42.84
+  2008-01-01:
+    value: 30.2
+  2015-01-01:
+    value: 32.11
+  2016-01-01:
+    value: 34.02
+  2017-01-01:
+    value: 36.19
+  2018-01-01:
+    value: 39.79
+metadata:
+  ipp_csv_id: ticpe_carbu_petrole_lampant
+  unit: currency
+  reference:
+    1993-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    2000-01-01:
+      title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
+    2002-01-01:
+      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+    2003-01-01:
+      title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
+    2004-01-01:
+      title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000612133
+    2006-01-01:
+      title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000789373
+    2008-01-01:
+      title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017853368
+    2015-01-01:
+      title: Loi 2014-1654 du 29/12/2014 (LF pour 2015) - art. 36
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029994876&cidTexte=JORFTEXT000029988857
+    2016-01-01:
+      title: Loi 2015-1786 du 29/12/2015 (LFR pour 2015) - art. 14 et 17
+    2017-01-01:
+      title: Loi 2016-1918 du 29/12/2016 (LFR pour 2016)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033734341
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    1993-01-01: "1992-12-31"
+    2000-01-01: "1999-12-31"
+    2002-01-01: "2001-12-29"
+    2003-01-01: "2002-12-31"
+    2004-01-01: "2003-12-31"
+    2006-01-01: "2004-12-31"
+    2008-01-01: "2007-12-27"
+    2015-01-01: "2014-12-30"
+    2016-01-01: "2015-12-30"
+    2017-01-01: "2016-12-30"
+    2018-01-01: "2017-12-31"

@@ -1,0 +1,8 @@
+description: Régime de prévoyance des cotisations du régime de la SNCF
+metadata:
+  short_label: Régime de prévoyance
+  label_en: Contributions to the SNCF scheme (public railway company)
+  order:
+  - salaries
+  - employeurs
+

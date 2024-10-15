@@ -1,0 +1,78 @@
+description: Plafond annuel de ressources n°1 précalculé à partir de 2 enfants, Plafond de ressources des allocations familiales (AF)
+values:
+  2015-07-01:
+    value: 67140
+  2016-01-01:
+    value: 67408
+  2018-01-01:
+    value: 67542
+  2019-01-01:
+    value: 68217
+  2020-01-01:
+    value: 69309
+  2021-01-01:
+    value: 69933
+  2022-01-01:
+    value: 70074
+  2023-01-01:
+    value: 71194
+metadata:
+  short_label: Tranche 1
+  last_value_still_valid_on: "2023-01-31"
+  label_en: "Family allowances (AF): Thresholds for means-testing"
+  ipp_csv_id: plaf_t1_2enf
+  unit: currency
+  reference:
+    2015-07-01:
+      title: Décret 2015-611 du 03/06/2015
+      href: https://www.legifrance.gouv.fr/eli/decret/2015/6/3/2015-611/jo/texte
+    2016-01-01:
+      title: Arrêté du 08/12/2015, art. 1
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031634884/#LEGIARTI000031634884
+    2018-01-01:
+      title: Arrêté du 27/12/2017, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299563
+    2019-01-01:
+      title: Arrêté du 21/12/2018, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864990
+    2020-01-01:
+    - title: Instruction  interministerielle  no  DSS/SD2B/2019/261  du  18  décembre  2019
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-12/ste_20190012_0000_0064.pdf
+    - title: Arrêté du 20/12/2019, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039663224
+    2021-01-01:
+    - title: Arrêté du 14/12/2020, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694985
+    - title: Instruction no DSS/2B/2020/226 du 14 décembre 2020
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
+    2022-01-01:
+    - title: Instruction no DSS/2B/2021/247 du 14/12/2021
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.24.sant%C3%A9.pdf
+    - title: Arrêté du 16/12/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572366
+    2023-01-01:
+      title: Arrêté du 21 décembre 2022 relatif aux plafonds de ressources de certaines prestations familiales
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
+  official_journal_date:
+    2015-07-01: "2015-06-05"
+    2016-01-01: "2015-12-12"
+    2018-01-01: "2017-12-29"
+    2019-01-01: "2018-12-28"
+    2022-01-01: "2021-12-28"
+  notes:
+    2015-07-01:
+    - title: Création des plafonds de ressources des allocations familiales
+    2016-01-01:
+    - title: Pas de changement en 2017 cf. circulaire DSS/SD2B/2016/396 du 21/12/2016
+    2018-01-01:
+    - title: Revalorisation des plafonds de 0,2%
+    2019-01-01:
+    - title: Revalorisation des plafonds de 1%
+    2022-01-01:
+    - title: Revalorisation des plafonds de 0,2%
+documentation: |-
+  Précalcul du plafond annuel de ressources pour la première tranche applicable pour l'attribution du montant modulé des allocations familiales.
+  La première tranche est celle dont les revenus sont inférieurs ou égaux à un plafond de base de cette tranche majoré d'un montant par enfant à charge.
+  2018 : 67542 = 56286 + 5628 * 2
+  2019 : 68217 = 56849 + 5684 * 2
+  2020 : 69309 = 57759 + 5775 * 2

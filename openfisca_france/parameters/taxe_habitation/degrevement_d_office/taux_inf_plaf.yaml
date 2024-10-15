@@ -1,0 +1,14 @@
+description: Taux du dégrèvement d'office de la taxe d'habitation pour les redevables dont les revenus sont inférieurs aux plafonds
+values:
+  2018-01-01:
+    value: 0.3
+  2019-01-01:
+    value: 0.65
+  2020-01-01:
+    value: 1
+  2023-01-01:
+    value: null
+metadata:
+  unit: /1
+  reference:
+    title: art. 1414 C du CGI

@@ -1,5 +1,7 @@
 description: La décote se fait à ce taux
-unit: /1
 values:
   2001-01-01:
     value: 0.75
+metadata:
+  short_label: Taux de la décôte
+  unit: /1

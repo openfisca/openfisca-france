@@ -1,0 +1,10 @@
+description: Allègements (toutes entreprises) des cotisations de Sécurité sociale (SS) sur les bas salaires
+metadata:
+  short_label: Toutes entreprises
+  label_en: General SSC reductions, so-called Fillon reductions
+  order:
+  - plafond
+  - entreprises_de_50_salaries_et_plus
+  - entreprises_de_moins_de_50_salaries
+  - entreprises_de_20_salaries_et_plus
+  - entreprises_de_moins_de_20_salaries

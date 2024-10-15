@@ -1,0 +1,13 @@
+description: Impôt de solidarité sur la fortune (ISF)
+metadata:
+  short_label: ISF
+  label_en: Wealth tax computation
+  order:
+  - bareme
+  - decote
+  - plaf
+  - reduc_impot
+  - reduc_exo
+  - bouclier
+  - forfait_mobilier
+  - droits_sociaux

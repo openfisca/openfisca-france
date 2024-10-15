@@ -1,0 +1,6 @@
+description: Cotisations (commerçants) de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
+metadata:
+  short_label: Commerçants industriels
+  label_en: SSCs for family benefits (independent workers)
+  order:
+  - famille

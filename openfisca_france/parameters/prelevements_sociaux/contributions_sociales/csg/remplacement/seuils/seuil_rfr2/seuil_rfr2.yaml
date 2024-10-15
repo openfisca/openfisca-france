@@ -1,0 +1,91 @@
+description: Seuil du revenu fiscal de référence de l'année N-2, pour la première part de quotient familial, impliquant l'assujettissement au taux médian de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité et au taux plein pour les allocations chômage
+values:
+  1991-02-01:
+    value: null
+  2015-01-01:
+    value: 13900
+  2016-01-01:
+    value: 13956
+  2017-01-01:
+    value: 14375
+  2018-01-01:
+    value: 14404
+  2019-01-01:
+    value: 14548
+  2020-01-01:
+    value: 14781
+  2021-01-01:
+    value: 14914
+  2022-01-01:
+    value: 14944
+  2023-01-01:
+    value: 15183
+  2024-01-01:
+    value: 15988
+metadata:
+  short_label: Seuil de RFR pour la première part de quotient familial
+  last_value_still_valid_on: "2024-07-24"
+  label_en: CSG - rates on retirement incomes
+  ipp_csv_id: seuil_csg_pens_red2
+  unit: currency
+  reference:
+    1991-02-01:
+      title: Loi 90-1168 du 29/12/90, art. 127 à 135 (LF pour 1991)
+    2011-01-01:
+      title: Loi 2010-1594 du 20/12/2010, art. 20 (LFSS pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023262256&cidTexte=JORFTEXT000023261006
+    2012-01-01:
+      title: Loi 2011-1906 du 28/12/2011, art. 17 (LFSS pour 2012)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007624&cidTexte=JORFTEXT000025005833
+    2015-01-01:
+      title: Loi 2014-1554 du 22/12/2014 , art. 7 (LFSS pour 2015)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029954669&cidTexte=JORFTEXT000029953502
+    2016-01-01:
+      title: Loi 2015-1702 du 21/12/2015, art. 24 (LFSS pour 2016)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031666190&cidTexte=JORFTEXT000031663208
+    2017-01-01:
+      title: Loi 2016-1827 du 23/12/2016, art. 20 (LFSS pour 2017)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033685422&cidTexte=JORFTEXT000033680665
+    2018-01-01:
+    - title: Loi 2017-1836 du 30/12/2017, art. 8 (LFSS pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358456&cidTexte=JORFTEXT000036339090
+    - title: Circulaire CNAV 2017/34 du 20/10/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_34_20102017.pdf
+    - title: Loi 2017-1837 du 30/12/2017, art. 67 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377512&cidTexte=JORFTEXT000036339197
+    2019-01-01:
+      title: Loi 2018-1213 du 24/12/2018, art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=JORFARTI000037851902&cidTexte=JORFTEXT000037851899&dateTexte=29990101&categorieLien=id
+    2020-01-01:
+      title: Lettre ministérielle D-2019-025051 du 07/11/2019
+      href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_2019_025051_07112019.pdf
+    2021-01-01:
+      title: Lettre ministérielle D-20-021991 du 04/12/2020
+      href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_04122020.pdf
+    2022-01-01:
+      title: Lettre ministérielle D-21-028198 du 20/12/2021
+      href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_2021_028198_20122021.pdf
+    2023-01-01:
+      title: Lettre ministérielle D-22-024221 du 12/12/2022
+      href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_12122022.pdf
+    2024-01-01:    
+    - title: Article L136-8 du Code de la sécurité sociale (seuils avant revalorisation)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683546
+    - title: Lettre ministérielle D23-022880 du 23/11/2023
+      href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_23112023.pdf
+  official_journal_date:
+    1991-02-01: "1990-12-30"
+    2015-01-01: "2014-12-30"
+    2016-01-01: "2015-12-22"
+    2017-01-01: "2016-12-24"
+    2018-01-01: "2017-12-31"
+    2019-01-01: "2018-12-26"
+  notes:
+    2015-01-01:
+    - title: Seuil d'assujetissement au taux normal de CSG fixé à 13 900 € pour une personne seule sans demi-part supplémentaire
+    2017-01-01:
+    - title: Les seuils sont différents si la résidence est en Martinique, Guadeloupe, Réunion, Guyane. Non applicable pour Mayotte.
+    2019-01-01:
+    - title: La hausse de CSG est annulée pour les retraités les plus modestes par la loi 2018-1213 portant mesures d'urgences économiques et sociales. Dans les faits, cela crée un taux intermédiaire de 6,6 % qui vient s'ajouter au taux zéro, au taux réduit et au taux normal.
+    2020-01-01:
+    - title: Art. L136-8 du CSS non encore modifié

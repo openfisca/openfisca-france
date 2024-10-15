@@ -1,0 +1,14 @@
+description: Crédit jeunes actifs
+metadata:
+  short_label: Jeunes actifs
+  order:
+  - montant
+  - min
+  - max
+  - taux
+  - rfr_maj
+  - rfr_mult
+  - rfr_plaf
+  - age
+  - int
+  - nonvers

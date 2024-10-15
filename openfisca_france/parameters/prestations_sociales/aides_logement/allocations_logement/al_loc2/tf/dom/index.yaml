@@ -1,0 +1,14 @@
+description: Taux dans les DOM, fonction de la taille de la famille « TF » pris en compte dans le taux de participation personnel du ménage « Tp » pour le calcul des allocations logement
+metadata:
+  short_label: Taux « TF » dans les DOM
+  order:
+  - personnes_isolees
+  - couples_sans_enfant
+  - personnes_seules_couples_avec_1_enfant
+  - personnes_seules_couples_avec_2_enfants
+  - personnes_seules_couples_avec_3_enfants
+  - personnes_seules_couples_avec_4_enfants
+  - personnes_seules_couples_avec_5_enfants
+  - personnes_seules_couples_avec_6_enfants
+  - personnes_seules_couples_avec_7_enfants
+  - majoration_par_pac_supplementaire

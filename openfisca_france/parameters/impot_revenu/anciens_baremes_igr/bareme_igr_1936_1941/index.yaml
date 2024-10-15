@@ -1,0 +1,8 @@
+description: Taux, Seuils et Coefficients d'imposition au titre du barème de l'Impôt général sur le revenu (IGR, 1936-1941)
+metadata:
+  short_label: Barème IGR 1936-1941
+  label_en: Thresholds and marginal tax rates of the IGR tax (1936-1941)
+  order:
+  - seuils
+  - taux
+  - coefficients_progression

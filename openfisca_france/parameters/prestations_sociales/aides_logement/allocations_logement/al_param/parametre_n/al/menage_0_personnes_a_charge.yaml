@@ -1,0 +1,14 @@
+description: Paramètre « N » pour un ménage sans personne à charge pour le calcul de l'AL du secteur accession, l'AL du secteur foyer et l'APL des foyers de jeunes travailleurs conventionnés après le 30 septembre 1990 et pour les résidences sociales conventionnées après le 31 décembre 1994
+values:
+  1986-01-01:
+    value: 0.9
+  1988-07-01:
+    value: 1.5
+metadata:
+  short_label: Ménage sans personne à charge
+  last_value_still_valid_on: "2023-02-23"
+  unit: /1
+  reference:
+    1988-07-01:
+      title: Article D832-25, 2° du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878710/2019-09-01/

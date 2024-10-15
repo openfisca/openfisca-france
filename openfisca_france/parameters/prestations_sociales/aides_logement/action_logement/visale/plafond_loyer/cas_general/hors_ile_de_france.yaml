@@ -1,0 +1,14 @@
+description: Montant maximum du loyer éligible à la caution Visale dans le cas général pour les personnes logeant hors Île-de-France
+values:
+  2018-06-19:
+    value: 1300
+metadata:
+  short_label: Hors Île-de-France
+  unit: currency
+  reference:
+    2018-06-19:
+    - title: Convention quinquennale 7.4.1. 2018-2022 du 16/01/2018
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFSCTA000036580381
+    - title: Décret 2016-1769 du 19/12/2016
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000033652118#JORFARTI000033652118
+documentation: https://www.senat.fr/questions/base/2018/qSEQ180504798.html https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13

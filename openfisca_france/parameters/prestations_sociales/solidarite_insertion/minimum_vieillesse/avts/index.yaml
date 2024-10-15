@@ -1,0 +1,12 @@
+description: Allocation aux vieux travailleurs salariés (AVTS)
+metadata:
+  short_label: Allocation aux vieux travailleurs salariés (AVTS)
+  label_en: Allowance for elderly workers (AVTS)
+  order:
+  - montants_annuels
+  - plafonds_de_ressources_personnes_seules
+  - plafonds_de_ressources_menages
+documentation: |-
+  Sources:
+  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe A.
+  Site législation CNAV depuis 1956, Sécurité sociale - son histoire à travers les textes p 242 avant; légifrance pour les références exactes.

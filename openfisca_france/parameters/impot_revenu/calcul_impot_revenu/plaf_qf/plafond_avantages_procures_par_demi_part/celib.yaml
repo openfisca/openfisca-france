@@ -1,0 +1,183 @@
+description: Plafond de l'avantage en impôt par demi-part supplémentaire délivrée pour les personnes ayant élevé seules un enfant pendant 5 ans
+values:
+  1950-01-01:
+    value: null
+  1997-01-01:
+    value: 6100
+  1999-01-01:
+    value: 6130
+  2000-01-01:
+    value: 6220
+  2001-01-01:
+    value: 964
+  2002-01-01:
+    value: 980
+  2003-01-01:
+    value: 800
+  2004-01-01:
+    value: 814
+  2005-01-01:
+    value: 829
+  2006-01-01:
+    value: 844
+  2007-01-01:
+    value: 855
+  2008-01-01:
+    value: 880
+  2009-01-01:
+    value: 884
+  2010-01-01:
+    value: 897
+  2014-01-01:
+    value: 901
+  2015-01-01:
+    value: 902
+  2016-01-01:
+    value: 903
+  2017-01-01:
+    value: 912
+  2018-01-01:
+    value: 927
+  2019-01-01:
+    value: 936
+  2020-01-01:
+    value: 938
+  2021-01-01:
+    value: 951
+  2022-01-01:
+    value: 1002
+  2023-01-01:
+    value: 1050
+metadata:
+  short_label: Personnes seules ayant eus des enfants
+  last_value_still_valid_on: "2024-01-03"
+  label_en: Family quotient ceiling and "decote"
+  ipp_csv_id: plaf_qf_persseule
+  unit: currency_next_year
+  reference:
+    1997-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
+    1999-01-01:
+    - title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
+    - title: BOI 5 B-5-00; n°11 du 17/01/2000
+    2000-01-01:
+    - title: Loi 2000-1352 du 30/12/2000 (LF pour 2001)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000220595
+    - title: BOI 5 B-9-01 n°44 du 02/03/2001
+    2001-01-01:
+    - title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+    - title: BOI 5 B-3-02 n°18 du 25/01/2002
+    2002-01-01:
+    - title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
+    - title: BOI 5 B-6-03 n°16 du 27/01/2003
+    2003-01-01:
+    - title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000612133
+    - title: BOI 5 B-8-04 n°37 du 25/02/2004
+    2004-01-01:
+    - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000789373
+    - title: BOI 5 B-9-05 n°33 du 18/02/2005
+    2005-01-01:
+    - title: Loi 2005-1719 du 30/12/2005 (LF pour 2006)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000634802
+    - title: BOI 5 B-6-06 n°8 du 18/01/2006
+    2006-01-01:
+    - title: Loi 2006-1666 du 21/12/2006 (LF pour 2007)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615000
+    - title: BOI 5 B-10-07 n°47 du 29/03/2007
+    2007-01-01:
+    - title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017853368
+    - title: BOI 5 B-11-08 n°28 du 04/03/2008
+    2008-01-01:
+    - title: Loi 2008-1425 du 27/12/2008 (LF pour 2009)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019995721
+    - title: BOI 5 B-9-09 n°35 du 31/03/2009
+    2009-01-01:
+    - title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021557902
+    - title: BOI 5 B-13-10;n°22 du 16/02/2010
+    2010-01-01:
+    - title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023314376
+    - title: BOI 5 B-7-11 ; n°26 du 28/03/2011
+    2014-01-01:
+      title: Loi 2014-1654 du 29/12/2014 (LF pour 2015)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029988857
+    2015-01-01:
+      title: Loi 2015-1785 du 29/12/2015 (LF pour 2016)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031732865
+    2016-01-01:
+    - title: Loi 2016-1917, art. 2 du 29/12/2016 (LF pour 2017)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033760564&cidTexte=JORFTEXT000033734169
+    - title: BOI-IR-LIQ-20-20-30 du 06/04/2017
+    2017-01-01:
+    - title: Loi 2017-1837, art. 2 du 31/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377702&cidTexte=JORFTEXT000036339197
+    - title: BOI-IR-LIQ-20-20-30 du 26/01/2018
+    2018-01-01:
+    - title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
+    - title: Décret 2019-559, art. 1 du 06/06/2019
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038559363&categorieLien=id
+    2019-01-01:
+      title: Loi 2019-1479 du 28/12/2019 (LF pour 2020)
+      href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
+    2020-01-01:
+    - title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+    - title: Décret 2020-897, art 1. du 22/07/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042143210
+    2021-01-01:
+    - title: Loi 2021-1900, art. 2 du 30/12/2021 (LF pour 2022)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
+    - title: Article 197, I.2.§3 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01
+    2022-01-01:
+    - title: Article 197, I.2.§3 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
+    - title: Article 2, b) de la Loi n° 2022-1726 du 30/12/2022 (LF pour 2023)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845640
+    2023-01-01:
+      title: Loi 2023-1322, art. 2 du 29/12/2023 (LF pour 2024)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048727355
+  official_journal_date:
+    1997-01-01: "1997-12-31"
+    1999-01-01: "1999-12-31"
+    2000-01-01: "2000-12-31"
+    2001-01-01: "2001-12-29"
+    2002-01-01: "2002-12-31"
+    2003-01-01: "2003-12-31"
+    2004-01-01: "2004-12-31"
+    2005-01-01: "2005-12-31"
+    2006-01-01: "2006-12-27"
+    2007-01-01: "2007-12-27"
+    2008-01-01: "2008-12-28"
+    2009-01-01: "2009-12-31"
+    2010-01-01: "2010-12-30"
+    2014-01-01: "2014-12-30"
+    2015-01-01: "2015-12-30"
+    2016-01-01: "2016-12-30"
+    2017-01-01: "2017-12-31"
+    2018-01-01: "2018-12-30"
+    2019-01-01: "2019-12-29"
+    2020-01-01: "2020-12-30"
+    2021-01-01: "2021-12-31"
+    2022-01-01: "2022-12-31"
+    2023-01-01: "2023-12-30"
+  notes:
+    1997-01-01:
+    - title: Création de la catégorie "personne seule" (art. 2 de la loi de finances pour 1998)
+    2000-01-01:
+    - title: Changement de calcul de la décote
+    2014-01-01:
+    - title: La formule de calcul de la décote change
+    2016-01-01:
+    - title: Introduction d'une réduction d'impôt sous conditon de revenus qui s'impute après la décote mais avant les réductions d'impôt classiques (art. 197-I-4 (b) du CGI)
+    2019-01-01:
+    - title: La réduction d'impôt sous condition de revenus est supprimée. La décote est étendue à l'ensemble des contribuables de la première tranche.

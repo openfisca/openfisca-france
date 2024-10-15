@@ -1,4 +1,16 @@
 description: Réductions sur les cotisations de Sécurité sociale (SS)
 metadata:
-  ux_name: Réductions de cotisations de Sécurité sociale (SS)
-  description_en: Reduction in SSCs
+  short_label: Réductions de cotisations de Sécurité sociale (SS)
+  label_en: Reduction in SSCs
+  order:
+  - alleg_gen
+  - allegement_general
+  - allegement_cotisation_allocations_familiales
+  - agricole
+  - cice
+  - cits
+  - aubryii
+  - aubryi
+  - robien
+  - exonerations_geographiques_cotis
+  - jei

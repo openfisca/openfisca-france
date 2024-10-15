@@ -1,0 +1,107 @@
+description: Taxes sur les cigares et cigarillos
+values:
+  1991-01-01:
+    value: 0.2692
+  1991-09-30:
+    value: 0.2995
+  1992-04-20:
+    value: 0.2992
+  1993-01-18:
+    value: 0.2926
+  1995-08-01:
+    value: 0.2886
+  2000-04-01:
+    value: 0.2955
+  2001-01-08:
+    value: 0.25
+  2002-01-01:
+    value: 0.2
+  2004-01-05:
+    value: 0.2757
+  2013-07-01:
+    value: 0.28
+  2015-01-01:
+    value: 0.23
+  2018-03-01:
+    value: 0.269
+  2019-03-01:
+    value: 0.3
+  2019-11-01:
+    value: 0.323
+  2020-03-01:
+    value: 0.345
+  2020-11-01:
+    value: 0.363
+metadata:
+  short_label: Cigares et cigarillos
+  last_value_still_valid_on: "2022-12-28"
+  ipp_csv_id: tx_cigares
+  unit: /1
+  reference:
+    1991-01-01:
+      title: Loi 90-1168 du 29/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000717191
+    1991-09-30:
+      title: Loi 90-1168 du 29/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000717191
+    1992-04-20:
+      title: Loi 91-1322 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000356342
+    1993-01-18:
+      title: Loi 92-1376 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1995-08-01:
+      title: Loi 95-858 du 28/07/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000370300
+    2000-04-01:
+      title: Loi 2000-656 du 13/07/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000400546
+    2001-01-08:
+      title: Loi 2000-1353 du 30/12/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000767907
+    2002-01-01:
+      title: Loi 2001-1246 du 21/12/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000396224
+    2004-01-05:
+      title: Loi 2003-1311 du 30/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000612133
+    2013-07-01:
+      title: Loi 2012-1404 du 17/12/2012, art. 23 (LFSS pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026787281&cidTexte=JORFTEXT000026785322
+    2015-01-01:
+      title: Loi 2014-1655 du 29/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029990432
+    2018-03-01:
+      title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018) - art. 17
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358470&cidTexte=JORFTEXT000036339090
+    2019-03-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2019-11-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2020-03-01:
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    2020-11-01:
+    - title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    - title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603389
+  official_journal_date:
+    1991-01-01: "1990-12-30"
+    1991-09-30: "1990-12-30"
+    1992-04-20: "1991-12-31"
+    1993-01-18: "1992-12-31"
+    1995-08-01: "1995-07-29"
+    2000-04-01: "2000-07-14"
+    2001-01-08: "2000-12-31"
+    2002-01-01: "2001-12-26"
+    2004-01-05: "2003-12-31"
+    2013-07-01: "2012-12-18"
+    2015-01-01: "2014-12-30"
+    2018-03-01: "2017-12-31"
+    2019-03-01: "2018-12-30"
+    2019-11-01: "2018-12-30"
+    2020-03-01: "2020-12-30"
+    2020-11-01: "2020-12-30"

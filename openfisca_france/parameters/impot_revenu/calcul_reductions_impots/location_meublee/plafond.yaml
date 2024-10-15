@@ -1,0 +1,13 @@
+description: Plafond du prix de revient du logement pour la réduction d'impôt "Censi-Bouvard"
+values:
+  2009-01-01:
+    value: 300000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_locmeu
+  unit: currency_next_year
+  reference:
+    2009-01-01:
+      title: Loi n° 2008-1425 du 27 décembre 2008 (LF pour 2009), art.90
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000019995721&idArticle=LEGIARTI000020000213&dateTexte=20090409&categorieLien=id#LEGIARTI000020000213
+documentation: Le prix de revient du logement correspond généralement au prix d'acquisition du bien, auquel est soustrait la TVA, majoré des éventuels coûts de réhabilitation et d'intermédiaires.

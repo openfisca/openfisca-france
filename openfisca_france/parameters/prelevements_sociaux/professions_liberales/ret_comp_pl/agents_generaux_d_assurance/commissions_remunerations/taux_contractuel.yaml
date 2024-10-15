@@ -1,0 +1,20 @@
+description: Taux contractuel de la cotisation sur commissions et rémunérations brutes dans la limite d'un plafond des agents généraux d'assurance pour la retraite complémentaire
+values:
+  1968-01-01:
+    value: 0.036
+  1971-01-01:
+    value: 0.063
+metadata:
+  short_label: Taux contractuel
+  label_en: Contribution for complementary pension scheme (professionals)
+  ipp_csv_id: retc_ass_contr_0_
+  unit: /1
+  reference:
+    1968-01-01:
+      title: Décret 67-1169 du 22/12/1967
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000852184&categorieLien=id
+    1971-01-01:
+      title: Décret 71-878 du 22/10/1971
+  official_journal_date:
+    1968-01-01: "1967-12-28"
+    1971-01-01: "1970-10-30"

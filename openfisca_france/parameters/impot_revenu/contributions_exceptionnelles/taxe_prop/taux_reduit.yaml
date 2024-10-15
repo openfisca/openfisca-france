@@ -1,0 +1,15 @@
+description: Taux réduit
+values:
+  1947-01-01:
+    value: null
+  1948-01-01:
+    value: 0.09
+  1954-01-01:
+    value: 0.05
+  1964-01-01:
+    value: 0.03
+  1970-01-01:
+    value: null
+metadata:
+  ipp_csv_id: tp_taux_reduit
+  unit: /1

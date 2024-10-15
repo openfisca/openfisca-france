@@ -1,0 +1,144 @@
+description: Plafond des dons Coluche
+values:
+  1975-01-01:
+    value: null
+  1988-01-01:
+    value: 400
+  1989-01-01:
+    value: 500
+  1990-01-01:
+    value: 520
+  1993-01-01:
+    value: 1000
+  1994-01-01:
+    value: 1020
+  1995-01-01:
+    value: 1040
+  1996-01-01:
+    value: 2000
+  1997-01-01:
+    value: 2030
+  1998-01-01:
+    value: 2050
+  1999-01-01:
+    value: 2070
+  2000-01-01:
+    value: 2100
+  2001-01-01:
+    value: 400
+  2002-01-01:
+    value: 407
+  2003-01-01:
+    value: 414
+  2004-01-01:
+    value: 422
+  2005-01-01:
+    value: 470
+  2006-01-01:
+    value: 479
+  2007-01-01:
+    value: 488
+  2008-01-01:
+    value: 495
+  2009-01-01:
+    value: 510
+  2010-01-01:
+    value: 513
+  2011-01-01:
+    value: 521
+  2014-01-01:
+    value: 526
+  2015-01-01:
+    value: 529
+  2016-01-01:
+    value: 530
+  2017-01-01:
+    value: 531
+  2018-01-01:
+    value: 537
+  2019-01-01:
+    value: 546
+  2020-01-01:
+    value: 1000
+metadata:
+  short_label: Plafond
+  last_value_still_valid_on: "2023-07-05"
+  ipp_csv_id: plafcoluche
+  unit: currency_next_year
+  reference:
+    2002-01-01:
+      title: Loi 2003-709 du 01/08/2003 - art. 1 (V)
+    2004-01-01:
+      title: Loi n° 2004-1485 du 30 décembre 2004, Article 31
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000240757&idArticle=LEGIARTI000006322286&dateTexte=20071227
+    2005-01-01:
+      title: Loi n° 2005-32 du 18/01/2005
+    2007-01-01:
+      title: Décret 2008-294 du 01/04/2008 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000018559051&cidTexte=JORFTEXT000018557013
+    2008-01-01:
+      title: Décret 2009-389 du 07/04/2009 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020499734&cidTexte=JORFTEXT000020496091
+    2009-01-01:
+      title: Décret 2010-421 du 27/04/2010 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000022169561&cidTexte=JORFTEXT000022166146
+    2010-01-01:
+      title: Décret 2011-645 du 09/06/2011 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024154164&cidTexte=JORFTEXT000024152033
+    2011-01-01:
+    - title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023314376
+    - title: BOI 5-B-11-12
+    2015-01-01:
+    - title: Loi 2015-1785 du 29/12/2015 (LF pour 2016)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031732865
+    - title: Décret n° 2016-775 du 10/06/2016 - art. 1
+    2016-01-01:
+    - title: Loi 2016-1917 du 29/12/2016 (LF pour 2017)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033734169&categorieLien=id
+    - title: Décret n° 2017-698 du 02/05/2017 - art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000034566367
+    2017-01-01:
+    - title: Loi 2017-1837 du 31/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197&categorieLien=id
+    - title: Décret n° 2018-500 du 20/06/2018 - art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037090902
+    2018-01-01:
+      title: Décret n° 2019-559 du 06/06/2019 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038559363&categorieLien=id
+    2019-01-01:
+      title: Décret n° 2020-897 modifiant l'article 200 du CGI
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042143201/
+    2020-01-01:
+    - title: Article 200, 1.ter. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045764695
+    - title: Loi n° 2020-473 du 25/04/2020 de finances rectificative pour 2020, art. 14
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000041820881
+  official_journal_date:
+    2002-01-01: "2003-08-02"
+    2005-01-01: "2005-01-19"
+    2007-01-01: "2008-04-02"
+    2008-01-01: "2009-04-09"
+    2009-01-01: "2010-04-30"
+    2010-01-01: "2011-06-11"
+    2011-01-01: "2011-12-29"
+    2015-01-01: "2015-12-30"
+    2016-01-01: "2016-12-30"
+    2017-01-01: "2017-12-31"
+    2018-01-01: "2019-06-07"
+    2019-01-01: "2020-07-24"
+    2020-01-01: "2020-04-25"
+  notes:
+    1989-01-01:
+    - title: À partir de 1989, les avantages fiscaux prennent la forme de réduction d'impôt et non plus de déduction du revenu imposable (sauf dons Coluche)
+    1990-01-01:
+    - title: "Avant 1990 (inclus) : Dons coluche et autre dons dans art. 238-2 bis du CGI"
+    2008-01-01:
+    - title: Depuis revenus 1999, regroupement des dons aux œuvres reconnues d'utilité publique, d'intérêt général et pour le financement des partis politiques et des campagnes électorales
+    2019-01-01:
+    - title: Les dons effectués du 16 avril au 31 décembre 2019 pour participer aux travaux de conservation et de restauration de la cathédrale Notre-Dame de Paris et de son mobilier ouvrent droit à une réduction d’impôt de 75 % des versements dans la limite de 1 000 €
+    2020-01-01:
+    - title: Le plafond des dons Coluche a été exceptionnellement élevée à 1000 euros pour l'imposition des revenus de l'année 2020 et a été reconduit d'année en année jusqu'à 2023 (https://www.legifrance.gouv.fr/codes/id/LEGIARTI000046861095/2023-01-01/, 1ter).
+documentation: |-
+  Dons Coluche (organismes d'aide aux personnes en difficulté): art. 200-1 ter du CGI
+  La limite de versements mentionnée au premier alinéa est relevée chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu de l'année précédant celle des versements. Le montant obtenu est arrondi, s'il y a lieu, à l'euro supérieur.

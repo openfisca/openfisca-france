@@ -1,4 +1,8 @@
 description: Cotisations employeur du régime d'assurance maladie
 metadata:
-  ux_name: Barème employeur
-  description_en: SSCs of the sickness scheme
+  short_label: Barème employeur
+  label_en: SSCs of the sickness scheme
+  order:
+  - maladie
+documentation: |-
+  Le taux réduit sous 2,5 Smic indiqué ici est issu du calcul la cotisation normale dont on déduit de l'allègement de cotisation sous ce seuil de revenu.

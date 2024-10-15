@@ -1,0 +1,49 @@
+description: Pourcentages appliqués à des tranches de ressources pour calculer l'équivalence de loyer et charges locatives minimales (paramètre « E0 »)
+brackets:
+- threshold:
+    2007-11-01:
+      value: 0
+  rate:
+    2007-11-01:
+      value: 0.04
+- threshold:
+    2007-07-01:
+      value: 1948.1
+  rate:
+    2007-11-01:
+      value: 0.104
+- threshold:
+    2007-11-01:
+      value: 2678.71
+  rate:
+    2007-11-01:
+      value: 0.216
+- threshold:
+    2007-11-01:
+      value: 3896.18
+  rate:
+    2007-11-01:
+      value: 0.264
+- threshold:
+    2007-11-01:
+      value: 5357.44
+  rate:
+    2007-11-01:
+      value: 0.32
+- threshold:
+    2007-11-01:
+      value: 6331.29
+  rate:
+    2007-11-01:
+      value: 0.48
+metadata:
+  reference:
+    2007-07-01:
+    - title: Arrêté du 08/11/2007, article 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002479892
+    - title: Article D832-26 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878708
+    - title: Article R351-62 du Code de la construction et de l'habitation (abrogé)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006899017/2006-01-01/
+  rate_unit: /1
+  threshold_unit: currency

@@ -1,0 +1,8 @@
+description: Abattement majoré
+metadata:
+  short_label: Actions, parts, droits ou titres détenus depuis
+  order:
+  - 1an
+  - 4ans
+  - 8ans
+documentation: L'abattement majoré est prévu au 1-quater de l'article 150-0 D du CGI et s'applique aux gains de cession de titres de PME de moins de 10 ans à la date de souscription ou d'acquisition des titres et les titres de dirigeants de PME prenant leur retraite ne bénéficiant pas de l'abattement fixe lorsque l'option au barème progressif est exercée.

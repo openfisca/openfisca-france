@@ -1,0 +1,6 @@
+description: Taux effectifs (entreprises avant 01/01/1997) des cotisations au régime complémentaire de retraite des non-cadres (ARRCO) du secteur privé
+metadata:
+  short_label: Entreprises avant 01/01/1997
+  label_en: Pension contributions for non-executives (ARRCO)
+  order:
+  - arrco

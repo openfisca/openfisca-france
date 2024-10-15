@@ -1,0 +1,10 @@
+description: Frais d'assiette et de recouvrement pour la taxe d'habitation associée à des locaux meublés en habitation principale
+values:
+  2017-01-01:
+    value: 0.01
+  2023-01-01:
+    value: null
+metadata:
+  unit: /1
+  reference:
+    title: art. 1641 du CGI

@@ -1,0 +1,12 @@
+description: Crédit d'impôt pour frais de garde des enfants à l'extérieur du domicile
+metadata:
+  documentation_start: true
+  short_label: Frais de garde des enfants
+  order:
+  - taux
+  - plafond
+documentation: |-
+  Frais de garde des enfants à l'extérieur du domicile.
+  Les enfants ouvrant droit à réduction d'impôt sont ceux âgés de moins de 6 ans au 1er janvier de l'année d'imposition.
+  La réduction d'impôt est accordée aux contribuables célibataires, veufs, divorcés ou séparés, domiciliés en France et qui exercent une activité professionnelle.
+  La même possibilité est accordée aux foyers fiscaux dans lesquels chacun des conjoints, soit occupe un emploi au moins à mi-temps, soit ne peut exercer cette activité du fait d'une longue maladie ou d'une infirmité ou poursuit des études dans l'enseignement supérieur.

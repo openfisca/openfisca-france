@@ -1,0 +1,38 @@
+- name: Calcul de l'égibilité et du montant du Contrat d'Engagement Jeune
+  period: 2022-03
+  absolute_error_margin: 0.1
+  input:
+    age: [15, 16, 17, 18, 24, 24, 24, 28, 28, 24, 24, 24]
+    handicap: [false, false, false, false, false, false, false, false, true, false, false, false]
+    activite: [inactif, inactif, inactif, actif, inactif, inactif, etudiant, inactif, inactif, inactif, inactif, inactif]
+    salaire_net:
+      2021-12: [0, 0, 0, 200, 0, 0, 0, 0, 0, 600, 0, 1300]
+      2022-01: [0, 0, 0, 200, 0, 0, 0, 0, 0, 600, 0, 1300]
+      2022-02: [0, 0, 0, 200, 0, 0, 0, 0, 0, 600, 0, 1300]
+    chomage_net:
+      2021-12: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 0]
+      2022-01: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 0]
+      2022-02: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 0]
+    rsa:
+      2021-12: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+      2022-01: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+      2022-02: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+    ppa:
+      2021-12: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+      2022-01: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+      2022-02: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+  output:
+    contrat_engagement_jeune: [0, 200, 200, 500, 0, 0, 0, 0, 500, 347.3, 0, 0] # Calcul du 347.3: 500-(600-300)*500/(0.8*1603-300)
+
+- name: Calcul de l'égibilité et du montant du Contrat d'Engagement Jeune avec un RNI en entré
+  period: 2023-04
+  input:
+    age: ['18', '18']
+    handicap: [false, false]
+    activite: [inactif, inactif]
+    rni:
+      2021: ['500000', '0']
+    nbptr:
+      2021: ['1', '1']
+  output:
+    contrat_engagement_jeune: [0, 528]

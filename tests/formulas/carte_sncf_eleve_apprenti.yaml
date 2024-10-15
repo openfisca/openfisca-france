@@ -1,0 +1,8 @@
+- period: 2021-09
+  input:
+    apprenti: [true, true, true, true, false, false, false, false, true]
+    etudiant: [true, true, false, false, true, true, false, false, true]
+    age: [16, 30, 20, 25, 25, 30, 20, 30, 20]
+    depcom: ["75111", "75111", "75111", "75111", "75111", "75111", "75111", "75111", "97101"]
+  output:
+    carte_sncf_eleve_apprenti_eligibilite: [true, false, true, false, true, false, false, false, false]

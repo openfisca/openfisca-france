@@ -1,0 +1,10 @@
+description: Calcul de la décote de l'impôt de solidarité sur la fortune
+metadata:
+  short_label: Calcul de la décote
+  label_en: "\"Décote\" computation"
+  order:
+  - parametre_calcul_decote
+  - borne_inferieure_decote
+  - borne_superieure_decote
+  - taux_decote
+documentation: La décote prévue par la loi 2011-900 du 29/07/2011 de finances rectificative pour 2012 ne s'est jamais appliquée. En effet, bien que la décote ait été utilisée dans le calcul de l'ISF 2012, la contribution exceptionnelle sur la fortune instaurée par la loi de finances rectificative pour 2012 en neutralise l'effet. Le montant de la contribution correspond à la différence entre l'ISF déjà acquitté en 2012 et le montant calculé sur la base du barème de 2011.

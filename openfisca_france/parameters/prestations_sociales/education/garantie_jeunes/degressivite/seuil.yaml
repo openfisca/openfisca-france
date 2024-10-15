@@ -1,0 +1,13 @@
+description: Seuil de la garantie jeunes
+values:
+  2016-12-23:
+    value: 300
+metadata:
+  short_label: Seuil
+  unit: currency
+  reference:
+    2016-12-23:
+    - title: Article 1 du décret n° 2016-1855 du 23/12/2016 relatif au parcours contractualisé d'accompagnement vers l'emploi et l'autonomie et à la garantie jeunes
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/12/23/2016-1855/jo/article_1
+    - title: Article R5131-21 du code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033700946

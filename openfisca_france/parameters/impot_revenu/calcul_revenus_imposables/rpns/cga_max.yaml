@@ -1,0 +1,14 @@
+description: Abattement centre de gestion agréé ou association aggréé///si revenu inférieur à
+values:
+  2002-01-01:
+    value: 113900
+  2003-01-01:
+    value: 115900
+  2004-01-01:
+    value: 117900
+  2005-01-01:
+    value: 120100
+  2006-01-01:
+    value: 0
+metadata:
+  unit: currency_next_year

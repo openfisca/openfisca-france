@@ -1,0 +1,14 @@
+description: Majoration pour les autres demi-parts supplémentaires du plafond de revenu fiscal de référence pour le plafonnement de la taxe d'habitation
+values:
+  2017-01-01:
+    value: 4631
+  2018-01-01:
+    value: 4677
+  2019-01-01:
+    value: 4752
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Majoration demi-parts supp.
+  unit: currency
+documentation: Voir II de l'art. 1417 du CGI

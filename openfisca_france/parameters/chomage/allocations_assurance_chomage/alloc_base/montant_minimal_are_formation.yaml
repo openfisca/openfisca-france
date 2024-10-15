@@ -1,0 +1,123 @@
+description: Montant minimal ARE-formation de l'allocation de base d'assurance chômage
+values:
+  1968-07-22:
+    value: null
+  2002-07-01:
+    value: 17.73
+  2003-07-01:
+    value: 17.74
+  2004-07-01:
+    value: null
+  2005-07-01:
+    value: 17.92
+  2006-07-01:
+    value: 18.28
+  2007-07-01:
+    value: 18.64
+  2008-07-01:
+    value: 19.11
+  2009-07-01:
+    value: 19.3
+  2010-07-01:
+    value: 19.53
+  2011-07-01:
+    value: 19.82
+  2012-07-01:
+    value: 20.22
+  2013-07-01:
+    value: 20.34
+  2014-07-01:
+    value: 20.48
+  2015-07-01:
+    value: 20.54
+  2017-07-01:
+    value: 20.67
+  2018-07-01:
+    value: 20.81
+  2019-07-01:
+    value: 20.96
+  2020-07-01:
+    value: 21.04
+  2021-07-01:
+    value: 21.17
+  2022-07-01:
+    value: 21.78
+  2023-04-01:
+    value: 22.19
+  2023-07-01:
+    value: 22.61
+  2024-07-01:
+    value: 22.88
+metadata:
+  short_label: Montant minimal ARE-formation
+  label_en: "UI scheme: lump-sum and minimum"
+  unit: currency
+  reference:
+    1968-07-22:
+      title: Circulaire 68-35 - décision du 25/06/1968
+    2002-07-01:
+    - title: Protocole du 27/12/2002
+    - title: Circulaire 02-15 - décision du 03/07/2002
+    2003-07-01:
+    - title: Arrêté du 17/12/2003 portant agrément de l'avenant 3 à la convention du 01/01/2004
+    - title: Circulaire 03-09 - décision du 02/07/2003
+    2004-07-01:
+    - title: Arrêté du 28/05/2004 portant agrément de la convention du 01/01/2004
+    - title: Circulaire 04-13 - décision du 25/06/2004
+    2005-07-01:
+      title: Arrêté du 23/02/2006 portant agrément de la convention du 18/01/2006
+    2006-07-01:
+      title: Circulaire 2006-13 du 21/07/2006
+    2007-07-01:
+      title: Circulaire 2007-09 du 26/06/2007
+    2008-07-01:
+      title: Circulaire 2008-04 du 01/07/2008
+    2009-07-01:
+    - title: Circulaire 2009-17 du 10/07/2009
+    - title: Circulaire 2009-16 du 09/07/2009
+    2010-07-01:
+      title: Circulaire 2010-10 du 02/07/2010
+    2011-07-01:
+      title: Circulaire 2011-28 du 01/08/2011
+    2012-07-01:
+      title: Circulaire 2012-18 du 11/07/2012
+    2013-07-01:
+      title: Circulaire 2013-11 du 01/07/2013
+    2014-07-01:
+      title: Circulaire 2014-20 du 04/07/2014
+    2015-07-01:
+      title: Circulaire 2015-14 du 01/07/2015
+    2017-07-01:
+      title: Circulaire 2017-14 du 29/06/2017
+    2018-07-01:
+      title: Circulaire 2018-14 du 16/07/2018
+    2019-07-01:
+      title: Circulaire 2019-08 du 27/06/2019
+    2020-07-01:
+      title: Circulaire 2020-09 du 01/07/2020
+    2021-07-01:
+      title: Circulaire Unedic 2021-08 du 1er juillet 2021
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2021-08_du_1er_juillet_2021.pdf
+    2022-07-01:
+      title: Circulaire Unedic 2022-09 du 1 juillet 2022
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2022-09_du_1er_juillet_2022.pdf
+    2023-04-01:
+    - title: Circulaire Unedic
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2023-03_du_1er_avril_2023.pdf
+    - title: Décret autorisant l'Unedic à effectuer une revalorisation en avril (Décret n° 2023-228 du 30 mars 2023)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047377781
+    2023-07-01:
+      title: Circulaire Unedic 2023-06 du 3 juillet 2023
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-circulaire_2023-06_du_3_juillet_2023.pdf
+    2024-07-01:
+      title: Circulaire Unedic 2024-05 du 1 juillet 2024
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2024-05_du_1er_juillet_2024.pdf
+  official_journal_date:
+    2003-07-01: "2003-12-27"
+    2004-07-01: "2004-05-29"
+    2005-07-01: "2006-03-02"
+  notes:
+    2004-07-01:
+    - title: Valeur inconnue de l'allocation journalière versée pendant une période de formation.
+    2023-04-01:
+    - title: Revalorisation exceptionnelle en avril en raison de l'inflation

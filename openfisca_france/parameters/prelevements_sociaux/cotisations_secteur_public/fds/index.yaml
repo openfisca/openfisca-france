@@ -1,0 +1,24 @@
+description: Cotisations salarié au Fonds de solidarité (FDS) de la fonction publique
+metadata:
+  documentation_start: true
+  short_label: Cotisations FDS
+  label_en: Contributions to the Solidarity Fund (FDS)
+  order:
+  - salarie
+documentation: |-
+  Le Fonds de solidarité pour l'emploi et la contribution le finançant ont été instaurés par la Loi 82-939 du 04/11/1982, art. 4 (publiée au JO le 05/11/1982).
+  Assiette :
+  Rémunérations nettes, sous 4 PSS.
+  Toutes les rémunérations moins les cotisations salariés de sécurité sociale (essentiellement les cotisations retraites).
+
+  Le seuil d'assujetissement correspond à l'indice majoré 302 (en 2012); indice 296 (Article R5423-52 du code du Travail).
+  En 1982, le seuil correspond à l'indice nouveau majoré 248.
+  Le Traitement Brut annuel est arrondi au centime, et le Traitement mensuel non arrondi et 2 chiffres après la virgule
+  (confirmation avec le JO: valeur du point 4 chiffres après la virgule).
+
+  Sources :
+  http://www.fonds-de-solidarite.fr
+  Pour les années 1982-2006, document envoyé par le Fonds de solidarité.
+  Pour les années plus récentes, la formule liant la valeur annuelle du point, l'indice majoré, le TB annuel et le seuil d'assujétissement a été utilisée pour obtenir la valeur du seuil.
+  Pour 2013, le document de synthèse du CG54 a été utilisé:
+   http://www.cdg54.fr/docs/circulaires/2013/Taux%20cotisations%20au%2001%2001%202013.pdf

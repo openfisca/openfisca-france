@@ -1,0 +1,11 @@
+description: Taux (XG)
+values:
+  2004-01-01:
+    value: 0.1
+  2005-01-01:
+    value: 0.4
+  2011-01-01:
+    value: 0.36
+  2013-01-01: expected
+metadata:
+  unit: /1

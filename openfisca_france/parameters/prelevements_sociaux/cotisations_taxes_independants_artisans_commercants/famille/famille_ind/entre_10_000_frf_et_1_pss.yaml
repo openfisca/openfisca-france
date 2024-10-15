@@ -1,0 +1,19 @@
+description: Cotisations (entre 10 000 FRF et 1 PSS) de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
+values:
+  1974-04-01:
+    value: 0.09
+  1983-01-01:
+    value: null
+metadata:
+  short_label: Entre 10 000 FRF et 1 PSS
+  label_en: SSCs for family benefits (independent workers)
+  ipp_csv_id: fam_inde_10000_1
+  unit: /1
+  reference:
+    1974-04-01:
+      title: Décret 74-313 du 29/03/1974
+    1983-01-01:
+      title: Décret 82-1117 du 27/12/1982
+  official_journal_date:
+    1974-04-01: "1974-04-23"
+    1983-01-01: "1982-12-29"

@@ -1,0 +1,16 @@
+description: Seuil de la valeur en capital du patrimoine au delà duquel le patrimoine est pris en compte dans le calcul des aides au logement
+values:
+  2016-10-01:
+    value: 30000
+metadata:
+  short_label: Seuil de prise en compte du patrimoine
+  last_value_still_valid_on: "2023-02-20"
+  unit: currency
+  reference:
+    2016-10-01:
+    - title: Article L822-5 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038814936
+    - title: Article R822-22 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878953/2019-09-01/
+    - title: Décret n° 2016-1385 du 12/10/2016, article 1
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/10/12/LHAL1606833D/jo/texte

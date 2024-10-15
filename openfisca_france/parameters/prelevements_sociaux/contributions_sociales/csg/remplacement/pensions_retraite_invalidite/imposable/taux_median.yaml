@@ -1,0 +1,12 @@
+description: Taux médian de la contribution sociale généralisée (CSG) imposable sur les pensions de retraite et d'invalidité
+values:
+  1997-01-01:
+    value: 0.024
+metadata:
+  short_label: Taux médian
+  last_value_still_valid_on: "2024-07-24"
+  unit: /1
+  reference:
+    1997-01-01:
+      title: Article 154 quinquies du Code général des impôts (taux global)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038836652/2019-10-01/

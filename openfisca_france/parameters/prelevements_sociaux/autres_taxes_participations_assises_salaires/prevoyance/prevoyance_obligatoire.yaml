@@ -1,0 +1,21 @@
+description: Taux minimum de cotisation employeur pour la prevoyance des cadres
+values:
+  1947-03-14:
+    value: 0.015
+  2019-01-01:
+    value: 0.015
+metadata:
+  short_label: Taux minimum
+  label_en: Minimum rate of employer contribution for invalidity insurance for cadres
+  unit: /1
+  reference:
+    1947-03-14:
+      title: Convention collective nationale de retraite et de prévoyance des cadres du 14 mars 1947
+      href: https://www.agirc-arrco.fr/wp-content/uploads/2021/11/CCN_14mars1947-1.pdf
+    2019-01-01:
+      title: Accord national interprofessionnel du 17 novembre 2017 relatif à la prévoyance des cadres
+      href: https://www.legifrance.gouv.fr/conv_coll/id/KALITEXT000036732007/
+  official_journal_date:
+    1947-03-14: "1947-04-24"
+    2019-01-01: "2018-08-14"
+documentation: Malgré le fait que la valeur ne change pas en 2019, on renseigne la référence, importante car elle unifie l'Agirc et l'Arrco.

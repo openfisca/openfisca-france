@@ -1,0 +1,23 @@
+description: Taux de la réduction pour investissements direct au capital de PME (soc, holdings, FIP, FCPI) de l'impôt de solidarité sur la fortune
+values:
+  2008-01-01:
+    value: 0.5
+  2018-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  label_en: Tax reductions for investment and donations
+  ipp_csv_id: plaf_plaf
+  unit: /1
+  reference:
+    2008-01-01:
+      title: Loi 2007-1223 du 21/08/2007 - art. 16 (V)
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 885-0 V bis et885-0 V bis A du CGI).
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    2008-01-01: "2007-08-22"
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.

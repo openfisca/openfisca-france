@@ -1,0 +1,36 @@
+description: Majoration en % de la base du plafond de ressources par enfant à charge - allocation de rentrée scolaire (ARS)
+values:
+  1986-07-01:
+    value: 0.3
+metadata:
+  short_label: Majoration par enfant, en % de la base du plafond de ressources
+  last_value_still_valid_on: "2024-01-26"
+  label_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
+  ipp_csv_id: maj_plaf_ars_enf
+  unit: /1
+  reference:
+    1986-07-01:
+      title: Création Décret 85-1353 1985-12-17, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000866621/
+    2019-01-01:
+      title: Arrêté du 21/12/2018
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037864986
+    2020-01-01:
+      title: Arrêté du 20/12/2019
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039663220&categorieLien=id
+    2021-01-01:
+      title: Arrêté du 14/12/2020
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694995
+    2023-01-01:
+      title: Arrêté du 21/12/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
+  official_journal_date:
+    1986-07-01: "1985-12-21"
+  notes:
+    1986-07-01:
+    - title: "Plafond: 2,130 fois le salaire minimum de croissance prévu à l'article L 141-4 du code du travail en vigueur au 01/07 de l'année de référence, majoré de 30% à partir du premier enfant, par enfant à charge"
+    2008-10-10:
+    - title: Depuis 2008, les montants dans les arrêtés sont données en valeur, mais celles-ci correspondent bien à une multiplication par 0.3 (à l'arrondi près), au moins jusqu'à 2024.
+documentation: |-
+  L'ARS a un plafond (dependant du nombre d'enfants) dès sa création en 1976.
+  La majoration à la base du plafond de ressources s'applique dès le premier enfant.

@@ -1,0 +1,60 @@
+description: Zone abattement maximale
+values:
+  1950-09-01:
+    value: 64
+  1951-04-01:
+    value: 74
+  1951-06-01:
+    value: 75.25
+  1951-09-01:
+    value: 86.5
+  1954-02-01:
+    value: 99.48
+  1954-10-01:
+    value: 105.1
+  1955-04-01:
+    value: 110.9
+  1956-04-01:
+    value: 115.9
+  1957-08-01:
+    value: 122.75
+  1958-01-01:
+    value: 128.05
+  1958-03-01:
+    value: 133.25
+  1958-06-01:
+    value: 137.3
+  1959-02-01:
+    value: 143.5
+  1959-11-01:
+    value: 147.35
+  1960-10-01:
+    value: 1.5075
+  1961-12-01:
+    value: 1.5515
+  1962-06-01:
+    value: 1.59
+  1962-11-01:
+    value: 1.6615
+  1963-01-01:
+    value: 1.6975
+  1963-07-01:
+    value: 1.769
+  1964-10-01:
+    value: 1.8135
+  1965-03-01:
+    value: 1.85
+  1965-09-01:
+    value: 1.887
+  1966-03-01:
+    value: 1.927
+  1966-10-01:
+    value: null
+metadata:
+  short_label: Zone abattement maximale
+  label_en: Minimum wage - SMIG
+  ipp_csv_id: smig_h_ab_max
+  unit: currency
+  notes:
+    1959-11-01:
+    - title: Les montants sont exprimés en anciens Francs de 1950 à 1959.

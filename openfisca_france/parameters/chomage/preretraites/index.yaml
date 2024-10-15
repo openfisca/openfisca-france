@@ -1,0 +1,11 @@
+description: Allocations chômage pour les personnes en préretraite
+metadata:
+  short_label: Préretraites
+  label_en: Early retirement benefits
+  order:
+  - ats
+  - pts
+  - aer
+  - garantie_ressources
+  - sr_fne
+  - fne_arpe

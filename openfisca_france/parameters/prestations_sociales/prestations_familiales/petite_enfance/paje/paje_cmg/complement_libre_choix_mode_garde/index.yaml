@@ -1,0 +1,13 @@
+description: Taux (en % de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  short_label: Taux
+  label_en: Rate
+  order:
+  - revenus_inferieurs_45_plaf
+  - revenus_superieurs_45_plaf
+  - revenus_superieurs_plaf
+documentation: |-
+  Pour les enfants de 3 à 6 ans, le taux du CLCMG est égal à la moitié de celui pour un enfant de moins de 3 ans.
+  En 2012 :
+  - 57,02 % si < 45 % * plafond
+  - 35,96 % si < plafond & > 45 % * plafond

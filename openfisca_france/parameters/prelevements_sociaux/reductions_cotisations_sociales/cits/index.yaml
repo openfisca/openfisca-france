@@ -1,4 +1,13 @@
-description: Crédit d'impôt de taxe sur les salaires (CITS) (2017-2018), dans les réductions sur les cotisations de Sécurité sociale (SS)
+description: Crédit d'impôt de taxe sur les salaires (CITS)
 metadata:
-  ux_name: Crédit d'impôt de taxe sur les salaires (CITS) 
-  description_en: Tax credit on the payroll tax (CITS)
+  short_label: CITS
+  label_en: Tax credit on the payroll tax (CITS)
+  order:
+  - taux
+  - plafond_smic
+documentation: |-
+  Le CITS, crédit d'impôt sur la taxe sur les salaires, est calculé en proportion des salaires versées par l'entreprise en dessous du plafond.
+  En pratique, ce dispositif fonctionne comme un allègement des cotisations patronales.
+  Elle concerne les employeurs redevables de la taxe sur les salaires ; l'assiette comprend les rémunérations comprises dans l'assiette de la taxe sur les salaires et non prises en compte dans l'assiette du CICE.
+  Une entreprise, association ou fondation, redevable à la fois de la taxe sur les salaires et de l'imposition sur les bénéfices, ne peut donc cumuler CICE et CITS sur une même rémunération versée.
+  Références législatives : Article 231 A du CGI.

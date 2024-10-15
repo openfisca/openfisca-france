@@ -1,0 +1,76 @@
+description: Tranche 2 (après 1997) du barème employeur pour les employeurs non-cadre, des cotisations au régime complémentaire de retraite des non-cadres (ARRCO) du secteur privé
+brackets:
+- threshold:
+    1962-01-01:
+      value: 1
+  rate:
+    1962-01-01:
+      value: null
+    1997-01-01:
+      value: 0.10500000000000001
+    1999-01-01:
+      value: 0.11249999999999999
+    2000-01-01:
+      value: 0.12
+    2014-01-01:
+      value: 0.12075
+    2015-01-01:
+      value: 0.1215
+    2019-01-01:
+      value: null
+- threshold:
+    1962-01-01:
+      value: 3
+  rate:
+    1962-01-01:
+      value: 0
+    2019-01-01:
+      value: null
+metadata:
+  short_label: Non-cadre - Tranche 2 (après 97)
+  last_value_still_valid_on: "2021-01-01"
+  label_en: Pension contributions for non-executives (ARRCO)
+  ipp_csv_id:
+    rate: arrco_ap97_p_1_3
+  reference:
+    1982-01-01:
+      title: (pas de référence)
+    1983-01-01:
+      title: Lettre-circulaire ARRCO 82-28 du 09/07/82
+    1987-01-01:
+      title: Accords ARRCO du 12/11/86
+    1988-01-01:
+      title: Accords ARRCO du 12/11/86
+    1991-01-01:
+      title: Accords ARRCO du 12/11/86 et du 01/12/89
+    1992-01-01:
+      title: Accords ARRCO du 12/11/86 et du 01/12/89
+    1996-01-01:
+      title: Accord ARRCO du 10/02/1993
+    1997-01-01:
+      title: Accords du 9/02/94 et du 25/04/1996
+    1998-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    1999-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2000-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2002-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2004-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2005-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2014-01-01:
+      title: Accord AGIRC-ARRCO du 13/03/2013
+    2015-01-01:
+      title: Accord AGIRC-ARRCO du 13/03/2013
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+  notes:
+    1982-01-01:
+    - title: "BSP : \"Le plus souvent, répartition employeur/salarié = 60/40 comme à l'UNIRS\""
+    2019-01-01:
+    - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
+  rate_unit: /1
+  threshold_unit: PSS

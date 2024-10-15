@@ -1,5 +1,23 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+description: Taux de la contribution additionnelle au prélèvement social (CAPS) sur les produits de placement
 values:
   2004-07-01:
     value: 0.003
+  2019-01-01:
+    value: null
+metadata:
+  short_label: Produits de placement
+  label_en: Other social levies on financial income
+  ipp_csv_id: tx_caps_plac
+  unit: /1
+  reference:
+    2004-07-01:
+      title: Loi 2004-626 du 30/06/2004, art. 11 et art. 19
+    2019-01-01:
+      title: Loi 2018-1203 du 22/12/2018 - art. 26
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/22/CPAX1824950L/jo/texte
+  official_journal_date:
+    2004-07-01: "2004-07-01"
+    2019-01-01: "2018-12-23"
+  notes:
+    2019-01-01:
+    - title: Création d'un prélèvement de solidarité directement affecté au budget de l'Etat. Il s'applique aux revenus de placement réalisés à partir de 2019. Cf. XIV art. 26 loi 2018-1203

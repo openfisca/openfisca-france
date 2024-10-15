@@ -1,0 +1,9 @@
+description: Imposition des gains de levées d'options sur titre attribuées avant le 28/09/2012
+metadata:
+  documentation_start: true
+  short_label: Gains levées options avant 2012
+  order:
+  - seuil_tranche_superieure
+  - cession_moins_2
+  - cession_plus_2
+documentation: Les options sur titres (ou stock-options) sont imposées sur la différence entre la valeur réelle de l’action à la date de la levée de l'option et le prix de souscription ou d’achat de l’action aux taux du barème si les options ont été attribuées avant le 28/09/2012. Si elles ont été attribuées à une date postérieure, le gain est imposé selon le régime du barème progressif.

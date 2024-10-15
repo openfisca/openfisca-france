@@ -2,13 +2,13 @@ name: Thésard 1
 period: 2011-07
 absolute_error_margin: 0.005
 input:
-  allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
+  allegement_general_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: '2011-01-01'
   contrat_de_travail_fin: '2011-12-31'
-  contrat_de_travail_duree: cdd
+  contrat_de_travail_type: cdd
   effectif_entreprise: 10000
   heures_non_remunerees_volume: 0
   indemnite_residence: 0  # WARNING
@@ -16,7 +16,7 @@ input:
   nombre_tickets_restaurant: 0
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   prise_en_charge_employeur_retraite_complementaire: 0
-  prise_en_charge_employeur_prevoyance_complementaire: 0
+  prevoyance_complementaire_employeur: 0
   prise_en_charge_employeur_retraite_supplementaire: 0
   ratio_alternants: 0
   redevable_taxe_apprentissage: 0
@@ -29,11 +29,9 @@ input:
   categorie_salarie: public_non_titulaire
   volume_jours_ijss: 0
 output:
-
   # salaire_super_brut: 0
   # cotisations_employeur: -767.75
 
-  # cotisations_employeur_contributives
   ags: 0
   agff_employeur: 0
   apec_employeur: 0
@@ -47,7 +45,6 @@ output:
   pension_employeur: 0
   rafp_employeur: 0
 
-  # cotisations_employeur_non_contributives
   ati_atiacl: 0
   accident_du_travail: 0
   famille: -102.6
@@ -66,7 +63,7 @@ output:
   taxe_apprentissage: 0
   versement_transport: -49.40
 
-  allegement_fillon: 0
+  allegement_general: 0
   credit_impot_competitivite_emploi: 0
   salaire_de_base: 1900
 
@@ -87,7 +84,6 @@ output:
   mmid_salarie: -14.25 # devrait être -14.39
   # contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: -93.99
-  mhsup: 0
   # salaire_net: 1549.61
 
   csg_imposable_salaire: -44.23
@@ -97,4 +93,3 @@ output:
   # salaire_imposable: 1603.05
 
   depense_cantine_titre_restaurant_employe: 0
-

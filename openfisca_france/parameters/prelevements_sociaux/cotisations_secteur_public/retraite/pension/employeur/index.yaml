@@ -1,4 +1,7 @@
-description: Cotisationsemployeur  retraite spécifiques à la fonction publique
+description: Pensions des cotisations employeur retraite spécifiques à la fonction publique
 metadata:
-  ux_name: Cotisations employeur
-  description_en:
+  short_label: Employeur
+  label_en: Contributions for pensions - central government
+  order:
+  - civils
+  - militaires

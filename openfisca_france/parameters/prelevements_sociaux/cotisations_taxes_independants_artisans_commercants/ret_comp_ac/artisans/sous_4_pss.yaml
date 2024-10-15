@@ -1,0 +1,60 @@
+description: Taux sous 4 PSS de la cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans
+values:
+  1998-01-01:
+    value: 0.053
+  1999-01-01:
+    value: 0.057
+  2000-01-01:
+    value: 0.06
+  2003-01-01:
+    value: 0.062
+  2004-01-01:
+    value: 0.067
+  2005-01-01:
+    value: 0.07
+  2008-01-01:
+    value: null
+metadata:
+  short_label: Taux sous 4 PSS
+  label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
+  ipp_csv_id: retc_art_0_4
+  unit: /1
+  reference:
+    1998-01-01:
+      title: Décret 97-166 du 24/02/1997 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771716&cidTexte=JORFTEXT000000382287
+    1999-01-01:
+      title: Décret 97-166 du 24/02/1997 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771716&cidTexte=JORFTEXT000000382287
+    2000-01-01:
+      title: Décret 97-166 du 24/02/1997 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771716&cidTexte=JORFTEXT000000382287
+    2003-01-01:
+      title: Décret 2003-1025 du 28/10/2003 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006225021&cidTexte=JORFTEXT000000429252
+    2004-01-01:
+    - title: Loi 2003-775 du 21/08/2003 - art. 88
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758637&cidTexte=JORFTEXT000000781627
+    - title: Décret 2004-848 du 23/08/2004 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006233585&cidTexte=JORFTEXT000000625026
+    2005-01-01:
+    - title: Décret 2005-272 du 23/03/2005
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000259384
+    - title: Décret 2004-848 du 23/08/2004 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006233585&cidTexte=JORFTEXT000000625026
+    2008-01-01:
+    - title: Décret 2007-1900 du 26/12/2007 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017852012&cidTexte=JORFTEXT000017765870
+    - title: Décret 2008-22 du 7/01/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017834337
+  official_journal_date:
+    1998-01-01: "1997-02-26"
+    1999-01-01: "1997-02-26"
+    2000-01-01: "1997-02-26"
+    2003-01-01: "2003-10-29"
+    2004-01-01: 2003-08-22; 2004-08-24
+    2005-01-01: 2005-03-26; 2004-08-24
+    2008-01-01: 2007-12-30; 2008-01-08
+  notes:
+    2004-01-01:
+    - title: Pour les industriels et commerçants, taux de 3,5% sous 3 PSS pour le 1er semestre 2004, et 4,5% sous 3 PSS pour le 2ème semestre 2004

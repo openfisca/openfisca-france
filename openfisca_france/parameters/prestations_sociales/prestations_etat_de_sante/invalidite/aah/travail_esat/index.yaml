@@ -1,0 +1,9 @@
+description: Base de calcul pour les bénéficiaires travaillant dans un établissement et service d'aide par le travail (Esat) pour l'allocation aux adultes handicapés (AAH)
+metadata:
+  short_label: Base de calcul pour Esat
+  label_en: Disability
+  order:
+  - plafond_ressources_en_multiple_montant_base
+  - plafond
+  - abattement_esat
+documentation: Les ressources d'activité prises en compte dans le calcul de l'AAH pour les ayants droit touchant des revenus d'un ESAT sont calculées à partir des revenus imposables de l'année fiscale de référence auxquels on abat 10 % (abattement fiscal de droit commun), puis 20 % (abattement spécifique l’AAH) et enfin l'abattement propre à la rémunération garantie de l'ESAT (de 3,5% à 5%). Les ressources prises en compte dans le calcul de l'AAH pour les ayants droit touchant des revenus professionnels ordinaires sont calculés à partir des revenus déclarés trimestriellement à partir de 2011 (annuellement jusqu'en 2011) auxquels sont appliqués la réduction d'impôt spécifique à ces revenus (80% puis 40%). Les revenus d'activité du conjoint sont aussi pris en compte, de la même manière pour les ayants droit tirant des revenus d'un ESAT que du monde professionnel ordinaire, on abat 10 % au titre du droit commun puis 20% spécifiques à l'AAH.

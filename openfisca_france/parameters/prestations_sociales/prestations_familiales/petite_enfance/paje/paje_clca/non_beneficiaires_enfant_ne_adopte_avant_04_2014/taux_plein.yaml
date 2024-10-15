@@ -1,0 +1,13 @@
+description: Taux plein (personnes inactives) du Complément de libre choix d'activité (CLCA) pour les non bénéficiaires de l'allocation de base (enfant né ou adopté avant avril 2014) de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 1.4257
+  2014-04-01:
+    value: 0.9662
+  2018-01-01:
+    value: null
+metadata:
+  short_label: Taux plein
+  label_en: Full rate
+  ipp_csv_id: tx_clca_nonbase
+  unit: /1

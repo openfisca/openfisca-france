@@ -1,0 +1,6 @@
+description: Dépenses d'investissement forestier (acquisition)
+metadata:
+  short_label: Acquisition
+  order:
+  - plafond
+  - taux

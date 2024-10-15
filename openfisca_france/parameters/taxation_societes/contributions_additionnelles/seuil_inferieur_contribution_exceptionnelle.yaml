@@ -1,0 +1,11 @@
+description: Seuil inférieur de chiffre d'affaires (HT) au-dela duquel les sociétés sont redevables de la contribution exceptionnelle
+values:
+  2011-12-31:
+    value: 250000000
+metadata:
+  unit: currency
+  reference:
+    2011-12-31:
+      title: Article 235 ter ZAA créé par Loi 2011-1978 - art. 30
+  official_journal_date:
+    2011-12-31: "2011-12-31"

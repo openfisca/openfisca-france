@@ -1,0 +1,7 @@
+description: TICPE - produits énergétiques, carburateurs type pétrole lampant
+metadata:
+  label_en: TICPE - Energy products
+  order:
+  - autres_hL
+  - carburant_moteurs_avion_hL
+  - sous_conditions_hL

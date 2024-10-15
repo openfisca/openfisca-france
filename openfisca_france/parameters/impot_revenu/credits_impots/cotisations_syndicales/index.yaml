@@ -1,0 +1,10 @@
+description: Cotisations syndicales
+metadata:
+  documentation_start: true
+  label_en: Union dues
+  order:
+  - taux
+  - plafond
+documentation: |-
+  Cotisations syndicales : Art. 199 quater C du CGI.
+  Le crédit s'élève à 66 % des cotisations annuelles, dans la limite de 1 % du revenu brut imposable.

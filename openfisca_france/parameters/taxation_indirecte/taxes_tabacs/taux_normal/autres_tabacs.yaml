@@ -1,0 +1,105 @@
+description: Taxes sur les autres tabacs
+values:
+  1991-01-01:
+    value: 0.4355
+  1991-09-30:
+    value: 0.4614
+  1992-04-20:
+    value: 0.448
+  1993-01-18:
+    value: 0.4714
+  1995-08-01:
+    value: 0.4674
+  2000-04-01:
+    value: 0.4743
+  2004-01-05:
+    value: 0.5242
+  2013-07-01:
+    value: 0.55
+  2015-01-01:
+    value: 0.45
+  2018-03-01:
+    value: 0.481
+  2019-03-01:
+    value: 0.49
+  2019-11-01:
+    value: 0.499
+  2020-03-01:
+    value: 0.507
+  2020-11-01:
+    value: 0.514
+  2023-03-01:
+    value: null
+metadata:
+  last_value_still_valid_on: "2022-12-28"
+  label_en: Taxes on other tobaccos
+  ipp_csv_id: tx_autres_tabac
+  unit: /1
+  reference:
+    1991-01-01:
+      title: Loi 90-1168 du 29/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000717191
+    1991-09-30:
+      title: Loi 90-1168 du 29/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000717191
+    1992-04-20:
+      title: Loi 91-1322 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000356342
+    1993-01-18:
+      title: Loi 92-1376 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1995-08-01:
+      title: Loi 95-858 du 28/07/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000370300
+    2000-04-01:
+      title: Loi 2000-656 du 13/07/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000400546
+    2004-01-05:
+      title: Loi 2003-1311 du 30/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000612133
+    2013-07-01:
+      title: Loi 2012-1404 du 17/12/2012, art. 23 (LFSS pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026787281&cidTexte=JORFTEXT000026785322
+    2015-01-01:
+      title: Loi 2014-1655 du 29/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029990432
+    2018-03-01:
+      title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018) - art. 17
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358470&cidTexte=JORFTEXT000036339090
+    2019-03-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2019-11-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2020-03-01:
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    2020-11-01:
+    - title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    - title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603389
+    2023-03-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046805433/2023-03-01/
+  official_journal_date:
+    1991-01-01: "1990-12-30"
+    1991-09-30: "1990-12-30"
+    1992-04-20: "1991-12-31"
+    1993-01-18: "1992-12-31"
+    1995-08-01: "1995-07-29"
+    2000-04-01: "2000-07-14"
+    2004-01-05: "2003-12-31"
+    2013-07-01: "2012-12-18"
+    2015-01-01: "2014-12-30"
+    2018-03-01: "2017-12-31"
+    2019-03-01: "2018-12-30"
+    2019-11-01: "2018-12-30"
+    2020-03-01: "2020-12-30"
+    2020-11-01: "2020-12-30"
+documentation: |-
+  À partir de 2023 la catégorie 'autres tabacs' se divise en 3 types:
+  - Tabacs à chauffer commercialisés en bâtonnets
+  - Autres tabacs à chauffer
+  - Autres tabacs à fumer ou à inhaler après avoir été chauffés

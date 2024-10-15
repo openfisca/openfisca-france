@@ -1,4 +1,4 @@
-"""Test scenarios."""
+'''Test scenarios.'''
 
 
 from openfisca_france.scenarios import init_single_entity
@@ -9,7 +9,7 @@ import pytest
 
 
 def test_init_single_entity_parallel_axes():
-    """Test parallel axes scenario initialisation."""
+    '''Test parallel axes scenario initialisation.'''
     year = 2019
     count = 3
     indexes = [0, 1, 2]

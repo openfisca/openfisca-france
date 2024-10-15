@@ -1,0 +1,7 @@
+description: Montant des abattements spécifiques des logement logement  pour les journalistes
+values:
+  2019-01-01:
+    value: 637.5
+metadata:
+  short_label: Journaliste
+  unit: currency

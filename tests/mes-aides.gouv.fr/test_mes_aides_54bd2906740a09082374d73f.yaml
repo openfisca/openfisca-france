@@ -1,10 +1,10 @@
-name: Les enfants qui gagnent moins de 55% du SMIC sont considérés à charge
+name: Les enfants qui gagnent moins de 55% du Smic sont considérés à charge
 keywords:
 - cf
 - enfants à charge
 description: |
   cf. http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/les-enfants-a-charge
-  Les enfants touchant un salaire net de moins de 55% du SMIC brut (soit 893 euros) sont considérés à charge.
+  Les enfants touchant un salaire net de moins de 55% du Smic brut (soit 893 euros) sont considérés à charge.
   Ici on verse bien le CF car l'enfant qui touche des salaires touche 800 euros.
 period: month:2015-01
 relative_error_margin: 0.02

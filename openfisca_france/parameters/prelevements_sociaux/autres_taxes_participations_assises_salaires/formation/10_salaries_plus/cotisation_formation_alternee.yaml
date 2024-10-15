@@ -1,0 +1,30 @@
+description: Cotisation formation alternée (plus de 10 salariés) - Participation des employeurs à la formation professionnelle continue (PEFPC)
+values:
+  1987-01-01:
+    value: 0.003
+  1993-01-01:
+    value: 0.004
+  2008-05-01:
+    value: null
+metadata:
+  short_label: Cotisation formation alternée
+  ipp_csv_id: altern_p10_p_0
+  unit: /1
+  reference:
+    1987-01-01:
+      title: Loi 87-588 du 30/07/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000687467
+    1993-01-01:
+    - title: Loi 93-121 du 27/01/1993 , art. 92
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757797&cidTexte=JORFTEXT000000711603
+    - title: Loi 92-675 du 17/07/1992, art. 2
+  official_journal_date:
+    1987-01-01: "1987-07-31"
+    1993-01-01: 1993-01-30; 1992-07-19
+  notes:
+    1987-01-01:
+    - title: "Toujours la même clause : une fraction de 0,2% du montant des salaires de 1986 majorés de 3% devra être versée au Trésor avant le 16/09/87"
+    1993-01-01:
+    - title: Une fraction de 0,4 % du montant des salaires de 1993 doit être versée au Trésor avant le 05/04/1994
+    2008-05-01:
+    - title: "Source: Mémentos pratiques Social 2008 à 2013, ed. Francis Lefèbvre. Référence législative manquante."

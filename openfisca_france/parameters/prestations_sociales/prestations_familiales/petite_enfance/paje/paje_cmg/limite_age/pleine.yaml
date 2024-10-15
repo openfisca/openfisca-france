@@ -1,0 +1,7 @@
+description: Limite d'âge (stricte) pour une prestation pleine du Complément de libre choix de mode de garde (CMG) de ka Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 3
+metadata:
+  short_label: Prestation pleine
+  unit: year

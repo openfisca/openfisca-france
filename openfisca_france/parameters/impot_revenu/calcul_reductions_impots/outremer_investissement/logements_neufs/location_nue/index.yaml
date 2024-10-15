@@ -1,0 +1,9 @@
+description: Taux de la réduction d'impôt sur 5 ans en cas de location nue (minimum 5 ans) pour les investissements réalisés en Outre-Mer (2003-2021)
+metadata:
+  short_label: Taux location nue
+  order:
+  - taux_normal
+  - taux_vert
+  - taux_quartier
+  - taux_quartiervert
+documentation: La location nue s'entend comme location non-meublée, sans conditions de plafond de loyers ou de revenus des locataires. La location dans le secteur intermédiaire implique que les loyers ne peuvent dépasser les plafonds prévus à l'article 46AG duodecies de l’annexe III du CGI et que les locataires sont soumis à un plafond de ressources prévu au même article. La base de calcul est le prix de revient du logement. En revanche, la surface maximale pouvant être pris en compte dans le calcul est plafonnée depuis 2010 au II de l’article 46 AG terdecies de l'annexe III au CGI (65 m² pour une personne seule, 90 m² pour un couple avec un enfant).

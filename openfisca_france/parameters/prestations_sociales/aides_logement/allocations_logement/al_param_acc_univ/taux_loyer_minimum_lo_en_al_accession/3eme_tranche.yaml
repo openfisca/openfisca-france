@@ -1,0 +1,43 @@
+description: Taux (3ème tranche) pour le loyer minimum (Lo) en AL accession, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
+values:
+  1972-07-01:
+    value: 0.23
+  1978-07-01:
+    value: 0.25
+  1986-01-01:
+    value: 0.26
+  2007-07-01:
+    value: 0.208
+metadata:
+  short_label: 3ème tranche
+  label_en: Parameters for new home-buyers and students residences
+  ipp_csv_id: lo_tx3
+  unit: /1
+  reference:
+    1972-07-01:
+      title: Décret 72-533 du 29/06/1972
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000499900
+    1978-07-01:
+      title: Décret 78-751 du 13/07/1978
+    1986-01-01:
+      title: Décret 85-1354 du 17/12/1985 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000507924
+    1988-05-07:
+      title: Décret 88-569 du 04/05/1988 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000504346
+    2007-07-01:
+      title: Décret 2007-1081 du 10/07/2007, art. 1 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006266095&cidTexte=JORFTEXT000000826498
+  official_journal_date:
+    1972-07-01: "1972-06-30"
+    1978-07-01: "1978-07-16"
+    1986-01-01: "1985-12-21"
+    1988-05-07: "1988-05-07"
+    2007-07-01: "2007-07-12"
+  notes:
+    2007-07-01:
+    - title: Paramètres toujours identiques en 2017
+documentation: |-
+  Notes :
+  Allocation logement créée en 1948 par la loi 48-1360 du 1er septembre 1948 (parution au JO 2/09/1948) - Titre II
+  (Lien légifrance)

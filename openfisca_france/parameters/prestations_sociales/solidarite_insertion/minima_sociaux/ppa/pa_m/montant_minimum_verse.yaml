@@ -1,0 +1,20 @@
+description: Montant minimum versé (seuil de non versement) de la prime pour l'activité (PPA)
+values:
+  2015-10-01:
+    value: 15
+metadata:
+  short_label: Montant minimum
+  last_value_still_valid_on: "2024-04-26"
+  label_en: "Active solidarity income - Activity premium (PPA) : minimal amount"
+  ipp_csv_id: pa_montant_min
+  unit: currency
+  reference:
+    2015-10-01:
+    - title: Article D843-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
+    - title: Décret 2015-1710 du 21/12/2015, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
+    - title: Article D846-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031674204/2020-08-28
+  official_journal_date:
+    2015-10-01: "2015-12-22"

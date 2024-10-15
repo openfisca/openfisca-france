@@ -1,0 +1,8 @@
+description: Majoration montant maximal (en % de la base RSA) de la prime pour l'activité (PPA)
+metadata:
+  short_label: Majoration montant maximal
+  label_en: Activity premium (PPA)
+  order:
+  - couples_seul_avec_enfant
+  - couple_1_enfant_2e_enfant
+  - par_enfant_supplementaire

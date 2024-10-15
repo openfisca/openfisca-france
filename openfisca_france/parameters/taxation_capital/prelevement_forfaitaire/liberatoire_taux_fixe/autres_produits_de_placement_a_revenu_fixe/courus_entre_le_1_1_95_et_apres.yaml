@@ -1,0 +1,43 @@
+description: Autres produits de placement à revenu fixe, courus entre le 01/01/95 et après, Comptes sur livrets, Créances, Dépôts, Cautionnement et comptes courants
+values:
+  1995-01-01:
+    value: 0.15
+  2004-01-01:
+    value: 0.16
+  2008-01-01:
+    value: 0.18
+  2011-01-01:
+    value: 0.19
+  2012-01-01:
+    value: 0.24
+metadata:
+  short_label: Courus au 01/01/95 et après
+  label_en: Levy in discharge on capital income
+  ipp_csv_id: tx_plac_ap95
+  unit: /1
+  reference:
+    1995-01-01:
+      title: Loi 93-1352 du 30/12/1993, art. 79 I, II et III (LF pour 1994)
+    2004-01-01:
+      title: Loi 2003-1311 du 30/12/2003, art. 12 (LF pour 2004)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006321732&cidTexte=JORFTEXT000000612133
+    2008-01-01:
+      title: Loi 2007-1822 du 24/12/2007, art. 10 et 12 (LF pour 2008)
+    2011-01-01:
+      title: Loi 2010-1657 du 29/12/2010, art. 6 (LF pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023347467&cidTexte=JORFTEXT000023314376
+    2012-01-01:
+      title: Loi 2011-1978 du 28/12/2011, art. 20 et 59 (LFR pour 2011)
+  official_journal_date:
+    1995-01-01: "1993-12-31"
+    2004-01-01: "2003-12-31"
+    2008-01-01: "2007-12-27"
+    2011-01-01: "2010-12-30"
+    2012-01-01: "2011-12-29"
+  notes:
+    2004-01-01:
+    - title: Il n'est plus possible d'ouvrir un plan d'épargne populaire depuis le 25 septembre 2003.
+    2008-01-01:
+    - title: Création du prélèvement libératoire sur les placements à revenus variables, notamment sur les dividendes (crée art. 117 quater du CGI)
+    2012-01-01:
+    - title: La modification du taux appliqué aux revenus du PEP reste théorique puisque tous les PEP ont plus de huit ans.

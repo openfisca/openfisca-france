@@ -1,0 +1,129 @@
+description: Taux de cotisation appelés des cotisations employeur à la retraite complémentaire des agents non titulaires de la fonction publique et des élus locaux (IRCANTEC) spécifiques à la fonction publique
+brackets:
+- threshold:
+    1971-01-01:
+      value: 0
+  rate:
+    1971-01-01:
+      value: 0.0126
+    1983-01-01:
+      value: 0.016800000000000002
+    1988-01-01:
+      value: 0.021
+    1989-01-01:
+      value: 0.02943
+    1991-04-01:
+      value: 0.0324
+    1992-01-01:
+      value: 0.03375
+    2011-01-01:
+      value: 0.034125
+    2012-01-01:
+      value: 0.03525
+    2013-01-01:
+      value: 0.03675
+    2014-01-01:
+      value: 0.038024999999999996
+    2015-01-01:
+      value: 0.039599999999999996
+    2016-01-01:
+      value: 0.0408
+    2017-01-01:
+      value: 0.041999999999999996
+- threshold:
+    1971-01-01:
+      value: 1
+  rate:
+    1971-01-01:
+      value: 0.0495
+    1983-01-01:
+      value: 0.066
+    1988-01-01:
+      value: 0.0825
+    1989-01-01:
+      value: 0.100716
+    1991-04-01:
+      value: 0.11087999999999999
+    1992-01-01:
+      value: 0.11549999999999999
+    2011-01-01:
+      value: 0.11599999999999999
+    2012-01-01:
+      value: 0.117
+    2013-01-01:
+      value: 0.11825000000000001
+    2014-01-01:
+      value: 0.11975
+    2015-01-01:
+      value: 0.12175
+    2016-01-01:
+      value: 0.1235
+    2017-01-01:
+      value: 0.1255
+- threshold:
+    1971-01-01:
+      value: 4.75
+    1992-01-01:
+      value: 8
+  rate:
+    1971-01-01:
+      value: 0
+metadata:
+  short_label: Barème
+  last_value_still_valid_on: "2021-08-24"
+  label_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
+  ipp_csv_id:
+    rate: ircantec_p_0_1, ircantec_p_1_8, ircantec_p_1_4_75
+  reference:
+    1971-01-01:
+    - title: Arrêté du 14/01/1971
+    - title: Décret 70-1277 du 23/12/1970
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000306984
+    1983-01-01:
+      title: Arrêté du 21/12/1982
+    1988-01-01:
+      title: Arrêté du 17/12/1987
+    1989-01-01:
+    - title: Décret 88-1248 du 30/12/1988
+    - title: Arrêté du 30/12/1988
+    1991-04-01:
+      title: Arrêté du 28/03/1991
+    1992-01-01:
+      title: Arrêté du 30/12/1991
+    2011-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2012-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2013-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2014-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2015-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2016-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2017-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+  official_journal_date:
+    1971-01-01: 1971-01-19; 1970-12-30
+    1983-01-01: "1982-12-29"
+    1988-01-01: "1987-12-28"
+    1989-01-01: "1989-01-03"
+    1991-04-01: "1991-03-30"
+    1992-01-01: "1992-01-03"
+    2011-01-01: "2008-09-24"
+    2012-01-01: "2008-09-24"
+    2013-01-01: "2008-09-24"
+    2014-01-01: "2008-09-24"
+    2015-01-01: "2008-09-24"
+    2016-01-01: "2008-09-24"
+    2017-01-01: "2008-09-24"
+  rate_unit: /1
+  threshold_unit: PSS

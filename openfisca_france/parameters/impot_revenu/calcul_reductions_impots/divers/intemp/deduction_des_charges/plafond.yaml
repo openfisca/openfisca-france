@@ -1,0 +1,13 @@
+description: Plafond
+values:
+  1978-01-01:
+    value: null
+  1979-01-01:
+    value: 7000
+  1984-01-01:
+    value: null
+metadata:
+  ipp_csv_id: plaf_deduc
+  unit: currency_next_year
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

@@ -14,8 +14,8 @@
       - ind0
       f7fc: 100000
       f7hk: 10000
-      f7hm: 10000
-      f7jo: 10000
+      f7hm_2010: 10000
+      f7jo_2017: 10000
       f7nr: 10000
       nbF: 0.0
       nbG: 0.0
@@ -36,7 +36,7 @@
       personne_de_reference: ind0
   output:
     iai: 38149.0
-    irpp: -38149.0
+    impot_revenu_restant_a_payer: -38149.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 137843.0
@@ -59,8 +59,8 @@
       - ind0
       f7fc: 100000
       f7hk: 10000
-      f7hm: 10000
-      f7jo: 10000
+      f7hm_2010: 10000
+      f7jo_2017: 10000
       f7nr: 10000
       nbF: 0.0
       nbG: 0.0
@@ -81,7 +81,7 @@
       personne_de_reference: ind0
   output:
     iai: 38130.0
-    irpp: -38130.0
+    impot_revenu_restant_a_payer: -38130.0
     nbptr: 1.0
     rbg: 137830.0
     reductions: 4835.0
@@ -103,7 +103,7 @@
       - ind0
       f7fc: 100000
       f7hk: 10000
-      f7jo: 10000
+      f7jo_2017: 10000
       f7nr: 10000
       nbF: 0.0
       nbG: 0.0
@@ -124,7 +124,7 @@
       personne_de_reference: ind0
   output:
     iai: 38555.0
-    irpp: -38555.0
+    impot_revenu_restant_a_payer: -38555.0
     nbptr: 1.0
     rbg: 137817.0
     reductions: 4391.0

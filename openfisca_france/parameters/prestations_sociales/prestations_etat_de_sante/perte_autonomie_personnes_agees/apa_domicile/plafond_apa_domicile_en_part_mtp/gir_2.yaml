@@ -1,0 +1,20 @@
+description: Plafond GIR 2 (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie (APA) à domicile
+values:
+  2002-01-01:
+    value: 1.02
+  2016-03-01:
+    value: 1.247
+metadata:
+  short_label: GIR 2
+  label_en: Attendance allowance for individuals living at home (APA)
+  unit: /1
+  reference:
+    2002-01-01:
+      title: Décret 2001-1084 du 20/11/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000588742
+    2016-03-01:
+      title: Décret 2016-210 du 26/02/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/2/26/2016-210/jo/texte
+  official_journal_date:
+    2002-01-01: "2001-11-21"
+    2016-03-01: "2016-02-28"

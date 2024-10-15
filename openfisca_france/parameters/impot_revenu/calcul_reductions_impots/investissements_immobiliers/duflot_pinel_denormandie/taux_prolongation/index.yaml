@@ -1,0 +1,7 @@
+description: Taux de prolongation de la réduction d'impôt dits Duflot / Pinel / Denormandie accordée au titre des investissements locatifs et des logements donnés en location à loyer abordable
+metadata:
+  short_label: Taux de prolongation
+  order:
+  - taux_prolong_9ans
+  - taux_prolong1_6ans
+  - taux_prolong2_6ans

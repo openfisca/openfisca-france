@@ -1,0 +1,14 @@
+description: Taux normaux des taxes sur les tabacs
+metadata:
+  label_en: Tobacco usual rates
+  order:
+  - cigarettes
+  - cigares
+  - tabac_rouler
+  - autres_tabacs
+  - tabacs_priser
+  - tabacs_chiquer
+  - autres_tabacs_a_chauffer
+  - autres_tabacs_a_fumer_apres_chauffer
+  - tabacs_batonnets
+documentation: Voir aussi article 575 A du code général des impôts.

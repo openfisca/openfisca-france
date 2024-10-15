@@ -1,0 +1,29 @@
+description: Âge minimum de l'allocataire du revenu minimum d'insertion (RMI)
+values:
+  1989-01-01:
+    value: 25
+  2009-06-01:
+    value: null
+metadata:
+  short_label: Âge minimum
+  last_value_still_valid_on: "2022-03-28"
+  label_en: "Minimum insertion income (RMI): General conditions"
+  ipp_csv_id: age_rmi
+  unit: year
+  reference:
+    1989-01-01:
+      title: Loi 88-1088 du 01/12/1988, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756315&cidTexte=JORFTEXT000000875188
+    2009-06-01:
+    - title: Loi 2008-1249 du 01/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019860428
+    - title: Article 1 Loi 2008-1249 du 01/12/1998
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000019861522
+  official_journal_date:
+    1989-01-01: "1988-12-03"
+    2009-06-01: "2008-12-03"
+  notes:
+    1989-01-01:
+    - title: Création du RMI
+    2009-06-01:
+    - title: Création du RSA qui remplace le RMI

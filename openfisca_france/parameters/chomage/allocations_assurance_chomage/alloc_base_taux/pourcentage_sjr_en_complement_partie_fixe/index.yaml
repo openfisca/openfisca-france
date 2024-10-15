@@ -1,0 +1,7 @@
+description: Pourcentage du SJR (en complément de partie fixe) de l'allocation de base d'assurance chômage
+metadata:
+  short_label: Pourcentage du SJR (en complément de partie fixe)
+  label_en: UI scheme - rates and maximum
+  order:
+  - si_affiliation_entre_3_6_mois
+  - si_affiliation_6_mois

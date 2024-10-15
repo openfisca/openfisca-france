@@ -1,0 +1,9 @@
+description: Allocation de soutien familial (ASF)
+metadata:
+  short_label: Allocation de soutien familial
+  label_en: "Family support allowance (ASF): Amounts"
+  order:
+  - montant_asf
+  - montant_asf_dans_calcul_rsa_ppa
+  - seuil
+documentation: le RSA n'a pas complètement éliminé l'ASF, mais les deux prestations se complètent (les montants sont indiqués pour 2013)

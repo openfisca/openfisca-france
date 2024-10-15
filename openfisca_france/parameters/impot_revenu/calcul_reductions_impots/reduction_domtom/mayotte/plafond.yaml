@@ -1,0 +1,23 @@
+description: Montant maximal de la réduction d'impôt sur le revenu pour la Mayotte
+values:
+  2013-01-01:
+    value: 6700
+  2018-01-01:
+    value: 4050
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_reduction_ir_mayotte
+  unit: currency_next_year
+  reference:
+    2013-01-01:
+      title: Ordonnance n° 2013-837 du 19 septembre 2013 (adaptation du CGI à Mayotte), art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000027974799&idArticle=LEGIARTI000027975688&dateTexte=20131231&categorieLien=id#LEGIARTI000027975688
+    2018-01-01:
+      title: Loi n° 2018-1317 du 28 décembre 2018 (LF 2019), art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000037882341&idArticle=LEGIARTI000037935215&dateTexte=20190607&categorieLien=id#LEGIARTI000037935215
+  official_journal_date:
+    2013-01-01: "2013-09-19"
+    2018-01-01: "2018-12-29"
+  notes:
+    2018-01-01:
+    - title: L'abaissement du plafond maximal de la réfaction ne concernera en pratique que les 4% des foyers fiscaux les plus élevés dans les DOM.

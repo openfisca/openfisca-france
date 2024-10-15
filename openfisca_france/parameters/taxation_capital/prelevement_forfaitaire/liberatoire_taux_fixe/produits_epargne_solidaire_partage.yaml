@@ -1,0 +1,16 @@
+description: Prélèvements libératoires sur les revenus des valeurs mobilières, Produits d'épargne solidaire de partage
+values:
+  2008-01-01:
+    value: 0.05
+metadata:
+  short_label: Produits d'épargne solidaire de partage
+  label_en: Levy in discharge on capital income
+  unit: /1
+  reference:
+    2008-01-01:
+      title: Loi 2007-1822 du 24/12/2007, art. 10 et 12 (LF pour 2008)
+  official_journal_date:
+    2008-01-01: "2007-12-27"
+  notes:
+    2008-01-01:
+    - title: Création du prélèvement libératoire sur les placements à revenus variables, notamment sur les dividendes (crée art. 117 quater du CGI)

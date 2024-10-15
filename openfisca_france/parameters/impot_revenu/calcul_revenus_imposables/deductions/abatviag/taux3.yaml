@@ -1,0 +1,12 @@
+description: Taux imposables pour les rentes viagères à titre onéreux des personnes âgées de 60 à 69 ans
+values:
+  1979-07-01:
+    value: 0.4
+metadata:
+  last_value_still_valid_on: "2024-07-30"
+  unit: /1
+  short_label: De 60 à 69 ans
+  reference:
+    1979-07-01:
+      title: Art. 158 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042978882/1979-07-01/

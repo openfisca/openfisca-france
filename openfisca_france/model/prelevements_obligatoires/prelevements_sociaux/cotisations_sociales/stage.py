@@ -13,7 +13,7 @@ class stage_duree_heures(Variable):
 class stage_gratification_taux(Variable):
     value_type = float
     entity = Individu
-    label = "Taux de gratification (en plafond de la Sécurité sociale)"
+    label = 'Taux de gratification (en plafond de la Sécurité sociale)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -21,7 +21,7 @@ class stage_gratification_taux(Variable):
 class stage_gratification(Variable):
     value_type = float
     entity = Individu
-    label = "Gratification de stage"
+    label = 'Gratification de stage'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -30,7 +30,7 @@ class stage_gratification(Variable):
         stage_gratification_taux = individu('stage_gratification_taux', period)
         stagiaire = individu('stagiaire', period)
         plafond_securite_sociale_horaire = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_horaire
-        stage_gratification_taux_min = parameters(period).marche_travail.salaire_minimum.taux_gratification_min
+        stage_gratification_taux_min = parameters(period).marche_travail.salaire_minimum.minstage.taux_gratification_min
         return stagiaire * plafond_securite_sociale_horaire * stage_duree_heures * max_(
             stage_gratification_taux, stage_gratification_taux_min)
 
@@ -46,7 +46,7 @@ class stage_gratification_reintegration(Variable):
         stage_duree_heures = individu('stage_duree_heures', period)
         stage_gratification = individu('stage_gratification', period)
         plafond_securite_sociale_horaire = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_horaire
-        stage_gratification_taux_min = parameters(period).marche_travail.salaire_minimum.taux_gratification_min
+        stage_gratification_taux_min = parameters(period).marche_travail.salaire_minimum.minstage.taux_gratification_min
         stage_gratification_min = plafond_securite_sociale_horaire * stage_duree_heures * stage_gratification_taux_min
         return max_(stage_gratification - stage_gratification_min, 0)
 
@@ -66,8 +66,8 @@ class stagiaire(Variable):
 class exoneration_cotisations_employeur_stagiaire(Variable):
     value_type = float
     entity = Individu
-    label = "Exonrérations de cotisations employeur pour un stagaire"
-    reference = "http://www.apce.com/pid2798/stages.html?espace=3"
+    label = "Exonération de cotisations employeur sur gratification d'un stagaire"
+    reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/cas-particuliers--bases-forfaita/le-stagiaire-en-milieu-professio/la-franchise-de-cotisations-et-c.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -77,7 +77,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
         agirc_gmp_employeur = individu('agirc_gmp_employeur', period)
         arrco_employeur = individu('arrco_employeur', period)
         contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
-        cotisation_equilibre_technique_employeur = individu('cotisation_equilibre_technique_employeur', period)
+        contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = individu('cotisation_exceptionnelle_temporaire_employeur', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
@@ -97,7 +97,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
             for bareme_name in ['agffnc', 'agffc', 'ags', 'chomage', 'asf']
             )
         exoneration += (agirc_arrco_employeur + agirc_employeur + agirc_gmp_employeur + arrco_employeur
-            + contribution_equilibre_general_employeur + cotisation_equilibre_technique_employeur
+            + contribution_equilibre_general_employeur + contribution_equilibre_technique_employeur
             + cotisation_exceptionnelle_temporaire_employeur)
 
         return - exoneration * stagiaire
@@ -106,8 +106,8 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
 class exoneration_cotisations_salarie_stagiaire(Variable):
     value_type = float
     entity = Individu
-    label = "Exonrérations de cotisations salarié pour un stagiaire"
-    reference = "http://www.apce.com/pid2798/stages.html?espace=3"
+    label = 'Exonrérations de cotisations salarié pour un stagiaire'
+    reference = 'http://www.apce.com/pid2798/stages.html?espace=3'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -117,7 +117,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
         agirc_gmp_salarie = individu('agirc_gmp_salarie', period)
         arrco_salarie = individu('arrco_salarie', period)
         contribution_equilibre_general_salarie = individu('contribution_equilibre_general_salarie', period)
-        cotisation_equilibre_technique_salarie = individu('cotisation_equilibre_technique_salarie', period)
+        contribution_equilibre_technique_salarie = individu('contribution_equilibre_technique_salarie', period)
         cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
@@ -138,7 +138,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
                 round_base_decimals = 2,
                 )
         exoneration = (exoneration + agirc_salarie + agirc_gmp_salarie + arrco_salarie + agirc_arrco_salarie
-            + contribution_equilibre_general_salarie + cotisation_equilibre_technique_salarie
+            + contribution_equilibre_general_salarie + contribution_equilibre_technique_salarie
             + cotisation_exceptionnelle_temporaire_salarie)
 
         return - exoneration * stagiaire

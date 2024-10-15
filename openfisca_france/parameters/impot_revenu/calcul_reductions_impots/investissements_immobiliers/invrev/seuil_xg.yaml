@@ -1,0 +1,8 @@
+description: Case XG
+values:
+  2002-01-01:
+    value: 38120
+  2004-01-01:
+    value: null
+metadata:
+  unit: currency_next_year

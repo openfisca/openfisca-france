@@ -1,0 +1,55 @@
+description: Déduction forfaitaire des revenus fonciers bruts en droit commun.
+values:
+  1984-01-01:
+    value: 0.15
+  1990-01-01:
+    value: 0.1
+  1991-01-01:
+    value: 0.08
+  1993-01-01:
+    value: 0.1
+  1995-01-01:
+    value: 0.13
+  1997-01-01:
+    value: 0.14
+  2006-01-01:
+    value: null
+metadata:
+  ipp_csv_id: deduc_forf_foncier
+  unit: /1
+  reference:
+    1984-01-01:
+      title: Loi n° 84-1208 du 29 décembre 1984 (LF pour 1985), art. 82
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000880778&idArticle=LEGIARTI000006274284&dateTexte=19861231&categorieLien=id#LEGIARTI000006274284
+    1990-01-01:
+      title: Loi n° 89-935 du 29 décembre 1989 (LF pour 1990) art. 113
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000018687845&idArticle=LEGIARTI000006317741&dateTexte=19910718&categorieLien=id#LEGIARTI000006317741
+    1991-01-01:
+      title: Loi n° 90-1168 du 29 décembre 1990, art. 41
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000717191&idArticle=LEGIARTI000006317993&dateTexte=19920703&categorieLien=id#LEGIARTI000006317993
+    1993-01-01:
+      title: Loi n° 92-1376 du 30 décembre 1992 (LF pour 1993), art. 5
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406&categorieLien=id
+    1995-01-01:
+      title: Loi n° 94-1163 du 29 décembre 1994 (LF rectificative pour 1994), art. 40
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000530935&idArticle=LEGIARTI000006319188&dateTexte=19960511&categorieLien=id#LEGIARTI000006319188
+    1997-01-01:
+      title: Loi n° 91-1322 du 30 décembre 1991 (LF pour 1992), art. 7
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000356342&dateTexte=19951026
+    2006-01-01:
+      title: Loi n° 2006-872 du 13 juillet 2006, art. 39, 40 et 46
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000238980#LEGIARTI000006826032
+  official_journal_date:
+    1984-01-01: "1984-12-30"
+    1990-01-01: "1989-12-30"
+    1991-01-01: "1990-12-30"
+    1993-01-01: "1993-12-31"
+    1995-01-01: "1994-12-30"
+    1997-01-01: "1991-12-31"
+    2006-01-01: "2006-07-16"
+  notes:
+    1997-01-01:
+    - title: Le dispositif Méhaignerie et ses versions ultérieures (appelées Quilès-Méhaignerie et Super Quilès) sont prorogés par la LF pour 1992 jusqu'au 31 Décembre 1997, date de la fin effective des investissements éligibles.
+    2006-01-01:
+    - title: Pour les baux déjà souscrits au dispositif Besson, la déduction est de 26% alors qu'elle est supprimée en droit commun
+documentation: "Déduction forfaitaire en droit commun: La déduction forfaitaire des revenus fonciers bruts en droit commun est prévu depuis 1979 jusqu'à 2006 et est codifiée au j du 1° du I de l'article 31 du CGI."

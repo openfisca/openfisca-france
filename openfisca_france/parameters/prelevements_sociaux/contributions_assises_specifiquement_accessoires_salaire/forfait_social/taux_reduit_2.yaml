@@ -1,0 +1,18 @@
+description: Taux réduit 2 du forfait social
+values:
+  2016-01-01:
+    value: 0.16
+metadata:
+  short_label: Taux Réduit 2
+  label_en: Contribution levied on various earnings supplements ("Forfait social")
+  ipp_csv_id: forf_soc_tx3
+  unit: /1
+  reference:
+    2016-01-01:
+      title: Loi 2015-990 du 06/08/2015 ("loi Macron"), art. 149
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030982066&cidTexte=JORFTEXT000030978561
+  official_journal_date:
+    2016-01-01: "2015-08-07"
+  notes:
+    2016-01-01:
+    - title: Création du taux réduit intermédiaire de 16 % par la loi dite "loi Macron" (art. 149) pour certains versements au PERCO.

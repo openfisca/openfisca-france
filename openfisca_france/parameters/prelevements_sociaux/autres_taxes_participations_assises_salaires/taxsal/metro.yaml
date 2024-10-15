@@ -1,0 +1,13 @@
+description: "Taxes sur les salaires : France métropolitaine"
+values:
+  1968-11-01:
+    value: 0.0425
+metadata:
+  short_label: France Métropolitaine
+  ipp_csv_id: taxsal1
+  unit: /1
+  reference:
+    1968-11-01:
+      title: Loi 68-878 du 09/10/1968
+  official_journal_date:
+    1968-11-01: "1968-10-10"

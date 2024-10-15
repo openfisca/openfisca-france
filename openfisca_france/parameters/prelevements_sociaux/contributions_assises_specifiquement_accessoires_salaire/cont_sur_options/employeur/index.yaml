@@ -1,0 +1,9 @@
+description: Contributions patronales sur options et actions attribuées gratuitement
+metadata:
+  short_label: Employeur
+  label_en: Contribution levied on options and shares granted for free
+  order:
+  - taux_plein
+  - taux_reduit
+  - taux_stock_options
+  - taux_attributions_gratuites_options

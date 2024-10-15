@@ -1,0 +1,12 @@
+description: Plafond (pluri-annuel sur 4 ans) de la réduction d'impôts pour travaux de restauration immobilière (patrimoine bâti)
+values:
+  1977-01-01:
+    value: null
+  2009-01-01:
+    value: 100000
+  2016-01-01:
+    value: 400000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_restauimmo
+  unit: currency_next_year

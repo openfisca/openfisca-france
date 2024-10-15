@@ -1,0 +1,12 @@
+description: Prestations familiales
+metadata:
+  short_label: Familiales
+  label_en: Family allowances
+  order:
+  - def_pac
+  - def_biactif
+  - bmaf
+  - prestations_generales
+  - petite_enfance
+  - education_presence_parentale
+  - logement_cadre_vie

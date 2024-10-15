@@ -1,0 +1,61 @@
+- name: reduc_doment
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      fhyc: 200
+      fhya: 230
+      fhxa: 450
+      fhxb: 400
+      fhxc: 150
+      fhxe: 300
+      fhxf: 200
+      fhxg: 600
+      fhxh: 100
+      fhxi: 500
+      fhxl: 350
+      fhxm: 200
+      fhxn: 100
+      fhxo: 100
+      fhxq: 500
+      fhxr: 350
+      fhxs: 200
+      fhxt: 100
+      fhyd: 100
+      fhxk: 500
+      fhxp: 350
+      fhxu: 200
+      fhyb: 100
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    reductions: 6280.0
+    iai: 1364.0
+    impot_revenu_restant_a_payer: -1364.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0

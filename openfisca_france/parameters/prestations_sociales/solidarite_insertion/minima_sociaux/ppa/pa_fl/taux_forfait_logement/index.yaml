@@ -1,0 +1,9 @@
+description: Taux du forfait logement de la prime pour l'activité (PPA)
+metadata:
+  short_label: Taux
+  label_en: "Activity premium (PPA) : accomodation allowance"
+  order:
+  - foyer_1_personne
+  - foyer_2_personnes
+  - foyer_3_personnes
+documentation: Il faut appliquer ces taux au montant du RSA en tenant compte de la composition du foyer

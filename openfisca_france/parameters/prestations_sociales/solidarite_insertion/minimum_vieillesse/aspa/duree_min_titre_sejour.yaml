@@ -1,0 +1,7 @@
+description: Durée minimale de titre du séjour permettant de bénéficier de l'Allocation solidarité aux personne agées (ASPA) ou de l'Allocation Supplémentaire d'Invalidité (ASI)
+values:
+  2002-01-01:
+    value: 10
+metadata:
+  short_label: Durée min. séjour
+  unit: year

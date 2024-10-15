@@ -1,0 +1,42 @@
+description: Complément d'allocation (1ère catégorie) de l'Allocation d'éducation spéciale (AES)
+values:
+  1976-08-01:
+    value: 0.48
+  1984-01-01:
+    value: 0.72
+  1991-10-01:
+    value: 0.24
+  2006-01-01:
+    value: null
+metadata:
+  short_label: 1ère catégorie
+  label_en: "Special education allowance (AES): Conditions and amounts"
+  ipp_csv_id: aes_cplt1
+  unit: /1
+  reference:
+    1976-08-01:
+    - title: Loi 75-534 du 30/06/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000333976
+    - title: Décrets 75-1198, 96, 98 du 16/12/1975
+    - title: Décret 76-768 du 16/08/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
+    1984-01-01:
+      title: Décret 83-66 du 31/01/1983 (modif art. L 543-1 à 3 du CSS)
+    1991-10-01:
+      title: Décret 91-968 du 23/09/1991, art. 1 (modif art. L 541-1 à 3 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776197&cidTexte=JORFTEXT000000515153
+    2006-01-01:
+      title: Loi 2005-102 du 11/02/2005, art. 68 (modif art. L 541 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682303&cidTexte=JORFTEXT000000809647
+  official_journal_date:
+    1976-08-01: 1975-07-01; 1975-12-23; 1976-08-17
+    1984-01-01: "1983-01-01"
+    1991-10-01: "1991-09-24"
+    2006-01-01: "2005-02-12"
+  notes:
+    1976-08-01:
+    - title: Se substitue à l'allocation d'éducation spécialisée, à l'allocation aux mineurs handicapés, à l'allocation spéciale aux parents de mineurs grands infirmés de moins de 15 ans.
+    1991-10-01:
+    - title: "Complément 3e catégorie: 6058 au 01/01/1992"
+    2006-01-01:
+    - title: La loi du 11 février 2005 pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées transforme l'AES en l'AEEH

@@ -1,4 +1,8 @@
-description: Cotisations de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV) (1967-2016)
+description: Cotisations de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV)
 metadata:
-  ux_name: Branche assurance vieillesse (CNAV)
-  description_en: SSCs for old-age benefits (1967-2016)
+  short_label: Branche assurance vieillesse (CNAV)
+  label_en: SSCs for old-age benefits
+  order:
+  - salarie
+  - employeur
+  - remise_forfaitaire_mensuelle_cotisation_salariale

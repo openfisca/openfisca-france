@@ -1,0 +1,12 @@
+description: Indemnité de résidence dans la fonction publique pour la zone 3
+values:
+  1985-11-05:
+    value: 0
+metadata:
+  last_value_still_valid_on: "2024-07-30"
+  short_label: Taux zone 3
+  unit: /1
+  reference:
+    1985-11-05:
+      title: Art. 9 du Décret n° 85-1148 du 24 octobre 1985
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044617593/1985-11-05/

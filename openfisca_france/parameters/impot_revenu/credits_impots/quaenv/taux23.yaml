@@ -1,0 +1,6 @@
+description: Taux 23%
+values:
+  2012-01-01:
+    value: 0.23
+metadata:
+  unit: /1

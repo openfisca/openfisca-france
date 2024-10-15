@@ -1,0 +1,29 @@
+description: Contribution sur les boissons sucrées (€/hl)
+values:
+  2012-05-07:
+    value: null
+  2018-01-01:
+    value: 7.55
+  2018-07-01:
+    value: null
+metadata:
+  ipp_csv_id: taxe_boiss_sucrees
+  unit: currency
+  reference:
+    2012-05-07:
+    - title: Loi 2011-1977 du 28/12/2011 - art. 26
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025048305&cidTexte=JORFTEXT000025044460
+    - title: Décret 2012-653 du 4 mai 2012 - art. 1
+    2018-01-01:
+      title: Arrêté du 22/12/2017
+    2018-07-01:
+      title: Article 19 de la Loi 2017-1836 du 30/12/2017 de financement de la sécurité sociale pour 2018.
+  official_journal_date:
+    2012-05-07: "2012-05-06"
+    2018-01-01: "2017-12-27"
+    2018-07-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: A partir de 2018, plus de taux spécifique à Mayotte. Par ailleurs il n'y a plus de "contribution sur les boissons sucrées ou édulcorées" mais une "contribution sur les boissons sucrées" et une "contribution sur les boissons édulcorées"
+    2018-07-01:
+    - title: La contribution sur les boissons sucrées se fait selon un barême à partir de juillet 2018, un nouvel onglet a été créé à cet effet

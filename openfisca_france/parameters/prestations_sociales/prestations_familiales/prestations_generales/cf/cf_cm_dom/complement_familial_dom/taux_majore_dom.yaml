@@ -1,0 +1,56 @@
+description: Taux majoré (en % de la BMAF) dans les DOM du Complément familial (CF)
+values:
+  2002-01-01:
+    value: 0.2379
+  2014-04-01:
+    value: 0.2617
+  2015-04-01:
+    value: 0.2855
+  2016-04-01:
+    value: 0.3093
+  2017-04-01:
+    value: 0.3331
+  2018-04-01:
+    value: 0.4303
+  2019-04-01:
+    value: 0.5276
+  2020-04-01:
+    value: 0.6248
+metadata:
+  short_label: Taux majoré
+  label_en: Increased rate
+  unit: BMAF
+  reference:
+    2002-01-01:
+      title: Section 3 Complément familial. (Article D755-6)
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739176/1991-08-06
+    2014-04-01:
+      title: Décret 2014-419 du 23/04/2014 - art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028871647&cidTexte=JORFTEXT000028870537
+    2015-04-01:
+      title: Décret 2015-488 du 29/04/2015 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030537632&cidTexte=JORFTEXT000030536987
+    2016-04-01:
+      title: Décret 2016-438 du 11/04/2016 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000032394269&cidTexte=JORFTEXT000032393830
+    2017-04-01:
+      title: Décret 2017-534 du 12/04/2017 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000034424447&cidTexte=JORFTEXT000034420040
+    2018-04-01:
+      title: Décret 2017-551 du 2017-04-14 - art. 4
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034429420
+    2019-04-01:
+      title: Décret 2017-551 du 2017-04-14 - art. 4
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034429420
+    2020-04-01:
+      title: Décret 2017-551 du 2017-04-14 - art. 2 et 4
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034429420
+  official_journal_date:
+    2002-01-01: "1991-08-06"
+    2014-04-01: "2014-04-25"
+    2015-04-01: "2015-04-30"
+    2016-04-01: "2013-04-13"
+    2017-04-01: "2017-04-14"
+    2018-04-01: "2017-04-16"
+    2019-04-01: "2017-04-16"
+    2020-04-01: "2017-04-16"

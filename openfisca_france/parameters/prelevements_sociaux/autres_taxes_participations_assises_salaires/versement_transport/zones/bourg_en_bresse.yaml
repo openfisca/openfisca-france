@@ -1,0 +1,25 @@
+description: Versement transport (VT) pour la zone de Bourg-en-Bresse
+values:
+  1983-07-01:
+    value: 0.005
+  2004-07-01:
+    value: 0.006
+  2011-07-01:
+    value: 0.0075
+  2017-07-01:
+    value: 0.008
+metadata:
+  short_label: Bourg-en-Bresse
+  last_value_still_valid_on: "2021-12-07"
+  label_en: Transport tax (VT) (contribution to public transports)
+  ipp_csv_id: vt_beb
+  unit: /1
+  reference:
+    1983-07-01:
+      title: Référence manquante
+    2004-07-01:
+      title: Lettre circulaire URSSAF 2004-102
+    2011-07-01:
+      title: Lettre circulaire ACOSS 2011-0000075
+    2017-07-01:
+      title: Lettre circulaire ACOSS 2016­0000014 du 24/05/2016

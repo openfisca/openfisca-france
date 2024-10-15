@@ -1,0 +1,6 @@
+description: Cotisations employeur aux régimes complémentaires de retraite après fusion de l'AGIRC et de l'ARRCO (secteur privé)
+metadata:
+  short_label: Barème employeur
+  label_en: Complementary pension schemes (private sector)
+  order:
+  - agirc_arrco

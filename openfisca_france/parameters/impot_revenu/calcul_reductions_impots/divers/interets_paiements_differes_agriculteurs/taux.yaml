@@ -1,0 +1,10 @@
+description: Taux de la réduction d'impôt sur les intérêts de paiements différés accordés aux agriculteurs
+values:
+  1977-01-01:
+    value: null
+  2005-01-01:
+    value: 0.5
+metadata:
+  short_label: Taux
+  ipp_csv_id: taux_intagri
+  unit: /1

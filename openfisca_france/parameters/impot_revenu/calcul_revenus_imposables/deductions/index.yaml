@@ -1,0 +1,9 @@
+description: Déductions sur les salaires, pensions et rentes
+metadata:
+  documentation_start: true
+  label_en: Wages and pensions deductions
+  order:
+  - taux_salaires_pensions
+  - abatpen
+  - abatpro
+  - abat_supp

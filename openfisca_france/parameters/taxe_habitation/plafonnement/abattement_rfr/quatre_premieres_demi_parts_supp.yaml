@@ -1,0 +1,14 @@
+description: Majoration pour les quatre premières demi-parts supplémntaires de l'abattement du revenu fiscal de référence pour le plafonnement de la taxe d'habitation
+values:
+  2017-01-01:
+    value: 1580
+  2018-01-01:
+    value: 1596
+  2019-01-01:
+    value: 1622
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Majoration 4 premières demi-parts supp.
+  unit: currency
+documentation: Voir I. de l'art. 1414 A du CGI

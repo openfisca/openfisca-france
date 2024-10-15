@@ -1,0 +1,21 @@
+description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus entre 300 et 700 fois le Smic horaire brut
+values:
+  2005-07-01:
+    value: 0.3
+  2011-01-01:
+    value: null
+metadata:
+  short_label: Abattement (entre 300 et 700 Smic horaires)
+  label_en: Adult disability allowance (AAH)
+  ipp_csv_id: abattement_ordinaire_700
+  unit: /1
+  reference:
+    2005-07-01:
+      title: Décret 2005-725 du 29/06/2005 art. 6 (crée art. D821-9 du CSS)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006242585/2005-06-30
+    2011-01-01:
+      title: Décret n° 2010-1403 du 12/11/2010, art. 1 (modifie art. D821-9 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023086051/#JORFARTI000023086056
+  official_journal_date:
+    2005-07-01: "2005-06-30"
+    2011-01-01: "2010-11-16"

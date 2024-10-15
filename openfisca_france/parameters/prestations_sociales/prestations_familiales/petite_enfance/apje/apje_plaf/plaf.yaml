@@ -1,0 +1,18 @@
+description: Plafond de ressources
+values:
+  2000-07-01:
+    value: 13421
+  2001-07-01:
+    value: 13636
+  2002-07-01:
+    value: 13854
+  2003-07-01:
+    value: 14090
+  2004-07-01:
+    value: 14358
+  2005-07-01:
+    value: 14818
+  2006-07-01:
+    value: null
+metadata:
+  unit: currency

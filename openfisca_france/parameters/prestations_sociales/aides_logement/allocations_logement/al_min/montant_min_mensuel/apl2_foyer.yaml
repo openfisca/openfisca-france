@@ -1,0 +1,21 @@
+description: Montant minimal mensuel versé des allocations logement - APL2 (foyer)
+values:
+  1989-11-12:
+    value: null
+  2002-01-01:
+    value: 15
+metadata:
+  short_label: APL2 (foyer)
+  label_en: Minimal amount
+  unit: currency
+  reference:
+    1989-11-12:
+      title: Décret 89-831 du 10/11/1989, art. 2 (modif art. D542-7 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774702&cidTexte=JORFTEXT000000700911
+    2002-01-01:
+    - title: Décret 2001-698 du 31/07/2001, art. 7 (modif art. D542-7 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006780032&cidTexte=JORFTEXT000000393997
+    - title: Arrêté du 08/11/2007 (modif. Art. 5 de l'arrêté du 30/06/1979)
+  official_journal_date:
+    1989-11-12: "1989-11-11"
+    2002-01-01: "2001-08-02"

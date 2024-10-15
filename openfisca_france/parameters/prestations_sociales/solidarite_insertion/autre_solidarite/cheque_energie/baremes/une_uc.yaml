@@ -1,0 +1,70 @@
+description: 1 Unité de consommation - Barèmes des montants du chèque énergie, prestations sociales de solidarité insertion
+brackets:
+- threshold:
+    2017-01-01:
+      value: 0
+  amount:
+    2017-01-01:
+      value: 144
+    2019-01-01:
+      value: 194
+- threshold:
+    2017-01-01:
+      value: 5600
+  amount:
+    2017-01-01:
+      value: 96
+    2019-01-01:
+      value: 146
+- threshold:
+    2017-01-01:
+      value: 6700
+  amount:
+    2017-01-01:
+      value: 48
+    2019-01-01:
+      value: 98
+- threshold:
+    2017-01-01:
+      value: 7700
+  amount:
+    2017-01-01:
+      value: 0
+    2019-01-01:
+      value: 48
+- threshold:
+    2019-01-01:
+      value: 10700
+    2021-01-01:
+      value: 10800
+  amount:
+    2019-01-01:
+      value: 0
+metadata:
+  short_label: Foyer fiscal composé d'une personne
+  label_en: Help for energy expenses voucher
+  ipp_csv_id:
+    threshold: plaf_chq_energie
+    amount: chq_energie_1UC_rfr5600, chq_energie_1UC_rfr6700, chq_energie_1UC_rfr7700, chq_energie_1UC_rfr10700
+  reference:
+    2018-01-01:
+      title: Décret n° 2016-555 du 6 mai 2016 relatif au chèque énergie
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/5/6/DEVR1604032D/jo/texte
+    2019-01-01:
+      title: Arrêté du 26 décembre 2018 modifiant le plafond et la valeur faciale du chèque énergie
+      href: https://www.legifrance.gouv.fr/eli/arrete/2018/12/26/TRER1832961A/jo/texte
+    2021-01-01:
+      title: Arrêté du 24 février 2021 modifiant le seuil d'éligibilité au chèque énergie et instituant un plafond aux frais de gestion pouvant être déduits de l'aide spécifique
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043178875/
+  official_journal_date:
+    2018-01-01: "2016-05-08"
+    2019-01-01: "2019-12-28"
+    2021-01-01: "2021-02-25"
+  notes:
+    2018-01-01:
+    - title: Le chèque énergie, en phase d'expérimentation depuis 2016 dans certains territoires, entre en vigueur au 1er Janvier 2018
+    2019-01-01:
+    - title: Le plafond d'éligibilité est agrandi avec la création d'une 4ème catégorie de revenus éligibles. Les montants accordés sont augmentés de 50 euros.
+  amount_unit: currency
+  threshold_unit: currency
+  type: single_amount

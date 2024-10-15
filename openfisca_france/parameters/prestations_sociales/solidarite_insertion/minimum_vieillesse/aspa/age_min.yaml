@@ -1,0 +1,7 @@
+description: Âge minimal requis pour bénéficier de l'Allocation solidarité aux personne agées (ASPA)
+values:
+  2002-01-01:
+    value: 65
+metadata:
+  short_label: Âge minimal
+  unit: year

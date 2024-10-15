@@ -1,5 +1,11 @@
+description: Barème des pensions civiles (TI et NBI) - cotisations employeur retraite spécifiques à la fonction publique
 brackets:
-- rate:
+- threshold:
+    1995-01-01:
+      value: 0
+  rate:
+    1995-01-01:
+      value: null
     2006-01-01:
       value: 0.499
     2007-01-01:
@@ -22,10 +28,63 @@ brackets:
       value: 0.4428
     2014-01-01:
       value: 0.7428
-  threshold:
-    2006-01-01:
-      value: 0.0
 metadata:
-  ux_name: Pensions civiles (TI et NBI)
-  description: Cotisations salarié au régime de Retraite de la fonction publique (RAFP), pensions civiles (TI et NBI)
-  last_review: 2021-08-24
+  short_label: Barème
+  last_value_still_valid_on: "2021-08-24"
+  label_en: Contributions for pensions - central government (employer contribution)
+  ipp_csv_id: txexp_civ_p
+  reference:
+    2006-01-01:
+      title: Décret 2006-23 du 05/01/2006
+      href: https://www.legifrance.gouv.fr/eli/decret/2006/1/5/2006-23/jo/texte
+    2007-01-01:
+      title: Décret 2006-1798 du 23/12/2006
+      href: https://www.legifrance.gouv.fr/eli/decret/2006/12/23/2006-1798/jo/texte
+    2008-01-01:
+      title: Décret 2008-53 du 15/01/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/1/15/2008-53/jo/texte
+    2009-01-01:
+      title: Décret 2008-1534 du 22/12/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/12/22/2008-1534/jo/texte
+    2009-12-01:
+      title: Décret 2009-1599 du 18/12/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/12/18/2009-1599/jo/texte
+    2010-01-01:
+      title: Décret 2010-53 du 14/01/2010
+      href: https://www.legifrance.gouv.fr/eli/decret/2010/1/14/2010-53/jo/texte
+    2011-01-01:
+      title: Décret 2011-11 du 04/01/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/1/4/2011-11/jo/texte
+    2012-01-01:
+      title: Décret 2011-2037 du 29/12/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/12/29/2011-2037/jo/texte
+    2013-01-01:
+      title: Décret 2012-1507 du 27/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/27/2012-1507/jo/texte
+    2013-12-01:
+      title: Décret 2013-1064 du 25/11/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/11/25/2013-1064/jo/texte
+    2014-01-01:
+      title: Décret 2012-1507 du 27/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/27/2012-1507/jo/texte
+  official_journal_date:
+    2006-01-01: "2006-01-08"
+    2007-01-01: "2006-12-31"
+    2008-01-01: "2008-01-17"
+    2009-01-01: "2008-12-31"
+    2009-12-01: "2009-12-20"
+    2010-01-01: "2010-01-16"
+    2011-01-01: "2011-01-05"
+    2012-01-01: "2011-12-30"
+    2013-01-01: "2012-12-29"
+    2013-12-01: "2013-11-27"
+    2014-01-01: "2012-12-29"
+  notes:
+    2006-01-01:
+    - title: Le taux de cotisation employeur est devenu explicite en 2006 dans le cadre de la LOLF.
+    2013-12-01:
+    - title: De manière dérogatoire le taux de cotisation est ramené à 44,28 % pour les salaires versés au cours du mois de décembre 2013.
+    2014-01-01:
+    - title: "Circulaire du 05/08/2013 précise le retour aux conditions du décret 2012-1507. Pour 2018 : circulaire du 11/12/2017. Pour 2019 : circulaire du 20/12/2018. Pour 2020 : circulaire du 23/12/2019. En 2020, le taux employeur explicite devient 30,65% pour les fonctionnaires civils détachés (cotisation à la charge des collectivités)."
+  rate_unit: /1
+  threshold_unit: PSS

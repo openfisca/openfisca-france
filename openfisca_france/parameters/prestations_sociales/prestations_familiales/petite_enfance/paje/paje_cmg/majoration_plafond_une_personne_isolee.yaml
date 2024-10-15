@@ -1,0 +1,22 @@
+description: Majoration du plafond pour une personne isolée pour le complément de libre choix de mode de garde (CMG) de la prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: null
+  2008-05-01:
+    value: 0.4
+metadata:
+  short_label: Majoration plafond personne isolée
+  label_en: Increased ceiling for a single person
+  unit: /1
+  reference:
+    2004-01-01:
+    - title: Décret 2003-1394 du 31/12/2003 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
+    - title: Article D531-17 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737143/2004-01-01/
+    2008-05-01:
+      title: Décret 2008-331 du 9/04/2008 - art. 1
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000018615607
+  official_journal_date:
+    2004-01-01: "2004-01-01"
+    2008-05-01: "2008-04-11"

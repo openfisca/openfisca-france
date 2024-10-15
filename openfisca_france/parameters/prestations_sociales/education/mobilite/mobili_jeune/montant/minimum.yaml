@@ -1,0 +1,10 @@
+description: Montant minimum de l'Aide Mobili-Jeune à la mobilité pour les jeunes
+values:
+  2012-07-01:
+    value: 10
+metadata:
+  short_label: Minimum
+  unit: currency
+  reference:
+    2012-07-01:
+      href: https://www.actionlogement.fr/l-aide-mobili-jeune

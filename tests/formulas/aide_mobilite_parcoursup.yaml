@@ -1,0 +1,7 @@
+- period: 2021-03
+  input:
+    annee_etude: [terminale, autre]
+    sortie_academie: [true, false]
+    bourse_lycee: [1, 0]
+  output:
+    aide_mobilite_parcoursup: [500, 0]

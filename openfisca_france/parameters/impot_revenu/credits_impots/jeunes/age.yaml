@@ -1,0 +1,9 @@
+description: Âge limite pour bénéficier du crédit d'impôt jeunes actifs
+values:
+  2005-01-01:
+    value: 26
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Âge limite
+  unit: currency_next_year

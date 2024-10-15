@@ -1,0 +1,68 @@
+description: Salaire mensuel de base dans le département de la Seine, Base mensuelle de calcul des allocations familiales (BMAF)
+values:
+  1939-04-01:
+    value: 15
+  1942-01-01:
+    value: 17
+  1944-01-01:
+    value: 22.5
+  1944-08-01:
+    value: 45
+  1946-07-01:
+    value: 56.5
+  1947-02-01:
+    value: 62.15
+  1947-07-01:
+    value: 62.5
+  1947-08-01:
+    value: 70
+  1947-12-01:
+    value: 85
+  1948-01-01:
+    value: 105
+  1948-09-01:
+    value: 120
+  1955-01-01:
+    value: null
+metadata:
+  short_label: Salaire mensuel dans la Seine
+  label_en: Monthly basis for the computation of family allowances (BMAF)
+  ipp_csv_id: bmaf_seine
+  unit: currency
+  reference:
+    1946-07-01:
+      title: Loi 46-1835 du 22/08/1946
+    1947-02-01:
+      title: Loi 47-614 du 31/03/1947
+    1947-08-01:
+      title: Loi 47-1127 du 25/06/1947, art. 17
+    1947-12-01:
+      title: Loi 47-2441 du 31/12/1947, art. 5 (modif loi 47-1127 art. 17)
+    1948-01-01:
+      title: Loi 48-354 du 02/03/1948 , art. 1
+    1948-09-01:
+      title: Loi 48-1555 du 06/10/1948, art. 1
+    1955-01-01:
+      title: Décret 54-1323 du 31/12/1954
+    2020-04-01:
+      title: Circulaire DSS/SD2B/2020/33 du 18/02/2020
+    2021-04-01:
+      title: Circulaire DSS/2B/2021/65 du 19/ 03/2021
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.5.sante.pdf#page=140
+  official_journal_date:
+    1946-07-01: "1946-08-23"
+    1947-02-01: "1947-04-06"
+    1947-08-01: "1947-06-26"
+    1947-12-01: "1948-01-06"
+    1948-01-01: "1948-03-03"
+    1948-09-01: "1948-10-07"
+    1955-01-01: "1955-01-01"
+  notes:
+    1946-07-01:
+    - title: Fixation du régime des prestations familiales (allocations de maternité, allocations familiales, allocations de salaire unique et allocations prénatales). Journal Officiel introuvable
+    1947-02-01:
+    - title: Revalorisation de 10 % pour les salariés du régime général
+    1947-07-01:
+    - title: Arrêté du 21 août 1947 d'après La sécurité sociale, son histoire à partir des textes p.223
+    2012-04-01:
+    - title: La BMAF est à partir de décembre 2011 revalorisée au 1er avril de chaque année suivant l'évolution de l'indice des prix (sauf pour 2012 où par dérogation, la revalorisation reste au 1er janvier) Cf. LFSS 2012 (loi 2011-1906 du 21/12/2011) &Article L 551-1 du CSS en vigueur à partir du 23/12/2011

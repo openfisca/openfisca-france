@@ -1,0 +1,6 @@
+description: Plafond de référence pour 10 parts
+values:
+  2014-01-01:
+    value: 5889
+metadata:
+  unit: currency

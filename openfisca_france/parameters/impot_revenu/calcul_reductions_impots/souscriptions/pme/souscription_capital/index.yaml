@@ -1,0 +1,11 @@
+description: Souscriptions au capital des PME
+metadata:
+  short_label: Souscription de PME
+  label_en: Small Firms Capital Subscription (PME)
+  order:
+  - seuil_tpe
+  - seuil
+  - taux
+  - taux18
+  - taux22
+  - taux25

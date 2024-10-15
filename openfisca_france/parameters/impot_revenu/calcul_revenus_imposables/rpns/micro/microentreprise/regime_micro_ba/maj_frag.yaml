@@ -1,0 +1,6 @@
+description: Majoration des revenus du forfait pour calcul bénéfices réel micro BA
+values:
+  2016-01-01:
+    value: 0.25
+metadata:
+  unit: /1

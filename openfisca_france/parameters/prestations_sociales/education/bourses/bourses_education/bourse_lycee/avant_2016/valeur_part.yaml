@@ -1,0 +1,6 @@
+description: Valeur de la part
+values:
+  2014-01-01:
+    value: 45.3
+metadata:
+  unit: currency

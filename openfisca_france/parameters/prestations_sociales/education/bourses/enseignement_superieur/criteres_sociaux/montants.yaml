@@ -1,0 +1,131 @@
+description: Montant mensuel des bourses sur critères sociaux (BCS) de l'enseignement supérieur par échelon de bourse
+brackets:
+- threshold:
+    2020-07-22:
+      value: 0
+  amount:
+    2015-07-15:
+      value: 100.8
+    2020-07-22:
+      value: 103.2
+    2021-07-27:
+      value: 104.2
+    2022-07-18:
+      value: 108.4
+    2023-03-15:
+      value: 145.4
+- threshold:
+    2020-07-22:
+      value: 1
+  amount:
+    2015-07-15:
+      value: 166.7
+    2020-07-22:
+      value: 170.7
+    2021-07-27:
+      value: 172.4
+    2022-07-18:
+      value: 179.3
+    2023-03-15:
+      value: 216.3
+- threshold:
+    2020-07-22:
+      value: 2
+  amount:
+    2015-07-15:
+      value: 251
+    2020-07-22:
+      value: 257.1
+    2021-07-27:
+      value: 259.7
+    2022-07-18:
+      value: 270.1
+    2023-03-15:
+      value: 307.1
+- threshold:
+    2020-07-22:
+      value: 3
+  amount:
+    2015-07-15:
+      value: 321.5
+    2020-07-22:
+      value: 329.2
+    2021-07-27:
+      value: 332.5
+    2022-07-18:
+      value: 345.8
+    2023-03-15:
+      value: 382.8
+- threshold:
+    2020-07-22:
+      value: 4
+  amount:
+    2015-07-15:
+      value: 392
+    2020-07-22:
+      value: 401.5
+    2021-07-27:
+      value: 405.5
+    2022-07-18:
+      value: 421.7
+    2023-03-15:
+      value: 458.7
+- threshold:
+    2020-07-22:
+      value: 5
+  amount:
+    2015-07-15:
+      value: 450
+    2020-07-22:
+      value: 461
+    2021-07-27:
+      value: 465.6
+    2022-07-18:
+      value: 484.2
+    2023-03-15:
+      value: 521.2
+- threshold:
+    2020-07-22:
+      value: 6
+  amount:
+    2015-07-15:
+      value: 477.3
+    2020-07-22:
+      value: 488.9
+    2021-07-27:
+      value: 493.8
+    2022-07-18:
+      value: 513.6
+    2023-03-15:
+      value: 550.6
+- threshold:
+    2020-07-22:
+      value: 7
+  amount:
+    2015-07-15:
+      value: 554.5
+    2020-07-22:
+      value: 567.9
+    2021-07-27:
+      value: 573.6
+    2022-07-18:
+      value: 596.5
+    2023-03-15:
+      value: 633.5
+metadata:
+  short_label: Montants
+  reference:
+    2015-07-15:
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031088328/2015-09-01
+    2020-07-22:
+    - title: Arrêté du 22 juillet 2020 relatif aux taux des bourses d'enseignement supérieur du ministère de l'enseignement supérieur, de la recherche et de l'innovation pour l'année universitaire 2020-2021
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2020/7/22/ESRS2015874A/jo/texte
+    2021-07-27:
+    - title: Arrêté du 27 juillet 2021 relatif aux taux des bourses d'enseignement supérieur du ministère de l'enseignement supérieur, de la recherche et de l'innovation pour l'année universitaire 2021-2022
+    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043868543
+    2022-07-18:
+    - title: Arrêté du 18 juillet 2022 relatif aux taux des bourses d'enseignement supérieur du ministère de l'enseignement supérieur et de la recherche pour l'année universitaire 2022-2023
+    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046096018
+    2023-03-15:
+      title: À renseigner dès que la publication officielle est disponible.
+  type: single_amount

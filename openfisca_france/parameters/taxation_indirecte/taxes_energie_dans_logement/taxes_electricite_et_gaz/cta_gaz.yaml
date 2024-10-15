@@ -1,0 +1,11 @@
+description: Contribution tarifaire d'acheminement (CTA) portant sur la distribution de gaz
+values:
+  2003-01-01:
+    value: null
+  2006-01-01:
+    value: 0.157
+  2013-05-01:
+    value: 0.208
+metadata:
+  ipp_csv_id: cta
+  unit: /1

@@ -1,0 +1,7 @@
+description: Contribution sociale généralisée (CSG) sur les allocations de préretraite
+metadata:
+  short_label: Allocations de préretraite
+  label_en: CSG - rates on replacement incomes
+  order:
+  - taux_global
+  - deductible

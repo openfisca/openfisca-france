@@ -1,0 +1,6 @@
+description: Abattement de l'impôt sur le revenu, pour les enfants à charge ayant fondé un foyer distinct (par personne rattachée)
+metadata:
+  short_label: Abattement pour rattachement d'enfants mariés
+  label_en: Tax allowance for net taxable income
+  order:
+  - montant

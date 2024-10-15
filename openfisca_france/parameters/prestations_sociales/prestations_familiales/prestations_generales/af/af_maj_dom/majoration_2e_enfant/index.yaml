@@ -1,0 +1,12 @@
+description: Majoration à partir du deuxième enfant (en % de la BMAF) pour les DOM des allocations familiales (AF)
+metadata:
+  short_label: Taux de majoration (>2 enfants)
+  label_en: Family allowances (AF)
+  order:
+  - taux_2eme_enfant
+  - taux_3eme_enfant
+  - taux_4eme_enfant
+  - taux_5eme_enfant
+  - taux_6eme_enfant_et_plus
+  - taux_maj_1ere_tranche_age
+  - taux_maj_2eme_tranche_age

@@ -1,0 +1,11 @@
+description: Réduction d'impôt des dispositifs d'encouragement à l'investissement locatif - dispositif Scellier
+metadata:
+  short_label: Dispositif Scellier
+  order:
+  - plafond
+  - logement_BBC
+  - logement_non_BBC
+  - scellier_outremer
+  - scellier_outremer_bis
+  - taux_prorogation
+documentation: Le dispositif Scellier se décompose entre les logements labellisés Bâtiment Basse Consommation (BBC) et les non-BBC, avec des différences de taux d'amortissement selon l'année de construction ou d'obtention du permis de construire, avec un plafonnement des loyers. De plus, il est doublé d'un dispositif Scellier "intermédiaire" aussi appelé "social" permettant de continuer l'amortissement sur 6 années supplémentaires, avec des contraintes de plafonnement des loyers plus exigeantes ainsi que des revenus des locataires encadrés. Les logements éligibles pour ces 2 versions du dispositif sont des logements neufs du 1er janvier 2009 au 31 décembre 2012 en location nue à usage d’habitation principale du locataire pour une durée minimale fixée à neuf ans, à une personne autre qu'un membre de leur foyer fiscal. CGI - art 199 septvicies

@@ -1,11 +1,11 @@
-"""
+'''
 This files tests the performance of the test runner of openfisca-run-test on a subset of YAML tests.
 It is placed in openfisca-france because it is the largest set we currently have.
 
 Usage example:
 
     python openfisca_france/scripts/performance/measure_tests_performance.py
-"""
+'''
 
 import os
 import time
@@ -44,15 +44,15 @@ def compare_performance(baseline, test_result):
     delta = (test_result - baseline) * 100 / baseline
 
     if test_result > baseline * 1.2:
-        logger.warning("The perfomance seems to have worsen by {} %.".format(delta))
+        logger.warning('The perfomance seems to have worsen by {} %.'.format(delta))
     elif test_result < baseline * 0.8:
-        logger.info("The performance seems to have been improved by {} %.".format(delta))
+        logger.info('The performance seems to have been improved by {} %.'.format(delta))
     else:
-        logging.info("The performance seems steady ({} %).".format(delta))
+        logging.info('The performance seems steady ({} %).'.format(delta))
 
 
-logger.info("Generate Tax Benefit System: --- {}s seconds ---".format(time_spent_tbs))
+logger.info('Generate Tax Benefit System: --- {}s seconds ---'.format(time_spent_tbs))
 compare_performance(BASELINE_TBS_LOAD_TIME, time_spent_tbs)
 
-logger.info("Pass Mes-aides tests: --- {}s seconds ---".format(time_spent_tests))
+logger.info('Pass Mes-aides tests: --- {}s seconds ---'.format(time_spent_tests))
 compare_performance(BASELINE_YAML_TESTS_TIME, time_spent_tests)

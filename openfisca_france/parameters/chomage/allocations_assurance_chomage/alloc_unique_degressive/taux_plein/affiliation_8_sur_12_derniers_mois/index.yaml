@@ -1,0 +1,7 @@
+description: Durée d'indemnisation au taux plein (affiliation de 8 mois au cours des 12 derniers mois) de l'allocation unique dégressive des allocations chômage
+metadata:
+  short_label: Affiliation de 8 mois au cours des 12 derniers mois
+  label_en: UI scheme - degressive schedule
+  order:
+  - moins_50_ans
+  - 50_ans_plus

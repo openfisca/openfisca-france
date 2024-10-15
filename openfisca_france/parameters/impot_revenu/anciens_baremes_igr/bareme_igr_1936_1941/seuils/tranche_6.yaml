@@ -1,0 +1,18 @@
+description: Seuil tranche 6 (en FRF) au titre du barème de l'Impôt général sur le revenu (IGR, 1936-1941)
+values:
+  1936-01-01:
+    value: 280000
+  1942-01-01:
+    value: null
+metadata:
+  short_label: Tranche 6
+  unit: currency_next_year
+  reference:
+    1936-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+documentation: |-
+  Notes :
+  Les revenus des années 1936-1941 étaient soumis à un barème exprimé en taux effectif (ou moyen, c'est-à-dire comme une proportion donnée du revenu imposable net de l'abattement général de 10 000 francs) :
+  Le taux moyen applicable était de 1% pour les revenus imposables compris entre 10000 et 20000 francs
+  Le taux moyen était de 1% à 4% entre 20000 et 80000 francs, avec une progression de 0,05% par tranche de 1000 francs
+  Le taux moyen était de 4% à 13% entre 80000 et 180000 francs, avec une progression de 0,09% par tranche de 1000 francs, etc.

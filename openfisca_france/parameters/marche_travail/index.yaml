@@ -1,0 +1,8 @@
+description: Marché du travail
+metadata:
+  short_label: Marché du travail
+  order:
+  - salaire_minimum
+  - primes_exceptionnelles
+  - remuneration_dans_fonction_publique
+  - indemnite_fin_contrat

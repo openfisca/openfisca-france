@@ -1,0 +1,12 @@
+description: Niveaux des contributions additionnelles dues par les redevables de l'impôt sur les sociétés
+metadata:
+  label_en: Levels of additional contributions due from corporate taxpayers
+  order:
+  - taux_contribution_exceptionnelle
+  - taux_contribution_is
+  - taux_contribution_temporaire
+  - taux_contribution_sociale
+  - abattement_contribution_sociale
+  - seuil_inferieur_contribution_exceptionnelle
+  - seuil_inferieur_contribution_temporaireetsociale
+documentation: Ces contributions sont appliquées au montant d'IS dû, calculé avant crédits d'impôt et créances fiscales éventuelles.

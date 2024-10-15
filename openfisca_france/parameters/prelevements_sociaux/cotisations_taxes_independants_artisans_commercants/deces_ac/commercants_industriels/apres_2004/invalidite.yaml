@@ -1,0 +1,32 @@
+description: Taux de la partie invalidité des cotisations invalidité-décès de sécurité sociale (SS) des indépendants artisans-commerçants
+values:
+  2004-08-24:
+    value: 0.014
+  2007-01-01:
+    value: 0.012
+  2013-01-01:
+    value: null
+metadata:
+  short_label: Taux des cotisations décès
+  label_en: SSCs for disability and death benefits (sales retailers and craftsmen)
+  ipp_csv_id: inval_ic_0_1
+  unit: /1
+  reference:
+    2004-08-24:
+      title: Décret 2004-848 du 23/08/2004 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006233585&cidTexte=JORFTEXT000000625026
+    2007-01-01:
+      title: Décret 2007-50 du 11/01/2007 - art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000001086442
+    2013-01-01:
+    - title: Décret 2012-139 du 30/01/2012 - art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025258796&cidTexte=JORFTEXT000025241814
+    - title: Décret 2012-1520 du 28/12/2012 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026882747&cidTexte=JORFTEXT000026863074
+  official_journal_date:
+    2004-08-24: "2004-08-24"
+    2007-01-01: "2007-01-12"
+    2013-01-01: 2012-01-31; 2012-12-30
+  notes:
+    2013-01-01:
+    - title: Le premier décret, prenant effet au 01/01/2013, prévoyait un taux de 1,10 % décomposé en 1 % et 0,1 %.; Le second décret, prenant effet à la même date, supprime la décomposition. Les personnes ayant atteint l'êge légale de la retraite ne sont plus tenues de payer cette cotisation.

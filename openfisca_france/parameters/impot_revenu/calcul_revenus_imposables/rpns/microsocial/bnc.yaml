@@ -1,0 +1,16 @@
+description: Taux du versement libératoire pour les professions libérales relevant du RSI/CIPAV (bnc, régime auto-entrepreneur/micro-social)
+values:
+  1979-01-01:
+    value: null
+  2009-01-01:
+    value: 0.022
+metadata:
+  short_label: Taux (micro BNC)
+  ipp_csv_id: tx_bnc_vl
+  unit: /1
+  reference:
+    2009-01-01:
+      title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021557902
+  official_journal_date:
+    2009-01-01: "2009-12-31"

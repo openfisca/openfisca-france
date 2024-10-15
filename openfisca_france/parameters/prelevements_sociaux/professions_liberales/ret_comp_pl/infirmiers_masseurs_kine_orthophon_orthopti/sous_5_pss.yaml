@@ -1,0 +1,26 @@
+description: Cotisation supplémentaire (sous 5 PSS) pour les auxiliaires médicaux conventionnés (ASV) de la cotisation de sécurité (SS) retraite complémentaire des infirmiers, masseurs-kiné, orthophonistes, orthoptistes
+values:
+  2010-01-01:
+    value: 0.0025
+  2011-01-01:
+    value: 0.004
+metadata:
+  short_label: ASV Sous 5 PSS
+  label_en: Contribution for complementary pension scheme (professionals)
+  ipp_csv_id: asv_aux_0_5
+  unit: /1
+  reference:
+    2010-01-01:
+    - title: Décret 2010-1253 du 21/10/2010
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000022941442
+    - title: Décret 2008-1044 du 10/10/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019599997
+    2011-01-01:
+      title: Décret 2011-674 du 15/06/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/6/15/2011-674/jo/texte
+  official_journal_date:
+    2010-01-01: 2010-10-23; 2008-10-11
+    2011-01-01: "2011-06-17"
+  notes:
+    2010-01-01:
+    - title: Création d'une cotisation proportionnelle pour financer l'ASV pour les auxiliaires médicaux (infirmiers, masseurs-kiné, etc.)

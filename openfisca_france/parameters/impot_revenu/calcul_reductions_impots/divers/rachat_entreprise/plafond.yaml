@@ -1,0 +1,15 @@
+description: Plafond de la réduction d'impôt sur les rachats d'entreprises
+values:
+  1977-01-01:
+    value: null
+  1987-01-01:
+    value: 150000
+  1992-01-01:
+    value: 40000
+  2000-01-01:
+    value: null
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_rachat
+  unit: currency_next_year
+documentation: "Rachat d'entreprise par salarié : plafond à doubler pour couple"

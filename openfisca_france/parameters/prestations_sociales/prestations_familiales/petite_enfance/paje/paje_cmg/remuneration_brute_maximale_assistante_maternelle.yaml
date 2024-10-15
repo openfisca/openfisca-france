@@ -1,0 +1,17 @@
+description: Rémunération brute maximale de l'assistante maternelle (par jour et par enfant) (en multiple du Smic horaire) pour le complément de libre choix de mode de garde (CMG) de la prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 5
+metadata:
+  short_label: Rémunération max assistante maternelle
+  last_value_still_valid_on: "2023-01-27"
+  label_en: Maximum remuneration for childminders
+  unit: smic
+  reference:
+    2004-01-01:
+    - title: Décret 2003-1394 du 31/12/2003 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
+    - title: Article D531-17 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044809221
+  official_journal_date:
+    2004-01-01: "2004-01-01"

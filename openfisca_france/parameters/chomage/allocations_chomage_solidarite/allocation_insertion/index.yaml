@@ -1,0 +1,36 @@
+description: Allocation d'insertion (AI)
+metadata:
+  short_label: Insertion
+  label_en: Insertion allowance (AI)
+  order:
+  - ai_16_25
+  - categorie1
+  - categorie7
+  - categorie6
+  - categorie5_diverses
+  - categorie4
+  - categorie2
+  - categorie3
+documentation: |-
+  L'Allocation d'insertion (AI) était appelée allocation forfaitaire journalière jusqu'en 1984, pour ceux qui ne peuvent prétendre ni à l'allocation de base, ni à l'allocation spécifique.
+  Remplacée par allocation temporaire d'attente (ATA) depuis le 16/11/2006.
+  Précisions:
+  A partir de 1979 et jusqu'en 1984:
+  1) Jeunes de plus de 16 ans ayant diplôme de l'enseignement technologique de niveau III, IV, V et V bis; diplôme délivré par un centre de formation professionnelle agréé; ont effectué un stage visé par la Loi 78-698 du 6 juillet 1978, et qui sont à la recherche d'un emploi dans les 12 mois suivant la fin de leur stage ou l'obtention de leur diplôme, et depuis au moins 6 mois
+  2) Jeunes de plus de 16 ans ayant obtenu une licence ou diplôme reconnu équivalent; un diplôme de l'enseignement technologique des niveaux I et II; un diplôme de sortie d'une école professionnelle de l'Etat; un diplôme de centre de formation professionnelle dont les stages sont agréés ou conventionnés et conduisent à une qualification professionnelle, à l'exception de ceux visés en 1); le diplôme du baccalauréat; ont achevé un cycle complet de l'enseignement technologique; effectué un stage agréé ou conventionné de préformation ou de formation professionnelle, à la recherche d'un emploi dans les 12 mois suivant la date d'obtention du diplôme ou d'échèvement du cycle ou du stage, et depuis plus de 6 mois
+  3) Jeunes gens entre 16-25 ans apportant une aide indispensable à leur famille; ont eu une activité, notamment la poursuite d'étude, après leur 16ème anniversaire, et sont à la recherche d'un emploi
+  4) Jeunes gens ayant accompli le service national, à la recherche d'un emploi dans les 12 mois suivant leur libération
+  5) Détenus libérés (sous certaines conditions) à la recherche d'un emploi dans les 12 mois suivant leur libération
+  6) Femmes sans emploi et veuves, divorcées, séparées judiciairement ou celibataire assumant la charge d'au moins un enfant, et qui sont dans cette situation depuis moins de 2 ans, ont accompli un stage visé par la Loi 78-698 du 6 juillet 1978, ou ont un diplôme, achevé un stage ou un cycle décrit dans catégories 1 et 2, et sont à la recherche d'un emploi depuis 6 mois
+  7) Femmes ayant accompli stage agréé de plus de 500 heures, à la recherche d'un emploi dans les 12 mois suivant la fin du stage et depuis plus de 6 mois, moins la moitié de la durée du stage
+  A partir de 1984:
+  Jeunes à la recherche d'un premier emploi regroupent:
+  jeunes pouvant se prévaloir de certains diplômes ou formations (16-25 ans ayant diplôme technologique homologué à la recherche d'un emploi moins de 12 mois après obtention diplôme; 16-25 ans ayant accompli stage de formation professionnelle conduisant soit à un
+  diplôme de l'enseignement technologique homologué, soit à une qualification professionnelle reconnue dans les classifications d'une convention collective de branche, à la recherche d'un emploi dans les 12 mois après la fin du stage; 18-25 ans ayant accompli un cycle complet de l'enseignement secondaire ou supérieur au cours des 12 derniers mois précédant inscription)
+  jeunes venant d'accomplir depuis moins de 6 mois leur service national
+  jeunes soutiens de famille (si l'aide est jugée indispensable et que les ressources de la famille ne dépassent pas 200*Smic)
+  Jeunes justifiant d'une certaine activité professionnelle regroupent:
+  jeunes pouvant justifier d'une activité salariée d'au moins 3 mois et de moins de 6 mois si la fin de contrat est intervenue dans les 12 mois précédant l'inscription comme demandeur d'emploi
+  Catégories diverses regroupent: détenus libérés, travailleurs salariés expatriés non couverts par le régime d'assurance chômage, rapatriés, apatrides, réfugiés, salariés victimes d'accidents du travail ou maladie professionnelle en attente d'un stage de reconversion
+  A partir du 01/01/1992, seuls bénéficiaires sont les catégories diverses = détenus libérés, apatrides, réfugiés, travailleurs salariés expatriés, salariés victimes d'un accident du travail ou d'une maladie professionnelle en attente d'un stage de réadaptation, de rééducation, ou de formation professionnelle
+  Sources: Légifrance, Droit de la sécurité sociale (Jean Jacques Dupeyroux, DALLOZ)

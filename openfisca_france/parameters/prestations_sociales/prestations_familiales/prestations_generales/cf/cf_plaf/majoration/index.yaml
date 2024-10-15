@@ -1,0 +1,8 @@
+description: Majoration de la base du plafond de ressources du complément familial (CF)
+metadata:
+  short_label: Majoration de la base du plafond de ressources
+  label_en: Increase in the resource ceiling base
+  order:
+  - biactifs_isoles
+  - deux_premiers_enf
+  - troisieme_enf_et_plus

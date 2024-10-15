@@ -8,9 +8,9 @@ parameters = tax_benefit_system.parameters
 
 
 def get_parameters_by_unit(parameter, parameters_by_unit = None):
-    """
+    '''
     Build a dictionnary collecting the legislation parameters according to their units
-    """
+    '''
     if parameters_by_unit is None:
         parameters_by_unit = dict(
             scale_none = list(),
@@ -30,14 +30,14 @@ def get_parameters_by_unit(parameter, parameters_by_unit = None):
                 rate_unit = sub_parameter.metadata.get('rate_unit')
                 threshold_unit = sub_parameter.metadata.get('threshold_unit')
                 if unit is not None:
-                    raise ValueError("Scale {} should not have a unit = {}".format(
+                    raise ValueError('Scale {} should not have a unit = {}'.format(
                         sub_parameter.name, unit))
                 elif (rate_unit is None) and (threshold_unit is None):
                     parameters_by_unit['scale_none'].append(sub_parameter)
-                elif threshold_unit == "currency":
+                elif threshold_unit == 'currency':
                     parameters_by_unit['scale_currency'].append(sub_parameter)
                 else:
-                    raise ValueError("Scale {} has a stange threshold_unit = {}, rate_unit = {}".format(
+                    raise ValueError('Scale {} has a stange threshold_unit = {}, rate_unit = {}'.format(
                         sub_parameter.name, threshold_unit, rate_unit))
 
                 continue
@@ -46,14 +46,14 @@ def get_parameters_by_unit(parameter, parameters_by_unit = None):
 
             if unit is None:
                 parameters_by_unit['none'].append(sub_parameter)
-            elif unit == "/1":
+            elif unit == '/1':
                 parameters_by_unit['rate'].append(sub_parameter)
-            elif unit == "currency":
+            elif unit == 'currency':
                 parameters_by_unit['currency'].append(sub_parameter)
-            elif unit == "year":
+            elif unit == 'year':
                 parameters_by_unit['year'].append(sub_parameter)
             else:
-                raise ValueError("Parameter {} has a stange unit {}".format(
+                raise ValueError('Parameter {} has a stange unit {}'.format(
                     sub_parameter.name, unit))
 
     return parameters_by_unit

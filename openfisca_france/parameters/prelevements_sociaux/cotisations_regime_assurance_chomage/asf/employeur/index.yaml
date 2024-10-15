@@ -1,4 +1,6 @@
-description: Cotisations employeurs pour l'Association pour la gestion de la structure financière, ou cotisation ASF (1984-2001)
+description: Cotisations employeurs pour l'Association pour la gestion de la structure financière (ASF)
 metadata:
-  ux_name: Barème employeur
-  description_en: Employer contributions to the association for the mangement of the financial structure ASF (1984-2001)
+  short_label: Employeur
+  label_en: Employer contributions to the association for the mangement of the financial structure ASF
+  order:
+  - asf

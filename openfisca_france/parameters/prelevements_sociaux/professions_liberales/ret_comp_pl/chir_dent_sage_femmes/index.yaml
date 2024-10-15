@@ -1,0 +1,7 @@
+description: Cotisation des chirurgiens-dentistes (et sages femmes depuis janvier 2009) pour la retraite complémentaire
+metadata:
+  short_label: Chirurgiens-dentistes (et sages femmes depuis janvier 2009)
+  label_en: Contribution for complementary pension scheme (professionals)
+  order:
+  - entre_0_85_et_5_pss
+  - sous_5_pss

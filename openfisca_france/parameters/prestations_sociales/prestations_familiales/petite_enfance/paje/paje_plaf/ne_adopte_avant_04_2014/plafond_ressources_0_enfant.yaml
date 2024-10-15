@@ -1,0 +1,86 @@
+description: Plafond de ressources sans enfant pour enfants nés ou adoptés avant le 01/04/2014 de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 19303
+  2004-07-01:
+    value: 19670
+  2005-07-01:
+    value: 20004
+  2006-07-01:
+    value: 20344
+  2007-07-01:
+    value: 25862
+  2009-01-01:
+    value: 26250
+  2010-01-01:
+    value: 26985
+  2011-01-01:
+    value: 27012
+  2012-01-01:
+    value: 27282
+  2013-01-01:
+    value: 27855
+  2014-01-01:
+    value: 28384
+  2015-01-01:
+    value: 28583
+  2016-01-01:
+    value: 28697
+  2018-01-01:
+    value: null
+metadata:
+  short_label: Plafond de ressources - 0 enfant
+  label_en: Resource ceiling - 0 children
+  ipp_csv_id: plaf_paje_0enf_avant_20140401
+  unit: currency
+  reference:
+    2004-01-01:
+      title: Décret 2003-1393 du 31/12/2003, art. 2 (modif art. R531-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
+    2004-07-01:
+      title: Arrêté du 16/07/2004
+    2005-07-01:
+      title: Arrêté du 01/08/2005
+    2006-07-01:
+      title: Arrêté du 17/07/2006
+    2007-07-01:
+      title: Arrêté du 10/07/2007
+    2009-01-01:
+      title: Arrêté du 31/12/2008
+    2010-01-01:
+      title: Arrêté du 29/12/2009
+    2011-01-01:
+      title: Arrêté du 30/12/2010
+    2012-01-01:
+      title: Arrêté du 28/12/2011, art. 2
+    2013-01-01:
+      title: Circulaire DSS/SD2B/2012/423
+    2014-01-01:
+      title: Circulaire DSS/SD2B/2013/417
+    2015-01-01:
+      title: Circulaire DSS/SD2B/2014/345
+    2016-01-01:
+      title: Circulaire DSS/SD2B/2015/371
+    2018-01-01:
+    - title: Circulaire DSS/SD2B/2017/352du 22/12/2017
+    - title: Arrêté du 27/12/2017, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036299559
+  official_journal_date:
+    2004-01-01: "2004-01-01"
+    2004-07-01: "2004-07-18"
+    2005-07-01: "2005-08-03"
+    2006-07-01: "2006-07-19"
+    2007-07-01: "2007-07-12"
+    2009-01-01: "2009-01-01"
+    2010-01-01: "2009-12-31"
+    2011-01-01: "2010-12-31"
+    2012-01-01: "2011-12-30"
+    2013-01-01: "2013-12-18"
+    2018-01-01: "2017-12-29"
+  notes:
+    2004-01-01:
+    - title: "Création de la PAJE. Mais entrée en vigueur progressive : de janvier 2004 à décembre 2006 inclus (cf. art. 60, VIII de la loi 2003-1199)"
+    2016-01-01:
+    - title: Pas de modification pour 2017 cf. Circulaire DSS/SD2B/2016/396 du 21/12/2016
+    2018-01-01:
+    - title: Revalorisation des plafonds de 0,2%. Les plafonds pour les enfants nés avant le 01/04/2014 sont supprimés, car ces enfants ont désormais plus de 3 ans.

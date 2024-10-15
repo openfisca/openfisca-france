@@ -1,0 +1,12 @@
+description: Montant de l'aide à la mobilité Internationale pour les jeunes parmi les prestations sociales
+values:
+  2018-07-19:
+    value: 400
+metadata:
+  short_label: Montant
+  unit: currency
+  reference:
+    2018-07-19:
+      title: Arrêté du 19/07/2018, art. 4
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000037260758/2018-07-30
+documentation: "Autre: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67"

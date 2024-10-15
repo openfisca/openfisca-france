@@ -1,0 +1,12 @@
+description: Taux (SH)
+values:
+  2009-01-01:
+    value: 0.15
+  2011-01-01:
+    value: 0.13
+  2012-01-01:
+    value: 0.15
+  2013-01-01:
+    value: null
+metadata:
+  unit: /1

@@ -1,0 +1,7 @@
+description: Forfait mobilier de l'impôt de solidarité sur la fortune
+metadata:
+  short_label: Forfait mobilier
+  label_en: Furniture package
+  order:
+  - majoration_forfaitaire
+  - non_bati

@@ -1,0 +1,11 @@
+description: Majoration pour les enfants (en % de la BMAF) des allocations familiales (AF)
+metadata:
+  short_label: Pour les enfants
+  label_en: "Family allowances (AF): Extra allowances"
+  order:
+  - tranches_d_age
+  - taux_selon_age
+  - allocation_forfaitaire
+documentation: |-
+  01/01/2015: Décalage de la majoration de 14 à 16 ans. S'applique aux enfant nés à partir du 1er janvier 2001.
+  Majoration à appliquer à chaque enfant entre 20 et 21 ans si avant le 20ème anniversaire de l'enfant, la famille avait 3 enfants ouvrant droit aux allocations familiales.

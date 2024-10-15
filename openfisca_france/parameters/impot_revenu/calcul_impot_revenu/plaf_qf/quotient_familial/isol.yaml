@@ -1,0 +1,13 @@
+description: Part supplémentaire de quotient familial (IR) pour une personne seule ayant au moins un enfant à charge (parent isolé)
+values:
+  1951-01-01:
+    value: 0.5
+metadata:
+  short_label: Parent isolé
+  last_value_still_valid_on: "2024-04-26"
+  unit: part_quotient_familial
+  reference:
+    1951-01-01:
+      title: Article 194 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049371120/1951-12-19/
+documentation: Parent isolé = Personne seule avec au moins 1 enfant à charge

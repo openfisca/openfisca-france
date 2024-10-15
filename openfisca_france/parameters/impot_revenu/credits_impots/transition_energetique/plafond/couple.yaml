@@ -1,0 +1,25 @@
+description: Plafond pour un Couple à imposition commune du crédit d'impôt à la transition énergétique (2014-2021) et Crédit d'impôt au développement durable (2005-2014) par periode quinquennale
+values:
+  2005-01-01:
+    value: 16000
+  2020-01-01:
+    value: 4800
+metadata:
+  short_label: Couple à imposition commune
+  ipp_csv_id: plafond_cite_couple
+  unit: currency_next_year
+  reference:
+    2005-01-01:
+      title: Loi n° 2004-1484 du 30 décembre 2004 (LF 2005), art. 90
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000789373&idArticle=LEGIARTI000006322191&dateTexte=20051230&categorieLien=id#LEGIARTI000006322191
+    2020-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000039683923&idArticle=LEGIARTI000039793071&dateTexte=20200623&categorieLien=id#LEGIARTI000039793071
+  official_journal_date:
+    2005-01-01: "2004-12-31"
+    2020-01-01: "2019-12-29"
+  notes:
+    2005-01-01:
+    - title: Pour l'année IR 2005, le plafond du crédit d'impôt est rehaussé de 400 euros pour la première personne à charge, 500 euros pour la seconde et 600 euros à partir de la 3ème.
+    2020-01-01:
+    - title: Le CITE est étendu pour les dépenses engagées jusqu'au 31-12-2020. Cependant le calcul du montant restitué n'est plus basé sur un pourcentage de ces dépenses mais sur une prime forfaitaire pour chaque travail réalisé, de manière similaire à MaPrimeRénov'.

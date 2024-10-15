@@ -1,0 +1,9 @@
+description: Réduction d'impôt sous condition de revenus
+metadata:
+  short_label: Réduction sous conditions
+  label_en: Family quotient ceiling and "decote"
+  order:
+  - taux
+  - plafond_rfr_celib
+  - plafond_rfr_couple
+  - majoration_plafond_par_demi_parts_supp

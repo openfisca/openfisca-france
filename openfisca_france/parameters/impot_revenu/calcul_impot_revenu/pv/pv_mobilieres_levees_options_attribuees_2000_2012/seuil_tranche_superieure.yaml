@@ -1,0 +1,18 @@
+description: Seuil tranche supérieure
+values:
+  1977-01-01:
+    value: null
+  2000-01-01:
+    value: 1000000
+  2001-01-01:
+    value: 152000
+  2009-01-01:
+    value: 152500
+metadata:
+  ipp_csv_id: seuil_pv1
+  unit: currency_next_year
+  notes:
+    2000-01-01:
+    - title: Pour les options attribuées à compter du 27/04/2000, création des variables tx_stockoptions1 et tx_stockoptions2
+    2001-01-01:
+    - title: "Avant 2001 : art 92 B du CGI"

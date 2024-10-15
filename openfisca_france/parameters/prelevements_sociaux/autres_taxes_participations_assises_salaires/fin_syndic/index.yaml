@@ -1,4 +1,6 @@
-description: Contribution employeur au financement des organisations syndicales, parmi les autres taxes et participations assises sur les salaires
+description: Contribution employeur au financement des organisations syndicales sur les salaires
 metadata:
-  ux_name: Financement des organisations syndicales
-  description_en: Employer's contributions to the funding of trade unions
+  short_label: Financement des organisations syndicales
+  label_en: Employer's contributions to the funding of trade unions
+  order:
+  - financement_organisations_syndicales

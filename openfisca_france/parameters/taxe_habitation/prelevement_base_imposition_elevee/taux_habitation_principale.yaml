@@ -1,0 +1,10 @@
+description: Taux du prélèvement sur les bases d'imposition élevées pour l'habitation principale
+values:
+  2017-01-01:
+    value: 0.002
+  2021-01-01:
+    value: null
+metadata:
+  unit: /1
+  reference:
+    title: 1° du 3. du I. de l'art. 1641 du CGI

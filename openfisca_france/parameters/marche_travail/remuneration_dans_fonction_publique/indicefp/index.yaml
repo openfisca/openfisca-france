@@ -1,0 +1,34 @@
+description: Valeur du point d'indice de la fonction publique
+metadata:
+  short_label: Point d'indice
+  label_en: Index point of public sector
+  reference:
+    1961-05-01:
+      title: Arrété du 07/09/1961
+    1962-07-01:
+      title: Décret 62-805 du 17/07/1962
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000692093
+    1967-10-01:
+      title: Décret 67-850 du 30/09/1967
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000877738/
+    1977-08-01:
+      title: Arrété du 20/09/1977
+    1978-01-01:
+      title: Arrété du 22/05/1978
+    1979-08-01:
+      title: Décret 79-652 du 30/07/1979
+    1981-11-01:
+      title: Décret 81-1015 du 13/11/1981
+    1985-01-01:
+      title: Décret 86-166 du 31/01/1986
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000881232/
+  order:
+  - point_indice_en_euros
+  - point_indice_en_nominal
+documentation: |-
+  Le point d'indice (ou la valeur de l'indice majoré 100) permet de déterminer la rémunération fixe des fonctionnaires
+  La valeur du traitement mensuel brut correspondant à l'indice majoré détenu par un
+  agent est égale à :
+  (Valeur de l'indice majoré 100 X indice majoré de l'agent) / (100 x 12)
+  Référence générale : Décret 85-1148 du 24 octobre 1985 - Article 3
+  NB : Pour trouver les décrets aux années précédentes XXXX, il suffit de rechercher sur internet "Décret XXX portant majoration de la rémunération des personnels civils et militaires de l'Etat"

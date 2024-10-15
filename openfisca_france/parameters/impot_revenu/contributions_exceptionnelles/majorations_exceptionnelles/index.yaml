@@ -1,0 +1,11 @@
+description: Majorations exceptionnelles d'impôt
+metadata:
+  label_en: Exceptional tax increases
+  order:
+  - seuil_revenu
+  - seuil_1
+  - seuil_2
+  - seuil_3_superieur
+  - taux_1
+  - taux_2
+  - taux_3_superieur

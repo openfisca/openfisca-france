@@ -1,0 +1,6 @@
+description: Plafond de référence pour l'échelon 6, pour une famille avec un enfant, en multiple du Smic horaire brut
+values:
+  2016-07-01:
+    value: 244.3
+metadata:
+  unit: /1

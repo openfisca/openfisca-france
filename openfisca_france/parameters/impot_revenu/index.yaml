@@ -1,2 +1,10 @@
-description: Impôt sur le revenu
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Impôts sur le revenu
+metadata:
+  order:
+  - bareme_ir_depuis_1945
+  - anciens_baremes_igr
+  - calcul_revenus_imposables
+  - calcul_impot_revenu
+  - calcul_reductions_impots
+  - credits_impots
+  - contributions_exceptionnelles

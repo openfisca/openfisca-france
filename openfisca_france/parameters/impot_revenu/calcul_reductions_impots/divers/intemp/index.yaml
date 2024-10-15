@@ -1,0 +1,17 @@
+description: Réduction d'impôt pour les dépenses de gros travaux, les intérêts d'emprunt et les ravalements
+metadata:
+  documentation_start: true
+  short_label: Gros travaux, intérêts d'emprunt et ravalement
+  label_en: Expenditures for big works and loan interests
+  order:
+  - reduction_d_impot_pour_gros_travaux
+  - interets_d_emprunts
+  - deduction_des_charges
+  - taux1
+  - pac
+  - plafond_2
+  - plafond_3
+  - max
+documentation: |-
+  Les plafonds de 1 (max), 2 et 3 ne se cumulent pas.
+  Le plafond 3 pour les intérêts d'emprunt est à doubler pour couple (mais pas les plafonds 1 (max) et 2)

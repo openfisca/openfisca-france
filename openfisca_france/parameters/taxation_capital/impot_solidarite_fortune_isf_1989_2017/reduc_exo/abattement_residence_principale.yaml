@@ -1,0 +1,36 @@
+description: Abattement lié à la résidence principale de l'impôt de solidarité sur la fortune
+values:
+  1989-01-01:
+    value: null
+  1999-01-01:
+    value: 0.2
+  2008-01-01:
+    value: 0.3
+  2018-01-01:
+    value: null
+metadata:
+  short_label: Abattement lié à la résidence principale
+  label_en: Discount and rebate
+  ipp_csv_id: abt_residence
+  unit: /1
+  reference:
+    1989-01-01:
+      title: Loi 88-1149 du 23/12/1988, art. 26 (LFpour 1989)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275456&cidTexte=JORFTEXT000000508832
+    1999-01-01:
+      title: Loi 98-1266 du 30/12/1998, art. 17 (LF pour 1999)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006320282&cidTexte=JORFTEXT000000209044
+    2008-01-01:
+      title: Loi 2007-1223 du 21/08/2007, art. 14
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006267455&cidTexte=JORFTEXT000000278649
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (abroge art. 885 S du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    1989-01-01: "1988-12-28"
+    1999-01-01: "1998-12-31"
+    2008-01-01: "2007-08-22"
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.

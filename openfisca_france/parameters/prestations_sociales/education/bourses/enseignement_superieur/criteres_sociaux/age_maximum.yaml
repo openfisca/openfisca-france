@@ -1,0 +1,14 @@
+description: Âge maximum pour bénéficier d'une bourses de l'enseignement supérieur sur critères sociaux
+values:
+  2007-03-20:
+    value: 26
+  2020-06-08:
+    value: 28
+metadata:
+  short_label: Âge max
+  unit: year
+  reference:
+    2007-03-20:
+      href: https://www.education.gouv.fr/bo/2007/13/MENS0700649C.htm
+    2020-06-08:
+      href: https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm

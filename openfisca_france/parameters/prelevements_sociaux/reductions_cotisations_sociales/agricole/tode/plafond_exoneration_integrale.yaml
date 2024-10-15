@@ -1,0 +1,15 @@
+description: Plafond de ressources (en nombre de Smic) d'exonération intégrale TO-DE (travailleur occasionnel demandeur d'emploi) du secteur agricole
+values:
+  2019-01-01:
+    value: 1.2
+metadata:
+  short_label: Plafond d'exonération intégrale TO-DE
+  last_value_still_valid_on: "2022-09-21"
+  label_en: Threshold of resources in SSCs exemption for casual worker job seeker (TO-DE, agricultural worker)
+  unit: smic
+  reference:
+    2019-01-01:
+    - title: Article L741-16 du Code rural et de la pêche maritime
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006585701/2019-01-01/
+    - title: Article D741-60 du Code rural et de la pêche maritime
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038026966

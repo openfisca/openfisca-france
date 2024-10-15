@@ -1,0 +1,32 @@
+description: Allocation d'insertion (AI) pour la catégorie 3
+values:
+  1979-07-01:
+    value: 20
+  1979-10-01:
+    value: 22
+  1980-04-01:
+    value: 23.5
+  1981-10-01:
+    value: 30.23
+  1983-01-01:
+    value: null
+metadata:
+  short_label: Catégorie 3
+  label_en: Insertion allowance (AI)
+  ipp_csv_id: ai_soutien
+  unit: currency
+  reference:
+    1979-07-01:
+      title: Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+    1979-10-01:
+      title: Circulaire Unédic 79-36 de septembre 1979
+    1980-04-01:
+      title: Conseil d'administration de l'Unédic du 27/03/1980
+    1981-10-01:
+      title: Circulaire Unédic 80-40 du 23/09/1980
+    1983-01-01:
+      title: Décret 82-991 du 24/11/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701672&categorieLien=id
+  official_journal_date:
+    1979-07-01: "1979-05-20"
+    1983-01-01: "1982-11-25"

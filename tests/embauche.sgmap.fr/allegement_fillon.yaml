@@ -6,6 +6,6 @@ input:
   effectif_entreprise: 1
   salaire_de_base: 1500
   categorie_salarie: prive_non_cadre
-  allegement_fillon_mode_recouvrement: anticipe
+  allegement_general_mode_recouvrement: anticipe
 output:
-  allegement_fillon: 387
+  allegement_general: 387

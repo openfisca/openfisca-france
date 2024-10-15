@@ -1,0 +1,22 @@
+description: Taxes sur les tabacs à chauffer commercialisés en bâtonnets
+values:
+  2022-01-01:
+    value: null
+  2023-01-01:
+    value: 51.4
+metadata:
+  short_label: Tabacs en bâtonnets
+  last_value_still_valid_on: "2022-12-28"
+  unit: /1
+  reference:
+    2022-01-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603389
+    2023-03-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046805433
+documentation: |-
+  La catégorie 'Tabacs à chauffer commercialisés en bâtonnets' est nouvelle depuis mars 2023, et issue de l'ancienne catégorie 'autres tabacs' qui se divise en 3 types:
+   - Tabacs à chauffer commercialisés en bâtonnets
+   - Autres tabacs à chauffer
+   - Autres tabacs à fumer ou à inhaler après avoir été chauffés

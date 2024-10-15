@@ -34,11 +34,11 @@
     effectif_entreprise: 30
     salaire_de_base: 1500
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     contrat_de_travail_debut: 2016-10-01
   output:
     exoneration_cotisations_employeur_jei: 427.3500061
-    allegement_fillon: 0
+    allegement_general: 0
     allegement_cotisation_allocations_familiales: 0
     aide_embauche_pme: 0
 
@@ -51,7 +51,7 @@
     effectif_entreprise: 1
     salaire_de_base: 1500
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     contrat_de_travail_debut: 2016-10-01
   output:
     exoneration_cotisations_employeur_jei: 427.3500061

@@ -1,0 +1,6 @@
+description: Limite d'âge (stricte)
+values:
+  2004-01-01:
+    value: 3
+metadata:
+  unit: year

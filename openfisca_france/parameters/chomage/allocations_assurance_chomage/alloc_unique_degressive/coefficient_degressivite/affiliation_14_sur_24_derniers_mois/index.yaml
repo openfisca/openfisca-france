@@ -1,0 +1,8 @@
+description: Coefficients de degressivité (durée d'affiliation de 14 mois au cours des 24 derniers mois) de l'allocation unique dégressive des allocations chômage
+metadata:
+  short_label: Affiliation de 14 mois au cours des 24 derniers mois
+  label_en: UI scheme - degressive schedule
+  order:
+  - moins_25_ans
+  - entre_25_50_ans
+  - 50_ans_plus

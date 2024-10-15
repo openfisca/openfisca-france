@@ -1,0 +1,16 @@
+description: Contribution supplémentaire d'apprentissage sur les salaires, parmi les autres taxes et participations assises sur les salaires
+metadata:
+  short_label: Contribution supplémentaire
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  order:
+  - plus_de_250_moins_de_1pc
+  - plus_de_250_entre_1_et_2pc
+  - plus_de_250_entre_2_et_3pc
+  - plus_de_250_entre_3_et_4pc
+  - plus_de_250_entre_4_et_5pc
+  - moins_de_2000_moins_de_1pc
+  - plus_de_2000_moins_de_1pc
+  - multiplicateur_alsace_moselle
+  notes:
+    2022-01-01:
+    - title: L'Article 230 H du Code du travail concernant la CSA est déplacé dans le L6242-1

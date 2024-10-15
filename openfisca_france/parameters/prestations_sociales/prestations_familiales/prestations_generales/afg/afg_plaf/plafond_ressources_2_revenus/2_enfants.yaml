@@ -1,0 +1,26 @@
+description: Plafonds de ressources (pour 2 revenus et 2 enfants) de l'Allocation pour frais de garde (AFG)
+values:
+  1976-07-01:
+    value: 48240
+  1978-01-01:
+    value: null
+metadata:
+  short_label: 2 enfants
+  label_en: 2 children
+  ipp_csv_id: agf_plaf_2_enf_biact
+  unit: currency
+  reference:
+    1976-07-01:
+    - title: Décret 74-568 du 17/05/1974
+    - title: Décret 75-556 du 02/07/1975
+    1978-01-01:
+      title: Loi 77-765 du 12/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
+  official_journal_date:
+    1976-07-01: 1974-05-28; 1975-07-03
+    1978-01-01: "1977-07-13"
+  notes:
+    1976-07-01:
+    - title: Plafond calculé sur le revenu fiscal net de 1975 pour la période de paiement 01/07/76-30/06/1977
+    1978-01-01:
+    - title: Remplacé par "complément familial" depuis 01/01/1978

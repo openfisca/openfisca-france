@@ -1,0 +1,64 @@
+description: Plafonds de ressources de base à taux plein pour enfants nés ou adoptés entre le 01/04/2014 et le 31/03/2018 de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: null
+  2014-04-01:
+    value: 24344
+  2015-01-01:
+    value: 24514
+  2016-01-01:
+    value: 24612
+  2018-01-01:
+    value: 24661
+  2019-01-01:
+    value: 24908
+  2020-01-01:
+    value: 25307
+  2021-01-01:
+    value: 25535
+  2021-04-01:
+    value: null
+metadata:
+  short_label: Plafond de ressources - 0 enfant
+  label_en: Resource ceiling - 0 children
+  ipp_csv_id: plaf_paje_0enf_abplein_entre_20140401_20180331
+  unit: currency
+  reference:
+    2004-01-01:
+      title: Décret 2003-1393 du 31/12/2003, art. 2 (modif art. R531-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
+    2014-04-01:
+      title: Décret 2014-422 du 24/04/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028879156
+    2015-01-01:
+      title: Circulaire DSS/SD2B/2014/345
+    2016-01-01:
+      title: Circulaire DSS/SD2B/2015/371
+    2018-01-01:
+    - title: Circulaire DSS/SD2B/2017/352du 22/12/2017
+    - title: Arrêté du 27/12/2017, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036299559
+    2019-01-01:
+      title: Arrêté du 21/12/2018, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037864986?r=NZKwYXtfpm
+    2020-01-01:
+      title: Arrêté du 20/12/2019, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039663220
+    2021-01-01:
+      title: Arrêté du 14/12/2020, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042694981
+  official_journal_date:
+    2004-01-01: "2004-01-01"
+    2018-01-01: "2017-12-29"
+    2019-01-01: "2018-12-28"
+    2020-01-01: "2019-12-24"
+    2021-01-01: "2020-12-18"
+  notes:
+    2004-01-01:
+    - title: "Création de la PAJE. Mais entrée en vigueur progressive : de janvier 2004 à décembre 2006 inclus (cf. art. 60, VIII de la loi 2003-1199)"
+    2016-01-01:
+    - title: Pas de modification pour 2017 cf. Circulaire DSS/SD2B/2016/396 du 21/12/2016
+    2018-01-01:
+    - title: Revalorisation des plafonds de 0,2%. Les plafonds pour les enfants nés avant le 01/04/2014 sont supprimés, car ces enfants ont désormais plus de 3 ans.
+    2021-04-01:
+    - title: Les dispositions de la PAJE pour les enfants nés ou adoptés avant le 01/04/2018 ne s'appliquent plus (naissance ou adoption depuis plus de 3 ans).

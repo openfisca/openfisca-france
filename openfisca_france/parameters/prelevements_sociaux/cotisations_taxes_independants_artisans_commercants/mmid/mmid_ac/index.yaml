@@ -1,0 +1,19 @@
+description: Cotisation de sécurité sociale (SS), branche maladie, maternité, invalidité, décès des artisans-commerçants
+metadata:
+  short_label: Branche Maladie Maternité Invalidité Décès
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  order:
+  - assures_actifs
+  - assures_retraites
+documentation: |-
+  Loi 66-509 du 12/07/1966
+  1966-07-13
+
+  Les cotisations sont calculées provisoirement (sur des bases forfaitaires les deux premières années car le revenu professionnel n'est pas connu)
+  Ces cotisations sont ensuite recalculées, une fois connu le revenu réalisé au cours de la première année et font l’objet d’une régularisation l’année suivante (on paie donc l'impôt sur l'avant-dernière année, puis régularisation l'année suivante)
+
+  Assiette :
+  Les cotisations personnelles sont calculées sur la base des revenus professionnels pris en compte, avant certaines déductions, pour le calcul de l'impôt sur le revenu.
+  A cette rémunération s'ajoute :
+  les dividendes perçus dépassant 10 % du capital de l'entreprise ou 10 % du patrimoine affecté pour les EIRL
+  l'abattement pour frais professionnels (10 % ou réels)

@@ -1,0 +1,47 @@
+description: Taux sur tout salaire de la cotisation de sécurité sociale (SS) de la branche vieillesse des indépendants artisans et commerçants
+values:
+  1973-01-01:
+    value: null
+  2014-01-01:
+    value: 0.002
+  2015-01-01:
+    value: 0.0035
+  2016-01-01:
+    value: 0.005
+  2017-01-01:
+    value: 0.006
+metadata:
+  short_label: Taux sur tout salaire
+  label_en: SSCs for old-age insurance (sales retailers and craftsmen)
+  unit: /1
+  reference:
+    1973-01-01:
+      title: Loi 72-554 du 03/07/1972
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000322308
+    2014-01-01:
+    - title: Décret 2012-847 du 02/07/2012, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026116730&cidTexte=JORFTEXT000026106324
+    - title: Décret 2013-1290 du 27/12/2013
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028408271
+    2015-01-01:
+      title: Décret 2012-847 du 02/07/2012, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026116730&cidTexte=JORFTEXT000026106324
+    2016-01-01:
+    - title: Décret 2014-1531 du 17/12/2014, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
+    - title: Décret 2015-1856 du 30/12/2015, art. 10-II
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031791772&cidTexte=JORFTEXT000031740377
+    2017-01-01:
+      title: Décret 2015-1856 du 30/12/2015, art. 7
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031791766&cidTexte=JORFTEXT000031740377
+  official_journal_date:
+    1973-01-01: "1972-07-04"
+    2014-01-01: 2012-07-03; 2013-12-31
+    2015-01-01: "2012-07-03"
+    2016-01-01: 2014-12-19; 2015-12-31
+    2017-01-01: "2015-12-31"
+  notes:
+    2014-01-01:
+    - title: La loi 2013-1203 du 23/12/2013 (LFSS pour 2014, JO du 24/12/2013) a instauré une contribution déplafonnée (art. 10, §2).
+    2016-01-01:
+    - title: L'article 10-II du décret 2015-1856 donne une exception à l'article 7 pour l'année 2016.

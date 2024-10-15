@@ -1,0 +1,11 @@
+metadata:
+  reference:
+    href: https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/texte
+age_min:
+  values:
+    2019-01-03:
+      value: 18
+montant:
+  values:
+    2019-01-03:
+      value: 500

@@ -1,0 +1,9 @@
+description: Prestations sociales liées à l'invalidité
+metadata:
+  short_label: Invalidité
+  label_en: Disability
+  order:
+  - pensions_invalidite
+  - aah
+  - caah
+  - asi

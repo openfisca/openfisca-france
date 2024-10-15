@@ -1,0 +1,14 @@
+description: Abattement du revenu fiscal de référence pour le plafonnement de la taxe d'habitation - 1ère part
+values:
+  2017-01-01:
+    value: 5461
+  2018-01-01:
+    value: 5516
+  2019-01-01:
+    value: 5604
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Majoration première part
+  unit: currency
+documentation: Voir I. de l'art. 1414 A du CGI

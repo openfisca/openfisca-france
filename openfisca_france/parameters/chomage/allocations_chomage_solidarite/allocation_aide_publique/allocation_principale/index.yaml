@@ -1,0 +1,7 @@
+description: Allocation principale d'aide publique
+metadata:
+  short_label: Allocation principale
+  label_en: Public aid allowance
+  order:
+  - 3_premiers_mois
+  - apres_3_mois

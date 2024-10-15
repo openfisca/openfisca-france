@@ -1,0 +1,44 @@
+description: Taux 3 (supérieur) des majorations exceptionnelles d'impôt
+values:
+  1946-01-01:
+    value: null
+  1967-01-01:
+    value: 0.25
+  1968-01-01:
+    value: 0.15
+  1969-01-01:
+    value: 0.075
+  1970-01-01:
+    value: 0.03
+  1971-01-01:
+    value: null
+metadata:
+  short_label: 3 (supérieur)
+  ipp_csv_id: taux3_majo
+  unit: /1
+  reference:
+    1967-01-01:
+      title: Loi 68-695 du 31/07/1968 (LFR pour 1968) - art. 15
+    1968-01-01:
+      title: Loi 68-1172 du 27/12/1968 (LF pour 1969) - art. 2-I-2
+    1969-01-01:
+      title: Loi 69-1161 du 24/12/1969 (LF pour 1970) - art. 3-V
+    1970-01-01:
+      title: Loi 70-1199 du 21/12/1970 (LF pour 1971) - art. 2-IX
+    1971-01-01:
+      title: Loi 71-1061 du 29/12/1971 (LF pour 1972) - art. 3-III
+  official_journal_date:
+    1967-01-01: "1968-08-02"
+    1968-01-01: "1968-12-29"
+    1969-01-01: "1969-12-27"
+    1970-01-01: "1970-12-22"
+    1971-01-01: "1971-12-30"
+  notes:
+    1967-01-01:
+    - title: Majoration d'impôt de 10 % si impôt supérieur à 5 000 FRF, de 15 % si impôt entre seuil 1 et seuil 2 et de 25% si impôt supérieur à seuil 3.
+    1968-01-01:
+    - title: "Les majorations se font par paliers de 1 000 FRF d'impôt: +2% entre 6000 FRF et 7000 FRF, +4% entre 7000 FRF et 8000 FRF, etc. jusque +14% entre 12 000 FRF et 14 000 FRF; au-dessus, le taux 3 (15 %) s'applique. Des minorations d'impôt par paliers de 500 FRF sont aussi mises en place avec des taux de -2 % à -15% en dessous de 5 000 FRF d'impôt jusqu'à 1 000 FRF."
+    1969-01-01:
+    - title: Les taux de majoration de l'année précédente sont divisés par deux et à partir de 7 000 FRF. Les minorations sont maintenues.
+    1970-01-01:
+    - title: Majoration d'impôt de 1 % si impôt compris en seuil 1 et seuil 2, de 2 % si impôt compris en seuil 2 et seuil 3,et de 3 % si impôt supérieur à seuil 3.

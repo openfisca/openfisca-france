@@ -1,0 +1,10 @@
+description: Montant de l'aide à la mobilité Parcours Sup pour les jeunes parmi les prestations sociales
+values:
+  2019-05-14:
+    value: 500
+metadata:
+  short_label: Montant
+  unit: currency
+  reference:
+    2019-05-14:
+      href: https://www.education.gouv.fr/bo/19/Hebdo20/ESRS1910244C.htm

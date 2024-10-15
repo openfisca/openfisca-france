@@ -1,0 +1,32 @@
+description: Taux 5 des minorations exceptionnelles d'impôt
+values:
+  1965-01-01:
+    value: null
+  1966-01-01:
+    value: 0.02
+  1967-01-01:
+    value: 0.05
+  1968-01-01:
+    value: 0.02
+  1973-01-01:
+    value: null
+  1986-01-01:
+    value: 0.03
+  1993-01-01:
+    value: null
+metadata:
+  short_label: "5"
+  ipp_csv_id: tx_min5
+  unit: /1
+  reference:
+    1993-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+  official_journal_date:
+    1993-01-01: "1993-12-31"
+  notes:
+    1966-01-01:
+    - title: de 5 % si revenu < 45000 à 2 % si revenu > 50000 mais < 55000
+    1967-01-01:
+    - title: de 10 % si revenu < 45000 à 5 % si revenu > 50000 mais < 55000
+    1968-01-01:
+    - title: de 15 % si impôt < 1000 à 2 % si impôt > 3500 mais < 5000

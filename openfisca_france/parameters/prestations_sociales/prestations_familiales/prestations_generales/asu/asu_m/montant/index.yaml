@@ -1,0 +1,9 @@
+description: Montant mensuel de l'Allocation de salaire unique (ASU)
+metadata:
+  short_label: Montant mensuel
+  label_en: Monthly amount
+  order:
+  - moins_1_enfant_moins_2_ans
+  - 1_enfant_plus_2_ans
+  - 2_enfants_plus_2_ans
+  - 3_enfants_plus_2_ans

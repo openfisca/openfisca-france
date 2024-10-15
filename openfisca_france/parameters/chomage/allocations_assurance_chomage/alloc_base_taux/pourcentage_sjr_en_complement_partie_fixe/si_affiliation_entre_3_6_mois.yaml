@@ -1,0 +1,36 @@
+description: Pourcentage du SJR (en complément de partie fixe) pour une affiliation de 3 à 6 mois à l'allocation de base d'assurance chômage
+values:
+  1968-07-22:
+    value: 0.35
+  1979-07-01:
+    value: 0.42
+  1984-04-01:
+    value: 0.3
+  1989-10-01:
+    value: 0.303
+  1992-07-01:
+    value: 0.404
+metadata:
+  short_label: Si affiliation 3-6 mois
+  label_en: "UI scheme: rates and maximum"
+  ipp_csv_id: base_prct_3_6
+  unit: /1
+  reference:
+    1968-07-22:
+    - title: Ordonnance 67-580 du 13/07/1967
+    - title: Avenant du 10/07/1967
+    1979-07-01:
+    - title: Loi cadre 79-32 du 16/01/1979
+    - title: Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+    1984-04-01:
+      title: Arrêté du 24/02/1984 portant agrément de la convention du 24/02/1984
+    1989-10-01:
+      title: Arrêté du 14/05/1990 portant agrément de la convention du 01/01/1990
+    1992-07-01:
+      title: Arrêté du 04/01/1994 portant agrément de la convention du 01/01/1994
+  official_journal_date:
+    1968-07-22: "1967-07-19"
+    1979-07-01: 1979-01-17; 1979-05-20
+    1984-04-01: "1984-04-04"
+    1989-10-01: "1990-05-15"
+    1992-07-01: "1994-01-08"

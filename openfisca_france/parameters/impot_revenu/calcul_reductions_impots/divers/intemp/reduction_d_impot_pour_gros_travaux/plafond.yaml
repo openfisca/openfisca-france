@@ -1,0 +1,19 @@
+description: Plafond de la réducition d'impôt pour gros travaux
+values:
+  1978-01-01:
+    value: null
+  1984-01-01:
+    value: 8000
+  1995-01-01:
+    value: 15000
+  1997-01-01:
+    value: 20000
+  2000-01-01:
+    value: null
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_grostravaux
+  unit: currency_next_year
+  notes:
+    1997-01-01:
+    - title: Dépenses de gros travaux avec même incrément que habitat et majoration comme dans 2 et 3

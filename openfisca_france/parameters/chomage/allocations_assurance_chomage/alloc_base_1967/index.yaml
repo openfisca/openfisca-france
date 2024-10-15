@@ -1,0 +1,9 @@
+description: Allocation de base d'assurance chômage
+metadata:
+  short_label: Allocation chômage
+  label_en: UI scheme
+  order:
+  - montant_minimum
+documentation: |-
+  Art. 8 du règlement de la Convention du 31/12/1958
+  Sources : Consultation des circulaires Unedic au service de documentation de l'Unedic.

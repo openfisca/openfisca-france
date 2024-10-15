@@ -1,0 +1,8 @@
+description: Prime exceptionnelle de pouvoir d'achat (PEPA)
+metadata:
+  short_label: PEPA
+  order:
+  - plafond_salaire
+  - plafond_exoneration
+  - plafond_exoneration_avec_accord_interessement
+  - plafond_effectif_entreprise

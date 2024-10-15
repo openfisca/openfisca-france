@@ -1,0 +1,19 @@
+description: Plus value de cession (RPNS), Impôt sur les plus-values à taux forfaitaires
+values:
+  1985-01-01:
+    value: 0.16
+  2017-01-01:
+    value: 0.128
+metadata:
+  short_label: Plus value de cession (RPNS)
+  unit: /1
+  reference:
+    1985-01-01:
+      title: Décret 85-1007 du 24/09/1985, art. 1er
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000882285
+    2017-01-01:
+      title: Loi 2017-1837 du 30/12/2017, art. 29
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036339237
+  notes:
+    2017-01-01:
+    - title: prend en compte jusqu'en 2019 les revenus de cession de logiciels (cf Article 39 quindecies du CGI https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036428314/2018-01-01/)

@@ -1,0 +1,6 @@
+description: Unités de consommation (Foyer fiscal composé d'une personne) pour le Chèque énergie, prestations sociales de solidarité insertion
+values:
+  2017-01-01:
+    value: 1
+metadata:
+  short_label: Foyer fiscal composé d'une personne

@@ -1,0 +1,8 @@
+description: Majoration plafond pour le droit à l'Allocation de la mère au foyer (AMF)
+metadata:
+  short_label: Majoration droit AMF
+  label_en: Increase in AMF rights
+  order:
+  - 4_enfants
+  - 5_enfants
+  - 6_enfants

@@ -1,0 +1,7 @@
+description: Montant mensuel (en % de la BMAF) de la bourse de lycée échelon 3 après 2016
+values:
+  2016-07-01:
+    value: 1.5435
+metadata:
+  short_label: Montant
+  unit: BMAF

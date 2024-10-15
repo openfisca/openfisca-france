@@ -1,0 +1,268 @@
+description: Montant journalier à taux plein de l'allocation de solidarité spécifique (ASS)
+values:
+  1984-04-01:
+    value: 40
+  1984-10-01:
+    value: 41.4
+  1985-04-01:
+    value: 43
+  1987-04-01:
+    value: 64.5
+  1988-11-01:
+    value: 66.43
+  1990-01-01:
+    value: 68.29
+  1991-01-01:
+    value: 69.45
+  1991-07-01:
+    value: 70.01
+  1992-01-01:
+    value: 70.71
+  1992-07-01:
+    value: 71.98
+  1993-01-01:
+    value: 72.92
+  1994-07-01:
+    value: 74.01
+  1997-07-01:
+    value: 75.49
+  1998-01-01:
+    value: 80.02
+  1999-01-01:
+    value: 82.42
+  2000-01-01:
+    value: 84.07
+  2001-01-01:
+    value: 85.91
+  2002-01-01:
+    value: 13.36
+  2003-01-01:
+    value: 13.56
+  2004-01-01:
+    value: 13.76
+  2005-01-01:
+    value: 14
+  2006-01-01:
+    value: 14.25
+  2007-01-01:
+    value: 14.51
+  2008-01-01:
+    value: 14.74
+  2009-01-01:
+    value: 14.96
+  2010-01-01:
+    value: 15.14
+  2011-01-01:
+    value: 15.37
+  2012-01-01:
+    value: 15.63
+  2013-01-01:
+    value: 15.9
+  2014-01-01:
+    value: 16.11
+  2015-01-01:
+    value: 16.25
+  2016-04-01:
+    value: 16.27
+  2017-04-01:
+    value: 16.32
+  2018-04-01:
+    value: 16.48
+  2019-04-01:
+    value: 16.74
+  2020-04-01:
+    value: 16.89
+  2021-04-01:
+    value: 16.91
+  2022-04-01:
+    value: 17.21
+  2022-07-01:
+    value: 17.9
+  2023-04-01:
+    value: 18.17
+  2024-04-01:
+    value: 19.01
+metadata:
+  short_label: Montant journalier (taux plein)
+  last_value_still_valid_on: "2024-05-17"
+  label_en: Special UI scheme
+  ipp_csv_id: ass_base
+  unit: currency
+  reference:
+    1984-04-01:
+      title: Décret 84-417 du 30/05/1984 + Décret 84-1026 du 22/11/1984 - art. 1
+    1984-10-01:
+      title: Décret 84-1180 du 26/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885896&categorieLien=id
+    1985-04-01:
+      title: Décret 85-600 du 10/06/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517158
+    1987-04-01:
+    - title: Loi 87-518 du 10/07/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000321414
+    - title: Décret 87-315 du 07/05/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700361
+    1988-11-01:
+      title: Décret 88-1116 du 12/12/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000504782&categorieLien=id
+    1990-01-01:
+      title: Décret 90-216 du 8/03/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000341959
+    1991-01-01:
+      title: Décret 91-146 du 07/02/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000344384
+    1991-07-01:
+      title: Décret 91-824 du 29/08/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000174235&categorieLien=id
+    1992-01-01:
+      title: Décret 92-124 du 5/02/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000175721
+    1992-07-01:
+      title: Décret 92-718 du 27/07/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000359779&categorieLien=id
+    1993-01-01:
+      title: Décret 93-116 du 27/01/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000541711&categorieLien=id
+    1994-07-01:
+      title: Décret 94-627 du 22/07/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000184476&categorieLien=id
+    1997-07-01:
+      title: Décret 97-1220 du 26/12/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569413&categorieLien=id
+    1998-01-01:
+      title: Décret 98-151 du 10/03/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000739809
+    1999-01-01:
+      title: Décret 98-1180 du 23/12/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000575730&categorieLien=id
+    2000-01-01:
+      title: Décret 99-1044 du 14/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000580251&categorieLien=id
+    2001-01-01:
+      title: Décret 2000-1260 du 26/12/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000388703&categorieLien=id
+    2002-01-01:
+      title: Décret 2001-1354 du 28/12/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000775182&categorieLien=id
+    2003-01-01:
+      title: Décret 2002-1615 du 31/12/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/12/31/2002-1615/jo/texte
+    2004-01-01:
+    - title: Décret 2003-1374 du 31/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000797003
+    - title: Décret 2003-1315 du 30/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000796321
+    2005-01-01:
+      title: Décret 2004-1537 du 30/12/2004
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000805739
+    2006-01-01:
+      title: Décret 2005-1700 du 29/12/2005
+      href: https://www.legifrance.gouv.fr/eli/decret/2005/12/29/2005-1700/jo/texte
+    2007-01-01:
+      title: Décret 2007-32 du 08/01/2007
+      href: https://www.legifrance.gouv.fr/eli/decret/2007/1/8/2007-32/jo/texte
+    2008-01-01:
+      title: Décret 2008-52 du 16/01/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/1/16/2008-52/jo/texte
+    2009-01-01:
+      title: Décret 2009-124 du 04/02/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/2/4/2009-124/jo/texte
+    2010-01-01:
+      title: Décret 2009-1703 du 30/12/2009
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021569821
+    2011-01-01:
+      title: Décret 2011-123 du 29/01/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/1/29/2011-123/jo/texte
+    2012-01-01:
+      title: Décret 2012-196 du 9/02/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/2/9/2012-196/jo/texte
+    2013-01-01:
+      title: Décret 2012-1496 du 28/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/28/2012-1496/jo/texte
+    2014-01-01:
+      title: Décret 2013-1274 du 27/12/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1274/jo/texte
+    2015-01-01:
+      title: Décret 2014-1719 du 30/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030005607
+    2016-04-01:
+      title: Décret 2016-540 du 03/05/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte
+    2017-04-01:
+      title: Décret 2017-1022 du 10/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034678225
+    2018-04-01:
+      title: Décret 2018-446 du 05/06/2018
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/6/5/2018-446/jo/texte
+    2019-04-01:
+      title: Décret 2019-466 du 16/05/2019
+      href: https://www.legifrance.gouv.fr/eli/decret/2019/5/16/2019-466/jo/texte
+    2020-04-01:
+      title: Décret 2020-669 du 02/06/2020
+      href: https://www.legifrance.gouv.fr/eli/decret/2020/6/2/2020-669/jo/texte
+    2021-04-01:
+      title: Décret n° 2021-523 du 29/04/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459270
+    2022-04-01:
+      title: Décret n° 2022-493 du 06/04/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045522919
+    2022-07-01:
+      title: Loi n° 2022-1158 du 16/08/2022, article 9
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046186749
+    2023-04-01:
+      title: Décret n° 2023-301 22/04/2023, article 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047478019
+    2024-04-01:
+      title: Décret n°2024-341 du 12/04/2024, article 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049410776
+  official_journal_date:
+    1984-04-01: 1984-06-05; 1984-11-23
+    1984-10-01: "1984-12-27"
+    1985-04-01: "1985-06-14"
+    1987-04-01: "1987-05-10"
+    1988-11-01: "1988-12-14"
+    1990-01-01: "1990-03-10"
+    1991-01-01: "1991-02-08"
+    1991-07-01: "1991-08-30"
+    1992-01-01: "1992-02-07"
+    1992-07-01: "1992-07-29"
+    1993-01-01: "1993-01-29"
+    1994-07-01: "1994-07-24"
+    1997-07-01: "1997-12-28"
+    1998-01-01: "1998-03-11"
+    1999-01-01: "1998-12-24"
+    2000-01-01: "1999-12-15"
+    2001-01-01: "2000-12-27"
+    2002-01-01: "2001-12-30"
+    2003-01-01: "2003-01-01"
+    2004-01-01: 2004-01-01; 2003-12-31
+    2005-01-01: "2005-01-01"
+    2006-01-01: "2005-12-30"
+    2007-01-01: "2007-01-09"
+    2008-01-01: "2008-01-17"
+    2009-01-01: "2009-02-05"
+    2010-01-01: "2009-12-31"
+    2011-01-01: "2011-01-30"
+    2012-01-01: "2012-02-10"
+    2013-01-01: "2012-12-29"
+    2014-01-01: "2013-12-29"
+    2015-01-01: "2014-12-31"
+    2016-04-01: "2016-05-04"
+    2017-04-01: "2017-05-11"
+    2018-04-01: "2018-06-06"
+    2019-04-01: "2019-05-18"
+    2020-04-01: "2020-06-04"
+    2021-04-01: "2021-04-30"
+    2022-04-01: "2022-04-06"
+    2022-07-01: "2022-08-16"
+    2023-04-01: "2023-04-23"
+    2024-04-01: "2024-04-14"
+  notes:
+    1984-04-01:
+    - title: "Nouvelle convention: création de l'ASS"
+    1985-04-01:
+    - title: 2ème catégorie passe de 55 ans et plus à 57,5 ans et plus
+    2004-01-01:
+    - title: Allocation désormais versée pendant 2 ans pour les allocataires de moins de 55 ans (durée illimitée avant), et majoration supprimée mais maintenue pour les bénéficiaires au 31/12/2003
+    2016-04-01:
+    - title: Il n'existe plus aucun bénéficiaire de la majoration de l'allocation

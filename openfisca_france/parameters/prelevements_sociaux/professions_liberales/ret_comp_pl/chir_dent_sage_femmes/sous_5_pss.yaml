@@ -1,0 +1,41 @@
+description: Régime supplémentaire (sous 5 PSS) pour les chirurgiens dentistes conventionnés de la cotisation des chirurgiens-dentistes (et sages femmes depuis janvier 2009) pour la retraite complémentaire
+values:
+  1949-01-01:
+    value: null
+  2008-01-01:
+    value: 0.0075
+  2018-01-01:
+    value: 0.011
+  2019-01-01:
+    value: 0.00725
+metadata:
+  short_label: Taux sous 5 PSS
+  label_en: Contribution for complementary pension scheme (professionals)
+  ipp_csv_id: asv_chird_0_5
+  unit: /1
+  reference:
+    1949-01-01:
+      title: Arrêté du 24/05/1949
+    2008-01-01:
+    - title: Décret 2007-597 du 24/04/2007
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000649843
+    - title: Décret 2007-458 du 25/03/2007
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000824512
+    2018-01-01:
+    - title: Décret 2017-730 du 3/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034579602
+    - title: Décret 2017-993 du 10/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034676865
+    2019-01-01:
+      title: Décret 2018-1033 du 26/11/2018
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037646684
+  official_journal_date:
+    1949-01-01: "1949-06-01"
+    2008-01-01: 2007-04-25; 2007-03-28
+    2018-01-01: 2017-05-05; 2017-05-11
+    2019-01-01: "2018-11-27"
+  notes:
+    2018-01-01:
+    - title: "Référence législative manquante pour taux notaires section C. Source : rapport d'activité 2018 de la CPRN"
+    2019-01-01:
+    - title: Taux d'appel pour les agents d'assurance est de 129,5 %

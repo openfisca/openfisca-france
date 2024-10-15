@@ -1,0 +1,67 @@
+description: Cotisations maladie (agent, tout traitement) de la fonction publique d'Etat
+brackets:
+- threshold:
+    1967-10-01:
+      value: 0
+    1998-01-01:
+      value: null
+  rate:
+    1967-10-01:
+      value: 0.01
+    1976-01-01:
+      value: 0.015
+    1979-01-01:
+      value: 0.035
+    1980-01-01:
+      value: 0.0375
+    1981-11-01:
+      value: 0.0475
+    1988-07-01:
+      value: 0.0515
+    1991-07-01:
+      value: 0.0605
+    1997-01-01:
+      value: 0.0475
+    1998-01-01:
+      value: null
+metadata:
+  short_label: Barème
+  last_value_still_valid_on: "2021-08-24"
+  label_en: Health insurance contributions - central government
+  ipp_csv_id: mmid_e_s_0_
+  reference:
+    1967-10-01:
+      title: Décret 67-850 du 30/09/1967
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000877738
+    1976-01-01:
+      title: Décret 75-1270 du 29/12/1975
+    1979-01-01:
+      title: Décret 78-1215 du 26/12/1978
+    1980-01-01:
+      title: Décret 78-1215 du 26/12/1978
+    1981-11-01:
+      title: Décret 81-1015 du 13/11/1981
+    1988-07-01:
+      title: Décret 88-795 du 22/06/1988, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006772886&cidTexte=LEGITEXT000006073413
+    1991-07-01:
+      title: Décret 91-615 du 28/06/1991, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775945&cidTexte=JORFTEXT000000719893
+    1997-01-01:
+      title: Décret 96-1151 du 26/12/1996, art. 6
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771401&cidTexte=JORFTEXT000000381201
+    1998-01-01:
+      title: Décret 97-1249 du 29/12/1997, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771949&cidTexte=JORFTEXT000000753405
+  official_journal_date:
+    1967-10-01: "1967-10-03"
+    1976-01-01: "1975-12-30"
+    1979-01-01: "1978-12-28"
+    1980-01-01: "1978-12-28"
+    1981-11-01: "1981-11-14"
+    1988-07-01: "1988-07-01"
+    1991-07-01: "1991-06-29"
+    1997-01-01: "1996-12-28"
+    1998-01-01: "1997-12-30"
+  rate_unit: /1
+  threshold_unit: PSS

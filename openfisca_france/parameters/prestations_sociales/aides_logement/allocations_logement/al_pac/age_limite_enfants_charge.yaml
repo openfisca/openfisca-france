@@ -1,0 +1,28 @@
+description: Âge limite pour les enfants à charge - définition des personnes à charge pour les Allocations logement (AL)
+values:
+  1991-11-11:
+    value: 18
+  2000-01-01:
+    value: 21
+metadata:
+  short_label: Âge limite pour les enfants
+  last_value_still_valid_on: "2023-02-09"
+  label_en: Definition of dependants
+  ipp_csv_id: ag_max_pac_alf
+  unit: year
+  reference:
+    1991-11-11:
+      title: Décret 91-1159 du 08/11/1991, art. 1 (modif art. D542-4 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776071&cidTexte=JORFTEXT000000701067
+    2000-01-01:
+    - title: Article R823-4, 1° du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878933
+    - title: Décret 2000-72 du 28/01/2000, art. 1 (modif art. D542-4 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779257&cidTexte=JORFTEXT000000749997
+  official_journal_date:
+    1991-11-11: "1991-11-10"
+    2000-01-01: "2000-01-29"
+  notes:
+    2000-01-01:
+    - title: Instaure un nouvel âge limite pour les enfants
+    - title: En 2019, l'article est désormais codifié dans le Code de la construction et de l'habitation.

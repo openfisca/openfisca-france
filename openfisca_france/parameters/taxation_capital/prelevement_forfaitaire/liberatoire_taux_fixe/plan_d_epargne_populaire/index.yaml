@@ -1,0 +1,9 @@
+description: Plan d'épargne populaire, Prélèvements libératoires sur les revenus des valeurs mobilières
+metadata:
+  documentation_start: true
+  short_label: Plan d'épargne populaire
+  label_en: Levy in discharge on capital income
+  order:
+  - retrait_avant_4_ans
+  - retrait_entre_4_et_8_ans
+  - retrait_apres_8_ans

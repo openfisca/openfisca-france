@@ -1,0 +1,9 @@
+description: Majoration pour 3 enfants de l'Allocation solidarité aux personne agées (ASPA)
+values:
+  1986-01-01:
+    value: 0.1
+  2007-02-01:
+    value: 0
+metadata:
+  short_label: Majoration pour 3 enfants
+  unit: /1

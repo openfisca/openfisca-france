@@ -1,0 +1,29 @@
+description: Majoration de la contribution spéciale sur les contributions versées par l'employeur pour les régimes de retraites supplémentaires à prestations définies
+values:
+  2004-01-01:
+    value: null
+  2010-01-01:
+    value: 0.3
+  2015-11-20:
+    value: null
+metadata:
+  short_label: Majoration
+  label_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
+  ipp_csv_id: retchap_maj
+  unit: /1
+  reference:
+    2004-01-01:
+      title: Loi 2003-775 du 21/08/2003, art. 115
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758675&cidTexte=JORFTEXT000000781627
+    2010-01-01:
+      title: Loi 2009-1646 du 24/12/2009 (LFSS pour 2010), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021530853&cidTexte=JORFTEXT000021528998
+    2015-11-20:
+      title: Décision 2015-498 QPC du 20/11/2015
+      href: https://www.conseil-constitutionnel.fr/decision/2015/2015498QPC.htm
+  official_journal_date:
+    2004-01-01: "2003-08-22"
+    2010-01-01: "2009-12-27"
+  notes:
+    2015-11-20:
+    - title: La majoration est jugée contraire à la constitution. La décision prend effet à la date de la décision.

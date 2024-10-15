@@ -1,0 +1,36 @@
+description: L'élu l'est d'une commune de moins de 3500 habitants (quel que soit son nombre de mandats)
+values:
+  2018-01-01:
+    value: 18000
+  2019-01-01:
+    value: 18085.68
+  2022-01-01:
+    value: 18402.18
+  2023-01-01:
+    value: 18859.08
+metadata:
+  ipp_csv_id: abattement_elu_moins_3500
+  unit: currency_next_year
+  reference:
+    2018-01-01:
+    - title: Loi n° 2018-1317 du 28 décembre 2018 (LF 2019), art. 4
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037882355
+    - title: Article 81, 1° du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985663/2018-12-31/
+    2019-01-01:
+    - title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039683936
+    - title: Article 81, 1° du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041566727/2019-12-30/
+  official_journal_date:
+    2018-01-01: "2018-12-30"
+    2019-01-01: "2019-12-29"
+  notes:
+    2018-01-01:
+    - title: Introduction d'un abattement spécifique pour les élus locaux de communes de moins de 3500 habitants, quel que soit le nombre de mandats de l'élu. Cet abattement correspond à 125 % de l'indemnité versée aux maires des communes de moins de 1000 habitants. Il est applicable aux élus n'ayant pas bénéficié du remboursement des frais de transport et de séjour prévu à l'article L. 2123-18-1 du code général des collectivités territoriales.
+    2019-01-01:
+    - title: Changement de la définition des abattements. Pour les mandats uniques, il est de 17 % du montant du traitement correspondant à l'indice brut terminal de l'échelle indiciaire de la fonction publique. Pour les mandats multiples, il est de 1,5 fois celui pour mandat unique. Pour les élus locaux de communes de moins de 3500 habitants, quel que soit le nombre de mandats, il est de 38,75 % du montant du traitement correspondant à l'indice brut terminal de l'échelle indiciaire de la fonction publique.
+    2022-01-01:
+    - title: Le montant varie avec le traitement correspondant à l'indice brut terminal de l'échelle indiciaire de la fonction publique.
+    2023-01-01:
+    - title: Le montant varie avec le traitement correspondant à l'indice brut terminal de l'échelle indiciaire de la fonction publique.

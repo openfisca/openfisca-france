@@ -1,0 +1,7 @@
+description: Taux effectifs des cotisations de régimes complémentaire de retraite des cades (AGIRC)
+metadata:
+  short_label: Taux effectifs
+  label_en: Pension contributions for executives (AGIRC)
+  order:
+  - entreprises_avant_01_01_1981
+  - entreprises_apres_01_01_1981

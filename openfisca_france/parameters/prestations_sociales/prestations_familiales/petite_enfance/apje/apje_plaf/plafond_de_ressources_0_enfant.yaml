@@ -1,0 +1,71 @@
+description: Plafonds de ressources avec 0 enfant de l'Allocation pour jeune enfant (APJE)
+values:
+  1996-07-01:
+    value: 84526
+  1997-07-01:
+    value: 86132
+  1998-07-01:
+    value: 87072
+  1999-07-01:
+    value: 87601
+  2000-07-01:
+    value: 88039
+  2001-07-01:
+    value: 13636.26
+  2002-07-01:
+    value: 13854
+  2003-07-01:
+    value: 14090
+  2004-07-01:
+    value: 14358
+  2005-07-01:
+    value: 14602
+  2007-01-01:
+    value: null
+metadata:
+  short_label: Plafond de ressources - 0 enfant
+  label_en: "Allowance for Young Children (APJE): Thresholds for means-testing"
+  ipp_csv_id: plaf_apje_adopt_0enf
+  unit: currency
+  reference:
+    1996-07-01:
+    - title: Ordonnance 96-51 du 24/01/1996
+    - title: Décret 96-553 du 20/06/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000742893
+    1998-07-01:
+      title: Références manquantes
+    1999-07-01:
+      title: Décret 99-535 du 28/06/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395773&categorieLien=id
+    2000-07-01:
+      title: Arrêté du 30/06/2000
+    2001-07-01:
+      title: Arrêté du 28/06/2001
+    2002-07-01:
+      title: Arrêté du 29/04/2002
+    2003-07-01:
+      title: Arrêté du 26/06/2003
+    2004-07-01:
+      title: Arrêté du 16/07/2004
+    2005-07-01:
+      title: Arrêté du 01/08/2005
+    2007-01-01:
+    - title: Décret 2003-1393 du 31/12/2003, art. 2 (abroge art. R531-9 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
+    - title: Loi 2003-1199 du 18/12/2003, art. 60 II (modif L531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+  official_journal_date:
+    1996-07-01: 1996-01-25; 1996-06-22
+    1999-07-01: "1999-06-29"
+    2000-07-01: "2000-07-01"
+    2001-07-01: "2001-06-29"
+    2002-07-01: "2002-05-02"
+    2003-07-01: "2003-06-28"
+    2004-07-01: "2004-07-18"
+    2005-07-01: "2005-08-03"
+    2007-01-01: 2004-01-01; 2003-12-19
+  notes:
+    1996-07-01:
+    - title: Création du plafond de ressources. Les montants sont fixés par la Circulaire du 08/08/1996 relative à diverses mesures concernant les familles
+    2007-01-01:
+    - title: "Loi 2003-1199 : crée la PAJE qui remplace en partie l'APJE. Mais la transition est progressive, de janvier 2004 à décembre 2006 inclus"

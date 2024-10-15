@@ -1,0 +1,8 @@
+description: Majoration pour conjoint à charge - droits non-contributifs de retraite
+metadata:
+  short_label: Majoration pour conjoint à charge
+  label_en: Social minima for elderly
+  order:
+  - montant_majoration_conjoint_charge
+  - plafond_conjoint_pour_maj_pac
+documentation: "Conditions d'attribution : La majoration pour conjoint à charge était attribuée au titulaire d'une pension de retraite et aux bénéficiaires de l'AVTS, de l'AMF ou d'une rente garantie. Le conjoint est considéré à charge dès lors que ses revenus personnels sont inférieurs aux montants précisés dans l'onglet suivant. Il doit être âgé de plus de 65 ans (plus de 60 ans en cas d'inaptitude au travail)."

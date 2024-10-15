@@ -1,0 +1,76 @@
+description: Bénéficiaire isolé, Réduction du loyer de solidarité en zone 3
+values:
+  2018-01-01:
+    value: 26
+  2019-01-01:
+    value: 26.41
+  2020-01-01:
+    value: 40.43
+  2020-10-01:
+    value: 27.85
+  2021-01-01:
+    value: 37.96
+  2021-10-01:
+    value: 43.2
+  2022-01-01:
+    value: 41.76
+  2022-10-01:
+    value: 39.98
+  2023-01-01:
+    value: 42.76
+  2023-10-01:
+    value: 45.08
+  2024-01-01:
+    value: 45.36
+metadata:
+  short_label: Bénéficiaire isolé
+  last_value_still_valid_on: "2023-05-24"
+  ipp_csv_id: rls_z3_personne_isolee
+  unit: currency
+  reference:
+    2018-01-01:
+      title: Arrêté du 27/02/2018, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036650016
+    2019-01-01:
+      title: Arrêté du 27/12/2018, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037880880
+    2020-01-01:
+      title: Arrêté du 31/12/2019, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039728511
+    2020-10-01:
+      title: Arrêté du 30/09/2020, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042383417
+    2021-01-01:
+      title: Arrêté du 17/12/2020, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042709416
+    2021-10-01:
+      title: Arrêté du 17/09/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044138120
+    2022-01-01:
+      title: Arrêté du 20/12/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044560604
+    2022-10-01:
+      title: Arrêté du 27/09/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046349828
+    2023-01-01:
+      title: Arrêté du 30/12/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046848188
+    2023-10-01:
+      title: Arrêté du 21/09/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048100093
+    2024-01-01:
+      title: Arrêté du 29/12/2023 relatif à la revalorisation des plafonds de ressources et des montants de réduction de loyer de solidarité applicables, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048729702
+  official_journal_date:
+    2018-01-01: "2018-02-28"
+    2019-01-01: "2018-12-29"
+    2020-01-01: "2020-01-01"
+    2020-10-01: "2020-10-01"
+    2021-01-01: "2020-12-22"
+    2021-10-01: "2021-10-01"
+    2022-10-01: "2022-10-01"
+    2023-10-01: "2023-09-24"
+    2024-01-01: "2023-12-30"
+  notes:
+    2018-01-01:
+    - title: Création de la réduction de loyer de solidarité par la loi de finances pour 2018. Elle entre en vigueur le 01/02/2018.

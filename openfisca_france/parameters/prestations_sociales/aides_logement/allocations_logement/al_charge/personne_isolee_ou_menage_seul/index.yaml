@@ -1,0 +1,6 @@
+description: Majoration forfaitaire au titre des charges pour les personnes seules ou les couples dans le calcul des aides au logement
+metadata:
+  label_en: Lump sum extra allowance for charges
+  order:
+  - cas_general
+  - cas_colocataires_ou_proprietaires

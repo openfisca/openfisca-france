@@ -1,0 +1,52 @@
+description: Section U, puis C (allocation uniforme) - Moyenne des produits de base de l'office des 3 dernières années, limitée à 3*moyenne générale des produits des offices de France, pour la cotisation de sécurité sociale (SS) des notaires pour la retraite complémentaire
+values:
+  1949-01-01:
+    value: 0.05
+  1962-01-01:
+    value: 0.02
+  2005-01-01:
+    value: 0.045
+  2017-01-01:
+    value: 0.0414
+  2018-01-01:
+    value: 0.041
+  2019-01-01:
+    value: 0.04
+metadata:
+  short_label: Section U, puis C (allocation uniforme)
+  label_en: Contribution for complementary pension scheme (professionals)
+  ipp_csv_id: retc_not_u_0_
+  unit: /1
+  reference:
+    1949-01-01:
+      title: Arrêté du 24/05/1949
+    1962-01-01:
+      title: Décret 62-502 du 13/04/1962
+    2005-01-01:
+      title: Décret 2004-1142 du 20/10/2004
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000257023
+    2017-01-01:
+      title: Décret 2017-730 du 3/05/2017
+      href: https://www.legifrance.gouv.fr/eli/decret/2017/5/3/2017-730/jo/texte
+    2018-01-01:
+    - title: Décret 2017-730 du 3/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034579602
+    - title: Décret 2017-993 du 10/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034676865
+    2019-01-01:
+      title: Décret 2018-1033 du 26/11/2018
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037646684
+  official_journal_date:
+    1949-01-01: "1949-06-01"
+    1962-01-01: "1962-04-19"
+    2005-01-01: "2004-10-28"
+    2017-01-01: "2017-05-11"
+    2018-01-01: 2017-05-05; 2017-05-11
+    2019-01-01: "2018-11-27"
+  notes:
+    2005-01-01:
+    - title: Regroupement des sections A et U en une section C
+    2018-01-01:
+    - title: "Référence législative manquante pour taux notaires section C. Source : rapport d'activité 2018 de la CPRN"
+    2019-01-01:
+    - title: Taux d'appel pour les agents d'assurance est de 129,5 %

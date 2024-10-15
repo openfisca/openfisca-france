@@ -1,0 +1,12 @@
+description: Paramètre « N » pour un bénéficiaire isolé ou un ménage ayant deux personnes à charge pour le calcul de l'APL du secteur accession et l'APL des logements-foyers cas général
+values:
+  1988-07-01:
+    value: 3
+metadata:
+  short_label: Bénéficiaire isolé ou un ménage ayant deux personnes à charge
+  last_value_still_valid_on: "2023-02-23"
+  unit: /1
+  reference:
+    1988-07-01:
+      title: Article D832-25, 2° du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878710/2019-09-01/

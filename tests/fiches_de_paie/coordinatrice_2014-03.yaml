@@ -2,13 +2,13 @@ name: Coordinatrice
 period: 2014-03
 absolute_error_margin: 0.005
 input:
-  allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
+  allegement_general_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: true
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: '2013-07-02'
   contrat_de_travail_fin: '2014-12-31'
-  contrat_de_travail_duree: cdi
+  contrat_de_travail_type: cdi
   effectif_entreprise: 250
   heures_non_remunerees_volume: 0
   code_postal_entreprise: '13299'
@@ -16,7 +16,7 @@ input:
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   primes_salaires: 0
   prise_en_charge_employeur_retraite_complementaire: 82.44
-  prise_en_charge_employeur_prevoyance_complementaire: 0
+  prevoyance_complementaire_employeur: 0
   prise_en_charge_employeur_retraite_supplementaire: 0
   ratio_alternants: 0 # pas l'info
   redevable_taxe_apprentissage: 1
@@ -33,11 +33,10 @@ output:
   # salaire_super_brut: 0
   # cotisations_employeur: -737.96 - 222.12 - 72
 
-  # cotisations_employeur_contributives: 0
   ags: -5.4
   agff_employeur: -21.60
   apec_employeur: 0
-  arrco_employeur: -82.44
+  arrco_employeur: -82.35
   chomage_employeur: -72
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: -31.5
@@ -47,7 +46,6 @@ output:
   pension_employeur: 0
   rafp_employeur: 0
 
-  # cotisations_employeur_non_contributives: 0
   ati_atiacl: 0
   accident_du_travail: -27
   famille: -94.5
@@ -66,7 +64,7 @@ output:
   contribution_developpement_apprentissage: 0
   versement_transport: -36
 
-  allegement_fillon: 222.12
+  allegement_general: 222.12
   credit_impot_competitivite_emploi: 108 # pas sur la fiche de paie
   tehr: {'2014': 0}
   salaire_de_base: 1800
@@ -87,7 +85,6 @@ output:
   mmid_salarie: -13.5 # regroupée avec vieillesse dans la fiche de paie
   contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: -90.19
-  mhsup: 0
   salaire_net: 1405.62
 
   # salaire imposable

@@ -1,0 +1,17 @@
+description: Taxe d'apprentissage (hors Alsace-Moselle) de la contribution unique à la formation professionnelle et à l'alternance (CUFPA)
+values:
+  2019-01-01:
+    value: 0.0068
+metadata:
+  short_label: Hors Alsace-Moselle
+  label_en: Unique employer's participation to lifelong professional training and apprenticeship
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Loi 2018-771 du 5/09/2018, art. 37
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037368540&cidTexte=JORFTEXT000037367660
+  official_journal_date:
+    2019-01-01: "2018-09-06"
+  notes:
+    2019-01-01:
+    - title: Nouvelle contribution unique remplaçant la PEFPC et la taxe d'apprentissage

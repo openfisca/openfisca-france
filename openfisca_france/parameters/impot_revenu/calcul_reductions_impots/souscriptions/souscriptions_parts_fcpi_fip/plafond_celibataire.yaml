@@ -1,0 +1,12 @@
+description: Plafond pour une personne seule de souscription de parts de fonds communs de placement dans l'innovation
+values:
+  1997-01-01:
+    value: 75000
+  2001-01-01:
+    value: 11434
+  2002-01-01:
+    value: 12000
+metadata:
+  short_label: Plafond célibataire
+  ipp_csv_id: plaffcp_celib
+  unit: currency_next_year

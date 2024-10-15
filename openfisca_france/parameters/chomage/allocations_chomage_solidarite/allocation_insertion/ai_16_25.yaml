@@ -1,0 +1,37 @@
+description: Allocation d'insertion pour les 16-25 ans à la recherche d'un premier emploi ou justifiant d'une certaine activité professionnelle
+values:
+  1979-07-01:
+    value: null
+  1983-01-01:
+    value: 33.88
+  1984-04-01:
+    value: 40
+  1984-10-01:
+    value: 41.4
+  1992-01-01:
+    value: null
+metadata:
+  short_label: 16-25 ans
+  label_en: Insertion allowance (AI)
+  ipp_csv_id: ai_16_25
+  unit: currency
+  reference:
+    1979-07-01:
+      title: Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+    1983-01-01:
+      title: Décret 82-991 du 24/11/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701672&categorieLien=id
+    1984-04-01:
+      title: Décret 84-417 du 30/05/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000520452
+    1984-10-01:
+      title: Décret 84-1180 du 26/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885896&categorieLien=id
+  official_journal_date:
+    1979-07-01: "1979-05-20"
+    1983-01-01: "1982-11-25"
+    1984-04-01: "1984-06-05"
+    1984-10-01: "1984-12-27"
+  notes:
+    1992-01-01:
+    - title: "Allocation d'insertion abrogée pour femmes et jeunes: valable pour détenus libérés, apatrides, salariés expatriés…etc"

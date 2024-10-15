@@ -1,7 +1,0 @@
-description: Case XG
-unit: currency
-values:
-  2002-01-01:
-    value: 38120.0
-  2004-01-01:
-    value: null

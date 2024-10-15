@@ -1,0 +1,10 @@
+description: Âge maximal du plus jeune enfant pour bénéficier de la Prestation partagée d'éducation de l'enfant (PreParE) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  short_label: Âge maximal du plus jeune enfant
+  label_en: Maximum age of youngest child
+  order:
+  - enfant
+  - deux_enfants_plus
+documentation: |-
+  Ces conditions varient selon qu'on soit en couple ou un parent isolé. La durée est limitée à 6 mois pour chaque parent pour un couple avec un enfant et 24 mois pour chaque parents pour un couple avec deux enfants.
+  Aussi, un couple avec plus de trois enfants demandant la PreParE majorée aura une limitiation à 8 mois maximum pour chaque parent

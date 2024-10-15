@@ -1,0 +1,18 @@
+description: Nombre d'enfants à charge minimum pour majoration de la Prestation partagée d'éducation de l'enfant (PreParE) de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2015-01-01:
+    value: 3
+metadata:
+  short_label: Nombre min d'enfants à charge
+  label_en: Minimum number of dependent children
+  reference:
+    2015-01-01:
+    - title: Décret 2014-1708 du 30/12/2014 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030046638&cidTexte=JORFTEXT000030005057
+    - title: Décret 2014-1705 du 30/122014 - art. 1 (modifie art. R531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000030046609/2015-01-01/
+  official_journal_date:
+    2015-01-01: "2014-12-31"
+  notes:
+    2015-01-01:
+    - title: Pas de modification pour 2017 cf. DSS/SD2B/2017/97 du 21/03/2017

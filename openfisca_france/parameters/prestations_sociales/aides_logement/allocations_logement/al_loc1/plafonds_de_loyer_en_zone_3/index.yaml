@@ -1,0 +1,7 @@
+description: Plafonds de loyer en zone 3 (avant la réforme de 2001) des Allocations logement (AL)
+metadata:
+  short_label: Zone 3
+  label_en: Parameters for the rental sector (before the 2001 reform)
+  order:
+  - menage_seul
+  - menage_ou_isole

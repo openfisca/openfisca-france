@@ -1,0 +1,6 @@
+description: Taux 10%
+values:
+  2012-01-01:
+    value: 0.1
+metadata:
+  unit: /1

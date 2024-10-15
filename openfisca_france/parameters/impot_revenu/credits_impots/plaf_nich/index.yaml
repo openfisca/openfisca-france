@@ -1,0 +1,10 @@
+description: Plafonnement des niches
+metadata:
+  documentation_start: true
+  short_label: Plafond niches
+  label_en: Global ceiling for tax reductions (2009 - )
+  order:
+  - taux
+  - plafond
+  - plafonnement_des_niches
+documentation: Art. 200-0 A du CGI

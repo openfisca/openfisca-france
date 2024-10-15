@@ -1,0 +1,12 @@
+description: Majoration régionale TICPE gazole en Bourgogne
+values:
+  2007-01-01:
+    value: 0.6
+  2008-01-01:
+    value: 1.15
+  2011-01-01:
+    value: 2.5
+metadata:
+  short_label: Bourgogne
+  ipp_csv_id: maj_ticpe_die_bourg
+  unit: currency

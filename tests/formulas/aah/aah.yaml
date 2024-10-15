@@ -1,0 +1,755 @@
+- name: AAH niveau Individu - Eligible, célibataire, sans enfants
+  description: Montant AAH au niveau de l individu
+  period: 2014-11
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.9
+    age: 22  # eligible aah
+    aah_base_ressources_conjugalisee: 500 / 12
+    en_couple: 0
+    af_nbenf: 0
+  output:
+    aah: 9100 / 12  # (9605,40 - 500)  / 12
+
+- name: AAH niveau Individu - Eligible, en concubinage, sans enfants, ressources supérieures au plafond
+  description: Montant AAH au niveau de l individu
+  period: 2012-03
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.9
+    age: 33  # eligible aah
+    aah_base_ressources_conjugalisee: 15000 / 12
+    en_couple: 1
+    af_nbenf: 0
+  output:
+    aah: 2846.88 / 12  # (743.62 * 24 (17846.88) - 12000)  / 12
+
+- name: AAH Eligibilité personne seule sans revenus
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.9
+    age: 33  # eligible aah
+  output:
+    aah_base: 807.65
+
+- name: AAH Eligibilité couple sans ressource
+  description: Montant AAH pour un couple sans revenus
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+  output:
+    af_nbenf: 0
+    en_couple: 1
+    aah_base:
+    - 807.65
+    - 0
+
+- name: AAH Eligibilité couple sans ressource avec enfant
+  description: Montant AAH pour un couple avec enfant sans revenus
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+        taux_incapacite: 0.9
+      enfant1:
+        age: 12
+  output:
+    en_couple: 1
+    af_nbenf: 1
+    aah_base:
+    - 807.65
+    - 807.65
+    - 0
+
+
+- name: AAH Eligibilité couple sans ressource avec enfant
+  description: Montant AAH pour un couple avec enfant sans revenus
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+      enfant1:
+        age: 12
+  output:
+    en_couple: 1
+    af_nbenf: 1
+    aah_base:
+    - 807.65
+    - 0
+    - 0
+
+- name: AAH salarié célibataire (K.P.), moins de 30% du Smic
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.9
+    salaire_imposable:
+      2015-11: 400
+      2015-10: 400
+      2015-09: 400
+      2015-08: 400
+  output:
+    aah_base_ressources_conjugalisee:
+      2015-11: 80
+    aah_base:
+      2015-11: 727.65
+
+- name: AAH salarié célibataire (K.P.), plus de 30% du Smic
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.9
+    salaire_imposable:
+      2015-11: 1471
+      2015-10: 1471
+      2015-09: 1471
+      2015-08: 1471
+  output:
+    aah_base_ressources_conjugalisee:
+      2015-11: (0.3 * 1457) * 0.2 + (1471 - 0.3 * 1457) * 0.6 # = 8494, Abat. de 80% sur les 30% du Smic + abat. de 40% sur le reste
+    aah_base:
+      2015-11: 99.89
+
+- name: AAH inactif célibataire (K.P.), ressources n-2
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.9
+    salaire_imposable:
+      2013: 770
+  output:
+    aah_base_ressources_conjugalisee:
+      2015-11: 154 / 12
+    aah_base:
+      2015-11: 795
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2015-04
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+        salaire_imposable:
+          2013: 1128.70 * 12
+  output:
+    aah_base_ressources_conjugalisee:
+      2015-11:
+        - 812.66 # 1128.70 avec les abattements pour conjoint
+        - 502.31 # 1128.70 avec les abattements pour bénéficiaire
+
+- name: AAH demandeur et conjoint salariés
+  period: month:2015-11
+  relative_error_margin: 0.05
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2015-11: 1471
+          2015-10: 1471
+          2015-09: 1471
+          2015-08: 1471
+      parent2:
+        age: 40
+        salaire_imposable:
+          2015-11: 1000
+          2015-10: 1000
+          2015-09: 1000
+          2015-08: 1000
+  output:
+    aah_base_ressources_conjugalisee:
+      2015-11:
+        - 1427.67 # 1471 avec abat. bénéficiaire + 1000 avec abat. conjoint
+        - 1484.25 # 1471 avec abat. conjoint     + 1000 avec abat. bénéficiaire
+    aah_base:
+      2015-11: [187, 0]
+    aah:
+      2015-11: [187, 0]
+
+- name: |
+    Revalorisation 01-04-2018, Cas Non Passant
+    AAH personne seule de 50 ans avec
+    un taux d'incapacité entre 50% et 79% et
+    un revenu de 5400€
+    sans restriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    age: 50
+    taux_incapacite: 0.55
+    aah_restriction_substantielle_durable_acces_emploi: false
+    salaire_imposable:
+      2018-05: 2400
+      2018-04: 1500
+      2018-03: 1500
+  output:
+    aah: 0
+
+- name: |
+    Revalorisation 01-04-2018
+    Cas Passant 1 AAH personne seule de 50 ans avec
+    un taux d'incapacité entre 50% et 79% et
+    un revenu de 5400€ et
+    une estriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    age: 50
+    taux_incapacite: 0.55
+    aah_restriction_substantielle_durable_acces_emploi: true
+    salaire_imposable:
+      2018-05: 2400
+      2018-04: 1500
+      2018-03: 1500
+  output:
+    aah: 398.81
+
+- name: |
+    Revalorisation 01-04-2018, Cas Passant 1
+    AAH personne seule de 50 ans avec
+    un taux d'incapacité entre 50% et 79% et
+    un revenu de 5400€ et
+    une estriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    age: 50
+    taux_incapacite: 0.55
+    salaire_imposable:
+      2018-05: 2400
+      2018-04: 1500
+      2018-03: 1500
+  output:
+    aah: 398.81
+
+
+- name: "Revalorisation 01-04-2018, Cas Passant 2 : AAH personne de 42 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12500€ ainsi qu'1 enfant à charge"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 42
+        taux_incapacite: 0.55
+        salaire_imposable:
+          2018-05: 2250
+          2018-04: 2250
+          2018-03: 2000
+          2018-02: 2000
+          2018-01: 2000
+          2017-12: 2000
+      enfant1:
+        age: 15
+  output:
+    aah: [158.31, 0]
+- name: "Revalorisation 01-04-2018, Cas Passant 3 : AAH personne de 38 ans avec un taux d'incapacité supérieur à 80% et un revenu de 2500€ avec 1 personne de 36 ans avec un revenu de 19000€"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 38
+        taux_incapacite: 0.81
+        salaire_imposable:
+          2018-05: 500
+          2018-04: 500
+          2018-03: 500
+          2018-02: 500
+          2018-01: 500
+      parent2:
+        age: 36
+        salaire_imposable:
+          2018-05: 4000
+          2018-04: 3000
+          2018-03: 3000
+          2018-02: 3000
+          2018-01: 3000
+          2017-12: 3000
+  output:
+    aah: [0, 0]
+- name: "Revalorisation 01-04-2018, Cas Passant 4 : AAH personne de 38 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12000€ avec 1 personne de 36 ans avec un revenu de 15000€ ainsi qu'un enfant de 7 ans"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 38
+        taux_incapacite: 0.55
+        salaire_imposable:
+          2018-05: 2000
+          2018-04: 2000
+          2018-03: 2000
+          2018-02: 2000
+          2018-01: 2000
+          2017-12: 2000
+      parent2:
+        age: 36
+        salaire_imposable:
+          2018-05: 2000
+          2018-04: 2000
+          2018-03: 2000
+          2018-02: 3000
+          2018-01: 3000
+          2017-12: 3000
+      enfant1:
+        age: 7
+  output:
+    aah: [0, 0, 0]
+- name: "Revalorisation 01-04-2018, Cas Passant 5 : AAH personne de 38 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12000€ avec 1 personne de 36 ans avec un revenu de 20000€ ainsi que deux enfants de 7 et 5 ans"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    individus:
+      parent1:
+        age: 38
+        taux_incapacite: 0.55
+        salaire_imposable:
+          2018-05: 2000
+          2018-04: 2000
+          2018-03: 2000
+          2018-02: 2000
+          2018-01: 2000
+          2017-12: 2000
+      parent2:
+        age: 36
+        salaire_imposable:
+          2018-05: 4000
+          2018-04: 4000
+          2018-03: 3000
+          2018-02: 3000
+          2018-01: 3000
+          2017-12: 3000
+      enfant1:
+        age: 7
+      enfant2:
+        age: 5
+  output:
+    aah: [0, 0, 0, 0]
+- name: "Revalorisation 01-04-2018, Cas Non Passant 1 : Non eligible AAH : personne seule de 50 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12000€"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    age: 50
+    taux_incapacite: 0.55
+    salaire_imposable:
+      2018-05: 2000
+      2018-04: 2000
+      2018-03: 2000
+      2018-02: 2000
+      2018-01: 2000
+      2017-12: 2000
+  output:
+    aah: 0
+
+- name: "Revalorisation 01-04-2018, Cas Non Passant 2 : Non eligible AAH : personne seule de 50 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 10300€ et un autre de 200"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    age: 50
+    taux_incapacite: 0.55
+    salaire_imposable:
+      2018-05: 1000
+      2018-04: 1300
+      2018-03: 2000
+      2018-02: 2000
+      2018-01: 2000
+      2017-12: 2000
+    rpns_autres_revenus:
+      year:2018: 200
+  output:
+    aah: 0
+
+- name: "Revalorisation 01-04-2018, Cas Non Passant 3 : Non eligible AAH : personne de 42 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 20000€ ainsi qu'1 enfant à charge"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 42
+        taux_incapacite: 0.55
+        salaire_imposable:
+          2018-05: 4000
+          2018-04: 4000
+          2018-03: 3000
+          2018-02: 3000
+          2018-01: 3000
+          2017-12: 3000
+      enfant1:
+        age: 15
+  output:
+    aah: 0
+
+- name: "Revalorisation 01-04-2018, Cas Non Passant 4 : Non eligible AAH : personne de 38 ans avec un taux d'incapacité supérieur à 80% et un revenu de 2000€ avec 1 personne de 36 ans avec un revenu de 25000€"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 38
+        taux_incapacite: 0.81
+        salaire_imposable:
+          2018-05: 500
+          2018-04: 500
+          2018-03: 500
+          2018-02: 500
+      parent2:
+        age: 36
+        salaire_imposable:
+          2018-05: 5000
+          2018-04: 4000
+          2018-03: 4000
+          2018-02: 4000
+          2018-01: 4000
+          2017-12: 4000
+  output:
+    aah: 0
+
+- name: "Revalorisation 01-04-2018, Cas Non Passant 5 : Non eligible AAH : personne de 38 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 15000€ avec 1 personne de 36 ans avec un revenu de 25000€ ainsi qu'un enfant de 7 ans"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 38
+        taux_incapacite: 0.55
+        salaire_imposable:
+          2018-05: 3000
+          2018-04: 3000
+          2018-03: 3000
+          2018-02: 2000
+          2018-01: 2000
+          2017-12: 2000
+      parent2:
+        age: 36
+        salaire_imposable:
+          2018-05: 5000
+          2018-04: 4000
+          2018-03: 4000
+          2018-02: 4000
+          2018-01: 4000
+          2017-12: 4000
+      enfant1:
+        age: 7
+  output:
+    aah: 0
+
+- name: "Revalorisation 01-04-2018, Cas Non Passant 6 : Non eligible AAH : personne de 38 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 22000€ avec 1 personne de 36 ans avec un revenu de 30000€ ainsi que deux enfants de 7 et 5 ans"
+  period: 2018-05
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    individus:
+      parent1:
+        age: 38
+        taux_incapacite: 0.55
+        salaire_imposable:
+          2018-05: 4000
+          2018-04: 4000
+          2018-03: 4000
+          2018-02: 4000
+          2018-01: 3000
+          2017-12: 3000
+      parent2:
+        age: 36
+        salaire_imposable:
+          2018-05: 5000
+          2018-04: 5000
+          2018-03: 5000
+          2018-02: 5000
+          2018-01: 5000
+          2017-12: 5000
+      enfant1:
+        age: 7
+      enfant2:
+        age: 5
+  output:
+    aah: 0
+
+- name: AAH demandeur et conjoint salariés
+  period: month:2022-05
+  relative_error_margin: 0.05
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2022-05: 1471
+          2022-04: 1471
+          2022-03: 1471
+          2022-02: 1471
+          2022-01: 1471
+      parent2:
+        age: 40
+        salaire_imposable:
+          2022-05: 1000
+          2022-04: 1000
+          2022-03: 1000
+          2022-02: 1000
+          2022-01: 1000
+  output:
+    aah_base_ressources_conjugalisee:
+      2022-05:
+        - 1174 # 1471 avec abat. bénéficiaire + 1000 avec abat. conjoint
+        - 1315 # 1471 avec abat. conjoint     + 1000 avec abat. bénéficiaire
+    aah_base:
+      2022-05: [497, 0]
+    aah:
+      2022-05: [497, 0]
+
+- name: AAH demandeur et conjoint salariés avec enfant
+  period: month:2022-05
+  relative_error_margin: 0.05
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2022-05: 1471
+          2022-04: 1471
+          2022-03: 1471
+          2022-02: 1471
+          2022-01: 1471
+      parent2:
+        age: 40
+        salaire_imposable:
+          2022-05: 1000
+          2022-04: 1000
+          2022-03: 1000
+          2022-02: 1000
+          2022-01: 1000
+      enfant1:
+        age: 12
+  output:
+    aah_base_ressources_activite_eval_trimestrielle:
+      2022-05: [17652, 12000, 0]
+    aah_base_ressources_conjugalisee:
+      2022-05:
+        - 1052 # [[(1 - 0.8) * min(0.3 * 12 * 10.85 * 151.67, 17652) + (1 - 0.44) * (17 652 - 5924)] + [12000*0.9 - (5000 + 1*1400)]] / 12 [[base ressource demandeur + base ressource conjoint]] /12
+        - 1193
+        - 0
+    aah_base:
+      2022-05: [920, 0, 0]
+    aah:
+      2022-05: [920, 0, 0]
+
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2004-04
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+        salaire_imposable:
+          2002: 1128.70 * 12
+  output:
+    aah_base_ressources_conjugalisee:
+      2004-04:
+        - 812.66 # 1128.70 avec les abattements pour conjoint
+        - 1128.7
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2006-04
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+        salaire_imposable:
+          2006: 1128.70 * 12
+          2005: 1128.70 * 12
+          2004: 1128.70 * 12
+  output:
+    aah_base_ressources_conjugalisee:
+      2006-04:
+        - 812.66 # 1128.70 avec les abattements pour conjoint
+        - 887.8 # 1128.70 avec les abattements pour bénéficiaire
+
+- name: AAH retraité, retraite 400
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    age: 65
+    taux_incapacite: 0.9
+    retraite_imposable:
+      2013-11: 400
+      2013-10: 400
+      2013-09: 400
+      2013-08: 400
+  output:
+    aah_base_ressources_hors_activite_eval_annuelle:
+      2015-11: 1600
+    aah_base_ressources_conjugalisee: 1600/12
+    aah: 674.32 # 807.65-1600/12
+
+- name: AAH demandeur sans ressource et autre
+  period: month:2007-01
+  absolute_error_margin: 0.005
+  input:
+    familles:
+      famille0:
+        parents: [albert, estelle]
+      famille1:
+        parents: [autre1, autre2]
+    menage:
+      personne_de_reference: [albert]
+      conjoint: [estelle]
+      autres: [autre1, autre2]
+    individus:
+      albert:
+        age: 25
+        salaire_imposable:
+          2005: 1200
+      estelle:
+        age: 25
+        salaire_imposable:
+          2005: 0
+      autre1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+      autre2:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+  output:
+    caah:
+      2007-04:
+        - 0
+        - 0
+        - 0
+        - 0
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2007-01
+  absolute_error_margin: 0.005
+  input:
+    menage:
+      personne_de_reference: [personne_de_reference]
+      conjoint: [conjoint]
+    individus:
+      personne_de_reference:
+        age: 25
+        salaire_imposable:
+          2005: 1200
+      conjoint:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+  output:
+    caah:
+      2007-04:
+        - 0
+        - 0
+
+- name: AAH individu payant une pension
+  period: 2023-06
+  absolute_error_margin: 1
+  input:
+    menage:
+      personne_de_reference: [albert]
+      autres: [albertjr]
+    individus:
+      albert:
+        age: 45
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2023-06: 1200
+          2023-05: 1200
+          2023-04: 1200
+          2023-03: 1200
+        pensions_alimentaires_versees_individu:
+          2023-06: 200
+          2023-05: 200
+          2023-04: 200
+          2023-03: 200
+      albertjr:
+        age: 10
+        pensions_alimentaires_percues:
+          2023-06: 200
+          2023-05: 200
+          2023-04: 200
+          2023-03: 200
+  output:
+    aah_base_ressources_conjugalisee: [310, 0] # ((0.2 * 6290 + 0.6 * 8110) - (200 * 12))/12 ~= 310

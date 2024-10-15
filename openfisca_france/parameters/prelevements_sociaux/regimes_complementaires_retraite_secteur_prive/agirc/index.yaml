@@ -1,4 +1,17 @@
-description: Cotisations retraites des cades (AGIRC) aux régimes complémentaires de retraite (secteur privé) (1948-2018)
+description: Cotisations du régime complémentaire de retraite des cades (AGIRC)
 metadata:
-  ux_name: Cotisations retraites des cades (AGIRC) (1948-2018)
-  description_en: Pension contributions for executives (AGIRC)
+  documentation_start: true
+  short_label: Cotisations retraites des cades (AGIRC)
+  label_en: Pension contributions for executives (AGIRC)
+  order:
+  - taux_appel
+  - taux_contractuels
+  - taux_effectifs
+  - taux_effectifs_salaries_employeurs
+documentation: |-
+  Les taux contractuels définissent les points de retraite acquis par les cotisations. Les taux d'appel appliqués aux taux contractuels définissent les taux effectifs.
+  BSP 1988: "Cotisation obligatoire sur la tranche C depuis le 01/01/88 pour les entreprises affiliées à CCSBTP, IRCASUP et IRICASE (taux contractuel) ; au 01/01/91 pour toutes les entreprises".
+  Clause spéciale pour les entreprises créées entre le 01/01/81 et le 31/12/83 : taux minimum de 12 % appelé à 110 % (4,40 % salarié, 8,80 % employeur) à l'expiration des deux années civiles suivant la création .
+  Pour les entreprises créées depuis le 01/01/84, le taux minimum est fixé à 12 %, appelé à 110 % (4,40 % salarié, 8,80 % employeur).
+  Les employeurs peuvent choisir de cotiser au-delà du taux minimum, dans la limite d'un taux plafond.
+  Sources : Barème social périodique; Guide Agirc envoyé par le centre de document de l'Agirc.

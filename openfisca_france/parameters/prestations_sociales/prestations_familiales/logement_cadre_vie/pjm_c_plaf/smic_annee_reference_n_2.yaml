@@ -1,0 +1,38 @@
+description: Smic de l'année de référence (n-2) pour le Prêt aux jeunes ménages (PJM)
+values:
+  1978-01-01:
+    value: 8.58
+  1978-07-01:
+    value: 9.58
+  1979-04-01:
+    value: 10.85
+  1980-07-01:
+    value: 14
+  1981-07-01:
+    value: 16.72
+  1982-07-01:
+    value: 19.64
+  1983-01-01:
+    value: null
+metadata:
+  short_label: Smic année (n-2)
+  label_en: "Loans to young household (PJM): Thresholds for means-testing"
+  ipp_csv_id: smic_ref
+  unit: currency
+  reference:
+    1978-01-01:
+      title: Arrêté du 17/11/1972
+    1978-07-01:
+      title: Décret 77-1452 du 27/12/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000696375
+    1979-04-01:
+      title: Décret 76-117 du 03/02/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000307312
+    1982-07-01:
+      title: Références manquantes
+  official_journal_date:
+    1978-01-01: 1972-11-18; 1975-01-04; 1976-02-05; 1977-12-29
+    1978-07-01: "1977-12-29"
+  notes:
+    1978-01-01:
+    - title: Le décret 77-1452 institue un plafond propre au prêt aux jeunes ménages. Il n'est plus conditionné au plafond de ressources de l'allocation pour frais de garde

@@ -1,0 +1,10 @@
+description: Autres prestations sociales de solidarité
+metadata:
+  short_label: Autre solidarité
+  label_en: Other solidarity
+  order:
+  - ata
+  - ada
+  - aefa
+  - cheque_energie
+  - covid19

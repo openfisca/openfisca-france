@@ -1,0 +1,9 @@
+description: Seuils et taux d'imposition du barème d'impôt au taux neutre (2019 -)
+metadata:
+  short_label: Barème d'impôt au taux neutre
+  label_en: Thresholds and marginal tax rates
+  order:
+  - date_effet
+  - bareme_metropole
+  - bareme_guadeloupe_martinique_reunion
+  - bareme_guyane_mayotte

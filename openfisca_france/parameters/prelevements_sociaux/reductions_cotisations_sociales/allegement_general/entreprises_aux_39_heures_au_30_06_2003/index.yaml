@@ -1,0 +1,7 @@
+description: Allègements (entreprises restées aux 39h hedbomadaires au 30/06/2003) des cotisations de Sécurité sociale (SS) sur les bas salaires
+metadata:
+  short_label: Restées aux 39h hedbomadaires au 30/06/2003
+  label_en: General SSC reductions, so-called Fillon reductions
+  order:
+  - plafond
+  - reduction_maximale

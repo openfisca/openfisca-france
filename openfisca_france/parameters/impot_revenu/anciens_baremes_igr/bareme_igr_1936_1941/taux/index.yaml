@@ -1,0 +1,21 @@
+description: Taux d'imposition au titre du barème de l'Impôt général sur le revenu (IGR, 1936-1941)
+metadata:
+  label_en: Thresholds and marginal tax rates of the IGR tax (1936-1941)
+  order:
+  - tranche_1
+  - tranche_2
+  - minimal_tranche_3
+  - maximal_tranche_3
+  - minimal_tranche_4
+  - maximal_tranche_4
+  - minimal_tranche_5
+  - maximal_tranche_5
+  - minimal_tranche_6
+  - maximal_tranche_6
+  - minimal_tranche_7
+  - maximal_tranche_7
+  - minimal_tranche_8
+  - maximal_tranche_8
+  - minimal_tranche_9
+  - maximal_tranche_9
+  - tranche_10

@@ -1,0 +1,10 @@
+description: Case UQ - Dépenses d'acquisition ou de transformation d'un véhicule GPL ou mixte
+values:
+  2002-01-01:
+    value: 2300
+  2006-01-01:
+    value: 3000
+  2008-01-01:
+    value: null
+metadata:
+  unit: currency_next_year

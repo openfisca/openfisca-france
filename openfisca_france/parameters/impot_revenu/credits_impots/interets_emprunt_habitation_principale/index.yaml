@@ -1,0 +1,14 @@
+description: Crédit d'impôt sur les intérêts d'emprunt pour l'habitation principale (réforme Sarkozy)
+metadata:
+  documentation_start: true
+  short_label: Intérêts d'emprunt pour l'habitation principale
+  order:
+  - cas_base
+  - logements_performants_energie
+  - logements_2010
+  - logements_2011
+  - logements_2012
+  - plafond_base
+  - plafond_handicap
+  - majoration_plafond_par_enfant_charge
+documentation: Les plafonds (plafonds de base et handicap) sont ceux appliqués aux célibataires, veufs, divorcés. Ils sont multipliés par deux pour les couples Taux appliqué aux intérêts payés au titre des cinq premières annuités de remboursement, à l'exclusion des frais d'emprunt et des cotisations d'assurances contractées en vue de garantir le remboursement des prêts.

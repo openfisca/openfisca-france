@@ -1,0 +1,11 @@
+description: Assurance risques non exonérés navigation fluviale ou maritimes, tous types de risque navigation aérienne
+values:
+  1979-07-01:
+    value: 0.048
+  1984-01-01:
+    value: 0.046
+  1989-01-01:
+    value: null
+metadata:
+  ipp_csv_id: taxe_assu_navig_fluviale_aerienne
+  unit: /1

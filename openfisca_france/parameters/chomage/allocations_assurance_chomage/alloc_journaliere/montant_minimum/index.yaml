@@ -1,0 +1,11 @@
+description: Montant minimum (en % SJR) d'allocation journalière spéciale de l'assurance chômage
+metadata:
+  short_label: Montant minimum
+  label_en: Special UI scheme for economic layoffs
+  order:
+  - 1er_trimestre
+  - 2eme_trimestre
+  - 3eme_trimestre
+  - 4eme_trimestre
+  - valable_tout_temps_en_smic
+  - valable_tt_tps_en_smic_partie_fixe

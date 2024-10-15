@@ -1,0 +1,8 @@
+description: Taux (SC)
+values:
+  2009-01-01:
+    value: 0.4
+  2010-01-01:
+    value: 0.13
+metadata:
+  unit: /1

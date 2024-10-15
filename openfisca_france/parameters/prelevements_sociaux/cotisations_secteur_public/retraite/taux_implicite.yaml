@@ -1,0 +1,40 @@
+description: Taux implicite des cotisations retraites de l'Etat-employeur
+values:
+  1995-01-01:
+    value: 0.486
+  1996-01-01:
+    value: 0.462
+  1997-01-01:
+    value: 0.474
+  1999-01-01:
+    value: 0.486
+  2000-01-01:
+    value: 0.492
+  2001-01-01:
+    value: 0.487
+  2002-01-01:
+    value: 0.523
+  2003-01-01:
+    value: 0.527
+  2004-01-01:
+    value: 0.568
+  2005-01-01:
+    value: 0.594
+  2006-01-01:
+    value: null
+metadata:
+  short_label: Taux implicite
+  label_en: Contributions for pensions - central government (employer contribution)
+  ipp_csv_id: tximp_pu_p
+  unit: /1
+  notes:
+    2006-01-01:
+    - title: Le taux de cotisation employeur est devenu explicite en 2006 dans le cadre de la LOLF.
+documentation: |-
+  Ce tableau reporte les taux de la contribution de l'Etat sur les traitements de ses agents civils et militaires destinée au financement de leurs pensions de retraite de base, ainsi que les allocations temporaires qui leurs sont versées en cas d'invalidité (ATI).
+  Sources :
+  Annexe au Projet de loi de Finances pour 2011, Rapport sur les pensions de retraite de la fonction publique, (Tableau page 26).
+  Décrets portant fixation du taux de la contribution employeur due pour la couverture des charges de pension des fonctionnaires de l'Etat, des militaires et des magistrats ainsi que du taux de la contribution employeur versée au titre du
+  financement des allocations temporaires d'invalidité des fonctionnaires de l'Etat et des magistrats
+  Assiette :
+  L'assiette est le traitement brut des agents (exclut les indemnités et primes).

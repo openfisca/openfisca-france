@@ -1,0 +1,24 @@
+description: Contrats et périodes de professionnalisation et droits individuels à la formation (DIF)
+values:
+  2005-01-01:
+    value: 0.005
+  2015-01-01:
+    value: null
+metadata:
+  short_label: Contrats et périodes de professionnalisation et DIF
+  ipp_csv_id: dif_p10_p_0_
+  unit: /1
+  reference:
+    2005-01-01:
+      title: Ordonnance 2005-895 du 02/08/2005, art. 3.II, et Loi 2004-391 du 04/05/2004, art. 18
+    2015-01-01:
+      title: Décret 2014-1240 du 24/10/2014, art. 9
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029628107&cidTexte=JORFTEXT000029627087
+  official_journal_date:
+    2005-01-01: 2005-08-03; 2004-05-05
+    2015-01-01: "2014-10-26"
+  notes:
+    2005-01-01:
+    - title: La date d'effet des deux textes est le 1er janvier 2005
+    2015-01-01:
+    - title: Les articlesR. 6332-22-2 àR. 6332-22-5 décomposent le taux employeur, pour les différentes catégories d'entreprise (v).

@@ -1,0 +1,12 @@
+description: TGAP carburants
+metadata:
+  label_en: Tax on polluting activities - fuel
+  order:
+  - super_95
+  - super_98
+  - super_avec_additifs_ars
+  - super_e10
+  - super_e85
+  - gazole_routier
+  - gazole_b30
+documentation: Données renseignées dans l'article 266 quindecies du code des douanes

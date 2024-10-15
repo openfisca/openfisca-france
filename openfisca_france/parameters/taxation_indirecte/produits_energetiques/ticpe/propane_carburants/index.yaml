@@ -1,0 +1,7 @@
+description: TICPE - produits énergétiques, propane utilisé comme carburants
+metadata:
+  label_en: TICPE - Energy products
+  order:
+  - autres_100kg_nets
+  - sous_conditions_100kg_nets
+  - usages_autres_que_comme_carburant_100kg_nets

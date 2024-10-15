@@ -1,4 +1,14 @@
-description: Cotisations aux régimes complémentaires de retraite (secteur privé) pour la structure financière de l'AGFF (2001-2018)
+description: Cotisations pour l'association pour la gestion du fonds de financement (AGFF) des retraites complémentaires du secteur privé)
 metadata:
-  ux_name: Cotisations pour la structure financière de l'AGFF (2001-2018)
-  description_en: Contributions to the financial structure AGFF (2001-2016)
+  documentation_start: true
+  short_label: Cotisations AGFF
+  label_en: Contributions to the financial structure AGFF
+  order:
+  - salarie
+  - employeur
+documentation: |-
+  (i) L'Association pour la gestion du fonds de financement de l'AGIRC et de l'ARRCO (AGFF) remplace depuis le 1er avril 2001, l'Association pour la structure financière (ASF).
+  L'ASF était perçue par les ASSEDIC quand l'AGFF est perçue par les régimes complémentaires AGIRC-ARRCO.
+  Le dispositif est reconduit jusqu'à 2018.
+  (ii) La tranche 2 est située entre 1 et 3 fois le PSS et s'applique pour les non cadres; la tranche B, entre 1 et 4 fois le plafond, s'applique pour les cadres.
+  La tranche 1 (pour les non-cadres) et la tranche A (pour les cadres) correspond au salaire en dessous d'un PSS

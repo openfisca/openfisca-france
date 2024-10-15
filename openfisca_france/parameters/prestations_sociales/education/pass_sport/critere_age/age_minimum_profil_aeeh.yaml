@@ -1,0 +1,7 @@
+description: Critère d'âge minimum des profils AEEH pour le Pass'Sport
+values:
+  2022-06-30:
+    value: 6
+metadata:
+  short_label: Minimum
+  unit: year

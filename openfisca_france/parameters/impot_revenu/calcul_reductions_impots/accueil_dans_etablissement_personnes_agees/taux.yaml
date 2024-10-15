@@ -1,0 +1,10 @@
+description: Taux de la réductions d'impôt pour dépenses d'accueil dans établissement pour les personnes âgées
+values:
+  1988-01-01:
+    value: null
+  1989-01-01:
+    value: 0.25
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_hebergante
+  unit: /1

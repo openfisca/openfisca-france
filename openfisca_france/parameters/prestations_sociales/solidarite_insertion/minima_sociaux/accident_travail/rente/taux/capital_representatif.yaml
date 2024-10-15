@@ -1,0 +1,349 @@
+description: Barème servant à la détermination du capital représentatif des rentes d'accidents du travail
+metadata:
+  short_label: Barème capital représentatif
+  last_value_still_valid_on: "2022-03-15"
+  unit: currency
+  reference:
+    1954-12-17:
+      title: Arrêté du 17 décembre 1954 page 12353 I. Rentes Viagères
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030308553&categorieLien=id
+16:
+  values:
+    1954-12-17:
+      value: 17.903
+17:
+  values:
+    1954-12-17:
+      value: 17.815
+18:
+  values:
+    1954-12-17:
+      value: 17.733
+19:
+  values:
+    1954-12-17:
+      value: 17656
+20:
+  values:
+    1954-12-17:
+      value: 17.582
+21:
+  values:
+    1954-12-17:
+      value: 17.511
+22:
+  values:
+    1954-12-17:
+      value: 17.439
+23:
+  values:
+    1954-12-17:
+      value: 17.364
+24:
+  values:
+    1954-12-17:
+      value: 17.284
+25:
+  values:
+    1954-12-17:
+      value: 17.196
+26:
+  values:
+    1954-12-17:
+      value: 17.1
+27:
+  values:
+    1954-12-17:
+      value: 16.996
+28:
+  values:
+    1954-12-17:
+      value: 16.884
+29:
+  values:
+    1954-12-17:
+      value: 16.764
+30:
+  values:
+    1954-12-17:
+      value: 16.639
+31:
+  values:
+    1954-12-17:
+      value: 16.508
+32:
+  values:
+    1954-12-17:
+      value: 16.37
+33:
+  values:
+    1954-12-17:
+      value: 16.227
+34:
+  values:
+    1954-12-17:
+      value: 16.076
+35:
+  values:
+    1954-12-17:
+      value: 15.919
+36:
+  values:
+    1954-12-17:
+      value: 15.754
+37:
+  values:
+    1954-12-17:
+      value: 15.582
+38:
+  values:
+    1954-12-17:
+      value: 15.404
+39:
+  values:
+    1954-12-17:
+      value: 15.219
+40:
+  values:
+    1954-12-17:
+      value: 15.029
+41:
+  values:
+    1954-12-17:
+      value: 14.833
+42:
+  values:
+    1954-12-17:
+      value: 14.63
+43:
+  values:
+    1954-12-17:
+      value: 14.419
+44:
+  values:
+    1954-12-17:
+      value: 14201
+45:
+  values:
+    1954-12-17:
+      value: 13.975
+46:
+  values:
+    1954-12-17:
+      value: 13.741
+47:
+  values:
+    1954-12-17:
+      value: 13.5
+48:
+  values:
+    1954-12-17:
+      value: 13.255
+49:
+  values:
+    1954-12-17:
+      value: 13.006
+50:
+  values:
+    1954-12-17:
+      value: 12.754
+51:
+  values:
+    1954-12-17:
+      value: 12.501
+52:
+  values:
+    1954-12-17:
+      value: 12.245
+53:
+  values:
+    1954-12-17:
+      value: 11.987
+54:
+  values:
+    1954-12-17:
+      value: 11.725
+55:
+  values:
+    1954-12-17:
+      value: 11.459
+56:
+  values:
+    1954-12-17:
+      value: 11.187
+57:
+  values:
+    1954-12-17:
+      value: 10.91
+58:
+  values:
+    1954-12-17:
+      value: 10.628
+59:
+  values:
+    1954-12-17:
+      value: 10.34
+60:
+  values:
+    1954-12-17:
+      value: 10.047
+61:
+  values:
+    1954-12-17:
+      value: 9.749
+62:
+  values:
+    1954-12-17:
+      value: 9.446
+63:
+  values:
+    1954-12-17:
+      value: 9.139
+64:
+  values:
+    1954-12-17:
+      value: 8.829
+65:
+  values:
+    1954-12-17:
+      value: 8.517
+66:
+  values:
+    1954-12-17:
+      value: 8.204
+67:
+  values:
+    1954-12-17:
+      value: 7.892
+68:
+  values:
+    1954-12-17:
+      value: 7.581
+69:
+  values:
+    1954-12-17:
+      value: 7.272
+70:
+  values:
+    1954-12-17:
+      value: 6.967
+71:
+  values:
+    1954-12-17:
+      value: 6.665
+72:
+  values:
+    1954-12-17:
+      value: 6.369
+73:
+  values:
+    1954-12-17:
+      value: 6.078
+74:
+  values:
+    1954-12-17:
+      value: 5.794
+75:
+  values:
+    1954-12-17:
+      value: 5.519
+76:
+  values:
+    1954-12-17:
+      value: 5.251
+77:
+  values:
+    1954-12-17:
+      value: 4.993
+78:
+  values:
+    1954-12-17:
+      value: 4.744
+79:
+  values:
+    1954-12-17:
+      value: 4.504
+80:
+  values:
+    1954-12-17:
+      value: 4.274
+81:
+  values:
+    1954-12-17:
+      value: 4.053
+82:
+  values:
+    1954-12-17:
+      value: 3.842
+83:
+  values:
+    1954-12-17:
+      value: 3.642
+84:
+  values:
+    1954-12-17:
+      value: 3.455
+85:
+  values:
+    1954-12-17:
+      value: 3.283
+86:
+  values:
+    1954-12-17:
+      value: 3.125
+87:
+  values:
+    1954-12-17:
+      value: 2.981
+88:
+  values:
+    1954-12-17:
+      value: 2.852
+89:
+  values:
+    1954-12-17:
+      value: 2.733
+90:
+  values:
+    1954-12-17:
+      value: 2.623
+91:
+  values:
+    1954-12-17:
+      value: 2.514
+92:
+  values:
+    1954-12-17:
+      value: 2.404
+93:
+  values:
+    1954-12-17:
+      value: 2.285
+94:
+  values:
+    1954-12-17:
+      value: 2.16
+95:
+  values:
+    1954-12-17:
+      value: 2.019
+96:
+  values:
+    1954-12-17:
+      value: 1.867
+97:
+  values:
+    1954-12-17:
+      value: 1.697
+98:
+  values:
+    1954-12-17:
+      value: 1.503
+99:
+  values:
+    1954-12-17:
+      value: 1.257
+100:
+  values:
+    1954-12-17:
+      value: 0.951

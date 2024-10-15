@@ -1,0 +1,10 @@
+description: Nombre de mois de versement d'une bourse de l'enseignement supérieur sur critères sociaux
+values:
+  2020-07-31:
+    value: 10
+metadata:
+  short_label: Durée versement
+  unit: month
+  reference:
+    2020-07-31:
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000042170743/

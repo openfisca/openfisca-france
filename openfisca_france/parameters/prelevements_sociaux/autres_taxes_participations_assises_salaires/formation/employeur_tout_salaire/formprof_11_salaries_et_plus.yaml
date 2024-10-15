@@ -1,0 +1,53 @@
+description: Participation des employeurs à la formation professionnelle continue (PEFPC), 11 salariés et plus
+brackets:
+- threshold:
+    2016-01-01:
+      value: 0
+    2019-01-01:
+      value: null
+  rate:
+    2016-01-01:
+      value: 0.01
+    2019-01-01:
+      value: null
+metadata:
+  short_label: 11 salariés et plus
+  label_en: Employer's participation to lifelong professional training
+  reference:
+    2016-01-01:
+      title: Loi 2015-1785 du 29/12/2015, art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031734417&cidTexte=JORFTEXT000031732865
+    2019-01-01:
+      title: Loi 2018-771 du 5/09/2018, art. 37
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037368540&cidTexte=JORFTEXT000037367660
+  official_journal_date:
+    2016-01-01: "2015-12-30"
+    2019-01-01: "2018-09-06"
+  notes:
+    2016-01-01:
+    - title: Instaure des nouvelles catégories d'entreprise
+  rate_unit: /1
+  threshold_unit: PSS
+documentation: |-
+  Champ :
+  Calculé sur la masse des salaires (y compris avantages en natures) versés dans l'année.
+  Notes :
+  (i) Il existe des régimes spéciaux pour les entreprises de travail temporaire, les professions agricoles et pour les franchissements des seuils d'effectif.
+  (ii) Les contributions sur les contrats d'insertion en alternance pour les entreprises de moins de 10 salariés n'étaient pas obligatoires en 1976, mais le sont en 1993; entre ces deux dates, une incertitude subsiste quant à l'existence et au taux de cette contribution.
+  (iii) Même remarque pour cette contribution pour les entreprises de 10 salariés ou plus.
+  (iv) Les contributions sur la formation alternée, sur les contrats et périodes de professionnalisation et destinées à financer les congés de formation
+  ne sont pas dues en plus de la contribution présentée dans les colonnes B à D : il s'agit du pourcentage que l'employeur doit consacrer
+  au sein de sa participation au financement de la formation professionnelle continue, aux différents types d'actions de formation.
+  (v) Le taux de PEFPC sert à financer le fonds paritaire de sécurisation des parcours professionnels, le congé individuel de formation, les actions de professionnalisation, le plan de formation (pour certaines catégories d'entreprise) et le compte personnel de formation. La décomposition des taux entre ces affectations est donnée dans les articles R. 6332-22-3 à R. 6332-22-5 du Code du travail.
+  Références législatives historiques sur la participation au développement de la formation professionnelle continue :
+  (a) entreprises de moins de 10 (puis 11) salariés : contribution créée par la Loi 91-1405 du 31/12/1991, art. 28 (JO du 02/01/1992) au taux de 0,15 %, et portée à 0,4 % par le décret 2005-330 du 06/04/2005, art. 1 (JO du 08/04/2005).
+  Les dispositions applicables à cette catégorie d'employeurs se trouvent à l'art. 235 ter KA du CGI, qui reproduit l'art. L 952-1 du Code du travail.
+  (b) entreprises de 10 (puis 11) salariés et plus :
+  Depuis la loi 91-1405 du 31/12/1991, art. 1 (JO du 04/01/1992), les dispositions applicables à cette catégorie d'employeurs se trouvent
+  à l'art. 235 ter D du CGI.
+  (c) entreprises de 10 à 19 salariés: l'ordonnance 2005-895 du 02/08/2005, art. 3 (JO du 03/08/2005) a instauré une réduction du taux pour ces entreprises
+  par raport aux entreprises de 20 salariés et plus (-0,55 points de pourcentage).
+  Autres références législatives :
+  Le texte régissant la contribution sur les salaires versés à des contrats CDD est l'article L931-20 du Code du travail, puis à partir de 2019 l'article L6331-6 du Code du travail.
+  Le taux applicable aux entreprises de travail temporaire est donné dans l'article L6331-9 du Code du travail.
+  La décomposition du taux employeur pour les différentes catégories d'entreprise est donnée dans les articles R. 6332-22-3 à R. 6332-22-5 du Code du travail.

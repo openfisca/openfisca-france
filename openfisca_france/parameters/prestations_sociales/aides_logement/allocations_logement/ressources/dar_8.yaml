@@ -1,0 +1,73 @@
+description: Montant 2ème alinéa du III de R351-7 du CCH jusqu'au 01/09/2019, puis art. R822-20 du CCH (jusqu'au 31/12/2020). Dispositif supprimé en 2021 avec la suppression de l'évaluation forfaitaire pour les aides au logement (réforme de la contemporanéisation des ressources)
+values:
+  2002-01-01:
+    value: 0
+  2002-07-01:
+    value: 1085
+  2009-01-01:
+    value: 1200
+  2010-01-01:
+    value: 1204.8
+  2011-01-01:
+    value: 1222.87
+  2012-01-01:
+    value: 1248.55
+  2013-01-01:
+    value: 1273.52
+  2014-01-01:
+    value: 1283.71
+  2015-01-01:
+    value: 1290.13
+  2016-01-01:
+    value: 1291.42
+  2017-01-01:
+    value: 1292.71
+  2018-01-01:
+    value: 1305.64
+  2019-01-01:
+    value: 1326.53
+  2020-01-01:
+    value: 1339.8
+  2021-01-01:
+    value: null
+metadata:
+  unit: currency
+  reference:
+    2002-07-01:
+      title: Arrêté du 23 décembre 2002, art. 4
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002497523
+    2009-01-01:
+      title: Arrêté du 22 décembre 2008, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000020019030
+    2010-01-01:
+      title: Arrêté du 30 décembre 2009, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000021560909
+    2011-01-01:
+      title: Arrêté du 29 décembre 2010, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000023332937
+    2012-01-01:
+      title: Arrêté du 28 décembre 2011, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000025054549
+    2013-01-01:
+      title: Arrêté du 28 décembre 2012, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000026863697
+    2014-01-01:
+      title: Arrêté du 23 décembre 2013, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000028408835
+    2015-01-01:
+      title: Arrêté du 30 décembre 2014, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000030007703
+    2016-01-01:
+      title: Arrêté du 21 janvier 2016, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031886284
+    2017-01-01:
+      title: Arrêté du 26 décembre 2016, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000033703936
+    2018-01-01:
+      href: https://www.legifrance.gouv.fr/eli/arrete/2017/12/29/TERL1732837A/jo/texte
+    2019-01-01:
+      href: https://www.legifrance.gouv.fr/eli/arrete/2018/12/27/LOGL1831318A/jo/texte
+    2020-01-01:
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/23/SSAS1936646A/jo/article_1
+    2021-01-01:
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039701792

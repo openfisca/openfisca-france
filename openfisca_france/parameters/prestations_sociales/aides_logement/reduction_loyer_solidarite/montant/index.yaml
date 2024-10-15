@@ -1,0 +1,5 @@
+description: Montant mensuel de la réduction de loyer de solidarité (RLS)
+metadata:
+  short_label: Montant mensuel
+  order:
+  - par_zone

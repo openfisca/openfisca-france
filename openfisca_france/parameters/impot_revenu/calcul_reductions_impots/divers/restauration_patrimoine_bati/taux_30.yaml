@@ -1,0 +1,6 @@
+description: Taux 30%
+values:
+  2009-01-01:
+    value: 0.3
+metadata:
+  unit: /1

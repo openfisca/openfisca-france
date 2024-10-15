@@ -1,0 +1,25 @@
+description: Plafond pour la somme des trois réductions (PME, FCPI/FIP sur PME et dons) de l'impôt sur la fortune immobilière
+values:
+  2018-01-01:
+    value: 45000
+  2019-01-01:
+    value: 50000
+metadata:
+  short_label: Plafond pour la somme des trois réductions (PME, FCPI/FIP sur PME et dons)
+  last_value_still_valid_on: "2024-04-26"
+  label_en: Tax reductions for investment and donations
+  unit: currency
+  reference:
+    2018-01-01:
+    - title: "Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 978 du CGI) : Cf. note en bas de la feuille."
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036377428
+    - title: Article 885-0 V bis I. 2. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024445533
+    2019-01-01:
+      title: Article 978 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037988624
+  official_journal_date:
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.

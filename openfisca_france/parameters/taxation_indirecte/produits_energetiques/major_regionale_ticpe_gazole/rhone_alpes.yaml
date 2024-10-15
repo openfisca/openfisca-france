@@ -1,0 +1,12 @@
+description: Majoration régionale TICPE gazole en Rhône-Alpes
+values:
+  2007-01-01:
+    value: 0.83
+  2008-01-01:
+    value: 1.15
+  2014-01-01:
+    value: 2.5
+metadata:
+  short_label: Rhône-Alpes
+  ipp_csv_id: maj_ticpe_die_r_a
+  unit: currency

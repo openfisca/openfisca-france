@@ -1,0 +1,14 @@
+description: Plafond la première année de l'emploi d'un salarié à domicile
+values:
+  1990-01-01:
+    value: null
+  2008-01-01:
+    value: 15000
+metadata:
+  short_label: Plafond 1ère année
+  unit: currency_next_year
+  reference:
+    2008-01-01:
+      title: Loi 2008-1425 du 27/12/2008 (LF pour 2009)
+  official_journal_date:
+    2008-01-01: "2008-12-28"

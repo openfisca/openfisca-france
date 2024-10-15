@@ -1,0 +1,140 @@
+description: Majoration du plafond de ressources pour les couples avec 2 revenus ou pour parents isolés - complément familial (CF)
+values:
+  1986-01-01:
+    value: 33973
+  2003-07-01:
+    value: 5663
+  2004-07-01:
+    value: 5771
+  2005-07-01:
+    value: 5869
+  2006-07-01:
+    value: 5969
+  2007-07-01:
+    value: 7588
+  2009-01-01:
+    value: 7702
+  2010-01-01:
+    value: 7918
+  2011-01-01:
+    value: 7926
+  2012-01-01:
+    value: 8005
+  2013-01-01:
+    value: 8173
+  2014-01-01:
+    value: 8328
+  2015-01-01:
+    value: 8386
+  2016-01-01:
+    value: 8420
+  2018-01-01:
+    value: 8437
+  2019-01-01:
+    value: 8521
+  2020-01-01:
+    value: 8657
+  2021-01-01:
+    value: 8735
+  2022-01-01:
+    value: 8752
+  2023-01-01:
+    value: 8892
+  2024-01-01:
+    value: 9363
+metadata:
+  short_label: Pour couple avec deux revenus ou parent isolé
+  label_en: Increase for couple with two incomes or single parent
+  ipp_csv_id: maj_plaf_cf_apje_adopt_bi
+  unit: currency
+  reference:
+    1986-01-01:
+      title: Décret 85-1353 du 17/12/1985, art. 1 (crée art. L522-2 et R522-2 du CSS)
+    2003-07-01:
+      title: Arrêté du 26/06/2003Décret 2003-1393 du 31/12/2003, art. 1 (modif art. R522-2 du CSS)
+    2004-07-01:
+      title: Arrêté du 16/07/2004
+    2005-07-01:
+      title: Arrêté du 01/08/2005
+    2006-07-01:
+      title: Arrêté du 17/07/2006
+    2007-07-01:
+      title: Arrêté du 10/07/2007
+    2009-01-01:
+      title: Arrêté du 31/12/2008
+    2010-01-01:
+      title: Arrêté du 29/12/2009
+    2011-01-01:
+      title: Arrêté du 30/12/2010
+    2012-01-01:
+      title: Arrêté du 28/12/2011, art. 1
+    2013-01-01:
+      title: Circulaire DSS/SD2B/2012/423
+    2014-01-01:
+    - title: Circulaire DSS/SD2B/2013/416
+    - title: Décret 2014-419 du 23/04/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028870537
+    2015-01-01:
+      title: Circulaire DSS/SD2B/2014/345
+    2016-01-01:
+      title: Circulaire DSS/SD2B/2015/371
+    2018-01-01:
+    - title: Circulaire DSS/SD2B/2017/352 du 22/12/2017
+    - title: Arrêté du 27/12/2017, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299566
+    2019-01-01:
+    - title: Circulaire DSS/SD2B/2018/279 du 17/12/2018
+    - title: Arrêté du 21/12/2018, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864993
+    2020-01-01:
+      title: Circulaire DSS/SD2B/2019/261 du 18/12/2019
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-12/ste_20190012_0000_0064.pdf
+    2021-01-01:
+    - title: Arrêté du 14/12/2020, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694990
+    - title: Circulaire DSS/2B/2020/226 du 14/12/2020
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
+    2022-01-01:
+    - title: Article R522-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046499019
+    - title: Article L522-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036393166
+    - title: Arrêté du 16/12/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000044572370
+    2023-01-01:
+      title: Arrêté du 21 décembre 2022 relatif aux plafonds de ressources de certaines prestations familiales
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
+    2024-01-01:
+      title: Arrêté du 22/12/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048680633
+  official_journal_date:
+    1986-01-01: "1985-12-21"
+    2003-07-01: 2004-01-01; 2003-06-28
+    2004-07-01: "2004-07-18"
+    2005-07-01: "2005-08-03"
+    2006-07-01: "2006-07-19"
+    2007-07-01: "2007-07-12"
+    2009-01-01: "2009-01-01"
+    2010-01-01: "2009-12-31"
+    2011-01-01: "2010-12-31"
+    2012-01-01: "2011-12-30"
+    2013-01-01: "2012-11-18"
+    2015-01-01: "2014-12-16"
+    2016-01-01: "2015-12-18"
+    2018-01-01: "2017-12-29"
+    2019-01-01: "2017-12-23"
+    2022-01-01: "2021-12-28"
+    2024-01-01: "2023-12-28"
+  notes:
+    1986-01-01:
+    - title: "art. R222-2 : la réglementation des plafonds est la même que pour l'APJE"
+    2003-07-01:
+    - title: Suppression de l'APJE => le renvoi à la réglementation des plafonds de l'APJE n'est plus possible.; => règlementation propre au CF
+    2014-01-01:
+    - title: Ne pas confondre la circulaire pour la France métropolitaine avec celle pour les départements d'Outre-mer
+    2016-01-01:
+    - title: Pas de modification en 2017 cf. circulaire DSS/SD2B/2016/396 du 21/12/2016
+    2018-01-01:
+    - title: Arrêté du 21/12/2018, Revalorisation des plafonds de 0,2%
+    2022-01-01:
+    - title: Revalorisation des plafonds de 0,2%

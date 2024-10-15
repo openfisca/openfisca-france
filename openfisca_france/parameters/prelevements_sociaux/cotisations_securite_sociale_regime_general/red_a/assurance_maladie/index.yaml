@@ -1,4 +1,7 @@
-description: Cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974) pour l'assurance maladie
+description: Cotisations de sécurité sociale (SS) des artistes du spectacle pour l'assurance maladie
 metadata:
-  ux_name: Branche assurance maladie
-  description_en: SSCs for artists (1960-1974)
+  short_label: Branche assurance maladie
+  label_en: SSCs for artists
+  order:
+  - sous_pss
+  - sur_tout_salaire

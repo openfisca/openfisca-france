@@ -1,0 +1,15 @@
+description: Montant de la prime forfaitaire exceptionnelle dite « prime de Noël »
+values:
+  2002-01-01:
+    value: 0
+  2008-01-01:
+    value: 67.55
+  2009-01-01:
+    value: 0
+metadata:
+  short_label: Montant Prime de Noël 2008
+  unit: currency
+  reference:
+    2008-01-01:
+      title: Circulaire DGAS/MAS/1 C nº2008-384 du 31/12/2008
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2009/09-05/ste_20090005_0100_0107.pdf

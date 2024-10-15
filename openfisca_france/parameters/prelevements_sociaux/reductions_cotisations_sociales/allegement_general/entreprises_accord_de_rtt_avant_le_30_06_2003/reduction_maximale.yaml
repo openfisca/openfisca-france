@@ -1,0 +1,27 @@
+description: Réduction maximale des allègements (entreprises ayant signé un accord de RTT avant le 30/06/2003) des cotisations de Sécurité sociale (SS) sur les bas salaires
+values:
+  2003-07-01:
+    value: 0.26
+  2005-07-01:
+    value: null
+metadata:
+  short_label: Réduction maximale
+  last_value_still_valid_on: "2021-11-19"
+  label_en: General SSC reductions, so called Fillon reductions
+  ipp_csv_id: tx_trans_35
+  unit: /1
+  reference:
+    2003-07-01:
+    - title: Loi 2003-47 du 17/01/2003, art. 9
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658857&cidTexte=JORFTEXT000000594652
+    - title: Décret 2003-487 du 11/06/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000787738
+    2005-07-01:
+      title: Décret 2005-88 du 04/02/2005 - Article D. 241-9 abrogé
+      href: https://www.legifrance.gouv.fr/eli/decret/2005/2/4/2005-88/jo/texte
+  official_journal_date:
+    2003-07-01: 2003-01-18; 2003-06-12
+    2005-07-01: "2005-02-06"
+  notes:
+    2003-07-01:
+    - title: Loi dite Fillon

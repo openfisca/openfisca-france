@@ -1,0 +1,7 @@
+description: Imposition des gains d'acquisition d'actions gratuites à 18%
+values:
+  2008-01-01:
+    value: 0.18
+metadata:
+  short_label: Taux 18%
+  unit: /1

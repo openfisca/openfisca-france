@@ -1,0 +1,32 @@
+- name: Eligibilité Pour les étudiants boursier
+  period: 2023-12
+  input:
+    age: [18, 18, 29]
+    boursier: [true, false, true]
+  output:
+    pass_sport: [50, 0, 0]
+
+- name: Eligibilité Pour les bénéficiaire de l'ARS
+  period: 2023-12
+  input:
+    age: [6, 5, 18]
+    ars:
+      2023: [418.48, 418.48, 418.48]
+  output:
+    pass_sport: [50, 0, 0]
+
+- name: Eligibilité Pour les bénéficiaire de l'AEEH
+  period: 2023-12
+  input:
+    age: [6, 5, 20]
+    aeeh: [135.13, 135.13, 135.13]
+  output:
+    pass_sport: [50, 0, 0]
+
+- name: Eligibilité Pour les bénéficiaire de l'AAH
+  period: 2023-12
+  input:
+    age: [16, 15, 31]
+    aah: [970, 970, 970]
+  output:
+    pass_sport: [50, 0, 0]

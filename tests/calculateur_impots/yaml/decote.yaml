@@ -59,7 +59,7 @@
       personne_de_reference: ind0
   output:
     decote_gain_fiscal: 244.0
-    irpp: -0.0
+    impot_revenu_restant_a_payer: -0.0
     nbptr: 4.0
     ppe: 0.0
     rbg: 40500.0
@@ -126,7 +126,7 @@
       personne_de_reference: ind0
   output:
     decote_gain_fiscal: 238.0
-    irpp: -0.0
+    impot_revenu_restant_a_payer: -0.0
     nbptr: 4.0
     rbg: 40500.0
     rfr: 40500.0
@@ -192,7 +192,7 @@
       personne_de_reference: ind0
   output:
     decote_gain_fiscal: 232.0
-    irpp: -0.0
+    impot_revenu_restant_a_payer: -0.0
     nbptr: 4.0
     rbg: 40500.0
     rfr: 40500.0
@@ -258,8 +258,8 @@
       personne_de_reference: ind0
   output:
     decote_gain_fiscal: 178.0
-    irpp: -0.0
+    impot_revenu_restant_a_payer: -0.0
     nbptr: 4.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 40500.0
     rfr: 40500.0

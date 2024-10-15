@@ -1,5 +1,7 @@
 from numpy import absolute as abs_, logical_or as or_, logical_not as not_
 
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import (
     Variable,
     Individu,
@@ -12,16 +14,16 @@ from openfisca_france.model.base import (
     )
 
 
-class cmu_base_ressources_individu(Variable):
+class css_cmu_base_ressources_individu(Variable):
     value_type = float
     label = "Base de ressources de l'individu prise en compte pour l'éligibilité à la ACS / CMU-C / CSS"
     reference = [
-        "Article R861-8 du code de la Sécurité Sociale",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034424885&cidTexte=LEGITEXT000006073189&dateTexte=20180829",
-        "Article R861-10 du code de la Sécurité Sociale pour les ressources exclues",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030055485&cidTexte=LEGITEXT000006073189&dateTexte=20180829",
+        'Article R861-8 du code de la Sécurité Sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034424885&cidTexte=LEGITEXT000006073189&dateTexte=20180829',
+        'Article R861-10 du code de la Sécurité Sociale pour les ressources exclues',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030055485&cidTexte=LEGITEXT000006073189&dateTexte=20180829',
         "Circulaire N°DSS/2A/2002/110 du 22 février 2002 relative à la notion de ressources à prendre en compte pour l'appréciation du droit à la protection complémentaire en matière de santé",
-        "http://circulaire.legifrance.gouv.fr/pdf/2009/04/cir_6430.pdf"
+        'http://circulaire.legifrance.gouv.fr/pdf/2009/04/cir_6430.pdf'
         ]
     entity = Individu
     definition_period = MONTH
@@ -29,12 +31,12 @@ class cmu_base_ressources_individu(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period(('year', period.start, 1)).offset(-1)
         # N-1
         last_year = period.last_year
         last_month = period.last_month
 
-        P = parameters(period).cs.cmu
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu
 
         ressources_a_inclure = [
             'aah',
@@ -85,7 +87,7 @@ class cmu_base_ressources_individu(Variable):
             )
 
 
-class cmu_base_ressources(Variable):
+class css_cmu_base_ressources(Variable):
     value_type = float
     label = "Base de ressources prise en compte pour l'éligibilité à la ACS / CMU-C / CSS"
     entity = Famille
@@ -93,7 +95,7 @@ class cmu_base_ressources(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period(('year', period.start, 1)).offset(-1)
 
         ressources_famille_a_inclure = [
             'af',
@@ -110,21 +112,21 @@ class cmu_base_ressources(Variable):
             ])
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        cmu_forfait_logement_base = famille('cmu_forfait_logement_base', period)
-        cmu_forfait_logement_al = famille('cmu_forfait_logement_al', period)
+        css_cmu_forfait_logement_base = famille('css_cmu_forfait_logement_base', period)
+        css_cmu_forfait_logement_al = famille('css_cmu_forfait_logement_al', period)
 
-        P = parameters(period).cs.cmu
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu
 
         proprietaire = (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
         heberge_titre_gratuit = (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement)
 
         forfait_logement = (
             (proprietaire + heberge_titre_gratuit)
-            * cmu_forfait_logement_base
-            + cmu_forfait_logement_al
+            * css_cmu_forfait_logement_base
+            + css_cmu_forfait_logement_al
             )
 
-        ressources_individuelles = famille.members('cmu_base_ressources_individu', period)
+        ressources_individuelles = famille.members('css_cmu_base_ressources_individu', period)
         ressources_parents = famille.sum(ressources_individuelles, role = Famille.PARENT)
 
         age = famille.members('age', period)

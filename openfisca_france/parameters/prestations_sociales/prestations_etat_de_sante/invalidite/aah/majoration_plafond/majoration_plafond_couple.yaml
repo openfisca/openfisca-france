@@ -1,0 +1,27 @@
+description: Majoration du plafond de ressources pour un couple (en pourcentage du plafond de base) de l'allocation aux adultes handicapées (AAH)
+values:
+  2000-07-01:
+    value: 1
+  2018-11-01:
+    value: 0.89
+  2019-11-01:
+    value: 0.81
+metadata:
+  short_label: Pour un demandeur en couple
+  last_value_still_valid_on: "2023-01-16"
+  label_en: Adult disability allowance (AAH)
+  ipp_csv_id: maj_couple_aah
+  unit: /1
+  reference:
+    2018-11-01:
+      title: Décret 2018-948 du 31/10/2018 - Article  2
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037552841/
+    2019-11-01:
+    - title: Article D821-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039211076
+    - title: Décret 2019-1047 du 11/10/2019 - art. 1 et 2
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039207638/
+  official_journal_date:
+    2018-11-01: "2018-11-03"
+    2019-11-01: "2019-11-13"
+documentation: Depuis le 01/10/2023, ce taux n'est appliqué que pour les personnes encore éligibles à la conjugalisation de l'AAH.

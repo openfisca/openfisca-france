@@ -1,0 +1,7 @@
+description: Montant de base du revenu minimum d'insertion (RMI)
+metadata:
+  short_label: Montant de base
+  label_en: "Minimum insertion income (RMI): Basic amount"
+  order:
+  - montant_de_base_du_rmi
+  - pente

@@ -1,0 +1,7 @@
+description: Impôt sur les grandes fortunes (IGF)
+metadata:
+  short_label: IGF
+  label_en: Wealth tax computation
+  order:
+  - bareme
+  - forfait_mobilier

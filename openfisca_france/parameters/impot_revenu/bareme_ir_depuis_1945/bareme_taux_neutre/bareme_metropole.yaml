@@ -1,0 +1,240 @@
+description: Barème marginal de l'imposition au taux neutre pour les contribuables domiciliés en métropole
+brackets:
+- threshold:
+    2019-01-01:
+      value: 0
+  rate:
+    2019-01-01:
+      value: 0
+- threshold:
+    2019-01-01:
+      value: 1404
+    2020-01-01:
+      value: 1418
+    2021-01-01:
+      value: 1420
+  rate:
+    2019-01-01:
+      value: 0.005
+- threshold:
+    2019-01-01:
+      value: 1457
+    2020-01-01:
+      value: 1472
+    2021-01-01:
+      value: 1475
+  rate:
+    2019-01-01:
+      value: 0.015
+    2020-01-01:
+      value: 0.013
+- threshold:
+    2019-01-01:
+      value: 1551
+    2020-01-01:
+      value: 1567
+    2021-01-01:
+      value: 1570
+  rate:
+    2019-01-01:
+      value: 0.025
+    2020-01-01:
+      value: 0.021
+- threshold:
+    2019-01-01:
+      value: 1656
+    2020-01-01:
+      value: 1673
+    2021-01-01:
+      value: 1676
+  rate:
+    2019-01-01:
+      value: 0.035
+    2020-01-01:
+      value: 0.029
+- threshold:
+    2019-01-01:
+      value: 1769
+    2020-01-01:
+      value: 1787
+    2021-01-01:
+      value: 1791
+  rate:
+    2019-01-01:
+      value: 0.045
+    2020-01-01:
+      value: 0.035
+- threshold:
+    2019-01-01:
+      value: 1864
+    2020-01-01:
+      value: 1883
+    2021-01-01:
+      value: 1887
+  rate:
+    2019-01-01:
+      value: 0.06
+    2020-01-01:
+      value: 0.041
+- threshold:
+    2019-01-01:
+      value: 1988
+    2020-01-01:
+      value: 2008
+    2021-01-01:
+      value: 2012
+  rate:
+    2019-01-01:
+      value: 0.075
+    2020-01-01:
+      value: 0.053
+- threshold:
+    2019-01-01:
+      value: 2578
+    2020-01-01:
+      value: 2376
+    2021-01-01:
+      value: 2381
+  rate:
+    2019-01-01:
+      value: 0.09
+    2020-01-01:
+      value: 0.075
+- threshold:
+    2019-01-01:
+      value: 2797
+    2020-01-01:
+      value: 2720
+    2021-01-01:
+      value: 2725
+  rate:
+    2019-01-01:
+      value: 0.105
+    2020-01-01:
+      value: 0.099
+- threshold:
+    2019-01-01:
+      value: 3067
+    2020-01-01:
+      value: 3098
+    2021-01-01:
+      value: 3104
+  rate:
+    2019-01-01:
+      value: 0.12
+    2020-01-01:
+      value: 0.119
+- threshold:
+    2019-01-01:
+      value: 3452
+    2020-01-01:
+      value: 3487
+    2021-01-01:
+      value: 3494
+  rate:
+    2019-01-01:
+      value: 0.14
+    2020-01-01:
+      value: 0.138
+- threshold:
+    2019-01-01:
+      value: 4029
+    2020-01-01:
+      value: 4069
+    2021-01-01:
+      value: 4077
+  rate:
+    2019-01-01:
+      value: 0.16
+    2020-01-01:
+      value: 0.158
+- threshold:
+    2019-01-01:
+      value: 4830
+    2020-01-01:
+      value: 4878
+    2021-01-01:
+      value: 4888
+  rate:
+    2019-01-01:
+      value: 0.18
+    2020-01-01:
+      value: 0.179
+- threshold:
+    2019-01-01:
+      value: 6043
+    2020-01-01:
+      value: 6104
+    2021-01-01:
+      value: 6116
+  rate:
+    2019-01-01:
+      value: 0.2
+- threshold:
+    2019-01-01:
+      value: 7780
+    2020-01-01:
+      value: 7625
+    2021-01-01:
+      value: 7640
+  rate:
+    2019-01-01:
+      value: 0.24
+- threshold:
+    2019-01-01:
+      value: 10562
+    2020-01-01:
+      value: 10583
+    2021-01-01:
+      value: 10604
+  rate:
+    2019-01-01:
+      value: 0.28
+- threshold:
+    2019-01-01:
+      value: 14795
+    2020-01-01:
+      value: 14333
+    2021-01-01:
+      value: 14362
+  rate:
+    2019-01-01:
+      value: 0.33
+- threshold:
+    2019-01-01:
+      value: 22620
+    2020-01-01:
+      value: 22500
+    2021-01-01:
+      value: 22545
+  rate:
+    2019-01-01:
+      value: 0.38
+- threshold:
+    2019-01-01:
+      value: 47717
+    2020-01-01:
+      value: 48196
+    2021-01-01:
+      value: 48292
+  rate:
+    2019-01-01:
+      value: 0.43
+metadata:
+  short_label: Barème Métropole
+  reference:
+    2019-01-01:
+      title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
+    2020-01-01:
+      title: Loi 2019-1479, art. 2 du 28/12/2019 (LF pour 2020)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039683923&dateTexte=&categorieLien=id
+    2021-01-01:
+      title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+  official_journal_date:
+    2019-01-01: "2018-12-30"
+    2020-01-01: "2019-12-29"
+    2021-01-01: "2020-12-30"
+  rate_unit: /1
+  threshold_unit: currency_next_year

@@ -1,1 +1,11 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Taxation du capital
+metadata:
+  short_label: Taxation du capital
+  label_en: Taxes on financial income and wealth
+  order:
+  - prelevement_forfaitaire
+  - prelevements_sociaux
+  - impot_grandes_fortunes_1982_1986
+  - impot_solidarite_fortune_isf_1989_2017
+  - impot_fortune_immobiliere_ifi_partir_2018
+  - epargne

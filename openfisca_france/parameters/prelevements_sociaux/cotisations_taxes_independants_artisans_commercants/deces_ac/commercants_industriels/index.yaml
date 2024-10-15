@@ -1,0 +1,11 @@
+description: Cotisations invalidité-décès de sécurité sociale (SS) des indépendants commerçants
+metadata:
+  short_label: Commercants
+  label_en: "Contributions and taxes on self-employed: sales retailers"
+  order:
+  - avant_2004
+  - apres_2004
+documentation: |-
+  (i) La cotisation forfaitaire due par les commerçants-industriels est la somme des cotisations (forfaitaires) invalidité et capital décès.
+  (ii) La cotisation invalidité n'est pas due pour les commerçants-industriels de plus de 60 ans. Par ailleurs, les artisans de plus de 65 ans sont totalement exonérés de la cotisation.
+  (iii) La cotisation pour les artisans ne peut être calculée sur une assiette inférieure à 20% du PSS.

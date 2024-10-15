@@ -1,0 +1,9 @@
+description: Plafonds de ressources (pour un revenu) de l'Allocation pour frais de garde (AFG)
+metadata:
+  short_label: Pour 1 revenu
+  label_en: For 1 income
+  order:
+  - 1_enfant
+  - 2_enfants
+  - 3_enfants
+  - par_enfant_supplementaire

@@ -1,0 +1,6 @@
+description: Revalorisation du salaire de référence des allocations chômage
+metadata:
+  short_label: Revalorisation du salaire de référence
+  label_en: Indexation of UI benefits
+  order:
+  - sr_alloc

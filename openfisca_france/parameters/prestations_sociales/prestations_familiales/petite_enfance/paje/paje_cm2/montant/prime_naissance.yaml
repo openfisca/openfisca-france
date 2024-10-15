@@ -1,0 +1,26 @@
+description: Montant (en % de la BMAF) de la prime à la naissance de la prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 2.2975
+metadata:
+  short_label: Prime naissance
+  last_value_still_valid_on: "2023-05-27"
+  label_en: Birth bonus amount
+  ipp_csv_id: tx_paje_naiss
+  unit: BMAF
+  reference:
+    2004-01-01:
+    - title: Article L531-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042685543
+    - title: Article D531-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030061628
+    - title: Loi 2003-1199 du 18/12/2003, art. 60 II (modif art. L531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006758906
+    - title: Décret 2003-1394 du 31/12/2003, art. 1 (crée art. D531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002256835
+  official_journal_date:
+    2004-01-01: 2003-12-19; 2004-01-01
+  notes:
+    2004-01-01:
+    - title: La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi).
+documentation: Prime versée "avant la fin du dernier jour du mois civil suivant le sixième mois de la grossesse" (cf. art. D531-2 du CSS)

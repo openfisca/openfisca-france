@@ -1,0 +1,12 @@
+description: Coefficient multiplicateur du livret d'épargne populaire
+values:
+  2014-01-01:
+    value: 1.8
+metadata:
+  short_label: Coefficient multiplicateur
+  last_value_still_valid_on: "2024-04-10"
+  unit: /1
+  reference:
+    2014-01-01:
+      title: Article L221-15 du code monétaire et financier
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042656513/

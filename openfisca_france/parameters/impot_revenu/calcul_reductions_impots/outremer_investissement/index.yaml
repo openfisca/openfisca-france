@@ -1,0 +1,15 @@
+description: Réductions d'impôt pour les particuliers concernant les investissements réalisés en Outre-Mer
+metadata:
+  documentation_start: true
+  short_label: Investissements d'Outre-mer
+  label_en: Tax reduction for personal investment in Overseas department
+  order:
+  - plafond
+  - plaf_bis
+  - logements_neufs
+documentation: |-
+  Les particuliers concernés doivent être fiscalement domiciliés dans les DOM ou en Polynésie française, dans les îles Wallis et Futuna, dans les Terres australes et antarctiques françaises, à Saint-Martin, à Saint-Barthélemy, à Saint-Pierre-et-Miquelon et en Nouvelle-Calédonie. La réduction d'impôt est codifiée à l'article 199 underdecies A du Code Général des Impôts (CGI).
+  La réduction d'impôt peut aussi avoir lieu sur le montant de la souscription de parts ou actions de sociétés dont l’objet réel est exclusivement de construire des logements neufs situés outre-mer qu’elles donnent en location nue (2-c) ou bien au capital de SCPI ayant pour objet l’acquisition de logements neufs situés outre-mer qu’elles donnent en location nue (2-d). La réduction d'impôt se base sur le montant de la sosucription, selon les modalités de la réduction pour la location nue (réduction pendant 5 ans aux taux correspondants).
+  Les taux de réduction s'entendent comme étant le pourcentage appliqué chaque année pendant 5 ans (ou 10 ans en cas d'investissement dans un logement neuf affecté à l'habitation à titre principal du propriétaire). Pour obtenir le taux total de réduction, il convient donc de multiplier ces taux par 5 (ou 10 dans le cas mentionné précédemment). Ainsi, un taux annuel de réduction sur la réhabilitation de 10% signifie qu'en 5 ans, la réduction d'impôt s'élève à 50% du coût de l'investissement.
+  Les autres secteurs d'investissement éligibles à la réduction d'impôt sont la souscription au capital de sociétés de développement régional (SDR) ou de sociétés ultramarines assujetties à l’impôt sur les sociétés et qui réalisent des investissements productifs neufs au sens de l’article 199 undecies B du CGI ou de sociétés ayant pour objet le financement d’entreprises exerçant exclusivement outre-mer (SOFIOM).
+  Pour les investissements dans l'immobilier neuf à but locatif, il existe en réalité plus de taux et de situation. Dans ce barème, le taux donné à une année correspond au taux applicable en cas d'obtention du permis de construire et d'investissement sur cette année. De fait, il existe une variété plus importante de taux, qui s'appliquent à partir des investissements réalisés en 2011, lorsque l'année d'investissement diffère de l'année d'obtention du permis de construire. Ces taux sont retrouvables à l'avant dernière page du formulaire 2042K IOM pour le millésime 2017.

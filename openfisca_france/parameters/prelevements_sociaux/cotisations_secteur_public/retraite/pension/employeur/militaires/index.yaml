@@ -1,0 +1,6 @@
+description: Pensions militaires - cotisations employeur retraite spécifiques à la fonction publique
+metadata:
+  short_label: Militaires
+  label_en: Contributions for pensions - central government
+  order:
+  - pension

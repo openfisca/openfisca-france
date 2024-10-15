@@ -1,0 +1,11 @@
+description: Ménage ou isolé - Plafonds de loyer en zone 1 (avant la réforme de 2001) des Allocations logement (AL)
+metadata:
+  short_label: Ménage ou isolé
+  label_en: Parameters for the rental sector (before the 2001 reform)
+  order:
+  - avec_1_enfant
+  - avec_2_enfants
+  - avec_3_enfants
+  - avec_4_enfants
+  - avec_5_enfants
+  - par_enfant_en_plus

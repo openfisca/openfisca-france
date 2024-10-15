@@ -1,0 +1,44 @@
+description: Enfant majeur célibataire - Plafond des avantages procurés par demi-part de Quotient Familial
+values:
+  1950-01-01:
+    value: null
+  1974-01-01:
+    value: 6000
+  1975-01-01:
+    value: 6700
+  1976-01-01:
+    value: 7300
+  1977-01-01:
+    value: 7900
+  1978-01-01:
+    value: 8600
+  1979-01-01:
+    value: 9500
+  1980-01-01:
+    value: 10800
+  1981-01-01:
+    value: null
+metadata:
+  short_label: Enfant majeur célibataire
+  last_value_still_valid_on: "2023-01-05"
+  label_en: Family quotient ceiling and "decote"
+  ipp_csv_id: plaf_qf_foy_maj
+  unit: currency_next_year
+  reference:
+    1980-01-01:
+      title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000339460
+    1981-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+  official_journal_date:
+    1980-01-01: "1980-12-31"
+    1981-01-01: "1981-12-31"
+  notes:
+    1978-01-01:
+    - title: Si la personne rattachée est elle-même chef de famille, l'avantage fiscal prend la forme d'un abattement. Les plafonds sont revalorisés chaque année dans la même proportion que la limite de la première tranche du barème prévu à l'article 197 du CGI. La loi de 1974 abaissant l'âge de la majorité de 21 à 18 ans a entraîné une modification importante de la prise en compte des enfants à charge.
+    1979-01-01:
+    - title: Demi-part supplémentaire pour 5ème enfant à charge sur revenus 1979 (loi 18/01/1980) et pour 3ème enfant à charge sur revenus 1980 (loi 30/12/1980).
+    1980-01-01:
+    - title: Avant 1981, le plafond se calcule en multipliant le nombre d'enfant par le montant de la colonne C
+documentation: Pour la définition de la notion d'"enfant majeur", voir art. 6-II bis du CGI (en vigueur au 01/01/1982).

@@ -1,0 +1,9 @@
+description: Réduction d'impôt sur les Assurances-vie
+metadata:
+  short_label: Assurances vie
+  label_en: Tax reduction on life insurances
+  order:
+  - taux
+  - plafond
+  - increment
+documentation: "Assurance-vie : Le montant reporté case MG de la déclaration ouvre droit à la réduction sans condition, ceux reportés case MH sont sous condition que l'impôt de référence soit inférieur ou égal à 7000 FRF"

@@ -1,0 +1,13 @@
+description: Taux
+values:
+  1978-01-01:
+    value: null
+  1984-01-01:
+    value: 0.25
+  2003-01-01:
+    value: null
+metadata:
+  ipp_csv_id: tx_habitat
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

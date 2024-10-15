@@ -1,0 +1,10 @@
+description: Montant au 1er échelon de l'Aide au financement du permis B pro BTP
+values:
+  2021-01-01:
+    value: 700
+metadata:
+  short_label: 1er échelon
+  unit: currency
+  reference:
+    2021-01-01:
+      href: https://www.probtp.com/part/apprenti/aide-permis.html

@@ -1,0 +1,37 @@
+description: Taux réduit global de la contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.038
+metadata:
+  short_label: Taux réduit global
+  last_value_still_valid_on: "2024-07-24"
+  label_en: CSG - rates on work incomes
+  ipp_csv_id: csg_pens_red
+  unit: /1
+  reference:
+    1991-02-01:
+      title: Loi 90-1168 du 29/12/90, art. 127 à 135 (LF pour 1991)
+    1997-01-01:
+      title: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
+    1998-01-01:
+      title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757359&cidTexte=JORFTEXT000000569121
+    2011-01-01:
+      title: Loi 2010-1594 du 20/12/2010, art. 20 (LFSS pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023262256&cidTexte=JORFTEXT000023261006
+    2012-01-01:
+      title: Loi 2011-1906 du 28/12/2011, art. 17 (LFSS pour 2012)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007624&cidTexte=JORFTEXT000025005833
+    2018-01-01:
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000036431149/2018-01-01/
+  official_journal_date:
+    1991-02-01: "1990-12-30"
+    1997-01-01: "1996-12-29"
+    1998-01-01: "1997-12-23"
+  notes:
+    1991-02-01:
+    - title: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.

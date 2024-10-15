@@ -1,0 +1,37 @@
+description: Majoration forfaitaire du forfait mobilier de l'impôt de solidarité sur la fortune
+values:
+  1987-01-01:
+    value: null
+  1989-01-01:
+    value: 0.05
+  2018-01-01:
+    value: null
+metadata:
+  short_label: Majoration forfaitaire
+  label_en: Furniture package
+  ipp_csv_id: tx_majo_isf
+  unit: /1
+  reference:
+    1987-01-01:
+      title: Loi 86-824 du 11/07/1986, art. 24 (LFR pour 1986)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275031&cidTexte=JORFTEXT000000512460
+    1989-01-01:
+      title: Loi 88-1149 du 23/12/1988, art. 26 (LFpour 1989)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275456&cidTexte=JORFTEXT000000508832
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (abroge art. 885 S du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    1987-01-01: "1986-07-12"
+    1989-01-01: "1988-12-28"
+    2018-01-01: "2017-12-31"
+  notes:
+    1987-01-01:
+    - title: Suppression de l'impôt sur les grandes fortunes.
+    1989-01-01:
+    - title: Création de l'impôt de solidarité sur la fortune.
+    2018-01-01:
+    - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
+documentation: |-
+  Le contribuable peut opter pour le forfait des 5% de l'actif brut déclaré à l'ISF afin d'évaluer la valeur de ses meubles meublants.
+  Référence dans les codes législatifs : L'article 885 S du CGI précise que "la valeur des biens est déterminée suivant les règles en vigueur en matière de droits de mutation par décès". Il faut donc se référer à l'article 764 I-3° du CGI qui codifie les règles d'évaluation des biens mobiliers dans le cadre des DMTG : "pour les meubles meublants, et sans que l'administration ait à en justifier l'existence, la valeur imposable ne peut être inférieure à 5 % de l'ensemble des autres valeurs mobilières et immobilières de la succession, la preuve contraire étant aussi réservée."

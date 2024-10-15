@@ -1,0 +1,7 @@
+description: Mesure du loyer pour les étudiants logeant en résidence universitaire, allocations logement (AL)
+metadata:
+  short_label: Étudiants en RU
+  label_en: Measure of rent for students living in university residences
+  order:
+  - loyer_considere_comme_paye_etudiants_logeant_en_ru
+  - autres_etudiants_en_chambres_rehabilitees_de_ru

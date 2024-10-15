@@ -1,0 +1,64 @@
+description: Titres de créances négociables, billets de trésorerie, certificats de dépôts négociables, bons du trésor négociables et bons des institutions financières spécialisées
+values:
+  1974-01-01:
+    value: 0.333
+  1979-07-01:
+    value: 0.4
+  1986-01-01:
+    value: 0.32
+  1990-06-15:
+    value: 0.15
+  2004-01-01:
+    value: 0.16
+  2008-01-01:
+    value: 0.18
+  2011-01-01:
+    value: 0.19
+  2012-01-01:
+    value: 0.24
+metadata:
+  short_label: Titres de créances négociables et assimilés
+  label_en: Levy in discharge on capital income
+  ipp_csv_id: tx_titres
+  unit: /1
+  reference:
+    1974-01-01:
+      title: Loi 73-1150 du 27/12/1973, art. 12-1 (LF pour 1974)
+    1979-07-01:
+      title: Loi 78-741 du 13/07/1978, art. 35
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006317151&cidTexte=JORFTEXT000000518241
+    1986-01-01:
+      title: Loi 85-1321 du 14/12/1985, art. 37
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006305427&cidTexte=JORFTEXT000000692975
+    1990-06-15:
+      title: Loi 89-935 du 29/12/1989, art. 109 (LF pour 1990) (modif art. 157 -22° du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006317733&cidTexte=JORFTEXT000018687845
+    2004-01-01:
+      title: Loi 2003-1311 du 30/12/2003, art. 12 (LF pour 2004)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006321732&cidTexte=JORFTEXT000000612133
+    2008-01-01:
+      title: Loi 2007-1822 du 24/12/2007, art. 10 et 12 (LF pour 2008)
+    2011-01-01:
+      title: Loi 2010-1657 du 29/12/2010, art. 6 (LF pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023347467&cidTexte=JORFTEXT000023314376
+    2012-01-01:
+      title: Loi 2011-1978 du 28/12/2011, art. 20 et 59 (LFR pour 2011)
+  official_journal_date:
+    1974-01-01: "1973-12-28"
+    1979-07-01: "1978-07-14"
+    1986-01-01: "1985-12-15"
+    1990-06-15: "1989-12-30"
+    2004-01-01: "2003-12-31"
+    2008-01-01: "2007-12-27"
+    2011-01-01: "2010-12-30"
+    2012-01-01: "2011-12-29"
+  notes:
+    1990-06-15:
+    - title: Création du Plan d'épargne populaire.
+    2004-01-01:
+    - title: Il n'est plus possible d'ouvrir un plan d'épargne populaire depuis le 25 septembre 2003.
+    2008-01-01:
+    - title: Création du prélèvement libératoire sur les placements à revenus variables, notamment sur les dividendes (crée art. 117 quater du CGI)
+    2012-01-01:
+    - title: La modification du taux appliqué aux revenus du PEP reste théorique puisque tous les PEP ont plus de huit ans.
+documentation: Billets de trésorerie, certificats de dépôts négociables; bons du Trésor négociables et bons des institutions financières spécialisées.

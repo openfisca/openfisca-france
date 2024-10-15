@@ -1,0 +1,12 @@
+description: Taux (SE)
+values:
+  2009-01-01:
+    value: 0.5
+  2011-01-01:
+    value: 0.45
+  2012-01-01:
+    value: 0.17
+  2013-01-01:
+    value: null
+metadata:
+  unit: /1

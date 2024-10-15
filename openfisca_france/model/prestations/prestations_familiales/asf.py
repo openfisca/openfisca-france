@@ -12,13 +12,13 @@ class asf_elig_enfant(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         eligibilite = (
             # Âge compatible avec les prestations familiales
-            (age >= pfam.af.age1)
-            * (age < pfam.af.age3)
-            * not_(autonomie_financiere)  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
+            (age >= af.af_cm.age1)
+            * (age < af.af_cm.age3)
+            * not_(autonomie_financiere)  # Ne perçoit pas plus de ressources que "55% du Smic" au sens CAF
             )
 
         return eligibilite
@@ -49,12 +49,13 @@ class asf_montant(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        pfam = parameters(period).prestations.prestations_familiales
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+        asf = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.asf
 
         asf_par_enfant = (
             famille.members('asf_elig_enfant', period)
-            * pfam.af.bmaf
-            * pfam.asf.taux_1_parent
+            * bmaf
+            * asf.montant_asf.orphelin_assimile_seul_parent
             )
 
         montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
@@ -67,14 +68,43 @@ class asf(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "Allocation de soutien familial (ASF)"
+    label = 'Allocation de soutien familial (ASF)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        pfam = parameters(period).prestations.prestations_familiales
+        asf = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.asf
 
         asf_elig = famille('asf_elig', period)
         montant = famille('asf_montant', period)
 
-        return asf_elig * (montant > pfam.asf.seuil) * montant
+        return asf_elig * (montant > asf.seuil) * montant
+
+
+class crds_asf(Variable):
+    value_type = float
+    entity = Famille
+    label = "CRDS sur l'allocation de soutien familial'"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        asf = famille('asf', period)
+
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+
+        return -(asf) * taux_crds
+
+
+class asf_nette_crds(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = 'Complément familial net de CRDS'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        asf = famille('asf', period)
+        crds_asf = famille('crds_asf', period)
+
+        return asf + crds_asf

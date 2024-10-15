@@ -14,18 +14,26 @@ log = logging.getLogger(__name__)
 
 class assiette_csg_abattue(Variable):
     value_type = float
-    label = "Assiette CSG - CRDS"
+    label = 'Assiette CSG - CRDS'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683657'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        primes_salaires = individu('primes_salaires', period)
+        '''
+        Assiette CSG - CRDS
+            - 01/07/2022 : Ajout de la PPV à partir du 1er août 2022
+        '''
+        primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+
         salaire_de_base = individu('salaire_de_base', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         # indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
         # TODO: mettre à part ?
         indemnite_residence = individu('indemnite_residence', period)
+        indemnite_compensatrice_csg = individu('indemnite_compensatrice_csg', period)
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         hsup = individu('hsup', period)
         remuneration_principale = individu('remuneration_principale', period)
@@ -36,8 +44,10 @@ class assiette_csg_abattue(Variable):
         return (
             + indemnite_fin_contrat
             + indemnite_residence
+            + indemnite_compensatrice_csg
             + primes_fonction_publique
-            + primes_salaires
+            + primes_salaires_non_exonerees
+            + prime_partage_valeur_exoneree
             + remuneration_principale
             + salaire_de_base
             + stage_gratification_reintegration
@@ -49,20 +59,39 @@ class assiette_csg_abattue(Variable):
 
 class assiette_csg_non_abattue(Variable):
     value_type = float
-    label = "Assiette CSG - CRDS"
+    label = 'Assiette CSG - CRDS'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period)
+    '''
+    L'exclusion des contributions employeur aux contrats de prévoyance obligatoire n'est pas facile à dater, car elle a fait l'objet de différentes
+    jurisprudences de la Cour de cassation, dans un sens comme dans l'autre, et de façon assez ancienne.
+    voir par exemple Cour de Cassation, Chambre civile 2, du 23 novembre 2006, 05-11.364 : normalement, à cette date et par cette jurisprudence, les primes d'assurances
+    prévoyance versées dans le cadre d'une obligation légale et n'acquérant pas de droits complémentaires au salarié sont exonérés de CSG.
+    Cependant on retient la date de 2018, car la lecture de l'article L136-2 du CSS, ainsi que celle du cinquième alinéa de l'article L242-1 du CSS, ne font plus
+    explicitement mention des contrats de prévoyance à cette date.
+    Auparavant, et pour rester cohérent avec certains fichiers de test (notamment tests "fiches de paie"), on continue à inclure la prévoyance obligatoire
+    (en particulier celle des cadres, qui est une obligation légale générale au-delà des conventions collectives) dans l'assiette de CSG.
+    '''
+
+    def formula_2018_01_01(individu, period, parameters):
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
-        prise_en_charge_employeur_prevoyance_complementaire = individu(
-            'prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
+        return (
+            prevoyance_complementaire_employeur
+            - complementaire_sante_employeur
+            )
+
+    def formula(individu, period, parameters):
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
 
         # TODO + indemnites_journalieres_maladie,
         return (
-            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            - prevoyance_obligatoire_cadre
+            + prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             )
 
@@ -70,7 +99,8 @@ class assiette_csg_non_abattue(Variable):
 class csg_deductible_salaire(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = "CSG déductible sur les salaires"
+    label = 'CSG déductible sur les salaires'
+    reference = 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000006173055/#LEGIARTI000042340733'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -84,6 +114,7 @@ class csg_deductible_salaire(Variable):
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
+            abattement_parameter = csg.activite.abattement,
             law_node = csg.activite.deductible,
             plafond_securite_sociale = plafond_securite_sociale,
             )
@@ -93,7 +124,7 @@ class csg_deductible_salaire(Variable):
 class csg_imposable_salaire(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = "CSG imposables sur les salaires"
+    label = 'CSG imposables sur les salaires'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -102,12 +133,13 @@ class csg_imposable_salaire(Variable):
         assiette_csg_abattue = individu('assiette_csg_abattue', period)
         assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        parameters = parameters(period)
+        csg_parameters = parameters(period).prelevements_sociaux.contributions_sociales.csg
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.activite.imposable,
+            abattement_parameter = csg_parameters.activite.abattement,
+            law_node = csg_parameters.activite.imposable,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -117,7 +149,7 @@ class csg_imposable_salaire(Variable):
 class crds_salaire(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = "CRDS sur les salaires"
+    label = 'CRDS sur les salaires'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -130,9 +162,10 @@ class crds_salaire(Variable):
         law = parameters(period)
 
         montant_crds = montant_csg_crds(
-            law_node = law.prelevements_sociaux.contributions_sociales.crds.activite,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
+            abattement_parameter = law.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -142,7 +175,7 @@ class crds_salaire(Variable):
 class forfait_social(Variable):
     value_type = float
     entity = Individu
-    label = "Forfait social"
+    label = 'Forfait social'
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
@@ -153,7 +186,7 @@ class forfait_social(Variable):
 
     def formula_2009_01_01(individu, period, parameters):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
-        parametres = parameters(period).prelevements_sociaux.forfait_social
+        parametres = parameters(period).prelevements_sociaux.contributions_assises_specifiquement_accessoires_salaire.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 
@@ -161,7 +194,7 @@ class forfait_social(Variable):
 
     def formula_2012_08_01(individu, period, parameters):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
-        parametres = parameters(period).prelevements_sociaux.forfait_social
+        parametres = parameters(period).prelevements_sociaux.contributions_assises_specifiquement_accessoires_salaire.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 
@@ -169,13 +202,13 @@ class forfait_social(Variable):
         # ne concernent que les entreprises de 10 ou 11 employés et plus
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
         seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
-        prise_en_charge_employeur_prevoyance_complementaire = individu('prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
         effectif_entreprise = individu('effectif_entreprise', period)
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
         taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
         assiette_taux_reduit = (
-            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            - prevoyance_obligatoire_cadre + prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
 
@@ -183,28 +216,69 @@ class forfait_social(Variable):
             assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
 
+    def formula_2022_07_01(individu, period, parameters):
+        # Seule la PPV pérenne est sousmise au forfait social, et cela intégralement
+        prime_partage_valeur = individu('prime_partage_valeur', period, options=[DIVIDE])
+
+        prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options=[ADD])
+        effectif_entreprise = individu('effectif_entreprise', period)
+        parametres = parameters(period).prelevements_sociaux.contributions_assises_specifiquement_accessoires_salaire.forfait_social
+        taux_plein = parametres.taux_plein
+        # TODO : faire ça propre ! Il faut externaliser le paramètre.
+        prime_partage_valeur_a_integrer = prime_partage_valeur * (
+            effectif_entreprise >= 250
+            )
+        assiette_taux_plein = (
+            prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
+            + prime_partage_valeur_a_integrer
+            )
+
+        # Les cotisations de prévoyance complémentaire qui rentrent en compte dans l'assiette du taux réduit
+        # ne concernent que les entreprises de 10 ou 11 employés et plus
+        # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
+        seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options=[ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
+
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options=[ADD])
+        taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
+
+        assiette_taux_reduit = (
+            - prevoyance_obligatoire_cadre + prevoyance_complementaire_employeur
+            - complementaire_sante_employeur
+            ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
+
+        return -(assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit)
+
 
 class salaire_imposable(Variable):
     value_type = float
     unit = 'currency'
     cerfa_field = {  # (f1aj, f1bj, f1cj, f1dj, f1ej)
-        0: "1AJ",
-        1: "1BJ",
-        2: "1CJ",
-        3: "1DJ",
-        4: "1EJ",
+        0: '1AJ',
+        1: '1BJ',
+        2: '1CJ',
+        3: '1DJ',
+        4: '1EJ',
         }
     entity = Individu
-    label = "Salaires imposables"
+    label = 'Salaires imposables'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683657'
     set_input = set_input_divide_by_period
     definition_period = MONTH
-    set_input = set_input_divide_by_period
 
     def formula(individu, period):
+        '''
+        Salaires imposables
+            - 01/07/2022 : Ajout PPV : prime_partage_valeur
+        '''
         salaire_de_base = individu('salaire_de_base', period)
-        primes_salaires = individu('primes_salaires', period)
+        primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+
         primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
+        indemnite_compensatrice_csg = individu('indemnite_compensatrice_csg', period)
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         csg_deductible_salaire = individu('csg_deductible_salaire', period)
         cotisations_salariales = individu('cotisations_salariales', period)
@@ -213,13 +287,10 @@ class salaire_imposable(Variable):
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
 
-        # Revenu du foyer fiscal projeté sur le demandeur
-        rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
-        rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
         return (
             salaire_de_base
-            + primes_salaires
+            + primes_salaires_non_exonerees
+            + prime_partage_valeur_exoneree
             + remuneration_principale
             + primes_fonction_publique
             + indemnite_residence
@@ -227,9 +298,9 @@ class salaire_imposable(Variable):
             + csg_deductible_salaire
             + cotisations_salariales
             - hsup
-            + rev_microsocial_declarant1
             + indemnite_fin_contrat
             + complementaire_sante_salarie
+            + indemnite_compensatrice_csg
             )
 
 
@@ -251,12 +322,46 @@ class salaire_net(Variable):
 
         return salaire_imposable + crds_salaire + csg_imposable_salaire
 
+    def formula_2019_01_01(individu, period, parameters):
+        '''
+        Calcul du salaire net d'après définition INSEE
+        net = net de csg et crds
+        '''
+        salaire_imposable = individu('salaire_imposable', period)
+        crds_salaire = individu('crds_salaire', period)
+        csg_imposable_salaire = individu('csg_imposable_salaire', period)
+        prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period, options = [DIVIDE])
+        return salaire_imposable + crds_salaire + csg_imposable_salaire + prime_exceptionnelle_pouvoir_achat_exoneree
+
+    def formula_2022_07_01(individu, period, parameters):
+        '''
+        Calcul du salaire net d'après définition INSEE
+        net = net de csg et crds
+        '''
+        salaire_imposable = individu('salaire_imposable', period)
+        crds_salaire = individu('crds_salaire', period)
+        csg_imposable_salaire = individu('csg_imposable_salaire', period)
+        prime_partage_valeur_exoneree_exceptionnelle = individu(
+            'prime_partage_valeur_exoneree_exceptionnelle',
+            period,
+            options=[DIVIDE],
+            )
+        return (
+            salaire_imposable  # La prime pérenne est dans le salaire_imposable
+            + crds_salaire
+            + csg_imposable_salaire
+            + prime_partage_valeur_exoneree_exceptionnelle
+            )
+
 
 class tehr(Variable):
     value_type = float
     entity = Individu
-    label = "Taxe exceptionnelle de solidarité sur les hautes rémunérations versées par les entreprises"
-    reference = "art. 15 de la loi 2013-1278 (https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1AACF2E1F7F065EF9C92B6B91E024EBE.tpdjo02v_1?idArticle=LEGIARTI000028402680&cidTexte=LEGITEXT000028402464&dateTexte=20140113)"
+    label = 'Taxe exceptionnelle sur les hautes rémunérations (TEHR)'
+    reference = [
+        'Article 15 de la loi 2013-1278',
+        'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028402680/'
+        ]
     calculate_output = calculate_output_divide
     definition_period = YEAR
     end = '2015-01-01'
@@ -269,31 +374,12 @@ class tehr(Variable):
 
 # Non salariés
 
-class rev_microsocial(Variable):
-    """Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)"""
-    value_type = float
-    entity = FoyerFiscal
-    label = "Revenu net des cotisations sociales pour le régime microsocial"
-    reference = "http://www.apce.com/pid6137/regime-micro-social.html"
-    definition_period = YEAR
-
-    def formula_2009_01_01(foyer_fiscal, period, parameters):
-        assiette_service = foyer_fiscal('assiette_service', period)
-        assiette_vente = foyer_fiscal('assiette_vente', period)
-        assiette_proflib = foyer_fiscal('assiette_proflib', period)
-        _P = parameters(period)
-
-        P = _P.cotsoc.sal.microsocial
-        total = assiette_service + assiette_vente + assiette_proflib
-        prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
-        return total - prelsoc_ms
-
 
 class assiette_csg_crds_non_salarie(Variable):
-    """Assiette CSG des personnes non salariées"""
+    '''Assiette CSG des personnes non salariées'''
     value_type = float
     entity = Individu
-    label = "Assiette CSG des personnes non salariées"
+    label = 'Assiette CSG des personnes non salariées'
     definition_period = YEAR
 
     def formula(individu, period):
@@ -329,26 +415,54 @@ class assiette_csg_crds_non_salarie(Variable):
         return assiette_cotisation
 
 
-class csg_non_salarie(Variable):
+class csg_imposable_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Assiette CSG des personnes non salariées"
+    label = 'Assiette CSG des personnes non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
         csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = csg.deductible.taux + csg.imposable.taux
+        taux = csg.imposable.taux
+        return - taux * assiette_csg_crds_non_salarie
+
+
+class csg_deductible_non_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Assiette CSG des personnes non salariées'
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
+        csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
+        taux = csg.deductible.taux
         return - taux * assiette_csg_crds_non_salarie
 
 
 class crds_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Assiette CSG des personnes non salariées"
+    label = 'Assiette CSG des personnes non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
-        taux = parameters(period).prelevements_sociaux.contributions_sociales.crds.activite.taux
+        taux = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
         return - taux * assiette_csg_crds_non_salarie
+
+
+class revenus_non_salarie_nets(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus du travail non salariaux nets'
+    definition_period = YEAR
+
+    def formula(individu, period):
+        rpns_imposables = individu('rpns_imposables', period)
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period)
+        crds_non_salarie = individu('crds_non_salarie', period)
+        microentreprise_i = individu.foyer_fiscal('microentreprise', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        microentreprise = sum(microentreprise_i)
+        return rpns_imposables + csg_imposable_non_salarie + crds_non_salarie + microentreprise

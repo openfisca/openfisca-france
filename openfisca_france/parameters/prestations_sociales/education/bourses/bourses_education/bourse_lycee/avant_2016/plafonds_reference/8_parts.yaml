@@ -1,0 +1,6 @@
+description: Plafond de référence pour 8 parts
+values:
+  2014-01-01:
+    value: 7753
+metadata:
+  unit: currency

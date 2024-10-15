@@ -1,0 +1,12 @@
+description: Imposition des plus-values
+metadata:
+  documentation_start: true
+  label_en: Taxation of capital gains
+  order:
+  - pv_cession_valeurs_mobilieres_pv_professionnelles
+  - pv_mobilieres_levees_options_attribuees_2000_2012
+  - actions_gratuites
+  - pea
+  - bspce
+  - actifs_numeriques
+  - abattement_option

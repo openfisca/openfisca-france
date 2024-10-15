@@ -1,0 +1,26 @@
+description: Majoration forfaitaire du Forfait mobilier de l'impôt sur la fortune immobilière
+values:
+  2018-01-01:
+    value: 0.05
+metadata:
+  short_label: Majoration forfaitaire
+  last_value_still_valid_on: "2022-05-12"
+  label_en: Furniture package
+  ipp_csv_id: tx_majo_ifi
+  unit: /1
+  reference:
+    2018-01-01:
+    - title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 973 du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
+    - title: Article 973 1. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037988627
+    - title: Article 764 3. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006310333
+  official_journal_date:
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
+documentation: |-
+  Le contribuable peut opter pour le forfait des 5% de l'actif brut déclaré à l'IFI afin d'évaluer la valeur de ses meubles meublants.
+  Référence dans les codes législatifs : L'article 973 du CGI précise que "la valeur des biens est déterminée suivant les règles en vigueur en matière de droits de mutation par décès". Il faut donc se référer à l'article 764 I-3° du CGI qui codifie les règles d'évaluation des biens mobiliers dans le cadre des DMTG : "pour les meubles meublants, et sans que l'administration ait à en justifier l'existence, la valeur imposable ne peut être inférieure à 5 % de l'ensemble des autres valeurs mobilières et immobilières de la succession, la preuve contraire étant aussi réservée."

@@ -1,0 +1,12 @@
+description: Majoration régionale TICPE gazole en Pays de la Loire
+values:
+  2007-01-01:
+    value: 0.71
+  2008-01-01:
+    value: 1.15
+  2011-01-01:
+    value: 2.5
+metadata:
+  short_label: Pays de la Loire
+  ipp_csv_id: maj_ticpe_die_p_loi
+  unit: currency

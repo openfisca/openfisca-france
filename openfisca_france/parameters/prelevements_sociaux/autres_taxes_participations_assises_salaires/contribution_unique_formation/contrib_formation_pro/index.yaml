@@ -1,0 +1,7 @@
+description: Contribution à la formation professionnelle de la CUFPA
+metadata:
+  short_label: Contribution formation professionnelle (CUFPA)
+  label_en: Unique employer's participation to lifelong professional training and apprenticeship
+  order:
+  - moins_11_salaries
+  - onze_et_plus_salaries

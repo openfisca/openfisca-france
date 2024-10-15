@@ -1,0 +1,6 @@
+description: Pensions des cotisations salarié de retraite spécifiques à la fonction publique
+metadata:
+  short_label: Salarié
+  label_en: Contributions for pensions - central government
+  order:
+  - pension

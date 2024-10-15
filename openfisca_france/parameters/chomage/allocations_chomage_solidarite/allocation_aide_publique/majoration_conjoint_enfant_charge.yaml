@@ -1,0 +1,59 @@
+description: Majoration (pour conjoint ou enfant à charge) de l'allocation d'aide publique
+values:
+  1967-10-01:
+    value: 2.5
+  1968-09-30:
+    value: 2.85
+  1970-07-06:
+    value: 3.05
+  1972-01-31:
+    value: 3.3
+  1973-01-29:
+    value: 3.6
+  1974-01-14:
+    value: 4
+  1975-01-13:
+    value: 4.8
+  1976-02-23:
+    value: 5.4
+  1977-04-04:
+    value: 6
+  1978-02-20:
+    value: 6.6
+metadata:
+  short_label: Majoration
+  label_en: Public aid allowance
+  ipp_csv_id: aide_pu_maj
+  unit: currency
+  reference:
+    1967-10-01:
+      title: Décret 67-667 du 04/08/1967
+    1968-09-30:
+      title: Décret 68-846 du 28/09/1968
+    1970-07-06:
+      title: Décret 70-577 du 03/07/1970
+    1972-01-31:
+      title: Décret 72-94 du 31/01/1972
+    1973-01-29:
+      title: Décret 73-107 du 02/02/1973
+    1974-01-14:
+      title: Décret 74-55 du 25/01/1974
+    1975-01-13:
+      title: Décret 75-10 du 7/01/1975
+    1976-02-23:
+      title: Décret 76-229 du 09/03/1976
+    1977-04-04:
+      title: Décret 77-314 du 28/03/1977
+    1978-02-20:
+      title: Décret 78-196 du 24/02/1978
+  official_journal_date:
+    1967-10-01: "1967-08-08"
+    1968-09-30: "1968-09-29"
+    1970-07-06: "1970-07-05"
+    1972-01-31: "1972-02-02"
+    1973-01-29: "1973-02-04"
+    1974-01-14: "1974-01-26"
+    1975-01-13: "1975-01-08"
+    1976-02-23: "1976-03-10"
+    1977-04-04: "1977-03-30"
+    1978-02-20: "1978-02-26"

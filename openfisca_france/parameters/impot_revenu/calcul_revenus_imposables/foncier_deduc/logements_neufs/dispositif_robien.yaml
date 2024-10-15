@@ -1,0 +1,31 @@
+description: Pour les logements sous dispositif Robien
+values:
+  1984-01-01:
+    value: null
+  2003-01-01:
+    value: 0.06
+  2006-01-01:
+    value: null
+metadata:
+  ipp_csv_id: deduc_foncier_robien
+  unit: /1
+  reference:
+    1984-01-01:
+      title: Loi n° 84-1208 du 29 décembre 1984 (LF pour 1985), art. 82
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000880778&idArticle=LEGIARTI000006274284&dateTexte=19861231&categorieLien=id#LEGIARTI000006274284
+    2003-01-01:
+      title: Loi n° 2003-590 du 2 juillet 2003 urbanisme et habitat, art. 91
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006826490&cidTexte=LEGITEXT000005634649&dateTexte=20031230
+    2006-01-01:
+      title: Loi n° 2006-872 du 13 juillet 2006, art. 39, 40 et 46
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000238980#LEGIARTI000006826032
+  official_journal_date:
+    1984-01-01: "1984-12-30"
+    2003-01-01: "2003-07-03"
+    2006-01-01: "2006-07-16"
+  notes:
+    2003-01-01:
+    - title: La déduction sous le dispositif Besson ancien est de 40% jusqu'en 2006
+    2006-01-01:
+    - title: Pour les baux déjà souscrits au dispositif Besson, la déduction est de 26% alors qu'elle est supprimée en droit commun
+documentation: "Dispositif Robien: Les logements éligibles au dispositif Robien \"classique\" sont ceux ayant été achetés neufs ou réhabilités entre le 03 avril 2003 et le 31 août 2006, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 9 ans, avec des plafonnements de loyer en fonction de la zone géographique et de la superficie du bien."

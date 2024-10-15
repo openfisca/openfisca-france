@@ -1,0 +1,6 @@
+description: Cotisations employeur du Fonds de compensation de la cessation progressive d'activité (FCCPA) à la Caisse nationale de retraite des agents des collectivités locales (CNRACL)
+metadata:
+  short_label: FCCPA
+  label_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
+  order:
+  - fcppa

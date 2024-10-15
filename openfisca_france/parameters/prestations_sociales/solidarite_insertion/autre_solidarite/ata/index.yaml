@@ -1,0 +1,10 @@
+description: Allocation temporaire d'attente (ATA)
+metadata:
+  short_label: ATA
+  label_en: Temporary waiting allowance (ATA)
+  order:
+  - montant_journalier
+documentation: |-
+  Loi 2005-1719 du 30/12/2005, art. 154
+  2005-12-31
+  Création de l'allocation temporaire d'attente: remplace l'allocation d'insertion (AI).

@@ -1,0 +1,405 @@
+- name: ci_investissement_forestier
+  period: 2014
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 20000
+      f7ut: 2000
+      f7ua: 15000
+      f7ub: 30000
+      f7uq: 25000
+      f7ui: 15000
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 2063
+    iai: 7861.0
+    impot_revenu_restant_a_payer: -5798.0
+    nbptr: 1.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: ci_investissement_forestier
+  period: 2015
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 2000
+      f7ut: 2000
+      f7ua: 15000
+      f7ub: 3000
+      f7uq: 25000
+      f7ui: 1500
+      f7ux: 10000
+      f7tj: 1000
+      f7vp: 5000
+      f7tk: 2000
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 2028
+    iai: 7855.0
+    impot_revenu_restant_a_payer: -5827.0
+    nbptr: 1.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: ci_investissement_forestier
+  period: 2016
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200
+      f7ut: 200
+      f7ua: 1500
+      f7ub: 300
+      f7uq: 2500
+      f7ui: 150
+      f7ux_2018: 1000
+      f7tj: 100
+      f7vp: 500
+      f7tk: 200
+      f7vm: 300
+      f7tm: 200
+      f7vn: 150
+      f7to: 300
+      f7tg: 100
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 1468
+    reductions: 22
+    iai: 7828.0
+    impot_revenu_restant_a_payer: -6360.0
+    nbptr: 1.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: ci_investissement_forestier
+  period: 2017
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200
+      f7ut: 200
+      f7ua: 1500
+      f7ub: 300
+      f7uq: 2500
+      f7ui: 150
+      f7ux_2018: 1000
+      f7tj: 100
+      f7vp: 500
+      f7tk: 200
+      f7vm: 300
+      f7tm: 200
+      f7vn: 150
+      f7to: 300
+      f7uu_2017: 100
+      f7vq: 200
+      f7tp: 400
+      f7vr: 100
+      f7tq: 250
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 1664
+    reductions: 18
+    iai: 7775.0
+    impot_revenu_restant_a_payer: -6111.0
+    nbptr: 1.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: ci_investissement_forestier
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200
+      f7ut: 200
+      f7ua: 1500
+      f7ub: 300
+      f7uq: 2500
+      f7ui: 150
+      f7tj: 100
+      f7tk: 600
+      f7vm: 300
+      f7tm: 200
+      f7vn: 150
+      f7to: 300
+      f7vq: 200
+      f7tp: 400
+      f7vr: 100
+      f7tq: 250
+      f7vs: 300
+      f7tr: 430
+      f7vl: 520
+      f7ts: 200
+      f7vj: 100
+      f7tt: 150
+      f7vk: 50
+      f7tu: 200
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 1787
+    iai: 7644.0
+    impot_revenu_restant_a_payer: -5857.0
+    nbptr: 1.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: ci_investissement_forestier
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200
+      f7ut: 200
+      f7ua: 1500
+      f7ub: 300
+      f7uq: 2500
+      f7ui: 150
+      f7tj: 100
+      f7tk: 100
+      f7vm: 300
+      f7tm: 200
+      f7vn: 100  #
+      f7to: 300
+      f7vq: 200
+      f7tp: 100
+      f7vr: 100
+      f7tq: 250
+      f7vs: 200
+      f7tr: 130
+      f7vl: 220
+      f7ts: 200
+      f7vj: 100
+      f7tt: 150
+      f7vk: 50
+      f7tu: 200
+      f7vh: 140
+      f7tv: 400
+      f7vi: 200
+      f7tw: 300
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 1682
+    iai: 7506.0
+    impot_revenu_restant_a_payer: -5824.0
+    nbptr: 1.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: ci_investissement_forestier
+  period: 2021
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200
+      f7ut: 200
+      f7ua: 1500
+      f7ub: 300
+      f7uq: 2500
+      f7ui: 150
+      f7tj: 100
+      f7tk: 100
+      f7tm: 200
+      f7to: 300
+      f7tp: 100
+      f7tq: 250
+      f7vs: 200
+      f7tr: 130
+      f7vl: 220
+      f7ts: 200
+      f7vj: 100
+      f7tt: 150
+      f7vk: 50
+      f7tu: 200
+      f7vh: 140
+      f7tv: 400
+      f7vi: 200
+      f7tw: 300
+      f7vm: 75
+      f7ta: 300
+      f7vn: 150
+      f7tb: 200
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 1773
+    iai: 7422.0
+    impot_revenu_restant_a_payer: -5649.0
+    nbptr: 1.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0

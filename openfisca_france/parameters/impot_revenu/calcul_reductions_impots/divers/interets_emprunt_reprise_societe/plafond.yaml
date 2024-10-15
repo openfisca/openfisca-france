@@ -1,0 +1,15 @@
+description: Plafond (personne seule) de la réduction d'impôts sur les intérêts d'emprunt pour reprise de société
+values:
+  1977-01-01:
+    value: null
+  2004-01-01:
+    value: 10000
+  2008-01-01:
+    value: 20000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_repsoc
+  unit: currency_next_year
+documentation: |-
+  Intérêts d'emprunts pour reprise de société : plafond à doubler pour un couple
+  Art. 199 terdecies-0 B du CGI. Loi 2003-721 du 1 août 2003 - art. 42 JORF 5 août 2003

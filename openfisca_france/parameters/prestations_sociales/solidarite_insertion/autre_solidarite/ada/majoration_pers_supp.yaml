@@ -1,0 +1,15 @@
+description: Majoration par personne supplémentaire (maximum 10 par famille) de l'allocation pour demandeur d'asile (ADA)
+values:
+  2015-11-01:
+    value: 3.4
+metadata:
+  short_label: Majoration pers. supp.
+  last_value_still_valid_on: "2022-01-10"
+  label_en: "Asylum-seeker allowance (ADA): Amounts"
+  unit: currency
+  reference:
+    2015-11-01:
+      title: Décret 2015-1329 du 21/10/2015, art. 2
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031355378/2022-01-10/
+  official_journal_date:
+    2015-11-01: "2015-10-23"

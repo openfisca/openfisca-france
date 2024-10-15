@@ -1,0 +1,9 @@
+description: Plafonds de loyers par zone géographique pris en compte dans le calcul des allocations logement (AL) après la réforme de 2001
+metadata:
+  short_label: Plafonds de loyers pris en compte dans le calcul de l'aide, selon la zone géographique
+  label_en: Parameters for the rental sector (after the 2001 reform)
+  order:
+  - zone_1
+  - zone_2
+  - zone_3
+documentation: Ce montant correspond au montant max du L de la formule mentionnée à l'article D823-6 du Code de la construction et de l'habitation https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878905/2022-03-30. Pour connaître la zone géographique d'une commune, il est possible d'utiliser ce simulateur de la DILA https://www.service-public.fr/simulateur/calcul/zones

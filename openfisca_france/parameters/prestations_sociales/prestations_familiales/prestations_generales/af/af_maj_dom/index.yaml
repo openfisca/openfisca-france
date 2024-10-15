@@ -1,0 +1,14 @@
+description: Conditions spécifiques pour les DOM des allocations familiales (AF)
+metadata:
+  documentation_start: true
+  short_label: Conditions spécifiques DOM
+  label_en: "Family allowances (AF): Extra allowances for oversea territories"
+  order:
+  - allocations_familiales_un_enfant
+  - tranches_age
+  - majoration_premier_enfant
+  - majoration_2e_enfant
+  - nb_min_enfant_avoir_droit_maj_forfaitaire_plus_20_ans
+  - duree_majoration_plus_de_20_ans
+  - nb_enfant_pour_aine_donne_droit_majoration
+documentation: A partir du 01/01/1993, les taux et majorations à partir du 2ème enfant sont les mêmes qu'en métropôle (cf article D. 521-1)

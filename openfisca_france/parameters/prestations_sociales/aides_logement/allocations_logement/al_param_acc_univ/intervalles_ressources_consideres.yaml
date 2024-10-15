@@ -1,0 +1,45 @@
+description: Intervalles de ressources considérés, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire
+values:
+  1972-07-01:
+    value: null
+  1997-02-01:
+    value: 500
+  2001-07-01:
+    value: 76.22
+  2002-07-01:
+    value: 100
+metadata:
+  short_label: Intervalles de ressources considérés
+  label_en: Parameters for new home-buyers and students residences
+  ipp_csv_id: interv_ress
+  unit: currency
+  reference:
+    1972-07-01:
+      title: Décret 72-533 du 29/06/1972
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000499900
+    1988-05-07:
+      title: Décret 88-569 du 04/05/1988 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000504346
+    1997-02-01:
+      title: Décret 97-84 du 30/01/1997, art. 1 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771659&cidTexte=JORFTEXT000000746813
+    2001-07-01:
+      title: Décret 2001-698 du 31/07/2001, art. 1 et 4 (modif art. D542-5 du CSS)
+    2002-07-01:
+      title: Décret 2002-1485 du 20/12/2002, art. 2 (modif art. D542-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006215745&cidTexte=JORFTEXT000000235054
+  official_journal_date:
+    1972-07-01: "1972-06-30"
+    1988-05-07: "1988-05-07"
+    1997-02-01: "1997-01-31"
+    2001-07-01: "2001-08-02"
+    2002-07-01: "2002-12-22"
+  notes:
+    1997-02-01:
+    - title: On procède au calcul en considérant des intervalles de ressources de 500F. Donc, R n'est plus égal aux ressources mais à la limite supérieure de l'intervalle dans lequel les ressources se situent.
+    2001-07-01:
+    - title: "Ici, la revalorisation des barèmes entre en vigueur le 01/07/2001. Donc, du 01/07 au 31/12/2001 : ces montants sont en francs"
+documentation: |-
+  Notes :
+  Allocation logement créée en 1948 par la loi 48-1360 du 1er septembre 1948 (parution au JO 2/09/1948) - Titre II
+  (Lien légifrance)

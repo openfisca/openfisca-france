@@ -1,0 +1,536 @@
+description: Plafond annuel des ressources personnelles du conjoint pour bénéficier de la majoration de personne à charge
+values:
+  1948-10-01:
+    value: 58000
+  1949-04-01:
+    value: 80500
+  1950-01-01:
+    value: 121500
+  1951-01-01:
+    value: 154000
+  1951-10-01:
+    value: 158100
+  1954-01-01:
+    value: 161100
+  1956-01-01:
+    value: 164810
+  1960-01-01:
+    value: 1648.1
+  1962-04-01:
+    value: 1700
+  1963-07-01:
+    value: 2200
+  1966-01-01:
+    value: 2250
+  1967-01-01:
+    value: 2300
+  1968-01-01:
+    value: 2350
+  1968-02-01:
+    value: 2450
+  1969-01-01:
+    value: 2550
+  1970-01-01:
+    value: 2750
+  1971-01-01:
+    value: 3000
+  1971-10-01:
+    value: 3050
+  1972-01-01:
+    value: 3300
+  1972-10-01:
+    value: 3900
+  1973-07-01:
+    value: 3850
+  1974-01-01:
+    value: 3950
+  1974-07-01:
+    value: 4200
+  1975-01-01:
+    value: 4450
+  1975-04-01:
+    value: 4700
+  1976-01-01:
+    value: 5200
+  1976-07-01:
+    value: 5400
+  1977-01-01:
+    value: 5900
+  1977-07-01:
+    value: 6900
+  1977-12-01:
+    value: 7900
+  1978-07-01:
+    value: 8900
+  1979-01-01:
+    value: 9800
+  1979-07-01:
+    value: 10700
+  1979-12-01:
+    value: 11500
+  1980-06-01:
+    value: 12500
+  1981-01-01:
+    value: 13900
+  1981-07-01:
+    value: 17300
+  1982-01-01:
+    value: 20900
+  1982-07-01:
+    value: 22400
+  1983-01-01:
+    value: 23400
+  1983-07-01:
+    value: 24460
+  1984-01-01:
+    value: 24950
+  1984-07-01:
+    value: 25560
+  1985-01-01:
+    value: 26540
+  1985-07-01:
+    value: 27370
+  1986-01-01:
+    value: 27770
+  1986-10-01:
+    value: 27930
+  1987-01-01:
+    value: 28490
+  1987-07-01:
+    value: 28800
+  1988-01-01:
+    value: 29630
+  1988-07-01:
+    value: 30050
+  1989-01-01:
+    value: 30480
+  1989-07-01:
+    value: 30890
+  1990-01-01:
+    value: 31620
+  1990-07-01:
+    value: 32070
+  1991-01-01:
+    value: 32670
+  1991-07-01:
+    value: 32955
+  1992-01-01:
+    value: 33320
+  1992-07-01:
+    value: 33980
+  1993-01-01:
+    value: 34480
+  1994-01-01:
+    value: 35250
+  1995-01-01:
+    value: 35721
+  1995-07-01:
+    value: 36834
+  1996-01-01:
+    value: 37692
+  1997-01-01:
+    value: 38193
+  1998-01-01:
+    value: 38658
+  1999-01-01:
+    value: 39512
+  2000-01-01:
+    value: 39947
+  2001-01-01:
+    value: 40914
+  2002-01-01:
+    value: 6387.94
+  2003-01-01:
+    value: 6492.91
+  2004-01-01:
+    value: 6613.65
+  2005-01-01:
+    value: 6758.11
+  2006-01-01:
+    value: 6890.73
+  2007-01-01:
+    value: 7025.73
+  2008-01-01:
+    value: 7109.72
+  2008-09-01:
+    value: 7171.47
+  2009-04-01:
+    value: 7699.47
+  2010-04-01:
+    value: 7897.69
+  2011-04-01:
+    value: 8297.54
+  2012-04-01:
+    value: 8716.18
+  2013-04-01:
+    value: 8837.41
+  2014-10-01:
+    value: 8990.2
+  2016-04-01:
+    value: 8999.8
+  2017-04-01:
+    value: 9028.62
+  2018-04-01:
+    value: 9388.6
+  2019-01-01:
+    value: 9808.6
+  2020-01-01:
+    value: 10228.6
+  2021-01-01:
+    value: 10271.95
+  2022-01-01:
+    value: 10391.64
+metadata:
+  short_label: Plafond conjoint
+  last_value_still_valid_on: "2021-01-01"
+  label_en: Additive allowance for spouse care (income threashold)
+  ipp_csv_id: plaf_maj_avts_conj
+  unit: currency
+  reference:
+    1948-10-01:
+      title: Loi 49-244 du 24/02/1949
+    1949-04-01:
+      title: Loi 49-922 du 13/07/1949
+    1950-01-01:
+      title: Loi 50-147 du 03/02/1950
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878353
+    1951-01-01:
+      title: Loi 51-374 du 27/03/1951
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336226
+    1951-10-01:
+      title: Loi 15-1126 du 26/09/1951
+    1954-01-01:
+      title: Loi 54-301 du 20/03/1954
+    1956-01-01:
+      title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
+    1960-01-01:
+      title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
+    1962-04-01:
+      title: Décret 62-440 du 14/04/1962
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000674259
+    1963-07-01:
+      title: Décret 63-921 du 06/09/1963
+    1964-11-01:
+      title: Décret 65-12 du 18/01/1965
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000494137
+    1965-07-01:
+      title: Décret 65-12 du 18/01/1965
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000494137
+    1966-01-01:
+      title: Décret 65-1153 du 24/12/1965
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000851178
+    1967-01-01:
+      title: Décret 67-35 du 11/01/1967
+    1968-01-01:
+      title: Décret 67-1168 du 22/12/1967
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000499371
+    1968-02-01:
+      title: Décret 68-101 du 31/01/1968
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000511365
+    1969-01-01:
+      title: Décret 69-60 du 20/01/1969
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000334294
+    1970-01-01:
+      title: Décret 69-879 du 26/09/1969
+    1971-01-01:
+      title: Décret 70-1004 du 30/10/1970
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000674361
+    1971-10-01:
+      title: Décret 71-705 du 27/08/1971
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000305823
+    1972-01-01:
+      title: Décret 71-1106 du 30/12/1971
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880824
+    1972-10-01:
+      title: Décret 72-929 du 11/10/1972
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000506112
+    1973-07-01:
+      title: Décret 73-691 du 18/07/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000500400
+    1974-01-01:
+      title: Décret 74-1137 du 21/12/1973
+    1974-07-01:
+      title: Décret 74-611 du 27/06/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000694472
+    1975-01-01:
+      title: Décret 74-1126 du 26/12/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000304597
+    1975-04-01:
+      title: Décret 75-209 du 28/03/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000337391
+    1976-01-01:
+      title: Décret 75-1341 du 31/12/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000858480
+    1976-07-01:
+      title: Décret 76-559 du 25/06/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000856065
+    1977-01-01:
+      title: Décret 76-1242 du 29/12/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000307560
+    1977-07-01:
+      title: Décret 77-615 du 15/06/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000863650
+    1977-12-01:
+      title: Décret 77-1291 du 24/11/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000519046
+    1978-07-01:
+      title: Décret 78-719 du 10/07/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000696393
+    1979-01-01:
+      title: Décret 78-1241 du 29/12/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000329015&
+    1979-07-01:
+      title: Décret 79-567 du 03/07/1979
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000696406
+    1979-12-01:
+      title: Décret 79-1057 du 07/12/1979
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000501022
+    1980-06-01:
+      title: Décret 80-499 du 01/07/1980
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000338397
+    1981-01-01:
+      title: Décret 80-1159 du 31/12/1980
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517402
+    1981-07-01:
+      title: Décret 81-681 du 30/06/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000884504
+    1982-01-01:
+      title: Décret 81-1166 du 30/12/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000308868
+    1982-07-01:
+      title: Décret 82-561 du 29/06/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336522&categorieLien=id
+    1983-01-01:
+      title: Décret 82-1142 du 29/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000334845&categorieLien=id
+    1983-07-01:
+      title: Décret 83-551 du 30/06/1983
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000503753
+    1984-01-01:
+      title: Décret 84-92 du 08/02/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000324733
+    1984-07-01:
+      title: Décret 84-643 du 17/07/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516025&categorieLien=id
+    1985-01-01:
+      title: Décret 84-1288 du 31/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000519701&categorieLien=id
+    1985-07-01:
+      title: Décret 85-784 du 24/07/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886987&categorieLien=id
+    1986-01-01:
+      title: Décret 85-1490 du 31/12/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000884659&categorieLien=id
+    1986-10-01:
+      title: Décret 86-1101 du 09/10/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000312603
+    1987-01-01:
+      title: Décret 87-77 du 06/02/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000501407
+    1987-07-01:
+      title: Décret 87-77 du 06/02/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000501407
+    1988-01-01:
+      title: Décret 87-1176 du 24/12/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885207&categorieLien=id
+    1988-07-01:
+      title: Décret 87-1176 du 24/12/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885207&categorieLien=id
+    1989-01-01:
+      title: Décret 88-1238 du 30/12/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684192
+    1989-07-01:
+      title: Décret 88-1238 du 30/12/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684192
+    1990-01-01:
+      title: Décret 90-265 du 23/03/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000531673&categorieLien=id
+    1990-07-01:
+      title: Décret 90-265 du 23/03/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000531673&categorieLien=id
+    1991-01-01:
+      title: Décret 90-1241 du 31/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000717678&categorieLien=id
+    1991-07-01:
+      title: Décret 91-751 du 31/07/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000866713&categorieLien=id
+    1992-01-01:
+      title: Décret 92-50 du 16/01/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000527208&categorieLien=id
+    1992-07-01:
+      title: Décret 92-50 du 16/01/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000527208&categorieLien=id
+    1993-01-01:
+      title: Décret 93-202 du 11/02/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178653
+    1994-01-01:
+      title: Décret 93-1357 du 30/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699751
+    1995-01-01:
+      title: Décret 95-254 du 06/03/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000735212
+    1995-07-01:
+      title: Décret 95-864 du 31/07/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000371148&categorieLien=id
+    1996-01-01:
+      title: Décret 96-86 du 02/02/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000171665
+    1997-01-01:
+      title: Décret 96-1185 du 30/12/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000747564
+    1998-01-01:
+      title: Décret 97-1246 du 29/12/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000753404&categorieLien=id
+    1999-01-01:
+      title: Décret 98-1224 du 29/12/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000574503&categorieLien=id
+    2000-01-01:
+      title: Décret 99-1146 du 29/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000214051&categorieLien=id
+    2001-01-01:
+      title: Décret 2000-1324 du 26/12/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000402877&categorieLien=id
+    2002-01-01:
+      title: Décret 2002-115 du 25/01/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/1/25/2002-115/jo/texte
+    2003-01-01:
+      title: Décret 2002-1619 du 31/12/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/12/31/2002-1619/jo/texte
+    2004-01-01:
+      title: Arrêté du 23/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000611637
+    2005-01-01:
+      title: Arrêté du 16/12/2004
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000005945891&dateTexte=20181021
+    2006-01-01:
+      title: Arrêté du 23/12/2005
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000456325&categorieLien=id
+    2007-01-01:
+      title: Arrêté du 19/12/2006
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000820419&categorieLien=id
+    2008-01-01:
+      title: Arrêté du 21/12/2007
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017755627&categorieLien=id
+    2008-09-01:
+      title: Lettre ministérielle du 31/07/2008
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=LE_MIN_31072008
+    2009-04-01:
+      title: Lettre ministérielle du 25/03/2009
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2009031_16042009
+    2010-04-01:
+      title: Circulaire CNAV 2010/43 du 23/04/2010
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2010043_23042010
+    2011-04-01:
+      title: Circulaire CNAV 2011/30 du 14/04/2011
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2011030_14042011
+    2012-04-01:
+      title: Circulaire CNAV 2012/35 du 17/04/2012
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2012_35_17042012
+    2013-04-01:
+      title: Circulaire CNAV 2013/29 du 18/04/2013
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2013_29_18042013
+    2014-10-01:
+      title: Circulaire CNAV 2014/58 du 25/11/2014
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2014_58_25112014.pdf
+    2016-04-01:
+      title: Circulaire CNAV 2016/21 du 04/04/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_21_04042016.pdf
+    2017-04-01:
+      title: Circulaire CNAV 2017/13 du 04/04/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
+    2018-04-01:
+      title: Circulaire CNAV 2018/10 du 05/04/2018
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2018_10_05042018.pdf
+    2019-01-01:
+      title: Circulaire CNAV 2019/4 du 09/01/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_04_09012019.pdf
+    2020-01-01:
+      title: Circulaire CNAV 2020/9 du 04/02/2020
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2020_09_04022020.pdf
+    2021-01-01:
+      title: Circulaire CNAV 2021/1 du 11/01/2021
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_01_11012021.pdf
+    2022-01-01:
+      title: Circulaire CNAV 2022/3 du 11/01/2023, page 9
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_03_11012022.pdf
+  official_journal_date:
+    1948-10-01: "1949-02-25"
+    1949-04-01: "1949-07-14"
+    1950-01-01: "1950-02-04"
+    1951-01-01: "1951-03-29"
+    1951-10-01: "1951-09-27"
+    1954-01-01: "1954-03-21"
+    1956-01-01: "1956-03-31"
+    1960-01-01: "1956-03-31"
+    1962-04-01: "1962-04-15"
+    1963-07-01: "1963-09-08"
+    1966-01-01: "1965-12-30"
+    1967-01-01: "1967-01-12"
+    1968-01-01: "1967-12-28"
+    1968-02-01: "1968-02-01"
+    1969-01-01: "1969-01-21"
+    1970-01-01: "1979-09-27"
+    1971-01-01: "1970-11-01"
+    1971-10-01: "1971-08-29"
+    1972-01-01: "1971-12-31"
+    1972-10-01: "1972-10-12"
+    1973-07-01: "1973-07-19"
+    1974-01-01: "1973-12-23"
+    1974-07-01: "1974-06-28"
+    1975-01-01: "1974-12-29"
+    1975-04-01: "1975-04-02"
+    1976-01-01: "1976-01-03"
+    1977-01-01: "1977-06-16"
+    1978-07-01: "1978-11-07"
+    1979-01-01: "1978-12-30"
+    1979-07-01: "1979-07-07"
+    1979-12-01: "1979-12-08"
+    1980-06-01: "1980-07-03"
+    1981-01-01: "1981-01-10"
+    1981-07-01: "1981-07-01"
+    1982-01-01: "1981-12-31"
+    1982-07-01: "1982-07-02"
+    1983-01-01: "1982-12-30"
+    1983-07-01: "1983-07-01"
+    1984-01-01: "1984-02-10"
+    1984-07-01: "1984-07-17"
+    1985-01-01: "1984-12-31"
+    1985-07-01: "1985-07-24"
+    1986-01-01: "1985-12-31"
+    1986-10-01: "1986-10-11"
+    1987-01-01: "1987-02-08"
+    1987-07-01: "1987-02-08"
+    1988-01-01: "1988-01-09"
+    1988-07-01: "1988-01-09"
+    1989-01-01: "1988-12-31"
+    1989-07-01: "1988-12-31"
+    1990-01-01: "1990-03-25"
+    1990-07-01: "1990-03-25"
+    1991-01-01: "1991-01-01"
+    1991-07-01: "1991-08-02"
+    1992-01-01: "1992-01-17"
+    1992-07-01: "1992-01-17"
+    1993-01-01: "1993-02-13"
+    1994-01-01: "1993-12-31"
+    1995-01-01: "1995-03-09"
+    1995-07-01: "1995-08-01"
+    1996-01-01: "1996-02-04"
+    1997-01-01: "1996-12-31"
+    1998-01-01: "1997-12-30"
+    1999-01-01: "1998-12-30"
+    2000-01-01: "1999-12-30"
+    2001-01-01: "2000-12-30"
+    2002-01-01: "2002-01-29"
+    2003-01-01: "2003-01-01"
+    2004-01-01: "2003-12-30"
+    2005-01-01: "2004-12-24"
+    2006-01-01: "2005-12-31"
+    2007-01-01: "2006-12-19"
+    2008-01-01: "2007-12-28"
+  notes:
+    1960-01-01:
+    - title: Passage aux nouveaux francs.
+    2016-04-01:
+    - title: La majoration pour conjoint à charge n'est plus attribuée depuis le 01/01/2011. Elle continue à être servie tant que le conjoint à charge remplit les conditions de ressources (Loi 2010-1330 du 09/11/2010, art. 51).

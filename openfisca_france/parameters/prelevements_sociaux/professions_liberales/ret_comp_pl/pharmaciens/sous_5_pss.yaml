@@ -1,0 +1,17 @@
+description: Régime supplémentaire pour les biologistes médicaux conventionnés uniquement (ASV) de la cotisation de sécurité sociale (SS) sous 5 PSS des pharmaciens pour la retraite complémentaire
+values:
+  2008-01-01:
+    value: 0.003
+metadata:
+  short_label: Biologistes médicaux conventionnés
+  label_en: Contribution for complementary pension scheme (professionals)
+  ipp_csv_id: asv_bio_0_5
+  unit: /1
+  reference:
+    2008-01-01:
+    - title: Décret 2007-597 du 24/04/2007
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000649843
+    - title: Décret 2007-458 du 25/03/2007
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000824512
+  official_journal_date:
+    2008-01-01: 2007-04-25; 2007-03-28

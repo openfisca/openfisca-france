@@ -1,0 +1,13 @@
+description: Montant mensuel échelon 3, de la bourse de l'Éducation nationale pour le collège
+values:
+  2009-05-15:
+    value: 0.886
+  2017-05-07:
+    value: 1.1075
+metadata:
+  short_label: Montant échelon 3
+  unit: currency
+  reference:
+    2017-05-07:
+      title: Décret n° 2017-792 du 05/05/2017
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034601676

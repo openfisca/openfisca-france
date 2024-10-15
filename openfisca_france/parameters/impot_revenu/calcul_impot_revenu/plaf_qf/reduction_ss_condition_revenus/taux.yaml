@@ -1,0 +1,30 @@
+description: Taux de la Réduction d'impôt sous condition de revenus
+values:
+  1950-01-01:
+    value: null
+  2016-01-01:
+    value: 0.2
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  ipp_csv_id: reduc_bas_revenus_tx
+  unit: /1
+  reference:
+    2016-01-01:
+    - title: Loi 2016-1917, art. 2 du 29/12/2016 (LF pour 2017)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033760564&cidTexte=JORFTEXT000033734169
+    - title: BOI-IR-LIQ-20-20-30 du 06/04/2017
+    2020-01-01:
+    - title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+    - title: Décret 2020-897, art 1. du 22/07/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042143210
+  official_journal_date:
+    2016-01-01: "2016-12-30"
+    2020-01-01: "2020-12-30"
+  notes:
+    2016-01-01:
+    - title: Introduction d'une réduction d'impôt sous conditon de revenus qui s'impute après la décote mais avant les réductions d'impôt classiques (art. 197-I-4 (b) du CGI)
+    2020-01-01:
+    - title: La réduction d'impôt sous condition de revenus est supprimée. La décote est étendue à l'ensemble des contribuables de la première tranche.

@@ -1,0 +1,30 @@
+description: Barème de réduction du salaire net utilisé pour le calcul des rentes post accident du travail
+brackets:
+- threshold:
+    2006-02-05:
+      value: 0
+  rate:
+    2006-02-05:
+      value: 1
+- threshold:
+    2006-02-05:
+      value: 2
+  rate:
+    2006-02-05:
+      value: 0.3333334
+- threshold:
+    2006-02-05:
+      value: 8
+  rate:
+    2006-02-05:
+      value: 0
+metadata:
+  short_label: Barème
+  last_value_still_valid_on: "2022-04-12"
+  reference:
+    2006-02-05:
+      title: Article R434-28 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750376/
+  rate_unit: /1
+  threshold_unit: smic
+documentation: Barème utilisé pour la détermination de rente_accident_travail_salaire_utile (cf. formule)

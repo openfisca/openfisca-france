@@ -1,0 +1,26 @@
+description: Majoration du montant maximal pour un  couple, 1 enfant - ou pour le deuxième enfant (en % de la base) du revenu minimum d'insertion (RMI)
+values:
+  1988-12-14:
+    value: 0.3
+  2009-06-01:
+    value: null
+metadata:
+  short_label: Couple, 1 enfant ou 2e enfant
+  label_en: "Minimum insertion income (RMI): Extra allowance and minimal amount"
+  ipp_csv_id: rmi_enf2
+  unit: /1
+  reference:
+    1988-12-14:
+      title: Décret 88-1111 du 12/12/1988, art. 1 (pour les majorations)Décret 88-1112 du 12/12/1988, art. 2 (pour le montant minimum)
+    2009-06-01:
+      title: Loi 2008-1249 du 01/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019860428
+  official_journal_date:
+    1988-12-14: "1988-12-13"
+    2009-06-01: "2008-12-03"
+  notes:
+    2009-06-01:
+    - title: Création du RSA qui remplace le RMI
+documentation: |-
+  Quel que soit le type de ménage.
+  RMI entré en vigueur pour la première fois le 01/01/1989

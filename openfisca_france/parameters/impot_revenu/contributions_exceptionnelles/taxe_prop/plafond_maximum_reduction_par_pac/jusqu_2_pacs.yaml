@@ -1,0 +1,11 @@
+description: Jusqu'à 2 pacs
+values:
+  1947-01-01:
+    value: null
+  1948-01-01:
+    value: 5000
+  1959-01-01:
+    value: null
+metadata:
+  ipp_csv_id: tp_plaf_2
+  unit: currency_next_year

@@ -1,0 +1,18 @@
+description: Taux de majoration du montant maximal pour les célibataires avec un enfant ou les couples (en % de la base) du revenu de solidarité active (RSA)
+values:
+  2009-06-01:
+    value: 0.5
+metadata:
+  short_label: Célibataires avec un enfant ou couples
+  last_value_still_valid_on: "2022-03-29"
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  ipp_csv_id: rsa_rmi_coup
+  unit: /1
+  reference:
+    2009-06-01:
+    - title: Décret 2009-404 du 15/04/2009, art. 2 (modif art. R262-1 du CASF)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522717&cidTexte=JORFTEXT000020521930
+    - title: Article D843-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/2016-01-01
+  official_journal_date:
+    2009-06-01: "2009-04-16"

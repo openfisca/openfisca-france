@@ -1,0 +1,23 @@
+description: Taux pour les retraites à droits certains de la contribution spéciale sur les contributions versées par l'employeur pour les régimes de retraites supplémentaires à prestations définies
+values:
+  2004-01-01:
+    value: null
+  2020-01-01:
+    value: 0.297
+metadata:
+  short_label: Taux pour les retraites à droits certains
+  label_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
+  ipp_csv_id: etchap_droits_certains
+  unit: /1
+  reference:
+    2004-01-01:
+      title: Loi 2003-775 du 21/08/2003, art. 115
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758675&cidTexte=JORFTEXT000000781627
+    2020-01-01:
+      title: Ordonnance 2019-697 du 03/07/2019
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038720909&categorieLien=id
+  official_journal_date:
+    2004-01-01: "2003-08-22"
+  notes:
+    2020-01-01:
+    - title: Le texte met fin (voir Notes) aux régimes à droits aléatoires qui conditionnent les droits à l'achèvement de la carrière dans l'entreprise.

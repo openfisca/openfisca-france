@@ -1,0 +1,7 @@
+description: Réduction d'impôt des aides aux créateurs et repreneurs d'entreprises
+metadata:
+  short_label: Aides créateurs/repreneurs entreprise
+  order:
+  - reduction
+  - surplus_si_invalide
+documentation: "Aide aux créateurs et repreneurs d'entreprise : art. 200 octies du CGI. Loi 2008-1249 du 1er décembre 2008 - art. 12"

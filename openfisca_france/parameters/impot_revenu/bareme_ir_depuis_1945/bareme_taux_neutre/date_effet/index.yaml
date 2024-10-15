@@ -1,0 +1,6 @@
+description: Date d'effet du barème d'impôt au taux neutre (2019 -)
+metadata:
+  short_label: Date d'effet
+  label_en: Thresholds and marginal tax rates
+  order:
+  - annee_ir

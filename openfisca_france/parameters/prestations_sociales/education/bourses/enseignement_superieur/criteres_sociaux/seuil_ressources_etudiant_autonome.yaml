@@ -1,0 +1,10 @@
+description: Seuil de ressources pour considérer l'étudiant autonome (en % du Smic net)
+values:
+  2006-03-31:
+    value: 0.9
+metadata:
+  short_label: Seuil de ressources
+  unit: smic
+  reference:
+    2006-03-31:
+      href: https://www.education.gouv.fr/bo/2006/15/MENS0600981C.htm

@@ -39,7 +39,7 @@ class depcom(Variable):
     value_type = str
     max_length = 5
     entity = Menage
-    label = """Code INSEE "depcom" de la commune de résidence de la famille"""
+    label = '''Code INSEE "depcom" de la commune de résidence de la famille'''
     definition_period = ETERNITY
 
 # This tests are more about core than france, but we need france entities to run some of them.
@@ -104,15 +104,15 @@ def test_transpose():
 
 def test_transpose_string():
     test_case = deepcopy(TEST_CASE)
-    test_case['menages']['m1']['depcom'] = "93400"
-    test_case['menages']['m2']['depcom'] = "89300"
+    test_case['menages']['m1']['depcom'] = '93400'
+    test_case['menages']['m2']['depcom'] = '89300'
 
     simulation = new_simulation(test_case)
     famille = simulation.famille
 
     depcom_famille = famille.first_person.menage('depcom', period = reference_period)
 
-    assert((depcom_famille == [b"93400", b"89300"]).all())
+    assert (depcom_famille == [b'93400', b'89300']).all()
 
 
 def test_value_from_person():

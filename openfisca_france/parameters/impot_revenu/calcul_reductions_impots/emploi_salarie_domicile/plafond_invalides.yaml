@@ -1,0 +1,32 @@
+description: Plafond pour invalides de la réduction d'impôts pour emploi d'un salarié à domicile
+values:
+  1990-01-01:
+    value: null
+  1997-01-01:
+    value: 90000
+  2001-01-01:
+    value: 13800
+  2005-01-01:
+    value: 20000
+metadata:
+  short_label: Plafond si invalide
+  ipp_csv_id: plafsaldominvalide
+  unit: currency_next_year
+  reference:
+    1997-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+    2001-01-01:
+      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+    2005-01-01:
+    - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005) - art. 87
+    - title: BOI 5 B-20-05; n°121 du 15/07/2005
+  official_journal_date:
+    1997-01-01: "1997-12-31"
+    2001-01-01: "2001-12-29"
+    2005-01-01: "2005-12-31"
+  notes:
+    1997-01-01:
+    - title: Création d'un plafond supérieur pour les invalides
+documentation: |-
+  Si les contribuables bénéficiaires bénéficient aussi de l'allocation personnalisée d'autonomie (APA), le montant perçu au titre de cette allocation doit être retranché aux dépenses servant de base pour le calcul de la réduction d'impôt.
+  Les invalides ouvrant droit au plafond unique (90000F en 1998) sont définis au 3°) de l'article L. 341-4 du code de la sécurité sociale comme "invalides qui, étant absolument incapables d'exercer une profession, sont, en outre, dans l'obligation d'avoir recours à l'assistance d'une tierce personne pour effectuer les actes ordinaires de la vie". Ce plafond est également utilisé si le foyer fiscal a à charge un enfant donnant droit au complément d'allocation d'éducation spéciale de l'enfant handicapé défini comme "atteint d'un handicap dont la nature ou la gravité exige des dépenses particulièrement coûteuses ou nécessite le recours fréquent à l'aide d'une tierce personne" à l'article L541-1 du code de la sécurité sociale ou encore un titulaire de la carte d'invalide à plus de 80%.

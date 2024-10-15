@@ -3,25 +3,25 @@ from openfisca_france.model.base import *
 
 class bourse_college_echelon(Variable):
     value_type = int
-    label = "Échelon de la bourse de collège attribuée"
+    label = 'Échelon de la bourse de collège attribuée'
     entity = Famille
     definition_period = MONTH
 
     def formula_2016_07_01(famille, period, parameters):
-        """
+        '''
         Références législatives :
         Arrêté du 22 mars 2016 fixant les plafonds de ressources...
         https://www.legifrance.gouv.fr/eli/arrete/2016/3/22/MENE1606428A/jo
-        """
+        '''
 
         rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
-        P = parameters(period).bourses_education.bourse_college.apres_2016
+        P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_college.apres_2016
 
-        # Les plafonds sont estimés en multiples du SMIC au 1er juillet de l'année n_2
+        # Les plafonds sont estimés en multiples du Smic au 1er juillet de l'année n_2
         juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
-        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic_h_b
+        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic.smic_b_horaire
 
         P_e3 = P.echelon_3
         plafonds_echelon_3_en_pourcent_smic = select(
@@ -61,7 +61,7 @@ class bourse_college_echelon(Variable):
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
 
-        P = parameters(period).bourses_education.bourse_college.avant_2016
+        P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_college.avant_2016
 
         coefficient_famille = 1 + nb_enfants * P.coeff_enfant_supplementaire
 
@@ -79,21 +79,21 @@ class bourse_college_echelon(Variable):
 
 class bourse_college(Variable):
     value_type = float
-    label = "Montant annuel de la bourse de collège"
+    label = 'Montant annuel de la bourse de collège'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        """
+        '''
         Références législatives :
             Article D531-7 du code de l'éducation
             https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000020743197&cidTexte=LEGITEXT000006071191&dateTexte=20160610
-        """
-        P = parameters(period).bourses_education.bourse_college
+        '''
+        P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_college
 
         # On prends en compte la BMAF du premier janvier de l'année de la rentrée scolaire
-        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
+        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         scolarite_i = famille.members('scolarite', period)
         nb_enfants_college = famille.sum(scolarite_i == TypesScolarite.college, role = Famille.ENFANT)
@@ -113,7 +113,7 @@ class bourse_college(Variable):
 
 class bourse_lycee_points_de_charge(Variable):
     value_type = float
-    label = "Nombre de points de charge pour la bourse de lycée"
+    label = 'Nombre de points de charge pour la bourse de lycée'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -137,7 +137,7 @@ class bourse_lycee_points_de_charge(Variable):
 
 class bourse_lycee_nombre_parts(Variable):
     value_type = float
-    label = "Nombre de parts pour le calcul du montant de la bourse de lycée"
+    label = 'Nombre de parts pour le calcul du montant de la bourse de lycée'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -146,8 +146,8 @@ class bourse_lycee_nombre_parts(Variable):
     def formula(famille, period, parameters):
         points_de_charge = famille('bourse_lycee_points_de_charge', period)
         rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
-        plafonds_reference = parameters(period).bourses_education.bourse_lycee.avant_2016.plafonds_reference
-        increments_par_point_de_charge = parameters(period).bourses_education.bourse_lycee.avant_2016.increments_par_point_de_charge
+        plafonds_reference = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_lycee.avant_2016.plafonds_reference
+        increments_par_point_de_charge = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_lycee.avant_2016.increments_par_point_de_charge
 
         choices = [10, 9, 8, 7, 6, 5, 4, 3]
         nombre_parts = apply_thresholds(
@@ -167,26 +167,26 @@ class bourse_lycee_nombre_parts(Variable):
 
 class bourse_lycee_echelon(Variable):
     value_type = int
-    label = "Échelon de la bourse de collège attribuée"
+    label = 'Échelon de la bourse de collège attribuée'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        """
+        '''
         Références législatives :
         Arrêté du 22 mars 2016 fixant les modalités de détermination des plafonds de ressources ouvrant droit...
         https://www.legifrance.gouv.fr/eli/arrete/2016/3/22/MENE1606432A/jo
-        """
+        '''
 
         rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
-        P = parameters(period).bourses_education.bourse_lycee.apres_2016
+        P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_lycee.apres_2016
 
-        # Les plafonds sont estimés en multiples du SMIC au 1er juillet de l'année n_2
+        # Les plafonds sont estimés en multiples du Smic au 1er juillet de l'année n_2
         juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
-        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic_h_b
+        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic.smic_b_horaire
 
         P_e6 = P.echelon_6
         plafonds_echelon_6_en_pourcent_smic = select(
@@ -248,21 +248,21 @@ class bourse_lycee_echelon(Variable):
 
 class bourse_lycee(Variable):
     value_type = float
-    label = "Montant annuel de la bourse de lycée"
+    label = 'Montant annuel de la bourse de lycée'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2016_07_01(famille, period, parameters):
-        """
+        '''
         Références legislatives :
             Article Article D531-29 du code de l'éducation
             https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006071191&idArticle=LEGIARTI000020663350&dateTexte=&categorieLien=cid
-        """
-        P = parameters(period).bourses_education.bourse_lycee.apres_2016
+        '''
+        P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_lycee.apres_2016
 
         # On prends en compte la BMAF du premier janvier de l'année de la rentrée scolaire
-        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
+        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         scolarite_i = famille.members('scolarite', period)
         nb_enfants_lycee = famille.sum(scolarite_i == TypesScolarite.lycee, role = Famille.ENFANT)
@@ -281,7 +281,7 @@ class bourse_lycee(Variable):
 
     def formula(famille, period, parameters):
         nombre_parts = famille('bourse_lycee_nombre_parts', period)
-        valeur_part = parameters(period).bourses_education.bourse_lycee.avant_2016.valeur_part
+        valeur_part = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_lycee.avant_2016.valeur_part
 
         scolarite_i = famille.members('scolarite', period)
         nb_enfants_lycee = famille.sum(scolarite_i == TypesScolarite.lycee, role = Famille.ENFANT)
@@ -292,12 +292,14 @@ class bourse_lycee(Variable):
 
 
 class TypesScolarite(Enum):
-    __order__ = 'inconnue college lycee enseignement_superieur grande_ecole_du_numerique'  # Needed to preserve the enum order in Python 2
-    inconnue = "Inconnue"
-    college = "Collège"
-    lycee = "Lycée"
+    __order__ = 'inconnue maternelle primaire college lycee enseignement_superieur grande_ecole_du_numerique'  # Needed to preserve the enum order in Python 2
+    inconnue = 'Inconnue'
+    maternelle = 'Maternelle'
+    primaire = 'Primaire'
+    college = 'Collège'
+    lycee = 'Lycée'
     enseignement_superieur = "Établissement de l'enseignement supérieur"
-    grande_ecole_du_numerique = "Formation labellisée par la Grande École du Numérique"
+    grande_ecole_du_numerique = 'Formation labellisée par la Grande École du Numérique'
 
 
 class scolarite(Variable):
@@ -310,12 +312,26 @@ class scolarite(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class boursier(Variable):
+    value_type = bool
+    entity = Individu
+    label = 'Élève ou étudiant boursier'
+    definition_period = MONTH
+
+    def formula_2021(individu, period):
+        college = individu.famille('bourse_college', period)
+        lycee = individu.famille('bourse_lycee', period)
+        bcs = individu('bourse_criteres_sociaux', period)
+        bes = individu('bourse_enseignement_sup', period)
+        return (college > 0) + (lycee > 0) + (bcs > 0) + (bes > 0)
+
+
 class StatutsEtablissementScolaire(Enum):
     __order__ = 'inconnu public prive_sous_contrat prive_hors_contrat'  # Needed to preserve the enum order in Python 2
-    inconnu = "Inconnu"
-    public = "Public"
-    prive_sous_contrat = "Privé sous contrat"
-    prive_hors_contrat = "Privé hors contrat"
+    inconnu = 'Inconnu'
+    public = 'Public'
+    prive_sous_contrat = 'Privé sous contrat'
+    prive_hors_contrat = 'Privé hors contrat'
 
 
 class statuts_etablissement_scolaire(Variable):
@@ -328,18 +344,39 @@ class statuts_etablissement_scolaire(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class boursier(Variable):
-    value_type = bool
+class TypesClasse(Enum):
+    __order__ = 'cap_1 cap_2 seconde premiere terminale bts_1 bts_2 cpge_1 cpge_2 but_1 but_2 but_3 licence_1 licence_2 licence_3 master_1 master_2 doctorat_1 doctorat_2 doctorat_3 autre'
+    cap_1 = 'Première année de CAP'
+    cap_2 = 'Deuxième année de CAP'
+    seconde = 'Seconde'
+    premiere = 'Première'
+    terminale = 'Terminale'
+    bts_1 = 'Première année de BTS'
+    bts_2 = 'Deuxième année de BTS'
+    cpge_1 = 'Première année de CPGE'
+    cpge_2 = 'Deuxième année de CPGE'
+    but_1 = 'Première année de BUT'
+    but_2 = 'Deuxième année de BUT'
+    but_3 = 'Troisième année de BUT'
+    licence_1 = 'Première année de licence'
+    licence_2 = 'Deuxième année de licence'
+    licence_3 = 'Troisième année de licence'
+    master_1 = 'Première année de master'
+    master_2 = 'Deuxième année de master'
+    doctorat_1 = 'Première année de doctorat'
+    doctorat_2 = 'Deuxième année de doctorat'
+    doctorat_3 = 'Troisième année de doctorat'
+    autre = 'Autre'
+
+
+class annee_etude(Variable):
+    value_type = Enum
+    possible_values = TypesClasse
+    default_value = TypesClasse.autre
     entity = Individu
-    label = "Élève ou étudiant boursier"
+    label = "Classe de l'étudiant"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-
-    def formula_2021(individu, period):
-        college = individu.famille('bourse_college_echelon', period)
-        lycee = individu.famille('bourse_lycee', period)
-        sup = individu('bourse_criteres_sociaux', period)
-        return (college > 0) + (lycee > 0) + (sup > 0)
 
 
 class debut_etudes_etranger(Variable):
@@ -361,8 +398,23 @@ class mention_baccalaureat(Variable):
     possible_values = TypesMention
     default_value = TypesMention.non_renseignee
     entity = Individu
-    label = "Mention obtenue au baccalauréat (hors mentions honorifiques)"
+    label = 'Mention obtenue au baccalauréat (hors mentions honorifiques)'
     definition_period = ETERNITY
     documentation = '''
     En cas de multiples baccalauréats, meilleure mention obtenue.
     '''
+
+
+class detention_carte_des_metiers(Variable):
+    value_type = bool
+    label = 'Détention carte des métiers'
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = [
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024410525/2011-07-30/',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031088014/'
+        ]
+
+    def formula(individu, period, parameters):
+        return individu('alternant', period) * (individu('age', period) < parameters(period).prestations_sociales.education.carte_des_metiers.age_maximal)

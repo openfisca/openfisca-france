@@ -1,0 +1,9 @@
+description: Cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès (MMID) des professions libérales
+metadata:
+  short_label: Assurés retraités
+  label_en: SSCs for sickness and maternity benefits (professionals)
+  order:
+  - pensions_sous_5_pss
+  - pensions_sous_pss
+  - pensions_sous_4_pss
+  - pension_totale

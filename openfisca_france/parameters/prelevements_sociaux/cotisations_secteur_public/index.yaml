@@ -1,4 +1,12 @@
 description: Cotisations spécifiques à la fonction publique
 metadata:
-  ux_name: Cotisations fonction publique
-  description_en: Contributions in the public sector
+  short_label: Cotisations fonction publique
+  label_en: Contributions in the public sector
+  order:
+  - mmid
+  - retraite
+  - rafp
+  - cnracl
+  - ircantec
+  - sncf
+  - fds

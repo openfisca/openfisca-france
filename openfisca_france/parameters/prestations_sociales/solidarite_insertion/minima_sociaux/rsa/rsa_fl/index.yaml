@@ -1,0 +1,6 @@
+description: Forfait logement du revenu de solidarité active (RSA)
+metadata:
+  short_label: Forfait logement
+  label_en: "Active solidarity income (RSA): accomodation allowance"
+  order:
+  - forfait_logement

@@ -1,0 +1,11 @@
+description: Plafond de référence pour le taux 3 de la bourse de l'Éducation nationale pour le collège (avant 2016)
+values:
+  2014-01-01:
+    value: 2146
+  2015-07-01:
+    value: 2153
+  2016-07-01:
+    value: null
+metadata:
+  short_label: Plafond taux 3
+  unit: currency

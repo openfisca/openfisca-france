@@ -1,0 +1,6 @@
+description: Taux 25%
+values:
+  2014-01-01:
+    value: 0.25
+metadata:
+  unit: /1

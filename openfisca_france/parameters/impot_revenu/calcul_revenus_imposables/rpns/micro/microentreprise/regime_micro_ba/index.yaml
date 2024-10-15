@@ -1,0 +1,8 @@
+description: Abattement pour le régime micro-BA
+metadata:
+  short_label: Régime Micro-BA
+  order:
+  - plafond_recettes
+  - taux
+  - maj_frag
+documentation: "Micro-BA : art. 64 bis du CGI. Définition des plafonds de ressources à l'art. 69 du CGI."

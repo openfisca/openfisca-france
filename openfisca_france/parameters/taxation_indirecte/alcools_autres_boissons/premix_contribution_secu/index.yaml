@@ -1,0 +1,10 @@
+description: Prémix (mélanges alcool et soda)
+metadata:
+  documentation_start: true
+  label_en: Premix (alcohol plus soda)
+  order:
+  - premix_eur_par_decilitre_alcool_pur
+  - premix_eur_par_decilitre
+documentation: |-
+  Données renseignées dans l'article 1613 bis du code général des impôts
+  Définition prémix : mélange pré-fait d'un alcool et d'une boisson non alcoolisée, le plus souvent un soda

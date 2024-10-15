@@ -1,0 +1,15 @@
+description: Part supplémentaire de quotient familial (IR) pour les contribuables invalides
+values:
+  1981-01-01:
+    value: 0.5
+metadata:
+  short_label: Contribuables invalides
+  last_value_still_valid_on: "2024-04-26"
+  unit: part_quotient_familial
+  reference:
+    1981-01-01:
+      title: Article 195, alinéa 1 c du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006308283/1982-01-01/
+  notes:
+    1981-01-01:
+    - title: Avant 1981, différents régimes se sont succédés pour les couples d'invalides, avec prise en compte uniquement si les deux sont invalides ou au contraire uniquement si au moins l'une l'est.

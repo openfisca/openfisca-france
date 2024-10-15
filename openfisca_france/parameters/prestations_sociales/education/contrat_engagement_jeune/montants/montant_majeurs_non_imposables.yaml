@@ -1,0 +1,29 @@
+description: Montant forfaitaire pour les majeurs constituant ou étant rattachés à un foyer fiscal non imposable à l'impôt sur le revenu
+values:
+  2022-03-01:
+    value: 500
+  2022-07-01:
+    value: 520
+  2023-04-01:
+    value: 528
+  2024-04-01:
+    value: 552.29
+metadata:
+  unit: currency
+  reference:
+    2022-03-01:
+    - title: Décret n°2022-199 du 18 février 2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000045189399
+    - title: Article D5131-19 du code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045207447
+    2022-07-01:
+      title: Loi n°2022-1158 du 16 août 2022, art. 9
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046186749
+    2023-04-01:
+      title: Instruction interministérielle N° DSS/2B/2023/41 du 24 mars 2023
+      href: https://sante.gouv.fr/fichiers/bo/2023/2023.6.sante.pdf#page=119
+    2024-04-01:
+      title: Instruction interministérielle N° DSS/2A/2C/2024/42 du 20 mars 2024
+      href: https://sante.gouv.fr/fichiers/bo/2024/2024.6.sante.pdf#page=82
+documentation: |-
+  L'article D5131-19 du code du travail contient les montants du dispositif à sa création. Cet article mentionne aussi que ces montants sont revalorisés le 1er avril de chaque année par application du coefficient mentionné à l'article L. 161-25 du CSS. Ce coefficient de revalorisation est publié chaque année séparément, sans que les nouveaux montants soient répercutés dans l'article D5131-19 du code du travail.

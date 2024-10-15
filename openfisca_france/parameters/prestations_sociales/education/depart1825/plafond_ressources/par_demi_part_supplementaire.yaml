@@ -1,0 +1,10 @@
+description: Plafond de ressources par demi-part supplémentaire de la famille pour bénéficier de la prise en charge du séjour pour les bénéficiaires de l'aide Départ 18-25
+values:
+  2014-09-05:
+    value: 4320
+metadata:
+  short_label: Par demi-part supp.
+  unit: currency
+  reference:
+    2014-09-05:
+      href: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans

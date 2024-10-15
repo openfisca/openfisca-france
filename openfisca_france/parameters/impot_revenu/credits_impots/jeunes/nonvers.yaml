@@ -1,0 +1,9 @@
+description: Seuil de non-versement du crédit d'impôt jeunes actifs
+values:
+  2005-01-01:
+    value: 25
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Seuil de non-versement
+  unit: /1

@@ -1,0 +1,19 @@
+description: Taux entre 1 plafond RCI et 4 plafonds PSS de la cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans-commerçants
+values:
+  2013-01-01:
+    value: 0.08
+metadata:
+  short_label: Taux entre 1 plafond RCI et 4 plafonds PSS
+  label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
+  ipp_csv_id: retc_rci_1_4plaf
+  unit: /1
+  reference:
+    2013-01-01:
+    - title: Décret 2012-443 du 03/04/2012
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025626696
+    - title: Circulaire RSI 2013-004 du 17/01/2013
+  official_journal_date:
+    2013-01-01: "2012-04-04"
+  notes:
+    2013-01-01:
+    - title: Depuis le 1er janvier 2013, le taux de cotisations est unifié pour les différentes catégories d'independants.

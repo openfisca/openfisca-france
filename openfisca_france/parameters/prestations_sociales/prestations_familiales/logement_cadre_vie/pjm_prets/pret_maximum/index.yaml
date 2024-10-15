@@ -1,0 +1,8 @@
+description: Prêt maximum dans le cadre du Prêt aux jeunes ménages (PJM)
+metadata:
+  short_label: Prêt maximum
+  label_en: "Loans to young household (PJM): Amount of loans"
+  order:
+  - premiers_frais_location
+  - equipement_mobilier_menager
+  - accession_propriete_logement_neuf_ancien

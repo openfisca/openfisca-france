@@ -1,0 +1,11 @@
+description: Age limite (en mois) pour bénéficier de l'allocation de solidarité spécifique (ASS)
+values:
+  1984-01-01:
+    value: 789
+metadata:
+  short_label: Age limite
+  label_en: Special UI scheme
+  unit: month
+  reference:
+    1984-01-01:
+      href: https://www.service-public.fr/particuliers/vosdroits/F12484

@@ -1,0 +1,63 @@
+description: Salaire net utilisé pour le calcul des rentes post accident du travail
+values:
+  2002-01-01:
+    value: 15171.24
+  2003-01-01:
+    value: 15398.8
+  2004-01-01:
+    value: 15660.59
+  2005-01-01:
+    value: 15973.78
+  2006-01-01:
+    value: 16261.3
+  2007-01-01:
+    value: 16554
+  2008-01-01:
+    value: 16736.09
+  2008-09-01:
+    value: 16869.97
+  2009-04-01:
+    value: 17038.66
+  2010-04-01:
+    value: 17192
+  2011-04-01:
+    value: 17553.03
+  2012-04-01:
+    value: 17921.64
+  2013-04-01:
+    value: 18154.62
+  2016-04-01:
+    value: 18281.8
+  2017-04-01:
+    value: 18336.64
+  2018-04-01:
+    value: 18520.01
+  2019-04-01:
+    value: 18575.57
+  2020-04-01:
+    value: 18631.3
+  2021-04-01:
+    value: 18649.93
+metadata:
+  short_label: Salaire net
+  last_value_still_valid_on: "2021-04-01"
+  unit: currency
+  reference:
+    2015-12-23:
+      title: Article L434-17 Section 2 Calcul de la rente
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
+    2016-04-01:
+      title: Article L413-7 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688421
+  notes:
+    2017-04-01:
+    - title: revalorisation de 0,3%
+    2018-04-01:
+    - title: revalorisation de 1%
+    2019-04-01:
+    - title: revalorisation de 0,3%
+    2021-04-01:
+    - title: revalorisation de 0,1%
+    2029-04-01:
+    - title: revalorisation de 0,3%
+documentation: Modalités du calcul de la rente précisées dans l'article L434-16 - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688385/ Depuis 2016, le salaire est revalorisé au niveau de l'inflation.

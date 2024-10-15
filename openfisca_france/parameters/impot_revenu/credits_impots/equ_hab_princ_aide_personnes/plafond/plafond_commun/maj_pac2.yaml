@@ -1,0 +1,22 @@
+description: Majoration 2nde personne à charge
+values:
+  2005-01-01:
+    value: 500
+  2006-01-01:
+    value: null
+metadata:
+  short_label: Majoration 2nde personne à charge
+  ipp_csv_id: plaf_aide_pers_pac2
+  unit: currency_next_year
+  reference:
+    2005-01-01:
+      title: Loi n° 2004-1484 du 30 décembre 2004 (LF 2005), art. 91
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000789373&idArticle=LEGIARTI000006322194&dateTexte=20051230&categorieLien=id#LEGIARTI000006322194
+    2006-01-01:
+      title: Loi n°2005-1719 du 30 décembre 2005, art. 83
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006322502/2005-12-31
+  notes:
+    2005-01-01:
+    - title: Création du crédit d'impôt par la LF pour 2005, mais en vigueur à partir de l'imposition 2006 des revenus de 2005.
+    2006-01-01:
+    - title: Majoration unique par enfant à charge. Cette modification est codifiée par la LF pour 2006, mais en vigueur à partir de l'imposition 2007 des revenus de 2006.

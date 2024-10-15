@@ -1,0 +1,40 @@
+description: Pour une personne seule
+values:
+  1984-01-01:
+    value: 200000
+  1990-01-01:
+    value: 300000
+  1993-01-01:
+    value: 400000
+  1997-01-01:
+    value: null
+metadata:
+  ipp_csv_id: plaf_investissement_mehaignerie_seul
+  unit: currency_next_year
+  reference:
+    1984-01-01:
+      title: Loi n° 84-1208 du 29 décembre 1984 (LF pour 1985), art. 82
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000880778&idArticle=LEGIARTI000006274284&dateTexte=19861231&categorieLien=id#LEGIARTI000006274284
+    1990-01-01:
+      title: Loi n° 89-935 du 29 décembre 1989 (LF pour 1990) art. 113
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000018687845&idArticle=LEGIARTI000006317741&dateTexte=19910718&categorieLien=id#LEGIARTI000006317741
+    1993-01-01:
+      title: Loi n° 92-1376 du 30 décembre 1992 (LF pour 1993), art. 5
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406&categorieLien=id
+    1997-01-01:
+      title: Loi n° 91-1322 du 30 décembre 1991 (LF pour 1992), art. 7
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000356342&dateTexte=19951026
+  official_journal_date:
+    1984-01-01: "1984-12-30"
+    1990-01-01: "1990-12-30"
+    1993-01-01: "1993-12-31"
+    1997-01-01: "1991-12-31"
+  notes:
+    1984-01-01:
+    - title: Le dispositif Méhaignerie original permet de déduire de ses impôts 5% du prix d'investissement repartis sur les 2 ans suivants l'investissement.
+    1990-01-01:
+    - title: Les plafonds du prix de revient des logements sont augmentés.
+    1993-01-01:
+    - title: Le renforcement du dispositif désormais dit "Super Quilès" permet de déduire de ses impôts 15% du prix d'investissement sur les 4 ans suivants celui-ci.
+    1997-01-01:
+    - title: Le dispositif Méhaignerie et ses versions ultérieures (appelées Quilès-Méhaignerie et Super Quilès) sont prorogés par la LF pour 1992 jusqu'au 31 Décembre 1997, date de la fin effective des investissements éligibles.

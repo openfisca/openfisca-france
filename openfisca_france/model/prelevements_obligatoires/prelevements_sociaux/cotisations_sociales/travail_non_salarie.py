@@ -1,15 +1,17 @@
 import logging
-
+import numpy as np
 
 from openfisca_core.taxscales import MarginalRateTaxScale
 from openfisca_france.model.base import *
-
 
 # TODO:
 # Manquent:
 # - les agriculteurs
 # - les cotisations minimales
 # - la gestion de la temporatité
+
+# Il manque également le régime micro social qui consiste en un forfait unique couvrant l'ensemble des cotisations ainsi que la csg et la crds
+# https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000037051840/#LEGISCTA000037051840
 
 
 log = logging.getLogger(__name__)
@@ -20,16 +22,46 @@ class categorie_non_salarie(Variable):
     possible_values = TypesCategorieNonSalarie
     default_value = TypesCategorieNonSalarie.non_pertinent
     entity = Individu
-    label = "Type du travailleur salarié (artisant, commercant, profession libérale, etc)"
+    label = 'Type du travailleur salarié (artisan, commercant, profession libérale, etc)'
     definition_period = YEAR
+
+
+class cotisations_non_salarie_micro_social(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisations sociales des travailleurs non salaries'
+    definition_period = YEAR
+
+    def formula_2009_01_01(individu, period, parameters):
+        assiette_service = individu.foyer_fiscal('assiette_service', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_vente = individu.foyer_fiscal('assiette_vente', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_proflib = individu.foyer_fiscal('assiette_proflib', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
+        cotisations_non_salarie_micro_social = (
+            assiette_service * cotisations_prestation.cotisations_prestations.service
+            + assiette_vente * cotisations_prestation.cotisations_prestations.vente
+            + assiette_proflib * cotisations_prestation.cotisations_prestations.cipav
+            )
+        return - cotisations_non_salarie_micro_social
+
+    def formula_2011_01_01(individu, period, parameters):
+        assiette_service = individu.foyer_fiscal('assiette_service', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_vente = individu.foyer_fiscal('assiette_vente', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_proflib = individu.foyer_fiscal('assiette_proflib', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
+        cotisations_non_salarie_micro_social = (
+            assiette_service * (cotisations_prestation.cotisations_prestations.service + cotisations_prestation.formation_professionnelle.servicecom_chiffre_affaires)
+            + assiette_vente * (cotisations_prestation.cotisations_prestations.vente + cotisations_prestation.formation_professionnelle.ventecom_chiffre_affaires)
+            + assiette_proflib * (cotisations_prestation.cotisations_prestations.cipav + cotisations_prestation.formation_professionnelle.professions_liberales_chiffre_affaires)
+            )
+        return - cotisations_non_salarie_micro_social
 
 
 class cotisations_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisations sociales des travailleurs non salaries"
+    label = 'Cotisations sociales des travailleurs non salaries'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
     def formula(individu, period, parameters):
         categorie_non_salarie = individu('categorie_non_salarie', period)
@@ -65,48 +97,71 @@ class cotisations_non_salarie(Variable):
                 + retraite_complementaire_profession_liberale
                 )
             )
-        return cotisations_non_salarie
+        cotisations_non_salarie_micro_social = individu('cotisations_non_salarie_micro_social', period)
+
+        return cotisations_non_salarie + cotisations_non_salarie_micro_social
 
 
 class deces_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation décès des artisans et des commercants"
+    label = 'Cotisation décès des artisans et invalidité-décès des commercants'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
-    def formula_2015(individu, period, parameters):
+    def formula_2004(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        bareme = MarginalRateTaxScale(name = 'deces')
-        deces = parameters(period).prelevements_sociaux.deces_ac.artisans
-        bareme.add_bracket(0, deces.sous_pss)
-        bareme.add_bracket(1, 0)
-        bareme.multiply_thresholds(plafond_securite_sociale_annuel)
+        deces_ac = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.deces_ac
+        # Artisan
+        bareme_artisan = MarginalRateTaxScale(name = 'deces_artisan')
+        bareme_artisan.add_bracket(0, deces_ac.artisans.sous_pss)
+        bareme_artisan.add_bracket(1, 0)
+        bareme_artisan.multiply_thresholds(plafond_securite_sociale_annuel)
+        # Commercant (Invalidite + Deces)
+        bareme_commercant = MarginalRateTaxScale(name = 'deces_commercant')
+        bareme_commercant.add_bracket(0, deces_ac.commercants_industriels.apres_2004.sous_pss)
+        bareme_commercant.add_bracket(1, 0)
+        bareme_commercant.multiply_thresholds(plafond_securite_sociale_annuel)
+        # Calcul du montant
+        assiette = individu('rpns_imposables', period)
         categorie_non_salarie = individu('categorie_non_salarie', period)
-        assiette = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_imposables', period)
+        artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+        commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+        return -bareme_artisan.calc(assiette * artisan) - bareme_commercant.calc(assiette * commercant)
 
-        return -bareme.calc(assiette)
+    def formula_1975(individu, period, parameters):
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+        deces_ac = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.deces_ac
+        # Avant 2004, le montant était forfaitaire pour les commerçants
+        montant_commercant = deces_ac.commercants_industriels.avant_2004.montant_forfaitaire_total
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        # Artisan
+        bareme_artisan = MarginalRateTaxScale(name = 'deces_artisan')
+        bareme_artisan.add_bracket(0, deces_ac.artisans.sous_pss)
+        bareme_artisan.add_bracket(1, 0)
+        bareme_artisan.multiply_thresholds(plafond_securite_sociale_annuel)
+        assiette = individu('rpns_imposables', period)
+        # Type
+        artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+        commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+
+        return -bareme_artisan.calc(assiette * artisan) - (montant_commercant * commercant)
 
 
 class formation_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation formation des artisans et des commercants"
+    label = 'Cotisation formation des artisans et des commercants'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
     def formula_2015(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        formation = parameters(period).prelevements_sociaux.formation_ac
+        formation = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.formation_ac
         # Artisan
         bareme_artisan = MarginalRateTaxScale(name = 'formation_artisan')
-        bareme_artisan.add_bracket(0, formation.artisans_sous_pss)
+        bareme_artisan.add_bracket(0, formation.artisans.sous_pss)
         bareme_artisan.add_bracket(1, 0)
         bareme_artisan.multiply_thresholds(plafond_securite_sociale_annuel)
-        # Comemrcant
+        # Commercant
         bareme_commercant = MarginalRateTaxScale(name = 'formation_commercant')
         bareme_commercant.add_bracket(0, formation.commercants_industriels.sous_pss)
         bareme_commercant.add_bracket(1, 0)
@@ -118,67 +173,101 @@ class formation_artisan_commercant(Variable):
         return -bareme_artisan.calc(assiette * artisan) - bareme_commercant.calc(assiette * commercant)
 
 
+class maladie_maternite_artisan_commercant_taux(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation maladie et maternité des artisans et des commercants'
+    definition_period = YEAR
+
+    def formula_2020_01_01(individu, period, parameters):
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        artisan = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+            )
+        assiette = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+            ) * individu('rpns_imposables', period)
+        assiette_pss = assiette / plafond_securite_sociale_annuel
+
+        taux_nul = np.zeros(len(categorie_non_salarie))
+        taux = np.divide(
+            (
+                0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
+                + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
+                - (0.007 * (assiette_pss > 5) * (assiette_pss - 5))
+                ),
+            assiette_pss,
+            out = taux_nul,
+            where=assiette_pss != 0
+            )
+
+        return artisan * taux
+
+    def formula_2018_01_01(individu, period, parameters):
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        artisan = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+            )
+        assiette = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+            ) * individu('rpns_imposables', period)
+        assiette_pss = assiette / plafond_securite_sociale_annuel
+        taux = (
+            0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
+            + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
+            - (0.007 * (assiette_pss > 5))
+            )
+
+        return artisan * where(assiette_pss != 0, taux, 0)
+
+    def formula_2017_01_01(individu, period, parameters):
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        artisan = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+            )
+        assiette = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+            ) * individu('rpns_imposables', period)
+        taux = (0.03 + (0.065 - 0.03) * min_(max_(assiette / plafond_securite_sociale_annuel, 0), 0.7) / 0.7) + 0.007
+
+        return artisan * taux
+
+
 class maladie_maternite_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation maladie et maternité des artisans et des commercants"
+    label = 'Cotisation maladie et maternité des artisans et des commercants'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
-    def formula_2018(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        bareme = MarginalRateTaxScale(name = 'famille')
-        bareme.add_bracket(0, 0)
-        bareme.add_bracket(1.1, .072)
-        bareme.add_bracket(5, .065)
-        bareme.multiply_thresholds(plafond_securite_sociale_annuel)
+    def formula(individu, period):
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
             ) * individu('rpns_imposables', period)
-        cotisation_sous_1_1_pss = assiette * (
-            (assiette > .4 * plafond_securite_sociale_annuel) * (assiette <= 1.1 * plafond_securite_sociale_annuel)
-            * (
-                (.072 - .022) * assiette / (1.1 * plafond_securite_sociale_annuel) + .022
-                )
-            + (assiette <= .4 * plafond_securite_sociale_annuel)
-            * (
-                (.022 - .085) * assiette / (0.4 * plafond_securite_sociale_annuel) + .085
-                )
-            )
-        return - (cotisation_sous_1_1_pss + bareme.calc(assiette))
+        taux = individu('maladie_maternite_artisan_commercant_taux', period)
 
-    def formula_2017(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        bareme = MarginalRateTaxScale(name = 'famille')
-        bareme.add_bracket(0, 0)
-        bareme.add_bracket(.7, .065)
-        bareme.multiply_thresholds(plafond_securite_sociale_annuel)
-        categorie_non_salarie = individu('categorie_non_salarie', period)
-        assiette = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_imposables', period)
-        cotisation_sous_1_1_pss = assiette * (
-            (assiette < .7 * plafond_securite_sociale_annuel)
-            * (
-                (.065 - .035) * assiette / (.7 * plafond_securite_sociale_annuel) + .035  # TODO check taux non nul à assiette quasi nulle
-                )
-            )
-        return -(cotisation_sous_1_1_pss + bareme.calc(assiette))
+        return -(taux * assiette)
 
 
 class retraite_complementaire_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation de la retraite complémentaire des artisans et des commercants"
+    label = 'Cotisation de la retraite complémentaire des artisans et des commercants'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
     def formula_2013(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        retraite_complementaire = parameters(period).prelevements_sociaux.ret_comp_ac.artisans_industriels_commercants
+        retraite_complementaire = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.ret_comp_ac.art_ind_com
         montant_du_plafond_rci = retraite_complementaire.montant_du_plafond_rci
         bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
         bareme.add_bracket(0, retraite_complementaire.sous_plafond_rci)
@@ -195,38 +284,32 @@ class retraite_complementaire_artisan_commercant(Variable):
 class vieillesse_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation vieillesse (plafonnée et déplafonnée) des artisans et des commercants"
+    label = 'Cotisation vieillesse (plafonnée et déplafonnée) des artisans et des commercants'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
     def formula_2014(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        vieillesse_artisan_commercant = parameters(period).prelevements_sociaux.ret_ac
+        vieillesse_artisan_commercant = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.ret_ac
         bareme = MarginalRateTaxScale(name = 'vieillesse')
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        # Les taux sous_pss sont les mêmes pour artisans et commercants
         bareme.add_bracket(0, vieillesse_artisan_commercant.artisans.sous_pss + vieillesse_artisan_commercant.tous_independants.tout_salaire)
         bareme.add_bracket(1, vieillesse_artisan_commercant.tous_independants.tout_salaire)
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
-        categorie_non_salarie = individu('categorie_non_salarie', period)
-        assiette = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_imposables', period)
+        artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+        commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+        assiette = (artisan + commercant) * individu('rpns_imposables', period)
         return -bareme.calc(assiette)
 
 
 class famille_independant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation famille des indépendants"
+    label = 'Cotisation famille des indépendants'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
-    def formula_2015(individu, period, parameters):
+    def formula_2018_01_01(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        bareme = MarginalRateTaxScale(name = 'famille')
-        bareme.add_bracket(0, 0)
-        bareme.add_bracket(1.4, .031)  # TODO parsing des paramèters pas à jour
-        bareme.multiply_thresholds(plafond_securite_sociale_annuel)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
@@ -243,23 +326,39 @@ class famille_independant(Variable):
                 )
             / (1.4 - 1.1)
             )
-        return - (
-            taux * assiette * (assiette < 1.4 * plafond_securite_sociale_annuel)
-            + bareme.calc(assiette)
+        return - (taux * assiette)
+
+    def formula_2015_01_01(individu, period, parameters):
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        assiette = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+            ) * individu('rpns_imposables', period)
+        taux = (
+            0.0215 + (.031) * min_(
+                max_(
+                    assiette / plafond_securite_sociale_annuel - 1.1,
+                    0
+                    ),
+                (1.4 - 1.1)
+                )
+            / (1.4 - 1.1)
             )
+        return - (taux * assiette)
 
 
 class formation_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation formation professionelle des professions libérales"
+    label = 'Cotisation formation professionelle des professions libérales'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
     def formula(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'formation_profession_liberale')
-        taux = parameters(period).prelevements_sociaux.formation_pl.formation_professionnelle.sous_pss
+        taux = parameters(period).prelevements_sociaux.professions_liberales.formation_pl.sous_pss
         bareme.add_bracket(0, taux)
         bareme.add_bracket(1, 0)
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
@@ -273,16 +372,57 @@ class formation_profession_liberale(Variable):
 class maladie_maternite_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation maladie maternité des professions libérales"
+    label = 'Cotisation maladie maternité des professions libérales'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
-    def formula(individu, period, parameters):
+    def formula_2022_01_01(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        bareme = MarginalRateTaxScale(name = 'maladie_maternite')
-        bareme.add_bracket(0, 0)
-        bareme.add_bracket(1.1, .065)  # TODO parsing des paramèters IPP pas à jour
-        bareme.multiply_thresholds(plafond_securite_sociale_annuel)
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        assiette = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+            * individu('rpns_imposables', period)
+            )
+        taux = (
+            .015 + (.065 - .015) * min_(
+                max_(
+                    assiette / plafond_securite_sociale_annuel,
+                    0
+                    ),
+                1.1
+                )
+            / 1.1
+            )
+        cotisation_supplementaire = 0.003 * min_(assiette, (3 * plafond_securite_sociale_annuel))
+
+        return - (
+            (taux * assiette) + cotisation_supplementaire
+            )
+
+    def formula_2021_01_01(individu, period, parameters):
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        assiette = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+            * individu('rpns_imposables', period)
+            )
+        taux = (
+            .015 + (.065 - .015) * min_(
+                max_(
+                    assiette / plafond_securite_sociale_annuel,
+                    0
+                    ),
+                1.1
+                )
+            / 1.1
+            )
+        cotisation_supplementaire = 0.0015 * min_(assiette, (3 * plafond_securite_sociale_annuel))
+
+        return - (
+            (taux * assiette) + cotisation_supplementaire
+            )
+
+    def formula_2018_01_01(individu, period, parameters):
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
@@ -299,23 +439,52 @@ class maladie_maternite_profession_liberale(Variable):
             / 1.1
             )
         return - (
-            taux * assiette * (assiette < 1.1 * plafond_securite_sociale_annuel)
-            + bareme.calc(assiette)
+            taux * assiette
+            )
+
+    def formula_2017_01_01(individu, period, parameters):
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        assiette = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+            * individu('rpns_imposables', period)
+            )
+        taux = (
+            .03 + (.065 - .03) * min_(
+                max_(
+                    assiette / plafond_securite_sociale_annuel,
+                    0
+                    ),
+                0.7
+                )
+            / 0.7
+            )
+        return - (
+            taux * assiette
+            )
+
+    def formula_2012_12_31(individu, period, parameters):
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        assiette = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+            * individu('rpns_imposables', period)
+            )
+        return - (
+            0.065 * assiette
             )
 
 
 class retraite_complementaire_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation de retraite complémentarie des professions libérales"
+    label = 'Cotisation de retraite complémentarie des professions libérales'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
     def formula_2013(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
         bareme.add_bracket(0, .09)  # TODO taux à la louche car hétérogène
-        bareme.add_bracket(5, 0)
+        bareme.add_bracket(5, 0)  # TODO on peut améliorer le calcul car on a les parametres
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
@@ -327,14 +496,13 @@ class retraite_complementaire_profession_liberale(Variable):
 class vieillesse_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation retraite des professions libérales"
+    label = 'Cotisation retraite des professions libérales'
     definition_period = YEAR
-    calculate_output = calculate_output_add
 
     def formula_2015(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'vieillesse')
-        assurance_vieillesse = parameters(period).prelevements_sociaux.ret_pl.assurance_vieillesse
+        assurance_vieillesse = parameters(period).prelevements_sociaux.professions_liberales.ret_pl.assurance_vieillesse
         bareme.add_bracket(0, assurance_vieillesse.sous_1_pss)
         bareme.add_bracket(1, assurance_vieillesse.entre_1_et_5_pss)
         bareme.add_bracket(5, 0)

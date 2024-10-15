@@ -1,0 +1,31 @@
+description: Âge minimal de l'ascendant du bénéficiaire ou de son conjoint pour être considéré personne à charge pour les allocations logement (AL)
+values:
+  1991-11-11:
+    value: 65
+  2016-07-01:
+    value: 67
+metadata:
+  short_label: Cas général
+  last_value_still_valid_on: "2023-02-09"
+  label_en: Definition of dependants
+  ipp_csv_id: ag_min_ascendants1
+  unit: year
+  reference:
+    1991-11-11:
+      title: Décret 91-1159 du 08/11/1991, art. 1 (modif art. D542-4 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776071&cidTexte=JORFTEXT000000701067
+    2016-07-01:
+    - title: Article L351-8, 1° du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028498855
+    - title: Décret 2013-140 du 14/02/2013, art. 2 (modifie art.D542-4 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000027069681&cidTexte=JORFTEXT000027068336
+  official_journal_date:
+    1991-11-11: "1991-11-10"
+  notes:
+    2016-07-01:
+    - title: Réforme des âges minimals pour les ascendants et leur conjoint (alignement sur les âges de départ à la retraite à taux plein)
+    - title: référence suivante retirée car aucun lien trouvé. Décret 2010-1734 du 30/12/2010, art. 5 - https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023383419&cidTexte=JORFTEXT000023334246
+documentation: |-
+  Notes :
+  (1) Le calcul de l'âge se fait en additionnant l'âge d'ouverture du droit à une pension de retraite fixé à 62 ans + les 5 ans mentionnés à l'article L351-8.
+  (2) A partir du 01/07/2016, les âges indiqués sont ceux en vigueur pour les personnes nés à partir du 1er janvier 1955. Pour les générations d'avant, cet âge minimal varie de manière croissante. Cf. l'article. L16117-2 du CSS pour les détails

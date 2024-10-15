@@ -1,0 +1,12 @@
+description: Complément de l'allocation d'éducation de l'enfant handicapé (AEEH)
+metadata:
+  documentation_start: true
+  short_label: Complément d'allocation selon catégorie
+  label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
+  order:
+  - 1ere_categorie
+  - 2e_categorie
+  - 3e_categorie
+  - 4e_categorie
+  - 5e_categorie
+  - 6e_categorie

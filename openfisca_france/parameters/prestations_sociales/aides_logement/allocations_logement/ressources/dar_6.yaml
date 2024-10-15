@@ -1,0 +1,21 @@
+description: Demandes antérieures au 1er juillet 1999
+values:
+  2002-01-01:
+    value: 4420.76
+  2002-07-01:
+    value: 4400
+  2007-07-01:
+    value: 5500
+  2009-01-01:
+    value: 0
+  2011-01-01:
+    value: null
+metadata:
+  unit: currency
+  reference:
+    2002-07-01:
+      title: Arrêté du 23 décembre 2002, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000001272987
+    2007-07-01:
+      title: Arrêté du 8 novembre 2007, art.3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002082509

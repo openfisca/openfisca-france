@@ -1,0 +1,10 @@
+description: Majoration par personne à charge du pourcentage plafond de la valeur locative par rapport à la valeur locative moyenne pour bénéficier de l'abattement pour personnes de condition modeste
+values:
+  2017-01-01:
+    value: 0.1
+  2023-01-01:
+    value: null
+metadata:
+  unit: /1
+  reference:
+    title: 3. du II de l'art. 1411 du CGI

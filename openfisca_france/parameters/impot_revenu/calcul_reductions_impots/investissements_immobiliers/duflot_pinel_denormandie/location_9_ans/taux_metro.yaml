@@ -1,0 +1,14 @@
+description: Taux de réduction d'impôt pour les investissements DuflotPinel/Denormandie réalisés en métropole avec engagement de location de 9 ans
+values:
+  2013-01-01:
+    value: 0.18
+metadata:
+  short_label: Métropole
+  last_value_still_valid_on: "2024-04-26"
+  unit: /1
+  reference:
+    2013-01-01:
+    - title: Loi 2012-1509 du 29/12/2012 de finances pour 2013 (1), art. 80 (créé art. 199 novovicies du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000026872833/2013-01-01/
+    - title: Art. 199 novovicies, VI. du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044991962

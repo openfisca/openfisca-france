@@ -1,0 +1,19 @@
+description: Incrément de la réduction d'impôts sur rente survie et contrat d'épargne handicap
+values:
+  1977-01-01:
+    value: null
+  1978-01-01:
+    value: 600
+  1983-01-01:
+    value: 1500
+  2001-01-01:
+    value: 230
+  2004-01-01:
+    value: 300
+metadata:
+  short_label: Incrément
+  ipp_csv_id: increment_survie
+  unit: currency_next_year
+  notes:
+    1983-01-01:
+    - title: À partir de 1984, les bénéfices liés aux primes d'assurances vie et rentes-survie prennent la forme d'une réduction d'împôt, alors qu'ils consistaient en une déduction du revenu net.

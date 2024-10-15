@@ -1,0 +1,10 @@
+description: Plafonds de revenu d'activité individuel pour le calcul de la prime pour l'emploi (PPE)
+metadata:
+  short_label: Plafonds revenu d'activité individuel
+  label_en: Employment Allowance
+  order:
+  - minimum
+  - pour_taux_plein_cas_general
+  - maximum_cas_general
+  - pour_taux_plein_couples_mono_revenus
+  - max_couples_mono_emploi_parents_isoles

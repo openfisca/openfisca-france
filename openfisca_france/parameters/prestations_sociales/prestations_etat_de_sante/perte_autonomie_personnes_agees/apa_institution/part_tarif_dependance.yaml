@@ -1,0 +1,18 @@
+description: Part du tarif dépendance GIR 1-2 de l'allocation personnalisée d'autonomie (APA) provisoire en institution
+values:
+  2002-01-01:
+    value: 0.5
+metadata:
+  short_label: Part du tarif dépendance GIR 1-2
+  label_en: Attendance allowance for individuals living in a nursing home (APA)
+  ipp_csv_id: part_tarif_dependance_gir_1_2_etablissement_accueil
+  unit: /1
+  reference:
+    2002-01-01:
+    - title: Art. R232-19 du CASF
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032138500
+    - title: Décret 2001-1084 du 20/11/2001 (abrogé)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000588742
+  official_journal_date:
+    2002-01-01: "2001-11-21"
+documentation: Attribution de l'APA à titre provisoire en cas d'urgence, le montant correspond à une fraction du tarif dépendance de l'établissement pour les GIR 1 et 2.

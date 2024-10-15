@@ -1,0 +1,10 @@
+description: Taux (XJ)
+values:
+  2004-01-01:
+    value: 0.1
+  2008-01-01:
+    value: 0
+  2010-01-01:
+    value: 0.2
+metadata:
+  unit: /1

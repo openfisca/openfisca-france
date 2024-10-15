@@ -1,4 +1,19 @@
-description: Cotisations pour l'association pour l'emploi des cades (APEC), régimes complémentaires de retraite (secteur privé)
+description: Cotisations pour l'association pour l'emploi des cades (APEC)
 metadata:
-  ux_name: Cotisations pour l'association pour l'emploi des cades (APEC)
-  description_en:
+  documentation_start: true
+  short_label: Cotisations pour l'association pour l'emploi des cades (APEC)
+  label_en: Contributions for the Association for the employment of executives (APEC)
+  order:
+  - employeur
+  - salarie
+documentation: |-
+  L'Association pour l'emploi des cadres (APEC) a été mise en place par la convention du 18/11/1966.
+  La cotisation APEC est recouvrée par l'AGIRC.
+  Le forfait annuel est dû pour les salaires en-dessous du PSS (tranche A).
+  Le forfait annuel dépend du PSS annuel (0,0006*PSS partagé en 40/60) mais la règle des arrondis semble variable dans le temps.
+  En pratique, l'Agirc a calculé la cotisation comme un forfait plutôt que comme une cotisation proportionnelle au salaire sous plafond.
+  Références contractuelles et législatives :
+  La convention du 18/11/1966 et ses avenants n°1 du 03/01/1969, n°2 du 09/06/1969, n°3 du 10/04/1973 et n°4 du 21/12/1973 ont été étendus,
+  en application de l'article L. 133-8, par l'arrêté du 13/08/1974 (JO 29/08/1974).
+  L'avenant n°5, qui étend la cotisation aux salaires sous plafond, est institué par l'arrêté du 16/02/1976 (JO 26/02/1976).
+  Protocole d'accord Agirc-Apec du 30/12/1975.

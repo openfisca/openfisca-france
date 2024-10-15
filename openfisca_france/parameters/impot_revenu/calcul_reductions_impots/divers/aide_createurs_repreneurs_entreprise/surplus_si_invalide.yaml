@@ -1,0 +1,10 @@
+description: Surplus pour les personnes invalides de la réduction d'impôt des aides aux créateurs et repreneurs d'entreprises
+values:
+  1977-01-01:
+    value: null
+  2006-01-01:
+    value: 400
+metadata:
+  short_label: Surplus si invalide
+  ipp_csv_id: crea_entr2
+  unit: currency_next_year

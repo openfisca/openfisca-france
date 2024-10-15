@@ -1,0 +1,14 @@
+description: Allocation unique dégressive des allocations d'assurance chômage
+metadata:
+  short_label: Allocation unique dégressive
+  label_en: UI scheme - degressive schedule
+  order:
+  - taux_plein
+  - taux_degressif
+  - duree_totale_en_mois
+  - coefficient_degressivite
+documentation: |-
+  L'allocation dégressive unique a été introduite par le protocole d'accord du 18 Juillet 1992, qui pose le principe de la fusion des allocations d'assurance et de solidarité, et de la dégressivite de l'allocation de base.
+  La méthode de calcul du montant initial de l'allocation ne change pas, mais son montant décroit tout au long de la période de chômage pour atteindre un montant plancher équivalent à l'allocation de solidarité
+  La durée d'indemnisation au taux plein, la durée d'indemnisation totale, et la vitesse à laquelle l'allocation décroît dépendent de l'âge du chômeur, et de la durée de son affiliation à la sécurité sociale.
+  Ces paramètres ont été revus régulièrement, jusqu'en 2001 où l'AUD a été remplacée par l'allocation de retour à l'emploi. L'allocation décroit tous les 4 mois.

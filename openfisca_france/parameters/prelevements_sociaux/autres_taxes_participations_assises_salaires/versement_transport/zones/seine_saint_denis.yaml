@@ -1,0 +1,90 @@
+description: Versement transport (VT) pour la zone de Seine-Saint-Denis
+values:
+  1971-09-01:
+    value: 0.017
+  1975-07-01:
+    value: 0.019
+  1979-01-01:
+    value: 0.02
+  1989-01-01:
+    value: 0.018
+  1993-01-01:
+    value: 0.016
+  2004-01-01:
+    value: 0.017
+  2013-01-01:
+    value: 0.018
+  2015-07-01:
+    value: 0.0191
+  2017-01-01:
+    value: 0.0212
+  2018-01-01:
+    value: 0.0233
+  2019-01-01:
+    value: 0.0254
+  2020-01-01:
+    value: 0.0274
+  2021-01-01:
+    value: 0.0295
+metadata:
+  short_label: Seine-Saint-Denis
+  last_value_still_valid_on: "2021-12-07"
+  label_en: Transport tax (VT) (contribution to public transports)
+  ipp_csv_id: vt_93
+  unit: /1
+  reference:
+    1971-09-01:
+    - title: Loi 71-559 du 12/07/1971
+    - title: Décret 71-710 du 30/08/1971
+    1975-07-01:
+      title: Décret 75-533 du 27/06/1975
+    1979-01-01:
+      title: Référence manquante
+    1989-01-01:
+      title: Loi 88-1193 du 29/12/1988 - art. 45
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275526&cidTexte=JORFTEXT000000509064
+    1993-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993), art. 115
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006318658&cidTexte=JORFTEXT000000178406
+    2004-01-01:
+    - title: Loi 2003-1311 du 30/12/2003 (LF pour 2004), art. 132
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006321875&cidTexte=JORFTEXT000000612133
+    - title: Décret 2003-1385 du 31/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000797506
+    2013-01-01:
+      title: Loi 2012-1509 du 29/12/2012 - art. 84
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872839&cidTexte=JORFTEXT000026856853
+    2015-07-01:
+      title: Lettre circulaire ACOSS 2015-0000024 du 07/05/2015
+    2017-01-01:
+    - title: Article L2531-4 du Code général des collectivités territoriales
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036432163/2018-01-01
+    - title: Loi 2016-1917 du 29/12/2016 (LF pour 2017), art. 91
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033760644&cidTexte=JORFTEXT000033734169
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018), art. 99
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377564&cidTexte=JORFTEXT000036339197
+    2019-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018), art. 99
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377564&cidTexte=JORFTEXT000036339197
+    2020-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018), art. 99
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377564&cidTexte=JORFTEXT000036339197
+    2021-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018), art. 99
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377564&cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    1971-09-01: 1971-07-13; 1971-08-31
+    1975-07-01: "1975-06-29"
+    1989-01-01: "1988-12-30"
+    1993-01-01: "1992-12-31"
+    2004-01-01: 2003-12-31; 2004-01-01
+    2013-01-01: "2012-12-30"
+    2017-01-01: "2016-12-30"
+    2018-01-01: "2017-12-31"
+    2019-01-01: "2017-12-31"
+    2020-01-01: "2017-12-31"
+    2021-01-01: "2017-12-31"
+  notes:
+    1971-09-01:
+    - title: Le VT est instauré uniquement pour Paris, le 92 et le 94.

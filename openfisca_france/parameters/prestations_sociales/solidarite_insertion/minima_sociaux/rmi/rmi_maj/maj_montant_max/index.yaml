@@ -1,0 +1,9 @@
+description: Majoration du montant maximal (en % de la base) du revenu minimum d'insertion (RMI)
+metadata:
+  short_label: Majoration du montant maximal
+  label_en: "Minimum insertion income (RMI): Extra allowance"
+  order:
+  - couples
+  - celibataire_1_enfant
+  - couple_1_enfant_ou_2e_enfant
+  - par_enfant_supplementaire

@@ -1,0 +1,21 @@
+description: Bons (émmis entre le 21/01/80 et le 31/12/82 avec anonymat), de caisse des banques, du Trésor sur formules ou d'épargne des PTT (Prélèvements libératoires sur les revenus des valeurs mobilières, 1965-2017)
+values:
+  1980-01-01:
+    value: 0.42
+metadata:
+  short_label: Émis entre le 21/01/80 et le 31/12/82 avec anonymat)
+  label_en: Levy in discharge on capital income
+  ipp_csv_id: bons_8082_anon
+  unit: /1
+  reference:
+    1980-01-01:
+    - title: Loi 79-1102 du 21/12/1979, art. 11 (LFR pour 1979)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006317224&cidTexte=JORFTEXT000000516622
+    - title: Loi 80-30 du 18/01/1980, art. 67 (LF pour 1980)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273419&cidTexte=JORFTEXT000000705191
+    2010-03-01:
+      title: Loi 2009-1674 du 30/12/2009, art. 22
+      href: https://www.legifrance.gouv.fr/eli/loi/2009/12/30/2009-1674/jo/article_22
+  official_journal_date:
+    1980-01-01: 1979-12-22; 1980-01-19
+    2010-03-01: "2009-12-31"

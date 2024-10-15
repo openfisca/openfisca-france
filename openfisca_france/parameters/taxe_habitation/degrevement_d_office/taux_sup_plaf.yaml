@@ -1,0 +1,23 @@
+description: Taux du dégrèvement d'office de la taxe d'habitation pour les redevables dont les revenus sont supérieurs aux plafonds
+values:
+  2017-01-01:
+    value: 0
+  2021-01-01:
+    value: 0.3
+  2022-01-01:
+    value: 0.65
+  2023-01-01:
+    value: null
+metadata:
+  last_value_still_valid_on: "2023-01-25"
+  unit: /1
+  reference:
+    2017-01-01:
+      title: art. 1414 C du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041465111/
+    2022-01-01:
+      title: Décret n° 2022-782 du 4 mai 2022, article
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045757184
+    2023-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 de finances pour 2020, art. 16
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039683949

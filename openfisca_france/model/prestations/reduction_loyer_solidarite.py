@@ -4,16 +4,16 @@ from openfisca_france.model.base import *
 class reduction_loyer_solidarite_plafond_ressources(Variable):
     value_type = float
     entity = Famille
-    label = "Plafond de ressources pour le calcul de la réduction du loyer de solidarité"
+    label = 'Plafond de ressources pour le calcul de la réduction du loyer de solidarité'
     reference = [
-        "https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
-        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
-        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
+        'https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/',
+        'https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id',
+        'https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id'
         ]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        rls = parameters(period).prestations.reduction_loyer_solidarite
+        rls = parameters(period).prestations_sociales.aides_logement.reduction_loyer_solidarite
         personnes_a_charge_al = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
@@ -58,13 +58,13 @@ class reduction_loyer_solidarite_plafond_ressources(Variable):
 class reduction_loyer_solidarite_montant(Variable):
     value_type = float
     entity = Famille
-    label = "Montant de la réduction du loyer de solidarité"
-    reference = "https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_2"
+    label = 'Montant de la réduction du loyer de solidarité'
+    reference = 'https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        rls = parameters(period).prestations.reduction_loyer_solidarite
+        rls = parameters(period).prestations_sociales.aides_logement.reduction_loyer_solidarite
         personnes_a_charge_al = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
@@ -94,11 +94,11 @@ class reduction_loyer_solidarite_montant(Variable):
 class reduction_loyer_solidarite(Variable):
     value_type = float
     entity = Famille
-    label = "Réduction du loyer de solidarité effectivement versée"
+    label = 'Réduction du loyer de solidarité effectivement versée'
     reference = [
-        "https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
-        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
-        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
+        'https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/',
+        'https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id',
+        'https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id'
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period

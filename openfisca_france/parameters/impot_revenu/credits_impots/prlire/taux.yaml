@@ -1,0 +1,7 @@
+description: Taux de prélèvement libératoire à restituer
+values:
+  2002-01-01:
+    value: 0.075
+metadata:
+  short_label: Taux
+  unit: /1

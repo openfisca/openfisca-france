@@ -1,0 +1,28 @@
+description: Bons (émis entre le 01/06/78 et le 20/01/80), de caisse des banques, du Trésor sur formules ou d'épargne des PTT (Prélèvements libératoires sur les revenus des valeurs mobilières, 1965-2017)
+values:
+  1979-07-01:
+    value: 0.4
+  2013-01-01:
+    value: 0.24
+metadata:
+  short_label: Emis entre le 01/06/78 et le 20/01/80
+  label_en: Levy in discharge on capital income
+  ipp_csv_id: tx_bons_7880
+  unit: /1
+  reference:
+    1979-07-01:
+      title: Loi 78-741 du 13/07/1978, art. 35
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006317151&cidTexte=JORFTEXT000000518241
+    2010-03-01:
+      title: Loi 2009-1674 du 30/12/2009, art. 22
+      href: https://www.legifrance.gouv.fr/eli/loi/2009/12/30/2009-1674/jo/article_22
+    2013-01-01:
+      title: Loi 2012-1509 du 29/12/2012, art. 9(LFR pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872653&cidTexte=JORFTEXT000026856853
+  official_journal_date:
+    1979-07-01: "1978-07-14"
+    2010-03-01: "2009-12-31"
+    2013-01-01: "2012-12-30"
+  notes:
+    2013-01-01:
+    - title: Le prélèvement forfaitaire libératoire est supprimé (à l'exception du cas des produits de placement à revenu fixe n'excédant pas 2000 €) par la loi de finances pour 2013. Un prélèvement forfaitaire obligatoire et non libératoire le remplace. Voir note (2)

@@ -1,0 +1,18 @@
+description: Durée (en années) de l'Allocation journalière de présence parentale (AJPP)
+values:
+  2006-06-05:
+    value: 3
+metadata:
+  short_label: Durée allocation
+  label_en: "Daily parental presence allowance (AJPP): Amounts"
+  ipp_csv_id: ajpp_duree_alloc
+  unit: year
+  reference:
+    2006-06-05:
+      title: Décret 2006-659 du 02/06/2006, art. 4 (modif art. D544-1,2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006251995&cidTexte=JORFTEXT000000241345
+  official_journal_date:
+    2006-06-05: "2006-06-04"
+  notes:
+    2006-06-05:
+    - title: Création de AJPP

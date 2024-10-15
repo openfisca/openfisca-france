@@ -1,0 +1,16 @@
+description: Allocation personnalisée d'autonomie à domicile (APA)
+metadata:
+  documentation_start: true
+  short_label: Allocation personnalisée d'autonomie à domicile (APA)
+  label_en: Attendance allowance for individuals living at home (APA)
+  order:
+  - plafond_apa_domicile_en_part_mtp
+  - seuil_revenu_en_part_mtp
+  - participation_en_part_mtp
+  - part_plafond_apa_domicile
+  - division_ressources_menage_couples
+  - taux_de_participation
+  - condition_age
+  - seuil_versement_en_part_smic_brut_horaire
+  - majorations
+documentation: L'APA correspond au montant dont bénéficie effectivement le bénéficiaire moins la participation laissée à la charge du bénéficiaire.

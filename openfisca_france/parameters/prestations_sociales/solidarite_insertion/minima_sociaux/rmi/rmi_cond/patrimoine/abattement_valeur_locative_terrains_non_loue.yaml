@@ -1,0 +1,6 @@
+description: Abattement appliqué sur la valeur locative des terrains non loués
+values:
+  2009-01-01:
+    value: 0.8
+metadata:
+  unit: /1

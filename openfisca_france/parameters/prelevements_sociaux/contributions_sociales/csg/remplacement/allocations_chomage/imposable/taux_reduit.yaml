@@ -1,0 +1,17 @@
+description: Taux réduit de la contribution sociale généralisée (CSG) imposable sur les revenus d'activité
+values:
+  1997-01-01:
+    value: 0
+metadata:
+  short_label: Taux réduit
+  last_value_still_valid_on: "2024-07-24"
+  label_en: CSG - rates on work incomes
+  unit: /1
+  reference:
+    1997-01-01:
+    - title: Article L136-8 du Code de la sécurité sociale (taux global)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036390220
+    - title: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000198309/
+  official_journal_date:
+    1997-01-01: "1996-12-29"

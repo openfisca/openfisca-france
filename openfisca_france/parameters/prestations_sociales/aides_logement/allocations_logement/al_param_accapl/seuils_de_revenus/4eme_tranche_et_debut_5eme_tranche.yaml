@@ -1,0 +1,21 @@
+description: 4ème tranche (et début 5ème tranche) de revenus, Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
+values:
+  2007-07-01:
+    value: 5357.44
+metadata:
+  short_label: 4ème (et début 5ème) tranche
+  label_en: Parameters for new home-buyers (APL)
+  ipp_csv_id: seuil_tr4_lo_apl
+  unit: currency
+  reference:
+    2007-07-01:
+      title: Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&categorieLien=id
+  official_journal_date:
+    2007-07-01: "2007-07-12"
+  notes:
+    2007-07-01:
+    - title: Paramètres dispo dans "Eléments de calcul des aides personnelles au logement", 2013
+documentation: |-
+  Notes :
+  L'APL est réformée en 2001 et les paramètres ci-dessus peuvent remonter jusqu'à 2001.

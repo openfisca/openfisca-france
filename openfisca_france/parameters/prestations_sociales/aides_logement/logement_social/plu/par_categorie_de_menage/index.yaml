@@ -1,0 +1,11 @@
+description: Prêt locatif aidé d'intégration pour les logements très sociaux par catégorie de ménage
+metadata:
+  short_label: Par catégorie de ménage
+  label_en: Housing allowances
+  order:
+  - categorie_1
+  - categorie_2
+  - categorie_3
+  - categorie_4
+  - categorie_5
+  - categorie_6

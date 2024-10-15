@@ -1,38 +1,36 @@
 description: Barème employeur de la contribution d'équilibre général (CEG) aux régimes complémentaires de retraite (secteur privé)
 brackets:
-- rate:
+- threshold:
+    2019-01-01:
+      value: 0
+  rate:
     2019-01-01:
       value: 0.0129
-  threshold:
+- threshold:
     2019-01-01:
-      reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2017/ANI_Retraite_17nov2017_01012019.pdf
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     2019-01-01:
-      reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2017/ANI_Retraite_17nov2017_01012019.pdf
       value: 0.0162
-  threshold:
+- threshold:
     2019-01-01:
-      reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2017/ANI_Retraite_17nov2017_01012019.pdf
-      value: 1.0
-- rate:
+      value: 8
+  rate:
     2019-01-01:
-      reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2017/ANI_Retraite_17nov2017_01012019.pdf
-      value: 0.0
-  threshold:
-    2019-01-01:
-      reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2017/ANI_Retraite_17nov2017_01012019.pdf
-      value: 8.0
+      value: 0
 metadata:
-  ux_name: Barème employeur
-  last_review:
-    2021-08-02
+  short_label: Barème employeur (Tranches 1 et 2)
+  last_value_still_valid_on: "2024-03-14"
+  label_en: Complementary pension contributions
+  reference:
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire, art. 37
+      href: https://www.legifrance.gouv.fr/conv_coll/article/KALIARTI000036731900#KALIARTI000036731900
+  official_journal_date:
+    2019-01-01: "2017-11-19"
+  notes:
+    2019-01-01:
+    - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
+    - title: Les taux de cotisation de 1,29% (CEG T1) et 1,62% (CEG T2) sont obtenus en multipliant les taux globaux CEG (2,15% pour la T1 et 2,70% pour la T2) multipliés par la part employeur égale à 60% (cf. art. 38 de l'ANI du 17/11/2017)
   rate_unit: /1
   threshold_unit: PSS
-  reference:
-    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
-  official_journal_date:
-    2019-01-01: 2017-11-19
-  notes:
-    2019-01-01: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
-  description_en: Complementary pension contributions

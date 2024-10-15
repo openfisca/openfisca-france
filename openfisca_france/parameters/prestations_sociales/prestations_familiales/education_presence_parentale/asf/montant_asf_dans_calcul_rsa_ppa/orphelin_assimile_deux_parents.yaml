@@ -1,0 +1,53 @@
+description: Montant, pour orphelin ou assimilé des deux parents, dans le calcul du RSA et de la PPA (en % de la BMAF) de l'Allocation de soutien familial (ASF)
+values:
+  1970-12-26:
+    value: null
+  2009-06-01:
+    value: 0.3
+metadata:
+  short_label: Orphelin ou assimilé des 2 parents
+  label_en: "Family support allowance (ASF): Amounts"
+  ipp_csv_id: asf_2parents_rsa
+  unit: BMAF
+  reference:
+    1970-12-26:
+      title: Loi 70-1218 du 23/12/1970 (modif art. L543 du CSS)
+    1971-07-01:
+      title: Décret 71-504 du 29/06/1971
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000695960&categorieLien=id
+    1982-07-01:
+      title: Décret 82-534 du 23/06/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000519665&categorieLien=id
+    1984-12-28:
+      title: Loi 84-1171 du 22/12/1984 (modif art. L 543-5 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000501096
+    1986-01-01:
+      title: Décret 85-1353 du 17/12/1985, art. 1 (crée art. art. R523-7 et s. du CSS)
+    1986-07-01:
+      title: Loi 85-17 du 04/01/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000521299
+    1999-11-17:
+      title: Loi 99-944 du 15/11/1999, art. 10 (modif L523-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006284618&cidTexte=JORFTEXT000000761717
+    2009-06-01:
+      title: Loi 2008-1425 du 27/12/2008, art. 181 (modif L523-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020000308&cidTexte=JORFTEXT000019995721
+  official_journal_date:
+    1970-12-26: "1970-12-25"
+    1971-07-01: "1971-06-30"
+    1982-07-01: "1982-06-24"
+    1984-12-28: "1984-12-27"
+    1986-07-01: "1985-01-05"
+    1999-11-17: "1999-11-16"
+    2009-06-01: "2008-12-28"
+  notes:
+    1970-12-26:
+    - title: Création de l'allocation d'orphelin
+    1971-07-01:
+    - title: Appelé "Allocation d'orphelin"
+    1982-07-01:
+    - title: Droit à l'allocation pour abandon manifeste au bout de 2 mois et non 6 mois
+    1984-12-28:
+    - title: Allocation de Soutien Familial
+    2009-06-01:
+    - title: Le RSA intègre dans son calcul l'ASF mais avec des taux différents

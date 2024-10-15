@@ -1,0 +1,6 @@
+description: Gratification minimale du stagiaire (2006-)
+metadata:
+  short_label: Gratification stagiaire
+  label_en: Minimum compensation for interns
+  order:
+  - taux_gratification_min

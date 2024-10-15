@@ -1,0 +1,30 @@
+description: Plafond des dépenses ouvrant à une réduction d'impôt de 75 % pour les dons aux associations cultuelles ou à un établissement public reconnu d'Alsace-Moselle
+values:
+  2021-01-01:
+    value: 554
+  2022-01-01:
+    value: 562
+  2023-01-01:
+    value: 593
+metadata:
+  short_label: Plafond réduction d'impôt
+  last_value_still_valid_on: "2024-06-11"
+  unit: currency_next_year
+  reference:
+    2021-01-01:
+      title: Loi  2021-953 du 19/07/2021 de finances rectificative pour 2021 - art.18 (modifie Art. 200 du CGI)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000043805926
+    2022-01-01:
+    - title: Décret n° 2023-422 du 31/05/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047618675
+    - title: Article 200, 1 ter du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018619914
+    2023-01-01:
+    - title: Décret n° 2024-496 du 30/05/2024, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
+    - title: Article 200, 1 ter du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018619914
+documentation: |-
+  Notes :
+  Ref : Article 200, 1 ter du CGI.
+  La limite de versements est relevée chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu de l'année précédant celle des versements. Le montant obtenu est arrondi, s'il y a lieu, à l'euro supérieur.

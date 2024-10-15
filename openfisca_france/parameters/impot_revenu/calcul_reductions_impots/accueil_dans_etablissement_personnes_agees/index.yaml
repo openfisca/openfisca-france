@@ -1,0 +1,9 @@
+description: Dépenses d’accueil dans un établissement pour personnes dépendantes
+metadata:
+  documentation_start: true
+  short_label: Personnes dépendantes
+  label_en: Expenditures in a host Establishment for Dependent Persons
+  order:
+  - taux
+  - plafond
+documentation: "Art. 199 quindecies du CGI : Réduction d'impôt accordée au titre de l'hébergement en établissement de long séjour ou en section de cure médicale"

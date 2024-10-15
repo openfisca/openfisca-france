@@ -1,0 +1,25 @@
+description: Cotisations (si revenu d'activité > 140 % PSS) de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
+values:
+  2015-01-01:
+    value: 0.0525
+  2018-01-01:
+    value: 0.031
+metadata:
+  short_label: Si revenu d'activité > 140 % PSS
+  label_en: SSCs for family benefits (independent workers)
+  unit: /1
+  reference:
+    2015-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921984&cidTexte=JORFTEXT000029920824
+    2018-01-01:
+      title: Décret 2017-1894 du 30/12/2017, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036456539&cidTexte=JORFTEXT000036342439
+  official_journal_date:
+    2015-01-01: "2013-12-31"
+    2018-01-01: "2017-12-31"
+  notes:
+    2015-01-01:
+    - title: "Modulation des taux selon le revenu : si 110 % PSS < revenu d'activité ( r ) < 140 % PSS, taux égal à [(T2 - T1) /(0,3 x PSS)] x (r - 1,1 x PSS) + T1 , où T2 = 5,25 %, T1 = 2,15 %"
+    2018-01-01:
+    - title: "Modulation des taux selon le revenu : si 110 % PSS < revenu d'activité ( r ) < 140 % PSS, taux égal à [(T1)/ (0,3 × PSS)] × (r - 1,1 × PSS), où T1 = 3,10 %"

@@ -1,0 +1,6 @@
+description: Montant maximum du loyer éligible à la caution Visale dans le cas général
+metadata:
+  short_label: Cas Général
+  order:
+  - hors_ile_de_france
+  - ile_de_france

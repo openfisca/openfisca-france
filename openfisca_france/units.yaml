@@ -1,0 +1,142 @@
+- name: /1
+  label:
+    one: pourcent
+    other: pourcents
+  ratio: true
+  short_label: "%"
+- name: BMAF
+  label:
+    one: Base mensuelle des allocations familiales
+    other: Bases mensuelles des allocations familiales
+  parameter: prestations_sociales.prestations_familiales.bmaf.bmaf
+  ratio: false
+  short_label: BMAF
+- name: child
+  label:
+    one: enfant
+    other: enfants
+- name: codes départements
+- name: currency
+  label:
+    one: Monnaie française
+    other: Monnaies françaises
+  units:
+    1795-01-01:
+      label:
+        one: Ancien franc
+        other: Anciens francs
+      name: currency-AFRF
+      short_label: AFRF
+    1960-01-01:
+      label:
+        one: Nouveau franc
+        other: Nouveaux francs
+      name: currency-FRF
+      short_label: FRF
+    2002-01-01:
+      label:
+        one: Euro
+        other: Euros
+      name: currency-EUR
+      short_label: €
+- name: currency_next_year
+  label:
+    one: Monnaie française
+    other: Monnaies françaises
+  units:
+    1795-01-01:
+      label:
+        one: Ancien franc
+        other: Anciens francs
+      name: currency-AFRF
+      short_label: AFRF
+    1959-01-01:
+      label:
+        one: Nouveau franc
+        other: Nouveaux francs
+      name: currency-FRF
+      short_label: FRF
+    2001-01-01:
+      label:
+        one: Euro
+        other: Euros
+      name: currency-EUR
+      short_label: €
+- name: hour
+  label:
+    one: heure
+    other: heures
+- name: ISO 3166-1 alpha-2
+- name: month
+  label: mois
+- name: part_quotient_familial
+  label:
+    one: part de quotient familial
+    other: parts de quotient familial
+  ratio: false
+  short_label:
+    one: part
+    other: parts
+- name: people
+  label:
+    one: personne
+    other: personnes
+- name: pourcentage_montant_de_base
+  label:
+    one: "pourcent du montant de base"
+    other: "pourcents du montant de base"
+  ratio: true
+  short_label:
+    one: "% du montant de base"
+    other: "% du montant de base"
+- name: PSS
+  label:
+    one: Plafond de la sécurité sociale
+    other: Plafonds de la sécurité sociale
+  parameter: prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+  ratio: false
+  short_label: PSS
+- name: RSA
+  label:
+    one: Revenu de solidarité active
+    other: Revenus de solidarité active
+  parameter: prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.montant_de_base_du_rsa
+  ratio: false
+  short_label: RSA
+- name: smic
+  label:
+    one: Salaire minimum de croissance
+    other: Salaires minimums de croissance
+  ratio: false
+  short_label:
+    one: Smic
+    other: Smic
+- name: smic_annuel
+  label:
+    one: Smic annuel
+    other: Smic annuels
+  ratio: false
+- name: smic_mensuel_brut
+  label:
+    one: Smic mensuel brut
+    other: Smic mensuels bruts
+  parameter: marche_travail.salaire_minimum.smic.smic_b_mensuel
+  ratio: false
+- name: smic_horaire_brut
+  label:
+    one: Smic horaire brut
+    other: Smic horaires bruts
+  parameter: marche_travail.salaire_minimum.smic.smic_b_horaire
+  ratio: false
+- name: smic_2023_12_31
+  label:
+    one: Smic au 31 décembre 2023
+    other: Smic au 31 décembre 2023
+  ratio: false
+- name: year
+  label:
+    one: année
+    other: années
+  short_label:
+    one: an
+    other: ans

@@ -1,0 +1,16 @@
+description: Taux transitoire de la réduction d'impôt Scellier pour les logements non BBC
+values:
+  2011-01-01:
+    value: 0.15
+  2013-01-01:
+    value: null
+metadata:
+  short_label: Taux transitoire
+  last_value_still_valid_on: "2024-03-19"
+  unit: /1
+  reference:
+    2013-01-01:
+      title: Loi n° 2012-1509 du 29 décembre 2012 (LF pour 2013), art. 80
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872833&cidTexte=LEGITEXT000026872634&dateTexte=20200618
+  official_journal_date:
+    2013-01-01: "2012-12-30"

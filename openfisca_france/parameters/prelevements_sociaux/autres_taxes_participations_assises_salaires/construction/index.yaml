@@ -1,4 +1,15 @@
-description: Participation des employeurs à l'effort de construction (PEEC), parmi les autres taxes et participations assises sur les salaires
+description: Participation des employeurs à l'effort de construction (PEEC)
 metadata:
-  ux_name: Participation employeur à l'effort de construction
-  description_en: Contributions for housing construction
+  short_label: Participation employeur à l'effort de construction
+  label_en: Contributions for housing construction
+  order:
+  - 10_19_salaries
+  - plus_20_salaries
+  - plus_50_salaries
+documentation: |-
+  La participation des employeurs à l'effort de construction (PEEC) ou le "1% logement", rebaptisé en 2010 "Action logement" (www.actionlogement.fr).
+  Références :
+    Loi de finances 1975 (Loi 74-1129 du 30/12/74, JO 31/12/1974)
+    Code de l'urbanisme (art. 272 à 276)
+    Loi 71-582 du 16/07/71 (JO 17/07/71)
+    Décret 72-526 du 29/06/72 (JO 30/06/72)

@@ -1,0 +1,16 @@
+description: Prélèvement libératoire sur les bons ou contrats de capitalisation et placements de même nature (assurance-vie), Souscrits après le 01/01/90, Durée de 8 ans et plus, primes versées avant 01/01/1998, produits afférents acquis après cette date, lors du dénouement du contrat
+values:
+  1990-01-01:
+    value: 0
+metadata:
+  short_label: Durée de 8 ans et plus
+  last_value_still_valid_on: "2024-04-08"
+  label_en: Levy in discharge on life insurance
+  ipp_csv_id: tx_pl_av_8
+  unit: /1
+  reference:
+    1990-01-01:
+      title: Loi 89-936 du 29/12/1989, art. 112 (LF pour 1990)
+  official_journal_date:
+    1990-01-01: "1989-12-30"
+documentation: Cas des primes versées avant le 01/01/1998 et les produits afférents acquis après cette date.

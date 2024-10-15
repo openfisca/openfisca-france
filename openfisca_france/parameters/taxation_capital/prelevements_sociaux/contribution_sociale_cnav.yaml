@@ -1,7 +1,24 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+description: Contribution sociale (CNAV) sur les revenus financiers
 values:
   1985-01-01:
     value: 0.004
   1991-01-01:
     value: null
+metadata:
+  short_label: Contribution sociale (CNAV)
+  label_en: Other social levies on financial income
+  ipp_csv_id: tx_contr_cnav
+  unit: /1
+  reference:
+    1985-01-01:
+    - title: Loi 84-1208 du 29/12/1984, art. 106 (LF pour 1985)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006274299&cidTexte=JORFTEXT000000880778
+    - title: Loi 86-966 du 18/08/1986, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006317522&cidTexte=JORFTEXT000000317540
+  official_journal_date:
+    1985-01-01: "1986-08-19"
+  notes:
+    1985-01-01:
+    - title: "Il s'agit du \"0,4% Balladur\" qui s'applique à l'ensemble des revenus imposables.La date de parution au JOFR de la Loi 84-1208 du 29/12/1984, art. 106 (LF pour 1985) est : 30/12/1984"
+    1991-01-01:
+    - title: Avec l'instauration de la CSG, la contribution sociale de 0,4% est supprimée.

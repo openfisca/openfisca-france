@@ -1,0 +1,16 @@
+description: Majoration de base du livret A
+values:
+  2008-07-28:
+    value: 0.005
+  2022-02-01:
+    value: 0.017
+metadata:
+  short_label: Majoration
+  unit: /1
+  reference:
+    2008-07-28:
+      title: Article 3 du règlement n° 86-13 du 14 mai 1986
+      href: https://www.cbanque.com/r/CRBF-86-13-2011.pdf
+    2022-02-01:
+      title: Arrêté du 27/01/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000045084357

@@ -1,0 +1,9 @@
+description: Plafond de ressources pour la majoration du salaire unique, pour l'Allocation de salaire unique (ASU)
+metadata:
+  short_label: Majoration du salaire unique
+  label_en: Single wage increase
+  order:
+  - sans_enfant
+  - 1_enfant
+  - 2_enfants
+  - par_enfant_supplementaire

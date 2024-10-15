@@ -1,0 +1,12 @@
+description: Réduction d'impôt sur les prestations compensatoires
+metadata:
+  documentation_start: true
+  short_label: Sur les prestations compensatoires
+  label_en: Compensatory allowance
+  order:
+  - taux
+  - plafond
+documentation: |-
+  Voir articles 270 et 271 du code civil
+  À partir de 2004, institution d'une réduction d'impôt en cas de versement de la prestation compensatoire en capital
+  selon la loi 2004-439 du 26/05/2004 - art. 26 (https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006284819&cidTexte=JORFTEXT000000439268)

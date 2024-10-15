@@ -1,0 +1,9 @@
+description: Allocation journalière spéciale de l'assurance chômage
+metadata:
+  short_label: Allocation journalière spéciale
+  label_en: Special UI scheme for economic layoffs
+  order:
+  - 1er_trimestre
+  - 2eme_trimestre
+  - 3eme_trimestre
+  - 4eme_trimestre

@@ -1,0 +1,7 @@
+description: Coefficient de majoration pour temps partiel de la prime pour l'emploi (PPE)
+metadata:
+  short_label: Majoration temps partiel
+  label_en: Employment Allowance
+  order:
+  - taux_1
+  - taux_2

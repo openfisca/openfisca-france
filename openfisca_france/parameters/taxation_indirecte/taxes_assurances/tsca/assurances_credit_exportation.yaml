@@ -1,0 +1,9 @@
+description: Assurances de crédit à l'exportation
+values:
+  1979-07-01:
+    value: 0.0025
+  1989-01-01:
+    value: null
+metadata:
+  ipp_csv_id: taxe_assu_credit_export
+  unit: /1

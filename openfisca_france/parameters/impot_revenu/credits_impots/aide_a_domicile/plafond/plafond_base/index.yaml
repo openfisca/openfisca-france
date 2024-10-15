@@ -1,0 +1,7 @@
+description: Plafond de base des dépenses retenues par foyer fiscal dans le calcul du crédit d'impôt pour l'aide à domicile
+metadata:
+  short_label: Plafond de base des dépenses retenues par foyer fiscal
+  label_en: Tax credits for personal care assistant employment
+  order:
+  - plafond_annee_1
+  - plafond_annee_supp

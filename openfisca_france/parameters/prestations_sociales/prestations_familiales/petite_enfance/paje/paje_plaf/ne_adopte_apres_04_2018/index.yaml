@@ -1,0 +1,8 @@
+description: Plafonds de ressources pour enfants nés ou adoptés à partir du 01/04/2018 de la prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  short_label: Enfants nés ou adoptés à partir du 01/04/2018
+  label_en: Children born or adopted on or after 01/04/2018
+  order:
+  - taux_partiel
+  - taux_plein
+  - majorations_enfants

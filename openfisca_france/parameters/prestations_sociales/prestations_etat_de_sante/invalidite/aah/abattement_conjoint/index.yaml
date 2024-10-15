@@ -1,0 +1,7 @@
+description: Abattements sur les revenus du conjoint (revenus d'activité, pensions, rentes viagères à titre gratuit) pour le calcul de l'allocation aux adultes handicapés (AAH)
+metadata:
+  short_label: Abattement sur les revenus du conjoint
+  label_en: Disability
+  order:
+  - abattement_proportionnel
+  - abattement_forfaitaire

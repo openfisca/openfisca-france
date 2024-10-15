@@ -1,0 +1,80 @@
+description: Taxes sur les alcools des bouilleurs de cru
+values:
+  1981-02-01:
+    value: null
+  2002-03-31:
+    value: 725
+  2009-04-10:
+    value: 735.88
+  2010-05-01:
+    value: 756.48
+  2010-11-21:
+    value: 757.24
+  2011-12-23:
+    value: 830
+  2013-01-01:
+    value: 844.53
+  2014-01-01:
+    value: 859.31
+  2015-06-06:
+    value: null
+  2016-01-01:
+    value: 868.79
+  2018-01-01:
+    value: 870.53
+  2019-01-01:
+    value: 879.24
+  2020-01-01:
+    value: 893.8
+  2021-01-01:
+    value: 901.33
+metadata:
+  ipp_csv_id: taxe_bouilleurs_cru
+  unit: currency
+  reference:
+    1981-02-01:
+      title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000339460
+    2009-04-10:
+      title: Décret 2009-389 du 07/04/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/4/7/2009-389/jo/texte
+    2010-05-01:
+      title: Décret 2010-421 du 27/04/2010
+      href: https://www.legifrance.gouv.fr/eli/decret/2010/4/27/2010-421/jo/texte
+    2010-11-21:
+      title: Arrêté du 12/10/2010
+    2011-12-23:
+      title: Loi 2011-1906 du 21/12/2011 (LFSS pour 2012)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025005833
+    2013-01-01:
+      title: Arrêté du 15/12/2012 (tarifs accises alcools 2013)
+    2014-01-01:
+      title: Arrêté du 29/12/2013
+    2015-06-06:
+      title: Décret 2015-608 du 03/06/2015
+      href: https://www.legifrance.gouv.fr/eli/decret/2015/6/3/2015-608/jo/texte
+    2016-01-01:
+      title: Arrêté du 18/12/2015
+    2018-01-01:
+      title: Arrêté du 22/12/2017 (tarifs accises alcools 2018)
+    2019-01-01:
+      title: Circulaire du 10/12/2018
+      href: http://circulaire.legifrance.gouv.fr/pdf/2018/12/cir_44175.pdf
+    2020-01-01:
+      title: Arrêté du 19/12/2019
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/19/CPAD1935243A/jo/texte
+    2021-01-01:
+      title: Arrêté du 28/12/2020
+      href: https://www.legifrance.gouv.fr/eli/arrete/2020/12/28/CCPD2036946A/jo/texte
+  official_journal_date:
+    1981-02-01: "1980-12-31"
+    2009-04-10: "2009-04-09"
+    2010-05-01: "2010-04-30"
+    2010-11-21: "2010-11-20"
+    2011-12-23: "2011-12-22"
+    2013-01-01: "2012-12-23"
+    2014-01-01: "2013-12-31"
+    2015-06-06: "2015-06-05"
+    2016-01-01: "2015-12-24"
+    2018-01-01: "2017-12-27"
+documentation: Bouilleurs de cru tels que définis dans l'article 317 du CGI.

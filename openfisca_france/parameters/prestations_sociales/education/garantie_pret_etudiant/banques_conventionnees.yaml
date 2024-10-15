@@ -1,0 +1,18 @@
+description: Réseaux bancaires conventionnés pour délivrer un prêt étudiant garanti par l'État.
+values:
+  2021-02-16:
+    value:
+    - Crédit Mutuel
+    - CIC
+  2021-03-15:
+    value:
+    - Crédit Mutuel
+    - CIC
+    - Banque Populaire
+    - Caisse d’épargne
+metadata:
+  short_label: Réseaux bancaires conventionnés
+  short_label_en: Agreed banking networks
+documentation: |-
+  Il n'est pas nécessaire d'être déjà client de ces banques pour l'obtenir
+  Autre référence : https://www.bpifrance.fr/Toutes-nos-solutions/Garanties-et-assurances/Garanties-aux-banques/Garantie-des-prets-etudiants

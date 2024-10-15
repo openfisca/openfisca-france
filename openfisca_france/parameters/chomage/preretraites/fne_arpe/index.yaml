@@ -1,0 +1,16 @@
+description: Montant minimum des allocations de préretraites FNE-ARPE
+metadata:
+  documentation_start: true
+  short_label: Montant minimum FNE-ARPE
+  label_en: Minimum level of FNE-ARPE early retirement benefits
+  order:
+  - lic_demission_arpe
+  - progress_mi_temps
+documentation: |-
+  ARPE destinée aux plus de 58 ans affiliés au régime d'assurance chômage depuis 12 ans et justifiant de 40 ans d'affiliation au régime d'assurance vieillesse.
+  L'ARPE est égale à 65% du salaire de référence en dessous de quatre plafonds de la Sécurité sociale, et ne peut être inférieure à un minimum égal au minimum des préretraites FNE
+  l'ARPE ne peut excéder 85% du salaire de référence
+  Sources:
+  - travail-emploi.gouv.fr
+  - Précis de l'indemnisation chômage 2011, Publication Unédic
+  - Légifrance

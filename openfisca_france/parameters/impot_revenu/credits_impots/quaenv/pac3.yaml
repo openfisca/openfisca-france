@@ -1,0 +1,8 @@
+description: Majoration du plafond par enfant supplémentaire
+values:
+  2002-01-01:
+    value: 600
+  2008-01-01:
+    value: 400
+metadata:
+  unit: currency_next_year

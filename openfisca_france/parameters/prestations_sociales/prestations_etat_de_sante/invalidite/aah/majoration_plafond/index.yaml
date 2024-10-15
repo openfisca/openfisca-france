@@ -1,0 +1,7 @@
+description: Majoration du plafond (en pourcentage du plafond de base) de l'allocation pour adulte handicapé (AAH)
+metadata:
+  short_label: Majoration du plafond
+  label_en: Disability
+  order:
+  - majoration_plafond_couple
+  - majoration_par_enfant_supplementaire

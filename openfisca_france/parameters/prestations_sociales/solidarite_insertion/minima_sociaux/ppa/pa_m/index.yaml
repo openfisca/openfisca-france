@@ -1,0 +1,12 @@
+description: Paramètres pour le calcul du montant de la prime pour l'activité (PPA)
+metadata:
+  documentation_start: true
+  short_label: Paramètres pour le calcul du montant
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
+  order:
+  - montant_de_base
+  - majoration_montant_maximal
+  - majoration_isolement
+  - majoration_ressources_revenus_activite
+  - bonification
+  - montant_minimum_verse

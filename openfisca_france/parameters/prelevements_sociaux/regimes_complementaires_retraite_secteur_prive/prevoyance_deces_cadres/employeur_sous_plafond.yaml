@@ -1,0 +1,12 @@
+description: Taux employeur sous plafond des cotisations décès cadres aux régimes complémentaires de retraite du secteur privé
+values:
+  1948-01-01:
+    value: 0.015
+metadata:
+  short_label: Taux employeur
+  label_en: Death contribution - executives
+  ipp_csv_id: deces_p_0_1
+  unit: /1
+  reference:
+    1948-01-01:
+      title: Convention AGIRC du 14/03/1947, art. 7.

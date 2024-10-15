@@ -1,0 +1,9 @@
+description: Déduction supplémentaire de 20%
+metadata:
+  order:
+  - taux
+  - max
+  - salaire_plafond
+documentation: |-
+  Entre 1915 et 1944, des déductions du revenu imposable pour charges des familles étaient appliquées pour le calcul de l'impôt général sur le revenu (et de l'impôt cédulaire sur les salaires) sous forme d'abattement général dépendant du statut marital et du nombre d'enfant.
+  > Voir Annexe C-1 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001) ; voir aussi note (3) de l'onglet sur le quotient familial concernant les réductions d'impôt pour charges de famille entre 1915 et 1947.

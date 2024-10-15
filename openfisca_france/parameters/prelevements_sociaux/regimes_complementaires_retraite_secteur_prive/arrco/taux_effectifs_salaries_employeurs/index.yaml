@@ -1,0 +1,5 @@
+description: Taux effectifs (salariés/employeurs)
+metadata:
+  order:
+  - employeur
+  - salarie

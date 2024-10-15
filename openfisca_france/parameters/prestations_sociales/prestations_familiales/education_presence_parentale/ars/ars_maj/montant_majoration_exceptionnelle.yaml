@@ -1,0 +1,64 @@
+description: Montant (en €) de la majoration exceptionnelle de l'Allocation de rentrée scolaire (ARS)
+values:
+  1977-09-17:
+    value: 300
+  1993-08-26:
+    value: 1097
+  1994-08-12:
+    value: 1089
+  1995-08-12:
+    value: 830
+  1996-08-21:
+    value: 584.206
+  1997-08-24:
+    value: 1178.3
+  1998-08-22:
+    value: 1176.13
+  1999-08-12:
+    value: 1173.14
+  2000-08-10:
+    value: 1170.16
+  2001-08-10:
+    value: null
+metadata:
+  short_label: Montant
+  label_en: "Back-to-school allowance (ARS): Exceptionnal extra allowance"
+  ipp_csv_id: maj_ars
+  unit: currency
+  reference:
+    1977-09-17:
+      title: Décret 11-1039 du 14/09/1977
+    1993-08-26:
+      title: Décret 93-1016 du 25/08/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000165470&categorieLien=id
+    1994-08-12:
+      title: Décret 94-691 du 11/08/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000549386&categorieLien=id
+    1995-08-12:
+      title: Décret 95-909 du 11/08/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000370245&categorieLien=id
+    1996-08-21:
+      title: Décret 96-730 du 14/08/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000562325&categorieLien=id
+    1997-08-24:
+      title: Décret 97-794 du 22/08/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000566910&categorieLien=id
+    1998-08-22:
+      title: Décret 98-718 du 19/08/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000390128&categorieLien=id
+    1999-08-12:
+      title: Décret 99-712 du 03/08/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000396118
+    2000-08-10:
+      title: Décret 2000-776 du 01/08/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000400408
+  official_journal_date:
+    1977-09-17: "1977-09-16"
+    1993-08-26: "1993-08-26"
+    1994-08-12: "1994-08-12"
+    1995-08-12: "1995-08-12"
+    1996-08-21: "1996-08-20"
+    1997-08-24: "1997-08-23"
+    1998-08-22: "1998-08-21"
+    1999-08-12: "1999-08-11"
+    2000-08-10: "2000-08-09"

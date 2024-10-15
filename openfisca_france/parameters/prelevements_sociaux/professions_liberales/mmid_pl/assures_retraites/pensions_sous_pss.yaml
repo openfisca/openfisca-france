@@ -1,0 +1,52 @@
+description: Taux sur pension (sous 1 PSS) de cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès (MMID) des professions libérales
+values:
+  1974-10-01:
+    value: 0.0625
+  1975-04-01:
+    value: 0.067
+  1975-10-01:
+    value: 0.069
+  1976-10-01:
+    value: 0.0735
+  1977-10-01:
+    value: 0.0765
+  1979-04-01:
+    value: 0.0465
+  1981-04-01:
+    value: 0.03
+  1981-10-01:
+    value: null
+metadata:
+  short_label: Taux sur pension sous PSS
+  label_en: SSCs for sickness and maternity benefits (professionals)
+  ipp_csv_id: mmid_plib_pens_0_1
+  unit: /1
+  reference:
+    1974-10-01:
+    - title: Décret 74-810 du 28/09/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000857732
+    - title: Loi 73-1193 du 27/12/1973
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509757
+    1975-04-01:
+      title: Décret 75-85 du 11/01/1975
+    1975-10-01:
+      title: Décret 75-710 du 7/08/1975
+    1976-10-01:
+      title: Décret 76-641 du 15/07/1976
+    1977-10-01:
+      title: Décret 77-857 du 26/07/1977
+    1979-04-01:
+      title: Décret 79-203 du 12/03/1979
+    1981-04-01:
+      title: Décret 81-266 du 18/03/1981
+    1981-10-01:
+      title: Décret 81-813 du 27/08/1981
+  official_journal_date:
+    1974-10-01: 1975-08-08; 1973-12-30
+    1975-04-01: "1975-02-12"
+    1975-10-01: "1975-08-08"
+    1976-10-01: "1976-07-16"
+    1977-10-01: "1977-07-28"
+    1979-04-01: "1979-03-14"
+    1981-04-01: "1981-03-22"
+    1981-10-01: "1981-08-30"

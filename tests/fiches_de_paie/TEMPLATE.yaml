@@ -1,13 +1,13 @@
 name: TEMPLATE
 period: 2014-01
 input:
-  allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
+  allegement_general_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: '2014-01-01'
   contrat_de_travail_fin: '2014-12-31'
-  contrat_de_travail_duree: cdi
+  contrat_de_travail_type: cdi
   effectif_entreprise: 0
   heures_non_remunerees_volume: 0
   heures_remunerees_volume: 0
@@ -21,7 +21,7 @@ input:
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   primes_salaires: 0
   prise_en_charge_employeur_retraite_complementaire: 0
-  prise_en_charge_employeur_prevoyance_complementaire: 0
+  prevoyance_complementaire_employeur: 0
   prise_en_charge_employeur_retraite_supplementaire: 0
   ratio_alternants: 0
   redevable_taxe_apprentissage: 0
@@ -41,7 +41,6 @@ output:
   # cotisations_employeur: 0
   remboursement_transport: 0
 
-  # cotisations_employeur_contributives: 0
   ags: 0
   agff_employeur: 0
   agirc_gmp_employeur: 0
@@ -57,7 +56,6 @@ output:
   pension_employeur: 0
   rafp_employeur: 0
 
-  # cotisations_employeur_non_contributives: 0
   ati_atiacl: 0
   accident_du_travail: 0
   famille: 0
@@ -76,7 +74,7 @@ output:
   taxe_apprentissage: 0
   versement_transport: 0
 
-  allegement_fillon: 0
+  allegement_general: 0
   credit_impot_competitivite_emploi: 0
   forfait_social: 0
   tehr: {'2014': 0}
@@ -102,7 +100,6 @@ output:
   mmid_salarie: 0
   contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: 0
-  mhsup: 0
   salaire_net: 0
 
   # salaire imposable

@@ -1,0 +1,40 @@
+description: Complément d'allocation (6e catégorie) de l'Allocation d'éducation spéciale (AES, 1976-2005)
+values:
+  1976-08-01:
+    value: null
+  2003-04-01:
+    value: 930.05
+  2004-04-01:
+    value: 945.87
+  2005-01-01:
+    value: 964.78
+  2006-01-01:
+    value: null
+metadata:
+  short_label: 6e catégorie
+  label_en: "Special education allowance (AES): Conditions and amounts"
+  ipp_csv_id: aes_cplt6
+  unit: currency
+  reference:
+    1976-08-01:
+    - title: Loi 75-534 du 30/06/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000333976
+    - title: Décrets 75-1198, 96, 98 du 16/12/1975
+    - title: Décret 76-768 du 16/08/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
+    2005-01-01:
+      title: Loi 2005-102 du 11/02/2005, art. 68 (modif art. L 541 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682303&cidTexte=JORFTEXT000000809647
+    2006-01-01:
+      title: Loi 2005-102 du 11/02/2005, art. 68 (modif art. L 541 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682303&cidTexte=JORFTEXT000000809647
+  official_journal_date:
+    1976-08-01: 1975-07-01; 1975-12-23; 1976-08-17
+    2005-01-01: "2005-02-12"
+    2006-01-01: "2005-02-12"
+  notes:
+    1976-08-01:
+    - title: Se substitue à l'allocation d'éducation spécialisée, à l'allocation aux mineurs handicapés, à l'allocation spéciale aux parents de mineurs grands infirmés de moins de 15 ans.
+    2006-01-01:
+    - title: La loi du 11 février 2005 pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées transforme l'AES en l'AEEH
+documentation: Le montant du complément de la sixième catégorie de l'allocation d'éducation de l'enfant handicapé est égal au montant de la majoration pour tierce personne accordée aux invalides de la 3e catégorie définis à l'article L. 341-4.(24/09/1991)

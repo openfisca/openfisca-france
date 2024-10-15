@@ -1,0 +1,6 @@
+description: Cotisation (sous 5 PSS) pour la retraite complémentaire des médecins
+metadata:
+  short_label: Sous 5 PSS
+  label_en: Contribution for complementary pension scheme (professionals)
+  order:
+  - reg_supp_oblig_pour_conventionnes_asv

@@ -8,8 +8,8 @@ class allocation_annuelle_etudiant(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
-        "https://www.education.gouv.fr/bo/14/Hebdo40/MENS1420893C.htm",
-        "https://www.etudiant.gouv.fr/fr/aides-specifiques-1306"
+        'https://www.education.gouv.fr/bo/14/Hebdo40/MENS1420893C.htm',
+        'https://www.etudiant.gouv.fr/fr/aides-specifiques-1306'
         ]
     documentation = '''
     Cette aide est l'équivalent d'une bourse sur critères sociaux.

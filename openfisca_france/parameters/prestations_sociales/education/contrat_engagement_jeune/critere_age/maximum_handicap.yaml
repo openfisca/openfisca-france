@@ -1,0 +1,11 @@
+description: Critère d'âge maximum pour le Contrat d'Engagement Jeune pour une personne avec handicap
+values:
+  2022-03-01:
+    value: 29
+metadata:
+  short_label: Maximum
+  unit: year
+  reference:
+    2022-03-01:
+      title: Décret n° 2022-199 du 18 février 2022 relatif au contrat d'engagement jeune
+      href: https://www.legifrance.gouv.fr/eli/decret/2022/2/18/MTRD2201230D/jo/texte

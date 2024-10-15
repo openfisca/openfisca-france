@@ -1,0 +1,20 @@
+description: Durée de versement pour les enfants adoptés (en année) de l'allocation de base de la prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 3
+metadata:
+  short_label: Durée versement enfants adoptés
+  label_en: Duration of payment for adopted children
+  ipp_csv_id: duree_adopt
+  unit: year
+  reference:
+    2004-01-01:
+    - title: Loi 2003-1199 du 18/12/2003, art. 60 II (crée art. L531-3 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+    - title: Décret 2003-1394 du 31/12/2003, art. 1 (modif art. D531-1 du CSS et crée art. D531-3 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
+  official_journal_date:
+    2004-01-01: 2003-12-19; 2004-01-01
+  notes:
+    2004-01-01:
+    - title: "art. D531-1 : fixe l'âge limite; art. D531-3 : fixe le montant de l'aide (en % de la BMAF); La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi)."

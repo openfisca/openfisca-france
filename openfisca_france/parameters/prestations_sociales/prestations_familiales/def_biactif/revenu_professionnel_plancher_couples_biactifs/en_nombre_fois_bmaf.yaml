@@ -1,0 +1,16 @@
+description: Définition du revenu professionnel plancher, en nombre de fois de la BMAF, pour les couples biactifs, pour les prestations familiales
+values:
+  1979-01-01:
+    value: 12
+  2011-11-01:
+    value: null
+metadata:
+  short_label: En nombre de fois de la BMAF
+  label_en: Definition of a biactive couple
+  ipp_csv_id: facteur_yamin_biact_bmaf
+  unit: /1
+  reference:
+    1979-01-01:
+      title: Références manquantes
+    2011-11-01:
+      title: Circulaire DSS/2B/2011/447 du 01/12/2011

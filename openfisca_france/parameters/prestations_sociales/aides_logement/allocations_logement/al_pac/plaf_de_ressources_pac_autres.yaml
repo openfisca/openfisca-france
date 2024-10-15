@@ -1,0 +1,146 @@
+description: Plafond individuel de ressources pour les ascendants du bénéficiaire ou de son conjoint pour être considéré personne à charge pour les allocations logement (AL)
+values:
+  1991-07-01:
+    value: 36955
+  2000-01-01:
+    value: 43947
+  2002-01-01:
+    value: 7102.71
+  2007-07-01:
+    value: 9544.4125
+  2008-01-01:
+    value: 9649.4
+  2008-09-01:
+    value: 9726.5875
+  2009-04-01:
+    value: 10386.5875
+  2010-04-01:
+    value: 10634.3625
+  2011-04-01:
+    value: 11134.175
+  2012-04-01:
+    value: 11657.47
+  2013-04-01:
+    value: 11809.012
+  2014-04-01:
+    value: 11879.8625
+  2014-10-01:
+    value: 12000
+  2016-04-01:
+    value: 12012
+  2017-04-01:
+    value: 12048.025
+  2018-04-01:
+    value: 12498
+  2019-01-01:
+    value: 13023
+  2020-01-01:
+    value: 13548
+  2021-01-01:
+    value: 13602.19
+  2022-01-01:
+    value: 13751.8
+  2022-07-01:
+    value: 14301.88
+  2023-01-01:
+    value: 14416.28
+metadata:
+  short_label: Plafond individuel de ressources pour les ascendants
+  last_value_still_valid_on: "2023-02-09"
+  label_en: Definition of dependants
+  unit: currency
+  reference:
+    1991-07-01:
+      - title: Décret 91-1159 du 08/11/1991, art. 1 (modif art. D542-4 du CSS)
+      - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776071&cidTexte=JORFTEXT000000701067
+      - title: Décret n°91-752 du 31/01/1991, art. 2
+      - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006775821
+    2000-01-01:
+      title: Décret 99-1146 du 29/12/1999, art. 4
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006779439
+    2002-01-01:
+      title: Décret 2002-1619 du 31/12/2002
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006216407
+    2007-07-01:
+      title: Décret 2007-1081 du 10/07/2007, art. 4 (modif art. D542-4 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006266098&cidTexte=JORFTEXT000000826498
+    2008-01-01:
+      title: Arrêté du 21/12/2007, art. 1
+    2008-09-01:
+      title: Circulaire CNAV 2008/45 du 12/08/2008
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2008045_12082008
+    2009-04-01:
+      title: Décret 2009-473 du 28/04/2009, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020561597&cidTexte=JORFTEXT000020560553
+    2010-04-01:
+      title: Circulaire CNAV 2010/43 du 23/04/2010
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2010043_23042010
+    2011-04-01:
+      title: Circulaire CNAV 2011/30 du 14/04/2011
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2011030_14042011
+    2012-04-01:
+      title: Circulaire CNAV 2012/35 du 17/04/2012
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2012_35_17042012
+    2013-04-01:
+      title: Circulaire CNAV 2013/29 du 18/04/2013
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2013_29_18042013
+    2014-04-01:
+      title: "Circulaire\_Cnav\_2014/28 du\_09/04/2014"
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2014_028_09042014
+    2014-10-01:
+      title: Décret 2014-1215 du 20/10/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029616738
+    2016-04-01:
+      title: Circulaire CNAV 2016/18 du 29/03/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_18_29032016.pdf
+    2017-04-01:
+      title: Circulaire CNAV 2017/13 du 04/04/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
+    2018-04-01:
+      title: Décret 2018-227 du 30/04/2018
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036756121
+    2019-01-01:
+      title: Décret 2018-227 du 30/04/2018
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036756121
+    2020-01-01:
+    - title: Article R823-4, 2° du Code de la construction et de l'habitation (définition et règle de calcul du plafond de ressources)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878933
+    - title: Article D815-1 du Code de la sécurité sociale (base du plafond pris en compte)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036760292
+    - title: Décret 2018-227 du 30/04/2018, art.1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036756126
+    2021-01-01:
+      title: Circulaire CNAV 2021/1 du 11/01/2021
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_01_11012021.pdf
+    2022-01-01:
+      title: Circulaire CNAV 2022/3 du 11/01/2022, page 8
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_03_11012022.pdf
+    2022-07-01:
+      title: LOI n° 2022-1158 du 16/08/2022, art. 9
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046186749
+    2023-01-01:
+      title: Circulaire Cnav 2023/3 du 09/01/2023
+      href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2023_03_09012023.pdf
+  official_journal_date:
+    1991-11-11: "1991-11-10"
+    2007-07-01: "2007-07-12"
+  notes:
+    2017-04-01:
+    - title: Actualisation plafonds de l'ASPA (utilisés pour les présents plafonds)
+    2018-04-01:
+    - title: Le même décret modifie les valeurs de 2018 2019 et 2020. La valeur est calculée comme 9998.4*1.25
+    2019-01-01:
+    - title: La valeur est calculée comme 10418.4*1.25
+    2020-01-01:
+    - title: La valeur est calculée comme 10838.40 *1.25
+    2021-01-01:
+    - title: La valeur est calculée comme 10881.75 *1.25
+    2022-01-01:
+    - title: La valeur est calculée comme 11001.44 *1.25
+    2022-07-01:
+    - title: La valeur est calculée comme 11441.5 *1.25
+    2023-01-01:
+    - title: La valeur est calculée comme 11533.02 *1.25
+documentation: |-
+  Notes :
+  "Plafonds indiqués à l'art. L815-9 du CSS (législation sur les allocations aux personnes âgées)". Ces plafonds seront multipliés par 1,25 à partir de 2007

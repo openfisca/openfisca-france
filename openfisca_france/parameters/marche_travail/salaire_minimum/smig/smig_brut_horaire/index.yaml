@@ -1,0 +1,14 @@
+description: Smig horaire brut
+metadata:
+  short_label: Smig Horaire
+  label_en: Minimum wage - SMIG
+  order:
+  - zone_sans_abattement
+  - zone_abattement_maximale
+documentation: |-
+  Entre 1950 et 1968 il existe des abattements par zone géographique (20 zones, Paris 0 abattement);
+  Entre 1950 et 1968, il existe un SMAG qui est limité à l'agriculture et dont le montant est inférieur au SMIG.
+  Les montants des DOM-TOM ne sont pas indiqués
+
+  Sources de la législation:
+  Annuaire Statistique de la France 1971 de 1966 à 1970; Annuaire Statistique de la France 1966 de 1950 à 1966

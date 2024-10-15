@@ -1,0 +1,11 @@
+description: Coefficient de dégressivité, en zone 3, appliqué au montant maximal de loyer pris en compte pour le calcul des aides, pour déterminer le seuil à partir duquel l'aide au logement décroît
+values:
+  2016-07-01:
+    value: 2.5
+metadata:
+  short_label: Coefficient appliqué au montant maximal de loyer pris en compte pour le calcul des aides, déterminant le seuil à partir duquel l'aide au logement décroît
+  last_value_still_valid_on: "2023-02-20"
+  reference:
+    2016-07-01:
+      title: Arrêté du 27/09/2019, art. 10
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000039160745

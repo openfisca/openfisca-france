@@ -1,0 +1,7 @@
+description: Âge maximal pour bénéficier de l'aide au logement spécifique aux étudiants
+values:
+  2020-01-01:
+    value: 28
+metadata:
+  short_label: Âge maximal pour bénéficier de l'aide au logement spécifique aux étudiants
+  unit: year

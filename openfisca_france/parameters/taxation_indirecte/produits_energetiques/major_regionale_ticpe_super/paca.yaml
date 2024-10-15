@@ -1,0 +1,12 @@
+description: Majoration régionale TICPE Super en Provence-Alpes-Côte d'Azur
+values:
+  2007-01-01:
+    value: 0.98
+  2008-01-01:
+    value: 1.77
+  2012-01-01:
+    value: 2.5
+metadata:
+  short_label: Paca
+  ipp_csv_id: maj_ticpe_super_paca
+  unit: currency

@@ -1,4 +1,28 @@
-description: Cotisations aux régimes complémentaires de retraite (secteur privé), cotisations pour la garantie minimale de points (GMP) (1989-2018)
+description: Cotisations pour la garantie minimale de points (GMP) du régimes complémentaires de retraite de cadres du secteur privé
 metadata:
-  ux_name: Cotisations pour la garantie minimale de points (GMP) (1989-2018)
-  description_en:
+  short_label: Garantie minimale de points (GMP)
+  label_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
+  order:
+  - salaire_charniere_annuel
+  - cotisation_forfaitaire_annuelle
+  - cotisation_forfaitaire_mensuelle
+documentation: |-
+  Certains montants n'ont pas été trouvés dans les textes officiels, mais ont été recalculés à partir de la formule de la GMP (voir note ci-dessous).
+  Sources :
+  Site de l'AGIRC-ARRCO; § V.2.1.2 du Guide réglementaire AGIRC et ARRCO.
+  Les valeurs des paramètres pour les années 2005 et antérieures sont tirées de barèmes communiqués par l'AGIRC-ARRCO. Voir notamment le fichier disponible à l'adresse suivante:
+  http://www.agirc-arrco.fr/fileadmin/agircarrco/documents/Doc_specif_page/Historique_valeur_du_point_salaire_de_reference.pdf
+  Principe de la GMP :
+  La Garantie Minimale de Points (GMP) vise à garantir à chaque participant du régime AGIRC (cadre) un minimum de points de retraite pour une année donnée. Un montant minimum de cotisations doit être versé en contrepartie de cette garantie.
+  Cette garantie est prévue par la convention collective nationale du 14/03/1947 (art. 6 et art. 36 de l'annexe I.).
+  L'arrêté d'agrément et d'extension du 24/02/1989 relatif à l'accord du 08/12/1988 rend la GMP obligatoire pour toutes les entreprises adhérentes au régime de retraite complémentaire des cadres.
+  Mode de calcul de la cotisation GMP :
+  La GMP est une cotisation versée à titre éventuelle, dans le cas où la cotisation AGIRC sur la tranche B est inférieure à la cotisation forfaitaire fixée chaque année par l'AGIRC.
+  La cotisation GMP est calculée comme la différence entre la cotisation forfaitaire et la cotisation AGIRC versée sur la tranche B.
+  La cotisation forfaitaire est fixée de telle manière que lorsque le salaire est supérieur au salaire charnière, la cotisation sur tranche B permet d'atteindre les 120 points sans surcotisation.
+  La répartition cotisation employeur/cotisation employé est la même que pour la cotisation AGIRC en tranche B (cf. feuille "AGIRC" du présent fichier).
+  La cotisation forfaitaire annuelle peut-être calculée à partir de la formule de calcul des points AGIRC:
+  Nombre de points de retraite par année = assiette de cotisation x taux de cotisation / salaire de référence
+  Attention cependant!
+  C'est sur le taux effectif que sont calculées les cotisations (taux contractuel * taux d'appel). Mais c'est à partir du taux contractuel que sont calculés les points.
+  Le taux d'appel de 125 signifie que c'est sur une base de 125 que sont calculées les cotisations, mais que c'est sur une base 100 que sont calculés les points AGIRC.

@@ -1,0 +1,6 @@
+description: Prévoyance complémentaire obligatoire des cadres
+metadata:
+  short_label: Prévoyance obligatoire
+  label_en: Mandatory complementary invalidity insurance scheme
+  order:
+  - prevoyance_obligatoire

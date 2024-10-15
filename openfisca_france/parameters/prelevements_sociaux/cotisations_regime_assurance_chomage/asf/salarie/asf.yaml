@@ -1,45 +1,65 @@
-description: Cotisations salariales pour l'Association pour la gestion de la structure financière, ou cotisation ASF (1984-2001)
+description: Cotisations salariales pour l'Association pour la gestion de la structure financière (ASF)
 brackets:
-  - rate:
-      1984-01-01:
-        value: 0.008
-      1990-10-01:
-        value: 0.0072
-      1994-01-01:
-        value: 0.008
-      2001-04-01:
-        value: 0.0
-    threshold:
-      1984-01-01:
-        value: 0.0
-  - rate:
-      1984-04-01:
-        value: 0.008
-      1994-01-01:
-        value: 0.0089
-      2001-04-01:
-        value: 0.0
-    threshold:
-      1984-04-01:
-        value: 1.0
-  - rate:
-      1984-04-01:
-        value: 0.0
-    threshold:
-      1984-04-01:
-        value: 4.0
+- threshold:
+    1984-01-01:
+      value: 0
+    2001-04-01:
+      value: null
+  rate:
+    1984-01-01:
+      value: 0.008
+    1990-10-01:
+      value: 0.0072
+    1994-01-01:
+      value: 0.008
+    2001-04-01:
+      value: null
+- threshold:
+    1984-01-01:
+      value: 1
+    2001-04-01:
+      value: null
+  rate:
+    1984-01-01:
+      value: 0
+    1984-04-01:
+      value: 0.008
+    1994-01-01:
+      value: 0.0089
+    2001-04-01:
+      value: null
+- threshold:
+    1984-04-01:
+      value: 4
+    2001-04-01:
+      value: null
+  rate:
+    1984-04-01:
+      value: 0
+    2001-04-01:
+      value: null
 metadata:
+  short_label: Barème
+  label_en: Contributions to the financial structure ASF
+  ipp_csv_id:
+    rate: asf_s_0_1, asf_s_1_4
+  reference:
+    1984-01-01:
+      title: Accord du 10/01/1984
+    1984-04-01:
+      title: Convention et règlement Unedic du 24/02/84 agréés par arrêté du 28/03/84
+    1990-10-01:
+      title: Compromis du 25/06/1990 (Dupeyroux 1993, p. 791)
+    1994-01-01:
+      title: Convention et règlement UNEDIC du 01/01/94 agréés par arrêté du 04/01/94
+    2001-04-01:
+      title: Accord Arrco-Agirc du 10/02/2001, ch. III
+  official_journal_date:
+    1984-04-01: "1984-04-04"
+    1992-01-01: "1992-01-07"
+    1994-01-01: "1994-01-08"
+  notes:
+    2001-04-01:
+    - title: Le taux AGFF se substitute à l'ASF.
   rate_unit: /1
   threshold_unit: PSS
-  ux_name: Barème salarié
-  reference:
-    2001-04-01: Accord Arrco-Agirc du 10/02/2001, ch. III
-    1994-01-01: Convention et règlement UNEDIC du 01/01/94 agréés par arrêté du 04/01/94
-    1992-01-01: Protocole d'accord du 5/12/1991 (avenants n° 1 et 8 du 13/12/91, agréés)
-    1990-10-01: Compromis du 25/06/1990 (Dupeyroux 1993, p. 791)
-    1984-04-01: Convention et règlement Unedic du 24/02/84 agréés par arrêté du 28/03/84
-    1984-01-01: Accord du 10/01/1984
-  official_journal_date:
-    1994-01-01: 1994-01-08
-    1992-01-01: 1992-01-07
-    1984-04-01: 1984-04-04

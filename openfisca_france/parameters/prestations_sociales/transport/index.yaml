@@ -1,0 +1,8 @@
+description: Prestations sociales liées au transport
+metadata:
+  short_label: Prestations liées au transport
+  label_en: Transport-related allowances
+  order:
+  - permis_de_conduire
+  - aide_mobilite
+  - carte_sncf_eleve_apprenti

@@ -1,0 +1,28 @@
+description: Taux pour 1 enfant de plus de 2 ans de l'Allocation de salaire unique (ASU)
+values:
+  1941-04-01:
+    value: null
+  1976-07-01:
+    value: 0.2
+  1978-01-01:
+    value: null
+metadata:
+  short_label: 1 enfant (>2 ans)
+  label_en: 1 child (>2 ans)
+  ipp_csv_id: tx_asu_1_enf_plus2ans
+  unit: /1
+  reference:
+    1976-07-01:
+    - title: Loi 72-8 du 03/01/1972
+    - title: Décret 72-530 du 29/06/1972 (S.U.)
+    - title: Décret 76-767 du 16/08/1976 ("Majoration")
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000507293
+    1978-01-01:
+      title: Loi 77-765 du 12/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
+  official_journal_date:
+    1976-07-01: 1972-01-05; 1972-06-30; 1976-08-17
+    1978-01-01: "1977-07-13"
+  notes:
+    1976-07-01:
+    - title: Réservé aux ménages avec un seul revenu, sauf si l'autre conjoint a un revenu ne dépassant pas la moitié de la base de calcul des AF soit 347,25

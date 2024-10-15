@@ -1,28 +1,31 @@
+description: Sécurité sociale/ Maladie, maternité
 brackets:
-- rate:
+- threshold:
+    2003-01-01:
+      value: 0
+  rate:
     2003-01-01:
       value: 0.065
-  threshold:
+- threshold:
     2003-01-01:
-      value: 0.0
-- rate:
+      value: 1
+    2013-01-01:
+      value: null
+  rate:
     2003-01-01:
       value: 0.059
     2013-01-01:
       value: null
-  threshold:
+- threshold:
     2003-01-01:
-      value: 1.0
+      value: 5
     2013-01-01:
       value: null
-- rate:
+  rate:
     2003-01-01:
-      value: 0.0
+      value: 0
     2013-01-01:
       value: null
-  threshold:
-    2003-01-01:
-      value: 5.0
-    2013-01-01:
-      value: null
-description: Sécurité sociale/ Maladie, maternité
+metadata:
+  rate_unit: /1
+  threshold_unit: PSS

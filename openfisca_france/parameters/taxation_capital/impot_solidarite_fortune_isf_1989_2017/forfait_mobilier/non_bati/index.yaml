@@ -1,0 +1,9 @@
+description: Base de l'ISF-IFI sur l'immobilier non-bâti
+metadata:
+  short_label: Base immobilier non-bâti
+  label_en: Furniture tax base
+  order:
+  - seuil
+  - taux_bois_forets
+  - taux_biens_ruraux
+  - taux_forestier_agricole

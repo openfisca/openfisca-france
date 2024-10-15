@@ -1,0 +1,17 @@
+description: Plafond des revenus éligibles à l'abattement
+values:
+  2019-01-01:
+    value: 93510
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_abattement_journalistes
+  unit: currency_next_year
+  reference:
+    2019-01-01:
+      title: Loi n° 2018-1317 du 28 décembre 2018 (LF 2019), art. 5
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037882356
+  official_journal_date:
+    2019-01-01: "2018-12-30"
+  notes:
+    2019-01-01:
+    - title: Introduction d'un plafond de revenu pour les journalistes rédacteurs, photographes, directeurs de journaux et critiques dramatiques et musicaux bénéficiant de l'abattement spécifique à leurs professions.

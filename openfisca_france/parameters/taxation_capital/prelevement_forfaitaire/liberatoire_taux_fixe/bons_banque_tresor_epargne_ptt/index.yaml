@@ -1,0 +1,13 @@
+description: Prélèvements libératoires sur les revenus des valeurs mobilières à taux fixe
+metadata:
+  short_label: Prélèvements libératoires à taux fixe
+  label_en: Levy in discharge on capital income
+  order:
+  - emis_avant_1_6_78
+  - emis_entre_1_6_78_et_20_1_80
+  - emis_entre_21_1_80_et_31_12_82_avec_anonymat
+  - emis_entre_1_1_83_et_31_12_89_sans_anonymat
+  - emis_entre_1_1_90_et_31_12_94_sans_anonymat
+  - emis_a_partir_du_1_1_95_et_sans_anonymat
+  - emis_entre_1_1_83_et_1_1_1998_avec_anonymat
+  - emis_a_partir_de_1_1_1998_avec_anonymat

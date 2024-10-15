@@ -1,0 +1,7 @@
+description: Plafonds de ressources d'Allocation de base à taux partiel, primes à la naissance et à l'adoption, pour enfants nés ou adoptés à partir du 01/04/2018 de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  short_label: Plafond de ressources pour l'allocation de base à taux partiel
+  label_en: Resource ceiling for the partial basic allowance
+  order:
+  - plafond_ressources_0_enfant
+  - biactifs_parents_isoles

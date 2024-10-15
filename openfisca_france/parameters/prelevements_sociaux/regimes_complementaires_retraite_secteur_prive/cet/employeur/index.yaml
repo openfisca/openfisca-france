@@ -1,0 +1,6 @@
+description: Barème employeur des cotisations retraites exceptionnelle et temporaire (CET) aux régimes complémentaires de retraite (secteur privé)
+metadata:
+  short_label: Employeur
+  label_en: Exceptional and temporary pension contribution (CET)
+  order:
+  - cet

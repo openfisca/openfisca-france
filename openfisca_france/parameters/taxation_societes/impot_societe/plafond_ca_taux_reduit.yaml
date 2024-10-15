@@ -1,0 +1,21 @@
+description: Plafond de chiffre d'affaires (HT) pour bénéficier des taux réduit et intermédiaire
+values:
+  2001-01-01:
+    value: 50000000
+  2002-03-31:
+    value: 7630000
+metadata:
+  last_value_still_valid_on: "2023-01-05"
+  ipp_csv_id: is_pfca_txred
+  unit: currency
+  reference:
+    2001-01-01:
+      title: Article 219 CGI modifié par Loi 2000-1352 du 30/12/2000 - art. 7-9 de Finances pour 2001
+    2002-03-31:
+      title: Règlement CE 974-98 1998-05-03 - art. 14
+  official_journal_date:
+    2001-01-01: "2000-12-31"
+    2002-03-31: "1998-05-11"
+  notes:
+    2002-03-31:
+    - title: Référence 2002-03-31 parue dans JOCE et non JORF.

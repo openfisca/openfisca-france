@@ -1,0 +1,12 @@
+description: Bières
+metadata:
+  label_en: Biers
+  order:
+  - bieres_moins_28
+  - bieres_plus_28
+  - bieres_moins_46_vol_recipient_entre_65cl_1l
+  - autres_bieres
+  - petites_brasseries_10_000hl
+  - 10_000hl_petites_brasseries_50_000hl
+  - 50_000hl_petites_brasseries_200_000hl
+documentation: Données renseignées dans l'article 520A du code général des impôts

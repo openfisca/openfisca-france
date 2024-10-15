@@ -1,0 +1,253 @@
+description: Barème de l'Impôt général sur le revenu (IGR, 1942-1944)
+brackets:
+- threshold:
+    1942-01-01:
+      value: 0
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 10000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.014
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 20000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.028
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 30000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.042
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 40000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.05599999999999999
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 50000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.07
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 60000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.098
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 70000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.126
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 80000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.168
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 90000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.21
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 100000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.245
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 120000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.28
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 140000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.315
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 160000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.35
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 180000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.385
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 200000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.42
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 225000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.455
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 250000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.49
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 275000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.525
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 300000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.56
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 325000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.595
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 350000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.63
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 375000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.665
+    1945-01-01:
+      value: null
+- threshold:
+    1942-01-01:
+      value: 400000
+    1945-01-01:
+      value: null
+  rate:
+    1942-01-01:
+      value: 0.7
+    1945-01-01:
+      value: null
+metadata:
+  short_label: Barème 1942-44
+  label_en: Thresholds and marginal tax rates of the IGR tax (1942 - 1944)
+  reference:
+    1942-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+  rate_unit: /1
+  threshold_unit: currency_next_year
+documentation: |-
+  Notes :
+  Les revenus des années 1942-1944 étaient soumis à des barèmes exprimés en taux marginal. Voir note de la feuille "Barème IGR 1917-1918".

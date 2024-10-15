@@ -1,0 +1,42 @@
+description: Taux de réduction annuel pendant 5 ans pour les autres investissements éligibles aà la réduction d'impôt pour les particuliers concernant les investissements réalisés en Outre-Mer (2003-2021)
+values:
+  2003-01-01:
+    value: 0.1
+  2011-01-01:
+    value: 0.09
+  2012-01-01:
+    value: 0.076
+  2017-01-01:
+    value: null
+metadata:
+  short_label: Taux autres
+  label_en: Tax reduction for personal investment in Overseas department (2003-2021)
+  ipp_csv_id: taux_autres_invest_outremer
+  unit: /1
+  reference:
+    2003-01-01:
+      title: Loi n° 2003-660 du 21 juillet 2003 de programme pour l'outre-mer
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000005634796&dateTexte=20180626
+    2011-01-01:
+      title: Loi n° 2010-1657 du 29 décembre 2010 (LF 2011), art.105
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=JORFARTI000023315142&categorieLien=id&cidTexte=JORFTEXT000023314376&dateTexte=
+    2012-01-01:
+      title: Loi n° 2011-1977 du 28 décembre 2011 (LF 2012), art.83
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=JORFARTI000025045123&categorieLien=id&cidTexte=JORFTEXT000025044460&dateTexte=
+  official_journal_date:
+    2003-01-01: "2003-07-22"
+    2011-01-01: "2010-12-30"
+    2012-01-01: "2011-12-29"
+  notes:
+    2011-01-01:
+    - title: Rabot de 10% des réductions fiscales
+    2012-01-01:
+    - title: Rabot de 15% des réductions fiscales
+documentation: |-
+  Notes:
+  (1) Les particuliers concernés doivent être fiscalement domiciliés dans les DOM ou en Polynésie française, dans les îles Wallis et Futuna, dans les Terres australes et antarctiques françaises, à Saint-Martin, à Saint-Barthélemy, à Saint-Pierre-et-Miquelon et en Nouvelle-Calédonie. La réduction d'impôt est codifiée à l'article 199 underdecies A du Code Général des Impôts (CGI).
+  (2) La réduction d'impôt peut aussi avoir lieu sur le montant de la souscription de parts ou actions de sociétés dont l’objet réel est exclusivement de construire des logements neufs situés outre-mer qu’elles donnent en location nue (2-c) ou bien au capital de SCPI ayant pour objet l’acquisition de logements neufs situés outre-mer qu’elles donnent en location nue (2-d). La réduction d'impôt se base sur le montant de la sosucription, selon les modalités de la réduction pour la location nue (réduction pendant 5 ans aux taux correspondants).
+  (3) Les taux de réduction s'entendent comme étant le pourcentage appliqué chaque année pendant 5 ans (ou 10 ans en cas d'investissement dans un logement neuf affecté à l'habitation à titre principal du propriétaire). Pour obtenir le taux total de réduction, il convient donc de multiplier ces taux par 5 (ou 10 dans le cas mentionné précédemment). Ainsi, un taux annuel de réduction sur la réhabilitation de 10% signifie qu'en 5 ans, la réduction d'impôt s'élève à 50% du coût de l'investissement.
+  (4) La location nue s'entend comme location non-meublée, sans conditions de plafond de loyers ou de revenus des locataires. La location dans le secteur intermédiaire implique que les loyers ne peuvent dépasser les plafonds prévus à l'article 46AG duodecies de l’annexe III du CGI et que les locataires sont soumis à un plafond de ressources prévu au même article. La base de calcul est le prix de revient du logement. En revanche, la surface maximale pouvant être pris en compte dans le calcul est plafonnée depuis 2010 au II de l’article 46 AG terdecies de l'annexe III au CGI (65 m² pour une personne seule, 90 m² pour un couple avec un enfant).
+  (5) Les autres secteurs d'investissement éligibles à la réduction d'impôt sont la souscription au capital de sociétés de développement régional (SDR) ou de sociétés ultramarines assujetties à l’impôt sur les sociétés et qui réalisent des investissements productifs neufs au sens de l’article 199 undecies B du CGI ou de sociétés ayant pour objet le financement d’entreprises exerçant exclusivement outre-mer (SOFIOM).
+  (6) Pour les investissements dans l'immobilier neuf à but locatif, il existe en réalité plus de taux et de situation. Dans ce barème, le taux donné à une année correspond au taux applicable en cas d'obtention du permis de construire et d'investissement sur cette année. De fait, il existe une variété plus importante de taux, qui s'appliquent à partir des investissements réalisés en 2011, lorsque l'année d'investissement diffère de l'année d'obtention du permis de construire. Ces taux sont retrouvables à l'avant dernière page du formulaire 2042K IOM pour le millésime 2017.

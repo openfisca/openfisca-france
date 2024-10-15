@@ -1,0 +1,10 @@
+description: Perte d'autonomie des personnes âgées
+metadata:
+  documentation_start: true
+  short_label: Perte d'autonomie
+  label_en: Long term care for the elderly
+  order:
+  - apa_domicile
+  - apa_institution
+  - mtp
+  - psd

@@ -9,56 +9,56 @@ tax_benefit_system = FranceTaxBenefitSystem()
 NB_RUN = 10
 
 situation = {
-    "individus": {
-        "demandeur": {
-            "salaire_imposable": {
-                "2017-12": 62191,
-                "2018-01": 62191,
-                "2018-02": 62191,
-                "2018-03": 62191,
-                "2018-04": 62191,
-                "2018-05": 62191,
-                "2018-06": 62191,
-                "2018-07": 62191,
-                "2018-08": 62191,
-                "2018-09": 62191,
-                "2018-10": 62191,
-                "2018-11": 62191,
-                "2018-12": 62191,
-                "2016-01": 62191,
-                "2016-02": 62191,
-                "2016-03": 62191,
-                "2016-04": 62191,
-                "2016-05": 62191,
-                "2016-06": 62191,
-                "2016-07": 62191,
-                "2016-08": 62191,
-                "2016-09": 62191,
-                "2016-10": 62191,
-                "2016-11": 62191,
-                "2016-12": 62191
+    'individus': {
+        'demandeur': {
+            'salaire_imposable': {
+                '2017-12': 62191,
+                '2018-01': 62191,
+                '2018-02': 62191,
+                '2018-03': 62191,
+                '2018-04': 62191,
+                '2018-05': 62191,
+                '2018-06': 62191,
+                '2018-07': 62191,
+                '2018-08': 62191,
+                '2018-09': 62191,
+                '2018-10': 62191,
+                '2018-11': 62191,
+                '2018-12': 62191,
+                '2016-01': 62191,
+                '2016-02': 62191,
+                '2016-03': 62191,
+                '2016-04': 62191,
+                '2016-05': 62191,
+                '2016-06': 62191,
+                '2016-07': 62191,
+                '2016-08': 62191,
+                '2016-09': 62191,
+                '2016-10': 62191,
+                '2016-11': 62191,
+                '2016-12': 62191
                 }
             }
         },
-    "familles": {
-        "_": {
-            "parents": [
-                "demandeur"
+    'familles': {
+        '_': {
+            'parents': [
+                'demandeur'
                 ]
             }
         },
-    "foyers_fiscaux": {
-        "_": {
-            "declarants": [
-                "demandeur"
+    'foyers_fiscaux': {
+        '_': {
+            'declarants': [
+                'demandeur'
                 ],
-            "personnes_a_charge": []
+            'personnes_a_charge': []
             }
         },
-    "menages": {
-        "_": {
-            "personne_de_reference": [
-                "demandeur"
+    'menages': {
+        '_': {
+            'personne_de_reference': [
+                'demandeur'
                 ]
             }
         }
@@ -87,7 +87,7 @@ def test_revenu_disponible():
             simulation.calculate('revenu_disponible', 2018)
 
     result, delta = run_test()
-    print('{:2.6f} s'.format(delta / NB_RUN))  # noqa T001
+    print('{:2.6f} s'.format(delta / NB_RUN))  # noqa T201
 
 
 def test_spiral():
@@ -103,19 +103,19 @@ def test_spiral():
             simulation.calculate('logement_social_eligible', '2018-12')
 
     result, delta = run_test()
-    print('{:2.6f} s'.format(delta / NB_RUN))  # noqa T001
+    print('{:2.6f} s'.format(delta / NB_RUN))  # noqa T201
 
 
-print('Premier test revenu disponible')  # noqa T001
+print('Premier test revenu disponible')  # noqa T201
 test_revenu_disponible()
-print('Second test revenu disponible')  # noqa T001
+print('Second test revenu disponible')  # noqa T201
 test_revenu_disponible()
-print('3e test revenu disponible')  # noqa T001
+print('3e test revenu disponible')  # noqa T201
 test_revenu_disponible()
 
-print('Premier test ciblé spirale')  # noqa T001
+print('Premier test ciblé spirale')  # noqa T201
 test_spiral()
-print('Second test ciblé spirale')  # noqa T001
+print('Second test ciblé spirale')  # noqa T201
 test_spiral()
-print('3e test ciblé spirale')  # noqa T001
+print('3e test ciblé spirale')  # noqa T201
 test_spiral()

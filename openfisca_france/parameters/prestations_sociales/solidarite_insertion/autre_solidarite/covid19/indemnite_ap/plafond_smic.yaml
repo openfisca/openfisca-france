@@ -1,0 +1,17 @@
+description: Plafond (en nombre de Smic) de l'Allocation d'activité partielle versée au titre de l'Aide exceptionnelle Covid-19
+values:
+  2020-03-01:
+    value: 4.5
+metadata:
+  short_label: Plafond versement
+  last_value_still_valid_on: "2022-01-10"
+  label_en: Exceptional benefit - covid-19 crisis
+  unit: smic_horaire_brut
+  reference:
+    2020-03-01:
+    - title: Décret nº2020-810 du 29/06/2020, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042056546
+    - title: Article D5122-13 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044877405/
+  official_journal_date:
+    2020-03-01: "2020-06-30"

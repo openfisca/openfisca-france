@@ -1,0 +1,13 @@
+description: Cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans-commerçants
+metadata:
+  short_label: Retraite complémentaire
+  label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
+  order:
+  - artisans
+  - industriels_commercants
+  - art_ind_com
+documentation: |-
+  (i) Les cotisations reportées financent les régimes complémentaires d'assurance vieillesse des artisans, industriels et commerçants.
+  Elles sont restées faculatives pour les industriels-commerçants jusqu'en 2004.
+  (ii) Depuis le 1er janvier 2013, le RCI (Régime complémentaire des indépendants) couvre l'ensemble des indépendants.
+  Le "plafond RCI" était égal au PSS en 2013, puis est revalorisé au rythme de l'évolution du revenu de référence, cf. alinéa 4 de l'article D635-7 du CSS.

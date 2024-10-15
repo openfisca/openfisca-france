@@ -1,0 +1,7 @@
+description: Taux d'abattement forfaitaire de l'Allocation solidarité aux personne agées (ASPA) - Minimum vieillesse
+metadata:
+  short_label: Abattement forfaitaire
+  label_en: Solidarity income for elderly (ASPA)
+  order:
+  - personnes_seules
+  - couples

@@ -1,0 +1,31 @@
+values:
+  1986-07-01:
+    value: 400
+  1989-07-01:
+    value: 411
+  1990-07-01:
+    value: 425
+  1991-07-01:
+    value: 138
+  1992-07-01:
+    value: 450
+  1994-07-01:
+    value: 457
+  1997-07-01:
+    value: 466
+  1998-07-01:
+    value: 471
+  1999-07-01:
+    value: 474
+  2000-07-01:
+    value: 476
+  2001-07-01:
+    value: 73.79
+  2002-07-01:
+    value: 74.97
+  2003-07-01:
+    value: 76.32
+metadata:
+  unit: currency
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

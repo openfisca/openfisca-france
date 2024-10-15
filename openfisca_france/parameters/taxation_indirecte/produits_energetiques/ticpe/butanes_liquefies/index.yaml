@@ -1,0 +1,7 @@
+description: TICPE - produits énergétiques, butanes liquéfiés
+metadata:
+  label_en: TICPE - Energy products
+  order:
+  - sous_condition_100kg_nets
+  - autres_100kg_nets
+  - usages_autres_que_comme_carburant_100kg_nets

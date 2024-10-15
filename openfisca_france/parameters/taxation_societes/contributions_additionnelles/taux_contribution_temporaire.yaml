@@ -1,0 +1,21 @@
+description: Taux de contribution temporaire
+values:
+  1997-01-01:
+    value: 0.15
+  1999-01-01:
+    value: 0.1
+  2000-01-01:
+    value: null
+metadata:
+  unit: /1
+  reference:
+    1997-01-01:
+      title: Article 235 ter ZB créé par Loi 97-1026
+    1999-01-01:
+      title: Article 235 ter ZB créé par Loi 97-1026
+    2000-01-01:
+      title: Article 235 ter ZB créé par Loi 97-1026 et Article 235 ter ZC créé par Loi 99-1140
+  official_journal_date:
+    1997-01-01: "1997-11-11"
+    1999-01-01: "1997-11-11"
+    2000-01-01: "1999-12-30"

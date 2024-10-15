@@ -1,0 +1,20 @@
+description: Taux tranche inférieure de l'Imposition des gains de levées d'options sur titre attribuées avant le 28/09/2012 si cession après le délai de portage de 2 ans pour les options attribuées à compter du 27/04/2000
+values:
+  1977-01-01:
+    value: null
+  2006-01-01:
+    value: 0.16
+  2008-01-01:
+    value: 0.18
+metadata:
+  short_label: Taux tranche inf.
+  ipp_csv_id: tx_stockoptions4
+  unit: /1
+  reference:
+    2006-01-01:
+      title: BOI 5 C-2-08; n°36 du 14/03/2007
+    2008-01-01:
+      title: BOI 5 C-1-09 n°9 du 23/01/2009
+  notes:
+    2008-01-01:
+    - title: À compter du 1er janvier 2009, le seuil de cession est actualisé chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l’impôt sur le revenu de l’année précédant celle de la cession.

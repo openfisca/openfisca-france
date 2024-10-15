@@ -1,0 +1,17 @@
+description: Seuil de versement (en part du Smic brut horaire) de l'allocation personnalisée d'autonomie (APA) à domicile
+values:
+  2002-01-01:
+    value: 3
+metadata:
+  short_label: Seuil de versement
+  label_en: Attendance allowance for individuals living at home (APA)
+  unit: smic_horaire_brut
+  reference:
+    2002-01-01:
+    - title: Article 7.I du décret 2001-1084 du 20/11/2001 (abrogé)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000006683958/2002-01-01/#LEGIARTI000006683958
+    - title: Article D232-31 du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006905647
+  official_journal_date:
+    2002-01-01: "2001-11-21"
+documentation: L'APA n'est pas versée lorsque son montant après retranchement de la participation du bénéficiaire est inférieur à ce seuil de non-versement.

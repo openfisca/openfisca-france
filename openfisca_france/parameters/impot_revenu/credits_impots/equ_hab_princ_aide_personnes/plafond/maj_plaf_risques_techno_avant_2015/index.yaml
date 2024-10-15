@@ -1,0 +1,6 @@
+description: Majorations de plafond de dépenses, pour les dépenses de prévention des risques technologiques
+metadata:
+  short_label: Majoration pour les dépenses de prévention des risques technologiques
+  order:
+  - celib
+  - couple

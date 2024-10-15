@@ -1,0 +1,8 @@
+description: Taux (XM)
+values:
+  2004-01-01:
+    value: 0
+  2005-01-01:
+    value: 0.2
+metadata:
+  unit: /1

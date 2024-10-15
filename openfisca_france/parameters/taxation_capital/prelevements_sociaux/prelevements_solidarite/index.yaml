@@ -1,1 +1,10 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Prélèvements de solidarité sur les revenus du patrimoine et les produits de placement
+metadata:
+  short_label: Prélèvements de solidarité
+  label_en: Other social levies on financial income
+  order:
+  - revenus_du_patrimoine
+  - produits_de_placement
+documentation: |-
+  Références dans les codes législatifs :
+  - Les prélèvements de solidarité sur les revenus du patrimoine et sur les produits de placement sont codifiés à l'article 1600-0 S du CGI.

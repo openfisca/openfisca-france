@@ -1,0 +1,7 @@
+description: Cotisation des médecins pour la retraite complémentaire
+metadata:
+  short_label: Médecins
+  label_en: Contribution for complementary pension scheme (professionals)
+  order:
+  - sous_3_5_pss
+  - sous_5_pss

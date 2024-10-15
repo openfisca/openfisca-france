@@ -1,0 +1,14 @@
+description: Majoration de plafond pour personne à charge (en pourcentage du plafond de base) de l'allocation aux adultes handicapés
+values:
+  2000-01-01:
+    value: 0.5
+metadata:
+  short_label: Par enfant supplémentaire
+  last_value_still_valid_on: "2023-03-08"
+  label_en: Adult disability allowance (AAH)
+  ipp_csv_id: maj_enf_aah
+  unit: /1
+  reference:
+    2000-01-01:
+      title: Article D821-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039211076

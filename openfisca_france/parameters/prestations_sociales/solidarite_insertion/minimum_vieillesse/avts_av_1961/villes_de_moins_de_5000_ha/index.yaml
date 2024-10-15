@@ -1,0 +1,7 @@
+description: Allocation aux vieux travailleurs salariés (AVTS) pour les Villes de moins de 5000 habitants
+metadata:
+  short_label: Villes de moins de 5000 habitants
+  label_en: Allowance for elderly workers (AVTS, 1941-1961)
+  order:
+  - allocation_de_base
+  - bonification_pour_enfants

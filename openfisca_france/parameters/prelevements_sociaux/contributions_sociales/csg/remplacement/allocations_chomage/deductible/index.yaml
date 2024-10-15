@@ -1,0 +1,6 @@
+description: Taux de la contribution sociale généralisée (CSG) déductible sur les allocations chômage, appliqués à l'assiette des allocations chômage, à compter d'un seuil de revenu fiscal de référence de l'année N-2
+metadata:
+  short_label: Taux de CSG déductible appliqués à l'assiette des allocations chômage, à compter d'un seuil de RFR 
+  order:
+  - taux_plein
+  - taux_reduit

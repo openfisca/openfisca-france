@@ -1,0 +1,13 @@
+description: Taux (temps partiel < 50%) du Complément de libre choix d'activité (CLCA) pour les non bénéficiaires de l'allocation de base (enfant né ou adopté avant avril 2014) de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 1.0841
+  2014-04-01:
+    value: 0.6246
+  2018-01-01:
+    value: null
+metadata:
+  short_label: Taux partiel <50%
+  label_en: Partiel rate <50%
+  ipp_csv_id: tx_clca_nonbase_partiel1
+  unit: /1

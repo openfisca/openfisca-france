@@ -1,0 +1,17 @@
+description: Taux de la contribution au remboursement de la dette sociale (CRDS)
+values:
+  1996-02-01:
+    value: 0.005
+metadata:
+  short_label: Taux global
+  last_value_still_valid_on: "2023-07-05"
+  label_en: CRDS
+  unit: /1
+  reference:
+    1996-02-01:
+    - title: Article 1600-0 J du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006306523
+    - title: Article 19 de l'Ordonnance n° 96-50 du 24 janvier 1996
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000041466982/
+  official_journal_date:
+    1996-02-01: "1996-01-25"

@@ -1,0 +1,36 @@
+description: Taux réduit de la taxe sur la valeur ajoutée (TVA)
+values:
+  1954-07-01:
+    value: 0.075
+  1955-07-01:
+    value: 0.1
+  1968-12-01:
+    value: 0.07
+  1970-01-01:
+    value: 0.075
+  1972-01-01:
+    value: 0.07
+  1982-07-01:
+    value: 0.055
+metadata:
+  short_label: Taux réduit
+  ipp_csv_id: tx_reduit
+  unit: /1
+  reference:
+    1954-07-01:
+      title: Loi 54-404 du 10/04/1954
+    1955-07-01:
+      title: Décret 55-465 du 30/04/1955
+    1968-12-01:
+      title: Loi 68-1043 du 29/11/1968, art. 3
+    1970-01-01:
+      title: Loi 69-1161 du 24/12/1969 (LF pour 1970), art. 9
+    1982-07-01:
+      title: Loi 82-540 du 28/06/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000691740
+  official_journal_date:
+    1954-07-01: "1954-04-11"
+    1955-07-01: "1955-05-03"
+    1968-12-01: "1968-11-30"
+    1970-01-01: "1969-12-27"
+    1982-07-01: "1982-06-29"

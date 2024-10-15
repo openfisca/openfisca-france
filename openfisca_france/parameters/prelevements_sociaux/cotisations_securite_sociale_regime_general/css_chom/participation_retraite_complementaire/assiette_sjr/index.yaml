@@ -1,4 +1,7 @@
-description: Assiette de la participation des cotisations de retraite complémentaire des Cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
+description: Assiette de la participation des cotisations de retraite complémentaire des cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
 metadata:
-  ux_name: Assiette de participation
-  description_en: SSCs on unemployment benefits
+  short_label: Assiette de participation
+  label_en: SSCs on unemployment benefits
+  order:
+  - affiliation_3_6_mois
+  - affiliation_6_mois

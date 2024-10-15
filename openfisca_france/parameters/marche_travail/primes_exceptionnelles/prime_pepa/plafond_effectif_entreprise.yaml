@@ -1,0 +1,22 @@
+description: Plafond effectif entreprise
+values:
+  2018-12-24:
+    value: 50
+  2021-07-19:
+    value: 50
+  2022-04-01:
+    value: null
+metadata:
+  short_label: Seuil d'effectif de l'entreprise sans accord d'intéressement
+  unit: people
+  reference:
+    2018-12-24:
+      title: Loi 2018-1213 du 24/12/2018
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037851899/
+    2021-07-19:
+      title: Loi 2021-953 du 19/07/2021
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000043805912
+    2022-04-01:
+      title: Loi 2021-953 du 19/07/2021
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000043805912
+documentation: https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/instruction-du-19-aout-2021.html Instruction DSS/5B/2021/187 du 19 août 2021 publiée dans le journal officiel de la Sécurité sociale expliquant le dispositif

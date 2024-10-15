@@ -1,0 +1,5 @@
+- period: 2021-07
+  input:
+    groupe_specialites_formation: ["groupe_230", "groupe_111", "aucun"]
+  output:
+    domaine_specialites_formation: [ "domaine_23", "domaine_11", "aucun" ]

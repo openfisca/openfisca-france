@@ -1,0 +1,7 @@
+description: Déduction pour versements sur un Plan Epargne Retraite Populaire (PERP)
+metadata:
+  short_label: Versements PERP
+  order:
+  - minimum
+  - maximum
+documentation: "Déductions pour plan épargne populaire (PERP) : art. 163 quatervicies du CGI"

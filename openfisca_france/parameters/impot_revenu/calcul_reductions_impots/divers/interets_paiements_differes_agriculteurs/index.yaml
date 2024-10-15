@@ -1,0 +1,9 @@
+description: Réduction d'impôt sur les intérêts de paiements différés accordés aux agriculteurs
+metadata:
+  short_label: Intérêts paiements différés agriculteurs
+  order:
+  - taux
+  - plafond
+documentation: |-
+  Art. 199 vicies A du CGI. Loi 2006-11 du 5 janvier 2006 - art. 16 (V) JORF 6 janvier 2006
+  Art. 200 octies du CGI. Loi 2008-1249 du 1er décembre 2008 - art. 12

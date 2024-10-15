@@ -1,0 +1,10 @@
+description: Cotisation de sécurité sociale (SS) pour les assurés actifs, branche maladie, maternité, invalidité, décès (MMID) des professions libérales
+metadata:
+  short_label: Assurés actifs
+  label_en: SSCs for sickness and maternity benefits (professionals)
+  order:
+  - dela_11_pss
+  - toute_remuneration
+  - sous_pss
+  - sous_5_pss
+  - sous_4_pss

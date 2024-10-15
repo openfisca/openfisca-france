@@ -1,0 +1,269 @@
+- name: reduc_enfants_scolarises
+  period: 2014
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7ea: 1
+      f7eb: 1
+      f7ec: 0
+      f7ed: 1
+      f7ef: 0
+      f7eg: 0
+      nbF: 1.0
+      nbG: 0.0
+      nbH: 2.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+      - ind4
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+      ind2:
+        activite: etudiant
+        date_naissance: '2004-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '2004-01-01'
+      ind4:
+        activite: etudiant
+        date_naissance: '2004-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      parents:
+      - ind0
+    menage:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      personne_de_reference: ind0
+  output:
+    reduction_enfants_scolarises: 168.0
+    iai: 3923.0
+    impot_revenu_restant_a_payer: -3923.0
+    nbptr: 2.25
+    ppe: 0.0
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: reduc_reduction_enfants_scolarises
+  period: 2015
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7ea: 1
+      f7eb: 1
+      f7ec: 0
+      f7ed: 1
+      f7ef: 0
+      f7eg: 0
+      nbF: 1.0
+      nbG: 0.0
+      nbH: 2.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+      - ind4
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+      ind2:
+        activite: etudiant
+        date_naissance: '2005-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '2005-01-01'
+      ind4:
+        activite: etudiant
+        date_naissance: '2005-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      parents:
+      - ind0
+    menage:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      personne_de_reference: ind0
+  output:
+    reduction_enfants_scolarises: 168.0
+    iai: 3912.0
+    impot_revenu_restant_a_payer: -3912.0
+    nbptr: 2.25
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: reduc_reduction_enfants_scolarises
+  period: 2016
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7ea: 1
+      f7eb: 1
+      f7ec: 0
+      f7ed: 1
+      f7ef: 0
+      f7eg: 0
+      nbF: 1.0
+      nbG: 0.0
+      nbH: 2.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+      - ind4
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+      ind2:
+        activite: etudiant
+        date_naissance: '2006-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '2006-01-01'
+      ind4:
+        activite: etudiant
+        date_naissance: '2006-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      parents:
+      - ind0
+    menage:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      personne_de_reference: ind0
+  output:
+    reduction_enfants_scolarises: 168.0
+    iai: 3902.0
+    impot_revenu_restant_a_payer: -3902.0
+    nbptr: 2.25
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: reduc_reduction_enfants_scolarises
+  period: 2017
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7ea: 1
+      f7eb: 1
+      f7ec: 0
+      f7ed: 1
+      f7ef: 0
+      f7eg: 0
+      nbF: 1.0
+      nbG: 0.0
+      nbH: 2.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+      - ind4
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+      ind2:
+        activite: etudiant
+        date_naissance: '2007-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '2007-01-01'
+      ind4:
+        activite: etudiant
+        date_naissance: '2007-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      parents:
+      - ind0
+    menage:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      personne_de_reference: ind0
+  output:
+    reduction_enfants_scolarises: 168.0
+    iai: 3807.0
+    impot_revenu_restant_a_payer: -3807.0
+    nbptr: 2.25
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0

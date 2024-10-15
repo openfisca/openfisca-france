@@ -1,0 +1,17 @@
+description: Taux (en % de la BMAF) de la majoration exceptionnelle de l'Allocation de rentrée scolaire (ARS)
+values:
+  2020-08-06:
+    value: 0.2426
+  2021-08-01:
+    value: null
+metadata:
+  short_label: Taux
+  label_en: "Back-to-school allowance (ARS): Exceptionnal extra allowance"
+  ipp_csv_id: maj_ars_bmaf
+  unit: BMAF
+  reference:
+    2020-08-06:
+      title: Décret 2020-985 du 05/08/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042211279
+  official_journal_date:
+    2020-08-06: "2020-08-06"

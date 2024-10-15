@@ -1,0 +1,32 @@
+description: Bénéficiaire isolé ou couple ayant 5 personnes à charge - Plafond de ressources (zone 1) de la Réduction de loyer de solidarité (RLS)
+values:
+  2018-01-01:
+    value: 2598
+  2019-01-01:
+    value: 2624
+  2024-01-01:
+    value: 2750
+metadata:
+  short_label: Bénéficiaire isolé ou couple ayant 5 personnes à charge
+  last_value_still_valid_on: "2023-05-24"
+  ipp_csv_id: plafond_ressources_rls_z1_famille_5pac
+  unit: currency
+  reference:
+    2018-01-01:
+    - title: Décret n° 2018-136 du 27/02/2018, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036649988
+    - title: Arrêté du 27/02/2018, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036650016
+    2019-01-01:
+      title: Arrêté du 27/12/2018, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037880880
+    2024-01-01:
+      title: Arrêté du 29/12/2023 relatif à la revalorisation des plafonds de ressources et des montants de réduction de loyer de solidarité applicables, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048729702
+  official_journal_date:
+    2018-01-01: "2018-02-28"
+    2019-01-01: "2018-12-29"
+    2024-01-01: "2023-12-30"
+  notes:
+    2018-01-01:
+    - title: Création de la réduction de loyer de solidarité par la loi de finances pour 2018. Elle entre en vigueur le 01/02/2018.

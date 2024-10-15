@@ -1,0 +1,11 @@
+description: Conditions et plafond de ressources du Prêt aux jeunes ménages (PJM)
+metadata:
+  documentation_start: true
+  short_label: Conditions et plafond de ressources
+  label_en: "Loans to young household (PJM): Thresholds for means-testing"
+  order:
+  - age_moyen_maximum_conjoints
+  - smic_annee_reference_n_2
+  - plafond_ressources_sans_enfant
+  - majoration_par_enfant_supplementaire
+documentation: Le prêt aux jeunes ménages a un plafond dès sa création en 1975, ce-dernier est d'abord institué par le décret 76-117 de la manière suivante "Art 6 - Sous réserve des conditions prévues à l'article précédent, les jeunes ménages ne peuvent prétendre à un prêt que si leur revenu net global apprécié dans les mêmes conditions que pour l'allocation pour frais de garde ne dépasse pas les plafonds de ressources prévus par l'octroi de cette prestation." L'article 5 du même décret explicite notamment les conditions d'âge (au moins l'un des conjoints doit avoir moins de 26 ans) .

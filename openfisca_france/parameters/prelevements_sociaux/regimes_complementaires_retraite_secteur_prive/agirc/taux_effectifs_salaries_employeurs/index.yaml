@@ -1,0 +1,7 @@
+description: Taux effectifs (salariés/employeurs) des cotisations du régime complémentaire retraite des cadres (AGIRC)
+metadata:
+  short_label: Taux effectifs (salariés/employeurs)
+  label_en: Pension contributions for executives (AGIRC)
+  order:
+  - avant81
+  - depuis81

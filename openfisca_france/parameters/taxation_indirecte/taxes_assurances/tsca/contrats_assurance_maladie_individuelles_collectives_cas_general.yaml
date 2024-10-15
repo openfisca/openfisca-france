@@ -1,0 +1,34 @@
+description: Cas général (2 ter) des contrats d'assurance maladie individuelles et collectives
+values:
+  1979-07-01:
+    value: null
+  1994-09-02:
+    value: 0.07
+  2011-10-01:
+    value: 0.09
+  2014-01-01:
+    value: 0.14
+  2016-01-01:
+    value: null
+metadata:
+  ipp_csv_id: taxe_assu_maladie_autres
+  unit: /1
+  reference:
+    1994-09-02:
+      title: Loi 2001-1246 du 21/12/2001 (LFSS pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000396224
+    2011-10-01:
+      title: "Loi 2011-1117 du 19/09/2011 (LF rectificative pour 2011)\_- art. 9"
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024576242&cidTexte=JORFTEXT000024574328
+    2014-01-01:
+      title: Loi 2013-1203 du 23/12/2013 (LFSS pour 2014) - art. 19
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028375881&cidTexte=JORFTEXT000028372809
+    2016-01-01:
+      title: Loi 2014-1554 du 22/12/2014 (LFSS pour 2015) - art. 22
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029954707&cidTexte=JORFTEXT000029953502
+  official_journal_date:
+    1994-09-02: "2001-12-26"
+    2011-10-01: "2011-09-20"
+    2014-01-01: "2013-12-24"
+    2016-01-01: "2014-12-24"
+documentation: art. L211-1 code des assurances

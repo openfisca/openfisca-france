@@ -1,0 +1,12 @@
+description: Base mensuelle de calcul des allocations familiales (BMAF)
+metadata:
+  short_label: BMAF
+  label_en: Monthly basis for the computation of family allowances (BMAF)
+  order:
+  - bmaf
+  - bmaf_regimes_agricoles
+  - bmaf_e_t_i
+  - salaire_mensuel_base_dans_departement_seine
+documentation: |-
+  Le régime des prestations familiales est fixé par la loi 46-1835 du 22 août 1946
+  Sources : Légifrance et La sécurité sociale, son histoire à partir des textes, p. 223 (1945-1961) et p. 405 (1959-1967)

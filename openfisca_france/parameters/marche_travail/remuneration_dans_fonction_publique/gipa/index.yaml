@@ -1,0 +1,16 @@
+description: Garantie individuelle du pouvoir d'achat (GIPA)
+metadata:
+  short_label: Garantie individuelle du pouvoir d'achat
+  label_en: Guarantee of purchasing power (GIPA)
+  order:
+  - indice_1
+  - indice_2
+  - inflation
+documentation: |-
+  Garantie qui compense l'érosion des bas salaires de la fonction publique due à l'inflation
+  G = TIB de l'année de début de la période de référence * (1 + inflation sur la période de référence) - TIB de l'année de fin de la période de référence.
+  La période de référence s'étend sur 4 ans, du 31/12 de l'année de la date d'effet moins cinq ans, au 31/12 de l'année précédent la date d'effet (article 5 - décret n°2008-539)
+  Inflation sur la période de référence = (Moyenne IPC de l'année de fin de la période de référence/Moyenne IPC de l'année de début de la période de référence) ― 1
+  Le TIB de l'année pris en compte correspond à l'indice majoré détenu au 31 décembre de chacune des deux années bornant la période de référence multiplié par la valeur moyenne annuelle du point pour chacune de ces deux années.
+  Les indices 1 et 2 réfèrent à la valeur annuelle moyenne du point d'indice, respectivement en début et en fin de période de référence
+  Les bénéficiaires du GIPA ont un indice sommital maximum qui correspond à HEB

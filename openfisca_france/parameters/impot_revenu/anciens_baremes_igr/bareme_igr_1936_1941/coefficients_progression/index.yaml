@@ -1,0 +1,16 @@
+description: Coefficients de progression des tranches d'imposition au titre du barème de l'Impôt général sur le revenu (IGR, 1936-1941)
+metadata:
+  short_label: Coefficients et intervalles
+  label_en: Thresholds and marginal tax rates of the IGR tax (1936-1941)
+  order:
+  - tranche_1
+  - tranche_2
+  - tranche_3
+  - tranche_4
+  - tranche_5
+  - tranche_6
+  - tranche_7
+  - tranche_8
+  - tranche_9
+  - tranche_10
+  - intervalle_application_tranches_3_9

@@ -1,0 +1,7 @@
+description: Plafond de ressources mensuel de l'allocation de solidarité spécifique (ASS)
+metadata:
+  short_label: Plafond de ressources mensuel
+  label_en: Special UI scheme
+  order:
+  - personne_seule
+  - couple

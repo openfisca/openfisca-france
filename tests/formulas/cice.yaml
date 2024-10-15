@@ -4,36 +4,36 @@
   input:
     salaire_de_base: 1457.52
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
   output:
     credit_impot_competitivite_emploi: 87.5
 
 - period: 2015-11
-  description: C'est bon en dessous de 2.5 fois le SMIC
+  description: C'est bon en dessous de 2.5 fois le Smic
   relative_error_margin: 0.001
   input:
     salaire_de_base: 3643.79
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
   output:
     credit_impot_competitivite_emploi: 218.6
 
 - period: 2015-11
-  description: Rien au dessus de 2.5 fois le SMIC
+  description: Rien au dessus de 2.5 fois le Smic
   relative_error_margin: 0.001
   input:
     salaire_de_base: 3643.9
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
   output:
     credit_impot_competitivite_emploi: 0
 
@@ -43,10 +43,10 @@
   input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     entreprise_est_association_non_lucrative: 1
   output:
     credit_impot_competitivite_emploi: 0

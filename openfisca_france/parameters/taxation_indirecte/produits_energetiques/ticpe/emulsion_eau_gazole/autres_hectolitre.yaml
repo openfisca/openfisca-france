@@ -1,0 +1,71 @@
+description: Emulsion d'eau dans du gazole, autres (hectolitre)
+values:
+  1993-01-01:
+    value: null
+  2000-01-01:
+    value: 198.95
+  2002-01-01:
+    value: 24.54
+  2008-01-01:
+    value: 30.2
+  2009-01-01:
+    value: 26.27
+  2010-01-01:
+    value: 24.78
+  2010-03-11:
+    value: 28.71
+  2015-01-01:
+    value: 30.35
+  2016-01-01:
+    value: 32
+  2017-01-01:
+    value: 33.86
+  2018-01-01:
+    value: 36.94
+metadata:
+  ipp_csv_id: ticpe_emulsion_eau_gazole_autres
+  unit: currency
+  reference:
+    1993-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    2000-01-01:
+      title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
+    2002-01-01:
+      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+    2008-01-01:
+      title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017853368
+    2009-01-01:
+      title: Loi 2008-1443 du 30/12/2008 (LFR pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020014790
+    2010-01-01:
+      title: Loi 2009-1674 du 30/12/2009 (LFR pour 2009) - art. 76
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021580225&cidTexte=JORFTEXT000021559075
+    2010-03-11:
+      title: "Loi 2010-237 du 09/03/2010 (LFR pour 2010)\_- art. 4 et 5"
+    2015-01-01:
+      title: Loi 2014-1654 du 29/12/2014 (LF pour 2015) - art. 36
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029994876&cidTexte=JORFTEXT000029988857
+    2016-01-01:
+      title: Loi 2015-1786 du 29/12/2015 (LFR pour 2015) - art. 14 et 17
+    2017-01-01:
+      title: Loi 2016-1918 du 29/12/2016 (LFR pour 2016)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033734341
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    1993-01-01: "1992-12-31"
+    2000-01-01: "1999-12-31"
+    2002-01-01: "2001-12-29"
+    2008-01-01: "2007-12-27"
+    2009-01-01: "2008-12-31"
+    2010-01-01: "2009-12-31"
+    2010-03-11: "2010-03-10"
+    2015-01-01: "2014-12-30"
+    2016-01-01: "2015-12-30"
+    2017-01-01: "2016-12-30"
+    2018-01-01: "2017-12-31"

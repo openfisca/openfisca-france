@@ -1,0 +1,49 @@
+- name: credit_impot cumul
+  period: 2016
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7db: 20000
+      f7dg: false
+      f7dq: false
+      f7ui: 2000
+      f7vm: 600
+      f7to: 100
+      f7ub: 200
+      # f8uz: 3000
+      # f8wd: 5200
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        abic_impn: 50000
+        arag_impg: 50000
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 45891.0
+    impot_revenu_restant_a_payer: -39208.0
+    nbptr: 1.0
+    rbg: 145000.0
+    rfr: 145000.0
+    rni: 145000.0

@@ -1,0 +1,38 @@
+description: Taux 1 majoration pour temps partiel de la Prime pour l'emploi
+values:
+  1999-01-01:
+    value: null
+  2002-01-01:
+    value: 0.45
+  2005-01-01:
+    value: 0.65
+  2006-01-01:
+    value: 0.85
+  2016-01-01:
+    value: null
+metadata:
+  short_label: Taux 1
+  label_en: Employment Allowance
+  ipp_csv_id: maj_ppe_tp
+  unit: /1
+  reference:
+    2002-01-01:
+    - title: LF pour 2003
+    - title: BOI 5 B-12-03; n°102 DU 06/06/2003
+    2005-01-01:
+    - title: LF pour 2006
+    - title: BOI 5 B-16-06; n°82 DU 17/05/2006
+    2006-01-01:
+    - title: LF pour 2007
+    - title: BOI 5 B-8-07; n°45 DU 27/03/2007
+    2016-01-01:
+      title: Décrets 2015-1709 et 2015-1710 du JO 22/12/2015
+  official_journal_date:
+    2002-01-01: "2002-12-31"
+    2005-01-01: "2005-12-31"
+    2006-01-01: "2006-12-27"
+  notes:
+    2002-01-01:
+    - title: Introduction de la majoration pour temps partiel
+    2016-01-01:
+    - title: A compter du 1e janvier 2016, la PPE est remplacée par la prime d'activité .

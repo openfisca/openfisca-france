@@ -1,0 +1,10 @@
+description: Taux de la réduction d'impôts sur les intérêts d'emprunt pour reprise de société
+values:
+  1977-01-01:
+    value: null
+  2004-01-01:
+    value: 0.25
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_repsoc
+  unit: /1

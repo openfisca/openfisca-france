@@ -1,0 +1,6 @@
+description: Cotisations maladie (agent, tout traitement) de la fonction publique d'Etat
+metadata:
+  short_label: Agent
+  label_en: Health insurance contributions
+  order:
+  - maladie

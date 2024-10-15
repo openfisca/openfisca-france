@@ -1,0 +1,15 @@
+description: Taux de majoration du montant de l'aide au delà de la troisième personne à charge ou enfant inclus de l'aide exceptionnelle de fin d'année (AEFA)
+values:
+  2003-12-30:
+    value: 0.4
+metadata:
+  short_label: Majoration à partir de la troisième personne à charge
+  last_value_still_valid_on: "2024-04-26"
+  label_en: "Exceptional end-of-year benefit (AEFA): amount"
+  unit: /1
+  reference:
+    2003-12-30:
+      title: Décret 2003-1283 du 26/12/2003, art. 1
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006226757
+  official_journal_date:
+    2003-01-01: "2003-12-30"

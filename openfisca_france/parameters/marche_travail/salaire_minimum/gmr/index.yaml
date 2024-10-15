@@ -1,0 +1,11 @@
+description: Garanties minimales de ressources (GMR)
+metadata:
+  short_label: Garanties minimales de ressources
+  label_en: Minimal ressources guarantee - GMR (2000-2004)
+  order:
+  - rtt_avant_30_06_99_gmr1
+  - rtt_avant_30_06_00_gmr2
+  - rtt_avant_30_06_01_gmr3
+  - rtt_avant_30_06_02_gmr4
+  - rtt_apres_01_07_02_gmr5
+documentation: Les garanties minimales de ressources (GMR) sont des niveaux différents de Smic selon la date de passage aux 35h. Convergence des GMR et du Smic au 1er juillet 2005.

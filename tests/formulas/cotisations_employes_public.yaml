@@ -117,7 +117,7 @@
     avantage_en_nature: 200
   output:
     rafp_salarie: -0.05*(100+200+300+150+200)
-    rafp_employeur: -0.05*(100+200+300+150+200)
+    rafp_employeur: -0.05*(100+200+300+150+200+8000*0.0076)
 
 - name: rafp_2
   description: Cotisations RAFP dans le cas où l'assiette avant gipa est > au plafond de 20% du traitement indiciaire brut. On considère l'assiette avant gipa, car la gipa n'est pas soumis au plafond, et on veut tester cela.

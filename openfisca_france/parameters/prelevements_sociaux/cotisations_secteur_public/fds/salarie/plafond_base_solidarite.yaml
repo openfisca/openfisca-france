@@ -1,10 +1,26 @@
-unit: currency
+description: Plafond de la contribution exceptionnelle de solidarité spécifique à la fonction publique
 values:
   2002-01-01:
-    value: 12516.0
+    value: 12516
   2018-01-01:
     value: null
 metadata:
-  ux_name: Plafond de la contribution exceptionnelle de solidarité
-  description: Plafond de la contribution exceptionnelle de solidarité spécifique à la fonction publique (1982-2017)
-  last_review: 2021-08-24
+  short_label: Plafond de la contrib. exceptionnelle de solidarité
+  last_value_still_valid_on: "2021-08-24"
+  label_en: Contributions to the Solidarity Fund (FDS)
+  unit: currency
+  reference:
+    2002-01-01:
+      title: Décret 2001-895 du 26/09/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000773694
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    2002-01-01: "2001-09-29"
+    2018-01-01: "2017-12-31"
+  notes:
+    2002-01-01:
+    - title: Conversion en Euros
+    2018-01-01:
+    - title: Suppression de la contribution exceptionnelle de solidarité en compensation de la hausse de CSG. La suppression du Fonds de solidarité était prévue par l'art. 143 de la loi 2016-1918 du 29/12/2016 (LFR pour 2016)

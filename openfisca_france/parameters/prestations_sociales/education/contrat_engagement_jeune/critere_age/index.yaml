@@ -1,0 +1,7 @@
+description: Critères d'âge pour le Contrat d'Engagement Jeune
+metadata:
+  short_label: Critères d'âge
+  order:
+  - maximum
+  - maximum_handicap
+  - minimum

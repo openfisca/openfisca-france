@@ -1,0 +1,10 @@
+description: Réduction pour investissements dans FCPI ou FIP dans les PME de l'impôt de solidarité sur la fortune
+metadata:
+  short_label: Réduction pour investissements dans FCPI ou FIP des PME
+  label_en: Tax reductions for investment and donations
+  order:
+  - plafond
+  - taux_investissement
+documentation: |-
+  FCPI: Fonds commun de placement dans l'innovation
+  FIP: Fonds d'investissement de proximité

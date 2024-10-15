@@ -1,0 +1,12 @@
+description: Montant plafond du fonds de solidarité à destination des entreprises (TPE) touchées par le Covid-19
+values:
+  2020-03-01:
+    value: 1500
+metadata:
+  short_label: Montant plafond
+  unit: currency
+  reference:
+    2020-03-01:
+      title: Décret 2020-371 du 30/03/2020
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041768315/
+documentation: https://www.service-public.fr/professionnels-entreprises/vosdroits/F35211

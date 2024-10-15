@@ -1,0 +1,35 @@
+description: Pourcentage du SJR de l'allocation de base d'assurance chômage
+values:
+  1968-07-22:
+    value: null
+  1984-04-01:
+    value: 0.6
+  1985-10-01:
+    value: 0.57
+  1989-10-01:
+    value: 0.574
+  2014-07-01:
+    value: 0.57
+metadata:
+  short_label: Pourcentage du SJR
+  last_value_still_valid_on: "2022-01-20"
+  label_en: "UI scheme: rates and maximum"
+  ipp_csv_id: base_prct
+  unit: /1
+  reference:
+    1968-07-22:
+    - title: Ordonnance 67-580 du 13/07/1967
+    - title: Avenant du 10/07/1967
+    1984-04-01:
+      title: Arrêté du 24/02/1984 portant agrément de la convention du 24/02/1984
+    1989-10-01:
+      title: Arrêté du 14/05/1990 portant agrément de la convention du 01/01/1990
+    2014-07-01:
+    - title: Arrêté du 25/06/2014 portant agrément de la convention, art. 14 du titre 1er
+    - title: Décret 2019-797 du 26/07/2019 relatif au régime d'assurance chômage, art. 14
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038869220
+  official_journal_date:
+    1968-07-22: "1967-07-19"
+    1984-04-01: "1984-04-04"
+    1989-10-01: "1990-05-15"
+    2014-07-01: "2014-06-26"

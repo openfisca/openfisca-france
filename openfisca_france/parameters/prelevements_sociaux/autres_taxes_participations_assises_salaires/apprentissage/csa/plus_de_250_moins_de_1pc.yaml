@@ -1,0 +1,45 @@
+description: Taux pour les entreprises comprenant plus de 250 et moins de 2000 salariés, et dont le pourcentage d'alternants est inférieur à 1%
+values:
+  2009-01-01:
+    value: 0.001
+  2011-01-01:
+    value: 0.002
+  2012-01-01:
+    value: 0.0025
+  2013-01-01:
+    value: 0.003
+  2014-01-01:
+    value: 0.004
+metadata:
+  last_value_still_valid_on: "2024-05-16"
+  unit: /1
+  reference:
+    2009-01-01:
+    - title: Article 230 H - II du CGI
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000021342716/2009-11-26/
+    - title: art.27, LOI n° 2009-1437 du 24 novembre 2009 relative à l'orientation et à la formation professionnelle tout au long de la vie
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000021312490
+    2011-01-01:
+      title: art.23, Loi n° 2011-900 du 29 juillet 2011 de finances rectificative pour 2011
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000024413922
+    2012-01-01:
+      title: art.22, LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
+    2013-01-01:
+      title: art.22, LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
+    2014-01-01:
+    - title: Article L6242-1, IV.1° du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000043701827/2022-01-01
+    - title: Article 230H, II.1° du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025516217/2012-03-16/
+    - title: LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012, art.22
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
+    - title: Article L6242-1 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043701803/2024-05-16/
+  official_journal_date:
+    2009-01-01: "2009-11-25"
+    2011-01-01: "2011-07-30"
+    2012-01-01: "2012-03-15"
+    2013-01-01: "2012-03-15"
+    2014-01-01: "2012-03-15"

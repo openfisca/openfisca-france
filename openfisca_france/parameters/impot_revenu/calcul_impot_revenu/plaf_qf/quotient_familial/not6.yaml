@@ -1,0 +1,12 @@
+description: Part supplémentaire de quotient familial (IR) pour les personnes invalides avec personne à charge
+values:
+  1982-01-01:
+    value: 0.5
+metadata:
+  short_label: Personne invalide avec personne à charge
+  last_value_still_valid_on: "2024-04-26"
+  unit: part_quotient_familial
+  reference:
+    1982-01-01:
+      title: Article 195, alinéa 5 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006308284/1983-01-01

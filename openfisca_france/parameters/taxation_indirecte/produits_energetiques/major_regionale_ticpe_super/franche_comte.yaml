@@ -1,0 +1,12 @@
+description: Majoration régionale TICPE Super en Franche-Comté
+values:
+  2007-01-01:
+    value: 1.35
+  2009-01-01:
+    value: 1.77
+  2011-01-01:
+    value: 2.5
+metadata:
+  short_label: Franche-Compté
+  ipp_csv_id: maj_ticpe_super_f_c
+  unit: currency

@@ -1,0 +1,11 @@
+description: Taux de plafonnement de la taxe d'habitation en fonction du revenu fiscal de référence
+values:
+  2017-01-01:
+    value: 0.0344
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Taux de plafonnement
+  unit: /1
+  reference:
+    title: art. 1414 A du CGI

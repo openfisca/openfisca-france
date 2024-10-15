@@ -1,0 +1,7 @@
+description: Abattement annuel sur l'indemnité des élus locaux
+metadata:
+  order:
+  - mandat_unique
+  - mandats_multiples
+  - specifique_communes_moins_3500_hab
+documentation: L'abattement pour les élus locaux s'applique à toutes les indemnités de fonction perçues par les élus communaux et intercommunaux (maires, adjoints, conseillers municipaux, présidents et vice-présidents d'EPCI et conseillers intercommunaux) et est dénommée comme la fraction représentative de frais d'emploi.

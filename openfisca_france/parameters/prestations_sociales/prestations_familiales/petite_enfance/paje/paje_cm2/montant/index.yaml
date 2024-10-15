@@ -1,0 +1,7 @@
+description: Montants (en % de la BMAF) de la Prime à la naissance et à l'adoption de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  short_label: Montants
+  label_en: Amounts
+  order:
+  - prime_naissance
+  - prime_adoption

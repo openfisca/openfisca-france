@@ -1,0 +1,6 @@
+description: Taux plein (enfants nés avant 2014) de l'allocation de base de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  short_label: Enfants nés avant 2014
+  label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
+  order:
+  - taux

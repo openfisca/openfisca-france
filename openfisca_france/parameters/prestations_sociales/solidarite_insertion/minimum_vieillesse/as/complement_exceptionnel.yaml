@@ -1,0 +1,96 @@
+description: Complément exceptionnel de l'Allocation supplémentaire - Minimum vieillesse
+values:
+  1958-01-01:
+    value: 1600
+  1959-01-01:
+    value: 5200
+  1961-01-01:
+    value: 108
+  1962-04-01:
+    value: 208
+  1963-07-01:
+    value: null
+  1974-02-01:
+    value: 100
+  1974-07-01:
+    value: null
+  1975-09-01:
+    value: 700
+  1976-01-01:
+    value: null
+  1979-09-01:
+    value: 200
+  1979-12-01:
+    value: null
+  1980-02-01:
+    value: 150
+  1980-06-01:
+    value: null
+  1980-10-01:
+    value: 150
+  1981-01-01:
+    value: null
+metadata:
+  short_label: Complément exceptionnel
+  last_value_still_valid_on: "2021-01-01"
+  label_en: "Extra allowance (AS): Amount"
+  ipp_csv_id: complement
+  unit: currency
+  reference:
+    1958-01-01:
+      title: Ordonnance 58-890 du 24/09/1958
+    1959-01-01:
+      title: Ordonnance 58-1374 du 30/12/1958, art. 19
+    1961-01-01:
+      title: Décret 61-172 du 16/02/1961
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000006073402&categorieLien=id
+    1962-04-01:
+      title: Décret 62-440 du 14/04/1962
+    1963-07-01:
+      title: Décret 63-921 du 06/09/1963
+    1974-02-01:
+      title: Décret 74-160 du 26/02/1974
+    1974-07-01:
+      title: Décret 74-612 du 27/06/1974
+    1975-09-01:
+      title: Décret du 13/09/1975
+    1976-01-01:
+      title: Décret 75-1342 du 31/12/1975
+    1979-09-01:
+      title: Décret 79-811 du 20/09/1979
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000696977
+    1979-12-01:
+      title: Décret 79-1058 du 07/12/1979
+    1980-02-01:
+      title: Décret 80-99 du 30/01/1980
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000678078
+    1980-06-01:
+      title: Décret 80-499 du 01/07/1980
+    1980-10-01:
+      title: Décret 80-865 du 31/10/1980
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000681571
+    1981-01-01:
+      title: Décret 80-1158 du 31/12/1980
+  official_journal_date:
+    1958-01-01: "1958-09-27"
+    1959-01-01: "1958-12-31"
+    1961-01-01: "1961-02-18"
+    1962-04-01: "1962-04-15"
+    1963-07-01: "1963-09-08"
+    1974-02-01: "1974-02-27"
+    1974-07-01: "1974-07-30"
+    1975-09-01: "1975-09-14"
+    1976-01-01: "1975-01-03"
+    1979-09-01: "1979-09-22"
+    1979-12-01: "1979-12-08"
+    1980-02-01: "1980-01-31"
+    1980-06-01: "1980-07-03"
+    1980-10-01: "1980-11-06"
+    1981-01-01: "1981-01-10"
+  notes:
+    1961-01-01:
+    - title: Complément de 208 pour les plus de 75 ans.
+    1962-04-01:
+    - title: Complément de 308 pour les plus de 75 ans.
+    1975-09-01:
+    - title: Le décret n'a pas de numéro

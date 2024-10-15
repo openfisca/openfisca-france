@@ -1,0 +1,6 @@
+description: Unités de consommation (2ème personne) pour le Chèque énergie, prestations sociales de solidarité insertion
+values:
+  2017-01-01:
+    value: 0.5
+metadata:
+  short_label: 2ème personne

@@ -1,0 +1,6 @@
+description: Réduction d'impôt dits Duflot / Pinel / Denormandie accordée au titre des investissements locatifs et des logements donnés en location à loyer abordable pour une durée de 9 ans
+metadata:
+  short_label: Location 9 ans
+  order:
+  - taux_metro
+  - taux_om

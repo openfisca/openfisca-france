@@ -1,0 +1,7 @@
+description: Montant maximal de la prise en charge du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  short_label: Montant maximal de la prise en charge
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
+  order:
+  - enfant_moins_3_ans
+  - enfant_3_6_ans

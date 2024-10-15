@@ -1,0 +1,8 @@
+description: Taux de remboursements des cotisations (entre les deux limites d'âge ou APE taux partiel), Allocation de garde d'enfant à domicile (AGED)
+values:
+  2003-07-01:
+    value: 0.5
+  2007-01-01:
+    value: null
+metadata:
+  unit: /1

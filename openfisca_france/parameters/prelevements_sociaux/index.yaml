@@ -1,1 +1,16 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Prélèvements sociaux
+metadata:
+  short_label: Prélèvements sociaux
+  label_en: Social security contributions
+  order:
+  - pss
+  - contributions_sociales
+  - cotisations_securite_sociale_regime_general
+  - cotisations_regime_assurance_chomage
+  - regimes_complementaires_retraite_secteur_prive
+  - cotisations_secteur_public
+  - autres_taxes_participations_assises_salaires
+  - contributions_assises_specifiquement_accessoires_salaire
+  - cotisations_taxes_independants_artisans_commercants
+  - professions_liberales
+  - reductions_cotisations_sociales

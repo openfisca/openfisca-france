@@ -1,0 +1,26 @@
+description: Taux
+values:
+  1975-01-01:
+    value: null
+  1989-01-01:
+    value: 0.4
+  1996-01-01:
+    value: 0.5
+  2002-01-01:
+    value: 0.6
+  2005-01-01:
+    value: 0.66
+metadata:
+  ipp_csv_id: txdons
+  unit: /1
+  reference:
+    2002-01-01:
+      title: Loi 2003-709 du 01/08/2003 - art. 1 (V)
+    2005-01-01:
+      title: Loi n° 2005-32 du 18/01/2005
+  official_journal_date:
+    2002-01-01: "2003-08-02"
+    2005-01-01: "2005-01-19"
+  notes:
+    1989-01-01:
+    - title: À partir de 1989, les avantages fiscaux prennent la forme de réduction d'impôt et non plus de déduction du revenu imposable (sauf dons Coluche)

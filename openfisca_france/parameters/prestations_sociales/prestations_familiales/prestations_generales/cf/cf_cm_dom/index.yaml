@@ -1,0 +1,10 @@
+description: "Complément familial (CF) : majorations dans les DOM"
+metadata:
+  short_label: Complément familial DOM
+  label_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
+  order:
+  - age_minimal_dom
+  - age_maximal_dom
+  - nombre_enfant_minimum_dom
+  - age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom
+  - complement_familial_dom

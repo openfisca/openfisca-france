@@ -1,0 +1,9 @@
+description: Prélèvement libératoire sur les bons ou contrats de capitalisation et placements de même nature (assurance-vie) lors du dénouement du contrat
+metadata:
+  short_label: Bons ou contrats de capitalisation et placements
+  label_en: Levy in discharge on life insurance
+  order:
+  - entre_1_1_83_et_31_12_89
+  - apres_le_1_1_90
+  - avec_anonymat
+  - produits_vers_etats_non_cooperatifs

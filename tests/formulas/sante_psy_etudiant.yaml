@@ -4,3 +4,10 @@
     scolarite: [ enseignement_superieur, lycee, enseignement_superieur ]
   output:
     seances_sante_psy_etudiant: [ 0, 0, 6 ]
+
+- period: 2024-08
+  input:
+    etudiant: [ false, true, true ]
+    scolarite: [ enseignement_superieur, lycee, enseignement_superieur ]
+  output:
+    seances_sante_psy_etudiant: [ 0, 0, 12 ]

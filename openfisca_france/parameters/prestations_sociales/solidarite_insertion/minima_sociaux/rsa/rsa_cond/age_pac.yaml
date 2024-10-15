@@ -1,0 +1,12 @@
+description: Limite d'âge des enfants comptés à charge
+values:
+  1977-10-01:
+    value: 24
+metadata:
+  short_label: Limite d'âge enfants à charge
+  last_value_still_valid_on: "2022-03-28"
+  unit: year
+  reference:
+    1977-10-01:
+      title: Article R262-3 2. du Code l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000022743618

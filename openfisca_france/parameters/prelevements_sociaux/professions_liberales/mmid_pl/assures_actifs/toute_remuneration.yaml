@@ -1,0 +1,42 @@
+description: Taux (toute rémunération) de la cotisation de sécurité sociale (SS) pour les assurés actifs, branche maladie, maternité, invalidité, décès (MMID) des professions libérales
+values:
+  1970-04-01:
+    value: 0.145
+  1973-04-01:
+    value: 0.107
+  1974-10-01:
+    value: 0
+  2013-01-01:
+    value: 0.065
+  2018-01-01:
+    value: null
+metadata:
+  short_label: Taux Toute rémunération
+  label_en: SSCs for sickness and maternity benefits (professionals)
+  ipp_csv_id: mmid_plib_0_
+  unit: /1
+  reference:
+    1970-04-01:
+      title: Arrêté du 26/03/1971
+    1973-04-01:
+      title: Arrêté du 29/12/1972
+    1974-10-01:
+    - title: Décret 74-810 du 28/09/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000857732
+    - title: Loi 73-1193 du 27/12/1973
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509757
+    2013-01-01:
+      title: Décret 2012-1551 du 28/12/2012 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026881533&cidTexte=JORFTEXT000026864962
+    2018-01-01:
+      title: Décret 2017-1894 du 30/12/2017, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036456544&cidTexte=JORFTEXT000036342439
+  official_journal_date:
+    1970-04-01: "1971-04-14"
+    1973-04-01: "1973-01-27"
+    1974-10-01: 1975-08-08; 1973-12-30
+    2013-01-01: "2012-12-30"
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: Progressivité du taux de cotisation

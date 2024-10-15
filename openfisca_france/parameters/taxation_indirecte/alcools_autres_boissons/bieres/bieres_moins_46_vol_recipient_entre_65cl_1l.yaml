@@ -1,0 +1,27 @@
+description: Bières moins de 4,6% vol ou récipient entre 65cL et 1L
+values:
+  1979-07-01:
+    value: 4.5
+  1981-02-01:
+    value: 13.6
+  1982-01-01:
+    value: 11
+  1993-01-01:
+    value: null
+metadata:
+  ipp_csv_id: taxe_bieres_inf_46
+  unit: currency
+  reference:
+    1981-02-01:
+      title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000339460
+    1982-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+    1993-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+  official_journal_date:
+    1981-02-01: "1980-12-31"
+    1982-01-01: "1981-12-31"
+    1993-01-01: "1992-12-31"

@@ -1,0 +1,85 @@
+description: Montant forfaitaire de base de la prime pour l'activité (PPA)
+values:
+  2016-01-01:
+    value: 524.16
+  2016-04-01:
+    value: 524.68
+  2017-04-01:
+    value: 526.25
+  2018-04-01:
+    value: 531.51
+  2018-08-01:
+    value: 551.51
+  2020-04-01:
+    value: 553.16
+  2021-04-01:
+    value: 553.71
+  2022-04-01:
+    value: 563.68
+  2022-07-01:
+    value: 586.23
+  2023-04-01:
+    value: 595.25
+  2024-04-01:
+    value: 622.63
+metadata:
+  short_label: Montant de base
+  last_value_still_valid_on: "2024-05-17"
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
+  ipp_csv_id: pa_montant_base
+  unit: currency
+  reference:
+    2016-01-01:
+    - title: Décret 2015-1710 du 21/12/2015, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665102
+    - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665104
+    2016-04-01:
+      title: Décret 2016-536 du 27/04/2016, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000032482324&categorieLien=id
+    2017-04-01:
+      title: Décret 2017-740 du 04/05/2017, art. 1
+      href: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/AFSA1710709D/jo/article_1
+    2018-04-01:
+      title: Décret 2018-323 du 03/05/2018, art. 1
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/5/3/SSAA1805962D/jo/texte
+    2018-08-01:
+      title: Décret 2018-836 du 03/10/2018, art. 1 et 2
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/10/3/SSAA1822062D/jo/texte
+    2020-04-01:
+      title: Décret 2020-491 du 29/04/2020, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000041835204
+    2021-04-01:
+      title: Décret 2021-528 du 29/04/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459542
+    2022-04-01:
+      title: Décret 2022-701 du 26/04/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045668709
+    2022-07-01:
+      title: LOI n° 2022-1158 du 16/08/2022, art 9.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
+    2023-04-01:
+      title: Décret n° 2023-343 du 4 mai 2023, article 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047521600
+    2024-04-01:
+      title: Décret n° 2024-403 du 1er mai 2024, article 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049490767
+  official_journal_date:
+    2016-01-01: "2015-12-22"
+    2016-04-01: "2016-05-03"
+    2017-04-01: "2017-05-05"
+    2018-04-01: "2018-05-04"
+    2018-08-01: "2018-10-04"
+    2020-04-01: "2020-04-30"
+    2021-04-01: "2021-04-30"
+    2022-04-01: "2022-04-27"
+    2022-07-01: "2022-08-17"
+    2023-04-01: "2023-05-05"
+    2024-04-01: "2024-05-02"
+  notes:
+    2016-01-01:
+    - title: Création de la prime pour l'activité.
+    2019-01-01:
+    - title: Revalorisation de la prime pour l'activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La PPA augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
+    2022-07-01:
+    - title: Revalorisation de 4%

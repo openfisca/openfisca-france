@@ -1,0 +1,56 @@
+description: Montant de la taxe spécifique sur les cigarettes
+values:
+  2015-01-01:
+    value: 48.75
+  2018-03-01:
+    value: 59.9
+  2019-03-01:
+    value: 61.1
+  2019-11-01:
+    value: 62
+  2020-03-01:
+    value: 62.8
+  2020-11-01:
+    value: 62.9
+  2022-01-01:
+    value: 63.6
+  2023-03-01:
+    value: 68.1
+metadata:
+  short_label: Cigarettes
+  last_value_still_valid_on: "2022-12-28"
+  ipp_csv_id: tx_spec_cigarettes
+  unit: currency
+  reference:
+    2015-01-01:
+      title: Loi 2014-1655 du 29/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029990432
+    2018-03-01:
+      title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018) - art. 17
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358470&cidTexte=JORFTEXT000036339090
+    2019-03-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2019-11-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2020-03-01:
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    2020-11-01:
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    2022-01-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603389
+    2023-03-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046805433/2023-03-01/
+  official_journal_date:
+    2015-01-01: "2014-12-30"
+    2018-03-01: "2017-12-31"
+    2019-03-01: "2017-12-31"
+    2019-11-01: "2017-12-31"
+    2020-03-01: "2020-12-30"
+    2020-11-01: "2020-12-30"
+documentation: A partir de 2015 la part spécifique est en euro et non plus en pourcentage

@@ -1,0 +1,14 @@
+description: Âge en-dessous duquel l'enfant prive la famille du Complément familial dans les DOM (CF)
+values:
+  2002-01-01:
+    value: 3
+metadata:
+  short_label: Âge sous lequel l'enfant prive du CF
+  label_en: Age under which the child is deprived of the CF
+  unit: year
+  reference:
+    2002-01-01:
+      title: Section 3 Complément familial. (Article D755-6)
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739176/1991-08-06
+  official_journal_date:
+    2002-01-01: "1991-08-06"

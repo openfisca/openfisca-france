@@ -1,0 +1,41 @@
+description: Taux sous 0,85 PSS de la cotisation de sécurité sociale (SS) branche vieillesse des professions libérales
+values:
+  2004-01-01:
+    value: 0.086
+  2012-07-04:
+    value: 0.0863
+  2013-01-01:
+    value: 0.0975
+  2014-01-01:
+    value: 0.101
+  2015-01-01:
+    value: null
+metadata:
+  short_label: Taux sous 0,85 PSS
+  label_en: SSCs for old-age insurance (professionals)
+  ipp_csv_id: ret_plib_0_85
+  unit: /1
+  reference:
+    2004-01-01:
+    - title: Loi 2003-775 du 21/08/2003 - art. 88
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758637&cidTexte=JORFTEXT000000781627
+    - title: Décret 2004-461 du 27/05/2004 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006230996&cidTexte=JORFTEXT000000437935
+    2012-07-04:
+      title: Décret 2012-847 du 2/07/2012 - art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026116730&cidTexte=JORFTEXT000026106324
+    2013-01-01:
+      title: Décret 2012-1323 du 28/11/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/11/28/2012-1323/jo/texte
+    2014-01-01:
+      title: Décret 2012-1323 du 28/11/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/11/28/2012-1323/jo/texte
+    2015-01-01:
+      title: Décret 2014-1413 du 27/11/2014
+      href: https://www.legifrance.gouv.fr/eli/decret/2014/11/27/2014-1413/jo/texte
+  official_journal_date:
+    2004-01-01: 2003-08-22; 2003-05-29
+    2012-07-04: "2012-07-03"
+    2013-01-01: "2012-11-30"
+    2014-01-01: "2012-11-30"
+    2015-01-01: "2014-11-29"

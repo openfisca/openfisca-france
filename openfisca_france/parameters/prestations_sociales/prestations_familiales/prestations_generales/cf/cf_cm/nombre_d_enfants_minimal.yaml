@@ -1,0 +1,47 @@
+description: Nombre minimal d'enfants à charge pour l'attribution du complément familial (CF)
+values:
+  1978-01-01:
+    value: 1
+  1986-07-01:
+    value: 3
+  1987-01-01:
+    value: null
+  1997-01-01:
+    value: 3
+metadata:
+  short_label: Nombre minimal d'enfants à charge
+  last_value_still_valid_on: "2023-05-11"
+  label_en: Minimum number of dependent children
+  ipp_csv_id: nenf_cf_min
+  reference:
+    1978-01-01:
+    - title: Loi 77-765 du 12/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
+    - title: Décret 77-1265 du 16/11/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518801
+    - title: Décret 78-957 du 05/09/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000331149
+    1986-07-01:
+    - title: Décret 85-1353 du 17/12/1985, art. 1 (crée art. L522-1 et R522-1 du CSS)
+    - title: Décret 89-600 du 28/08/1989, art. 4 (modif art. D522-1)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774526&cidTexte=JORFTEXT000000885994
+    1987-01-01:
+      title: Loi 86-1307 du 29/12/1986, art. 10 et 14 (modif art. L522-1 du CSS)
+    1997-01-01:
+    - title: Article R522-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750615
+    - title: Ordonnance 96-51 du 24/01/1996, art. 4
+    2003-12-19:
+      title: Loi 2003-1199 du 18/12/2003, art. 60 (modif L522-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+  official_journal_date:
+    1978-01-01: 1977-07-13; 1977-11-17; 1978-09-06
+    1986-07-01: 1985-12-21; 1989-08-31
+    1987-01-01: "1986-12-30"
+    1997-01-01: "1996-01-25"
+    2003-12-19: "2003-12-19"
+  notes:
+    1978-01-01:
+    - title: Au moins un enfant de moins de 3 ans ou alors 3+ enfants.; Le complément familial remplace l'AFG et l'AMF à compter du 01/01/1978
+    1986-07-01:
+    - title: Trois enfants de plus de 3 ans.; Suppression du CF de maintenance lorsque la famille passe de 3 à 2 enfants

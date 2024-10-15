@@ -1,0 +1,31 @@
+description: Contribution spéciale sur les contributions versées par l'employeur pour les régimes de retraites supplémentaires à prestations définies
+metadata:
+  short_label: Retraites Chapeau
+  label_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
+  order:
+  - taux_1
+  - taux_2
+  - taux_3
+  - majoration
+  - droits_certains
+documentation: |-
+  Références du CSS :
+  Art. L 137-11 du CSS
+  Principe :
+  Les sommes versées par l'employeur pour le financement des régimes de retraite supplémentaire à prestations définies (régimes de retraite "chapeau")
+  ne sont pas soumises aux cotisations sociales (au sens large), ni à la CSG-CRDS, ni aux taxes sur les salaires et la main d'œuvre.
+  Ces versements ne sont pas soumis non plus au forfait social ; mais depuis 2004, ils sont soumis à une contribution spéciale à charge de l'employeur.
+  (cf. Mémento pratique PAIE Francis Lefèbvre, §6956)
+  Assiette :
+  L'employeur peut choisir l'assiette (et le taux applicable) au moment de la mise en place du régime :
+  Option 1 (Taux 1) : l'assiette est constituées par les rentes
+  Pour les rentes liquidées depuis le 22/10/2010, la contribution est due sur la totalité de la rente versée, et non plus sur la part
+  excédant 1/3 du PSS comme c'était le cas pour les rentes liquidées avant le 22/10/2010.
+  Option 2 (Taux 2 et Taux 3) : l'assiette est constituée par les primes versées pour le financement
+  Le taux 2 s'applique en cas de gestion externe du régime
+  Le taux 3 s'applique en cas de gestion interne.
+  Majoration :
+  La majoration s'applique aux rentes excédant 8 PSS
+  Taux pour les retraites à droits certains :
+  Depuis le 05/07/2019, il ne peut plus y avoir de nouveaux bénéficiaires de régimes de retraite supplémentaire à prestations définis à clauses aléatoires (comme l'achèvement de la carrière du bénéficiaire dans l'entreprise).
+  L'acquisition de droits s'arrête au 31/12/2019, sauf pour les régimes clos aux nouvelles adhésions avant le 20/05/2014. Pour ces derniers, l'acquisition de droits continue et la contribution au financement reste soumise aux contributions aux taux 1, 2 ou 3.

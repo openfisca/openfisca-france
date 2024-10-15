@@ -1,4 +1,11 @@
-description: Taxe exceptionnelle de solidarité sur les hautes rémunérations versées par les entreprises ("taxe à 75%") (2013-2015), parmi les autres taxes et participations assises sur les salaires
+description: Taxe exceptionnelle de solidarité sur les hautes rémunérations versées par les entreprises ("taxe à 75%")
 metadata:
-  ux_name: Taxe exceptionnelle de solidarité sur les hautes rémunérations
-  description_en: Other payroll and workforce taxes
+  short_label: Taxe exceptionnelle de solidarité sur les hautes rémunérations
+  label_en: Exceptional solidarity tax on high wages ("75% tax")
+  order:
+  - tehr
+  - plafond_en_chiffre_affaire_entreprises
+documentation: |-
+  Cette taxe correspond à la nouvelle version de la "taxe à 75%" proposée par F. Hollande durant la campagne présidentielle.
+  La TEHR a vocation a être temporaire (prélevée seulement sur les rémunérations versées en 2013 et 2014).
+  Assiette : montants bruts de rémunération individuelle. Voir art. 15(II.) de la Loi 2013-1278

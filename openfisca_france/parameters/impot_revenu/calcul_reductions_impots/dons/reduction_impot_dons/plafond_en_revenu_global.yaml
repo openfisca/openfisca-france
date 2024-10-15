@@ -1,0 +1,23 @@
+description: Plafond (en % du revenu global) de la réduction d'impôt pour les dons
+values:
+  1975-01-01:
+    value: null
+  1981-01-01:
+    value: 0.03
+  1984-01-01:
+    value: 0.05
+  1996-01-01:
+    value: 0.06
+  2001-01-01:
+    value: 0.1
+  2002-01-01:
+    value: 0.2
+metadata:
+  short_label: Plafond (% revenu global)
+  ipp_csv_id: plafdons
+  unit: /1
+  reference:
+    2002-01-01:
+      title: Loi 2003-709 du 01/08/2003 - art. 1 (V)
+  official_journal_date:
+    2002-01-01: "2003-08-02"

@@ -1,0 +1,16 @@
+description: Increment du plafond (par enfant mineur à charge) de la réduction d'impôts pour emploi d'un salarié à domicile
+values:
+  1990-01-01:
+    value: null
+  2005-01-01:
+    value: 1500
+metadata:
+  short_label: Incrément du plafond
+  ipp_csv_id: increment_plafsaldomicile
+  unit: currency_next_year
+  reference:
+    2005-01-01:
+    - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005) - art. 87
+    - title: BOI 5 B-20-05; n°121 du 15/07/2005
+  official_journal_date:
+    2005-01-01: "2005-12-31"

@@ -1,0 +1,51 @@
+description: Premier taux, en part de BMAF, servant au calcul des allocations familiales (AF)
+values:
+  1946-09-01:
+    value: 0.2
+  1976-08-01:
+    value: 0.22
+  1978-01-01:
+    value: 0.23
+  1981-07-01:
+    value: 0.255
+  1982-02-01:
+    value: 0.32
+metadata:
+  short_label: Premier taux
+  last_value_still_valid_on: "2023-05-04"
+  label_en: "Family allowances (AF): General conditions and amount"
+  ipp_csv_id: af_t1_2enf
+  unit: BMAF
+  reference:
+    1946-09-01:
+      title: Loi du 22 aout 1946
+    1976-08-01:
+      title: Décret 76-768 du 16/08/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
+    1978-01-01:
+      title: "Décret 78-107 du 31/01/78 (Taux : modif art. L544 du CSS)"
+    1981-07-01:
+    - title: Décret n°69-456 du 24/05/1969, art. 2
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006762155/1981-07-01
+    - title: Décret 81-683 du 30/06/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517687
+    1982-02-01:
+    - title: Décret 2015-611 du 03/06/2015
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030674064
+    - title: Article D521-1 1) du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/
+  official_journal_date:
+    1976-08-01: "1976-08-17"
+    1978-01-01: 1972-12-28; 1978-02-02
+    1981-07-01: "1981-07-02"
+    1982-02-01: "1982-04-09"
+  notes:
+    1976-08-01:
+    - title: 37% par enfant supplémentaire jusqu'à 4 enfants à charge, puis 33%
+    1978-01-01:
+    - title: Majoration de 38% pour le 3e, 37% pour le 4e enfant. Soit 98% pour 4, 61% pour 3 enfants à charge, +35% par enfant supplémentaire
+    1981-07-01:
+    - title: Majoration 46% pour le 3e enfant, 41% pour le 4e
+    1982-02-01:
+    - title: Baisse de 46% à 40% pour le 3e enfant
+documentation: Le nombre minimal de deux enfants pour obtenir l'allocation et les majorations par enfant supplémentaire sont instituées dès 1946 (Loi 46-1835 du 22 août 1946 fixant le régime des prestations familiales)

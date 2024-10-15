@@ -1,0 +1,16 @@
+description: Âge maximal de l'enfant ouvrant droit aux prestations familiales (y compris l'aide additionnelle de l'allocation forfaitaire)
+values:
+  2003-07-01:
+    value: 20
+metadata:
+  short_label: Âge maximal de l'enfant
+  last_value_still_valid_on: "2024-04-26"
+  unit: year
+  reference:
+    2003-07-01:
+    - title: Article L512-3 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743276/1985-12-21/
+    - title: Décret 2000-71 du 28 janvier 2000 - art.  1
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006779253/2022-02-21/
+    - title: Article R512-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750602/2000-01-29

@@ -1,0 +1,14 @@
+description: Âge limite du benjamin pour un versement sans condition de durée pour le RSA
+values:
+  1997-01-01:
+    value: 0
+  2009-06-01:
+    value: 3
+metadata:
+  short_label: Âge limite du benjamin
+  last_value_still_valid_on: "2022-03-31"
+  unit: year
+  reference:
+    2009-06-01:
+      title: Article R262-2 du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033979137/2017-02-03/

@@ -1,0 +1,52 @@
+description: Cotisation supplémentaire de la taxe d'apprentissage sur les salaires
+values:
+  1977-01-01:
+    value: 0.001
+  1993-01-01:
+    value: null
+metadata:
+  short_label: Cotisation supplémentaire
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  ipp_csv_id: apprensup_p_0_
+  unit: /1
+  reference:
+    1977-01-01:
+      title: Loi 77-704 du 05/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000704668
+    1993-01-01:
+      title: Loi 93-121 du 27/01/1993, art. 92
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757797&cidTexte=JORFTEXT000000711603
+  official_journal_date:
+    1973-07-01: "1972-12-29"
+    1977-01-01: "1977-07-06"
+    1978-01-01: "1978-06-22"
+    1993-01-01: "1993-01-30"
+    1997-01-01: "1997-03-14"
+    2007-01-01: "2008-03-12"
+  notes:
+    1977-01-01:
+    - title: Cotisation exceptionnelle supplémentaire de 0,1% des salaires de 1977, reconduite en 1978, 1979, 1980, 1981 et 1982. La loi 82-1126 donne un caractère permanent à cette cotisation (art. 27)
+    1993-01-01:
+    - title: Cette loi supprime la cotisation supplémentaire de 0,1 %, instaurée de façon exceptionnelle en 1977 et rendu permanente en 1983
+documentation: |-
+  (i) La taxe d'apprentissage est créée par la Loi de finances du 13 juillet 1925.
+      La loi 77-704 du 05/07/1977créé une cotisation supplémentaire de 0,2% pour financer la formation en alternance; elle doit être versée de manière exceptionnelle en 1977.
+      Elle a été maintenue par la LFR pour 1978.
+      En 1990, la contribution supplémentaire de 0,10% est remplacée par une cotisation pérenne de 0,10% pour la formation en alternance.
+
+  (ii) Une incertitude subsiste sur le taux applicable en Alsace-Lorraine entre 1973 et 1978 inclus.
+
+  (iii) La date d'effet correspond à la période de versement de la taxe. La taxe d'apprentissage et la CSA sont dues en N aux taux en vigueur en N sur les rémunérations versées en N.
+
+  (iv) A l'heure actuelle (taxe payable en 2016, sur les rémunérations de 2015):
+    La taxe d'apprentissage et la CDA sont payées par toutes les entreprises assujetties à l'IR ou à l'IS; celles employant des apprentis en sont exonérées.
+
+    La CSA est due par les entreprises qui emploient moins d'un nombre-cible de "jeunes" et de travailleurs en alternance.\n  Le taux de CSA applicable varie à la fois avec la taille de l'entreprise et avec le pourcentage de salariés en alternance dans l'effectif annuel moyen de l'entreprise. Nous reportons ici uniquement le taux pour les entreprises de moins de 2000 salariés, dont les alternants, VIE et contrats CIFRE représentent moins de 1 % de l'effectif total de l'entreprise.
+
+    Les autres taux sont, en 2019, de (art. 1609 quinvicies du CGI) :
+      0,6 % (0,312 % en Alsace-Moselle) si le nombre de salariés titulaires d'un contrat de professionnalisation ou d’apprentissage et de jeunes accomplissant un VIE ou bénéficiant d'une CIFRE est inférieur à 1 % de l'effectif annuel moyen et si l'effectif total est supérieur à 2000 salariés ;
+      0,2 % (0,104 % en Alsace-Moselle) si le nombre de salariés et de jeunes appartenant aux catégories susvisées est compris entre 1 et 2 % de l’effectif annuel moyen;
+      0,1 % (0,052 % en Alsace-Moselle) si le nombre de salariés et de jeunes appartenant aux catégories susvisées est compris entre 2 et 3 % de l’effectif annuel moyen;
+      0,05 % (0,026 % en Alsace-Moselle) si le nombre de salariés et de jeunes appartenant aux catégories susvisées est compris entre 3 et 5 % de l’effectif annuel moyen.
+
+  Sources : Taxe d'apprentissage : CGI, art. 224 et s. et art. 140 A et s. de l'annexe I ; pour l'Alsace-Moselle, art. 1599 ter J.\nCSA : CGI, art. 230 H puis (à partir de 2014, cf. Décret 2014-549, JO 2014-05-29) 1609 quinvicies

@@ -1,0 +1,6 @@
+description: Plafond de ressource des allocations familiales (AF)
+metadata:
+  short_label: Plafond de ressources
+  label_en: "Family allowances (AF): Thresholds for means-testing"
+  order:
+  - 0_enfant_couples_monoactifs

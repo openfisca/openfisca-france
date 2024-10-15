@@ -1,0 +1,21 @@
+description: Taux de l'abattement pour le régime micro-BA
+values:
+  1979-01-01:
+    value: null
+  2016-01-01:
+    value: 0.87
+metadata:
+  short_label: Taux
+  last_value_still_valid_on: "2024-04-26"
+  ipp_csv_id: taux_micro_ba
+  unit: /1
+  reference:
+    1979-01-01:
+      title: Loi 80-30 du 18/01/1980 (LF pour 1980)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000705191
+    2016-01-01:
+      title: Loi n° 2015-1786 du 29 décembre 2015 de finances rectificative pour 2015 - Article 33
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000031733082&idArticle=LEGIARTI000031757493&dateTexte=20161210&categorieLien=id#LEGIARTI000031757493
+  official_journal_date:
+    1979-01-01: "1980-01-19"
+    2016-01-01: "2017-05-04"

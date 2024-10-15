@@ -2,7 +2,7 @@ name: Ingénieur SSII
 period: 2013-08
 absolute_error_margin: 0.005
 input:
-  allegement_fillon_mode_recouvrement: fin_d_annee  #Indiqué: index 0 --> "fin d'année" et non "anticipé"# "anticipe_regularisation_fin_de_periode"
+  allegement_general_mode_recouvrement: fin_d_annee  #Indiqué: index 0 --> "fin d'année" et non "anticipé"# "anticipe_regularisation_fin_de_periode"
   arrco_tranche_a_taux_employeur: 0.04539
   arrco_tranche_a_taux_salarie: 0.03024
   assujettie_taxe_salaires: false
@@ -10,7 +10,7 @@ input:
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: '2013-01-01'
   contrat_de_travail_fin: '2013-12-31'
-  contrat_de_travail_duree: cdi
+  contrat_de_travail_type: cdi
   effectif_entreprise: 5000
   heures_non_remunerees_volume: 21.0
   # exposition_accident: tres_eleve
@@ -19,7 +19,7 @@ input:
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   primes_salaires: 24.88
   prise_en_charge_employeur_retraite_complementaire: 0
-  prise_en_charge_employeur_prevoyance_complementaire: 0
+  prevoyance_complementaire_employeur: 0
   prise_en_charge_employeur_retraite_supplementaire: 0
   ratio_alternants: 0
   redevable_taxe_apprentissage: 1
@@ -38,7 +38,6 @@ output:
   # salaire_super_brut: 0
   # cotisations_employeur: 0
 
-  # cotisations_employeur_contributives: 0
   ags: -7.54
   agff_employeur: -30.15
   apec_employeur: -0.9
@@ -54,7 +53,6 @@ output:
   pension_employeur: 0
   rafp_employeur: 0
 
-  # cotisations_employeur_non_contributives: 0
   ati_atiacl: 0
   accident_du_travail: -27.64
   famille: -135.70
@@ -73,7 +71,7 @@ output:
   taxe_apprentissage: -12.56
   versement_transport: -37.69
 
-  allegement_fillon: 0
+  allegement_general: 0
   credit_impot_competitivite_emploi: 2512.88 * 0.04  # pas indiqué dans la fiche
   tehr: {'2013': 0}
   assiette_cotisations_sociales: 2512.88
@@ -98,7 +96,6 @@ output:
   mmid_salarie: -18.85
   contribution_exceptionnelle_solidarite: 0
   # csg_deductible_salaire: -127.45
-  mhsup: 0
   # salaire_net: 1969.3
 
   # salaire imposable
@@ -108,4 +105,3 @@ output:
   # salaire_imposable: 1955.78
 
   depense_cantine_titre_restaurant_employe: 0
-

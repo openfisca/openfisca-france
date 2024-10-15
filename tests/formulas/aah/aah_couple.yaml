@@ -1,0 +1,190 @@
+- name: AAH niveau Famille - concubinage, sans enfants, une personne éligible, ressources inférieures au plafond
+  description: Montant AAH au niveau de la famille
+  period: 2018-11
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      en_couple: true
+      af_nbenf: 0
+    individus:
+      parent1:
+        aah_eligible: true
+        aah_base_ressources_conjugalisee: 16790.72 / 12
+      parent2:
+        aah_eligible: false
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    individus:
+      parent1:
+        aah_base: 226.17
+      parent2:
+        aah_base: 0
+
+- name: AAH niveau Famille - couple, sans enfants, une personne éligible, ressources inférieures au plafond
+  description: Montant AAH au niveau de la famille
+  period: 2018-11
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      en_couple: true
+      af_nbenf: 0
+    individus:
+      parent1:
+        aah_eligible: true
+        aah_base_ressources_conjugalisee: 8777.70 / 12
+      parent2:
+        aah_eligible: false
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    individus:
+      parent1:
+        aah_base: 860.0
+      parent2:
+        aah_base: 0
+
+- name: AAH niveau Famille - couple, sans enfants, une personne éligible, ressources inférieures au plafond
+  description: Montant AAH au niveau de la famille
+  period: 2018-11
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      en_couple: true
+      af_nbenf: 0
+    individus:
+      parent1:
+        aah_eligible: false
+      parent2:
+        aah_eligible: true
+        aah_base_ressources_conjugalisee: 12585.68 / 12
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    individus:
+      parent1:
+        aah_base: 0
+      parent2:
+        aah_base: 576.59
+
+- name: Couple de personnes en situation de handicap, base ressources asymétriques
+  period: 2021-06
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        salaire_imposable:
+          2019: 12000
+      parent2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    aah_base_ressources_conjugalisee: [413.42, 720]
+
+- name: Couple de personnes en situation de handicap, déconjugalisation
+  period: 2023-11
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        salaire_imposable:
+          2021: 24000
+        aah_eligible: true
+      parent2:
+        aah_eligible: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+  output:
+    aah_conjugalise_eligible: false
+    aah_base_ressources_deconjugalisee: [990.33, 0]
+    aah_base: [0, 971.37]
+    aah: [0, 971.37]
+
+- name: Couple de personnes en situation de handicap, juste avant déconjugalisation
+  period: 2023-08
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        salaire_imposable:
+          2021: 24000
+        aah_eligible: true
+      parent2:
+        aah_eligible: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+  output:
+    aah_base_ressources_conjugalisee: [990.33, 1383.33]  #[..., 24000/12*0.9-5000/12]
+    aah_base: [767.85, 374.84]
+    aah: [767.85, 374.84]

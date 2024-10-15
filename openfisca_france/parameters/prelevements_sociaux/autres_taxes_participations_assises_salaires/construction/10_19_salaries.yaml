@@ -1,0 +1,60 @@
+description: Participation des employeurs à l'effort de construction (PEEC) pour les entreprises de 10 à 19 salariés
+brackets:
+- threshold:
+    1953-01-01:
+      value: 0
+  rate:
+    1953-09-01:
+      value: 0.01
+    1978-01-01:
+      value: 0.009
+    1986-01-01:
+      value: 0.0077
+    1988-01-01:
+      value: 0.0072
+    1989-01-01:
+      value: 0.0065
+    1991-01-01:
+      value: 0.0055
+    1992-01-01:
+      value: 0.0045
+    2005-01-01:
+      value: null
+metadata:
+  short_label: De 10 à 19 salariés
+  ipp_csv_id: cons_p10_0_
+  reference:
+    1953-09-01:
+      title: Décret 53-701 du 09/08/1953
+    1978-01-01:
+      title: Loi 78-653 du 22/06/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000704926
+    1986-01-01:
+      title: Loi 85-1403 du 30/12/1985, art. 82-I, II, III (LF pour 1986)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006274500&cidTexte=JORFTEXT000000878230
+    1988-01-01:
+      title: Loi 87-1128 du 31/12/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000317544
+    1989-01-01:
+      title: Loi 88-1149 du 23/12/1988 (LF pour 1989), art. 86
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275488&cidTexte=JORFTEXT000000508832
+    1991-01-01:
+      title: Loi 91-716 du 26/07/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000355163
+    1992-01-01:
+      title: Décret 90-64 du 15/01/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000342807&categorieLien=id
+    2005-01-01:
+      title: Ordonnance 2005-895 du 02/08/2005
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000632642&categorieLien=id
+  official_journal_date:
+    1953-09-01: "1953-08-10"
+    1978-01-01: "1978-06-23"
+    1986-01-01: "1985-12-31"
+    1988-01-01: "1988-01-01"
+    1989-01-01: "1988-12-28"
+    1991-01-01: "1991-07-27"
+    1992-01-01: "1990-01-17"
+    2005-01-01: "2005-08-03"
+  rate_unit: /1
+  threshold_unit: PSS

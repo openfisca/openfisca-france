@@ -1,0 +1,19 @@
+description: Taux de la réduction d'impôt sur les intérêts des prêts à la consommation (case UH)
+values:
+  1977-01-01:
+    value: null
+  1996-01-01:
+    value: 0.25
+  1998-01-01:
+    value: null
+  2004-01-01:
+    value: 0.25
+  2006-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  ipp_csv_id: pret_conso
+  unit: /1
+  notes:
+    1996-01-01:
+    - title: tx_formachef n'est à appliquer que sur l'excédent des frais de formation par rapport à ceux de l'année précédente

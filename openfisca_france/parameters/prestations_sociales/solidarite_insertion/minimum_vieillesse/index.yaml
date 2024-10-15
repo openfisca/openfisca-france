@@ -1,0 +1,11 @@
+description: Minimum vieillesse et droits non-contributifs de retraite
+metadata:
+  short_label: Minimum vieillesse
+  label_en: Social minima for elderly
+  order:
+  - aspa
+  - avts
+  - avts_av_1961
+  - majconj
+  - as
+  - avpf

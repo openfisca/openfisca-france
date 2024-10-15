@@ -1,0 +1,9 @@
+description: Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA)
+metadata:
+  short_label: Pertes capital sociétés nouvelles
+  order:
+  - plafond_cb
+  - plafond_da
+documentation: |-
+  Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté : plafonnement à doubler pour les couples mariés ou pacsés
+  En 2003, à partir de l'imposition des revenus de 2004, différence entre pertes en capital souscription du 01/01/1994 = plaf_capita_soc1 et pertes en capital souscriptions à compter du 01/01/2003 = plaf_capital_soc2, le total des pertes reportés dans les deux cas ne peut excéder plaf_capital_soc2

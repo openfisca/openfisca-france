@@ -1,0 +1,17 @@
+description: Plafond de la réduction d'impôt sur les dépenses de formation des chefs d'entreprise
+values:
+  1977-01-01:
+    value: null
+  1992-01-01:
+    value: 5000
+  1997-01-01:
+    value: null
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_formachef
+  unit: currency_next_year
+  notes:
+    1992-01-01:
+    - title: "plaf_formachef: il existe un plafonement trienal de 10 000 FRF pour les conjoints collaborateurs du chef d'entreprise"
+    1997-01-01:
+    - title: tx_formachef n'est à appliquer que sur l'excédent des frais de formation par rapport à ceux de l'année précédente

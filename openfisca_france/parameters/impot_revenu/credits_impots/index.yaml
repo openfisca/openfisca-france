@@ -1,0 +1,11 @@
+description: Calcul des crédits d'impôts
+metadata:
+  label_en: Tax credits
+  order:
+  - gardenf
+  - ppe
+  - interets_emprunt_habitation_principale
+  - plaf_nich
+  - transition_energetique
+  - aide_a_domicile
+  - equ_hab_princ_aide_personnes

@@ -1,0 +1,16 @@
+description: Taux de la réduction d'impôt sur les dépenses de protection du patrimoine naturel
+values:
+  1977-01-01:
+    value: null
+  2010-01-01:
+    value: 0.25
+  2011-01-01:
+    value: 0.22
+  2012-01-01:
+    value: 0.18
+  2014-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_protecpat
+  unit: /1

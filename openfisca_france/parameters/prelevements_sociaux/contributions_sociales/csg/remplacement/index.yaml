@@ -1,0 +1,22 @@
+description: Contribution sociale généralisée (CSG) sur les revenus de remplacement
+metadata:
+  documentation_start: true
+  short_label: CSG sur les revenus de remplacement
+  label_en: CSG - rates on replacement incomes
+  order:
+  - allocations_chomage
+  - pensions_retraite_invalidite
+  - allocations_preretraite
+  - indemnites_journalieres
+  - seuils
+documentation: |-
+  Référence du Codes général des impôts :
+  La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.
+  Notes :
+  Pour les pensions de retraite et d'invalidité, à partir de 2015, le seuil de RFR 1 est le seuil d'exonération de CSG, et le seuil de RFR 2 est le seuil d'assujettissement au taux fort de la CSG ;
+  les retraités dont le RFR est compris entre le seuil 1 et le seuil 2 sont assujettis au taux réduit de CSG.
+  À partir de 2019, le seuil de RFR 3 est le seuil d'assujettissement au taux plein de CSG ;
+  les retraités dont le RFR est compris entre le seuil 2 et le seuil 3 sont assujettis au taux intermédiaire de CSG.
+  Le RFR est le revenu fiscal de référence de l'année N-2.
+  Les seuils de RFR pour exonération sont pécisés à l'article L136-8-III du Code de la Sécurité Sociale (CSS)
+  Les seuils de RFR pour réduction sont pécisés à l'article L136-8-III bis du Code de la Sécurité Sociale (CSS)

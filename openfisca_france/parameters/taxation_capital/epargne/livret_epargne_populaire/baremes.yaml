@@ -1,0 +1,234 @@
+description: Barèmes du livret d'épargne populaire
+metadata:
+  short_label: Barèmes
+  reference:
+    2011-12-30:
+      title: I de l'article 1417 du code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/id/LEGITEXT000006069577/
+guadeloupe:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 2676
+      2018-01-01:
+        value: 2888
+      2019-01-01:
+        value: 2934
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 2833
+      2018-01-01:
+        value: 3057
+      2019-01-01:
+        value: 3106
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 11861
+      2018-01-01:
+        value: 12798
+      2019-01-01:
+        value: 13003
+guyane:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 2676
+      2018-01-01:
+        value: 2888
+      2019-01-01:
+        value: 2934
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 3424
+      2018-01-01:
+        value: 3683
+      2019-01-01:
+        value: 3742
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 12402
+      2018-01-01:
+        value: 13380
+      2019-01-01:
+        value: 13594
+la_reunion:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 2676
+      2018-01-01:
+        value: 2888
+      2019-01-01:
+        value: 2934
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 2833
+      2018-01-01:
+        value: 3057
+      2019-01-01:
+        value: 3106
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 11861
+      2018-01-01:
+        value: 12798
+      2019-01-01:
+        value: 13003
+martinique:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 2676
+      2018-01-01:
+        value: 2888
+      2019-01-01:
+        value: 2934
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 2833
+      2018-01-01:
+        value: 3057
+      2019-01-01:
+        value: 3106
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 11861
+      2018-01-01:
+        value: 12798
+      2019-01-01:
+        value: 13003
+martinique_guadeloupe_la_reunion:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 2676
+      2018-01-01:
+        value: 2888
+      2019-01-01:
+        value: 2934
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 2833
+      2018-01-01:
+        value: 3057
+      2019-01-01:
+        value: 3106
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 11861
+      2018-01-01:
+        value: 12798
+      2019-01-01:
+        value: 13003
+mayotte:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 0
+      2018-01-01:
+        value: 4326
+      2019-01-01:
+        value: 4395
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 0
+      2018-01-01:
+        value: 5518
+      2019-01-01:
+        value: 5606
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 0
+      2018-01-01:
+        value: 20052
+      2019-01-01:
+        value: 20373
+metropole:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 2676
+      2018-01-01:
+        value: 2888
+      2019-01-01:
+        value: 2934
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 2676
+      2018-01-01:
+        value: 2888
+      2019-01-01:
+        value: 2934
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 10024
+      2018-01-01:
+        value: 10815
+      2019-01-01:
+        value: 10988
+non_renseigne:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 0
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 0
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 0
+saint_bartelemy:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 0
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 0
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 0
+saint_martin:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 0
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 0
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 0
+saint_pierre_et_miquelon:
+  demi_part_supplementaire:
+    values:
+      2011-12-30:
+        value: 0
+  premiere_demi_part:
+    values:
+      2011-12-30:
+        value: 0
+  valeur_de_base:
+    values:
+      2011-12-30:
+        value: 0

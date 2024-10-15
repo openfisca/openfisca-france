@@ -1,0 +1,267 @@
+description: Revalorisation du salaire de référence des allocations chômage
+values:
+  1968-07-08:
+    value: 0.07
+  1974-07-01:
+    value: 0.1
+  1974-12-30:
+    value: 0.07
+  1975-06-02:
+    value: 0.06
+  1975-10-06:
+    value: 0.07
+  1976-04-05:
+    value: 0.06
+  1976-10-04:
+    value: 0.07
+  1977-04-04:
+    value: 0.064
+  1977-10-03:
+    value: 0.056
+  1978-04-03:
+    value: 0.061
+  1978-10-02:
+    value: 0.074
+  1979-04-02:
+    value: 0.05
+  1979-10-01:
+    value: 0.062
+  1980-04-01:
+    value: 0.0713
+  1980-10-01:
+    value: 0.0824
+  1981-04-01:
+    value: 0.0664
+  1981-10-01:
+    value: 0.0743
+  1982-04-01:
+    value: 0.0831
+  1982-11-01:
+    value: 0.016
+  1983-04-01:
+    value: 0.04
+  1984-04-01:
+    value: 0.035
+  1984-10-01:
+    value: 0.028
+  1985-04-01:
+    value: 0.0245
+  1985-10-01:
+    value: 0.025
+  1986-04-01:
+    value: 0
+  1986-10-01:
+    value: 0.018
+  1987-04-01:
+    value: 0.015
+  1987-10-01:
+    value: 0.017
+  1988-10-01:
+    value: 0.03
+  1989-10-01:
+    value: 0.036
+  1990-10-01:
+    value: 0.039
+  1991-07-01:
+    value: 0.021
+  1992-07-01:
+    value: 0.027
+  1994-07-01:
+    value: 0.021
+  1995-07-01:
+    value: 0.022
+  1996-07-01:
+    value: 0.0245
+  1997-07-01:
+    value: 0.022
+  1998-07-01:
+    value: 0.019
+  1999-07-01:
+    value: 0.0122
+  2000-07-01:
+    value: 0.02
+  2001-07-01:
+    value: 0.024
+  2002-07-01:
+    value: 0.015
+  2003-07-01:
+    value: 0.0215
+  2004-07-01:
+    value: 0.01
+  2006-07-01:
+    value: 0.02
+  2007-07-01:
+    value: 0.0195
+  2008-07-01:
+    value: 0.025
+  2009-07-01:
+    value: 0.01
+  2010-07-01:
+    value: 0.012
+  2011-07-01:
+    value: 0.015
+  2012-07-01:
+    value: 0.02
+  2017-07-01:
+    value: 0.0065
+  2018-07-01:
+    value: 0.007
+  2019-07-01:
+    value: 0.007
+  2020-07-01:
+    value: 0.004
+  2021-07-01:
+    value: 0.006
+  2022-07-01:
+    value: 0.029
+  2023-04-01:
+    value: 0.019
+  2023-07-01:
+    value: 0.019
+metadata:
+  short_label: Revalorisation
+  label_en: Indexation of UI benefits
+  ipp_csv_id: sr_alloc
+  unit: /1
+  reference:
+    1968-07-08:
+      title: Circulaire 68-35 - décision du 25/06/1968
+    1974-07-01:
+      title: Circulaire 74-11 - décision du 03/07/1974
+    1974-12-30:
+      title: Circulaire 74-31 - décision du 23/12/1974
+    1975-06-02:
+      title: Circulaire 75-24 - décision du 02/06/1975
+    1975-10-06:
+      title: Circulaire 75-36 - décision du 23/09/1975
+    1976-04-05:
+      title: Circulaire 76-06 - décision du 25/03/1976
+    1976-10-04:
+      title: Circulaire 76-20 - décision du 21/09/1976
+    1977-04-04:
+      title: Circulaire 77-14 - décision du 13/04/1977
+    1977-10-03:
+      title: Circulaire 77-28 - décision du 23/09/1977
+    1978-04-03:
+      title: Circulaire 78-14 - décision du 21/03/1978
+    1978-10-02:
+      title: Circulaire 78-36 - décision du 02/10/1978
+    1979-04-02:
+      title: Circulaire 79-15 - décision du 29/03/1979
+    1979-10-01:
+      title: Circulaire 79-36 - décision du 21/09/1979
+    1980-04-01:
+      title: Circulaire 80-17 - décision du 27/03/1980
+    1980-10-01:
+      title: Circulaire 80-40 - décision du 09/09/1980
+    1981-04-01:
+      title: Circulaire 81-21 - décision du 26/03/1981
+    1981-10-01:
+      title: Circulaire 81-45 - décision du 29/09/1981
+    1982-04-01:
+      title: Circulaire 82-23 - décision du 02/04/1982
+    1982-11-01:
+      title: Décret 82-991 du 24/11/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701672&categorieLien=id
+    1983-04-01:
+      title: Circulaire 83-21 - décision du 25/04/1983
+    1984-04-01:
+      title: Circulaire 84-12 - décision du 18/04/1984
+    1984-10-01:
+      title: Circulaire 84-26 - décision du 27/09/1984
+    1985-04-01:
+      title: Circulaire 85-10 - décision du 24/04/1985
+    1985-10-01:
+      title: Circulaire 85-28 - décision du 30/09/1985
+    1986-04-01:
+      title: Circulaire 86-49 - décision du 25/03/1986
+    1986-10-01:
+      title: Circulaire 86-28 - décision du 07/10/1986
+    1987-04-01:
+      title: Circulaire 87-09 - décision du 31/03/1987
+    1987-10-01:
+      title: Circulaire 87-16 - décision du 22/09/1987
+    1988-10-01:
+      title: Circulaire 88-15 - décision du 11/10/1988
+    1989-10-01:
+      title: Circulaire 89-18 - décision du 03/10/1989
+    1990-10-01:
+      title: Circulaire 90-16 - décision du 05/10/1990
+    1991-07-01:
+      title: Circulaire 91-15 - décision du 12/07/1991
+    1992-07-01:
+      title: Circulaire 92-13 - décision du 30/07/1992
+    1994-07-01:
+      title: Circulaire 94-08 - décision du 28/06/1994
+    1995-07-01:
+      title: Circulaire 95-12 - décision du 29/06/1995
+    1996-07-01:
+      title: Circulaire 96-13 - décision du 04/07/1996
+    1997-07-01:
+      title: Circulaire 97-12 - décision du 02/07/1997
+    1998-07-01:
+      title: Circulaire 98-13 - décision du 01/07/1998
+    1999-07-01:
+      title: Circulaire 99-12 - décision du 01/07/1999
+    2000-07-01:
+      title: Circulaire 00-10 - décision du 30/06/2000
+    2001-07-01:
+      title: Circulaire 01-16 - décision du 04/07/2001
+    2002-07-01:
+      title: Circulaire 02-15 - décision du 03/07/2002
+    2003-07-01:
+      title: Circulaire 03-09 - décision du 02/07/2003
+    2004-07-01:
+      title: Circulaire 04-13 - décision du 25/06/2004
+    2006-07-01:
+      title: Circulaire Unédic 2006-13 du 21/07/2006 - décision du 05/07/2006
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci200613.pdf
+    2007-07-01:
+      title: Circulaire Unédic 2007-09 du 26/06/2007 - décision du 21/06/2007
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci200709.pdf
+    2008-07-01:
+      title: Circulaire Unédic 2008-04 du 01/07/2008 - décision du 24/06/2008
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci200804.pdf
+    2009-07-01:
+      title: Circulaire Unédic 2009-16 du 09/07/2009 - décision du 26/06/2009
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci200916.pdf
+    2010-07-01:
+      title: Circulaire Unédic 2010-10 du 02/07/2010 - décision du 29/06/2010
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201010.pdf
+    2011-07-01:
+      title: Circulaire Unédic 2011-28 du 01/08/2011 - décision du 30/06/2011
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201128.pdf
+    2012-07-01:
+      title: Circulaire Unédic 2012-18 du 11/07/2012 - décision du 27/06/2012
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201218.pdf
+    2017-07-01:
+      title: Circulaire Unédic 2017-14 du 29/06/2017 - décision du 19/06/2020
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Ci2017-14.pdf
+    2018-07-01:
+      title: Circulaire Unédic 2018-14 du 16/07/2018 - décision du 29/06/2020
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_2018-14_du_16_juillet_2018.pdf
+    2019-07-01:
+      title: Circulaire Unédic 2019-08 du 27/06/2019 - décision du 26/01/2019
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n2019-08_du_27_juin_2019.pdf
+    2020-07-01:
+      title: Circulaire Unédic 2020-09 du 01/07/2020 - décision du 30/06/2020
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2020-09_du_1er_juillet_2020.pdf
+    2021-07-01:
+      title: Circulaire 2021-08 du 1er juillet 2021
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2021-08_du_1er_juillet_2021.pdf
+    2022-07-01:
+      title: Circulaire 2022-09 du 1er juillet 2022
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2022-09_du_1er_juillet_2022.pdf
+    2023-04-01:
+    - title: Décret autorisant l'Unedic à effectuer une revalorisation en avril (Décret n° 2023-228 du 30 mars 2023)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047377781
+    - title: Circulaire 2022-09 du 1er juillet 2022
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2022-09_du_1er_juillet_2022.pdf
+    2023-07-01:
+      title: Circulaire Unedic 2023-06 du 3 juillet 2023
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-circulaire_2023-06_du_3_juillet_2023.pdf
+documentation: |-
+  Sources:
+  Légifrance, Site internet Assedic.fr unijuridis depuis 1994
+  Historique du régime d'assurance chômage 1982-1986 (p. 135): période 1974-85
+  Consultation des circulaires Unedic au service de documentation de l'Unedic.

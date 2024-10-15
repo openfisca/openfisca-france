@@ -1,0 +1,6 @@
+description: Montant minimum versé des allocations logement
+metadata:
+  short_label: Montant minimum
+  label_en: Minimal amount
+  order:
+  - montant_min_mensuel

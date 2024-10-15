@@ -1,0 +1,19 @@
+description: Taxe intérieure sur la consommation de gaz naturel (TICGN) - prix par MWh
+values:
+  2003-01-01:
+    value: 1.19
+  2014-01-01:
+    value: 1.27
+  2015-01-01:
+    value: 2.64
+  2016-01-01:
+    value: 4.34
+  2017-01-01:
+    value: 5.88
+  2018-01-01:
+    value: 8.45
+  2021-01-01:
+    value: 8.43
+metadata:
+  ipp_csv_id: ticgn
+  unit: currency

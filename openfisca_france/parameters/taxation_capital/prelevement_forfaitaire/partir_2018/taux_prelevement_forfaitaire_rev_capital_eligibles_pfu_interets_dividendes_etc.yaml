@@ -1,0 +1,23 @@
+description: Taux, au titre de l'impôt sur le revenu, du prélèvement forfaitaire unique (PFU) prélevé sur les revenus des valeurs mobilières
+values:
+  2018-01-01:
+    value: 0.128
+metadata:
+  short_label: Taux du PFU, au titre de l'IR, sur les revenus mobiliers
+  label_en: Flat tax on capital income (from 2018)
+  last_value_still_valid_on: "2024-09-26"
+  unit: /1
+  reference:
+    2018-01-01:
+    - title: Article 117 quater du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036428175/
+    - title: Loi 2017-1837 du 30/12/2017 - art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    2018-01-01: "2017-12-31"
+  notes:
+    2018-01-01:
+    - title: Le prélèvement libératoire est remplacé par un prélèvement forfaitaire unique non-libératoire, dont la valeur est telle que la somme du taux de ce prélèvement et des prélèvements sociaux est de 30%.
+documentation: |-
+  Ce taux "s'applique aux impositions dont le fait générateur intervient à compter du 1er janvier 2018" (cf. loi 2017-1837 du 30/12/2017, art. 28). Les revenus éligibles au prélèvement forfaitaire unique sont les intérêts, dividendes, plus-values et certains produits d'assurance-vie notamment.
+  Un prélèvement à la source peut être opéré, consistant à appliquer le taux forfaitaire en vigueur aux revenus perçus. Ce prélèvement constitue un acompte au titre de l'impôt sur le revenu. Puis, au moment de l'imposition finale, le contribuable décide entre soumettre ces revenus au barème ou au prélèvement forfaitaire. Il existe des dispenses possibles de cet acompte, si le revenu fiscal de référence de l'avant-dernière année est en-dessous d'un certain seuil. Pour les produits de placements à revenu fixe, ce seuil est de 25 000 euros, 50 000 euros pour un couple (cf. art 125-A du CGI). Pour les dividendes, il est de 50 000 euros, 75 000 pour un couple (art. 117 quater du CGI). En cas de dispense, les revenus sont imposés directement à l'IR. La retenue à la source faisant office d'acompte s'impute sur l'impôt sur le revenu dû au titre de l'année au cours de laquelle il a été opéré. Si elle excède l'impôt dû, l'excédent est restitué.

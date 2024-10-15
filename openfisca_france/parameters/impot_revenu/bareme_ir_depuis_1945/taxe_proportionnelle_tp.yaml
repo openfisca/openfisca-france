@@ -1,0 +1,41 @@
+description: Taxe proportionnelle (TP) d'imposition au titre du barème de l'IR
+values:
+  1945-01-01:
+    value: null
+  1948-01-01:
+    value: 0.18
+  1958-01-01:
+    value: 0.22
+  1959-01-01:
+    value: null
+metadata:
+  short_label: Taxe proportionnelle
+  ipp_csv_id: taxe_prop
+  unit: /1
+  reference:
+    1959-01-01:
+      title: Loi 59-1454 du 26/12/1959 (LF pour 1960)
+  official_journal_date:
+    1959-01-01: "1959-12-31"
+  notes:
+    1958-01-01:
+    - title: IRPP est dit « impôt unique ». Suppression de la SP et TP (voir note 5). Ces barèmes concernent uniquement la SP entre 1948 et 1958 puis l'IRPP dans son ensemble après 1958 (IR après 1970).
+    1959-01-01:
+    - title: Les montants sont en anciens Francs avant 1960. Création d'un « taxe complémentaire » (TC).
+documentation: |-
+  Référence générale :
+  T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001).
+  Voir notamment tableaux 4-5 p. 296-298.
+
+  Notes :
+  (1) L'imposition des revenus en France a été instaurée au 01/01/1915 sur les revenus 1914. La loi du 15/07/1914 crée l'impôt général sur le revenu (IGR). La loi du 26/12/1914 repousse son application au 01/01/1916 sur les revenus 1915.
+  (2) Entre 1914 et 1947, il a existé six impôts cédulaires qui ont été progressivement remplacés par les impôts actuels. Ils sont dits cédulaires car ils sont indépendants et s'appliquent à différents types de revenus (déclarés sur des feuillets indépendants dit «cédules»). Ils sont à taux proportionnels et s'ajoutent à l'impôt général sur les revenus.
+  (3) La loi du 29/03/1914 modifie des contributions existantes en créant les deux impôts cédulaires :
+    - l'impôt foncier des propriétés bâties et des propriétés non bâties (taux initial : 5 %)
+    - l'impôt sur le revenu des valeurs mobilières (taux initial : 6 %)
+  (4) La loi du 31/07/1917 crée quatre impôts cédulaires en remplacement des impôts directs existants :
+    - l'impôt sur les traitements et salaires (taux initial : 3,75 %)
+    - l'impôt sur les bénéfices de l'exploitation agricole (taux initial : 3,75 %).
+    - l'impôt sur les bénéfices industriels et commerciaux (taux initial : 4,5 % avec différentes contributions par tranches)
+    - l'impôt sur les bénéfices des professions non commerciales (taux initial : 3,75 %)
+  (5) À sa création l'IRPP (1948) se compose d'une « surtaxe progressive » (SP) et d'une taxe proportionnelle (TP). Elles sont supprimées en 1959.

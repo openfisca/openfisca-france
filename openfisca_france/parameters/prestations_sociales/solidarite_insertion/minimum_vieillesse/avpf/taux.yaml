@@ -1,0 +1,58 @@
+description: Taux de l'Assurance vieillesse des parents au foyer (AVPF)
+values:
+  1972-07-01:
+    value: 0.0875
+  1974-01-01:
+    value: 0.1025
+  1976-01-01:
+    value: 0.1075
+  1976-10-01:
+    value: 0.1115
+  1979-01-01:
+    value: 0.129
+  1984-01-01:
+    value: 0.139
+  1986-08-01:
+    value: 0.146
+  1987-07-01:
+    value: 0.148
+  1989-01-01:
+    value: 0.158
+  1991-02-01:
+    value: 0.1635
+  2004-07-01:
+    value: 0.1645
+  2006-01-01:
+    value: 0.1665
+  2012-11-01:
+    value: 0.1685
+  2014-01-01:
+    value: 0.1725
+  2015-01-01:
+    value: 0.1745
+  2016-01-01:
+    value: 0.1765
+  2017-01-01:
+    value: 0.1775
+metadata:
+  short_label: Taux
+  last_value_still_valid_on: "2021-01-01"
+  label_en: Elderly insurance for stay-at-home parents (AVPF )
+  ipp_csv_id: avpf_taux
+  unit: /1
+  reference:
+    2014-01-01:
+      title: Circulaire Cnav 2014/27 du 03/04/2014
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?ID=63805
+    2015-01-01:
+      title: Circulaire CNAV 2015/4 du 26/01/2015
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_04_26012015.pdf
+    2016-01-01:
+      title: Circulaire CNAV 2015/64 du 18/12/2015
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_64_18122015.pdf
+    2017-01-01:
+      title: Circulaire CNAV 2016/55 du 30/12/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_55_30122016.pdf
+  notes:
+    2016-01-01:
+    - title: "Le salaire forfaitaire est calculé sur la base du Smic: Smic horaire en vigueur au 1er juillet de l’année précédente * 169 (durée hebdomadaire légale du travail (39h) * 52 / 12); cf. article Article R381-3 du CSS"

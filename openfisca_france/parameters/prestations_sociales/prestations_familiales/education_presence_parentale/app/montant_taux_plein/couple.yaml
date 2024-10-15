@@ -1,0 +1,32 @@
+description: Montant à taux plein (pour un couple, en % de la BMAF) de l'Allocation de présence parentale (APP)
+values:
+  2001-01-01:
+    value: 1.4257
+  2002-04-01:
+    value: 2.3401
+  2006-06-04:
+    value: null
+metadata:
+  short_label: Couple
+  label_en: "Parental presence allowance (AA): Amounts"
+  ipp_csv_id: app_tx_plein_couple
+  unit: BMAF
+  reference:
+    2001-01-01:
+      title: Décret 2001-106 du 05/02/2001, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779967&cidTexte=JORFTEXT000000769254
+    2002-04-01:
+      title: Décret 2002-373 du 19/03/2002, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006209264&cidTexte=JORFTEXT000000586461
+    2006-06-04:
+      title: Décret 2006-659 du 02/06/2006
+      href: https://www.legifrance.gouv.fr/eli/decret/2006/6/2/2006-659/jo/texte
+  official_journal_date:
+    2001-01-01: "2001-02-07"
+    2002-04-01: "2002-03-21"
+    2006-06-04: "2006-06-04"
+  notes:
+    2001-01-01:
+    - title: Création de l'Allocation de Présence Parentale
+    2006-06-04:
+    - title: APP devient AJPP

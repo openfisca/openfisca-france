@@ -1,0 +1,8 @@
+description: Salaire forfaitaire de l'Assurance vieillesse des parents au foyer (AVPF)
+metadata:
+  short_label: Salaire forfaitaire
+  label_en: Elderly insurance for stay-at-home parents (AVPF)
+  order:
+  - metropole
+  - guadeloupe_guyane_martinique
+  - reunion

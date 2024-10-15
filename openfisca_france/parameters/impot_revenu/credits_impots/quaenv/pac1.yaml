@@ -1,0 +1,6 @@
+description: Majoration du plafond pour le 1er enfant
+values:
+  2002-01-01:
+    value: 400
+metadata:
+  unit: currency_next_year

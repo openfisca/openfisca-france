@@ -1,0 +1,6 @@
+description: Cotisations maladie (employeur, Tout traitement) spécifiques à la fonction publique hospitalière et aux collectivités locales
+metadata:
+  short_label: Employeur
+  label_en: Health insurance contributions - local governments and hospital administration
+  order:
+  - maladie

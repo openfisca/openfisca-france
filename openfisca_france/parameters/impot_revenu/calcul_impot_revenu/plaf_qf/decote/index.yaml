@@ -1,0 +1,18 @@
+description: Décote de l'impôt sur le revenu
+metadata:
+  short_label: Décote
+  label_en: Family quotient ceiling and "decote"
+  order:
+  - taux
+  - seuil
+  - seuil_celib
+  - seuil_couple
+  - seuil_1_part
+  - seuil_15_part
+  - seuil_1_faible_nombre_part
+  - seuil_2_faible_nombre_part
+  - nombre_part_limite
+documentation: |-
+  Entre 1951 et 1981, la décote est décrite à l'aide de deux paramètres quand elle existe : un montant d'impôt seuil en dessous duquel les contribuables sont exonérés (décote qui sera conservée) et une réduction d'impôt jusqu'à un certain montant d'impôt (égale à la différence entre ce montant seuil et l'impôt par part).
+  Lors de l'imposition des revenus des années 1981-1985, la décote s'applique uniquement aux contribuables ayant 1 part ou 1,5 parts, avant d'être généralisée à tous les contribuables à compter de l'imposition des revenus de 1986.
+  > Voir Annexe C-4 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset 2001)

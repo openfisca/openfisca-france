@@ -1,0 +1,10 @@
+description: Seuils et taux d'imposition au titre de l'impôt sur les sociétés
+metadata:
+  label_en: Thresholds and tax rates for corporate income tax
+  order:
+  - taux_normal
+  - taux_reduit
+  - taux_intermediaire
+  - plafond_ca_taux_reduit
+  - seuil_superieur_benefices_taux_reduit
+  - seuil_superieur_benefices_taux_intermediaire

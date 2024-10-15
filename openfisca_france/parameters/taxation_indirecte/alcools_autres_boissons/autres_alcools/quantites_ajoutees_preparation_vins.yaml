@@ -1,0 +1,28 @@
+description: Taxes sur les autres alcools - Quantités ajoutées pour la préparation de vins
+values:
+  1981-02-01:
+    value: 2395
+  1982-01-01:
+    value: 2545
+  1987-02-01:
+    value: 2595
+  1993-02-01:
+    value: null
+metadata:
+  ipp_csv_id: taxe_ajout_vins
+  unit: currency
+  reference:
+    1981-02-01:
+      title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000339460
+    1982-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+    1993-02-01:
+      title: Loi 92-1476 du 31/12/1992 (LFR pour 1992), art. 32
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006318703&cidTexte=JORFTEXT000000179313
+  official_journal_date:
+    1981-02-01: "1980-12-31"
+    1982-01-01: "1981-12-31"
+    1993-02-01: "1993-01-04"
+documentation: Quantités ajoutées pour la préparation de vins mousseux et de vins doux naturels mentionnés à l''article 417 du CGI.

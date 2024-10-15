@@ -1,0 +1,7 @@
+description: Taxe d'apprentissage de la contribution unique à la formation professionnelle et à l'alternance (CUFPA)
+metadata:
+  short_label: Taxe d'apprentissage (CUFPA)
+  label_en: Unique employer's participation to lifelong professional training and apprenticeship
+  order:
+  - general
+  - alsace_moselle

@@ -1,0 +1,72 @@
+description: Plafond annuel de ressources pour une personne seule de la couverture maladie universelle (CMU)
+values:
+  2003-07-01:
+    value: 6798
+  2004-07-01:
+    value: 6913.57
+  2005-07-01:
+    value: 7045.97
+  2006-07-01:
+    value: 7178.79
+  2007-07-01:
+    value: 7272.1
+  2008-07-01:
+    value: 7446.64
+  2009-07-01:
+    value: 7521.11
+  2010-07-01:
+    value: 7611.36
+  2011-07-01:
+    value: 7771.2
+  2012-07-01:
+    value: 7934.9
+  2013-07-01:
+    value: 8592.96
+  2014-07-01:
+    value: 8644.52
+  2016-04-01:
+    value: 8653.16
+  2017-04-01:
+    value: 8723
+  2018-04-01:
+    value: 8810.23
+  2019-04-01:
+    value: 8951
+  2021-04-01:
+    value: 9041
+  2022-04-01:
+    value: 9203
+  2022-07-01:
+    value: 9571
+  2023-04-01:
+    value: 9719
+  2024-04-01:
+    value: 10166
+metadata:
+  short_label: Plafond annuel
+  last_value_still_valid_on: "2024-05-01"
+  unit: currency
+  reference:
+    2019-04-01:
+      title: Arrêté du 20/03/2019, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038260960
+    2021-04-01:
+      title: Arrêté du 29/03/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043306326
+    2022-07-01:
+      title: Loi n° 2022-1158 du 16/08/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
+    2023-04-01:
+    - title: Article L861-1, 1° du Code de la Sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037950247
+    - title: Décret n° 2023-236 31/03/2023
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000047387345
+    - title: Arrêté du 30/03/2023
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000047387932
+    2024-04-01:
+      title: Arrêté du 26/03/2024, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049339291
+documentation: |-
+  Le plafond varie selon la composition du foyer. Il est revalorisé au 1er avril de chaque année.
+  Le montant ainsi revalorisé est constaté par arrêté du ministre chargé de la sécurité sociale.
+  Source - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037950247

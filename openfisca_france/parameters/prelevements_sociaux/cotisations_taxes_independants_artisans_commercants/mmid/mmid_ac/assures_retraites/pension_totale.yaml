@@ -1,0 +1,30 @@
+description: Pension totale de la cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès des artisans-commerçants
+values:
+  1970-04-01:
+    value: 0.145
+  1973-04-01:
+    value: 0.107
+  1974-10-01:
+    value: null
+metadata:
+  short_label: Pension totale
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  ipp_csv_id: mmid_ac_ret_0_
+  unit: /1
+  reference:
+    1970-04-01:
+      title: Arrêté du 26/03/1971
+    1973-04-01:
+      title: Arrêté du 29/12/1972
+    1974-10-01:
+    - title: Décret 74-810 du 28/09/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000857732
+    - title: Loi 73-1193 du 27/12/1973
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509757
+  official_journal_date:
+    1970-04-01: "1971-04-14"
+    1973-04-01: "1973-01-27"
+    1974-10-01: 1975-08-08; 1973-12-30
+  notes:
+    1974-10-01:
+    - title: Décision d'une harmonisation progressive entre régimes des artisans et commerçants et régime général achevée au plus tard le 31 décembre 1977

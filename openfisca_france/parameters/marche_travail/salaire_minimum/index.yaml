@@ -1,0 +1,9 @@
+description: Salaire minimum de croissance (Smic)
+metadata:
+  short_label: Smic
+  label_en: Minimum wage
+  order:
+  - smic
+  - smig
+  - minstage
+  - gmr

@@ -1,0 +1,18 @@
+description: Seuil (à partir duquel la réduction décroît) par part pour les deux premières parts de la réduction exceptionnelle d'impôts
+values:
+  2012-01-01:
+    value: null
+  2013-01-01:
+    value: 13795
+  2014-01-01:
+    value: null
+metadata:
+  short_label: Seuil
+  ipp_csv_id: reduc_except_rfr_seuil
+  unit: currency_next_year
+  reference:
+    2013-01-01:
+      title: Loi 2014-891 du 08/08/2014 (LFR pour 2014), art. 1
+  official_journal_date:
+    2013-01-01: "2014-08-09"
+documentation: Réduction d'impôt exceptionnelle forfaitaire sous condition que le revenu fiscal de référence soit inférieur à un certain seuil.

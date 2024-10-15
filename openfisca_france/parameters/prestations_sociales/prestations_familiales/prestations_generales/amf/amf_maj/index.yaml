@@ -1,0 +1,9 @@
+description: Majorations des Allocation de la mère au foyer (AMF)
+metadata:
+  documentation_start: true
+  short_label: Majorations
+  label_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
+  order:
+  - regime_general
+  - regime_agricole
+documentation: La majoration est instituée par la loi 72-8 du 3 janvier 1972, art 2

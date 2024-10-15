@@ -1,0 +1,15 @@
+description: Versement transport (VT)
+metadata:
+  short_label: Versement transport (VT)
+  label_en: Transport tax (VT) (contribution to public transports)
+  order:
+  - paris
+  - essonne
+  - hauts_de_seine
+  - seine_saint_denis
+  - val_de_marne
+  - val_d_oise
+  - lyon
+  - marseille
+  - toulouse
+  - bourg_en_bresse

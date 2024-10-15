@@ -1,0 +1,576 @@
+- name: Test 01 - Famille éligible à l'AGEPI avec 1 enfant éligible
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 10
+        agepi:
+          month:2021-01:12: 0
+        allocation_retour_emploi_journaliere: 0
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [true, false, false]
+    agepi_nbenf: 1
+    agepi: [170, 0, 0]
+
+
+- name: Test 02 - Inéligibilité pour cumul d'AGEPI d'un individu à 1 des enfants de moins de 10 ans
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 170
+        allocation_retour_emploi_journaliere: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 10
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [false, false, false]
+    agepi_nbenf: 1
+    agepi: [0, 0, 0]
+
+
+- name: Test 03 - Inéligibilité à l'AGEPI d'un demandeur d'emploi hors catégories éligibles
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 170
+        pole_emploi_categorie_demandeur_emploi: categorie_6
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 10
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [false, false, false]
+    agepi_nbenf: 1
+    agepi: [0, 0, 0]
+
+
+- name: Test 04 - Individu éligible à l'AGEPI de catégorie 4 et stagiaire de formation professionnelle
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_4
+        stagiaire: true
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 10
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [true, false, false]
+    agepi_nbenf: 1
+    agepi: [170, 0, 0]
+
+
+- name: Test 05 - Individu éligible à l'AGEPI de catégorie 5 et en contrat aidé
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_5
+        stagiaire: false
+        contrat_aide: true
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 10
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [true, false, false]
+    agepi_nbenf: 1
+    agepi: [170, 0, 0]
+
+
+- name: Test 06 - Individu inéligible à l'AGEPI et dont la reprise d'emploi ou de formation a lieu en France
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: non_renseigne
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 10
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [false, false, false]
+    agepi_nbenf: 1
+    agepi: [0, 0, 0]
+
+
+- name: Test 07 - Individu inéligible à l'AGEPI n'ayant pas effectué sa demande dans le mois qui suit sa reprise d'emploi ou de formation
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-02-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 10
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [false, false, false]
+    agepi_nbenf: 1
+    agepi: [0, 0, 0]
+
+
+- name: Test 08 - Deux ménages dont l'un est éligible à l'AGEPI \
+    car parent isolé d'un enfant de moins de 10 ans
+  period: 2022-01
+  input:
+    menages:
+      menage_1:
+        personne_de_reference: Camille
+        enfants: [Jean, Marie]
+        residence_mayotte: false
+      menage_2:
+        personne_de_reference: Paul
+        conjoint: Elodie
+        enfants: [Aileen, Sebastien]
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 10
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+      Elodie:
+        age: 31
+      Paul:
+        age: 30
+      Aileen:
+        age: 9
+      Sebastien:
+        age: 7
+    familles:
+      famille_1:
+        parents: Camille
+        enfants: [Jean, Marie]
+      famille_2:
+        parents: [Elodie, Paul]
+        enfants: [Aileen, Sebastien]
+    foyers_fiscaux:
+      foyer_fiscal_1:
+        declarants: Camille
+        personnes_a_charge: [Jean, Marie]
+      foyer_fiscal_2:
+        declarants: [Elodie, Paul]
+        personnes_a_charge: [Aileen, Sebastien]
+  output:
+    agepi_eligible: [true, false, false, false, false, false, false]
+    agepi_nbenf: [1, 2]
+    agepi: [170, 0, 0, 0, 0, 0, 0 ]
+
+
+- name: Test 09 - Individu éligible, 1 enfant, reprise CDD < 64h/mois, hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: mensuelle
+        agepi_temps_travail_en_heure: 63
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [true, false, false]
+    agepi_nbenf: 1
+    agepi: [170, 0, 0]
+
+
+- name: Test 10 - Individu éligible 2 enfants, reprise CDD >= 64h/mois, hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: mensuelle
+        agepi_temps_travail_en_heure: 64
+      Jean:
+        age: 9
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [true, false, false]
+    agepi_nbenf: 2
+    agepi: [460, 0, 0]
+
+
+- name: Test 11 - Individu éligible 2 enfants, reprise CDD >= 64h/mois, Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: true
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: mensuelle
+        agepi_temps_travail_en_heure: 64
+      Jean:
+        age: 9
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [true, false, false]
+    agepi_nbenf: 2
+    agepi: [230, 0, 0]
+
+
+- name: Test 12 - Individu éligible 2 enfants, reprise formation >= 40h, catégorie 4, Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: true
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_4
+        stagiaire: true
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: formation
+        duree_formation: 40
+        contrat_de_travail_duree: 0
+        type_intensite_activite: mensuelle
+        agepi_temps_travail_en_heure: 40
+      Jean:
+        age: 9
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [true, false, false]
+    agepi_nbenf: 2
+    agepi: [97.5, 0, 0]
+
+
+- name: Test 13 - Individu éligible, 1 enfant, reprise CDI, hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdi
+        contrat_de_travail_duree: 0
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 15
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [true, false, false]
+    agepi_nbenf: 1
+    agepi: [400, 0, 0]
+
+
+- name: Test 14 - Individu éligible, 1 enfant, reprise CDI, Mayotte, ressource < ARE Min Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: true
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 14.77
+        contrat_de_travail_type: cdi
+        contrat_de_travail_duree: 0
+        type_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 8
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [true, false, false]
+    agepi_nbenf: 1
+    agepi: [85, 0, 0]

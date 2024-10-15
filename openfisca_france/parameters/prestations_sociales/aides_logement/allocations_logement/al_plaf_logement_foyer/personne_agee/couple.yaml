@@ -1,0 +1,36 @@
+description: Personnes âgées en Couple - Plafonds d'équivalence de loyer et de charges locatives pour les personnes résidant dans un logement-foyer, Allocations logement (AL)
+values:
+  2017-10-01:
+    value: 317.47
+  2019-10-01:
+    value: 318.43
+  2020-10-01:
+    value: 319.39
+  2021-10-01:
+    value: 320.73
+  2022-07-01:
+    value: 331.96
+  2023-10-01:
+    value: 343.58
+metadata:
+  short_label: Couple
+  last_value_still_valid_on: "2022-09-28"
+  unit: currency
+  reference:
+    2017-10-01:
+      title: Arrêté du 28/09/2017, art. 11
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000035665903
+    2019-10-01:
+      title: Arrêté du 27/09/2019
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&dateTexte=20191008
+    2021-10-01:
+      title: Arrêté du 23/09/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044126838
+    2022-07-01:
+      title: Arrêté du 27/09/2019, art. 43
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000046206187/2022-07-01
+    2023-10-01:
+      title: Arrêté du 22/09/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048107807
+  official_journal_date:
+    2023-10-01: "2023-09-27"

@@ -1,0 +1,22 @@
+description: Premier seuil pour calcul du plafonnement
+values:
+  2004-01-01:
+    value: 10970
+  2005-01-01:
+    value: 11157
+  2006-01-01:
+    value: 11325
+  2007-01-01:
+    value: 11530
+  2008-01-01:
+    value: 11660
+  2009-01-01:
+    value: 11995
+  2010-01-01:
+    value: 12050
+  2011-01-01:
+    value: 12255
+  2012-01-01:
+    value: null
+metadata:
+  unit: currency

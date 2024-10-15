@@ -1,0 +1,16 @@
+description: Taux de l'indemnité compensatrice de CSG versée aux fonctionnaires civils et militaires
+values:
+  2018-01-01:
+    value: 0.0076
+metadata:
+  short_label: Taux indemnité compensatrice
+  last_value_still_valid_on: "2024-08-12"
+  label_en: CSG compensatory allowance rate
+  ipp_csv_id: csg_act
+  unit: /1
+  reference:
+    2018-01-01:
+    - title: Article 2 du décret n° 2017-1889 du 30 décembre 2017 pris en application de l'article 113 de la loi n° 2017-1837 du 30 décembre 2017 de finances pour 2018
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036501673
+  official_journal_date:
+    2018-01-01: "2017-12-31"

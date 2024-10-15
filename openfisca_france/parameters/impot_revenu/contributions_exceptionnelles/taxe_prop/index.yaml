@@ -1,0 +1,18 @@
+description: Taxes proportionnelles et taxes complémentaires
+metadata:
+  label_en: Flat taxes and other taxes
+  order:
+  - taux
+  - taux_reduit
+  - abattement_general
+  - autres_revenus_non_salariaux
+  - bnc_autres_produits_charges_offices_bic_artisans_assimiles
+  - bnc_produits_charges_offices_bic_autres_que_artisans_assimiles_ba
+  - reduction_impot_charge_famille
+  - plafond_maximum_reduction_par_pac
+documentation: |-
+  Source: Tableau C-9: Les règles de calcul de la taxe proportionnelle (imposition des revenus des années 1948-1958) et de la taxe complémentaire (imposition des revenus des années 1959-1969)
+  Les salaires et pensions de retraite ont toujours été exemptés de la "taxe proportionnelle" (les employeurs sont simplement tenus d'acquitter un versement forfaitaire égal à 5% de la masse salariale).
+  Les bénéfices des "artisans et assimilés", ainsi que les bénéfices des professions non commmerciales "autres que les produits des charges et offices", sont soumis à un taux réduit à 9% sur la fraction des bénéfices inférieure à 200000 francs lors de l'imposition des bénéfices des années 1948-1952 et sur la fraction des bénéfices inférieure à 440000 francs lors de l'imposition des bénéfices de 1953, puis à un taux réduit à 5% sur la fraction des bénéfices inférieure à 440000 francs lors de l'imposition des bénéfices des années 1954-1958 (les BIC (autres que les bénéfices des "artisans et assimilés"), les BA et les BNC correspondant aux "produits des charges et offices" ont également bénéficié du taux réduit à 5% lors de l'imposition des bénéfices des années 1954-1958, mais uniquement sur la fraction inférieure à 300000 francs)
+  A l'exception des revenus de valeurs mobilières (dividendes, intérêts, etc.), qui sont soumis au taux proportionnel dès le premier franc (pour les revenus des obligations négociables, le taux proportionnel est cependant abaissé à 10% ou 15% suivant les caractéristiques des obligations), tous les revenus soumis à la taxe proportionnelle (BA, BIC, BNC, revenus fonciers, revenus des créances, dépôts et cautionnements) ont toujours bénéficié d'un mécanisme de décôte destiné à exempter les revenus les plus faibles et à réduire le montant de la taxe proportionnelle dû par les revenus immédiatement supérieurs (ces mécanismes de décote sont décrits de façon détaillée dans S&EF n°122 (février 1959), pp.190-193), ainsi que d'un mécanisme de réductions d'impôts pour charges de familles (10% de réduction d'impôt pour 1 personne à charge, 30% pour 2, 75% pour 3 et 100% pour 4 (avec un maximum de 5000 francs de réduction d'impôt pour chacune des deux premières personnes à charges et de 15000 francs par personne à charge à partir de la troisième))
+  Décote : voir S&EF n°122 (février 1959), pp.190-193)"

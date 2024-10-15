@@ -1,0 +1,10 @@
+description: Majoration régionale TICPE gazole en Alsace
+values:
+  2007-01-01:
+    value: 1.15
+  2011-01-01:
+    value: 2.5
+metadata:
+  short_label: Alsace
+  ipp_csv_id: maj_ticpe_die_als
+  unit: currency

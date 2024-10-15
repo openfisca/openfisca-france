@@ -1,0 +1,48 @@
+description: Taux de majoration pour le 4e enfant, à partir du deuxième enfant (en % de la BMAF) pour les DOM des allocations familiales (AF)
+values:
+  1991-08-06:
+    value: 0.2978
+  1992-02-12:
+    value: 0.3155
+  1992-07-01:
+    value: 0.3344
+  1993-01-01:
+    value: 0.3457
+  1999-01-01:
+    value: null
+metadata:
+  short_label: 3e enfant
+  last_value_still_valid_on: "2022-02-21"
+  label_en: "Family allowances (AF): Extra allowances for oversea territories"
+  unit: BMAF
+  reference:
+    1991-08-06:
+      title: Décret 91-761 du 5/08/1991 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775833&cidTexte=JORFTEXT000000571496
+    1992-02-12:
+      title: Décret 92-135 du 11/02/1992 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776396&cidTexte=JORFTEXT000000357327
+    1992-07-01:
+      title: Décret 92-135 du 11/02/1992 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776396&cidTexte=JORFTEXT000000357327
+    1993-01-01:
+    - title: Décret 92-1433 du 30/12/1992 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776615&cidTexte=JORFTEXT000000360323
+    - title: Article D755-5 I. 3. du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006738572/1992-09-08/
+    1999-01-01:
+    - title: Décret 98-1214 du 29/12/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209409&categorieLien=id
+    - title: Article D755-5 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006738575/1998-12-30/
+  official_journal_date:
+    1991-08-06: "1991-08-06"
+    1992-02-12: "1992-02-12"
+    1992-07-01: "1992-02-12"
+    1993-01-01: "1992-12-31"
+    1999-01-01: "1998-12-30"
+  notes:
+    1993-01-01:
+    - href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006738573&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=19930630
+    1999-01-01:
+    - title: "Modifie : Code de la sécurité sociale - Article D521-1"

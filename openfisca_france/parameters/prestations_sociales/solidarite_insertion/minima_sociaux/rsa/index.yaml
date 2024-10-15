@@ -1,0 +1,10 @@
+description: Revenu de solidarité active (RSA)
+metadata:
+  short_label: RSA
+  label_en: Active solidarity income (RSA)
+  order:
+  - rsa_cond
+  - rsa_m
+  - rsa_maj
+  - rsa_fl
+  - exploitant_agricole

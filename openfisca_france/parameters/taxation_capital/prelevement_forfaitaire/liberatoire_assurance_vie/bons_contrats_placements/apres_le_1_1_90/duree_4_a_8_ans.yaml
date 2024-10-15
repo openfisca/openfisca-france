@@ -1,0 +1,17 @@
+description: Prélèvement libératoire sur les bons ou contrats de capitalisation et placements de même nature (assurance-vie), Souscrits après le 01/01/90, Durée de 4 à 8 ans, lors du dénouement du contrat
+values:
+  1990-01-01:
+    value: 0.15
+metadata:
+  short_label: Durée de 4 à 8 ans
+  last_value_still_valid_on: "2024-04-08"
+  label_en: Levy in discharge on life insurance
+  ipp_csv_id: tx_pl_av_48
+  unit: /1
+  reference:
+    1990-01-01:
+    - title: Code général des impôts, art. 125-0 A
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044989424
+    - title: Loi 89-936 du 29/12/1989, art. 112 (LF pour 1990)
+  official_journal_date:
+    1990-01-01: "1989-12-30"

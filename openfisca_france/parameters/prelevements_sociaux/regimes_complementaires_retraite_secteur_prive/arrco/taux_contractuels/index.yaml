@@ -1,0 +1,7 @@
+description: Taux contractuels des cotisations au régime complémentaire de retraite des non-cadres (ARRCO)
+metadata:
+  short_label: Taux contractuels des cotisations retraites des non-cadres (ARRCO)
+  label_en: Pension contributions for non-executives (ARRCO)
+  order:
+  - entreprises_avant_01_01_1997
+  - entreprises_apres_01_01_1997

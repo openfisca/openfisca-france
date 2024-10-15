@@ -1,0 +1,19 @@
+description: Aide exceptionnelle ou indemnité inflation exceptionnelle (2021)
+values:
+  2021-12-01:
+    value: 100
+  2022-01-01:
+    value: null
+metadata:
+  short_label: Indemnité inflation
+  last_value_still_valid_on: "2022-08-03"
+  unit: currency
+  reference:
+    2021-12-01:
+    - title: Décret n°2021-1623 du 11/12/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405
+    - title: Article 13 de la loi n° 2021-1549 du 1er décembre 2021 de finances rectificative pour 2021
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044394385#:~:text=Une%20aide%20exceptionnelle%20de%20100,pour%20le%20dernier%20trimestre%202021.
+documentation: |-
+  Publics concernés, toute personne de plus de 16 ans résidant en France, que ses ressources, appréciées au regard de sa situation, rendent particulièrement vulnérable à la hausse du coût de la vie prévue pour le dernier trimestre 2021
+  https://www.gouvernement.fr/sites/default/files/document/document/2021/11/indemnite_inflation_-_dossier_de_presse_-_3_novembre_2021.pdf

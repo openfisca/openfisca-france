@@ -1,0 +1,9 @@
+description: Plafond de ressources de l'allocation de rentrée scolaire (ARS)
+metadata:
+  documentation_start: true
+  short_label: Plafonds de ressources
+  label_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
+  order:
+  - plafond_ressources
+  - majoration_par_enf_supp
+documentation: L'ARS a un plafond (dependant du nombre d'enfants) dès sa création en 1976.

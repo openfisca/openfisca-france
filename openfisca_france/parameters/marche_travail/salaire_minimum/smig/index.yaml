@@ -1,0 +1,8 @@
+description: Salaire minimum garanti - SMIG
+metadata:
+  documentation_start: true
+  short_label: SMIG
+  label_en: Minimum wage - SMIG
+  order:
+  - smig_brut_horaire
+  - smig_brut_mensuel

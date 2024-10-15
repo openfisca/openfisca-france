@@ -1,0 +1,18 @@
+description: Seuil de salaire minimum (en multiple du smic horaire brut) pour bénéficier de la bonification de la prime pour l'activité (PPA)
+values:
+  2016-01-01:
+    value: 59
+metadata:
+  short_label: Seuil salaire minimal
+  last_value_still_valid_on: "2022-08-03"
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
+  ipp_csv_id: pa_seuil_min
+  unit: currency
+  reference:
+    2016-01-01:
+    - title: Article D843-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
+    - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
+  official_journal_date:
+    2016-01-01: "2015-12-22"

@@ -1,0 +1,146 @@
+description: Taux effectifs (entreprises avant 01/01/1997) des cotisations au régime complémentaire de retraite des non-cadres (ARRCO) du secteur privé
+brackets:
+- threshold:
+    1962-01-01:
+      value: 0
+  rate:
+    1962-01-01:
+      value: 0.025
+    1967-01-01:
+      value: 0.04
+    1971-01-01:
+      value: 0.040999999999999995
+    1972-01-01:
+      value: 0.042
+    1973-01-01:
+      value: 0.043
+    1974-01-01:
+      value: 0.044000000000000004
+    1983-01-01:
+      value: 0.046
+    1987-01-01:
+      value: 0.047
+    1988-01-01:
+      value: 0.048
+    1991-01-01:
+      value: 0.0492
+    1992-01-01:
+      value: 0.05
+    1996-01-01:
+      value: 0.056249999999999994
+    1997-01-01:
+      value: 0.0625
+    1998-01-01:
+      value: 0.06875
+    1999-01-01:
+      value: 0.075
+    2014-01-01:
+      value: 0.07625
+    2015-01-01:
+      value: 0.0775
+    2019-01-01:
+      value: null
+- threshold:
+    1962-01-01:
+      value: 1
+  rate:
+    1962-01-01:
+      value: 0.025
+    1967-01-01:
+      value: 0.04
+    1971-01-01:
+      value: 0.040999999999999995
+    1972-01-01:
+      value: 0.042
+    1973-01-01:
+      value: 0.043
+    1974-01-01:
+      value: 0.044000000000000004
+    1983-01-01:
+      value: 0.046
+    1987-01-01:
+      value: 0.047
+    1988-01-01:
+      value: 0.048
+    1991-01-01:
+      value: 0.0492
+    1992-01-01:
+      value: 0.05
+    1996-01-01:
+      value: 0.056249999999999994
+    1997-01-01:
+      value: 0.0625
+    1998-01-01:
+      value: 0.06875
+    1999-01-01:
+      value: 0.075
+    2000-01-01:
+      value: 0.125
+    2002-01-01:
+      value: 0.15
+    2004-01-01:
+      value: 0.17500000000000002
+    2005-01-01:
+      value: 0.2
+    2014-01-01:
+      value: 0.20125
+    2015-01-01:
+      value: 0.2025
+    2019-01-01:
+      value: null
+- threshold:
+    1962-01-01:
+      value: 3
+    2019-01-01:
+      value: null
+  rate:
+    1962-01-01:
+      value: 0
+    2019-01-01:
+      value: null
+metadata:
+  short_label: Tranches 1 et 2
+  last_value_still_valid_on: "2021-07-30"
+  label_en: Pension contributions for non-executives (ARRCO)
+  reference:
+    1982-01-01:
+      title: (pas de référence)
+    1983-01-01:
+      title: Lettre-circulaire ARRCO 82-28 du 09/07/82
+    1987-01-01:
+      title: Accords ARRCO du 12/11/86
+    1988-01-01:
+      title: Accords ARRCO du 12/11/86
+    1991-01-01:
+      title: Accords ARRCO du 12/11/86 et du 01/12/89
+    1992-01-01:
+      title: Accords ARRCO du 12/11/86 et du 01/12/89
+    1996-01-01:
+      title: Accord ARRCO du 10/02/1993
+    1997-01-01:
+      title: Accords du 9/02/94 et du 25/04/1996
+    1998-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    1999-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2000-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2002-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2004-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2005-01-01:
+      title: Accord ARRCO du 25/04/1996, art. 26
+    2014-01-01:
+      title: Accord AGIRC-ARRCO du 13/03/2013
+    2015-01-01:
+      title: Accord AGIRC-ARRCO du 13/03/2013
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+  notes:
+    1982-01-01:
+    - title: "BSP : \"Le plus souvent, répartition employeur/salarié = 60/40 comme à l'UNIRS\""
+    2019-01-01:
+    - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
+  rate_unit: /1
+  threshold_unit: PSS

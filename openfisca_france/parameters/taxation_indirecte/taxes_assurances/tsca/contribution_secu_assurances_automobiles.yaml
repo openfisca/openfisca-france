@@ -1,0 +1,9 @@
+description: Contribution sécu assurances automobiles
+values:
+  1979-07-01:
+    value: null
+  2002-01-01:
+    value: 0.15
+metadata:
+  ipp_csv_id: contrib_secu_assu_auto
+  unit: /1

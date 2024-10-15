@@ -1,0 +1,8 @@
+description: Suppléments de la Prime pour l'emploi
+metadata:
+  short_label: Suppléments
+  label_en: Employment Allowance
+  order:
+  - couples_mono_emploi
+  - mono_pac
+  - par_personne_charge

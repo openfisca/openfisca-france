@@ -1,0 +1,11 @@
+description: Boissons sucrées, édulcorées ou énergisantes
+metadata:
+  documentation_start: true
+  label_en: Energy drinks, sweet or sweetened beverages
+  order:
+  - boissons_sucrees_edulcorees
+  - boissons_sucrees_edulcorees_taux_applicables_uniquement_mayotte
+  - boissons_edulcorees_y_compris_mayotte
+  - boissons_sucrees_y_compris_mayotte
+  - boissons_energisantes
+documentation: Données renseignées dans les articles 1613 bis A et 1613 ter du code général des impôts

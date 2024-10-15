@@ -1,0 +1,20 @@
+description: Taux horaire (en % de la rémunération horaire brute) de l'allocation d'activité partielle de l'aide exceptionnelle covid-19
+values:
+  2020-03-01:
+    value: 0.7
+  2021-02-01:
+    value: 0.36
+metadata:
+  short_label: Taux horaire
+  unit: /1
+  reference:
+    2020-03-01:
+      title: Décret nº2020-810 du 29/06/2020, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042056546
+    2021-02-01:
+    - title: Décret nº2020-1319 du 30/10/2020, art. 1
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042484040/2020-11-01/
+    - title: Article D5122-13 du Code du Travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042486214/2021-02-01/
+  official_journal_date:
+    2020-03-01: "2020-06-30"

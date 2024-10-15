@@ -1,0 +1,10 @@
+description: Allocation de rentrée scolaire (ARS)
+metadata:
+  documentation_start: true
+  label_en: Back-to-school allowance (ARS)
+  order:
+  - montant_minimum_verse
+  - ars_m
+  - ars_cond
+  - ars_maj
+  - ars_plaf

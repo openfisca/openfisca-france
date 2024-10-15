@@ -1,0 +1,19 @@
+description: Par personne à charge
+values:
+  1978-01-01:
+    value: null
+  1985-01-01:
+    value: 2000
+  2001-01-01:
+    value: 305
+  2003-01-01:
+    value: null
+metadata:
+  ipp_csv_id: increment_habitat
+  unit: currency_next_year
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  notes:
+    2001-01-01:
+    - title: "Majoration sur les revenus 2001 : 381 euros pour le 2° enfant et 457 à partir du 3°"
+documentation: Incrément par personne à charge pour cas 1 Incrément par personne à charge majoré de 500 Fr pour le 2° enfant et de 1000 Fr à partir du 3° pour 2 et 3

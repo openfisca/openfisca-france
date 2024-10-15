@@ -1,0 +1,6 @@
+description: Cotisations salarié au régime de Retraite additionnelle de la fonction publique (RAFP)
+metadata:
+  short_label: Salarié
+  label_en: Contributions to the scheme of Additional pension
+  order:
+  - rafp

@@ -1,0 +1,28 @@
+description: Pour les logements sous dispositif Perissol
+values:
+  1984-01-01:
+    value: null
+  1996-01-01:
+    value: 0.06
+  1999-01-01:
+    value: null
+metadata:
+  ipp_csv_id: deduc_foncier_perissol
+  unit: /1
+  reference:
+    1984-01-01:
+      title: Loi n° 84-1208 du 29 décembre 1984 (LF pour 1985), art. 82
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000880778&idArticle=LEGIARTI000006274284&dateTexte=19861231&categorieLien=id#LEGIARTI000006274284
+    1996-01-01:
+      title: Loi n° 96-314 du 12 avril 1996 (DDOEF), art. 29
+    1999-01-01:
+      title: Loi n° 98-1266 du 30 décembre 1998 (LF pour 1999), art. 38
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044&dateTexte=20000330&categorieLien=id#JORFTEXT000000209044
+  official_journal_date:
+    1984-01-01: "1984-12-30"
+    1996-01-01: "1996-04-13"
+    1999-01-01: "1998-12-31"
+  notes:
+    1999-01-01:
+    - title: La déduction sous le dispositif Besson ancien est de 25% jusqu'en 2003 contre 14% en droit commun
+documentation: "Dispositif Périssol: Les logements éligibles sont ceux ayant été achetés neufs ou réhabilités entre le 1er Janvier 1996 et le 31 août 1999, à la condition d'être loué nu (non-meublé) à titre de résidence principale du locataire pour une durée minimale de 9 ans. Il n'y a pas de contraintes de loyer ou de ressources des locataires. CGI - art. 31 I-1° f"

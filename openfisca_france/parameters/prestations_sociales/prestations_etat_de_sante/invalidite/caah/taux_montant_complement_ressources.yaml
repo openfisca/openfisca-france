@@ -1,0 +1,24 @@
+description: Taux du montant mensuel du complément de l'allocation pour adulte handicapé (CAAH)
+values:
+  1994-07-01:
+    value: 0.16
+  2008-09-01:
+    value: null
+metadata:
+  short_label: Taux du montant mensuel
+  label_en: Additional adult disability allowance (CAAH)
+  unit: /1
+  reference:
+    1994-07-01:
+      title: Décret n°94-379 du 16 mai 1994, art. 2 (modifie art. D821-3 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000532149
+    2008-09-01:
+      title: Décret 2008-988 du 18/09/2008 - art. 1 (modifie art. D821-3 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000019502661
+  official_journal_date:
+    1994-07-01: "1994-05-18"
+    2008-09-01: "2008-09-21"
+  notes:
+    2008-09-01:
+    - title: Depuis 2008, on ajoute 179,31 euros au montant de base de l'AAH
+documentation: A multiplier au montant de l'AAH, supprimé en 2008.

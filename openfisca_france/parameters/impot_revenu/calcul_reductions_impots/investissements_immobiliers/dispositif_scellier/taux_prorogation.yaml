@@ -1,0 +1,28 @@
+description: Taux additionnel de réduction d'impôt les 3 années suivantes en cas d'éligibilité au dispositif Scellier intermédiaire (renouvelable une fois)
+values:
+  2009-01-01:
+    value: 0.06
+  2011-01-01:
+    value: 0.05
+  2012-01-01:
+    value: 0.04
+metadata:
+  short_label: Taux additionnel
+  last_value_still_valid_on: "2024-04-26"
+  unit: /1
+  reference:
+    2009-01-01:
+    - title: Loi 2010-1657 du 29/12/2010 - art. 105 (V) (modifie art. 199 septvicies du CGI)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000023347537
+    - title: Art. 199 septvicies, V. du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045765570/2011-01-04/
+    2011-01-01:
+    - title: Décret 2011-520 du 13/05/2011 - art. 1 (modifie art. 199 septvicies du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000023997578/2011-05-16/
+    - title: Art. 199 septvicies, V. du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045765570/2011-11-04/
+    2012-01-01:
+    - title: Décret n°2012-547 du 23/04/2012 - art. 1 (modifie art. 199 septvicies du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000025744568/2012-04-26/
+    - title: Art. 199 septvicies, V. du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045765570/2012-11-04/

@@ -1,0 +1,15 @@
+description: Cotisations de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
+metadata:
+  documentation_start: true
+  short_label: Indépendants
+  label_en: SSCs for family benefits (independent workers)
+  order:
+  - sous_pss
+  - sous_10_000_frf
+  - entre_10_000_frf_et_1_pss
+  - si_revenu_d_activite_110_pss
+  - si_revenu_d_activite_140_pss
+documentation: |-
+  (i) L'art. R242-13 du CSS statue que le taux applicable aux indépendants est le taux aplicable dans le régime général.
+  Toutefois l'harmonisation s'est faite progressivement.
+  (ii) Avant 1974, la cotisation était fixée forfaitairement selon le niveau du revenu professionnel de l'employeur/travailleur indépendant (arrêté du 20/06/1963).

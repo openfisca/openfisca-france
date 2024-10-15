@@ -1,0 +1,5 @@
+description: Crédit d'impôt du prélèvement libératoire à restituer
+metadata:
+  short_label: Prélèvement libératoire à restituer
+  order:
+  - taux

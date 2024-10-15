@@ -1,0 +1,8 @@
+description: Montant maximal du taux de majoration  (en % de la base) du revenu de solidarité active (RSA)
+metadata:
+  short_label: Montant maximal majoration
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  order:
+  - couple_1_enfant_ou_2e_enfant
+  - couples_celibataire_avec_enfant
+  - par_enfant_supplementaire

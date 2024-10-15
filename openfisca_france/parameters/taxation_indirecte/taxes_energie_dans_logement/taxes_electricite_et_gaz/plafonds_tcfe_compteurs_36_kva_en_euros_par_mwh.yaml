@@ -1,0 +1,17 @@
+description: Plafonds de la taxe sur la consommation finale d'énergie (TCFE) pour les compteurs de puissance <= 36 kva - en euros par MWh
+values:
+  2003-01-01:
+    value: null
+  2013-01-01:
+    value: 9.315
+  2014-01-01:
+    value: 9.5
+  2015-01-01:
+    value: 9.6
+  2017-01-01:
+    value: null
+  2021-01-01:
+    value: 9.9
+metadata:
+  ipp_csv_id: plafond_tcfe
+  unit: currency

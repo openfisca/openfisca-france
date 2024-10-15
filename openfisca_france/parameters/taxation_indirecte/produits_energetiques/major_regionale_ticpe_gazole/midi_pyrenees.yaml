@@ -1,0 +1,12 @@
+description: Majoration régionale TICPE gazole en Midi-Pyrénées
+values:
+  2007-01-01:
+    value: 0.79
+  2008-01-01:
+    value: 1.15
+  2011-01-01:
+    value: 2.5
+metadata:
+  short_label: Midi-Pyrénées
+  ipp_csv_id: maj_ticpe_die_m_p
+  unit: currency

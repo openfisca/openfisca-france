@@ -1,0 +1,6 @@
+description: Taux d'intérêt forfaitaire appliqué à l'épargne générant des revenus non imposables
+values:
+  2009-01-01:
+    value: 0.03
+metadata:
+  unit: /1

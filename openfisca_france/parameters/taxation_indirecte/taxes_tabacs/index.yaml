@@ -1,0 +1,11 @@
+description: Taxes sur les tabacs
+metadata:
+  documentation_start: true
+  label_en: Excises on tobacco
+  order:
+  - taux_normal
+  - taxes_specifiques
+documentation: |-
+  Pour les différents produits du tabac, le prix de vente au détail appliqué en Corse
+  est au moins égal à un pourcentage des prix de vente continentaux des mêmes produits,
+  fixé conformément au tableau de l'article 575 E bis du Code général des impôts

@@ -1,0 +1,10 @@
+description: Revenu minimum d'insertion (RMI)
+metadata:
+  short_label: RMI
+  label_en: Minimum insertion income (RMI)
+  order:
+  - rmi_cond
+  - rmi_m
+  - rmi_maj
+  - rmi_fl
+  - psa

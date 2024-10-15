@@ -3,7 +3,7 @@ period: 2014-11
 absolute_error_margin: 0.005
 input:
   assujettie_taxe_salaires: true
-  contrat_de_travail_duree: cdd
+  contrat_de_travail_type: cdd
   contrat_de_travail_debut: '2014-11-02'
   effectif_entreprise: 3000
   # exposition_accident: tres_eleve
@@ -30,7 +30,7 @@ output:
   ags: -13.80
   apec_employeur: -1.09 - 0.57
   cotisation_exceptionnelle_temporaire_employeur: -10.12
-  arrco_employeur: -138.53
+  arrco_employeur: -138.38
   agirc_employeur: -199.75
   agirc_gmp_employeur: 0
   chomage_employeur: -120.99 - 63.01
@@ -38,8 +38,6 @@ output:
   # chomage_tranche_b_employeur: -63.01  # Inclus dans assedic
   vieillesse_deplafonnee_employeur: -80.5
   vieillesse_plafonnee_employeur: -255.59
-
-  # cotisations_employeur_contributives:
 
   accident_du_travail: -69
   famille: -241.5
@@ -76,4 +74,3 @@ output:
   depense_cantine_titre_restaurant_employe: -19 * 4.5
 
   salaire_net_a_payer: 3527.25
-

@@ -1,0 +1,7 @@
+description: Abattement pour le régime microfoncier
+metadata:
+  short_label: Microfoncier
+  order:
+  - plafond_recettes
+  - taux
+documentation: "Régime microfoncier : art. 32-1 du CGI"

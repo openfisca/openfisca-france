@@ -1,0 +1,8 @@
+description: Allocation de base d'assurance chômage - taux et maximum
+metadata:
+  short_label: Taux et maximum
+  label_en: UI scheme - rates and maximum
+  order:
+  - pourcentage_sjr_en_complement_partie_fixe
+  - pourcentage_sjr
+  - montant_maximum_sjr

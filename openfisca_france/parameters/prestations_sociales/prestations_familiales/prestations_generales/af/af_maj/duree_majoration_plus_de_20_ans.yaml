@@ -1,0 +1,33 @@
+description: Durée pendant laquelle la majoration pour les plus de 20 ans est versée (en année), allocations familiales (AF)
+values:
+  1986-01-01:
+    value: null
+  2003-07-01:
+    value: 1
+metadata:
+  short_label: Durée versement maj.>20 ans
+  last_value_still_valid_on: "2022-02-23"
+  label_en: "Family allowances (AF): Extra allowances"
+  ipp_csv_id: duree_maj
+  unit: year
+  reference:
+    1986-01-01:
+    - title: Décret 86-150 du 30/01/1986, art. 2 (modif art. D521-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006769086&cidTexte=JORFTEXT000000518125
+    - title: Décret 85-1353 du 17/12/1985, art. 1 (crée art. R521-1 du CSS)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000041750321/1985-12-21
+    2003-07-01:
+    - title: Loi 2002-1487 du 20/12/2002, art. 58 (modif art. L521-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758525&cidTexte=JORFTEXT000000235196
+    - title: Décret 2003-573 du 27/06/2003, art. 1 (crée art. D521-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006220298&cidTexte=JORFTEXT000000422090
+    - title: Article L521-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029963006/2015-07-01/
+  official_journal_date:
+    1986-01-01: 1986-02-02; 1985-12-21
+    2003-07-01: 2002-12-24; 2003-06-28
+  notes:
+    1986-01-01:
+    - title: Création de la majoration pour âge des allocations familiales (articles L521-3 et R521-1 du CSS)
+    2003-07-01:
+    - title: Création majoration pour les enfants de plus de 20 ans

@@ -1,0 +1,8 @@
+description: Seuils de RFR pour être éligible à la prime pour l'emploi (PPE)
+metadata:
+  short_label: Seuils de RFR pour être éligible
+  label_en: Employment Allowance
+  order:
+  - personne_seule
+  - couple_marie_pacse
+  - increment_par_demi_part

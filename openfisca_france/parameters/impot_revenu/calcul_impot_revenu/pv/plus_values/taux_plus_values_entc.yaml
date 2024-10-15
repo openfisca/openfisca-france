@@ -1,0 +1,9 @@
+description: Taux forfaitaire d'imposition sur les profits sur instruments financiers dans des ETNC
+values:
+  2017-01-01:
+    value: 0.5
+metadata:
+  short_label: Taux forfaitaire d'imposition
+  unit: /1
+  reference:
+    href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037526716&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=

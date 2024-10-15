@@ -1,0 +1,358 @@
+- name: "Chomage avec RFR sous seuil 1, personne seule"
+  period: 2021-01
+  input:
+    chomage_brut: 18000 / 12
+    rfr:
+      2019: 11400
+    nbptr:
+      2019: 1
+  output:
+    chomage_imposable: 18000 / 12 # rfr < 11408 & nbptr =1 : taux is taux_exonere (0), net == gross
+
+- name: "Chomage avec RFR sous seuil 2, personne seule, exonération"
+  period: 2021-01
+  input:
+    chomage_brut: 18000 / 12
+    rfr:
+      2019: 11410
+    nbptr:
+      2019: 1
+  output:
+    csg_deductible_chomage: 0
+    chomage_imposable: 18000 / 12 # 11408 < rfr <= 14914 & nbptr =1 : taux is taux_reduit BUT chomage_imposable < seuil d'exo so net == gross
+
+- name: "Chomage avec RFR sous seuil 2, personne seule, pas d'exonération"
+  period: 2021-01
+  absolute_error_margin: 0.01
+  input:
+    chomage_brut: 21000 / 12
+    rfr:
+      2019: 11410
+    nbptr:
+      2019: 1
+  output:
+    csg_imposable_chomage: 0
+    chomage_imposable: (21000 / 12) -(0.038 * (21000 / 12) * 0.9825) # chomage_imposable: 1750 - (0.038 * 1750) # 11408 < rfr <= 14914 & nbptr =1 : taux is taux_reduit, chomage_imposable > seuil d'exo
+
+- name: "Chomage avec RFR au-dessus seuil 2, personne seule, pas d'exonération"
+  period: 2021-01
+  absolute_error_margin: 0.01
+  input:
+    chomage_brut: 21000 / 12
+    rfr:
+      2019: 15000
+    nbptr:
+      2019: 1
+  output:
+    chomage_imposable: (21000 / 12) - (0.038 * (21000 / 12) * 0.9825) # 14914 < rfr & nbptr =1 : taux is taux_plein, chomage_imposable > seuil d'exo
+
+- name: "Chomage avec RFR sous seuil 1, couple, pas d'exonération"
+  period: 2021-01
+  absolute_error_margin: 0.01
+  input:
+    chomage_brut: 20000 / 12
+    rfr:
+      2019: 17498 # 17500 = 11408 + 3046*2 (2021 values !)
+    nbptr:
+      2019: 2
+  output:
+    chomage_imposable: 20000 / 12 # rfr < 17500 & nbptr =2 : taux is taux_exonere (0), net == gross
+
+- name: "Chomage avec RFR sous seuil 2, couple, pas d'exonération"
+  period: 2021-01
+  absolute_error_margin: 0.01
+  input:
+    chomage_brut: 20790 / 12
+    rfr:
+      2019: 17503 # 17500 = 11408 + 3046*2 (2021 values !)
+    nbptr:
+      2019: 2
+  output:
+    chomage_imposable: (20790 / 12) - (0.038 * (20790 / 12) * 0.9825) # 17500 < rfr < 22878 & nbptr =2 : taux is taux_reduit, chomage_imposable > seuil d'exo
+
+- name: "Chomage avec RFR au dessus seuil 2, couple, pas d'exonération"
+  period: 2021-01
+  input:
+    chomage_brut: 20790 / 12
+    rfr:
+      2019: 22900 # 22878 = 14914 + 3982*2 (2021 values !)
+    nbptr:
+      2019: 2
+  output:
+    chomage_imposable: (20790 / 12) - (0.038 * (20790 / 12) * 0.9825) # rfr > 22878 & nbptr =2 : taux is taux_plein, chomage_imposable > seuil d'exo
+
+- name: "Retraite avec RFR sous seuil 1, personne seule"
+  period: 2021-01
+  input:
+    retraite_brute: 19000 / 12
+    rfr:
+      2019: 11400
+    nbptr:
+      2019: 1
+  output:
+    retraite_imposable: 19000 / 12
+
+- name: "Retraite avec RFR sous seuil 1, personne seule"
+  period: 2021-01
+  input:
+    retraite_brute: 20000 / 12
+    rfr:
+      2019: 11400
+    nbptr:
+      2019: 1
+  output:
+    retraite_imposable: 20000 / 12
+
+- name: "Retraite avec RFR sous seuil 2, personne seule"
+  period: 2021-01
+  absolute_error_margin: 0.1
+  input:
+    retraite_brute: 19750 / 12 # This checks that the chomage exoneration is indeed silent
+    rfr:
+      2019: 11450
+    nbptr:
+      2019: 1
+  output:
+    retraite_imposable: 19000 / 12
+
+- name: "Retraite avec RFR sous seuil 2, personne seule"
+  period: 2021-01
+  absolute_error_margin: 0.1
+  input:
+    retraite_brute: 20790 / 12 # 20000/(1-0.038)
+    rfr:
+      2019: 11450
+    nbptr:
+      2019: 1
+  output:
+    retraite_imposable: 20000 / 12
+
+- name: "Retraite avec RFR sous seuil 3, personne seule"
+  period: 2021-01
+  absolute_error_margin: 0.1
+  input:
+    retraite_brute: 20876 / 12 # 20000/(1-0.042)
+    rfr:
+      2019: 15000
+    nbptr:
+      2019: 1
+  output:
+    retraite_imposable: 20000 / 12
+
+- name: "Retraite avec RFR au dessus seuil 3, personne seule"
+  period: 2021-01
+  absolute_error_margin: 0.1
+  input:
+    retraite_brute: 21254 / 12 # 20000/(1-0.059)
+    rfr:
+      2019: 24000
+    nbptr:
+      2019: 1
+  output:
+    retraite_imposable: 20000 / 12
+
+- name: "Retraite avec RFR sous seuil 2, couple"
+  period: 2021-01
+  absolute_error_margin: 0.1
+  input:
+    retraite_brute: 20790 / 12 # 20000/(1-0.038)
+    rfr:
+      2019: 17503 # 17500 = 11408 + 3046*2
+    nbptr:
+      2019: 2
+  output:
+    retraite_imposable: 20000 / 12
+
+- name: "Retraite avec RFR sous seuil 3, couple"
+  period: 2021-01
+  absolute_error_margin: 0.1
+  input:
+    retraite_brute: 20876 / 12 # 20000/(1-0.042)
+    rfr:
+      2019: 22900 # 22878 = 14914 + 3982*2
+    nbptr:
+      2019: 2
+  output:
+    retraite_imposable: 20000 / 12
+
+- name: "Retraite avec RFR au dessus seuil 3, couple"
+  period: 2021-01
+  absolute_error_margin: 0.1
+  input:
+    retraite_brute: 21254 / 12 # 20000/(1-0.059)
+    rfr:
+      2019: 35510 # 35505 = 23147 + 2*6179
+    nbptr:
+      2019: 2
+  output:
+    retraite_imposable: 20000 / 12
+
+- name: Retraite Exonéré 2016
+  period: 2016-01
+  input:
+    retraite_brute: 2000.0
+    rfr:
+      2014:
+        10000.0
+  output:
+    csg_imposable_retraite: 0*2000
+    csg_deductible_retraite: 0*2000
+
+- name: Retraite Taux réduit 2016
+  period: 2016-01
+  input:
+    retraite_brute: 2000.0
+    rfr:
+      2014:
+        13000.0
+  output:
+    csg_deductible_retraite: -0.038*2000
+    csg_imposable_retraite: -0*2000
+
+- name: Retraite Taux plein 2016
+  period: 2016-01
+  input:
+    retraite_brute: 2000.0
+    rfr:
+      2014:
+        14000.0
+  output:
+    csg_deductible_retraite: -0.042*2000
+    csg_imposable_retraite: -0.024*2000
+
+- name: Retraite Exonéré 2020
+  period: 2020-01
+  input:
+    retraite_brute: 2000.0
+    rfr:
+      2018:
+        10000.0
+  output:
+    csg_imposable_retraite: 0*2000
+    csg_deductible_retraite: 0*2000
+
+- name: Retraite Taux réduit 2020
+  period: 2020-01
+  input:
+    retraite_brute: 2000.0
+    rfr:
+      2018:
+        13000.0
+  output:
+    csg_deductible_retraite: -0.038*2000
+    csg_imposable_retraite: -0*2000
+
+- name: Retraite Taux médian 2020
+  period: 2020-01
+  input:
+    retraite_brute: 2000.0
+    rfr:
+      2018:
+        20000.0
+  output:
+    csg_deductible_retraite: -0.042*2000
+    csg_imposable_retraite: -0.024*2000
+
+- name: Retraite Taux plein 2020
+  period: 2020-01
+  input:
+    retraite_brute: 2000.0
+    rfr:
+      2018:
+        23000.0
+  output:
+    csg_deductible_retraite: -0.059*2000
+    csg_imposable_retraite: -0.024*2000
+
+- name: Chomage déductible et imposable Abattement Exoneration seuil Smic 2020
+  period: 2020-01
+  input:
+    chomage_brut: 1000.0
+    rfr:
+      2018:
+        15000.0
+  output:
+    csg_deductible_chomage: 0
+    csg_imposable_chomage: 0
+
+- name: Chomage déductible et imposable Abattement Exonération seuil RFR 2020
+  period: 2020-01
+  input:
+    chomage_brut: 1000.0
+    rfr:
+      2018:
+        12000.0
+  output:
+    csg_deductible_chomage: 0*(0.9825*1000)
+    csg_imposable_chomage: 0*(0.9825*1000)
+
+- name: Chomage déductible et imposable Abattement Taux réduit 2020
+  period: 2020-01
+  input:
+    chomage_brut: 2000.0
+    rfr:
+      2018:
+        12000.0
+  output:
+    csg_imposable_chomage: -0*(0.9825*2000)
+    csg_deductible_chomage: -0.038*(0.9825*2000)
+
+- name: Chomage déductible et imposable Abattement Taux plein 2020
+  period: 2020-01
+  input:
+    chomage_brut: 2000.0
+    rfr:
+      2018:
+        15000.0
+  output:
+    csg_imposable_chomage: -0.024*(0.9825*2000)
+    csg_deductible_chomage: -0.038*(0.9825*2000)
+
+- name: Chomage déductible et imposable Abattement Exoneration seuil Smic - activite partielle
+  period: 2020-01
+  input:
+    chomage_brut: 500.0
+    salaire_net: 500.0
+    rfr:
+      2018:
+        15000.0
+  output:
+    csg_imposable_chomage: 0
+    csg_deductible_chomage: 0
+
+- name: Chomage déductible et imposable Abattement - activite partielle
+  period: 2020-01
+  input:
+    chomage_brut: 1000.0
+    salaire_net: 1500.0
+    rfr:
+      2018:
+        15000.0
+  output:
+    csg_imposable_chomage: -0.024*(0.9825*1000)
+    csg_deductible_chomage: -0.038*(0.9825*1000)
+
+- name: Chomage déductible et imposable Abattement Exoneration partielle seuil Smic - activite partielle
+  period: 2020-01
+  absolute_error_margin: 0.1
+  input:
+    chomage_brut: 1000.0
+    salaire_net: 570.0
+    rfr:
+      2018:
+        15000.0
+  output:
+    csg_imposable_chomage: -0.024*(0.9825*1000)
+    csg_deductible_chomage: -7
+
+- name: Chomage déductible retraite complementaire
+  period: 2020-01
+  input:
+    chomage_brut: 1000.0
+    are_salaire_journalier_reference: 100
+    allocation_retour_emploi_journaliere: 60
+    rfr:
+      2018:
+        15000.0
+  output:
+    chomage_cotisation_retraite_complementaire: -31 * 0.03 * 100

@@ -1,0 +1,10 @@
+description: Déduction pour pensions alimentaires
+metadata:
+  short_label: Pensions alimentaires
+  order:
+  - plafond
+  - taux_jgt_2006
+documentation: |-
+  Pensions alimentaires :
+  plafond : 2° du II de art. 156 du CGI, et art. 196 B du CGI; https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037990984
+  Coefficient majoration pour les pensions suite à une décision de justice avant le 01/01/2006 : art. 158 du CGI

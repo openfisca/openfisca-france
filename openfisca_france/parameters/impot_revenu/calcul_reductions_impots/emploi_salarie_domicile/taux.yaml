@@ -1,0 +1,18 @@
+description: Taux de la réduction d'impôts pour emploi d'un salarié à domicile
+values:
+  1990-01-01:
+    value: null
+  1991-01-01:
+    value: 0.5
+metadata:
+  short_label: Taux
+  ipp_csv_id: txsaldomicile
+  unit: /1
+  reference:
+    1991-01-01:
+      title: Loi 91-1322 du 30/12/1991 (LF pour 1992)
+  official_journal_date:
+    1991-01-01: "1991-12-31"
+  notes:
+    1991-01-01:
+    - title: Création du dispositif pour l'imposition des revenus de 1991. ; Le contribuable doit choisir entre la réduction d'impôt pour l'emploi d'un salarié travaillant à la résidence d'un ascendant et le bénéfice des dispositions relatives aux pensions alimentaires, pour la pension versée à ce même ascendant. Le choix effectué en faveur de la réduction d'impôt entraîne renonciation à la déduction de l'ensemble des sommes versées à titre de pension alimentaire pour un même ascendant et non pas seulement à la fraction relative aux frais d'emploi du salarié à domicile.

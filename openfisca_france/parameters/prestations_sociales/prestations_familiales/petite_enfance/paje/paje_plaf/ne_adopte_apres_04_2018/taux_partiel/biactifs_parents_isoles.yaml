@@ -1,0 +1,71 @@
+description: Majoration du plafond de ressources pour les couples avec 2 revenus ou pour parents isolés pour l'allocation de base à taux partiel, pour enfants nés ou adoptés à partir du 01/04/2018 - Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 0
+  2018-04-01:
+    value: 10080
+  2019-01-01:
+    value: 10181
+  2020-01-01:
+    value: 10344
+  2021-01-01:
+    value: 10437
+  2022-01-01:
+    value: 10458
+  2023-01-01:
+    value: 10625
+  2024-01-01:
+    value: 11188
+metadata:
+  short_label: Majoration pour couple avec deux revenus ou parent isolé
+  last_value_still_valid_on: "2024-01-26"
+  label_en: Increase for couple with two incomes or single parent
+  ipp_csv_id: maj_plaf_paje_bi_pn_pa_abpartiel_a_partir_20180401
+  unit: currency
+  reference:
+    2004-01-01:
+      title: Décret 2003-1393 du 31/12/2003, art. 2 (modif art. R531-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
+    2018-04-01:
+    - title: Décret 2018-312 du 26 avril 2018, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036847857
+    - title: Décret 2018-331 du 3 mai 2018 - art. 1 (modifie art. R531-1 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036876229
+    - title: Loi 2017-1836 du 30/12/2017, art. 37 (modifie art. L531-3 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036339090
+    2019-01-01:
+      title: Arrêté du 21/12/2018, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037864986?r=NZKwYXtfpm
+    2020-01-01:
+      title: Arrêté du 20/12/2019, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039663220
+    2021-01-01:
+      title: Arrêté du 14/12/2020, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042694981
+    2022-01-01:
+    - title: Instruction no DSS/2B/2021/247 du 14/12/2021
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.24.sant%C3%A9.pdf
+    - title: Arrêté du 16/12/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572366
+    2023-01-01:
+      title: Arrêté du 21/12/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
+    2024-01-01:
+    - title: Article L. 531-2 du code de la sécurité sociale, dernier alinéa
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042685543
+    - title: Arrêté du 22/12/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048680633
+  official_journal_date:
+    2004-01-01: "2004-01-01"
+    2018-04-01: 2018-04-28; 2018-05-05; 2017-12-31
+    2019-01-01: "2018-12-28"
+    2020-01-01: "2019-12-24"
+    2021-01-01: "2020-12-18"
+    2022-01-01: "2021-12-28"
+    2023-01-01: "2022-12-24"
+    2024-01-01: "2023-12-28"
+  notes:
+    2004-01-01:
+    - title: "Création de la PAJE. Mais entrée en vigueur progressive : de janvier 2004 à décembre 2006 inclus (cf. art. 60, VIII de la loi 2003-1199)"
+    2018-04-01:
+    - title: Le Décret 2018-331 spécifie que les plafonds sont majorés dans les conditions définies aux deuxième et troisième alinéas de l'article R. 522-2. C'est dans ces alinéas que figurent les pourcentages de majoration pour enfant à charge. De plus, à compter des enfants nés à partir du 1er avril 2018, les plafonds de ressources de l'allocation de base à taux plein sont identiques aux plafonds de ressources du complément familial (voir art. L531-3 du CSS, après modification de cet article par l'art. 37 de la loi 2017-1836 du 30/12/2017).

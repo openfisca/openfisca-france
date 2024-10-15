@@ -1,0 +1,12 @@
+description: Plafond de la réduction d'impôt sur les intérêts des prêts à la consommation (case UH)
+values:
+  1977-01-01:
+    value: null
+  2004-01-01:
+    value: 600
+  2006-01-01:
+    value: null
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_conso
+  unit: currency_next_year

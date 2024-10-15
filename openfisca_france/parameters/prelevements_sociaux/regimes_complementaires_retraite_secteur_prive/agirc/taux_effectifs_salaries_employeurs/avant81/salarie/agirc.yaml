@@ -1,0 +1,182 @@
+description: Taux effectifs - barème salarié (Entreprises avant 1981) des cotisations de régimes complémentaire de retraite des cades (AGIRC)
+brackets:
+- threshold:
+    1948-01-01:
+      value: 0
+    2019-01-01:
+      value: null
+  rate:
+    1948-01-01:
+      value: 0
+    2019-01-01:
+      value: null
+- threshold:
+    1948-01-01:
+      value: 1
+    2019-01-01:
+      value: null
+  rate:
+    1948-01-01:
+      value: 0.02
+    1952-01-01:
+      value: 0.0156
+    1953-01-01:
+      value: 0.015600000000000001
+    1955-01-01:
+      value: 0.017
+    1961-01-01:
+      value: 0.018000000000000002
+    1965-01-01:
+      value: 0.019
+    1966-01-01:
+      value: 0.02
+    1979-01-01:
+      value: 0.0206
+    1986-01-01:
+      value: 0.0212
+    1987-01-01:
+      value: 0.022
+    1990-01-01:
+      value: 0.0234
+    1994-01-01:
+      value: 0.0363
+    1995-01-01:
+      value: 0.05
+    1996-01-01:
+      value: 0.05625
+    1997-01-01:
+      value: 0.0625
+    1998-01-01:
+      value: 0.06875
+    1999-01-01:
+      value: 0.075
+    2006-01-01:
+      value: 0.077
+    2014-01-01:
+      value: 0.0775
+    2015-01-01:
+      value: 0.078
+    2019-01-01:
+      value: null
+- threshold:
+    1993-07-01:
+      value: 4
+    2019-01-01:
+      value: null
+  rate:
+    1948-01-01:
+      value: null
+    1991-01-01:
+      value: 0.0234
+    1994-01-01:
+      value: 0.0363
+    1995-01-01:
+      value: 0.05
+    1996-01-01:
+      value: 0.05625
+    1997-01-01:
+      value: 0.0625
+    1998-01-01:
+      value: 0.06875
+    1999-01-01:
+      value: 0.075
+    2006-01-01:
+      value: 0.077
+    2014-01-01:
+      value: 0.0775
+    2015-01-01:
+      value: 0.078
+    2019-01-01:
+      value: null
+- threshold:
+    1948-01-01:
+      value: 8
+    2019-01-01:
+      value: null
+  rate:
+    1948-01-01:
+      value: 0
+    2019-01-01:
+      value: null
+metadata:
+  short_label: Barème (Tranches B et C)
+  last_value_still_valid_on: "2021-07-30"
+  label_en: Pension contributions for executives (AGIRC)
+  ipp_csv_id:
+    rate: agirc_s_1_4, agirc_s_4_8
+  reference:
+    1948-01-01:
+      title: Convention AGIRC du 14/03/1947
+    1952-01-01:
+      title: Référence non trouvée
+    1953-01-01:
+      title: Référence non trouvée
+    1955-01-01:
+      title: Référence non trouvée
+    1961-01-01:
+      title: Référence non trouvée
+    1965-01-01:
+      title: Référence non trouvée
+    1966-01-01:
+      title: Référence non trouvée
+    1976-01-01:
+      title: Référence non trouvée
+    1979-01-01:
+      title: Référence non trouvée
+    1981-01-01:
+      title: Avenant A75 du 26/06/1978 (non agréé).
+    1984-01-01:
+      title: Avenant A99 du 15/06/1983 agréé par l'arrêté du 14/03/1987.
+    1986-01-01:
+      title: Référence non trouvée
+    1987-01-01:
+      title: Référence non trouvée
+    1989-01-01:
+      title: Référence non trouvée
+    1990-01-01:
+      title: Référence non trouvée
+    1991-01-01:
+      title: Accord du 24/03/1988
+    1994-01-01:
+      title: Accord AGIRC du 09/02/1994
+    1995-01-01:
+      title: Accord AGIRC du 09/02/1994
+    1996-01-01:
+      title: Accord AGIRC du 09/02/1994
+    1997-01-01:
+      title: Accord AGIRC-ARRCO du 25/04/1996
+    1998-01-01:
+      title: Accord AGIRC-ARRCO du 25/04/1996
+    1999-01-01:
+      title: Accord AGIRC-ARRCO du 25/04/1996
+    2006-01-01:
+      title: Accord AGIRC-ARRCO du 13/11/2003
+    2014-01-01:
+      title: AGIRC-ARRCO Circulaire 2013-16-DRJ
+    2015-01-01:
+      title: AGIRC-ARRCO Circulaire 2014-16-DRJ du 18/12/2014
+    2016-01-01:
+      title: AGIRC-ARRCO Circulaire 2015-15-DRJ du 28/12/2015
+    2017-01-01:
+      title: AGIRC-ARRCO Circulaire 2016-11-DRJ du 16/12/2016
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+  official_journal_date:
+    1986-01-01: "1987-05-13"
+  notes:
+    1979-01-01:
+    - title: "Ecrit en toutes lettres dans le BSP : \"2 % à la charge du salarié, 6 % à la charge de l'employeur\" (p.71 de I/1976)"
+    1983-01-01:
+    - title: Délais de 2 ans pour cotiser à 12 % pour les entreprises créés entre le 01/01/1981 et le 01/01/1983.
+    1996-01-01:
+    - title: "BSP : Fin de la clause spéciale pour les entreprises créées après le 01/01/1981."
+    1997-01-01:
+    - title: "BSP : \"Le taux contractuel de 13% est donc appelé à 16,25% (10,625% employeur ; 5,625% salarié)"
+    1998-01-01:
+    - title: "BSP : Nouveau taux de 14% appelé à 125% (soit 17,5%). Ce taux sera porté à 15% en 1998 et à 16% en 1999"
+    2014-01-01:
+    - title: "Sur la tranche C (au 01/01/ 2013, possiblement avant)\_: répartition libre par accord d’entreprise jusqu’à 20\_%, puis de manière prédéterminée sur les 0,30\_% restant (0,1\_% part patronale et 0,2\_% part salariale). Il est cependant conseillé d’appliquer la même répartition que sur la tranche B."
+    2019-01-01:
+    - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
+  rate_unit: /1
+  threshold_unit: PSS

@@ -1,0 +1,21 @@
+description: Taux spécifique pour les logements neufs construits ou acquis en 2010 au titre du crédit d'impôt sur les intérêts d'emprunt pour l'habitation principale
+values:
+  2007-01-01:
+    value: null
+  2009-01-01:
+    value: 0.15
+metadata:
+  short_label: Taux spécifique
+  unit: /1
+  reference:
+    2007-01-01:
+    - title: Loi 2007-1223, art. 5 du 21/08/2007
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006267445&cidTexte=JORFTEXT000000278649
+    - title: Loi 2007-1822, art. 13 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017856263&cidTexte=JORFTEXT000017853368
+    2009-01-01:
+      title: Loi 2009-1673, art. 84 du 30/12/2009 (LF pour 2010)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021575889&cidTexte=JORFTEXT000021557902
+  official_journal_date:
+    2007-01-01: "2007-12-27"
+    2009-01-01: "2009-12-31"

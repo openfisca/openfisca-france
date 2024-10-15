@@ -1,0 +1,35 @@
+description: Montant minimum journalier de l'allocation chômage à Mayotte
+values:
+  2020-07-01:
+    value: 14.68
+  2021-07-01:
+    value: 14.77
+  2022-07-01:
+    value: 15.2
+  2023-04-01:
+    value: 15.49
+  2023-07-01:
+    value: 15.78
+  2024-07-01:
+    value: 15.97
+metadata:
+  short_label: Montant minimum journalier à Mayotte
+  unit: currency
+  reference:
+    2021-07-01:
+    - href: https://www.service-public.fr/particuliers/actualites/A15021
+    - href: https://www.unedic.org/espace-presse/actualites/les-allocations-dassurance-chomage-sont-revalorisees-de-060-partir-du-1er
+    2022-07-01:
+      title: Circulaire Unedic n° 2022-10 du 1er juillet 2022
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2022-10_du_1er_juillet_2022.pdf
+    2023-04-01:
+    - title: Circulaire Unedic
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2023-04_du_1er_avril_2023.pdf
+    - title: Décret autorisant l'Unedic à effectuer une revalorisation en avril (Décret n° 2023-228 du 30 mars 2023)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047377781
+    2023-07-01:
+      title: Circulaire Unedic n° 2023-7 du 3 juillet 2023
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2023-07_du_3_juillet_2023.pdf
+    2024-07-01:
+      title: Circulaire Unedic n° 2024-4 du 1 juillet 2024
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2024-04_du_1er_juillet_2024.pdf

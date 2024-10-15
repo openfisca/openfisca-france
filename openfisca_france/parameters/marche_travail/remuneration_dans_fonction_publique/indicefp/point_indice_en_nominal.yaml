@@ -1,0 +1,714 @@
+description: Valeur nominale annuelle du point d'indice
+values:
+  1960-01-01:
+    value: 23.36
+  1960-08-01:
+    value: 23.59
+  1960-10-01:
+    value: 24.05
+  1961-03-01:
+    value: 24.53
+  1961-07-01:
+    value: 25.25
+  1961-11-01:
+    value: 30.54
+  1962-01-01:
+    value: 31.22
+  1962-10-01:
+    value: 31.53
+  1962-12-01:
+    value: 36.65
+  1963-01-01:
+    value: 38.3
+  1963-04-01:
+    value: 39.83
+  1963-10-01:
+    value: 40.63
+  1964-01-01:
+    value: 41.34
+  1964-04-01:
+    value: 42.17
+  1964-10-01:
+    value: 42.99
+  1965-04-01:
+    value: 43.85
+  1965-10-01:
+    value: 44.71
+  1966-04-01:
+    value: 45.6
+  1966-10-01:
+    value: 46.5
+  1967-03-01:
+    value: 47.43
+  1967-09-01:
+    value: 48.48
+  1968-02-01:
+    value: 49.57
+  1968-06-01:
+    value: 51.51
+  1968-10-01:
+    value: 53.55
+  1969-04-01:
+    value: 54.62
+  1969-10-01:
+    value: 56.23
+  1970-01-01:
+    value: 56.79
+  1970-04-01:
+    value: 59.02
+  1970-10-01:
+    value: 60.28
+  1971-01-01:
+    value: 61.48
+  1971-06-01:
+    value: 62.38
+  1971-10-01:
+    value: 64.66
+  1971-11-01:
+    value: 65.38
+  1972-01-01:
+    value: 65.68
+  1972-02-01:
+    value: 66.67
+  1972-06-01:
+    value: 67.78
+  1972-09-01:
+    value: 68.44
+  1972-10-01:
+    value: 69.93
+  1973-01-01:
+    value: 72.25
+  1973-06-01:
+    value: 73.32
+  1973-07-01:
+    value: 73.67
+  1973-08-01:
+    value: 74.21
+  1973-10-01:
+    value: 77.05
+  1973-12-01:
+    value: 78.3
+  1974-01-01:
+    value: 79.37
+  1974-02-01:
+    value: 80.96
+  1974-04-01:
+    value: 82.74
+  1974-06-01:
+    value: 84.01
+  1974-07-01:
+    value: 84.81
+  1974-09-01:
+    value: 86.39
+  1974-11-01:
+    value: 88.79
+  1974-12-01:
+    value: 90.78
+  1975-01-01:
+    value: 92.07
+  1975-04-01:
+    value: 94.39
+  1975-07-01:
+    value: 96.02
+  1975-10-01:
+    value: 99.75
+  1976-01-01:
+    value: 102.34
+  1976-04-01:
+    value: 104.56
+  1976-07-01:
+    value: 106.68
+  1976-10-01:
+    value: 110.19
+  1977-01-01:
+    value: 112.56
+  1977-04-01:
+    value: 113.73
+  1977-06-01:
+    value: 116.53
+  1977-09-01:
+    value: 119.45
+  1977-12-01:
+    value: 122.25
+  1978-02-01:
+    value: 124.08
+  1978-06-01:
+    value: 128.97
+  1978-09-01:
+    value: 132.03
+  1978-11-01:
+    value: 135.76
+  1979-01-01:
+    value: 136
+  1979-03-01:
+    value: 138.04
+  1979-06-01:
+    value: 141.78
+  1979-07-01:
+    value: 143.82
+  1979-09-01:
+    value: 148.29
+  1979-11-01:
+    value: 150.33
+  1979-12-01:
+    value: 152.37
+  1980-01-01:
+    value: 153.46
+  1980-03-01:
+    value: 157.3
+  1980-04-01:
+    value: 159.98
+  1980-07-01:
+    value: 164.82
+  1980-10-01:
+    value: 171.53
+  1981-01-01:
+    value: 176.13
+  1981-04-01:
+    value: 181.44
+  1981-07-01:
+    value: 187.42
+  1981-10-01:
+    value: 196.9
+  1982-01-01:
+    value: 203.06
+  1982-04-01:
+    value: 208.83
+  1982-11-01:
+    value: 217.03
+  1982-12-01:
+    value: 219.045
+  1983-01-01:
+    value: 223.2757142857143
+  1983-04-01:
+    value: 227.69625
+  1983-07-01:
+    value: 232.1175
+  1983-11-01:
+    value: 238.9063636363637
+  1984-01-01:
+    value: 245.53
+  1984-04-01:
+    value: 247.99
+  1984-11-01:
+    value: 252.9
+  1985-02-01:
+    value: 256.69
+  1985-07-01:
+    value: 260.49
+  1985-11-01:
+    value: 264.28
+  1987-03-01:
+    value: 265.87
+  1987-08-01:
+    value: 267.19
+  1988-03-01:
+    value: 272.53
+  1988-09-01:
+    value: 275.23
+  1989-03-01:
+    value: 277.98
+  1989-09-01:
+    value: 281.29
+  1990-01-01:
+    value: 282.7
+  1990-04-01:
+    value: 286.07
+  1990-12-01:
+    value: 289.73
+  1991-08-01:
+    value: 291.18
+  1991-11-01:
+    value: 294.08
+  1992-02-01:
+    value: 297.84
+  1992-10-01:
+    value: 301.9
+  1993-02-01:
+    value: 307.11
+  1994-01-01:
+    value: 309.72
+  1994-08-01:
+    value: 311.265
+  1994-12-01:
+    value: 314.22
+  1995-03-01:
+    value: 317.99
+  1995-11-01:
+    value: 322.44
+  1997-03-01:
+    value: 324.05
+  1997-10-01:
+    value: 325.67
+  1998-04-01:
+    value: 328.28
+  1998-11-01:
+    value: 329.9
+  1999-04-01:
+    value: 331.55
+  1999-12-01:
+    value: 334.19
+  2000-12-01:
+    value: 335.86
+  2001-05-01:
+    value: 337.54
+  2001-11-01:
+    value: 339.9
+  2002-03-01:
+    value: 52.1284
+  2002-12-01:
+    value: 52.4933
+  2004-01-01:
+    value: 52.7558
+  2005-02-01:
+    value: 53.0196
+  2005-07-01:
+    value: 53.2847
+  2005-11-01:
+    value: 53.711
+  2006-07-01:
+    value: 53.98
+  2007-02-01:
+    value: 54.41
+  2008-03-01:
+    value: 54.68
+  2008-10-01:
+    value: 54.8475
+  2009-07-01:
+    value: 55.1217
+  2009-10-01:
+    value: 55.2871
+  2010-07-01:
+    value: 55.5635
+  2016-07-01:
+    value: 55.8969
+  2017-02-01:
+    value: 56.2323
+  2022-07-01:
+    value: 58.2004
+  2023-07-01:
+    value: 59.0734
+metadata:
+  short_label: Point d'indice (en nominal)
+  label_en: Index point of public sector
+  ipp_csv_id: pt_indice_nominal
+  unit: currency
+  reference:
+    1960-01-01:
+      title: Décret 60-166 du 24/02/1960
+    1960-08-01:
+      title: Décret 60-796 du 02/08/1960
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000868731
+    1960-10-01:
+      title: Décret 60-1006 du 17/09/1960
+    1961-03-01:
+      title: Décret 61-173 du 18/02/1961
+    1961-07-01:
+      title: Décret 61-560 du 03/06/1961
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002077456
+    1961-11-01:
+      title: Décret 61-1101 du 05/10/1961
+    1962-01-01:
+      title: Décret 61-1504 du 30/12/1961
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000337333
+    1962-10-01:
+      title: Décret 62-1124 du 01/10/1962
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000851380
+    1963-01-01:
+      title: Décret 62-1382 du 24/11/1962
+    1963-04-01:
+      title: Décret 63-484 du 15/05/1963
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000329452
+    1963-10-01:
+      title: Décret 63-1146 du 19/11/1963
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000865932
+    1964-04-01:
+      title: Décret 64-70 du 27/01/1964
+    1964-10-01:
+    - title: Arrété du 20/01/1965
+    - title: Décret 64-918 du 07/09/1964
+    1965-04-01:
+      title: Décret 65-212 du 19/03/1965
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000311059
+    1965-10-01:
+      title: Décret 65-756 du 01/09/1965
+    1966-04-01:
+      title: Décret 66-171 du 25/03/1966
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000695448
+    1966-10-01:
+      title: Décret 66-630 du 24/08/1966
+    1967-03-01:
+      title: Décret 67-110 du 10/02/1967
+    1967-09-01:
+      title: Décret 67-698 du 12/08/1967
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000702275
+    1968-02-01:
+      title: Décret 68-198 du 27/02/1968
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000877298
+    1968-06-01:
+      title: Décret 68-566 du 21/06/1968
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000869089
+    1969-04-01:
+      title: Décret 69-339 du 17/04/1969
+    1969-10-01:
+      title: Décret 69-905 du 06/10/1969
+    1970-01-01:
+      title: Décret 70-166 du 05/03/1970
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000307458
+    1970-04-01:
+      title: Décret 70-393 du 12/05/1970
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000304046
+    1970-10-01:
+      title: Décret 70-954 du 16/10/1970
+    1971-01-01:
+      title: Décret 71-228 du 29/03/1971
+    1971-06-01:
+      title: Décret 71-477 du 22/06/1971
+    1971-10-01:
+      title: Décret 71-786 du 14/09/1971
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000336157
+    1971-11-01:
+      title: Décret 71-951 du 02/12/1971
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000511480
+    1972-02-01:
+      title: Décret 72-47 du 18/01/1972
+    1972-06-01:
+      title: Décret 72-404 du 16/05/1972
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000333926
+    1972-09-01:
+      title: Décret 72-908 du 06/10/1972
+    1973-01-01:
+      title: Décret 73-104 du 31/01/1973
+    1973-06-01:
+      title: Décret 73-524 du 14/06/1973
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000307262
+    1973-07-01:
+      title: Décret 73-806 du 10/08/1973
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000854920
+    1973-08-01:
+      title: Décret 73-874 du 10/09/1973
+    1973-10-01:
+      title: Décret 73-966 du 16/10/1973
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000510967
+    1973-12-01:
+      title: Décret 73-1066 du 29/11/1973
+    1974-01-01:
+      title: Décret 74-2 du 03/01/1974
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000875750
+    1974-02-01:
+      title: Décret 74-135 du 20/02/1974
+    1974-04-01:
+      title: Décret 74-291 du 11/04/1974
+    1974-06-01:
+      title: Décret 74-581 du 10/06/1974
+    1974-07-01:
+      title: Décret 74-652 du 19/07/1974
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000857244
+    1974-12-01:
+    - title: Arrété du 01/03/1976
+    - title: Décret 74-1017 du 02/12/1974
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000514272
+    1975-01-01:
+    - title: Décret 74-1075 du 19/12/1974
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000875051
+    - title: Décret 75-80 du 07/02/1975
+    1975-04-01:
+      title: Décret 75-222 du 08/04/1975
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000883647
+    1975-07-01:
+    - title: Décret 75-593 du 07/07/1975
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000335017
+    - title: Arrété du 01/03/1976
+    1975-10-01:
+      title: Décret 75-921 du 10/10/1975
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000500045
+    1976-01-01:
+      title: Décret 76-296 du 06/04/1976
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000304393
+    1976-07-01:
+    - title: Décret 76-596 du 06/07/1976
+    - title: Arrété du 01/03/1976
+    1976-10-01:
+      title: Décret 76-911 du 07/09/1976
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000857289
+    1977-01-01:
+      title: Décret 77-11 du 07/07/1977
+    1977-04-01:
+      title: Décret 77-397 du 14/04/1977
+    1977-06-01:
+      title: Décret 77-575 du 07/06/1977
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000337890/
+    1977-09-01:
+      title: Décret 77-1029 du 14/09/1977
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000883879
+    1977-12-01:
+      title: Décret 77-1360 du 09/12/1977
+    1978-02-01:
+      title: Décret 78-136 du 08/02/1978
+    1978-06-01:
+      title: Décret 85-663 du 19/07/1978
+    1978-09-01:
+      title: Décret 78-907 du 04/09/1978
+    1978-11-01:
+      title: Décret 78-1047 du 02/11/1978
+    1979-03-01:
+      title: Décret 79-209 du 15/03/1979
+    1979-06-01:
+      title: Décret 79-439 du 07/06/1979
+    1979-07-01:
+      title: Décret 79-611 du 13/07/1979
+    1979-12-01:
+      title: Décret 79-1043 du 04/12/1979
+    1980-01-01:
+      title: Décret 80-114 du 06/02/1980
+    1980-03-01:
+      title: Décret 80-176 du 29/02/1980
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000519633
+    1980-04-01:
+      title: Décret 80-258 du 10/04/1980
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000338149
+    1980-07-01:
+      title: Décret 80-520 du 07/07/1980
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000516123
+    1980-10-01:
+      title: Décret 80-803 du 13/10/1980
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000503007
+    1981-01-01:
+      title: Décret 85-663 du 09/01/1981
+    1981-04-01:
+      title: Décret 81-325 du 10/04/1981
+    1981-07-01:
+      title: Décret 81-696 du 07/07/1981
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000338653
+    1981-10-01:
+      title: Décret 81-914 du 09/10/1981
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000335122
+    1982-01-01:
+      title: Décret 85-663 du 14/01/1982
+    1982-04-01:
+      title: Décret 82-333 du 13/04/1982
+    1982-11-01:
+      title: Décret 82-951 du 10/11/1982
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000884538
+    1982-12-01:
+      title: Décret 82-1039 du 08/12/1982
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000883611
+    1983-01-01:
+      title: Décret 82-1106 du 23/12/1982
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000518251/
+    1983-07-01:
+      title: Décret 85-663 du 02/07/1983
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000646995/
+    1983-11-01:
+      title: Décret 83-956 du 02/11/1983
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000689251
+    1984-01-01:
+      title: Décret 84-8 du 03/01/1984
+    1984-04-01:
+      title: Décret 84-178 du 15/03/1984
+    1984-11-01:
+      title: Décret 84-909 du 10/10/1984
+    1985-02-01:
+      title: Décret 85-211 du 15/02/1985
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000703581/
+    1985-07-01:
+      title: Décret 85-663 du 27/06/1985
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000867347/
+    1985-11-01:
+      title: Décret 85-1148 du 24/10/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000872483
+    1987-03-01:
+      title: Décret 87-108 du 18/02/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000337218&categorieLien=id
+    1987-08-01:
+      title: Décret 87-589 du 30/07/1987
+    1988-03-01:
+      title: Décret 88-229 du 09/03/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000315254
+    1988-09-01:
+      title: Décret 88-898 du 29/09/1988
+    1989-03-01:
+      title: Décret 89-64 du 04/02/1989
+    1989-09-01:
+      title: Décret 89-598 du 30/08/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700022
+    1990-01-01:
+      title: Décret 90-321 du 05/04/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000166950
+    1990-04-01:
+      title: Décret 90-332 du 05/04/1990
+    1990-12-01:
+      title: Décret 90-1058 du 22/11/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000352399&categorieLien=id
+    1991-08-01:
+      title: Décret 91-1191 du 19/11/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000538342
+    1991-11-01:
+      title: Décret 91-1191 du 19/11/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000538342
+    1992-02-01:
+      title: Décret 92-107 du 30/01/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000710574
+    1992-10-01:
+      title: Décret 92-993 du 18/09/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000177462&categorieLien=id
+    1993-02-01:
+      title: Décret 93-93 du 25/01/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000725384&categorieLien=id
+    1994-01-01:
+      title: Décret 93-1317 du 20/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000881133
+    1994-08-01:
+      title: Décret 94-599 du 15/07/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000531157&categorieLien=id
+    1994-12-01:
+      title: Décret 94-1004 du 21/11/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000530887&categorieLien=id
+    1995-03-01:
+      title: Décret 95-167 du 17/02/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000735678&categorieLien=id
+    1995-11-01:
+      title: Décret 95-1099 du 9/10/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000189590
+    1997-03-01:
+      title: Décret 97-141 du 13/02/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000564762&categorieLien=id
+    1997-10-01:
+      title: Décret 97-877 du 25/09/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000202306&categorieLien=id
+    1998-04-01:
+      title: Décret 98-143 du 04/03/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000556219
+    1998-11-01:
+      title: Décret 98-945 du 21/10/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000557774
+    1999-04-01:
+      title: Décret 99-208 du 17/03/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000393446&categorieLien=id
+    1999-12-01:
+      title: Décret 99-943 du 12/11/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000397436&categorieLien=id
+    2000-12-01:
+      title: Décret 2000-1154 du 29/11/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000587481&categorieLien=id
+    2001-05-01:
+      title: Décret 2001-370 du 25/04/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000210853&categorieLien=id
+    2001-11-01:
+      title: Décret 2001-895 du 26/09/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000773694
+    2002-03-01:
+      title: Décret 2002-203 du 14/02/2002
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000226175
+    2002-12-01:
+      title: Décret 2002-1295 du 24/10/2002
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000227909
+    2004-01-01:
+      title: Décret 2003-1170 du 08/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000431431
+    2005-02-01:
+      title: Décret 2005-31 du 15/01/2005
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000445092
+    2005-07-01:
+      title: Décret 2005-726 du 29/06/2005
+      href: https://www.legifrance.gouv.fr/eli/decret/2005/6/29/2005-726/jo/texte
+    2005-11-01:
+      title: Décret 2005-1301 du 20/10/2005
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000240944
+    2006-07-01:
+      title: Décret 2006-759 du 29/06/2006
+      href: https://www.legifrance.gouv.fr/eli/decret/2006/6/29/2006-759/jo/texte
+    2007-02-01:
+      title: Décret 2007-96 du 25/01/2007
+      href: https://www.legifrance.gouv.fr/eli/decret/2007/1/25/2007-96/jo/texte
+    2008-03-01:
+      title: Décret 2008-198 du 27/02/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/2/27/2008-198/jo/texte
+    2008-10-01:
+      title: Décret 2008-1016 du 02/10/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019564067
+    2009-07-01:
+      title: Décret 2009-824 du 03/07/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/7/3/2009-824/jo/texte
+    2009-10-01:
+      title: Décret 2009-1158 du 30/09/2009
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021089930
+    2010-07-01:
+      title: Décret 2010-761 du 07/07/2010, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000022448583&cidTexte=JORFTEXT000022447551
+    2016-07-01:
+      title: Décret 2016-670 du 25/05/2016, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000032585524&cidTexte=JORFTEXT000032584286
+    2017-02-01:
+      title: Décret 2016-670 du 25/05/2016, art. 2 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000032585526&cidTexte=JORFTEXT000032584286
+    2022-07-01:
+      title: Décret 2022-994 du 07/07/2022
+      href: https://www.legifrance.gouv.fr/eli/decret/2022/7/7/TFPF2215443D/jo/texte
+    2023-07-01:
+      title: Décret n° 2023-519 du 28/06/2023
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047749222
+  official_journal_date:
+    1985-11-01: "1985-11-05"
+    1987-03-01: "1987-02-20"
+    1987-08-01: "1987-07-31"
+    1988-03-01: "1988-03-13"
+    1988-09-01: "1988-08-30"
+    1989-03-01: "1989-02-05"
+    1989-09-01: "1989-08-31"
+    1990-01-01: "1990-04-11"
+    1990-04-01: "1990-04-11"
+    1990-12-01: "1990-11-30"
+    1991-08-01: "1991-11-27"
+    1991-11-01: "1991-11-27"
+    1992-02-01: "1992-02-04"
+    1992-10-01: "1992-09-19"
+    1993-02-01: "1993-01-26"
+    1994-01-01: "1993-12-21"
+    1994-08-01: "1994-07-19"
+    1994-12-01: "1994-11-22"
+    1995-03-01: "1995-02-18"
+    1995-11-01: "1995-10-13"
+    1997-03-01: "1997-02-15"
+    1997-10-01: "1997-09-27"
+    1998-04-01: "1998-03-08"
+    1998-11-01: "1998-10-21"
+    1999-04-01: "1999-03-20"
+    1999-12-01: "1999-11-14"
+    2000-12-01: "2000-11-30"
+    2001-05-01: "2001-04-28"
+    2001-11-01: "2001-09-29"
+    2002-03-01: "2002-02-16"
+    2002-12-01: "2002-12-26"
+    2004-01-01: "2003-12-09"
+    2005-02-01: "2005-01-18"
+    2005-07-01: "2005-06-30"
+    2005-11-01: "2005-10-21"
+    2006-07-01: "2006-06-30"
+    2007-02-01: "2007-01-26"
+    2008-03-01: "2008-02-29"
+    2008-10-01: "2008-10-03"
+    2009-07-01: "2009-07-04"
+    2009-10-01: "2009-10-10"
+    2010-07-01: "2010-07-08"
+    2016-07-01: "2016-05-26"
+    2017-02-01: "2016-05-26"
+    2022-07-01: "2022-07-08"
+    2023-07-01: "2023-06-29"
+  notes:
+    1990-01-01:
+    - title: La date d'effet est bien le 1er janvier 1990
+    1990-04-01:
+    - title: La date d'effet est le 1er avril 1990
+    1991-08-01:
+    - title: La date d'effet est bien le 1er août 1991
+    1991-11-01:
+    - title: La date d'effet est bien le 1er novembre 1991
+    1992-02-01:
+    - title: La date d'effet est bien le 1er février 1992
+    2010-07-01:
+    - title: L'indice est gelé du 01/07/2010 au 01/07/2016.
+    2017-02-01:
+    - title: L'indice est gelé depuis 01/02/2017 au 01/07/2022.
+    2022-07-01:
+    - title: La date d'effet est bien le 1er juillet 2022

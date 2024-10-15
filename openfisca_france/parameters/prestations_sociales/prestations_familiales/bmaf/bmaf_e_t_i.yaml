@@ -1,0 +1,82 @@
+description: Base mensuelle de calcul des allocations familiales (BMAF) pour employeurs et travailleurs indépendants (E.T.I)
+values:
+  1939-04-01:
+    value: null
+  1946-07-01:
+    value: 56.5
+  1947-07-01:
+    value: 62.5
+  1949-10-01:
+    value: 75
+  1950-04-01:
+    value: 90
+  1950-10-01:
+    value: 100
+  1950-12-01:
+    value: 120
+  1951-04-01:
+    value: 132
+  1951-10-01:
+    value: 151.8
+  1953-01-01:
+    value: 172.5
+  1955-01-01:
+    value: null
+metadata:
+  short_label: BMAF E.T.I.
+  last_value_still_valid_on: "1955-01-01"
+  label_en: Monthly basis for the computation of family allowances (BMAF)
+  ipp_csv_id: reg_spec_eti
+  unit: currency
+  reference:
+    1946-07-01:
+      title: Loi 46-1835 du 22/08/1946
+    1949-10-01:
+      title: Arrêté du 13/02/1950
+    1950-04-01:
+      title: Décret 50-667 du 14/06/1950
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000302148
+    1950-10-01:
+      title: Décret 50-1220 du 30/09/1950
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000675486
+    1950-12-01:
+      title: Loi 50-1598 du 30/12/1950
+    1951-04-01:
+      title: Loi 51-520 du 09/05/1951, art. 2, 4 et 5
+    1951-10-01:
+      title: Loi 51-1126 du 26/09/1951, art. 9 et 10
+    1953-01-01:
+      title: Décret 53-101 du 12/02/1953
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000868568
+    1955-01-01:
+      title: Décret 54-1323 du 31/12/1954
+    2020-04-01:
+      title: Circulaire DSS/SD2B/2020/33 du 18/02/2020
+    2021-04-01:
+      title: Circulaire DSS/2B/2021/65 du 19/ 03/2021
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.5.sante.pdf#page=140
+  official_journal_date:
+    1946-07-01: "1946-08-23"
+    1949-10-01: "1950-02-15"
+    1950-04-01: "1950-06-15"
+    1950-10-01: "1950-10-03"
+    1950-12-01: "1950-12-31"
+    1951-04-01: "1951-05-10"
+    1951-10-01: "1951-09-27"
+    1953-01-01: "1953-02-14"
+    1955-01-01: "1955-01-01"
+  notes:
+    1946-07-01:
+    - title: Fixation du régime des prestations familiales (allocations de maternité, allocations familiales, allocations de salaire unique et allocations prénatales). Journal Officiel introuvable
+    1947-07-01:
+    - title: Arrêté du 21 août 1947 d'après La sécurité sociale, son histoire à partir des textes p.223
+    1950-10-01:
+    - title: La sécurité sociale, son histoire à partir des textes indique p.223 qu'il s'agit d'un arrêté (en contradiction avec le Journal Officiel)
+    1950-12-01:
+    - title: Revalorisation de 20 %
+    1951-04-01:
+    - title: Cette loi n'est pas référencée sur légifrance (mais présente page 4862 du JO)
+    1953-01-01:
+    - title: La sécurité sociale, son histoire à partir des textes indique p.223 qu'il s'agit d'un arrêté (en contradiction avec le Journal Officiel)
+    2012-04-01:
+    - title: La BMAF est à partir de décembre 2011 revalorisée au 1er avril de chaque année suivant l'évolution de l'indice des prix (sauf pour 2012 où par dérogation, la revalorisation reste au 1er janvier) Cf. LFSS 2012 (loi 2011-1906 du 21/12/2011) &Article L 551-1 du CSS en vigueur à partir du 23/12/2011

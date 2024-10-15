@@ -1,0 +1,6 @@
+description: Abattement des loyers plafonds pour colocations
+values:
+  2002-01-01:
+    value: 0.75
+metadata:
+  unit: /1

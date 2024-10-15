@@ -1,0 +1,16 @@
+description: Prime de solidarité active (PSA)
+values:
+  2009-01-01:
+    value: 200
+  2010-01-01:
+    value: null
+metadata:
+  short_label: PSA
+  unit: currency
+documentation: |-
+  Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié
+  en janvier, février ou mars 2009 du RMI, de l’API (du RSA expérimental, du CAV ou du RMA pour
+  les ex-bénéficiaires du RMI ou de l’API), de la prime forfaitaire mensuelle au titre du RMI ou de l’Api
+  ou enfin d’une aide au logement (à condition d’exercer une activité professionnelle et
+  d’être âgé de plus de 25 ans ou d’avoir au moins un enfant à charge).
+  La PSA, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.

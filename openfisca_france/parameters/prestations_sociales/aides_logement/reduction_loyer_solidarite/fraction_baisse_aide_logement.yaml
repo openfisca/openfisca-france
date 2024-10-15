@@ -1,0 +1,25 @@
+description: Baisse de l'aide personnalisée au logement (APL), en % de la réduction de loyer de solidarité (RLS)
+values:
+  2018-01-01:
+    value: 0.98
+metadata:
+  short_label: Baisse de l'aide personnalisée au logement (en % de la RLS)
+  last_value_still_valid_on: "2023-05-24"
+  ipp_csv_id: baisse_apl_rsl
+  unit: /1
+  reference:
+    2018-01-01:
+    - title: Article L832-3 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038814872
+    - title: Article D823-16 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878905/2019-09-01/
+    - title: Décret n° 2018-136 du 27/02/2018, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036649988
+    - title: Arrêté du 27 février 2018 relatif à la réduction de loyer de solidarité
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036650010
+  official_journal_date:
+    2018-01-01: "2018-02-28"
+  notes:
+    2018-01-01:
+    - title: Création de la réduction de loyer de solidarité par la loi de finances pour 2018. Elle entre en vigueur le 01/02/2018.
+documentation: L'article L832-3 fixe une fourchette entre 90% et 98%, c'est la voie réglementaire (Article D823-16) qui détermine le taux de 98% seulement.

@@ -9,7 +9,7 @@
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
     ir_plaf_qf: 330
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
 
 - name: f2fu_2013
   description: Montant des cotisations sociales sur des revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via entreprise donnant droit à abattement (2fu) de 20000 euros en 2013
@@ -22,7 +22,7 @@
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
     ir_plaf_qf: 330
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
 
 - name: f2go_2013
   description: Montant des cotisations sociales sur d autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié n ouvrant pas droit à abattement de 20000 euros en 2013
@@ -36,7 +36,7 @@
     csg_revenus_capital: -2050
     crds_revenus_capital: -125
     ir_plaf_qf: 2150
-    irpp: -2150
+    impot_revenu_restant_a_payer: -2150
 
 - name: f2ts_2013
   description: Montant des cotisations sociales sur des revenus de valeurs mobilières, produits des contrats d assurance-vie d une durée inférieure à 8 ans et distributions n ouvrant pas droit à abattement de 20000 euros en 2013
@@ -50,7 +50,7 @@
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
     ir_plaf_qf: 1450
-    irpp: -1450
+    impot_revenu_restant_a_payer: -1450
 
 - name: f2tr_2013
   description: Montant des cotisations sociales sur des produits de placements à revenu fixe, intérêts et autres revenus assimilés n ouvrant pas droit à abattement de 20000 euros en 2013
@@ -64,7 +64,7 @@
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
     ir_plaf_qf: 1450
-    irpp: -1450
+    impot_revenu_restant_a_payer: -1450
 
 - name: f4ba_2011
   description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros en 2012
@@ -76,7 +76,7 @@
     prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
     csg_revenus_capital: -.082 * 20000
     crds_revenus_capital: -.005 * 20000
-    irpp: -1461
+    impot_revenu_restant_a_payer: -1461
 
 - name: f4ba_2010
   description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros en 2010
@@ -85,7 +85,7 @@
   input:
     f4ba: 20000
   output:
-    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2 + 1.1 + 0.3) * 0.01 * 20000
     csg_revenus_capital: -.082 * 20000
     crds_revenus_capital: -.005 * 20000
 
@@ -107,7 +107,7 @@
   input:
     f3vg: 20000
   output:
-    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2 + 1.1 + 0.3) * 0.01 * 20000
     csg_revenus_capital: -.082 * 20000
     crds_revenus_capital: -.005 * 20000
 
@@ -140,7 +140,7 @@
   input:
     f3vz: 20000
   output:
-    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2 + 1.1 + 0.3) * 0.01 * 20000
     csg_revenus_capital: -.082 * 20000
     crds_revenus_capital: -.005 * 20000
 
@@ -156,7 +156,7 @@
     crds_revenus_capital: -100
     prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
     revenu_categoriel_capital: 7000
-    irpp: 0
+    impot_revenu_restant_a_payer: 0
 
 - name: f4babbbcbd_2006
   description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros, un déficit imputable sur les revenus fonciers de 1000 euros
@@ -172,7 +172,7 @@
     crds_revenus_capital: -95
     prelevements_sociaux_revenus_capital_hors_csg_crds: -437
     revenu_categoriel_foncier: 19000
-    irpp: -1399
+    impot_revenu_restant_a_payer: -1399
 
 - name: ps_rev_exon_ir_2016
   description: Montant de prélèvements sociaux sur revenus exonérés d'impôt sur le revenus en 2016
@@ -210,7 +210,7 @@
   input:
     f3vg: 10000
   output:
-    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.099)
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
 
 - name: ps_revcap_bareme_f2dc_2013
   description: Montant de prélèvements sociaux sur revenus du capital soumis au barème (2DC) en 2013
@@ -256,4 +256,3 @@
     f4ba: 10000
   output:
     prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
-

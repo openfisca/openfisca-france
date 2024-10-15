@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur le revenu pour la Mayotte
+metadata:
+  short_label: Mayotte
+  order:
+  - taux
+  - plafond

@@ -1,0 +1,10 @@
+description: Anciens barèmes de l'impôt général sur le revenu (IGR, 1915-1944)
+metadata:
+  short_label: Impôt général sur le revenu
+  label_en: Thresholds and marginal tax rates of the IGR tax
+  order:
+  - bareme_igr_1915_1916
+  - bareme_igr_1917_1918
+  - bareme_igr_1919_1935
+  - bareme_igr_1936_1941
+  - bareme_igr_1942_1944

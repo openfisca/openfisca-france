@@ -1,0 +1,11 @@
+description: Plafonds du Complément de libre choix de mode de garde (CMG)
+metadata:
+  documentation_start: true
+  short_label: Plafonds du CMG
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
+  order:
+  - premier_plafond_ne_adopte_avant_04_2014
+  - deuxieme_plafond_ne_adopte_avant_04_2014
+  - premier_plafond_ne_adopte_apres_04_2014
+  - deuxieme_plafond_ne_adopte_apres_04_2014
+  - montant_maximal_prise_en_charge

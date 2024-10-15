@@ -1,0 +1,8 @@
+description: Âge limite (strict) pour être considéré comme enfant à charge
+values:
+  2001-01-01:
+    value: 20
+metadata:
+  short_label: Âge limite
+  unit: year
+documentation: À partir de 2000, une seule limite d'âge pour tous les enfants. (https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000568187)

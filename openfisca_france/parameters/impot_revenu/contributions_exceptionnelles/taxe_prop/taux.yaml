@@ -1,0 +1,20 @@
+description: Taux
+values:
+  1947-01-01:
+    value: null
+  1948-01-01:
+    value: 0.18
+  1958-01-01:
+    value: 0.22
+  1959-01-01:
+    value: 0.09
+  1960-01-01:
+    value: 0.08
+  1961-01-01:
+    value: 0.06
+  1970-01-01:
+    value: null
+metadata:
+  ipp_csv_id: tp_taux
+  unit: /1
+documentation: En principe, le taux de la taxe proportionnelle est de 18% pour l'imposition des revenus des années 1948-1957 et de 22% pour l'imposition des revenus de 1958.  En pratique, ce système " proportionnel" admettait de nombreuses exceptions, Le taux de la taxe complémentaire est de 9% lors de l'imposition des revenus de 1959, de 8% lors de l'imposition des revenus de 1960 puis de 6% lors de l'imposition des revenus des années 1961-1969; mais les "artisans et assimilés" et les BNC "autres que les produits des charges et offices" bénéficient d'un abattement de 4400 nouveauxfrancs (3000 nouveaux francs pour les autres bénéfices des professions non-salariés), ainsi que d'un taux réduit à 3% à partir de l'imposition des revenus de 1964; puis l'abattement général fut porté à 30000 francs lors de l'imposition des revenus de 1969, et la taxe complémentaire fut définitivement supprimée en 1970 (elle fut prélevée pour la dernière fois au titre de l'imposition des revenus de 1969)

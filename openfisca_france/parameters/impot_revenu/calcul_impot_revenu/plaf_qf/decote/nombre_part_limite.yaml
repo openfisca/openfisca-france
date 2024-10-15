@@ -1,0 +1,15 @@
+description: Nombre de part limite de la décote de l'impôt sur le revenu
+values:
+  1950-01-01:
+    value: null
+  1964-01-01:
+    value: 1.5
+  1967-01-01:
+    value: null
+  1969-01-01:
+    value: 2
+  1973-01-01:
+    value: null
+metadata:
+  short_label: Nombre de parts max
+  ipp_csv_id: nbp_dec

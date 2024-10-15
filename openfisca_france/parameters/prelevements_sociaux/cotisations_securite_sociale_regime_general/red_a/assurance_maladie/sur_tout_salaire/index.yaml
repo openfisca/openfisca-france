@@ -1,4 +1,7 @@
-description: Cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974) pour l'assurance maladie, sur tout salaire
+description: Cotisations de sécurité sociale (SS) des artistes du spectacle pour l'assurance maladie, sur tout salaire
 metadata:
-  ux_name: Sur tout salaire
-  description_en: SSCs for artists (1960-1974)
+  short_label: Sur tout salaire
+  label_en: SSCs for artists
+  order:
+  - employeur
+  - employe

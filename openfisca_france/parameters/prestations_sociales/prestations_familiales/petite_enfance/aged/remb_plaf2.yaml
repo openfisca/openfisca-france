@@ -1,0 +1,14 @@
+description: Plafond des remboursements trimestriels (sous conditions de resources), Allocation de garde d'enfant à domicile (AGED)
+values:
+  2001-07-01:
+    value: 9997
+  2002-01-01:
+    value: 1524.03
+  2002-07-01:
+    value: 1548
+  2003-07-01:
+    value: 1574
+  2004-07-01:
+    value: null
+metadata:
+  unit: /1

@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur les intérêts d'emprunts
+metadata:
+  short_label: Intérêts d'emprunts
+  order:
+  - plafond
+  - increment

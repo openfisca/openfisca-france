@@ -1,0 +1,8 @@
+description: Majorations (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie à domicile (APA)
+metadata:
+  short_label: Majorations
+  label_en: Attendance allowance for individuals living at home (APA)
+  order:
+  - majoration_repit
+  - majoration_hospitalisation
+documentation: "Deux majorations dépendent de la situation du proche aidant: le plafond peut être majoré lorsque le proche aidant a besoin de répit (évalué par une équipe médico-sociale), ou en cas d'hospitalisation du proche aidant. Dans le premier cas le montant maximum de la majoration est fixé de manière annuelle, dans le second cas il est fixé par hospitalisation."

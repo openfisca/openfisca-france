@@ -1,0 +1,7 @@
+description: Réduction d'impôts sur les intérêts d'emprunt pour reprise de société
+metadata:
+  short_label: Intérêts emprunt reprise société
+  order:
+  - taux
+  - plafond
+documentation: Art. 199 terdecies-0 B du CGI. Loi 2003-721 du 1 août 2003 - art. 42 JORF 5 août 2003

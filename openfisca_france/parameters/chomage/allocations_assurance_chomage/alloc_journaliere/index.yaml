@@ -1,0 +1,23 @@
+description: Allocation journalière spéciale de l'assurance chômage
+metadata:
+  short_label: Allocation journalière spéciale
+  label_en: Special UI scheme for economic layoffs
+  order:
+  - partie_fixe
+  - partie_proportionnelle
+  - montant_minimum
+  - montant_maximum
+documentation: |-
+  L'allocation spéciale remplace l'ancienne allocation supplémentaire d'attente depuis la Loi du 16 janvier 1979. Allocation destinée aux salariés licenciés pour motif économique structurel ou conjoncturel, âgés de moins de 60 ans lors de la rupture du contrat
+  L'allocation est constituée d'une partie fixe et d'une partie proportionnelle dégressive. Un minimum est fixé pour chaque semestre, et un minimum est valable toute le temps où est perçue l'allocation, en pourcentage du Smic, ou pourcentage du Smic + partie fixe
+  Création de l'allocation supplémentaire d'attente par l'accord du 14/10/1974. Les conditions pour en bénéficier sont les suivantes:
+  licenciement pour motif économique d'ordre cononcturel ou structurel
+  avoir appartenue pendant 6 mois au régime d'allocation d'assurance de l'UNEDIC au cours des 12 derniers mois précédant rupture du contrat de travail
+  être âgé de mois de 60 ans à la rupture du contrat et être physiquement apte à l'exercice d'un emploi
+  être inscrit comme demandeur d'emploi
+  ne pas être chômeur saisonnier
+  A partir de janvier 1983, allocation de base versée à partir du 3ème trimestre
+  Ordonnance 84-198 du 21/03/1984: Suppression de l'allocation journalière spéciale
+  Sources:
+  - Légifrance
+  - Barème social périodique (1980, 1982)

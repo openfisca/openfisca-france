@@ -1,0 +1,30 @@
+description: Majoration régionale TICPE super
+metadata:
+  label_en: Regional surcharge - gasoline
+  order:
+  - alsace
+  - aquitaine
+  - auvergne
+  - basse_normandie
+  - bourgogne
+  - bretagne
+  - centre
+  - champagne_ardennes
+  - corse
+  - franche_comte
+  - haute_normandie
+  - ile_france
+  - languedoc_roussillon
+  - limousin
+  - lorraine
+  - midi_pyrenees
+  - nord_pas_calais
+  - pays_loire
+  - picardie
+  - poitou_charentes
+  - rhone_alpes
+  - paca
+documentation: |-
+  À partir de 2017, la région Île-de-France est autorisée à augmenter sa majoration de 1,89€ pour financer le dézonage du Pass Navigo.
+  Au 1er juillet 2016, la majoration plafond est mise en application en Poitou-Charentes du fait de l'harmonisation avec l'Aquitaine et le Limousin avec lesquelles elle a fusionné.
+  Pour l'augmentation en Corse en 2017, voir la circulaire du 30/12/2016 fixant les Taux de la Taxe Intérieure de Consommation régionalisés pour les supercarburants et les gazoles applicables au 1er janvier 2017.

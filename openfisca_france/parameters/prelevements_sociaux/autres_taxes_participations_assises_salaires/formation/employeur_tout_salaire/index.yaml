@@ -1,0 +1,10 @@
+description: Participation des employeurs à la formation professionnelle continue (PEFPC)
+metadata:
+  short_label: PEFPC
+  label_en: Employer's participation to lifelong professional training
+  order:
+  - formprof_moins_de_11_salaries
+  - formprof_11_salaries_et_plus
+  - formprof_moins_de_10_salaries
+  - formprof_entre_10_et_19_salaries
+  - formprof_20_salaries_et_plus

@@ -1,0 +1,81 @@
+description: Taux sous 5 PSS de cotisation de sécurité sociale (SS) pour les assurés actifs, branche maladie, maternité, invalidité, décès (MMID) des professions libérales
+values:
+  1981-10-01:
+    value: 0.0795
+  1984-01-01:
+    value: 0.0845
+  1987-07-01:
+    value: 0.0865
+  1989-04-01:
+    value: 0.0885
+  1991-08-01:
+    value: 0.0915
+  1991-10-01:
+    value: 0.0975
+  1992-04-01:
+    value: 0.0945
+  1995-04-01:
+    value: 0.098
+  1997-01-01:
+    value: 0.09
+  1998-01-01:
+    value: 0.053
+  2001-01-01:
+    value: 0.059
+  2013-01-01:
+    value: null
+metadata:
+  short_label: Taux sous 5 PSS
+  label_en: SSCs for sickness and maternity benefits (professionals)
+  ipp_csv_id: mmid_plib_0_5
+  unit: /1
+  reference:
+    1981-10-01:
+      title: Décret 81-813 du 27/08/1981
+    1984-01-01:
+      title: Décret 84-817 du 03/09/1984 - art. 1
+    1987-07-01:
+      title: Décret 87-483 du 1/07/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700929
+    1989-04-01:
+      title: Décret 89-143 du 3/03/1989 - art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774335&cidTexte=JORFTEXT000000881840
+    1991-08-01:
+      title: Décret 91-745 du 31/07/1991 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775818&cidTexte=JORFTEXT000000571495
+    1991-10-01:
+      title: Décret 91-745 du 31/07/1991 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775818&cidTexte=JORFTEXT000000571495
+    1992-04-01:
+      title: Décret 92-295 du 30/03/1992 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776239&cidTexte=JORFTEXT000000722788
+    1995-04-01:
+      title: Décret 95-337 du 30/03/1995 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006778145&cidTexte=JORFTEXT000000553219
+    1997-01-01:
+      title: Décret 96-1167 du 26/12/1996 - art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771607&cidTexte=JORFTEXT000000197223
+    1998-01-01:
+      title: Décret 97-1252 du 29/121997 - art. 3
+    2001-01-01:
+      title: Décret 2000-1285 du 26/12/2000 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779708&cidTexte=JORFTEXT000000219610
+    2013-01-01:
+      title: Décret 2012-1551 du 28/12/2012 - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026881533&cidTexte=JORFTEXT000026864962
+  official_journal_date:
+    1981-10-01: "1981-08-30"
+    1984-01-01: "1984-09-05"
+    1987-07-01: "1987-07-03"
+    1989-04-01: "1989-03-04"
+    1991-08-01: "1991-08-01"
+    1991-10-01: "1991-08-01"
+    1992-04-01: "1992-03-31"
+    1995-04-01: "1995-03-31"
+    1997-01-01: "1996-12-29"
+    1998-01-01: "1997-12-30"
+    2001-01-01: "2000-12-29"
+    2013-01-01: "2012-12-30"
+  notes:
+    1998-01-01:
+    - title: Cotisations sur pension seulement pour les bénéficiaires fiscalement domiciliés à l'étranger

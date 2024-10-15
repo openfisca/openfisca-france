@@ -17,3 +17,14 @@
     alternant: [false, true, true]
   output:
     locapass_eligibilite_jeunes: [true, true, false]
+
+- name: Condition de date d'entrée dans le logement pour l'éligibilité
+  period: 2021-10
+  input:
+    age: [29, 29, 29]
+    activite: [chomeur, chomeur, chomeur]
+    alternant: [false, false, false]
+    statut_occupation_logement: [locataire_vide, locataire_vide, locataire_vide]
+    date_entree_logement: [2021-11-01, 2021-08-01, 2020-10-01]
+  output:
+    locapass_eligibilite: [true, true, false]

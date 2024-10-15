@@ -1,0 +1,14 @@
+description: Part supplémentaire de quotient familial (IR) par enfant issu du conjoint décédé
+values:
+  1951-01-01:
+    value: 1
+  2008-01-01:
+    value: null
+metadata:
+  short_label: Enfant du conjoint décédé, à charge pour la personne veuve
+  unit: part_quotient_familial
+  reference:
+    1951-01-01:
+      title: Article 194 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006308280/2003-01-01/
+documentation: Avant 2008, était indiqué à l'article 194 du CGI, «le veuf qui a à sa charge un ou plusieurs enfants non issus de son mariage avec le conjoint décédé est traité comme un célibataire ayant à sa charge le même nombre d'enfants.»

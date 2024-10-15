@@ -1,0 +1,15 @@
+description: Plafond de la valeur d'achat du logement pour bénéficier de la réduction d'impôt Scellier
+values:
+  2009-01-01:
+    value: 300000
+metadata:
+  short_label: Plafond
+  last_value_still_valid_on: "2024-03-19"
+  ipp_csv_id: plafond_Scellier
+  unit: currency
+  reference:
+    2009-01-01:
+      title: Loi n° 2008-1443 du 30 décembre 2008 (LF rectificative pour 2008), art. 31
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000020014790&idArticle=LEGIARTI000020042277&dateTexte=20090327&categorieLien=id#LEGIARTI000020042277
+  official_journal_date:
+    2009-01-01: "2008-12-31"

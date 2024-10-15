@@ -6,7 +6,7 @@
     f2tt_2016: 100000
     f2tu_2016: 30000
   output:
-    irpp: -15350 # Montant obtenu sur le simulateur de la DGFiP
+    impot_revenu_restant_a_payer: -15350 # Montant obtenu sur le simulateur de la DGFiP
     impots_directs: -15350
 
 - name: ir_prets_participatifs_2017
@@ -16,7 +16,7 @@
   input:
     f2tt: 100000
   output:
-    irpp: -27305 # Montant obtenu sur le simulateur de la DGFiP
+    impot_revenu_restant_a_payer: -27305 # Montant obtenu sur le simulateur de la DGFiP
     impots_directs: -27305
 
 - name: ir_prets_participatifs_2018
@@ -26,6 +26,6 @@
   input:
     f2tt: 100000
   output:
-    irpp: 0
+    impot_revenu_restant_a_payer: -0.128*100000
     prelevement_forfaitaire_unique_ir: -0.128*100000
     impots_directs: -0.128*100000

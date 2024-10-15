@@ -18,7 +18,7 @@ def preload_parametres_locaux_taxe_habitation(year = None, variable_to_load = No
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
+            utf8_reader = codecs.getreader('utf-8')
             csv_reader = csv.DictReader(utf8_reader(csv_file))
             return {
                 row['code_insee_commune']: row[variable_to_load]

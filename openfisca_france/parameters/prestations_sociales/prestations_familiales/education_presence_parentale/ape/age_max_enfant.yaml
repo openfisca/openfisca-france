@@ -1,0 +1,30 @@
+description: Limite d'âge (stricte) pour bénéficier de l'Allocation parentale d'éducation (APE, 1985-2004)
+values:
+  1985-01-01:
+    value: 3
+metadata:
+  short_label: Âge maximal de l'enfant
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
+  ipp_csv_id: ape_agemax
+  unit: year
+  reference:
+    1985-01-01:
+      title: Loi 85-17 du 04/01/1985, art. 6 et 7
+    1996-07-01:
+      title: Loi 96-604 du 05/07/1996, art. 47 (modif art. L532-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006284502&cidTexte=JORFTEXT000000193679
+    2004-01-01:
+      title: Loi 2003-1199 du 18/12/2003, art. 60 (modif art. L511-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+  official_journal_date:
+    1985-01-01: "1985-01-05"
+    1996-07-01: "1996-07-06"
+    2004-01-01: "2003-12-19"
+  notes:
+    1985-01-01:
+    - title: La loi 85-17 du 4 janvier 1985 crée l'Allocation parentale d'éducation
+    1996-07-01:
+    - title: APE pendant 1 an en cas d'adoption d'un enfant entre 2 et 16 ans. APE pendant 3 ans si adoption simultanée d'au moins 3 enfants
+    2004-01-01:
+    - title: Remplacée par PAJE. Toujours pas de cumul avec CF
+documentation: Hors adoption après l'âge de 2 ans.

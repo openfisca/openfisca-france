@@ -1,0 +1,9 @@
+description: Allocation de présence parentale (APP)
+metadata:
+  documentation_start: true
+  short_label: Allocation de présence parentale (APP)
+  label_en: "Parental presence allowance (AAP): Amounts"
+  order:
+  - montant_taux_plein
+  - montant_taux_partiel
+  - duree_max_allocation

@@ -1,4 +1,6 @@
-description: Cotisation spéciale assurance maladie des Cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
+description: Cotisation spéciale assurance maladie des cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
 metadata:
-  ux_name: Branche assurance maladie
-  description_en: SSCs on unemployment benefits
+  short_label: Branche assurance maladie
+  label_en: SSCs on unemployment benefits
+  order:
+  - taux

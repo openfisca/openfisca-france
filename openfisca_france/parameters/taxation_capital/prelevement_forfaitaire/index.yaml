@@ -1,0 +1,6 @@
+description: Prélèvement forfaitaire sur les revenus du capital
+metadata:
+  order:
+  - liberatoire_taux_fixe
+  - liberatoire_assurance_vie
+  - partir_2018

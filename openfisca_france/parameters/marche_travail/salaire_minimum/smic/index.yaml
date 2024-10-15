@@ -1,0 +1,17 @@
+description: Salaire minimum de croissance (Smic)
+metadata:
+  short_label: Smic
+  label_en: Minimum wage
+  order:
+  - smic_b_horaire
+  - nb_heures_travail_mensuel
+  - smic_b_mensuel
+documentation: |-
+  La durée légale du travail est de 40 h de 1950 à 1982, puis de 39h puis de 35h à partir de 1999.
+  Plusieurs Smic mensuels coïncident entre 1999 et 2005 (voir feuille GMR).
+  Attention aux arrondis pour passer du smic horaire au smic mensuel (173h et 1/3 d'heure)
+  Les montants des DOM-TOM ne sont pas indiqués. Les abattements pour les moins de 18 ans sont à clarifier
+
+  Sources de la législation :
+  Journal Officiel via www.legifrance.gouv.fr depuis 1990; Insee de 1980 à 1989; site web législation CNAV et www.legifrance.gouv.fr de 1970 à 1980;
+  Barème social périodique entre 1976 et 2001.

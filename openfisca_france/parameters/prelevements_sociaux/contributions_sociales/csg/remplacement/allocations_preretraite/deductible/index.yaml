@@ -1,0 +1,6 @@
+description: Contribution sociale généralisée (CSG) déductible sur les allocations de préretraite
+metadata:
+  short_label: CSG déductible
+  order:
+  - taux_plein
+  - taux_reduit

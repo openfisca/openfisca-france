@@ -1,0 +1,26 @@
+description: Montant minimum de l'abattement sur recettes des microentreprises
+values:
+  1979-01-01:
+    value: null
+  1991-01-01:
+    value: 2000
+  2001-01-01:
+    value: 305
+metadata:
+  short_label: Montant minimum
+  ipp_csv_id: abtmin_micro
+  unit: currency_next_year
+  reference:
+    1979-01-01:
+      title: Loi 80-30 du 18/01/1980 (LF pour 1980)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000705191
+    1991-01-01:
+      title: Loi 91-1322 du 30/12/1991 (LF pour 1992)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000356342
+    2001-01-01:
+      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+  official_journal_date:
+    1979-01-01: "1980-01-19"
+    1991-01-01: "1991-12-31"
+    2001-01-01: "2001-12-29"

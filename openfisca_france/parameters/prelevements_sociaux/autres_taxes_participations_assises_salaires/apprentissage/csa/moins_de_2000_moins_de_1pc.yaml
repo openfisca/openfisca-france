@@ -1,0 +1,100 @@
+description: Taux pour les entreprises de moins de 2000 salariés et avec moins de 1% d'alternants
+values:
+  1972-07-01:
+    value: null
+  2011-01-01:
+    value: 0.002
+  2012-01-01:
+    value: 0.0025
+  2013-01-01:
+    value: 0.003
+  2014-01-01:
+    value: 0.004
+metadata:
+  short_label: Plus de 2000, moins de 1%
+  last_value_still_valid_on: "2024-05-16"
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  unit: /1
+  reference:
+    1972-07-01:
+      title: Loi 71-576 et loi 71-578, art. 3 du 16/07/1971
+    1973-07-01:
+      title: Décret 72-1208 du 27/12/1972
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000695977&categorieLien=id
+    1978-01-01:
+      title: Loi 78-653 du 22/06/1978 (LFR pour 1978)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000704926
+    1979-01-01:
+      title: Loi 78-1239 du 29/12/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886458
+    1980-01-01:
+      title: Loi 80-30 du 18/01/80 (LF pour 1980), art. 21
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273412&cidTexte=JORFTEXT000000705191
+    1995-01-01:
+      title: Référence législative manquante
+    1997-01-01:
+      title: Décret 97-222 du 13/03/1997, art. 2 I, II
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006667520&cidTexte=JORFTEXT000000381287
+    2004-01-01:
+      title: Loi 2004-1484 du 30/12/2005 (LF pour 2005), art. 37
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006322119&cidTexte=JORFTEXT000000789373
+    2005-01-01:
+      title: Loi 2004-1484 du 30/12/2005 (LF pour 2005), art. 37
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006322119&cidTexte=JORFTEXT000000789373
+    2006-01-01:
+      title: Loi 2004-1484 du 30/12/2005 (LF pour 2005), art. 37
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006322119&cidTexte=JORFTEXT000000789373
+    2007-01-01:
+      title: Décret 2008-244 du 07/03/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/3/7/2008-244/jo/texte
+    2009-01-01:
+      title: Loi 2009-1437 du 24/11/2009, art. 27
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021329825&cidTexte=JORFTEXT000021312490
+    2011-01-01:
+      title: Loi 2011-900 du 29/07/2011 (LFR pour 2011), art. 23
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024415833&cidTexte=JORFTEXT000024413775
+    2012-01-01:
+      title: Loi 2012-354 du 14/12/2012 (LFR pour 2012), art. 22
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025511700&cidTexte=JORFTEXT000025509584
+    2013-01-01:
+      title: Loi 2012-354 du 14/12/2012 (LFR pour 2012), art. 22
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025511700&cidTexte=JORFTEXT000025509584
+    2014-01-01:
+    - title: Loi 2013-1279 du 29/12/2013 (LFR pour 2013), art. 60
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028428572&cidTexte=JORFTEXT000028400921
+    - title: Loi 2012-354 du 14/12/2012 (LFR pour 2012), art. 22
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025511700&cidTexte=JORFTEXT000025509584
+    - title: Article L6242-1 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043701803/2024-05-16/
+  official_journal_date:
+    1972-07-01: "1971-07-17"
+    1973-07-01: "1972-12-29"
+    1978-01-01: "1978-06-22"
+    1997-01-01: "1997-03-14"
+    2007-01-01: "2008-03-12"
+    2011-01-01: "2011-07-30"
+    2012-01-01: "2012-03-15"
+    2013-01-01: "2012-03-15"
+    2014-01-01: 2013-12-29; 2012-03-15
+  notes:
+    1972-07-01:
+    - title: La Loi 71-578 ramène le taux de la taxe d'apprentissage de 0,60% à 0,50%
+    1973-07-01:
+    - title: Le décret précise que les lois de 1971 sur l'apprentissage entreront en vigueur en Alsace-Moselle en 1973. Toutefois, le décret d'application 72-280 du 12/04/1972, art. 58 qui devait préciser le taux de la taxe applicable est introuvable sur Légifrance.
+    1978-01-01:
+    - title: En 1978, création d'une cotisation supplémentaire de 0,2 % pour financer la formation en alternance (référence législative manquante)
+    1995-01-01:
+    - title: Mémento pratique Fiscal 1995, ed. Francis Lefebvre
+    1997-01-01:
+    - title: En Alsace-Moselle, taux de la taxe d'apprentissage réduit au montant, fixé à l'article 140 K, de la fraction de cette taxe réservée au développement de l'apprentissage
+    2004-01-01:
+    - title: Instauration d'une contribution additionnelle, la CDA
+    2011-01-01:
+    - title: Modulation du taux de la CSA en fonction de l'effectif en alternance.
+    2012-01-01:
+    - title: Modification du barème des taux de CSA
+    2014-01-01:
+    - title: "Suppression de la contribution au développement :\_Article 1599\_quinquies A (abrogé au 1 janvier 2014)"
+    2019-01-01:
+    - title: La taxe d'apprentissage et la Participation employeur à la formation professionnelle fusionnent.
+documentation: "Notes :\n(i) La taxe d'apprentissage est créée par la Loi de finances du 13\_juillet 1925.\nLa loi 77-704 du 05/07/1977créé une cotisation supplémentaire de 0,2% pour financer la formation en alternance; elle doit être versée de manière exceptionnelle en 1977.\nElle a été maintenue par la LFR pour 1978.\nEn 1990, la contribution supplémentaire de 0,10% est remplacée par une cotisation pérenne de 0,10% pour la formation en alternance.\n(ii) Une incertitude subsiste sur le taux applicable en Alsace-Lorraine entre 1973 et 1978 inclus.\n(iii) \"La date d'effet correspond à la période de versement de la taxe. La taxe d'apprentissage et la CSA sont dues en N aux taux en vigueur en N sur les rémunérations versées en N.\"\"\n(iv) A l'heure actuelle (taxe payable en 2016, sur les rémunérations de 2015):\n  La taxe d'apprentissage et la CDA sont payées par toutes les entreprises assujetties à l'IR ou à l'IS; celles employant des apprentis en sont exonérées.\n  La CSA est due par les entreprises qui emploient moins d'un nombre-cible de \"jeunes\" et de travailleurs en alternance.\n  Le taux de CSA applicable varie à la fois avec la taille de l'entreprise et avec le pourcentage de salariés en alternance dans l'effectif annuel moyen de l'entreprise. Nous reportons ici uniquement le taux pour les entreprises de moins de 2000 salariés, dont les alternants, VIE et contrats CIFRE représentent moins de 1 % de l'effectif total de l'entreprise.\n     Les autres taux sont, en 2019, de (art. 1609 quinvicies du CGI) :\n     0,6 % (0,312 % en Alsace-Moselle) si le nombre de salariés titulaires d'un contrat de professionnalisation ou d’apprentissage et de jeunes accomplissant un VIE ou bénéficiant d'une CIFRE est inférieur à 1 % de l'effectif annuel moyen et si l'effectif total est supérieur à 2000 salariés ;\n     0,2 % (0,104 % en Alsace-Moselle) si le nombre de salariés et de jeunes appartenant aux catégories susvisées est compris entre 1 et 2 % de l’effectif annuel moyen\_;\n     0,1 % (0,052 % en Alsace-Moselle) si le nombre de salariés et de jeunes appartenant aux catégories susvisées est compris entre 2 et 3 % de l’effectif annuel moyen\_;\n     0,05 % (0,026 % en Alsace-Moselle) si le nombre de salariés et de jeunes appartenant aux catégories susvisées est compris entre 3 et 5 % de l’effectif annuel moyen.\nSources :\nTaxe d'apprentissage : CGI, art. 224 et s. et art. 140 A et s. de l'annexe I ; pour l'Alsace-Moselle, art. 1599 ter J.\nCSA : CGI, art. 230 H puis (à partir de 2014, cf. Décret 2014-549, JO 2014-05-29) 1609 quinvicies"

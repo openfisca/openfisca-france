@@ -1,0 +1,22 @@
+description: Prélèvement libératoire sur les bons ou contrats de capitalisation et placements de même nature (assurance-vie), Produits bénéficiant des personnes établies dans des Etats "non-coopératifs", lors du dénouement du contrat
+values:
+  2010-01-01:
+    value: 0.5
+  2013-01-01:
+    value: 0.75
+metadata:
+  short_label: Produits bénéficiant des personnes établies dans des Etats "non-coopératifs"
+  last_value_still_valid_on: "2024-04-08"
+  label_en: Levy in discharge on life insurance
+  unit: /1
+  reference:
+    2010-01-01:
+      title: Loi 2009-1674 du 30/12/2009, art. 22
+      href: https://www.legifrance.gouv.fr/eli/loi/2009/12/30/2009-1674/jo/article_22
+    2013-01-01:
+      title: Loi 2012-1509 du 29/12/2012, art. 9
+      href: https://www.legifrance.gouv.fr/eli/loi/2012/12/29/2012-1509/jo/article_9
+  official_journal_date:
+    2010-01-01: "2009-12-31"
+    2013-01-01: "2012-12-30"
+documentation: Etats "non-coopératifs" définis à l'article 238-0 A du CGI.

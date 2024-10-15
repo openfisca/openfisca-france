@@ -1,0 +1,13 @@
+description: Réductions et abattements de l'impôt de solidarité sur la fortune
+metadata:
+  short_label: Réductions et abattements
+  label_en: Discount and rebate
+  order:
+  - reduction_enfant_charge
+  - reduction_enfant_garde_alternee
+  - abattement_residence_principale
+documentation: |-
+  L'IGF (1982-1986) n'a jamais bénéficié de réduction pour personne à charge ou d'abattement sur la résidence principale. La réduction est instaurée à la création de l'ISF à partir du 1er janvier 1989, tandis que l'abattement est introduit à partir de 1999 par la loi de finances pour 1999.
+  Référence dans les codes législatifs :
+  - La réduction pour personne à charge portant sur l'ISF est codifié à l'article 885 V du CGI.
+  - L'abattement sur la valeur vénale réelle de la résidence principale dans le calcul de l'assiette de l'ISF est codifié à l'article 885 S du CGI.

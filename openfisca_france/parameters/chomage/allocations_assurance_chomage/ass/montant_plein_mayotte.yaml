@@ -1,0 +1,84 @@
+description: Montant journalier à taux plein à Mayotte de l'allocation de solidarité spécifique (ASS)
+values:
+  2001-01-01:
+    value: 13.1
+  2002-01-01:
+    value: 13.36
+  2003-01-01:
+    value: 13.56
+  2004-01-01:
+    value: 13.76
+  2005-01-01:
+    value: 14
+  2006-01-01:
+    value: 14.25
+  2007-01-01:
+    value: 14.51
+  2008-01-01:
+    value: 14.74
+  2009-01-01:
+    value: 14.96
+  2010-01-01:
+    value: 15.14
+  2011-01-01:
+    value: 15.37
+  2012-07-01:
+    value: 3.91
+  2013-07-01:
+    value: 5.96
+  2014-07-01:
+    value: 8.05
+  2015-01-01:
+    value: 8.12
+  2016-04-01:
+    value: 8.13
+  2017-04-01:
+    value: 8.15
+  2018-04-01:
+    value: 8.23
+  2021-04-01:
+    value: 8.46
+  2022-04-01:
+    value: 8.61
+  2022-07-01:
+    value: 8.95
+  2023-04-01:
+    value: 9.09
+  2024-04-01:
+    value: 9.51
+metadata:
+  short_label: Montant plein Mayotte
+  last_value_still_valid_on: "2024-03-12"
+  label_en: Special UI scheme
+  unit: currency
+  reference:
+    2012-07-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000026565447&dateTexte=20181118
+    2013-07-01:
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/6/26/ETSD1304539D/jo/texte/fr
+    2014-07-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029337211&categorieLien=id
+    2015-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030171179&categorieLien=id
+    2016-04-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000032711723&categorieLien=id
+    2017-04-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034678220&categorieLien=id
+    2018-04-01:
+      href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031781118&cidTexte=LEGITEXT000006072050&dateTexte=20180420&fastPos=1&fastReqId=505933634&oldAction=rechCodeArticle
+    2021-04-01:
+      title: Décret n° 2021-496 du 23/04/2021, Article 1
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000043415805&categorieLien=id
+    2022-04-01:
+      title: Décret n° 2022-494 du 06/04/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045522929
+    2022-07-01:
+      title: Loi n° 2022-1158 du 16/08/2022, Article 9
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046186749
+    2023-04-01:
+      title: Décret n° 2023-301 du 22/04/2023, Article 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047478026
+    2024-04-01:
+      title: Décret n° 2024-402 du 30/04/2024, Article 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049490751
+documentation: Le prestations.minima_sociaux.ass.montant_plein de la métropole est pris par défaut lorsque la valeur spécifique à Mayotte est non répertoriée.

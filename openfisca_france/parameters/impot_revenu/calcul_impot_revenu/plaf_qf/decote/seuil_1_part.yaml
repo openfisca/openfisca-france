@@ -1,0 +1,50 @@
+description: Seuil (QF = 1) de la décote de l'impôt sur le revenu
+values:
+  1950-01-01:
+    value: null
+  1981-01-01:
+    value: 2600
+  1982-01-01:
+    value: 3200
+  1983-01-01:
+    value: 3700
+  1984-01-01:
+    value: 4000
+  1985-01-01:
+    value: 4300
+  1986-01-01:
+    value: null
+metadata:
+  short_label: Seuil QF=1
+  last_value_still_valid_on: "2023-01-05"
+  ipp_csv_id: decote_np1
+  unit: currency_next_year
+  reference:
+    1981-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+    1982-01-01:
+      title: Loi 82-1126 du 29/12/1982 (LF pour 1983)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000503959
+    1983-01-01:
+      title: Loi 83-1179 du 29/12/1983 (LF pour 1984)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000319977
+    1984-01-01:
+      title: Loi 84-1208 du 29/12/1984 (LF pour 1985)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880778
+    1985-01-01:
+      title: Loi 85-1403 du 30/12/1985 (LF pour 1986)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878230
+    1986-01-01:
+      title: Loi 86-1317 du 30/12/1986 (LF pour 1987)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000317305
+  official_journal_date:
+    1981-01-01: "1981-12-31"
+    1982-01-01: "1982-12-30"
+    1983-01-01: "1983-12-30"
+    1984-01-01: "1984-12-30"
+    1985-01-01: "1985-12-31"
+    1986-01-01: "1986-12-31"
+  notes:
+    1986-01-01:
+    - title: La décote s'applique uniquement aux contribuables ayant 1 ou 1,5 part avant 1986, c'est généralisé à tous après 1986. Demi-part généralisée à tous les enfants après le 3ème (loi 30/12/1986).

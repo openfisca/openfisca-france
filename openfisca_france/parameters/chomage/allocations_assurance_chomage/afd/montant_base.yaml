@@ -1,0 +1,94 @@
+description: Montant de base de l'allocation de fin de droits
+values:
+  1979-10-01:
+    value: 22
+  1981-10-01:
+    value: 30.23
+  1983-10-01:
+    value: 37.8
+  1984-04-01:
+    value: 40
+  1984-10-01:
+    value: 41.4
+  1985-04-01:
+    value: 43
+  1985-10-01:
+    value: 63
+  1986-07-01:
+    value: 64.48
+  1987-04-01:
+    value: 66.8
+  1987-10-01:
+    value: 67.94
+  1990-01-01:
+    value: 68.29
+  1991-01-01:
+    value: 69.45
+  1991-07-01:
+    value: 70.07
+  1992-01-01:
+    value: 70.71
+  1992-07-01:
+    value: 71.98
+  1993-01-01:
+    value: 72.92
+  1994-07-01:
+    value: 74.01
+metadata:
+  short_label: Montant de base
+  label_en: UI for long term unemployment ("Allocation de fin de droits")
+  ipp_csv_id: afd_fixe
+  unit: currency
+  reference:
+    1979-10-01:
+      title: Circulaire Unédic 79-36 de septembre 1979
+    1983-10-01:
+      title: Arrêté du 1 février 1984
+    1984-04-01:
+      title: Décret 84-417 du 30/05/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000520452
+    1984-10-01:
+      title: Décret 84-1180 du 26/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885896&categorieLien=id
+    1985-04-01:
+      title: Décret 85-600 du 10/06/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517158
+    1985-10-01:
+      title: Arrêté du 11/12/1985 portant agrément de la Convention du 19/11/1985
+    1987-10-01:
+      title: Arrêté du 21/08/1988 portant agrément de la convention du 06/07/1988
+    1990-01-01:
+      title: Décret 90-216 du 8/03/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000341959
+    1991-01-01:
+      title: Décret 91-146 du 7/02/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000344384
+    1991-07-01:
+      title: Décret 91-824 du 29/08/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000174235&categorieLien=id
+    1992-01-01:
+      title: Décret 92-124 du 5/02/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000175721
+    1992-07-01:
+      title: Décret 92-718 du 27/07/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000359779&categorieLien=id
+    1993-01-01:
+      title: Décret 93-116 du 27/01/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000541711&categorieLien=id
+    1994-07-01:
+      title: Décret 94-627 du 22/07/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000184476&dateTexte=20180910
+  official_journal_date:
+    1983-10-01: "1984-03-11"
+    1984-04-01: "1984-06-05"
+    1984-10-01: "1984-12-27"
+    1985-04-01: "1985-06-14"
+    1985-10-01: "1986-01-24"
+    1987-10-01: "1988-09-22"
+    1990-01-01: "1990-03-10"
+    1991-01-01: "1991-02-08"
+    1991-07-01: "1991-08-30"
+    1992-01-01: "1992-02-07"
+    1992-07-01: "1992-07-29"
+    1993-01-01: "1993-01-29"
+    1994-07-01: "1994-07-24"

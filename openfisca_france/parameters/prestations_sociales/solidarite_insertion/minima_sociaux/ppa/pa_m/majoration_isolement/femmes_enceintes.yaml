@@ -1,0 +1,16 @@
+description: Majoration pour les parents isolés ou femmes enceintes (en % de la base RSA) de la prime pour l'activité (PPA)
+values:
+  2016-01-01:
+    value: 1.28412
+metadata:
+  short_label: Parents isolés et femmes enceintes
+  last_value_still_valid_on: "2022-08-03"
+  label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
+  ipp_csv_id: pa_maj5
+  unit: /1
+  reference:
+    2016-01-01:
+      title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665104
+  official_journal_date:
+    2016-01-01: "2015-12-22"

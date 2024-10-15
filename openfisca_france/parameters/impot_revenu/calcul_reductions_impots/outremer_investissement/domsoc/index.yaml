@@ -1,0 +1,10 @@
+description: Réductions d'impôt pour les investissements d'outre-mer dans le logement social
+metadata:
+  short_label: Logement social
+  order:
+  - retrocession_plaf
+  - retrocession_taux
+  - partie_non_retro_plaf_abs
+  - taux1
+  - taux2
+  - iDOMls_taux

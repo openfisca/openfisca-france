@@ -1,0 +1,11 @@
+description: Assurances vie et assimilées
+values:
+  1979-07-01:
+    value: 0.048
+  1981-01-01:
+    value: 0.0515
+  1990-01-01:
+    value: null
+metadata:
+  ipp_csv_id: taxe_assu_vie_et_assimiliees
+  unit: /1

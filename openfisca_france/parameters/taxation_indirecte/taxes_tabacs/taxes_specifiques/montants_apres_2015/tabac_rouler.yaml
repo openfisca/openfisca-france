@@ -1,0 +1,66 @@
+description: Montant de la taxe spécifique les tabacs fine coupe destinés à rouler les cigarettes
+values:
+  2015-01-01:
+    value: 67.5
+  2018-03-01:
+    value: 68.5
+  2019-03-01:
+    value: 72.5
+  2019-11-01:
+    value: 76.2
+  2020-03-01:
+    value: 79.8
+  2020-11-01:
+    value: 82.6
+  2022-01-01:
+    value: 83.5
+  2023-03-01:
+    value: 91.7
+  2024-01-01:
+    value: 99.7
+  2025-01-01:
+    value: 104.2
+metadata:
+  short_label: Tabacs à rouler
+  last_value_still_valid_on: "2024-04-26"
+  ipp_csv_id: tx_spec_tabac_rouler
+  unit: currency
+  reference:
+    2015-01-01:
+      title: Loi 2014-1655 du 29/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029990432
+    2018-03-01:
+      title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018) - art. 17
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358470&cidTexte=JORFTEXT000036339090
+    2019-03-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2019-11-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2020-03-01:
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    2020-11-01:
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    2022-01-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603389
+    2023-03-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046805433/2023-03-01/
+    2024-01-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046816473/2024-01-01/
+    2025-01-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046816473/2024-01-01/
+  official_journal_date:
+    2015-01-01: "2014-12-30"
+    2018-03-01: "2017-12-31"
+    2019-03-01: "2017-12-31"
+    2019-11-01: "2017-12-31"
+    2020-03-01: "2020-12-30"
+    2020-11-01: "2020-12-30"
+documentation: A partir de 2015 la part spécifique est en euro et non plus en pourcentage

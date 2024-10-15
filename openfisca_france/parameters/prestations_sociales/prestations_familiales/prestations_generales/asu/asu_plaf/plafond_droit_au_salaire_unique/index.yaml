@@ -1,0 +1,9 @@
+description: Plafond de ressources pour le droit au salaire unique, pour l'Allocation de salaire unique (ASU)
+metadata:
+  short_label: Droit au salaire unique
+  label_en: Right to a single salary
+  order:
+  - sans_enfant
+  - 1_enfant
+  - 2_enfants
+  - par_enfant_supplementaire

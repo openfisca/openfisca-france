@@ -1,0 +1,10 @@
+description: Taux (SB)
+values:
+  2009-01-01:
+    value: 0.25
+  2011-01-01:
+    value: 0.22
+  2012-01-01:
+    value: null
+metadata:
+  unit: /1

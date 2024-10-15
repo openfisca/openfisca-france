@@ -1,0 +1,20 @@
+description: Nombre de fractions de versement de l'Allocations postnatales (APN)
+values:
+  1975-04-25:
+    value: 3
+  1985-01-01:
+    value: null
+metadata:
+  short_label: Nombre de fractions de versement
+  label_en: "Postnatal allowance (APN): Rate and payment"
+  ipp_csv_id: nb_frac
+  reference:
+    1975-04-25:
+      title: Loi 75-6 du 03/01/1975Décret 75-244 du 24/04/1975
+  official_journal_date:
+    1975-04-25: 1975-01-04; 1975-04-15
+  notes:
+    1975-04-25:
+    - title: La loi 75-6 du 3 janvier 1975 crée l'APN
+    1985-01-01:
+    - title: "Allocation remplacée par Allocation au jeune enfant le 01/01/1985 : majoration pour 3e naissance ou plus supprimée pour les enfants conçus après le 31/12/84."

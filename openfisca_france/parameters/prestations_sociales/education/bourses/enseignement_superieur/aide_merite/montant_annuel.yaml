@@ -1,0 +1,11 @@
+description: Montant annuel de l'aide au mérite pour un étudiant de l'enseignement supérieur
+values:
+  2020-07-31:
+    value: 900
+metadata:
+  short_label: Montant annuel
+  unit: currency
+  reference:
+    2020-07-31:
+      title: Arrêté du 20/07/2020, art. 4
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042541955

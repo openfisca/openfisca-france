@@ -1,0 +1,8 @@
+description: Taux de la Prestation partagée d'éducation de l'enfant (PreParE) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  short_label: Taux
+  label_en: Rate
+  order:
+  - taux_plein
+  - taux_partiel_50
+  - taux_partiel_entre_50_80

@@ -1,0 +1,24 @@
+description: Cotisations du régime des auto-entrepreneurs
+metadata:
+  documentation_start: true
+  short_label: Régimes des auto-entrepreneurs
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
+  order:
+  - cotisations_prestations
+  - formation_professionnelle
+documentation: |-
+  (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.
+  Chaque mois ou chaque trimestre, selon son choix, il doit calculer et payer l’ensemble de ses charges sociales personnelles en fonction de son chiffre d’affaires réalisé au cours de cette période selon les pourcentages indiqués
+  Les charges sociales ainsi calculées sont définitives et ne feront pas l’objet de régularisation contrairement aux modalités de calcul classiques.
+  Le forfait social comprend les cotisations :
+  d’assurance maladie-maternité, d’indemnité journalière
+  de CSG/CRDS
+  d’allocations familiales
+  de retraite de base
+  de la retraite complémentaire obligatoire
+  du régime invalidité et décès
+  (ii) Les auto-entrepreneurs sont dispensés de contribution à la formation professionnelle jusqu'en 2011.
+  Sources :
+  Cotisation des indépendants "auto-entrepreneurs" : D. 131-6-1 du Code de la sécurité sociale jusqu'en 2017 ; devient D. 131-5-1 avec le Décret 2017-1894
+  Contribution à la formation professionnelle des artisans : 1609 quatervicies B du CGI, puis L. 6331-48 du Code du travail
+  Contribution à la formation professionnelle des commerçants et professions libérales : L. 6331-48 du Code du travail

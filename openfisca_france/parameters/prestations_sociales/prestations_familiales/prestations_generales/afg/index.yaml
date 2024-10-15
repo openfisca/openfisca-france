@@ -1,0 +1,8 @@
+description: Allocation pour frais de garde (AFG)
+metadata:
+  documentation_start: true
+  short_label: AFG
+  label_en: "Child care costs allowance (AFG): General conditions and amounts"
+  order:
+  - afg_c
+  - afg_plaf

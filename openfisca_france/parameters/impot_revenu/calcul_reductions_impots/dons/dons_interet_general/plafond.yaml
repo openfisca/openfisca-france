@@ -1,0 +1,24 @@
+description: Plafond des dons d'intérêt général (dons aux oeuvres, )
+values:
+  1975-01-01:
+    value: null
+  1976-01-01:
+    value: 0.01
+  1987-01-01:
+    value: 0.0125
+  1996-01-01:
+    value: 0.0175
+  1999-01-01:
+    value: 0.06
+  2001-01-01:
+    value: 0.1
+  2002-01-01:
+    value: 0.2
+metadata:
+  ipp_csv_id: plaf_donsintgene
+  unit: /1
+  reference:
+    2002-01-01:
+      title: Loi 2003-709 du 01/08/2003 - art. 1 (V)
+  official_journal_date:
+    2002-01-01: "2003-08-02"

@@ -1,7 +1,0 @@
-description: Case GU
-unit: currency
-values:
-  2002-01-01:
-    value: 45760.0
-  2004-01-01:
-    value: null

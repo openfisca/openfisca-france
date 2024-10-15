@@ -1,9 +1,0 @@
-description: Taux d'imposition maximal
-unit: /1
-values:
-  2006-01-01:
-    value: 0.6
-  2007-01-01:
-    value: 0.5
-  2011-01-01:
-    value: null

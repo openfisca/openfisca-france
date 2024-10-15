@@ -1,0 +1,45 @@
+description: Taux sous 4 PSS de la cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès des artisans-commerçants
+values:
+  1970-04-01:
+    value: null
+  1974-10-01:
+    value: 0.025
+  1976-10-01:
+    value: 0.035
+  1977-10-01:
+    value: 0.04
+  1979-04-01:
+    value: 0.07
+  1981-10-01:
+    value: null
+metadata:
+  short_label: Sous 4 PSS
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  ipp_csv_id: mmid_ac_ret_0_4
+  unit: /1
+  reference:
+    1970-04-01:
+      title: Arrêté du 26/03/1971
+    1974-10-01:
+    - title: Décret 74-810 du 28/09/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000857732
+    - title: Loi 73-1193 du 27/12/1973
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509757
+    1976-10-01:
+      title: Décret 76-641 du 15/07/1976
+    1977-10-01:
+      title: Décret 77-857 du 26/07/1977
+    1979-04-01:
+      title: Décret 79-203 du 12/03/1979
+    1981-10-01:
+      title: Décret 81-813 du 27/08/1981
+  official_journal_date:
+    1970-04-01: "1971-04-14"
+    1974-10-01: 1975-08-08; 1973-12-30
+    1976-10-01: "1976-07-16"
+    1977-10-01: "1977-07-28"
+    1979-04-01: "1979-03-14"
+    1981-10-01: "1981-08-30"
+  notes:
+    1974-10-01:
+    - title: Décision d'une harmonisation progressive entre régimes des artisans et commerçants et régime général achevée au plus tard le 31 décembre 1977

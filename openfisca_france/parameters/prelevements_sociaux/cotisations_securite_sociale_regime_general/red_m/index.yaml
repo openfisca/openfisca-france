@@ -1,4 +1,13 @@
-description: Cotisations de sécurité sociale (SS) des professions médicales à temps partiel (1961-1974)
+description: Cotisations de sécurité sociale (SS) des professions médicales à temps partiel
 metadata:
-  ux_name: Professions Médicals Temps Partiel
-  description_en: SSCs for physicians working part-time (1961-1974)
+  short_label: Professions médicales à temps partiel
+  label_en: SSCs for physicians working part-time
+  order:
+  - assurance_maladie
+  - assurance_vieillesse
+  - accidents_travail
+  - allocations_familiales
+  - assurances_sociales_avant_1967
+documentation: |-
+  Les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1961 et 1974.
+  A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

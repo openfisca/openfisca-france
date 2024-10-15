@@ -1,0 +1,129 @@
+description: Allocation d'insertion (AI) pour la catégorie 5 devenant catégories diverses après 1984
+values:
+  1979-07-01:
+    value: 20
+  1979-10-01:
+    value: 22
+  1980-04-01:
+    value: 23.5
+  1981-10-01:
+    value: 30.23
+  1983-01-01:
+    value: 45
+  1984-04-01:
+    value: 40
+  1984-10-01:
+    value: 41.4
+  1985-04-01:
+    value: 43
+  1986-01-01:
+    value: 43.7
+  1986-07-01:
+    value: 44.4
+  1992-01-01:
+    value: 43.7
+  1998-01-01:
+    value: 56.37
+  1999-01-01:
+    value: 58.06
+  2000-01-01:
+    value: 59.22
+  2001-01-01:
+    value: 60.52
+  2002-01-01:
+    value: 9.41
+  2003-01-01:
+    value: 9.55
+  2004-01-01:
+    value: 9.69
+  2005-01-01:
+    value: 9.86
+  2006-01-01:
+    value: 10.04
+  2006-11-16:
+    value: null
+metadata:
+  short_label: Catégorie 5 / divers
+  label_en: Insertion allowance (AI)
+  ipp_csv_id: ai_detenu
+  unit: currency
+  reference:
+    1979-07-01:
+      title: Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+    1979-10-01:
+      title: Circulaire Unédic 79-36 de septembre 1979
+    1980-04-01:
+      title: Conseil d'administration de l'Unédic du 27/03/1980
+    1981-10-01:
+      title: Circulaire Unédic 80-40 du 23/09/1980
+    1983-01-01:
+      title: Décret 82-991 du 24/11/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701672&categorieLien=id
+    1984-04-01:
+      title: Décret 84-417 du 30/05/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000520452
+    1984-10-01:
+      title: Décret 84-1180 du 26/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885896&categorieLien=id
+    1985-04-01:
+      title: Décret 85-600 du 10/06/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517158
+    1986-01-01:
+      title: Décret 86-110 du 24/01/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684315&categorieLien=id
+    1986-07-01:
+      title: Décret 86-110 du 24/01/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684315&categorieLien=id
+    1998-01-01:
+      title: Décret 98-151 du 10/03/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000739809
+    1999-01-01:
+      title: Décret 98-1180 du 23/12/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000575730&categorieLien=id
+    2000-01-01:
+      title: Décret 99-1044 du 14/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000580251&categorieLien=id
+    2001-01-01:
+      title: Décret 2000-1260 du 26/12/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000388703&categorieLien=id
+    2002-01-01:
+      title: Décret 2001-1354 du 28/12/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000775182&categorieLien=id
+    2003-01-01:
+      title: Décret 2002-1615 du 31/12/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/12/31/2002-1615/jo/texte
+    2004-01-01:
+      title: Décret 2003-1374 du 31/12/2003
+      href: https://www.legifrance.gouv.fr/eli/decret/2003/12/31/2003-1374/jo/texte
+    2005-01-01:
+      title: Décret 2004-1537 du 30/12/2004
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000805739
+    2006-01-01:
+      title: Décret 2005-1700 du 29/12/2005
+      href: https://www.legifrance.gouv.fr/eli/decret/2005/12/29/2005-1700/jo/texte
+    2006-11-16:
+      title: Loi 2005-1719, art. 154, du 30/12/2005
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006322579&cidTexte=JORFTEXT000000634802
+  official_journal_date:
+    1979-07-01: "1979-05-20"
+    1983-01-01: "1982-11-25"
+    1984-04-01: "1984-06-05"
+    1984-10-01: "1984-12-27"
+    1985-04-01: "1985-06-14"
+    1986-01-01: "1986-01-25"
+    1986-07-01: "1986-01-25"
+    1998-01-01: "1998-03-11"
+    1999-01-01: "1998-12-24"
+    2000-01-01: "1999-12-15"
+    2001-01-01: "2000-12-27"
+    2002-01-01: "2001-12-30"
+    2003-01-01: "2003-01-01"
+    2004-01-01: "2004-01-01"
+    2005-01-01: "2005-01-01"
+    2006-01-01: "2005-12-30"
+    2006-11-16: "2005-12-31"
+  notes:
+    1992-01-01:
+    - title: "Allocation d'insertion abrogée pour femmes et jeunes: valable pour détenus libérés, apatrides, salariés expatriés…etc"
+    2006-11-16:
+    - title: Remplacée par allocation temporaire d'attente (ATA).

@@ -1,0 +1,13 @@
+description: Taux de la contribution sociale généralisée (CSG) imposable sur les indemnités journalières (IJ)
+values:
+  1997-01-01:
+    value: 0.024
+metadata:
+  short_label: Taux
+  last_value_still_valid_on: "1997-01-01"
+  unit: /1
+  reference:
+    1997-01-01:
+      title: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
+  official_journal_date:
+    1997-01-01: "1996-12-29"

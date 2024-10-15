@@ -1,0 +1,13 @@
+description: Montant maximum du séjour pour les bénéficiaires de l'aide Départ 18-25
+values:
+  2014-09-05:
+    value: 150
+  2021-01-01:
+    value: 200
+  2021-06-02:
+    value: 300
+  2021-09-30:
+    value: 200
+metadata:
+  short_label: Montant maximum
+  unit: currency

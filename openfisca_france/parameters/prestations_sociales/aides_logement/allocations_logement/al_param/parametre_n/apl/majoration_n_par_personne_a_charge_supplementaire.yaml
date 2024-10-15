@@ -1,0 +1,14 @@
+description: Majoration par personne à charge supplémentaire du paramètre « N »  pour le calcul de l'APL du secteur accession et l'APL des logements-foyers cas général
+values:
+  1986-01-01:
+    value: 0.4
+  1988-07-01:
+    value: 0.5
+metadata:
+  short_label: Majoration par personne à charge supplémentaire
+  last_value_still_valid_on: "2023-02-23"
+  unit: /1
+  reference:
+    1988-07-01:
+      title: Article D832-25, 1° du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878710/2019-09-01/

@@ -1,0 +1,7 @@
+description: N (0 personnes à charge), Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
+metadata:
+  short_label: N (0 personnes à charge)
+  label_en: Parameters for new home-buyers (APL)
+  order:
+  - isole
+  - menage

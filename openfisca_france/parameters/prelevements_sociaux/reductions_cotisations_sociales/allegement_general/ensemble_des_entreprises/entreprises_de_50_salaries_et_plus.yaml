@@ -1,0 +1,58 @@
+description: Valeur maximale du coefficient de l'allègement bas salaires pour toute entreprise de 50 salariés et plus, depuis 2020, des cotisations de sécurité sociale (SS)
+values:
+  2020-01-01:
+    value: 0.3245
+  2021-01-01:
+    value: 0.3246
+  2022-01-01:
+    value: 0.3235
+  2023-01-01:
+    value: 0.3231
+  2024-01-01:
+    value: 0.3234
+metadata:
+  short_label: Coefficient maximal pour les employeurs de 50 salariés et plus
+  last_value_still_valid_on: "2024-05-15"
+  label_en: General SSC reductions, so called Fillon reductions
+  ipp_csv_id: tx_fillon_20_
+  unit: /1
+  reference:
+    2020-01-01:
+    - title: Décret n° 2020-2 du 02/01/2020, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039749443
+    - title: Article D241-7 du Code de la Sécurité Sociale
+      href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000006185779/2020-01-01
+    - title: Article L813-5 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038839912
+    2021-01-01:
+      title: Article D241-7 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042869486/2020-12-30/
+    2022-01-01:
+    - title: Article D241-7 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044944431/2022-01-01/
+    - title: Article L241-13, III.§3. du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042912368/2021-01-01/
+    - title: Décret 2021-1936 du 30/12/2021, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044793095
+    2023-01-01:
+      title: Article D241-7 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046843821/2023-01-01/
+    2024-01-01:
+      title: Article D241-7 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497/2023-12-31/
+  official_journal_date:
+    2020-01-01: "2020-01-03"
+    2022-01-01: "2021-12-30"
+    2023-01-01: "2022-12-30"
+    2024-01-01: "2023-12-30"
+  notes:
+    2020-01-01:
+    - title: Avant le 1er janvier 2020, l'article D241-7 du Code de la Sécurité Sociale faisait référence à l'article L834-1 du Code de la Sécurité Sociale pour le seuil relatif à l'effectif de l'entreprise.  Depuis 2020, il est fait référence à l'article L813-5 du Code de la construction et de l'habitation, le seuil passant ainsi de 20 à 50 salariés. Entre le 2 janvier 2020 et le 24 février 2020, l'article D241-7 du Code de la Sécurité Sociale faisait référence à l'article L813-4 du Code de la construction et de l'habitation mais cela semble être une erreur (Décret n° 2020-2 du 02/02/2020, article 2) corrigée par le Décret n° 2020-158 du 24/02/2020, article 2.
+documentation: |-
+  Notes :
+  Formule de calcul depuis le 01/01/2011
+  Réduction = Salaire brut annuel* Réduction maximale/(Plafond - 1) *(Plafond * Smic annuel/Salaire brut annuel - 1)
+  Sources :
+  L241-13 du CSS (principe de la réduction dégressive)
+  D241-7 du CSS (formule et taux)
+  Avec la loi PACTE, le seuil est passé de 20 à 50 salariés au 1er janvier 2020.

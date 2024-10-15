@@ -1,0 +1,24 @@
+description: Taux de la réduction d'impôts pour les sommes versées sur un compte épargne codéveloppement (2010 - 2011)
+values:
+  2007-01-01:
+    value: null
+  2009-01-01:
+    value: 0.4
+  2011-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  ipp_csv_id: tx_codev
+  unit: /1
+  reference:
+    2009-01-01:
+      title: Loi n°2009-1673 du 30/12/2009 (LF pour 2010) - art. 89
+    2011-01-01:
+      title: Loi n°2010-1657 du 29/12/2010 (LF pour 2011) - art. 107
+  official_journal_date:
+    2009-01-01: "2009-12-31"
+  notes:
+    2009-01-01:
+    - title: Avant les revenus 2009, les versements sur le compte étaient déductibles du revenu global.
+    2011-01-01:
+    - title: Les comptes existants deviennent de simples comptes épargne.

@@ -1,0 +1,6 @@
+description: Imposition de la plus-value tirée d'une cession d’actifs numériques
+metadata:
+  short_label: Actifs numériques
+  order:
+  - plancher
+  - taux

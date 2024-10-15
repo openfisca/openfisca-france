@@ -259,11 +259,6 @@
         2018-04: 150
         2018-03: 150
         2018-02: 150
-      rsa_forfait_asf:
-        2018-05: 115.30
-        2018-04: 115.30
-        2018-03: 109.65
-        2018-02: 109.65
       paje_base: 0
       rsa_isolement_recent:
         2018: true
@@ -285,7 +280,8 @@
       enfant1:
         date_naissance: 2005-03-10
   output:
-    rsa: 550.93 * (1.28412 + 0.42804) - 550.93 * 1.5 * 0.16 - 115.30 - 134
+    rsa_forfait_asf: 92.68 #0.225 * 411.92
+    rsa: 550.93 * (1.28412 + 0.42804) - 550.93 * 1.5 * 0.16 - 92.68 - 134
 
 - name: RSA Cas N°8
   period: 2018-05
@@ -299,11 +295,6 @@
         2018-04: 200
         2018-03: 200
         2018-02: 200
-      rsa_forfait_asf:
-        2018-05: 230.60
-        2018-04: 230.60
-        2018-03: 219.30
-        2018-02: 219.30
       af:
         2018-05: 131.16
         2018-04: 131.16
@@ -332,7 +323,8 @@
       enfant2:
         date_naissance: 2008-01-04
   output:
-    rsa: 550.93 * (1.28412 + 2 * 0.42804) - 550.93 * 1.8 * 0.165 - 230.60 - 131.16 - 134
+    rsa_forfait_asf: 185.36 #0.225 * 411.92 * 2
+    rsa: 550.93 * (1.28412 + 2 * 0.42804) - 550.93 * 1.8 * 0.165 - 185.36 - 131.16 - 134
 
 - name: RSA Cas Non Passant N°1
   period: 2018-05
@@ -633,7 +625,7 @@
           2021-02: 0
           2021-01: 0
   output:
-    rsa_forfait_logement: 67.77
+    rsa_forfait_logement: 67.84
     rsa_base_ressources: 960
     rsa: 0
 
@@ -669,6 +661,118 @@
           2021-02: 0
           2021-01: 0
   output:
-    rsa_forfait_logement: 67.77
+    rsa_forfait_logement: 67.84
     rsa_base_ressources: 943
     rsa: 0
+
+
+- name: RSA Cas period > Oct 2024 et ressource sur M-2 M-4 ( à jumeler avec un test avant Octobre 2024 en M-1 M-3)
+  period: 2025-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      departement_experimentation_rsa: true
+      aide_logement:
+        2025-01: 200
+        2024-12: 200
+        2024-11: 200
+        2024-10: 200
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2025-01: 100
+          2024-11: 100
+          2024-10: 100
+          2024-09: 100
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2025-01: 67
+          2024-11: 67
+          2024-10: 67
+          2024-09: 67
+  output:
+    rsa:
+      2025-01: 633.9946
+
+- name: RSA Cas period > Oct 2024 hors département d'expérimentation
+  period: 2025-01
+  absolute_error_margin: 0.05
+  input:
+    famille:
+      parents: [personne1, personne2]
+      departement_experimentation_rsa: false
+      aide_logement:
+        2025-01: 200
+        2024-12: 200
+        2024-11: 200
+        2024-10: 200
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2025-01: 100
+          2024-11: 100
+          2024-10: 100
+          2024-09: 100
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2025-01: 67
+          2024-11: 67
+          2024-10: 67
+          2024-09: 67
+  output:
+    rsa:
+      2025-01: 689.613
+
+
+- name: RSA Cas period < Oct 2024 et ressource sur M-1 M-3 ( à jumeler avec un test après Octobre 2024 en M-2 M-4)
+  period: 2024-09
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      aide_logement:
+        2024-09: 200
+        2024-08: 200
+        2024-07: 200
+        2024-06: 200
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2024-09: 100
+          2024-08: 100
+          2024-07: 100
+          2024-06: 100
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2024-09: 67
+          2024-08: 67
+          2024-07: 67
+          2024-06: 67
+  output:
+    rsa:
+      2024-09: 633.9946

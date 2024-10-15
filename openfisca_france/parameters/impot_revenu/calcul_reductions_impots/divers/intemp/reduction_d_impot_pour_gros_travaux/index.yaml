@@ -1,0 +1,5 @@
+description: Réduction d'impôt pour gros travaux
+metadata:
+  order:
+  - taux
+  - plafond

@@ -1,0 +1,15 @@
+description: Forfait social
+metadata:
+  short_label: Forfait social
+  label_en: Contribution levied on various earnings supplements ("Forfait social")
+  order:
+  - taux_plein
+  - taux_reduit_1
+  - taux_reduit_2
+  - taux_reduit_3
+  - seuil_effectif_prevoyance_complementaire
+documentation: |-
+  Principe de la contribution :
+  Le forfait social est une contribution payée par l'employeur, et assise sur les gains et rémunérations assujettie à la CSG et à la CRDS mais exclus de l'assiette des cotisations sociales.
+  Références dans le CSS :
+  Art. L 137-15 à L 137-17 du CSS.

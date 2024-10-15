@@ -18,9 +18,8 @@
     menage:
       personne_de_reference: ind0
   output:
-    notredame: 300.0
     iai: 7344.0
-    irpp: -7344.0
+    impot_revenu_restant_a_payer: -7344.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 45000.0
@@ -48,9 +47,8 @@
     menage:
       personne_de_reference: ind0
   output:
-    notredame: 750
     iai: 6564.0
-    irpp: -6564.0
+    impot_revenu_restant_a_payer: -6564.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 45000.0

@@ -1,0 +1,11 @@
+description: Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
+metadata:
+  short_label: Paramètres d'accession
+  label_en: Parameters for new home-buyers (APL)
+  order:
+  - constante_coefficient_k
+  - multiplicateur_n
+  - n_0_personnes_charge
+  - taux_loyer_minimum_lo_apl_accession
+  - seuils_de_revenus
+  - majoration_loyer_minimum_lo

@@ -1,0 +1,7 @@
+description: Autres assurances
+values:
+  1979-07-01:
+    value: 0.09
+metadata:
+  ipp_csv_id: taxe_autres_assu
+  unit: /1

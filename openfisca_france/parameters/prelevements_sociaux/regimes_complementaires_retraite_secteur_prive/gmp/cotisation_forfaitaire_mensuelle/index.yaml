@@ -1,0 +1,8 @@
+description: Cotisation forfaitaire mensuelle pour la garantie minimale de points (GMP) aux régimes complémentaires de retraite du secteur privé
+metadata:
+  short_label: Cotisation forfaitaire mensuelle
+  label_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
+  order:
+  - cotisation_totale
+  - part_salariale
+  - part_patronale

@@ -1,0 +1,29 @@
+description: Majoration du plafond à partir du 3ème enfant (en € ou en % du plafond de ressources avec 0 enfant),de l'Allocation pour jeune enfant (APJE)
+values:
+  1996-07-01:
+    value: 0.3
+  2007-01-01:
+    value: null
+metadata:
+  short_label: 3ème enfant et plus
+  label_en: "Allowance for Young Children (APJE): Thresholds for means-testing"
+  ipp_csv_id: maj_plaf_apje_adopt_enf3pl
+  unit: /1
+  reference:
+    1996-07-01:
+    - title: Ordonnance 96-51 du 24/01/1996
+    - title: Décret 96-553 du 20/06/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000742893
+    2007-01-01:
+    - title: Décret 2003-1393 du 31/12/2003, art. 2 (abroge art. R531-9 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
+    - title: Loi 2003-1199 du 18/12/2003, art. 60 II (modif L531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+  official_journal_date:
+    1996-07-01: 1996-01-25; 1996-06-22
+    2007-01-01: 2004-01-01; 2003-12-19
+  notes:
+    1996-07-01:
+    - title: Création du plafond de ressources. Les montants sont fixés par la Circulaire du 08/08/1996 relative à diverses mesures concernant les familles
+    2007-01-01:
+    - title: "Loi 2003-1199 : crée la PAJE qui remplace en partie l'APJE. Mais la transition est progressive, de janvier 2004 à décembre 2006 inclus"

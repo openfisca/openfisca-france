@@ -1,0 +1,40 @@
+description: Taux de la cotisation pour la formation professionnelle du régime des des auto-entrepreneurs pour la prestation de services (artisans) d'Alsace
+values:
+  2009-01-01:
+    value: null
+  2011-01-01:
+    value: 0.00176
+  2017-01-01:
+    value: 0.003
+metadata:
+  short_label: Taux - Prestation de services (artisans) Alsace
+  last_value_still_valid_on: "2022-04-12"
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
+  ipp_csv_id: auto_art_form_als_ca
+  unit: /1
+  reference:
+    2009-01-01:
+    - title: Décret 2008-1348 du 18/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951795
+    - title: Décret 2008-1349 du 18/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951825
+    2011-01-01:
+    - title: Loi 2010-1657 du 29/12/2010 de finances pour 2011, art. 137
+    - title: Article 1609 quatervicies B du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023363626/2011-01-01
+    2017-01-01:
+    - title: LOI n° 2016-1917 du 29 décembre 2016 de finances pour 2017 - article 103
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000033760722/2017-01-01
+    - title: Article 1609 quatervicies B du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033814192/2017-01-01/
+    - title: LOI n°2021-1900 du 30 décembre 2021 - art. 121
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044794656/2022-01-01
+    - title: Article L6331-48 du code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044981898/2022-01-01
+  official_journal_date:
+    2009-01-01: "2008-12-19"
+    2011-01-01: "2010-12-30"
+    2017-01-01: "2017-03-10"
+  notes:
+    2017-01-01:
+    - title: Depuis le 1er janvier 2017, la CFP est unifiée pour tous les artisans (en et hors Alsace)

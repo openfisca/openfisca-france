@@ -1,0 +1,8 @@
+description: Plafonds de ressources entre 1978 et 1986 du Complément familial (CF)
+metadata:
+  documentation_start: true
+  short_label: Anciens plafonds de ressources
+  label_en: "Family complement (CF): Thresholds for means-testing"
+  order:
+  - plafond_revenu_brut_imposable
+  - majoration_plafond_ressources_enfant_supplementaire

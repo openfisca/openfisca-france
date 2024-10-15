@@ -1,0 +1,22 @@
+description: Plafond de la réduction d'impôts des investissements d'outre-mer dans le logement social, rétrocession 1
+values:
+  2009-01-01:
+    value: 1.86
+  2015-01-01:
+    value: 2.33
+metadata:
+  unit: /1
+  reference:
+    2009-01-01:
+    - title: Loi 2009-594 du 27/05/2009 - art. 38 (V) (modifie art. 199 undecies D du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000020672149/2009-05-29/
+    - title: Art. 199 undecies D, 4. du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028418161/2009-11-04/
+    2015-01-01:
+    - title: Loi 2013-1278 du 29/12/2013 - art. 21 (M) (modifie art. 199 undecies D du CGI)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000028402731/2014-01-01/
+    - title: Art. 199 undecies D, 4. du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028418161/2015-11-04/
+documentation: |-
+  Le taux est de 2.33 pour les investissements à compter du 01/07/2014, non du 01/01/2015, c'est une approximation.
+  Dans la législation, ces paramètres sont écrits en toutes lettres "treize fois le septième", "sept fois le troisième".

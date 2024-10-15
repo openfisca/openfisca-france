@@ -1,0 +1,10 @@
+description: abattement
+values:
+  1947-01-01:
+    value: null
+  1964-01-01:
+    value: 4400
+  1969-01-01:
+    value: null
+metadata:
+  ipp_csv_id: tp_abat_nonsal_autre

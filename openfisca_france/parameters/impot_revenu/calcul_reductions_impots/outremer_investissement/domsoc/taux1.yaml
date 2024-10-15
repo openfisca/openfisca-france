@@ -1,0 +1,8 @@
+description: Premier taux
+values:
+  2002-01-01:
+    value: 0.08
+  2008-01-01:
+    value: null
+metadata:
+  unit: /1

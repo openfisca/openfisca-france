@@ -1,0 +1,19 @@
+description: Plancher ressources APL en secteur accession R. 351-7-1
+values:
+  2002-01-01:
+    value: 6173.82
+  2002-07-01:
+    value: 6300
+  2003-07-01:
+    value: 6400
+  2007-07-01:
+    value: 8000
+metadata:
+  unit: currency
+  reference:
+    2003-07-01:
+      title: Arrêté du 30 avril 2004, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000001477395
+    2007-07-01:
+      title: Arrêté du 8 novembre 2007, art.2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000284635/

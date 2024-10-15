@@ -1,0 +1,20 @@
+description: Durée pendant laquelle la majoration pour les plus de 20 ans est versée (en année), pour les DOM des allocations familiales (AF)
+values:
+  1991-08-06:
+    value: 1
+metadata:
+  short_label: Durée versement majoration
+  last_value_still_valid_on: "2022-03-10"
+  label_en: "Family allowances (AF): Extra allowances for oversea territories"
+  ipp_csv_id: duree_maj_dom
+  unit: year
+  reference:
+    1991-08-06:
+    - title: Décret 91-761 du 5/08/1991 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775833&cidTexte=JORFTEXT000000571496
+    - title: Article L521-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029963006/2015-07-01/
+    - title: Article L751-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031323778
+  official_journal_date:
+    1991-08-06: "1991-08-06"

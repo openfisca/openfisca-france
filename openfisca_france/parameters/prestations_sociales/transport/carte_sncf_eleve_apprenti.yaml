@@ -1,0 +1,11 @@
+metadata:
+  reference:
+    href: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis
+age_apprenti:
+  values:
+    2019-06-15:
+      value: 23
+age_etudiant:
+  values:
+    2019-06-15:
+      value: 26

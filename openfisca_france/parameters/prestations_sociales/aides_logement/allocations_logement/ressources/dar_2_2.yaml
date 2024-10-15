@@ -1,0 +1,8 @@
+description: Plancher ressources AL en secteur accession R. 351-7-1
+values:
+  2002-07-01:
+    value: 3100
+  2007-07-01:
+    value: 3900
+metadata:
+  unit: currency

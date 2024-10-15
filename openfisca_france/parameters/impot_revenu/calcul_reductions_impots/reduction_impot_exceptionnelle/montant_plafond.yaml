@@ -1,0 +1,20 @@
+description: Montant plafond par part pour les deux premières parts de la réduction exceptionnelle d'impôts (2013)
+values:
+  2012-01-01:
+    value: null
+  2013-01-01:
+    value: 350
+  2014-01-01:
+    value: null
+metadata:
+  short_label: Montant plafond
+  ipp_csv_id: reduc_except_montant
+  unit: currency_next_year
+  reference:
+    2013-01-01:
+      title: Loi 2014-891 du 08/08/2014 (LFR pour 2014), art. 1
+  official_journal_date:
+    2013-01-01: "2014-08-09"
+documentation: |-
+  Montant maximum: 350 pour les célibataires, veufs ou divorcés, 700 si imposition commune
+  Plafond: 14145 * min(nombre de parts, 2)

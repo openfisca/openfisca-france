@@ -1,0 +1,8 @@
+description: Part proportionnelle au traitement brut
+metadata:
+  short_label: Part proportionnelle
+  label_en: Proportional share
+  order:
+  - deux_enfants
+  - trois_enfants
+  - enfant_supplementaire

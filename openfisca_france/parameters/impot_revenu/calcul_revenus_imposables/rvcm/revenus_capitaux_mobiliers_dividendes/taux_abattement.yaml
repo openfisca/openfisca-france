@@ -1,0 +1,23 @@
+description: Taux de l'abattement sur les revenus de capitaux mobiliers (dividendes)
+values:
+  1978-01-01:
+    value: null
+  1979-01-01:
+    value: 0.5
+  2006-01-01:
+    value: 0.4
+metadata:
+  short_label: Taux de l'abattement
+  ipp_csv_id: tx_abt_rcm
+  unit: /1
+  reference:
+    1979-01-01:
+      title: Loi 80-30 du 18/01/1980 (LF pour 1980)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000705191
+    2006-01-01:
+      title: Loi 2005-1719 du 30/12/2005 (LF pour 2006) - Art. 76
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000634802
+  official_journal_date:
+    1979-01-01: "1980-01-19"
+    2006-01-01: "2005-12-31"
+documentation: "Taux de l'abattement sur dividendes : art. 158-3-2° du CGI (ancêtre de tx_abt_rcm)"

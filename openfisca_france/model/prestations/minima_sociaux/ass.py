@@ -1,5 +1,7 @@
 from numpy import absolute as abs_, logical_and as and_
 
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 
@@ -9,8 +11,8 @@ class ass_precondition_remplie(Variable):
     label = "Éligible à l'ASS"
     definition_period = MONTH
     reference = [
-        "Article R5423-1 du Code du travail",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018525084&dateTexte=20190618&categorieLien=cid#LEGIARTI000018525084"
+        'Article R5423-1 du Code du travail',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018525084&dateTexte=20190618&categorieLien=cid#LEGIARTI000018525084'
         ]
     set_input = set_input_dispatch_by_period
 
@@ -18,6 +20,10 @@ class ass_precondition_remplie(Variable):
 class ass(Variable):
     value_type = float
     label = "Montant de l'ASS pour un individu"
+    reference = [
+        'https://www.service-public.fr/particuliers/vosdroits/F12484',
+        'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018496266/'
+        ]
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -26,7 +32,7 @@ class ass(Variable):
         ass_base_ressources = individu.famille('ass_base_ressources', period)
         en_couple = individu.famille('en_couple', period)
         residence_mayotte = individu.menage('residence_mayotte', period)
-        ass_params = parameters(period).prestations.minima_sociaux.ass
+        ass_params = parameters(period).chomage.allocations_assurance_chomage.ass
 
         elig = individu('ass_eligibilite_individu', period)
 
@@ -75,7 +81,7 @@ class ass_base_ressources_individu(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period(('year', period.start, 1)).offset(-1)
         # N-1
         last_year = period.last_year
 
@@ -88,7 +94,7 @@ class ass_base_ressources_individu(Variable):
 
         pensions_invalidite = individu('pensions_invalidite', previous_year, options=[ADD])
         revenus_locatifs = individu('revenus_locatifs', previous_year, options=[ADD])
-        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capital = individu('revenus_capital', period)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', previous_year, options=[ADD])
@@ -126,9 +132,9 @@ class ass_base_ressources_conjoint(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period(('year', period.start, 1)).offset(-1)
 
-        last_month = period.start.period('month').offset(-1)
+        last_month = Period(('month', period.start, 1)).offset(-1)
 
         ass_base_ressources_individu = individu('ass_base_ressources_individu', period)
         chomage_net_interrompue = individu('chomage_net', last_month) == 0
@@ -143,14 +149,14 @@ class ass_base_ressources_conjoint(Variable):
 
 
 def calculateWithAbatement(individu, parameters, period, ressourceName):
-    last_month = period.start.period('month').offset(-1)
+    last_month = Period(('month', period.start, 1)).offset(-1)
     has_ressources_substitution = (
         individu('chomage_net', last_month)
         + individu('indemnites_journalieres', last_month)
         + individu('retraite_nette', last_month)
         ) > 0
     # Rolling year
-    previous_year = period.start.period('year').offset(-1)
+    previous_year = Period(('year', period.start, 1)).offset(-1)
 
     ressource_year = individu(ressourceName, previous_year, options=[ADD])
     ressource_last_month = individu(ressourceName, last_month)
@@ -160,8 +166,8 @@ def calculateWithAbatement(individu, parameters, period, ressourceName):
     # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
     # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
-    tx_abat_partiel = parameters(period).prestations.minima_sociaux.ass.abat_rev_subst_conj
-    tx_abat_total = parameters(period).prestations.minima_sociaux.ass.abat_rev_non_subst_conj
+    tx_abat_partiel = parameters(period).chomage.allocations_assurance_chomage.ass.abat_rev_subst_conj
+    tx_abat_total = parameters(period).chomage.allocations_assurance_chomage.ass.abat_rev_non_subst_conj
 
     tx_abat_applique = where(has_ressources_substitution, tx_abat_partiel, tx_abat_total)
 
@@ -175,9 +181,9 @@ class ass_eligibilite_cumul_individu(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
-        "Article R5425-2 du code du travail",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018496568&dateTexte=",
-        "https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2"
+        'Article R5425-2 du code du travail',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018496568&dateTexte=',
+        'https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2'
         ]
 
     def formula_2017_09_01(individu, period):
@@ -216,12 +222,12 @@ class ass_eligibilite_individu(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
-        "Article L5423-1 du code du travail",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903847&dateTexte=&categorieLien=cid",
+        'Article L5423-1 du code du travail',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903847&dateTexte=&categorieLien=cid',
         ]
 
     def formula(individu, period, parameters):
-        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        age_max = parameters(period).chomage.allocations_assurance_chomage.ass.age_max
         sous_age_limite = individu('age_en_mois', period) <= age_max
 
         demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
@@ -232,7 +238,7 @@ class ass_eligibilite_individu(Variable):
         return demandeur_emploi_non_indemnise * ass_precondition_remplie * sous_age_limite
 
     def formula_2017_01_01(individu, period, parameters):
-        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        age_max = parameters(period).chomage.allocations_assurance_chomage.ass.age_max
         sous_age_limite = individu('age_en_mois', period) <= age_max
 
         aah_eligible = individu('aah', period) > 0

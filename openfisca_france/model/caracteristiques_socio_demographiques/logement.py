@@ -6,7 +6,7 @@ from openfisca_france.model.base import *
 class coloc(Variable):
     value_type = bool
     entity = Menage
-    label = "Vie en colocation"
+    label = 'Vie en colocation'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -14,7 +14,7 @@ class coloc(Variable):
 class logement_crous(Variable):
     value_type = bool
     entity = Menage
-    label = "Le logement est géré par les CROUS "
+    label = 'Le logement est géré par les CROUS '
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -22,7 +22,7 @@ class logement_crous(Variable):
 class logement_chambre(Variable):
     value_type = bool
     entity = Menage
-    label = "Le logement est considéré comme une chambre"
+    label = 'Le logement est considéré comme une chambre'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -31,6 +31,7 @@ class loyer(Variable):
     value_type = float
     entity = Menage
     set_input = set_input_divide_by_period
+    unit = 'currency'
     label = "Loyer ou mensualité d'emprunt pour un primo-accédant"
     definition_period = MONTH
 
@@ -39,9 +40,58 @@ class depcom(Variable):
     value_type = str
     max_length = 5
     entity = Menage
-    label = "Code INSEE (depcom) du lieu de résidence"
+    label = 'Code INSEE (depcom) de la commune du lieu de résidence'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+
+class TypesCodeInseeRegion(Enum):
+    __order__ = 'non_renseigne guadeloupe martinique guyane reunion mayotte ile_de_france centre_val_de_loire bourgogne_franche_comte normandie hauts_de_france grand_est pays_de_la_loire bretagne nouvelle_aquitaine occitanie auvergne_rhone_alpes provence_alpes_cote_d_azur corse'
+    non_renseigne = 'Non renseigné'
+    guadeloupe = '01'
+    martinique = '02'
+    guyane = '03'
+    reunion = '04'
+    mayotte = '06'
+    ile_de_france = '11'
+    centre_val_de_loire = '24'
+    bourgogne_franche_comte = '27'
+    normandie = '28'
+    hauts_de_france = '32'
+    grand_est = '44'
+    pays_de_la_loire = '52'
+    bretagne = '53'
+    nouvelle_aquitaine = '75'
+    occitanie = '76'
+    auvergne_rhone_alpes = '84'
+    provence_alpes_cote_d_azur = '93'
+    corse = '94'
+
+
+class region(Variable):
+    value_type = Enum
+    possible_values = TypesCodeInseeRegion
+    default_value = TypesCodeInseeRegion.non_renseigne
+    entity = Menage
+    label = 'Code INSEE de la région du lieu de résidence'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
+        regions_list: list[str] = parameters(period).geopolitique.regions.liste
+        regions = [
+            (parameters(period).geopolitique.regions[region], TypesCodeInseeRegion[region])
+            for region in regions_list
+            ]
+
+        regions_elig = [
+            sum([startswith(depcom, str.encode(codes_insee)) for codes_insee in parametres_region.departements]) > 0
+            for (parametres_region, _) in regions
+            ]
+        codes_insee_regions = [code_insee_region for (_, code_insee_region) in regions]
+
+        return select(regions_elig, codes_insee_regions, default = TypesCodeInseeRegion.non_renseigne)
 
 
 class charges_locatives(Variable):
@@ -55,7 +105,7 @@ class charges_locatives(Variable):
 class proprietaire_proche_famille(Variable):
     value_type = bool
     entity = Famille
-    label = "Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
+    label = 'Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -79,7 +129,7 @@ class statut_occupation_logement(Variable):
 
 
 class residence_ile_de_france(Variable):
-    label = "Le logement est situé dans la région Île-de-France"
+    label = 'Le logement est situé dans la région Île-de-France'
     value_type = bool
     entity = Menage
     definition_period = MONTH
@@ -87,7 +137,7 @@ class residence_ile_de_france(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        return sum([startswith(depcom, str.encode(departement_idf)) for departement_idf in parameters(period).geopolitique.departements_idf])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+        return sum([startswith(depcom, str.encode(departement_idf)) for departement_idf in parameters(period).geopolitique.regions.ile_de_france.departements])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
 class residence_dom(Variable):
@@ -195,16 +245,16 @@ class residence_saint_martin(Variable):
 
 
 class TypesLieuResidence(Enum):
-    non_renseigne = "Non renseigné"
-    metropole = "Métropole"
-    guadeloupe = "Guadeloupe"
-    martinique = "Martinique"
-    guyane = "Guyane"
-    la_reunion = "La réunion"
-    saint_pierre_et_miquelon = "Saint Pierre et Miquelon"
-    mayotte = "Mayotte"
-    saint_bartelemy = "Saint Bartelemy"
-    saint_martin = "Saint Martin"
+    non_renseigne = 'Non renseigné'
+    metropole = 'Métropole'
+    guadeloupe = 'Guadeloupe'
+    martinique = 'Martinique'
+    guyane = 'Guyane'
+    la_reunion = 'La réunion'
+    saint_pierre_et_miquelon = 'Saint Pierre et Miquelon'
+    mayotte = 'Mayotte'
+    saint_bartelemy = 'Saint Bartelemy'
+    saint_martin = 'Saint Martin'
 
 
 class residence(Variable):
@@ -212,7 +262,7 @@ class residence(Variable):
     possible_values = TypesLieuResidence
     default_value = TypesLieuResidence.non_renseigne
     entity = Menage
-    label = "Zone de résidence"
+    label = 'Zone de résidence'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -240,3 +290,12 @@ class residence(Variable):
                 ],
             default=TypesLieuResidence.metropole
             )
+
+
+class departement_experimentation_rsa(Variable):
+    value_type = bool
+    entity = Famille
+    default_value = False
+    label = 'Résidence dans un département expérimentant le préremplissage du RSA'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period

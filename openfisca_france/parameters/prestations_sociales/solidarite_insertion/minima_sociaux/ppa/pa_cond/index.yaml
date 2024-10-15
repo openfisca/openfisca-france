@@ -1,0 +1,7 @@
+description: Conditions générales de la prime pour l'activité (PPA)
+metadata:
+  short_label: Conditions générales
+  label_en: "Activity premium (PPA) : general requirements"
+  order:
+  - age_min
+  - seuil_aah_activite

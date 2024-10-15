@@ -1,0 +1,17 @@
+description: Minorations exceptionnelles d'impôt
+metadata:
+  label_en: Exceptional tax cuts
+  order:
+  - taux_1
+  - taux_3
+  - taux_5
+  - seuil_impot_1
+  - seuil_impot_2
+  - seuil_impot_3
+  - seuil_impot_4
+  - seuil_impot_5
+  - seuil_superieur_revenu_imposable_par_part
+  - formule_calcul_taux_en_impot
+  - formule_calcul_seuil_2
+  - formule_calcul_seuil_4
+documentation: "Sources : Tableau C-4, p.650, dans Thomas Piketty, 'Les hauts revenus en France au XXe siècle (Grasset, 2001)"

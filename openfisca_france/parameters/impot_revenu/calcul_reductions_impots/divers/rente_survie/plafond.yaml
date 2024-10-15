@@ -1,0 +1,21 @@
+description: Plafond de la réduction d'impôts sur rente survie et contrat d'épargne handicap
+values:
+  1977-01-01:
+    value: null
+  1978-01-01:
+    value: 3250
+  1982-01-01:
+    value: 3225
+  1983-01-01:
+    value: 7000
+  2001-01-01:
+    value: 1070
+  2004-01-01:
+    value: 1525
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_survie
+  unit: currency_next_year
+  notes:
+    1983-01-01:
+    - title: À partir de 1984, les bénéfices liés aux primes d'assurances vie et rentes-survie prennent la forme d'une réduction d'împôt, alors qu'ils consistaient en une déduction du revenu net.

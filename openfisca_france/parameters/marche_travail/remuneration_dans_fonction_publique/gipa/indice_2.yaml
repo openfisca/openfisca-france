@@ -1,0 +1,52 @@
+description: Indice 2
+values:
+  2008-01-01:
+    value: 54.3753
+  2009-01-01:
+    value: 54.6791
+  2010-01-01:
+    value: 55.026
+  2011-01-01:
+    value: 55.4253
+  2012-01-01:
+    value: 55.5635
+  2017-01-01:
+    value: 55.7302
+  2018-01-01:
+    value: 56.2044
+  2019-01-01:
+    value: 56.2323
+metadata:
+  short_label: Indice 2
+  label_en: Index 2
+  unit: currency
+  reference:
+    2008-01-01:
+      title: Décret 2008-539 du 06/06/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000018934143
+    2009-01-01:
+      title: Arrêté du 20/05/2009
+    2010-01-01:
+      title: "Arrêté du\_3 mai 2010"
+    2011-01-01:
+      title: "Arrêté du\_23 mars 2011"
+    2012-01-01:
+      title: "Arrêté du\_20 mars 2012"
+    2017-01-01:
+      title: Arrêté du 17/11/2017
+    2018-01-01:
+      title: Arrêté du 5 novembre 2018
+    2019-01-01:
+      title: Arrêté du 8 octobre 2019
+  official_journal_date:
+    2008-01-01: "2008-06-07"
+    2009-01-01: "2009-05-23"
+    2010-01-01: "2010-05-22"
+    2011-01-01: "2011-04-06"
+    2012-01-01: "2012-04-12"
+    2017-01-01: "2017-11-18"
+    2018-01-01: "2018-11-07"
+    2019-01-01: "2019-10-10"
+  notes:
+    2008-01-01:
+    - title: "\"Ce dispositif n’a pas vocation à être pérenne, des mesures spécifiques étant prévues pour en traiter les causes.\""

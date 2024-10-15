@@ -1,0 +1,9 @@
+description: Conditions de ressources pour exonération d'Impôt sur le Revenu
+metadata:
+  short_label: Conditions ressources
+  order:
+  - moins_de_65_ans
+  - plus_de_65_ans
+  - apprentis_avant_2005
+  - apprentis_a_partir_2005
+documentation: En application du troisième alinéa du 2° bis de l'article 5 du CGI, ces montants sont relevés chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenus. Les montants obtenus sont arrondis, s'il y a lieu, à la dizaine d'euros supérieure
