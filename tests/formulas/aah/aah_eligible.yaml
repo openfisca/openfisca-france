@@ -68,6 +68,6 @@
     age: 70
     handicap: true
     taux_incapacite: 0.85
-    activite: TypesActivite.retraite
+    activite: retraite
   output:
     aah_eligible: true

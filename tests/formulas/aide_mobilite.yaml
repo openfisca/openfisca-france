@@ -13,7 +13,7 @@
     allocation_retour_emploi_journaliere: 29.56
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
-    contrat_de_travail_type: aucune_activite
+    contrat_de_travail_type: aucun
     lieu_emploi_ou_formation: metropole_hors_corse
     date_debut_recherche_emploi: '2021-01-08'
     aide_mobilite_date_demande: '2021-01-14'
@@ -37,7 +37,7 @@
     allocation_retour_emploi_journaliere: 29.57
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
-    contrat_de_travail_type: aucune_activite
+    contrat_de_travail_type: aucun
     lieu_emploi_ou_formation: martinique
     date_debut_recherche_emploi: '2021-01-08'
     aide_mobilite_date_demande: '2021-01-14'
@@ -61,7 +61,7 @@
     allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
-    contrat_de_travail_type: [aucune_activite, aucune_activite]
+    contrat_de_travail_type: [aucun, aucun]
     lieu_emploi_ou_formation: [martinique, martinique]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
@@ -87,7 +87,7 @@
     allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
-    contrat_de_travail_type: [aucune_activite, aucune_activite]
+    contrat_de_travail_type: [aucun, aucun]
     lieu_emploi_ou_formation: [guadeloupe, saint_martin]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
@@ -107,13 +107,13 @@
     aide_mobilite_duree_trajet: 120
     nuitees: 3
     repas: 9
-    pole_emploi_categorie_demandeur_emploi: categorie_test
+    pole_emploi_categorie_demandeur_emploi: pas_de_categorie
     stagiaire: false
     contrat_aide: false
     allocation_retour_emploi_journaliere: 14.77
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
-    contrat_de_travail_type: aucune_activite
+    contrat_de_travail_type: aucun
     lieu_emploi_ou_formation: martinique
     formation_validee_pole_emploi: true
     formation_financee_ou_cofinancee: true
@@ -139,7 +139,7 @@
     allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
-    contrat_de_travail_type: [aucune_activite, aucune_activite]
+    contrat_de_travail_type: [aucun, aucun]
     lieu_emploi_ou_formation: [martinique, martinique]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
@@ -165,7 +165,7 @@
     allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
-    contrat_de_travail_type: [aucune_activite, aucune_activite]
+    contrat_de_travail_type: [aucun, aucun]
     lieu_emploi_ou_formation: [martinique, martinique]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
@@ -204,7 +204,7 @@
     contrat_aide: [false, false]
     allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [formation, formation]
-    types_activite_en_recherche_emploi: [indetermine, indetermine]
+    types_activite_en_recherche_emploi: [indeterminee, indeterminee]
     contrat_de_travail_type: [formation, formation]
     dispositifs_formation: [autre, autre]
     duree_formation: [40, 39]
@@ -232,7 +232,7 @@
     contrat_aide: false
     allocation_retour_emploi_journaliere: 14.77
     contexte_activite_pole_emploi: formation
-    types_activite_en_recherche_emploi: indetermine
+    types_activite_en_recherche_emploi: indeterminee
     contrat_de_travail_type: formation
     dispositifs_formation: permis_conduire_b
     duree_formation: 40
@@ -289,7 +289,7 @@
     contrat_aide: [false, false]
     allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [reprise_emploi, reprise_emploi]
-    types_activite_en_recherche_emploi: [indetermine, indetermine]
+    types_activite_en_recherche_emploi: [indeterminee, indeterminee]
     contrat_de_travail_type: [cdi, cdi]
     dispositifs_formation: [autre, autre]
     lieu_emploi_ou_formation: [martinique, martinique]
@@ -313,7 +313,7 @@
     aide_mobilite_duree_trajet: [20, 120]
     nuitees: [3, 3]
     repas: [9, 9]
-    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_9]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, pas_de_categorie]
     stagiaire: [false, false]
     allocation_retour_emploi_journaliere: [29.56, 34.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
