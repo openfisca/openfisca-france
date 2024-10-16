@@ -1,13 +1,13 @@
 # Changelog
 
-# 169.0.0 [#2365](https://github.com/openfisca/openfisca-france/pull/2365)
+# 169.0.0 [2357](https://github.com/openfisca/openfisca-france/pull/2357)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : toutes.
 * Détails :
   - Met à jour toutes les dépendances afin d'utiliser leurs dernières versions :
-    * Met à jour openfisca-core de la version `41` à la version `42`
+    * Met à jour openfisca-core de la version `41` à la version `43`
 
 ## 168.2.0 [2360](https://github.com/openfisca/openfisca-france/pull/2360)
 
