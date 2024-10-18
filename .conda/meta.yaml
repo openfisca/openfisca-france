@@ -43,6 +43,11 @@ test:
 
 outputs:
   - name: openfisca-france
+    files:
+      include:
+        - openfisca_france/*
+      exclude:
+        - openfisca_france/assets/taxe_habitation/source/*
 
   - name: openfisca-france-dev
     build:
