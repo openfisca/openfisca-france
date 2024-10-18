@@ -51,7 +51,6 @@ setup(
             'flake8 >=6.0.0, <7.0.0',
             'flake8-print >=5.0.0, <6.0.0',
             'flake8-quotes >=3.3.2',
-            'pytest >=7.2.2, <8.0',
             'scipy >=1.10.1, <2.0',  # Only used to test de_net_a_brut reform
             'requests >=2.28.2, <3.0',
             'yamllint >=1.30.0, <2.0'
@@ -59,7 +58,6 @@ setup(
         'casd-dev': [
             # Same as dev with packages not available at CASD removed
             'autopep8 >=2.0.2, <3.0',
-            'pytest >=7.2.2, <8.0',
             'requests >=2.28.2, <3.0',
             'scipy >=1.10.1, <2.0',  # Only used to test de_net_a_brut reform
             ]
