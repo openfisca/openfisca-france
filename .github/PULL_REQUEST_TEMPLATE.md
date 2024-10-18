@@ -24,7 +24,7 @@ Quelques conseils à prendre en compte :
 - [ ] Regardez s'il n'y a pas une [proposition introduisant ces mêmes changements](https://github.com/openfisca/openfisca-france/pulls).
 - [ ] Documentez votre contribution avec des références législatives.
 - [ ] Mettez à jour ou ajoutez des tests correspondant à votre contribution.
-- [ ] Augmentez le [numéro de version](https://speakerdeck.com/mattisg/git-session-2-strategies?slide=81) dans [`setup.py`](https://github.com/openfisca/openfisca-france/blob/master/setup.py).
+- [ ] Augmentez le [numéro de version](https://speakerdeck.com/mattisg/git-session-2-strategies?slide=81) dans [`pyproject.toml`](https://github.com/openfisca/openfisca-france/blob/master/pyproject.toml).
 - [ ] Mettez à jour le [`CHANGELOG.md`](https://github.com/openfisca/openfisca-france/blob/master/CHANGELOG.md).
 - [ ] Assurez-vous de bien décrire votre contribution, comme indiqué ci-dessus
 

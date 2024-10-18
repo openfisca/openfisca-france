@@ -46,14 +46,17 @@ _Cela fonctionne aussi sous macOS et Linux, à condition d'adapter les chemins._
 Docker peut être utilisé pour valider le bon fonctionnement
 
 Pour tester le build :
-```
+
+```sh
 docker run --volume $PWD:/openfisca -i -t continuumio/anaconda3 /bin/bash
 cd /openfisca
+# Pour lancer le build
 conda build -c openfisca -c conda-forge .conda
 ```
 
-Pour tester l'installation :
-```
+Pour tester l'installation du paquet envoyé sur [anaconda](https://anaconda.org/openfisca/openfisca-france) :
+
+```sh
 docker run --volume $PWD:/openfisca -i -t continuumio/anaconda3 /bin/bash
 cd /openfisca
 conda install -c openfisca -c conda-forge openfisca-france-dev
