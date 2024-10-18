@@ -133,7 +133,7 @@ jobs:
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
       - run: |
           shopt -s globstar
-          openfisca test tests/**/*.py
+          openfisca test --country-package openfisca_france tests/**/*.py
         if: matrix.openfisca-dependencies != 'minimal' || matrix.python-version != '3.9.9'
 
   test-path-length:
@@ -180,7 +180,7 @@ jobs:
           echo "TEST_FILES_SUBLIST=$(python "${GITHUB_WORKSPACE}/.github/split_tests.py" ${CI_NODE_TOTAL} ${CI_NODE_INDEX})" >> $GITHUB_ENV
       - name: Run YAML test
         run: |
-          openfisca test ${TEST_FILES_SUBLIST}
+          openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST}
 
   test-api:
     runs-on: ubuntu-20.04
