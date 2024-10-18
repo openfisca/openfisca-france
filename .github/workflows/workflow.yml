@@ -16,7 +16,7 @@ jobs:
         openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -43,6 +43,46 @@ jobs:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
 
+  build-conda:
+    runs-on: "ubuntu-20.04"
+    # Do not build on master, the artifact will be used
+    if: github.ref != 'refs/heads/master'
+    steps:
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: openfisca
+          channels: openfisca,conda-forge
+          miniforge-version: latest
+          python-version: 3.9.9
+          use-mamba: true
+      - uses: actions/checkout@v4
+      - name: Update meta.yaml
+        run: |
+          python3 -m pip install requests argparse
+          python3 .github/get_pypi_info.py -p OpenFisca-France
+      - name: Get version
+        run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
+      - name: Conda Config
+        run: |
+          mamba install boa conda-verify
+      - name: Build Conda package
+        run: |
+          conda mambabuild .conda \
+            --channel conda-forge \
+            --channel openfisca \
+            --no-anaconda-upload \
+            --numpy 1.26.4 \
+            --output-folder /tmp/conda  \
+            --python 3.9.9 \
+            --use-local \
+            ;
+      - name: Upload Conda build
+        uses: actions/upload-artifact@v3
+        with:
+          name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
+          path: /tmp/conda
+          retention-days: 30
+
   lint-files:
     runs-on: ubuntu-20.04
     strategy:
@@ -50,7 +90,7 @@ jobs:
         dependencies-version: [maximal]
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
@@ -69,6 +109,7 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-python-files.sh"
       - name: Lint YAML tests
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-yaml-tests.sh"
+
   test-python:
     runs-on: ${{ matrix.os }}
     needs: [ build ]
@@ -79,7 +120,7 @@ jobs:
         python-version: ["3.9.9", "3.10.6"]
         openfisca-dependencies: [minimal, maximal]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -98,7 +139,7 @@ jobs:
   test-path-length:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -119,7 +160,7 @@ jobs:
         openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -148,7 +189,7 @@ jobs:
         dependencies-version: [maximal]
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -162,11 +203,42 @@ jobs:
       - name: Test the Web API
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
+  test-on-windows:
+    runs-on: "windows-latest"
+    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
+    needs: [ build-conda ]
+    steps:
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          python-version: "3.9.9"
+          # Add conda-forge for OpenFisca-Core
+          channels: openfisca,conda-forge
+          activate-environment: true
+      - uses: actions/checkout@v4
+      - name: Test max path length
+        run: "python3 openfisca_france/scripts/check_path_length.py"
+      - name: Get version
+        run: |
+          # chcp 65001 #set code page to utf-8
+          echo ("PACKAGE_VERSION=" + (python3 ./setup.py --version) ) >> $env:GITHUB_ENV
+          echo "Version setup.py: ${{ env.PACKAGE_VERSION }}"
+      - name: Download conda build
+        uses: actions/download-artifact@v3
+        with:
+          name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
+          path: conda-build-tmp
+      - name: Install with conda
+        run: |
+          conda install -c ./conda-build-tmp/noarch/openfisca-france-dev-${{ env.PACKAGE_VERSION }}-py_0.tar.bz2  openfisca-france-dev
+      - name: openfisca test
+        run: openfisca test --country-package openfisca_france tests
+
   check-version-and-changelog:
     runs-on: ubuntu-20.04
     needs: [ lint-files, test-python, test-yaml, test-api ] # Last job to run
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
@@ -186,7 +258,7 @@ jobs:
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
@@ -207,7 +279,7 @@ jobs:
       PYPI_USERNAME: __token__
       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
@@ -231,74 +303,11 @@ jobs:
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
 
-  build-conda:
-    runs-on: "ubuntu-20.04"
-    needs: [ check-version-and-changelog ]
-    # Do not build on master, the artifact will be used
-    if: github.ref != 'refs/heads/master'
-    steps:
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
-          python-version: "3.9.9"
-          # Add conda-forge for OpenFisca-Core
-          channels: openfisca,conda-forge
-          activate-environment: true
-      - uses: actions/checkout@v3
-      - name: Update meta.yaml
-        run: |
-          python3 -m pip install requests argparse
-          python3 .github/get_pypi_info.py -p OpenFisca-France
-      - name: Get version
-        run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
-      - name: Conda Config
-        run: |
-          conda install conda-build anaconda-client
-          conda info
-      - name: Build Conda package
-        run: conda build -c openfisca -c conda-forge --croot /tmp/conda .conda
-      - name: Upload Conda build
-        uses: actions/upload-artifact@v3
-        with:
-          name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
-          path: /tmp/conda
-          retention-days: 30
-
-  test-on-windows:
-    runs-on: "windows-latest"
-    needs: [ build-conda ]
-    steps:
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
-          python-version: "3.9.9"
-          # Add conda-forge for OpenFisca-Core
-          channels: openfisca,conda-forge
-          activate-environment: true
-      - uses: actions/checkout@v3
-      - name: Test max path length
-        run: "python3 openfisca_france/scripts/check_path_length.py"
-      - name: Get version
-        run: |
-          # chcp 65001 #set code page to utf-8
-          echo ("PACKAGE_VERSION=" + (python3 ./setup.py --version) ) >> $env:GITHUB_ENV
-          echo "Version setup.py: ${{ env.PACKAGE_VERSION }}"
-      - name: Download conda build
-        uses: actions/download-artifact@v3
-        with:
-          name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
-          path: conda-build-tmp
-      - name: Install with conda
-        run: |
-          conda install -c ./conda-build-tmp/noarch/openfisca-france-dev-${{ env.PACKAGE_VERSION }}-py_0.tar.bz2  openfisca-france-dev
-      - name: openfisca test
-        run: openfisca test --country-package openfisca_france tests
-
   publish-to-conda:
     runs-on: "ubuntu-20.04"
-    needs: [ deploy ]
+    needs: [ deploy, test-on-windows ]
     steps:
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
           python-version: "3.9.9"
@@ -306,7 +315,7 @@ jobs:
           channels: conda-forge
           activate-environment: true
       - name: Get source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Get version
         run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
       # Get the last commit hash on the PR (-2 : before the merge commit)

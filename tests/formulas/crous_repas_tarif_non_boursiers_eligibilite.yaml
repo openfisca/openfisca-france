@@ -1,7 +1,7 @@
 - name: Prix d'un repas au crous pour un étudiant non-boursier
   period: 2023-01
   input:
-    scolarite: [enseignement_superieur, non_renseigne, enseignement_superieur]
+    scolarite: [enseignement_superieur, inconnue, enseignement_superieur]
     boursier: [false, false, true]
   output:
     crous_repas_tarif_non_boursiers_eligibilite: [true, false, false]
