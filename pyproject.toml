@@ -34,6 +34,9 @@ Changelog = "https://github.com/openfisca/openfisca-france/blob/main/CHANGELOG.m
 requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+packages = ["openfisca_france"]
+
 # openfisca test Doesn't work if uncommented
 # [tool.setuptools.packages.find]
 # where = ["openfisca_france"]
