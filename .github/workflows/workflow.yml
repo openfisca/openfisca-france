@@ -43,45 +43,61 @@ jobs:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
 
-  build-conda:
-    runs-on: "ubuntu-20.04"
-    # Do not build on master, the artifact will be used
-    if: github.ref != 'refs/heads/master'
+  conda-build-and-cache:
+    runs-on: ubuntu-22.04
     steps:
-      - uses: conda-incubator/setup-miniconda@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache build
+        uses: actions/cache@v4
         with:
-          activate-environment: openfisca
-          channels: openfisca,conda-forge
-          miniforge-version: latest
-          python-version: 3.9.9
-          use-mamba: true
-      - uses: actions/checkout@v4
-      - name: Update meta.yaml
-        run: |
-          python3 -m pip install requests argparse
-          python3 .github/get_pypi_info.py -p OpenFisca-France
-      - name: Get version
-        run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
-      - name: Conda Config
-        run: |
-          mamba install boa conda-verify
-      - name: Build Conda package
-        run: |
-          conda mambabuild .conda \
-            --channel conda-forge \
-            --channel openfisca \
-            --no-anaconda-upload \
-            --numpy 1.26.4 \
-            --output-folder /tmp/conda  \
-            --python 3.9.9 \
-            --use-local \
-            ;
+          path: /tmp/conda-bld
+          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            build-conda-${{ hashFiles('.conda/recipe.yaml') }}
+            build-conda-
+      - name: Build conda package
+        uses: prefix-dev/rattler-build-action@v0.2.16
+        with:
+          build-args: --channel openfisca --channel conda-forge --output-dir /tmp/conda-bld
+          recipe-path: .conda/recipe.yaml
+          upload-artifact: false
       - name: Upload Conda build
         uses: actions/upload-artifact@v3
         with:
           name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
-          path: /tmp/conda
+          path: /tmp/conda-bld
           retention-days: 30
+
+  test-conda:
+    runs-on: ubuntu-22.04
+    needs: [ conda-build-and-cache ]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup conda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: openfisca
+          miniforge-version: latest
+          python-version: 3.9.12
+          use-mamba: true
+
+      - name: Restore build
+        uses: actions/cache@v4
+        with:
+          path: /tmp/conda-bld
+          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
+
+      - name: Install package
+        shell: bash -l {0}
+        run: mamba install --channel file:///tmp/conda-bld --channel openfisca openfisca-country_template
+
+      - name: Test conda package
+        shell: bash -l {0}
+        run: openfisca test tests/formulas/irpp.yaml
+
+
 
   lint-files:
     runs-on: ubuntu-20.04

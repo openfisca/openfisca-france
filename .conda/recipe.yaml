@@ -1,0 +1,44 @@
+###############################################################################
+## File for Anaconda.org
+###############################################################################
+schema_version: 1
+
+context:
+  name: openfisca-france
+  version: 8.0.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  number: 0
+  script: "pip install . -vv"
+
+requirements:
+  host:
+    - numpy
+    - pip
+    - python
+    - setuptools >=61.0
+    - setuptools-scm >=8
+  run:
+    - python
+    - numpy>=1.24.3,<2
+    - openfisca-core-api>=43,<44
+
+about:
+  homepage: https://fr.openfisca.org/
+  license_family: AGPL
+  license: AGPL-3.0-only
+  license_file: LICENSE.AGPL.txt
+  summary: "French tax and benefit system for OpenFisca"
+  description: |
+    OpenFisca is a versatile microsimulation free software.
+    This repository contains the OpenFisca model of the French tax and benefit system.
+  # doc_url: https://fr.openfisca.org/
+  # dev_url: https://github.com/openfisca/openfisca-france/
