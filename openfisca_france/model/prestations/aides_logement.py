@@ -1221,7 +1221,7 @@ class aide_logement_R0(Variable):
             + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
-        abattement = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.taux_abat_salaires
+        abattement = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux_abat_salaires
         R0 = round_(12 * (R1 - R2) * (1 - abattement))
 
         return R0
