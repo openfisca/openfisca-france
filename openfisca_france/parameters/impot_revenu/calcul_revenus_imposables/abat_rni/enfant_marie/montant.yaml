@@ -1,4 +1,4 @@
-description: Montant de l'abattement spécial pour enfants à charge ayant fondé un foyer distinct (par personne rattachée)
+description: Montant de l'abattement spécial par personne rattachée pour les enfants à charge ayant fondé un foyer distinct 
 values:
   1974-01-01:
     value: 6000
@@ -95,7 +95,7 @@ values:
   2023-01-01:
     value: 6674
 metadata:
-  short_label: Abattement
+  short_label: Montant de l'abattement par personne rattachée
   last_value_still_valid_on: "2023-07-05"
   label_en: Tax allowance for net taxable income
   ipp_csv_id: abt_enfmaries
