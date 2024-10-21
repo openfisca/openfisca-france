@@ -368,7 +368,7 @@ class aah_base_ressources_hors_activite_eval_annuelle(Variable):
     # sans revenu de remplacement survient (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006739692/2005-07-01/)
 
     def formula(individu, period, parameters):
-        return (individu('revenu_assimile_pension_apres_abattement', period.n_2))
+        return (individu('revenu_assimile_pension_apres_abattements', period.n_2))
 
 
 class aah_restriction_substantielle_durable_acces_emploi(Variable):
