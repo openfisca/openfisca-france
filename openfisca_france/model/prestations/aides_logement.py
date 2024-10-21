@@ -1186,7 +1186,7 @@ class aide_logement_R0(Variable):
             )
 
         deductions = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
-        abattement_pension_salaire = deductions.taux_abat_salaires  # dit de 10 %
+        abattement_pension_salaire = deductions.abatpro.taux_abat_salaires  # dit de 10 %
         abattement_supplementaire = deductions.abat_supp.taux  # dit de 20 %
         abattement = abattement_supplementaire + (1 - abattement_supplementaire) * abattement_pension_salaire
         R0 = round_(12 * (R1 - R2) * (1 - abattement))
