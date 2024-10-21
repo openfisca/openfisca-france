@@ -1,5 +1,5 @@
 ###############################################################################
-## File for Anaconda.org
+## To build Conda package for Anaconda.org
 ###############################################################################
 schema_version: 1
 
@@ -17,7 +17,7 @@ source:
 build:
   noarch: python
   number: 0
-  script: "pip install . -vv"
+  script: "pip install . -v"
 
 requirements:
   host:

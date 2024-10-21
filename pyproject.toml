@@ -34,14 +34,6 @@ Changelog = "https://github.com/openfisca/openfisca-france/blob/main/CHANGELOG.m
 requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-packages = ["openfisca_france"]
-
-# openfisca test Doesn't work if uncommented
-# [tool.setuptools.packages.find]
-# where = ["openfisca_france"]
-# exclude = ["openfisca_france/assets/taxe_habitation/source"]
-
 [project.optional-dependencies]
 dev = [
     "autopep8 >=2.0.2, <3.0",
@@ -71,14 +63,12 @@ casd-dev = [
     "scipy >=1.10.1, <2.0",  # Only used to test de_net_a_brut reform
 ]
 
-
+[tool.flake8]
 # ; E128/133: We prefer hang-closing visual indents
 # ; E251:     We prefer `function(x = 1)` over `function(x=1)`
 # ; E501:     We do not enforce a maximum line length
 # ; F403/405: We ignore * imports
 # ; W503/504: We break lines before binary operators (Knuth's style)
-
-[tool.flake8]
 hang-closing = true
 ignore       = ["E128","E251","F403","F405","E501","W503", ]
 docstring-quotes = "single"

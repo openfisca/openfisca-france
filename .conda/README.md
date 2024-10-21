@@ -18,6 +18,30 @@ Pour valider que tout a fonctionné, une étape `test-on-windows` a été ajout�
 
 C'est le channel `conda-forge` qui est le channel stable à conseiller aux utilisateurs. Le channel `openfisca` reçoit les derniers paquets de façon automatique.
 
+## Tester le build en local
+
+Pour utiliser les mêmes commandes que la CI, il fau installer `pixi` et `rattler-build` si vous ne les avez pas déjà :
+```sh
+curl -fsSL https://pixi.sh/install.sh | bash
+source $HOME/.bashrc
+pixi global install rattler-build
+```
+
+Pour tester le build en local, il suffit de lancer la commande suivante :
+
+```sh
+rattler-build build --channel openfisca --channel conda-forge --recipe .conda --output-dir /tmp/rattler
+```
+
+Pour tester l'installation du paquet envoyé sur [anaconda](https://anaconda.org/openfisca/openfisca-france) :
+
+```sh
+docker run --volume $PWD:/openfisca -i -t continuumio/anaconda3 /bin/bash
+cd /openfisca
+conda install -c openfisca -c conda-forge openfisca-france
+openfisca test --country-package openfisca_france tests
+```
+
 ## Etapes préparatoires pour arriver à cette automatisation
 
 - Création d'un compte sur https://anaconda.org.
@@ -40,25 +64,3 @@ _Cela fonctionne aussi sous macOS et Linux, à condition d'adapter les chemins._
     - `anaconda login` Pour vous connecter avec le compte _openfisca_, voir le Keepass OpenFisca.
     - `anaconda upload c:\temp\noarch\openfisca-france-<VERSION>-py_0.tar.bz2` pour publier le package.
 - Vérifier que tout c'est bien passé sur https://anaconda.org/search?q=openfisca.
-
-## Test avec Docker
-
-Docker peut être utilisé pour valider le bon fonctionnement
-
-Pour tester le build :
-
-```sh
-docker run --volume $PWD:/openfisca -i -t continuumio/anaconda3 /bin/bash
-cd /openfisca
-# Pour lancer le build
-conda build -c openfisca -c conda-forge .conda
-```
-
-Pour tester l'installation du paquet envoyé sur [anaconda](https://anaconda.org/openfisca/openfisca-france) :
-
-```sh
-docker run --volume $PWD:/openfisca -i -t continuumio/anaconda3 /bin/bash
-cd /openfisca
-conda install -c openfisca -c conda-forge openfisca-france-dev
-openfisca test --country-package openfisca_france tests
-```
