@@ -4,5 +4,7 @@ metadata:
   short_label: Revenu des valeurs et capitaux mobiliers
   label_en: Investment gains and securities income
   order:
-  - produits_assurances_vies_assimiles
   - revenus_capitaux_mobiliers_dividendes
+  - produits_assurances_vies_assimiles
+  - majoration_revenus_reputes_distribues
+
