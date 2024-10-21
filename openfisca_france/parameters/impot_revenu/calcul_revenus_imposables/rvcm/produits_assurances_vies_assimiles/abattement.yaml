@@ -1,4 +1,4 @@
-description: Abattement sur les produits des contrats d'assurance vie et assimilés
+description: Abattement annuel applicable au montant imposable des produits de bons ou contrats d'une durée au moins égale à 8 ans (ou 6 ans pour ceux souscrits avant le 1er janvier 1990) - multiplié par deux pour les couples à imposition commune
 values:
   1978-01-01:
     value: null
@@ -7,7 +7,8 @@ values:
   2001-01-01:
     value: 4600
 metadata:
-  short_label: Montant
+  short_label: Abattement annuel pour les produits d'assurance vie (contrat > 8 ans) - doublé pour les couples imposés en commun
+  last_value_still_valid_on: "2024-10-21"
   ipp_csv_id: abt_av
   unit: currency_next_year
   reference:
@@ -15,7 +16,9 @@ metadata:
       title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
     2001-01-01:
-      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+    - title: Article 125-0 A, I. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038836732
+    - title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
   official_journal_date:
     1997-01-01: "1997-12-31"
