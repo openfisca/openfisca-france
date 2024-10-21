@@ -56,6 +56,9 @@ jobs:
           restore-keys: |
             build-conda-${{ hashFiles('.conda/recipe.yaml') }}
             build-conda-
+      - name: set version
+        run: |
+          python3 .github/set_version.py --replace True
       - name: Build conda package
         uses: prefix-dev/rattler-build-action@v0.2.16
         with:
