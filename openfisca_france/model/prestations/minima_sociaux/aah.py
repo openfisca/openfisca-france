@@ -350,8 +350,9 @@ class aah_base_ressources_activite_eval_annuelle(Variable):
     def formula(individu, period, parameters):
         return (
             individu('revenu_assimile_salaire_apres_abattements', period.n_2, options = [ADD])
-            + individu('revenu_categoriel_non_salarial', period.n_2)
-        )
+            + individu('rpns_imposables', period.n_2)
+            )
+
 
 class aah_base_ressources_hors_activite_eval_annuelle(Variable):
     value_type = float
