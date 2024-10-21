@@ -1186,7 +1186,7 @@ class aide_logement_R0(Variable):
             )
 
         deductions = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
-        abattement_pension_salaire = deductions.taux_salaires_pensions  # dit de 10 %
+        abattement_pension_salaire = deductions.taux_abat_salaires  # dit de 10 %
         abattement_supplementaire = deductions.abat_supp.taux  # dit de 20 %
         abattement = abattement_supplementaire + (1 - abattement_supplementaire) * abattement_pension_salaire
         R0 = round_(12 * (R1 - R2) * (1 - abattement))
@@ -1221,7 +1221,7 @@ class aide_logement_R0(Variable):
             + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
-        abattement = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.taux_salaires_pensions
+        abattement = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.taux_abat_salaires
         R0 = round_(12 * (R1 - R2) * (1 - abattement))
 
         return R0
