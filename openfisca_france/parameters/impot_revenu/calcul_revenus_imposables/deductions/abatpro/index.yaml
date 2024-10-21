@@ -1,3 +1,8 @@
-description: Abattement forfaitaire pour frais professionnels
+description: Déduction forfaitaire sur les salaires et allocations chômage
 metadata:
-  short_label: Salaires et allocations chômage
+  short_label: Déduction salaires et allocations chômage
+  order:
+  - taux_abat_salaires
+  - min
+  - min2
+  - max
