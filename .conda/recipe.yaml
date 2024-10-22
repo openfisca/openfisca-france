@@ -42,5 +42,3 @@ about:
   description: |
     OpenFisca is a versatile microsimulation free software.
     This repository contains the OpenFisca model of the French tax and benefit system.
-  # doc_url: https://fr.openfisca.org/
-  # dev_url: https://github.com/openfisca/openfisca-france/
