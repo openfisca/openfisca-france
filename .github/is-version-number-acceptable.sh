@@ -13,7 +13,13 @@ then
 fi
 
 current_version=$(python `dirname "$BASH_SOURCE"`/pyproject_version.py --only_package_version True)  # parsing with tomllib is complicated, see https://github.com/python-poetry/poetry/issues/273
-echo "Current version: $current_version"
+if [ $? -eq 0 ]; then
+    echo "Package version in pyproject.toml : $current_version"
+else
+    echo "ERROR getting current version: $current_version"
+    exit 3
+fi
+
 if [[ -z $current_version ]]
 then
     echo "Error getting current version"

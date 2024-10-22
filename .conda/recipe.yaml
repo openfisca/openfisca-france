@@ -1,5 +1,7 @@
 ###############################################################################
 ## To build Conda package for Anaconda.org
+## We use the `rattler-build` tool to build the package, see README.md
+## rattler-build build --channel openfisca --channel conda-forge --recipe .conda --output-dir /tmp/rattler
 ###############################################################################
 schema_version: 1
 

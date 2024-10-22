@@ -22,6 +22,8 @@ def get_versions():
     version_match = re.search(r'^version\s*=\s*"([\d.]*)"', content, re.MULTILINE)
     if version_match:
         openfisca_france = version_match.group(1)
+    else:
+        raise Exception('Package version not found in pyproject.toml')
     # Extract dependencies
     version = re.search(r'openfisca-core\[web-api\]\s*(>=\s*[\d\.]*,\s*<\d*)"', content, re.MULTILINE)
     if version:
@@ -29,6 +31,8 @@ def get_versions():
     version = re.search(r'numpy\s*(>=\s*[\d\.]*,\s*<\d*)"', content, re.MULTILINE)
     if version:
         numpy = version.group(1)
+    if not openfisca_core_api or not numpy:
+        raise Exception('Dependencies not found in pyproject.toml')
     return {
         'openfisca_france': openfisca_france,
         'openfisca_core_api': openfisca_core_api.replace(' ', ''),
