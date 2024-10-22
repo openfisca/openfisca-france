@@ -28,6 +28,8 @@ requirements:
     - setuptools-scm >=8
   run:
     - python
+    # Will be replaced by the version from the pyproject.toml file
+    # If you change it here, please update pyproject_version.py accordingly
     - numpy>=1.24.3,<2
     - openfisca-core-api>=43,<44
 

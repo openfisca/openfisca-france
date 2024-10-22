@@ -12,8 +12,8 @@ then
     exit 0
 fi
 
-current_version=$(grep '^version =' pyproject.toml | cut -d '"' -f 2)  # parsing with tomllib is complicated, see https://github.com/python-poetry/poetry/issues/273
-
+current_version=$(python `dirname "$BASH_SOURCE"`/pyproject_version.py --only_package_version True)  # parsing with tomllib is complicated, see https://github.com/python-poetry/poetry/issues/273
+echo "Current version: $current_version"
 if [[ -z $current_version ]]
 then
     echo "Error getting current version"
