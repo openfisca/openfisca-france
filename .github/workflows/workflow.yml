@@ -58,7 +58,7 @@ jobs:
             build-conda-
       - name: set version
         run: |
-          python3 .github/get_version.py --replace True
+          python3 .github/pyproject_version.py --replace True
       - name: Build conda package
         uses: prefix-dev/rattler-build-action@v0.2.16
         with:

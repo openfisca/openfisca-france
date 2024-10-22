@@ -43,10 +43,19 @@ def replace_in_file(filepath: str, info: dict):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-r', '--replace', type=bool, default=False, required=False, help='replace in .conda/recipe.yaml')
+    parser.add_argument('-r', '--replace', type=bool, default=False, required=False, help='replace in file')
+    parser.add_argument('-f', '--filename', type=str, default='.conda/recipe.yaml', help='Path to recipe.yaml, with filename')
+    parser.add_argument('-o', '--only_package_version', type=str, default='.conda/recipe.yaml', help='Path to recipe.yaml, with filename')
     args = parser.parse_args()
     info = get_versions()
-    logging.info(f'Version : {info}')
+    file = args.filename
+    if args.only_package_version:
+        logging.info(f'{info["openfisca_france"]}')
+        exit()
+    logging.info(f'Versions :\n{info}')
     if args.replace:
-        logging.info('Replace in .conda/recipe.yaml')
-        replace_in_file('.conda/recipe.yaml', info)
+        logging.info(f'Replace in {file}')
+        replace_in_file(file, info)
+    else:
+        logging.info('Dry mode, no replace made')
+
