@@ -5,7 +5,7 @@ schema_version: 1
 
 context:
   name: openfisca-france
-  version: 888.888.888  # Will be replaced by the version from the pyproject.toml file
+  version: X.X.X  # Will be replaced by the version from the pyproject.toml file
 
 package:
   name: ${{ name|lower }}
