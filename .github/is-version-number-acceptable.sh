@@ -14,7 +14,7 @@ fi
 
 current_version=$(grep '^version =' pyproject.toml | cut -d '"' -f 2)  # parsing with tomllib is complicated, see https://github.com/python-poetry/poetry/issues/273
 
-if [[ ! $current_version ]]
+if [[ -z $current_version ]]
 then
     echo "Error getting current version"
     exit 1
