@@ -20,7 +20,8 @@ C'est le channel `conda-forge` qui est le channel stable à conseiller aux utili
 
 ## Tester le build en local
 
-Pour utiliser les mêmes commandes que la CI, il fau installer `pixi` et `rattler-build` si vous ne les avez pas déjà :
+Pour utiliser les mêmes commandes que la CI, il faut installer `pixi` et `rattler-build` si vous ne l'avez pas déjà :
+
 ```sh
 curl -fsSL https://pixi.sh/install.sh | bash
 source $HOME/.bashrc
