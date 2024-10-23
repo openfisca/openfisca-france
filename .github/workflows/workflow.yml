@@ -52,10 +52,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
-          restore-keys: |
-            build-conda-${{ hashFiles('.conda/recipe.yaml') }}
-            build-conda-
+          key: build-conda-${{ github.sha }}
       - name: set version
         run: |
           python3 .github/pyproject_version.py --replace True
@@ -83,7 +80,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
+          key: build-conda-${{ github.sha }}
+          fail-on-cache-miss: true
       - name: Install package
         shell: bash -l {0}
         run: mamba install --channel file:///tmp/conda-bld --channel openfisca openfisca-france
@@ -230,7 +228,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
+          key: build-conda-${{ github.sha }}
+          fail-on-cache-miss: true
       - name: Test max path length
         run: "python3 openfisca_france/scripts/check_path_length.py"
       - name: Install package
@@ -318,7 +317,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
+          key: build-conda-${{ github.sha }}
+          fail-on-cache-miss: true
       - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
