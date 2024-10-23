@@ -14,9 +14,9 @@ L'upload automatique est fait de la façon suivante par la CI uniquement si l'é
 
 Pour valider que tout a fonctionné, une étape `test-on-windows` a été ajoutée en fin de CI. Cette étape récupère le paquet conda sur une machine Windows et exécute les tests.
 
-**A noter** : Le paquet OpenFisca-France est aussi publié sur `conda-forge`, pour cela voir [le feedstock](https://github.com/openfisca/openfisca-france-feedstock/tree/master/recipe)
+**A noter** : Le paquet OpenFisca-France est aussi publié sur `conda-forge`, pour cela voir [le feedstock](https://github.com/openfisca/openfisca-france-feedstock/tree/master/recipe) et la [ci automatique](https://github.com/conda-forge/openfisca-france-feedstock).
 
-C'est le channel `conda-forge` qui est le channel stable à conseiller aux utilisateurs. Le channel `openfisca` reçoit les derniers paquets de façon automatique.
+C'est le channel `conda-forge` qui est normalement le channel stable à conseiller aux utilisateurs, mais il souffre d'un net retard de mise à jour. Le channel `openfisca` reçoit les derniers paquets de façon automatique.
 
 ## Tester le build en local
 
