@@ -65,19 +65,13 @@ jobs:
           build-args: --channel openfisca --channel conda-forge --output-dir /tmp/conda-bld
           recipe-path: .conda/recipe.yaml
           upload-artifact: false
-      # - name: Upload Conda build
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
-      #     path: /tmp/conda-bld
-      #     retention-days: 30
 
   test-conda:
     runs-on: ubuntu-22.04
     needs: [ build-conda ]
     steps:
-      #- uses: actions/checkout@v4
-
+      # Checkout needed to get github.sha
+      - uses: actions/checkout@v4
       - name: Setup conda
         uses: conda-incubator/setup-miniconda@v3
         with:
