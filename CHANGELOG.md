@@ -1,5 +1,14 @@
 # Changelog
 
+# 169.1.0 [2369](https://github.com/openfisca/openfisca-france/pull/2369)
+
+* Amélioration technique.
+* Périodes concernées : aucune.
+* Zones impactées : aucune.
+* Détails :
+  - Remplace les métadonnées du paquet dans setup.py par le format de fichier plus moderne pyproject.toml
+  - Passe à rattler-build pour le build conda car la méthode précédente ne fonctionnait plus.
+
 # 169.0.0 [2357](https://github.com/openfisca/openfisca-france/pull/2357)
 
 * Amélioration technique.

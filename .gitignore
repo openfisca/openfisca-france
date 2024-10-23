@@ -29,3 +29,5 @@ build
 /tags
 .spyproject
 path_too_long_list.txt
+# PyEnv local Python version
+.python-version
