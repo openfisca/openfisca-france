@@ -221,6 +221,8 @@ jobs:
     # if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ test-conda ]
     steps:
+      # Checkout needed to get github.sha
+      - uses: actions/checkout@v4
       - uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: openfisca
