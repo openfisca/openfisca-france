@@ -1,4 +1,4 @@
-description: Montant de l'abattement (pour la 2ème tranche) de l'impôt sur le revenu pour les contribuables de plus de 65 ans ou invalides si le revenu net global du foyer fiscal ne dépasse pas le deuxième plafond
+description: Montant de l'abattement (pour la 2ème tranche) de l'impôt sur le revenu pour les contribuables de plus de 65 ans ou invalides dont le revenu net global du foyer fiscal est compris entre le premier et le deuxième plafond
 values:
   1977-01-01:
     value: 1700
