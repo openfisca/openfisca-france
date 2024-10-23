@@ -419,7 +419,7 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
         abattement_minimum = where(chomeur_longue_duree, P.abatpro.min2, P.abatpro.min)
-        abatfor = round_(min_(max_(P.abatpro.taux_abat_salaires * revenu_assimile_salaire, abattement_minimum), P.abatpro.max))
+        abatfor = round_(min_(max_(P.abatpro.taux * revenu_assimile_salaire, abattement_minimum), P.abatpro.max))
         return (
             (frais_reels > abatfor)
             * (revenu_assimile_salaire - frais_reels)
@@ -432,7 +432,7 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         frais_reels = individu('frais_reels', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        abatfor = round_(min_(max_(P.abatpro.taux_abat_salaires * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
+        abatfor = round_(min_(max_(P.abatpro.taux * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
         return (
             (frais_reels > abatfor)
             * (revenu_assimile_salaire - frais_reels)
@@ -471,10 +471,10 @@ class revenu_assimile_pension_apres_abattements(Variable):
     #            AO + BO + CO + DO + EO )
     #    penv2 = (d11-f11> abatpen.max)*(penv + (d11-f11-abatpen.max)) + (d11-f11<= abatpen.max)*penv
     #    Plus d'abatement de 20% en 2006
-        return max_(0, revenu_assimile_pension - round_(max_(P.abatpen.taux_abat_pensions * revenu_assimile_pension, P.abatpen.min)))
+        return max_(0, revenu_assimile_pension - round_(max_(P.abatpen.taux * revenu_assimile_pension, P.abatpen.min)))
 
 
-#    return max_(0, revenu_assimile_pension - min_(round_(max_(P.abatpen.taux_abat_pensions*revenu_assimile_pension , P.abatpen.min)), P.abatpen.max))  le max se met au niveau du foyer
+#    return max_(0, revenu_assimile_pension - min_(round_(max_(P.abatpen.taux*revenu_assimile_pension , P.abatpen.min)), P.abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
     value_type = float
