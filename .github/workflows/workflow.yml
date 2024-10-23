@@ -224,7 +224,7 @@ jobs:
 
   test-on-windows:
     runs-on: "windows-latest"
-    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
+    # if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ build-conda ]
     steps:
       - uses: conda-incubator/setup-miniconda@v3
@@ -240,7 +240,7 @@ jobs:
       - name: Get version
         run: |
           # chcp 65001 #set code page to utf-8
-          echo ("PACKAGE_VERSION=" + (python3 ./setup.py --version) ) >> $env:GITHUB_ENV
+          echo ("PACKAGE_VERSION=" + (python3 .github/pyproject_version.py --only_package_version True) ) >> $env:GITHUB_ENV
           echo "Version setup.py: ${{ env.PACKAGE_VERSION }}"
       - name: Download conda build
         uses: actions/download-artifact@v3
@@ -249,7 +249,7 @@ jobs:
           path: conda-build-tmp
       - name: Install with conda
         run: |
-          conda install -c ./conda-build-tmp/noarch/openfisca-france-dev-${{ env.PACKAGE_VERSION }}-py_0.tar.bz2  openfisca-france-dev
+          conda install -c ./conda-build-tmp/noarch/openfisca-france-${{ env.PACKAGE_VERSION }}-py_0.tar.bz2  openfisca-france
       - name: openfisca test
         run: openfisca test --country-package openfisca_france tests
 
@@ -333,11 +333,18 @@ jobs:
           # Add conda-forge for OpenFisca-Core
           channels: conda-forge
           activate-environment: true
-      - name: Get source code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: Get version
-        run: echo "PACKAGE_VERSION=$(python3 ./pyproject.toml --version)" >> $GITHUB_ENV
-      # Get the last commit hash on the PR (-2 : before the merge commit)
+        run: |
+          # chcp 65001 #set code page to utf-8
+          echo ("PACKAGE_VERSION=" + (python3 .github/pyproject_version.py --only_package_version True) ) >> $env:GITHUB_ENV
+          echo "Version setup.py: ${{ env.PACKAGE_VERSION }}"
+      - name: Download conda build
+        uses: actions/download-artifact@v3
+        with:
+          name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
+          path: conda-build-tmp
+      - name: Install with conda
       - uses: actions/github-script@v6
         id: last_pr_commit
         with:
@@ -349,6 +356,5 @@ jobs:
         # This shell is made necessary by https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
         run: |
-          conda install --yes conda-build anaconda-client
-          conda config --set anaconda_upload yes
-          conda build --channel conda-forge --channel openfisca --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
+          conda install --yes anaconda-client
+          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload --user openfisca ./conda-build-tmp/noarch/openfisca-france-${{ env.PACKAGE_VERSION }}-py_0.tar.bz2
