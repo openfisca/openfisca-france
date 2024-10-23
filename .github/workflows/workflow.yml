@@ -52,7 +52,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ github.sha }}
+          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
       - name: set version
         run: |
           python3 .github/pyproject_version.py --replace True
@@ -80,7 +80,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ github.sha }}
+          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
           fail-on-cache-miss: true
       - name: Install package
         shell: bash -l {0}
@@ -228,8 +228,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ github.sha }}
+          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
           fail-on-cache-miss: true
+          enableCrossOsArchive: true  # To allow restore on windows
       - name: Test max path length
         run: "python3 openfisca_france/scripts/check_path_length.py"
       - name: Install package
@@ -317,7 +318,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ github.sha }}
+          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
           fail-on-cache-miss: true
       - uses: conda-incubator/setup-miniconda@v3
         with:
