@@ -213,7 +213,7 @@ jobs:
 
   test-on-windows:
     runs-on: "windows-latest"
-    # if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
+    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ test-conda ]
     steps:
       # Checkout needed to get github.sha
@@ -311,7 +311,7 @@ jobs:
 
   publish-to-conda:
     runs-on: "ubuntu-20.04"
-    needs: [ test-on-windows ]
+    needs: [ deploy, test-on-windows ]
     steps:
       - uses: actions/checkout@v4
       - name: Restore build
