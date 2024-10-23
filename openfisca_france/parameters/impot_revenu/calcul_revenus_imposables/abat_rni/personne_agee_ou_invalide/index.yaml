@@ -1,6 +1,6 @@
-description: Abattement de l'impôt sur le revenu accordé sous conditions de ressources pour les personnes âgées de plus de 65 ou invalides
+description: Abattement de l'impôt sur le revenu accordé sous conditions de ressources pour les contribuables de plus de 65 ou invalides
 metadata:
-  short_label: Abattement pour les plus de 65 ans ou invalides
+  short_label: Abattement pour contribuable de plus de 65 ans ou invalides
   label_en: Tax allowance for net taxable income
   order:
   - montant_1
