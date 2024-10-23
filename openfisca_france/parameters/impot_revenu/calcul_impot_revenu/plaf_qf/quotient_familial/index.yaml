@@ -1,7 +1,7 @@
-description: Parts supplémentaires de quotient familial (IR)
+description: Quotient familial de l'impôt sur le revenu (IR) et critères d'attribution de parts supplémentaires
 metadata:
   documentation_start: true
-  short_label: Parts supplémentaires
+  short_label: Quotient familial et parts supplémentaires
   order:
   - conj
   - enf1

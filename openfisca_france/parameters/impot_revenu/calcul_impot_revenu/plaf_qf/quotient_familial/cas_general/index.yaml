@@ -1,0 +1,11 @@
+description: Cas général des situations de famille, explicitées dans le tableau de l'article 194 du CGI, pour attribuer les parts du quotient familial de l'impôt sur le revenu (IR)
+metadata:
+  documentation_start: true
+  short_label: Cas général (Tableau de l'article 194,I du CGI)
+  order:
+  - conj
+  - enf1
+  - enf2
+  - enf3_et_sup
+  - veuf
+
