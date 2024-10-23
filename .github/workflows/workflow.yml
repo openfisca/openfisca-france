@@ -79,17 +79,14 @@ jobs:
           miniforge-version: latest
           python-version: 3.9.12
           use-mamba: true
-
       - name: Restore build
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
           key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
-
       - name: Install package
         shell: bash -l {0}
         run: mamba install --channel file:///tmp/conda-bld --channel openfisca openfisca-france
-
       - name: Test conda package
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
@@ -229,19 +226,19 @@ jobs:
           miniforge-version: latest
           python-version: 3.9.12
           use-mamba: true
-      - uses: actions/checkout@v4
-      - name: Test max path length
-        run: "python3 openfisca_france/scripts/check_path_length.py"
       - name: Restore build
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
           key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
+      - name: Test max path length
+        run: "python3 openfisca_france/scripts/check_path_length.py"
       - name: Install package
         shell: bash -l {0}
         run: mamba install --channel file:///tmp/conda-bld --channel openfisca openfisca-france
-      - name: openfisca test
-        run: openfisca test tests tests/formulas/irpp.yaml
+      - name: Test conda package
+        shell: bash -l {0}
+        run: openfisca test tests/formulas/irpp.yaml
 
   check-version-and-changelog:
     runs-on: ubuntu-20.04
