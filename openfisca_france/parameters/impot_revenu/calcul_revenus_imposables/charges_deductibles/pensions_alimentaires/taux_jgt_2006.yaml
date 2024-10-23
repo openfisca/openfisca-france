@@ -3,7 +3,7 @@ values:
   1973-01-01:
     value: null
   2006-01-01:
-    value: 0.25
+    value: 1.25
 metadata:
   short_label: "Cas spécifique - Coefficient de réévaluation des pensions alimentaires d'une décision de justice avant le 01.01.2006"
   last_value_still_valid_on: "2023-10-17"
