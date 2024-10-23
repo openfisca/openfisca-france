@@ -322,11 +322,10 @@ jobs:
           fail-on-cache-miss: true
       - uses: conda-incubator/setup-miniconda@v3
         with:
-          auto-update-conda: true
-          python-version: "3.9.9"
-          # Add conda-forge for OpenFisca-Core
-          channels: conda-forge
-          activate-environment: true
+          activate-environment: openfisca
+          miniforge-version: latest
+          python-version: 3.9.12
+          use-mamba: true
       - name: Install package
         shell: bash -l {0}
         run: mamba install --channel file:///tmp/conda-bld --channel openfisca openfisca-france
