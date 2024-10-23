@@ -223,11 +223,10 @@ jobs:
     steps:
       - uses: conda-incubator/setup-miniconda@v3
         with:
-          auto-update-conda: true
-          python-version: "3.9.9"
-          # Add conda-forge for OpenFisca-Core
-          channels: openfisca,conda-forge
-          activate-environment: true
+          activate-environment: openfisca
+          miniforge-version: latest
+          python-version: 3.9.12
+          use-mamba: true
       - uses: actions/checkout@v4
       - name: Test max path length
         run: "python3 openfisca_france/scripts/check_path_length.py"
