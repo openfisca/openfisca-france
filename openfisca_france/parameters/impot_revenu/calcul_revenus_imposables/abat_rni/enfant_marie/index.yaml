@@ -1,6 +1,6 @@
-description: Abattement de l'impôt sur le revenu pour les enfants à charge ayant fondé un foyer distinct (mariés/pacsés ou chargés de famille) par personne rattachée
+description: Abattement de l'impôt sur le revenu pour les enfants à charge mariés/pacsés ou chargés de famille par personne rattachée
 metadata:
-  short_label: Abattement pour enfant à charge ayant fondé un foyer distinct
+  short_label: Abattement pour enfant marié/pacsé et enfant non marié chargé de famille
   label_en: Tax allowance for net taxable income
   order:
   - montant
