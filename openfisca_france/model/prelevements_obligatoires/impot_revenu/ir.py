@@ -3672,13 +3672,13 @@ class nbptr(Variable):
 
         # # note 5
         #  - enfant autre et parent isolé
-        n5 = quotient_familial.isol * caseT * (((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2))) + 1 * has_pac)
+        n5 = quotient_familial.couple_ou_pers_a_charge.isol * caseT * (((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2))) + 1 * has_pac)
 
         # # note 6 invalide avec personne à charge
         n6 = quotient_familial.couple_ou_pers_a_charge.not6 * (caseP & (has_pac | has_alt))
 
         # # note 7 Parent isolé
-        n7 = quotient_familial.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
+        n7 = quotient_familial.couple_ou_pers_a_charge.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
 
         # # Régime des mariés ou pacsés
         nb_parts_famille = 1 + quotient_familial.cas_general.conj + enf + n2 + n4
@@ -3708,7 +3708,7 @@ class nbptr(Variable):
         quotient_familial.couple_ou_pers_a_charge.not41 : nb part supp adultes invalides (vous et/ou conjoint) note 4
         quotient_familial.couple_ou_pers_a_charge.not42 : nb part supp adultes anciens combattants (vous et/ou conjoint) note 4
         quotient_familial.couple_ou_pers_a_charge.not6 : nb part supp note 6
-        quotient_familial.isol : demi-part parent isolé (T)
+        quotient_familial.couple_ou_pers_a_charge.isol : demi-part parent isolé (T)
         quotient_familial.edcd : enfant issu du mariage avec conjoint décédé;
         '''
         nb_pac = foyer_fiscal('nb_pac', period)
@@ -3786,14 +3786,14 @@ class nbptr(Variable):
         #  - enfant du conjoint décédé
         n51 = quotient_familial.couple_ou_pers_a_charge.cdcd * (caseL & ((nbF + nbJ) > 0))
         #  - enfant autre et parent isolé
-        n52 = quotient_familial.isol * caseT * (((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2))) + 1 * has_pac)
+        n52 = quotient_familial.couple_ou_pers_a_charge.isol * caseT * (((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2))) + 1 * has_pac)
         n5 = max_(n51, n52)
 
         # # note 6 invalide avec personne à charge
         n6 = quotient_familial.couple_ou_pers_a_charge.not6 * (caseP & (has_pac | has_alt))
 
         # # note 7 Parent isolé
-        n7 = quotient_familial.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
+        n7 = quotient_familial.couple_ou_pers_a_charge.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
 
         # # Régime des mariés ou pacsés
         nb_parts_famille = 1 + quotient_familial.cas_general.conj + enf + n2 + n4
