@@ -578,7 +578,7 @@ class aide_logement_base_ressources_individu(Variable):
         frais_reels = individu('frais_reels', period_frais)
 
         P = parameters(period.last_year).impot_revenu.calcul_revenus_imposables.deductions
-        abattement_forfaitaire = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
+        abattement_forfaitaire = round_(min_(max_(P.abatpro.taux * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
@@ -597,7 +597,7 @@ class aide_logement_base_ressources_individu(Variable):
         pension_invalidite = individu('pensions_invalidite', period.n_2, options = [ADD])
         revenu_assimile_pension = pensions_alimentaires_percues + retraite_imposable + pension_invalidite
         P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
-        revenu_assimile_pension = max_(0, revenu_assimile_pension - round_(max_(P.taux_salaires_pensions * revenu_assimile_pension, P.abatpen.min)))
+        revenu_assimile_pension = max_(0, revenu_assimile_pension - round_(max_(P.abatpen.taux * revenu_assimile_pension, P.abatpen.min)))
 
         abattement_revenus_activite_professionnelle = individu('aide_logement_abattement_revenus_activite_professionnelle', period)
         abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
@@ -625,7 +625,7 @@ class aide_logement_base_ressources_individu(Variable):
         frais_reels = individu('frais_reels', period.n_2)
 
         P = parameters(period.n_2).impot_revenu.calcul_revenus_imposables.deductions
-        abattement_forfaitaire = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
+        abattement_forfaitaire = round_(min_(max_(P.abatpro.taux * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
@@ -667,7 +667,7 @@ class aide_logement_base_ressources_individu(Variable):
 
         P = parameters(period.n_2).impot_revenu.calcul_revenus_imposables.deductions
         abattement_minimum = where(chomeur_longue_duree, P.abatpro.min2, P.abatpro.min)
-        abattement_forfaitaire = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, abattement_minimum), P.abatpro.max))
+        abattement_forfaitaire = round_(min_(max_(P.abatpro.taux * revenu_assimile_salaire, abattement_minimum), P.abatpro.max))
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
@@ -759,7 +759,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
             somme_salaires_mois_precedent = 12 * salaire_imposable
             montant_abattement = round_(
                 min_(
-                    max_(P.taux_salaires_pensions * somme_salaires_mois_precedent, P.abatpro.min),
+                    max_(P.abatpro.taux * somme_salaires_mois_precedent, P.abatpro.min),
                     P.abatpro.max
                     )
                 )
@@ -1186,7 +1186,7 @@ class aide_logement_R0(Variable):
             )
 
         deductions = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
-        abattement_pension_salaire = deductions.taux_salaires_pensions  # dit de 10 %
+        abattement_pension_salaire = deductions.abatpro.taux  # dit de 10 %
         abattement_supplementaire = deductions.abat_supp.taux  # dit de 20 %
         abattement = abattement_supplementaire + (1 - abattement_supplementaire) * abattement_pension_salaire
         R0 = round_(12 * (R1 - R2) * (1 - abattement))
@@ -1221,7 +1221,7 @@ class aide_logement_R0(Variable):
             + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
-        abattement = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.taux_salaires_pensions
+        abattement = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux
         R0 = round_(12 * (R1 - R2) * (1 - abattement))
 
         return R0

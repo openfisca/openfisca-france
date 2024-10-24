@@ -1,4 +1,4 @@
-description: Abattement minimum (Cas général) de la déduction forfaitaire pour frais professionnels
+description: Montant minimum (Cas général) de la déduction forfaitaire pour frais professionnels
 values:
   1942-01-01:
     value: null
@@ -67,8 +67,8 @@ values:
   2023-01-01:
     value: 495
 metadata:
-  short_label: Minimum pour les salaires
-  last_value_still_valid_on: "2024-06-11"
+  short_label: Montant minimum de la déduction
+  last_value_still_valid_on: "2024-10-21"
   ipp_csv_id: min_abtsal
   unit: currency_next_year
   reference:
