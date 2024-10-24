@@ -7,7 +7,7 @@ values:
   2001-01-01:
     value: 9200
 metadata:
-  short_label: Abattement annuel, pour les contribuables mariés ou pacsés, pour les produits d'assurance vie (contrat > 8 ans)
+  short_label: Contribuables mariés ou pacsés
   last_value_still_valid_on: "2024-10-21"
   ipp_csv_id: abt_av
   unit: currency_next_year
