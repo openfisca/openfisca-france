@@ -3632,29 +3632,29 @@ class nbptr(Variable):
 
         # parts des enfants en résidence alternée quand il n'y a que des enfants en résidence alternée
         enf_a = (no_pac & has_alt) * (
-            quotient_familial.enf1 * min_(nbH, 1)
-            + quotient_familial.enf2 * max_(min_(nbH - 1, 1), 0)
-            + quotient_familial.enf3_et_sup * max_(nbH - 2, 0)
+            quotient_familial.cas_general.enf1 * min_(nbH, 1)
+            + quotient_familial.cas_general.enf2 * max_(min_(nbH - 1, 1), 0)
+            + quotient_familial.cas_general.enf3_et_sup * max_(nbH - 2, 0)
             ) * 0.5
         # parts des enfants en résidence alternée quand il y a aussi des enfants entièrement à charge
         enf_b = (has_pac & has_alt) * (
             (nb_pac == 1) * (
-                quotient_familial.enf2 * min_(nbH, 1)
-                + quotient_familial.enf3_et_sup * max_(nbH - 1, 0)
+                quotient_familial.cas_general.enf2 * min_(nbH, 1)
+                + quotient_familial.cas_general.enf3_et_sup * max_(nbH - 1, 0)
                 ) * 0.5
-            + (nb_pac > 1) * (quotient_familial.enf3_et_sup * nbH * 0.5)
+            + (nb_pac > 1) * (quotient_familial.cas_general.enf3_et_sup * nbH * 0.5)
             )
         # parts des enfants entièrement à charge
         enf_c = (
-            quotient_familial.enf1 * min_(nb_pac, 1)
-            + quotient_familial.enf2 * max_(min_(nb_pac - 1, 1), 0)
-            + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0)
+            quotient_familial.cas_general.enf1 * min_(nb_pac, 1)
+            + quotient_familial.cas_general.enf2 * max_(min_(nb_pac - 1, 1), 0)
+            + quotient_familial.cas_general.enf3_et_sup * max_(nb_pac - 2, 0)
             )
 
         enf = enf_a + enf_b + enf_c
 
         # # note 2 : nombre de parts liées aux invalides (enfant + adulte)
-        n2 = quotient_familial.inv1 * (nbG + nbI / 2) + quotient_familial.inv2 * nbR
+        n2 = quotient_familial.couple_ou_pers_a_charge.inv1 * (nbG + nbI / 2) + quotient_familial.couple_ou_pers_a_charge.inv2 * nbR
 
         # # note 3 : Pas de personne à charge
         # - invalide
@@ -3668,23 +3668,23 @@ class nbptr(Variable):
         n3 = max_(n31, n32)
         # # note 4 Invalidité de la personne ou du conjoint pour les mariés ou
         # # jeunes veuf(ve)s
-        n4 = max_(quotient_familial.not41 * (1 * caseP + 1 * caseF), quotient_familial.not42 * (caseW | caseS))
+        n4 = max_(quotient_familial.couple_ou_pers_a_charge.not41 * (1 * caseP + 1 * caseF), quotient_familial.couple_ou_pers_a_charge.not42 * (caseW | caseS))
 
         # # note 5
         #  - enfant autre et parent isolé
         n5 = quotient_familial.isol * caseT * (((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2))) + 1 * has_pac)
 
         # # note 6 invalide avec personne à charge
-        n6 = quotient_familial.not6 * (caseP & (has_pac | has_alt))
+        n6 = quotient_familial.couple_ou_pers_a_charge.not6 * (caseP & (has_pac | has_alt))
 
         # # note 7 Parent isolé
         n7 = quotient_familial.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
 
         # # Régime des mariés ou pacsés
-        nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
+        nb_parts_famille = 1 + quotient_familial.cas_general.conj + enf + n2 + n4
 
         # # veufs  hors jeune_veuf
-        nb_parts_veuf = 1 + quotient_familial.veuf * (has_pac | has_alt) + enf + n2 + n3 + n5 + n6
+        nb_parts_veuf = 1 + quotient_familial.cas_general.veuf * (has_pac | has_alt) + enf + n2 + n3 + n5 + n6
 
         # # celib div
         nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
@@ -3697,17 +3697,17 @@ class nbptr(Variable):
 
         note 1 enfants et résidence alternée (formulaire 2041 GV page 10)
 
-        quotient_familial.conj : nb part associées au conjoint d'un couple marié ou pacsé
-        quotient_familial.enf1 : nb part premier enfant
-        quotient_familial.enf2 : nb part deuxième enfant
-        quotient_familial.enf3_et_sup : nb part enfants de rang 3 ou plus
-        quotient_familial.inv1 : nb part supp enfants invalides (I, G)
-        quotient_familial.inv2 : nb part supp adultes invalides (R)
+        quotient_familial.cas_general.conj : nb part associées au conjoint d'un couple marié ou pacsé
+        quotient_familial.cas_general.enf1 : nb part premier enfant
+        quotient_familial.cas_general.enf2 : nb part deuxième enfant
+        quotient_familial.cas_general.enf3_et_sup : nb part enfants de rang 3 ou plus
+        quotient_familial.couple_ou_pers_a_charge.inv1 : nb part supp enfants invalides (I, G)
+        quotient_familial.couple_ou_pers_a_charge.inv2 : nb part supp adultes invalides (R)
         quotient_familial.sans_pers_a_charge.not31 : nb part supp note 3 : cases W ou G pour veuf, celib ou div
         quotient_familial.sans_pers_a_charge.not32 : nb part supp note 3 : personne seule ayant élevé des enfants
-        quotient_familial.not41 : nb part supp adultes invalides (vous et/ou conjoint) note 4
-        quotient_familial.not42 : nb part supp adultes anciens combattants (vous et/ou conjoint) note 4
-        quotient_familial.not6 : nb part supp note 6
+        quotient_familial.couple_ou_pers_a_charge.not41 : nb part supp adultes invalides (vous et/ou conjoint) note 4
+        quotient_familial.couple_ou_pers_a_charge.not42 : nb part supp adultes anciens combattants (vous et/ou conjoint) note 4
+        quotient_familial.couple_ou_pers_a_charge.not6 : nb part supp note 6
         quotient_familial.isol : demi-part parent isolé (T)
         quotient_familial.edcd : enfant issu du mariage avec conjoint décédé;
         '''
@@ -3744,29 +3744,29 @@ class nbptr(Variable):
 
         # parts des enfants en résidence alternée quand il n'y a que des enfants en résidence alternée
         enf_a = (no_pac & has_alt) * (
-            quotient_familial.enf1 * min_(nbH, 1)
-            + quotient_familial.enf2 * max_(min_(nbH - 1, 1), 0)
-            + quotient_familial.enf3_et_sup * max_(nbH - 2, 0)
+            quotient_familial.cas_general.enf1 * min_(nbH, 1)
+            + quotient_familial.cas_general.enf2 * max_(min_(nbH - 1, 1), 0)
+            + quotient_familial.cas_general.enf3_et_sup * max_(nbH - 2, 0)
             ) * 0.5
         # parts des enfants en résidence alternée quand il y a aussi des enfants entièrement à charge
         enf_b = (has_pac & has_alt) * (
             (nb_pac == 1) * (
-                quotient_familial.enf2 * min_(nbH, 1)
-                + quotient_familial.enf3_et_sup * max_(nbH - 1, 0)
+                quotient_familial.cas_general.enf2 * min_(nbH, 1)
+                + quotient_familial.cas_general.enf3_et_sup * max_(nbH - 1, 0)
                 ) * 0.5
-            + (nb_pac > 1) * (quotient_familial.enf3_et_sup * nbH * 0.5)
+            + (nb_pac > 1) * (quotient_familial.cas_general.enf3_et_sup * nbH * 0.5)
             )
         # parts des enfants entièrement à charge
         enf_c = (
-            quotient_familial.enf1 * min_(nb_pac, 1)
-            + quotient_familial.enf2 * max_(min_(nb_pac - 1, 1), 0)
-            + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0)
+            quotient_familial.cas_general.enf1 * min_(nb_pac, 1)
+            + quotient_familial.cas_general.enf2 * max_(min_(nb_pac - 1, 1), 0)
+            + quotient_familial.cas_general.enf3_et_sup * max_(nb_pac - 2, 0)
             )
 
         enf = enf_a + enf_b + enf_c
 
         # # note 2 : nombre de parts liées aux invalides (enfant + adulte)
-        n2 = quotient_familial.inv1 * (nbG + nbI / 2) + quotient_familial.inv2 * nbR
+        n2 = quotient_familial.couple_ou_pers_a_charge.inv1 * (nbG + nbI / 2) + quotient_familial.couple_ou_pers_a_charge.inv2 * nbR
 
         # # note 3 : Pas de personne à charge
         # - invalide
@@ -3780,23 +3780,23 @@ class nbptr(Variable):
         n3 = max_(n31, n32)
         # # note 4 Invalidité de la personne ou du conjoint pour les mariés ou
         # # jeunes veuf(ve)s
-        n4 = max_(quotient_familial.not41 * (1 * caseP + 1 * caseF), quotient_familial.not42 * (caseW | caseS))
+        n4 = max_(quotient_familial.couple_ou_pers_a_charge.not41 * (1 * caseP + 1 * caseF), quotient_familial.couple_ou_pers_a_charge.not42 * (caseW | caseS))
 
         # # note 5
         #  - enfant du conjoint décédé
-        n51 = quotient_familial.cdcd * (caseL & ((nbF + nbJ) > 0))
+        n51 = quotient_familial.couple_ou_pers_a_charge.cdcd * (caseL & ((nbF + nbJ) > 0))
         #  - enfant autre et parent isolé
         n52 = quotient_familial.isol * caseT * (((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2))) + 1 * has_pac)
         n5 = max_(n51, n52)
 
         # # note 6 invalide avec personne à charge
-        n6 = quotient_familial.not6 * (caseP & (has_pac | has_alt))
+        n6 = quotient_familial.couple_ou_pers_a_charge.not6 * (caseP & (has_pac | has_alt))
 
         # # note 7 Parent isolé
         n7 = quotient_familial.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
 
         # # Régime des mariés ou pacsés
-        nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
+        nb_parts_famille = 1 + quotient_familial.cas_general.conj + enf + n2 + n4
 
         # # veufs  hors jeune_veuf
         nb_parts_veuf = 1 + enf + n2 + n3 + n5 + n6
