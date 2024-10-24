@@ -1,4 +1,4 @@
-description: Montant de base du revenu de solidarité active (RSA) pour la métropole
+description: Montant de base (montant forfaitaire) mensuel du revenu de soildarité active (RSA)
 values:
   2009-06-01:
     value: 454.63
@@ -114,7 +114,9 @@ metadata:
       title: LOI n° 2022-1158 du 16/08/2022, art. 9
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
     2023-04-01:
-      title: Décret n° 2023-340 du 4 mai 2023, article 1
+    - title: Article L262-2 du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031087764
+    - title: Décret n° 2023-340 du 4 mai 2023, article 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047521567
     2024-04-01:
       title: Décret n° 2024-396 du 29/04/2024, article 1
@@ -147,3 +149,4 @@ metadata:
     - title: Revalorisation de 4%
     2023-04-01:
     - title: Revalorisation de 1.54%
+  documentation: Le revenu de solidarité active est une allocation qui porte les ressources du foyer au niveau du montant forfaitaire. Le montant de base représente aussi le montant maximal pour un foyer d'une seule personne.

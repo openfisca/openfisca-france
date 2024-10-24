@@ -1,8 +1,7 @@
-description: Montant pour les personnes isolées (en % de la base) du revenu de solidarité active (RSA)
+description: Majoration du revenu de solidarité active (RSA) pour un parent isolé ou une femme enceinte isolée
 metadata:
-  short_label: Montant pour les personnes isolées
+  short_label: Majoration pour parent isolé ou femme enceinte isolée
   label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   order:
   - femmes_enceintes
   - par_enfant_a_charge
-  - age_limite_enfant

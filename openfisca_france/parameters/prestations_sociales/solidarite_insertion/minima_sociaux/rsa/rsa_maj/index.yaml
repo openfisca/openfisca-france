@@ -1,9 +1,8 @@
-description: Majorations (montant de base et revenus) et montant minimum versé du revenu de solidarité active (RSA)
+description: Majorations du revenu de solidarité active (RSA)
 metadata:
-  short_label: Majorations et montant minimum
+  short_label: Majorations
   label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   order:
   - maj_montant_max
   - majoration_isolement_en_base_rsa
   - majoration_ressources_revenus_activite
-  - montant_minimum_verse

@@ -3,8 +3,8 @@ values:
   1977-10-01:
     value: 24
 metadata:
-  short_label: Limite d'âge enfants à charge
-  last_value_still_valid_on: "2022-03-28"
+  short_label: Limite d'âge des enfants à charge
+  last_value_still_valid_on: "2023-06-05"
   unit: year
   reference:
     1977-10-01:
