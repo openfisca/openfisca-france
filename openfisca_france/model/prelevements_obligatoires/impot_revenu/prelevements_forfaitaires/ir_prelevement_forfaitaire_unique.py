@@ -267,7 +267,8 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         P1_taux = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
         P1_taux_reduit_av = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_produits_assurance_vie_non_eligibles_prelevement_forfaitaire_unique
-        P2 = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        P2 = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.produits_assurances_vies_assimiles
+        abattement_assurance_vie = P2.abattement_couple if maries_ou_pacses else P2.abattement_celib
 
         imposition_au_bareme = foyer_fiscal('f2op', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
@@ -276,7 +277,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         f2vv = foyer_fiscal('f2vv', period)
         f2ww = foyer_fiscal('f2ww', period)
 
-        abattement_residuel = max_(P2.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch, 0)
+        abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
         pfu_ir_sur_assurance_vie = where(imposition_au_bareme, 0,
             (f2zz * P1_taux)
