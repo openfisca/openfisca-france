@@ -301,7 +301,7 @@ class abattements_speciaux_prestations_familiales(Variable):
         # Vecteur de montants d'abattement pour enfants à charge
         abattement_special_enfants_a_charge = (
             nombre_enfants
-            * abattement_enfant_marie.montant
+            * abattement_enfant_marie
             )
 
         # Le montant total d'abattement ne peut pas être supérieur au revenu net global
