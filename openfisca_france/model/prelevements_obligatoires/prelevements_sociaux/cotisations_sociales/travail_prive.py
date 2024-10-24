@@ -913,8 +913,9 @@ class plafond_securite_sociale(Variable):
     def formula(individu, period, parameters):
         plafond_temps_plein = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
         quotite = individu('quotite_de_travail', period)
+        renonciation_ajustement_pss_temps_partiel = individu('renonciation_ajustement_pss_temps_partiel', period)
 
-        plafond = plafond_temps_plein * quotite
+        plafond = plafond_temps_plein * renonciation_ajustement_pss_temps_partiel + plafond_temps_plein * quotite * not_(renonciation_ajustement_pss_temps_partiel)
 
         # 2) Proratisation pour mois incomplet selon la méthode des 30èmes
 
@@ -924,6 +925,11 @@ class plafond_securite_sociale(Variable):
         # calcul du nombre de jours calendaires de présence du salarié
         nombre_jours_calendaires = individu('nombre_jours_calendaires', period)
         plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
+
+        # "Ce rapport ne peut pas conduire à un résultat supérieur à la valeur mensuelle du plafond de sécurité sociale."
+        # Source : https://boss.gouv.fr/portail/accueil/regles-dassujettissement/assiette-generale.html#titre-chapitre-6---le-plafond-de-la-se-section-2---determination-de-las-a-principe-de-lajustement-a-due-2-salaries-a-temps-partiel
+        # 810
+        plafond = min_(plafond, plafond_temps_plein)
 
         return plafond
 
@@ -1206,4 +1212,13 @@ class secteur_activite_employeur(Variable):
     label = "Secteur d'activité (employeur)"
     definition_period = MONTH
     reference = 'https://www.service-public.fr/professionnels-entreprises/vosdroits/N24269'
+    set_input = set_input_dispatch_by_period
+
+class renonciation_ajustement_pss_temps_partiel(Variable):
+    value_type = bool
+    default_value = False
+    entity = Individu
+    label = "Renonciation à la proratisation du PSS dans le cas d'un contrat à temps partiel"
+    definition_period = MONTH
+    reference = 'https://boss.gouv.fr/portail/accueil/regles-dassujettissement/assiette-generale.html#titre-chapitre-6---le-plafond-de-la-se-section-2---determination-de-las-a-principe-de-lajustement-a-due-2-salaries-a-temps-partiel'
     set_input = set_input_dispatch_by_period
