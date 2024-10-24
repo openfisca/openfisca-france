@@ -46,7 +46,7 @@ class aah_base_ressources_conjugalisee(Variable):
         aah = _parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         def assiette_conjoint(revenus_conjoint):
-            return (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
+            return (1 - _parameters.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
 
         def base_ressource_eval_annuelle():
             base_ressource = individu('aah_base_ressources_activite_eval_annuelle', period) + individu('aah_base_ressources_hors_activite_eval_annuelle', period)
@@ -64,7 +64,7 @@ class aah_base_ressources_conjugalisee(Variable):
         aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         def assiette_conjoint(revenus_conjoint):
-            return (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
+            return (1 - law.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_horaire = law.marche_travail.salaire_minimum.smic.smic_b_horaire
@@ -98,7 +98,7 @@ class aah_base_ressources_conjugalisee(Variable):
         en_activite = (individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year) > 0)
 
         def assiette_conjoint(revenus_conjoint):
-            return (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
+            return (1 - law.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
@@ -143,7 +143,8 @@ class aah_base_ressources_conjugalisee(Variable):
 
         def assiette_conjoint(revenus_conjoint):
             af_nbenf = individu.famille('af_nbenf', period)
-            return max_(revenus_conjoint - (aah.abattement_conjoint.abattement_forfaitaire.base + aah.abattement_conjoint.abattement_forfaitaire.majoration_pac * af_nbenf), 0)
+            revenus = (1 - law.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * revenus_conjoint
+            return max_(revenus - (aah.abattement_conjoint.abattement_forfaitaire.base + aah.abattement_conjoint.abattement_forfaitaire.majoration_pac * af_nbenf), 0)
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
@@ -349,9 +350,9 @@ class aah_base_ressources_activite_eval_annuelle(Variable):
 
     def formula(individu, period, parameters):
         return (
-            individu('revenu_assimile_salaire_apres_abattements', period.n_2, options = [ADD])
+            individu('salaire_imposable', period.n_2, options = [ADD])
             + individu('rpns_imposables', period.n_2)
-            )
+            + individu('chomage_imposable', period.n_2, options = [ADD]))
 
 
 class aah_base_ressources_hors_activite_eval_annuelle(Variable):
@@ -368,7 +369,7 @@ class aah_base_ressources_hors_activite_eval_annuelle(Variable):
     # sans revenu de remplacement survient (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006739692/2005-07-01/)
 
     def formula(individu, period, parameters):
-        return (individu('revenu_assimile_pension_apres_abattements', period.n_2))
+        return (individu('revenu_assimile_pension', period.n_2))
 
 
 class aah_restriction_substantielle_durable_acces_emploi(Variable):
