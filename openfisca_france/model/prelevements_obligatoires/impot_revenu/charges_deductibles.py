@@ -582,7 +582,7 @@ class pensions_alimentaires_deduites(Variable):
             + min_(f6gj * taux_jgt_2006, max1)
             + min_(f6el, max1)
             + min_(f6em, max1)
-            + f6gp * taux_jgt_2006 
+            + f6gp * taux_jgt_2006
             + f6gu
             )
 
