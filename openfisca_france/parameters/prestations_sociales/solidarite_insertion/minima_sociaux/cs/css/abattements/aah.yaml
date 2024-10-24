@@ -1,0 +1,15 @@
+description: Abattement sur le montant des ressources AAH pour le calcul de l'éligibilité à la CSS
+values:
+  2021-04-01:
+    value: 68
+metadata:
+  short_label: Abattement
+  unit: currency
+  reference:
+    2021-04-01:
+      title: Bulletin officiel Santé - Protection sociale - Solidarité n° 2021/6 du 16 avril 2021 - Instruction interministérielle N° DSS/SD2A/2021/71 du 30 mars 2021
+      href: https://sante.gouv.fr/fichiers/bo/2021/2021.6.sante.pdf#page=75
+  notes:
+    2024-01-01:
+      title: Précisions sur la formule - Bulletin officiel Santé - Protection sociale - Solidarité n° 2023/24 du 29 décembre 2023 - Instruction interministérielle N° DSS/SD2A/2023/98 du 22 décembre 2023
+      href: https://sante.gouv.fr/fichiers/bo/2023/2023.24.sante.pdf#page=82
