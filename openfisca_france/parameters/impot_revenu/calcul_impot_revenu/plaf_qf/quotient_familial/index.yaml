@@ -3,10 +3,6 @@ metadata:
   documentation_start: true
   short_label: Quotient familial et parts supplémentaires
   order:
-  - conj
-  - enf1
-  - enf2
-  - enf3_et_sup
-  - isol
-  - veuf
+  - cas_general
   - sans_pers_a_charge
+  - couple_ou_pers_a_charge
