@@ -19,10 +19,10 @@ class ppa_eligibilite(Variable):
         return condition_age
 
 
-class ppa_plancher_revenu_activite_etudiant(Variable):
+class ppa_plancher_revenu_activite_apprenant(Variable):
     value_type = float
     entity = Individu
-    label = "Plancher des revenus d'activité pour être éligible à la PPA en tant qu'étudiant"
+    label = "Plancher des revenus d'activité pour être éligible à la PPA en tant qu'apprenant (étudiant/stagiaire ou apprenti)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -36,7 +36,7 @@ class ppa_plancher_revenu_activite_etudiant(Variable):
             )
 
 
-class ppa_eligibilite_etudiants(Variable):
+class ppa_eligibilite_apprenants(Variable):
     value_type = bool
     entity = Famille
     label = 'Eligibilité à la PPA (condition sur tout le trimestre)'
@@ -52,8 +52,8 @@ class ppa_eligibilite_etudiants(Variable):
     def formula(famille, period, parameters):
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
 
-        etudiant_i = famille.members('etudiant', period)
-        plancher_etudiant = famille.members('ppa_plancher_revenu_activite_etudiant', period)
+        apprenant_i = famille.members('etudiant', period) + famille.members('stagiaire', period) + famille.members('apprenti', period)
+        plancher_apprenant = famille.members('ppa_plancher_revenu_activite_apprenant', period)
 
         def condition_ressource(period2, plancher):
             revenu_activite = famille.members('ppa_revenu_activite_individu', period2)
@@ -63,21 +63,21 @@ class ppa_eligibilite_etudiants(Variable):
         m_2 = period.offset(-2, 'month')
         m_3 = period.offset(-3, 'month')
 
-        condition_etudiant_i = (
-            condition_ressource(m_1, plancher_etudiant)
-            * condition_ressource(m_2, plancher_etudiant)
-            * condition_ressource(m_3, plancher_etudiant)
+        condition_apprenant_i = (
+            condition_ressource(m_1, plancher_apprenant)
+            * condition_ressource(m_2, plancher_apprenant)
+            * condition_ressource(m_3, plancher_apprenant)
             )
 
-        condition_non_etudiant_i = (
-            not_(etudiant_i) * (
+        condition_non_apprenant_i = (
+            not_(apprenant_i) * (
                 condition_ressource(m_1, 0)
                 + condition_ressource(m_2, 0)
                 + condition_ressource(m_3, 0)
                 )
             )
 
-        condition_famille = famille.any(condition_non_etudiant_i + condition_etudiant_i, role = Famille.PARENT)
+        condition_famille = famille.any(condition_non_apprenant_i + condition_apprenant_i, role = Famille.PARENT)
         return ppa_majoree_eligibilite + condition_famille
 
 
@@ -585,8 +585,8 @@ def ppa_base_formula(famille, parameters, period, three_months_of_reference):
     seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_minimum_verse
     # éligibilité étudiants
 
-    ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)
+    ppa_eligibilite_apprenants = famille('ppa_eligibilite_apprenants', period)
     ppa = famille('ppa_fictive', three_months_of_reference, options = [ADD]) / 3
-    ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
+    ppa = ppa * ppa_eligibilite_apprenants * (ppa >= seuil_non_versement)
 
     return ppa
