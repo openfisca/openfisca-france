@@ -1,5 +1,13 @@
 # Changelog
 
+### 169.1.2 [2379](https://github.com/openfisca/openfisca-france/pull/2379)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/11/2024.
+* Zones impactées : `openfisca_france/parameters/marche_travail/salaire_minimum/smic`.
+* Détails :
+  - Met à jour les montants du smic horaire et mensuel à partir de novembre 2024
+
 ### 169.1.1 [2329](https://github.com/openfisca/openfisca-france/pull/2329)
 
 * Évolution du système socio-fiscal.
