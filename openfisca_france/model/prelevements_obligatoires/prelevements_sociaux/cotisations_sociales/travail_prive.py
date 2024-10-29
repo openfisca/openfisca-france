@@ -1,3 +1,4 @@
+import calendar
 import logging
 
 from openfisca_france.model.base import *
@@ -917,15 +918,26 @@ class plafond_securite_sociale(Variable):
 
         plafond = plafond_temps_plein * renonciation_ajustement_pss_temps_partiel + plafond_temps_plein * quotite * not_(renonciation_ajustement_pss_temps_partiel)
 
-        # 2) Proratisation pour mois incomplet selon la méthode des 30èmes
+        # 2) Proratisation pour mois incomplet
 
-        # Pour les salariés entrés ou sortis en cours de mois,
-        # le plafond applicable est égal à autant de trentièmes du plafond mensuel
-        # que le salarié a été présent de jours calendaires. Source urssaf.fr "L’assiette maximale"
-        # calcul du nombre de jours calendaires de présence du salarié
+        # Pour les salariés entrés ou sortis en cours de mois
+        # a) calcul du nombre de jours calendaires de présence du salarié
         nombre_jours_calendaires = individu('nombre_jours_calendaires', period)
-        plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
 
+        period_annee = period[1][0]
+        period_mois = period[1][1]
+        period_nombre_de_jours_du_mois =  calendar.monthrange(period_annee, period_mois)[1]
+        # b1) Avant 2018, on proratise avec la méthodes des 30èmes
+        # https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006749051/2017-12-31/
+        if(period_annee < 2018):
+            plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
+        # b2) À partir de 2018, l'art. 242-2 évolue et le calcul se fait "à due proportion du nombre de jours de la période pendant laquelle les personnes sont employées"
+        # https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006749051/2018-01-01/
+        # cf. https://www.urssaf.fr/accueil/employeur/cotisations/comprendre-cotisations/calcul-cotisations-employeur.html
+        # -> Période icomplète : entrée-sortie en cours de mois
+        else:
+            plafond = plafond * (nombre_jours_calendaires / period_nombre_de_jours_du_mois)
+            
         # "Ce rapport ne peut pas conduire à un résultat supérieur à la valeur mensuelle du plafond de sécurité sociale."
         # Source : https://boss.gouv.fr/portail/accueil/regles-dassujettissement/assiette-generale.html#titre-chapitre-6---le-plafond-de-la-se-section-2---determination-de-las-a-principe-de-lajustement-a-due-2-salaries-a-temps-partiel
         # 810
