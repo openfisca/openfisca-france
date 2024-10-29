@@ -602,7 +602,7 @@
       2015-10: 900
     etudiant: true
   output:
-    ppa_eligibilite_etudiants: true
+    ppa_eligibilite_apprenants: true
     ppa: 244.21
 
 - name: 'PPA: étudiant non éligible (ressources < plancher)'
@@ -614,7 +614,31 @@
       2015-10: 890
     etudiant: true
   output:
-    ppa_eligibilite_etudiants: false
+    ppa_eligibilite_apprenants: false
+    ppa: 0
+
+- name: 'PPA: stagiaire non éligible (ressources < plancher)'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 890
+      2015-11: 890
+      2015-10: 890
+    stagiaire: true
+  output:
+    ppa_eligibilite_apprenants: false
+    ppa: 0
+
+- name: 'PPA: apprenti non éligible (ressources < plancher)'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 890
+      2015-11: 890
+      2015-10: 890
+    apprenti: true
+  output:
+    ppa_eligibilite_apprenants: false
     ppa: 0
 
 - name: 'PPA: étudiant éligible (majoré)'
@@ -627,7 +651,7 @@
     etudiant: true
     rsa_majore_eligibilite: true
   output:
-    ppa_eligibilite_etudiants: true
+    ppa_eligibilite_apprenants: true
 
 - name: 'PPA: étudiant non éligible car plancher non atteint pour un mois du trimestre de référence'
   period: 2016-01
@@ -638,7 +662,31 @@
       2015-10: 900
     etudiant: true
   output:
-    ppa_eligibilite_etudiants: false
+    ppa_eligibilite_apprenants: false
+    ppa: 0
+
+- name: 'PPA: stagiaire non éligible car plancher non atteint pour un mois du trimestre de référence'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 800
+      2015-11: 900
+      2015-10: 900
+    stagiaire: true
+  output:
+    ppa_eligibilite_apprenants: false
+    ppa: 0
+
+- name: 'PPA: apprenti non éligible car plancher non atteint pour un mois du trimestre de référence'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 800
+      2015-11: 900
+      2015-10: 900
+    apprenti: true
+  output:
+    ppa_eligibilite_apprenants: false
     ppa: 0
 
 - name: "PPA: couple d'étudiants avec enfant:  pas de ppa"
