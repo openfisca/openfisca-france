@@ -1,5 +1,24 @@
 # Changelog
 
+### 155.2.6 [2337](https://github.com/openfisca/openfisca-france/pull/2337)
+
+* Corrigent ou améliorent un calcul déjà existant.
+* Périodes concernées : Après 2024/10/01
+* Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/ppa.py.`
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py.`
+* Détails :
+  - Prise en compte du passe M-1 M-3 à M-2 à M-4 pour les aides PPA et RSA
+
+### 155.2.5 [2328](https://github.com/openfisca/openfisca-france/pull/2328)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Toujours
+* Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
+* Détails :
+  - Ajoute la prise en compte des statuts apprenti et stagiaire au calcul de l'éligibilité à la PPA.
+
 ### 155.2.4 [2279](https://github.com/openfisca/openfisca-france/pull/2279)
 
 * Évolution du système socio-fiscal.

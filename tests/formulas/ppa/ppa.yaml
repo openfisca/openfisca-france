@@ -602,7 +602,7 @@
       2015-10: 900
     etudiant: true
   output:
-    ppa_eligibilite_etudiants: true
+    ppa_eligibilite_apprenants: true
     ppa: 244.21
 
 - name: 'PPA: étudiant non éligible (ressources < plancher)'
@@ -614,7 +614,31 @@
       2015-10: 890
     etudiant: true
   output:
-    ppa_eligibilite_etudiants: false
+    ppa_eligibilite_apprenants: false
+    ppa: 0
+
+- name: 'PPA: stagiaire non éligible (ressources < plancher)'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 890
+      2015-11: 890
+      2015-10: 890
+    stagiaire: true
+  output:
+    ppa_eligibilite_apprenants: false
+    ppa: 0
+
+- name: 'PPA: apprenti non éligible (ressources < plancher)'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 890
+      2015-11: 890
+      2015-10: 890
+    apprenti: true
+  output:
+    ppa_eligibilite_apprenants: false
     ppa: 0
 
 - name: 'PPA: étudiant éligible (majoré)'
@@ -627,7 +651,7 @@
     etudiant: true
     rsa_majore_eligibilite: true
   output:
-    ppa_eligibilite_etudiants: true
+    ppa_eligibilite_apprenants: true
 
 - name: 'PPA: étudiant non éligible car plancher non atteint pour un mois du trimestre de référence'
   period: 2016-01
@@ -638,7 +662,31 @@
       2015-10: 900
     etudiant: true
   output:
-    ppa_eligibilite_etudiants: false
+    ppa_eligibilite_apprenants: false
+    ppa: 0
+
+- name: 'PPA: stagiaire non éligible car plancher non atteint pour un mois du trimestre de référence'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 800
+      2015-11: 900
+      2015-10: 900
+    stagiaire: true
+  output:
+    ppa_eligibilite_apprenants: false
+    ppa: 0
+
+- name: 'PPA: apprenti non éligible car plancher non atteint pour un mois du trimestre de référence'
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 800
+      2015-11: 900
+      2015-10: 900
+    apprenti: true
+  output:
+    ppa_eligibilite_apprenants: false
     ppa: 0
 
 - name: "PPA: couple d'étudiants avec enfant:  pas de ppa"
@@ -1029,3 +1077,46 @@
       2022-10: true
       2022-11: true
       2022-12: true
+
+
+- name: Cas PPA periode M-2 M-4
+  period: 2025-01
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ppa_eligibilite: true
+      aide_logement:
+        2025-01: 200
+        2024-12: 200
+        2024-11: 200
+        2024-10: 200
+    individus:
+      parent1:
+        age: 40
+        salaire_net:
+          2024-11: 300
+          2024-10: 300
+          2024-09: 300
+      parent2:
+        age: 40
+        salaire_net:
+          2024-11: 300
+          2024-10: 300
+          2024-09: 300
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+          - parent1
+      foyer_fiscal_1:
+        declarants:
+          - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+          - parent1
+      menage_1:
+        personne_de_reference:
+          - parent2
+  output:
+    ppa: 366
