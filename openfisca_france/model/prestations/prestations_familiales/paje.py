@@ -62,6 +62,14 @@ class gar_dom(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class micro_creche(Variable):
+    value_type = bool
+    entity = Famille
+    label = 'Micro-crèche (CLCMG)'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class paje(Variable):
     value_type = float
     entity = Famille
