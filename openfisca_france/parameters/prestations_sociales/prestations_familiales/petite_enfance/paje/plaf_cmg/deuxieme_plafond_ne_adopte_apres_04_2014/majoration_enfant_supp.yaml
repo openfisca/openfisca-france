@@ -8,6 +8,8 @@ values:
     value: 6469
   2018-01-01:
     value: 6482
+  2024-04-01:
+    value: 7195
 metadata:
   short_label: Majoration enfant supp.
   label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
