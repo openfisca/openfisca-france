@@ -4,8 +4,6 @@ values:
     value: 1.0067
   2008-05-01:
     value: 1.1404
-  2012-06-01:
-    value: 1.0067
 metadata:
   short_label: Revenus <45% du plafond
   label_en: Income <45% of the ceiling
