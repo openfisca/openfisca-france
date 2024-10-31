@@ -3,7 +3,7 @@ values:
   1982-01-01:
     value: 0.5
 metadata:
-  short_label: Personne invalide ayant un ou plusieurs enfants à charge
+  short_label: Personne invalide avec personne à charge
   last_value_still_valid_on: "2024-04-26"
   unit: part_quotient_familial
   reference:

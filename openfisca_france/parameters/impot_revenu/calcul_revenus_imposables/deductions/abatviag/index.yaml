@@ -1,8 +1,1 @@
-description: Fraction des rentes viagères à titre onéreux considérée comme un revenu imposable à l'impôt sur le revenu
-metadata:
-  short_label: Fraction imposable des rentes viagères à titre onéreux
-  order:
-  - taux1
-  - taux2
-  - taux3
-  - taux4
+description: Taux de déduction des revenus imposables pour les rentes viagères à titre onéreux

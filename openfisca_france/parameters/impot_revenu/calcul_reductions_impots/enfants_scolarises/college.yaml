@@ -1,4 +1,4 @@
-description: Réduction pour enfants fréquentant un collège
+description: Réduction pour enfants scolarisés au collège
 values:
   1991-01-01:
     value: null
@@ -15,8 +15,8 @@ metadata:
     1992-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
-    2024-01-01:
-      title: Article 199 quater F du Code général des impôts
+    2001-01-01:
+      title: CGI. - Article 199 quater F
       href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000006191829/
   official_journal_date:
     1992-01-01: "1992-12-31"

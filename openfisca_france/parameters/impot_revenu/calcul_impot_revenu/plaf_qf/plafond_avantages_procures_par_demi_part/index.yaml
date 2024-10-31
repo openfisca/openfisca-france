@@ -1,6 +1,6 @@
 description: Plafonnement des effets du quotient familial
 metadata:
-  short_label: Plafonnement des effets du quotient familial
+  short_label: Plafonnement QF
   order:
   - enfant_majeur_celibataire
   - general
