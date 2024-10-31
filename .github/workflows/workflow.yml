@@ -1,4 +1,5 @@
 name: OpenFisca France
+# Mettre tout en windows et remettre le hash du pyproject.toml
 
 on:
   push:
@@ -44,7 +45,7 @@ jobs:
           key: release-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
 
   build-conda:
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -52,7 +53,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ github.sha }}
+          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
       - name: set version
         run: |
           python3 .github/pyproject_version.py --replace True
@@ -64,7 +65,7 @@ jobs:
           upload-artifact: false
 
   test-conda:
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     needs: [ build-conda ]
     steps:
       # Checkout needed to get github.sha
@@ -80,16 +81,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ github.sha }}
+          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
           fail-on-cache-miss: true
       - name: Install package
+        # `bash -l {0}` démarre un login shell avec les variables d'environnement
+        # voir  https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
         run: mamba install --channel file:///tmp/conda-bld --channel openfisca openfisca-france
       - name: Test conda package
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
-
-
 
   lint-files:
     runs-on: ubuntu-20.04
@@ -212,8 +213,8 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
   test-on-windows:
-    runs-on: "windows-latest"
-    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
+    runs-on: windows-latest
+    # if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ test-conda ]
     steps:
       # Checkout needed to get github.sha
@@ -222,13 +223,13 @@ jobs:
         with:
           activate-environment: openfisca
           miniforge-version: latest
-          python-version: 3.9.12
+          python-version: 3.10.6
           use-mamba: true
       - name: Restore build
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ github.sha }}
+          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
           fail-on-cache-miss: true
           enableCrossOsArchive: true  # To allow restore on windows
       - name: Test max path length
@@ -310,15 +311,16 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
 
   publish-to-conda:
-    runs-on: "ubuntu-20.04"
-    needs: [ deploy, test-on-windows ]
+    runs-on: windows-latest
+    # needs: [ deploy, test-on-windows ]
+    needs: [ test-on-windows ]
     steps:
       - uses: actions/checkout@v4
       - name: Restore build
         uses: actions/cache@v4
         with:
           path: /tmp/conda-bld
-          key: build-conda-${{ github.sha }}
+          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
           fail-on-cache-miss: true
       - uses: conda-incubator/setup-miniconda@v3
         with:
@@ -333,7 +335,6 @@ jobs:
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
       - name: Conda upload already built package
-        # This shell is made necessary by https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
         run: |
           conda install --yes anaconda-client
