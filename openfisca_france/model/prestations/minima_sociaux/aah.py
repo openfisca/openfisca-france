@@ -60,14 +60,14 @@ class aah_base_ressources_conjugalisee(Variable):
         return base_ressource_eval_annuelle() / 12
 
     def formula_2005_07_01(individu, period, parameters):
-        law = parameters(period)
-        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        parameters = parameters(period)
+        aah = parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         def assiette_conjoint(revenus_conjoint):
-            return (1 - law.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
+            return (1 - parameters.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
-            smic_brut_horaire = law.marche_travail.salaire_minimum.smic.smic_b_horaire
+            smic_brut_horaire = parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
             seuil1 = aah.travail_ordinaire.tranche_smic_horaire1 * smic_brut_horaire
             seuil2 = aah.travail_ordinaire.tranche_smic_horaire2 * smic_brut_horaire
             seuil3 = aah.travail_ordinaire.tranche_smic_horaire3 * smic_brut_horaire
@@ -92,16 +92,16 @@ class aah_base_ressources_conjugalisee(Variable):
         return base_ressource_eval_annuelle() / 12
 
     def formula_2011(individu, period, parameters):
-        law = parameters(period)
-        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        parameters = parameters(period)
+        aah = parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         en_activite = (individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year) > 0)
 
         def assiette_conjoint(revenus_conjoint):
-            return (1 - law.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
+            return (1 - parameters.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
-            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
+            smic_brut_annuel = 12 * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire * parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
             return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
@@ -136,18 +136,18 @@ class aah_base_ressources_conjugalisee(Variable):
             )
 
     def formula_2022_01_01(individu, period, parameters):
-        law = parameters(period)
-        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        parameters = parameters(period)
+        aah = parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year) > 0))
 
         def assiette_conjoint(revenus_conjoint):
             af_nbenf = individu.famille('af_nbenf', period)
-            revenus = (1 - law.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * revenus_conjoint
+            revenus = (1 - parameters.impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux) * revenus_conjoint
             return max_(revenus - (aah.abattement_conjoint.abattement_forfaitaire.base + aah.abattement_conjoint.abattement_forfaitaire.majoration_pac * af_nbenf), 0)
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
-            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
+            smic_brut_annuel = 12 * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire * parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
             return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
