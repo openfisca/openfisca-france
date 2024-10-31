@@ -269,7 +269,7 @@ class abattements_speciaux_prestations_familiales(Variable):
         abattements = parameters(period).impot_revenu.calcul_revenus_imposables.abat_rni
 
         # Abattement pour personnes agées de + de 65 ans ou invalide
-        abattement_age_ou_invalidite = abattements.contribuable_agee_invalide
+        abattement_age_ou_invalidite = abattements.contribuable_age_invalide
 
         # Abattement pour rattachement d'enfants mari·é·s
         abattement_enfant_marie = abattements.enfant_marie
