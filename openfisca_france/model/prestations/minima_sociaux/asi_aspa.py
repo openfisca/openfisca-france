@@ -23,7 +23,7 @@ class asi_aspa_base_ressources_individu(Variable):
     def formula(individu, period, parameters):
         last_year = period.last_year
         three_previous_months = period.last_3_months
-        law = parameters(period)
+        P = parameters(period)
         leg_1er_janvier = parameters(period.start.offset('first-of', 'year'))
 
         ressources_incluses = [
@@ -82,13 +82,13 @@ class asi_aspa_base_ressources_individu(Variable):
 
             # Abattement sur les salaires (appliqué sur une base trimestrielle)
             abattement_forfaitaire_base = (
-                leg_1er_janvier.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
+                leg_1er_janvier.marche_travail.salaire_minimum.smic.smic_b_horaire * P.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
                 )
 
             taux_abattement_forfaitaire = where(
                 aspa_couple,
-                law.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire.couples,
-                law.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire.personnes_seules
+                P.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire.couples,
+                P.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire.personnes_seules
                 )
 
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire

@@ -159,13 +159,13 @@ class crds_salaire(Variable):
         assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
-        law = parameters(period)
+        P = parameters(period)
 
         montant_crds = montant_csg_crds(
-            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            law_node = P.prelevements_sociaux.contributions_sociales.crds,
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
-            abattement_parameter = law.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
+            abattement_parameter = P.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
