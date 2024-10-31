@@ -44,40 +44,31 @@ jobs:
           key: release-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
 
   build-conda:
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Cache build
         uses: actions/cache@v4
         with:
-          path: /tmp/conda-bld
-          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
-          restore-keys: |
-            build-conda-${{ hashFiles('.conda/recipe.yaml') }}
-            build-conda-
+          path: ${{ runner.temp }}\conda-bld
+          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
       - name: set version
         run: |
           python3 .github/pyproject_version.py --replace True
       - name: Build conda package
         uses: prefix-dev/rattler-build-action@v0.2.16
         with:
-          build-args: --channel openfisca --channel conda-forge --output-dir /tmp/conda-bld
+          build-args: --channel openfisca --channel conda-forge --output-dir ${{ runner.temp }}\conda-bld
           recipe-path: .conda/recipe.yaml
           upload-artifact: false
-      - name: Upload Conda build
-        uses: actions/upload-artifact@v4
-        with:
-          name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
-          path: /tmp/conda-bld
-          retention-days: 30
 
   test-conda:
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     needs: [ build-conda ]
     steps:
+      # Checkout needed to get github.sha
       - uses: actions/checkout@v4
-
       - name: Setup conda
         uses: conda-incubator/setup-miniconda@v3
         with:
@@ -85,22 +76,20 @@ jobs:
           miniforge-version: latest
           python-version: 3.9.12
           use-mamba: true
-
       - name: Restore build
         uses: actions/cache@v4
         with:
-          path: /tmp/conda-bld
-          key: build-conda-${{ hashFiles('.conda/recipe.yaml') }}-${{ github.sha }}
-
+          path: ${{ runner.temp }}\conda-bld
+          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
+          fail-on-cache-miss: true
       - name: Install package
+        # `bash -l {0}` démarre un login shell avec les variables d'environnement
+        # voir  https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
-        run: mamba install --channel file:///tmp/conda-bld --channel openfisca openfisca-france
-
+        run: mamba install --channel file:///${RUNNER_TEMP//\\//}/conda-bld --channel openfisca openfisca-france
       - name: Test conda package
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
-
-
 
   lint-files:
     runs-on: ubuntu-20.04
@@ -223,35 +212,32 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
   test-on-windows:
-    runs-on: "windows-latest"
+    runs-on: windows-latest
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
-    needs: [ build-conda ]
+    needs: [ test-conda ]
     steps:
+      # Checkout needed to get github.sha
+      - uses: actions/checkout@v4
       - uses: conda-incubator/setup-miniconda@v3
         with:
-          auto-update-conda: true
-          python-version: "3.9.9"
-          # Add conda-forge for OpenFisca-Core
-          channels: openfisca,conda-forge
-          activate-environment: true
-      - uses: actions/checkout@v4
+          activate-environment: openfisca
+          miniforge-version: latest
+          python-version: 3.10.6
+          use-mamba: true
+      - name: Restore build
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}\conda-bld
+          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
+          fail-on-cache-miss: true
       - name: Test max path length
         run: "python3 openfisca_france/scripts/check_path_length.py"
-      - name: Get version
-        run: |
-          # chcp 65001 #set code page to utf-8
-          echo ("PACKAGE_VERSION=" + (python3 ./setup.py --version) ) >> $env:GITHUB_ENV
-          echo "Version setup.py: ${{ env.PACKAGE_VERSION }}"
-      - name: Download conda build
-        uses: actions/download-artifact@v3
-        with:
-          name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
-          path: conda-build-tmp
-      - name: Install with conda
-        run: |
-          conda install -c ./conda-build-tmp/noarch/openfisca-france-dev-${{ env.PACKAGE_VERSION }}-py_0.tar.bz2  openfisca-france-dev
-      - name: openfisca test
-        run: openfisca test --country-package openfisca_france tests
+      - name: Install package
+        shell: bash -l {0}
+        run: mamba install --channel file:///${RUNNER_TEMP//\\//}/conda-bld --channel openfisca openfisca-france
+      - name: Test conda package
+        shell: bash -l {0}
+        run: openfisca test tests/formulas/irpp.yaml
 
   check-version-and-changelog:
     runs-on: ubuntu-20.04
@@ -323,32 +309,30 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
 
   publish-to-conda:
-    runs-on: "ubuntu-20.04"
+    runs-on: windows-latest
     needs: [ deploy, test-on-windows ]
     steps:
+      - uses: actions/checkout@v4
+      - name: Restore build
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}\conda-bld
+          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
+          fail-on-cache-miss: true
       - uses: conda-incubator/setup-miniconda@v3
         with:
-          auto-update-conda: true
-          python-version: "3.9.9"
-          # Add conda-forge for OpenFisca-Core
-          channels: conda-forge
-          activate-environment: true
-      - name: Get source code
-        uses: actions/checkout@v4
-      - name: Get version
-        run: echo "PACKAGE_VERSION=$(python3 ./pyproject.toml --version)" >> $GITHUB_ENV
-      # Get the last commit hash on the PR (-2 : before the merge commit)
-      - uses: actions/github-script@v6
-        id: last_pr_commit
-        with:
-          script: |
-            const commits = ${{ toJSON(github.event.commits) }}
-            return commits.at(-2).id;
-          result-encoding: string
-      - name: Conda build and upload
-        # This shell is made necessary by https://github.com/conda-incubator/setup-miniconda/issues/128
+          activate-environment: openfisca
+          miniforge-version: latest
+          python-version: 3.10.6
+          use-mamba: true
+      - name: Install package
+        shell: bash -l {0}
+        run: mamba install --channel file:///${RUNNER_TEMP//\\//}/conda-bld --channel openfisca openfisca-france
+      - name: Test conda package
+        shell: bash -l {0}
+        run: openfisca test tests/formulas/irpp.yaml
+      - name: Conda upload already built package
         shell: bash -l {0}
         run: |
-          conda install --yes conda-build anaconda-client
-          conda config --set anaconda_upload yes
-          conda build --channel conda-forge --channel openfisca --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
+          conda install --yes anaconda-client
+          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload --user openfisca ${{ runner.temp }}\conda-bld\noarch\openfisca-france-*

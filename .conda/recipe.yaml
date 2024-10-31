@@ -19,7 +19,7 @@ source:
 build:
   noarch: python
   number: 0
-  script: "pip install . -v"
+  script: "pip install ."
 
 requirements:
   host:

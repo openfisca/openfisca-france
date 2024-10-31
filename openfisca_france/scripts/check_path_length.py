@@ -4,7 +4,8 @@ Also write too long path in a file.
 
 FR: Ce script sert à estimer la longueur des chemins d'arborescence des paramètres,
 afin de ne pas avoir de chemins > 150 caractères (incompatible Windows).
-Il est à utiliser avant de contribuer à l'harmonisation
+Il est à utiliser avant de contribuer à l'harmonisation.
+⚠️ Il est également utilisé par la CI, dans l'étape de test sur Windows.
 '''
 
 
