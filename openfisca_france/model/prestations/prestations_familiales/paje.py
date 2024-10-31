@@ -1,4 +1,4 @@
-from numpy import round, floor, datetime64, maximum, select
+from numpy import round, floor, datetime64, maximum, select, array, ones
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -430,6 +430,7 @@ class paje_cmg(Variable):
         emploi_direct = famille('empl_dir', period)
         assistant_maternel = famille('ass_mat', period)
         garde_a_domicile = famille('gar_dom', period)
+        micro_creche = famille('micro_creche', period)
         paje_prepare = famille('paje_prepare', period)
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
@@ -490,40 +491,57 @@ class paje_cmg(Variable):
             base_ressources >= seuil_revenus_2
         ]
         taux_seuils_emploi_direct = [
-            paje.paje_cmg.complement_libre_choix_mode_garde.revenus_inferieurs_45_plaf,
-            paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_45_plaf,
-            paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_plaf
+            paje.paje_cmg.complement_libre_choix_mode_garde.revenus_inferieurs_45_plaf * ones(seuil_revenus_1.size),
+            paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_45_plaf * ones(seuil_revenus_1.size),
+            paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_plaf * ones(seuil_revenus_1.size)
         ]
         taux_seuils_assistant_maternel = [
-            paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond,
-            paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_second_plafond,
-            paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond
+            paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond * ones(seuil_revenus_1.size),
+            paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_second_plafond * ones(seuil_revenus_1.size),
+            paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond * ones(seuil_revenus_1.size)
         ]
         taux_seuils_garde_domicile_micro_creche = [
-            paje.paje_cmg.garde_domicile.sous_premier_plafond,
-            paje.paje_cmg.garde_domicile.sous_second_plafond,
-            paje.paje_cmg.garde_domicile.apres_second_plafond
+            paje.paje_cmg.garde_domicile.sous_premier_plafond * ones(seuil_revenus_1.size),
+            paje.paje_cmg.garde_domicile.sous_second_plafond * ones(seuil_revenus_1.size),
+            paje.paje_cmg.garde_domicile.apres_second_plafond * ones(seuil_revenus_1.size)
         ]
-        taux_bmaf = select(
-            [
-                emploi_direct * elig_seuils,
-                assistant_maternel * elig_seuils,
-                garde_a_domicile * elig_seuils,
-                micro_creche * elig_seuils
-            ],
-            [
-                taux_seuils_emploi_direct,
-                taux_seuils_assistant_maternel,
-                taux_seuils_garde_domicile_micro_creche,
-                taux_seuils_garde_domicile_micro_creche
-            ]
-        )
+        # taux_bmaf = select(
+        #     [
+        #         emploi_direct * elig_seuils,
+        #         assistant_maternel * elig_seuils,
+        #         garde_a_domicile * elig_seuils,
+        #         micro_creche * elig_seuils
+        #     ],
+        #     [
+        #         emploi_direct * taux_seuils_emploi_direct,
+        #         assistant_maternel * taux_seuils_assistant_maternel,
+        #         garde_a_domicile * taux_seuils_garde_domicile_micro_creche,
+        #         micro_creche * taux_seuils_garde_domicile_micro_creche
+        #     ]
+        # )
+        seuils_ = array([
+            emploi_direct * elig_seuils,
+            assistant_maternel * elig_seuils,
+            garde_a_domicile * elig_seuils,
+            micro_creche * elig_seuils
+        ])
+
+        creche_ = array([
+            emploi_direct * taux_seuils_emploi_direct,
+            assistant_maternel * taux_seuils_assistant_maternel,
+            garde_a_domicile * taux_seuils_garde_domicile_micro_creche,
+            micro_creche * taux_seuils_garde_domicile_micro_creche
+        ])
+
+        taux_bmaf = seuils_ * creche_
         coeff_enfants = [
-            1.0 * (nb_enf_presta_pleine > 0) + 0.5 * (nb_enf_presta_reduite > 0),
-            1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite,
-            
-            1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite
+            (1.0 * (nb_enf_presta_pleine > 0) + 0.5 * (nb_enf_presta_reduite > 0)) * ones(3),
+            (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite) * ones(3),
+            (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite) * ones(3),
+            (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite) * ones(3)
         ]
+        
+        montant_cmg_tmp = bmaf * coeff_enfants * taux_bmaf
 
         montant_cmg = (
             bmaf * (
