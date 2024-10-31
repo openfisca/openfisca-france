@@ -1,0 +1,46 @@
+###############################################################################
+## To build Conda package for Anaconda.org
+## We use the `rattler-build` tool to build the package, see README.md
+## rattler-build build --channel openfisca --channel conda-forge --recipe .conda --output-dir /tmp/rattler
+###############################################################################
+schema_version: 1
+
+context:
+  name: openfisca-france
+  version: X.X.X  # Will be replaced by the version from the pyproject.toml file
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  number: 0
+  script: "pip install . -v"
+
+requirements:
+  host:
+    - numpy
+    - pip
+    - python
+    - setuptools >=61.0
+    - setuptools-scm >=8
+  run:
+    - python
+    # Will be replaced by the version from the pyproject.toml file
+    # If you change it here, please update pyproject_version.py accordingly
+    - numpy>=1.24.3,<2
+    - openfisca-core-api>=43,<44
+
+about:
+  homepage: https://fr.openfisca.org/
+  license_family: AGPL
+  license: AGPL-3.0-only
+  license_file: LICENSE.AGPL.txt
+  summary: "French tax and benefit system for OpenFisca"
+  description: |
+    OpenFisca is a versatile microsimulation free software.
+    This repository contains the OpenFisca model of the French tax and benefit system.

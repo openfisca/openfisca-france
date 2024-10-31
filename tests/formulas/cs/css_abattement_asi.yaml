@@ -1,0 +1,443 @@
+- name: "CSS: Base de ressource d'une personne seule beneficiant de l'asi"
+  period: 2023-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1973-05-01
+        asi:
+          2023-10: 1049
+          2023-09: 0
+          2023-08: 1049
+          2023-07: 1049
+          2023-06: 1049
+          2023-05: 1049
+          2023-04: 1049
+          2023-03: 1049
+          2023-02: 1049
+          2023-01: 1049
+          2022-12: 1049
+          2022-11: 1049
+    famille:
+      parents: [parent1]
+      aide_logement: 0
+      rsa: 0
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 11000
+
+- name: "CSS: Base de ressource d'une personne seule beneficiant de l'asi et de l'aah"
+  period: 2023-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1973-05-01
+        aah:
+          2023-10: 1068
+          2023-09: 1068
+          2023-08: 0
+          2023-07: 1068
+          2023-06: 1068
+          2023-05: 1068
+          2023-04: 1068
+          2023-03: 1068
+          2023-02: 1068
+          2023-01: 1068
+          2022-12: 1068
+          2022-11: 1068
+        asi:
+          2023-10: 1000
+          2023-09: 1000
+          2023-08: 0
+          2023-07: 1000
+          2023-06: 1000
+          2023-05: 1000
+          2023-04: 1000
+          2023-03: 1000
+          2023-02: 1000
+          2023-01: 1000
+          2022-12: 1000
+          2022-11: 1000
+    famille:
+      parents: [parent1]
+      aide_logement: 0
+      rsa: 0
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 22000
+
+- name: "CSS: Base de ressource de deux personnes dont une seule beneficie de l'asi"
+  period: 2023-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1961-01-01
+        asi:
+          2023-10: 1049
+          2023-09: 1049
+          2023-08: 0
+          2023-07: 1049
+          2023-06: 1049
+          2023-05: 1049
+          2023-04: 1049
+          2023-03: 1049
+          2023-02: 1049
+          2023-01: 1049
+          2022-12: 1049
+          2022-11: 1049
+      parent2:
+        date_naissance: 1951-05-01
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      aspa:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 11000
+
+- name: "CSS: Base de ressource de deux personnes dont une seule beneficie de l'asi et de l'aah"
+  period: 2023-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1961-01-01
+        asi:
+          2023-10: 1000
+          2023-09: 1000
+          2023-08: 0
+          2023-07: 1000
+          2023-06: 1000
+          2023-05: 1000
+          2023-04: 1000
+          2023-03: 1000
+          2023-02: 1000
+          2023-01: 1000
+          2022-12: 1000
+          2022-11: 1000
+        aah:
+          2023-10: 1068
+          2023-09: 1068
+          2023-08: 0
+          2023-07: 1068
+          2023-06: 1068
+          2023-05: 1068
+          2023-04: 1068
+          2023-03: 1068
+          2023-02: 1068
+          2023-01: 1068
+          2022-12: 1068
+          2022-11: 1068
+      parent2:
+        date_naissance: 1951-05-01
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      aspa:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 22000
+
+- name: "CSS: Base de ressource de deux personnes dont une beneficie de l'asi et l'autre de l'aah"
+  period: 2023-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1961-01-01
+        asi:
+          2023-10: 1049
+          2023-09: 1049
+          2023-08: 0
+          2023-07: 1049
+          2023-06: 1049
+          2023-05: 1049
+          2023-04: 1049
+          2023-03: 1049
+          2023-02: 1049
+          2023-01: 1049
+          2022-12: 1049
+          2022-11: 1049
+      parent2:
+        date_naissance: 1951-05-01
+        aah:
+          2023-10: 1068
+          2023-09: 1068
+          2023-08: 0
+          2023-07: 1068
+          2023-06: 1068
+          2023-05: 1068
+          2023-04: 1068
+          2023-03: 1068
+          2023-02: 1068
+          2023-01: 1068
+          2022-12: 1068
+          2022-11: 1068
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      aspa:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 22000
+
+- name: "CSS: Base de ressource de deux personnes beneficiant toutes les deux de l'asi"
+  period: 2023-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1961-01-01
+        asi:
+          2023-10: 1043
+          2023-09: 1043
+          2023-08: 0
+          2023-07: 1043
+          2023-06: 1043
+          2023-05: 1043
+          2023-04: 1043
+          2023-03: 1043
+          2023-02: 1043
+          2023-01: 1043
+          2022-12: 1043
+          2022-11: 1043
+      parent2:
+        asi:
+          2023-10: 1043
+          2023-09: 1043
+          2023-08: 0
+          2023-07: 1043
+          2023-06: 1043
+          2023-05: 1043
+          2023-04: 1043
+          2023-03: 1043
+          2023-02: 1043
+          2023-01: 1043
+          2022-12: 1043
+          2022-11: 1043
+        date_naissance: 1951-05-01
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      aspa:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: 22000
+
+- name: "CSS: Base de ressource de 6 personnes (membres famille et externes) et allocation inferieure a abattement"
+  period: 2023-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      adulte_externe_famille:
+        date_naissance: 1990-01-01
+        asi:
+          2023-10: 1049
+          2023-09: 1049
+          2023-08: 1049
+          2023-07: 1049
+          2023-06: 1049
+          2023-05: 1049
+          2023-04: 1049
+          2023-03: 1049
+          2023-02: 1049
+          2023-01: 1049
+          2022-12: 1049
+          2022-11: 1049
+      famille_parent1:
+        date_naissance: 1994-01-01
+        asi:
+          2023-10: 30
+          2023-09: 30
+          2023-08: 0
+          2023-07: 0
+          2023-06: 30
+          2023-05: 30
+          2023-04: 30
+          2023-03: 30
+          2023-02: 30
+          2023-01: 30
+          2022-12: 30
+          2022-11: 30
+      famille_parent2:
+        date_naissance: 1984-02-01
+        asi:
+          2023-10: 86
+          2023-09: 86
+          2023-08: 0
+          2023-07: 86
+          2023-06: 86
+          2023-05: 86
+          2023-04: 86
+          2023-03: 86
+          2023-02: 86
+          2023-01: 86
+          2022-12: 86
+          2022-11: 86
+      famille_enfant1:
+        date_naissance: 2009-07-01
+        asi:
+          2023-10: 10
+          2023-09: 10
+          2023-08: 10
+          2023-07: 10
+          2023-06: 10
+          2023-05: 10
+          2023-04: 10
+          2023-03: 10
+          2023-02: 10
+          2023-01: 10
+          2022-12: 10
+          2022-11: 10
+      famille_enfant2:
+        date_naissance: 2015-02-25
+      famille_enfant3:
+        date_naissance: 2011-06-01
+    famille:
+      parents: [famille_parent1, famille_parent2]
+      enfants: [famille_enfant1, famille_enfant2, famille_enfant3]
+      aide_logement: 0
+      rsa: 0
+      af:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+      cf:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+      asf:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+      aspa:
+        2023-10: 0
+        2023-09: 0
+        2023-08: 0
+        2023-07: 0
+        2023-06: 0
+        2023-05: 0
+        2023-04: 0
+        2023-03: 0
+        2023-02: 0
+        2023-01: 0
+        2022-12: 0
+        2022-11: 0
+  output:
+    acs: 0.0
+    css_cmu_base_ressources: [467, 12000]

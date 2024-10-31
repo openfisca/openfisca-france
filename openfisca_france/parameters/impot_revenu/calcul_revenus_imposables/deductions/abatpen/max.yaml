@@ -1,4 +1,4 @@
-description: Abattement maximum pour l'ensemble du foyer de l'abattement sur les pensions
+description: Montant maximum pour l'ensemble du foyer de l'abattement sur les pensions
 values:
   1942-01-01:
     value: null
@@ -93,7 +93,7 @@ values:
   2023-01-01:
     value: 4321
 metadata:
-  short_label: Maximum
+  short_label: Montant maximum de l'abattement, pour le foyer fiscal
   last_value_still_valid_on: "2024-06-11"
   ipp_csv_id: max_abtpen
   unit: currency_next_year
