@@ -1,4 +1,4 @@
-description: Abattement minimum par bénéficiaire de l'abattement sur les pensions
+description: Montant minimum par bénéficiaire de l'abattement sur les pensions
 values:
   1942-01-01:
     value: null
@@ -59,7 +59,7 @@ values:
   2023-01-01:
     value: 442
 metadata:
-  short_label: Minimum
+  short_label: Montant minimum de l'abattement, par pensionné
   last_value_still_valid_on: "2024-06-11"
   ipp_csv_id: min_abtpen
   unit: currency_next_year
