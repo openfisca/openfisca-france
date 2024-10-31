@@ -231,7 +231,6 @@ jobs:
           path: ${{ runner.temp }}\conda-bld
           key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
           fail-on-cache-miss: true
-          enableCrossOsArchive: true  # To allow restore on windows
       - name: Test max path length
         run: "python3 openfisca_france/scripts/check_path_length.py"
       - name: Install package
