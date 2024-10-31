@@ -1,5 +1,19 @@
 # Changelog
 
+### 169.3.0 [2376](https://github.com/openfisca/openfisca-france/pull/2376)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 1977
+* Zones impactées : 
+  - `parameters/impot_revenu/calcul_revenus_imposables/abat_rni`
+  - `model/prelevements_obligatoires/impot_revenu/ir.pyi`.
+  - `model/prestations/prestations_familiales/base_ressource.py`.
+* Détails :
+  - Transforme 4 paramètres de l'abattement personnes âgées et invalides en 1 seul barème de type single_amount
+  - Réorganise le dossier `abat_rni`
+  - Modifie les formules en conséquence
+
+
 ### 169.2.1 [2361](https://github.com/openfisca/openfisca-france/pull/2361)
 
 * Évolution du système socio-fiscal.
