@@ -363,7 +363,8 @@ brackets:
 metadata:
   short_label: Abattement pour contribuable de plus de 65 ans ou invalide
   last_value_still_valid_on: "2024-10-21"
-  rate_unit: currency_next_year
+  type: single_amount
+  amount_unit: currency_next_year
   threshold_unit: currency_next_year
   reference:
     1984-01-01:
