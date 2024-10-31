@@ -335,4 +335,4 @@ jobs:
         shell: bash -l {0}
         run: |
           conda install --yes anaconda-client
-          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload --user openfisca ${{ runner.temp }}\conda-bld/noarch/openfisca-france-*
+          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload --user openfisca ${{ runner.temp }}\conda-bld\noarch\openfisca-france-*
