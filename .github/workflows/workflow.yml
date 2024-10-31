@@ -87,7 +87,7 @@ jobs:
         # `bash -l {0}` démarre un login shell avec les variables d'environnement
         # voir  https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
-        run: mamba install --channel file://${{ runner.temp }}\conda-bld --channel openfisca openfisca-france
+        run: mamba install --channel file:///${RUNNER_TEMP//\\//}/conda-bld --channel openfisca openfisca-france
       - name: Test conda package
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
@@ -236,7 +236,7 @@ jobs:
         run: "python3 openfisca_france/scripts/check_path_length.py"
       - name: Install package
         shell: bash -l {0}
-        run: mamba install --channel file://${{ runner.temp }}\conda-bld --channel openfisca openfisca-france
+        run: mamba install --channel file:///${RUNNER_TEMP//\\//}/conda-bld --channel openfisca openfisca-france
       - name: Test conda package
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
@@ -330,7 +330,7 @@ jobs:
           use-mamba: true
       - name: Install package
         shell: bash -l {0}
-        run: mamba install --channel file://${{ runner.temp }}\conda-bld --channel openfisca openfisca-france
+        run: mamba install --channel file:///${RUNNER_TEMP//\\//}/conda-bld --channel openfisca openfisca-france
       - name: Test conda package
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
