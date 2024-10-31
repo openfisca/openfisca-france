@@ -52,7 +52,7 @@ jobs:
       - name: Cache build
         uses: actions/cache@v4
         with:
-          path: c:\tmp\conda-bld
+          path: ${{ runner.temp }}\conda-bld
           key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
       - name: set version
         run: |
@@ -60,7 +60,7 @@ jobs:
       - name: Build conda package
         uses: prefix-dev/rattler-build-action@v0.2.16
         with:
-          build-args: --channel openfisca --channel conda-forge --output-dir c:\tmp\conda-bld
+          build-args: --channel openfisca --channel conda-forge --output-dir ${{ runner.temp }}\conda-bld
           recipe-path: .conda/recipe.yaml
           upload-artifact: false
 
@@ -80,14 +80,14 @@ jobs:
       - name: Restore build
         uses: actions/cache@v4
         with:
-          path: c:\tmp\conda-bld
+          path: ${{ runner.temp }}\conda-bld
           key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
           fail-on-cache-miss: true
       - name: Install package
         # `bash -l {0}` démarre un login shell avec les variables d'environnement
         # voir  https://github.com/conda-incubator/setup-miniconda/issues/128
         shell: bash -l {0}
-        run: mamba install --channel file://c:\tmp\conda-bld --channel openfisca openfisca-france
+        run: mamba install --channel file://${{ runner.temp }}\conda-bld --channel openfisca openfisca-france
       - name: Test conda package
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
@@ -228,7 +228,7 @@ jobs:
       - name: Restore build
         uses: actions/cache@v4
         with:
-          path: c:\tmp\conda-bld
+          path: ${{ runner.temp }}\conda-bld
           key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
           fail-on-cache-miss: true
           enableCrossOsArchive: true  # To allow restore on windows
@@ -236,7 +236,7 @@ jobs:
         run: "python3 openfisca_france/scripts/check_path_length.py"
       - name: Install package
         shell: bash -l {0}
-        run: mamba install --channel file://c:\tmp\conda-bld --channel openfisca openfisca-france
+        run: mamba install --channel file://${{ runner.temp }}\conda-bld --channel openfisca openfisca-france
       - name: Test conda package
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
@@ -319,7 +319,7 @@ jobs:
       - name: Restore build
         uses: actions/cache@v4
         with:
-          path: c:\tmp\conda-bld
+          path: ${{ runner.temp }}\conda-bld
           key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
           fail-on-cache-miss: true
       - uses: conda-incubator/setup-miniconda@v3
@@ -330,7 +330,7 @@ jobs:
           use-mamba: true
       - name: Install package
         shell: bash -l {0}
-        run: mamba install --channel file://c:\tmp\conda-bld --channel openfisca openfisca-france
+        run: mamba install --channel file://${{ runner.temp }}\conda-bld --channel openfisca openfisca-france
       - name: Test conda package
         shell: bash -l {0}
         run: openfisca test tests/formulas/irpp.yaml
@@ -338,4 +338,4 @@ jobs:
         shell: bash -l {0}
         run: |
           conda install --yes anaconda-client
-          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload --user openfisca c:\tmp\conda-bld/noarch/openfisca-france-*
+          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload --user openfisca ${{ runner.temp }}\conda-bld/noarch/openfisca-france-*
