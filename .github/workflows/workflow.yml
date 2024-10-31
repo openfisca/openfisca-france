@@ -1,5 +1,4 @@
 name: OpenFisca France
-# Mettre tout en windows et remettre le hash du pyproject.toml
 
 on:
   push:
