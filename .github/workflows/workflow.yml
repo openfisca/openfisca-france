@@ -323,7 +323,7 @@ jobs:
         with:
           activate-environment: openfisca
           miniforge-version: latest
-          python-version: 3.9.12
+          python-version: 3.10.6
           use-mamba: true
       - name: Install package
         shell: bash -l {0}
