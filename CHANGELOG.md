@@ -1,5 +1,19 @@
 # Changelog
 
+### 169.2.1 [2361](https://github.com/openfisca/openfisca-france/pull/2361)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2021.
+* Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/cs/ressources.py`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/css/`
+* Détails :
+  Prise en compte des abattements pour palier les revalorisations exceptionnelles de 
+  - l’allocation aux adultes handicapés (AAH),
+  - l’allocation de solidarité aux personnes âgées (ASPA),
+  - l’allocation supplémentaire vieillesse (ASV),
+  - l’allocation supplémentaire d’invalidité (ASI)
+
 ### 169.2.0 [2371](https://github.com/openfisca/openfisca-france/pull/2371)
 
 * Évolution du système socio-fiscal. 
