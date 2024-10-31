@@ -1,5 +1,14 @@
 # Changelog
 
+### 169.3.1 [2374](https://github.com/openfisca/openfisca-france/pull/2374)
+
+* Correction d'un crash.
+* Périodes concernées : aucune.
+* Zones impactées : `workflow.yml`.
+* Détails :
+  - La publication conda ne fonctionnait plus suite au passage à `pyproject.toml` : `C:\hostedtoolcache\windows\Python\3.9.13\x64\python3.exe: can't open file 'D:\a\openfisca-france\openfisca-france\setup.py': [Errno 2] No such file or directory`
+  - Met en place la pipeline conda faite dans Openfisca/country-template
+
 ### 169.3.0 [2376](https://github.com/openfisca/openfisca-france/pull/2376)
 
 * Évolution du système socio-fiscal
