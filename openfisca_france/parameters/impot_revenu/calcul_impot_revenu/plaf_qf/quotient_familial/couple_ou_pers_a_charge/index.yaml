@@ -1,0 +1,14 @@
+description: Parts supplémentaires de quotient familial pour certaines situations de foyers fiscaux en couple ou avec personne à charge
+metadata:
+  documentation_start: true
+  short_label: Parts supplémentaires personne en couple ou avec personne à charge
+  order:
+  - isol
+  - inv1
+  - not41
+  - not6
+  - not42
+  - inv2
+  - cdcd
+  documentation: |-
+    Ces paramètres sont énumérés dans l'article 195 du code général des impôts, à compter du 2. Seuls not6 et isol sont dans d'autres articles, respectivement l'article 196 (not6) et le II du 194 (isol).

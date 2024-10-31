@@ -269,7 +269,7 @@ class abattements_speciaux_prestations_familiales(Variable):
         abattements = parameters(period).impot_revenu.calcul_revenus_imposables.abat_rni
 
         # Abattement pour personnes agées de + de 65 ans ou invalide
-        abattement_age_ou_invalidite = abattements.personne_agee_ou_invalide
+        abattement_age_ou_invalidite = abattements.contribuable_age_invalide
 
         # Abattement pour rattachement d'enfants mari·é·s
         abattement_enfant_marie = abattements.enfant_marie
@@ -283,25 +283,13 @@ class abattements_speciaux_prestations_familiales(Variable):
         # Vecteur de montants d'abattement pour personnes âges ou invalides
         abattement_special_personne_agee_invalide = (
             foyers_eligibles
-            * (
-                (
-                    abattement_age_ou_invalidite.montant_1
-                    * (revenu_net_global <= abattement_age_ou_invalidite.plafond_1)
-                    )
-                + (
-                    abattement_age_ou_invalidite.montant_2
-                    * (
-                        (revenu_net_global > abattement_age_ou_invalidite.plafond_1)
-                        & (revenu_net_global <= abattement_age_ou_invalidite.plafond_2)
-                        )
-                    )
-                )
+            * abattement_age_ou_invalidite.calc(revenu_net_global)
             )
 
         # Vecteur de montants d'abattement pour enfants à charge
         abattement_special_enfants_a_charge = (
             nombre_enfants
-            * abattement_enfant_marie.montant
+            * abattement_enfant_marie
             )
 
         # Le montant total d'abattement ne peut pas être supérieur au revenu net global

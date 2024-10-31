@@ -1,0 +1,12 @@
+description: Cas général des situations de famille pour attribuer les parts du quotient familial de l'impôt sur le revenu (IR)
+metadata:
+  documentation_start: true
+  short_label: Cas général
+  order:
+  - conj
+  - enf1
+  - enf2
+  - enf3_et_sup
+  - veuf
+documentation: |+
+  Les paramètres disponibles dans ce dossier "cas général" sont tous présents dans le tableau de l'article 194 du CGI, au I.

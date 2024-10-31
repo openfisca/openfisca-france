@@ -578,12 +578,12 @@ class pensions_alimentaires_deduites(Variable):
         # foyer, la déduction est limitée à 2*max
         # S'il habite chez ses parents, max 3359, sinon 5698
         return (
-            min_(f6gi * (1 + taux_jgt_2006), max1)
-            + min_(f6gj * (1 + taux_jgt_2006), max1)
+            min_(f6gi * taux_jgt_2006, max1)
+            + min_(f6gj * taux_jgt_2006, max1)
             + min_(f6el, max1)
             + min_(f6em, max1)
-            + f6gp
-            * (1 + taux_jgt_2006) + f6gu
+            + f6gp * taux_jgt_2006
+            + f6gu
             )
 
 
