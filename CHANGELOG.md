@@ -1,5 +1,17 @@
 # Changelog
 
+### 169.2.0 [2371](https://github.com/openfisca/openfisca-france/pull/2371)
+
+* Évolution du système socio-fiscal. 
+* Périodes concernées : toutes. 
+* Zones impactées : 
+   - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/deductions/`.
+   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+   - `openfisca_france/model/prestations/aides_logement.py`
+   - `openfisca_france/model/prestations/minima_sociaux/aah.py`
+* Détails :
+L'abattement pour frais professionnels de 10% était aussi utilisé pour l'abattement sur les pensions. Ces deux paramètres, certes à 10% chacun, sont pourtant différenciés dans la loi (Article 83 pour les salaires, Article 158 pour les pensions. Cette PR propose de les séparer.
+
 ### 169.1.2 [2379](https://github.com/openfisca/openfisca-france/pull/2379)
 
 * Évolution du système socio-fiscal.
