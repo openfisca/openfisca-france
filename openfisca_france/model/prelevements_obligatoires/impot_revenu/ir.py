@@ -718,19 +718,19 @@ class revenu_categoriel_capital(Variable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement)
+        g12b = max_(f2dc_bis * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement)
 
         # Abattements, limité au revenu
-        h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
+        h12 = P.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
-        TOT3 = (f2ts - F2) + f2go * rvcm.majoration_revenus_reputes_distribues + f2tr_bis - g12a
+        TOT3 = (f2ts - F2) + f2go * P.majoration_revenus_reputes_distribues + f2tr_bis - g12a
 
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
@@ -1040,7 +1040,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         f2gr = foyer_fiscal('f2gr', period)
         f2fu = foyer_fiscal('f2fu', period)
         f2da = foyer_fiscal('f2da', period)  # noqa F841
-        rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Calcul de i121
         # Part des frais s'imputant sur les revenus déclarés case DC
@@ -1048,18 +1048,18 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         F1 = f2ca / den * f2dc  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie positive
-        g12b = max_(f2dc * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
+        g12b = max_(f2dc * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
 
         # Abattements, limité au revenu
-        h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
+        h12 = P.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return max_((rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
+        return max_((P.revenus_capitaux_mobiliers_dividendes.taux_abattement) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2dc = foyer_fiscal('f2dc', period)
         f2fu = foyer_fiscal('f2fu', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.P
 
         abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
 
