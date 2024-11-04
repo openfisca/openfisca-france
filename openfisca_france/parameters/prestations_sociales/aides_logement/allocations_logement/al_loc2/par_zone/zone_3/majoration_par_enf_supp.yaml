@@ -43,7 +43,7 @@ values:
   2023-10-01:
     value: 50.81
 metadata:
-  short_label: Psar enfant supplémentaire
+  short_label: Par enfant supplémentaire
   last_value_still_valid_on: "2023-02-20"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_enfsupp_z3

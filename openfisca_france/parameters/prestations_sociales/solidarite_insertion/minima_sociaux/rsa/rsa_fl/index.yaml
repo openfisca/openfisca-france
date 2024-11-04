@@ -3,4 +3,6 @@ metadata:
   short_label: Forfait logement
   label_en: "Active solidarity income (RSA): accomodation allowance"
   order:
-  - forfait_logement
+  - taux_1_personne
+  - taux_2_personnes
+  - taux_3_personnes_ou_plus

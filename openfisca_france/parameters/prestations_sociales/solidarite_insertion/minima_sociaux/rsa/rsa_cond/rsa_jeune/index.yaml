@@ -1,0 +1,9 @@
+description: Conditions d'attribution du revenu de solidarité active (RSA) jeune
+metadata:
+  short_label: Conditions d'attribution du RSA jeune
+  label_en: "Active solidarity income (RSA) for youths : General conditions"
+  order:
+  - age_min_rsa_jeune
+  - age_max_rsa_jeune
+  - rsa_jeune_en_heure
+  - date_debut_rsa_jeune

@@ -1,1 +1,8 @@
-description: Revenus liés au patrimoine
+description: Règles de prise en compte de la valeur en capital des bien non productifs d'un postulant au revenu de solidarité active (RSA)
+metadata:
+  short_label: Règles de prise en compte des biens non productifs dans les ressources du postulant au RSA
+  order:
+  - abattement_valeur_locative_immo_non_loue
+  - abattement_valeur_locative_terrains_non_loues
+  - taux_interet_forfaitaire_epargne_non_imposable
+

@@ -1,10 +1,10 @@
-description: Limite de durée du droit à la majoration pour isolement (en mois) du revenu de solidarité active (RSA)
+description: Durée maximale en mois de la majoration du revenu de solidarité active (RSA) pour un parent isolé ou une femme enceinte isolée
 values:
   2009-06-01:
-    value: 12
+    value: 18
 metadata:
-  short_label: Limite de durée du droit
-  last_value_still_valid_on: "2022-03-28"
+  short_label: Durée maximale en mois de la majoration
+  last_value_still_valid_on: "2023-06-05"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: limite_dureet_rsa
   unit: month

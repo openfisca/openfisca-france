@@ -1,16 +1,16 @@
-description: Taux pour 2 personnes du forfait logement du revenu de solidarité active (RSA)
+description: Taux pour une personne du forfait logement du revenu de solidarité active (RSA)
 values:
   2009-06-01:
-    value: 0.16
+    value: 0.12
 metadata:
-  short_label: 2 personnes
+  short_label: Taux du forfait logement pour 1 personne
   last_value_still_valid_on: "2022-03-29"
   label_en: "Active solidarity income (RSA): accomodation allowance"
-  ipp_csv_id: rsa_rmi_logt2
+  ipp_csv_id: rsa_rmi_logt1
   unit: /1
   reference:
     2009-06-01:
-    - title: Article R262-9 2. du Code de l'action sociale et des familles
+    - title: Article R262-9 1. du Code de l'action sociale et des familles
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020526192/2022-01-21/
     - title: Décret 2009-404 du 15/04/2009, art. 2 (modif art. R262-9 et R262-10 du CASF)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522717&cidTexte=JORFTEXT000020521930

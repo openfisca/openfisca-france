@@ -1,0 +1,14 @@
+description: La date de début du RSA jeune
+values:
+  2009-06-01:
+    value: 0
+  2010-01-01:
+    value: 1
+metadata:
+  short_label: Date début
+  last_value_still_valid_on: "2023-06-05"
+  unit: currency
+  reference:
+    2010-01-01:
+      title: Article L262-7-1 du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000021642861/

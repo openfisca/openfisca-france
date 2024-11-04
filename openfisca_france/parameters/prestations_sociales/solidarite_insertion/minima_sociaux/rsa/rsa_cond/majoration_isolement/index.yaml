@@ -1,6 +1,6 @@
-description: Majoration pour isolement (en mois) du revenu de solidarité active (RSA)
+description: Majoration personne isolée avec enfant à charge ou femme isolée en état de grossesse du revenu de solidarité active (RSA)
 metadata:
-  short_label: Majoration pour isolement
+  short_label: Majoration pour personne isolée avec enfant à charge ou femme enceinte isolée
   label_en: "Active solidarity income (RSA): General conditions"
   order:
   - duree_du_droit

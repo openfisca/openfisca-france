@@ -1,9 +1,9 @@
-description: Durée minimum du titre de séjour (pour un ressortissant de l'EEE) permettant de bénéficier du Revenu de solidarité active (RSA)
+description: Durée minimum du titre de séjour pour un ressortissant de l'espace économique européen permettant de bénéficier du Revenu de solidarité active (RSA)
 values:
   2009-06-01:
     value: 0.25
 metadata:
-  short_label: Ressortissant de l'EEE
+  short_label: Ressortissant de l'espace économique européen
   last_value_still_valid_on: "2022-03-28"
   label_en: "Active solidarity income (RSA): General conditions"
   unit: year

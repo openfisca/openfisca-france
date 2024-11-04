@@ -1,11 +1,11 @@
-description: Condition d'heures d'activité exercée pour les jeunes (en heure) pour être éligile au revenu de solidarité active (RSA)
+description: Nombre d'heures d'activité pendant les trois dernières années précédant la demande pour bénéficier, sans remplir les conditions d'âge minimal ou d'enfant à charge, du revenu de solidarité active (RSA)
 values:
   2009-06-01:
     value: null
   2010-09-01:
     value: 3214
 metadata:
-  short_label: Heures du RSA jeune
+  short_label: Nombre d'heures d'activité pendant les 3 dernières années pour bénéficier du RSA sans remplir les conditions d'âge minimal ou d'enfant à charge
   last_value_still_valid_on: "2022-03-28"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: rsa_jeune_activite
@@ -21,8 +21,6 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000022741770&cidTexte=JORFTEXT000022741137
     - title: Article D262-25-1 du Code de l'action sociale et des familles
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033516276/2017-01-01/
-    - title: Article L3122-4 du Code de l'action sociale et des familles
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019356968/2008-08-22/
     - title: Article L3122-4 du Code de l'action sociale et des familles
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020174/
   official_journal_date:

@@ -3,9 +3,11 @@ values:
   2009-01-01:
     value: 0.03
 metadata:
+  short_label: Taux forfaitaie appliqué pour l'épargne non productive
   last_value_still_valid_on: "2022-04-04"
   unit: /1
   reference:
     2009-01-01:
       title: Article R132-2 du Code de l'action sociale et des familles
       href: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178301/
+  documentation: Les biens non productifs de revenu réel sont considérés comme produisant fictivement un revenu annuel égal à 3 % de leur montant (contrat d'assurance-vie par exemple
