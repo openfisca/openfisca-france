@@ -1087,7 +1087,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
 
         abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
         abattement_assu_vie = where(imposition_au_bareme, 0,
-            (f2ch < abattement) * max_(0, min_(f2vv + f2ww, abattement_assurance_vie - f2ch - f2dh))
+            (f2ch < abattement_assurance_vie) * max_(0, min_(f2vv + f2ww, abattement_assurance_vie - f2ch - f2dh))
             )
         abattement_dividende = where(imposition_au_bareme, (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement, 0)
 
