@@ -1,7 +1,7 @@
-description: Réduction d'impôt sur le revenu pour les DOM
+description: Réduction d'impôt sur le revenu (IR) pour les DOM
 metadata:
   documentation_start: true
-  short_label: Sur le revenu pour les DOM
+  short_label: DOM
   label_en: Reductions for French Overseas Territories taxpayers
   order:
   - guadeloupe_martinique_reunion

@@ -1,5 +1,6 @@
-description: Dons
+description: Réduction d'impôt sur le revenu (IR) sur les dons
 metadata:
+  short_label: Dons
   documentation_start: true
   label_en: Gifts
   order:
