@@ -265,15 +265,16 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
+
         P1_taux = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
         P1_taux_reduit_av = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_produits_assurance_vie_non_eligibles_prelevement_forfaitaire_unique
         P2 = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
         abattement_assurance_vie = P2.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P2.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
-        veuf = foyer_fiscal('veuf', period)
-        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         imposition_au_bareme = foyer_fiscal('f2op', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2zz = foyer_fiscal('f2zz', period)
