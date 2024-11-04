@@ -1059,7 +1059,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2dc = foyer_fiscal('f2dc', period)
         f2fu = foyer_fiscal('f2fu', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.P
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
 
