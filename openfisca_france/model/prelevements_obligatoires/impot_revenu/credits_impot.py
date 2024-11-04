@@ -1916,6 +1916,9 @@ class prlire(Variable):
         f2dh = foyer_fiscal('f2dh', period)
         f2ch = foyer_fiscal('f2ch', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         abattement = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)

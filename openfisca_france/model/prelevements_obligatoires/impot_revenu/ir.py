@@ -691,6 +691,9 @@ class revenu_categoriel_capital(Variable):
         Revenus des valeurs et capitaux mobiliers
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2dc = foyer_fiscal('f2dc', period)
@@ -737,6 +740,9 @@ class revenu_categoriel_capital(Variable):
         Revenus des valeurs et capitaux mobiliers
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2da = foyer_fiscal('f2da', period)
@@ -776,6 +782,9 @@ class revenu_categoriel_capital(Variable):
         Revenus des valeurs et capitaux mobiliers
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ca = foyer_fiscal('f2ca', period)
         f2ch = foyer_fiscal('f2ch', period)
@@ -803,6 +812,9 @@ class revenu_categoriel_capital(Variable):
         Revenus des valeurs et capitaux mobiliers
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ca = foyer_fiscal('f2ca', period)
         f2ch = foyer_fiscal('f2ch', period)
@@ -872,6 +884,9 @@ class revenu_categoriel_capital(Variable):
         Dans ce cas, ils ne sortent pas de la variable `revenu_categoriel_capital`.
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
         imposition_au_bareme = foyer_fiscal('f2op', period)
@@ -918,6 +933,9 @@ class revenu_categoriel_capital(Variable):
             Source : Brochure pratique revenus 2019 page 123 et 340: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2020/accueil.htm
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
         imposition_au_bareme = foyer_fiscal('f2op', period)
@@ -965,6 +983,9 @@ class revenu_categoriel_capital(Variable):
             Source : Brochure pratique revenus 2020 page 119, 132 et 364: https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2021/accueil.htm
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
         imposition_au_bareme = foyer_fiscal('f2op', period)
@@ -1052,6 +1073,9 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
               Si le foyer a choisi l'imposition au barème pour les revenus éligibles au pfu, les revenus de l'assurance-vie entrent dans le calcul du RFR via `revenus_categoriel` net d'abattement.
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         imposition_au_bareme = foyer_fiscal('f2op', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2dh = foyer_fiscal('f2dh', period)

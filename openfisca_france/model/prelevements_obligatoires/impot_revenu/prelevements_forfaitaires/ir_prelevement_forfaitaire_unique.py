@@ -270,6 +270,10 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         P2 = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
         abattement_assurance_vie = P2.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P2.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         imposition_au_bareme = foyer_fiscal('f2op', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2zz = foyer_fiscal('f2zz', period)
