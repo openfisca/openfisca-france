@@ -1,7 +1,7 @@
-description: Cas spécifiques concernant les contribuables en couple ou avec personne à charge, donnant lieu à des parts supplémentaires de quotient familial (IR)
+description: Cas spécifiques concernant les contribuables en couple ou avec au moins une personne à charge, donnant lieu à des parts supplémentaires de quotient familial (IR)
 metadata:
   documentation_start: true
-  short_label: Cas spécifiques concernant les contribuables en couple ou avec personne à charge
+  short_label: Cas spécifiques pour les contribuables en couple ou avec au moins une personne à charge
   order:
   - isol
   - inv1
