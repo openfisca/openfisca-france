@@ -700,9 +700,9 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_assurance_vie = rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
         f2dc_bis = f2dc
         f2tr_bis = f2tr
@@ -1059,13 +1059,13 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         f2fu = foyer_fiscal('f2fu', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
-        abattement_assurance_vie = where(imposition_au_bareme, 0,
-            (f2ch < abattement) * max_(0, min_(f2vv + f2ww, abattement - f2ch - f2dh))
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_assu_vie = where(imposition_au_bareme, 0,
+            (f2ch < abattement) * max_(0, min_(f2vv + f2ww, abattement_assurance_vie - f2ch - f2dh))
             )
         abattement_dividende = where(imposition_au_bareme, (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement, 0)
 
-        return - abattement_assurance_vie + abattement_dividende
+        return - abattement_assu_vie + abattement_dividende
 
 
 class revenu_categoriel_foncier(Variable):
