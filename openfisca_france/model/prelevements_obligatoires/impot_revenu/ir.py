@@ -748,7 +748,7 @@ class revenu_categoriel_capital(Variable):
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
-        
+
         abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
         part_frais_imputes_sur_f2dc = f2ca / max_(1, f2dc + f2ts) * f2dc
