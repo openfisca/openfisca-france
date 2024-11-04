@@ -747,23 +747,25 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        parameter_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
         part_frais_imputes_sur_f2dc = f2ca / max_(1, f2dc + f2ts) * f2dc
-        part_frais_restant_a_imputer = -min_(f2dc * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        part_frais_restant_a_imputer = -min_(f2dc * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
 
-        dividendes_apres_abattements = max_(f2dc * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
-        revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, parameter_rvcm.abattement_assurance_vie)
+        dividendes_apres_abattements = max_(f2dc * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, abattement_assurance_vie)
         rvcm_apres_abattements_proportionnels = (
             revenus_assurance_vie_apres_abattements
             + dividendes_apres_abattements
             + f2gr
-            + f2fu * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
+            + f2fu * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
             )
-        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses))
+        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - P.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses))
         autres_rvcm_sans_abattements = (
             f2ts - (f2ca - part_frais_imputes_sur_f2dc)
-            + f2go * parameter_rvcm.majoration_revenus_reputes_distribues
+            + f2go * P.majoration_revenus_reputes_distribues
             + f2tr - part_frais_restant_a_imputer
             )
 
