@@ -1,5 +1,20 @@
 # Changelog
 
+### 169.4.1 [2377](https://github.com/openfisca/openfisca-france/pull/2377)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir de 1978.
+* Zones impactées : 
+     * `impot_revenu/credits_impot.py`
+     * `impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
+     * `impot_revenu/ir.py`
+     * `impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/couple_ou_pers_a_charge/index.yaml`
+     * `impot_revenu/calcul_revenus_imposables/rvcm/produits_assurances_vies_assimiles`
+* Détails :
+  - Crée un nouveau paramètre spécifique pour l'abattement des couples pour produit d'assurance vie dans le calcul des revenus imposables à l'IR
+  - Modifie les formules en conséquence (qui utilisaient l'abattement pour célibataire en le multipliant par 2)
+
+
 ### 169.3.1 [2374](https://github.com/openfisca/openfisca-france/pull/2374)
 
 * Correction d'un crash.

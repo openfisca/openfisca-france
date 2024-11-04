@@ -852,6 +852,9 @@ class revenu_categoriel_capital(Variable):
               - Brochure pratique de l'IR 2017 sur revenus 2016 : https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2017/files/assets/common/downloads/publication.pdf
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ca = foyer_fiscal('f2ca', period)
         f2ch = foyer_fiscal('f2ch', period)
