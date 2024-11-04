@@ -865,7 +865,7 @@ class revenu_categoriel_capital(Variable):
 
         # Revenus après abatemment
         abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
