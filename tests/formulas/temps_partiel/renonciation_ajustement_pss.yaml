@@ -1,0 +1,48 @@
+- period: 2023-08
+  name: Base - Variable renonciation à False avant 2023-09
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 3428.6 # supérieur en équivalent temps plein (4000) au plafond_securite_sociale
+    heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail: temps_partiel
+    renonciation_ajustement_pss_temps_partiel: false
+  output:
+    # le plafond_securite_sociale est proratisé
+    plafond_securite_sociale: 3666 * (6 / 7)
+
+- period: 2023-08
+  name: Variable renonciation à True avant 2023-09
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 3428.6 # supérieur en équivalent temps plein (4000) au plafond_securite_sociale
+    heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
+    contrat_de_travail: temps_partiel
+    renonciation_ajustement_pss_temps_partiel: true
+  output:
+    # le plafond_securite_sociale est proratisé - la variable de renonciation est bien ignorée avant septembre 2023
+    plafond_securite_sociale: 3666 * (6 / 7) # Résultat identique à Base
+
+- period: 2023-09
+  name: Variable renonciation à False après 2023-09
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 3428.6 # supérieur en équivalent temps plein (4000) au plafond_securite_sociale
+    heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
+    contrat_de_travail: temps_partiel
+    renonciation_ajustement_pss_temps_partiel: false
+  output:
+    # le plafond_securite_sociale est proratisé
+    plafond_securite_sociale: 3666 * (6 / 7) # Résultat identique à Base
+
+- period: 2023-09
+  name: Variable renonciation à True après 2023-09
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 3428.6 # supérieur en équivalent temps plein (4000) au plafond_securite_sociale
+    heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
+    contrat_de_travail: temps_partiel
+    renonciation_ajustement_pss_temps_partiel: true
+  output:
+    # le plafond_securite_sociale n'est pas proratisé
+    plafond_securite_sociale: 3666.0

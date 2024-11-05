@@ -925,6 +925,11 @@ class plafond_securite_sociale(Variable):
         nombre_jours_calendaires = individu('nombre_jours_calendaires', period)
         plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
 
+        # "Ce rapport ne peut pas conduire à un résultat supérieur à la valeur mensuelle du plafond de sécurité sociale."
+        # Source : https://boss.gouv.fr/portail/accueil/regles-dassujettissement/assiette-generale.html#titre-chapitre-6---le-plafond-de-la-se-section-2---determination-de-las-a-principe-de-lajustement-a-due-2-salaries-a-temps-partiel
+        # §810
+        plafond = min_(plafond, plafond_temps_plein)
+
         return plafond
 
     def formula_2023_09(individu, period, parameters):
@@ -942,6 +947,11 @@ class plafond_securite_sociale(Variable):
         # calcul du nombre de jours calendaires de présence du salarié
         nombre_jours_calendaires = individu('nombre_jours_calendaires', period)
         plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
+
+        # "Ce rapport ne peut pas conduire à un résultat supérieur à la valeur mensuelle du plafond de sécurité sociale."
+        # Source : https://boss.gouv.fr/portail/accueil/regles-dassujettissement/assiette-generale.html#titre-chapitre-6---le-plafond-de-la-se-section-2---determination-de-las-a-principe-de-lajustement-a-due-2-salaries-a-temps-partiel
+        # §810
+        plafond = min_(plafond, plafond_temps_plein)
 
         return plafond
 
