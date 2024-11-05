@@ -1,6 +1,6 @@
 # Changelog
 
-### 169.4.1 [2377](https://github.com/openfisca/openfisca-france/pull/2377)
+### 169.4.0 [2377](https://github.com/openfisca/openfisca-france/pull/2377)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  à partir de 1978.
