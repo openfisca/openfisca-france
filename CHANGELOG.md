@@ -6,7 +6,8 @@
 - Périodes concernées : aucune.
 - Zones impactées : `.github/workflows/workflow.yml`.
 - Détails :
-  - Contournement d'une erreur qui empêchait la CI Conda de fonctionner.
+  - Contourne une erreur de commande inconnue sur le job `test-conda` de l'intégration continue
+  - Réunit en `build-and-test-conda` les jobs de CI `build-conda` et `test-conda`
 
 ### 169.3.2 [2382](https://github.com/openfisca/openfisca-france/pull/2382)
 
