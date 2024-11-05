@@ -1,7 +1,7 @@
 description: Réductions d'impôt pour les particuliers concernant les investissements réalisés en Outre-Mer
 metadata:
   documentation_start: true
-  short_label: Investissements d'Outre-mer
+  short_label: Investissements d'outre-mer
   label_en: Tax reduction for personal investment in Overseas department
   order:
   - plafond
