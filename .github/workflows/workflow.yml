@@ -73,6 +73,7 @@ jobs:
           miniforge-version: latest
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
+          channels: conda-forge,defaults
       - name: Install package
         shell: pwsh
         run: mamba install --channel ./conda-bld --channel openfisca openfisca-france
@@ -204,7 +205,7 @@ jobs:
 
   test-on-windows:
     runs-on: windows-latest
-    # TO REVERT if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
+    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ build-and-test-conda ]
     steps:
       # Checkout needed to get github.sha
@@ -215,6 +216,7 @@ jobs:
           miniforge-version: latest
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
+          channels: conda-forge,defaults
       - name: Restore build
         uses: actions/cache@v4
         with:
@@ -302,8 +304,7 @@ jobs:
 
   publish-to-conda:
     runs-on: windows-latest
-    # TO REVERT needs: [ deploy, test-on-windows ]
-    needs: [ test-on-windows ]
+    needs: [ deploy, test-on-windows ]
     steps:
       - uses: actions/checkout@v4
       - name: Restore build
@@ -319,6 +320,7 @@ jobs:
           miniforge-version: latest
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
+          channels: conda-forge,defaults
       - name: Install package
         shell: pwsh
         run: mamba install --channel ./conda-bld --channel openfisca openfisca-france
