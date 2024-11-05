@@ -1,8 +1,7 @@
-description: Dépenses d'investissement forestier
+description: Dépenses d'investissements forestiers
 metadata:
   order:
   - acquisition
-  - assurance
   - travaux
-  - plafond_cga
+  - assurance  
 documentation: Le plafond est doublé pour un couple marié ou pour les partenaires liés par un PACS soumis à une imposition commune.
