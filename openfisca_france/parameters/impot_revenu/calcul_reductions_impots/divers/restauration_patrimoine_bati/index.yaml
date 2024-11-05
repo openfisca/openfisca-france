@@ -1,6 +1,6 @@
-description: Restauration du patrimoine bâti
+description: Restauration du patrimoine bâti (Dispositif "Malraux")
 metadata:
-  short_label: Restauration patrimoine bâti
+  short_label: Restauration patrimoine bâti (Dispositif "Malraux")
   order:
   - taux_22
   - taux_30
