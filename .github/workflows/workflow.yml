@@ -5,6 +5,9 @@ on:
   pull_request:
     types: [opened, reopened]
 
+env:
+  DEFAULT_PYTHON_VERSION: '3.10.6'
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -68,7 +71,7 @@ jobs:
         with:
           activate-environment: openfisca
           miniforge-version: latest
-          python-version: 3.9.12
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
       - name: Install package
         shell: pwsh
@@ -92,7 +95,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9.9
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Cache build
         id: restore-build
         uses: actions/cache@v4
@@ -139,7 +142,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9.9
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Test max path length
         run: make check-path-length
 
@@ -160,7 +163,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9.9
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Cache build
         id: restore-build
         uses: actions/cache@v4
@@ -189,7 +192,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9.9
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Cache build
         id: restore-build
         uses: actions/cache@v4
@@ -210,7 +213,7 @@ jobs:
         with:
           activate-environment: openfisca
           miniforge-version: latest
-          python-version: 3.10.6
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
       - name: Restore build
         uses: actions/cache@v4
@@ -238,7 +241,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9.9
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Check version number has been properly updated
         run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
 
@@ -258,7 +261,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9.9
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - id: stop-early
         run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
 
@@ -279,7 +282,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9.9
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Cache build
         id: restore-build
         uses: actions/cache@v4
@@ -314,7 +317,7 @@ jobs:
         with:
           activate-environment: openfisca
           miniforge-version: latest
-          python-version: 3.10.6
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
       - name: Install package
         shell: pwsh
