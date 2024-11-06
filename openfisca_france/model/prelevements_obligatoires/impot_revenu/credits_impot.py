@@ -1916,10 +1916,15 @@ class prlire(Variable):
         f2dh = foyer_fiscal('f2dh', period)
         f2ch = foyer_fiscal('f2ch', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        P = parameters(period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        plaf_resid = max_(P.impot_revenu.calcul_revenus_imposables.rvcm.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch, 0)
-        return P.impot_revenu.credits_impots.prlire.taux * min_(f2dh, plaf_resid)
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+
+        plaf_resid = max_(abattement_assurance_vie - f2ch, 0)
+        return parameters(period).impot_revenu.credits_impots.prlire.taux * min_(f2dh, plaf_resid)
 
 
 class quaenv(Variable):

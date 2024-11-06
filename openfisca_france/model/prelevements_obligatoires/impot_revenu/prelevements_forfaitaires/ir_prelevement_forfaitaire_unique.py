@@ -265,24 +265,29 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        P1_taux = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
-        P1_taux_reduit_av = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_produits_assurance_vie_non_eligibles_prelevement_forfaitaire_unique
-        P2 = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
+
+        parameters_taux = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
+        parameters_taux_reduit_av = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_produits_assurance_vie_non_eligibles_prelevement_forfaitaire_unique
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
         imposition_au_bareme = foyer_fiscal('f2op', period)
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2zz = foyer_fiscal('f2zz', period)
         f2vv = foyer_fiscal('f2vv', period)
         f2ww = foyer_fiscal('f2ww', period)
 
-        abattement_residuel = max_(P2.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch, 0)
+        abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
         pfu_ir_sur_assurance_vie = where(imposition_au_bareme, 0,
-            (f2zz * P1_taux)
-            + (max_(f2vv - abattement_residuel, 0) * P1_taux_reduit_av)
+            (f2zz * parameters_taux)
+            + (max_(f2vv - abattement_residuel, 0) * parameters_taux_reduit_av)
             # Ce calcul avec le taux réduit ne semble pas prendre en compte le montant maximal des versements qui est de 150 000 euros et semble disponible dans ce paramètre : seuil_primes_applique_eligibilite_produits_assurance_vie_prelevement_forfaitaire_unique
-            + (max_(f2ww - abattement_residuel2, 0) * P1_taux)
+            + (max_(f2ww - abattement_residuel2, 0) * parameters_taux)
             )
 
         return -pfu_ir_sur_assurance_vie

@@ -1,0 +1,31 @@
+description: Abattement annuel, pour les contribuables mariés ou pacsés, applicable au montant imposable des produits de bons ou contrats d'une durée au moins égale à 8 ans (ou 6 ans pour ceux souscrits avant le 1er janvier 1990)
+values:
+  1978-01-01:
+    value: null
+  1997-01-01:
+    value: 60000
+  2001-01-01:
+    value: 9200
+metadata:
+  short_label: Contribuables mariés ou pacsés
+  last_value_still_valid_on: "2024-10-21"
+  ipp_csv_id: abt_av
+  unit: currency_next_year
+  reference:
+    1997-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
+    2001-01-01:
+    - title: Article 125-0 A, I. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038836732
+    - title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+  official_journal_date:
+    1997-01-01: "1997-12-31"
+    2001-01-01: "2001-12-29"
+  notes:
+    1997-01-01:
+    - title: "Abattement forfaitaire sur dividendes: art. 158-5 du CGI (à doubler pour les couples)"
+documentation: |-
+  Abattement sur assurance-vie : l'abattement est multiplié par deux pour les couples.
+  Cet abattement concerne les contrats d'une durée d'au moins six ans, pour les contratssouscrits entre le 01/01/1983 et le 31/12/1989, et d'au moins huits ans pour les contrats souscrits depuis le 01/01/1990. voir l'art. 125-0 A du CGI.
