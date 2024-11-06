@@ -703,9 +703,9 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
         f2dc_bis = f2dc
         f2tr_bis = f2tr
@@ -718,19 +718,19 @@ class revenu_categoriel_capital(Variable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement)
+        g12b = max_(f2dc_bis * (1 - parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement)
 
         # Abattements, limité au revenu
-        h12 = P.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
+        h12 = parameters_rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
-        TOT3 = (f2ts - F2) + f2go * P.majoration_revenus_reputes_distribues + f2tr_bis - g12a
+        TOT3 = (f2ts - F2) + f2go * parameters_rvcm.majoration_revenus_reputes_distribues + f2tr_bis - g12a
 
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
@@ -753,25 +753,25 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
         part_frais_imputes_sur_f2dc = f2ca / max_(1, f2dc + f2ts) * f2dc
-        part_frais_restant_a_imputer = -min_(f2dc * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        part_frais_restant_a_imputer = -min_(f2dc * (1 - parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
 
-        dividendes_apres_abattements = max_(f2dc * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        dividendes_apres_abattements = max_(f2dc * (1 - parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
         revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, abattement_assurance_vie)
         rvcm_apres_abattements_proportionnels = (
             revenus_assurance_vie_apres_abattements
             + dividendes_apres_abattements
             + f2gr
-            + f2fu * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
+            + f2fu * (1 - parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
             )
-        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - P.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses))
+        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameters_rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses))
         autres_rvcm_sans_abattements = (
             f2ts - (f2ca - part_frais_imputes_sur_f2dc)
-            + f2go * P.majoration_revenus_reputes_distribues
+            + f2go * parameters_rvcm.majoration_revenus_reputes_distribues
             + f2tr - part_frais_restant_a_imputer
             )
 
@@ -793,16 +793,16 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2tr = foyer_fiscal('f2tr', period)
         f2ts = foyer_fiscal('f2ts', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_dividende = (f2fu + f2dc) * parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + f2ts + f2tr + f2go * P.majoration_revenus_reputes_distribues
+            + f2ts + f2tr + f2go * parameters_rvcm.majoration_revenus_reputes_distribues
             )
 
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
@@ -825,16 +825,16 @@ class revenu_categoriel_capital(Variable):
         f2ts = foyer_fiscal('f2ts', period)
         f2tt_2016 = foyer_fiscal('f2tt_2016', period)
         f2tu_2016 = foyer_fiscal('f2tu_2016', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_dividende = (f2fu + f2dc) * parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
 
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + f2ts + f2tr + max_(0, f2tt_2016 - f2tu_2016) + f2go * P.majoration_revenus_reputes_distribues
+            + f2ts + f2tr + max_(0, f2tt_2016 - f2tu_2016) + f2go * parameters_rvcm.majoration_revenus_reputes_distribues
             )
 
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
@@ -864,15 +864,15 @@ class revenu_categoriel_capital(Variable):
         f2tr = foyer_fiscal('f2tr', period)
         f2ts = foyer_fiscal('f2ts', period)
         f2tt = foyer_fiscal('f2tt', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_dividende = (f2fu + f2dc) * parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues
+            + f2ts + f2tr + f2tt + f2go * parameters_rvcm.majoration_revenus_reputes_distribues
             )
 
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
@@ -891,7 +891,7 @@ class revenu_categoriel_capital(Variable):
         veuf = foyer_fiscal('veuf', period)
         jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
         imposition_au_bareme = foyer_fiscal('f2op', period)
 
         # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
@@ -911,13 +911,13 @@ class revenu_categoriel_capital(Variable):
         f2zz = foyer_fiscal('f2zz', period)
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_dividende = (f2fu + f2dc) * parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
         abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
 
         pre_result = where(imposition_au_bareme, f2zz + max_(f2vv - abattement_residuel, 0) + max_(f2ww - abattement_residuel2, 0) + f2fu + f2dc - abattement_dividende
-            + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues, 0)
+            + f2ts + f2tr + f2tt + f2go * parameters_rvcm.majoration_revenus_reputes_distribues, 0)
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -940,7 +940,7 @@ class revenu_categoriel_capital(Variable):
         veuf = foyer_fiscal('veuf', period)
         jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
         imposition_au_bareme = foyer_fiscal('f2op', period)
 
         # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
@@ -961,13 +961,13 @@ class revenu_categoriel_capital(Variable):
         f2tq = foyer_fiscal('f2tq', period)
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_dividende = (f2fu + f2dc) * parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
         abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
 
         pre_result = where(imposition_au_bareme, f2zz + max_(f2vv - abattement_residuel, 0) + max_(f2ww - abattement_residuel2, 0) + f2fu + f2dc - abattement_dividende
-            + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues + f2tq, 0)
+            + f2ts + f2tr + f2tt + f2go * parameters_rvcm.majoration_revenus_reputes_distribues + f2tq, 0)
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -990,7 +990,7 @@ class revenu_categoriel_capital(Variable):
         veuf = foyer_fiscal('veuf', period)
         jeune_veuf = foyer_fiscal('jeune_veuf', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
         imposition_au_bareme = foyer_fiscal('f2op', period)
 
         # Revenus à prendre en compte dans les deux cas: pfu ou imposition au barème
@@ -1012,13 +1012,13 @@ class revenu_categoriel_capital(Variable):
         f2tz = foyer_fiscal('f2tz', period)
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_dividende = (f2fu + f2dc) * parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
         abattement_residuel = max_(abattement_assurance_vie - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
 
         pre_result = where(imposition_au_bareme, f2zz + max_(f2vv - abattement_residuel, 0) + max_(f2ww - abattement_residuel2, 0) + f2fu + f2dc - abattement_dividende
-            + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues + f2tq + f2tz, 0)
+            + f2ts + f2tr + f2tt + f2go * parameters_rvcm.majoration_revenus_reputes_distribues + f2tq + f2tz, 0)
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -1043,7 +1043,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         f2gr = foyer_fiscal('f2gr', period)
         f2fu = foyer_fiscal('f2fu', period)
         f2da = foyer_fiscal('f2da', period)  # noqa F841
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Calcul de i121
         # Part des frais s'imputant sur les revenus déclarés case DC
@@ -1051,20 +1051,20 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         F1 = f2ca / den * f2dc  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie positive
-        g12b = max_(f2dc * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - P.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
+        g12b = max_(f2dc * (1 - parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
 
         # Abattements, limité au revenu
-        h12 = P.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
+        h12 = parameters_rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return max_((P.revenus_capitaux_mobiliers_dividendes.taux_abattement) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
+        return max_((parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2dc = foyer_fiscal('f2dc', period)
         f2fu = foyer_fiscal('f2fu', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_dividende = (f2fu + f2dc) * parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement
 
         return abattement_dividende
 
@@ -1086,13 +1086,13 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         f2ww = foyer_fiscal('f2ww', period)
         f2dc = foyer_fiscal('f2dc', period)
         f2fu = foyer_fiscal('f2fu', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + P.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
+        abattement_assurance_vie = parameters_rvcm.produits_assurances_vies_assimiles.abattement_couple * maries_ou_pacses + parameters_rvcm.produits_assurances_vies_assimiles.abattement_celib * (celibataire_ou_divorce | veuf | jeune_veuf)
         abattement_assu_vie = where(imposition_au_bareme, 0,
             (f2ch < abattement_assurance_vie) * max_(0, min_(f2vv + f2ww, abattement_assurance_vie - f2ch - f2dh))
             )
-        abattement_dividende = where(imposition_au_bareme, (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement, 0)
+        abattement_dividende = where(imposition_au_bareme, (f2fu + f2dc) * parameters_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement, 0)
 
         return - abattement_assu_vie + abattement_dividende
 
@@ -1881,9 +1881,9 @@ class tax_rvcm_forfaitaire(Variable):
         Taxation des revenus des valeurs et capitaux mobiliers
         '''
         f2fa = foyer_fiscal('f2fa', period)
-        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
+        parameters_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        return f2fa * P.taux_forfaitaire
+        return f2fa * parameters_rvcm.taux_forfaitaire
 
 
 class taxation_plus_values_hors_bareme(Variable):
