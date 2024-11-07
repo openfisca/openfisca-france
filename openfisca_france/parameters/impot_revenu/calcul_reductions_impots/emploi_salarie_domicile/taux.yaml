@@ -1,11 +1,11 @@
-description: Taux de la réduction d'impôts pour emploi d'un salarié à domicile
+description: Taux du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null
   1991-01-01:
     value: 0.5
 metadata:
-  short_label: Taux
+  short_label: Taux du crédit d'impôt
   ipp_csv_id: txsaldomicile
   unit: /1
   reference:

@@ -1,12 +1,12 @@
-description: Réduction pour enfants fréquentant un lycée d'enseignement général et technologique ou un lycée professionnel
+description: Montant de la réduction d'impôts sur le revenu (IR) par enfant à charge fréquentant un lycée d'enseignement général et technologique ou un lycée professionnel (case 7EC)
 values:
   1992-01-01:
     value: 1000
   2001-01-01:
     value: 153
 metadata:
-  short_label: Lycée
-  last_value_still_valid_on: "2022-12-08"
+  short_label: Montant de la réduction par enfant au lycée (case 7EC)
+  last_value_still_valid_on: "2024-11-07"
   ipp_csv_id: reduc_enfscol2
   unit: currency_next_year
   reference:

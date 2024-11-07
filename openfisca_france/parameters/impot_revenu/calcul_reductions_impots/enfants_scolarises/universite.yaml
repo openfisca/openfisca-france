@@ -1,12 +1,12 @@
-description: Réduction pour enfants suivant une formation d'enseignement supérieur
+description: Montant de la réduction d'impôts sur le revenu (IR) par enfant à charge suivant une formation d'enseignement supérieur (case 7EF)
 values:
   1992-01-01:
     value: 1200
   2001-01-01:
     value: 183
 metadata:
-  short_label: Enseignement supérieur
-  last_value_still_valid_on: "2022-12-08"
+  short_label: Montant de la réduction par enfant suivant une formation d'enseignement supérieur (case 7EF)
+  last_value_still_valid_on: "2024-11-07"
   ipp_csv_id: reduc_enfscol3
   unit: currency_next_year
   reference:
