@@ -6,6 +6,7 @@ values:
     value: 0.128
 metadata:
   short_label: Taux d'imposition
+  last_value_still_valid_on: "2024-11-07"
   unit: /1
   reference:
     1985-01-01:
