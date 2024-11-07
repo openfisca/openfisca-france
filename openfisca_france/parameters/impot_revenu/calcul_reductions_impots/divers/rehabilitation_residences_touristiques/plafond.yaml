@@ -4,6 +4,8 @@ values:
     value: null
   2017-01-01:
     value: 22000
+  2024-01-01:
+    null
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_rehab_touristique
