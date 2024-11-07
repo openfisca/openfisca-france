@@ -1,0 +1,11 @@
+description: Taux spécial d'imposition à l'impôt sur le revenu (IR) des plus-values en report d'imposition et dont le report a expiré, appliquées pour les cessions de titres réalisées par un créateur d’entreprise remplissant les conditions prévues par l’article 200 A, 2 bis, du CGI dans sa rédaction applicable en 2012)
+values:
+  2016-01-01:
+    value: 0.19
+metadata:
+  short_label: Taux pour le cas spécial des cessions de titres réalisées par un créateur d’entreprise remplissant les conditions prévues par l’article 200 A, 2 bis, du CGI dans sa rédaction applicable en 2012 (case 3WJ)
+  last_value_still_valid_on: "2024-11-07"
+  unit: /1
+  reference:
+  - title: Article 200 A du Code général des impôts (applicable en 2012)
+    href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023377886/2011-01-01/

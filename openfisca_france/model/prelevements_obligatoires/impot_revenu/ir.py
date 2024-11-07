@@ -1981,8 +1981,8 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.taux_plus_3_ans_pre_2018 * f3sj
             + pv.bspce.taux_moins_3_ans * f3sk
-            + pv.plus_values.taux_plus_values_report * f3wi
-            + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
+            + pv.report_impot_expire.taux_cas_general * f3wi
+            + pv.report_impot_expire.taux_conditionnel * f3wj
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -2014,8 +2014,8 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.bspce.taux_moins_3_ans * f3sk
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
-            + pv.plus_values.taux_plus_values_report * f3wi
-            + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
+            + pv.report_impot_expire.taux_cas_general * f3wi
+            + pv.report_impot_expire.taux_conditionnel * f3wj
             + pv.etnc.taux * f3pi
             )
 
@@ -2049,8 +2049,8 @@ class taxation_plus_values_hors_bareme(Variable):
             + P.taux10 * rpns_info
             + pv.bspce.taux_plus_3_ans_pre_2018 * f3sj
             + pv.bspce.taux_moins_3_ans * f3sk
-            + pv.plus_values.taux_plus_values_report * f3wi
-            + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
+            + pv.report_impot_expire.taux_cas_general * f3wi
+            + pv.report_impot_expire.taux_conditionnel * f3wj
             + pv.etnc.taux * f3pi
             )
 
