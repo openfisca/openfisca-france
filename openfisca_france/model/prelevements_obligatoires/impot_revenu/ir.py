@@ -2535,6 +2535,7 @@ class rpns_pvce(Variable):
     entity = Individu
     label = 'Plus values de cession nettes des moins-values - Revenu des professions non salariées'
     definition_period = YEAR
+    ## Somme des cases "plus-values nettes à long terme" de la déclaration sur les revenus des professions non-salariées
 
     def formula(individu, period, parameters):
         '''
