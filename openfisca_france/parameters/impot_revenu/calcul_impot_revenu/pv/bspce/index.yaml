@@ -2,5 +2,6 @@ description: Imposition à l'impôt sur le revenu (IR) des gains de cession de t
 metadata:
   short_label: Imposition des gains de cession de titres souscrits en exercice de bons de souscription de parts de créateur d’entreprise (BSPCE)
   order:
-  - moins_3ans
-  - plus_3ans
+  - taux_moins_3_ans
+  - taux_plus_3_ans_post_2018
+  - taux_plus_3_ans_pre_2018

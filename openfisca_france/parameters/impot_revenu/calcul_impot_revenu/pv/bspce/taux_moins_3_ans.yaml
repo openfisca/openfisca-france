@@ -5,7 +5,7 @@ values:
   1998-01-01:
     value: 0.3
 metadata:
-  short_label: Taux moins 3 ans
+  short_label: Taux pour une activité exercée dans la société depuis moins de 3 ans
   ipp_csv_id: tx_bspce_moins
   unit: /1
 documentation: Ce taux est applicable si, à la date de cession des titres, vous exercez votre activité dans la société depuis moins de trois ans ou si, n’étant plus salarié de la société à la même date, vous y avez exercé votre activité pendant moins de trois ans.
