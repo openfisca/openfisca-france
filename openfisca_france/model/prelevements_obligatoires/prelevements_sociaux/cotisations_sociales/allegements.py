@@ -444,10 +444,10 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
     '''
     assiette = individu('assiette_allegement', period)
     smic_proratise = individu('smic_proratise', period)
-    parameters = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
-    taux_reduction = parameters.reduction
+    law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
+    taux_reduction = law.reduction
     if period.start.year < 2024:
-        plafond_reduction = parameters.plafond_smic * smic_proratise
+        plafond_reduction = law.plafond_smic * smic_proratise
     else:
         coefficient_proratisation = individu('coefficient_proratisation', period)
         parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
@@ -455,7 +455,7 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
         nbh_travail_2023_12 = parameters_smic_2023_12.nb_heures_travail_mensuel
 
         smic_proratise_2O23_12 = coefficient_proratisation * smic_horaire_brut_2023_12 * nbh_travail_2023_12
-        plafond_reduction = max_(parameters.plafond_smic_courant * smic_proratise, parameters.plafond_smic_2023_12_31 * smic_proratise_2O23_12)
+        plafond_reduction = max_(law.plafond_smic_courant * smic_proratise, law.plafond_smic_2023_12_31 * smic_proratise_2O23_12)
 
     # Montant de l'allegment
     return (assiette < plafond_reduction) * taux_reduction * assiette
