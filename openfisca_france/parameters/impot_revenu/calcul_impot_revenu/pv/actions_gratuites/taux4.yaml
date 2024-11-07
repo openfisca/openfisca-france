@@ -5,5 +5,6 @@ values:
   2010-01-01:
     value: 0.41
 metadata:
-  short_label: Taux d'imposition (Case 3VF) pour la fraction des gains > 152 500 euros et durée de conservation < 2 ans
+  short_label: Taux d'imposition pour la fraction des gains > 152 500 euros et durée de conservation < 2 ans (case 3VF)
+  last_value_still_valid_on: "2024-11-07"
   unit: /1

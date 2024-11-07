@@ -1,4 +1,4 @@
-description: Taux d'imposition à l'impôt sur le revenu (IR) (bons attribués avant 2018) des gains de cession de titres souscrits en exercice de bons de souscription de parts de créateur d’entreprise (BSPCE) pour une activité exercée dans la société depuis plus de 3 ans, avant 2018
+description: Taux d'imposition à l'impôt sur le revenu (IR) (bons attribués avant 2018) des gains de cession de titres souscrits en exercice de bons de souscription de parts de créateur d’entreprise (BSPCE) pour une activité exercée dans la société depuis plus de 3 ans, avant 2018 (case 3SJ)
 values:
   1977-01-01:
     value: null
@@ -7,7 +7,7 @@ values:
   2012-01-01:
     value: 0.19
 metadata:
-  short_label: Taux pour une activité exercée dans la société depuis plus de 3 ans (avant 2018)
+  short_label: Taux pour une activité exercée dans la société depuis plus de 3 ans (avant 2018) (case 3SJ)
   reference:
     2012-01-01:
     - title: Article 163 bis G du Code général des impôts (avant 2018)
