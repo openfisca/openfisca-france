@@ -1924,7 +1924,7 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
             + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.plus_3ans.pre_2018 * f3sj
-            + pv.bspce.moins_3ans * f3sk
+            + pv.bspce.moins_3ans.taux * f3sk
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1951,7 +1951,7 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
             + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.plus_3ans.pre_2018 * f3sj
-            + pv.bspce.moins_3ans * f3sk
+            + pv.bspce.moins_3ans.taux * f3sk
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1980,7 +1980,7 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
             + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.plus_3ans.pre_2018 * f3sj
-            + pv.bspce.moins_3ans * f3sk
+            + pv.bspce.moins_3ans.taux * f3sk
             + pv.plus_values.taux_plus_values_report * f3wi
             + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
             )
@@ -2011,7 +2011,7 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
             + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.plus_3ans.pre_2018 * f3sj
-            + pv.bspce.moins_3ans * f3sk
+            + pv.bspce.moins_3ans.taux * f3sk
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
             + pv.plus_values.taux_plus_values_report * f3wi
@@ -2048,7 +2048,7 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
             + P.taux10 * rpns_info
             + pv.bspce.plus_3ans.pre_2018 * f3sj
-            + pv.bspce.moins_3ans * f3sk
+            + pv.bspce.moins_3ans.taux * f3sk
             + pv.plus_values.taux_plus_values_report * f3wi
             + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
             + pv.plus_values.taux_plus_values_entc * f3pi
