@@ -1,5 +1,17 @@
 # Changelog
 
+### 169.5.0 [2370](https://github.com/openfisca/openfisca-france/pull/2370)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées : calcul de l'impôt sur le revenu
+   * `model/prelevements_obligatoires/impot_revenu/ir.py`
+   * `parameters/impot_revenu/calcul_impot_revenu`
+* Détails :
+  - Modifie labels paramètres de l'impôt sur le revenu
+  - Modifie les index pour rectifier l'ordre des paramètres et ajouter des short_labels
+  - Modifie les dossiers et le noms de certains paramètres. Adaptation des formules des variables en conséquence.
+
 ### 169.4.0 [2377](https://github.com/openfisca/openfisca-france/pull/2377)
 
 * Évolution du système socio-fiscal.
