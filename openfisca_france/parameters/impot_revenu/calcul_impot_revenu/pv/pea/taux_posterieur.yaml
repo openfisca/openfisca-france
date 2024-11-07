@@ -9,7 +9,7 @@ values:
   2013-01-01:
     value: 0.19
   2019-01-01:
-    value: 0.128
+    value: null
 metadata:
   ipp_csv_id: tx_pea_post
   unit: /1
