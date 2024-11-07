@@ -1298,20 +1298,20 @@ class af_nbenf_fonc(Variable):
         '''
 
         salaire_de_base_mensualise = famille.members('salaire_de_base', Period(('month', period.start, 6)).offset(-6), options = [ADD])
-        P = parameters(period)
+        parameters = parameters(period)
         nbh_travaillees = 169
-        smic_mensuel_brut = P.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees
+        smic_mensuel_brut = parameters.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees
 
         autonomie_financiere = (salaire_de_base_mensualise >= (
-            P.prestations_sociales.prestations_familiales.def_pac.revenu_plafond_pac_non_scolaire
+            parameters.prestations_sociales.prestations_familiales.def_pac.revenu_plafond_pac_non_scolaire
             * smic_mensuel_brut
             ))
 
         age = famille.members('age', period)
 
         condition_enfant = (
-            (age >= P.prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.age1)
-            * (age <= P.prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.age2)
+            (age >= parameters.prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.age1)
+            * (age <= parameters.prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.age2)
             * not_(autonomie_financiere)
             )
 
