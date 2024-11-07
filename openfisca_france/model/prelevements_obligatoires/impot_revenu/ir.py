@@ -2329,15 +2329,15 @@ class impot_revenu_restant_a_payer(Variable):
         impots_totaux_avant_imputations = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
 
         return (
-            (impots_totaux_avant_imputations > P.seuil) * (
-                (pre_result < P.min)
+            (impots_totaux_avant_imputations > P.min_avant_credits_impots) * (
+                (pre_result < P.min_apres_credits_impots)
                 * (result > 0)
                 * result
                 * 0
-                + ((pre_result <= 0) + (pre_result >= P.min))
+                + ((pre_result <= 0) + (pre_result >= P.min_apres_credits_impots))
                 * (- result)
                 )
-            + (impots_totaux_avant_imputations <= P.seuil) * (
+            + (impots_totaux_avant_imputations <= P.min_avant_credits_impots) * (
                 (pre_result < 0)
                 * (-result)
                 + (pre_result >= 0)

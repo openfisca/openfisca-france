@@ -1,4 +1,4 @@
-description: Montant minimum de mise en recouvrement de l'impôt sur le revenu après l'imputation des crédits d'impôt
+description: Montant minimum de mise en recouvrement de l'impôt sur le revenu (IR) après l'imputation des crédits d'impôt
 values:
   2002-01-01:
     value: 12
