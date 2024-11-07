@@ -508,7 +508,7 @@ class aah_plafond_ressources_conjugalise(Variable):
 
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
-        montant_max = P.prestations_etat_de_sante.invalidite.aah.montant
+        montant_max = parameters.prestations_etat_de_sante.invalidite.aah.montant
 
         return montant_max * (
             + 1
