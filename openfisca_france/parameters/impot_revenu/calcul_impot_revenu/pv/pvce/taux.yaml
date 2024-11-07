@@ -5,7 +5,7 @@ values:
   2017-01-01:
     value: 0.128
 metadata:
-  short_label: Taux d'imposition des plus-values nettes à long terme des revenus de professions non-salariées
+  short_label: Taux d'imposition
   unit: /1
   reference:
     1985-01-01:
