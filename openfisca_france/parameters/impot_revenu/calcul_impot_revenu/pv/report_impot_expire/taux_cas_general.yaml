@@ -1,0 +1,11 @@
+description: Taux d'imposition général à l'impôt sur le revenu (IR) appliqué aux plus-values en report d'imposition et dont le report a expiré (case 3WI)
+values:
+  2016-01-01:
+    value: 0.24
+metadata:
+  short_label: Taux pour le cas général (case 3WI)
+  last_value_still_valid_on: "2024-11-07"
+  unit: /1
+  reference:
+  - title: Article 150-0 B ter du Code général des impôts
+    href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037990617/2024-10-30/

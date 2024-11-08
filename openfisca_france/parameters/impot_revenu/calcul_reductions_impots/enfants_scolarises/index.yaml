@@ -1,6 +1,6 @@
-description: Enfants à charge poursuivant leurs études secondaires ou supérieures
+description: Réduction d'impôt sur le revenu (IR) pour les enfants à charge poursuivant leurs études dans le secondaire ou le supérieure
 metadata:
-  short_label: Pour les enfants scolarisés
+  short_label: Enfants à charge scolarisés dans le secondaire ou le supérieur
   label_en: Reduction for educated children
   order:
   - college

@@ -3,7 +3,7 @@ values:
   1949-01-01:
     value: 0.5
 metadata:
-  short_label: Ayant auparavant élevé seule au moins un ou plusieurs enfants pendant 5 ans
+  short_label: Personne ayant élevé seule un ou plusieurs enfants pendant au moins 5 ans
   last_value_still_valid_on: "2024-04-26"
   unit: part_quotient_familial
   reference:

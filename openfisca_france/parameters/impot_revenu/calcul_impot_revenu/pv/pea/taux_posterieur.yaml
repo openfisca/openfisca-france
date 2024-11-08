@@ -9,10 +9,11 @@ values:
   2013-01-01:
     value: 0.19
   2019-01-01:
-    value: 0.128
+    value: null
 metadata:
   ipp_csv_id: tx_pea_post
   unit: /1
+  last_value_still_valid_on: "2024-11-07"
   reference:
     2019-01-01:
       title: Loi n° 2018-1317 du 28/12/2018 (LF 2019) - art.44

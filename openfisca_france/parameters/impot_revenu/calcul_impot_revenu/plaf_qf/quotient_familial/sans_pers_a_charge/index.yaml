@@ -1,7 +1,7 @@
 description: Cas spécifiques concernant les contribuables célibataires, divorcés ou veuf, sans personne à charge, donnant lieu à des parts supplémentaires de quotient familial (IR)
 metadata:
   documentation_start: true
-  short_label: Cas spécifiques concernant les contribuables seuls et sans personne à charge
+  short_label: Cas spécifiques pour les contribuables seuls et sans personne à charge
   order:
   - not31a
   - not31b

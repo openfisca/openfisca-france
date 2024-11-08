@@ -1,2 +1,9 @@
-description: Impôt sur les plus-values à taux forfaitaires
-documentation: Le gain d’acquisition d'actions gratuites est égal à la valeur des actions à la date de leur acquisition définitive. Il est imposé au taux du barème si les actions ont été attribuées avant le 28/09/2012 et sur le barème progressif si attribuées à une date postérieure.
+description: Imposition à l'impôt sur le revenu (IR) des gains de levée d'options sur titre et gains d'acquisition d'actions gratuites attribuées avant le 28.09.2012
+metadata:
+  short_label: Imposition des gains de levée d'options sur titre et gains d'acquisition d'actions gratuites attribuées avant le 28.09.2012
+  documentation_start: true
+  order:
+  - taux2
+  - taux3
+  - taux4
+  documentation: Le gain d’acquisition d'actions gratuites est égal à la valeur des actions à la date de leur acquisition définitive. Il est imposé au taux du barème si les actions ont été attribuées avant le 28/09/2012 et sur le barème progressif si attribuées à une date postérieure. Pour comprendre en détail la façon dont les taux sont appliqués consulter la documentation des déclarations d'impôts https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_integral/Brochure-IR-2024.pdf

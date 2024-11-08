@@ -1,6 +1,6 @@
-description: Montants minimums de mise en recouvrement de l'impôt
+description: Montants minimums de mise en recouvrement de l'impôt sur le revenu (IR)
 metadata:
-  short_label: Montants minimums de mise en recouvrement de l'impôt
+  short_label: Montants minimums de mise en recouvrement de l'impôt sur le revenu
   order:
-  - seuil
-  - min
+  - min_avant_credits_impots
+  - min_apres_credits_impots

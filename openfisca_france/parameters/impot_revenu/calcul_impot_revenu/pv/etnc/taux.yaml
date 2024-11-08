@@ -1,0 +1,12 @@
+description: Taux forfaitaire d'imposition sur le revenu (IR) des profits sur instruments financiers dans des États ou territoires non-coopératifs (Case 3PI)
+values:
+  2017-01-01:
+    value: 0.5
+metadata:
+  short_label: Taux d'imposition (Case 3PI)
+  unit: /1
+  last_value_still_valid_on: "2024-11-07"
+  reference:
+    2024-01-01:
+      title: Article 150 ter, 3. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037526716

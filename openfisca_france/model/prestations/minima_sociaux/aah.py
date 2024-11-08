@@ -190,13 +190,13 @@ class aah_base_ressources_deconjugalisee(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2023_10_01(individu, period, parameters):
-        law = parameters(period)
-        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        parameters = parameters(period)
+        aah = parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year)) > 0)
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
-            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
+            smic_brut_annuel = 12 * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire * parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
             return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
@@ -427,50 +427,50 @@ class aah_eligible(Variable):
     '''
 
     def formula_2011_01_01(individu, period, parameters):
-        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        parameters_aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         taux_incapacite = individu('taux_incapacite', period)
-        taux_incapacite_max = (taux_incapacite >= law.taux_capacite.taux_incapacite)
-        taux_incapacite_rsdae = (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae)
+        taux_incapacite_max = (taux_incapacite >= parameters_aah.taux_capacite.taux_incapacite)
+        taux_incapacite_rsdae = (taux_incapacite >= parameters_aah.taux_capacite.taux_incapacite_rsdae)
         rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
 
         age = individu('age', period)
         prestations_familiales_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
         eligible_aah = (
-            (taux_incapacite_max + (taux_incapacite_rsdae * rsdae * (age <= law.age_legal_retraite)))
-            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
+            (taux_incapacite_max + (taux_incapacite_rsdae * rsdae * (age <= parameters_aah.age_legal_retraite)))
+            * ((age >= parameters_aah.age_minimal) + ((age >= parameters_aah.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
             )
 
         return eligible_aah
 
     def formula_2005_07_01(individu, period, parameters):
-        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        parameters_aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         taux_incapacite = individu('taux_incapacite', period)
-        taux_incapacite_max = (taux_incapacite >= law.taux_capacite.taux_incapacite)
-        taux_incapacite_rsdae = (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae)
+        taux_incapacite_max = (taux_incapacite >= parameters_aah.taux_capacite.taux_incapacite)
+        taux_incapacite_rsdae = (taux_incapacite >= parameters_aah.taux_capacite.taux_incapacite_rsdae)
         rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
 
         age = individu('age', period)
         prestations_familiales_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
         eligible_aah = (
-            (taux_incapacite_max + (taux_incapacite_rsdae * rsdae * (age <= law.age_legal_retraite))
+            (taux_incapacite_max + (taux_incapacite_rsdae * rsdae * (age <= parameters_aah.age_legal_retraite))
             * (individu('salaire_imposable', period.last_year, options=[ADD]) <= 0))
-            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
+            * ((age >= parameters_aah.age_minimal) + ((age >= parameters_aah.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
             )
         return eligible_aah
 
     def formula(individu, period, parameters):
-        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        parameters_aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         taux_incapacite = individu('taux_incapacite', period)
-        taux_incapacite_max = (taux_incapacite >= law.taux_capacite.taux_incapacite)
-        taux_incapacite_rsdae = (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae)
+        taux_incapacite_max = (taux_incapacite >= parameters_aah.taux_capacite.taux_incapacite)
+        taux_incapacite_rsdae = (taux_incapacite >= parameters_aah.taux_capacite.taux_incapacite_rsdae)
         rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
 
         age = individu('age', period)
         prestations_familiales_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
         eligible_aah = (
             (taux_incapacite_max + (taux_incapacite_rsdae * rsdae
-            * (age <= law.age_legal_retraite)))
-            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
+            * (age <= parameters_aah.age_legal_retraite)))
+            * ((age >= parameters_aah.age_minimal) + ((age >= parameters_aah.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
             )
         return eligible_aah
 
@@ -504,17 +504,17 @@ class aah_plafond_ressources_conjugalise(Variable):
     '''
 
     def formula(individu, period, parameters):
-        law = parameters(period).prestations_sociales
+        parameters = parameters(period).prestations_sociales
 
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
-        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+        montant_max = parameters.prestations_etat_de_sante.invalidite.aah.montant
 
         return montant_max * (
             + 1
             + en_couple
-            * law.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_plafond_couple
-            + law.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_par_enfant_supplementaire
+            * parameters.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_plafond_couple
+            + parameters.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_par_enfant_supplementaire
             * af_nbenf
             )
 
@@ -531,14 +531,14 @@ class aah_plafond_ressources_deconjugalise(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        law = parameters(period).prestations_sociales
+        parameters = parameters(period).prestations_sociales
 
         af_nbenf = individu.famille('af_nbenf', period)
-        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+        montant_max = parameters.prestations_etat_de_sante.invalidite.aah.montant
 
         return montant_max * (
             + 1
-            + law.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_par_enfant_supplementaire
+            + parameters.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_par_enfant_supplementaire
             * af_nbenf
             )
 
@@ -569,13 +569,13 @@ class aah_base(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        law = parameters(period).prestations_sociales
+        parameters = parameters(period).prestations_sociales
 
         aah_eligible = individu('aah_eligible', period)
         aah_base_ressources_conjugalisee = individu('aah_base_ressources_conjugalisee', period)
         plaf_ress_aah_conjugalise = individu('aah_plafond_ressources_conjugalise', period)
         # Le montant de l'AAH est plafonné au montant de base.
-        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+        montant_max = parameters.prestations_etat_de_sante.invalidite.aah.montant
         montant_aah = min_(montant_max, max_(0, plaf_ress_aah_conjugalise - aah_base_ressources_conjugalisee))
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
@@ -583,9 +583,9 @@ class aah_base(Variable):
         return aah_eligible * min_(max_(0, montant_aah), max_(0, montant_max - aah_base_non_cumulable))
 
     def formula_2023_10_01(individu, period, parameters):
-        law = parameters(period).prestations_sociales
+        parameters = parameters(period).prestations_sociales
         # Le montant de l'AAH est plafonné au montant de base.
-        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+        montant_max = parameters.prestations_etat_de_sante.invalidite.aah.montant
         aah_eligible = individu('aah_eligible', period)
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
         aah_conjugalise_eligible = individu('aah_conjugalise_eligible', period)
@@ -623,7 +623,7 @@ class aah(Variable):
         aah_reduction = ((aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)) * not_(pers_charge)
 
         return where(aah_reduction, aah_base * aah_parameters.pourcentage_aah.prison_hospitalisation, aah_base)
-        # montant_max_aah = law.prestations_etat_de_sante.invalidite.aah.montant
+        # montant_max_aah = parameters.prestations_etat_de_sante.invalidite.aah.montant
         # est-ce cela, ou plutôt where(aah_reduction, min_(aah_base, aah_parameters.pourcentage_aah.prison_hospitalisation * montant_max_aah), aah_base)
         # ce qui expliquerait la phrase : L'intéressé ne peut recevoir une allocation plus élevée que celle qu'il percevrait s'il n'était pas hospitalisé, placé dans une maison d'accueil spécialisée ou incarcéré.
         # TODO: exemption de baisse également si paiement d'un forfait journalier (lors de l'hospitalisation), et si le conjoint ne travaille pas pour une raison reconnue valable

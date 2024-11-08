@@ -1,6 +1,7 @@
-description: Cotisations syndicales
+description: Réduction d'impôt sur le revenu (IR) sur les cotisations syndicales
 metadata:
   documentation_start: true
+  short_label: Cotisations syndicales
   label_en: Union dues
   order:
   - taux

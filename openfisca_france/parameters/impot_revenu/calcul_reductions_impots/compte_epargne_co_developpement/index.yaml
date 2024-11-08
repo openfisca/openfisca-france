@@ -1,7 +1,7 @@
-description: Sommes versées sur un compte épargne codéveloppement (case 7UH, 2010 - 2011)
+description: Réduction d'impôt sur le revenu (IR) pour les sommes versées sur un compte épargne co-développement (case 7UH, 2010 - 2011)
 metadata:
   documentation_start: true
-  short_label: Compte épargne co-developpement
+  short_label: Compte épargne co-développement
   label_en: Co-development Savings Account (2010 - 2011)
   order:
   - taux

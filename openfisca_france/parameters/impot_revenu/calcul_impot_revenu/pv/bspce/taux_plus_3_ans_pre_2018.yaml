@@ -1,0 +1,23 @@
+description: Taux d'imposition à l'impôt sur le revenu (IR) (bons attribués avant 2018) des gains de cession de titres souscrits en exercice de bons de souscription de parts de créateur d’entreprise (BSPCE) pour une activité exercée dans la société depuis plus de 3 ans, avant 2018 (case 3SJ)
+values:
+  1977-01-01:
+    value: null
+  1998-01-01:
+    value: 0.3
+  2012-01-01:
+    value: 0.19
+metadata:
+  short_label: Taux d'imposition pour une activité exercée dans la société depuis plus de 3 ans (avant 2018) (case 3SJ)
+  reference:
+    2012-01-01:
+    - title: Article 163 bis G du Code général des impôts (avant 2018)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031011397/2015-08-08
+    - title: Notice explicative du Bofip.impots.gouv.fr
+      href: https://bofip.impots.gouv.fr/bofip/3979-PGP.html/identifiant%3DBOI-IR-DOMIC-10-20-20-30-20170724#3%C2%B0_BSPCE_52
+  last_value_still_valid_on: "2024-11-07"
+  ipp_csv_id: tx_bspce_plus_avant_2018
+  unit: /1
+  notes:
+    2012-01-01:
+    - title: Taux d'imposition des plus-values mobilières de 2012 (imposées en 2013) majoré à 24% par la loi de finances pour 2013 (Loi 2012-1509 du 29/12/2012 de finances pour 2013 art. 10)
+documentation: Taux général de taxation des cessions de bons de souscription de parts de créateur d'entreprise (BSPCE).

@@ -1,4 +1,4 @@
-description: Plafond des dons d'intérêt général (dons aux oeuvres, )
+description: Plafond de la réduction d'impôt sur le revenu (IR) pour dons d'intérêt général (dons aux oeuvres)
 values:
   1975-01-01:
     value: null
@@ -15,6 +15,7 @@ values:
   2002-01-01:
     value: 0.2
 metadata:
+  short_label: Plafond de la réduction
   ipp_csv_id: plaf_donsintgene
   unit: /1
   reference:

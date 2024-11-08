@@ -3,7 +3,7 @@ values:
   1981-01-01:
     value: 0.5
 metadata:
-  short_label: Carte du combattant - pension militaire d'invalidité - victime de guerre
+  short_label: Carte du combattant ou pension militaire (invalidité et victimes de guerre)
   last_value_still_valid_on: "2024-04-26"
   unit: part_quotient_familial
   reference:
