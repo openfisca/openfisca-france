@@ -12,9 +12,11 @@ values:
     value: 400.96
   2023-10-01:
     value: 414.99
+  2024-10-01:
+    value: 428.52
 metadata:
   short_label: Personne isolée sans enfant
-  last_value_still_valid_on: "2022-09-28"
+  last_value_still_valid_on: "2024-11-12"
   ipp_csv_id: plaf_foy_z3_al_personne_isolee
   unit: currency
   reference:
@@ -38,7 +40,11 @@ metadata:
     2023-10-01:
       title: Arrêté du 22/09/2023, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048107807
+    2024-10-01:
+      title: Arrêté du 27/09/2019, art. 27
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039160329/2024-09-29/
   official_journal_date:
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
     2023-10-01: "2023-09-27"
+    2024-10-01: "2024-09-29"
