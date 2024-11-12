@@ -14,9 +14,11 @@ values:
     value: 87.08
   2023-10-01:
     value: 90.13
+  2024-10-01:
+    value: 93.07
 metadata:
   short_label: Seuls
-  last_value_still_valid_on: "2022-09-28"
+  last_value_still_valid_on: "2023-11-12"
   unit: currency
   reference:
     2000-01-01:
@@ -38,5 +40,9 @@ metadata:
     2023-10-01:
       title: Arrêté du 22/09/2023, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048107807
+    2024-10-01:
+      title: Arrêté du 27/09/2019, art. 43
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039160329/2024-09-29/
   official_journal_date:
     2023-10-01: "2023-09-27"
+    2024-10-01: "2024-09-29"
