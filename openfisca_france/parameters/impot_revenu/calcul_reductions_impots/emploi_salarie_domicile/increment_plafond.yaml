@@ -1,11 +1,11 @@
-description: Increment du plafond (par enfant mineur à charge) de la réduction d'impôts pour emploi d'un salarié à domicile
+description: Majoration du plafond par enfant à charge du crédit d'impôt sur le revenu (IR) sur les sommes versées pour l'emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null
   2005-01-01:
     value: 1500
 metadata:
-  short_label: Incrément du plafond par enfant à charge
+  short_label: Majoration du plafond par enfant à charge
   ipp_csv_id: increment_plafsaldomicile
   unit: currency_next_year
   reference:

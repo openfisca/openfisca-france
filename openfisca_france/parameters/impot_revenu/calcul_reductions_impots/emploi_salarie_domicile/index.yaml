@@ -1,14 +1,14 @@
-description: Réduction d'impôt sur le revenu (IR) sur les sommes versées pour l'emploi d'un salarié à domicile
+description: Crédit d'impôt sur le revenu (IR) sur les sommes versées pour l'emploi d'un salarié à domicile (case 7DB)
 metadata:
   documentation_start: true
-  short_label: Emploi d'un salarié à domicile
+  short_label: Emploi d'un salarié à domicile (case 7DB)
   label_en: Home-worker Employment
   order:
   - taux
   - plafond
+  - plafond_1ere_annee
   - increment_plafond
   - plafond_maximum
-  - plafond_1ere_annee
   - plafond_invalides_1ere_annee
   - plafond_invalides
 documentation: |-

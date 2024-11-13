@@ -1,4 +1,4 @@
-description: Plafond (cas géneral) de la réduction d'impôts pour emploi d'un salarié à domicile
+description: Plafond (cas général) du crédit d'impôt sur le revenu (IR) sur les sommes versées pour l'emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null
@@ -19,7 +19,7 @@ values:
   2005-01-01:
     value: 12000
 metadata:
-  short_label: Plafond
+  short_label: Plafond du crédit d'impôt pour le cas général
   ipp_csv_id: plafsaldomicile
   unit: currency_next_year
   reference:

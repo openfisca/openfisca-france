@@ -1,11 +1,11 @@
-description: Plafond la première année de l'emploi d'un salarié à domicile
+description: Plafond du crédit d'impôt sur le revenu (IR) sur les sommes versées la première année pour l'emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null
   2008-01-01:
     value: 15000
 metadata:
-  short_label: Plafond 1ère année
+  short_label: Plafond du crédit d'impôt majoré pour la 1ère année
   unit: currency_next_year
   reference:
     2008-01-01:

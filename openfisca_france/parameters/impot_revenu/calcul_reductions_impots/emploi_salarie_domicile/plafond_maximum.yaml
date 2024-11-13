@@ -1,11 +1,11 @@
-description: Plafond maximum de la réduction d'impôts pour emploi d'un salarié à domicile
+description: Limite du plafond augmenté des majorations pour enfants à charge (Plafond maximum) du crédit d'impôt sur le revenu (IR) sur les sommes versées pour l'emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null
   2005-01-01:
     value: 15000
 metadata:
-  short_label: Plafond maximum
+  short_label: Limite du plafond augmenté des majorations pour enfants à charge
   ipp_csv_id: superplafsaldom
   unit: currency_next_year
   reference:

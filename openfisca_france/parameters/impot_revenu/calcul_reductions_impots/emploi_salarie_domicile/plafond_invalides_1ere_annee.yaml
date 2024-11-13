@@ -1,11 +1,11 @@
-description: Plafond maximum (pour un invalide) la première année de l'emploi d'un salarié à domicile
+description: Plafond du crédit d'impôt sur le revenu (IR) sur les sommes versées la première année pour l'emploi d'un salarié à domicile, pour contribuable invalide
 values:
   1990-01-01:
     value: null
   2008-01-01:
     value: 18000
 metadata:
-  short_label: Plafond 1ère année (invalide)
+  short_label: Plafond du crédit d'impôt la 1ère année pour contribuable invalide
   unit: currency_next_year
   reference:
     2008-01-01:
