@@ -1,4 +1,4 @@
-from numpy import round, floor, datetime64, maximum, select, array, ones
+from numpy import round, floor, datetime64, maximum, select, array, ones, full, sum
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -485,6 +485,7 @@ class paje_cmg(Variable):
         nb_enf_presta_pleine = nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1)
         nb_enf_presta_reduite = nb_enf(famille, period,
                                         paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.reduite - 1)
+
         elig_seuils = [
             base_ressources < seuil_revenus_1,
             (base_ressources >= seuil_revenus_1) * (base_ressources < seuil_revenus_2),
@@ -534,14 +535,15 @@ class paje_cmg(Variable):
         ])
 
         taux_bmaf = seuils_ * creche_
-        coeff_enfants = [
-            (1.0 * (nb_enf_presta_pleine > 0) + 0.5 * (nb_enf_presta_reduite > 0)) * ones(3),
-            (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite) * ones(3),
-            (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite) * ones(3),
-            (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite) * ones(3)
-        ]
+        print("JDG - taux_bmaf : ", taux_bmaf)
+        coeff_enfants = array([
+            full((3, seuil_revenus_1.size), (1.0 * (nb_enf_presta_pleine > 0) + 0.5 * (nb_enf_presta_reduite > 0))),
+            full((3, seuil_revenus_1.size), (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite)),
+            full((3, seuil_revenus_1.size), (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite)),
+            full((3, seuil_revenus_1.size), (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite))
+        ])
         
-        montant_cmg_tmp = bmaf * coeff_enfants * taux_bmaf
+        montant_cmg_tmp = sum(bmaf * coeff_enfants * taux_bmaf, axis=(0, 1))
 
         montant_cmg = (
             bmaf * (
