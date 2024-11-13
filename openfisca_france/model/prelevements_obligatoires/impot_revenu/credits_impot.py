@@ -1932,6 +1932,7 @@ class quaenv(Variable):
     entity = FoyerFiscal
     label = 'Crédits d’impôt pour dépenses en faveur de la qualité environnementale (2005 - 2014) / de la transition energétique (2014 - ) '
     definition_period = YEAR
+    end = '2019-12-31'
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
