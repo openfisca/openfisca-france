@@ -2,6 +2,8 @@ description: Taux pour les travaux avec adhésion à une organisation de product
 values:
   2014-01-01:
     value: 0.25
+  2023-01-01:
+    value: null
 metadata:
   last_value_still_valid_on: "2024-04-26"
   unit: /1
@@ -11,3 +13,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000028428523/2013-12-31/
     - title: Art. 200 quindecies, 5. du CGI
       href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000028439825/2014-01-01/
+    2023-01-01:
+      title: Article 10 de la Loi n° 2022-1726 du 30 décembre 2022 de finances pour 2023
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845648
+
