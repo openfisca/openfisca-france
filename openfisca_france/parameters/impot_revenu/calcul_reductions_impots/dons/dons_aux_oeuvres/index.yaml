@@ -1,5 +1,6 @@
-description: Dons aux œuvres
+description: Réduction d'impôt sur le revenu (IR) pour dons au profit d'oeuvres ou organismes d'intérêt général
 metadata:
+  short_label: Dons au profit d'oeuvres ou organismes d'intérêt général
   order:
   - taux
 documentation: "Dons : art. 200-1 du CGI"

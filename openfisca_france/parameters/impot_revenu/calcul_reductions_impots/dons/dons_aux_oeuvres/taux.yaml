@@ -11,6 +11,7 @@ values:
   2005-01-01:
     value: 0.66
 metadata:
+  short_value: Taux de la réduction d'impôt
   ipp_csv_id: txdons
   unit: /1
   reference:

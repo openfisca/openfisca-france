@@ -5,7 +5,7 @@ values:
   2008-01-01:
     value: 18000
 metadata:
-  short_label: Plafond du crédit d'impôt la 1ère année pour contribuable invalide
+  short_label: Plafond du crédit d'impôt la première année pour contribuable invalide
   unit: currency_next_year
   reference:
     2008-01-01:

@@ -1,11 +1,11 @@
-description: Plafond maximal des dépenses prises en compte après majorations pour enfants à charge et personne de plus de 65 ans, du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
+description: Plafond des dépenses prises en compte après majorations pour enfants à charge et personne de plus de 65 ans, du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null
   2005-01-01:
     value: 15000
 metadata:
-  short_label: Plafond maximal des dépenses prises en compte après majorations pour enfant à charge ou personne de plus de 65 ans
+  short_label: Plafond des dépenses après majorations
   ipp_csv_id: superplafsaldom
   unit: currency_next_year
   reference:

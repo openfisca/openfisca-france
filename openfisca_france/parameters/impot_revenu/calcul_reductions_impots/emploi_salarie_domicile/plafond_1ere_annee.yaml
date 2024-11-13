@@ -5,7 +5,7 @@ values:
   2008-01-01:
     value: 15000
 metadata:
-  short_label: Plafond des dépenses prises en compte la première année
+  short_label: Plafond de base des dépenses la première année
   unit: currency_next_year
   reference:
     2008-01-01:

@@ -19,7 +19,7 @@ values:
   2005-01-01:
     value: 12000
 metadata:
-  short_label: Plafond de base des dépenses prises en compte
+  short_label: Plafond de base des dépenses (case 7DB)
   ipp_csv_id: plafsaldomicile
   unit: currency_next_year
   reference:

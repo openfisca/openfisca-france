@@ -1,6 +1,6 @@
 description: Dons aux partis politiques
 metadata:
-  short_label: Partis politiques
+  short_label: Dons aux partis politiques
   label_en: Gifts
   order:
   - taux

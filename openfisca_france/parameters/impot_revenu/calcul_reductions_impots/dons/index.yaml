@@ -4,10 +4,10 @@ metadata:
   documentation_start: true
   label_en: Gifts
   order:
-  - dons_coluche
-  - dons_notre_dame
   - dons_aux_oeuvres
-  - reduction_impot_dons
   - dons_interet_general
+  - dons_coluche
   - dons_aux_partis_politiques
+  - dons_notre_dame  
+  - reduction_impot_dons  
 documentation: "Dons : art. 200-1 du CGI"

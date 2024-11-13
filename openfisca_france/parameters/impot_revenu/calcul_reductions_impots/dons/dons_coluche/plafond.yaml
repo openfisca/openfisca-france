@@ -1,4 +1,4 @@
-description: Plafond des dons Coluche
+description: Plafond des versements ouvrant droit à la réduction d'impôt sur le revenu (IR) au titre des dons faits aux organismes d'aide aux personnes en difficulté ("Dons Coluche")
 values:
   1975-01-01:
     value: null
@@ -61,7 +61,7 @@ values:
   2020-01-01:
     value: 1000
 metadata:
-  short_label: Plafond
+  short_label: Plafond des versements ouvrant droit à la réduction d'impôt
   last_value_still_valid_on: "2023-07-05"
   ipp_csv_id: plafcoluche
   unit: currency_next_year
