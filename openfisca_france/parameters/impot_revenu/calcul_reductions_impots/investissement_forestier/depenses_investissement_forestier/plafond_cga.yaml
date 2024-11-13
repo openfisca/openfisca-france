@@ -2,8 +2,6 @@ description: Plafond de dépenses de contrat de gestion (CGA) de dépenses d'inv
 values:
   2009-01-01:
     value: 2000
-  2023-01-01:
-    value: null
 metadata:
   short_label: Plafond de dépenses
   unit: currency_next_year
