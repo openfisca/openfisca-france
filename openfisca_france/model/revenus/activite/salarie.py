@@ -1706,10 +1706,12 @@ class salaire_imposable_agents_assurance(Variable):
     entity = Individu
     label = 'Agents generaux d assurance - salaire imposable'
     definition_period = YEAR
+
+
 class cer_ou_ppae(Variable):
     value_type = bool
     entity = Individu
-    label = "Avoir un CER (Contrat d’engagement réciproque) et/ou un PPAE (Projet personnalisé d’accès à l’emploi) en cours"
+    label = "Avoir un CER (Contrat d'engagement réciproque) et/ou un PPAE (Projet personnalisé d'accès à l'emploi) en cours"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -1717,7 +1719,7 @@ class cer_ou_ppae(Variable):
 class formation(Variable):
     value_type = bool
     entity = Individu
-    label = "Etre en formation"
+    label = 'Etre en formation'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -1725,7 +1727,7 @@ class formation(Variable):
 class duree_contrat_ou_formation(Variable):
     value_type = int
     entity = Individu
-    label = "Durée en mois du CDD ou de la formation"
+    label = 'Durée en mois du CDD ou de la formation'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

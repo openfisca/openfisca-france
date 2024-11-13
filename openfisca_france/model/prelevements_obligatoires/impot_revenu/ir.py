@@ -4063,7 +4063,7 @@ class ppe(Variable):
 class plus_values_gains_divers(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Plus-values et gains divers"
+    label = 'Plus-values et gains divers'
     definition_period = YEAR
 
 

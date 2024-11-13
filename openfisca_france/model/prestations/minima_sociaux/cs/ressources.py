@@ -86,6 +86,7 @@ class css_cmu_base_ressources_individu(Variable):
             - neutralisation_stage_formation_pro(individu, previous_year, last_month)
             )
 
+
 class css_base_ressources_aah_individu(Variable):
     value_type = float
     label = "Base de ressources AAH de l'individu prise en compte pour l'éligibilité à la CSS après application de l'abattement"
@@ -94,7 +95,7 @@ class css_base_ressources_aah_individu(Variable):
         'https://sante.gouv.fr/fichiers/bo/2021/2021.6.sante.pdf#page=75',
         'Bulletin officiel Santé - Protection sociale - Solidarité n° 2023/24 du 29 décembre 2023 - Instruction interministérielle N° DSS/SD2A/2023/98 du 22 décembre 2023',
         'https://sante.gouv.fr/fichiers/bo/2023/2023.24.sante.pdf#page=82',
-    ]
+        ]
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -105,13 +106,14 @@ class css_base_ressources_aah_individu(Variable):
     def formula_2021_04_01(individu, period, parameters):
         return max_(individu('aah', period) - parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css.abattements.aah, 0)
 
+
 class css_abattement_asi_individu(Variable):
     value_type = float
     label = "Base de ressources ASI de l'individu prise en compte pour l'éligibilité à la CSS après application de l'abattement"
     reference = [
         'Bulletin officiel Santé - Protection sociale - Solidarité n° 2021/6 du 16 avril 2021 - Instruction interministérielle N° DSS/SD2A/2021/71 du 30 mars 2021',
         'https://sante.gouv.fr/fichiers/bo/2021/2021.6.sante.pdf#page=75'
-    ]
+        ]
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -122,17 +124,17 @@ class css_abattement_asi_individu(Variable):
     def formula_2021_04_01(individu, period, parameters):
 
         abattement_asi_personne_seule = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css.abattements.asi.personne_seule
-        abattement_asi_couple = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css.abattements.asi.couple/2
-        adulte_ayant_asi = where(and_(
+        abattement_asi_couple = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css.abattements.asi.couple / 2
+        adulte_ayant_asi = and_(
             individu.has_role(FoyerFiscal.DECLARANT),
-            individu('asi', period)),
-            True, False)
+            individu('asi', period))
         appliquer_abattement_couple = sum_(adulte_ayant_asi) > 1
         aah = individu('aah', period)
         return select(
-            [aah > 0, appliquer_abattement_couple and adulte_ayant_asi, adulte_ayant_asi],
+            [aah > 0, appliquer_abattement_couple * adulte_ayant_asi, adulte_ayant_asi],
             [0, abattement_asi_couple, abattement_asi_personne_seule],
             0)
+
 
 class css_base_ressources_aspa_asv(Variable):
     value_type = float
@@ -140,22 +142,24 @@ class css_base_ressources_aspa_asv(Variable):
     reference = [
         'Bulletin officiel Santé - Protection sociale - Solidarité n° 2021/6 du 16 avril 2021 - Instruction interministérielle N° DSS/SD2A/2021/71 du 30 mars 2021',
         'https://sante.gouv.fr/fichiers/bo/2021/2021.6.sante.pdf#page=75'
-    ]
+        ]
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         return famille('aspa', period)
+
     def formula_2021_04_01(famille, period, parameters):
         aspa = famille('aspa', period)
         aspa_couple = famille('aspa_couple', period)
         abattement_aspa_personne_seule = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css.abattements.aspa_asv.personne_seule
         abattement_aspa_couple = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css.abattements.aspa_asv.couple
         return select(
-            [aspa > 0 and aspa_couple, aspa > 0],
+            [(aspa > 0) * aspa_couple, aspa > 0],
             [max_(aspa - abattement_aspa_couple, 0), max_(aspa - abattement_aspa_personne_seule, 0)],
             aspa)
+
 
 class css_cmu_base_ressources(Variable):
     value_type = float
@@ -212,6 +216,7 @@ class css_cmu_base_ressources(Variable):
 
 # Helper functions
 
+
 def compute_previous_year(period):
     return Period(('year', period.start, 1)).offset(-1).offset(-1, 'month')
 
@@ -220,6 +225,8 @@ def compute_previous_year(period):
 # - chômage
 # - ass
 # - formation professionnelle
+
+
 def abattement_chomage(individu, period, previous_year, parametres_cmu):
     indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
 

@@ -256,21 +256,21 @@ class etat_logement(Variable):
 class assistant_maternel(Variable):
     value_type = bool
     entity = Individu
-    label = "Assistant maternel"
+    label = 'Assistant maternel'
     definition_period = MONTH
 
 
 class assistant_familial(Variable):
     value_type = bool
     entity = Individu
-    label = "Assistant familial"
+    label = 'Assistant familial'
     definition_period = MONTH
 
 
 class journaliste(Variable):
     value_type = bool
     entity = Individu
-    label = "Journaliste"
+    label = 'Journaliste'
     definition_period = MONTH
 
 
@@ -605,12 +605,13 @@ class aide_logement_base_ressources_individu(Variable):
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
+        rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
         rpns_pvct = individu('rpns_pvct', period.n_2)
         rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
         rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
 
-        rpns = rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
+        rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
         # TO DO : compléter la formule pour prendre en compte la disposition particulière concernant les indépendants ayant commencé une activité entre N-2 et N.
         # Non implémentée car diffile à comprendre ce qui est fait exactement
 

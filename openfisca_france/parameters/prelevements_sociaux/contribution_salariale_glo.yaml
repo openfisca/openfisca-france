@@ -1,0 +1,12 @@
+description: Contribution salariale sur gains de levée d'options
+values:
+  2012-09-01:
+    value: 0.10
+metadata:
+  unit: /1
+  reference:
+    2012-09-01:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033812493
+      title: Article L137-14 du Code de la sécurité sociale.
+documentation: |-
+  Ce paramètre existe avant septembre 2012, mais pas rempli pour ces périodes.
