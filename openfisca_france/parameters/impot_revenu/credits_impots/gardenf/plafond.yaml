@@ -1,4 +1,4 @@
-description: Plafond du crédit d'impôt pour frais de garde d'enfants
+description: Plafond des dépenses effectivement supportées pour la garde des enfants âgés de moins de six ans qu'ils ont à leur charge pour le calcul du crédit d’impôt
 values:
   1978-01-01:
     value: 3000
@@ -19,7 +19,7 @@ values:
   2022-01-01:
     value: 3500
 metadata:
-  short_label: Plafond
+  short_label: Plafond de dépenses par enfant à charge
   last_value_still_valid_on: "2024-04-26"
   label_en: Child care costs
   ipp_csv_id: plafgardenf

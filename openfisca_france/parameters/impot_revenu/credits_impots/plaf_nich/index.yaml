@@ -1,7 +1,7 @@
-description: Plafonnement des niches
+description: Plafonnement global des avantages fiscaux (« niches fiscales »)
 metadata:
   documentation_start: true
-  short_label: Plafond niches
+  short_label: Plafonnement global des avantages fiscaux (« niches fiscales »)
   label_en: Global ceiling for tax reductions (2009 - )
   order:
   - taux

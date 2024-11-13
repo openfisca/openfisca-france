@@ -2,5 +2,9 @@ description: Majoration du plafond pour le 1er enfant
 values:
   2002-01-01:
     value: 400
+  2020-01-01:
+    value: null
 metadata:
   unit: currency_next_year
+documentation: "Le crédit d'impôt transition énergétique (CITE) est supprimé pour les dépenses effectuées depuis le 1er janvier 2020. Il est remplacé par une prime forfaitaire versée par l’ANAH (Agence nationale de l’habitat) dès la réalisation des travaux (« MaPrimeRénov' »)."
+(https://www.impots.gouv.fr/particulier/credit-dimpot-transition-energetique)
