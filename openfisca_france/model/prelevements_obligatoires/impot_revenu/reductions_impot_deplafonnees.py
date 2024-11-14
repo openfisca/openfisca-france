@@ -460,7 +460,7 @@ class dfppce(Variable):
         red_7uj = min_(P.dons_cultuels.plafond_dons, f7uj) * taux_donapd
         report_7uj = max_(0, f7uj - P.dons_cultuels.plafond_dons)
 
-        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_foyer, f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + report_7uj + dons_partipol
         max = P.plafond_dons * rni
