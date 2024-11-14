@@ -457,8 +457,8 @@ class dfppce(Variable):
         red_7ud_7va = min_(plafond_reduction_don_coluche, f7va + f7ud) * taux_donapd
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
 
-        red_7uj = min_(P.dons_assoc_cult, f7uj) * taux_donapd
-        report_7uj = max_(0, f7uj - P.dons_assoc_cult)
+        red_7uj = min_(P.dons_cultuels.plafond_dons, f7uj) * taux_donapd
+        report_7uj = max_(0, f7uj - P.dons_cultuels.plafond_dons)
 
         dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 

@@ -1,0 +1,7 @@
+description: Réduction d'impôt sur le revenu (IR) au titre des dons faits aux associations cultuelles, associations d'assistance ou de bienfaisance autorisées et établissements publics des cultes reconnus d'Alsace-Moselle (case 7UJ)
+metadata:
+  short_label: Dons aux associations cultuelles (case 7UJ)
+  order:
+  - taux
+  - plafond
+documentation: "Dons Coluche (organismes d'aide aux personnes en difficulté): art. 200-1 ter du CGI"
