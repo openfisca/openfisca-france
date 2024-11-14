@@ -201,7 +201,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf
-        max1 = P.dons_interet_general.plafond * rni
+        max1 = P.plafond_dons * rni
         return P.taux_reduction * min_(base, max1)
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
@@ -215,7 +215,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs
-        max1 = P.dons_interet_general.plafond * rni
+        max1 = P.plafond_dons * rni
         return P.taux_reduction * min_(base, max1)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -230,7 +230,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs + f7xt
-        max1 = P.dons_interet_general.plafond * rni
+        max1 = P.plafond_dons * rni
         return P.taux_reduction * min_(base, max1)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -246,7 +246,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu
-        max1 = P.dons_interet_general.plafond * rni
+        max1 = P.plafond_dons * rni
         return P.taux_reduction * min_(base, max1)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
@@ -263,7 +263,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw
-        max1 = P.dons_interet_general.plafond * rni
+        max1 = P.plafond_dons * rni
         return P.taux_reduction * min_(base, max1)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
@@ -281,7 +281,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.dons_interet_general.plafond * rni
+        max1 = P.plafond_dons * rni
         return P.taux_reduction * min_(base, max1)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -304,7 +304,7 @@ class dfppce(Variable):
 
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
-        max1 = P.dons_interet_general.plafond * rni
+        max1 = P.plafond_dons * rni
         return P.taux_reduction * min_(base, max1)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -327,7 +327,7 @@ class dfppce(Variable):
 
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
-        max1 = P.dons_interet_general.plafond * rni
+        max1 = P.plafond_dons * rni
         return P.taux_reduction * min_(base, max1)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -358,7 +358,7 @@ class dfppce(Variable):
         dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
-        max = P.dons_interet_general.plafond * rni
+        max = P.plafond_dons * rni
 
         return red_7ud_7va + P.taux_reduction * min_(base, max)
 
@@ -395,7 +395,7 @@ class dfppce(Variable):
         dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol + report_notre_dame
-        max = P.dons_interet_general.plafond * rni
+        max = P.plafond_dons * rni
 
         return red_notre_dame + red_7ud_7va + P.taux_reduction * min_(base, max)
 
@@ -427,7 +427,7 @@ class dfppce(Variable):
         dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
-        max = P.dons_interet_general.plafond * rni
+        max = P.plafond_dons * rni
 
         return red_7ud_7va + P.taux_reduction * min_(base, max)
 
@@ -463,7 +463,7 @@ class dfppce(Variable):
         dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + report_7uj + dons_partipol
-        max = P.dons_interet_general.plafond * rni
+        max = P.plafond_dons * rni
 
         return red_7ud_7va + red_7uj + P.taux_reduction * min_(base, max)
 
