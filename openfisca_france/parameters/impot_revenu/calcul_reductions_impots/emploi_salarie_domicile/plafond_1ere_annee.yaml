@@ -1,11 +1,11 @@
-description: Plafond des dépenses prises en compte la première année pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
+description: Plafond des dépenses, avant majorations, prises en compte la première année pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null
   2008-01-01:
     value: 15000
 metadata:
-  short_label: Plafond de base des dépenses la première année
+  short_label: Plafond des dépenses, avant majorations, la première année
   unit: currency_next_year
   reference:
     2008-01-01:

@@ -1,4 +1,4 @@
-description: Plafond de base des dépenses prises en compte pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
+description: Plafond des dépenses, avant majorations, prises en compte pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null
@@ -19,7 +19,7 @@ values:
   2005-01-01:
     value: 12000
 metadata:
-  short_label: Plafond de base des dépenses (case 7DB)
+  short_label: Plafond des dépenses, avant majorations
   ipp_csv_id: plafsaldomicile
   unit: currency_next_year
   reference:

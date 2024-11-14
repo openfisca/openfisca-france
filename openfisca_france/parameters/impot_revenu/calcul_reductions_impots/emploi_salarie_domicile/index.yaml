@@ -7,10 +7,10 @@ metadata:
   - taux
   - plafond
   - plafond_1ere_annee
+  - plafond_invalides
   - increment_plafond
   - plafond_maximum
   - plafond_invalides_1ere_annee
-  - plafond_invalides
 documentation: |-
   Dépenses de services à la personne à domicile : art. 199 sexdecies du CGI
   Le travail peut être effectué par un salarié directement employé à domicile, une association, une entreprise ou un organisme spécialisé ou encore un organisme à but non lucratif ayant pour objet l'aide à domicile et habilité au titre de l'aide sociale ou conventionné par un organisme de sécurité sociale.

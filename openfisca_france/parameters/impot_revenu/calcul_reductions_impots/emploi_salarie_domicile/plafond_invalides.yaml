@@ -1,4 +1,4 @@
-description: Plafond des dépenses prises en compte pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile, pour les contribuables invalides en incapacité d'exercer une profession et dans l'obligation d'avoir assistance d'une tierce personne, pour les contribuables ayant à charge une personne invalide dans les mêmes conditions ou un enfant bénéficiaire du complément d'allocation d'éducation de l'enfant handicapé
+description: Plafond des dépenses, avant majorations, prises en compte pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile, pour les contribuables invalides en incapacité d'exercer une profession et dans l'obligation d'avoir assistance d'une tierce personne, pour les contribuables ayant à charge une personne invalide dans les mêmes conditions ou un enfant bénéficiaire du complément d'allocation d'éducation de l'enfant handicapé
 values:
   1990-01-01:
     value: null
@@ -9,7 +9,7 @@ values:
   2005-01-01:
     value: 20000
 metadata:
-  short_label: Plafond des dépenses prises en compte pour les contribuables invalides dans l'obligation d'avoir l'assistance d'une tierce personne ou pour les contribuables ayant à charge une personne invalide dans les mêmes conditions ou un enfant bénéficiaire du complément d'allocation d'éducation de l'enfant handicapé
+  short_label: Plafond des dépenses, avant majorations, pour les contribuables invalides ou ayant à charge une personne invalide
   ipp_csv_id: plafsaldominvalide
   unit: currency_next_year
   reference:
