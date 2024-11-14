@@ -6,6 +6,7 @@ values:
     value: 18000
 metadata:
   short_label: Plafond des dépenses, après majorations, la première année
+  last_value_still_valid_on: "2024-11-14"
   unit: currency_next_year
   reference:
     2008-01-01:
