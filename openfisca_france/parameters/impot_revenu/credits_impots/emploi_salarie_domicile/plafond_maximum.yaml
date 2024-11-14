@@ -1,0 +1,14 @@
+description: Plafond des dépenses, après majorations pour enfants à charge et personne de plus de 65 ans, prises en compte pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
+values:
+  2007-01-01:
+    value: 15000
+metadata:
+  short_label: Plafond des dépenses, après majorations
+  last_value_still_valid_on: "2024-11-14"
+  ipp_csv_id: superplafsaldom
+  unit: currency_next_year
+  reference:
+    2007-01-01:
+    - title: Article 199 sexdecies 3. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046861251
+documentation: Certains services à domicile rentrent dans le calcul des dépenses annuelles jusqu'à un certain plafond. Ainsi, les dépenses en petit bricolage ne peuvent dépasser 500 euros par an, les petits travaux de jardinage 5000 euros et l'assistance informatique ou Internet est plafonnée à 3000 euros annuels.

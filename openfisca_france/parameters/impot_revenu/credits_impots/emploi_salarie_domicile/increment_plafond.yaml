@@ -1,0 +1,13 @@
+description: Majoration du plafond des dépenses prises en compte pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile, par enfant à charge, par membre du foyer fiscal de plus de 65 ans et par ascendant âgé de plus de 65 ans remplissant les conditions pour bénéficier de l'APA lorsque les dépenses sont engagées à son domicile
+values:
+  2007-01-01:
+    value: 1500
+metadata:
+  short_label: Majoration du plafond des dépenses par enfant à charge ou par membre du foyer de plus de 65 ans
+  last_value_still_valid_on: "2024-11-14"
+  ipp_csv_id: increment_plafsaldomicile
+  unit: currency_next_year
+  reference:
+    2007-01-01:
+    - title: Article 199 sexdecies 3. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000006191899

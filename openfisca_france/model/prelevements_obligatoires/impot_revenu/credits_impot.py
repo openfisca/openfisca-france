@@ -2767,7 +2767,7 @@ class ci_saldom(Variable):
         f7db = foyer_fiscal('f7db', period)
         f7dg = foyer_fiscal('f7dg', period)
         f7dl = foyer_fiscal('f7dl', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
+        P = parameters(period).impot_revenu.credits_impots.emploi_salarie_domicile
 
         isinvalid = f7dg
         nbpacmin = nb_pac_majoration_plafond + f7dl
@@ -2788,7 +2788,7 @@ class ci_saldom(Variable):
         f7dg = foyer_fiscal('f7dg', period)
         f7dl = foyer_fiscal('f7dl', period)
         f7dq = foyer_fiscal('f7dq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
+        P = parameters(period).impot_revenu.credits_impots.emploi_salarie_domicile
 
         isinvalid = f7dg
         annee1 = f7dq
@@ -2817,7 +2817,7 @@ class ci_saldom(Variable):
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
+        P = parameters(period).impot_revenu.credits_impots.emploi_salarie_domicile
 
         # détérminer le plafond
 
@@ -2848,7 +2848,7 @@ class ci_saldom(Variable):
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
+        P = parameters(period).impot_revenu.credits_impots.emploi_salarie_domicile
 
         # détérminer le plafond
         if invalide.any():
