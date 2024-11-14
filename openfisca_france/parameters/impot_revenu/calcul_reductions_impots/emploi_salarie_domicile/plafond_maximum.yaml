@@ -1,4 +1,4 @@
-description: Plafond des dépenses, après majorations, prises en compte après majorations pour enfants à charge et personne de plus de 65 ans, du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
+description: Plafond des dépenses, après majorations pour enfants à charge et personne de plus de 65 ans, prises en compte pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null

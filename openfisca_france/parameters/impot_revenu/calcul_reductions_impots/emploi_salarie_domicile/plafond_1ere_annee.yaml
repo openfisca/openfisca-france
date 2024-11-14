@@ -1,4 +1,4 @@
-description: Plafond des dépenses, avant majorations, prises en compte la première année pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
+description: Plafond des dépenses, la première année, avant majorations pour enfants à charge et personne de plus de 65 ans, prises en compte pour le calcul du crédit d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null

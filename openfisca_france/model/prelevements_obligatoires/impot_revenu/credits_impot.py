@@ -2794,7 +2794,7 @@ class ci_saldom(Variable):
         annee1 = f7dq
         nbpacmin = nb_pac_majoration_plafond + f7dl
         maxBase = P.plafond * not_(annee1) + P.plafond_1ere_annee * annee1
-        maxDuMaxNonInv = P.plafond_maximum * not_(annee1) + P.plafond_invalides_1ere_annee * annee1
+        maxDuMaxNonInv = P.plafond_maximum * not_(annee1) + P.plafond_maximum_1ere_annee * annee1
         maxNonInv = min_(maxBase + P.increment_plafond * nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv * not_(isinvalid) + P.plafond_invalides * isinvalid
 
@@ -2825,7 +2825,7 @@ class ci_saldom(Variable):
             plaf = P.plafond_invalides
         else:
             if annee1.any():
-                plaf = min_(P.plafond_invalides_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
             else:
                 plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
 
@@ -2855,7 +2855,7 @@ class ci_saldom(Variable):
             plaf = P.plafond_invalides
         else:
             if annee1.any():
-                plaf = min_(P.plafond_invalides_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
             else:
                 plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
 
