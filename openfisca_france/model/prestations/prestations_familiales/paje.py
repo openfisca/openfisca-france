@@ -70,6 +70,15 @@ class micro_creche(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class frais_garde(Variable):
+    value_type = float
+    default_value = 0.0
+    entity = Famille
+    label = 'Frais de garde (CLCMG)'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+
 class paje(Variable):
     value_type = float
     entity = Famille
@@ -440,6 +449,10 @@ class paje_cmg(Variable):
 
         etudiant_i = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant_i, role = Famille.PARENT)
+        
+        # Il s'agit d'une famille monoparentale (parent isolé)
+        parent_isole = famille('nb_parents', period) == 1
+
 
         # condition de revenu minimal
 
@@ -463,13 +476,13 @@ class paje_cmg(Variable):
             (nombre_enfants == 1) * paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.enfant
             + (nombre_enfants >= 2) * paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.deux_enfants
             + max_(nombre_enfants - 2, 0) * paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.majoration_enfant_supp
-            )
+            ) * (1 + parent_isole * paje.plaf_cmg.majoration_plafond_personne_isolee)
 
         seuil_revenus_2 = (
             (nombre_enfants == 1) * paje.plaf_cmg.deuxieme_plafond_ne_adopte_apres_04_2014.enfant
             + (nombre_enfants >= 2) * paje.plaf_cmg.deuxieme_plafond_ne_adopte_apres_04_2014.deux_enfants
             + max_(nombre_enfants - 2, 0) * paje.plaf_cmg.deuxieme_plafond_ne_adopte_apres_04_2014.majoration_enfant_supp
-            )
+            ) * (1 + parent_isole * paje.plaf_cmg.majoration_plafond_personne_isolee)
 
         # Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
         # dans l'entreprise), vous cumulez intégralement la PreParE et le Cmg.
@@ -482,30 +495,26 @@ class paje_cmg(Variable):
 
         # calcul du montant
         
-        nb_enf_presta_pleine = nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1)
-        nb_enf_presta_reduite = nb_enf(famille, period,
-                                        paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.reduite - 1)
-
         elig_seuils = [
             base_ressources < seuil_revenus_1,
             (base_ressources >= seuil_revenus_1) * (base_ressources < seuil_revenus_2),
             base_ressources >= seuil_revenus_2
         ]
-        taux_seuils_emploi_direct = [
-            paje.paje_cmg.complement_libre_choix_mode_garde.revenus_inferieurs_45_plaf * ones(seuil_revenus_1.size),
-            paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_45_plaf * ones(seuil_revenus_1.size),
-            paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_plaf * ones(seuil_revenus_1.size)
-        ]
-        taux_seuils_assistant_maternel = [
-            paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond * ones(seuil_revenus_1.size),
-            paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_second_plafond * ones(seuil_revenus_1.size),
-            paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond * ones(seuil_revenus_1.size)
-        ]
-        taux_seuils_garde_domicile_micro_creche = [
-            paje.paje_cmg.garde_domicile.sous_premier_plafond * ones(seuil_revenus_1.size),
-            paje.paje_cmg.garde_domicile.sous_second_plafond * ones(seuil_revenus_1.size),
-            paje.paje_cmg.garde_domicile.apres_second_plafond * ones(seuil_revenus_1.size)
-        ]
+        taux_seuils_emploi_direct = sum(elig_seuils * array([
+            [paje.paje_cmg.complement_libre_choix_mode_garde.revenus_inferieurs_45_plaf],
+            [paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_45_plaf],
+            [paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_plaf]
+        ]), axis=0)
+        taux_seuils_assistant_maternel = sum(elig_seuils * array([
+            [paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond],
+            [paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_second_plafond],
+            [paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond]
+        ]), axis=0)
+        taux_seuils_garde_domicile_micro_creche = sum(elig_seuils * array([
+            [paje.paje_cmg.garde_domicile.sous_premier_plafond],
+            [paje.paje_cmg.garde_domicile.sous_second_plafond],
+            [paje.paje_cmg.garde_domicile.apres_second_plafond]
+        ]), axis=0)
         # taux_bmaf = select(
         #     [
         #         emploi_direct * elig_seuils,
@@ -533,9 +542,31 @@ class paje_cmg(Variable):
             garde_a_domicile * taux_seuils_garde_domicile_micro_creche,
             micro_creche * taux_seuils_garde_domicile_micro_creche
         ])
+        
+        taux_bmaf_emploi_direct = emploi_direct * taux_seuils_emploi_direct
+        taux_bmaf_assistant_maternel = assistant_maternel * taux_seuils_assistant_maternel
+        taux_bmaf_garde_a_domicile = garde_a_domicile * taux_seuils_garde_domicile_micro_creche
+        taux_bmaf_micro_creche = micro_creche * taux_seuils_garde_domicile_micro_creche
 
-        taux_bmaf = seuils_ * creche_
-        print("JDG - taux_bmaf : ", taux_bmaf)
+        # taux_bmaf = seuils_ * creche_
+        # print("JDG - taux_bmaf : ", taux_bmaf)
+        
+        # On récupère le nombre d'enfants donnant droit à une prestation pleine du CMG
+        nb_enf_presta_pleine = nb_enf(famille, period,
+                                        0, paje.paje_cmg.limite_age.pleine - 1)
+        # On récupère le nombre d'enfants donnant droit à une prestation réduite du CMG
+        nb_enf_presta_reduite = nb_enf(famille, period,
+                                        paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.reduite - 1)
+
+        # On calcule le coefficient de majoration des différents types de CMG en fonction du nombre d'enfants
+        coeff_enfants_emploi_direct = (1.0 * (nb_enf_presta_pleine > 0) + 0.5 * (nb_enf_presta_reduite > 0))
+        coeff_enfants_assistant_maternel_micro_creche = (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite)
+        coeff_enfants_garde_domicile = select(
+            [ nb_enf_presta_pleine > 0, nb_enf_presta_reduite > 0 ],
+            [ 1.0, 0.5 ],
+            0
+        )
+
         coeff_enfants = array([
             full((3, seuil_revenus_1.size), (1.0 * (nb_enf_presta_pleine > 0) + 0.5 * (nb_enf_presta_reduite > 0))),
             full((3, seuil_revenus_1.size), (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite)),
@@ -543,7 +574,12 @@ class paje_cmg(Variable):
             full((3, seuil_revenus_1.size), (1.0 * nb_enf_presta_pleine + 0.5 * nb_enf_presta_reduite))
         ])
         
-        montant_cmg_tmp = sum(bmaf * coeff_enfants * taux_bmaf, axis=(0, 1))
+        montant_cmg_tmp = bmaf * (
+            emploi_direct * taux_seuils_emploi_direct * coeff_enfants_emploi_direct
+            + assistant_maternel * taux_seuils_assistant_maternel * coeff_enfants_assistant_maternel_micro_creche
+            + garde_a_domicile * taux_seuils_garde_domicile_micro_creche * coeff_enfants_garde_domicile
+            + micro_creche * taux_seuils_garde_domicile_micro_creche * coeff_enfants_assistant_maternel_micro_creche
+        ) * (1 + parent_isole * paje.paje_cmg.majoration_montant_personne_isolee)
 
         montant_cmg = (
             bmaf * (
@@ -567,7 +603,12 @@ class paje_cmg(Variable):
                     )
             )
 
-        paje_cmg = eligible * montant_cmg
+        # paje_cmg = eligible * montant_cmg
+        frais_garde = famille('frais_garde', period)
+        montant_cmg_tmp = where(frais_garde > 0.0,
+                                min_(montant_cmg_tmp, frais_garde * paje.paje_cmg.taux_prise_en_charge_maximale),
+                                montant_cmg_tmp)
+        paje_cmg = eligible * montant_cmg_tmp
         # TODO: connecter avec le crédit d'impôt
         # TODO vérfiez les règles de cumul
         return paje_cmg
