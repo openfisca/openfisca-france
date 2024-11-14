@@ -5,7 +5,7 @@ values:
   2006-01-01:
     value: 0.5
 metadata:
-  short_label: Taux de réduction d'impôts
+  short_label: Taux de la réduction d'impôt
   ipp_csv_id: taux_incendie
   unit: /1
   reference:

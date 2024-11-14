@@ -1,5 +1,6 @@
-description: Dépenses d'investissements forestiers
+description: Crédit d'impôt sur le revenu (IR) sur les investissements forestiers
 metadata:
+  short_label: Investissements forestiers
   order:
   - acquisition
   - travaux
