@@ -515,6 +515,34 @@ class paje_cmg(Variable):
             [paje.paje_cmg.garde_domicile.sous_second_plafond],
             [paje.paje_cmg.garde_domicile.apres_second_plafond]
         ]), axis=0)
+        
+        elig_seuil_1 = base_ressources < seuil_revenus_1
+        elig_seuil_2 = (base_ressources >= seuil_revenus_1) * (base_ressources < seuil_revenus_2)
+        elig_seuil_3 = base_ressources >= seuil_revenus_2
+        taux_seuils_emploi_direct_2 = select(
+            [ elig_seuil_1, elig_seuil_2, elig_seuil_3 ],
+            [
+                paje.paje_cmg.complement_libre_choix_mode_garde.revenus_inferieurs_45_plaf,
+                paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_45_plaf,
+                paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_plaf
+            ]
+        )
+        taux_seuils_assistant_maternel_2 = select(
+            [ elig_seuil_1, elig_seuil_2, elig_seuil_3 ],
+            [
+                paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond,
+                paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_second_plafond,
+                paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond
+            ]
+        )
+        taux_seuils_garde_domicile_micro_creche_2 = select(
+            [ elig_seuil_1, elig_seuil_2, elig_seuil_3 ],
+            [
+                paje.paje_cmg.garde_domicile.sous_premier_plafond,
+                paje.paje_cmg.garde_domicile.sous_second_plafond,
+                paje.paje_cmg.garde_domicile.apres_second_plafond
+            ]
+        )
         # taux_bmaf = select(
         #     [
         #         emploi_direct * elig_seuils,
@@ -575,10 +603,10 @@ class paje_cmg(Variable):
         ])
         
         montant_cmg_tmp = bmaf * (
-            emploi_direct * taux_seuils_emploi_direct * coeff_enfants_emploi_direct
-            + assistant_maternel * taux_seuils_assistant_maternel * coeff_enfants_assistant_maternel_micro_creche
-            + garde_a_domicile * taux_seuils_garde_domicile_micro_creche * coeff_enfants_garde_domicile
-            + micro_creche * taux_seuils_garde_domicile_micro_creche * coeff_enfants_assistant_maternel_micro_creche
+            emploi_direct * taux_seuils_emploi_direct_2 * coeff_enfants_emploi_direct
+            + assistant_maternel * taux_seuils_assistant_maternel_2 * coeff_enfants_assistant_maternel_micro_creche
+            + garde_a_domicile * taux_seuils_garde_domicile_micro_creche_2 * coeff_enfants_garde_domicile
+            + micro_creche * taux_seuils_garde_domicile_micro_creche_2 * coeff_enfants_assistant_maternel_micro_creche
         ) * (1 + parent_isole * paje.paje_cmg.majoration_montant_personne_isolee)
 
         montant_cmg = (
