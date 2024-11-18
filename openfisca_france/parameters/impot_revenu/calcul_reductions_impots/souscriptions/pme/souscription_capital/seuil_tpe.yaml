@@ -1,9 +1,10 @@
-description: Seuil de la réduction d'impôt sur les souscriptions en numéraire au capital initial ou aux augmentations de capital de sociétés
+description: Plafond des versements, pour une personne célibataire, veuve, ou divorcé, ouvrant droit à la réduction d'impôt sur le revenu (IR) sur les souscriptions en numéraire au capital initial ou aux augmentations de capital de Très Petites Entreprises
 values:
   2009-01-01:
     value: 50000
 metadata:
-  last_value_still_valid_on: "2024-04-26"
+  short_label: Plafond des versements pour célibataire, veuf ou divorcé, pour les TPE
+  last_value_still_valid_on: "2024-11-18"
   unit: currency_next_year
   reference:
     2009-01-01:
