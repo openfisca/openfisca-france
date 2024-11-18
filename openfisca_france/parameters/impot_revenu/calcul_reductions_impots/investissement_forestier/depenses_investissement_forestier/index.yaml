@@ -4,5 +4,6 @@ metadata:
   order:
   - acquisition
   - travaux
-  - assurance  
+  - assurance
+  - plafond_cga
 documentation: Le plafond est doublé pour un couple marié ou pour les partenaires liés par un PACS soumis à une imposition commune.
