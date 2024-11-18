@@ -3,6 +3,10 @@ metadata:
   documentation_start : true
   short_label: Dépenses d’équipements en faveur de la transition énergétique supportées par les contribuables dans leur habitation principale
   order:
+  - taux30
+  - taux50
+  - max
+  - pac1
 documentation: |-
   Le crédit d'impôt transition énergétique (CITE) est supprimé pour les dépenses effectuées depuis le 1er janvier 2020. Il est remplacé par une prime forfaitaire versée par l’ANAH (Agence nationale de l’habitat) dès la réalisation des travaux (« MaPrimeRénov' »).
   Source : https://www.impots.gouv.fr/particulier/credit-dimpot-transition-energetique
