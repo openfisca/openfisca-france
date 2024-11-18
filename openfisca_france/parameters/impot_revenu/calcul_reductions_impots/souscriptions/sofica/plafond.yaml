@@ -8,6 +8,7 @@ values:
     value: 18000
 metadata:
   short_label: Plafond du revenu net global pris en compte
+  last_value_still_valid_on: "2024-11-18"
   ipp_csv_id: plaf_sofica
   unit: currency_next_year
   reference:
