@@ -1,10 +1,11 @@
-description: Taux de la réduction d'impôt sur la cotisation d'assurance d'investissements forestiers
+description: Taux du crédit d'impôt sur la cotisation d'assurance d'investissements forestiers
 values:
   2011-01-01:
     value: 0.9
   2012-01-01:
     value: 0.76
 metadata:
+  short_label: Taux du crédit d'impôt
   last_value_still_valid_on: "2022-10-11"
   unit: /1
   reference:

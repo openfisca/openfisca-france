@@ -1,6 +1,6 @@
 description: Dépenses d'investissement forestier (cotisations d'assurance)
 metadata:
-  short_label: Assurance
+  short_label: DEFI «Assurance»
   order:
   - plafond
   - taux

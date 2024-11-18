@@ -1,6 +1,7 @@
-description: Cotisations syndicales
+description: Crédit d'impôt accordé au titre des cotisations versées aux organisations syndicales
 metadata:
   documentation_start: true
+  short_label: Cotisations syndicales
   label_en: Union dues
   order:
   - taux

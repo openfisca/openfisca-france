@@ -1,0 +1,22 @@
+description: Plafond des dépenses, la première année, après majorations pour enfants à charge et personne de plus de 65 ans, prises en compte pour la réduction d'impôt d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
+values:
+  1990-01-01:
+    value: null
+  2008-01-01:
+    value: 18000
+  2017-01-01: 
+    value: null
+metadata:
+  short_label: Plafond des dépenses, après majorations, la première année
+  last_value_still_valid_on: "2024-11-14"
+  unit: currency_next_year
+  reference:
+    2008-01-01:
+    - title: Article 199 sexdecies 3. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046861251
+    - title: Loi 2008-1425 du 27/12/2008 (LF pour 2009)
+  official_journal_date:
+    2008-01-01: "2008-12-28"
+  notes:
+    2017-01-01:
+    - title: Ce paramètre est à null car la réduction d'impôt devient définitivement un crédit d'impôt à compter de cette date. La bascule du dispositif en crédit d'impôt débute en 2007.

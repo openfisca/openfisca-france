@@ -1,0 +1,17 @@
+description: Crédit d'impôt sur le revenu (IR) accordé au titre des sommes versées pour l'emploi d'un salarié à domicile, à une association agréée ou à un organisme habilité ou conventionné ayant le même objet (case 7DB)
+metadata:
+  documentation_start: true
+  short_label: Emploi d'un salarié à domicile (case 7DB)
+  label_en: Home-worker Employment
+  order:
+  - taux
+  - plafond
+  - plafond_1ere_annee
+  - plafond_invalides
+  - increment_plafond
+  - plafond_maximum
+  - plafond_maximum_1ere_annee
+documentation: |-
+  Dépenses de services à la personne à domicile : art. 199 sexdecies du CGI
+  Le travail peut être effectué par un salarié directement employé à domicile, une association, une entreprise ou un organisme spécialisé ou encore un organisme à but non lucratif ayant pour objet l'aide à domicile et habilité au titre de l'aide sociale ou conventionné par un organisme de sécurité sociale.
+  Certains bénéficiaires de ce dispositif le percoivent comme un crédit d'impôt, à savoir le contribuable célibataire, veuf ou divorcé qui exerce une activité professionnelle ou est inscrit sur la liste des demandeurs d'emplois. S'il s'agit d'un foyer à imposition commune, il faut que les 2 déclarants soient dans cette situation pour bénéficier du crédit d'impôt. Pour les autres bénéficiaires, l'avantage fiscal prend la forme d'une réduction d'impôt.

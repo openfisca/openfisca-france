@@ -1,4 +1,4 @@
-description: Taux de la réduction d'impôts des investissements d'outre-mer pour les entreprises - rétrocessions 1
+description: Taux de rétrocession à l'entreprise exploitante de la réduction d'impôt à laquelle son investissement a ouvert droit et dont le montant par programme est supérieur à 300 000 €
 values:
   2009-01-01:
     value: 0.6
@@ -7,6 +7,7 @@ values:
   2015-01-01:
     value: 0.66
 metadata:
+  short_label: Taux de rétrocession de la réduction d'impôt (investissement supérieur à 300 000 €)
   last_value_still_valid_on: "2024-04-26"
   unit: /1
   reference:

@@ -1,1 +1,7 @@
-description: Dépenses en faveur des économies d'énergies
+description: Crédit d'impôt sur le revenu au titre des dépenses effectivement supportées pour la contribution à la transition énergétique du logement dont ils sont propriétaires, locataires ou occupants à titre gratuit et qu'ils affectent à leur habitation principale
+metadata:
+  documentation_start : true
+  short_label: Dépenses d’équipements en faveur de la transition énergétique supportées par les contribuables dans leur habitation principale
+documentation: |-
+  Le crédit d'impôt transition énergétique (CITE) est supprimé pour les dépenses effectuées depuis le 1er janvier 2020. Il est remplacé par une prime forfaitaire versée par l’ANAH (Agence nationale de l’habitat) dès la réalisation des travaux (« MaPrimeRénov' »).
+  Source : https://www.impots.gouv.fr/particulier/credit-dimpot-transition-energetique

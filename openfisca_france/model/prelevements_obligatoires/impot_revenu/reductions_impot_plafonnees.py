@@ -3658,7 +3658,7 @@ class ri_saldom(Variable):
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
         max_base = P.plafond * not_(annee1) + P.plafond_1ere_annee * annee1
-        max_du_max_non_inv = P.plafond_maximum * not_(annee1) + P.plafond_invalides_1ere_annee * annee1
+        max_du_max_non_inv = P.plafond_maximum * not_(annee1) + P.plafond_maximum_1ere_annee * annee1
         max_non_inv = min_(max_base + P.increment_plafond * nbpacmin, max_du_max_non_inv)
         max_non_inv2 = min_(max_base + P.increment_plafond * nb_pac_majoration_plafond, max_du_max_non_inv)
         max_effectif = max_non_inv * not_(invalide) + P.plafond_invalides * invalide
@@ -3693,7 +3693,7 @@ class ri_saldom(Variable):
             plaf = P.plafond_invalides
         else:
             if annee1.any():
-                plaf = min_(P.plafond_invalides_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
             else:
                 plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
 

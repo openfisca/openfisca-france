@@ -1,4 +1,4 @@
-description: Taux des Dons Coluche
+description: Taux de la réduction d'impôt sur le revenu (IR) au titre des dons faits aux organismes d'aide aux personnes en difficulté ("Dons Coluche")
 values:
   1975-01-01:
     value: null
@@ -11,11 +11,14 @@ values:
   2005-01-01:
     value: 0.75
 metadata:
-  short_label: Taux
+  short_label: Taux de la réduction d'impôt
+  last_value_still_valid_on: "2024-11-14"
   ipp_csv_id: txcoluche
   unit: /1
   reference:
     2005-01-01:
-      title: Loi n° 2005-32 du 18/01/2005
+    - title: Article 200, 1.ter. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045764695
+    - title: Loi n° 2005-32 du 18/01/2005
   official_journal_date:
     2005-01-01: "2005-01-19"

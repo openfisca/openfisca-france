@@ -1,9 +1,9 @@
-description: Majoration du plafonnement des niches
+description: Majoration du plafonnement des avantages fiscaux (« niches fiscales ») s'agissant des réductions d'impôt outre-mer et SOFICA
 values:
   2013-01-01:
     value: 8000
 metadata:
-  short_label: Majoration
+  short_label: Majoration du plafond s’agissant des réductions d'impôt outre-mer et SOFICA
   last_value_still_valid_on: "2023-10-17"
   ipp_csv_id: majo_nich
   unit: currency_next_year

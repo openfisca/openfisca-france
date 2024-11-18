@@ -1,8 +1,9 @@
-description: Dépenses d'investissement forestier
+description: Crédit d'impôt sur le revenu (IR) sur les investissements forestiers
 metadata:
+  short_label: Investissements forestiers
   order:
   - acquisition
-  - assurance
   - travaux
+  - assurance
   - plafond_cga
 documentation: Le plafond est doublé pour un couple marié ou pour les partenaires liés par un PACS soumis à une imposition commune.

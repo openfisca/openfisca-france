@@ -1932,6 +1932,7 @@ class quaenv(Variable):
     entity = FoyerFiscal
     label = 'Crédits d’impôt pour dépenses en faveur de la qualité environnementale (2005 - 2014) / de la transition energétique (2014 - ) '
     definition_period = YEAR
+    end = '2019-12-31'
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2766,7 +2767,7 @@ class ci_saldom(Variable):
         f7db = foyer_fiscal('f7db', period)
         f7dg = foyer_fiscal('f7dg', period)
         f7dl = foyer_fiscal('f7dl', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
+        P = parameters(period).impot_revenu.credits_impots.emploi_salarie_domicile
 
         isinvalid = f7dg
         nbpacmin = nb_pac_majoration_plafond + f7dl
@@ -2787,13 +2788,13 @@ class ci_saldom(Variable):
         f7dg = foyer_fiscal('f7dg', period)
         f7dl = foyer_fiscal('f7dl', period)
         f7dq = foyer_fiscal('f7dq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
+        P = parameters(period).impot_revenu.credits_impots.emploi_salarie_domicile
 
         isinvalid = f7dg
         annee1 = f7dq
         nbpacmin = nb_pac_majoration_plafond + f7dl
         maxBase = P.plafond * not_(annee1) + P.plafond_1ere_annee * annee1
-        maxDuMaxNonInv = P.plafond_maximum * not_(annee1) + P.plafond_invalides_1ere_annee * annee1
+        maxDuMaxNonInv = P.plafond_maximum * not_(annee1) + P.plafond_maximum_1ere_annee * annee1
         maxNonInv = min_(maxBase + P.increment_plafond * nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv * not_(isinvalid) + P.plafond_invalides * isinvalid
 
@@ -2816,7 +2817,7 @@ class ci_saldom(Variable):
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
+        P = parameters(period).impot_revenu.credits_impots.emploi_salarie_domicile
 
         # détérminer le plafond
 
@@ -2824,7 +2825,7 @@ class ci_saldom(Variable):
             plaf = P.plafond_invalides
         else:
             if annee1.any():
-                plaf = min_(P.plafond_invalides_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
             else:
                 plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
 
@@ -2847,14 +2848,14 @@ class ci_saldom(Variable):
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
+        P = parameters(period).impot_revenu.credits_impots.emploi_salarie_domicile
 
         # détérminer le plafond
         if invalide.any():
             plaf = P.plafond_invalides
         else:
             if annee1.any():
-                plaf = min_(P.plafond_invalides_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
             else:
                 plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
 

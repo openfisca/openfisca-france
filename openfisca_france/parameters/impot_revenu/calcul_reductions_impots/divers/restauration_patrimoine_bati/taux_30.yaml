@@ -1,6 +1,7 @@
-description: Taux 30%
+description: Taux de réduction d'impôts pour travaux de restauration immobilière "Malraux" dans un site patrimonial remarquable couvert par un plan de sauvegarde et de mise en valeur (PSMV) approuvé? dans un quartier ancien dégradé ou dans un quartier du nouveau programme national de renouvellement urbain (NPNRU)
 values:
   2009-01-01:
     value: 0.3
 metadata:
+  short_label: Taux (site couvert par un plan de sauvegarde et de mise en valeur approuvé, dans un quartier ancien dégradé ou dans un quartier du nouveau programme national de renouvellement urbain)
   unit: /1

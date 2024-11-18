@@ -4,6 +4,8 @@ values:
     value: null
   2017-01-01:
     value: 0.2
+  2024-01-01:
+    null
 metadata:
   short_label: Taux
   ipp_csv_id: tx_rehab_touristique
