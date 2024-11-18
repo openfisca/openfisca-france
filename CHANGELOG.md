@@ -1,5 +1,21 @@
 # Changelog
 
+### 169.6.0 [2383](https://github.com/openfisca/openfisca-france/pull/2383)
+
+* Changement intermédiaire
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `/model/prelevements_obligatoires/impot_revenu`.
+- `parameters/impot_revenu/calcul_reductions_impots`.
+- `parameters/impot_revenu/credits_impots`
+
+* Détails :
+  - Début d'une modification des labels et références et dossiers des crédits et réductions d'impôts, dans l'objectif de rendre plus clairs les dispositifs et de mettre des dossiers au même niveau.
+  - 3 changements majeurs : 
+      - Création d'un nouveau dossier des paramètres du crédit d'impôt pour employé à domicile, tout en gardant le dossier des paramètres initial dans les réductions d'impôt : https://github.com/openfisca/openfisca-france/pull/2383/commits/a72ac419f374c0d9474c6d75012121b938733d1e
+      - Suppression des paramètres en doublons et non utilisés dans les formules :  https://github.com/openfisca/openfisca-france/pull/2383/commits/ba3a1b89622cdb753ec659cb5b243ec065cfbf54, https://github.com/openfisca/openfisca-france/pull/2383/commits/8b0d672f43a112c5a25ff019841875e69ed697d2
+      - Utilisation du plafond par foyer fiscal au lieu du plafond individuel pour la réduction d'impôt sur les dons aux parties politiques  https://github.com/openfisca/openfisca-france/pull/2383/commits/9e617a532bebae96f048c0f2db1d99161b415108
+
 ### 169.5.0 [2370](https://github.com/openfisca/openfisca-france/pull/2370)
 
 * Évolution du système socio-fiscal.
