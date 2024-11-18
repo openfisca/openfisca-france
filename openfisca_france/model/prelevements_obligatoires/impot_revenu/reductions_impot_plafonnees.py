@@ -1509,7 +1509,7 @@ class cappme(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
-        plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
+        plafond_TPE = P.seuil * (maries_ou_pacses + 1)
 
         # Réduction investissement TPE (souscription à partir de 2012) : imputation du plus ancien au plus récent,
         # dans l'ordre PME/ESUS > SFS
@@ -1529,7 +1529,7 @@ class cappme(Variable):
 
         return (
             reports_plaf_general
-            + P.taux18 * (base_report_pme_2017_TPE
+            + P.taux * (base_report_pme_2017_TPE
                 + base_report_pme_2018_TPE
                 + base_report_pme_2019_TPE
                 + base_pme_2020_avant0908
@@ -1567,7 +1567,7 @@ class cappme_esus_sfs(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
-        plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
+        plafond_TPE = P.seuil * (maries_ou_pacses + 1)
 
         # Réduction investissement TPE (souscription à partir de 2012) : imputation du plus ancien au plus récent,
         # dans l'ordre PME/ESUS > SFS
