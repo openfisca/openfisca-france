@@ -1,8 +1,9 @@
-description: Taux 25%
+description: Taux de la réduction d'impôt sur le revenu (IR) sur versements de souscriptions au capital d'entreprises solidaires d'utilité publique (ESUS), entre le 28 juin 2024 et le 31 décembre 2025
 values:
   1994-01-01:
     value: 0.25
 metadata:
+  short_label: Taux de la réduction pour entreprises solidaires d'utilité publique (ESUS)
   unit: /1
   reference:
     1994-01-01:
