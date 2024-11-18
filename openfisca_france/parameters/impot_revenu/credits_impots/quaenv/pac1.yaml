@@ -2,7 +2,5 @@ description: Majoration du plafond pour le 1er enfant
 values:
   2002-01-01:
     value: 400
-  2020-01-01:
-    value: null
 metadata:
   unit: currency_next_year

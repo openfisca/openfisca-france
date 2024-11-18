@@ -2,7 +2,5 @@ description: Taux 30%
 values:
   2014-01-01:
     value: 0.3
-  2020-01-01:
-    value: null
 metadata:
   unit: /1

@@ -2,7 +2,5 @@ description: Taux 50% (dépose d'une cuve à fioul)
 values:
   2019-01-01:
     value: 0.5
-  2020-01-01:
-    value: null
 metadata:
   unit: /1
