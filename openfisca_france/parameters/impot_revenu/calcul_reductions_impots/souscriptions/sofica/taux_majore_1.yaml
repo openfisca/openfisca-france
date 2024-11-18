@@ -1,4 +1,4 @@
-description: Taux 1 de la réduction d'impôt sur la souscription de parts au capital de SOFICA
+description: Taux majoré de la réduction d'impôt sur le revenu (IR) sur la souscription de parts au capital d'oeuvres cinématographiques ou audiovisuelles (SOFICA) lorsque la Sofica s'engage à réaliser au moins 10 % de ses investissements dans des sociétés de production avant le 31 décembre de l'année suivant celle de la souscription (case 7GN)
 values:
   1984-01-01:
     value: null
@@ -9,8 +9,9 @@ values:
   2012-01-01:
     value: 0.36
 metadata:
-  short_label: Taux 1
+  short_label: Taux majoré, si 10% des investissements de la Sofica sont effectués dans des sociétés de production avant le 31.12 de l'année suivant la souscription (case 7GN)
   ipp_csv_id: tx_sofica_1
+  last_value_still_valid_on: "2024-11-18"
   unit: /1
   reference:
     2006-01-01:

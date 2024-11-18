@@ -1,11 +1,11 @@
-description: Plafond (en % du revenu net global) de la réduction d'impôt sur la souscription de parts au capital de SOFICA
+description: Plafond, en % du revenu net global, de la réduction d'impôt sur le revenu (IR) sur la souscription de parts au capital d'oeuvres cinématographiques ou audiovisuelles (SOFICA)
 values:
   1984-01-01:
     value: null
   1985-01-01:
     value: 0.25
 metadata:
-  short_label: Plafond 2 (en % du revenu net global)
+  short_label: Plafond de la réduction d'impôt (en % du revenu net global)
   ipp_csv_id: base_sofica
   unit: /1
   reference:

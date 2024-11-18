@@ -1,4 +1,4 @@
-description: Plafond de la réduction d'impôt sur la souscription de parts au capital de SOFICA
+description: Plafond du revenu net global pris en compte pour le calcul de la réduction d'impôt sur le revenu (IR) sur la souscription de parts au capital d'oeuvres cinématographiques ou audiovisuelles (SOFICA) (case 7FN)
 values:
   1984-01-01:
     value: null
@@ -7,7 +7,7 @@ values:
   2001-01-01:
     value: 18000
 metadata:
-  short_label: Plafond 2
+  short_label: Plafond du revenu net global pris en compte
   ipp_csv_id: plaf_sofica
   unit: currency_next_year
   reference:

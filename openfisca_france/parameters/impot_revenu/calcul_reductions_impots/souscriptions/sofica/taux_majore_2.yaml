@@ -1,11 +1,12 @@
-description: Taux 3 de la réduction d'impôt sur la souscription de parts au capital de SOFICA
+description: Taux majoré de la réduction d'impôt sur le revenu (IR) sur la souscription de parts au capital d'oeuvres cinématographiques ou audiovisuelles (SOFICA) lorsque la Sofica s'engage à consacrer 10 % de ses investissements soit à des dépenses de développement d'œuvres de fiction, de documentaires et d'animation sous forme de séries ; soit à l'acquisition de droits portant exclusivement sur les recettes d'exploitation des œuvres cinématographiques ou audiovisuelles à l'étranger (case 7EN)
 values:
   1984-01-01:
     value: null
   2017-01-01:
     value: 0.48
 metadata:
-  short_label: Taux 3
+  short_label: Taux majoré, si 10% des investissements de la Sofica concernent des dépenses ou des acquisitions spécifiques (case 7EN)
+  last_value_still_valid_on: "2024-11-18"
   unit: /1
   reference:
     2017-01-01:
