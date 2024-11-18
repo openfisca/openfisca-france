@@ -1,5 +1,17 @@
 # Changelog
 
+### 169.7.0 [2390](https://github.com/openfisca/openfisca-france/pull/2390)
+
+* Évolution intermédiaire du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées : 
+    * `model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`,
+    * `parameters/impot_revenu/calcul_reductions_impots/souscriptions`,
+* Détails : Réorganisation du dossier concernant la réduction Madelin des versements pour souscription au capital des PME.
+  - Ajoute label et références
+  - Utilise dans les formules les derniers paramètres plus génériques
+
+
 ### 169.6.1 [2392](https://github.com/openfisca/openfisca-france/pull/2392)
 
 * Changement mineur.
