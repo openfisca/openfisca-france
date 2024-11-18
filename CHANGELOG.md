@@ -1,5 +1,25 @@
 # Changelog
 
+### 169.6.1 [2392](https://github.com/openfisca/openfisca-france/pull/2392)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : 
+- `parameters/impot_revenu/calcul_impot_revenu/pv/bspce/index.yaml`
+- `parameters/impot_revenu/calcul_impot_revenu/pv/bspce/taux_moins_3_ans.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/divers/rehabilitation_residences_touristiques/plafond.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/divers/rehabilitation_residences_touristiques/taux.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/divers/restauration_patrimoine_bati/taux_22.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/dons/dons_aux_partis_politiques/plafond_seul.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/dons/dons_cultuels/index.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/dons/taux_reduction.yaml`
+- `parameters/impot_revenu/calcul_revenus_imposables/abat_rni/index.yaml`
+
+* Détails :
+- Corrige les erreurs apparues sur le Control Center suite à la PR réductions-impôts
+- Petites modifications : modifications les noms mentionnés dans l'order des index, change la documentation, corrige les values mal renseignées, corrige les short_label mal renseignés
+
+
 ### 169.6.0 [2383](https://github.com/openfisca/openfisca-france/pull/2383)
 
 * Changement intermédiaire
