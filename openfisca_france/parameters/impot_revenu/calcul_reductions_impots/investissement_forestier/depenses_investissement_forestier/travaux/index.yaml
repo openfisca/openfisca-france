@@ -4,6 +4,7 @@ metadata:
   order:
   - plafond
   - taux
+  - taux_adhesion_org_producteurs
   documentation_start: true
   documentation : |-
     Le dispositif d'encouragement fiscal au titre d'investissements forestiers (DEFI Forêt), prévu par l'article 199 decies H du code général des impôts (CGI) et par l'article 200 quindecies du CGI, a été profondément réformé par l'article 10 de la loi n° 2022-1726 du 30 décembre 2022 de finances pour 2023.[...] 
