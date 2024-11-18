@@ -3,8 +3,6 @@ metadata:
   short_label: Dons aux partis politiques (case 7UH)
   label_en: Gifts
   order:
-  - taux
-  - plafond_en_revenu_net_global
   - plafond_foyer
   - plafond_seul
 documentation: "Dons aux partis politiques : 3. de l'art. 200 du CGI."
