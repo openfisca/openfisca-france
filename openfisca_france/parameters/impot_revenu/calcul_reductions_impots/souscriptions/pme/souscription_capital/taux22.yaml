@@ -1,4 +1,4 @@
-description: Taux 22%
+description: Taux de la réduction d'impôt sur le revenu (IR) sur les versements  effectués au titre de souscriptions en numéraire au capital initial ou aux augmentations de capital de sociétés, dans sa version entre 2011 et 2012
 values:
   2011-01-01:
     value: 0.22
