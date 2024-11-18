@@ -4,5 +4,5 @@ metadata:
   documentation_start: true
   label_en: Tax allowance for net taxable income
   order:
-  - personne_agee_ou_invalide
+  - contribuable_age_invalide
   - enfant_marie
