@@ -5500,8 +5500,19 @@ class f7cc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1"
+    label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1, remplace la case 7CQ à partir des revenus 2013"
     # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7cq_2012(Variable):
+    cerfa_field = '7CQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1"
+    # start_date = date(2011, 1, 1)
+    end = '2012-01-01'
     definition_period = YEAR
 
 
@@ -5510,8 +5521,9 @@ class f7cq(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1pour les start-up"
+    label = "Souscription au capital de petites entreprises en phase d'amorçage, de démarrage ou d'expansion"
     # start_date = date(2011, 1, 1)
+    end = '2021-12-31'
     definition_period = YEAR
 
 
