@@ -2,6 +2,8 @@ description: Plafond des versements, pour une personne célibataire, veuve, ou d
 values:
   2009-01-01:
     value: 50000
+  2012-01-01:
+    value: null
 metadata:
   short_label: Plafond des versements pour célibataire, veuf ou divorcé, pour les TPE
   last_value_still_valid_on: "2024-11-18"
