@@ -1,8 +1,9 @@
-description: Taux 18%
+description: Taux de la réduction d'impôt sur le revenu (IR) sur les versements  effectués au titre de souscriptions en numéraire au capital initial ou aux augmentations de capital de sociétés, dans sa version depuis 2012 (case 7CI)
 values:
   2012-01-01:
     value: 0.18
 metadata:
+  short_label: Taux de la réduction d’impôt pour les versements PME et ESUS effectués du 01.01.2023 au 11.03.2023 (case 7CI)
   unit: /1
   reference:
     2012-01-01:

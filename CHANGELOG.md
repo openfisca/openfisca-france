@@ -1,5 +1,40 @@
 # Changelog
 
+### 169.7.0 [2390](https://github.com/openfisca/openfisca-france/pull/2390)
+
+* Évolution intermédiaire du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées : 
+    * `model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`,
+    * `parameters/impot_revenu/calcul_reductions_impots/souscriptions`,
+    * `model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`,
+    * `parameters/impot_revenu/calcul_impot_revenu/pv/bspce/taux_moins_3_ans.yaml`,
+* Détails :  Réorganisation du dossier concernant la réduction Madelin IR-PME des versements pour souscription au capital des PME.
+  - Ajoute label et références
+  - Utilise dans les formules les derniers paramètres plus génériques
+  - Met à jour la variable de la case 7CQ qui change d'objet à partir de 2012
+
+
+### 169.6.1 [2392](https://github.com/openfisca/openfisca-france/pull/2392)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : 
+- `parameters/impot_revenu/calcul_impot_revenu/pv/bspce/index.yaml`
+- `parameters/impot_revenu/calcul_impot_revenu/pv/bspce/taux_moins_3_ans.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/divers/rehabilitation_residences_touristiques/plafond.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/divers/rehabilitation_residences_touristiques/taux.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/divers/restauration_patrimoine_bati/taux_22.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/dons/dons_aux_partis_politiques/plafond_seul.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/dons/dons_cultuels/index.yaml`
+- `parameters/impot_revenu/calcul_reductions_impots/dons/taux_reduction.yaml`
+- `parameters/impot_revenu/calcul_revenus_imposables/abat_rni/index.yaml`
+
+* Détails :
+- Corrige les erreurs apparues sur le Control Center suite à la PR réductions-impôts
+- Petites modifications : modifications les noms mentionnés dans l'order des index, change la documentation, corrige les values mal renseignées, corrige les short_label mal renseignés
+
+
 ### 169.6.1 [2392](https://github.com/openfisca/openfisca-france/pull/2392)
 
 * Changement mineur.
