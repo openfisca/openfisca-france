@@ -8,6 +8,8 @@ values:
     value: 20509
   2018-01-01:
     value: 20550
+  2024-04-01:
+    value: 22809
 metadata:
   short_label: Un enfant
   label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
