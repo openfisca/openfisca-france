@@ -1,5 +1,15 @@
 # Changelog
 
+### 169.7.1 [2394](https://github.com/openfisca/openfisca-france/pull/2394)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 31/12/2023.
+* Zones impactées : 
+    * `model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+* Détails :
+  - Met fin à la réduction d'impôt sur la réhabilitation de résidences de tourisme, abrogée en 2023 ([Article 199 decies G bis](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033781921/))
+
+
 ### 169.7.0 [2390](https://github.com/openfisca/openfisca-france/pull/2390)
 
 * Évolution intermédiaire du système socio-fiscal.
