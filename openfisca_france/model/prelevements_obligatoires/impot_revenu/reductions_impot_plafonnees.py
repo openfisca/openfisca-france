@@ -3562,7 +3562,7 @@ class rehab(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt pour travaux de réhabilitation des résidences de tourisme"
-    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033781921&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170101'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033781921/'
     definition_period = YEAR
     end = '2023-12-31'
 
