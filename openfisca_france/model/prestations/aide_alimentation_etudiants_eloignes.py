@@ -21,7 +21,7 @@ class aide_alimentation_etudiants_eloignes(Variable):
         non_boursier = ~boursier
         resident_hors_drom = ~resident_drom
 
-        params = parameters(period).prestations_sociales.aide_alimentation_etudiants_eloignes
+        params = parameters(period).prestations_sociales.alimentation.aide_alimentation_etudiants_eloignes
         montant_standard_boursier = params.montant_etudiant_standard_boursier
         montant_standard_non_boursier = params.montant_etudiant_standard_non_boursier
         montant_drom_boursier = params.montant_etudiant_drom_boursier

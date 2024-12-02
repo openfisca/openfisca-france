@@ -1,0 +1,6 @@
+description: Aides pour l'alimentation
+metadata:
+  short_label: Aides alimentation
+  label_en: Food allowances
+  order:
+  - aide_alimentation_etudiants_eloignes
