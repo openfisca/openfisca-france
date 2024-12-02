@@ -16,7 +16,7 @@ class aide_alimentation_etudiants_eloignes(Variable):
     def formula(individu, period, parameters):
         etudiant = individu('etudiant', period)
         boursier = individu('boursier', period)
-        resident_drom = individu('localisation_DROM_aide_alimentation_etudiants_eloignes', period)
+        resident_drom = individu.menage('residence_dom', period)
 
         non_boursier = ~boursier
         resident_hors_drom = ~resident_drom
