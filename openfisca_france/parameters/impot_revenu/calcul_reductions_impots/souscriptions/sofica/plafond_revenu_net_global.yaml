@@ -1,4 +1,4 @@
-description: Plafond, en % du revenu net global, de la réduction d'impôt sur le revenu (IR) sur la souscription de parts au capital d'oeuvres cinématographiques ou audiovisuelles (SOFICA)
+description: Plafond en pourcentage du revenu net fiscal des versements pris en compte pour le calcul de la réduction d'impôt sur le revenu (IR) liée à la souscription de parts au capital d'œuvres cinématographiques ou audiovisuelles (SOFICA) (case 7FN)
 values:
   1984-01-01:
     value: null
