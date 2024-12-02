@@ -28,10 +28,10 @@ class aide_alimentation_etudiants_eloignes(Variable):
         montant_drom_non_boursier = params.montant_etudiant_drom_non_boursier
 
         conditions = [
-            resident_drom & boursier,
-            resident_drom & non_boursier,
-            resident_hors_drom & boursier,
-            resident_hors_drom & non_boursier,
+            resident_drom * boursier,
+            resident_drom * non_boursier,
+            resident_hors_drom * boursier,
+            resident_hors_drom * non_boursier,
             ]
 
         montants = [
