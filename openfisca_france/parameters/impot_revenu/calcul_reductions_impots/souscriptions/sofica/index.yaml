@@ -4,7 +4,7 @@ metadata:
   short_label: Capital d'oeuvres cinématographiques ou audiovisuelles (SOFICA)
   label_en: Capital Subscription in SOFICA society (cinema)
   order:
-  - taux_normal
+  - taux_reduction_normal
   - taux_majore_1
   - taux_majore_2
   - plafond_revenu_net_global

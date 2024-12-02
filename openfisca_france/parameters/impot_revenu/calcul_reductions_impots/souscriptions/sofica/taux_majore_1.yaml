@@ -9,7 +9,7 @@ values:
   2012-01-01:
     value: 0.36
 metadata:
-  short_label: Taux majoré, si 10% des investissements de la Sofica sont effectués dans des sociétés de production avant le 31.12 de l'année suivant la souscription (case 7GN)
+  short_label: Taux de la réduction d'impôt (la SOFICA s’engage à investir 10 % en sociétés de réalisation, case 7GN)
   ipp_csv_id: tx_sofica_1
   last_value_still_valid_on: "2024-11-18"
   unit: /1
