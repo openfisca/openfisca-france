@@ -1,0 +1,8 @@
+- name: "Aide alimentation étudiants éloignés"
+  period: 2025-02
+  input:
+    etudiant: [true, true, true, true, true, false, false, false, false]
+    boursier: [true, true, false, true, false, true, false, true, false]
+    depcom: [97605, 97105, 97411, 75056, 69123, 97601, 97105, 97411, 75056]
+  output:
+    aide_alimentation_etudiants_eloignes: [50, 50, 30, 40, 20, 0, 0, 0, 0]
