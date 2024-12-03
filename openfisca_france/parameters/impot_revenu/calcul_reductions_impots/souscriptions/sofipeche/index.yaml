@@ -1,6 +1,6 @@
-description: Souscription au capital de SOFIPECHE
+description: Réduction d'impôt sur le revenu (IR) sur la souscription de parts au capital de sociétés de type Sofipêche
 metadata:
-  short_label: Au capital de SOFIPECHE
+  short_label: Capital de sociétés de type Sofipêche
   label_en: Capital Subscription in SOFIPECHE (fishing firms)
   order:
   - taux

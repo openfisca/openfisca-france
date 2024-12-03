@@ -1,5 +1,18 @@
 # Changelog
 
+### 169.8.1 [2391](https://github.com/openfisca/openfisca-france/pull/2391)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+    * `model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+    * `parameters/impot_revenu/calcul_reductions_impots/souscriptions/sofica`
+    * `parameters/impot_revenu/calcul_reductions_impots/souscriptions/souscriptions_parts_fcpi_fip`
+* Détails :
+  - Dossier réduc d'impôt SOFICA : renommage des paramètres pour les rendre explicites et changement dans les formules
+  - Dossier FCPI / FPI : labels et références
+
+
 ### 169.7.1 [2394](https://github.com/openfisca/openfisca-france/pull/2394)
 
 * Évolution du système socio-fiscal.
