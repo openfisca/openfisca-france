@@ -1,6 +1,6 @@
 # Changelog
 
-### 169.8.1 [2395](https://github.com/openfisca/openfisca-france/pull/2395)
+### 169.9.0 [2395](https://github.com/openfisca/openfisca-france/pull/2395)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/02/2025.
@@ -12,7 +12,7 @@
   - Ajoute l'aide financière pour les étudiants éloignés des restaurants universitaires
   - Date d'entrée en vigueur au 01/02/2025
 
-### 169.8.0 [2391](https://github.com/openfisca/openfisca-france/pull/2391)
+### 169.8.1 [2391](https://github.com/openfisca/openfisca-france/pull/2391)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
