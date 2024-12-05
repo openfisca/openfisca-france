@@ -1,9 +1,9 @@
-description: Taux forfaitaire d'imposition sur le revenu (IR) des profits sur instruments financiers dans des États ou territoires non-coopératifs (Case 3PI)
+description: Taux forfaitaire d'imposition sur le revenu (IR) des profits sur instruments financiers dans des États ou territoires non-coopératifs (case 3PI)
 values:
   2017-01-01:
     value: 0.5
 metadata:
-  short_label: Taux d'imposition (Case 3PI)
+  short_label: Taux d'imposition (case 3PI)
   unit: /1
   last_value_still_valid_on: "2024-11-07"
   reference:

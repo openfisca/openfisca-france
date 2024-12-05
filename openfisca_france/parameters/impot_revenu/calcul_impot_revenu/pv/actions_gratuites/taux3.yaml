@@ -1,4 +1,4 @@
-description: Taux d'imposition à l'impôt sur le revenu (IR) des gains d'acquisition d'actions gratuites attribuées avant le 28 septembre 2012 (Case 3VI) applicable à la fraction inférieure à 152 500 euros si la durée de conservation des titres ne dépasse pas deux ans au-delà du délai d’indisponibilité de quatre ans, ou applicable à la fraction supérieure à 152 500 euros, si la durée de conservation dépasse les deux années.
+description: Taux d'imposition à l'impôt sur le revenu (IR) des gains d'acquisition d'actions gratuites attribuées avant le 28 septembre 2012 (case 3VI) applicable à la fraction inférieure à 152 500 euros si la durée de conservation des titres ne dépasse pas deux ans au-delà du délai d’indisponibilité de quatre ans, ou applicable à la fraction supérieure à 152 500 euros, si la durée de conservation dépasse les deux années.
 values:
   1995-01-01:
     value: 0.3
