@@ -1,4 +1,4 @@
-description: Seuil pour un couple de la décote de l'impôt sur le revenu
+description: Plafond de la décote de l'impôt sur le revenu (IR) pour les contribuables en couple à imposition commune
 values:
   1950-01-01:
     value: null
@@ -39,7 +39,7 @@ values:
   2023-01-01:
     value: 1444
 metadata:
-  short_label: Seuil pour les contribuables en couple
+  short_label: Plafond pour les contribuables en couple à imposition commune
   last_value_still_valid_on: "2024-01-03"
   ipp_csv_id: param_decote_b
   unit: currency_next_year
