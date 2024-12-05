@@ -1,8 +1,6 @@
-description: Abattements spécifiques aux départements d'outre-mer (DOM)
+description: Abattements spécifiques aux départements d'outre-mer (DOM) de l'impôt sur le revenu (IR)
 metadata:
-  short_label: Abattements spécifiques DOM
+  short_label: Abattement pour les départements d'outre-mer
   order:
-  - taux_GuadMarReu
-  - plaf_GuadMarReu
-  - taux_GuyMay
-  - plaf_GuyMay
+  - guad_mar_reu
+  - guy_may
