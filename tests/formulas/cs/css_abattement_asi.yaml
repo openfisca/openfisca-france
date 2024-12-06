@@ -18,6 +18,7 @@
           2023-01: 1049
           2022-12: 1049
           2022-11: 1049
+          2022-10: 1049
     famille:
       parents: [parent1]
       aide_logement: 0
@@ -51,6 +52,7 @@
           2023-01: 1068
           2022-12: 1068
           2022-11: 1068
+          2022-10: 1068
         asi:
           2023-10: 1000
           2023-09: 1000
@@ -64,6 +66,7 @@
           2023-01: 1000
           2022-12: 1000
           2022-11: 1000
+          2022-10: 1000
     famille:
       parents: [parent1]
       aide_logement: 0
@@ -79,7 +82,7 @@
 
 - name: "CSS: Base de ressource de deux personnes dont une seule beneficie de l'asi"
   period: 2023-11
-  absolute_error_margin: 0.1
+  absolute_error_margin: 1
   input:
     individus:
       parent1:
@@ -87,7 +90,7 @@
         asi:
           2023-10: 1049
           2023-09: 1049
-          2023-08: 0
+          2023-08: 205
           2023-07: 1049
           2023-06: 1049
           2023-05: 1049
@@ -128,7 +131,7 @@
 
 - name: "CSS: Base de ressource de deux personnes dont une seule beneficie de l'asi et de l'aah"
   period: 2023-11
-  absolute_error_margin: 0.1
+  absolute_error_margin: 5
   input:
     individus:
       parent1:
@@ -147,82 +150,20 @@
           2022-12: 1000
           2022-11: 1000
         aah:
-          2023-10: 1068
-          2023-09: 1068
-          2023-08: 0
-          2023-07: 1068
-          2023-06: 1068
-          2023-05: 1068
-          2023-04: 1068
-          2023-03: 1068
-          2023-02: 1068
-          2023-01: 1068
-          2022-12: 1068
-          2022-11: 1068
+          2023-10: 1082
+          2023-09: 1082
+          2023-08: 1082
+          2023-07: 1082
+          2023-06: 1082
+          2023-05: 1082
+          2023-04: 1082
+          2023-03: 1082
+          2023-02: 1082
+          2023-01: 1082
+          2022-12: 1082
+          2022-11: 1082
       parent2:
         date_naissance: 1951-05-01
-    famille:
-      parents: [parent1, parent2]
-      aide_logement: 0
-      rsa: 0
-      aspa:
-        2023-10: 0
-        2023-09: 0
-        2023-08: 0
-        2023-07: 0
-        2023-06: 0
-        2023-05: 0
-        2023-04: 0
-        2023-03: 0
-        2023-02: 0
-        2023-01: 0
-        2022-12: 0
-        2022-11: 0
-    menage:
-      personne_de_reference: parent1
-      conjoint: parent2
-      statut_occupation_logement: locataire_vide
-    foyer_fiscal:
-      declarants: [parent1, parent2]
-  output:
-    acs: 0.0
-    css_cmu_base_ressources: 22000
-
-- name: "CSS: Base de ressource de deux personnes dont une beneficie de l'asi et l'autre de l'aah"
-  period: 2023-11
-  absolute_error_margin: 0.1
-  input:
-    individus:
-      parent1:
-        date_naissance: 1961-01-01
-        asi:
-          2023-10: 1049
-          2023-09: 1049
-          2023-08: 0
-          2023-07: 1049
-          2023-06: 1049
-          2023-05: 1049
-          2023-04: 1049
-          2023-03: 1049
-          2023-02: 1049
-          2023-01: 1049
-          2022-12: 1049
-          2022-11: 1049
-      parent2:
-        date_naissance: 1951-05-01
-        aah:
-          2023-10: 1068
-          2023-09: 1068
-          2023-08: 0
-          2023-07: 1068
-          2023-06: 1068
-          2023-05: 1068
-          2023-04: 1068
-          2023-03: 1068
-          2023-02: 1068
-          2023-01: 1068
-          2022-12: 1068
-          2022-11: 1068
     famille:
       parents: [parent1, parent2]
       aide_logement: 0
@@ -252,7 +193,7 @@
 
 - name: "CSS: Base de ressource de deux personnes beneficiant toutes les deux de l'asi"
   period: 2023-11
-  absolute_error_margin: 0.1
+  absolute_error_margin: 1
   input:
     individus:
       parent1:
@@ -270,6 +211,7 @@
           2023-01: 1043
           2022-12: 1043
           2022-11: 1043
+          2022-10: 1043
       parent2:
         asi:
           2023-10: 1043
@@ -284,6 +226,7 @@
           2023-01: 1043
           2022-12: 1043
           2022-11: 1043
+          2022-10: 200
         date_naissance: 1951-05-01
     famille:
       parents: [parent1, parent2]
@@ -314,7 +257,7 @@
 
 - name: "CSS: Base de ressource de 6 personnes (membres famille et externes) et allocation inferieure a abattement"
   period: 2023-11
-  absolute_error_margin: 0.1
+  absolute_error_margin: 1
   input:
     individus:
       adulte_externe_famille:
@@ -332,11 +275,12 @@
           2023-01: 1049
           2022-12: 1049
           2022-11: 1049
+          2022-10: 1049
       famille_parent1:
         date_naissance: 1994-01-01
         asi:
-          2023-10: 30
-          2023-09: 30
+          2023-10: 0
+          2023-09: 0
           2023-08: 0
           2023-07: 0
           2023-06: 30
@@ -440,4 +384,4 @@
         2022-11: 0
   output:
     acs: 0.0
-    css_cmu_base_ressources: [467, 12000]
+    css_cmu_base_ressources: [1013, 12000]

@@ -45,7 +45,7 @@
     acs_plafond: 30209.49
 
 - name: "CSS: Base de ressource d'une personne seule"
-  period: 2019-11
+  period: 2019-12
   absolute_error_margin: 0.1
   input:
     individus:
@@ -78,7 +78,7 @@
     css_cmu_base_ressources: 10000
 
 - name: "CSS: Base de ressource de deux personnes"
-  period: 2019-11
+  period: 2019-12
   absolute_error_margin: 0.1
   input:
     individus:
@@ -179,7 +179,7 @@
     css_cmu_base_ressources: 14000
 
 - name: "CSS: Base de ressource de cinq personnes"
-  period: 2019-11
+  period: 2019-12
   absolute_error_margin: 0.1
   input:
     individus:
