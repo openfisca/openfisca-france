@@ -145,8 +145,7 @@
     rfr:
       2016: 5599
   output:
-    cheque_energie:
-      2017: 0
+    cheque_energie: 0
 
 - name: Plusieurs foyers
   period: 2018
