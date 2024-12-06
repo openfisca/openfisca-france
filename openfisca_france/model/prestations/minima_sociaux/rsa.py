@@ -79,10 +79,7 @@ class rsa_base_ressources_individu(Variable):
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036393176&dateTexte=&categorieLien=id'
 
     def formula_2024_10(individu, period, parameters):
-        departement_experimentation_rsa = individu.famille('departement_experimentation_rsa', period)
-        experimentation = rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period), parameters=parameters)
-        normal = rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months, parameters=parameters)
-        return where(departement_experimentation_rsa, experimentation, normal)
+        return rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period), parameters=parameters)
 
     def formula_2009_06_01(individu, period, parameters):
         return rsa_base_ressources_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months, parameters=parameters)
@@ -149,14 +146,12 @@ class rsa_base_ressources_minima_sociaux(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2024_10(famille, period):
-        departement_experimentation_rsa = famille('departement_experimentation_rsa', period)
-        experimentation = calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference= last_3_months_offset_minus_1(period))
-        normal = calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference= period.last_3_months)
-        return where(departement_experimentation_rsa, experimentation, normal)
+        m2_m4_period = last_3_months_offset_minus_1(period)
+        return calcul_minima_sociaux(famille=famille, period=period, three_months_of_reference= m2_m4_period)
 
     def formula(famille, period):
         three_previous_months = period.last_3_months
-        return calcul_minima_sociaux(famille= famille, period= period, three_months_of_reference=three_previous_months)
+        return calcul_minima_sociaux(famille=famille, period=period, three_months_of_reference=three_previous_months)
 
 
 class rsa_base_ressources_prestations_familiales(Variable):
@@ -526,10 +521,8 @@ class rsa_revenu_activite_individu(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2024_10(individu, period):
-        departement_experimentation_rsa = individu.famille('departement_experimentation_rsa', period)
-        experimentation = rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= last_3_months_offset_minus_1(period))
-        normal = rsa_revenu_activite_individu_base_formula(individu= individu, period= period, three_months_of_reference= period.last_3_months)
-        return where(departement_experimentation_rsa, experimentation, normal)
+        m2_m4_period = last_3_months_offset_minus_1(period)
+        return rsa_revenu_activite_individu_base_formula(individu= individu, period=period, three_months_of_reference=m2_m4_period)
 
     def formula_2009_06(individu, period):
         last_3_months = period.last_3_months
@@ -1053,21 +1046,21 @@ class rsa_socle_majore(Variable):
         return eligib * socle * taux
 
 
-def last_3_months_offset_minus_1(period) -> Period:
+def last_3_months_offset_minus_1(period: Period) -> Period:
     return period.last_month.last_3_months
 
 
 def rsa_revenu_activite_individu_base_formula(individu, period, three_months_of_reference):
-    revenus_moyennes = calcul_revenu_moyenne(individu= individu, period=period, three_months_of_reference=three_months_of_reference)
+    revenus_moyennes = calcul_revenu_moyenne(individu=individu, period=period, three_months_of_reference=three_months_of_reference)
     revenus_tns_annualises = calcul_revenu_tns_annualises(individu=individu, period=period)
 
     return revenus_moyennes + revenus_tns_annualises
 
 
 def rsa_base_ressources_individu_base_formula(individu, period, three_months_of_reference, parameters):
-    revenus_pro = calcul_revenu_pro(individu=individu, period= period, three_months_of_reference= three_months_of_reference)
-    revenus_non_pros = calcul_revenu_non_pro(individu=individu, period= period, three_months_of_reference= three_months_of_reference, parameters= parameters)
-    revenus_foyer_fiscal_projetes = calcul_foyer_fiscal_projetes(individu=individu, three_months_of_reference= three_months_of_reference)
+    revenus_pro = calcul_revenu_pro(individu=individu, period=period, three_months_of_reference=three_months_of_reference)
+    revenus_non_pros = calcule_revenu_non_pro(individu=individu, period=period, three_months_of_reference=three_months_of_reference, parameters=parameters)
+    revenus_foyer_fiscal_projetes = calcul_foyer_fiscal_projetes(individu=individu, three_months_of_reference=three_months_of_reference)
 
     return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
 
@@ -1090,11 +1083,10 @@ def calcul_revenu_pro(individu, period, three_months_of_reference):
             )
         for type_revenu in types_revenus_pros
         )
-
     return revenus_pro
 
 
-def calcul_revenu_non_pro(individu, period, three_months_of_reference, parameters):
+def calcule_revenu_non_pro(individu, period, three_months_of_reference, parameters):
     types_revenus_non_pros = [
         'allocation_securisation_professionnelle',
         'dedommagement_victime_amiante',
@@ -1123,7 +1115,6 @@ def calcul_revenu_non_pro(individu, period, three_months_of_reference, parameter
             )
         for type_revenu in types_revenus_non_pros
         )
-
     return revenus_non_pros
 
 
@@ -1134,9 +1125,9 @@ def calcul_foyer_fiscal_projetes(individu, three_months_of_reference):
 
 
 def calcul_revenu_moyenne(individu, period, three_months_of_reference):
-    # Note Auto-entrepreneurs:
-    # D'après les caisses, le revenu pris en compte pour les AE pour le RSA ne prend en compte que
-    # l'abattement standard sur le CA, mais pas les cotisations pour charges sociales.
+    # Note Auto-entrepreneurs: D'après les caisses, le revenu pris en
+    # compte pour les AE pour le RSA ne prend en compte que l'abattement
+    # standard sur le CA, mais pas les cotisations pour charges sociales.
 
     types_revenus_activite = [
         'salaire_net',
@@ -1176,8 +1167,9 @@ def calcul_revenu_tns_annualises(individu, period):
 def calcul_minima_sociaux(famille, period, three_months_of_reference):
     aspa = famille('aspa', period)
 
-    ass_i = famille.members('ass', three_months_of_reference, options = [ADD])
+    ass_i = famille.members('ass', period)
     aah_i = famille.members('aah', three_months_of_reference, options = [ADD])
     asi_i = famille.members('asi', three_months_of_reference, options = [ADD])
     caah_i = famille.members('caah', three_months_of_reference, options = [ADD])
-    return aspa + famille.sum(ass_i + aah_i + asi_i + caah_i) / 3
+
+    return aspa + famille.sum(ass_i) + famille.sum(aah_i + asi_i + caah_i) / 3
