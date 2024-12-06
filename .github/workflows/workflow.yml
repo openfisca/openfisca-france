@@ -302,6 +302,41 @@ jobs:
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
 
+  build-conda:
+    runs-on: "ubuntu-20.04"
+    needs: [ check-version-and-changelog ]
+    # Do not build on master, the artifact will be used
+    if: github.ref != 'refs/heads/master'
+    steps:
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: "3.9.9"
+          # Add conda-forge for OpenFisca-Core
+          channels: openfisca,conda-forge
+          activate-environment: true
+      - uses: actions/checkout@v3
+      - name: Update meta.yaml
+        run: |
+          python3 -m pip install requests argparse
+          # Sleep to allow PyPi to update its API
+          sleep 60
+          python3 .github/get_pypi_info.py -p OpenFisca-France
+      - name: Get version
+        run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
+      - name: Conda Config
+        run: |
+          conda install conda-build anaconda-client
+          conda info
+      - name: Build Conda package
+        run: conda build -c openfisca -c conda-forge --croot /tmp/conda .conda
+      - name: Upload Conda build
+        uses: actions/upload-artifact@v3
+        with:
+          name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
+          path: /tmp/conda
+          retention-days: 30
+
   publish-to-conda:
     runs-on: windows-latest
     needs: [ deploy, test-on-windows ]
