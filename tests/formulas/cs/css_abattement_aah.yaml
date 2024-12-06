@@ -1,5 +1,5 @@
 - name: "CSS: Base de ressource d'une personne seule beneficiant de l'aah"
-  period: 2023-11
+  period: 2023-12
   absolute_error_margin: 0.1
   input:
     individus:
@@ -32,7 +32,7 @@
     css_cmu_base_ressources: 11000
 
 - name: "CSS: Base de ressource de deux personnes dont une seule beneficie de l'aah"
-  period: 2023-11
+  period: 2023-12
   absolute_error_margin: 0.1
   input:
     individus:
@@ -81,7 +81,7 @@
     css_cmu_base_ressources: 11000
 
 - name: "CSS: Base de ressource de deux personnes beneficiant toutes les deux de l'aah"
-  period: 2023-11
+  period: 2023-12
   absolute_error_margin: 0.1
   input:
     individus:
@@ -143,7 +143,7 @@
     css_cmu_base_ressources: 22000
 
 - name: "CSS: Base de ressource AAH de cinq personnes"
-  period: 2023-11
+  period: 2023-12
   absolute_error_margin: 0.1
   input:
     individus:
@@ -266,7 +266,7 @@
     css_cmu_base_ressources: 33000
 
 - name: "CSS: Base de ressource d'une personne seule beneficiant de l'aah avec valeurs negatives"
-  period: 2023-11
+  period: 2023-12
   absolute_error_margin: 0.1
   input:
     individus:

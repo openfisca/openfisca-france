@@ -32,7 +32,7 @@ class css_cmu_base_ressources_individu(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = compute_previous_year(period)
+        previous_year = compute_previous_year(period).offset(-1, 'month')
         # N-1
         last_year = period.last_year
         last_month = period.last_month
@@ -176,7 +176,7 @@ class css_cmu_base_ressources(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        previous_year = compute_previous_year(period)
+        previous_year = compute_previous_year(period).offset(-1, 'month')
 
         ressources_famille_a_inclure = [
             'af',
@@ -221,7 +221,6 @@ class css_cmu_base_ressources(Variable):
 
 def compute_previous_year(period):
     return Period(('year', period.start, 1)).offset(-1)
-
 # Abattement sur revenus d'activité si :
 # - IJ maladie
 # - chômage
