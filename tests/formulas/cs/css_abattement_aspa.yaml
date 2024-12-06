@@ -1,5 +1,5 @@
 - name: "CSS: Base de ressource ASPA d'une personne seule"
-  period: 2023-11
+  period: 2023-12
   absolute_error_margin: 0.1
   input:
     individus:
@@ -32,7 +32,7 @@
     css_cmu_base_ressources: 11000
 
 - name: "CSS: Base de ressource ASPA d'une personne seule avec des ressources inférieures à l'abattement"
-  period: 2023-11
+  period: 2023-12
   absolute_error_margin: 0.1
   input:
     individus:
@@ -65,7 +65,7 @@
     css_cmu_base_ressources: 100
 
 - name: "CSS: Base de ressource de deux personnes"
-  period: 2023-11
+  period: 2023-12
   absolute_error_margin: 0.1
   input:
     individus:
@@ -101,7 +101,7 @@
     css_cmu_base_ressources: 11000
 
 - name: "CSS: Base de ressource de cinq personnes"
-  period: 2023-11
+  period: 2023-12
   absolute_error_margin: 0.1
   input:
     individus:
