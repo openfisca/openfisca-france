@@ -87,7 +87,7 @@ values:
   2023-01-01:
     value: 1759
 metadata:
-  short_label: Cas général
+  short_label: Plafond par demi-part (cas général)
   last_value_still_valid_on: "2024-01-03"
   label_en: Family quotient ceiling and "decote"
   ipp_csv_id: plaf_qf

@@ -1,9 +1,9 @@
-description: Part supplémentaire de quotient familial (IR) pour une personne seule ayant au moins un enfant à charge, dite "parent isolé" (Case T cerfa 2042)
+description: Part supplémentaire de quotient familial (IR) pour une personne seule ayant au moins un enfant à charge, dite "parent isolé" (case T cerfa 2042)
 values:
   1951-01-01:
     value: 0.5
 metadata:
-  short_label: Parent isolé
+  short_label: Parent isolé (case T)
   last_value_still_valid_on: "2024-04-26"
   unit: part_quotient_familial
   reference:

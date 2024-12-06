@@ -1,5 +1,6 @@
-description: Quotient familial, réductions spécifiques et décote
+description: Quotient familial, abattements spécifiques DOM et décote
 metadata:
+  short_label: Quotient familial, abattements DOM et décote
   documentation_start: true
   label_en: Family quotient ceiling and "decote"
   order:

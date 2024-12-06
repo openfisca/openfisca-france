@@ -1,6 +1,18 @@
 # Changelog
 
-### 169.9.0 [2395](https://github.com/openfisca/openfisca-france/pull/2395)
+## 169.10.0 [2396](https://github.com/openfisca/openfisca-france/pull/2396)
+
+* Évolution du système socio-fiscal. 
+* Périodes concernées : toutes
+* Zones impactées : 
+  - `model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/abat_dom`
+  - `parameters/impot_revenu`
+* Détails :
+  - Précise des shorts_labels
+  - Modifie arborescence des paramètres des abattements spécifiques pour les DOM en créant un dossier "Guadeloupe, Martinique, Réunion" et un dossier "Guyane et Mayotte" - Modifie formule en conséquence.
+
+## 169.9.0 [2395](https://github.com/openfisca/openfisca-france/pull/2395)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/02/2025.

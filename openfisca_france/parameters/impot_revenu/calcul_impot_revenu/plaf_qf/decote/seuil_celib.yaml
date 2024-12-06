@@ -1,4 +1,4 @@
-description: Seuil pour un célibataire de la décote de l'impôt sur le revenu
+description: Plafond de la décote de l'impôt sur le revenu (IR) pour les contribuables célibataires, divorcés ou veufs
 values:
   1950-01-01:
     value: null
@@ -101,7 +101,7 @@ values:
   2023-01-01:
     value: 873
 metadata:
-  short_label: Seuil pour les contribuables célibataires, divorcés ou veufs
+  short_label: Plafond pour les contribuables célibataires, divorcés ou veufs
   last_value_still_valid_on: "2024-01-03"
   ipp_csv_id: param_decote
   unit: currency_next_year
