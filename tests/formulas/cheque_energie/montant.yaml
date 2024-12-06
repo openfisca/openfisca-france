@@ -146,7 +146,7 @@
       2016: 5599
   output:
     cheque_energie:
-      2017: 0
+      2017-01: 0
 
 - name: Plusieurs foyers
   period: 2018
@@ -205,9 +205,11 @@
   output:
     menages:
       menage_0:
-        cheque_energie: 240
+        cheque_energie:
+          2021-01: 240
       menage_1:
-        cheque_energie: 0
+        cheque_energie:
+          2021-01: 0
 
 - name: montant chèque énergie exceptionnel
   period: 2022-11

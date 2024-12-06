@@ -31,12 +31,12 @@ class cheque_energie_eligibilite_logement(Variable):
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6A3717E70623B148432581CC8F585C5F.tplgfr31s_1?idArticle=LEGIARTI000006394061&cidTexte=LEGITEXT000006070633&dateTexte=20180316',
         ]
     label = 'Éligibilité du logement occupé au chèque énergie'
-    definition_period = YEAR
+    definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
     def formula_2017(menage, period, parameters):
-        statut_occupation_logement = menage('statut_occupation_logement', period.first_month)
-        residence_saint_martin = menage('residence_saint_martin', period.first_month)
+        statut_occupation_logement = menage('statut_occupation_logement', period)
+        residence_saint_martin = menage('residence_saint_martin', period)
 
         return (
             not_(residence_saint_martin) * (
@@ -79,13 +79,14 @@ class cheque_energie(Variable):
     value_type = float
     reference = 'https://chequeenergie.gouv.fr'
     label = 'Montant auquel le ménage peut prétendre au titre du chèque energie'
-    definition_period = YEAR
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2017(menage, period):
         eligible = menage('cheque_energie_eligibilite_logement', period)
-        declarant = menage.sum(menage.members('age', period.first_month) * 0 + 1, role = FoyerFiscal.DECLARANT) > 0  # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
+        declarant = menage.sum(menage.members('age', period) * 0 + 1, role = FoyerFiscal.DECLARANT) > 0  # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
         montant = menage('cheque_energie_montant', period.this_year)
+
         return declarant * eligible * montant
 
 
