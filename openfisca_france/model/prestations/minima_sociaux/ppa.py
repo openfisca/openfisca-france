@@ -503,10 +503,7 @@ class ppa(Variable):
     reference = 'https://www.service-public.fr/particuliers/vosdroits/F2882'
 
     def formula_2024_10(famille, period, parameters):
-        departement_experimentation_rsa = famille('departement_experimentation_rsa', period)
-        experimentation = ppa_base_formula(famille=famille, parameters=parameters, period=period, three_months_of_reference=last_3_months_offset_minus_1(period))
-        normal = ppa_base_formula(famille=famille, parameters=parameters, period=period, three_months_of_reference=period.last_3_months)
-        return where(departement_experimentation_rsa, experimentation, normal)
+        return ppa_base_formula(famille=famille, parameters=parameters, period=period, three_months_of_reference=last_3_months_offset_minus_1(period))
 
     def formula_2016_01_01(famille, period, parameters):
         return ppa_base_formula(famille=famille, parameters=parameters, period=period, three_months_of_reference=period.last_3_months)
