@@ -2337,7 +2337,7 @@ class impot_revenu_restant_a_payer(Variable):
                 (pre_result < 0)
                 * (-result)
                 )
-        )
+                )
 
 
 class foyer_impose(Variable):
