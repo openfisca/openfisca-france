@@ -2329,16 +2329,15 @@ class impot_revenu_restant_a_payer(Variable):
         impots_totaux_avant_imputations = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
 
         return (
-            (impots_totaux_avant_imputations > parameters_recouvrement.min_avant_credits_impots) *
-            (((pre_result <= 0) + (pre_result >= parameters_recouvrement.min_apres_credits_impots)) *
-             (- result)
-             )
-            +
-            (impots_totaux_avant_imputations <= parameters_recouvrement.min_avant_credits_impots) *
-            ((pre_result < 0) *
-             (-result)
-             )
-            )
+            (impots_totaux_avant_imputations > parameters_recouvrement.min_avant_credits_impots) * (
+                ((pre_result <= 0) + (pre_result >= parameters_recouvrement.min_apres_credits_impots))
+                * (- result)
+                )
+            + (impots_totaux_avant_imputations <= parameters_recouvrement.min_avant_credits_impots) * (
+                (pre_result < 0)
+                * (-result)
+                )
+        )
 
 
 class foyer_impose(Variable):
