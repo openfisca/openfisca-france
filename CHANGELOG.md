@@ -1,5 +1,15 @@
 # Changelog
 
+## 169.11.0 [2397](https://github.com/openfisca/openfisca-france/pull/2397)
+
+* Changement mineur. 
+* Périodes concernées : toutes
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+* Détails :
+  - La formule de calcul de l'impôt restant à payer contient des termes à zéro qui peuvent être supprimés sans modifier le résultat (simplification de la formule)
+
+
 ## 169.10.0 [2396](https://github.com/openfisca/openfisca-france/pull/2396)
 
 * Évolution du système socio-fiscal. 
