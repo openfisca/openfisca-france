@@ -2330,19 +2330,12 @@ class impot_revenu_restant_a_payer(Variable):
 
         return (
             (impots_totaux_avant_imputations > parameters_recouvrement.min_avant_credits_impots) * (
-                (pre_result < parameters_recouvrement.min_apres_credits_impots)
-                * (result > 0)
-                * result
-                * 0
-                + ((pre_result <= 0) + (pre_result >= parameters_recouvrement.min_apres_credits_impots))
+                ((pre_result <= 0) + (pre_result >= parameters_recouvrement.min_apres_credits_impots))
                 * (- result)
                 )
             + (impots_totaux_avant_imputations <= parameters_recouvrement.min_avant_credits_impots) * (
                 (pre_result < 0)
                 * (-result)
-                + (pre_result >= 0)
-                * 0
-                * result
                 )
             )
 
