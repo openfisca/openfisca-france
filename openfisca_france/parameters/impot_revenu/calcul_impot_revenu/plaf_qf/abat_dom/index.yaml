@@ -2,5 +2,5 @@ description: Abattements spécifiques aux départements d'outre-mer (DOM) de l'i
 metadata:
   short_label: Abattement pour les départements d'outre-mer
   order:
-  - guad_mar_reu
-  - guy_may
+  - guadeloupe_martinique_reunion
+  - guyane_mayotte
