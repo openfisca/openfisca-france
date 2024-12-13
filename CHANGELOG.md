@@ -8,6 +8,19 @@
 - Détails :
   - Revolarisation des aides aux logements d'octobre 2024.
 
+## 169.12.0 [2398](https://github.com/openfisca/openfisca-france/pull/2398)
+
+* Changement mineur. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/abat_dom/index.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/abat_dom/guyane_mayotte/index.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/abat_dom/guadeloupe_martinique_reunion/index.yaml`
+* Détails :
+  - Modification des noms de dossiers des abattements spécifiques outre-mer de l'impôt sur le revenu
+
+
 ## 169.11.0 [2397](https://github.com/openfisca/openfisca-france/pull/2397)
 
 * Changement mineur. 

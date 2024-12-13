@@ -1586,8 +1586,8 @@ class ir_plaf_qf(Variable):
         residence_dom = (residence_guadeloupe_martinique_reunion | residence_guyane_mayotte)
 
         abattement_dom = (
-            residence_guadeloupe_martinique_reunion * min_(plafond_qf.abat_dom.guad_mar_reu.plaf, plafond_qf.abat_dom.guad_mar_reu.taux * impot_apres_reduction_complementaire)
-            + residence_guyane_mayotte * min_(plafond_qf.abat_dom.guy_may.plaf, plafond_qf.abat_dom.guy_may.taux * impot_apres_reduction_complementaire)
+            residence_guadeloupe_martinique_reunion * min_(plafond_qf.abat_dom.guadeloupe_martinique_reunion.plaf, plafond_qf.abat_dom.guadeloupe_martinique_reunion.taux * impot_apres_reduction_complementaire)
+            + residence_guyane_mayotte * min_(plafond_qf.abat_dom.guyane_mayotte.plaf, plafond_qf.abat_dom.guyane_mayotte.taux * impot_apres_reduction_complementaire)
             )
 
         impot_apres_abattement_dom = max_(0, impot_apres_reduction_complementaire - abattement_dom)

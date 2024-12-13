@@ -2,7 +2,5 @@ description: Abattement spécifique Guadeloupe, Martinique, Réunion, de l'impô
 metadata:
   short_label: Guadeloupe, Martinique, Réunion
   order:
-  - taux_GuadMarReu
-  - plaf_GuadMarReu
-  - taux_GuyMay
-  - plaf_GuyMay
+  - taux
+  - plaf
