@@ -1,5 +1,13 @@
 # Changelog
 
+### 169.13.0 [2399](https://github.com/openfisca/openfisca-france/pull/2399)
+
+- Évolution du système socio-fiscal.
+- Périodes concernées : à partir du 01/10/2024.
+- Zones impactées : `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement`.
+- Détails :
+  - Revolarisation des aides aux logements d'octobre 2024.
+
 ## 169.11.0 [2397](https://github.com/openfisca/openfisca-france/pull/2397)
 
 * Changement mineur. 
