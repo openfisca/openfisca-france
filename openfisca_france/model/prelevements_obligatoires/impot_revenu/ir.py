@@ -2328,7 +2328,7 @@ class impot_revenu_restant_a_payer(Variable):
         seuil_apres_imputation = parameters_recouvrement.min_apres_credits_impots
 
         impots_avant_imputations = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
-        impots_apres_imputations = impots_avant_imputations - credits_impot - acomptes_ir 
+        impots_apres_imputations = impots_avant_imputations - credits_impot - acomptes_ir
         impots_nets = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - credits_impot - acomptes_ir
 
         condition_1 = (impots_apres_imputations < 0)
