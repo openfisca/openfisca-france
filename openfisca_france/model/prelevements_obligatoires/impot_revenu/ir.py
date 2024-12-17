@@ -2329,10 +2329,10 @@ class impot_revenu_restant_a_payer(Variable):
 
         impots_avant_imputations = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
         impots_apres_imputations = impots_avant_imputations - credits_impot - acomptes_ir 
-        impots_nets = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - credits_impot - acomptes_ir 
-        
-        condition_1 = (impots_avant_imputations > seuil_avant_imputation) * ((impots_apres_imputations <= 0) + (impots_apres_imputations >= seuil_apres_imputation))
-        condition_2 = (impots_avant_imputations <= seuil_avant_imputation) * (impots_apres_imputations < 0)
+        impots_nets = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - credits_impot - acomptes_ir
+
+        condition_1 = (impots_apres_imputations < 0)
+        condition_2 = (impots_avant_imputations > seuil_avant_imputation) * (impots_apres_imputations >= seuil_apres_imputation)
 
         return (condition_1 + condition_2) * (-impots_nets)
 
