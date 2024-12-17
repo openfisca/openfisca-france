@@ -77,6 +77,9 @@ jobs:
       - name: Install package
         shell: pwsh
         run: mamba install --channel ./conda-bld --channel openfisca openfisca-france
+      - name: DEBUG
+        shell: pwsh
+        run: python -V
       - name: Test openfisca-france conda package
         shell: pwsh
         run: openfisca test tests/formulas/irpp.yaml
