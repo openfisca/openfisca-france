@@ -2324,23 +2324,17 @@ class impot_revenu_restant_a_payer(Variable):
         prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
 
         parameters_recouvrement = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
-        seuil_avant_credits_impots = parameters_recouvrement.min_avant_credits_impots
-        seuil_apres_credits_impots = parameters_recouvrement.min_apres_credits_impots
+        seuil_avant = parameters_recouvrement.min_avant_credits_impots
+        seuil_apres = parameters_recouvrement.min_apres_credits_impots
 
         pre_result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
         result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir
         impots_totaux_avant_imputations = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
 
-        return (
-            (impots_totaux_avant_imputations > seuil_avant_credits_impots) * (
-                ((pre_result <= 0) + (pre_result >= seuil_apres_credits_impots))
-                * (- result)
-                )
-            + (impots_totaux_avant_imputations <= seuil_avant_credits_impots) * (
-                (pre_result < 0)
-                * (-result)
-                )
-            )
+        condition_1 = (impots_totaux_avant_imputations > seuil_avant) * ((pre_result <= 0) + (pre_result >= seuil_apres))
+        condition_2 = (impots_totaux_avant_imputations <= seuil_avant) * (pre_result < 0)
+
+        return (condition_1 + condition_2) * (-result)
 
 
 class foyer_impose(Variable):
