@@ -2319,17 +2319,17 @@ class impot_revenu_restant_a_payer(Variable):
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
-        contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
-        prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
-        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
+        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        pfl = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
 
         parameters_recouvrement = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
         seuil_avant_imputation = parameters_recouvrement.min_avant_credits_impots
         seuil_apres_imputation = parameters_recouvrement.min_apres_credits_impots
 
-        impots_avant_imputations = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - prelevement_forfaitaire_liberatoire
+        impots_avant_imputations = iai + cehr - pfu - pfl
         impots_apres_imputations = impots_avant_imputations - credits_impot - acomptes_ir
-        impots_nets = iai + contribution_exceptionnelle_hauts_revenus - prelevement_forfaitaire_unique_ir - credits_impot - acomptes_ir
+        impots_nets = iai + cehr - pfu - credits_impot - acomptes_ir
 
         condition_1 = (impots_apres_imputations < 0)
         condition_2 = (impots_avant_imputations > seuil_avant_imputation) * (impots_apres_imputations >= seuil_apres_imputation)
