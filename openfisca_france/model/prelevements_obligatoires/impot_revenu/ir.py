@@ -2324,15 +2324,15 @@ class impot_revenu_restant_a_payer(Variable):
         pfl = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
 
         parameters_recouvrement = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
-        seuil_avant_imputation = parameters_recouvrement.min_avant_credits_impots
-        seuil_apres_imputation = parameters_recouvrement.min_apres_credits_impots
+        seuil_avant_imputations = parameters_recouvrement.min_avant_credits_impots
+        seuil_apres_imputations = parameters_recouvrement.min_apres_credits_impots
 
         impots_avant_imputations = iai + cehr - pfu - pfl
         impots_apres_imputations = impots_avant_imputations - credits_impot - acomptes_ir
         impots_nets = iai + cehr - pfu - credits_impot - acomptes_ir
 
         condition_1 = (impots_apres_imputations < 0)
-        condition_2 = (impots_avant_imputations > seuil_avant_imputation) * (impots_apres_imputations >= seuil_apres_imputation)
+        condition_2 = (impots_avant_imputations > seuil_avant_imputations) * (impots_apres_imputations >= seuil_apres_imputations)
 
         return (condition_1 + condition_2) * (-impots_nets)
 
