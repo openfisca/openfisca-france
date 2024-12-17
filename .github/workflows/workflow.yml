@@ -79,7 +79,11 @@ jobs:
         run: mamba install --channel ./conda-bld --channel openfisca openfisca-france
       - name: DEBUG
         shell: pwsh
-        run: python -V
+        run: |
+          python -V
+          which python
+          python -c "import openfisca_france; print(openfisca_france.__version__)"
+          python -c "import pkg_resources"
       - name: Test openfisca-france conda package
         shell: pwsh
         run: openfisca test tests/formulas/irpp.yaml
