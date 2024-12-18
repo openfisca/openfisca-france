@@ -20,6 +20,28 @@
   output:
     ppa: 83.08
 
+- name: PPA Cas N°1
+  period: 2018-05
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-04: 134
+          2018-03: 134
+          2018-02: 134
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    ppa: 83.08
+
 - name: PPA Cas N°2
   period: 2018-05
   absolute_error_margin: 0.03
@@ -404,3 +426,35 @@
         date_naissance: 2005-03-10
   output:
     ppa: 0
+
+- name: PPA avant réforme octobre #https://www.primedactivite.fr/montants/montant-prime-d-activite-couple-2018-octobre.html
+  period: 2018-10
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      aide_logement:
+        2018-09: 132
+        2018-08: 132
+        2018-07: 132
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-09: 577
+          2018-08: 577
+          2018-07: 577
+      personne2:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-09: 288
+          2018-08: 288
+          2018-07: 288
+  output:
+    ppa: 358
+
