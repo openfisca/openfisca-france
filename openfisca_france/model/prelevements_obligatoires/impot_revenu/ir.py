@@ -2324,14 +2324,14 @@ class montant_correction_ir_seuils_recouvrement(Variable):
 
         impots_totaux_avant_imputations = iai + cehr - pfu - pfl
         impots_totaux_apres_imputations = iai + cehr - pfu - pfl - credits_impot - acomptes_ir
+        montant_correction = iai + cehr - pfu - credits_impot - acomptes_ir
 
         condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations <= 0) + (impots_totaux_apres_imputations >= seuil_apres_imputations))
-
         condition_2 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations < 0)
 
-        condition_correction = ~(condition_1 + condition_2)
+        condition_correction = (1 - (condition_1 + condition_2))
 
-        return condition_correction * (iai + cehr + pfu - credits_impot - acomptes_ir)
+        return condition_correction * montant_correction
 
 
 class impot_revenu_restant_a_payer(Variable):
