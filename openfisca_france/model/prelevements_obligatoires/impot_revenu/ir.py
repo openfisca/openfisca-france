@@ -2298,6 +2298,7 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
         return bareme.calc(rfr / nb_adult) * nb_adult
         # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
 
+
 class montant_correction_ir_seuils_recouvrement(Variable):
     value_type = float
     entity = FoyerFiscal
