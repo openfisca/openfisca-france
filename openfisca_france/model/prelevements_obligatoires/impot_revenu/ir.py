@@ -2338,7 +2338,7 @@ class minimum_recouvrement_ir(Variable):
         # Appliquer les conditions :
         # Si condition_1 ou condition_2 est vraie, minimum_recouvrement_ir = 0 - pas d'annulation de l'impôt
         # Si condition_3 est vraie, minimum_recouvrement_ir = impot_revenu_restant_a_payer - annulation de l'impôt
-        return condition_1 * 0 + condition_2 * 0 + condition_3 * impot_revenu_restant_a_payer
+        return condition_1 * 0 + condition_2 * 0 + condition_3 * (iai + cehr + pfu - credits_impot - acomptes_ir)
 
 
 class impot_revenu_restant_a_payer(Variable):
