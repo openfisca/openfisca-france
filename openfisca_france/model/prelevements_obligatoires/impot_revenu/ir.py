@@ -2359,7 +2359,7 @@ class impot_revenu_restant_a_payer(Variable):
         correction_seuils_recouvrement = foyer_fiscal('montant_correction_ir_seuils_recouvrement', period)
         impots_nets = -(iai + cehr - pfu - credits_impot - acomptes_ir)
 
-        return  (impots_nets - correction_seuils_recouvrement)
+        return (impots_nets - correction_seuils_recouvrement)
 
 
 class foyer_impose(Variable):
