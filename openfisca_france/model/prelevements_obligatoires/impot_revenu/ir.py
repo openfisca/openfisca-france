@@ -2327,13 +2327,13 @@ class impot_revenu_restant_a_payer(Variable):
         seuil_avant_imputations = parameters_recouvrement.min_avant_credits_impots
         seuil_apres_imputations = parameters_recouvrement.min_apres_credits_impots
 
-        impots_avant_imputations = iai + cehr - pfu - pfl
-        impots_apres_imputations = impots_avant_imputations - credits_impot - acomptes_ir
+        impots_totaux_avant_imputations = iai + cehr - pfu - pfl
+        impots_totaux_apres_imputations = iai + cehr - pfu - pfl - credits_impot - acomptes_ir
         impots_nets = iai + cehr - pfu - credits_impot - acomptes_ir
 
-        condition_1 = (impots_apres_imputations < 0)
-        condition_2 = (impots_avant_imputations > seuil_avant_imputations) * (impots_apres_imputations >= seuil_apres_imputations)
-
+        condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations <= 0) + (impots_totaux_apres_imputations >= seuil_apres_imputations))
+        condition_2 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations < 0)
+        
         return (condition_1 + condition_2) * (-impots_nets)
 
 
