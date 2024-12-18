@@ -2356,8 +2356,10 @@ class impot_revenu_restant_a_payer(Variable):
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
         cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
-        correction_seuils_recouvrement = foyer_fiscal('montant_correction_ir_seuils_recouvrement', period)
+
         impots_nets = -(iai + cehr - pfu - credits_impot - acomptes_ir)
+
+        correction_seuils_recouvrement = foyer_fiscal('montant_correction_ir_seuils_recouvrement', period)
 
         return (impots_nets - correction_seuils_recouvrement)
 
