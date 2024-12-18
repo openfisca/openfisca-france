@@ -2311,8 +2311,8 @@ class montant_correction_ir_seuils_recouvrement(Variable):
         credits_impot = foyer_fiscal('credits_impot', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
         cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
-        pfu = - foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
-        pfl = - foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        pfl = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         '''
         Le prélèvement forfaitaire libératoire a déjà été payé il ne doit donc pas être compté dans l'impôt restant à payer.
         En revanche, il compte dans le calcul du seuil de recouvrement.
@@ -2322,8 +2322,8 @@ class montant_correction_ir_seuils_recouvrement(Variable):
         seuil_avant_imputations = parameters_recouvrement.min_avant_credits_impots
         seuil_apres_imputations = parameters_recouvrement.min_apres_credits_impots
 
-        impots_totaux_avant_imputations = iai + cehr + pfu + pfl
-        impots_totaux_apres_imputations = iai + cehr + pfu + pfl - credits_impot - acomptes_ir
+        impots_totaux_avant_imputations = iai + cehr - pfu - pfl
+        impots_totaux_apres_imputations = iai + cehr - pfu - pfl - credits_impot - acomptes_ir
 
         condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations > 0) * (impots_totaux_apres_imputations < seuil_apres_imputations))
 
