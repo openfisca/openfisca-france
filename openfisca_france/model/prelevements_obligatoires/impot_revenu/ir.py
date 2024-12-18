@@ -2298,10 +2298,10 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
         return bareme.calc(rfr / nb_adult) * nb_adult
         # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
 
-class minimum_recouvrement_ir(Variable):
+class montant_correction_ir_seuils_recouvrement(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Montant de l'impôt sur le revenu à déduire lorsque les minimums de recouvrement ne sont pas dépassés
+    label = "Montant de la correction de l'impôt sur le revenu par application des seuils de recouvrement"
     reference = 'https://bofip.impots.gouv.fr/bofip/2496-PGP.html/identifiant%3DBOI-IR-LIQ-20-20-40-20180704#Franchise_pour_les_impositi_14'
     definition_period = YEAR
 
@@ -2312,7 +2312,6 @@ class minimum_recouvrement_ir(Variable):
         cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         pfu = - foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         pfl = - foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
-        impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
         '''
         Le prélèvement forfaitaire libératoire a déjà été payé il ne doit donc pas être compté dans l'impôt restant à payer.
         En revanche, il compte dans le calcul du seuil de recouvrement.
@@ -2322,23 +2321,16 @@ class minimum_recouvrement_ir(Variable):
         seuil_avant_imputations = parameters_recouvrement.min_avant_credits_impots
         seuil_apres_imputations = parameters_recouvrement.min_apres_credits_impots
 
-        impots_avant_imputations = iai + cehr + pfu + pfl
-        impots_apres_imputations = impots_avant_imputations - credits_impot - acomptes_ir
+        impots_totaux_avant_imputations = iai + cehr + pfu + pfl
+        impots_totaux_apres_imputations = iai + cehr + pfu + pfl - credits_impot - acomptes_ir
 
-        # Application des règles de recouvrement
-        # Condition 1 : Si "impots après crédits d'impôt" >= 61 euros
-        condition_1 = (impots_apres_imputations >= seuil_avant_imputations)
+        condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations > 0) * (impots_totaux_apres_imputations < seuil_apres_imputations))
 
-        # Condition 2 : Si "impots avant crédits d'impôt" >= 61 euros  et "impots après crédits d'impôt" entre 61 euros et 12 euros
-        condition_2 = (impots_avant_imputations >= seuil_avant_imputations) & (impots_apres_imputations >= seuil_apres_imputations)
+        condition_2 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations >= 0)
 
-        # Condition 3 : Si "impots avant crédits d'impôt" >= 61 euros  et "impots après crédits d'impôt" < 12 euros
-        condition_3 = (impots_avant_imputations >= seuil_avant_imputations) & (impots_apres_imputations < seuil_avant_imputations) & (impots_apres_imputations < seuil_apres_imputations)
+        condition_correction = (condition_1 + condition_2)
 
-        # Appliquer les conditions :
-        # Si condition_1 ou condition_2 est vraie, minimum_recouvrement_ir = 0 - pas d'annulation de l'impôt
-        # Si condition_3 est vraie, minimum_recouvrement_ir = impot_revenu_restant_a_payer - annulation de l'impôt
-        return condition_1 * 0 + condition_2 * 0 + condition_3 * (iai + cehr + pfu - credits_impot - acomptes_ir)
+        return condition_correction * (iai + cehr + pfu - credits_impot - acomptes_ir)
 
 
 class impot_revenu_restant_a_payer(Variable):
@@ -2362,9 +2354,10 @@ class impot_revenu_restant_a_payer(Variable):
         credits_impot = foyer_fiscal('credits_impot', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
         cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
-        pfu = - foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        correction_seuils_recouvrement = foyer_fiscal('montant_correction_ir_seuils_recouvrement', period)
 
-        return (iai + cehr + pfu - credits_impot - acomptes_ir) - minimum_recouvrement_ir
+        return (iai + cehr - pfu - credits_impot - acomptes_ir) - correction_seuils_recouvrement
 
 
 class foyer_impose(Variable):
