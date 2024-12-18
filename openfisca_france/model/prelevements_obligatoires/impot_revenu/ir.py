@@ -2374,7 +2374,7 @@ class impot_revenu_restant_a_payer(Variable):
 
         condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations <= 0) + (impots_totaux_apres_imputations >= seuil_apres_imputations))
         condition_2 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations < 0)
-        
+
         return (condition_1 + condition_2) * (-impots_nets)
 >>>>>>> b212ca7c1 (revient sur la précédente version des conditions)
 
