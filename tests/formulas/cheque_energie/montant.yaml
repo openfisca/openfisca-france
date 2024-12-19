@@ -230,3 +230,153 @@
   output:
     cheque_energie_exceptionnel_montant:
       2022-12: 200
+
+- name: 1 UC - RFR < 5700
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1
+    rfr:
+      2021: 5699
+  output:
+    cheque_energie_montant:
+      2023: 194
+
+- name: 1 UC - RFR = 5700
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1
+    rfr:
+      2021: 5700
+  output:
+    cheque_energie_montant:
+      2023: 146
+
+- name: 1 UC - RFR = 6800
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1
+    rfr:
+      2021: 6800
+  output:
+    cheque_energie_montant:
+      2023: 98
+
+- name: 1 UC - RFR = 7850
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1
+    rfr:
+      2021: 7850
+  output:
+    cheque_energie_montant:
+      2023: 48
+
+- name: 1 UC - RFR = 11000
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1
+    rfr:
+      2021: 11000
+  output:
+    cheque_energie_montant:
+      2023: 0
+
+- name: 1.5 UC - RFR < 5700 * 1.5
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1.5
+    rfr:
+      2021: 5699 * 1.5
+  output:
+    cheque_energie_montant:
+      2023: 240
+
+- name: 1.5 UC - RFR = 5700 * 1.5
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1.5
+    rfr:
+      2021: 5700 * 1.5
+  output:
+    cheque_energie_montant:
+      2023: 176
+
+- name: 1.5 UC - RFR = 6800 * 1.5
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1.5
+    rfr:
+      2021: 6800 * 1.5
+  output:
+    cheque_energie_montant:
+      2023: 113
+
+- name: 1.5 UC - RFR = 7850 * 1.5
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1.5
+    rfr:
+      2021: 7850 * 1.5
+  output:
+    cheque_energie_montant:
+      2023: 63
+
+- name: 1.5 UC - RFR = 11000 * 1.5
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 1.5
+    rfr:
+      2021: 11000 * 1.5
+  output:
+    cheque_energie_montant:
+      2023: 0
+
+- name: 2 UC - RFR < 5700 * 2
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 2
+    rfr:
+      2021: 5699 * 2
+  output:
+    cheque_energie_montant:
+      2023: 277
+
+- name: 2 UC - RFR = 5700 * 2
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 2
+    rfr:
+      2021: 5700 * 2
+  output:
+    cheque_energie_montant:
+      2023: 202
+
+- name: 2 UC - RFR = 6800 * 2
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 2
+    rfr:
+      2021: 6800 * 2
+  output:
+    cheque_energie_montant:
+      2023: 126
+
+- name: 2 UC - RFR = 7850 * 2
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 2
+    rfr:
+      2021: 7850 * 2
+  output:
+    cheque_energie_montant:
+      2023: 76
+
+- name: 2 UC - RFR = 11000 * 2
+  period: 2023
+  input:
+    cheque_energie_unites_consommation: 2
+    rfr:
+      2021: 11000 * 2
+  output:
+    cheque_energie_montant:
+      2023: 0
