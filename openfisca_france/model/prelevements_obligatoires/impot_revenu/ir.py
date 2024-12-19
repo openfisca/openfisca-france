@@ -2302,7 +2302,7 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
 class impot_revenu_avant_seuils_mise_recouvrement(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Impôt sur le revenu des personnes physiques restant à payer, après prise en compte des éventuels acomptes et avant application des seuils de mise en recouvrement"
+    label = 'Impôt sur le revenu des personnes physiques restant à payer, après prise en compte des éventuels acomptes et avant application des seuils de mise en recouvrement'
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464766'
     definition_period = YEAR
 
@@ -2325,7 +2325,7 @@ class impot_revenu_avant_seuils_mise_recouvrement(Variable):
 class correction_ir_seuils_recouvrement(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Montant de la correction de l'impôt sur le revenu par application des seuils de mise en recouvrement"
+    label = 'Montant de la correction de l´impôt sur le revenu par application des seuils de mise en recouvrement'
     reference = 'https://bofip.impots.gouv.fr/bofip/2496-PGP.html/identifiant%3DBOI-IR-LIQ-20-20-40-20180704#Franchise_pour_les_impositi_14'
     definition_period = YEAR
 
