@@ -2299,10 +2299,33 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
         # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
 
 
-class montant_correction_ir_seuils_recouvrement(Variable):
+class impot_revenu_avant_seuils_mise_recouvrement(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Montant de la correction de l'impôt sur le revenu par application des seuils de recouvrement"
+    label = "Impôt sur le revenu des personnes physiques restant à payer, après prise en compte des éventuels acomptes et avant application des seuils de mise en recouvrement"
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464766'
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        '''
+        Montant après seuil de recouvrement (hors ppe)
+        NB : ce montant l'impôt correspond à une notion administrative :
+        dans certains cas, il existe des prélèvements à la source faisant
+        office d'acomptes d'impôt sur le revenu (cf. variable acomptes_ir). Ces acomptes sont comptabilisés dans la feuille d'impôt comme des crédits d'impôt, mais correspondent économiquement à des montants d'impôt dus.
+        '''
+        iai = foyer_fiscal('iai', period)
+        credits_impot = foyer_fiscal('credits_impot', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)
+        cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
+        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+
+        return -(iai + cehr - pfu - credits_impot - acomptes_ir)
+
+
+class correction_ir_seuils_recouvrement(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Montant de la correction de l'impôt sur le revenu par application des seuils de mise en recouvrement"
     reference = 'https://bofip.impots.gouv.fr/bofip/2496-PGP.html/identifiant%3DBOI-IR-LIQ-20-20-40-20180704#Franchise_pour_les_impositi_14'
     definition_period = YEAR
 
@@ -2313,25 +2336,24 @@ class montant_correction_ir_seuils_recouvrement(Variable):
         cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         pfl = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        impots_avant_seuils_mise_recouvrement = foyer_fiscal('impot_revenu_avant_seuils_mise_recouvrement', period)
         '''
         Le prélèvement forfaitaire libératoire a déjà été payé il ne doit donc pas être compté dans l'impôt restant à payer.
         En revanche, il compte dans le calcul du seuil de recouvrement.
         '''
-
         parameters_recouvrement = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
         seuil_avant_imputations = parameters_recouvrement.min_avant_credits_impots
         seuil_apres_imputations = parameters_recouvrement.min_apres_credits_impots
 
         impots_totaux_avant_imputations = iai + cehr - pfu - pfl
         impots_totaux_apres_imputations = iai + cehr - pfu - pfl - credits_impot - acomptes_ir
-        montant_correction = -(iai + cehr - pfu - credits_impot - acomptes_ir)
 
         condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations <= 0) + (impots_totaux_apres_imputations >= seuil_apres_imputations))
         condition_2 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations < 0)
 
-        condition_correction = (1 - (condition_1 + condition_2))
+        condition_correction_seuils_mise_recouvrement = ~(condition_1 | condition_2)
 
-        return condition_correction * montant_correction
+        return condition_correction_seuils_mise_recouvrement * impots_avant_seuils_mise_recouvrement
 
 
 class impot_revenu_restant_a_payer(Variable):
@@ -2342,26 +2364,10 @@ class impot_revenu_restant_a_payer(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        '''
-        Montant après seuil de recouvrement (hors ppe)
-        NB : ce montant l'impôt correspond à une notion administrative :
-        dans certains cas, il existe des prélèvements à la source faisant
-        office d'acomptes d'impôt sur le revenu (cf. variable acomptes_ir). Ces acomptes sont comptabilisés
-        dans la feuille d'impôt comme des crédits d'impôt, mais correspondent économiquement à des montants d'impôt dus.
-        Le prélèvement forfaitaire libératoire a déjà été payé il ne doit donc pas être compté dans l'impôt restant à payer.
-        En revanche, il compte dans le calcul du seuil de recouvrement.
-        '''
-        iai = foyer_fiscal('iai', period)
-        credits_impot = foyer_fiscal('credits_impot', period)
-        acomptes_ir = foyer_fiscal('acomptes_ir', period)
-        cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
-        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        impots_avant_seuils_recouvrement = foyer_fiscal('impot_revenu_avant_seuils_mise_recouvrement', period)
+        correction_seuils_recouvrement = foyer_fiscal('correction_ir_seuils_recouvrement', period)
 
-        impots_nets = -(iai + cehr - pfu - credits_impot - acomptes_ir)
-
-        correction_seuils_recouvrement = foyer_fiscal('montant_correction_ir_seuils_recouvrement', period)
-
-        return (impots_nets - correction_seuils_recouvrement)
+        return (impots_avant_seuils_recouvrement - correction_seuils_recouvrement)
 
 
 class foyer_impose(Variable):
