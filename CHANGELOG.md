@@ -1,5 +1,18 @@
 # Changelog
 
+### 169.14.0 [####](https://github.com/openfisca/openfisca-france/pull/####)
+
+- Évolution du système socio-fiscal.
+- Périodes concernées : à partir du 01/07/2024.
+- Zones impactées : 
+  - `openfisca_france/parameters/prestations_sociales/bail_reel_solidaire/plafonds_par_zones`
+  - `openfisca_france/model/prestations/bail_reel_solidaire.py`
+  - `tests/formulas/bail_reel_solidaire.yaml`
+- Détails :
+  - Ajout du dispositif Bail Réel Solidaire
+  - Ajout des plafonds de ressources selon la zone et le nombre de personnes du foyer
+  - Ajout du fichier csv de zones pour le BRS
+
 ### 169.13.0 [2399](https://github.com/openfisca/openfisca-france/pull/2399)
 
 - Évolution du système socio-fiscal.
