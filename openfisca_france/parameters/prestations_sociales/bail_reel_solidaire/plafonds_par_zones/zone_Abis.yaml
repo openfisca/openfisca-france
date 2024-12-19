@@ -1,0 +1,40 @@
+description: Plafonds de ressources de la zone Abis du bail réel solidaire (BRS)
+metadata:
+  reference:
+    href: https://www.service-public.fr/particuliers/actualites/A17559
+  short_label: Plafonds BRS ressources zone Abis
+
+nb_personnes_1:
+  description: Plafond zone Abis pour 1 personne
+  values:
+    2024-07-01: 37581
+
+nb_personnes_2:
+  description: Plafond zone Abis pour 2 personnes
+  values:
+    2024-07-01: 56169
+
+nb_personnes_3:
+  description: Plafond zone Abis pour 3 personnes
+  values:
+    2024-07-01: 73630
+
+nb_personnes_4:
+  description: Plafond zone Abis pour 4 personnes
+  values:
+    2024-07-01: 87909
+
+nb_personnes_5:
+  description: Plafond zone Abis pour 5 personnes
+  values:
+    2024-07-01: 104592
+
+nb_personnes_6:
+  description: Plafond zone Abis pour 6 personnes
+  values:
+    2024-07-01: 117694
+
+nb_personnes_supplementaires:
+  description: Plafond zone Abis par personne supplémentaire
+  values:
+    2024-07-01: 13116
