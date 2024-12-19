@@ -1,0 +1,40 @@
+description: Plafonds de ressources de la zone C du bail réel solidaire (BRS)
+metadata:
+  reference:
+    href: https://www.service-public.fr/particuliers/actualites/A17559
+  short_label: Plafonds BRS ressources zone C
+
+nb_personnes_1:
+  description: Plafond zone C pour 1 personne
+  values:
+    2024-07-01: 32673
+
+nb_personnes_2:
+  description: Plafond zone C pour 2 personnes
+  values:
+    2024-07-01: 43633
+
+nb_personnes_3:
+  description: Plafond zone C pour 3 personnes
+  values:
+    2024-07-01: 52471
+
+nb_personnes_4:
+  description: Plafond zone C pour 4 personnes
+  values:
+    2024-07-01: 63347
+
+nb_personnes_5:
+  description: Plafond zone C pour 5 personnes
+  values:
+    2024-07-01: 74518
+
+nb_personnes_6:
+  description: Plafond zone C pour 6 personnes
+  values:
+    2024-07-01: 83983
+
+nb_personnes_supplementaires:
+  description: Plafond zone C par personne supplémentaire
+  values:
+    2024-07-01: 9368
