@@ -427,16 +427,16 @@
   output:
     ppa: 0
 
-- name: PPA avant réforme octobre #https://www.primedactivite.fr/montants/montant-prime-d-activite-couple-2018-octobre.html
+- name: PPA avant réforme octobre #https://www.primedactivite.fr/montants/montant-prime-d-activite-couple-2018-octobre.html et https://www.primedactivite.fr/montants/montant-prime-d-activite-couple-2018.html
   period: 2018-10
-  absolute_error_margin: 0.03
+  absolute_error_margin: 0.10
   input:
     famille:
       parents: [personne1, personne2]
       aide_logement:
         2018-09: 132
         2018-08: 132
-        2018-07: 132
+        2018-07: 128
     foyer_fiscal:
       declarants: [personne1, personne2]
     menage:
@@ -456,5 +456,25 @@
           2018-08: 288
           2018-07: 288
   output:
-    ppa: 358
+    ppa: 358 * 2 / 3 + 341 * 1 / 3
 
+- name: PPA après réforme octobre et smic janvier #https://www.primedactivite.fr/montant-prime-d-activite-couple.html?view=article&id=42:montant-prime-d-activite-2019-mise-a-jour-fevrier&catid=2
+  period: 2019-04
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [personne1]
+    foyer_fiscal:
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-01: 1202
+          2019-02: 1202
+          2019-03: 1202
+  output:
+    ppa: 243
