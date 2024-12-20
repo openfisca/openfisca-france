@@ -3,6 +3,6 @@ values:
   2008-01-01:
     value: 0.18
 metadata:
-  short_label: Taux d'imposition pour la fraction des gains < 152 500 euros et durée de conservation > 2 ans (case 3VD)
+  short_label: Taux si < 152 500 euros (plus de 2 ans)
   last_value_still_valid_on: "2024-11-07"
   unit: /1

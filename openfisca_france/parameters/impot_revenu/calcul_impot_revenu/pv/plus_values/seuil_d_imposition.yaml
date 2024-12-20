@@ -45,6 +45,7 @@ values:
   2011-01-01:
     value: null
 metadata:
+  short_label: Seuil
   unit: currency_next_year
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/

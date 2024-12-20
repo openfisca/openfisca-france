@@ -5,7 +5,7 @@ values:
   2017-01-01:
     value: 0.128
 metadata:
-  short_label: Taux d'imposition
+  short_label: Taux
   last_value_still_valid_on: "2024-11-07"
   unit: /1
   reference:
@@ -19,4 +19,4 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036339237
   notes:
     2017-01-01:
-    - title: prend en compte jusqu'en 2019 les revenus de cession de logiciels (cf Article 39 quindecies du CGI https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036428314/2018-01-01/)
+      title: prend en compte jusqu'en 2019 les revenus de cession de logiciels (cf Article 39 quindecies du CGI https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036428314/2018-01-01/)

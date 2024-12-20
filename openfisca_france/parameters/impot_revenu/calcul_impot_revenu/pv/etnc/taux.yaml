@@ -3,7 +3,7 @@ values:
   2017-01-01:
     value: 0.5
 metadata:
-  short_label: Taux d'imposition (case 3PI)
+  short_label: Taux
   unit: /1
   last_value_still_valid_on: "2024-11-07"
   reference:
