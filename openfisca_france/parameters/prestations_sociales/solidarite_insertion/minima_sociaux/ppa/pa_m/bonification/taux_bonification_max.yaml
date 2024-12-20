@@ -2,7 +2,7 @@ description: Montant maximal de la bonification (en % de la base RSA) pour la pr
 values:
   2016-01-01:
     value: 0.12782
-  2019-01-01:
+  2018-10-01:
     value: 0.29101
 metadata:
   short_label: Montant maximal de la bonification (en % de la base RSA)
