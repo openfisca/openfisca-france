@@ -7,7 +7,7 @@ values:
   2008-01-01:
     value: 0.18
 metadata:
-  short_label: Taux tranche inf.
+  short_label: Tranche inf.
   ipp_csv_id: tx_stockoptions4
   unit: /1
   reference:

@@ -1,9 +1,8 @@
 description: Imposition à l'impôt sur le revenu (IR) des gains de cession de titres souscrits en exercice de bons de souscription de parts de créateur d’entreprise (BSPCE)
 metadata:
-  short_label: Imposition des gains de cession de titres souscrits en exercice de bons de souscription de parts de créateur d’entreprise (BSPCE)
+  short_label: Gains de cession de titres souscrits en exercice de BSPCE
   order:
   - taux_moins_3_ans
   - taux_plus_3_ans_pre_2018
 documentation: |-
   Les gains pour une activité exercée dans la société depuis plus de 3 ans (case 3SJ) après 2018 sont taxés au taux PFU. Ce taux figure dans le dossier du PFU.
-

@@ -1,4 +1,4 @@
-description: Taux avant 2 ans (Clôture PEA avant 2 ans (3VM)
+description: Taux avant 2 ans (Clôture PEA avant 2 ans) (3VM)
 values:
   1977-01-01:
     value: null
@@ -7,6 +7,7 @@ values:
   2019-01-01:
     value: null
 metadata:
+  short_label: Taux (moins de 2 ans)
   ipp_csv_id: tx_pea
   unit: /1
   last_value_still_valid_on: "2024-11-07"

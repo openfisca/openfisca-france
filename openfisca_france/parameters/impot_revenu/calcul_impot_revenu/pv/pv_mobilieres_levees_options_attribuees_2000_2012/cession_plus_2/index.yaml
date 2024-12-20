@@ -1,6 +1,6 @@
 description: Imposition des gains de levées d'options sur titre attribuées avant le 28/09/2012 si cession après le délai de portage de 2 ans pour les options attribuées à compter du 27/04/2000
 metadata:
-  short_label: Plus 2 ans
+  short_label: Taux (plus de 2 ans)
   order:
   - taux_tranche_superieure
   - taux_tranche_inferieure

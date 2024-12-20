@@ -3,7 +3,7 @@ values:
   1995-01-01:
     value: 0.3
 metadata:
-  short_label: Taux d'imposition pour la fraction des gains < 152 500 euros (si durée de conservation < 2 ans) ou gains > 152 500 euros (si durée de conservation > 2 ans) (case 3VI)
+  short_label: Taux si < 152 500 euros (moins de 2 ans) ou > 152 500 euros (plus de 2 ans)
   last_value_still_valid_on: "2024-11-07"
   ipp_csv_id: tx_actions_gratuites
   unit: /1

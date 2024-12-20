@@ -9,7 +9,7 @@ values:
   2013-01-01:
     value: null
 metadata:
-  short_label: Taux tranche sup.
+  short_label: Tranche sup.
   ipp_csv_id: tx_stockoptions1
   unit: /1
   notes:

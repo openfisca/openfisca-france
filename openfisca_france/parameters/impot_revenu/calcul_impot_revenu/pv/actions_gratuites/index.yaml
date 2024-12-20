@@ -1,6 +1,6 @@
 description: Imposition à l'impôt sur le revenu (IR) des gains de levée d'options sur titre et gains d'acquisition d'actions gratuites attribuées avant le 28.09.2012
 metadata:
-  short_label: Imposition des gains de levée d'options sur titre et gains d'acquisition d'actions gratuites attribuées avant le 28.09.2012
+  short_label: Gains d'actions gratuites (avant 2012)
   documentation_start: true
   order:
   - taux2

@@ -7,7 +7,7 @@ values:
   2012-01-01:
     value: 0.19
 metadata:
-  short_label: Taux d'imposition pour une activité exercée dans la société depuis plus de 3 ans (avant 2018) (case 3SJ)
+  short_label: Taux (activité de plus de 3 ans) (avant 2018)
   reference:
     2012-01-01:
     - title: Article 163 bis G du Code général des impôts (avant 2018)

@@ -1,6 +1,6 @@
 description: Imposition à l'impôt sur le revenu (IR) des plus-values tirées d'un plan d'épargne en action (PEA)
 metadata:
-  short_label: Imposition des gains tirés d'un PEA
+  short_label: Gains tirés d'un PEA
   order:
   - taux_avant_2_ans
   - taux_posterieur
