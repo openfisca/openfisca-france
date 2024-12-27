@@ -2,14 +2,14 @@
   period: 2024-12
   input:
     foyers_fiscaux:
-      _: 
+      foyer_fiscal_0:
         declarants: [parent1]
     individus:
       parent1:
         salaire_imposable:
           2022: 35000
     menages:
-      _:
+      menages_0:
         depcom: 75056  # Zone A - Paris
         personne_de_reference: [parent1]
   output:
@@ -19,7 +19,7 @@
   period: 2024-12
   input:
     foyers_fiscaux:
-      _: 
+      foyer_fiscal_0:
         declarants: [parent1, parent2]
     individus:
       parent1:
@@ -29,7 +29,7 @@
         salaire_imposable:
           2022: 32000
     menages:
-      _:
+      menage_0:
         depcom: 75056  # Zone A - Paris
         personne_de_reference: [parent1]
         conjoint: [parent2]
@@ -40,7 +40,7 @@
   period: 2024-12
   input:
     foyers_fiscaux:
-      _: 
+      foyer_fiscal_0:
         declarants: [parent1, parent2]
         personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
     individus:
@@ -59,7 +59,7 @@
       enfant4:
         age: 4
     menages:
-      _:
+      menage_0:
         depcom: 75056  # Zone A - Paris
         personne_de_reference: [parent1]
         conjoint: [parent2]
@@ -71,7 +71,7 @@
   period: 2024-12
   input:
     foyers_fiscaux:
-      _: 
+      foyer_fiscal_0:
         declarants: [parent1, parent2]
         personnes_a_charge: [enfant1]
     individus:
@@ -84,7 +84,7 @@
       enfant1:
         age: 5
     menages:
-      _:
+      menage_0:
         depcom: 63307  # Zone B1 - Romagnat
         personne_de_reference: [parent1]
         conjoint: [parent2]
@@ -96,7 +96,7 @@
   period: 2024-12
   input:
     foyers_fiscaux:
-      _: 
+      foyer_fiscal_0:
         declarants: [parent1, parent2]
         personnes_a_charge: [enfant1]
     individus:
@@ -109,7 +109,7 @@
       enfant1:
         age: 5
     menages:
-      _:
+      menage_0:
         depcom: 75056  # Zone A - Paris
         personne_de_reference: [parent1]
         conjoint: [parent2]
@@ -121,14 +121,14 @@
   period: 2024-12
   input:
     foyers_fiscaux:
-      _: 
+      foyer_fiscal_0:
         declarants: [parent1]
     individus:
       parent1:
         salaire_imposable:
           2022: 20000
     menages:
-      _:
+      menage_0:
         depcom: 48095  # Zone C - Mende
         personne_de_reference: [parent1]
   output:
@@ -139,14 +139,14 @@
   period: 2024-12
   input:
     foyers_fiscaux:
-      _: 
+      foyer_fiscal_0:
         declarants: [parent1]
     individus:
       parent1:
         salaire_imposable:
           2022: 40000
     menages:
-      _:
+      menage_0:
         depcom: 48095  # Zone C - Mende
         personne_de_reference: [parent1]
   output:
@@ -156,7 +156,7 @@
   period: 2024-12
   input:
     foyers_fiscaux:
-      _: 
+      foyer_fiscal_0:
         declarants: [parent1, parent2]
         personnes_a_charge: [enfant1, enfant2, enfant3, enfant4, enfant5]
     individus:
@@ -177,7 +177,7 @@
       enfant5:
         age: 4
     menages:
-      _:
+      menage_0:
         depcom: 49048  # Zone B2 - Briollay
         personne_de_reference: [parent1]
         conjoint: [parent2]
