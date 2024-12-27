@@ -17,7 +17,7 @@ def preload_zone_abc():
         return {
             row['CODGEO']: row['Zone en vigueur depuis le 5 juillet 2024']
             for row in reader
-        }
+            }
 
 
 class bail_reel_solidaire(Variable):
@@ -42,12 +42,12 @@ class bail_reel_solidaire(Variable):
 
         # Accès aux paramètres selon la zone
         params = parameters(period).prestations_sociales.bail_reel_solidaire.plafonds_par_zones[f'zone_{zone}']
-        print(params)
+        # print(params)
 
         # Calcul des ressources (revenu fiscal de référence)
         rfr = menage.sum(menage.members.foyer_fiscal('rfr', period.n_2), role = FoyerFiscal.DECLARANT_PRINCIPAL)[0]
 
-        print("RFR: ", rfr)
+        # print("RFR: ", rfr)
 
         # Détermination du plafond selon le nombre de personnes
         if nb_personnes > 6:
