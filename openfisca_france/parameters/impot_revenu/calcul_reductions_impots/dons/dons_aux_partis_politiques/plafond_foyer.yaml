@@ -5,7 +5,7 @@ values:
   2011-01-01:
     value: 15000
 metadata:
-  short_label: Plafond par foyer fiscal des dons et cotisations versés pour le financement des partis et groupements politiques
+  short_label: Plafond foyer
   unit: currency_next_year
   reference:
     2011-01-01:

@@ -3,5 +3,5 @@ values:
   2009-01-01:
     value: 0.3
 metadata:
-  short_label: Taux (site couvert par un plan de sauvegarde et de mise en valeur approuvé, dans un quartier ancien dégradé ou dans un quartier du nouveau programme national de renouvellement urbain)
+  short_label: Taux si couvert par un plan de sauvegarde
   unit: /1
