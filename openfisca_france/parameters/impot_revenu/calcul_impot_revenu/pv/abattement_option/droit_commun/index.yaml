@@ -1,6 +1,6 @@
 description: Abattement pour durée de détention de droit commun
 metadata:
-  short_label: Actions, parts, droits ou titres détenus depuis
+  short_label: Détenus depuis
   order:
   - 2ans
   - 4ans
