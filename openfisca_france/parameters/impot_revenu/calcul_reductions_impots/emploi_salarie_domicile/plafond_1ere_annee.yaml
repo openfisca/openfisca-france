@@ -7,7 +7,7 @@ values:
   2017-01-01: 
     value: null
 metadata:
-  short_label: Plafond des dépenses, avant majorations, la première année
+  short_label: Plafond 1ère année
   last_value_still_valid_on: "2024-11-14"
   unit: currency_next_year
   reference:

@@ -11,7 +11,7 @@ values:
   2020-08-10:
     value: 0.3
 metadata:
-  short_label: Taux de la réduction d'impôt pour les établissements en Corse (case 7FM)
+  short_label: Taux Corse
   last_value_still_valid_on: "2024-12-03"
   ipp_csv_id: txfcp_2
   unit: /1

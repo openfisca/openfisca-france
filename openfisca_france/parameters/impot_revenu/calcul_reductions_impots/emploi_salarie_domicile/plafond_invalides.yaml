@@ -11,7 +11,7 @@ values:
   2017-01-01: 
     value: null
 metadata:
-  short_label: Plafond des dépenses, avant majorations, pour les contribuables invalides ou ayant à charge une personne invalide
+  short_label: Plafond si invalide
   last_value_still_valid_on: "2024-11-14"
   ipp_csv_id: plafsaldominvalide
   unit: currency_next_year

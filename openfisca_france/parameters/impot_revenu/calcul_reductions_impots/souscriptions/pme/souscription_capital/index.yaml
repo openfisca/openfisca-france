@@ -1,6 +1,6 @@
 description: Réduction d'impôt sur le revenu (IR) sur les souscriptions au capital des PME, dite « Réduction Madelin IR-PME »
 metadata:
-  short_label: « Réduction Madelin IR-PME »
+  short_label: Souscription de PME
   label_en: Small Firms Capital Subscription (PME)
   order:
   - taux

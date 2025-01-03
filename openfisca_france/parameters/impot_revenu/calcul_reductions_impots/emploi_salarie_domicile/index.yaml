@@ -1,15 +1,15 @@
 description: Réduction de l'impôt sur le revenu (IR) accordé au titre des sommes versées pour l'emploi d'un salarié à domicile, à une association agréée ou à un organisme habilité ou conventionné ayant le même objet (case 7DB)
 metadata:
   documentation_start: true
-  short_label: Emploi d'un salarié à domicile (case 7DB)
+  short_label: Emploi d'un salarié à domicile
   label_en: Home-worker Employment
   order:
   - taux
   - plafond
-  - plafond_1ere_annee
-  - plafond_invalides
   - increment_plafond
   - plafond_maximum
+  - plafond_1ere_annee
+  - plafond_invalides
   - plafond_maximum_1ere_annee
 documentation: |-
   Dépenses de services à la personne à domicile : art. 199 sexdecies du CGI

@@ -4,7 +4,7 @@ values:
     value: 0.25
 metadata:
   last_value_still_valid_on: "2024-11-18"
-  short_label: Taux spécial de la réduction d'impôt pour les versements entre 2020 et 2023 (cases 7GR et 7FT)
+  short_label: Taux spécial
   unit: /1
   reference:
     2020-08-01:

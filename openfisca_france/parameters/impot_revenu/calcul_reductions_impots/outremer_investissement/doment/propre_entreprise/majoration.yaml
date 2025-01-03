@@ -3,8 +3,9 @@ values:
   2009-01-01:
     value: 2.5
 metadata:
-  short_label: Coefficient de majoration du plafond de réductions
+  short_label: Coeff. de majoration
   last_value_still_valid_on: "2022-10-11"
+  unit: /1
   reference:
     2009-01-01:
     - title: Loi 2008-1425 du 27/12/2008 - art. 87 (V) (créé Art. 199 undecies D)

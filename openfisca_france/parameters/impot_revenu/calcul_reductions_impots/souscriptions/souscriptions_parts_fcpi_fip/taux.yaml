@@ -11,7 +11,7 @@ values:
   2024-01-01:
     value: 0.18
 metadata:
-  short_label: Taux de la réduction d'impôt (cases 7GQ et 7FQ)
+  short_label: Taux
   ipp_csv_id: txfcp_1
   unit: /1
   reference:

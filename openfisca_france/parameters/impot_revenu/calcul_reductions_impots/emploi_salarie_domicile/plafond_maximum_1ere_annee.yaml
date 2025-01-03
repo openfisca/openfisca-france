@@ -1,4 +1,4 @@
-description: Plafond des dépenses, la première année, après majorations pour enfants à charge et personne de plus de 65 ans, prises en compte pour la réduction d'impôt d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
+description: Plafond maximum des dépenses, la première année, après majorations pour enfants à charge et personne de plus de 65 ans, prises en compte pour la réduction d'impôt d'impôt sur le revenu (IR) pour emploi d'un salarié à domicile
 values:
   1990-01-01:
     value: null
@@ -7,7 +7,7 @@ values:
   2017-01-01: 
     value: null
 metadata:
-  short_label: Plafond des dépenses, après majorations, la première année
+  short_label: Plafond 1ère année maximum
   last_value_still_valid_on: "2024-11-14"
   unit: currency_next_year
   reference:

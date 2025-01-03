@@ -9,7 +9,7 @@ values:
   2002-01-01:
     value: 24000
 metadata:
-  short_label: Plafond des versements pour contribuable marié, pacsé ou à imposition commune
+  short_label: Plafond couple
   last_value_still_valid_on: "2024-11-18"
   ipp_csv_id: plaffcp_couple
   unit: currency_next_year

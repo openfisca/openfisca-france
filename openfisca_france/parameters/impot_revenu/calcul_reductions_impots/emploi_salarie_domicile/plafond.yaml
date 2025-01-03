@@ -21,7 +21,7 @@ values:
   2017-01-01: 
     value: null
 metadata:
-  short_label: Plafond des dépenses, avant majorations
+  short_label: Plafond
   last_value_still_valid_on: "2024-11-14"
   ipp_csv_id: plafsaldomicile
   unit: currency_next_year

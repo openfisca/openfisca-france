@@ -1,6 +1,6 @@
 description: Dépenses d'investissement forestier (travaux)
 metadata:
-  short_label: DEFI «Travaux»
+  short_label: Travaux
   order:
   - plafond
   - taux

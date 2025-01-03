@@ -7,7 +7,7 @@ values:
   2017-01-01: 
     value: null
 metadata:
-  short_label: Taux de la réduction d'impôt
+  short_label: Taux
   last_value_still_valid_on: "2024-11-14"
   ipp_csv_id: txsaldomicile
   unit: /1

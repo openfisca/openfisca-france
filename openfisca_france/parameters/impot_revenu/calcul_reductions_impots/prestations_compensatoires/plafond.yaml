@@ -7,7 +7,7 @@ values:
   2001-01-01:
     value: 30500
 metadata:
-  short_label: Plafond des versements effectués et des biens ou des droits attribués
+  short_label: Plafond
   last_value_still_valid_on: "2024-11-07"
   ipp_csv_id: plaf_prestcomp
   unit: currency_next_year
