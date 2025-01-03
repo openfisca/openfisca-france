@@ -3,6 +3,6 @@ values:
   2008-01-01:
     value: 0.18
 metadata:
-  short_label: Taux si < 152 500 euros (plus de 2 ans)
+  short_label: Taux pour < 152 500 euros (plus de 2 ans)
   last_value_still_valid_on: "2024-11-07"
   unit: /1

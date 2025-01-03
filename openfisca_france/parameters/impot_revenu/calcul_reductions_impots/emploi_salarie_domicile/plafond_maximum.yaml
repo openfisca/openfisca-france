@@ -7,7 +7,7 @@ values:
   2017-01-01: 
     value: null
 metadata:
-  short_label: Plafond maximum
+  short_label: Plafond avec majoration
   last_value_still_valid_on: "2024-11-14"
   ipp_csv_id: superplafsaldom
   unit: currency_next_year
