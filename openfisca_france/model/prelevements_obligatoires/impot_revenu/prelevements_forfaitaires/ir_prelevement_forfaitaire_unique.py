@@ -255,7 +255,7 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie(Variable):
             + plus_values_prelevement_forfaitaire_unique_ir
             )
 
-        return -assiette_pfu_hors_assurance_vie * P.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
+        return assiette_pfu_hors_assurance_vie * P.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
 
 
 class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
@@ -290,7 +290,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
             + (max_(f2ww - abattement_residuel2, 0) * parameters_taux)
             )
 
-        return -pfu_ir_sur_assurance_vie
+        return pfu_ir_sur_assurance_vie
 
 
 class prelevement_forfaitaire_unique_ir(Variable):

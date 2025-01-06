@@ -2319,7 +2319,7 @@ class impot_revenu_avant_seuils_mise_recouvrement(Variable):
         cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
 
-        return -(iai + cehr - pfu - credits_impot - acomptes_ir)
+        return -(iai + cehr + pfu - credits_impot - acomptes_ir)
 
 
 class correction_ir_seuils_recouvrement(Variable):
@@ -2345,9 +2345,14 @@ class correction_ir_seuils_recouvrement(Variable):
         seuil_avant_imputations = parameters_recouvrement.min_avant_credits_impots
         seuil_apres_imputations = parameters_recouvrement.min_apres_credits_impots
 
+<<<<<<< HEAD
         impots_totaux_avant_imputations = iai + cehr - pfu - pfl
         impots_totaux_apres_imputations = iai + cehr - pfu - pfl - credits_impot - acomptes_ir
 <<<<<<< HEAD
+=======
+        impots_totaux_avant_imputations = iai + cehr + pfu - pfl
+        impots_totaux_apres_imputations = iai + cehr + pfu - pfl - credits_impot - acomptes_ir
+>>>>>>> 0e0d7b571 (change le signe du pfu)
 
         condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations <= 0) + (impots_totaux_apres_imputations >= seuil_apres_imputations))
         condition_2 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations < 0)
