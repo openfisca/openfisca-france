@@ -97,7 +97,7 @@
         statut_marital: celibataire
   output:
     prelevement_forfaitaire_unique_ir: 0  # option bareme
-    impot_revenu_restant_a_payer: -85337
+    impot_revenu_restant_a_payer: 85337
     rfr: 700000
 
 - name: option_prelevement_forfaitaire_unique_abattements_plus_values_2019
