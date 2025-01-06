@@ -2345,7 +2345,6 @@ class correction_ir_seuils_recouvrement(Variable):
         seuil_avant_imputations = parameters_recouvrement.min_avant_credits_impots
         seuil_apres_imputations = parameters_recouvrement.min_apres_credits_impots
 
-
         impots_totaux_avant_imputations = iai + cehr + pfu - pfl
         impots_totaux_apres_imputations = iai + cehr + pfu - pfl - credits_impot - acomptes_ir
 
