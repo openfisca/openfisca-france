@@ -2345,14 +2345,9 @@ class correction_ir_seuils_recouvrement(Variable):
         seuil_avant_imputations = parameters_recouvrement.min_avant_credits_impots
         seuil_apres_imputations = parameters_recouvrement.min_apres_credits_impots
 
-<<<<<<< HEAD
-        impots_totaux_avant_imputations = iai + cehr - pfu - pfl
-        impots_totaux_apres_imputations = iai + cehr - pfu - pfl - credits_impot - acomptes_ir
-<<<<<<< HEAD
-=======
+
         impots_totaux_avant_imputations = iai + cehr + pfu - pfl
         impots_totaux_apres_imputations = iai + cehr + pfu - pfl - credits_impot - acomptes_ir
->>>>>>> 0e0d7b571 (change le signe du pfu)
 
         condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations <= 0) + (impots_totaux_apres_imputations >= seuil_apres_imputations))
         condition_2 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations < 0)
@@ -2374,14 +2369,6 @@ class impot_revenu_restant_a_payer(Variable):
         correction_seuils_recouvrement = foyer_fiscal('correction_ir_seuils_recouvrement', period)
 
         return (impots_avant_seuils_recouvrement - correction_seuils_recouvrement)
-=======
-        impots_nets = iai + cehr - pfu - credits_impot - acomptes_ir
-
-        condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations <= 0) + (impots_totaux_apres_imputations >= seuil_apres_imputations))
-        condition_2 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations < 0)
-
-        return (condition_1 + condition_2) * (-impots_nets)
->>>>>>> b212ca7c1 (revient sur la précédente version des conditions)
 
 
 class foyer_impose(Variable):
