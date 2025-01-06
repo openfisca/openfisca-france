@@ -1,5 +1,6 @@
 # Changelog
 
+<<<<<<< HEAD
 ### 169.13.2 [2409](https://github.com/openfisca/openfisca-france/pull/2409)
 
 - Évolution du système socio-fiscal.
@@ -8,6 +9,8 @@
 - Détails :
   - Ajoute les revalorisations du 1e janvier 2025
 
+=======
+>>>>>>> 6b32e77dd (bump)
 ### 169.13.1 [2405](https://github.com/openfisca/openfisca-france/pull/2405)
 
 - Évolution du système socio-fiscal. Changement mineur.
@@ -17,19 +20,6 @@
   - Fait passer date de réforme PPA à octobre 2018, date où les salaires concernés par les nouveaux calculs de PA débutent (c'est explicite dans le décret associé).
 
 ## 169.13.0 [2399](https://github.com/openfisca/openfisca-france/pull/2399)
-=======
-### 169.14.0 [2401](https://github.com/openfisca/openfisca-france/pull/2401)
-
-- Amélioration technique et métier de la formule de l'impôt sur le revenu restant à payer.
-- Périodes concernées : toutes.
-- Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`.
-- Détails :
-  - Améliore la lisibilité de la formule de l'impôt sur le revenu.
-  - Objectif : séparer de la formule impot_revenu_restant_a_payer les complexités inhérentes au seuils de mise en recouvrement de l'IR (61 euros et 12 euros). Par conséquent cette formule est simplifiée sous la forme de impot_revenu_restant_a_payer = impôts divers - correction seuils recouvrement. Deux formules sont créées en complément : la première permettant de faire la somme des divers impôts, la seconde prenant en compte les conditions d'application des seuils de mise en recouvrement pour calculer si il y a un montant à déduire pour rapporter l'impôt à 0 euros si les seuils sont dépassés.
-
-
-### 169.13.0 [2399](https://github.com/openfisca/openfisca-france/pull/2399)
->>>>>>> a6b2baab2 (modifie changelog)
 
 - Évolution du système socio-fiscal.
 - Périodes concernées : à partir du 01/10/2024.
