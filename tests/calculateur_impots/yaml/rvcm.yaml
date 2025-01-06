@@ -118,7 +118,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    prelevement_forfaitaire_unique_ir: -4298.0 # 1000 * 0.128 + 30000 * 0.075 + 15000 * 0.128
+    prelevement_forfaitaire_unique_ir: 4298.0 # 1000 * 0.128 + 30000 * 0.075 + 15000 * 0.128
     #prelevement_forfaitaire_liberatoire: -345.0
     ir_brut: 1461.0
     impot_revenu_restant_a_payer: -5659.0
