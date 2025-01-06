@@ -1,6 +1,14 @@
 # Changelog
 
-### 169.13.0 [2399](https://github.com/openfisca/openfisca-france/pull/2399)
+### 169.13.1 [2405](https://github.com/openfisca/openfisca-france/pull/2405)
+
+- Évolution du système socio-fiscal. Changement mineur.
+- Périodes concernées : jusqu'au 01/01/2019. | à partir du 01/10/2018.
+- Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m`.
+- Détails :
+  - Fait passer date de réforme PPA à octobre 2018, date où les salaires concernés par les nouveaux calculs de PA débutent (c'est explicite dans le décret associé).
+
+## 169.13.0 [2399](https://github.com/openfisca/openfisca-france/pull/2399)
 
 - Évolution du système socio-fiscal.
 - Périodes concernées : à partir du 01/10/2024.
@@ -10,9 +18,9 @@
 
 ## 169.12.0 [2398](https://github.com/openfisca/openfisca-france/pull/2398)
 
-* Changement mineur. 
+* Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
   - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/abat_dom/index.yaml`
   - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/abat_dom/guyane_mayotte/index.yaml`
@@ -23,9 +31,9 @@
 
 ## 169.11.0 [2397](https://github.com/openfisca/openfisca-france/pull/2397)
 
-* Changement mineur. 
+* Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
 * Détails :
   - La formule de calcul de l'impôt restant à payer contient des termes à zéro qui peuvent être supprimés sans modifier le résultat (simplification de la formule)
@@ -33,9 +41,9 @@
 
 ## 169.10.0 [2396](https://github.com/openfisca/openfisca-france/pull/2396)
 
-* Évolution du système socio-fiscal. 
+* Évolution du système socio-fiscal.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/impot_revenu/ir.py`
   - `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/abat_dom`
   - `parameters/impot_revenu`
@@ -59,7 +67,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
     * `model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
     * `parameters/impot_revenu/calcul_reductions_impots/souscriptions/sofica`
     * `parameters/impot_revenu/calcul_reductions_impots/souscriptions/souscriptions_parts_fcpi_fip`
@@ -72,7 +80,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 31/12/2023.
-* Zones impactées : 
+* Zones impactées :
     * `model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
 * Détails :
   - Met fin à la réduction d'impôt sur la réhabilitation de résidences de tourisme, abrogée en 2023 ([Article 199 decies G bis](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033781921/))
@@ -82,7 +90,7 @@
 
 * Évolution intermédiaire du système socio-fiscal.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
     * `model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`,
     * `parameters/impot_revenu/calcul_reductions_impots/souscriptions`,
     * `model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`,
@@ -97,7 +105,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
 - `parameters/impot_revenu/calcul_impot_revenu/pv/bspce/index.yaml`
 - `parameters/impot_revenu/calcul_impot_revenu/pv/bspce/taux_moins_3_ans.yaml`
 - `parameters/impot_revenu/calcul_reductions_impots/divers/rehabilitation_residences_touristiques/plafond.yaml`
@@ -117,7 +125,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
 - `parameters/impot_revenu/calcul_impot_revenu/pv/bspce/index.yaml`
 - `parameters/impot_revenu/calcul_impot_revenu/pv/bspce/taux_moins_3_ans.yaml`
 - `parameters/impot_revenu/calcul_reductions_impots/divers/rehabilitation_residences_touristiques/plafond.yaml`
@@ -137,14 +145,14 @@
 
 * Changement intermédiaire
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `/model/prelevements_obligatoires/impot_revenu`.
 - `parameters/impot_revenu/calcul_reductions_impots`.
 - `parameters/impot_revenu/credits_impots`
 
 * Détails :
   - Début d'une modification des labels et références et dossiers des crédits et réductions d'impôts, dans l'objectif de rendre plus clairs les dispositifs et de mettre des dossiers au même niveau.
-  - 3 changements majeurs : 
+  - 3 changements majeurs :
       - Création d'un nouveau dossier des paramètres du crédit d'impôt pour employé à domicile, tout en gardant le dossier des paramètres initial dans les réductions d'impôt : https://github.com/openfisca/openfisca-france/pull/2383/commits/a72ac419f374c0d9474c6d75012121b938733d1e
       - Suppression des paramètres en doublons et non utilisés dans les formules :  https://github.com/openfisca/openfisca-france/pull/2383/commits/ba3a1b89622cdb753ec659cb5b243ec065cfbf54, https://github.com/openfisca/openfisca-france/pull/2383/commits/8b0d672f43a112c5a25ff019841875e69ed697d2
       - Utilisation du plafond par foyer fiscal au lieu du plafond individuel pour la réduction d'impôt sur les dons aux parties politiques  https://github.com/openfisca/openfisca-france/pull/2383/commits/9e617a532bebae96f048c0f2db1d99161b415108
@@ -165,7 +173,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  à partir de 1978.
-* Zones impactées : 
+* Zones impactées :
      * `impot_revenu/credits_impot.py`
      * `impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
      * `impot_revenu/ir.py`

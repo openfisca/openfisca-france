@@ -2,7 +2,7 @@ description: Seuil de salaire (en multiple du smic horaire brut) pour bénéfici
 values:
   2016-01-01:
     value: 95
-  2019-01-01:
+  2018-10-01:
     value: 120
 metadata:
   short_label: Seuil salaire bonification max
