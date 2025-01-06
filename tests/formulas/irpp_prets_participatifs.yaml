@@ -27,5 +27,5 @@
     f2tt: 100000
   output:
     impot_revenu_restant_a_payer: -0.128*100000
-    prelevement_forfaitaire_unique_ir: -0.128*100000
+    prelevement_forfaitaire_unique_ir: 0.128*100000
     impots_directs: -0.128*100000
