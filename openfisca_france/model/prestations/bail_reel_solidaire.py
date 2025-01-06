@@ -12,7 +12,7 @@ ZONAGE_ABC = os.path.join(
 def preload_zone_abc():
     if not os.path.exists(ZONAGE_ABC):
         return None
-    with open(ZONAGE_ABC, 'r', encoding='latin1') as csvfile:
+    with open(ZONAGE_ABC, 'r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=';')
         return {
             row['CODGEO']: row['Zone en vigueur depuis le 5 juillet 2024']
