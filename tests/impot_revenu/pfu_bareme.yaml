@@ -77,7 +77,7 @@
       ind0:
         statut_marital: celibataire
   output:
-    prelevement_forfaitaire_unique_ir: -25600  # (700000 - 500000)*0.128
+    prelevement_forfaitaire_unique_ir: 25600  # (700000 - 500000)*0.128
     rfr: 700000
     impot_revenu_restant_a_payer: -41100  # pfu + cehr
 
@@ -121,7 +121,7 @@
       ind0:
         statut_marital: celibataire
   output:
-    prelevement_forfaitaire_unique_ir: -37120
+    prelevement_forfaitaire_unique_ir: 37120
     impot_revenu_restant_a_payer: -41320  # pfu + cehr
     rfr: 390000
 
@@ -146,7 +146,7 @@
       ind0:
         statut_marital: celibataire
   output:
-    prelevement_forfaitaire_unique_ir: -2560  # pfu des actifs numériques f3an qui ne peuvent pas être imposé au barème
+    prelevement_forfaitaire_unique_ir: 2560  # pfu des actifs numériques f3an qui ne peuvent pas être imposé au barème
     rfr: 390000
     impot_revenu_restant_a_payer: -94395  # pfu des an + taxation au barème des revenus éligibles au pfu
 
@@ -167,7 +167,7 @@
         statut_marital: celibataire
   output:
     rfr: 80000
-    prelevement_forfaitaire_unique_ir: -10240  # 80000*0.128
+    prelevement_forfaitaire_unique_ir: 10240  # 80000*0.128
     impot_revenu_restant_a_payer: -10240  # pfu
 
 - name: option_imposition_bareme_capital_2019
@@ -207,7 +207,7 @@
       ind0:
         statut_marital: celibataire
   output:
-    prelevement_forfaitaire_unique_ir: -10560  # (10000*1.25 (2go majoré dans tous les cas, pfu ou barème, à partir de 2020) + 70000)*0.128
+    prelevement_forfaitaire_unique_ir: 10560  # (10000*1.25 (2go majoré dans tous les cas, pfu ou barème, à partir de 2020) + 70000)*0.128
     impot_revenu_restant_a_payer: -10560  # pfu
     rfr: 82500
 
