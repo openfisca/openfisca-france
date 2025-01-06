@@ -4,7 +4,7 @@ values:
     value: 0.1
 metadata:
   last_value_still_valid_on: "2024-10-21"
-  short_label: Taux de la déduction pour frais professionnels
+  short_label: Taux
   ipp_csv_id: tx_abt_sal
   unit: /1
   reference:

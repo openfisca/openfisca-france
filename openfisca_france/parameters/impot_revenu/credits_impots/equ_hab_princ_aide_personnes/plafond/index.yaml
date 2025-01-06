@@ -1,6 +1,6 @@
 description: Plafonds spécifiques selon la nature des dépenses
 metadata:
-  short_label: Plafonds spécifiques selon la nature des dépenses
+  short_label: Plafonds
   order:
   - plafond_commun
   - maj_plaf_risques_techno_avant_2015

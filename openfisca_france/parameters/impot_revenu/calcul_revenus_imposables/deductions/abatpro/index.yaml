@@ -1,6 +1,6 @@
 description: Déduction forfaitaire sur les traitements, salaires et allocations chômage du chef des frais professionnels
 metadata:
-  short_label: Déduction sur les traitements, salaires et allocations chômage pour frais professionnels
+  short_label: Salaires et allocations chômage
   order:
   - taux
   - min

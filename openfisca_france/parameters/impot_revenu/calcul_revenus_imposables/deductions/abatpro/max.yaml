@@ -95,7 +95,7 @@ values:
   2023-01-01:
     value: 14171
 metadata:
-  short_label: Montant maximum de la déduction
+  short_label: Maximum
   last_value_still_valid_on: "2024-10-21"
   ipp_csv_id: max_abtsal
   unit: currency_next_year

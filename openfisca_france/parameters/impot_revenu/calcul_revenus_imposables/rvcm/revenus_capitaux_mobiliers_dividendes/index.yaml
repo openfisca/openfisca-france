@@ -1,6 +1,6 @@
 description: Abattement annuel applicable au montant imposable des revenus de capitaux mobiliers (dividendes), uniquement en cas de choix d'imposition au barème de l'impôt sur le revenu
 metadata:
-  short_label: Abattement pour les revenus de capitaux mobiliers, en cas de choix d'imposition au barème de l'impôt sur le revenu
+  short_label: Abattement rvcm si imposition à l'IR
   order:
   - taux_abattement
   - abattement_forfaitaire

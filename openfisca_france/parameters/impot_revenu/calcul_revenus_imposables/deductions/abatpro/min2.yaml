@@ -43,7 +43,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  short_label: Montant minimum de la déduction sur les allocations chômage
+  short_label: Minimum pour alloc. chômage
   last_value_still_valid_on: "2022-09-26"
   ipp_csv_id: min_abtsal_chom
   unit: currency_next_year

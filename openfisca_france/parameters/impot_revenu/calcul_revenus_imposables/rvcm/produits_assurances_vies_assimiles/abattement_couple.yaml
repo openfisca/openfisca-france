@@ -7,7 +7,7 @@ values:
   2001-01-01:
     value: 9200
 metadata:
-  short_label: Contribuables mariés ou pacsés
+  short_label: Montant couple
   last_value_still_valid_on: "2024-10-21"
   ipp_csv_id: abt_av
   unit: currency_next_year

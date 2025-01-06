@@ -1,4 +1,4 @@
-description: Abattement de l'impôt sur le revenu pour les enfants à charge mariés/pacsés ou chargés de famille par personne rattachée (case N)
+description: Montant de l'abattement spécial pour enfants à charge ayant fondé un foyer distinct (par personne rattachée)
 values:
   1974-01-01:
     value: 6000
@@ -95,7 +95,7 @@ values:
   2023-01-01:
     value: 6674
 metadata:
-  short_label: Abattement pour enfant marié/pacsé et enfant non marié chargé de famille (case N)
+  short_label: Abattement pour enfant marié/pacsé/chargé de famille
   last_value_still_valid_on: "2023-07-05"
   label_en: Tax allowance for net taxable income
   ipp_csv_id: abt_enfmaries

@@ -19,7 +19,7 @@ values:
   2022-01-01:
     value: 3500
 metadata:
-  short_label: Plafond de dépenses par enfant à charge
+  short_label: Plafond par enfant
   last_value_still_valid_on: "2024-04-26"
   label_en: Child care costs
   ipp_csv_id: plafgardenf

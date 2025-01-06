@@ -1,5 +1,5 @@
 description: Déduction pour frais d'accueil d'une personne âgée de plus de 75 ans dont le revenu imposable n'excède pas un certain plafond
 metadata:
-  short_label: Frais d'accueil personne âgée
+  short_label: Accueil personne âgée
   order:
   - plafond

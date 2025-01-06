@@ -59,7 +59,7 @@ values:
   2023-01-01:
     value: 442
 metadata:
-  short_label: Montant minimum de l'abattement, par pensionné
+  short_label: Minimum
   last_value_still_valid_on: "2024-06-11"
   ipp_csv_id: min_abtpen
   unit: currency_next_year

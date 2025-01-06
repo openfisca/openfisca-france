@@ -3,7 +3,7 @@ values:
   2012-01-01:
     value: 0.66
 metadata:
-  short_label: Taux du crédit d'impôt
+  short_label: Taux
   last_value_still_valid_on: "2024-04-26"
   label_en: Union dues
   ipp_csv_id: tx_cotsynd

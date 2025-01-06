@@ -1,6 +1,6 @@
 description: Abattement forfaitaire sur les pensions et retraites
 metadata:
-  short_label: Abattement sur les pensions
+  short_label: Pensions
   order:
   - taux
   - min
