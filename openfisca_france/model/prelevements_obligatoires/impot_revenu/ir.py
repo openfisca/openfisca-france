@@ -2348,10 +2348,10 @@ class correction_ir_seuils_recouvrement(Variable):
         impots_totaux_avant_imputations = iai + cehr + pfu - pfl
         impots_totaux_apres_imputations = iai + cehr + pfu - pfl - credits_impot - acomptes_ir
 
-        condition_1 = (impots_totaux_avant_imputations > seuil_avant_imputations) * ((impots_totaux_apres_imputations <= 0) + (impots_totaux_apres_imputations >= seuil_apres_imputations))
-        condition_2 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations < 0)
+        condition_1 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations > 0)
+        condition_2 = (impots_totaux_avant_imputations > seuil_avant_imputations) * (impots_totaux_apres_imputations > 0) * (impots_totaux_apres_imputations <= seuil_apres_imputations)
 
-        condition_correction_seuils_mise_recouvrement = ~(condition_1 | condition_2)
+        condition_correction_seuils_mise_recouvrement = (condition_1 | condition_2)
 
         return condition_correction_seuils_mise_recouvrement * impots_avant_seuils_mise_recouvrement
 
