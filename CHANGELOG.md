@@ -15,7 +15,7 @@
  - `tests/impot_revenu/pfu_bareme.yaml`.
 * Détails :
   - Améliore la lisibilité de la formule de l'impôt sur le revenu
-  - Objectif : séparer de la formule `impot_revenu_restant_a_payer` les complexités inhérentes au seuils de mise en recouvrement de l'iR (61 euros et 12 euros). Par conséquent cette formule est simplifiée sous la forme de `impot_revenu_restant_a_payer` = `impôts divers` - `correction seuils recouvrement`. Deux formules sont créées en complément : la première permettant de faire la somme des divers impôts, la seconde prenant en compte les conditions d'application des seuils de mise en recouvrement pour calculer si il y a un montant à déduire pour rapporter l'impôt à 0 euros si les seuils sont dépassés.
+  - Objectif : séparer de la formule `impot_revenu_restant_a_payer` les complexités inhérentes au seuils de mise en recouvrement de l'IR (61 euros et 12 euros). Par conséquent cette formule est simplifiée sous la forme de `impot_revenu_restant_a_payer` = `impôts divers` - `correction seuils recouvrement`. Deux formules sont créées en complément : la première permettant de faire la somme des divers impôts, la seconde prenant en compte les conditions d'application des seuils de mise en recouvrement pour calculer si il y a un montant à déduire pour rapporter l'impôt à 0 euros si les seuils sont dépassés.
 
 ### 169.13.2 [2409](https://github.com/openfisca/openfisca-france/pull/2409)
 
