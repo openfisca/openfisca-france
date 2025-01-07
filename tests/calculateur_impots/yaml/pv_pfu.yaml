@@ -19,7 +19,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    prelevement_forfaitaire_unique_ir: -6400.0
+    prelevement_forfaitaire_unique_ir: 6400.0
     nbptr: 1.0
     rfr: 50000.0
     impot_revenu_restant_a_payer: -6400
@@ -46,7 +46,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    prelevement_forfaitaire_unique_ir: -5120.0
+    prelevement_forfaitaire_unique_ir: 5120.0
     nbptr: 1.0
     rfr: 60000.0
     impot_revenu_restant_a_payer: -15120.0
