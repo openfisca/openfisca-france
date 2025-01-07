@@ -6,6 +6,7 @@ metadata:
   order:
   - quotient_familial
   - plafond_avantages_procures_par_demi_part
+  - reduction_ss_condition_revenus
   - abat_dom
   - decote
 documentation: |-
