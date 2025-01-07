@@ -1,5 +1,17 @@
 # Changelog
 
+### 169.14.1 [2410](https://github.com/openfisca/openfisca-france/pull/2410)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/01/2025.
+* Zones impactées : 
+  - `openfisca_france/parameters/prelevements_sociaux/pss`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/ars/ars_plaf`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/paje_plaf/ne_adopte_apres_04_2018/taux_partiel`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/paje_plaf/ne_adopte_apres_04_2018/taux_plein`
+* Détails :
+  - Met à jour les paramètres revalorisés au premier janvier 2025
+
 ### 169.14.0 [2401](https://github.com/openfisca/openfisca-france/pull/2401)
 
 * Amélioration technique et métier de la formule de l'impôt sur le revenu restant à payer
