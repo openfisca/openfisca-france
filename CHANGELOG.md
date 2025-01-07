@@ -1,5 +1,13 @@
 # Changelog
 
+### 169.13.2 [2409](https://github.com/openfisca/openfisca-france/pull/2409)
+
+- Évolution du système socio-fiscal.
+- Périodes concernées : à partir du 01/01/2025
+- Zones impactées : `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa`.
+- Détails :
+  - Ajoute les revalorisations du 1e janvier 2025
+
 ### 169.13.1 [2405](https://github.com/openfisca/openfisca-france/pull/2405)
 
 - Évolution du système socio-fiscal. Changement mineur.
