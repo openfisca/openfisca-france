@@ -1,14 +1,14 @@
-description: Décote, quotient familial et réductions spécifiques
+description: Quotient familial, abattements spécifiques DOM et décote
 metadata:
   short_label: Quotient familial, abattements DOM et décote
   documentation_start: true
   label_en: Family quotient ceiling and "decote"
   order:
-  - decote
   - quotient_familial
   - plafond_avantages_procures_par_demi_part
   - reduction_ss_condition_revenus
   - abat_dom
+  - decote
 documentation: |-
   Création du quotient familial en 1945 (Loi 45-0195 du 31/02/1945).
   Les montants des plafonnements de quotient familial et de la décote se trouvent à l'article 197-2 du CGI.

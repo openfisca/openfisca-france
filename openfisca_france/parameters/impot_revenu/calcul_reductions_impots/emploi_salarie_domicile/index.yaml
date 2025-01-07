@@ -6,10 +6,10 @@ metadata:
   order:
   - taux
   - plafond
-  - increment_plafond
-  - plafond_maximum
   - plafond_1ere_annee
   - plafond_invalides
+  - increment_plafond
+  - plafond_maximum
   - plafond_maximum_1ere_annee
 documentation: |-
   Dépenses de services à la personne à domicile : art. 199 sexdecies du CGI
