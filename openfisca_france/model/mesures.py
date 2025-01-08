@@ -776,22 +776,13 @@ class impots_directs(Variable):
         irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
         irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        # On comptabilise ir_pv_immo ici directement, et non pas dans la variable 'impot_revenu_restant_a_payer', car administrativement, cet impôt n'est pas dans l'impot_revenu_restant_a_payer, et n'est déclaré dans le formulaire 2042C que pour calculer le revenu fiscal de référence. On colle à la définition administrative, afin d'avoir une variable 'impot_revenu_restant_a_payer' qui soit comparable à l'IR du simulateur en ligne de la DGFiP
-        ir_pv_immo_i = menage.members.foyer_fiscal('ir_pv_immo', period)
-        ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period)
         isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        prelevement_liberatoire_autoentrepreneur_i = menage.members.foyer_fiscal('microsocial', period)
-        prelevement_liberatoire_autoentrepreneur = menage.sum(prelevement_liberatoire_autoentrepreneur_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             taxe_habitation
             + irpp_economique
-            + ir_pv_immo
             + isf_ifi
-            + prelevement_liberatoire_autoentrepreneur
             )
 
 
