@@ -1,10 +1,18 @@
 # Changelog
 
+### 169.14.2 [2411](https://github.com/openfisca/openfisca-france/pull/2411)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Nettoie des dates et retire des 0 intempestifs et des dates IR
+
 ### 169.14.1 [2410](https://github.com/openfisca/openfisca-france/pull/2410)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  à partir du 01/01/2025.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prelevements_sociaux/pss`
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/ars/ars_plaf`
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/paje_plaf/ne_adopte_apres_04_2018/taux_partiel`
@@ -16,7 +24,7 @@
 
 * Amélioration technique et métier de la formule de l'impôt sur le revenu restant à payer
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`.
  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`.
  - `tests/calculateur_impots/yaml/pv_pfu.yaml`.
