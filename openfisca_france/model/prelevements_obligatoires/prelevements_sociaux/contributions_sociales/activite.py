@@ -162,7 +162,7 @@ class crds_salaire(Variable):
         parameters = parameters(period).prelevements_sociaux.contributions_sociales
 
         montant_crds = montant_csg_crds_bareme(
-            law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
+            law_node = parameters.crds,
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
             abattement_parameter = parameters.csg.activite.abattement,
