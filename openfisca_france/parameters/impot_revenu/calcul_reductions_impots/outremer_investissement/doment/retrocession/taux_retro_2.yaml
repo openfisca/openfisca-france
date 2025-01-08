@@ -7,7 +7,7 @@ values:
   2015-01-01:
     value: 0.56
 metadata:
-  short_label: Taux de rétrocession de la réduction d'impôt (investissement inférieur à 300 000 €)
+  short_label: Taux si moins de 300 000 €
   last_value_still_valid_on: "2024-04-26"
   unit: /1
   reference:

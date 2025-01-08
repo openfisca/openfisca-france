@@ -5,7 +5,7 @@ values:
   2017-01-01:
     value: 0.48
 metadata:
-  short_label: Taux de la réduction d'impôt lorsque la SOFICA s’engage à investir 10 % en sociétés de réalisation et à consacrer 10 % aux œuvres audiovisuelles (séries ou droits internationaux) (case 7EN) 
+  short_label: Taux majoré 2
   last_value_still_valid_on: "2024-11-18"
   unit: /1
   reference:

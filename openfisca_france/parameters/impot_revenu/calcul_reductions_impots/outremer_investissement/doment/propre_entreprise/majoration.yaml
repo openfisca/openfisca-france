@@ -3,7 +3,7 @@ values:
   2009-01-01:
     value: 2.5
 metadata:
-  short_label: Coefficient de majoration du plafond de réductions
+  short_label: Coeff. de majoration
   last_value_still_valid_on: "2022-10-11"
   reference:
     2009-01-01:

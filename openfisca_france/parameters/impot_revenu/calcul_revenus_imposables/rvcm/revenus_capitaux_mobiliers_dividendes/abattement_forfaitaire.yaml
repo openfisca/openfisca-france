@@ -17,7 +17,7 @@ values:
   2013-01-01:
     value: null
 metadata:
-  short_label: Montant maximal de l'abattement
+  short_label: Montant maximum
   ipp_csv_id: abt_rcm
   unit: currency_next_year
   reference:

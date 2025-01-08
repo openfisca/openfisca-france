@@ -1,6 +1,6 @@
 description: Réduction d'impôt sur les intérêts de paiements différés accordés lors de la transmission d'une exploitation agricole
 metadata:
-  short_label: Intérêts pour paiement différé accordé aux agriculteurs
+  short_label: Intérêts paiements différés agriculteurs
   order:
   - taux
   - plafond

@@ -5,7 +5,7 @@ values:
   2017-01-01:
     value: 0.128
 metadata:
-  short_label: Taux d'imposition
+  short_label: Taux
   last_value_still_valid_on: "2024-11-07"
   unit: /1
   reference:

@@ -1,7 +1,7 @@
 description: Réduction d'impôt sur le revenu (IR) pour les dépenses d’accueil dans un établissement pour personnes dépendantes
 metadata:
   documentation_start: true
-  short_label: Dépenses d'accueil dans un établissement pour personnes dépendantes
+  short_label: Personnes dépendantes
   label_en: Expenditures in a host Establishment for Dependent Persons
   order:
   - taux

@@ -5,7 +5,7 @@ values:
   2012-01-01:
     value: 0.76
 metadata:
-  short_label: Taux du crédit d'impôt
+  short_label: Taux
   last_value_still_valid_on: "2022-10-11"
   unit: /1
   reference:

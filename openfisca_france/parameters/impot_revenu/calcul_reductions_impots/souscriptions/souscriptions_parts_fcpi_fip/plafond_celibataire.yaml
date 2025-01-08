@@ -7,7 +7,7 @@ values:
   2002-01-01:
     value: 12000
 metadata:
-  short_label: Plafond des versements pour contribuable célibataire, veuf ou divorcé
+  short_label: Plafond célibataire
   last_value_still_valid_on: "2024-11-18"
   ipp_csv_id: plaffcp_celib
   unit: currency_next_year

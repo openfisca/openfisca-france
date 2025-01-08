@@ -1,7 +1,7 @@
 description: Crédit d'impôt pour frais de garde des enfants à charge âgés de moins de six ans à l'extérieur du domicile
 metadata:
   documentation_start: true
-  short_label: Frais de garde des enfants à charge âgés de moins de six ans
+  short_label: Frais de garde des enfants
   order:
   - taux
   - plafond

@@ -9,7 +9,7 @@ values:
   2020-08-10:
     value: 0.3
 metadata:
-  short_label: Taux de la réduction d'impôt pour les établissements en outre-mer (case 7FL)
+  short_label: Taux Outre-mer
   last_value_still_valid_on: "2024-11-18"
   unit: /1
   reference:

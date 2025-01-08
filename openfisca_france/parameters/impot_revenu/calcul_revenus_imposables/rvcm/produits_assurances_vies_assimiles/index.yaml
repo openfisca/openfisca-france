@@ -1,6 +1,6 @@
 description: Abattement annuel applicable au montant imposable des produits de bons ou contrats d'une durée au moins égale à 8 ans (ou 6 ans pour ceux souscrits avant le 1er janvier 1990)
 metadata:
-  short_label: Abattement pour les produits d'assurance vie (contrat > 8 ans)
+  short_label: Abattement produits d'assurance vie (> 8 ans)
   order:
   - abattement_celib
   - abattement_couple

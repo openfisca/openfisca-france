@@ -3,7 +3,7 @@ values:
   1994-01-01:
     value: 0.25
 metadata:
-  short_label: Taux de la réduction pour les versements PME et ESUS effectués du 12.03.2023 au 31.12.2023 (case 7CH)
+  short_label: Taux ESUS
   unit: /1
   reference:
     1994-01-01:

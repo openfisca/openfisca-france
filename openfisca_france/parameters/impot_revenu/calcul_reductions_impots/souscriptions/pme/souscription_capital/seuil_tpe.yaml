@@ -5,7 +5,7 @@ values:
   2012-01-01:
     value: null
 metadata:
-  short_label: Plafond des versements pour célibataire, veuf ou divorcé, pour les TPE
+  short_label: Plafond pour les TPE
   last_value_still_valid_on: "2024-11-18"
   unit: currency_next_year
   reference:

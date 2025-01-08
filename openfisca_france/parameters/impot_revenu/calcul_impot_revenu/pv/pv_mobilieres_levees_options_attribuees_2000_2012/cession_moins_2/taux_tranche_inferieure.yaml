@@ -7,7 +7,7 @@ values:
   2013-01-01:
     value: null
 metadata:
-  short_label: Taux tranche inf.
+  short_label: Tranche inf.
   ipp_csv_id: tx_stockoptions2
   unit: /1
   notes:

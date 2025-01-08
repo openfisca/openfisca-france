@@ -7,7 +7,7 @@ values:
   2012-01-01:
     value: 50000
 metadata:
-  short_label: Plafond des versements pour célibataire, veuf ou divorcé
+  short_label: Plafond
   last_value_still_valid_on: "2024-04-26"
   unit: currency_next_year
   reference:

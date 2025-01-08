@@ -3,7 +3,7 @@ values:
   2012-01-01:
     value: 0.18
 metadata:
-  short_label: Taux de la réduction d’impôt pour les versements PME et ESUS effectués du 01.01.2023 au 11.03.2023 (case 7CI)
+  short_label: Taux pour numéraire après 2012
   unit: /1
   reference:
     2012-01-01:
