@@ -2373,10 +2373,15 @@ class impot_revenu_restant_a_payer(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        impots_avant_seuils_recouvrement = foyer_fiscal('impot_revenu_avant_seuils_mise_recouvrement', period)
+        iai = foyer_fiscal('iai', period)
+        cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
+        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        credits_impot = foyer_fiscal('credits_impot', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)   
+
         correction_seuils_recouvrement = foyer_fiscal('correction_ir_seuils_recouvrement', period)
 
-        return (impots_avant_seuils_recouvrement - correction_seuils_recouvrement)
+        return -(iai + cehr + pfu - credits_impot - acomptes_ir) - correction_seuils_recouvrement
 
 
 class foyer_impose(Variable):
