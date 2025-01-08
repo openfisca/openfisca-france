@@ -1,5 +1,16 @@
 # Changelog
 
+### 169.14.3 [2412](https://github.com/openfisca/openfisca-france/pull/2412)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2025
+* Zones impactées : 
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/ressources`.
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/al_param_r0/r0`
+  - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/remplacement/seuils`
+* Détails :
+  - Mets à jour les paramètres qui ont évolué au premier janvier 2025
+
 ### 169.14.2 [2411](https://github.com/openfisca/openfisca-france/pull/2411)
 
 * Changement mineur.
