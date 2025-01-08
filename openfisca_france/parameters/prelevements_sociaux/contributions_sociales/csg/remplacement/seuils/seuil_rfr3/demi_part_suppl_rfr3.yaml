@@ -14,9 +14,11 @@ values:
     value: 6290
   2024-01-01:
     value: 6623
+  2025-01-01:
+    value: 6941
 metadata:
   short_label: Majoration du seuil par demi-part de quotient familial supplémentaire
-  last_value_still_valid_on: "2024-07-24"
+  last_value_still_valid_on: "2025-01-08"
   label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red3_demip
   unit: currency
@@ -46,6 +48,11 @@ metadata:
     2024-01-01:
       title: Lettre ministérielle D23-022880 du 23/11/2023
       href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_23112023.pdf
+    2025-01-01:
+    - title: Article L136-8 du Code de la sécurité sociale (seuils avant revalorisation)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683546
+    - title: Lettre ministérielle D-24-019252 du 4/12/2024
+      href: https://legislation.lassuranceretraite.fr/Pdf/instruction_ministerielle_04122024.pdf
   official_journal_date:
     2018-01-01: "2017-12-31"
     2019-01-01: "2018-12-26"
