@@ -82,4 +82,3 @@ class bail_reel_solidaire(Variable):
             'rfr', period.n_2), role=FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return where(zones_menage is not None, rfr <= (plafond_revenu_base + plafond_revenu_supplementaire), False)
-
