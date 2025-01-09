@@ -2375,11 +2375,20 @@ class autres_impositions_forfaitaires(Variable):
         ir_pv_immo = foyer_fiscal('ir_pv_immo', period)
         prelevement_liberatoire_autoentrepreneur = foyer_fiscal('microsocial', period)
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
         indemnite_compensatrice_agents_assurance = foyer_fiscal('indemnite_compensatrice_agents_assurance', period)
 
-        return ir_pv_immo + prelevement_liberatoire_autoentrepreneur + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + indemnite_compensatrice_agents_assurance
+        return (
+            ir_pv_immo
+            + prelevement_liberatoire_autoentrepreneur
+            + taxation_plus_values_hors_bareme
+            + prelevement_forfaitaire_liberatoire
+            + cont_rev_loc
+            + tax_rvcm_forfaitaire
+            + indemnite_compensatrice_agents_assurance
+            )
 
 
 class impot_revenu_restant_a_payer(Variable):
