@@ -1,5 +1,14 @@
 # Changelog
 
+### 169.14.4 [2413](https://github.com/openfisca/openfisca-france/pull/2413)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : 
+  - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/pv/bspce/taux_moins_3_ans.yaml`.
+* Détails :
+  - Corrige le format pour une date dans les metadata de bspce
+
 ### 169.14.3 [2412](https://github.com/openfisca/openfisca-france/pull/2412)
 
 * Évolution du système socio-fiscal.
