@@ -78,15 +78,14 @@ class revenu_disponible(Variable):
             )
 
     def formula_2024_01_01(menage, period, parameters):
-        revenus_nets_menage = menage('revenus_nets_menage', period)
-        impots_directs = menage('impots_directs', period)
+        revenus_nets_apres_impot_menage = menage('revenus_nets_apres_impot_menage', period)
 
         # On prend en compte les prestations sociales touchées par une famille dont le demandeur est dans le ménage
         prestations_sociales_i = menage.members.famille('prestations_sociales', period)  # PF de la famille auquel appartient chaque membre du ménage
         prestations_sociales = menage.sum(prestations_sociales_i, role = Famille.DEMANDEUR)  # On somme seulement pour les demandeurs
 
         return (
-            revenus_nets_menage
+            revenus_nets_apres_impot_menage
             + impots_directs
             + prestations_sociales
             )
@@ -102,6 +101,23 @@ class niveau_de_vie(Variable):
         revenu_disponible = menage('revenu_disponible', period)
         uc = menage('unites_consommation', period)
         return revenu_disponible / uc
+
+
+class revenus_nets_apres_impot_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = 'Revenus nets après impôts'
+    definition_period = YEAR
+
+    def formula_2024_01_01(menage, period):
+        revenus_nets_menage = menage('revenus_nets_menage', period, options = [ADD])
+        irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
+        irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period)
+        isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return revenus_nets_menage + irpp_economique + isf_ifi
 
 
 class revenus_nets_menage(Variable):
