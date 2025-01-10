@@ -11,7 +11,7 @@ class ppa_eligibilite(Variable):
     set_input = set_input_dispatch_by_period
     reference = ['Article L842-2 du Code de la Sécurité Sociale',
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2B88CEFCB83FCAFA4AA31671DAC89DD.tplgfr26s_3?idArticle=LEGIARTI000031087615&cidTexte=LEGITEXT000006073189&dateTexte=20181226'
-       ]
+        ]
 
     def formula(famille, period, parameters):
         ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
