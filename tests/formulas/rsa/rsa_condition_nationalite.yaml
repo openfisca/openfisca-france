@@ -11,3 +11,12 @@
   output:
     ressortissant_eee: [true, true, false, false, false]
     rsa_condition_nationalite: [false, true, true, false, true]
+
+- period: 2018-06
+  input:
+    age: [20, 17, 19, 20, 20, 20]
+    nationalite: [DE, DE, CH, NZ, NZ, MA]
+    duree_possession_titre_sejour: [0.2, 0.25, 0.25, 4.9, 5, 4.8]
+  output:
+    ressortissant_eee: [true, true, false, false, false, false]
+    ppa_eligibilite: [false, false, true, false, true, false]

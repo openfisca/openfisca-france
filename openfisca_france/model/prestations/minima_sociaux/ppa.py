@@ -21,7 +21,7 @@ class ppa_eligibilite(Variable):
         rsa_majore_eligibilite = famille('rsa_majore_eligibilite', period)
         rsa_condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
         rsa_condition_nationalite = famille.any(rsa_condition_nationalite_i)
-        condition_nationalite = (rsa_condition_nationalite + ppa_majore_eligibilite) > 0
+        condition_nationalite = (rsa_condition_nationalite + rsa_majore_eligibilite) > 0
 
         return condition_age * condition_nationalite
 
