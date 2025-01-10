@@ -1,10 +1,18 @@
 # Changelog
 
+### 169.14.5 [2415](https://github.com/openfisca/openfisca-france/pull/2415)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2016.
+* Zones impactées : `model/prestations/minima_sociaux/ppa.py`.
+* Détails :
+  - Ajoute le critère d'éligibilité sur la nationalité à la PPA
+
 ### 169.14.4 [2413](https://github.com/openfisca/openfisca-france/pull/2413)
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/pv/bspce/taux_moins_3_ans.yaml`.
 * Détails :
   - Corrige le format pour une date dans les metadata de bspce
@@ -13,7 +21,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2025
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/ressources`.
   - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/al_param_r0/r0`
   - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/remplacement/seuils`
