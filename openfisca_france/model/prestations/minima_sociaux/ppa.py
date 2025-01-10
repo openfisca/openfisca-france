@@ -9,14 +9,21 @@ class ppa_eligibilite(Variable):
     label = 'Eligibilité à la PPA pour un mois'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+    reference = ['Article L842-2 du Code de la Sécurité Sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2B88CEFCB83FCAFA4AA31671DAC89DD.tplgfr26s_3?idArticle=LEGIARTI000031087615&cidTexte=LEGITEXT000006073189&dateTexte=20181226'
+       ]
 
     def formula(famille, period, parameters):
         ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
         age_min = ppa.pa_cond.age_min
         condition_age_i = famille.members('age', period) >= age_min
         condition_age = famille.any(condition_age_i)
+        rsa_majore_eligibilite = famille('rsa_majore_eligibilite', period)
+        rsa_condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
+        rsa_condition_nationalite = famille.any(rsa_condition_nationalite_i)
+        condition_nationalite = (rsa_condition_nationalite + ppa_majore_eligibilite) > 0
 
-        return condition_age
+        return condition_age * condition_nationalite
 
 
 class ppa_plancher_revenu_activite_apprenant(Variable):
@@ -425,7 +432,7 @@ class ppa_forfait_logement(Variable):
 class ppa_fictive_ressource_activite(Variable):
     value_type = float
     entity = Famille
-    label = "Proportion de ressources provenant de l'activité prise en compte pour la primie d'activité fictive"
+    label = "Proportion de ressources provenant de l'activité prise en compte pour la prime d'activité fictive"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
