@@ -1724,6 +1724,15 @@ class ip_net(Variable):
 
         return around(max_(0, ir_plaf_qf - decote - reduction_ss_condition_revenus))
 
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Impôt net avant réductions suite à l'abrogation de la "réfaction foyers modestes"
+        '''
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        decote_gain_fiscal = foyer_fiscal('decote_gain_fiscal', period)
+
+        return around(ir_plaf_qf - decote_gain_fiscal)
+
 
 class iaidrdi(Variable):
     value_type = float

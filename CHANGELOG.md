@@ -1,5 +1,13 @@
 # Changelog
 
+### 169.14.6 [2416](https://github.com/openfisca/openfisca-france/pull/2416)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2020.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`.
+* Détails :
+  - Enlève de la formule de l'IR net la réfaction foyers modestes (reduction_ss_condition_revenus) à partir de son abrogation en 2020
+
 ### 169.14.5 [2415](https://github.com/openfisca/openfisca-france/pull/2415)
 
 * Évolution du système socio-fiscal.
