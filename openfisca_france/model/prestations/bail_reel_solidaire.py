@@ -7,7 +7,6 @@ import numpy as np
 def load_zonage_file(period, parameters):
     chemin_fichier_zonage_abc = os.path.join(parameters(period).prestations_sociales.bail_reel_solidaire.parametres_generaux.fichier_zonage[0])
 
-
     if not os.path.exists(chemin_fichier_zonage_abc):
         return None
 
@@ -18,18 +17,18 @@ def load_zonage_file(period, parameters):
 
 def plafond_par_zone_et_composition(nb_personnes, plafonds_par_zones, zone):
     plafond_zone = plafonds_par_zones[f'zone_{zone}']
-    
+
     tranches_composition = range(1, 7)
     conditions_nb_personnes = [
         nb_personnes == i if i < 6 else nb_personnes >= i
         for i in tranches_composition
-    ]
-    
+        ]
+
     plafonds_revenus = [
         plafond_zone[f'nb_personnes_{i}']
         for i in tranches_composition
-    ]
-    
+        ]
+
     return select(conditions_nb_personnes, plafonds_revenus)
 
 
@@ -38,7 +37,7 @@ def plafond_supplementaire_par_zone(nb_personnes, plafonds_par_zones, zone, nb_p
         nb_personnes > nb_personnes_max,
         (nb_personnes - nb_personnes_max) * plafonds_par_zones[f'zone_{zone}']['nb_personnes_supplementaires'],
         0
-    )
+        )
 
 
 class bail_reel_solidaire(Variable):
@@ -65,15 +64,13 @@ class bail_reel_solidaire(Variable):
 
         plafond_revenu_base = select(
             [zones_menage == zone for zone in zones_abc_eligibles],
-            [plafond_par_zone_et_composition(
-                nb_personnes, plafonds_par_zones, zone) for zone in zones_abc_eligibles]
-        )
+            [plafond_par_zone_et_composition(nb_personnes, plafonds_par_zones, zone) for zone in zones_abc_eligibles]
+            )
 
         plafond_revenu_supplementaire = select(
             [zones_menage == zone for zone in zones_abc_eligibles],
-            [plafond_supplementaire_par_zone(
-                nb_personnes, plafonds_par_zones, zone, nb_personnes_max) for zone in zones_abc_eligibles]
-        )
+            [plafond_supplementaire_par_zone(nb_personnes, plafonds_par_zones, zone, nb_personnes_max) for zone in zones_abc_eligibles]
+            )
 
         rfr = menage.sum(menage.members.foyer_fiscal(
             'rfr', period.n_2), role=FoyerFiscal.DECLARANT_PRINCIPAL)
