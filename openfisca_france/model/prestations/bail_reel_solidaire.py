@@ -3,21 +3,14 @@ import os
 import csv
 import numpy as np
 
-CHEMIN_FICHIER_ZONAGE_ABC = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
-    '../../assets/zonage-communes/zonage-abc-juillet-2024.csv'
-    )
-ZONES_ABC = [
-    'A', 'Abis', 'B1', 'B2', 'C'
-    ]
-NB_PERSONNES_MAX = 6
 
+def preload_zone_abc(period, parameters):
+    chemin_fichier_zonage_abc = os.path.join(parameters(period).prestations_sociales.bail_reel_solidaire.parametres_generaux.fichier_zonage[0])
 
-def preload_zone_abc():
-    if not os.path.exists(CHEMIN_FICHIER_ZONAGE_ABC):
+    if not os.path.exists(chemin_fichier_zonage_abc):
         return None
 
-    with open(CHEMIN_FICHIER_ZONAGE_ABC, 'r', encoding='utf-8') as csvfile:
+    with open(chemin_fichier_zonage_abc, 'r', encoding='utf-8') as csvfile:
         csv_reader = csv.DictReader(csvfile, delimiter=';')
         return {row['CODGEO']: row['Zone en vigueur depuis le 5 juillet 2024'] for row in csv_reader}
 
@@ -30,6 +23,10 @@ class bail_reel_solidaire(Variable):
     definition_period = MONTH
 
     def formula(menage, period, parameters):
+        parametres = parameters(period).prestations_sociales.bail_reel_solidaire.parametres_generaux
+        zones_abc_eligibles = parametres.zones_abc_eligibles
+        nb_personnes_max = parametres.nombre_personnes_maximum
+
         def plafond_par_zone_et_composition(nb_personnes, plafonds_par_zones, zone):
             plafond_zone = plafonds_par_zones[f'zone_{zone}']
             conditions_nb_personnes = [
@@ -51,10 +48,10 @@ class bail_reel_solidaire(Variable):
             return select(conditions_nb_personnes, plafonds_revenus)
 
         def plafond_supplementaire_par_zone(nb_personnes, plafonds_par_zones, zone):
-            return where(nb_personnes > NB_PERSONNES_MAX,
-                    (nb_personnes - NB_PERSONNES_MAX) * plafonds_par_zones[f'zone_{zone}']['nb_personnes_supplementaires'], 0)
+            return where(nb_personnes > nb_personnes_max,
+                    (nb_personnes - nb_personnes_max) * plafonds_par_zones[f'zone_{zone}']['nb_personnes_supplementaires'], 0)
 
-        zones_par_depcom = preload_zone_abc()
+        zones_par_depcom = preload_zone_abc(period, parameters)
         if not zones_par_depcom:
             return False
 
@@ -67,15 +64,15 @@ class bail_reel_solidaire(Variable):
             period).prestations_sociales.bail_reel_solidaire.plafonds_par_zones
 
         plafond_revenu_base = select(
-            [zones_menage == zone for zone in ZONES_ABC],
+            [zones_menage == zone for zone in zones_abc_eligibles],
             [plafond_par_zone_et_composition(
-                nb_personnes, plafonds_par_zones, zone) for zone in ZONES_ABC]
+                nb_personnes, plafonds_par_zones, zone) for zone in zones_abc_eligibles]
             )
 
         plafond_revenu_supplementaire = select(
-            [zones_menage == zone for zone in ZONES_ABC],
+            [zones_menage == zone for zone in zones_abc_eligibles],
             [plafond_supplementaire_par_zone(
-                nb_personnes, plafonds_par_zones, zone) for zone in ZONES_ABC]
+                nb_personnes, plafonds_par_zones, zone) for zone in zones_abc_eligibles]
             )
 
         rfr = menage.sum(menage.members.foyer_fiscal(
