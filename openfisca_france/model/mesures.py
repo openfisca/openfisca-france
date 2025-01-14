@@ -111,12 +111,12 @@ class revenus_nets_apres_impot_menage(Variable):
     def formula_2024_01_01(menage, period):
         revenus_nets_menage = menage('revenus_nets_menage', period, options = [ADD])
         impot_revenu_restant_a_payer_i = menage.members.foyer_fiscal('impot_revenu_restant_a_payer', period)
-        impot_revenu_restant_a_payer = menage.sum(impot_revenu_restant_a_payer, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        impot_revenu_restant_a_payer = menage.sum(impot_revenu_restant_a_payer_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period)
         isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return revenus_nets_menage + impot_revenu_restant_a_payer_i + isf_ifi
+        return revenus_nets_menage + impot_revenu_restant_a_payer + isf_ifi
 
 
 class revenus_nets_menage(Variable):
@@ -768,7 +768,7 @@ class irpp_economique(Variable):
         Cette notion est administrative. L'impôt total payé correspond à cette notion administrative, augmentée des acomptes.
         '''
         impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
-        #prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        # prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
 
         return impot_revenu_restant_a_payer - acomptes_ir  # + prelevement_forfaitaire_liberatoire # Car par convention, impot_revenu_restant_a_payer et prelevement_forfaitaire_liberatoire sont des montants négatifs et acomptes_ir un montant positif
