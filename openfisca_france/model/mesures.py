@@ -768,10 +768,10 @@ class irpp_economique(Variable):
         Cette notion est administrative. L'impôt total payé correspond à cette notion administrative, augmentée des acomptes.
         '''
         impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
-        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        #prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
 
-        return impot_revenu_restant_a_payer + prelevement_forfaitaire_liberatoire - acomptes_ir  # Car par convention, impot_revenu_restant_a_payer et prelevement_forfaitaire_liberatoire sont des montants négatifs et acomptes_ir un montant positif
+        return impot_revenu_restant_a_payer - acomptes_ir  # + prelevement_forfaitaire_liberatoire # Car par convention, impot_revenu_restant_a_payer et prelevement_forfaitaire_liberatoire sont des montants négatifs et acomptes_ir un montant positif
 
 
 class impots_directs(Variable):
