@@ -30,7 +30,7 @@ class aide_logement(Variable):
         als = famille('als', period)
         alf = famille('alf', period)
 
-        return max_(max_(apl, als), alf)
+        return apl + als + alf
 
 
 class apl(Variable):
