@@ -1,5 +1,13 @@
 # Changelog
 
+### 169.15.7 [2418](https://github.com/openfisca/openfisca-france/pull/2418)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/aides_logement.py`.
+* Détails :
+  - Supprime une condition de non cumul des aides au logement qui est redondante par rapport aux conditions dans les variables en amont
+
 ### 169.14.6 [2416](https://github.com/openfisca/openfisca-france/pull/2416)
 
 * Changement mineur.
