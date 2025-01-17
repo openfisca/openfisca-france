@@ -42,9 +42,12 @@ values:
     value: 8892
   2024-01-01:
     value: 9363
+  2025-01-01:
+    value: 9812
 metadata:
   short_label: Pour couple avec deux revenus ou parent isolé
   label_en: Increase for couple with two incomes or single parent
+  last_value_still_valid_on: "2025-01-21"
   ipp_csv_id: maj_plaf_cf_apje_adopt_bi
   unit: currency
   reference:
@@ -107,6 +110,10 @@ metadata:
     2024-01-01:
       title: Arrêté du 22/12/2023, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048680633
+    2025-01-01:
+    - title: Bulletin officiel Santé - Protection sociale - Solidarité n° 2024/34 du 31/12/2024
+      href: https://sante.gouv.fr/fichiers/bo/2024/2024.34.sante.pdf
+    - title: instruction interministérielle n° DSS/2B/2024/181 20/12/2024
   official_journal_date:
     1986-01-01: "1985-12-21"
     2003-07-01: 2004-01-01; 2003-06-28
