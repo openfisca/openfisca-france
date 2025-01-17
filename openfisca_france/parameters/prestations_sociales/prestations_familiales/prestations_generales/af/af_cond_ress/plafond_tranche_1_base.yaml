@@ -16,6 +16,8 @@ values:
     value: 58396
   2023-01-01:
     value: 59330
+  2025-01-01:
+    value: 65473
 metadata:
   short_label: Plafond n°1
   last_value_still_valid_on: "2023-01-31"

@@ -16,6 +16,8 @@ values:
     value: 26432
   2024-01-01:
     value: 27833
+  2025-01-01:
+    value: 29169
 metadata:
   short_label: Base du plafond de ressources
   last_value_still_valid_on: "2024-01-26"

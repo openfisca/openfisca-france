@@ -22,6 +22,8 @@ values:
     value: 4450
   2024-01-01:
     value: 4680
+  2025-01-01:
+    value: 4907
 metadata:
   short_label: Biactifs et parents isolés
   label_en: Biactive and single parents

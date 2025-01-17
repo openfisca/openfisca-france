@@ -16,6 +16,8 @@ values:
     value: 70074
   2023-01-01:
     value: 71194
+  2025-01-01:
+    value: 78565
 metadata:
   short_label: Tranche 1
   last_value_still_valid_on: "2023-01-31"

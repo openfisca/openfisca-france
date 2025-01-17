@@ -16,6 +16,8 @@ values:
     value: 10625
   2024-01-01:
     value: 11188
+  2025-01-01:
+    value: 11725
 metadata:
   short_label: Majoration pour couple avec deux revenus ou parent isolé
   last_value_still_valid_on: "2024-01-26"

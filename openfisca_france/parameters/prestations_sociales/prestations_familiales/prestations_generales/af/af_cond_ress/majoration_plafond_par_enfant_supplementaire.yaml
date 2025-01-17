@@ -16,6 +16,8 @@ values:
     value: 5839
   2023-01-01:
     value: 5932
+  2025-01-01:
+    value: 6546
 metadata:
   short_label: Majoration ressource par enfant supplémentaire
   last_value_still_valid_on: "2023-01-31"

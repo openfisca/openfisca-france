@@ -22,6 +22,8 @@ values:
     value: 11060
   2024-01-01:
     value: 11650
+  2025-01-01:
+    value: 12209
 metadata:
   short_label: Couple avec 1 revenu
   label_en: Couple with 1 income
