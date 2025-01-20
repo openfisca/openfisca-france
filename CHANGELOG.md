@@ -1,6 +1,18 @@
 # Changelog
 
-### 169.15.7 [2418](https://github.com/openfisca/openfisca-france/pull/2418)
+### 169.14.8 [2420](https://github.com/openfisca/openfisca-france/pull/2420)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2025.
+* Zones impactées :
+  * `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/ressources`
+  * `openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/plaf_cmg`
+  * `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_cond_ress`
+  * `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/cf/cf_plaf`
+* Détails :
+  - Revalorisations de plusieurs paramètres pour l'aide au logement et les prestations familiales.
+
+### 169.14.7 [2418](https://github.com/openfisca/openfisca-france/pull/2418)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
