@@ -37,10 +37,10 @@ brackets:
     2024-01-01:
       value: 0
 metadata:
-  short_label: Montant
+  short_label: Montant du quotient familial
   reference:
     2024-03-28:
       title: Décret n° 2024-277 du 28 mars 2024 relatif au « Pass'colo »
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049339145
-  threshold_unit: year
+  threshold_unit: currency
   type: single_amount

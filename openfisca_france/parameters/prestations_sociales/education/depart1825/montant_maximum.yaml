@@ -8,6 +8,16 @@ values:
     value: 300
   2021-09-30:
     value: 200
+  2022-01-01:
+    value: 250
 metadata:
   short_label: Montant maximum
   unit: currency
+  reference:
+    2021-06-02:
+      href: https://www.caf.fr/allocataires/vies-de-famille/articles/un-dispositif-pour-aider-les-18-25-ans-partir-en-vacances
+    2021-09-30:
+      href: https://www.caf.fr/allocataires/vies-de-famille/articles/un-dispositif-pour-aider-les-18-25-ans-partir-en-vacances
+    2022-01-01:
+      title: Bilan administratif du dispositif Départ 18:25 pour 2022
+      href: https://www.ancv.com/sites/default/files/2023-06/d1825_bilan_2022.pdf
