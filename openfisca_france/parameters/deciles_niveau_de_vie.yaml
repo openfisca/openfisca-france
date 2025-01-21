@@ -11,8 +11,12 @@ brackets:
       value: 12560
     2021-01-01:
       value: 12290
+    2022-01-01:
+      value: 12970
     2024-01-01:
       value: 13814
+    2025-01-01:
+      value: 14189
   rate:
     2017-01-01:
       value: 1
@@ -27,8 +31,12 @@ brackets:
       value: 15860
     2021-01-01:
       value: 15550
+    2022-01-01:
+      value: 16350
     2024-01-01:
       value: 17479
+    2025-01-01:
+      value: 17887
   rate:
     2017-01-01:
       value: 2
@@ -43,8 +51,12 @@ brackets:
       value: 18490
     2021-01-01:
       value: 18360
+    2022-01-01:
+      value: 19300
     2024-01-01:
       value: 20637
+    2025-01-01:
+      value: 21114
   rate:
     2017-01-01:
       value: 3
@@ -59,8 +71,12 @@ brackets:
       value: 20810
     2021-01-01:
       value: 20790
+    2022-01-01:
+      value: 21800
     2024-01-01:
       value: 23368
+    2025-01-01:
+      value: 23849
   rate:
     2017-01-01:
       value: 4
@@ -75,8 +91,12 @@ brackets:
       value: 23230
     2021-01-01:
       value: 23160
+    2022-01-01:
+      value: 24330
     2024-01-01:
       value: 26032
+    2025-01-01:
+      value: 26617
   rate:
     2017-01-01:
       value: 5
@@ -91,8 +111,12 @@ brackets:
       value: 25790
     2021-01-01:
       value: 25840
+    2022-01-01:
+      value: 27140
     2024-01-01:
       value: 29044
+    2025-01-01:
+      value: 29691
   rate:
     2017-01-01:
       value: 6
@@ -107,8 +131,12 @@ brackets:
       value: 28690
     2021-01-01:
       value: 28900
+    2022-01-01:
+      value: 30530
     2024-01-01:
       value: 32484
+    2025-01-01:
+      value: 33400
   rate:
     2017-01-01:
       value: 7
@@ -123,8 +151,12 @@ brackets:
       value: 32890
     2021-01-01:
       value: 33440
+    2022-01-01:
+      value: 35290
     2024-01-01:
       value: 37587
+    2025-01-01:
+      value: 38607
   rate:
     2017-01-01:
       value: 8
@@ -139,8 +171,12 @@ brackets:
       value: 41400
     2021-01-01:
       value: 41870
+    2022-01-01:
+      value: 43840
     2024-01-01:
       value: 47062
+    2025-01-01:
+      value: 47961
   rate:
     2017-01-01:
       value: 9
@@ -163,10 +199,16 @@ metadata:
     2021-01-01:
       title: Distribution des niveaux de vie, données annuelles de 1996 à 2021, INSEE
       href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
+    2022-01-01:
+      title: Distribution des niveaux de vie, données annuelles de 1996 à 2022, INSEE
+      href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
   notes:
     2020-01-01: 
     - title: données provisoires en date de avril 2024. Pour l'année 2020 deux séries sont présentées mais uniquement la deuxième est reportée ici.
     2021-01-01: 
     - title: données provisoires en date de avril 2024
     2024-01-01:
-     - title: les valeurs 2024 sont des projections à partir des données 2021, dernière année connue. Les valeurs 2021 ont été augmentées de 12,4 % qui est l'évolution moyenne du SMPT économique cumulées pour les années 2022 (3,7%), 2023 (5.1%), 2024 (3.1%) telles que prévues dans le Rapport économique social et financier (RESF) attaché au PLF pour 2024, p54
+     - title: les valeurs 2024 sont des projections à partir des données 2021, dernière année connue début 2024. Les valeurs 2021 ont été augmentées de 12,4 % qui est l'évolution moyenne du SMPT économique cumulées pour les années 2022 (3,7%), 2023 (5.1%), 2024 (3.1%) telles que prévues dans le Rapport économique social et financier (RESF) attaché au PLF pour 2024, p54
+    2025-01-01:
+     - title: les valeurs 2025 sont des projections à partir des données 2022, dernière année connue début 2025. Les valeurs 2022 ont été augmentées de 9,4 % qui est l'évolution moyenne du SMPT économique (retraité du chômage partiel pendant la crise sanitaire) cumulées pour les années 2023 (3.9%), 2024 (2.8%), 2025 (2.7%) telles que prévues dans le Rapport économique social et financier (RESF) attaché au PLF pour 2025, p45 pour les années 2024 et 2025 et de la note de conjoncture de l'INSEE de juillet 2024 p40 pour l'année 2024
+documentation: Attention les valeurs de l'INSEE sont renseignées en euros constant de la dernière année reportée. Les valeurs des année précédentes sont donc mises à jour chaque année
