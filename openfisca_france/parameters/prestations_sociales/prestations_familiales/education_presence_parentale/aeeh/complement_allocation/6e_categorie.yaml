@@ -40,9 +40,11 @@ values:
     value: 1192.55
   2023-04-01:
     value: 1210.9
+  2024-04-01:
+    value: 1266.6
 metadata:
   short_label: 6ème catégorie
-  last_value_still_valid_on: "2023-05-09"
+  last_value_still_valid_on: "2025-01-22"
   label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_cplt6
   unit: currency
@@ -85,6 +87,11 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737170
     - title: Circulaire Cnav 2023/8 du 11/04/2023
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2023_08_11042023.pdf
+    2024-04-01:
+    - title: Article D541-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737170
+    - title: Circulaire Cnav 2024/14 du 04/04/2024
+      href: https://legislation.lassuranceretraite.fr/Documents/Circulaires/Pdf/circulaire_cnav_2024_14_04042024.pdf
   official_journal_date:
     2006-01-01: 2005-02-12; 2006-01-01
   notes:
