@@ -1,0 +1,6 @@
+description: Montant minimum de la participation minimale « P0 » intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
+metadata:
+  short_label: Participation minimale « P0 »
+  order:
+  - p0_taux
+  - p0_forfait

@@ -1,0 +1,6 @@
+description: Plafonds du coefficient K dans le calcul des allocations logement (secteur foyer)
+metadata:
+  short_label: Plafonds
+  order:
+  - plafond_apl1
+  - plafond_apl2_et_al

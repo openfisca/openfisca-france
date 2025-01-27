@@ -1,0 +1,6 @@
+description: Seuil minimum de versement en secteur accession
+metadata:
+  short_label: Seuil minimum de versement
+  order:
+  - al
+  - apl

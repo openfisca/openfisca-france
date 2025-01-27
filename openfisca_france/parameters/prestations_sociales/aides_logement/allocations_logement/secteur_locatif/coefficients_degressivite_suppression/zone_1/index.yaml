@@ -1,0 +1,7 @@
+description: Coefficients de dégressivité et de suppression en zone 1 pris en compte dans le calcul des allocations logement (AL) après la réforme de 2001
+metadata:
+  short_label: Zone 1
+  label_en: Parameters for the rental sector (after the 2001 reform)
+  order:
+  - degressivite
+  - suppression

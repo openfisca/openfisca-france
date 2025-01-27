@@ -1,0 +1,8 @@
+description: Paramètres de la formule des APL et AL en secteur accession « K (L + C - L0) »
+metadata:
+  short_label: Formule (secteur accession)
+  order:
+  - k_coef_prise_en_charge
+  - l_mensualite_eligible
+  - c_forfait_charges
+  - l0_mensualite_minimale
