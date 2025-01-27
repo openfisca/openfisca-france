@@ -1,0 +1,8 @@
+description: Allocations logement - Secteur foyer (AL)
+metadata:
+  short_label: Secteur foyer (AL)
+  order:
+  - formule
+  - minimum_depense_nette_logement
+  - minoration_forfaitaire
+  - seuil_minimum_versement

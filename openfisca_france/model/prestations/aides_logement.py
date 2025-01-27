@@ -137,7 +137,7 @@ class aide_logement_montant_brut(Variable):
         zone_apl = famille.demandeur.menage('zone_apl', period)
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
 
-        coefficients = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2.par_zone[zone_apl]
+        coefficients = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.coefficients_degressivite_suppression[zone_apl]
         loyer_degressivite = round_(loyer_plafond * (coefficients.degressivite), 2)
         loyer_suppression = round_(loyer_plafond * (coefficients.suppression), 2)
 
@@ -157,9 +157,9 @@ class aide_logement_montant_brut(Variable):
 
         montant_avant_degressivite_et_coeff = round_(montant_avant_degressivite * coeff, 2)
 
-        abattement_forfaitaire = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2.montant_forfaitaire
+        minoration_forfaitaire = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.minoration_forfaitaire
 
-        return max_(0, montant_avant_degressivite_et_coeff - abattement_forfaitaire)
+        return max_(0, montant_avant_degressivite_et_coeff - minoration_forfaitaire)
 
     def formula(famille, period):
         return famille('aide_logement_montant_brut_avant_degressivite', period)
@@ -200,7 +200,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         type_aide = where(logement_conventionne, 'apl', 'non_apl', )
-        seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
+        seuil_versement = al.secteur_locatif.seuils_minimum_versement[type_aide]
         minimum_atteint = montant >= seuil_versement
 
         return minimum_atteint * montant * not_(residence_mayotte)
@@ -445,7 +445,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
         famille_percoit_aah = famille.any(membres_famille_percoit_aah)
         famille_percoit_aeeh = famille('aeeh', period) > 0
 
-        seuil_valorisation = parameters(period).prestations_sociales.aides_logement.allocations_logement.autres.patrimoine.seuil_valorisation
+        seuil_valorisation = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.patrimoine.seuil_valorisation
 
         return not_(est_locataire_foyer) * not_(famille_percoit_aah) * not_(famille_percoit_aeeh) * (
             (patrimoine > seuil_valorisation) * (
@@ -603,7 +603,7 @@ class aide_logement_base_ressources_individu(Variable):
         abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
         aide_logement_condition_neutralisation = individu('aide_logement_condition_neutralisation', period)
 
-        taux_abattement = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.abattement_chomage_indemnise
+        taux_abattement = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.abattements.chomage_indemnise
 
         revenus = (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
 
@@ -643,7 +643,7 @@ class aide_logement_base_ressources_individu(Variable):
         abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
         aide_logement_condition_neutralisation = individu('aide_logement_condition_neutralisation', period)
 
-        taux_abattement = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.abattement_chomage_indemnise
+        taux_abattement = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.abattements.chomage_indemnise
 
         revenus = (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
 
@@ -685,7 +685,7 @@ class aide_logement_base_ressources_individu(Variable):
         abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
         aide_logement_condition_neutralisation = individu('aide_logement_condition_neutralisation', period)
 
-        taux_abattement = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.abattement_chomage_indemnise
+        taux_abattement = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.abattements.chomage_indemnise
 
         revenus = (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
 
@@ -827,8 +827,8 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
 
         parametres_ressources = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources
-        plafond_salaire_jeune_isole = parametres_ressources.dar_8
-        plafond_salaire_jeune_couple = parametres_ressources.dar_9
+        plafond_salaire_jeune_isole = parametres_ressources.autres.dar_8
+        plafond_salaire_jeune_couple = parametres_ressources.autres.dar_9
         plafond_salaire_jeune = where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
 
         neutral_jeune = or_(age_demandeur < 25, and_(en_couple, age_conjoint < 25))
@@ -844,7 +844,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
         aide_logement_condition_neutralisation = individu('aide_logement_condition_neutralisation', period)
 
-        taux_abattement = parametres_ressources.abattement_chomage_indemnise
+        taux_abattement = parametres_ressources.abattements.chomage_indemnise
 
         ressources = ressources * (1 - taux_abattement * abattement_revenus_activite_professionnelle) * (1 - taux_abattement * abattement_indemnites_chomage) * (1 - aide_logement_condition_neutralisation)
 
@@ -903,7 +903,7 @@ class aide_logement_base_ressources(Variable):
     def formula_2021_01_01(famille, period, parameters):
         biactivite = famille('aide_logement_biactivite', period)
         parametres_ressources = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources
-        age_etudiant_max = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_etudiant.age_max
+        age_etudiant_max = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.etudiants.age_max
         base_ressources_i = famille.members('aide_logement_base_ressources_individu', period)
 
         base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
@@ -942,7 +942,7 @@ class aide_logement_base_ressources(Variable):
             )
 
         # Abattement forfaitaire pour double activité
-        abattement_double_activite = biactivite * parametres_ressources.dar_1
+        abattement_double_activite = biactivite * parametres_ressources.abattements.dar_1_double_activite
 
         # Arrondi aux 100 euros supérieurs
         ressources = max_(ressources - abattement_double_activite, 0)
@@ -954,8 +954,8 @@ class aide_logement_base_ressources(Variable):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         logement_crous = famille.demandeur.menage('logement_crous', period)
         logement_crous_ou_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) + logement_crous
-        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * parametres_ressources.dar_4 - demandeur_boursier * parametres_ressources.dar_5)
-        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * parametres_ressources.dar_11 - demandeur_boursier * parametres_ressources.dar_12)
+        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * parametres_ressources.etudiants.locatif.dar_4_forfait_ressources - demandeur_boursier * parametres_ressources.etudiants.locatif.dar_5_minoration_boursier)
+        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * parametres_ressources.etudiants.foyer.dar_11_forfait_ressources_foyer - demandeur_boursier * parametres_ressources.etudiants.foyer.dar_12_minoration_boursier)
 
         ressources = where(demandeur_etudiant, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer), ressources)
 
@@ -1017,7 +1017,7 @@ class aide_logement_base_ressources(Variable):
             )
 
         # Abattement forfaitaire pour double activité
-        abattement_double_activite = biactivite * parametres_ressources.dar_1
+        abattement_double_activite = biactivite * parametres_ressources.abattements.dar_1_double_activite
 
         # Arrondi aux 100 euros supérieurs
         ressources = max_(ressources - abattement_double_activite, 0)
@@ -1030,8 +1030,8 @@ class aide_logement_base_ressources(Variable):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         logement_crous = famille.demandeur.menage('logement_crous', period)
         logement_crous_ou_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) + logement_crous
-        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * parametres_ressources.dar_4 - demandeur_boursier * parametres_ressources.dar_5)
-        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * parametres_ressources.dar_11 - demandeur_boursier * parametres_ressources.dar_12)
+        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * parametres_ressources.etudiants.locatif.dar_4_forfait_ressources - demandeur_boursier * parametres_ressources.etudiants.locatif.dar_5_minoration_boursier)
+        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * parametres_ressources.etudiants.foyer.dar_11_forfait_ressources_foyer - demandeur_boursier * parametres_ressources.etudiants.foyer.dar_12_minoration_boursier)
 
         ressources = max_(ressources, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer))
 
@@ -1058,7 +1058,7 @@ class aides_logement_primo_accedant_ressources(Variable):
 
     def formula(menage, period, parameters):
         loyer = menage('loyer', period)
-        coef_plancher_ressources = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.dar_3
+        coef_plancher_ressources = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.secteur_accession.dar_3_coef_plancher_ressources
         return loyer * coef_plancher_ressources
 
 
@@ -1077,11 +1077,13 @@ class aide_logement_loyer_plafond(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        al_loc2 = al.al_loc2.par_zone[zone_apl]
+        plafonds_loyers = al.secteur_locatif.formule.l_plafonds_loyers
+        plafonds_loyers_par_zone = plafonds_loyers.par_zone[zone_apl]
+        plafonds_loyers_coef_chambre_coloc = plafonds_loyers.coef_chambre_et_colocation
 
-        plafond_personne_seule = al_loc2.personnes_seules
-        plafond_couple = al_loc2.couples
-        plafond_famille = al_loc2.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * al_loc2.majoration_par_enf_supp
+        plafond_personne_seule = plafonds_loyers_par_zone.personnes_seules
+        plafond_couple = plafonds_loyers_par_zone.couples
+        plafond_famille = plafonds_loyers_par_zone.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * plafonds_loyers_par_zone.majoration_par_enf_supp
 
         plafond = select(
             [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
@@ -1089,8 +1091,8 @@ class aide_logement_loyer_plafond(Variable):
             default = plafond_couple
             )
 
-        coeff_coloc = where(coloc, al.al_loc2.colocation, 1)
-        coeff_chambre = where(chambre, al.al_loc2.chambre, 1)
+        coeff_coloc = where(coloc, plafonds_loyers_coef_chambre_coloc.coef_colocation, 1)
+        coeff_chambre = where(chambre, plafonds_loyers_coef_chambre_coloc.coef_chambre, 1)
 
         return round_(plafond * coeff_coloc * coeff_chambre, 2)
 
@@ -1140,12 +1142,17 @@ class aide_logement_charges(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        forfait_charges = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_charge
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        forfait_charges = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.c_forfait_charges
+        forfait_charges_cas_general = forfait_charges.cas_general
+        forfait_charges_cas_colocataires = forfait_charges.cas_colocataires
+
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
-        montant_coloc = where(couple, 1, 0.5) * forfait_charges.personne_isolee_ou_menage_seul.cas_general + al_nb_pac * forfait_charges.majoration_par_enfant
-        montant_cas_general = forfait_charges.personne_isolee_ou_menage_seul.cas_general + al_nb_pac * forfait_charges.majoration_par_enfant
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+
+        montant_cas_general = forfait_charges_cas_general.cas_general + al_nb_pac * forfait_charges_cas_general.majoration_par_enfant
+
+        montant_coloc = where(couple, forfait_charges_cas_colocataires.couple_sans_enfant, forfait_charges_cas_colocataires.beneficiaire_isole) + al_nb_pac * forfait_charges_cas_colocataires.majoration_par_enfant
 
         return where(coloc, montant_coloc, montant_cas_general)
 
@@ -1158,7 +1165,7 @@ class aide_logement_R0(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.r0_abattement_ressources_menage.avant_2015
         pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
         minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.solidarite_insertion.minima_sociaux
         couple = famille('al_couple', period)
@@ -1172,17 +1179,17 @@ class aide_logement_R0(Variable):
             montant_de_base = minim_n_2.rmi.rmi_m.montant_de_base_du_rmi
 
         R1 = montant_de_base * (
-            al.al_param_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
-            + al.al_param_r0.r1_en_rsa_socle_1.couple_sans_enf * couple * (al_nb_pac == 0)
-            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
-            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
+            + al_r0.r1_en_rsa_socle_1.couple_sans_enf * couple * (al_nb_pac == 0)
+            + al_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
+            + al_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
+            + al_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R2 = pfam_n_2.bmaf * (
-            al.al_param_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
-            + al.al_param_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
+            + al_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
+            + al_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         deductions = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
@@ -1194,7 +1201,7 @@ class aide_logement_R0(Variable):
         return R0
 
     def formula_2006(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.r0_abattement_ressources_menage.avant_2015
         pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
         minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.solidarite_insertion.minima_sociaux
         couple = famille('al_couple', period)
@@ -1208,17 +1215,17 @@ class aide_logement_R0(Variable):
             montant_de_base = minim_n_2.rmi.rmi_m.montant_de_base_du_rmi
 
         R1 = montant_de_base * (
-            al.al_param_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
-            + al.al_param_r0.r1_en_rsa_socle_1.couple_sans_enf * couple * (al_nb_pac == 0)
-            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
-            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
+            + al_r0.r1_en_rsa_socle_1.couple_sans_enf * couple * (al_nb_pac == 0)
+            + al_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
+            + al_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
+            + al_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R2 = pfam_n_2.bmaf * (
-            al.al_param_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
-            + al.al_param_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
+            + al_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
+            + al_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         abattement = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux
@@ -1228,20 +1235,20 @@ class aide_logement_R0(Variable):
 
     # cf Décret n° 2014-1739 du 29 décembre 2014 relatif au calcul des aides personnelles au logement
     def formula_2015_01_01(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.r0_abattement_ressources_menage
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
         R0 = (
-            al.al_param_r0.r0.taux_seul * not_(couple) * (al_nb_pac == 0)
-            + al.al_param_r0.r0.taux_couple * couple * (al_nb_pac == 0)
-            + al.al_param_r0.r0.taux1pac * (al_nb_pac == 1)
-            + al.al_param_r0.r0.taux2pac * (al_nb_pac == 2)
-            + al.al_param_r0.r0.taux3pac * (al_nb_pac == 3)
-            + al.al_param_r0.r0.taux4pac * (al_nb_pac == 4)
-            + al.al_param_r0.r0.taux5pac * (al_nb_pac == 5)
-            + al.al_param_r0.r0.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
-            + al.al_param_r0.r0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
+            + al_r0.cas_general.taux_couple * couple * (al_nb_pac == 0)
+            + al_r0.cas_general.taux1pac * (al_nb_pac == 1)
+            + al_r0.cas_general.taux2pac * (al_nb_pac == 2)
+            + al_r0.cas_general.taux3pac * (al_nb_pac == 3)
+            + al_r0.cas_general.taux4pac * (al_nb_pac == 4)
+            + al_r0.cas_general.taux5pac * (al_nb_pac == 5)
+            + al_r0.cas_general.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
+            + al_r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
         return R0
@@ -1255,61 +1262,64 @@ class aide_logement_taux_famille(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_tf = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.tp_taux_participation_personnelle_menage.tf_taux_selon_taille_famille
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         TF_metropole = (
-            al.al_loc2.tf.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
-            + al.al_loc2.tf.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            al_tf.metropole.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + al_tf.metropole.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + al_tf.metropole.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + al_tf.metropole.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + al_tf.metropole.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + al_tf.metropole.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
+            + al_tf.metropole.majoration_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
         TF_dom = (
-            al.al_loc2.tf.dom.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.dom.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac >= 6)
+            al_tf.dom.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + al_tf.dom.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + al_tf.dom.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + al_tf.dom.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + al_tf.dom.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + al_tf.dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
+            + al_tf.dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
+            + al_tf.dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac >= 6)
             )
 
         return where(residence_dom, TF_dom, TF_metropole)
 
     def formula_2023_01_01(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_tf = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.tp_taux_participation_personnelle_menage.tf_taux_selon_taille_famille
+
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         TF_metropole = (
-            al.al_loc2.tf.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
-            + al.al_loc2.tf.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            al_tf.metropole.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + al_tf.metropole.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + al_tf.metropole.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + al_tf.metropole.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + al_tf.metropole.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + al_tf.metropole.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
+            + al_tf.metropole.personnes_seules_couples_avec_5_enfants * (al_nb_pac >= 5)
+            + al_tf.metropole.personnes_seules_couples_avec_6_enfants * (al_nb_pac >= 6)
+            + al_tf.metropole.majoration_tf_par_enfant_supplementaire * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
         TF_dom = (
-            al.al_loc2.tf.dom.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.dom.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac == 6)
-            + al.al_loc2.tf.dom.personnes_seules_couples_avec_7_enfants * (al_nb_pac >= 7)
-            + al.al_loc2.tf.dom.majoration_par_pac_supplementaire * (al_nb_pac > 7) * (al_nb_pac - 7)
+            al_tf.dom.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + al_tf.dom.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + al_tf.dom.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + al_tf.dom.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + al_tf.dom.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + al_tf.dom.personnes_seules_couples_avec_4_enfants * (al_nb_pac == 4)
+            + al_tf.dom.personnes_seules_couples_avec_5_enfants * (al_nb_pac == 5)
+            + al_tf.dom.personnes_seules_couples_avec_6_enfants * (al_nb_pac == 6)
+            + al_tf.dom.personnes_seules_couples_avec_7_enfants * (al_nb_pac >= 7)
+            + al_tf.dom.majoration_par_pac_supplementaire * (al_nb_pac > 7) * (al_nb_pac - 7)
             )
 
         return where(residence_dom, TF_dom, TF_metropole)
@@ -1318,31 +1328,36 @@ class aide_logement_taux_famille(Variable):
 class aide_logement_taux_loyer(Variable):
     value_type = float
     entity = Famille
-    label = 'Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence.'
+    label = 'Taux basé sur une comparaison du loyer retenu à un loyer de référence.'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
-        z2 = al.al_loc2.par_zone.zone_2
+        al_locatif = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif
+
+        al_plafonds_z2 = al_locatif.formule.l_plafonds_loyers.par_zone.zone_2
+
+        al_tl = al_locatif.formule.pp_participation_personnelle.tp_taux_participation_personnelle_menage.tl_taux_complementaire_selon_loyer
+        al_tl_seuils = al_tl.seuils
+        al_tl_taux = al_tl.taux
 
         L = famille('aide_logement_loyer_retenu', period)
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
         loyer_reference = (
-            z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0)
-            + z2.couples * (couple) * (al_nb_pac == 0)
-            + z2.un_enfant * (al_nb_pac >= 1)
-            + z2.majoration_par_enf_supp * (al_nb_pac > 1) * (al_nb_pac - 1)
+            al_plafonds_z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0)
+            + al_plafonds_z2.couples * (couple) * (al_nb_pac == 0)
+            + al_plafonds_z2.un_enfant * (al_nb_pac >= 1)
+            + al_plafonds_z2.majoration_par_enf_supp * (al_nb_pac > 1) * (al_nb_pac - 1)
             )
 
         RL = L / loyer_reference
 
-        TL = where(RL >= al.al_loc2.tl.debut_3eme_tranche_calcul_tl,
-            al.al_loc2.tl.tl_3eme_tranche * (RL - al.al_loc2.tl.debut_3eme_tranche_calcul_tl)
-            + al.al_loc2.tl.tl_2eme_tranche * (al.al_loc2.tl.debut_3eme_tranche_calcul_tl - al.al_loc2.tl.debut_2eme_tranche_calcul_tl_fin_1ere_tranche),
-            max_(0, al.al_loc2.tl.tl_2eme_tranche * (RL - al.al_loc2.tl.debut_2eme_tranche_calcul_tl_fin_1ere_tranche))
+        TL = where(RL >= al_tl_seuils.seuil_2,
+            al_tl_taux.tl_taux_3 * (RL - al_tl_seuils.seuil_2)
+            + al_tl_taux.tl_taux_2 * (al_tl_seuils.seuil_2 - al_tl_seuils.seuil_1),
+            max_(0, al_tl_taux.tl_taux_2 * (RL - al_tl_seuils.seuil_1))
             )
 
         return TL
@@ -1356,7 +1371,7 @@ class aide_logement_participation_personnelle(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2
+        al_participation_minimale = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.p0_participation_minimale
 
         R = famille('aide_logement_base_ressources', period)
         R0 = famille('aide_logement_R0', period)
@@ -1365,7 +1380,7 @@ class aide_logement_participation_personnelle(Variable):
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
         E = loyer_retenu + charges_retenues
-        P0 = max_(al.montant_proportionnel_participation_minimale_po * E, al.montant_forfaitaire_participation_minimale_po)  # Participation personnelle minimale
+        P0 = max_(al_participation_minimale.p0_taux * E, al_participation_minimale.p0_forfait)  # Participation personnelle minimale
 
         Tf = famille('aide_logement_taux_famille', period)
         Tl = famille('aide_logement_taux_loyer', period)
@@ -1541,15 +1556,16 @@ class aides_logement_primo_accedant_k(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_param_accal
+        # en accession-al, le coefficient K est celui defini pour le secteur foyer-al
+        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.k_coef_prise_charge
 
-        coef_k = param.constante_du_coefficient_k
-        multi_n = param.multiplicateur_de_n
+        plafond_k = param.plafonds.plafond_apl2_et_al
+        cm2 = param.cm_et_r.cm2_apl2_et_al
 
         R = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_nb_part', period)
 
-        return coef_k - (R / (multi_n * N))
+        return plafond_k - (R / (cm2 * N))
 
 
 class aides_logement_foyer_k_al(Variable):
@@ -1562,16 +1578,15 @@ class aides_logement_foyer_k_al(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_param_accal
-        param2 = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_param
+        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.k_coef_prise_charge
 
-        coef_k = param.constante_du_coefficient_k
-        multi_n = param2.multiplicateur_de_n_dans_la_formule_de_k
+        plafond_k = param.plafonds.plafond_apl2_et_al
+        cm2 = param.cm_et_r.cm2_apl2_et_al
 
         R = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_nb_part', period)
 
-        return coef_k - (R / (multi_n * N))
+        return plafond_k - (R / (cm2 * N))
 
 
 class aides_logement_foyer_k_apl(Variable):
@@ -1584,18 +1599,16 @@ class aides_logement_foyer_k_apl(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_param_accal
-        param1 = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_param_accapl.multiplicateur_n
+        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.k_coef_prise_charge
 
-        r_apl1 = param1.dans_formule_kl_numerateur
+        plafond_k = param.plafonds.plafond_apl1
+        r_minuscule = param.cm_et_r.r_apl1
+        cm1 = param.cm_et_r.cm1_apl1
 
-        coef_k = param.constante_du_coefficient_k_apl1
-        multi_n = param1.dans_formule_kl
-
-        R = famille('aide_logement_base_ressources', period)
+        R_majuscule = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_nb_part', period)
 
-        return coef_k - (((R - (r_apl1 * N))) / (multi_n * N))
+        return plafond_k - (((R_majuscule - (r_minuscule * N))) / (cm1 * N))
 
 
 class aides_logement_categorie(Variable):
@@ -1622,7 +1635,7 @@ class aides_logement_nb_part(Variable):
         couple = famille('al_couple', period)
 
         categorie = famille('aides_logement_categorie', period)
-        params = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_param.parametre_n[categorie]
+        params = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.k_coef_prise_charge.n_nombre_parts[categorie]
 
         return (
             params['isole_0_personne_a_charge'] * not_(couple) * (al_nb_pac == 0)
@@ -1662,8 +1675,9 @@ class aides_logement_loyer_minimal_al(Variable):
         N = famille('aides_logement_nb_part', period)
 
         prestations = parameters(period).prestations_sociales
-        bareme = prestations.aides_logement.allocations_logement.al_param_accal.bareme_loyer_minimum_lo
-        majoration_loyer = prestations.aides_logement.allocations_logement.al_param.majoration_du_loyer_minimum_lo
+        e0 = prestations.aides_logement.allocations_logement.secteur_foyer.apl.formule.e0_equivalences_loyers_charges_minimale.apl2
+        bareme = e0.bareme
+        majoration_loyer = e0.majoration
 
         baseRessource = famille('aide_logement_base_ressources', period)
 
@@ -1683,8 +1697,9 @@ class aides_logement_loyer_minimal_apl(Variable):
         N = famille('aides_logement_nb_part', period)
 
         prestations = parameters(period).prestations_sociales
-        bareme = prestations.aides_logement.allocations_logement.al_param_accal.bareme_loyer_minimum_lo_apl1
-        majoration_loyer = prestations.aides_logement.allocations_logement.al_param_accal.majoration_du_loyer_minimum_lo_apl1 * N
+        e0 = prestations.aides_logement.allocations_logement.secteur_foyer.apl.formule.e0_equivalences_loyers_charges_minimale.apl1
+        bareme = e0.bareme
+        majoration_loyer = e0.majoration * N
 
         baseRessource = famille('aide_logement_base_ressources', period)
 
@@ -1720,7 +1735,7 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
 
     def formula(famille, period, parameters):
         zone_apl = famille.demandeur.menage('zone_apl', period)
-        plafonds = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_plaf_acc[zone_apl]
+        plafonds = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_accession.formule.l_mensualite_eligible.al[zone_apl]
 
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
@@ -1748,7 +1763,7 @@ class aides_logement_foyer_conventionne_plafond(Variable):
 
     def formula(famille, period, parameters):
         zone_apl = famille.demandeur.menage('zone_apl', period)
-        plafonds = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_plaf_logement_foyer.conventionne[zone_apl]
+        plafonds = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.apl.formule.e_equivalences_loyers_charges_eligible[zone_apl]
 
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
@@ -1776,14 +1791,13 @@ class aides_logement_foyer_plafond_mensualite(Variable):
 
     # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
     def formula_2017_10(famille, period, parameters):
-        plafond_crous = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_plaf_logement_foyer.crous
-        plafond_foyer = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_plaf_logement_foyer
+        plafond_foyer = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.al.formule.l_plafonds_loyers
 
         statut_couple = where(famille('al_couple', period), 'couple', 'personne_isolee')
 
-        foyer_plafond = plafond_crous.rehabilitee[statut_couple]
-        foyer_chambre_non_rehabilite_plafond = plafond_crous.non_rehabilitee[statut_couple]
-        foyer_personne_agee_plafond = plafond_foyer.personne_agee[statut_couple]
+        foyer_plafond = plafond_foyer.etudiants_loges_en_chambre_rehabilitee[statut_couple]
+        foyer_chambre_non_rehabilite_plafond = plafond_foyer.etudiants_loges_en_chambre[statut_couple]
+        foyer_personne_agee_plafond = plafond_foyer.personnes_agees[statut_couple]
 
         foyer_conventionne_plafond = famille('aides_logement_foyer_conventionne_plafond', period)
 

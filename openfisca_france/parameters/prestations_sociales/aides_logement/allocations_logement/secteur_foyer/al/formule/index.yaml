@@ -1,0 +1,6 @@
+description: Paramètres spécifiques AL de la formule de calcul des allocations logement en secteur foyer « K (L + C - L0) »
+metadata:
+  short_label: Paramètres spécifiques AL
+  order:
+  - c_forfait_charges
+  - l_plafonds_loyers

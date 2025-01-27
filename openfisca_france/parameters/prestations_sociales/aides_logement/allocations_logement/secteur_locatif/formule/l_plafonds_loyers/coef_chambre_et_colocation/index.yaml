@@ -1,0 +1,6 @@
+description: Coefficient appliqué aux loyers plafonds de location pour une personne isolée dans le cas où le logement occupé est une chambre et dans le cas des colocataires
+metadata:
+  short_label: Coefficients (chambre et colocataires)
+  order:
+  - coef_chambre
+  - coef_colocation

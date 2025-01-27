@@ -1,0 +1,6 @@
+description: Paramètres spécifiques APL de la formule de calcul des allocations logement en secteur foyer « K (E - E0) »
+metadata:
+  short_label: Paramètres spécifiques APL (secteur foyer)
+  order:
+  - c_forfait_charges
+  - l_plafonds_loyers

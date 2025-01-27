@@ -1,0 +1,41 @@
+description: Barèmes de pourcentages appliqués à des tranches de ressources pour calculer l'équivalence de loyer et charges locatives minimales en APL2 (paramètre « E0 »)
+brackets:
+- threshold:
+    2007-07-01:
+      value: 1423.03
+  rate:
+    2007-07-01:
+      value: 0.024
+- threshold:
+    2007-07-01:
+      value: 2047.61
+  rate:
+    2007-07-01:
+      value: 0.208
+- threshold:
+    2007-07-01:
+      value: 2629.85
+  rate:
+    2007-07-01:
+      value: 0.232
+- threshold:
+    2007-07-01:
+      value: 4095.05
+  rate:
+    2007-07-01:
+      value: 0.328
+metadata:
+  short_label: Barème E0 (APL2)
+  last_value_still_valid_on: "2025-03-10"
+  reference:
+    2007-07-01:
+    - title: Arrêté du 27/09/2019, art. 31 I. b)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046126968/2024-09-29
+    - title: Arrêté du 08/11/2007, article 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000001309899
+    - title: Article D832-26 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878708
+    - title: Article R351-62 du Code de la construction et de l'habitation (abrogé)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006899017/2006-01-01/
+  rate_unit: /1
+  threshold_unit: currency
