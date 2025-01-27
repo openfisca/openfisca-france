@@ -1,5 +1,18 @@
 # Changelog
 
+### 169.14.9 [2424](https://github.com/openfisca/openfisca-france/pull/2424)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/paje_cmg/`
+  - `openfisca_france/model/prestations/prestations_familiales/paje.py`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/plaf_cmg/`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_cond_ress/`
+* Détails :
+  - Mets à jour des paramètres pour des années manquantes pour la paje et aeeh
+  - Modifie les labels de certains paramètres de la paje 
+
 ### 169.14.8 [2420](https://github.com/openfisca/openfisca-france/pull/2420)
 
 * Évolution du système socio-fiscal.
