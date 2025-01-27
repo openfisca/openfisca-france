@@ -1,6 +1,6 @@
-description: Taux (en % de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+description:  Montant (en nombre de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE) cas général
 metadata:
-  short_label: Taux
+  short_label: Montants (en nombre de BMAF) cas général
   label_en: Rate
   order:
   - revenus_inferieurs_45_plaf
