@@ -96,7 +96,7 @@ class aide_logement_montant(Variable):
     def formula(famille, period):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
         crds_logement = famille('crds_logement', period)
-        montant = round_(aide_logement_montant_brut + crds_logement, 2)
+        montant = floor(aide_logement_montant_brut + crds_logement, 0)
 
         return montant
 
@@ -1411,7 +1411,7 @@ class crds_logement(Variable):
     def formula(famille, period, parameters):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
         crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
-        return -aide_logement_montant_brut * crds
+        return floor(-aide_logement_montant_brut * crds,2)
 
 
 class TypesZoneApl(Enum):
