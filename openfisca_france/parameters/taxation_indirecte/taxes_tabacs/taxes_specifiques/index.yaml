@@ -1,0 +1,7 @@
+description: Taxes spécifiques sur les tabacs
+metadata:
+  short_label: Taxes spécifiques
+  label_en: Specific excises on tobacco
+  order:
+  - montants_apres_2015
+  - taux_avant_2015
