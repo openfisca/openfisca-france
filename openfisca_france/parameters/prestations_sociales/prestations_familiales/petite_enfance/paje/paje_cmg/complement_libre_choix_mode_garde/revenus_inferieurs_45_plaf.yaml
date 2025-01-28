@@ -1,4 +1,4 @@
-description: Montant (en nombre de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE) cas général si les ressources sont inférieurs au premier plafond
+description: Montant (en nombre de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE) cas général si les ressources sont inférieures au premier plafond
 values:
   2004-01-01:
     value: 1.0067
