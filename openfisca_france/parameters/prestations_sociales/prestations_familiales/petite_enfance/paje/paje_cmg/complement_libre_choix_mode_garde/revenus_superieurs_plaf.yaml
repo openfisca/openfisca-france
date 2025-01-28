@@ -1,15 +1,18 @@
-description: Taux pour recours à un emploi direct (en % de la BMAF) pour revenus supérieurs au plafond d'allocation du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+description: Montant (en nombre de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE) cas général si les ressources sont supérieures au second plafond
 values:
   2004-01-01:
     value: 0.4314
 metadata:
-  short_label: Revenus > plafond
+  short_label: Ressources > 2e plafond
+  last_value_still_valid_on: "2025-01-27"
   label_en: Income > ceiling
   ipp_csv_id: clcmg_03ans_rev3
   unit: BMAF
   reference:
     2004-01-01:
-      title: Décret 2003-1394 du 31/12/2003 - art. 1
+    - title: Décret 2003-1394 du 31/12/2003 - art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
+    - title: Article D531-18 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036852546
   official_journal_date:
     2004-01-01: "2004-01-01"

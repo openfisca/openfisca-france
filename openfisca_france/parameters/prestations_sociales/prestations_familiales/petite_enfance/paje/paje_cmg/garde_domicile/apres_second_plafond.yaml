@@ -1,14 +1,17 @@
-description: Taux après le second plafond pour recours à une garde à domicile (en % de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+description: Taux après le second plafond pour recours à une garde à domicile (en % de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE) en cas de garde à domicile ou par un établissement d'accueil de jeunes enfants si les ressources sont supérieures au deuxième plafond
 values:
   2004-01-01:
     value: 1.51
 metadata:
-  short_label: Taux > 2nd plafond
+  short_label: Ressources > 2nd plafond
   label_en: Rate > 2nd ceiling
+  last_value_still_valid_on: "2025-01-27"
   unit: BMAF
   reference:
     2004-01-01:
-      title: Décret 2003-1394 du 31/12/2003 - art. 1
+    - title: Décret 2003-1394 du 31/12/2003 - art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
+    - title: Article D531-23 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043998999
   official_journal_date:
     2004-01-01: "2004-01-01"

@@ -476,7 +476,7 @@ class paje_cmg(Variable):
         montant_cmg = (
             bmaf * (
                 1.0 * (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0)
-                + 0.5 * (nb_enf(famille, period, paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.reduite - 1) > 0)
+                + (1 - paje.paje_cmg.taux_reduit) * (nb_enf(famille, period, paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.reduite - 1) > 0)
                 ) * (
                     emploi_direct * (
                         (base_ressources < seuil_revenus_1) * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_inferieurs_45_plaf

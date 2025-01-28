@@ -8,6 +8,18 @@ values:
     value: 52044
   2018-01-01:
     value: 52148
+  2019-01-01:
+    value: 52670
+  2020-01-01:
+    value: 53513
+  2021-01-01:
+    value: 53995
+  2022-01-01:
+    value: 54102
+  2023-01-01:
+    value: 54968
+  2024-01-01:
+    value: 57881
   2025-01-01:
     value: 60659
 metadata:
@@ -23,6 +35,30 @@ metadata:
       title: Circulaire DSS/SD2B/2015/371 du 18/12/2015
     2018-01-01:
       title: Circulaire DSS/SD2B/2017/352 du 22/12/2017
+    2019-01-01:
+    - title: Instruction interministerielle DSS/SD2B/2018/279 du 17/12/2018
+    - title: Bulletin officiel Santé - Protection sociale - Solidarité n°2019/1 15/02/2019 p.452
+      href: https://sante.gouv.fr/fichiers/bo/2019/19-01/ste_20190001_0000_p000.pdf
+    2020-01-01:
+    - title: Instruction interministerielle DSS/SD2B/2019/261 du 18/12/2019
+    - title: Bulletin officiel Santé - Protection sociale - Solidarité n°2019/12 15/01/2020 p.199
+      href: https://sante.gouv.fr/fichiers/bo/2019/19-12/ste_20190012_0000_p000.pdf
+    2021-01-01:
+    - title: Instruction interministerielle DSS/2B/DB/2020/226 du 14/12/2020
+    - title: Bulletin officiel Santé - Protection sociale - Solidarité n°2020/12 15/01/2021 p.212
+      href: https://sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_p000.pdf
+    2022-01-01:
+    - title: Instruction interministerielle DSS/2B/2021/247 du 14/12/2021
+    - title: Bulletin officiel Santé - Protection sociale - Solidarité n°2021/24 31/12/2021 p.167
+      href: https://sante.gouv.fr/fichiers/bo/2021/2021.24.sante.pdf
+    2023-01-01:
+    - title: Instruction interministerielle DSS/SD2B/2022/283 du 21/12/2022
+    - title: Bulletin officiel Santé - Protection sociale - Solidarité n°2022/26 30/12/2022 p.176
+      href: https://sante.gouv.fr/fichiers/bo/2022/2022.26.sante.pdf
+    2024-01-01:
+    - title: Instruction interministerielle DSS/2B/2023/205 du 21/12/2023
+    - title: Bulletin officiel Santé - Protection sociale - Solidarité n°2023/24 29/12/2023 p.77
+      href: https://sante.gouv.fr/fichiers/bo/2023/2023.24.sante.pdf
     2025-01-01:
     - title: Bulletin officiel Santé - Protection sociale - Solidarité n° 2024/34 du 31/12/2024
       href: https://sante.gouv.fr/fichiers/bo/2024/2024.34.sante.pdf

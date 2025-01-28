@@ -1,7 +1,12 @@
-description: Limite d'âge (stricte) pour une prestation réduite du Complément de libre choix de mode de garde (CMG) de ka Prestation d'accueil du jeune enfant (PAJE)
+description: Limite d'âge (stricte) pour une prestation réduite du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
     value: 6
 metadata:
   short_label: Prestation réduite
+  last_value_still_valid_on: "2025-01-27"
   unit: year
+  reference:
+    2004-01-01:
+    - title: Article D531-20 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000039308946/2025-01-27/#LEGIARTI000039308946

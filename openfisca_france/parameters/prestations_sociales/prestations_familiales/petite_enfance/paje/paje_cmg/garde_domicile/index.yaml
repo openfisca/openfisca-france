@@ -1,6 +1,6 @@
-description: Taux pour recours à une garde à domicile (en % de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+description: Montant (en nombre de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE) en cas de garde à domicile ou par un établissement d'accueil de jeunes enfants
 metadata:
-  short_label: Garde à domicile
+  short_label: Montants (en nombre de BMAF) si garde à domicile ou établissement d'acceuil
   label_en: Home care
   order:
   - sous_premier_plafond

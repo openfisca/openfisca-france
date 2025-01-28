@@ -1,0 +1,12 @@
+description: Taux de réduction des montants de la prestation du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant.
+values:
+  2004-01-01:
+    value: 0.5
+metadata:
+  short_label: Prestation pleine
+  last_value_still_valid_on: "2025-01-27"
+  unit: /1
+  reference:
+    2004-01-01:
+    - title: Article D531-20 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039308946
