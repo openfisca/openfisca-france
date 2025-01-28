@@ -1,12 +1,26 @@
-description: Montant du repas pour un etudiant sans condition de ressource particulière
+description: Montant du repas CROUS pour un étudiant sans condition de ressource particulière
 values:
-  2013-09-01:
-    value: 3.1
-  2015-09-01:
+  2016-09-01:
+    value: 3.25
+  2019-09-01:
+    value: 3.3
+  2021-01-25:
+    value: 1
+  2021-09-01:
     value: 3.3
 metadata:
-  short_label: Montant repas etudiant
+  short_label: Etudiant non-boursier et hors situation de précarité
   unit: currency
   reference:
-    2013-09-01:
-      href: https://fr.wikipedia.org/wiki/Restaurant_universitaire
+    2016-09-01:
+      title: Délibération du CA du CNOUS du 07/07/2016
+      href: https://www.etudiant.gouv.fr/sites/default/files/imported_files/document/Point-1-a-Releve-de-decision-du-CA-du-7-juillet-2016_680945.pdf
+    2019-09-01:
+      title: Délibération du CA du CNOUS du 04/07/2019
+      href: https://www.etudiant.gouv.fr/sites/default/files/imported_files/document/Deliberation-CA-2019-07-04-4_1157228.pdf
+    2021-01-25:
+      title: Délibération du CA du CNOUS du 11/03/2021
+      href: https://www.etudiant.gouv.fr/sites/default/files/2021-04/202103112-delib-prix-du-ru-5117.pdf
+    2021-09-01:
+      title: Délibération du CA du CNOUS du 12/07/2021
+      href: https://cnous-my.sharepoint.com/personal/vu_cnous_fr/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fvu%5Fcnous%5Ffr%2FDocuments%2FCA%2FCA%20du%2029%20juillet%2F202107136%20D%C3%A9lib%C3%A9ration%20Avis%20pris%20repas%20social%202021%2Epdf&parent=%2Fpersonal%2Fvu%5Fcnous%5Ffr%2FDocuments%2FCA%2FCA%20du%2029%20juillet
