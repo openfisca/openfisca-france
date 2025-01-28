@@ -654,7 +654,7 @@ class prestations_sociales(Variable):
         '''
         prestations_familiales = famille('prestations_familiales', period)
         minima_sociaux = famille('minima_sociaux', period)
-        aides_logement = famille('aides_logement', period)
+        aides_logement = famille('aide_logement', period, options = [ADD])
         reduction_loyer_solidarite = famille('reduction_loyer_solidarite', period, options = [ADD])
         aide_exceptionnelle_covid = famille('covid_aide_exceptionnelle_famille_montant', period, options =[ADD])
         fse_i = famille.members('covid_aide_exceptionnelle_tpe_montant', period, options = [ADD])
