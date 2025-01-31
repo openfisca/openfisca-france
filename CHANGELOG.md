@@ -1,5 +1,16 @@
 # Changelog
 
+### 169.14.10 [2426](https://github.com/openfisca/openfisca-france/pull/2426)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées : 
+  - `openfisca_france/parameters/taxation_societes/impot_societe/seuil_superieur_benefices_taux_reduit.yaml`
+  - `openfisca_france/parameters/taxation_societes/impot_societe/seuil_superieur_benefices_taux_reduit.yaml`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres qui où elle était périmée et dont la valeur a pu être vérifiée avec un bon niveau de fiabilité.
+
+
 ### 169.14.9 [2424](https://github.com/openfisca/openfisca-france/pull/2424)
 
 * Amélioration technique.
