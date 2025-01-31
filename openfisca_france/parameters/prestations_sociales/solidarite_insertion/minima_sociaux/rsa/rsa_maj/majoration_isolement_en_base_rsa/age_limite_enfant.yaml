@@ -6,7 +6,7 @@ values:
     value: 3
 metadata:
   short_label: Âge limite du benjamin
-  last_value_still_valid_on: "2022-03-31"
+  last_value_still_valid_on: "2025-01-31"
   unit: year
   reference:
     2009-06-01:
