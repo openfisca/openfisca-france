@@ -1267,9 +1267,7 @@ class aide_logement_taux_famille(Variable):
             + al.al_loc2.tf.metropole.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
             + al.al_loc2.tf.metropole.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
             + al.al_loc2.tf.metropole.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
-            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_5_enfants * (al_nb_pac >= 5)
-            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_6_enfants * (al_nb_pac >= 6)
-            + al.al_loc2.tf.metropole.variation_tf_par_enfant_supplementaire * (al_nb_pac > 6) * (al_nb_pac - 6)
+            + al.al_loc2.tf.metropole.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
         TF_dom = (
