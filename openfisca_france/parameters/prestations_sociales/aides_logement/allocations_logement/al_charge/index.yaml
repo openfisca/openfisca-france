@@ -1,8 +1,9 @@
-description: Majoration forfaitaire comptabilisée pour tous dans le calcul des aides au logement au titre des charges du logement
+description: Montant forfaitaire comptabilisé pour le calcul des aides au logement au titre des charges du logement
 metadata:
-  short_label: Majoration forfaitaire pour les charges du logement
+  short_label: Montant forfaitaire pour les charges du logement
   label_en: Lump sum extra allowance for charges
   order:
-  - personne_isolee_ou_menage_seul
+  - cas_general
+  - cas_colocataires_ou_proprietaires
   - majoration_par_enfant
-documentation: Majorations indiquées par le « C »  de la formule de calcul des aides, mentionné au 3° de l'article D823-6 du Code de la construction et de l'habitation.
+documentation: Montant forfaitaire au titre des charges indiqué par le « C »  de la formule de calcul des aides, mentionné au 3° de l'article D823-6 du Code de la construction et de l'habitation.
