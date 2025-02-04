@@ -1,7 +1,7 @@
 description: Paramètres généraux du bail réel solidaire
 metadata:
   reference:
-    href: ['https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032918488', 'https://www.service-public.fr/particuliers/actualites/A17559']
+    href: ['https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032918488', 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000437021']
 
 fichier_zonage:
   description: Chemin absolu  vers le fichier de zonage ABC

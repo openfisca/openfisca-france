@@ -43,7 +43,10 @@ def plafond_supplementaire_par_zone(nb_personnes, plafonds_par_zones, zone, nb_p
 class bail_reel_solidaire(Variable):
     entity = Menage
     value_type = bool
-    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032918488'
+    reference = [
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032918488',
+        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000437021'
+        ]
     label = 'Bail réel solidaire'
     definition_period = MONTH
 
