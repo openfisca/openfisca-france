@@ -40,7 +40,7 @@ values:
     value: 1444
 metadata:
   short_label: Plafond pour les contribuables en couple à imposition commune
-  last_value_still_valid_on: "2024-01-03"
+  last_value_still_valid_on: "2025-02-04"
   ipp_csv_id: param_decote_b
   unit: currency_next_year
   reference:
