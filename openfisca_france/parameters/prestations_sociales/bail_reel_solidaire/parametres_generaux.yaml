@@ -1,0 +1,25 @@
+description: Paramètres généraux du bail réel solidaire
+metadata:
+  reference:
+    href: ['https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032918488', 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000437021']
+
+fichier_zonage:
+  description: Chemin absolu  vers le fichier de zonage ABC
+  values:
+    2024-07-01:
+      - 'openfisca_france/assets/zonage-communes/zonage-abc-juillet-2024.csv'
+
+zones_abc_eligibles:
+  description: Liste des zones éligibles au dispositif
+  values:
+    2024-07-01:
+      - 'A'
+      - 'Abis'
+      - 'B1'
+      - 'B2'
+      - 'C'
+
+nombre_personnes_maximum:
+  description: Nombre maximum de personnes avant application du supplément par personne
+  values:
+    2024-07-01: 6

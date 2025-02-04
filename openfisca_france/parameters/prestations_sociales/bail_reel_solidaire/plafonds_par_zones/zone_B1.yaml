@@ -1,0 +1,40 @@
+description: Plafonds de ressources de la zone B1 du bail réel solidaire (BRS)
+metadata:
+  reference:
+    href: https://www.service-public.fr/particuliers/actualites/A17559
+  short_label: Plafonds BRS ressources zone B1
+
+nb_personnes_1:
+  description: Plafond zone B1 pour 1 personne
+  values:
+    2024-07-01: 37581
+
+nb_personnes_2:
+  description: Plafond zone B1 pour 2 personnes
+  values:
+    2024-07-01: 56169
+
+nb_personnes_3:
+  description: Plafond zone B1 pour 3 personnes
+  values:
+    2024-07-01: 67517
+
+nb_personnes_4:
+  description: Plafond zone B1 pour 4 personnes
+  values:
+    2024-07-01: 80875
+
+nb_personnes_5:
+  description: Plafond zone B1 pour 5 personnes
+  values:
+    2024-07-01: 95739
+
+nb_personnes_6:
+  description: Plafond zone B1 pour 6 personnes
+  values:
+    2024-07-01: 107738
+
+nb_personnes_supplementaires:
+  description: Plafond zone B1 par personne supplémentaire
+  values:
+    2024-07-01: 12005
