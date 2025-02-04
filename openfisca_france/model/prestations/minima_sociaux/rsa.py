@@ -356,7 +356,7 @@ class rsa_enfant_a_charge(Variable):
             isole = not_(famille('en_couple', period))
             isolement_recent = famille('rsa_isolement_recent', period)
 
-            presence_autres_enfants = famille.sum(enfant * not_(autonomie_financiere) * (age <= age_pac)) > 1
+            presence_autres_enfants = famille.sum(enfant * not_(autonomie_financiere) * (age < age_pac)) > 1
 
             return (
                 not_(enceinte_fam)
@@ -368,7 +368,7 @@ class rsa_enfant_a_charge(Variable):
         rsa_enf_charge = (
             enfant
             * not_(autonomie_financiere)
-            * (age <= age_pac)
+            * (age < age_pac)
             * where(
                 ouvre_droit_majoration(),
                 ressources < (majo_rsa_femmes_enceintes - 1 + majo_rsa_par_enfant_a_charge) * montant_base_rsa,
