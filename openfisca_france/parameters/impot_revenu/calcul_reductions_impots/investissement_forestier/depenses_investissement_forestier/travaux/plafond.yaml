@@ -4,7 +4,7 @@ values:
     value: 6250
 metadata:
   short_label: Plafond de dépenses
-  last_value_still_valid_on: "2023-01-09"
+  last_value_still_valid_on: "2025-02-04"
   unit: currency_next_year
   reference:
     2009-01-01:

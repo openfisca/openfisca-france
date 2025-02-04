@@ -88,7 +88,7 @@ values:
     value: 1759
 metadata:
   short_label: Plafond par demi-part (cas général)
-  last_value_still_valid_on: "2024-01-03"
+  last_value_still_valid_on: "2025-02-04"
   label_en: Family quotient ceiling and "decote"
   ipp_csv_id: plaf_qf
   unit: currency_next_year
