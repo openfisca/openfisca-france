@@ -1,5 +1,24 @@
 # Changelog
 
+### 169.16.0 [2427](https://github.com/openfisca/openfisca-france/pull/2427)
+
+- Changement mineur.
+- Périodes concernées : toutes.
+- Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/age_pac.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/majoration_isolement_en_base_rsa/age_limite_enfant.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_fl/forfait_logement/taux_3_personnes_ou_plus.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_fl/forfait_logement/taux_2_personnes.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_fl/forfait_logement/taux_1_personne.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/forfait_asf/taux1.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/forfait_asf/taux2.yaml`
+- Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres qui n'étaient plus à jour et dont la valeur a pu être trouvée avec un bon niveau de fiabilité.
+  - Inversion de `taux1` et `taux2` pour coller à la loi.
+  - Effacement de `taux_1` et `taux_2` qui était un doublon de `taux1` et `taux2`.
+  - Mise à jour de la référence de `taux1` et `taux2` qui pointait sur un article qui ne correspondait pas.
+
 ### 169.15.0 [2404](https://github.com/openfisca/openfisca-france/pull/2404)
 
 - Évolution du système socio-fiscal.

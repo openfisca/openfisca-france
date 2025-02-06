@@ -356,7 +356,7 @@ class rsa_enfant_a_charge(Variable):
             isole = not_(famille('en_couple', period))
             isolement_recent = famille('rsa_isolement_recent', period)
 
-            presence_autres_enfants = famille.sum(enfant * not_(autonomie_financiere) * (age <= age_pac)) > 1
+            presence_autres_enfants = famille.sum(enfant * not_(autonomie_financiere) * (age < age_pac)) > 1
 
             return (
                 not_(enceinte_fam)
@@ -368,7 +368,7 @@ class rsa_enfant_a_charge(Variable):
         rsa_enf_charge = (
             enfant
             * not_(autonomie_financiere)
-            * (age <= age_pac)
+            * (age < age_pac)
             * where(
                 ouvre_droit_majoration(),
                 ressources < (majo_rsa_femmes_enceintes - 1 + majo_rsa_par_enfant_a_charge) * montant_base_rsa,
@@ -635,7 +635,7 @@ class rsa_eligibilite(Variable):
                 )
 
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
-        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.rsa_cond.age_pac)
+        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i >= rsa.rsa_cond.age_pac)
 
         return (
             famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
@@ -749,7 +749,8 @@ class rsa_forfait_asf(Variable):
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         asf_verse = famille('asf', period)
-        taux_max_par_enfant = minima_sociaux.rsa.rsa_maj.forfait_asf.taux1
+        # TODO: Pourquoi le taux 2 n'est-il pas utilisé ? Et qu'est ce qui indique qu'il est orphelin ?
+        taux_max_par_enfant = minima_sociaux.rsa.rsa_maj.forfait_asf.taux2
 
         montant_max_retenu_rsa_par_enfant = where(
             famille.members('asf_elig_enfant', period),
