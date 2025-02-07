@@ -23,10 +23,10 @@ values:
   2015-07-01:
     value: 0.0191
   2017-01-01:
-    value: 0.0201
+    value: 0.016
 metadata:
   short_label: Essonne
-  last_value_still_valid_on: "2021-12-07"
+  last_value_still_valid_on: "2025-02-07"
   label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_91
   unit: /1
