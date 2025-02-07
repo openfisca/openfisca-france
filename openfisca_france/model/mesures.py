@@ -110,13 +110,9 @@ class revenus_nets_apres_impot_menage(Variable):
 
     def formula_2024_01_01(menage, period):
         revenus_nets_menage = menage('revenus_nets_menage', period, options = [ADD])
-        irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
-        irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period)
-        isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return revenus_nets_menage + irpp_economique + isf_ifi
+        impots_directs = menage('impots_directs', period)
+    
+        return revenus_nets_menage + impots_directs
 
 
 class revenus_nets_menage(Variable):
@@ -126,55 +122,45 @@ class revenus_nets_menage(Variable):
     definition_period = YEAR
 
     def formula_2024_01_01(menage, period):
-        # revenus du travail nets
+        revenus_bruts = menage('revenus_bruts', period)
+        prelevements_sociaux_menage = menage('prelevements_sociaux_menage', period)
+
+        return (
+            revenus_bruts
+            + prelevements_sociaux_menage
+            )
+
+
+class revenus_bruts(Variable):
+    value_type = float
+    entity = Menage
+    label = 'Revenus bruts'
+    definition_period = YEAR
+
+    def formula_2024_01_01(menage, period):
         remuneration_brute_i = menage.members('remuneration_brute', period, options = [ADD])
         remuneration_brute = menage.sum(remuneration_brute_i)
-        indemnite_compensatrice_csg_i = menage.members('indemnite_compensatrice_csg', period, options = [ADD])
-        indemnite_compensatrice_csg = menage.sum(indemnite_compensatrice_csg_i)
-        cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
-        cotisations_salariales = menage.sum(cotisations_salariales_i)
-        complementaire_sante_salarie_i = menage.members('complementaire_sante_salarie', period, options = [ADD])
-        complementaire_sante_salarie = menage.sum(complementaire_sante_salarie_i)
         rpns_imposables_i = menage.members('rpns_imposables', period, options = [ADD])
         rpns_imposables = menage.sum(rpns_imposables_i)
         microentreprise_i = menage.members.foyer_fiscal('microentreprise', period, options = [ADD]) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         microentreprise = menage.sum(microentreprise_i)
-        # pensions nettes
         chomage_brut_i = menage.members('chomage_brut', period, options = [ADD])
         chomage_brut = menage.sum(chomage_brut_i)
         retraite_brute_i = menage.members('retraite_brute', period, options = [ADD])
         retraite_brute = menage.sum(retraite_brute_i)
-        casa_i = menage.members('casa', period, options = [ADD])
-        casa = menage.sum(casa_i)
         pensions_rentes_complementaires = menage('pensions_rentes_complementaires', period)
-        # revenus nets du capital
         revenus_du_capital_avant_prelevements = menage('revenus_du_capital_avant_prelevements', period)
-        prelevements_sociaux_revenus_capital_hors_csg_crds_f = menage.members.foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_f)
-
-        # CSG CRDS
-        csg_i = menage.members('csg', period)
-        csg = menage.sum(csg_i)
-        crds_hors_prestations_i = menage.members('crds_hors_prestations', period)
-        crds_hors_prestations = menage.sum(crds_hors_prestations_i)
 
         return (
             remuneration_brute
-            + indemnite_compensatrice_csg
-            + cotisations_salariales
-            - complementaire_sante_salarie
             + rpns_imposables
             + microentreprise
             + retraite_brute
-            + casa
             + chomage_brut
             + pensions_rentes_complementaires
             + revenus_du_capital_avant_prelevements
-            + prelevements_sociaux_revenus_capital_hors_csg_crds
-            + csg
-            + crds_hors_prestations
-            )
-
+        )
+    
 
 class revenus_nets_du_travail(Variable):
     value_type = float
@@ -638,6 +624,37 @@ class prelevements_sociaux_menage(Variable):
             csg
             + crds_hors_prestations
             + prelevements_sociaux_revenus_capital_hors_csg_crds
+            )
+
+    def formula_2024_01_01(menage,period):
+        # prelevements travail nets
+        indemnite_compensatrice_csg_i = menage.members('indemnite_compensatrice_csg', period, options = [ADD])
+        indemnite_compensatrice_csg = menage.sum(indemnite_compensatrice_csg_i)
+        cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
+        cotisations_salariales = menage.sum(cotisations_salariales_i)
+        complementaire_sante_salarie_i = menage.members('complementaire_sante_salarie', period, options = [ADD])
+        complementaire_sante_salarie = menage.sum(complementaire_sante_salarie_i)
+        # prelevements pensions nettes
+        casa_i = menage.members('casa', period, options = [ADD])
+        casa = menage.sum(casa_i)
+        # prelevements revenus du capital
+        prelevements_sociaux_revenus_capital_hors_csg_crds_f = menage.members.foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_f)
+
+        # CSG CRDS
+        csg_i = menage.members('csg', period)
+        csg = menage.sum(csg_i)
+        crds_hors_prestations_i = menage.members('crds_hors_prestations', period)
+        crds_hors_prestations = menage.sum(crds_hors_prestations_i)
+
+        return (
+            indemnite_compensatrice_csg
+            + cotisations_salariales
+            - complementaire_sante_salarie
+            + casa
+            + prelevements_sociaux_revenus_capital_hors_csg_crds
+            + csg
+            + crds_hors_prestations
             )
 
 
