@@ -30,7 +30,7 @@ values:
     value: 0.032
 metadata:
   short_label: Val de Marne
-  last_value_still_valid_on: "2021-12-07"
+  last_value_still_valid_on: "2025-02-07"
   label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_94
   unit: /1
