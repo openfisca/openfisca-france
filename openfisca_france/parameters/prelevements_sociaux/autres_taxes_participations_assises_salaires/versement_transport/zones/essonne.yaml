@@ -75,3 +75,6 @@ metadata:
   notes:
     2013-07-01:
     - title: Evolution progressive en Essonne et Val d'Oise (objectif de 1,80% en juillet 2015)
+documentation: |-
+  La valeur retenue est celle des communes du nord de l'Essonne, qui sont soumises à un taux de VT de 2,01% depuis le 1er avril 2017.
+  Voir https://fichierdirect.declaration.urssaf.fr/TablesReference.htm pour le taux par commune.
