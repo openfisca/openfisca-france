@@ -4,7 +4,7 @@ values:
     value: 0.16
 metadata:
   short_label: 2 personnes
-  last_value_still_valid_on: "2022-03-29"
+  last_value_still_valid_on: "2025-01-31"
   label_en: "Active solidarity income (RSA): accomodation allowance"
   ipp_csv_id: rsa_rmi_logt2
   unit: /1
