@@ -1,6 +1,7 @@
 description: Bail réel solidaire
 metadata:
-  short_label: BRS
+  short_label: Bail réel solidaire
   label_en: Social real estate lease
   order:
   - plafonds_par_zones
+  - parametres_generaux

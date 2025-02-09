@@ -1,0 +1,11 @@
+description: Nombre maximum de personnes avant application du supplément par personne, paramètres généraux du bail réel solidaire
+values:
+  2024-07-01: 6
+metadata:
+  short_label: Nombre maximum de personnes avant application du supplément par personne
+  last_value_still_valid_on: "2025-02-07"
+  reference:
+  - title: Rapport au Président de la République relatif à l'ordonnance n° 2016-985 du 20 juillet 2016 relative au bail réel solidaire
+    href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032918488
+  - title: Arrêté du 26 mars 2004 
+    href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000437021
