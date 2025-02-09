@@ -1,6 +1,6 @@
 description: Plafonds de ressources du bail réel solidaire (BRS)
 metadata:
-  short_label: Plafonds BRS
+  short_label: Plafonds ressources
   order:
   - zone_A
   - zone_Abis

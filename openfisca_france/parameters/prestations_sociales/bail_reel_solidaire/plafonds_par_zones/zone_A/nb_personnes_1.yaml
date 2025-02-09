@@ -1,0 +1,8 @@
+description: Plafonds de ressources de la zone A du bail réel solidaire (BRS) pour une personne
+values:
+  2024-07-01: 37581
+metadata:
+  reference:
+    - title: Service public
+    - href: https://www.service-public.fr/particuliers/actualites/A17559
+  short_label: une personne
