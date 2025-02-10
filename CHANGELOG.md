@@ -1,5 +1,18 @@
 # Changelog
 
+### 169.16.2 [2430](https://github.com/openfisca/openfisca-france/pull/2430)
+
+* Changement mineur.
+* Périodes concernées : 2024.
+* Zones impactées :
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/contribution_unique_formation/contrib_formation_pro/onze_et_plus_salaries.yaml
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/zones/val_d_oise.yaml
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/zones/paris.yaml
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/zones/hauts_de_seine.yaml
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/zones/essonne.yaml
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 169.16.1 [2429](https://github.com/openfisca/openfisca-france/pull/2429)
 
 - Évolution du système socio-fiscal.

@@ -26,7 +26,7 @@ values:
     value: 0.0201
 metadata:
   short_label: Essonne
-  last_value_still_valid_on: "2021-12-07"
+  last_value_still_valid_on: "2025-02-07"
   label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_91
   unit: /1
@@ -75,3 +75,6 @@ metadata:
   notes:
     2013-07-01:
     - title: Evolution progressive en Essonne et Val d'Oise (objectif de 1,80% en juillet 2015)
+documentation: |-
+  La valeur retenue est celle des communes du nord de l'Essonne, qui sont soumises à un taux de VT de 2,01% depuis le 1er avril 2017.
+  Voir https://fichierdirect.declaration.urssaf.fr/TablesReference.htm pour le taux par commune.
