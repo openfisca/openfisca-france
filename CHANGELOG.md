@@ -1,5 +1,14 @@
 # Changelog
 
+### 169.16.3 [2434](https://github.com/openfisca/openfisca-france/pull/2434)
+
+* Changement mineur.
+* Périodes concernées : à partir du 10/02/2025.
+* Zones impactées :
+  - openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_cm/modulation
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` des modulateurs des allocations familiales
+
 ### 169.16.2 [2430](https://github.com/openfisca/openfisca-france/pull/2430)
 
 * Changement mineur.
