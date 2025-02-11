@@ -6,7 +6,7 @@ values:
     value: 1
 metadata:
   short_label: Taux Tranche 1
-  last_value_still_valid_on: "2022-09-27"
+  last_value_still_valid_on: "2025-02-10"
   label_en: "Family allowances (AF): General conditions and amount"
   unit: BMAF
   reference:

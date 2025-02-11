@@ -1,0 +1,248 @@
+- name: Bail réel solidaire - Tests vectoriels
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [personne1]
+      foyer_fiscal_1:
+        declarants: [personne2, personne3]
+      foyer_fiscal_2:
+        declarants: [personne4, personne5]
+        personnes_a_charge: [enfant1, enfant2]
+    individus:
+      personne1:
+        salaire_imposable:
+          2022: 35000
+      personne2:
+        salaire_imposable:
+          2022: 34000
+      personne3:
+        salaire_imposable:
+          2022: 32000
+      personne4:
+        salaire_imposable:
+          2022: 40000
+      personne5:
+        salaire_imposable:
+          2022: 48000
+      enfant1: {}
+      enfant2: {}
+    menages:
+      menage_0:
+        depcom: '01401'  # Zone A - Sergy
+        personne_de_reference: [personne1]
+      menage_1:
+        depcom: '01103'  # Zone A - Chevry
+        personne_de_reference: [personne2]
+        conjoint: [personne3]
+      menage_2:
+        depcom: '75056'  # Zone Abis - Paris
+        personne_de_reference: [personne4]
+        conjoint: [personne5]
+        enfants: [enfant1, enfant2]
+  output:
+    bail_reel_solidaire: [true, false, true]
+
+- name: Bail réel solidaire - Zone A - Personne seule
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1]
+    individus:
+      parent1:
+        salaire_imposable:
+          2022: 35000
+    menages:
+      menages_0:
+        depcom: '01401'  # Zone A - Sergy
+        personne_de_reference: [parent1]
+  output:
+    bail_reel_solidaire: true
+
+- name: Bail réel solidaire - Zone A - Couple sans enfant - Dépassement plafond
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+    individus:
+      parent1:
+        salaire_imposable:
+          2022: 34000
+      parent2:
+        salaire_imposable:
+          2022: 32000
+    menages:
+      menage_0:
+        depcom: '01103'  # Zone A - Chevry
+        personne_de_reference: [parent1]
+        conjoint: [parent2]
+  output:
+    bail_reel_solidaire: false
+
+- name: Bail réel solidaire - Zone Abis - Famille nombreuse
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
+    individus:
+      parent1:
+        salaire_imposable:
+          2022: 45000
+      parent2:
+        salaire_imposable:
+          2022: 35000
+      enfant1:
+        age: 10
+      enfant2:
+        age: 8
+      enfant3:
+        age: 6
+      enfant4:
+        age: 4
+    menages:
+      menage_0:
+        depcom: '75056'  # Zone Abis - Paris
+        personne_de_reference: [parent1]
+        conjoint: [parent2]
+        enfants: [enfant1, enfant2, enfant3, enfant4]
+  output:
+    bail_reel_solidaire: true
+
+- name: Bail réel solidaire - Cas limite plafond
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1]
+    individus:
+      parent1:
+        salaire_imposable:
+          2022: 37581  # Exactement le plafond
+    menages:
+      menage_0:
+        depcom: '75056' # Zone Abis - Paris
+        personne_de_reference: [parent1]
+  output:
+    bail_reel_solidaire: true
+
+- name: Bail réel solidaire - Zone B1 - Couple, 1 enfant - éligible
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+    individus:
+      parent1:
+        salaire_imposable:
+          2022: 30000
+      parent2:
+        salaire_imposable:
+          2022: 25000
+      enfant1:
+        age: 5
+    menages:
+      menage_0:
+        depcom: '63307'  # Zone B1 - Romagnat
+        personne_de_reference: [parent1]
+        conjoint: [parent2]
+        enfants: [enfant1]
+  output:
+    bail_reel_solidaire: true
+
+- name: Bail réel solidaire - Zone B1 - Couple, 1 enfant - Dépassement plafond
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+    individus:
+      parent1:
+        salaire_imposable:
+          2022: 40000
+      parent2:
+        salaire_imposable:
+          2022: 42000
+      enfant1:
+        age: 5
+    menages:
+      menage_0:
+        depcom: '01043' # Zone B1 - Beynost
+        personne_de_reference: [parent1]
+        conjoint: [parent2]
+        enfants: [enfant1]
+  output:
+    bail_reel_solidaire: false
+
+- name: Bail réel solidaire - Zone C - éligible
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1]
+    individus:
+      parent1:
+        salaire_imposable:
+          2022: 20000
+    menages:
+      menage_0:
+        depcom: '48095'  # Zone C - Mende
+        personne_de_reference: [parent1]
+  output:
+    bail_reel_solidaire: true
+
+
+- name: Bail réel solidaire - Zone C - non éligible
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1]
+    individus:
+      parent1:
+        salaire_imposable:
+          2022: 40000
+    menages:
+      menage_0:
+        depcom: '48095'  # Zone C - Mende
+        personne_de_reference: [parent1]
+  output:
+    bail_reel_solidaire: false
+
+- name: Bail réel solidaire - Plus de 6 personnes - Zone B2
+  period: 2024-12
+  input:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1, enfant2, enfant3, enfant4, enfant5]
+    individus:
+      parent1:
+        salaire_imposable:
+          2022: 50000
+      parent2:
+        salaire_imposable:
+          2022: 40000
+      enfant1:
+        age: 12
+      enfant2:
+        age: 10
+      enfant3:
+        age: 8
+      enfant4:
+        age: 6
+      enfant5:
+        age: 4
+    menages:
+      menage_0:
+        depcom: '49048'  # Zone B2 - Briollay
+        personne_de_reference: [parent1]
+        conjoint: [parent2]
+        enfants: [enfant1, enfant2, enfant3, enfant4, enfant5]
+  output:
+    bail_reel_solidaire: true

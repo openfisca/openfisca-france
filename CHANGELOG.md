@@ -1,5 +1,69 @@
 # Changelog
 
+### 169.16.3 [2434](https://github.com/openfisca/openfisca-france/pull/2434)
+
+* Changement mineur.
+* Périodes concernées : à partir du 10/02/2025.
+* Zones impactées :
+  - openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_cm/modulation
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` des modulateurs des allocations familiales
+
+### 169.16.2 [2430](https://github.com/openfisca/openfisca-france/pull/2430)
+
+* Changement mineur.
+* Périodes concernées : 2024.
+* Zones impactées :
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/contribution_unique_formation/contrib_formation_pro/onze_et_plus_salaries.yaml
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/zones/val_d_oise.yaml
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/zones/paris.yaml
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/zones/hauts_de_seine.yaml
+  - openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/zones/essonne.yaml
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
+### 169.16.1 [2429](https://github.com/openfisca/openfisca-france/pull/2429)
+
+- Évolution du système socio-fiscal.
+- Périodes concernées : à partir du 01/07/2024.
+- Zones impactées : 
+  - `openfisca_france/model/prestations/bail_reel_solidaire.py`
+- Détails :
+  - Modification de la récupération du fichier csv des zones pour le BRS
+  - Amélioration de la lisibilité du code
+
+### 169.16.0 [2427](https://github.com/openfisca/openfisca-france/pull/2427)
+
+- Changement mineur.
+- Périodes concernées : toutes.
+- Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/age_pac.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/majoration_isolement_en_base_rsa/age_limite_enfant.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_fl/forfait_logement/taux_3_personnes_ou_plus.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_fl/forfait_logement/taux_2_personnes.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_fl/forfait_logement/taux_1_personne.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/forfait_asf/taux1.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/forfait_asf/taux2.yaml`
+- Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres qui n'étaient plus à jour et dont la valeur a pu être trouvée avec un bon niveau de fiabilité.
+  - Inversion de `taux1` et `taux2` pour coller à la loi.
+  - Effacement de `taux_1` et `taux_2` qui était un doublon de `taux1` et `taux2`.
+  - Mise à jour de la référence de `taux1` et `taux2` qui pointait sur un article qui ne correspondait pas.
+
+### 169.15.0 [2404](https://github.com/openfisca/openfisca-france/pull/2404)
+
+- Évolution du système socio-fiscal.
+- Périodes concernées : à partir du 01/07/2024.
+- Zones impactées : 
+  - `openfisca_france/parameters/prestations_sociales/bail_reel_solidaire/plafonds_par_zones`
+  - `openfisca_france/model/prestations/bail_reel_solidaire.py`
+  - `tests/formulas/bail_reel_solidaire.yaml`
+- Détails :
+  - Ajout du dispositif Bail Réel Solidaire
+  - Ajout des plafonds de ressources selon la zone et le nombre de personnes du foyer
+  - Ajout du fichier csv de zones pour le BRS
+
 ### 169.14.10 [2426](https://github.com/openfisca/openfisca-france/pull/2426)
 
 * Changement mineur.

@@ -4,7 +4,7 @@ values:
     value: 0.20234
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2024-01-05"
+  last_value_still_valid_on: "2025-02-10"
   label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_forf_tx
   unit: BMAF
