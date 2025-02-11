@@ -18,9 +18,11 @@ class TestPyprojectVersion(TestCase):
     def test_pyproject_version_only(self):
         # Run the pyproject_version.py script with the --only_package_version True argument
         script_path = os.path.join('.github', 'pyproject_version.py')
-        result = subprocess.run(['python3', script_path, '--only_package_version', 'True'], stdout=subprocess.PIPE, check=True)
+        result = subprocess.run(['python', script_path, '--only_package_version', 'True'], stdout=subprocess.PIPE, check=True)
+        # originalement 'python3' mais je l'ai changé à 'python'
         # Extract the version of openfisca_france
-        openfisca_version = result.stdout.decode('utf-8').replace('\n', '')
+        openfisca_version = result.stdout.decode('utf-8').strip()
+        #j'ai remplacé .replace('\n', '') par .strip(), ce qui enlève tous les espaces et caractères invisibles (comme \r et \n) au début et à la fin de la chaîne.
         self.assertEqual(openfisca_version, self.get_of_version_from_pyproject())
 
     def test_pyproject_version_script(self):
@@ -32,7 +34,8 @@ class TestPyprojectVersion(TestCase):
         # Read the values
         # Run the pyproject_version.py script without arguments and read {'openfisca_france': '169.1.0', 'openfisca_core_api': '>=43,<44'}
         script_path = os.path.join('.github', 'pyproject_version.py')
-        result = subprocess.run(['python3', script_path], stdout=subprocess.PIPE, check=True)
+        result = subprocess.run(['python', script_path], stdout=subprocess.PIPE, check=True)
+        # également (python3 >> python)
         # Extract the version of openfisca_france
         content = result.stdout.decode('utf-8')
         version_match = re.search(r"'openfisca_france': '([\d.]*)'", content, re.MULTILINE)
@@ -47,8 +50,8 @@ class TestPyprojectVersion(TestCase):
             raise Exception('openfisca-core-api not found')
 
         # Run the pyproject_version.py script with the --replace True argument
-        subprocess.run(['python3', script_path, '--replace', 'True', '--filename', temp_file.name], check=True)
-
+        subprocess.run(['python', script_path, '--replace', 'True', '--filename', temp_file.name], check=True)
+        #égalemant
         # Check the value has changed
         with open(temp_file.name, 'r') as file:
             content = file.read()

@@ -1,0 +1,13 @@
+- name: "Flax tax on salary - No income"
+  period: 2017-01
+  input:
+    salary: 0
+  output:
+    flat_tax_on_salary: 0
+
+- name: "Flax tax on salary - With income"
+  period: 2017-01
+  input:
+    salary: 2000
+  output:
+    flat_tax_on_salary: 500

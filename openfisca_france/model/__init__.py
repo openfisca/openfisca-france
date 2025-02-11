@@ -1,0 +1,2 @@
+#from openfisca_france.model.tutorials.flat_tax_on_salary_tutorial import flat_tax_on_salary
+

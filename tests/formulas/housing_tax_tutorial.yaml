@@ -1,0 +1,9 @@
+- name: Household with free lodger status living in a 100 sq.meters accomodation
+  period: 2017
+  input:
+    accomodation_size:
+      2017-01: 100
+    housing_occupancy_status:
+      2017-01: free_lodger
+  output:
+    housing_tax: 0
