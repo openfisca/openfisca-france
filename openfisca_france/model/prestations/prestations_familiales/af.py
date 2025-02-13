@@ -429,6 +429,7 @@ def depassement_helper(famille, period, parameters, nb_enf_tot):
 
 
 class crds_af(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = 'CRDS sur les allocations familiales'

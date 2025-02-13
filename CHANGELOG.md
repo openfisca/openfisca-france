@@ -1,5 +1,14 @@
 # Changelog
 
+### 169.16.4 [2439](https://github.com/openfisca/openfisca-france/pull/2439)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+  - `openfisca_france/model/prestations/prestations_familiales/af.py`
+* Détails :
+  - Ajoute un calculate_output à crds_af
+
 ### 169.16.3 [2434](https://github.com/openfisca/openfisca-france/pull/2434)
 
 * Changement mineur.
