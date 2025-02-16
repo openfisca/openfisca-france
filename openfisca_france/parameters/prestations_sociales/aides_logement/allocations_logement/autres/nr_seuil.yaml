@@ -8,8 +8,14 @@ values:
     value: 22
   2017-01-01:
     value: 23
+  2021-01-01:
+    value: 24
 metadata:
   unit: currency
   reference:
     2017-01-01:
       href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000035671411&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=
+    2021-01-01:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038929179
+documentation: |-
+  Notes: Seuil calculé au regard du plafond de la sécurité sociale mensuel et arrondi à l'euro supérieur.
