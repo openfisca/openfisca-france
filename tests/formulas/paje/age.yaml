@@ -1,0 +1,25 @@
+- name: On teste le calcul de l'âge
+  period: 2024-11
+  relative_error_margin: 0.01
+  input:
+    individus:
+      parent1:
+        date_naissance:
+          eternity: 2000-10-15
+      parent2:
+        date_naissance:
+          eternity: 1990-10-15
+      parent3:
+        date_naissance:
+          eternity: 1980-10-15
+  output:
+    individus:
+      parent1:
+        age:
+          2024-11: 24
+      parent2:
+        age:
+          2024-11: 34
+      parent3:
+        age:
+          2024-11: 44
