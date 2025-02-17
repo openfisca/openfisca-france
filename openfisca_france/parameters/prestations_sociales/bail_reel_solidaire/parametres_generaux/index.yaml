@@ -1,0 +1,6 @@
+description: Paramètres généraux du bail réel solidaire
+metadata:
+  short_label: Paramètres généraux
+  order:
+  - nombre_personnes_maximum
+  - zones_abc_eligibles

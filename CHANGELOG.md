@@ -1,5 +1,13 @@
 # Changelog
 
+### 169.16.5 [2441](https://github.com/openfisca/openfisca-france/pull/2441)
+
+- Correction d'un crash.
+- Périodes concernées : toutes.
+- Zones impactées : `openfisca_france/parameters/prestations_sociales/bail_reel_solidaire`.
+- Détails :
+  - Corrige la structure des paramètres du bail réél solidaire
+
 ### 169.16.4 [2439](https://github.com/openfisca/openfisca-france/pull/2439)
 
 * Changement mineur.

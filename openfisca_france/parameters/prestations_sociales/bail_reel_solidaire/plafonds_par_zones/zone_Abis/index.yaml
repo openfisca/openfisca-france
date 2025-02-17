@@ -1,0 +1,12 @@
+description: Plafonds de ressources de la zone A bis du bail réel solidaire (BRS) 
+metadata:
+  short_label: Zone A bis
+  order:
+  - nb_personnes_1
+  - nb_personnes_2
+  - nb_personnes_3
+  - nb_personnes_4
+  - nb_personnes_5
+  - nb_personnes_6
+  - nb_personnes_supplementaires
+
