@@ -2,12 +2,22 @@ description: Durée maximum du séjour à l'étranger, en mois, inclusive pour l
 values:
   2020-06-18:
     value: 9
+  2024-06-18:
+    value: 10
 metadata:
-  short_label: Durée maximum
+  short_label: Durée maximum du séjour
   unit: month
   reference:
     2020-06-18:
-      href: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
+      - title: l'Etudiant
+        href: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
+      - title: Bulletin officiel n°26 du 1er juillet 2021
+        href: https://www.education.gouv.fr/bo/21/Hebdo26/ESRS2117943C.htm
+    2024-06-18:
+      - title: Service Public Aide à la mobilité internationale d'un étudiant
+        href: https://www.service-public.fr/particuliers/vosdroits/F380
+      - title: Bulletin officiel Ministère de l'Enseignement supérieur et de la Recherche
+        href: https://www.enseignementsup-recherche.gouv.fr/fr/bo/2024/Hebdo26/ESRS2413977C
   notes:
     2020-06-18:
     - title: Date de dernière modification de la page de référence

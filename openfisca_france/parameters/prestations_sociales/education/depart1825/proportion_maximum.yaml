@@ -2,20 +2,32 @@ description: Part maximale du montant du séjour prise en charge pour les béné
 values:
   2014-09-05:
     value: 0.5
-  2021-01-01:
+  2020-01-01:
     value: 0.75
   2021-06-02:
     value: 0.9
   2021-09-30:
     value: 0.75
+  2022-01-01:
+    value: 0.8
 metadata:
   unit: /1
   reference:
     2014-09-05:
       href: https://www.ancv.com/sites/default/files/20140905_depart_1825.pdf
-    2021-01-01:
-      href: https://programme-depart-1825.com
+    2020-01-01:
+    - title: Site de départ 1825
+      href: https://www.ancv.com/sites/default/files/2023-06/d1825_bilan_2021.pdf
     2021-06-02:
+    - title: Site de départ 1825
       href: https://depart1825.com/annonce-president-vacances/
+    - title: Bilan administratif du dispositif Départ 18:25 pour 2021
+      href: https://www.ancv.com/sites/default/files/2023-06/d1825_bilan_2021.pdf
     2021-09-30:
+    - title: Site de départ 1825
       href: https://depart1825.com/annonce-president-vacances/
+    - title: Bilan administratif du dispositif Départ 18:25 pour 2021
+      href: https://www.ancv.com/sites/default/files/2023-06/d1825_bilan_2021.pdf
+    2022-01-01:
+      title: Bilan administratif du dispositif Départ 18:25 pour 2022
+      href: https://www.ancv.com/sites/default/files/2023-06/d1825_bilan_2022.pdf

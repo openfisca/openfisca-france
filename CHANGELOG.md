@@ -1,5 +1,13 @@
 # Changelog
 
+### 169.16.6 [2421](https://github.com/openfisca/openfisca-france/pull/2421)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : parameters/prestations_sociales/education.
+* Détails :
+  - Met à jour et documente les paramètres relatifs à l'aide à la mobilité internationale, au pass colo et au départ1825.
+
 ### 169.16.5 [2441](https://github.com/openfisca/openfisca-france/pull/2441)
 
 - Correction d'un crash.
@@ -43,7 +51,7 @@
 
 - Évolution du système socio-fiscal.
 - Périodes concernées : à partir du 01/07/2024.
-- Zones impactées : 
+- Zones impactées :
   - `openfisca_france/model/prestations/bail_reel_solidaire.py`
 - Détails :
   - Modification de la récupération du fichier csv des zones pour le BRS
@@ -72,7 +80,7 @@
 
 - Évolution du système socio-fiscal.
 - Périodes concernées : à partir du 01/07/2024.
-- Zones impactées : 
+- Zones impactées :
   - `openfisca_france/parameters/prestations_sociales/bail_reel_solidaire/plafonds_par_zones`
   - `openfisca_france/model/prestations/bail_reel_solidaire.py`
   - `tests/formulas/bail_reel_solidaire.yaml`
@@ -85,7 +93,7 @@
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/01/2025.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/taxation_societes/impot_societe/seuil_superieur_benefices_taux_reduit.yaml`
   - `openfisca_france/parameters/taxation_societes/impot_societe/seuil_superieur_benefices_taux_reduit.yaml`
 * Détails :
@@ -95,14 +103,14 @@
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/paje_cmg/`
   - `openfisca_france/model/prestations/prestations_familiales/paje.py`
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/plaf_cmg/`
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_cond_ress/`
 * Détails :
   - Mets à jour des paramètres pour des années manquantes pour la paje et aeeh
-  - Modifie les labels de certains paramètres de la paje 
+  - Modifie les labels de certains paramètres de la paje
 
 ### 169.14.8 [2420](https://github.com/openfisca/openfisca-france/pull/2420)
 
