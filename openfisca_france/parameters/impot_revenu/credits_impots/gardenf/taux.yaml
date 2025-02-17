@@ -7,7 +7,7 @@ values:
   2006-01-01:
     value: 0.5
 metadata:
-  short_label: Taux du crédit d'impôt
+  short_label: Taux
   label_en: Child care costs
   ipp_csv_id: txgardenf
   unit: /1

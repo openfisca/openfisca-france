@@ -1,6 +1,6 @@
 description: Réduction d'impôt sur le revenu (IR) sur les cotisations pour la défense des forêts contre les incendies
 metadata:
-  short_label: Cotisations pour la défense des forêts contre les incendies
+  short_label: Défense forêt contre incendies
   order:
   - taux
   - plafond

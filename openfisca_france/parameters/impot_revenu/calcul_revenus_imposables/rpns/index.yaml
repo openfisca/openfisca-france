@@ -5,3 +5,7 @@ metadata:
   order:
   - micro
   - microsocial
+  - cga_max
+  - cga_taux
+  - cga_taux2
+  - taux10

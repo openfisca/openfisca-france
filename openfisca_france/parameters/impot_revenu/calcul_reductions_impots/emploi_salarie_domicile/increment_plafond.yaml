@@ -7,7 +7,7 @@ values:
   2017-01-01: 
     value: null
 metadata:
-  short_label: Majoration du plafond des dépenses par enfant à charge ou par membre du foyer de plus de 65 ans
+  short_label: Incrément
   last_value_still_valid_on: "2024-11-14"
   ipp_csv_id: increment_plafsaldomicile
   unit: currency_next_year

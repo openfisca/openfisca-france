@@ -5,6 +5,7 @@ values:
   2015-01-01:
     value: 2.33
 metadata:
+  short_label: Plafond rétrocession
   unit: /1
   reference:
     2009-01-01:

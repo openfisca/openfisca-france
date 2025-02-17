@@ -5,7 +5,7 @@ values:
   2006-01-01:
     value: 1.25
 metadata:
-  short_label: "Cas spécifique - Coefficient de réévaluation des pensions alimentaires d'une décision de justice avant le 01.01.2006"
+  short_label: Coeff. de réévaluation
   last_value_still_valid_on: "2023-10-17"
   unit: /1
   reference:

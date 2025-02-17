@@ -3,7 +3,7 @@ values:
   2020-01-01:
     value: 0.06
 metadata:
-  short_label: Première période triennale pour un engagement initial de 6 ans
+  short_label: 1ère période triennale si engagement 6 ans
   last_value_still_valid_on: "2024-04-26"
   unit: /1
   reference:

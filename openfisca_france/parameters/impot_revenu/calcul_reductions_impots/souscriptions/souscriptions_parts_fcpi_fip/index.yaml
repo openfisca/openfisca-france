@@ -1,6 +1,6 @@
 description: Réduction d'impôt sur le revenu (IR) sur la souscription de parts de fonds communs de placement dans l'innovation (FCPI) ou de fonds d'investissement de proximité (FIP)
 metadata:
-  short_label: Parts dans des fonds communs de placement dans l'innovation (FCPI) ou fonds d'investissement de proximité (FIP)
+  short_label: De parts de FCPI et FIP
   label_en: Innovation Mutual Funds Shares Subscription
   order:
   - taux

@@ -67,7 +67,7 @@ values:
   2023-01-01:
     value: 495
 metadata:
-  short_label: Montant minimum de la déduction
+  short_label: Minimum pour salaires
   last_value_still_valid_on: "2024-10-21"
   ipp_csv_id: min_abtsal
   unit: currency_next_year

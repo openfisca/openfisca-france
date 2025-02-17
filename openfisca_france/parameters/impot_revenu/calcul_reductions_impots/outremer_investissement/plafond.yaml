@@ -9,6 +9,7 @@ values:
   2012-01-01:
     value: 30600
 metadata:
+  short_label: Plafond de base
   ipp_csv_id: plafond_reduc_invest_outremer
   unit: currency_next_year
   reference:

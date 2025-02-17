@@ -1,0 +1,6 @@
+description: Imposition des gains de levée d'options sur titre et gains d'acquisition d'actions gratuites attribuées avant le 28.09.2012 si cession après 2 ans
+metadata:
+  short_label: Taux si cession après 2 ans
+  order:
+  - taux_tranche_superieure
+  - taux_tranche_inferieure

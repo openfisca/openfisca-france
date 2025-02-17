@@ -1,6 +1,6 @@
 description: Réduction d'impôt sur les frais de comptabilité et d'adhésion de centres de gestion agréés, d'associations agréées ou d'organismes mixtes de gestion agréés
 metadata:
-  short_label: Frais de comptabilité et d’adhésion à un organisme agréé
+  short_label: Frais comptabilité et CGA
   order:
   - plafond
 documentation: |-

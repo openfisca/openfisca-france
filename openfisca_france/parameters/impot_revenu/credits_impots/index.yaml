@@ -2,10 +2,23 @@ description: Calcul des crédits d'impôts
 metadata:
   label_en: Tax credits
   order:
+  - accult
+  - acqgpl
+  - aidmob
+  - assloy
+  - cotisations_syndicales
+  - divide
+  - drbail
+  - jeunes
+  - percvm
+  - preetu
+  - prlire
   - gardenf
   - ppe
   - interets_emprunt_habitation_principale
+  - plaf_nich
   - transition_energetique
   - aide_a_domicile
-  - equ_hab_princ_aide_personnes  
-  - plaf_nich
+  - quaenv
+  - emploi_salarie_domicile
+  - equ_hab_princ_aide_personnes

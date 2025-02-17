@@ -3,7 +3,7 @@ values:
   2000-01-01:
     value: 0.25
 metadata:
-  short_label: Taux de la réduction d'impôt
+  short_label: Taux
   last_value_still_valid_on: "2024-11-07"
   ipp_csv_id: tx_prestcomp
   unit: /1

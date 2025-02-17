@@ -3,7 +3,7 @@ values:
   2013-01-01:
     value: 7500
 metadata:
-  short_label: Plafond individuel des dons consentis aux partis politiques
+  short_label: Plafond individuel
   unit: currency_next_year
   reference:
     2013-01-01:

@@ -5,7 +5,7 @@ values:
   2017-01-01:
     value: 0.128
 metadata:
-  short_label: Taux d'imposition
+  short_label: Taux d'imposition des plus-values nettes à long terme des revenus non-salariés
   last_value_still_valid_on: "2024-11-07"
   unit: /1
   reference:

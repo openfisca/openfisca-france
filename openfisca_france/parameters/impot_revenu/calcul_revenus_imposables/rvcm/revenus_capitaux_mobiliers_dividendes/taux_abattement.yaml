@@ -7,7 +7,7 @@ values:
   2006-01-01:
     value: 0.4
 metadata:
-  short_label: Taux de l'abattement
+  short_label: Taux
   last_value_still_valid_on: "2024-10-21"
   ipp_csv_id: tx_abt_rcm
   unit: /1

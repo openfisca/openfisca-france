@@ -11,7 +11,7 @@ values:
   2004-01-01:
     value: 300
 metadata:
-  short_label: Majoration du plafond par personne à charge
+  short_label: Incrément
   ipp_csv_id: increment_survie
   unit: currency_next_year
   reference:

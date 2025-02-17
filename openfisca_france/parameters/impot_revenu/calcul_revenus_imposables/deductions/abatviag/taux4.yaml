@@ -5,7 +5,7 @@ values:
 metadata:
   last_value_still_valid_on: "2024-10-21"
   unit: /1
-  short_label: Crédirentier de plus de 70 ans
+  short_label: Plus de 70 ans
   reference:
     1979-07-01:
       title: Article 158-6 du Code général des impôts

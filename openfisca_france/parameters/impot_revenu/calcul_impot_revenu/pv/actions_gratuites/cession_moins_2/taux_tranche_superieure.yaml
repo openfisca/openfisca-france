@@ -1,0 +1,10 @@
+description: Taux d'imposition des gains d'acquisition d'actions gratuites attribuées avant le 28 septembre 2012 (case 3VF), pour la fraction des gains dépassant le plafond de 152 500 euros, et dont la durée de conservation des titres ne dépasse pas au moins deux ans
+values:
+  2000-01-01:
+    value: 0.4
+  2010-01-01:
+    value: 0.41
+metadata:
+  short_label: Tranche sup.
+  last_value_still_valid_on: "2024-11-07"
+  unit: /1

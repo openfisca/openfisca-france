@@ -1,6 +1,6 @@
 description: Restauration du patrimoine bâti (Dispositif "Malraux")
 metadata:
-  short_label: Restauration patrimoine bâti (Dispositif "Malraux")
+  short_label: Restauration patrimoine bâti
   order:
   - plafond
   - taux_22
@@ -8,5 +8,5 @@ metadata:
   - taux_ra
   - taux_rb
   - taux_rc
-  - taux_rd  
+  - taux_rd
 documentation: "Travaux de restauration complète d’un immeuble bâti (réduction d'impôt « Malraux ») : art. 199 tervicies du CGI. Loi 2016-1918, art. 40 du 29/12/2016 sur le plafond."

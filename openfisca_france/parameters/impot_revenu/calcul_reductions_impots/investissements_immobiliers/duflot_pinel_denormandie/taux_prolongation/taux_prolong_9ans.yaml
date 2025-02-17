@@ -3,7 +3,7 @@ values:
   2023-01-01:
     value: 0.03
 metadata:
-  short_label: Trois ans supplémentaires pour engagement initial de 9 ans
+  short_label: 3 ans supp. si engagement 9 ans
   last_value_still_valid_on: "2024-04-26"
   unit: /1
   reference:

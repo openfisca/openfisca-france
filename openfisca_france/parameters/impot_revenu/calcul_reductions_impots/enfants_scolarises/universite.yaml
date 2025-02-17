@@ -5,7 +5,7 @@ values:
   2001-01-01:
     value: 183
 metadata:
-  short_label: Montant de la réduction par enfant suivant une formation d'enseignement supérieur (case 7EF)
+  short_label: Université
   last_value_still_valid_on: "2024-11-07"
   ipp_csv_id: reduc_enfscol3
   unit: currency_next_year

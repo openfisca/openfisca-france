@@ -95,7 +95,7 @@ values:
   2023-01-01:
     value: 6674
 metadata:
-  short_label: Plafond de la déduction par enfant
+  short_label: Plafond
   last_value_still_valid_on: "2024-10-21"
   ipp_csv_id: plaf_penalim
   unit: currency_next_year

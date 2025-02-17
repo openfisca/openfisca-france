@@ -1,6 +1,6 @@
 description: Barème de la réduction d'impôt Scellier pour les logements en Nouvelle-Calédonie, Polynésie et Wallis & Futuna
 metadata:
-  short_label: Barème pour les logements en Nouvelle-Calédonie, Polynésie et Wallis & Futuna
+  short_label: Nouvelle-Calédonie, Polynésie et Wallis & Futuna
   order:
   - taux
   - duree_reduction

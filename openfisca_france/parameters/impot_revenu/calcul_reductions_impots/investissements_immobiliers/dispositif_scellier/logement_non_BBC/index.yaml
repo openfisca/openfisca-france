@@ -1,6 +1,6 @@
 description: Barème de la réduction d'impôt Scellier pour les logements non Bâtiment Basse Consommation (BBC)
 metadata:
-  short_label: Barème pour les logements non Bâtiment Basse Consommation
+  short_label: Logements non Bâtiment Basse Consommation
   order:
   - taux
   - duree_reduction

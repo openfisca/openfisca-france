@@ -1,6 +1,6 @@
 description: Taux du crédit d'impôt, appliqués aux dépenses éligibles
 metadata:
-  short_label: Taux du crédit d'impôt
+  short_label: Taux
   order:
   - taux_equ_pers_agees_hand
   - taux_risques_techno_ascenseurs

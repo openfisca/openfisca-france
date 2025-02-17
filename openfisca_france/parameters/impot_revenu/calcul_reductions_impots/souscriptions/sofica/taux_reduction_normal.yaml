@@ -9,7 +9,7 @@ values:
   2012-01-01:
     value: 0.3
 metadata:
-  short_label: Taux de la réduction d'impôt (case 7FN)
+  short_label: Taux
   last_value_still_valid_on: "2024-11-18"
   ipp_csv_id: tx_sofica_2
   unit: /1
