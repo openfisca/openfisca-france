@@ -137,7 +137,7 @@ class aide_logement_montant_brut(Variable):
         zone_apl = famille.demandeur.menage('zone_apl', period)
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
 
-        coefficients = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2.par_zone[zone_apl]
+        coefficients = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2.coefficients_degressivite_suppression[zone_apl]
         loyer_degressivite = round_(loyer_plafond * (coefficients.degressivite), 2)
         loyer_suppression = round_(loyer_plafond * (coefficients.suppression), 2)
 
@@ -157,7 +157,7 @@ class aide_logement_montant_brut(Variable):
 
         montant_avant_degressivite_et_coeff = round_(montant_avant_degressivite * coeff, 2)
 
-        abattement_forfaitaire = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2.montant_forfaitaire
+        abattement_forfaitaire = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2.abattement_forfaitaire
 
         return max_(0, montant_avant_degressivite_et_coeff - abattement_forfaitaire)
 
@@ -1077,7 +1077,7 @@ class aide_logement_loyer_plafond(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        al_loc2 = al.al_loc2.par_zone[zone_apl]
+        al_loc2 = al.al_loc2.plafonds_loyer[zone_apl]
 
         plafond_personne_seule = al_loc2.personnes_seules
         plafond_couple = al_loc2.couples
@@ -1144,8 +1144,8 @@ class aide_logement_charges(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
-        montant_coloc = where(couple, 1, 0.5) * forfait_charges.personne_isolee_ou_menage_seul.cas_general + al_nb_pac * forfait_charges.majoration_par_enfant
-        montant_cas_general = forfait_charges.personne_isolee_ou_menage_seul.cas_general + al_nb_pac * forfait_charges.majoration_par_enfant
+        montant_coloc = where(couple, 1, 0.5) * forfait_charges.cas_general + al_nb_pac * forfait_charges.majoration_par_enfant
+        montant_cas_general = forfait_charges.cas_general + al_nb_pac * forfait_charges.majoration_par_enfant
 
         return where(coloc, montant_coloc, montant_cas_general)
 
@@ -1233,15 +1233,15 @@ class aide_logement_R0(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
         R0 = (
-            al.al_param_r0.r0.taux_seul * not_(couple) * (al_nb_pac == 0)
-            + al.al_param_r0.r0.taux_couple * couple * (al_nb_pac == 0)
-            + al.al_param_r0.r0.taux1pac * (al_nb_pac == 1)
-            + al.al_param_r0.r0.taux2pac * (al_nb_pac == 2)
-            + al.al_param_r0.r0.taux3pac * (al_nb_pac == 3)
-            + al.al_param_r0.r0.taux4pac * (al_nb_pac == 4)
-            + al.al_param_r0.r0.taux5pac * (al_nb_pac == 5)
-            + al.al_param_r0.r0.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
-            + al.al_param_r0.r0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            al.al_param_r0.r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
+            + al.al_param_r0.r0.cas_general.taux_couple * couple * (al_nb_pac == 0)
+            + al.al_param_r0.r0.cas_general.taux1pac * (al_nb_pac == 1)
+            + al.al_param_r0.r0.cas_general.taux2pac * (al_nb_pac == 2)
+            + al.al_param_r0.r0.cas_general.taux3pac * (al_nb_pac == 3)
+            + al.al_param_r0.r0.cas_general.taux4pac * (al_nb_pac == 4)
+            + al.al_param_r0.r0.cas_general.taux5pac * (al_nb_pac == 5)
+            + al.al_param_r0.r0.cas_general.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
+            + al.al_param_r0.r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
         return R0
@@ -1261,13 +1261,13 @@ class aide_logement_taux_famille(Variable):
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         TF_metropole = (
-            al.al_loc2.tf.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
-            + al.al_loc2.tf.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            al.al_loc2.tf.metropole.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + al.al_loc2.tf.metropole.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
+            + al.al_loc2.tf.metropole.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
         TF_dom = (
@@ -1290,13 +1290,15 @@ class aide_logement_taux_famille(Variable):
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         TF_metropole = (
-            al.al_loc2.tf.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_loc2.tf.couples_sans_enfant * (couple) * (al_nb_pac == 0)
-            + al.al_loc2.tf.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
-            + al.al_loc2.tf.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
-            + al.al_loc2.tf.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
-            + al.al_loc2.tf.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
-            + al.al_loc2.tf.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            al.al_loc2.tf.metropole.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
+            + al.al_loc2.tf.metropole.couples_sans_enfant * (couple) * (al_nb_pac == 0)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_5_enfants * (al_nb_pac >= 5)
+            + al.al_loc2.tf.metropole.personnes_seules_couples_avec_6_enfants * (al_nb_pac >= 6)
+            + al.al_loc2.tf.metropole.variation_tf_par_enfant_supplementaire * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
         TF_dom = (
@@ -1324,7 +1326,7 @@ class aide_logement_taux_loyer(Variable):
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations_sociales.aides_logement.allocations_logement
-        z2 = al.al_loc2.par_zone.zone_2
+        z2 = al.al_loc2.plafonds_loyer.zone_2
 
         L = famille('aide_logement_loyer_retenu', period)
         couple = famille('al_couple', period)
