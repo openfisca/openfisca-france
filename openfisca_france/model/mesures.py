@@ -638,7 +638,6 @@ class impots_directs(Variable):
         contribution_differentielle_hauts_revenus_i = menage.members.foyer_fiscal('contribution_differentielle_hauts_revenus', period)
         contribution_differentielle_hauts_revenus = menage.sum(contribution_differentielle_hauts_revenus_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-
         return (
             irpp_economique
             + isf_ifi
