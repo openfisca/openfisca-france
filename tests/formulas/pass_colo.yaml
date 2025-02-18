@@ -155,3 +155,23 @@
         date_naissance: 2010-03-10
   output:
     pass_colo: 0
+
+- name: Eligibilité Pour famille né le 01/01/2013
+  period: 2024-01
+  input:
+    foyer_fiscal:
+      rfr:
+        2022:
+          1
+      nbptr:
+        2022:
+          1
+    menage:
+      enfants: [ enfant1, enfant2 ]
+    individus:
+      enfant1:
+        date_naissance: 2013-01-01
+      enfant2:
+        date_naissance: 2010-03-10
+  output:
+    pass_colo: 350
