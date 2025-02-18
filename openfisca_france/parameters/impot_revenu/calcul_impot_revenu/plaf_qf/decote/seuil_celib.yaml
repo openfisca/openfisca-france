@@ -100,9 +100,11 @@ values:
     value: 833
   2023-01-01:
     value: 873
+  2024-01-01:
+    value: 889
 metadata:
   short_label: Plafond pour les contribuables célibataires, divorcés ou veufs
-  last_value_still_valid_on: "2024-01-03"
+  last_value_still_valid_on: "2025-02-18"
   ipp_csv_id: param_decote
   unit: currency_next_year
   reference:
@@ -228,14 +230,19 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01
     2022-01-01:
     - title: Article 197, I.4.a) du Code général des impôts
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2023-01-01/
     - title: Article 2, c) de la Loi n° 2022-1726 du 30/12/2022 (LF pour 2023)
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845640
     2023-01-01:
     - title: Article 197, I.4.a) du Code général des impôts
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2024-01-01/
     - title: Loi 2023-1322, art. 2 du 29/12/2023 (LF pour 2024)
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048727355
+    2024-01-01:
+    - title: Article 197, I.4.a) du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2025-01-01/
+    - title: Loi 2025-127, art. 2 du 14/02/2025 de finances (LF pour 2025)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051168019
   official_journal_date:
     1986-01-01: "1986-12-31"
     1987-01-01: "1987-12-31"
@@ -272,6 +279,7 @@ metadata:
     2021-01-01: "2021-12-31"
     2022-01-01: "2022-12-31"
     2023-01-01: "2023-12-30"
+    2024-01-01: "2025-02-15"
   notes:
     1986-01-01:
     - title: La décote s'applique uniquement aux contribuables ayant 1 ou 1,5 part avant 1986, c'est généralisé à tous après 1986. Demi-part généralisée à tous les enfants après le 3ème (loi 30/12/1986).

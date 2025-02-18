@@ -6,7 +6,7 @@ values:
     value: 2450
 metadata:
   short_label: Plafond max (Guadeloupe, Martinique, Réunion)
-  last_value_still_valid_on: "2023-07-05"
+  last_value_still_valid_on: "2025-02-04"
   unit: currency_next_year
   reference:
     2001-01-01:
