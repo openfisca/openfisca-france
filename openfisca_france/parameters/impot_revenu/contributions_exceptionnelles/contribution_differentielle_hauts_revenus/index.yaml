@@ -1,0 +1,12 @@
+description: Contribution différentielle sur les hauts revenus
+metadata:
+  short_label: Contribution différentielle sur les hauts revenus
+  order:
+  - taux_cdhr
+  - seuil_celibataire
+  - seuil_couple
+  - majoration_impot_couple
+  - majoration_impot_pac
+  - taux_decote
+  - plafond_revenus_decote_celibataire
+  - plafond_revenus_decote_couple
