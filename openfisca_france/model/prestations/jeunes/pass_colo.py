@@ -16,8 +16,10 @@ class pass_colo(Variable):
 
     def formula_2024_01(individu, period, parameters):
         parametres = parameters(period).prestations_sociales.education.pass_colo
-        annee_naissance_enfant = datetime64(str(parametres.annee_naissance_enfant))
-        annee_naissance_eligible = any(annee_naissance_enfant == year.astype('datetime64[Y]') for year in individu.famille.members('date_naissance', period))
+        age_enfant = parametres.age_enfant
+        premier_janvier = period.offset(- age_enfant, 'year').start
+        ne_premier_janvier = any(datetime64(premier_janvier) == date_naissance.astype('datetime64') for date_naissance in individu.famille.members('date_naissance', period))
+        age_eligible = any((age_enfant == age + 1) for age in individu.famille.members('age', period.this_year.first_month)) | ne_premier_janvier
 
         rfr = individu.foyer_fiscal('rfr', period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period.n_2)
@@ -26,4 +28,4 @@ class pass_colo(Variable):
         modalites = parametres.montants
         montant = modalites.calc(quotient_familial)
 
-        return montant * annee_naissance_eligible
+        return montant * age_eligible
