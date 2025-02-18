@@ -1,0 +1,7 @@
+description: Majoration de l'impôt pris en compte dans le calcul de la la contribution différentielle sur les hauts revenus, pour un couple marié ou pacsé
+values:
+  2024-01-01:  # PLF 2025 sur revenus 2024
+    value: 12_500
+metadata:
+  short_label: Majoration pour un couple marié/pacsé de l'impôt pris en compte avant calcul du différentiel
+  unit: currency_next_year
