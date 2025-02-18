@@ -1,0 +1,11 @@
+description: Taux de la décote à la contribution différentielle sur les hauts revenus cible
+values:
+  2024-01-01:  # PLF 2025 sur revenus 2024
+    value: 0.825
+metadata:
+  short_label: Taux de la décote
+  # reference:
+  #   2024-01-01:
+  #     title: Projet de loi de finances pour 2025, Article 3, V
+  #     href: TODO
+  unit: /1
