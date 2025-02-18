@@ -1,7 +1,4 @@
-# USAGE : poetry run openfisca test -c openfisca_france openfisca_france_reforms/plf_plfss_2025/tests/cdhr.yaml
-
 - name: Célibataire à plus de 250 000€ de revenus, au PFU
-  reforms: openfisca_france_reforms.plf_plfss_2025.PlfPlfss2025
   period: 2025
   input:
     f3ua:
@@ -39,7 +36,6 @@
       2025: False
 
 - name: Célibataire à 500 000€ de revenus, au PFU
-  reforms: openfisca_france_reforms.plf_plfss_2025.PlfPlfss2025
   period: 2025
   absolute_error_margin: 0.07
   input:
@@ -73,7 +69,6 @@
       2025: False
 
 - name: Célibataire à plus de 250 000€ de revenus, au barème
-  reforms: openfisca_france_reforms.plf_plfss_2025.PlfPlfss2025
   period: 2025
   absolute_error_margin: 0.01
   input:
@@ -113,7 +108,6 @@
       2025: False
 
 - name: Couple à 600_000€ de revenus, au PFU
-  reforms: openfisca_france_reforms.plf_plfss_2025.PlfPlfss2025
   period: 2025
   absolute_error_margin: 0.07
   input:
@@ -159,7 +153,6 @@
 
 
 - name: Couple à 1_000_000€ de revenus, au PFU
-  reforms: openfisca_france_reforms.plf_plfss_2025.PlfPlfss2025
   period: 2025
   absolute_error_margin: 0.07
   input:
@@ -203,7 +196,6 @@
       2025: False
 
 - name: Femme seule avec 3 enfants à 1_000_000€ de revenus, au PFU
-  reforms: openfisca_france_reforms.plf_plfss_2025.PlfPlfss2025
   period: 2025
   absolute_error_margin: 0.07
   input:
@@ -255,7 +247,6 @@
 
 
 - name: Célibataire à moins de 250 000€ de revenus
-  reforms: openfisca_france_reforms.plf_plfss_2025.PlfPlfss2025
   period: 2025
   input:
     rfr:
