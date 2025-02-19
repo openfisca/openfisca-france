@@ -94,6 +94,8 @@ values:
     value: 13522
   2023-01-01:
     value: 14171
+  2024-01-01:
+    value: 14426
 metadata:
   short_label: Montant maximum de la déduction
   last_value_still_valid_on: "2025-02-25"

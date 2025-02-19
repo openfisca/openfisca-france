@@ -66,6 +66,8 @@ values:
     value: 472
   2023-01-01:
     value: 495
+  2024-01-01:
+    value: 504
 metadata:
   short_label: Montant minimum de la déduction
   last_value_still_valid_on: "2025-02-25"
