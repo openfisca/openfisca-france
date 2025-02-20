@@ -4,11 +4,18 @@ values:
     value: 0.9
   1988-07-01:
     value: 1.5
+  2023-04-05:
+    value: 1.8
 metadata:
   short_label: Ménage sans personne à charge
-  last_value_still_valid_on: "2023-02-23"
+  last_value_still_valid_on: "2025-02-20"
   unit: /1
   reference:
     1988-07-01:
       title: Article D832-25, 2° du Code de la construction et de l'habitation
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878710/2019-09-01/
+    2023-04-05:
+    - title: Art. D832-25 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047401364/2023-04-05/
+    - title: Décret n°2023-249 du 3 avril 2023 - art. 2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047396549
