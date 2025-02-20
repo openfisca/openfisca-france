@@ -6,7 +6,7 @@ values:
     value: 3214
 metadata:
   short_label: Heures du RSA jeune
-  last_value_still_valid_on: "2022-03-28"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: rsa_jeune_activite
   unit: hour
