@@ -1,5 +1,13 @@
 # Changelog
 
+### 169.16.7 [2425](https://github.com/openfisca/openfisca-france/pull/2425)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : parameters/.
+* Détails :
+  - Met à jour et documente les paramètres relatifs aux aides à l'alimentation des jeunes + des calcul de l'IR dans une perspective d'harmonisation.
+
 ### 169.16.6 [2421](https://github.com/openfisca/openfisca-france/pull/2421)
 
 * Évolution du système socio-fiscal.
