@@ -4,7 +4,7 @@ values:
     value: 20
 metadata:
   short_label: Âge max (apprentissage, stage, formation)
-  last_value_still_valid_on: "2022-03-11"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Definition of dependants
   ipp_csv_id: age_min_pac
   unit: year

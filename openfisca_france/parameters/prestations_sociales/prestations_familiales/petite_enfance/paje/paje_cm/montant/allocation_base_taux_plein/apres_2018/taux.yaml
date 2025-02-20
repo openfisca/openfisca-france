@@ -6,7 +6,7 @@ values:
     value: 0.4165
 metadata:
   short_label: Montant de l'allocation de base à taux plein
-  last_value_still_valid_on: "2023-05-04"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
   ipp_csv_id: tx_paje_base_plein
   unit: BMAF

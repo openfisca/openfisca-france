@@ -4,7 +4,7 @@ values:
     value: 0.55
 metadata:
   short_label: Revenu plafond
-  last_value_still_valid_on: "2022-03-11"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Definition of dependants
   ipp_csv_id: af_plaf_revenf
   unit: smic_mensuel_brut

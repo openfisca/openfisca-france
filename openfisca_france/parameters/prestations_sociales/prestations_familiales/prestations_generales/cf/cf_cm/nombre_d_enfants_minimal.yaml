@@ -5,12 +5,12 @@ values:
   1986-07-01:
     value: 3
   1987-01-01:
-    value: null
+    value:
   1997-01-01:
     value: 3
 metadata:
   short_label: Nombre minimal d'enfants à charge
-  last_value_still_valid_on: "2023-05-11"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Minimum number of dependent children
   ipp_csv_id: nenf_cf_min
   reference:
