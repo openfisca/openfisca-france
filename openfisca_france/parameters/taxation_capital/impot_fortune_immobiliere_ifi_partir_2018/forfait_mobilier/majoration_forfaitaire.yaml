@@ -4,7 +4,7 @@ values:
     value: 0.05
 metadata:
   short_label: Majoration forfaitaire
-  last_value_still_valid_on: "2022-05-12"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Furniture package
   ipp_csv_id: tx_majo_ifi
   unit: /1
