@@ -9,6 +9,7 @@ metadata:
   - dispositif_mehaignerie
   - invlst
   - invrev
+  - plafond
 documentation: |-
   Le montant d'investissement maximal utilisé dans le calcul des réductions d'impôts pour les dispositifs Scellier, Duflot, Pinel et Denormandie est de 300,000 euros est doublement plafonné avec un système de plafond du prix d'achat par rapport à la superficie du bien acquis. Par exemple, l'investissement pour un logement de 40 m² en zone A sous le dispositif Scellier ne peut être supérieur à 200,000 euros.
   Les territoires ultra-marins éligibles aux taux majorés pour les dispositifs Pinel et Duflot sont la Guadeloupe, la Guyane, la Martinique, la Réunion, Mayotte, Saint-Martin, Saint-Pierre-et-Miquelon, laPolynésie française, la Nouvelle-Calédonie et les îles de Wallis et Futuna.
