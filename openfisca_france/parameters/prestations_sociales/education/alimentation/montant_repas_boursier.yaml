@@ -1,0 +1,22 @@
+description: Montant du repas CROUS pour un étudiant boursier
+values:
+  2016-09-01:
+    value: 3.25
+  2019-09-01:
+    value: 3.3
+  2020-09-01:
+    value: 1
+metadata:
+  short_label: Etudiant boursier
+  unit: currency
+  reference:
+    2016-09-01:
+      title: Délibération du CA du CNOUS du 07/07/2016
+      href: https://www.etudiant.gouv.fr/sites/default/files/imported_files/document/Point-1-a-Releve-de-decision-du-CA-du-7-juillet-2016_680945.pdf
+    2019-09-01:
+      title: Délibération du CA du CNOUS du 04/07/2019
+      href: https://www.etudiant.gouv.fr/sites/default/files/imported_files/document/Deliberation-CA-2019-07-04-4_1157228.pdf
+    2020-09-01:
+      title: Délibération du CA du CNOUS du 23/07/2020
+      href: https://www.etudiant.gouv.fr/sites/default/files/imported_files/document/202007231-delib-Prix-du-Ticket-RU-VF_1344376.pdf
+documentation: le tarif à 1€ à été élargi aux étudiants non-boursiers en situation de précarité à compter du 1er août 2022
