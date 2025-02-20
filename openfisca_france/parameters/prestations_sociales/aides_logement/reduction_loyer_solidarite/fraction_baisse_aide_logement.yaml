@@ -4,7 +4,7 @@ values:
     value: 0.98
 metadata:
   short_label: Baisse de l'aide personnalisée au logement (en % de la RLS)
-  last_value_still_valid_on: "2023-05-24"
+  last_value_still_valid_on: "2025-02-20"
   ipp_csv_id: baisse_apl_rsl
   unit: /1
   reference:

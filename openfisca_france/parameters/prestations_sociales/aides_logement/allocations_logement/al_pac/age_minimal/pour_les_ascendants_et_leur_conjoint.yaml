@@ -6,7 +6,7 @@ values:
     value: 67
 metadata:
   short_label: Cas général
-  last_value_still_valid_on: "2023-02-09"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Definition of dependants
   ipp_csv_id: ag_min_ascendants1
   unit: year
