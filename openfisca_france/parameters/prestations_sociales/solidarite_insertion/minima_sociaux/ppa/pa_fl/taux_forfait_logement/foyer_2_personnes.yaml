@@ -4,7 +4,7 @@ values:
     value: 0.16
 metadata:
   short_label: Foyer 2 pers.
-  last_value_still_valid_on: "2022-01-10"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Activity premium (PPA) : accomodation allowance"
   ipp_csv_id: pa_logt2
   unit: /1

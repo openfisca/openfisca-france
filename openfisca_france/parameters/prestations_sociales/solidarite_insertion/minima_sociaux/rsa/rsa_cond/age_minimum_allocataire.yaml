@@ -4,7 +4,7 @@ values:
     value: 25
 metadata:
   short_label: Âge minimum pour l'allocataire
-  last_value_still_valid_on: "2022-03-28"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: age_rsa_rmi
   unit: year

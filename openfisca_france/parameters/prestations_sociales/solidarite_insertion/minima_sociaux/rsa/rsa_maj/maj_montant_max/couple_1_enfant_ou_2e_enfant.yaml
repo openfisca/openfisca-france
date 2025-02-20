@@ -4,7 +4,7 @@ values:
     value: 0.3
 metadata:
   short_label: Couple avec 1 enfant - ou 2e enfant
-  last_value_still_valid_on: "2022-03-31"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_rmi_enf2
   unit: /1

@@ -6,7 +6,7 @@ values:
     value: 25
 metadata:
   short_label: Âge limite enfants à charge
-  last_value_still_valid_on: "2022-04-13"
+  last_value_still_valid_on: "2025-02-20"
   unit: year
   reference:
     2009-06-01:
