@@ -5,7 +5,7 @@ values:
   1986-07-01:
     value: 3
   1987-01-01:
-    value: null
+    value:
   1997-01-01:
     value: 3
 metadata:

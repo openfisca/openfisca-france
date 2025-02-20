@@ -6,7 +6,7 @@ values:
     value: 0.16
 metadata:
   short_label: Taux de la tranche 1
-  last_value_still_valid_on: "2022-03-09"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_enf_tx1
   unit: BMAF

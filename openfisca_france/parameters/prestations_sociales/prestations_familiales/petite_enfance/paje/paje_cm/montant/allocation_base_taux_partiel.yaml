@@ -1,14 +1,14 @@
 description: Montant de l'allocation de base à taux partiel (en % de la BMAF) pour les enfants nés après 2018 - Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
-    value: null
+    value:
   2014-04-01:
     value: 0.22975
   2018-04-01:
     value: 0.20825
 metadata:
   short_label: Montant à taux partiel
-  last_value_still_valid_on: "2023-05-04"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Partial rate amount
   ipp_csv_id: tx_paje_base_partiel
   unit: BMAF

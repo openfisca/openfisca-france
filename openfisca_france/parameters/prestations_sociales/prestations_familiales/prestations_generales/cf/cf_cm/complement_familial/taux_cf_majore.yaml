@@ -1,7 +1,7 @@
 description: Taux majoré (en % de la BMAF) du complément familial (CF)
 values:
   1978-01-01:
-    value: null
+    value:
   2014-04-01:
     value: 0.4582
   2015-04-01:
