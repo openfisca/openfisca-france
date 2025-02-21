@@ -38,6 +38,8 @@ values:
     value: 1378
   2023-01-01:
     value: 1444
+  2024-01-01:
+    value: 1470
 metadata:
   short_label: Plafond pour les contribuables en couple à imposition commune
   last_value_still_valid_on: "2024-01-03"

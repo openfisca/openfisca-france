@@ -100,6 +100,8 @@ values:
     value: 833
   2023-01-01:
     value: 873
+  2024-01-01:
+    value: 889
 metadata:
   short_label: Plafond pour les contribuables célibataires, divorcés ou veufs
   last_value_still_valid_on: "2024-01-03"
