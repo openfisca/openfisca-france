@@ -4,7 +4,7 @@ values:
     value: 0.018
 metadata:
   short_label: Taux d'allègement des cotisations famille
-  last_value_still_valid_on: "2023-01-30"
+  last_value_still_valid_on: "2025-02-21"
   label_en: Reduction in SSCs for family benefits
   ipp_csv_id: tx_red_fam
   unit: /1

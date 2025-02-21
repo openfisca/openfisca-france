@@ -4,7 +4,7 @@ values:
     value: 1.6
 metadata:
   short_label: Plafond de rémunération des salariés
-  last_value_still_valid_on: "2023-01-30"
+  last_value_still_valid_on: "2025-02-21"
   label_en: General SSC reductions, so called Fillon reductions
   ipp_csv_id: plaf_fillon
   unit: smic_annuel

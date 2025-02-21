@@ -4,7 +4,7 @@ values:
     value: 1.6
 metadata:
   short_label: Point d'annulation TO-DE
-  last_value_still_valid_on: "2022-09-21"
+  last_value_still_valid_on: "2025-02-21"
   label_en: Ceiling of resources in SSCs exemption for casual worker job seeker (TO-DE, agricultural worker)
   unit: smic
   reference:

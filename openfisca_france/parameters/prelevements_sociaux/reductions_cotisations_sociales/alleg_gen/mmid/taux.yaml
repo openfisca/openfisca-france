@@ -4,7 +4,7 @@ values:
     value: 0.06
 metadata:
   short_label: Taux d'allègement des cotisations d'assurance maladie
-  last_value_still_valid_on: "2023-01-30"
+  last_value_still_valid_on: "2025-02-21"
   label_en: SSCs for sickness, maternity, disability and death benefits
   unit: /1
   reference:
