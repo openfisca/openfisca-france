@@ -116,6 +116,7 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
     label = 'Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    unit = 'currency'
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
@@ -197,6 +198,7 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
     label = 'Plus-values soumises au prélèvement forfaitaire unique (partie impôt sur le revenu)'
     reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036377422/'
     definition_period = YEAR
+    unit = 'currency'
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         imposition_au_bareme = foyer_fiscal('f2op', period)

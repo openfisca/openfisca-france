@@ -898,7 +898,7 @@ class aide_logement_base_ressources(Variable):
         'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042841854'
         ]
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    unit = 'currency'
 
     def formula_2021_01_01(famille, period, parameters):
         biactivite = famille('aide_logement_biactivite', period)

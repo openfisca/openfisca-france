@@ -1,5 +1,18 @@
 # Changelog
 
+### 169.16.8 [2448](https://github.com/openfisca/openfisca-france/pull/2448)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
+  - `openfisca_france/model/prestations/aides_logement.py`
+  - `openfisca_france/model/prestations/prestations_familiales/base_ressource.py`
+* Détails :
+  - Supprime des set_input
+  - Ajoute des units pour certaines variables
+
 ### 169.16.7 [2425](https://github.com/openfisca/openfisca-france/pull/2425)
 
 * Évolution du système socio-fiscal.
