@@ -20,6 +20,7 @@ class assiette_cotisations_sociales(Variable):
     label = 'Assiette des cotisations sociales des salaries'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    unit = 'currency'
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales_prive = individu('assiette_cotisations_sociales_prive', period)
