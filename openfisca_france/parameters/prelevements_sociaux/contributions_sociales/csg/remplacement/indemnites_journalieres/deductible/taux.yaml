@@ -8,7 +8,7 @@ values:
     value: 0.038
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "1998-01-01"
+  last_value_still_valid_on: "2025-02-21"
   ipp_csv_id: csg_ij_ded
   unit: /1
   reference:
