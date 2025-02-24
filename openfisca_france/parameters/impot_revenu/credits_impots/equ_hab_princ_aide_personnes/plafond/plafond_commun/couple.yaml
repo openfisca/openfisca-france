@@ -3,6 +3,7 @@ values:
   2005-01-01:
     value: 10000
 metadata:
+  last_value_still_valid_on: "2025-02-24"
   short_label: Déclarations communes
   ipp_csv_id: plaf_aide_pers_couple
   unit: currency_next_year

@@ -4,7 +4,7 @@ values:
     value: 0.5
 metadata:
   short_label: Taux du crédit d'impôt
-  last_value_still_valid_on: "2024-11-14"
+  last_value_still_valid_on: "2025-02-24"
   ipp_csv_id: txsaldomicile
   unit: /1
   reference:

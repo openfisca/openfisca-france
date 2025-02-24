@@ -4,12 +4,11 @@ values:
     value: 2.5
 metadata:
   short_label: Coefficient de majoration du plafond de réductions
-  last_value_still_valid_on: "2022-10-11"
+  last_value_still_valid_on: "2025-02-04"
   reference:
     2009-01-01:
     - title: Loi 2008-1425 du 27/12/2008 - art. 87 (V) (créé Art. 199 undecies D)
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000020000207/2008-12-29/
     - title: Art. 199 undecies D, II. du CGI
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020034322/
-documentation: "Dans le Code général des impôts, le coefficient de majoration du plafond n'est pas exprimé en pourcentage, c'est pourquoi il n'a pas d''unit'"
-    
+documentation: "Dans le Code général des impôts, le coefficient de majoration du plafond n'est pas exprimé en pourcentage, c'est pourquoi il n'a pas d''unit'. Le texte mentionné est `deux fois et demie la limite mentionnée`"

@@ -4,7 +4,7 @@ values:
     value: 8000
 metadata:
   short_label: Majoration du plafond s’agissant des réductions d'impôt outre-mer et SOFICA
-  last_value_still_valid_on: "2023-10-17"
+  last_value_still_valid_on: "2025-02-24"
   ipp_csv_id: majo_nich
   unit: currency_next_year
   reference:

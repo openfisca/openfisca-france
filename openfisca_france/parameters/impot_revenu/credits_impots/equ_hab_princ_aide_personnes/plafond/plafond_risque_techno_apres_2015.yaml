@@ -3,6 +3,7 @@ values:
   2015-01-01:
     value: 20000
 metadata:
+  last_value_still_valid_on: "2025-02-24"
   short_label: Plafond de dépenses de travaux de prévention des risques technologiques et diagnostic préalable (à compter de l'imposition des revenus 2015)
   ipp_csv_id: plaf_risques_techno_post_2015
   unit: currency_next_year
