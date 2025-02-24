@@ -143,11 +143,10 @@ class contribution_exceptionnelle_hauts_revenus_majoration_impot(Variable):
         f7fm = foyer_fiscal('f7fm', period)
         f7fl = foyer_fiscal('f7fl', period)
         f7fy = foyer_fiscal('f7fy', period)
-        reduction_d_impot_majorantes = (frais_de_comptabilite + f8wt + f8tb + f8tl + f8tp + f8uz +
-            f8wa + f8wd + f8wr + f8wc + f8tp + f8te + f8fv + interets_emprunt_reprise_societe +
-            f7ik + f7il + f7gq + f7gr + f7fq + f7ft + f7fm + f7fl + f7fy)
+        reduction_d_impot_majorantes = (frais_de_comptabilite + f8wt + f8tb + f8tl + f8tp + f8uz
+            + f8wa + f8wd + f8wr + f8wc + f8tp + f8te + f8fv + interets_emprunt_reprise_societe
+            + f7ik + f7il + f7gq + f7gr + f7fq + f7ft + f7fm + f7fl + f7fy)
         return reduction_d_impot_majorantes
-
 
 
 class contribution_differentielle_hauts_revenus_decote(Variable):
