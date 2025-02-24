@@ -4,7 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Limite d'âge
-  last_value_still_valid_on: "2023-02-06"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Age limit
   ipp_csv_id: paje_ab_age_min
   unit: year

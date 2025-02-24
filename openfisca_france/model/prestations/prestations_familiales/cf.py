@@ -192,12 +192,13 @@ class cf_eligibilite_base(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
+        nb_enfants_min = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf.cf_cm.nombre_d_enfants_minimal
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         cf_enfant_eligible = famille.members('cf_enfant_eligible', period)
         cf_nbenf = famille.sum(cf_enfant_eligible)
 
-        return not_(residence_dom) * (cf_nbenf >= 3)
+        return not_(residence_dom) * (cf_nbenf >= nb_enfants_min)
 
 
 class cf_eligibilite_dom(Variable):
