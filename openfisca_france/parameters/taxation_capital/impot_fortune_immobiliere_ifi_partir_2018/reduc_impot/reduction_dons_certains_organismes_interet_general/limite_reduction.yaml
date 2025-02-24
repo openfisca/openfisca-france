@@ -4,7 +4,7 @@ values:
     value: 50000
 metadata:
   short_label: Limite de la réduction
-  last_value_still_valid_on: "2022-05-10"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Tax reductions for investment and donations
   unit: currency
   reference:

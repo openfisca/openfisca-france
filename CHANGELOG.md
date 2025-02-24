@@ -1,5 +1,20 @@
 # Changelog
 
+### 169.16.14 [2452](https://github.com/openfisca/openfisca-france/pull/2452)
+
+* Changement mineur.
+* Périodes concernées : 2024.
+* Zones impactées :
+  - openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/reduction_dons_certains_organismes_interet_general/taux.yaml
+  - openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/reduction_dons_certains_organismes_interet_general/limite_reduction.yaml
+  - openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/forfait_mobilier/non_bati/seuil.yaml
+  - openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/forfait_mobilier/majoration_forfaitaire.yaml
+  - openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/forfait_mobilier/non_bati/taux_bois_forets.yaml
+  - openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/forfait_mobilier/non_bati/taux_biens_ruraux.yaml
+  - openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/decote/parametre_calcul_decote.yaml
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 169.16.13 [2453](https://github.com/openfisca/openfisca-france/pull/2453)
 
 * Changement mineur.

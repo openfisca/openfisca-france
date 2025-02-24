@@ -4,7 +4,7 @@ values:
     value: 17500
 metadata:
   short_label: Paramètre de calcul
-  last_value_still_valid_on: "2022-04-28"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Décote computation
   ipp_csv_id: decote_1_ifi
   unit: currency
