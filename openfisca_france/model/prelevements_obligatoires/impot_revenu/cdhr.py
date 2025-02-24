@@ -132,7 +132,6 @@ class contribution_exceptionnelle_hauts_revenus_majoration_impot(Variable):
         f8wc = foyer_fiscal('f8wc', period)
         f8tp = foyer_fiscal('f8tp', period)
         f8te = foyer_fiscal('f8te', period)
-        f8fv = foyer_fiscal('f8fv', period)
         interets_emprunt_reprise_societe = foyer_fiscal('interets_emprunt_reprise_societe', period)
         f7ik = foyer_fiscal('f7ik', period)
         f7il = foyer_fiscal('f7il', period)
@@ -302,7 +301,7 @@ class contribution_differentielle_hauts_revenus(Variable):
         # réductions d’impôt prévues à l’article 199 quater B], à l’article 199 undecies B, à l’exception des vingt-sixième à dernier alinéas du I, à l’article 238 bis
         # et à l’article 107 de la loi n° 2021-1104 du 22 août 2021 portant lutte contre le dérèglement climatique et renforcement de la résilience face à ses effets,
         # ainsi que de l’avantage en impôt procuré par les crédits d’impôt prévus à [l’article 200 undecies], [aux articles 244 quater B à 244 quater W](244 B bis et 244 W)
-        # et [aux articles 27 et 151 de la loi n° 2020-1721 du 29 décembre 2020 de finances pour 2021] et par les crédits d’impôt prévus par les conventions fiscales internationales, dans la limite de l’impôt dû [8fv ajouté, mais pas seul].
+        # et [aux articles 27 et 151 de la loi n° 2020-1721 du 29 décembre 2020 de finances pour 2021] et par les crédits d’impôt prévus par les conventions fiscales internationales, dans la limite de l’impôt dû (8fv, mais pas seul).
         # (11) « La contribution mentionnée au 2° du III est déterminée sans qu’il soit fait application du 1 du II de l’article 223 sexies.
         #
         # [leximpact : V = décote ajoutée plus haut]
