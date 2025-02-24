@@ -1,5 +1,16 @@
 # Changelog
 
+### 169.16.10 [2457](https://github.com/openfisca/openfisca-france/pull/2457)
+
+* Changement mineur.
+* Périodes concernées : 2024.
+* Zones impactées :
+  - openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/remplacement/indemnites_journalieres/deductible/taux.yaml
+  - openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/remplacement/indemnites_journalieres/taux_global.yaml
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 169.16.9 [2458](https://github.com/openfisca/openfisca-france/pull/2458)
 
 * Changement mineur.
