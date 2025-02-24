@@ -4,7 +4,7 @@ values:
     value: 0.5
 metadata:
   short_label: Par enfant supplémentaire
-  last_value_still_valid_on: "2023-03-08"
+  last_value_still_valid_on: "2025-02-21"
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: maj_enf_aah
   unit: /1

@@ -1,5 +1,14 @@
 # Changelog
 
+### 169.16.11 [2456](https://github.com/openfisca/openfisca-france/pull/2456)
+* Changement mineur.
+* Périodes concernées : 2024.
+* Zones impactées :
+  - openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/caah/majoration_vie_autonome.yaml
+  - openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/majoration_plafond/majoration_par_enfant_supplementaire.yaml
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvé avec un bon niveau de fiabilité.
+
 ### 169.16.10 [2457](https://github.com/openfisca/openfisca-france/pull/2457)
 
 * Changement mineur.
