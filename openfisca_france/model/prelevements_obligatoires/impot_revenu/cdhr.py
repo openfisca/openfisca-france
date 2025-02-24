@@ -105,6 +105,51 @@ class contribution_exceptionnelle_hauts_revenus_majoration(Variable):
         return nb_pac * majoration_impot_pac + (nb_adult == 2) * majoration_impot_couple
 
 
+class contribution_exceptionnelle_hauts_revenus_majoration_impot(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = 'Majoration de la contribution différentielle sur les hauts revenus'
+    # reference = TODO
+    definition_period = YEAR
+    calculate_output = calculate_output_divide
+    documentation = '''
+    Selon 'Évaluations préalables des articles du projet de loi' :
+    TODO
+    '''
+
+    def formula_2024_01_01(foyer_fiscal, period, parameters):  # PLF 2025 sur revenus 2024
+        # [Ajout à ip_net + pfu + prelevement_forfaitaire_liberatoire + contribution_exceptionnelle_hauts_revenus]
+        # IV A 2 et VII ; les cases qui ne sont pas dans openfisca ne sont pas ajoutées, et certaines n'ont pas été encore reliées
+        frais_de_comptabilite = foyer_fiscal('frais_de_comptabilite', period)
+        f8wt = foyer_fiscal('f8wt', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8te = foyer_fiscal('f8te', period)
+        f8fv = foyer_fiscal('f8fv', period)
+        interets_emprunt_reprise_societe = foyer_fiscal('interets_emprunt_reprise_societe', period)
+        f7ik = foyer_fiscal('f7ik', period)
+        f7il = foyer_fiscal('f7il', period)
+        f7gq = foyer_fiscal('f7gq', period)
+        f7gr = foyer_fiscal('f7gr', period)
+        f7fq = foyer_fiscal('f7fq', period)
+        f7ft = foyer_fiscal('f7ft', period)
+        f7fm = foyer_fiscal('f7fm', period)
+        f7fl = foyer_fiscal('f7fl', period)
+        f7fy = foyer_fiscal('f7fy', period)
+        reduction_d_impot_majorantes = (frais_de_comptabilite + f8wt + f8tb + f8tl + f8tp + f8uz +
+            f8wa + f8wd + f8wr + f8wc + f8tp + f8te + f8fv + interets_emprunt_reprise_societe +
+            f7ik + f7il + f7gq + f7gr + f7fq + f7ft + f7fm + f7fl + f7fy)
+        return reduction_d_impot_majorantes
+
+
+
 class contribution_differentielle_hauts_revenus_decote(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -245,17 +290,20 @@ class contribution_differentielle_hauts_revenus(Variable):
             + foyer_fiscal(
                 'contribution_exceptionnelle_hauts_revenus_majoration', period
                 )
+            + foyer_fiscal(
+                'contribution_exceptionnelle_hauts_revenus_majoration_impot', period
+                )
             )
         contribution_differentielle_hauts_revenus_montant = max_(
             impot_cible_apres_decote - impot_avant_creation_cdhr, 0
             )
 
-        # [leximpact : TODO tout ce qui suit ^_^']
-        # IV. – L’impôt sur le revenu mentionné au 2° du III est majoré de l’avantage en impôt procuré par les
-        # réductions d’impôt prévues à l’article 199 quater B, à l’article 199 undecies B, à l’exception des vingt-sixième à dernier alinéas du I, à l’article 238 bis
+        # [leximpact : TODO tout ce qui suit ^_^'. Les réductions et crédit déjà pris en compte sont mises entre crochets, ceux qui ne sont pas dans OF sont entre parenthèses]
+        # IV. – L’impôt sur le revenu mentionné au 2° du III est majoré de l’avantage en impôt procuré par [les
+        # réductions d’impôt prévues à l’article 199 quater B], à l’article 199 undecies B, à l’exception des vingt-sixième à dernier alinéas du I, à l’article 238 bis
         # et à l’article 107 de la loi n° 2021-1104 du 22 août 2021 portant lutte contre le dérèglement climatique et renforcement de la résilience face à ses effets,
-        # ainsi que de l’avantage en impôt procuré par les crédits d’impôt prévus à l’article 200 undecies, aux articles 244 quater B à 244 quater W
-        # et aux articles 27 et 151 de la loi n° 2020-1721 du 29 décembre 2020 de finances pour 2021 et par les crédits d’impôt prévus par les conventions fiscales internationales, dans la limite de l’impôt dû.
+        # ainsi que de l’avantage en impôt procuré par les crédits d’impôt prévus à [l’article 200 undecies], [aux articles 244 quater B à 244 quater W](244 B bis et 244 W)
+        # et [aux articles 27 et 151 de la loi n° 2020-1721 du 29 décembre 2020 de finances pour 2021] et par les crédits d’impôt prévus par les conventions fiscales internationales, dans la limite de l’impôt dû [8fv ajouté, mais pas seul].
         # (11) « La contribution mentionnée au 2° du III est déterminée sans qu’il soit fait application du 1 du II de l’article 223 sexies.
         #
         # [leximpact : V = décote ajoutée plus haut]
@@ -269,9 +317,9 @@ class contribution_differentielle_hauts_revenus(Variable):
         # et sous les mêmes garanties et sanctions qu’en matière d’impôt sur le revenu. »
         # II.- Le montant de l’impôt sur le revenu mentionné au 2° du III de l’article 224 du code général des impôts
         # est également majoré de l’avantage en impôt procuré par les réductions d’impôt et, dans la limite de l’impôt dû, des crédits d’impôt prévus par :
-        # (15) 1° les articles 199 decies E, 199 decies EA, 199 decies F, 199 decies G, 199 decies I, 199 terdecies-0 B, 199 sexvicies et 199 septvicies du même code ;
-        # (16) 2° les articles 199 terdecies-0 A, 199 terdecies-0 A bis, 199 terdecies-0 A ter, 199 terdecies-0 AA,
-        # 199 terdecies-0 AB et 199 terdecies-0 C du même code, à raison des versements effectués au titre de souscriptions réalisées jusqu’au 31 décembre 2024 ;
+        # (15) 1° les articles 199 decies E, 199 decies EA, 199 decies F, 199 decies G, 199 decies I, [199 terdecies-0 B], [199 sexvicies] et 199 septvicies du même code ;
+        # (16) 2° [les articles 199 terdecies-0 A], 199 terdecies-0 A bis, 199 terdecies-0 A ter, 199 terdecies-0 AA,
+        # 199 terdecies-0 AB et [(199 terdecies-0 C)] du même code, à raison des versements effectués au titre de souscriptions réalisées jusqu’au 31 décembre 2024 ;
         # (17) 3° les articles 199 undecies A, les vingt-sixième à dernier alinéas du I de l’article 199 undecies B,
         # les articles 199 undecies C et 199 novovicies du même code, à raison des investissements réalisés jusqu’au 31 décembre 2024 ;
         # (18) 4° les articles 199 duovicies, 200 quater A et 200 quater C du même code, à raison des dépenses payées jusqu’au 31 décembre 2024 ;
