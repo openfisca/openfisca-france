@@ -1,5 +1,14 @@
 # Changelog
 
+### 169.16.15 [2428](https://github.com/openfisca/openfisca-france/pull/2428)
+
+* Changement mineur.
+    * Périodes concernées : 2025.
+    * Zones impactées :
+      - openfisca_france/parameters/impot_revenu/*
+    * Détails :
+    - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 169.16.14 [2452](https://github.com/openfisca/openfisca-france/pull/2452)
 
 * Changement mineur.
