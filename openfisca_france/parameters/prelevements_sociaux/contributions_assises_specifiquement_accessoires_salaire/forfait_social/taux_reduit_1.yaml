@@ -4,7 +4,7 @@ values:
     value: 0.08
 metadata:
   short_label: Taux réduit 1
-  last_value_still_valid_on: "2023-01-30"
+  last_value_still_valid_on: "2025-02-21"
   label_en: Contribution levied on various earnings supplements ("Forfait social")
   ipp_csv_id: forf_soc_tx2
   unit: /1
