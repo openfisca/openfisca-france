@@ -1,5 +1,14 @@
 # Changelog
 
+### 169.16.12 [2454](https://github.com/openfisca/openfisca-france/pull/2454)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - openfisca_france/parameters/prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire/forfait_social/taux_reduit_1.yaml
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvé avec un bon niveau de fiabilité.
+
 ### 169.16.11 [2456](https://github.com/openfisca/openfisca-france/pull/2456)
 * Changement mineur.
 * Périodes concernées : 2024.
