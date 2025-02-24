@@ -4,7 +4,7 @@ values:
     value: 12000
 metadata:
   short_label: Plafond des dépenses, avant majorations
-  last_value_still_valid_on: "2024-11-14"
+  last_value_still_valid_on: "2025-02-24"
   ipp_csv_id: plafsaldomicile
   unit: currency_next_year
   reference:

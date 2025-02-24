@@ -4,7 +4,7 @@ values:
     value: 1500
 metadata:
   short_label: Majoration du plafond des dépenses (/pers de 65ans ou enfant)
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2025-02-24"
   label_en: Tax credits for personal care assistant employment
   ipp_csv_id: plafond_credit_aide_majoration
   unit: currency_next_year

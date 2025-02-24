@@ -3,6 +3,7 @@ values:
   2007-01-01:
     value: 500
 metadata:
+  last_value_still_valid_on: "2025-02-24"
   short_label: Majoration par enfant à charge
   unit: currency_next_year
   reference:

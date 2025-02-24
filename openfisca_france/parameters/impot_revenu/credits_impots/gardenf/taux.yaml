@@ -7,6 +7,7 @@ values:
   2006-01-01:
     value: 0.5
 metadata:
+  last_value_still_valid_on: "2025-02-24"
   short_label: Taux du crédit d'impôt
   label_en: Child care costs
   ipp_csv_id: txgardenf

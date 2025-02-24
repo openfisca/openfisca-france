@@ -3,6 +3,7 @@ values:
   2005-01-01:
     value: 0.25
 metadata:
+  last_value_still_valid_on: "2025-02-24"
   short_label: Equipements conçus pour les personnes âgées ou handicapées (case 7WJ)
   ipp_csv_id: tx_equ_pers_agees_hand
   unit: /1

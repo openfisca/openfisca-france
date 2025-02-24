@@ -3,6 +3,7 @@ values:
   2007-01-01:
     value: 0.4
 metadata:
+  last_value_still_valid_on: "2025-02-24"
   short_label: Taux 1ère année
   unit: /1
   reference:
