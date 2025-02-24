@@ -12,7 +12,7 @@ values:
     value: 0.57
 metadata:
   short_label: Pourcentage du SJR
-  last_value_still_valid_on: "2022-01-20"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "UI scheme: rates and maximum"
   ipp_csv_id: base_prct
   unit: /1
