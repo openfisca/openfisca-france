@@ -1,5 +1,15 @@
 # Changelog
 
+### 169.16.13 [2453](https://github.com/openfisca/openfisca-france/pull/2453)
+
+* Changement mineur.
+* Périodes concernées : 2024.
+* Zones impactées :
+  - openfisca_france/parameters/chomage/allocations_assurance_chomage/complement_are/taux_remuneration_retenue.yaml
+  - openfisca_france/parameters/chomage/allocations_assurance_chomage/alloc_base_taux/pourcentage_sjr.yaml
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvé avec un bon niveau de fiabilité.
+
 ### 169.16.12 [2454](https://github.com/openfisca/openfisca-france/pull/2454)
 
 * Changement mineur.
