@@ -3,6 +3,7 @@ values:
   2012-01-01:
     value: 0.11
 metadata:
+  last_value_still_valid_on: "2025-02-25"
   short_label: Taux pour les logements acquis à compter de 2012
   unit: /1
   reference:

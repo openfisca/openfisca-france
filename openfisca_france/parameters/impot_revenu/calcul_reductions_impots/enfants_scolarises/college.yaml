@@ -8,7 +8,7 @@ values:
     value: 61
 metadata:
   short_label: Montant de la réduction par enfant au collège (case 7EA)
-  last_value_still_valid_on: "2024-11-07"
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: reduc_enfscol1
   unit: currency_next_year
   reference:
