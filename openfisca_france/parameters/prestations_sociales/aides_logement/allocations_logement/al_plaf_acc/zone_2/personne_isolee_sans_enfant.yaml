@@ -30,8 +30,6 @@ values:
     value: 275.31
   2019-10-01:
     value: 276.14
-  2022-08-01:
-    value: 259.46
 metadata:
   short_label: Personne isolée sans enfant
   last_value_still_valid_on: "2025-02-20"
@@ -74,11 +72,6 @@ metadata:
     2019-10-01:
       title: Arrêté du 27/09/2019, art. 33
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000039160689/2019-10-02/#LEGIARTI000039160689
-    2022-08-01:
-    - title: Art. 33 du Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046126965/2022-08-01/
-    - title: Arrêté du 29 juillet 2022 - art. 2
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046114992
   official_journal_date:
     2001-07-01: "2001-08-02"
     2002-07-01: "2002-12-22"
