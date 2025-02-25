@@ -5,6 +5,7 @@ values:
   2006-01-01:
     value: 0.5
 metadata:
+  last_value_still_valid_on: "2025-02-25"
   short_label: Taux de la réduction d'impôt
   ipp_csv_id: taux_incendie
   unit: /1

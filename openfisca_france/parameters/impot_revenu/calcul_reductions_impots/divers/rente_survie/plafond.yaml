@@ -13,6 +13,7 @@ values:
   2004-01-01:
     value: 1525
 metadata:
+  last_value_still_valid_on: "2025-02-25"
   short_label: Plafond
   ipp_csv_id: plaf_survie
   unit: currency_next_year

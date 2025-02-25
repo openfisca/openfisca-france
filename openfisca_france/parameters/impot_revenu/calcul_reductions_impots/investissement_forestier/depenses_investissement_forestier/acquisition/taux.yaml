@@ -12,7 +12,7 @@ values:
     value: 0.25
 metadata:
   short_label: Taux du crédit d'impôt
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: tx_foret
   unit: /1
   reference:
