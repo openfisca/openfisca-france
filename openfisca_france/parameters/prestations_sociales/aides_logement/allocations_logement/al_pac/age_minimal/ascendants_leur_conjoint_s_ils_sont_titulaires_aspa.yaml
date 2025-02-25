@@ -1,12 +1,12 @@
 description: Âge minimal de l'ascendant du bénéficiaire ou de son conjoint, si titulaire de l'ASPA, pour être considéré personne à charge pour les allocations logement (AL)
 values:
   1991-11-11:
-    value: null
+    value:
   2016-07-01:
     value: 65
 metadata:
   short_label: Ascendant titulaire de l'ASPA
-  last_value_still_valid_on: "2023-02-09"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Definition of dependants
   unit: year
   reference:

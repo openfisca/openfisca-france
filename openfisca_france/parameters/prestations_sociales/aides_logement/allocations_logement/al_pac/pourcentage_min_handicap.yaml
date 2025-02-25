@@ -1,12 +1,12 @@
 description: Pourcentage minimal de handicap pour les ascendants, descendants, collatéraux au deuxième ou troisième degré, du bénéficiaire ou de son conjoint, pour être considéré comme personne à charge pour les allocations logement (AL)
 values:
   1991-11-11:
-    value: null
+    value:
   2000-01-01:
     value: 0.8
 metadata:
   short_label: Pourcentage minimal de handicap pour un ascendant, descendant ou collatéral invalide
-  last_value_still_valid_on: "2023-02-09"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Definition of dependants
   ipp_csv_id: pct_handicap
   unit: /1
