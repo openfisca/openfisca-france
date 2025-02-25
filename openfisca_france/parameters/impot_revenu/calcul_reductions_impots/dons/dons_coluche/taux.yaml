@@ -12,7 +12,7 @@ values:
     value: 0.75
 metadata:
   short_label: Taux de la réduction d'impôt
-  last_value_still_valid_on: "2024-11-14"
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: txcoluche
   unit: /1
   reference:

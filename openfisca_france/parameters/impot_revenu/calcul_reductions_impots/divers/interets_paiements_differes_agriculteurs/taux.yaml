@@ -5,6 +5,7 @@ values:
   2005-01-01:
     value: 0.5
 metadata:
+  last_value_still_valid_on: "2025-02-25"
   short_label: Taux
   ipp_csv_id: taux_intagri
   unit: /1

@@ -4,7 +4,10 @@ values:
     value: null
   2019-01-01:
     value: 0.75
+  2020-01-01:
+    value: null
 metadata:
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: tx_ND
   unit: /1
   reference:

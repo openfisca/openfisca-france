@@ -8,12 +8,12 @@ values:
     value: 30500
 metadata:
   short_label: Plafond des versements effectués et des biens ou des droits attribués
-  last_value_still_valid_on: "2024-11-07"
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: plaf_prestcomp
   unit: currency_next_year
   reference:
     2000-01-01:
-      title: "Loi 2000-596 du 30 juin\_2000"
+      title: "Loi 2000-596 du 30 juin 2000"
     2001-01-01:
       title: Article 199 octodecies du Code général des impôts
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907654

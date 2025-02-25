@@ -7,6 +7,7 @@ values:
   1983-01-01:
     value: 0.25
 metadata:
+  last_value_still_valid_on: "2025-02-25"
   short_label: Taux
   ipp_csv_id: tx_survie
   unit: /1
