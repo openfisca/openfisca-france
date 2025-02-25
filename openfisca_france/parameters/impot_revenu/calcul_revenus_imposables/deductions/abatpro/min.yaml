@@ -68,7 +68,7 @@ values:
     value: 495
 metadata:
   short_label: Montant minimum de la déduction
-  last_value_still_valid_on: "2024-10-21"
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: min_abtsal
   unit: currency_next_year
   reference:
