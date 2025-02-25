@@ -1,7 +1,5 @@
 description: Taux de la cotisation pour la formation professionnelle du régime des des auto-entrepreneurs pour la prestation de services (artisans) d'Alsace
 values:
-  2009-01-01:
-    value: null
   2011-01-01:
     value: 0.00176
   2017-01-01:
@@ -13,11 +11,6 @@ metadata:
   ipp_csv_id: auto_art_form_als_ca
   unit: /1
   reference:
-    2009-01-01:
-    - title: Décret 2008-1348 du 18/12/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951795
-    - title: Décret 2008-1349 du 18/12/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951825
     2011-01-01:
     - title: Loi 2010-1657 du 29/12/2010 de finances pour 2011, art. 137
     - title: Article 1609 quatervicies B du Code général des impôts
