@@ -6,7 +6,7 @@ values:
     value: 0.16
 metadata:
   short_label: Taux de la majoration
-  last_value_still_valid_on: "2024-01-05"
+  last_value_still_valid_on: "2025-02-27"
   unit: BMAF
   reference:
     2008-05-01:

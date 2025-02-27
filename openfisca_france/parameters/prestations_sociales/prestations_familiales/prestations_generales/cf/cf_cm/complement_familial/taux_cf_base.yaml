@@ -6,7 +6,7 @@ values:
     value: 0.4165
 metadata:
   short_label: Taux de base
-  last_value_still_valid_on: "2023-05-11"
+  last_value_still_valid_on: "2025-02-27"
   label_en: "Family complement (CF): General conditions and amounts"
   ipp_csv_id: tx_cf
   unit: BMAF

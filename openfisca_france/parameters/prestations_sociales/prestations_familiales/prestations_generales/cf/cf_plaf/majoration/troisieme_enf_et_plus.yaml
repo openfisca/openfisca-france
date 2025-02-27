@@ -8,7 +8,7 @@ values:
     value: 0.3
 metadata:
   short_label: À partir du 3ème enfant
-  last_value_still_valid_on: "2023-01-27"
+  last_value_still_valid_on: "2025-02-27"
   label_en: Increase, per child, in % of the resource ceiling, from the 3rd child
   ipp_csv_id: maj_plaf_cf_apje_adopt_enf3pl
   unit: /1

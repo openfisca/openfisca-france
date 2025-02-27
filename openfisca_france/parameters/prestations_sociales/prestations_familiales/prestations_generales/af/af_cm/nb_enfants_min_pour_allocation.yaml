@@ -6,7 +6,7 @@ values:
     value: 2
 metadata:
   short_label: Nombre minimal d'enfants
-  last_value_still_valid_on: "2024-01-05"
+  last_value_still_valid_on: "2025-02-27"
   label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_nenf_agemin
   reference:

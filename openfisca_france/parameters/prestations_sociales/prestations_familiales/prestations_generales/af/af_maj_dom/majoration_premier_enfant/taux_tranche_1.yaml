@@ -4,7 +4,7 @@ values:
     value: 0.0369
 metadata:
   short_label: Taux de la tranche 1
-  last_value_still_valid_on: "2023-02-02"
+  last_value_still_valid_on: "2025-02-27"
   label_en: "Family allowances (AF): Extra allowances for oversea territories"
   unit: BMAF
   reference:

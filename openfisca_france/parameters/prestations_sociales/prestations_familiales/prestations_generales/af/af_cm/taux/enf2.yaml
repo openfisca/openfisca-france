@@ -12,7 +12,7 @@ values:
     value: 0.32
 metadata:
   short_label: Premier taux
-  last_value_still_valid_on: "2023-05-04"
+  last_value_still_valid_on: "2025-02-27"
   label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_t1_2enf
   unit: BMAF
