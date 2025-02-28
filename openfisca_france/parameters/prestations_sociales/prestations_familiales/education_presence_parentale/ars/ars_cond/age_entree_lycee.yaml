@@ -4,7 +4,7 @@ values:
     value: 15
 metadata:
   short_label: Deuxième seuil d'âge
-  last_value_still_valid_on: "2023-05-11"
+  last_value_still_valid_on: "2025-02-20"
   unit: year
   reference:
     2002-01-01:

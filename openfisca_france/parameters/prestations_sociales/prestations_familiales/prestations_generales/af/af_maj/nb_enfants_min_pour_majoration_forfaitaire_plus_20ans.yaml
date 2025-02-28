@@ -1,12 +1,12 @@
 description: Nombre minimal d'enfants pour avoir droit à la majoration forfaitaire pour les plus de 20 ans, allocations familiales (AF)
 values:
   1986-01-01:
-    value: null
+    value:
   2003-07-01:
     value: 3
 metadata:
   short_label: Nb min d'enfants pour la maj. forfaitaire (>20 ans)
-  last_value_still_valid_on: "2022-02-24"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: afmaj_nenf_min
   unit: year

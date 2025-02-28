@@ -1,7 +1,5 @@
 description: Montant pour la 1ère tranche d'âge (écoliers 6-10 ans), en % de la BMAF, de l'allocation de rentrée scolaire (ARS)
 values:
-  1978-01-01:
-    value: null
   1986-08-01:
     value: 0.2
   1995-08-01:
@@ -16,7 +14,7 @@ values:
     value: 0.8972
 metadata:
   short_label: 1ère tranche d'âge
-  last_value_still_valid_on: "2023-05-11"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Back-to-school allowance (ARS): Amounts"
   ipp_csv_id: ars610
   unit: BMAF

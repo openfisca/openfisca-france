@@ -4,7 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Nb d'enfants pour droit à maj.
-  last_value_still_valid_on: "2022-02-18"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Family allowances (AF): Extra allowances for oversea territories"
   ipp_csv_id: nb_enf_maj_dom
   unit: /1
