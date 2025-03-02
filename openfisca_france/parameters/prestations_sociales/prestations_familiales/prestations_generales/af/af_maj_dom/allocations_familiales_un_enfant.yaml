@@ -4,7 +4,7 @@ values:
     value: 0.0588
 metadata:
   short_label: Taux de la majoration pour un seul enfant à charge
-  last_value_still_valid_on: "2024-01-15"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Family allowances (AF): Extra allowances for oversea territories"
   unit: BMAF
   reference:

@@ -6,7 +6,7 @@ values:
     value: 0.5
 metadata:
   short_label: Facteur multiplicatif pour un enfant en cas de garde alternée
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2025-02-27"
   unit: currency
   reference:
     2007-05-01:

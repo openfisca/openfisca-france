@@ -6,7 +6,7 @@ values:
     value: 0.5
 metadata:
   short_label: Taux Tranche 2
-  last_value_still_valid_on: "2025-02-10"
+  last_value_still_valid_on: "2025-02-27"
   label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_modulation_taux1
   unit: BMAF

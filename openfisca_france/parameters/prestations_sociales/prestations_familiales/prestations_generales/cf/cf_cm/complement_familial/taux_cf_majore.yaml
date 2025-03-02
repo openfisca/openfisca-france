@@ -14,7 +14,7 @@ values:
     value: 0.6248
 metadata:
   short_label: Taux majoré
-  last_value_still_valid_on: "2023-05-11"
+  last_value_still_valid_on: "2025-02-27"
   label_en: Increased rate
   ipp_csv_id: tx_cf_maj
   unit: BMAF
