@@ -1,5 +1,14 @@
 # Changelog
 
+### 169.16.16 [2450](https://github.com/openfisca/openfisca-france/pull/2450)
+
+ * Changement mineur.
+    * Périodes concernées : 2025.
+    * Zones impactées :
+      - openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/*
+    * Détails :
+    - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 169.16.15 [2428](https://github.com/openfisca/openfisca-france/pull/2428)
 
 * Changement mineur.
