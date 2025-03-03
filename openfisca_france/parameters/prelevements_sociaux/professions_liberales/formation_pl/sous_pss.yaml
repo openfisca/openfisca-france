@@ -4,8 +4,6 @@ values:
     value: 0.0015
   2012-08-18:
     value: 0.0025
-  2023-01-01:
-    value: 0.0034
 metadata:
   short_label: Taux (sous PSS)
   last_value_still_valid_on: "2025-02-21"
@@ -23,11 +21,6 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026290023&cidTexte=JORFTEXT000026288927
     - title: Article L6331-48 du Code du travail
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000026294815/2012-08-18/
-    2023-01-01:
-    - title: Art. L6331-48 du Code du travail
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044056633/2023-01-01/
-    - title: LOI n°2021-1900 du 30 décembre 2021 - art. 121 (V)
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
   official_journal_date:
     1992-01-01: "1992-01-04"
     2012-08-18: "2012-08-17"
