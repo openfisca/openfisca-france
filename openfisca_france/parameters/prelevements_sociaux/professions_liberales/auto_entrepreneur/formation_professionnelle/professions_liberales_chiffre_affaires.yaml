@@ -1,21 +1,14 @@
 description: Cotisation des auto-entrepreneurs (% du chiffre d'affaires) pour formation professionnelle (professions libérales)
 values:
-  2009-01-01:
-    value: null
   2011-01-01:
     value: 0.002
 metadata:
   short_label: Taux - Professions libérales
-  last_value_still_valid_on: "2022-04-07"
+  last_value_still_valid_on: "2025-02-21"
   label_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_plib_form_ca
   unit: /1
   reference:
-    2009-01-01:
-    - title: Décret 2008-1348 du 18/12/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951795
-    - title: Décret 2008-1349 du 18/12/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951825
     2011-01-01:
     - title: Loi 2010-1657 du 29/12/2010 de finances pour 2011, art. 137
     - title: Article L6331-48 du Code du travail

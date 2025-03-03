@@ -6,7 +6,7 @@ values:
     value: 0.0025
 metadata:
   short_label: Taux (sous PSS)
-  last_value_still_valid_on: "2022-04-06"
+  last_value_still_valid_on: "2025-02-21"
   label_en: Contribution to lifelong professional training (professionals)
   ipp_csv_id: form_plib_0_1
   unit: /1
