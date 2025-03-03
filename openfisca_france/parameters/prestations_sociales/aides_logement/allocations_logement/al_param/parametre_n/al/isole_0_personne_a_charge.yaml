@@ -4,7 +4,7 @@ values:
     value: 1.2
 metadata:
   short_label: Bénéficiaire isolé
-  last_value_still_valid_on: "2023-02-23"
+  last_value_still_valid_on: "2025-02-20"
   unit: /1
   reference:
     1988-07-01:
