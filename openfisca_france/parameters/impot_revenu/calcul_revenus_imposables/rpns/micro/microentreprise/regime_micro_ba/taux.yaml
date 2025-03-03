@@ -6,7 +6,7 @@ values:
     value: 0.87
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2025-03-02"
   ipp_csv_id: taux_micro_ba
   unit: /1
   reference:

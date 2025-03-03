@@ -11,7 +11,7 @@ values:
   2024-01-01:
     value: 120000
 metadata:
-  last_value_still_valid_on: "2024-05-20"
+  last_value_still_valid_on: "2025-03-02"
   ipp_csv_id: plaf_micro_ba
   unit: currency_next_year
   reference:
