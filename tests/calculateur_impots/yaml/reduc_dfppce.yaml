@@ -360,7 +360,7 @@
       f7uf: 5000
       f7uh: 6000
       f7ud: 2000
-      f7uj: 3700
+      f7uj_2022: 3700
       f7vc: 5000
       f7va: 1500
       f7xs: 7000
@@ -392,6 +392,35 @@
     protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 7106.0
+    rfr: 45000.0
+
+- name: reduc_dons_patrimoine_religieux
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      declarants:
+      - ind0
+      f7uj: 1000
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 5915.0
+    impot_revenu_restant_a_payer: -5915.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 750.0
     rfr: 45000.0
 
 - name: reduc_dfppce
