@@ -4,7 +4,7 @@ values:
     value: 0.3
 metadata:
   short_label: Coeff. majoration 3e ou 4e pers.
-  last_value_still_valid_on: "2022-10-28"
+  last_value_still_valid_on: "2025-02-20"
   unit: /1
   reference:
     2000-01-01:
