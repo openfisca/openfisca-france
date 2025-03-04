@@ -1077,11 +1077,12 @@ class aide_logement_loyer_plafond(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        al_loc2 = al.al_loc2.plafonds_loyer[zone_apl]
+        plafonds_loyers = al.secteur_locatif.L_plafonds_loyers[zone_apl]
+        coeff_chambre_coloc = plafonds_loyers.chambre_et_colocation
 
-        plafond_personne_seule = al_loc2.personnes_seules
-        plafond_couple = al_loc2.couples
-        plafond_famille = al_loc2.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * al_loc2.majoration_par_enf_supp
+        plafond_personne_seule = plafonds_loyers.personnes_seules
+        plafond_couple = plafonds_loyers.couples
+        plafond_famille = plafonds_loyers.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * plafonds_loyers.majoration_par_enf_supp
 
         plafond = select(
             [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
@@ -1089,8 +1090,8 @@ class aide_logement_loyer_plafond(Variable):
             default = plafond_couple
             )
 
-        coeff_coloc = where(coloc, al.al_loc2.colocation, 1)
-        coeff_chambre = where(chambre, al.al_loc2.chambre, 1)
+        coeff_coloc = where(coloc, al.plafonds_loyers.coef_colocation, 1)
+        coeff_chambre = where(chambre, al.plafonds_loyers.coef_chambre, 1)
 
         return round_(plafond * coeff_coloc * coeff_chambre, 2)
 

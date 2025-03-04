@@ -1,54 +1,54 @@
-description: Plafond de loyer pris en compte dans le calcul du montant des aides au logement pour une personne seule en zone 2 (après la réforme de 2001)
+description: Plafond de loyer pris en compte dans le calcul du montant des aides au logement pour chaque enfant à charge supplémentaire en zone 3 (après la réforme de 2001)
 values:
   2001-01-01:
-    value: 1385
+    value: 253
   2001-07-01:
-    value: 1402
+    value: 256
   2002-01-01:
-    value: 213.73
+    value: 39.03
   2002-07-01:
-    value: 216.29
+    value: 39.5
   2003-07-01:
-    value: 218.89
+    value: 39.97
   2005-09-01:
-    value: 222.83
+    value: 40.69
   2007-01-01:
-    value: 229.07
+    value: 41.83
   2008-01-01:
-    value: 235.39
+    value: 42.98
   2009-01-01:
-    value: 242.33
+    value: 44.25
   2010-01-01:
-    value: 243.11
+    value: 44.39
   2011-01-01:
-    value: 245.78
+    value: 44.88
   2012-01-01:
-    value: 248.24
+    value: 45.33
   2013-01-01:
-    value: 253.58
+    value: 46.3
   2014-10-01:
-    value: 255.03
+    value: 46.56
   2015-10-01:
-    value: 255.23
+    value: 46.6
   2017-10-01:
-    value: 257.14
+    value: 46.95
   2019-10-01:
-    value: 257.92
+    value: 47.09
   2020-10-01:
-    value: 258.69
+    value: 47.23
   2021-10-01:
-    value: 259.78
+    value: 47.43
   2022-07-01:
-    value: 268.87
+    value: 49.09
   2023-10-01:
-    value: 278.28
+    value: 50.81
   2024-10-01:
-    value: 287.35
+    value: 52.47
 metadata:
-  short_label: Personne seule
-  last_value_still_valid_on: "2024-11-07"
+  short_label: Par enfant supplémentaire
+  last_value_still_valid_on: "2025-03-04"
   label_en: Parameters for the rental sector (after the 2001 reform)
-  ipp_csv_id: plaf_loy_isol_z2
+  ipp_csv_id: plaf_loy_enfsupp_z3
   unit: currency
   reference:
     2001-01-01:

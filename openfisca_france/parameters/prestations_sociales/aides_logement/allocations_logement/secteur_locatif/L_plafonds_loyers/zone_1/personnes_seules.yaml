@@ -1,54 +1,54 @@
-description: Plafond de loyer pris en compte dans le calcul du montant des aides au logement pour une personne seule ou un couple ayant un enfant à charge en zone 3 (après la réforme de 2001)
+description: Plafond de loyer pris en compte dans le calcul du montant des aides au logement pour une personne seule en zone 1 (après la réforme de 2001)
 values:
   2001-01-01:
-    value: 1765
+    value: 1577
   2001-07-01:
-    value: 1786
+    value: 1596
   2002-01-01:
-    value: 272.27
+    value: 243.31
   2002-07-01:
-    value: 275.54
+    value: 248.18
   2003-07-01:
-    value: 278.85
+    value: 251.16
   2005-09-01:
-    value: 283.87
+    value: 255.68
   2007-01-01:
-    value: 291.82
+    value: 262.84
   2008-01-01:
-    value: 299.87
+    value: 270.09
   2009-01-01:
-    value: 308.72
+    value: 278.06
   2010-01-01:
-    value: 309.71
+    value: 278.95
   2011-01-01:
-    value: 313.12
+    value: 282.02
   2012-01-01:
-    value: 316.25
+    value: 284.84
   2013-01-01:
-    value: 323.05
+    value: 290.96
   2014-10-01:
-    value: 324.89
+    value: 292.62
   2015-10-01:
-    value: 325.15
+    value: 292.85
   2017-10-01:
-    value: 327.59
+    value: 295.05
   2019-10-01:
-    value: 328.57
+    value: 295.93
   2020-10-01:
-    value: 329.56
+    value: 296.82
   2021-10-01:
-    value: 330.94
+    value: 298.07
   2022-07-01:
-    value: 342.52
+    value: 308.5
   2023-10-01:
-    value: 354.51
+    value: 319.30
   2024-10-01:
-    value: 366.07
+    value: 329.71
 metadata:
-  short_label: Personne seule ou un couple avec un enfant à charge
-  last_value_still_valid_on: "2023-02-20"
+  short_label: Personne seule
+  last_value_still_valid_on: "2025-03-04"
   label_en: Parameters for the rental sector (after the 2001 reform)
-  ipp_csv_id: plaf_loy_enf1_z3
+  ipp_csv_id: plaf_loy_isol_z1
   unit: currency
   reference:
     2001-01-01:
@@ -143,7 +143,7 @@ metadata:
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
     2023-10-01: "2023-09-27"
-    2024-10-01: "2024-09-28"
+    2024-10-01: "2024-09-29"
   notes:
     2001-01-01:
     - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
