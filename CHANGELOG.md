@@ -11,6 +11,7 @@
   - Mise à jour des montants de la déduction forfaitaire pour frais professionnels sur les revenus 2024.
 
 ### 169.17.0 [2451](https://github.com/openfisca/openfisca-france/pull/2451)
+
 ### 169.17.1 [2449](https://github.com/openfisca/openfisca-france/pull/2449)
 
 * Changement mineur.
