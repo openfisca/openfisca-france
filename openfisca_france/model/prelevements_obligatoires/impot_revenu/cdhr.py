@@ -11,11 +11,14 @@ class contribution_differentielle_hauts_revenus_ressources(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Ressources considérées par la contribution différentielle sur les hauts revenus'
-    # reference = TODO
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200465/2025-02-16'
     definition_period = YEAR
     calculate_output = calculate_output_divide
 
-    def formula_2024_01_01(foyer_fiscal, period, parameters):  # PLF 2025 sur revenus 2024
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        # Attention, c'est le PLF 2025 sur revenus 2025 à cause du vote définitif en 2025 ! 
+        # Conformément au A du IV de l'article 10 de la loi n° 2025-127 du 14 février 2025, les I et II de l'article précité sont applicables à l'imposition des revenus de l'année 2025.
+
         # II. – Le revenu mentionné au I s’entend du revenu fiscal de référence défini au 1° du IV de l’article 1417,
         rfr = foyer_fiscal('rfr', period)
 
@@ -46,11 +49,11 @@ class contribution_differentielle_hauts_revenus_eligible(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Éligibilité à la contribution différentielle sur les hauts revenus'
-    # reference = TODO
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200465/2025-02-16'
     definition_period = YEAR
     calculate_output = calculate_output_divide
 
-    def formula_2024_01_01(foyer_fiscal, period, parameters):  # PLF 2025 sur revenus 2024
+    def formula_2025_01_01(foyer_fiscal, period, parameters):  # Sur revenus 2025
         # I. - Il est institué une contribution à la charge des contribuables
         # domiciliés fiscalement en France au sens de l’article 4 B (TODO hypothèse = toujours vrai)
         # dont le revenu du foyer fiscal tel que défini au II
@@ -81,7 +84,7 @@ class contribution_exceptionnelle_hauts_revenus_majoration(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Majoration de la contribution différentielle sur les hauts revenus'
-    # reference = TODO
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200465/2025-02-16'
     definition_period = YEAR
     calculate_output = calculate_output_divide
     documentation = '''
@@ -89,7 +92,7 @@ class contribution_exceptionnelle_hauts_revenus_majoration(Variable):
     TODO
     '''
 
-    def formula_2024_01_01(foyer_fiscal, period, parameters):  # PLF 2025 sur revenus 2024
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
         # [Majoration à ip_net + pfu + prelevement_forfaitaire_liberatoire + contribution_exceptionnelle_hauts_revenus]
         # III. - 2° (...)
         # majoré de 1 500 € par personne à charge au sens des articles
@@ -109,7 +112,7 @@ class contribution_exceptionnelle_hauts_revenus_majoration_impot(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Majoration de la contribution différentielle sur les hauts revenus'
-    # reference = TODO
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200465/2025-02-16'
     definition_period = YEAR
     calculate_output = calculate_output_divide
     documentation = '''
@@ -117,7 +120,7 @@ class contribution_exceptionnelle_hauts_revenus_majoration_impot(Variable):
     TODO
     '''
 
-    def formula_2024_01_01(foyer_fiscal, period, parameters):  # PLF 2025 sur revenus 2024
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
         # [Ajout à ip_net + pfu + prelevement_forfaitaire_liberatoire + contribution_exceptionnelle_hauts_revenus]
         # IV A 2 et VII ; les cases qui ne sont pas dans openfisca ne sont pas ajoutées, et certaines n'ont pas été encore reliées
         frais_de_comptabilite = foyer_fiscal('frais_de_comptabilite', period)
@@ -151,7 +154,7 @@ class contribution_differentielle_hauts_revenus_decote(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Décote de la contribution différentielle sur les hauts revenus'
-    # reference = TODO
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200465/2025-02-16'
     definition_period = YEAR
     calculate_output = calculate_output_divide
     documentation = '''
@@ -162,7 +165,7 @@ class contribution_differentielle_hauts_revenus_decote(Variable):
     contribuables soumis à imposition commune dont le RFR est compris entre 500 000 € et 660 000 €.
     '''
 
-    def formula_2024_01_01(foyer_fiscal, period, parameters):  # PLF 2025 sur revenus 2024
+    def formula_2025_01_01(foyer_fiscal, period, parameters):  # Sur revenus 2025
         # (12) « V. – Toutefois, lorsque le revenu mentionné au II est inférieur ou égal à 330 000 € pour les contribuables célibataires,
         # veufs, séparés ou divorcés et à 660 000 € pour les contribuables soumis à imposition commune,
         contribution_differentielle_hauts_revenus_ressources = foyer_fiscal(
@@ -241,11 +244,11 @@ class contribution_differentielle_hauts_revenus(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Contribution différentielle sur les hauts revenus (CDHR)'
-    # reference = TODO
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200465/2025-02-16'
     definition_period = YEAR
     calculate_output = calculate_output_divide
 
-    def formula_2024_01_01(foyer_fiscal, period, parameters):  # PLF 2025 sur revenus 2024
+    def formula_2025_01_01(foyer_fiscal, period, parameters):  # Sur revenus 2025
         contribution_differentielle_hauts_revenus_eligible = foyer_fiscal(
             'contribution_differentielle_hauts_revenus_eligible', period
             )
