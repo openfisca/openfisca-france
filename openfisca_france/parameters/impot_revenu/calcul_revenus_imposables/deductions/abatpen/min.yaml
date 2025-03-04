@@ -58,6 +58,8 @@ values:
     value: 422
   2023-01-01:
     value: 442
+  2024-01-01:
+    value: 450
 metadata:
   short_label: Montant minimum de l'abattement, par pensionné
   last_value_still_valid_on: "2025-02-25"
