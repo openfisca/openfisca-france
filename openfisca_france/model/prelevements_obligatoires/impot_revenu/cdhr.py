@@ -274,7 +274,7 @@ class contribution_differentielle_hauts_revenus(Variable):
         contribution_exceptionnelle_hauts_revenus = foyer_fiscal(
             'contribution_exceptionnelle_hauts_revenus', period
             )
-        pfu = -1 * foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         prelevement_forfaitaire_liberatoire = -1 * foyer_fiscal(
             'prelevement_forfaitaire_liberatoire', period
             )
