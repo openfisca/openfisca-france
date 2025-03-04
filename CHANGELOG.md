@@ -1,5 +1,14 @@
 # Changelog
 
+### 169.16.19 [2455](https://github.com/openfisca/openfisca-france/pull/2455)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - openfisca_france/parameters/prelevements_sociaux/professions_liberales/*
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 169.16.18 [2447](https://github.com/openfisca/openfisca-france/pull/2447)
 
 * Changement mineur.
