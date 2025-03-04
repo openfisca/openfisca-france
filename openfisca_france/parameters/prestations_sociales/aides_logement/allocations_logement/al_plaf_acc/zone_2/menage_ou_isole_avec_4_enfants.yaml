@@ -48,7 +48,7 @@ values:
     value: 405.1
 metadata:
   short_label: Ménage ou isolé avec 4 enfants
-  last_value_still_valid_on: "2022-01-05"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_enf4_z2_al
   unit: currency

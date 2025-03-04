@@ -46,7 +46,7 @@ values:
     value: 39.36
 metadata:
   short_label: Ménage ou isolé - par enfant en plus
-  last_value_still_valid_on: "2022-01-05"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_enfsupp_z1_al
   unit: currency

@@ -48,7 +48,7 @@ values:
     value: 371.07
 metadata:
   short_label: Ménage ou isolé avec 3 enfants
-  last_value_still_valid_on: "2022-01-05"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_enf3_z3_al
   unit: currency

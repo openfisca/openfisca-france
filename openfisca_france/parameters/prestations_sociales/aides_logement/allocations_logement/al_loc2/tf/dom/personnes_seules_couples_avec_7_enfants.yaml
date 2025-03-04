@@ -6,7 +6,7 @@ values:
     value: 0.0167
 metadata:
   short_label: Personnes seules ou couple ayant sept personnes à charge
-  last_value_still_valid_on: "2023-02-22"
+  last_value_still_valid_on: "2025-02-20"
   unit: /1
   reference:
     2002-01-01:

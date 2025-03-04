@@ -48,7 +48,7 @@ values:
     value: 338.53
 metadata:
   short_label: Ménage seul
-  last_value_still_valid_on: "2022-01-05"
+  last_value_still_valid_on: "2025-02-20"
   label_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_coup_z2_al
   unit: currency
