@@ -11,6 +11,7 @@ values:
   2004-01-01:
     value: 300
 metadata:
+  last_value_still_valid_on: "2025-02-25"
   short_label: Majoration du plafond par personne à charge
   ipp_csv_id: increment_survie
   unit: currency_next_year

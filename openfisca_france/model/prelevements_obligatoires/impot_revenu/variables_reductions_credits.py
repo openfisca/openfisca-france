@@ -5642,13 +5642,35 @@ class f7uj_2002(Variable):
     definition_period = YEAR
 
 
-class f7uj(Variable):
+class f7uj_2022(Variable):
+    '''
+    Pour les dons effectués entre le 2 juin et le 31.12.2021, vous bénéficierez d'une réduction d'impôt égale à 75 % des versements retenus dans la limite de 554 €.
+     Source : https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2022/aides/reductions_s.htm
+    Pour les dons effectués en 2022, vous bénéficierez d'une réduction d'impôt égale à 75 % des versements retenus dans la limite de 562 €.
+     Source : https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2023/aides/reductions_s.htm
+    '''
     cerfa_field = '7UJ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     # start_date = date(2021, 1, 1)
-    label = 'Dons versés du 2.6 au 31.12.2021 à des associations cultuelles'
+    label = 'Dons versés du 2.6.2021 au 31.12.2022 à des associations cultuelles'
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7uj(Variable):
+    '''
+    Il s'agit des versements effectués entre le 15.9.2023 et le 31.12.2025 au profit de la Fondation du patrimoine en vue d'assurer,
+    dans le cadre de son activité d'intérêt général de sauvegarde du patrimoine local, la conservation et la restauration du patrimoine
+    immobilier religieux appartenant aux communes de France métropolitaine de moins de 10 000 habitants ou aux communes d'outre-mer de moins de 20 000 habitants.
+    https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2024/aides/reductions_s.htm
+    '''
+    cerfa_field = '7UJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Dons effectés à pour la sauvegarde du patrimoine religieux'
     definition_period = YEAR
 
 
@@ -10903,9 +10925,9 @@ class f7hs(Variable):
 # Investissements locatifs dans les résidences de tourisme situées dans une zone de
 # revitalisation rurale
 
-# """
+# '''
 # réutilisation de cases en 2013
-# """
+# '''
 
 
 # vérif <=2012
@@ -11233,9 +11255,9 @@ class f7bm(Variable):
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
-# """
+# '''
 # réutilisation de case pour 2013
-# """
+# '''
 
 
 class f7sd_2015(Variable):

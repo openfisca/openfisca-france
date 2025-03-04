@@ -8,7 +8,7 @@ values:
     value: 50000
 metadata:
   short_label: Plafond des versements pour célibataire, veuf ou divorcé
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2025-02-25"
   unit: currency_next_year
   reference:
     2001-01-01:

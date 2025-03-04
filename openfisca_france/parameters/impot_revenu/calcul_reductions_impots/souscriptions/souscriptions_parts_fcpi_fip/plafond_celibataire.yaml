@@ -8,10 +8,10 @@ values:
     value: 12000
 metadata:
   short_label: Plafond des versements pour contribuable célibataire, veuf ou divorcé
-  last_value_still_valid_on: "2024-11-18"
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: plaffcp_celib
   unit: currency_next_year
   reference:
-   2002-01-01:
+    2002-01-01:
     - title: Article 199 terdecies-0 A, VI. 2. du Code général des impôts
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042912844

@@ -5,6 +5,7 @@ values:
   2006-01-01:
     value: 1000
 metadata:
+  last_value_still_valid_on: "2025-02-25"
   short_label: Plafond des cotisations
   ipp_csv_id: plaf_incendie
   unit: currency_next_year

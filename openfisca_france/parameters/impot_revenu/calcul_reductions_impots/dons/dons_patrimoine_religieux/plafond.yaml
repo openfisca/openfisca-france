@@ -1,0 +1,18 @@
+description: Plafond des dépenses ouvrant à une réduction d'impôt de 75 % des dons pour la sauvegarde du patrimoine religieux (cases 7UJ)
+values:
+  2023-01-01:
+    value: 1000
+  2026-01-01:
+    value: null
+metadata:
+  short_label: Plafond réduction d'impôt
+  last_value_still_valid_on: "2025-03-03"
+  unit: currency_next_year
+  reference:
+    2024-01-01:
+    - title: LOI n° 2023-1322 du 29 décembre 2023 de finances pour 2024 - art. 30
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048727383
+documentation: |-
+  Notes :
+  Annoncée en septembre 2023 par le Président Emmanuel Macon à l'occasion des journées européennes du patrimoine, une collecte nationale a été lancée pour la conservation du patrimoine immobilier religieux des petites communes.
+  Ce texte n'a pas été repris dans l'article 200 du Code général des impôts.

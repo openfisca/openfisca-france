@@ -5,10 +5,10 @@ values:
   2022-01-01:
     value: 562
   2023-01-01:
-    value: 593
+    value: null
 metadata:
   short_label: Plafond réduction d'impôt
-  last_value_still_valid_on: "2024-06-11"
+  last_value_still_valid_on: "2025-02-25"
   unit: currency_next_year
   reference:
     2021-01-01:
@@ -19,12 +19,11 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047618675
     - title: Article 200, 1 ter du CGI
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018619914
-    2023-01-01:
-    - title: Décret n° 2024-496 du 30/05/2024, art. 1
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
-    - title: Article 200, 1 ter du CGI
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018619914
 documentation: |-
   Notes :
   Ref : Article 200, 1 ter du CGI.
   La limite de versements est relevée chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu de l'année précédant celle des versements. Le montant obtenu est arrondi, s'il y a lieu, à l'euro supérieur.
+  Ce paramètre est limité aux associations cultuelles qui ont bénéficiés d'un régime exceptionnel de 75% au lieu de 66% pendant deux ans.
+  7UJ : Pour les dons effectués entre le 2 juin et le 31.12.2021, vous bénéficierez d'une réduction d'impôt égale à 75 % des versements retenus dans la limite de 554 €. https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2022/aides/reductions_s.htm
+  7UJ : Pour les dons effectués en 2022, vous bénéficierez d'une réduction d'impôt égale à 75 % des versements retenus dans la limite de 562 € : https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2023/aides/reductions_s.htm
+  Pour les impôt 2024, la case 7UJ existe toujours mais s'applique aux dons affectés à la sauvegarde du patrimoine religieux, qui bénéficient d'une réduction d'impôt égale à 75 % des versements retenus dans la limite de 1000 € : https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2024/aides/reductions_s.htm, il faut donc désactiver ce paramètre.

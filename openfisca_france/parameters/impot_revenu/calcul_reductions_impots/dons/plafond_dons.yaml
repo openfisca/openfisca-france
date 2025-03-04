@@ -16,7 +16,7 @@ values:
     value: 0.2
 metadata:
   short_label: Plafond des dons (en % du revenu imposable)
-  last_value_still_valid_on: "2024-11-14"
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: plaf_donsintgene
   unit: /1
   reference:
