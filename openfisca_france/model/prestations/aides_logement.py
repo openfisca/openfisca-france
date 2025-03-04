@@ -1152,7 +1152,7 @@ class aide_logement_charges(Variable):
 
         montant_cas_general = forfait_charges_cas_general.cas_general + al_nb_pac * forfait_charges_cas_general.majoration_par_enfant
 
-        montant_coloc = where(couple, forfait_charges_cas_colocataires.couple_sans_enfant, forfait_charges_cas_colocataires.beneficiaire_isole) + al_nb_pac * forfait_charges_cas_colocataires.majoration_par_enfant   
+        montant_coloc = where(couple, forfait_charges_cas_colocataires.couple_sans_enfant, forfait_charges_cas_colocataires.beneficiaire_isole) + al_nb_pac * forfait_charges_cas_colocataires.majoration_par_enfant
 
         return where(coloc, montant_coloc, montant_cas_general)
 
