@@ -1,5 +1,17 @@
 # Changelog
 
+## 169.18.0 [2444](https://github.com/openfisca/openfisca-france/pull/2444)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2025.
+* Zones impactées :
+  - `parameters/impot_revenu/contributions_exceptionnelles/contribution_differentielle_hauts_revenus/*`
+  - `model/prelevements_obligatoires/impot_revenu/contribution_differentielle_hauts_revenus.py`
+* Détails :
+  - Ajout de la [Contribution différentielle applicable à certains contribuables titulaires de hauts revenus (Article 224)](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000051177942/#LEGISCTA000051177942).
+  - Corrige la CI qui ne fonctionnait plus.
+  - Documente la façon de debugger les tests YAML.
+
 ### 169.17.1 [2449](https://github.com/openfisca/openfisca-france/pull/2449)
 
 * Changement mineur.
@@ -22,7 +34,6 @@
 * Détails :
   - Mise à jour des last_value_still_valid_on, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
   - Ajout de l'appel d'un paramètre dans une variable
-
 
 ### 169.16.20 [2459](https://github.com/openfisca/openfisca-france/pull/2459)
 
