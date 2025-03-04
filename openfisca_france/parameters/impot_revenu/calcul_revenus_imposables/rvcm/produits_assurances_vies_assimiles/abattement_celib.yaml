@@ -8,7 +8,7 @@ values:
     value: 4600
 metadata:
   short_label: Contribuables célibataires, veufs ou divorcés
-  last_value_still_valid_on: "2024-10-21"
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: abt_av
   unit: currency_next_year
   reference:

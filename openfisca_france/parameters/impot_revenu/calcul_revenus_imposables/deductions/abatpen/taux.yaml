@@ -3,7 +3,7 @@ values:
   1943-01-01:
     value: 0.1
 metadata:
-  last_value_still_valid_on: "2024-10-21"
+  last_value_still_valid_on: "2025-02-25"
   short_label: Taux de l'abattement sur pensions
   ipp_csv_id: tx_abt_sal
   unit: /1

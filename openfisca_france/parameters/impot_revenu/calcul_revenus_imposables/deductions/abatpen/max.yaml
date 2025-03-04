@@ -94,7 +94,7 @@ values:
     value: 4321
 metadata:
   short_label: Montant maximum de l'abattement, pour le foyer fiscal
-  last_value_still_valid_on: "2024-06-11"
+  last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: max_abtpen
   unit: currency_next_year
   reference:
