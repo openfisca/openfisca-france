@@ -1,5 +1,15 @@
 # Changelog
 
+### 169.16.20 [2459](https://github.com/openfisca/openfisca-france/pull/2459)
+
+* Changement mineur.
+* Périodes concernées : 2024.
+* Zones impactées :
+  - openfisca_france/parameters/impot_revenu/calcul_reductions_impots/*
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la valeur a pu être trouvée avec un bon niveau de fiabilité.
+  - Ajout d'un dispositif de réduction concernant les dons dédiés à la préservation du patrimoine religieux.
+
 ### 169.16.19 [2455](https://github.com/openfisca/openfisca-france/pull/2455)
 
 * Changement mineur.
@@ -7,7 +17,7 @@
 * Zones impactées :
   - openfisca_france/parameters/prelevements_sociaux/professions_liberales/*
 * Détails :
-  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la valeur a pu être trouvée avec un bon niveau de fiabilité.
 
 ### 169.16.18 [2447](https://github.com/openfisca/openfisca-france/pull/2447)
 
@@ -16,7 +26,7 @@
 * Zones impactées :
   - openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/*
 * Détails :
-  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la valeur a pu être trouvée avec un bon niveau de fiabilité.
 
 ### 169.16.17 [2460](https://github.com/openfisca/openfisca-france/pull/2460)
 
@@ -25,7 +35,7 @@
 * Zones impactées :
   - openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/*
 * Détails :
-  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la valeur a pu être trouvée avec un bon niveau de fiabilité.
 
 ### 169.16.16 [2450](https://github.com/openfisca/openfisca-france/pull/2450)
 
@@ -34,7 +44,7 @@
 * Zones impactées :
   - openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/*
 * Détails :
-  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la valeur a pu être trouvée avec un bon niveau de fiabilité.
 
 ### 169.16.15 [2428](https://github.com/openfisca/openfisca-france/pull/2428)
 
@@ -58,7 +68,7 @@
   - openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/forfait_mobilier/non_bati/taux_biens_ruraux.yaml
   - openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/decote/parametre_calcul_decote.yaml
 * Détails :
-  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la valeur a pu être trouvée avec un bon niveau de fiabilité.
 
 ### 169.16.13 [2453](https://github.com/openfisca/openfisca-france/pull/2453)
 
