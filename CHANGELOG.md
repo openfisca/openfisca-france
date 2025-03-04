@@ -1,5 +1,15 @@
 # Changelog
 
+### 169.18.1 [2445](https://github.com/openfisca/openfisca-france/pull/2445)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2024.
+* Zones impactées :
+  - `parameters/impot_revenu/calcul_revenus_imposables/deductions/abatpro/*`
+  - `parameters/impot_revenu/calcul_revenus_imposables/deductions/abatpen/*`
+* Détails :
+  - Mise à jour des montants de la déduction forfaitaire pour frais professionnels sur les revenus 2024.
+
 ## 169.18.0 [2444](https://github.com/openfisca/openfisca-france/pull/2444)
 
 * Évolution du système socio-fiscal.
