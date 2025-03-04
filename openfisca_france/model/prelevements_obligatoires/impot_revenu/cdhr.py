@@ -16,7 +16,7 @@ class contribution_differentielle_hauts_revenus_ressources(Variable):
     calculate_output = calculate_output_divide
 
     def formula_2025_01_01(foyer_fiscal, period, parameters):
-        # Attention, c'est le PLF 2025 sur revenus 2025 à cause du vote définitif en 2025 ! 
+        # Attention, c'est le PLF 2025 sur revenus 2025 à cause du vote définitif en 2025 !
         # Conformément au A du IV de l'article 10 de la loi n° 2025-127 du 14 février 2025, les I et II de l'article précité sont applicables à l'imposition des revenus de l'année 2025.
 
         # II. – Le revenu mentionné au I s’entend du revenu fiscal de référence défini au 1° du IV de l’article 1417,
