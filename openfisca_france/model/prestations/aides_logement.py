@@ -1077,12 +1077,13 @@ class aide_logement_loyer_plafond(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        plafonds_loyers = al.secteur_locatif.L_plafonds_loyers[zone_apl]
-        coeff_chambre_coloc = plafonds_loyers.chambre_et_colocation
+        plafonds_loyers = al.secteur_locatif.l_plafonds_loyers
+        plafonds_loyers_par_zone = plafonds_loyers.par_zone[zone_apl]
+        plafonds_loyers_coef_chambre_coloc = plafonds_loyers.coef_chambre_et_colocation
 
-        plafond_personne_seule = plafonds_loyers.personnes_seules
-        plafond_couple = plafonds_loyers.couples
-        plafond_famille = plafonds_loyers.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * plafonds_loyers.majoration_par_enf_supp
+        plafond_personne_seule = plafonds_loyers_par_zone.personnes_seules
+        plafond_couple = plafonds_loyers_par_zone.couples
+        plafond_famille = plafonds_loyers_par_zone.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * plafonds_loyers_par_zone.majoration_par_enf_supp
 
         plafond = select(
             [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
@@ -1090,8 +1091,8 @@ class aide_logement_loyer_plafond(Variable):
             default = plafond_couple
             )
 
-        coeff_coloc = where(coloc, al.plafonds_loyers.coef_colocation, 1)
-        coeff_chambre = where(chambre, al.plafonds_loyers.coef_chambre, 1)
+        coeff_coloc = where(coloc, plafonds_loyers_coef_chambre_coloc.coef_colocation, 1)
+        coeff_chambre = where(chambre, plafonds_loyers_coef_chambre_coloc.coef_chambre, 1)
 
         return round_(plafond * coeff_coloc * coeff_chambre, 2)
 
@@ -1327,7 +1328,7 @@ class aide_logement_taux_loyer(Variable):
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations_sociales.aides_logement.allocations_logement
-        z2 = al.al_loc2.plafonds_loyer.zone_2
+        z2 = al.secteur_locatif.l_plafonds_loyers.par_zone.zone_2
 
         L = famille('aide_logement_loyer_retenu', period)
         couple = famille('al_couple', period)
