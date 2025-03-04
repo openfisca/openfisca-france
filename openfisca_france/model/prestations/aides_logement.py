@@ -1142,12 +1142,17 @@ class aide_logement_charges(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        forfait_charges = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_charge
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        forfait_charges = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.c_forfait_charges
+        forfait_charges_cas_general = forfait_charges.cas_general
+        forfait_charges_cas_colocataires = forfait_charges.cas_colocataires
+        
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
-        montant_coloc = where(couple, 1, 0.5) * forfait_charges.cas_general + al_nb_pac * forfait_charges.majoration_par_enfant
-        montant_cas_general = forfait_charges.cas_general + al_nb_pac * forfait_charges.majoration_par_enfant
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+
+        montant_cas_general = forfait_charges_cas_general.cas_general + al_nb_pac * forfait_charges_cas_general.majoration_par_enfant
+
+        montant_coloc = where(couple, forfait_charges_cas_colocataires.couple_sans_enfant, forfait_charges_cas_colocataires.beneficiaire_isole) + al_nb_pac * forfait_charges_cas_colocataires.majoration_par_enfant        
 
         return where(coloc, montant_coloc, montant_cas_general)
 

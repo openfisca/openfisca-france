@@ -4,6 +4,5 @@ metadata:
   label_en: Lump sum extra allowance for charges
   order:
   - cas_general
-  - cas_colocataires_ou_proprietaires
   - majoration_par_enfant
-documentation: Montant forfaitaire au titre des charges indiqué par le « C »  de la formule de calcul des aides, mentionné au 3° de l'article D823-6 du Code de la construction et de l'habitation.
+documentation: Montant forfaitaire au titre des charges indiqué par le « C » de la formule de calcul des aides, mentionné au 3° de l'article D823-16 du Code de la construction et de l'habitation.
