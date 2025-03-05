@@ -1365,7 +1365,7 @@ class aide_logement_participation_personnelle(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2
+        al_participation_minimale = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.p0_participation_minimale
 
         R = famille('aide_logement_base_ressources', period)
         R0 = famille('aide_logement_R0', period)
@@ -1374,7 +1374,7 @@ class aide_logement_participation_personnelle(Variable):
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
         E = loyer_retenu + charges_retenues
-        P0 = max_(al.montant_proportionnel_participation_minimale_po * E, al.montant_forfaitaire_participation_minimale_po)  # Participation personnelle minimale
+        P0 = max_(al_participation_minimale.p0_taux * E, al_participation_minimale.p0_forfait)  # Participation personnelle minimale
 
         Tf = famille('aide_logement_taux_famille', period)
         Tl = famille('aide_logement_taux_loyer', period)

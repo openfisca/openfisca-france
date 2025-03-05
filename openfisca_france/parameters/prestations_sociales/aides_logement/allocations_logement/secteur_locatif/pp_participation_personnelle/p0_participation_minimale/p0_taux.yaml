@@ -1,10 +1,10 @@
-description: Montant proportionnel de la participation minimale « P0 » intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
+description: Taux de la participation minimale « P0 » intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
 values:
   2001-01-01:
     value: 0.085
 metadata:
-  short_label: Montant proportionnel de la participation minimale « P0 »
-  last_value_still_valid_on: "2023-02-22"
+  short_label: Taux de la participation minimale « P0 »
+  last_value_still_valid_on: "2025-03-04"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: p0_tx
   unit: /1

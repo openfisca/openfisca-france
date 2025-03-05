@@ -1,4 +1,4 @@
-description: Montant minimum de la participation minimale « P0 » intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
+description: Montant forfaitaire minimum de la participation minimale « P0 » intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
 values:
   2001-01-01:
     value: 175
@@ -41,8 +41,8 @@ values:
   2024-10-01:
     value: 39.15
 metadata:
-  short_label: Montant minimum de la participation minimale « P0 »
-  last_value_still_valid_on: "2024-11-12"
+  short_label: Montant forfaitaire de la participation minimale « P0 »
+  last_value_still_valid_on: "2025-03-04"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_enf1_z2
   unit: currency
