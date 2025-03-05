@@ -10,6 +10,20 @@
 * Détails :
   - Mise à jour des montants de la déduction forfaitaire pour frais professionnels sur les revenus 2024.
 
+### 169.17.0 [2451](https://github.com/openfisca/openfisca-france/pull/2451)
+
+* Changement mineur.
+* Périodes concernées : 2024.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/*`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_fl/taux_forfait_logement/*`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/api/api_cond/age_pac.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/cmu/*`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/autre_solidarite/covid19/indemnite_ap/plafond_smic.yaml`
+* Détails :
+  - Mise à jour des last_value_still_valid_on, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvé avec un bon niveau de fiabilité.
+  - Ajout de l'appel d'un paramètre dans une variable
+
 ## 169.18.0 [2444](https://github.com/openfisca/openfisca-france/pull/2444)
 
 * Évolution du système socio-fiscal.
