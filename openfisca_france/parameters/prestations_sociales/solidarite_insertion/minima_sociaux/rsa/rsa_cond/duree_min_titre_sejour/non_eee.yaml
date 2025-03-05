@@ -4,7 +4,7 @@ values:
     value: 5
 metadata:
   short_label: Ressortissant hors EEE
-  last_value_still_valid_on: "2022-03-28"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: duree_min_titre_sejour
   unit: year

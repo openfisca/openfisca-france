@@ -401,27 +401,26 @@ class ppa_forfait_logement(Variable):
 
         avantage_al = aide_logement > 0
 
-        params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
         if period.start.date < date(2016, 1, 1):
             instant = Instant((2016, 1, 1))
-            ppa = parameters(Period(('month', instant, 1))).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+            params_ppa = parameters(Period(('month', instant, 1))).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
         else:
-            ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+            params_ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
 
         # Le montant forfaitaire se calcule de la même manière que celle de la formule 'ppa_montant_forfaitaire_familial_non_majore',
         # sauf dans le cas où le foyer se compose de trois personnes ou plus, où le montant forfaitaire se calcule pour trois personnes seulement.
         taux_non_majore = (
             1
-            + (np_pers >= 2) * ppa.pa_m.majoration_montant_maximal.couples_seul_avec_enfant
-            + (np_pers >= 3) * ppa.pa_m.majoration_montant_maximal.couple_1_enfant_2e_enfant
+            + (np_pers >= 2) * params_ppa.pa_m.majoration_montant_maximal.couples_seul_avec_enfant
+            + (np_pers >= 3) * params_ppa.pa_m.majoration_montant_maximal.couple_1_enfant_2e_enfant
             )
 
-        montant_base = ppa.pa_m.montant_de_base * taux_non_majore
+        montant_base = params_ppa.pa_m.montant_de_base * taux_non_majore
 
         montant_forfait = montant_base * (
-            (np_pers == 1) * params.rsa_fl.forfait_logement.taux_1_personne
-            + (np_pers == 2) * params.rsa_fl.forfait_logement.taux_2_personnes
-            + (np_pers >= 3) * params.rsa_fl.forfait_logement.taux_3_personnes_ou_plus
+            (np_pers == 1) * params_ppa.pa_fl.taux_forfait_logement.foyer_1_personne
+            + (np_pers == 2) * params_ppa.pa_fl.taux_forfait_logement.foyer_2_personnes
+            + (np_pers >= 3) * params_ppa.pa_fl.taux_forfait_logement.foyer_3_personnes
             )
 
         montant_al = avantage_al * min_(aide_logement, montant_forfait)

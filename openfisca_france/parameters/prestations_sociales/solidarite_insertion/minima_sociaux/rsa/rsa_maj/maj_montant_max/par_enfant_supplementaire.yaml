@@ -4,7 +4,7 @@ values:
     value: 0.4
 metadata:
   short_label: Par enfant supplémentaire
-  last_value_still_valid_on: "2022-03-29"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_rmi_enf3
   unit: /1

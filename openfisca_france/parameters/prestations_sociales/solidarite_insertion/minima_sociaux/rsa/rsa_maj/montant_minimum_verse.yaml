@@ -4,7 +4,7 @@ values:
     value: 6
 metadata:
   short_label: Montant mimimum
-  last_value_still_valid_on: "2022-03-31"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: min_rsa_rmi
   unit: currency
