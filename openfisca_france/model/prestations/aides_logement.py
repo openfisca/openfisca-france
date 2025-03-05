@@ -1165,7 +1165,7 @@ class aide_logement_R0(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.r0_abattement_ressources_menage
         pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
         minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.solidarite_insertion.minima_sociaux
         couple = famille('al_couple', period)
@@ -1179,17 +1179,17 @@ class aide_logement_R0(Variable):
             montant_de_base = minim_n_2.rmi.rmi_m.montant_de_base_du_rmi
 
         R1 = montant_de_base * (
-            al.al_param_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
-            + al.al_param_r0.r1_en_rsa_socle_1.couple_sans_enf * couple * (al_nb_pac == 0)
-            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
-            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
+            + al_r0.r1_en_rsa_socle_1.couple_sans_enf * couple * (al_nb_pac == 0)
+            + al_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
+            + al_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
+            + al_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R2 = pfam_n_2.bmaf * (
-            al.al_param_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
-            + al.al_param_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
+            + al_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
+            + al_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         deductions = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
@@ -1201,7 +1201,7 @@ class aide_logement_R0(Variable):
         return R0
 
     def formula_2006(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.r0_abattement_ressources_menage
         pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
         minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.solidarite_insertion.minima_sociaux
         couple = famille('al_couple', period)
@@ -1215,17 +1215,17 @@ class aide_logement_R0(Variable):
             montant_de_base = minim_n_2.rmi.rmi_m.montant_de_base_du_rmi
 
         R1 = montant_de_base * (
-            al.al_param_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
-            + al.al_param_r0.r1_en_rsa_socle_1.couple_sans_enf * couple * (al_nb_pac == 0)
-            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
-            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
+            + al_r0.r1_en_rsa_socle_1.couple_sans_enf * couple * (al_nb_pac == 0)
+            + al_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
+            + al_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
+            + al_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R2 = pfam_n_2.bmaf * (
-            al.al_param_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
-            + al.al_param_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
+            + al_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
+            + al_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         abattement = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux
@@ -1235,20 +1235,20 @@ class aide_logement_R0(Variable):
 
     # cf Décret n° 2014-1739 du 29 décembre 2014 relatif au calcul des aides personnelles au logement
     def formula_2015_01_01(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.r0_abattement_ressources_menage
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
         R0 = (
-            al.al_param_r0.r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
-            + al.al_param_r0.r0.cas_general.taux_couple * couple * (al_nb_pac == 0)
-            + al.al_param_r0.r0.cas_general.taux1pac * (al_nb_pac == 1)
-            + al.al_param_r0.r0.cas_general.taux2pac * (al_nb_pac == 2)
-            + al.al_param_r0.r0.cas_general.taux3pac * (al_nb_pac == 3)
-            + al.al_param_r0.r0.cas_general.taux4pac * (al_nb_pac == 4)
-            + al.al_param_r0.r0.cas_general.taux5pac * (al_nb_pac == 5)
-            + al.al_param_r0.r0.cas_general.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
-            + al.al_param_r0.r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
+            + al_r0.cas_general.taux_couple * couple * (al_nb_pac == 0)
+            + al_r0.cas_general.taux1pac * (al_nb_pac == 1)
+            + al_r0.cas_general.taux2pac * (al_nb_pac == 2)
+            + al_r0.cas_general.taux3pac * (al_nb_pac == 3)
+            + al_r0.cas_general.taux4pac * (al_nb_pac == 4)
+            + al_r0.cas_general.taux5pac * (al_nb_pac == 5)
+            + al_r0.cas_general.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
+            + al_r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
         return R0
