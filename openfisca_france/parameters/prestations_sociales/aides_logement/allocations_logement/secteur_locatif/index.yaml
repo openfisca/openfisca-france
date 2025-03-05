@@ -1,0 +1,10 @@
+description: Allocations logement - Secteur locatif
+metadata:
+  short_label: Allocations logement - Secteur locatif
+  order:
+  - l_plafonds_loyers
+  - c_forfait_charges
+  - pp_participation_personnelle
+  - coefficients_degressivite_suppression
+  - seuils_minimum_versement
+  - minoration_forfaitaire

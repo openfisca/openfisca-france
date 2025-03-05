@@ -200,7 +200,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         type_aide = where(logement_conventionne, 'apl', 'non_apl', )
-        seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
+        seuil_versement = al.secteur_locatif.seuils_minimum_versement[type_aide]
         minimum_atteint = montant >= seuil_versement
 
         return minimum_atteint * montant * not_(residence_mayotte)
