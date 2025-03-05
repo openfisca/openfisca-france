@@ -1,11 +1,11 @@
-description: Taux (début de la 2ème tranche et fin de la 1ère) de participation personnel complémentaire (TL) (après la réforme de 2001) des Allocations Logement (AL)
+description: Taux (début de la 3ème tranche) de participation personnelle complémentaire (TL) (après la réforme de 2001) des Allocations Logement (AL)
 values:
   2001-01-01:
-    value: 0.45
+    value: 0.75
 metadata:
-  short_label: Début de la 2ème tranche
+  short_label: Début de la 3ème tranche
   label_en: Parameters for the rental sector (after the 2001 reform)
-  ipp_csv_id: tl_tr1
+  ipp_csv_id: tl_tr2
   unit: /1
   reference:
     2001-01-01:
