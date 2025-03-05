@@ -137,7 +137,7 @@ class aide_logement_montant_brut(Variable):
         zone_apl = famille.demandeur.menage('zone_apl', period)
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
 
-        coefficients = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2.coefficients_degressivite_suppression[zone_apl]
+        coefficients = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.coefficients_degressivite_suppression[zone_apl]
         loyer_degressivite = round_(loyer_plafond * (coefficients.degressivite), 2)
         loyer_suppression = round_(loyer_plafond * (coefficients.suppression), 2)
 
