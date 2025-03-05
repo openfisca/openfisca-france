@@ -157,9 +157,9 @@ class aide_logement_montant_brut(Variable):
 
         montant_avant_degressivite_et_coeff = round_(montant_avant_degressivite * coeff, 2)
 
-        abattement_forfaitaire = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_loc2.abattement_forfaitaire
+        minoration_forfaitaire = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.minoration_forfaitaire
 
-        return max_(0, montant_avant_degressivite_et_coeff - abattement_forfaitaire)
+        return max_(0, montant_avant_degressivite_et_coeff - minoration_forfaitaire)
 
     def formula(famille, period):
         return famille('aide_logement_montant_brut_avant_degressivite', period)
