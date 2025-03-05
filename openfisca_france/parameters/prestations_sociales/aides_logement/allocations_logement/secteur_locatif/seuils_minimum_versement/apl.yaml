@@ -1,4 +1,4 @@
-description: Montant minimal mensuel versé de l'APL
+description: Seuil minimum versement (APL)
 values:
   1989-11-12:
     value: 100
@@ -13,7 +13,7 @@ values:
   2018-03-01:
     value: 0
 metadata:
-  short_label: APL
+  short_label: Seuil minimum versement (APL)
   last_value_still_valid_on: "2023-02-20"
   label_en: Minimal amount
   unit: currency

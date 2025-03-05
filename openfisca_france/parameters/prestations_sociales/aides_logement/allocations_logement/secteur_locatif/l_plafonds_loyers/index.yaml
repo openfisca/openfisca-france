@@ -1,7 +1,6 @@
-description: Plafonds de loyer (après la réforme de 2001) des Allocations Logement (AL)
+description: Plafonds de loyer « L » (après la réforme de 2001) des Allocations Logement (AL)
 metadata:
-  short_label: Plafonds de loyer (après 2001)
-  label_en: Parameters for the rental sector (after the 2001 reform)
+  short_label: Plafonds de loyer « L » (après 2001)
   order:
   - par_zone
   - coef_chambre_et_colocation
