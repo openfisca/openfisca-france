@@ -1555,12 +1555,12 @@ class aides_logement_primo_accedant_k(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, parameters):   
+    def formula(famille, period, parameters):
         param = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_param_accal
         # en accession-al, le coefficient K est celui defini pour le secteur foyer-al
         param_plafond_k = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.formule.k_coef_prise_charge.plafonds
 
-        plafond_k = param_plafond_k.plafond_apl2_et_al 
+        plafond_k = param_plafond_k.plafond_apl2_et_al
         multi_n = param.multiplicateur_de_n
 
         R = famille('aide_logement_base_ressources', period)
@@ -1604,7 +1604,7 @@ class aides_logement_foyer_k_apl(Variable):
         param = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.formule.k_coef_prise_charge
 
         plafond_k = param.plafonds.plafond_apl1
-        r_minuscule = param.cm_et_r.r_apl1        
+        r_minuscule = param.cm_et_r.r_apl1  
         cm1 = param.cm_et_r.cm1_apl1
 
         R_majuscule = famille('aide_logement_base_ressources', period)
@@ -1637,7 +1637,7 @@ class aides_logement_nb_part(Variable):
         couple = famille('al_couple', period)
 
         categorie = famille('aides_logement_categorie', period)
-        params = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.formule.k_coef_prise_charge.n_nombre_parts[categorie]      
+        params = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.formule.k_coef_prise_charge.n_nombre_parts[categorie] 
 
         return (
             params['isole_0_personne_a_charge'] * not_(couple) * (al_nb_pac == 0)
@@ -1699,7 +1699,7 @@ class aides_logement_loyer_minimal_apl(Variable):
 
         prestations = parameters(period).prestations_sociales
         bareme = prestations.aides_logement.allocations_logement.secteur_foyer.formule.e0_equivalences_loyers_charges_minimale.e0_bareme_apl1
-        
+
         majoration_loyer = prestations.aides_logement.allocations_logement.al_param_accal.majoration_du_loyer_minimum_lo_apl1 * N
 
         baseRessource = famille('aide_logement_base_ressources', period)
