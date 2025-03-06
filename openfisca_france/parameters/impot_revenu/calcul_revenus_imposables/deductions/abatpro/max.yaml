@@ -280,8 +280,11 @@ metadata:
     - title: Suppression de la déduction minimale majorée pour les demandeurs d'emploi depuis plus d'un an.
     2021-01-01:
     - title: Les limites sont révisées chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu. En 2021, l'augmentation était de 1,4 %.
+    2024-01-01:
+    - title: Les limites sont révisées chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu. En 2024, l'augmentation était de 1,8 %.
 documentation: |-
   Ref: Article 83-3 du CGI https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622408
   Relevé dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu.
-  Il n'y a pas de plafond à la déduction entre 1952 et 1978.Entre 1934 et 1942, la déduction de 10 % est aussi plafonnée à 20 000 FRF (colonne J).
+  Le décret est publié à la fin du mois de mai. Pour que les simulateurs soient à jour, nous mettons à jour le paramètre avant la publication du décret.
+  Il n'y a pas de plafond à la déduction entre 1952 et 1978. Entre 1934 et 1942, la déduction de 10 % est aussi plafonnée à 20 000 FRF (colonne J).
   > Voir Annexe C-3 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001)
