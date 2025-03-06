@@ -4,7 +4,6 @@ metadata:
   label_en: Social levies on financial income
   order:
   - csg
-  - crds
   - prelevement_social_exceptionnel_cnav
   - contribution_sociale_permanente_cnaf
   - contribution_sociale_cnav

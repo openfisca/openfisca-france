@@ -1,6 +1,7 @@
 from numpy import round, logical_or as or_
 
 from openfisca_france.model.base import *
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 class cf_enfant_a_charge(Variable):
@@ -354,9 +355,14 @@ class crds_cf(Variable):
     def formula(famille, period, parameters):
         cf = famille('cf', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        law = parameters(period)
 
-        return -(cf) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = cf,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return montant_crds
 
 
 class cf_net_crds(Variable):
