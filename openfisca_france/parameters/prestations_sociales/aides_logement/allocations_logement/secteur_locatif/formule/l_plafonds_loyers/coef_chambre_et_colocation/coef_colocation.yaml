@@ -1,0 +1,12 @@
+description: Coefficient appliqué aux loyers plafonds de location dans le cas des colocataires
+values:
+  2002-01-01:
+    value: 0.75
+metadata:
+  short_label: Coefficient plafonds de loyer (colocation)
+  last_value_still_valid_on: "2025-03-04"
+  unit: /1
+  reference:
+    2002-01-01:
+    - title: Arrêté du 27 septembre 2019, art. 16 1°
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286643/2024-09-29
