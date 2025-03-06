@@ -2365,6 +2365,33 @@ class correction_ir_seuils_recouvrement(Variable):
         return condition_correction_seuils_mise_recouvrement * impots_avant_seuils_mise_recouvrement
 
 
+class autres_impositions_forfaitaires(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = 'Autres impositions forfaitaires'
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        # on déplace ici l'ir sur les plus values immo et le prelevement sur les micro pour plus de clarté sur la décomposition
+        ir_pv_immo = foyer_fiscal('ir_pv_immo', period)
+        prelevement_liberatoire_autoentrepreneur = foyer_fiscal('microsocial', period)
+        taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
+        tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
+        indemnite_compensatrice_agents_assurance = foyer_fiscal('indemnite_compensatrice_agents_assurance', period)
+
+        return (
+            ir_pv_immo
+            + prelevement_liberatoire_autoentrepreneur
+            + taxation_plus_values_hors_bareme
+            + prelevement_forfaitaire_liberatoire
+            + cont_rev_loc
+            + tax_rvcm_forfaitaire
+            + indemnite_compensatrice_agents_assurance
+            )
+
+
 class impot_revenu_restant_a_payer(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -2373,10 +2400,16 @@ class impot_revenu_restant_a_payer(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        impots_avant_seuils_recouvrement = foyer_fiscal('impot_revenu_avant_seuils_mise_recouvrement', period)
+        iaidrdi = foyer_fiscal('iaidrdi', period)
+        cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
+        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        credits_impot = foyer_fiscal('credits_impot', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)
+
+        autres_impositions_forfaitaires = foyer_fiscal('autres_impositions_forfaitaires', period)
         correction_seuils_recouvrement = foyer_fiscal('correction_ir_seuils_recouvrement', period)
 
-        return (impots_avant_seuils_recouvrement - correction_seuils_recouvrement)
+        return -(iaidrdi + cehr + pfu + autres_impositions_forfaitaires - credits_impot - acomptes_ir) - correction_seuils_recouvrement
 
 
 class foyer_impose(Variable):
