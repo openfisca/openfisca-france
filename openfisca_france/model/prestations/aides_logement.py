@@ -1077,7 +1077,7 @@ class aide_logement_loyer_plafond(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        plafonds_loyers = al.secteur_locatif.l_plafonds_loyers
+        plafonds_loyers = al.secteur_locatif.formule.l_plafonds_loyers
         plafonds_loyers_par_zone = plafonds_loyers.par_zone[zone_apl]
         plafonds_loyers_coef_chambre_coloc = plafonds_loyers.coef_chambre_et_colocation
 
@@ -1142,7 +1142,7 @@ class aide_logement_charges(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        forfait_charges = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.c_forfait_charges
+        forfait_charges = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.c_forfait_charges
         forfait_charges_cas_general = forfait_charges.cas_general
         forfait_charges_cas_colocataires = forfait_charges.cas_colocataires
 
@@ -1165,7 +1165,7 @@ class aide_logement_R0(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.r0_abattement_ressources_menage
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.r0_abattement_ressources_menage
         pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
         minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.solidarite_insertion.minima_sociaux
         couple = famille('al_couple', period)
@@ -1201,7 +1201,7 @@ class aide_logement_R0(Variable):
         return R0
 
     def formula_2006(famille, period, parameters):
-        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.r0_abattement_ressources_menage
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.r0_abattement_ressources_menage
         pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
         minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.solidarite_insertion.minima_sociaux
         couple = famille('al_couple', period)
@@ -1235,7 +1235,7 @@ class aide_logement_R0(Variable):
 
     # cf Décret n° 2014-1739 du 29 décembre 2014 relatif au calcul des aides personnelles au logement
     def formula_2015_01_01(famille, period, parameters):
-        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.r0_abattement_ressources_menage
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.r0_abattement_ressources_menage
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
@@ -1262,7 +1262,7 @@ class aide_logement_taux_famille(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        al_tf = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.tp_taux_participation_personnelle_menage.tf_taux_selon_taille_famille
+        al_tf = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.tp_taux_participation_personnelle_menage.tf_taux_selon_taille_famille
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom', period)
@@ -1291,7 +1291,7 @@ class aide_logement_taux_famille(Variable):
         return where(residence_dom, TF_dom, TF_metropole)
 
     def formula_2023_01_01(famille, period, parameters):
-        al_tf = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.tp_taux_participation_personnelle_menage.tf_taux_selon_taille_famille
+        al_tf = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.tp_taux_participation_personnelle_menage.tf_taux_selon_taille_famille
 
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
@@ -1335,9 +1335,9 @@ class aide_logement_taux_loyer(Variable):
     def formula(famille, period, parameters):
         al_locatif = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif
 
-        al_plafonds_z2 = al_locatif.l_plafonds_loyers.par_zone.zone_2
+        al_plafonds_z2 = al_locatif.formule.l_plafonds_loyers.par_zone.zone_2
 
-        al_tl = al_locatif.pp_participation_personnelle.tp_taux_participation_personnelle_menage.tl_taux_complementaire_selon_loyer
+        al_tl = al_locatif.formule.pp_participation_personnelle.tp_taux_participation_personnelle_menage.tl_taux_complementaire_selon_loyer
         al_tl_seuils = al_tl.seuils
         al_tl_taux = al_tl.taux
 
@@ -1371,7 +1371,7 @@ class aide_logement_participation_personnelle(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        al_participation_minimale = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.pp_participation_personnelle.p0_participation_minimale
+        al_participation_minimale = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_locatif.formule.pp_participation_personnelle.p0_participation_minimale
 
         R = famille('aide_logement_base_ressources', period)
         R0 = famille('aide_logement_R0', period)
