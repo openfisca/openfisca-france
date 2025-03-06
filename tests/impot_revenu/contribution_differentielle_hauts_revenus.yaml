@@ -1,0 +1,260 @@
+- name: Célibataire à plus de 250 000€ de revenus, au PFU
+  period: 2026
+  input:
+    f3ua:
+      2025: 300_000
+  output:
+    rni:
+      2025: 0
+    taux_moyen_imposition:
+      2025: 0
+    contribution_exceptionnelle_hauts_revenus:
+      # 3% de 50_000€ (300_000 de rfr - 250_000 de seuil de CEHR)
+      2025: 1_500
+      2026: 0
+    rfr:
+      2025: 300_000
+    prelevement_forfaitaire_unique_ir:
+      2025: 300_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2025: -39_900
+    contribution_differentielle_hauts_revenus_eligible:
+      2025: true
+      2026: false
+    contribution_differentielle_hauts_revenus_decote:
+      2025: 18_750
+      2026: 0
+    contribution_differentielle_hauts_revenus_ressources:
+      2025: 300_000
+    contribution_differentielle_hauts_revenus:
+      # CDHR = (300_000 de RFR * 20% - décote) - impot_revenu_restant_a_payer
+      # = (60_000 - 18_750) - (-1 pour retirer le signe négatif de l'impôt * -39_900)
+      2025: 1350 # était à 20_100 sans décote
+      2026: 0
+
+- name: Célibataire à 500 000€ de revenus, au PFU
+  period: 2026
+  absolute_error_margin: 0.07
+  input:
+    f3ua:
+      2025: 500_000
+  output:
+    rni:
+      2025: 0
+    taux_moyen_imposition:
+      2025: 0
+    contribution_exceptionnelle_hauts_revenus:
+      2025: (500_000 - 250_000) * 0.03
+      2026: 0
+    rfr:
+      2025: 500_000
+    prelevement_forfaitaire_unique_ir:
+      2025: 500_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2025: -71500
+    contribution_differentielle_hauts_revenus_ressources:
+      2025: 500_000
+    contribution_differentielle_hauts_revenus_decote:
+      2025: 0
+      2026: 0
+    contribution_differentielle_hauts_revenus:
+      # CDHR = 500_000 de RFR * 20% - impot_revenu_restant_a_payer
+      2025: 500_000 * 0.2 - 71500
+      2026: 0
+    contribution_differentielle_hauts_revenus_eligible:
+      2025: true
+      2026: false
+
+- name: Célibataire à plus de 250 000€ de revenus, au barème
+  period: 2026
+  absolute_error_margin: 0.01
+  input:
+    f3ua:
+      2025: 300_000
+    f3sl: # Abattement pour durée de détention
+      2025: 250_000
+    f2op:
+      2025: true
+  output:
+    rni:
+      2025: 300_000 - 250_000
+    taux_moyen_imposition:
+      2025: 0.19572
+    contribution_exceptionnelle_hauts_revenus:
+      # 3% de 50_000€ (300_000 de rfr - 250_000 de seuil de CEHR)
+      2025: 1_500
+      2026: 0
+    rfr:
+      2025: 300_000
+    impot_revenu_restant_a_payer:
+      2025: -9_665
+    contribution_differentielle_hauts_revenus_ressources:
+      2025: 300_000  # devrait être différent du rfr ?
+    contribution_differentielle_hauts_revenus_decote:
+      # célibataire et revenus à 300_000 <= 330_000
+      # 20% de 300_000 = 60_000
+      # 60_000 - (82,5 % de (300_000 - 250_000)) = 60_000 - 41_250 = 18_750
+      2025: 18_750
+    contribution_differentielle_hauts_revenus:
+      # CDHR = (300_000 de RFR * 20% - décote) - 9_665 d'IRRP
+      # = (60_000 - 18_750) - 9_665
+      2025: 31_585
+      2026: 0
+    contribution_differentielle_hauts_revenus_eligible:
+      2025: true
+      2026: false
+
+- name: Couple à 600_000€ de revenus, au PFU
+  period: 2026
+  absolute_error_margin: 0.07
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      - ind1
+      f2dc:
+        2025: 600_000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+      ind1:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+  output:
+    contribution_exceptionnelle_hauts_revenus:
+      # 3% de 100_000€ (600_000 de rfr - 500_000 de seuil de CEHR pour couple)
+      2025: 100_000 * 0.03
+      2026: 0
+    rfr:
+      2025: 600_000
+    prelevement_forfaitaire_unique_ir:
+      2025: 600_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2025: -79_800
+    contribution_differentielle_hauts_revenus_decote:
+      # couple et revenus à 600_000 <= 660_000
+      # 20% de 600_000 = 120_000
+      # 120_000 - (82,5 % de (600_000 - 500_000)) = 120_000 - 82_500 = 37_500
+      2025: 37_500
+      2026: 0
+    contribution_differentielle_hauts_revenus_ressources:
+      2025: 600_000
+    contribution_differentielle_hauts_revenus:
+      # CDHR = (600_000 de RFR * 20% - décote) - impot_revenu_restant_a_payer + majoration couple
+      2025: 0 # 600_000 * 0.2 - 37_500 - 79_800 - 12_500 = -9 800, soit 0 car doit être positif (était 52_700 avant décote)
+      2026: 0
+    contribution_differentielle_hauts_revenus_eligible:
+      2025: true
+      2026: false
+
+- name: Couple à 1_000_000€ de revenus, au PFU
+  period: 2026
+  absolute_error_margin: 0.07
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      - ind1
+      f2dc:
+        2025: 1_000_000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+      ind1:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+  output:
+    contribution_exceptionnelle_hauts_revenus:
+      # 3% de 500_000€ (1_000_000 de rfr - 500_000 de seuil de CEHR pour couple)
+      2025: 500_000 * 0.03
+      2026: 0
+    rfr:
+      2025: 1_000_000
+    prelevement_forfaitaire_unique_ir:
+      2025: 1_000_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2025: -143_000
+    contribution_differentielle_hauts_revenus_decote:
+      2025: 0
+      2026: 0
+    contribution_differentielle_hauts_revenus_majoration:
+      2025: 12_500
+    contribution_differentielle_hauts_revenus_ressources:
+      2025: 1_000_000
+    contribution_differentielle_hauts_revenus:
+      # CDHR = 1_000_000 de RFR * 20% - (impot_revenu_restant_a_payer + majoration couple)
+      2025: 1_000_000 * 0.2 - 143_000 - 12_500
+      2026: 0
+    contribution_differentielle_hauts_revenus_eligible:
+      2025: true
+      2026: false
+
+- name: Femme seule avec 3 enfants à 1_000_000€ de revenus, au PFU
+  period: 2026
+  absolute_error_margin: 0.07
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2dc:
+        2025: 1_000_000
+      personnes_a_charge:
+        - enfant1
+        - enfant2
+        - enfant3
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+      enfant1:
+        activite: etudiant
+        date_naissance: '2012-01-01'
+      enfant2:
+        activite: etudiant
+        date_naissance: '2020-01-01'
+      enfant3:
+        activite: etudiant
+        date_naissance: '2020-01-01'
+  output:
+    contribution_exceptionnelle_hauts_revenus:
+      # 3% de 500_000€ (1_000_000 de rfr - 500_000 de seuil de CEHR pour couple)
+      2025: (250_000 * 0.03) + (500_000 * 0.04)
+      2026: 0
+    rfr:
+      2025: 1_000_000
+    prelevement_forfaitaire_unique_ir:
+      2025: 1_000_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2025: -155_500
+    contribution_differentielle_hauts_revenus_ressources:
+      2025: 1_000_000
+    contribution_differentielle_hauts_revenus_decote:
+      2025: 0
+      2026: 0
+    contribution_differentielle_hauts_revenus:
+      # CDHR = 1_000_000 de RFR * 20% - (impot_revenu_restant_a_payer + majoration enfant)
+      2025: 1_000_000 * 0.2 - (155_500 + 1_500 * 3)
+      2026: 0
+    contribution_differentielle_hauts_revenus_eligible:
+      2025: true
+      2026: false
+
+- name: Célibataire à moins de 250 000€ de revenus
+  period: 2026
+  input:
+    rfr:
+      2025: 205_000
+    contribution_differentielle_hauts_revenus_ressources:
+      2025: 205_000  # devrait être différent du rfr ?
+  output:
+    contribution_differentielle_hauts_revenus_decote:
+      2025: 0
+      2026: 0
+    contribution_differentielle_hauts_revenus:
+      2025: 0
+      2026: 0
+    contribution_differentielle_hauts_revenus_eligible:
+      2025: false
+      2026: false

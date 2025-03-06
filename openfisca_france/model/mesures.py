@@ -623,6 +623,27 @@ class impots_directs(Variable):
     reference = 'http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct'
     definition_period = YEAR
 
+    def formula_2025_01_01(menage, period, parameters):
+        '''
+        Pour les impôts définis au niveau du foyer fiscal :
+        on prend en compte l'impôt des foyers fiscaux dont le déclarant principal est dans le ménage
+        '''
+
+        irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
+        irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period)
+        isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        contribution_differentielle_hauts_revenus_i = menage.members.foyer_fiscal('contribution_differentielle_hauts_revenus', period)
+        contribution_differentielle_hauts_revenus = menage.sum(contribution_differentielle_hauts_revenus_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return (
+            irpp_economique
+            + isf_ifi
+            + contribution_differentielle_hauts_revenus
+            )
+
     def formula(menage, period, parameters):
         '''
         Pour les impôts définis au niveau du foyer fiscal :

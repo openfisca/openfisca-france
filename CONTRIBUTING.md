@@ -65,3 +65,34 @@ Dans ce cas, il peut être pertinent d'exécuter les tests d'OpenFisca-France en
 
 Bien sûr, une fois la version spécifique de core publiée, **ce changement doit être reverté** avant le merge de la pull request sur France.
 
+## Debug des tests YAML avec VS Code
+
+Si vous souhaitez utiliser le debugger de VS Code avec les tests YAML, par exemple pour investiguer la commande suivante :
+
+`openfisca test --country-package openfisca_france tests/impot_revenu/cdhr.yaml`
+
+Il faut créer un fichier de configuration `.vscode/launch.json` avec le contenu suivant :
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Debug current YAML test file",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/openfisca",
+            "args": [
+                "test",
+                "--country-package",
+                "openfisca_france",
+                "${file}"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+        }
+    ]
+}
+```
+
+Puis dans VS Code, ouvrir le fichier YAML à debugger, et lancer le debugger avec la configuration `Python: Debug current YAML test file` dans l'onglet _Run and Debug_ à gauche.
