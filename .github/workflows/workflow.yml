@@ -85,6 +85,10 @@ jobs:
       - name: Test openfisca-france conda package
         shell: pwsh
         run: openfisca test tests/formulas/irpp.yaml
+      - name: Summarize results
+        run: |
+          echo "Fin de build-and-test-conda" > $GITHUB_STEP_SUMMARY
+
 
       
 
