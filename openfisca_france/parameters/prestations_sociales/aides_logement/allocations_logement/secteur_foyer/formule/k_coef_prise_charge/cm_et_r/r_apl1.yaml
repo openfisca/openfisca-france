@@ -1,15 +1,17 @@
-description: Dans la formule de KL, Multiplicateur de N - Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
+description: Coefficient multiplicateur r dans la formule de K (paramètre de calcul des aides logements en secteur foyer) pour les APL1
 values:
   2007-07-01:
-    value: 13393.4
+    value: 1217.26
 metadata:
-  short_label: Dans la formule de KL
+  short_label: r
   label_en: Parameters for new home-buyers (APL)
-  ipp_csv_id: mult_kl_apl
+  ipp_csv_id: mult_kl2_apl
   unit: currency
   reference:
     2007-07-01:
-      title: Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement
+    - title: Arrêté du 27/09/2019, art. 30 1°
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000039160785
+    - title: Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&categorieLien=id
   official_journal_date:
     2007-07-01: "2007-07-12"

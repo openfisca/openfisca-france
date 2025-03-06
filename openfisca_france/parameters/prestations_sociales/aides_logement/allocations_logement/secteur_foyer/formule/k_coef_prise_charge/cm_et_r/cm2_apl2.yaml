@@ -1,4 +1,4 @@
-description: Multiplicateur de N dans la formule de K, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire
+description: Coefficient multiplicateur cm2 dans la formule de K (paramètre de calcul des aides logements en secteur foyer) pour les APL2 et AL
 values:
   1972-07-01:
     value: 84000
@@ -39,7 +39,7 @@ values:
   2007-07-01:
     value: 21420.91
 metadata:
-  short_label: Multiplicateur de N dans la formule de K
+  short_label: cm2
   label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: mult_k_al
   reference:
@@ -99,7 +99,9 @@ metadata:
       title: Décret 2004-464 du 28/05/2004, art. 1 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006231026&cidTexte=JORFTEXT000000618795
     2007-07-01:
-      title: Décret 2007-1081 du 10/07/2007, art. 1 (modif art. D542-5 du CSS)
+    - title: Arrêté du 27/09/2019, art. 30 2°
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000039160785
+    - title: Décret 2007-1081 du 10/07/2007, art. 1 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006266095&cidTexte=JORFTEXT000000826498
   official_journal_date:
     1972-07-01: "1972-06-30"
