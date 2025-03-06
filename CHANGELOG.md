@@ -1,33 +1,26 @@
 # Changelog
 
-### 169.17.0 [2451](https://github.com/openfisca/openfisca-france/pull/2451)
+### 169.17.1 [2449](https://github.com/openfisca/openfisca-france/pull/2449)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/*`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
+## 169.17.0 [2451](https://github.com/openfisca/openfisca-france/pull/2451)
 
 * Changement mineur.
 * Périodes concernées : 2024.
 * Zones impactées :
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/montant_minimum_verse.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/maj_montant_max/par_enfant_supplementaire.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/rsa_jeune_en_heure.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/nombre_minimal_enfants.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/majoration_isolement/limite_duree_droit_majoration_isolement.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/majoration_isolement/duree_du_droit.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/majoration_isolement/age_limite_enfant.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/duree_min_titre_sejour/non_eee.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/age_minimum_allocataire.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_fl/taux_forfait_logement/foyer_3_personnes.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_fl/taux_forfait_logement/foyer_2_personnes.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_fl/taux_forfait_logement/foyer_1_personne.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/cmu/coeff_p2.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/cmu/age_limite_pac.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/cmu/abattement_chomage.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/*`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/*`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/*`
   - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/api/api_cond/age_pac.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/maj_montant_max/couples_celibataire_avec_enfant.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/maj_montant_max/couple_1_enfant_ou_2e_enfant.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/cmu/coeff_p5_plus.yaml`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/cmu/coeff_p3_p4.yaml`
   - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/autre_solidarite/covid19/indemnite_ap/plafond_smic.yaml`
 * Détails :
-  - Mise à jour des last_value_still_valid_on, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvé avec un bon niveau de fiabilité.
+  - Mise à jour des last_value_still_valid_on, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
   - Ajout de l'appel d'un paramètre dans une variable
 
 
