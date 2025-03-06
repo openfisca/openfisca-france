@@ -63,7 +63,7 @@ jobs:
       - name: Build conda package
         uses: prefix-dev/rattler-build-action@v0.2.16
         with:
-          build-args: --channel openfisca --channel conda-forge --output-dir ./conda-bld
+          build-args: --quiet --channel openfisca --channel conda-forge --output-dir ./conda-bld
           recipe-path: .conda/recipe.yaml
           upload-artifact: false
       - name: Setup conda
@@ -74,23 +74,12 @@ jobs:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
           channels: conda-forge,defaults
-        env:
-          # Réduire la verbosité de Conda
-          CONDA_VERBOSITY: 0
-          # Rediriger la sortie
-          PYTHONWARNINGS: ignore
       - name: Install package
         shell: pwsh
         run: mamba install --channel ./conda-bld --channel openfisca openfisca-france
       - name: Test openfisca-france conda package
         shell: pwsh
         run: openfisca test tests/formulas/irpp.yaml
-      - name: Summarize results
-        run: |
-          echo "Fin de build-and-test-conda" > $GITHUB_STEP_SUMMARY
-
-
-      
 
   lint-files:
     runs-on: ubuntu-24.04
@@ -226,11 +215,6 @@ jobs:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
           channels: conda-forge,defaults
-        env:
-          # Réduire la verbosité de Conda
-          CONDA_VERBOSITY: 0
-          # Rediriger la sortie
-          PYTHONWARNINGS: ignore
       - name: Restore build
         uses: actions/cache@v4
         with:
