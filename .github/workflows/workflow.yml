@@ -74,6 +74,11 @@ jobs:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
           channels: conda-forge,defaults
+        env:
+          # Réduire la verbosité de Conda
+          CONDA_VERBOSITY: 0
+          # Rediriger la sortie
+          PYTHONWARNINGS: ignore
       - name: Install package
         shell: pwsh
         run: mamba install --channel ./conda-bld --channel openfisca openfisca-france
@@ -217,6 +222,11 @@ jobs:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           use-mamba: true
           channels: conda-forge,defaults
+        env:
+          # Réduire la verbosité de Conda
+          CONDA_VERBOSITY: 0
+          # Rediriger la sortie
+          PYTHONWARNINGS: ignore
       - name: Restore build
         uses: actions/cache@v4
         with:
