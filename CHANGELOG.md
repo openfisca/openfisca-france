@@ -9,7 +9,7 @@
   - `model/prelevements_obligatoires/impot_revenu/contribution_differentielle_hauts_revenus.py`
 * Détails :
   - Ajout de la [Contribution différentielle applicable à certains contribuables titulaires de hauts revenus (Article 224)](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000051177942/#LEGISCTA000051177942).
-  - Corrige la CI qui ne fonctionnait plus.
+  - Mise à jour de la CI qui ne fonctionnait plus le 4 mars 2025 en raison de Ubuntu 20.04. Passe à Ubuntu 24.04, ce qui entraine le passage de Python 3.9.9 à 3.9.12 et de 3.10.6 à 3.10.11.
   - Documente la façon de debugger les tests YAML.
 
 ### 169.17.1 [2449](https://github.com/openfisca/openfisca-france/pull/2449)
