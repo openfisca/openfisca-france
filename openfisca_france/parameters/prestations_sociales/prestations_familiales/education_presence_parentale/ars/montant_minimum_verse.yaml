@@ -4,7 +4,7 @@ values:
     value: 15
 metadata:
   short_label: Montant minimum versé
-  last_value_still_valid_on: "2023-05-11"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Back-to-school allowance (ARS): Minimal amount"
   ipp_csv_id: min_ars
   unit: currency

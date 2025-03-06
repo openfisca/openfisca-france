@@ -4,7 +4,7 @@ values:
     value: 0.92
 metadata:
   short_label: 3ème catégorie
-  last_value_still_valid_on: "2023-05-09"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_cplt3
   unit: BMAF

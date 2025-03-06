@@ -14,7 +14,7 @@ values:
     value: 0.9467
 metadata:
   short_label: 2ème tranche d'âge
-  last_value_still_valid_on: "2023-05-11"
+  last_value_still_valid_on: "2025-02-20"
   label_en: "Back-to-school allowance (ARS): Amounts"
   ipp_csv_id: ars1114
   unit: BMAF
