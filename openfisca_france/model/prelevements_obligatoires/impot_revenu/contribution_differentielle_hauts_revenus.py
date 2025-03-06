@@ -23,10 +23,10 @@ class contribution_differentielle_hauts_revenus_ressources(Variable):
         rfr = foyer_fiscal('rfr', period)
 
         # [leximpact : condition abattements, exonérations]
-        # diminué du montant des abattements mentionnés au a bis du même 1°, TODO
-        # autres que ceux mentionnés aux 1 ter ou 1 quater de l’article 150-0 D, TODO
-        # des bénéfices exonérés mentionnés au b du même 1° du IV de l’article 1417, TODO
-        # et des plus-values mentionnées au I de l’article 150-0 B ter pour lesquelles le report d’imposition expire. TODO
+        # diminué du montant des abattements mentionnés au a bis du même 1°,
+        # autres que ceux mentionnés aux 1 ter ou 1 quater de l’article 150-0 D,
+        # des bénéfices exonérés mentionnés au b du même 1° du IV de l’article 1417,
+        # et des plus-values mentionnées au I de l’article 150-0 B ter pour lesquelles le report d’imposition expire.
 
         # [leximpact : condition revenus exceptionnels]
         # Pour la détermination du revenu mentionné au présent II,
@@ -55,7 +55,7 @@ class contribution_differentielle_hauts_revenus_eligible(Variable):
 
     def formula_2025_01_01(foyer_fiscal, period, parameters):  # Sur revenus 2025
         # I. - Il est institué une contribution à la charge des contribuables
-        # domiciliés fiscalement en France au sens de l’article 4 B (TODO hypothèse = toujours vrai)
+        # domiciliés fiscalement en France au sens de l’article 4 B (hypothèse = toujours vrai)
         # dont le revenu du foyer fiscal tel que défini au II
         contribution_differentielle_hauts_revenus_ressources = foyer_fiscal(
             'contribution_differentielle_hauts_revenus_ressources', period
@@ -72,25 +72,21 @@ class contribution_differentielle_hauts_revenus_eligible(Variable):
 
         revenu_celibataire_eligible = (nb_adult == 1) * (
             contribution_differentielle_hauts_revenus_ressources > seuil_celibataire
-            )  # TODO strictement sup. à 250k€ ?
+            )
         revenu_couple_eligible = (nb_adult == 2) * (
             contribution_differentielle_hauts_revenus_ressources > seuil_couple
-            )  # TODO strictement sup. à 500k€ ?
+            )
 
         return revenu_celibataire_eligible + revenu_couple_eligible
 
 
-class contribution_exceptionnelle_hauts_revenus_majoration(Variable):
+class contribution_differentielle_hauts_revenus_majoration(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Majoration de la contribution différentielle sur les hauts revenus'
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200465/2025-02-16'
     definition_period = YEAR
     calculate_output = calculate_output_divide
-    documentation = '''
-    Selon 'Évaluations préalables des articles du projet de loi' :
-    TODO
-    '''
 
     def formula_2025_01_01(foyer_fiscal, period, parameters):
         # [Majoration à ip_net + pfu + prelevement_forfaitaire_liberatoire + contribution_exceptionnelle_hauts_revenus]
@@ -108,17 +104,13 @@ class contribution_exceptionnelle_hauts_revenus_majoration(Variable):
         return nb_pac * majoration_impot_pac + (nb_adult == 2) * majoration_impot_couple
 
 
-class contribution_exceptionnelle_hauts_revenus_majoration_impot(Variable):
+class contribution_differentielle_hauts_revenus_majoration_impot(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Majoration de la contribution différentielle sur les hauts revenus'
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200465/2025-02-16'
     definition_period = YEAR
     calculate_output = calculate_output_divide
-    documentation = '''
-    Selon 'Évaluations préalables des articles du projet de loi' :
-    TODO
-    '''
 
     def formula_2025_01_01(foyer_fiscal, period, parameters):
         # [Ajout à ip_net + pfu + prelevement_forfaitaire_liberatoire + contribution_exceptionnelle_hauts_revenus]
@@ -288,17 +280,16 @@ class contribution_differentielle_hauts_revenus(Variable):
             + prelevement_forfaitaire_liberatoire
             + contribution_exceptionnelle_hauts_revenus
             + foyer_fiscal(
-                'contribution_exceptionnelle_hauts_revenus_majoration', period
+                'contribution_differentielle_hauts_revenus_majoration', period
                 )
             + foyer_fiscal(
-                'contribution_exceptionnelle_hauts_revenus_majoration_impot', period
+                'contribution_differentielle_hauts_revenus_majoration_impot', period
                 )
             )
         contribution_differentielle_hauts_revenus_montant = max_(
             impot_cible_apres_decote - impot_avant_creation_cdhr, 0
             )
 
-        # [leximpact : TODO tout ce qui suit ^_^'. Les réductions et crédit déjà pris en compte sont mises entre crochets, ceux qui ne sont pas dans OF sont entre parenthèses]
         # IV. – L’impôt sur le revenu mentionné au 2° du III est majoré de l’avantage en impôt procuré par [les
         # réductions d’impôt prévues à l’article 199 quater B], à l’article 199 undecies B, à l’exception des vingt-sixième à dernier alinéas du I, à l’article 238 bis
         # et à l’article 107 de la loi n° 2021-1104 du 22 août 2021 portant lutte contre le dérèglement climatique et renforcement de la résilience face à ses effets,

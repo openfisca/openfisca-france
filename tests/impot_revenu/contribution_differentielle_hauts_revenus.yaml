@@ -179,7 +179,7 @@
     contribution_differentielle_hauts_revenus_decote:
       2025: 0
       2026: 0
-    contribution_exceptionnelle_hauts_revenus_majoration:
+    contribution_differentielle_hauts_revenus_majoration:
       2025: 12_500
     contribution_differentielle_hauts_revenus_ressources:
       2025: 1_000_000
