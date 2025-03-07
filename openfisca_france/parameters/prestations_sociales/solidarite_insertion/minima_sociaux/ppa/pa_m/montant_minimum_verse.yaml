@@ -4,7 +4,7 @@ values:
     value: 15
 metadata:
   short_label: Montant minimum
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2025-03-07"
   label_en: "Active solidarity income - Activity premium (PPA) : minimal amount"
   ipp_csv_id: pa_montant_min
   unit: currency

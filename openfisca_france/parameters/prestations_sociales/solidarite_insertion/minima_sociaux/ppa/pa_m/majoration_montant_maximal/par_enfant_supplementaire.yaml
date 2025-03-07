@@ -4,7 +4,7 @@ values:
     value: 0.4
 metadata:
   short_label: Majoration par personne supplémentaire (au-delà de la 3ème)
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2025-03-07"
   label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
   ipp_csv_id: pa_maj4
   unit: /1
