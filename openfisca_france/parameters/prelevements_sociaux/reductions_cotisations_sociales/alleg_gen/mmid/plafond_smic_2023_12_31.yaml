@@ -2,9 +2,11 @@ description: Première possibilité de plafond de rémunération (en nombre de S
 values:
   2024-01-01:
     value: 2.5
+  # 2025-01-01:
+  #   value: 2.2
 metadata:
   short_label: 1ère possibilité de plafond de rémunération des salariés (retenue si le montant est supérieur à la 2ème possibilité)
-  last_value_still_valid_on: "2024-09-13"
+  last_value_still_valid_on: "2025-03-07"
   label_en: SSCs for sickness, maternity, disability and death benefits
   unit: smic_2023_12_31
   reference:
@@ -15,3 +17,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048727890
   official_journal_date:
     2024-01-01: "2023-12-30"
+  notes:
+    2025-01-01: |-
+      Dès le 1er janvier 2025, afin de répondre au double objectif de limitation des « trappes à bas salaires »
+      les points de sortie des dispositifs de réduction proportionnelle des taux des
+      cotisations patronales d'assurance maladie sera ramené à 2,2 SMIC.
+      MAIS le décret n'est pas encore paru.

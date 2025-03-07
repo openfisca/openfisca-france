@@ -76,6 +76,8 @@ values:
     value: 3786
   2023-01-01:
     value: 3968
+  2024-01-01:
+    value: 4039
 metadata:
   short_label: Plafond de la déduction par personne âgée
   last_value_still_valid_on: "2025-02-25"
@@ -210,6 +212,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622626
     - title: Décret n° 2024-496 du 30/05/2024, art. 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
+    2024-01-01:
+    - title: Article 156, II-2° ter, du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622626
   official_journal_date:
     1984-01-01: "1984-12-30"
     1985-01-01: "1985-12-31"
@@ -253,4 +258,5 @@ documentation: |-
   https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
   http://bofip.impots.gouv.fr/bofip/1860-PGP.html#1860-PGP_80_027
   https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037671023&cidTexte=LEGITEXT000006069577
+  https://www.service-public.fr/particuliers/vosdroits/F5
   Le montant de la déduction est relevé chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenus. Plus d'information dans le BOFIP : https://bofip.impots.gouv.fr/bofip/1860-PGP.html/identifiant=BOI-IR-BASE-20-60-30-20210521#I._Avantages_en_nature_cons_10
