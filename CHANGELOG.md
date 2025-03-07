@@ -1,5 +1,15 @@
 # Changelog
 
+### 169.18.2 [2464](https://github.com/openfisca/openfisca-france/pull/2464)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa`.*
+* Détails :
+  - Corrige et ajoute des références pour certains paramètres de la prime d'activité
+  - Mets à jour des `last_value_still_valid_on` pour certains paramètres de la prime d'activité
+
+
 ### 169.18.1 [2445](https://github.com/openfisca/openfisca-france/pull/2445)
 
 * Changement mineur.
