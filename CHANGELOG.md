@@ -4,7 +4,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa`.*
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa`
 * Détails :
   - Corrige et ajoute des références pour certains paramètres de la prime d'activité
   - Mets à jour des `last_value_still_valid_on` pour certains paramètres de la prime d'activité
