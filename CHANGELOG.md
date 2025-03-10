@@ -1,5 +1,15 @@
 # Changelog
 
+### 169.18.5 [2443](https://github.com/openfisca/openfisca-france/pull/2443)
+
+* Changement mineur.
+* Périodes concernées : depuis 2024.
+* Zones impactées :
+  - `openfisca_france/model/prestations/jeunes/pass_colo.py`
+  - ` openfisca_france/parameters/prestations_sociales/education/pass_colo/age_enfant.yaml`
+* Détails :
+  - Transforme le critère d'année de naissance en critère d'âge au premier janvier pour le pass colo.
+
 ### 169.18.4 [2465](https://github.com/openfisca/openfisca-france/pull/2465)
 
 * Changement mineur.
@@ -203,7 +213,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
   - `openfisca_france/model/prestations/aides_logement.py`
