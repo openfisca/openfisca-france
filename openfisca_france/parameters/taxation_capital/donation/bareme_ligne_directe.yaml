@@ -1,0 +1,53 @@
+description: Barème de tarification de droits de mutation en ligne directe
+brackets:
+- threshold:
+    2015-01-01:
+      value: 0
+  rate:
+    2015-01-01:
+      value: 0.05
+- threshold:
+    2015-01-01:
+      value: 8072
+  rate:
+    2015-01-01:
+      value: 0.10
+- threshold:
+    2015-01-01:
+      value: 12109
+  rate:
+    2015-01-01:
+       value: 0.15
+- threshold:
+    2015-01-01:
+      value: 15932
+  rate:
+    2015-01-01:
+      value: 0.20
+- threshold:
+    2015-01-01:
+      value: 552324
+  rate:
+    2015-01-01:
+      value: 0.30
+- threshold:
+    2015-01-01:
+      value: 902838
+  rate:
+    2015-01-01:
+      value: 0.40
+- threshold:
+    2015-01-01:
+      value: 1805677
+  rate:
+    2015-01-01:
+      value: 0.45
+metadata:
+  last_value_still_valid_on: "2025-01-25"
+  unit: /1
+  reference:
+    2015-01-01:
+      title: Article 777 du code général des impôts, tableau I du 01/01/2015
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030061736
+  rate_unit: /1
+  threshold_unit: currency

@@ -1,0 +1,11 @@
+description: Abattement pour les donations à son arrière petit enfant
+values:
+  2013-01-01:
+    value: 5310
+metadata:
+  last_value_still_valid_on: "2025-01-25"
+  unit: currency
+  reference:
+    2013-01-01:
+      title: Article 790 D du code général des impôts
+      href: 

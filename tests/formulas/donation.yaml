@@ -1,0 +1,103 @@
+- name: Droits de mutation à titre gratuit pour personnes non parentées
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [10000, 1000]
+    lien_parente:
+      2025: ['aucun', 'aucun']
+    don_precedent:
+      2025: ['0', '0']
+  output:
+    droits_mutation:
+      2025: [6000, 600]
+
+- name: Droits de mutation à titre gratuit entre personnes parentés de 4ème degré
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [10000, 1000]
+    lien_parente:
+      2025: ['quatrieme_degre', 'quatrieme_degre']
+    don_precedent:
+      2025: ['0', '0']
+  output:
+    droits_mutation:
+      2025: [5500, 550]
+
+- name: Droits de mutation à titre gratuit à son neveu ou sa nièce
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [1000000, 100000, 100000, 10000]
+    lien_parente:
+      2025: ['neveu', 'neveu', 'neveu', 'neveu']
+    don_precedent:
+      2025: ['20000', '50000', '0', '0']
+  output:
+    droits_mutation:
+      2025: [539092.44, 55000, 33092.4, 0]
+
+- name: Droits de mutation à titre gratuit entre frères ou sœurs
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [1000000, 100000, 16032, 10000]
+    lien_parente:
+      2025: ['fratrie', 'fratrie', 'fratrie', 'fratrie']
+    don_precedent:
+      2025: ['20000', '0', '0', '0']
+  output:
+    droits_mutation:
+      2025: [447557, 35387.6, 35, 0]
+
+- name: Droits de mutation à titre gratuit à son arrière-petit-enfant
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [3000000, 3000000, 100000, 10000]
+    lien_parente:
+      2025: ['arriere_petit_enfant', 'arriere_petit_enfant', 'arriere_petit_enfant', 'arriere_petit_enfant']
+    don_precedent:
+      2025: ['20000', '0', '0', '0']
+  output:
+    droits_mutation:
+      2025: [1104665.5, 1095665.55, 10759.35, 0]
+
+- name: Droits de mutation à titre gratuit à son petit-enfant
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [3000000, 3000000, 100000, 10000]
+    lien_parente:
+      2025: ['petit_enfant', 'petit_enfant', 'petit_enfant', 'petit_enfant']
+    don_precedent:
+      2025: ['20000', '0', '0', '0']
+  output:
+    droits_mutation:
+      2025: [1092715.8, 1083715.80, 5448.35, 0]
+
+- name: Droits de mutation à titre gratuit à son enfant
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [3000000, 2500000, 150000, 10000]
+    lien_parente:
+      2025: ['enfant', 'enfant', 'enfant', 'enfant']
+    don_precedent:
+      2025: ['20000', '0', '0', '0']
+  output:
+    droits_mutation:
+      2025: [1062055.05, 828055.05, 1821.35, 0]
+
+- name: Droits de mutation à titre gratuit entre époux-se ou partenaire Pacs
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [3000000, 1000000, 100000, 10000]
+    lien_parente:
+      2025: ['epoux_pacs', 'epoux_pacs', 'epoux_pacs', 'epoux_pacs']
+    don_precedent:
+      2025: ['20000', '0', '0', '0']
+  output:
+    droits_mutation:
+      2025: [1084080.70, 219400.75, 1691.20, 0]

@@ -1,5 +1,16 @@
 # Changelog
 
+### 169.19.0 [2418](https://github.com/openfisca/openfisca-france/pull/2466/)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2015.
+* Zones impactées : 
+  - 'openfisca_france/model/prelevements_obligatoires/droits_de_donation.py'
+  - 'openfisca_france/parameters/taxation_capital/donation/*'
+  - 'openfisca_france/tests/formulas/donation.yaml'
+* Détails :
+  - Ajout du calcul de droit de mutation à titre gratuit
+
 ### 169.18.4 [2465](https://github.com/openfisca/openfisca-france/pull/2465)
 
 * Changement mineur.
