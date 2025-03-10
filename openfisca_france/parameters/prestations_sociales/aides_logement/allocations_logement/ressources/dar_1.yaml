@@ -6,7 +6,7 @@ values:
     value: 95
 metadata:
   short_label: Abattement forfaitaire pour les couples dont les deux conjoints ont une activité professionnelle rémunératrice
-  last_value_still_valid_on: "2023-02-20"
+  last_value_still_valid_on: "2025-02-20"
   unit: currency
   reference:
     2002-07-01:
