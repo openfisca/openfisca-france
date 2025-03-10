@@ -1,5 +1,15 @@
 # Changelog
 
+### 169.18.4 [2464](https://github.com/openfisca/openfisca-france/pull/2464)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_50_salaries_et_plus.yaml`
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_moins_de_50_salaries.yaml`
+* Détails :
+  - Rollback, car la loi de financement de la sécurité sociale pour 2025 a décallé l'application de ces paramètres à 2026.
+
 ### 169.18.3 [2463](https://github.com/openfisca/openfisca-france/pull/2463)
 
 * Changement mineur.
