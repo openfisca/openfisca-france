@@ -62,8 +62,10 @@ metadata:
       title: Décret n° 2023-343 du 4 mai 2023, article 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047521600
     2024-04-01:
-      title: Décret n° 2024-403 du 1er mai 2024, article 1
+    - title: Décret n° 2024-403 du 1er mai 2024, article 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049490767
+    - title: Article L842-3 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037994814
   official_journal_date:
     2016-01-01: "2015-12-22"
     2016-04-01: "2016-05-03"

@@ -4,4 +4,11 @@ values:
     value: 29
 metadata:
   short_label: Seuil AAH activité
+  last_value_still_valid_on: "2025-03-07"
   unit: smic_horaire_brut
+  reference:
+    2015-10-01:
+    - title: Article D843-4 du code de la sécurité sociale (créé en 2018)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036579172
+    - title: Article L842-8 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033013343/2025-03-07/

@@ -4,13 +4,16 @@ values:
     value: 18
 metadata:
   short_label: Âge minimal
+  last_value_still_valid_on: 2025-03-07
   label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
   unit: year
   reference:
     2015-10-01:
-    - title: Article D843-1 du Code de la sécurité sociale
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
-    - title: Décret 2015-1710 du 21/12/2015, art. 2
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
+    - title: Article L842-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031087615
+    - title: Loi n°2015-994 du 17/08/2015 relative au dialogue social et à l'emploi, article 57
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031046223
   official_journal_date:
-    2015-10-01: "2015-12-22"
+    2015-10-01: "2015-08-18"
+  notes:
+    2015-10-01: La date est mise en octobre 2015 afin de pouvoir calculer la prime d'activité à partir du 1e janvier 2016 dans openfisca france
