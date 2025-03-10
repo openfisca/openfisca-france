@@ -1579,16 +1579,15 @@ class aides_logement_foyer_k_al(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.k_coef_prise_charge.plafonds
-        param2 = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_param
+        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_foyer.k_coef_prise_charge
 
-        plafond_k = param.plafond_apl2_et_al
-        multi_n = param2.multiplicateur_de_n_dans_la_formule_de_k
+        plafond_k = param.plafonds.plafond_apl2_et_al
+        cm2 = param.cm_et_r.cm2_apl2_et_al
 
         R = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_nb_part', period)
 
-        return plafond_k - (R / (multi_n * N))
+        return plafond_k - (R / (cm2 * N))
 
 
 class aides_logement_foyer_k_apl(Variable):
@@ -1677,8 +1676,9 @@ class aides_logement_loyer_minimal_al(Variable):
         N = famille('aides_logement_nb_part', period)
 
         prestations = parameters(period).prestations_sociales
-        bareme = prestations.aides_logement.allocations_logement.secteur_foyer.apl.formule.e0_equivalences_loyers_charges_minimale.e0_bareme_apl2
-        majoration_loyer = prestations.aides_logement.allocations_logement.al_param.majoration_du_loyer_minimum_lo
+        e0 = prestations.aides_logement.allocations_logement.secteur_foyer.apl.formule.e0_equivalences_loyers_charges_minimale.apl2
+        bareme = e0.bareme
+        majoration_loyer = e0.majoration
 
         baseRessource = famille('aide_logement_base_ressources', period)
 
@@ -1698,9 +1698,9 @@ class aides_logement_loyer_minimal_apl(Variable):
         N = famille('aides_logement_nb_part', period)
 
         prestations = parameters(period).prestations_sociales
-        bareme = prestations.aides_logement.allocations_logement.secteur_foyer.apl.formule.e0_equivalences_loyers_charges_minimale.e0_bareme_apl1
-
-        majoration_loyer = prestations.aides_logement.allocations_logement.al_param_accal.majoration_du_loyer_minimum_lo_apl1 * N
+        e0 = prestations.aides_logement.allocations_logement.secteur_foyer.apl.formule.e0_equivalences_loyers_charges_minimale.apl1
+        bareme = e0.bareme
+        majoration_loyer = e0.majoration * N
 
         baseRessource = famille('aide_logement_base_ressources', period)
 
@@ -1736,7 +1736,7 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
 
     def formula(famille, period, parameters):
         zone_apl = famille.demandeur.menage('zone_apl', period)
-        plafonds = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_plaf_acc[zone_apl]
+        plafonds = parameters(period).prestations_sociales.aides_logement.allocations_logement.secteur_accession.formule.l_mensualite_eligible.al[zone_apl]
 
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
