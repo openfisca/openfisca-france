@@ -1,14 +1,27 @@
 # Changelog
 
+### 169.18.3 [2463](https://github.com/openfisca/openfisca-france/pull/2463)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/impot_revenu/calcul_revenus_imposables/abat_rni/contribuable_age_invalide.yaml`
+  - `parameters/impot_revenu/calcul_revenus_imposables/charges_deductibles/accueil_personne_agee/plafond.yaml`
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/agricole/tode/plafond_exoneration_integrale.yaml`
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_50_salaries_et_plus.yaml`
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_moins_de_50_salaries.yaml`
+* Détails :
+  - Revalorisations 2025.
+  - Mets à jour des `last_value_still_valid_on` pour certains paramètres de la prime d'activité
+
 ### 169.18.2 [2464](https://github.com/openfisca/openfisca-france/pull/2464)
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa`
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa`
 * Détails :
   - Corrige et ajoute des références pour certains paramètres de la prime d'activité
   - Mets à jour des `last_value_still_valid_on` pour certains paramètres de la prime d'activité
-
 
 ### 169.18.1 [2445](https://github.com/openfisca/openfisca-france/pull/2445)
 
