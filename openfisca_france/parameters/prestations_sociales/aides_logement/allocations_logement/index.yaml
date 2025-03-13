@@ -3,7 +3,7 @@ metadata:
   short_label: Allocations logement
   label_en: Allowances
   order:
-  - secteur_locatif
-  - secteur_foyer
-  - secteur_accession
+  - locatif
+  - foyer
+  - accession
   - ressources

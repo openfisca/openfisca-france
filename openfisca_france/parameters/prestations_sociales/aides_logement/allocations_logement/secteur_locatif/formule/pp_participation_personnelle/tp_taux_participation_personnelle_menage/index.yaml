@@ -1,6 +1,0 @@
-description: Taux de participation personnelle du ménage « Tp » intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
-metadata:
-  short_label: Taux de participation personnelle du ménage « Tp »
-  order:
-  - tf_taux_selon_taille_famille
-  - tl_taux_complementaire_selon_loyer
