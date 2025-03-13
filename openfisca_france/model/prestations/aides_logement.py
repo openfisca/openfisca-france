@@ -1217,9 +1217,9 @@ class aide_logement_R0(Variable):
         R1 = montant_de_base * (
             al_r0.r1_rsa_socle_1.pers_isolee * not_(couple) * (al_nb_pac == 0)
             + al_r0.r1_rsa_socle_1.couple_0_enf * couple * (al_nb_pac == 0)
-            + al_r0.r1_rsa_socle_1.pers_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
-            + al_r0.r1_rsa_socle_1.pers_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
-            + al_r0.r1_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+            + al_r0.r1_rsa_socle_1.avec_1_enf * (al_nb_pac == 1)
+            + al_r0.r1_rsa_socle_1.avec_2_enf * (al_nb_pac >= 2)
+            + al_r0.r1_rsa_socle_1.maj_pac_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R2 = pfam_n_2.bmaf * (
