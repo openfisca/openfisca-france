@@ -3,6 +3,7 @@ updates:
 - package-ecosystem: pip
   directory: "/"
   schedule:
-    interval: weekly
+    interval: monthly
   labels:
   - kind:dependencies
+  open-pull-requests-limit: 0
