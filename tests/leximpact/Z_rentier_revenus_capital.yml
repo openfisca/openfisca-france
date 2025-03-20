@@ -1,0 +1,189 @@
+name: Z_rentier_revenus_capital
+period: 2025
+max_spiral_loops: 4
+absolute_error_margin: 1
+input:
+  familles:
+    famille_n_1:
+      parents:
+        - adulte_1
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      declarants:
+        - adulte_1
+      depcom_foyer:
+        2023: '75107'
+        2024: '75107'
+        2025: '75107'
+      f2dc:
+        2023: 100000
+        2024: 100000
+        2025: 100000
+      f2op:
+        2023: false
+        2024: false
+        2025: false
+      f2zz:
+        2023: 1500
+        2024: 1500
+        2025: 1500
+  menages:
+    logement_principal_n_1:
+      depcom:
+        2023: '75107'
+        2024: '75107'
+        2025: '75107'
+      personne_de_reference:
+        - adulte_1
+      statut_occupation_logement:
+        2023: proprietaire
+        2024: proprietaire
+        2025: proprietaire
+  individus:
+    adulte_1:
+      activite:
+        2023: inactif
+        2024: inactif
+        2025: inactif
+      contrat_de_travail_type:
+        2023: aucun
+        2024: aucun
+        2025: aucun
+      date_naissance:
+        2025: '1982-11-05'
+      statut_marital:
+        2023: celibataire
+        2024: celibataire
+        2025: celibataire
+output:
+  familles:
+    famille_n_1:
+      aide_logement_base_ressources:
+        2025-01: 101600
+        2025-02: 101600
+        2025-03: 101600
+        2025-04: 101600
+        2025-05: 101600
+        2025-06: 101600
+        2025-07: 101600
+        2025-08: 101600
+        2025-09: 101600
+        2025-10: 101600
+        2025-11: 101600
+        2025-12: 101600
+      asi_aspa_base_ressources:
+        2025-01: 8458.333
+        2025-02: 8458.333
+        2025-03: 8458.333
+        2025-04: 8458.333
+        2025-05: 8458.333
+        2025-06: 8458.333
+        2025-07: 8458.333
+        2025-08: 8458.333
+        2025-09: 8458.333
+        2025-10: 8458.333
+        2025-11: 8458.333
+        2025-12: 8458.333
+      ppa_base_ressources:
+        2025-01: 8458.334
+        2025-02: 8458.334
+        2025-03: 8458.334
+        2025-04: 8458.334
+        2025-05: 8458.334
+        2025-06: 8458.334
+        2025-07: 8458.334
+        2025-08: 8458.334
+        2025-09: 8458.334
+        2025-10: 8458.334
+        2025-11: 8458.334
+        2025-12: 8458.334
+      prestations_familiales_base_ressources:
+        2025-01: 101500.01
+        2025-02: 101500.01
+        2025-03: 101500.01
+        2025-04: 101500.01
+        2025-05: 101500.01
+        2025-06: 101500.01
+        2025-07: 101500.01
+        2025-08: 101500.01
+        2025-09: 101500.01
+        2025-10: 101500.01
+        2025-11: 101500.01
+        2025-12: 101500.01
+      rsa_base_ressources:
+        2025-01: 8458.333
+        2025-02: 8458.333
+        2025-03: 8458.333
+        2025-04: 8458.333
+        2025-05: 8458.333
+        2025-06: 8458.333
+        2025-07: 8458.333
+        2025-08: 8458.333
+        2025-09: 8458.333
+        2025-10: 8458.333
+        2025-11: 8458.333
+        2025-12: 8458.333
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      assiette_csg_revenus_capital:
+        2025: 101500.01
+      crds_revenus_capital:
+        2025: -507.50003
+      csg_revenus_capital:
+        2025: -9338.001
+      irpp_economique:
+        2025: -12992.002
+      nbptr:
+        2025: 1
+      prelevement_forfaitaire_unique_ir:
+        2025: 12992.002
+      prelevement_forfaitaire_unique_ir_hors_assurance_vie:
+        2025: 12800.002
+      prelevement_forfaitaire_unique_ir_sur_assurance_vie:
+        2025: 192.00002
+      prelevements_sociaux_revenus_capital_hors_csg_crds:
+        2025: -7612.501
+      revenus_capitaux_prelevement_forfaitaire_unique_ir:
+        2025-01: 8458.333
+        2025-02: 8458.333
+        2025-03: 8458.333
+        2025-04: 8458.333
+        2025-05: 8458.333
+        2025-06: 8458.333
+        2025-07: 8458.333
+        2025-08: 8458.333
+        2025-09: 8458.333
+        2025-10: 8458.333
+        2025-11: 8458.333
+        2025-12: 8458.333
+      rfr:
+        2025: 101500.01
+  menages:
+    logement_principal_n_1:
+      impots_directs:
+        2025: -12992.002
+      niveau_de_vie:
+        2025: 71050.01
+      revenu_disponible:
+        2025: 71050.01
+      unites_consommation:
+        2025: 1
+      zone_apl:
+        2025-01: 1
+        2025-02: 1
+        2025-03: 1
+        2025-04: 1
+        2025-05: 1
+        2025-06: 1
+        2025-07: 1
+        2025-08: 1
+        2025-09: 1
+        2025-10: 1
+        2025-11: 1
+        2025-12: 1
+  individus:
+    adulte_1:
+      crds_hors_prestations:
+        2025: -507.50003
+      csg:
+        2025: -9338.001
