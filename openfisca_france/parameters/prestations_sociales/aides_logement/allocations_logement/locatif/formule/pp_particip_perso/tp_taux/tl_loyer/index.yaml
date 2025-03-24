@@ -5,3 +5,4 @@ metadata:
   order:
   - seuils
   - taux
+  - minorants
