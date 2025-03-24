@@ -1,0 +1,6 @@
+description: Paramètres des ressources en accession prises en compte pour le calcul des aides au logement
+metadata:
+  short_label: Paramètres des ressources en accession
+  order:
+  - dar_2_2_forfait_plancher_ressources
+  - dar_3_coef_plancher_ressources

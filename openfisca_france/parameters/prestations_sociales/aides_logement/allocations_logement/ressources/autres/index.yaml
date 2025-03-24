@@ -1,0 +1,8 @@
+description: Autres paramètres des ressources prises en compte pour le calcul des aides au logement
+metadata:
+  short_label: Autres
+  order:
+  - dar_2
+  - dar_6
+  - dar_8
+  - dar_9

@@ -1,0 +1,6 @@
+description: Paramètres des ressources prises en compte pour le calcul des aides au logement pour les étudiants (secteur foyer)
+metadata:
+  short_label: Etudiants
+  order:
+  - dar_11_forfait_ressources_foyer
+  - dar_12_minoration_boursier
