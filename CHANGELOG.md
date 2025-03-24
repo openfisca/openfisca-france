@@ -1,5 +1,14 @@
 # Changelog
 
+### 172.0.4 [2470](https://github.com/openfisca/openfisca-france/pull/2470)
+
+* Changement technique.
+* Périodes concernées : aucune.
+* Zones impactées :
+  - `pyproject.toml`
+* Détails :
+  - Corrige l'erreur de module 'pkg_resources' introuvable #2437.
+
 ### 172.0.3 [2516](https://github.com/openfisca/openfisca-france/pull/2516)
 
 * Amélioration technique.
