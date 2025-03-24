@@ -1,0 +1,6 @@
+description: Montant de la minoration forfaitaire en secteur accession
+metadata:
+  short_label: Minoration forfaitaire
+  order:
+  - al
+  - apl

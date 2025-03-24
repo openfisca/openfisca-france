@@ -1,0 +1,8 @@
+description: Mensualités plafonds utilisées pour le calcul de l’AL accession
+metadata:
+  short_label: Plafonds accédants à la propriété
+  label_en: Annual ceiling of reimbursement for new homebuyers
+  order:
+  - zone_1
+  - zone_2
+  - zone_3

@@ -1,0 +1,7 @@
+description: Participation personnelle du ménage « Pp » (après la réforme de 2001) des Allocations Logement (secteur locatif)
+metadata:
+  short_label: Participation personnelle du ménage « Pp » (après 2001)
+  order:
+  - p0_particip_min
+  - tp_taux
+  - r0_abattement

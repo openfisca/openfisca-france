@@ -1,0 +1,6 @@
+description: Plafonds d'équivalence de loyer et de charges locatives pour les étudiants logés en chambre non réhabilitée, Allocations logement (AL)
+metadata:
+  short_label: Etudiants logés en chambre non réhabilitée
+  order:
+  - personne_isolee
+  - couple

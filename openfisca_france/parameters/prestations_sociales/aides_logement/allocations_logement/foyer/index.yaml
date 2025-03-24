@@ -1,0 +1,7 @@
+description: Allocations logement - Secteur foyer
+metadata:
+  short_label: Secteur accession
+  order:
+  - k_coef_prise_en_charge
+  - al
+  - apl

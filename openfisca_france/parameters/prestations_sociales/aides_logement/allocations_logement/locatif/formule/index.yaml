@@ -1,0 +1,7 @@
+description: Paramètres de la formule pour le calcul des allocations logement en secteur locatif « L + C - Pp »
+metadata:
+  short_label: Paramètres de la formule (secteur locatif)
+  order:
+  - l_plafonds_loyers
+  - c_forfait_charges
+  - pp_particip_perso

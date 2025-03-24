@@ -1,0 +1,44 @@
+description: Personne isolée sans enfant, Zone 2 - Plafonds d'annuités de remboursement pour les accédants à la propriété des Allocations logement (APL)
+values:
+  2002-07-01:
+    value: 224.17
+  2003-07-01:
+    value: 226.86
+  2005-09-01:
+    value: 230.94
+  2007-01-01:
+    value: 237.41
+  2008-01-01:
+    value: 243.96
+  2009-01-01:
+    value: 251.16
+  2010-01-01:
+    value: 251.96
+  2011-01-01:
+    value: 254.73
+  2012-01-01:
+    value: 257.28
+  2013-01-01:
+    value: 262.81
+  2014-09-01:
+    value: 264.31
+  2015-10-01:
+    value: 264.52
+  2017-10-01: 
+    value: 266.5
+  2019-10-01: 
+    value: 267.3
+metadata:
+  short_label: Personne isolée sans enfant
+  last_value_still_valid_on: "2025-03-24"
+  label_en: Annual ceiling of reimbursement for new homebuyers
+  ipp_csv_id: plaf_remb_isol_z1_al
+  unit: currency
+  reference:
+    2019-10-01:
+    - title: Arrêté du 27/09/2019, art. 18 2°)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046834759
+    - title: Article D842-6 du Code la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878675
+  official_journal_date:
+    2019-10-01: "2019-10-01"

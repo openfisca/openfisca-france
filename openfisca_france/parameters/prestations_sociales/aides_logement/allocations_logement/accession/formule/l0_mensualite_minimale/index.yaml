@@ -1,0 +1,7 @@
+description: Mensualité minimale comptabilisée pour le calcul des aides au logement (Secteur accesion)
+metadata:
+  short_label: Mensualité minimale
+  order:
+  - taux_1
+  - taux_2
+  - seuil

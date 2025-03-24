@@ -1,0 +1,22 @@
+description: Taux de la participation minimale « P0 » intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
+values:
+  2001-01-01:
+    value: 0.085
+metadata:
+  short_label: Taux de la participation minimale « P0 »
+  last_value_still_valid_on: "2025-03-04"
+  label_en: Parameters for the rental sector (after the 2001 reform)
+  ipp_csv_id: p0_tx
+  unit: /1
+  reference:
+    2001-01-01:
+    - title: Arrêté du 27/09/2019, art. 13
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206225/2022-07-01
+    - title: Article D823-17 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419255
+    - title: Décret 2000-1269, art. 2 du 26/12/2000 (crée art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779920&cidTexte=JORFTEXT000000578227
+  notes:
+    2001-01-01:
+    - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
+documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

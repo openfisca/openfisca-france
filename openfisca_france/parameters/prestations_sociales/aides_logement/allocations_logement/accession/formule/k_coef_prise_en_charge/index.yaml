@@ -1,0 +1,7 @@
+description: Coefficient de prise en charge « K » en secteur accession (APL)
+metadata:
+  short_label: Coefficient de prise en charge « K » (APL)
+  order:
+  - plafond_k
+  - cm3_coef_multiplicateur
+  - n_nombre_parts

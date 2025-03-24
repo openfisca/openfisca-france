@@ -1,0 +1,8 @@
+description: Paramètres de calcul du montant forfaitaire R0 avant 2015
+metadata:
+  short_label: Paramètres R0 (avant 2015)
+  label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (before the 2015)
+  order:
+  - plafond_r0
+  - r1_rsa_socle_1
+  - r2_en_bmaf_1

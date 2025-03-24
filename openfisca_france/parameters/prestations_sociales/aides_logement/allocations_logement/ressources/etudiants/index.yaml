@@ -1,0 +1,9 @@
+description: Paramètres des ressources prises en compte pour le calcul des aides au logement pour les étudiants
+metadata:
+  short_label: Etudiants
+  order:
+  - foyer
+  - locatif
+  - dar_7
+  - age_max
+  - intervalles_ressources_consideres

@@ -1,1 +1,11 @@
 description: Ressources prises en compte pour le calcul des aides au logement
+metadata:
+  short_label: Ressources prises en compte pour le calcul des aides au logement
+  order:
+  - accession
+  - evaluation_forfaitaire_ressources
+  - patrimoine
+  - abattements
+  - etudiants
+  - personnes_a_charge
+  - autres
