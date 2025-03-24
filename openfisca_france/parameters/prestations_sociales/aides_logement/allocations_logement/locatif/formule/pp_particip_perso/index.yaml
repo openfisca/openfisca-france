@@ -2,6 +2,6 @@ description: Participation personnelle du ménage « Pp » (après la réforme d
 metadata:
   short_label: Participation personnelle du ménage « Pp » (après 2001)
   order:
-  - p0_participation_minimale
+  - p0_particip_min
   - tp_taux
   - r0_abattement
