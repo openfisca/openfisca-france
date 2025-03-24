@@ -423,6 +423,36 @@
     reductions: 750.0
     rfr: 45000.0
 
+
+- name: reduc_dons_patrimoine_religieux_fin
+  period: 2026
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      declarants:
+      - ind0
+      f7uj: 1000
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 6665.0
+    impot_revenu_restant_a_payer: -6665.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 0.0
+    rfr: 45000.0
+
 - name: reduc_dfppce
   period: 2021
   absolute_error_margin: 1

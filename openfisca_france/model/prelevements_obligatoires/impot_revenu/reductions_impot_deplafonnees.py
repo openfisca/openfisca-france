@@ -501,6 +501,37 @@ class dfppce(Variable):
 
         return red_7ud_7va + red_7uj + P.taux_reduction * min_(base, max)
 
+    def formula_2026_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dons versés à d’autres organismes d’intérêt général,
+        aux associations d’utilité publique, aux candidats aux élections (2021)
+        '''
+        rni = foyer_fiscal('rni', period)
+        f7uf = foyer_fiscal('f7uf', period)
+        f7uh = foyer_fiscal('f7uh', period)
+        f7xs = foyer_fiscal('f7xs', period)
+        f7xt = foyer_fiscal('f7xt', period)
+        f7xu = foyer_fiscal('f7xu', period)
+        f7xw = foyer_fiscal('f7xw', period)
+        f7xy = foyer_fiscal('f7xy', period)
+        f7va = foyer_fiscal('f7va', period)
+        f7ud = foyer_fiscal('f7ud', period)
+        f7vc = foyer_fiscal('f7vc', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.dons
+        plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
+        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.taux
+
+        red_7ud_7va = min_(plafond_reduction_don_coluche, f7va + f7ud) * taux_donapd
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
+
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_foyer, f7uh)
+
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
+        max = P.plafond_dons * rni
+
+        return red_7ud_7va + P.taux_reduction * min_(base, max)
+
 
 class reduction_enfants_scolarises(Variable):
     value_type = float
