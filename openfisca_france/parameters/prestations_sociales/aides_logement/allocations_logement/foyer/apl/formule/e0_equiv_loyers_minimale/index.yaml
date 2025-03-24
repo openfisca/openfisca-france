@@ -3,5 +3,5 @@ metadata:
   short_label: Paramètre « E0 » (secteur foyer)
   label_en: Parameters for new home-buyers (APL)
   order:
-  - e0_bareme_apl1
-  - e0_bareme_apl2
+  - apl1
+  - apl2
