@@ -1,0 +1,7 @@
+description: Abattements des ressources prises en compte pour le calcul des aides au logement
+metadata:
+  short_label: Abattements
+  order:
+  - chomage_indemnise
+  - dar_1_double_activite
+  - dar_10_double_residence

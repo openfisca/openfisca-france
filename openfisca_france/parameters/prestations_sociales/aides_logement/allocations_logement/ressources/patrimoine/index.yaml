@@ -1,0 +1,5 @@
+description: Ressources prises en compte pour le calcul des aides au logement pour le patrimoine
+metadata:
+  short_label: Patrimoine
+  order:
+  - seuil_valorisation
