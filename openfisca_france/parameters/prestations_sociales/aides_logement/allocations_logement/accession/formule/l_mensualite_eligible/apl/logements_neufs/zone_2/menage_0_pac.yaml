@@ -1,0 +1,44 @@
+description: Ménage sans personne à charge, Zone 2 - Plafonds d'annuités de remboursement pour les accédants à la propriété des Allocations logement (APL)
+values:
+  2002-07-01:
+    value: 335.56
+  2003-07-01:
+    value: 339.59
+  2005-09-01:
+    value: 345.70
+  2007-01-01:
+    value: 355.38
+  2008-01-01:
+    value: 365.19
+  2009-01-01:
+    value: 375.96
+  2010-01-01:
+    value: 377.16
+  2011-01-01:
+    value: 381.31
+  2012-01-01:
+    value: 385.12
+  2013-01-01:
+    value: 393.40
+  2014-09-01:
+    value: 395.64
+  2015-10-01:
+    value: 395.96
+  2017-10-01: 
+    value: 398.93
+  2019-10-01: 
+    value: 400.13
+metadata:
+  short_label: Ménage sans personnes à charge
+  last_value_still_valid_on: "2025-03-24"
+  label_en: Annual ceiling of reimbursement for new homebuyers
+  ipp_csv_id: plaf_remb_isol_z1_al
+  unit: currency
+  reference:
+    2019-10-01:
+    - title: Arrêté du 27/09/2019, art. 18 2°)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046834759
+    - title: Article D842-6 du Code la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878675
+  official_journal_date:
+    2019-10-01: "2019-10-01"
