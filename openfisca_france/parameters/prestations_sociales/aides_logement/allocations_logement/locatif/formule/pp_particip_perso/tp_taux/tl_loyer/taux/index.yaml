@@ -3,5 +3,6 @@ metadata:
   short_label: TL (taux)
   label_en: Parameters for the rental sector (after the 2001 reform)
   order:
-  - seuil_1
-  - seuil_2
+  - tl_taux_1
+  - tl_taux_2
+  - tl_taux_3
