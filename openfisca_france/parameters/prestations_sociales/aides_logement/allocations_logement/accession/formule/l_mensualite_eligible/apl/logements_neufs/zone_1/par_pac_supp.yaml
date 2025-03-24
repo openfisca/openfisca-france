@@ -1,0 +1,44 @@
+description: Par personne à charge supplémentaire, Zone 1 - Plafonds d'annuités de remboursement pour les accédants à la propriété des Allocations logement (APL)
+values:
+  2002-07-01:
+    value: 64.48
+  2003-07-01:
+    value: 65.25
+  2005-09-01:
+    value: 66.42
+  2007-01-01:
+    value: 68.28
+  2008-01-01:
+    value: 70.16
+  2009-01-01:
+    value: 72.23
+  2010-01-01:
+    value: 72.46
+  2011-01-01:
+    value: 73.26
+  2012-01-01:
+    value: 73.99
+  2013-01-01:
+    value: 75.58
+  2014-09-01:
+    value: 76.01
+  2015-10-01:
+    value: 76.07
+  2017-10-01: 
+    value: 74.64
+  2019-10-01: 
+    value: 76.87
+metadata:
+  short_label: Par personne à charge supplémentaire
+  last_value_still_valid_on: "2025-03-24"
+  label_en: Annual ceiling of reimbursement for new homebuyers
+  ipp_csv_id: plaf_remb_isol_z1_al
+  unit: currency
+  reference:
+    2019-10-01:
+    - title: Arrêté du 27/09/2019, art. 18 2°)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046834759
+    - title: Article D842-6 du Code la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878675
+  official_journal_date:
+    2019-10-01: "2019-10-01"
