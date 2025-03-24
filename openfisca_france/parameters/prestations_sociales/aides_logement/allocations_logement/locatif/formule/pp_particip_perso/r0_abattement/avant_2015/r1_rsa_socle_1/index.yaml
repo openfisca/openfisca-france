@@ -5,6 +5,6 @@ metadata:
   order:
   - personne_isolee
   - couple_0_enf
-  - personne_isolee_ou_couple_avec_1_enf
-  - personne_isolee_ou_couple_avec_2_enf
-  - majoration_enfant_a_charge_supp
+  - avec_1_enf
+  - avec_2_enf
+  - maj_pac_supp
