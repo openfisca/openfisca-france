@@ -8,6 +8,7 @@ values:
     value: 0.3
 metadata:
   short_label: Taux
+  last_value_still_valid_on: "2025-03-25"
   ipp_csv_id: abt_micro_fon
   unit: /1
   reference:
@@ -18,8 +19,10 @@ metadata:
       title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
     2006-01-01:
-      title: Loi 2006-1666 du 21/12/2006 (LF pour 2007)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615000
+      - title: Code général des impôts - Art. 32
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048847610
+      - title: Loi 2006-1666 du 21/12/2006 (LF pour 2007)
+        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615000
   official_journal_date:
     1997-01-01: "1997-12-31"
     1999-01-01: "1999-12-31"
