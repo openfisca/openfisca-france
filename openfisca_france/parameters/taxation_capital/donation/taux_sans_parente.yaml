@@ -1,0 +1,11 @@
+description: Taux de tarification de droits de mutation entre parents au-delà du 4e degré et entre personnes non-parentes
+values:
+  2015-01-01:
+    value: 0.60
+metadata:
+  last_value_still_valid_on: "2025-01-25"
+  unit: /1
+  reference:
+    2015-01-01:
+      title: Article 777 du code général des impôts, tableau III du 01/01/2015
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030061736

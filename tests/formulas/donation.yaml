@@ -1,0 +1,116 @@
+- name: Droits de mutation à titre gratuit pour personnes non parentées
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [10000, 1000]
+    lien_parente:
+      2025: ['aucun', 'aucun']
+    droit_exoneration_familial:
+      2025: [false, false]
+  output:
+    droits_mutation:
+      2025: [6000, 600]
+
+- name: Droits de mutation à titre gratuit entre personnes parentés de 4ème degré
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [10000, 1000]
+    lien_parente:
+      2025: ['quatrieme_degre', 'quatrieme_degre']
+    droit_exoneration_familial:
+      2025: [false, false]
+  output:
+    droits_mutation:
+      2025: [5500, 550]
+
+- name: Droits de mutation à titre gratuit à son neveu ou sa nièce
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [1000000, 1000000, 100000, 10000]
+    lien_parente:
+      2025: ['neveu', 'neveu', 'neveu', 'neveu']
+    droit_exoneration_familial:
+      2025: [true, false, true, true]
+  output:
+    droits_mutation:
+      2025: [528092.4, 545618.15, 33092.4, 0]
+
+- name: Droits de mutation à titre gratuit entre frères ou sœurs
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [1000000, 100000, 16032, 10000]
+    lien_parente:
+      2025: ['fratrie', 'fratrie', 'fratrie', 'fratrie']
+    droit_exoneration_familial:
+      2025: [false, false, false, false]
+  output:
+    droits_mutation:
+      2025: [440387.6, 35387.6, 35, 0]
+
+- name: Droits de mutation à titre gratuit à son ascendant
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [1000000, 100000, 16032, 10000]
+    lien_parente:
+      2025: ['ascendant', 'ascendant', 'ascendant', 'ascendant']
+    droit_exoneration_familial:
+      2025: [false, false, false, false]
+  output:
+    droits_mutation:
+      2025: [212961.95, 0, 0, 0]
+
+- name: Droits de mutation à titre gratuit à son arrière-petit-enfant
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [3000000, 3000000, 100000, 10000]
+    lien_parente:
+      2025: ['arriere_petit_enfant', 'arriere_petit_enfant', 'arriere_petit_enfant', 'arriere_petit_enfant']
+    droit_exoneration_familial:
+      2025: [true, false, true, true]
+  output:
+    droits_mutation:
+      2025: [1095665.5, 1110004.80, 10759.35, 0]
+
+- name: Droits de mutation à titre gratuit à son petit-enfant
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [3000000, 3000000, 100000, 10000]
+    lien_parente:
+      2025: ['petit_enfant', 'petit_enfant', 'petit_enfant', 'petit_enfant']
+    droit_exoneration_familial:
+      2025: [true, false, true, true]
+  output:
+    droits_mutation:
+      2025: [1083715.80, 1098055.05, 5448.35, 0]
+
+- name: Droits de mutation à titre gratuit à son enfant
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [3000000, 3000000, 2500000, 150000, 10000]
+    lien_parente:
+      2025: ['enfant', 'enfant', 'enfant', 'enfant', 'enfant']
+    droit_exoneration_familial:
+      2025: [true, false, true, true, true]
+  output:
+    droits_mutation:
+      2025: [1053055, 1067394.30, 828055.05, 1821.35, 0]
+
+- name: Droits de mutation à titre gratuit entre époux-se ou partenaire Pacs
+  absolute_error_margin: 0.01
+  input:
+    don:
+      2025: [3000000, 1000000, 100000, 10000]
+    lien_parente:
+      2025: ['epoux_pacs', 'epoux_pacs', 'epoux_pacs', 'epoux_pacs']
+    droit_exoneration_familial:
+      2025: [false, false, false, false]
+  output:
+    droits_mutation:
+      2025: [1075080.8, 219400.75, 1691.20, 0]
