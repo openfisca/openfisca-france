@@ -3,13 +3,16 @@ values:
   1985-11-01:
     value: 0.08
 metadata:
+  last_value_still_valid_on: "2025-03-25"
   short_label: Taux pour trois enfants
   label_en: Family income supplement (SFT)
   ipp_csv_id: txenf3
   unit: /1
   reference:
     1985-11-01:
-      title: Décret 85-1148 du 24/10/1985 - art. 10
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006454594&cidTexte=JORFTEXT000000872483
+      - title: Décret 85-1148 du 24/10/1985 - art. 10 bis
+        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006454606/1985-11-01/
+      - title: Décret 85-1148 du 24/10/1985 - art. 10
+        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006454603
   official_journal_date:
     1985-11-01: "1985-11-05"
