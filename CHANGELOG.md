@@ -1,5 +1,14 @@
 # Changelog
 
+## 169.19.0 [2472](https://github.com/openfisca/openfisca-france/pull/2472)
+
+* Changement mineur.
+* Périodes concernées : depuis 2024.
+* Zones impactées :
+  - `openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique/sft/*`
+* Détails :
+  - Mise à jour des plafonds et `last_value_still_valid_on` pour le SFT.
+
 ### 169.18.5 [2443](https://github.com/openfisca/openfisca-france/pull/2443)
 
 * Changement mineur.
