@@ -32,7 +32,7 @@ values:
     value: 314.76
 metadata:
   short_label: Personne isolée sans enfant
-  last_value_still_valid_on: "2022-01-05"
+  last_value_still_valid_on: "2025-03-28"
   label_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_isol_z1_al
   unit: currency

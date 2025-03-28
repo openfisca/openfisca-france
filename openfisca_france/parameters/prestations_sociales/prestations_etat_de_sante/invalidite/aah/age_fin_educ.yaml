@@ -3,6 +3,7 @@ values:
   1986-01-01:
     value: 16
 metadata:
+  last_value_still_valid_on: "2025-03-28"
   short_label: Âge minimal pour individu sans allocations familiales
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: age_fin_educ_aah

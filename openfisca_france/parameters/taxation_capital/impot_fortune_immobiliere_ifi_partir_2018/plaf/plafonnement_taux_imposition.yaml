@@ -4,7 +4,7 @@ values:
     value: 0.75
 metadata:
   short_label: Plafonnement
-  last_value_still_valid_on: "2022-04-28"
+  last_value_still_valid_on: "2025-03-28"
   label_en: Wealth tax ceiling
   ipp_csv_id: tx_plaf_ifi
   unit: /1
