@@ -8,7 +8,7 @@ brackets:
       value: 0.003
 metadata:
   short_label: Taux CASA
-  last_value_still_valid_on: "2021-12-07"
+  last_value_still_valid_on: "2025-03-28"
   label_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
   ipp_csv_id: casa_pens
   reference:
