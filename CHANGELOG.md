@@ -1,5 +1,14 @@
 # Changelog
 
+## 169.19.1 [2476](https://github.com/openfisca/openfisca-france/pull/2476)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - 15 fichiers de `openfisca_france/parameters/*`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` de différents paramètres visibles dans l'interface LexImpact.
+
 ## 169.19.0 [2472](https://github.com/openfisca/openfisca-france/pull/2472)
 
 * Changement mineur.
