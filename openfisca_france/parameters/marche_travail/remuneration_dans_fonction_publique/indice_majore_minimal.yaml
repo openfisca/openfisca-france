@@ -62,7 +62,10 @@ values:
     value: 353
   2023-05-01:
     value: 361
+  2024-01-01:
+    value: 366
 metadata:
+  last_value_still_valid_on: "2025-03-25"
   short_label: Traitement minimal dans la FP
   last_value_still_valid_on: "2023-05-25"
   label_en: Minimum wage, civil servants
@@ -72,7 +75,7 @@ metadata:
       title: Décret n° 86-167 du 31 janvier 1986 modifiant le décret n° 85-1148 du 24 octobre 1985 relatif à la rémunération des personnels civils et militaires de l’État et des personnels des collectivités territoriales
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000518259
     1985-11-01:
-      title: Décret n° 85-1148 du 24 octobre 1985 relatif à la rémunération des personnels civils et militaires de ‎l'Etat et des personnels des collectivités territoriales
+      title: Décret n° 85-1148 du 24 octobre 1985 relatif à la rémunération des personnels civils et militaires de l'Etat et des personnels des collectivités territoriales
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000872483
     1987-08-01:
       title: Décret n° 87-589 du 30 juillet 1987 portant modification du décret n° 85-1148 du 24 octobre 1985 et majoration de la rémunération des personnels civils et militaires de l’État et des personnels des collectivités territoriales à compter du 1er août 1987
@@ -164,6 +167,11 @@ metadata:
     2023-05-01:
       title: Décret n° 2023-312 du 26 avril 2023 portant relèvement du minimum de traitement dans la fonction publique
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047496223
+    2024-01-01:
+      - title: Décret 85-1148 du 24/10/1985 - art. 8
+        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000047781343/2024-01-01/
+      - title: Décret n° 2023-519 du 28 juin 2023 portant majoration de la rémunération des personnels
+        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047749229
   official_journal_date:
     1985-07-01: "1986-02-07"
     1985-11-01: "1985-11-05"
@@ -196,3 +204,4 @@ metadata:
     2022-05-01: "2022-04-21"
     2023-01-01: "2022-12-23"
     2023-05-01: "2023-04-27"
+    2024-01-01: "2023-06-28"
