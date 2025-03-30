@@ -645,7 +645,7 @@ class revenu_categoriel_plus_values(Variable):
         return f3wb + pre_result
 
 
-class revenu_categoriel_deductions(Variable):
+class revenu_categoriel_tspr(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Revenu catégoriel - Traitements, salaires, pensions et rentes'
@@ -653,10 +653,10 @@ class revenu_categoriel_deductions(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        deductions_i = foyer_fiscal.members('traitements_salaires_pensions_rentes', period)
+        tspr_i = foyer_fiscal.members('traitements_salaires_pensions_rentes', period)
         indu_plaf_abat_pen = foyer_fiscal('indu_plaf_abat_pen', period)
 
-        traitements_salaires_pensions_rentes = foyer_fiscal.sum(deductions_i)
+        traitements_salaires_pensions_rentes = foyer_fiscal.sum(tspr_i)
 
         return traitements_salaires_pensions_rentes + indu_plaf_abat_pen
 
@@ -1193,13 +1193,13 @@ class revenu_categoriel(Variable):
         '''
         Revenus Categoriels
         '''
-        rev_cat_deductions = foyer_fiscal('revenu_categoriel_deductions', period)
+        rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rev_cat_rpns = foyer_fiscal('revenu_categoriel_non_salarial', period)
         rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
 
-        return rev_cat_deductions + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
+        return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
 
 ###############################################################################
