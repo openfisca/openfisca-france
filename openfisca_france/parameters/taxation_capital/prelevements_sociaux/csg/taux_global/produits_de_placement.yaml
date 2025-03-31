@@ -18,7 +18,7 @@ values:
     value: 0.092
 metadata:
   short_label: Produits de placement
-  last_value_still_valid_on: "2019-01-01"
+  last_value_still_valid_on: "2025-03-31"
   label_en: CSG on financial income
   ipp_csv_id: tx_csg_rk_plac
   unit: /1
@@ -49,8 +49,12 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377512&cidTexte=JORFTEXT000036339197
     - title: LOI 2018-1203 du 22/12/2018, art. 26 (modifie l'art. L136-8 du CSS)
     2019-01-01:
-      title: Loi 2018-1203 du 22/12/2018 - art. 26 (modifie l'art. L136-8 du CSS)
-      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/22/CPAX1824950L/jo/texte
+      - title: Code de la sécurité sociale - art. L136-6
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033812508/2019-01-01/
+      - title: Code de la sécurité sociale - art. L136-8
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683546/2019-01-01/
+      - title: Loi 2018-1203 du 22/12/2018 - art. 26 (modifie l'art. L136-8 du CSS)
+        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037847610
   official_journal_date:
     1990-01-01: "1990-12-30"
     1991-02-01: "1990-12-30"
