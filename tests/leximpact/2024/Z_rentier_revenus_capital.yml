@@ -1,0 +1,189 @@
+name: Z_rentier_revenus_capital
+period: 2024
+max_spiral_loops: 1
+absolute_error_margin: 1
+input:
+  familles:
+    famille_n_1:
+      parents:
+        - adulte_1
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      declarants:
+        - adulte_1
+      depcom_foyer:
+        2022: '75107'
+        2023: '75107'
+        2024: '75107'
+      f2dc:
+        2022: 100000
+        2023: 100000
+        2024: 100000
+      f2op:
+        2022: false
+        2023: false
+        2024: false
+      f2zz:
+        2022: 1500
+        2023: 1500
+        2024: 1500
+  menages:
+    logement_principal_n_1:
+      depcom:
+        2022: '75107'
+        2023: '75107'
+        2024: '75107'
+      personne_de_reference:
+        - adulte_1
+      statut_occupation_logement:
+        2022: proprietaire
+        2023: proprietaire
+        2024: proprietaire
+  individus:
+    adulte_1:
+      activite:
+        2022: inactif
+        2023: inactif
+        2024: inactif
+      contrat_de_travail_type:
+        2022: aucun
+        2023: aucun
+        2024: aucun
+      date_naissance:
+        2024: '1982-11-05'
+      statut_marital:
+        2022: celibataire
+        2023: celibataire
+        2024: celibataire
+output:
+  familles:
+    famille_n_1:
+      aide_logement_base_ressources:
+        2024-01: 101600
+        2024-02: 101600
+        2024-03: 101600
+        2024-04: 101600
+        2024-05: 101600
+        2024-06: 101600
+        2024-07: 101600
+        2024-08: 101600
+        2024-09: 101600
+        2024-10: 101600
+        2024-11: 101600
+        2024-12: 101600
+      asi_aspa_base_ressources:
+        2024-01: 8458.33
+        2024-02: 8458.33
+        2024-03: 8458.33
+        2024-04: 8458.33
+        2024-05: 8458.33
+        2024-06: 8458.33
+        2024-07: 8458.33
+        2024-08: 8458.33
+        2024-09: 8458.33
+        2024-10: 8458.33
+        2024-11: 8458.33
+        2024-12: 8458.33
+      ppa_base_ressources:
+        2024-01: 8458.33
+        2024-02: 8458.33
+        2024-03: 8458.33
+        2024-04: 8458.33
+        2024-05: 8458.33
+        2024-06: 8458.33
+        2024-07: 8458.33
+        2024-08: 8458.33
+        2024-09: 8458.33
+        2024-10: 8458.33
+        2024-11: 8458.33
+        2024-12: 8458.33
+      prestations_familiales_base_ressources:
+        2024-01: 101500.01
+        2024-02: 101500.01
+        2024-03: 101500.01
+        2024-04: 101500.01
+        2024-05: 101500.01
+        2024-06: 101500.01
+        2024-07: 101500.01
+        2024-08: 101500.01
+        2024-09: 101500.01
+        2024-10: 101500.01
+        2024-11: 101500.01
+        2024-12: 101500.01
+      rsa_base_ressources:
+        2024-01: 8458.33
+        2024-02: 8458.33
+        2024-03: 8458.33
+        2024-04: 8458.33
+        2024-05: 8458.33
+        2024-06: 8458.33
+        2024-07: 8458.33
+        2024-08: 8458.33
+        2024-09: 8458.33
+        2024-10: 8458.33
+        2024-11: 8458.33
+        2024-12: 8458.33
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      assiette_csg_revenus_capital:
+        2024: 101500.01
+      crds_revenus_capital:
+        2024: -507.5
+      csg_revenus_capital:
+        2024: -9338
+      irpp_economique:
+        2024: -12992
+      nbptr:
+        2024: 1
+      prelevement_forfaitaire_unique_ir:
+        2024: 12992
+      prelevement_forfaitaire_unique_ir_hors_assurance_vie:
+        2024: 12800
+      prelevement_forfaitaire_unique_ir_sur_assurance_vie:
+        2024: 192
+      prelevements_sociaux_revenus_capital_hors_csg_crds:
+        2024: -7612.5
+      revenus_capitaux_prelevement_forfaitaire_unique_ir:
+        2024-01: 8458.33
+        2024-02: 8458.33
+        2024-03: 8458.33
+        2024-04: 8458.33
+        2024-05: 8458.33
+        2024-06: 8458.33
+        2024-07: 8458.33
+        2024-08: 8458.33
+        2024-09: 8458.33
+        2024-10: 8458.33
+        2024-11: 8458.33
+        2024-12: 8458.33
+      rfr:
+        2024: 101500.01
+  menages:
+    logement_principal_n_1:
+      impots_directs:
+        2024: -12992
+      niveau_de_vie:
+        2024: 71050.01
+      revenu_disponible:
+        2024: 71050.01
+      unites_consommation:
+        2024: 1
+      zone_apl:
+        2024-01: 1
+        2024-02: 1
+        2024-03: 1
+        2024-04: 1
+        2024-05: 1
+        2024-06: 1
+        2024-07: 1
+        2024-08: 1
+        2024-09: 1
+        2024-10: 1
+        2024-11: 1
+        2024-12: 1
+  individus:
+    adulte_1:
+      crds_hors_prestations:
+        2024: -507.5
+      csg:
+        2024: -9338

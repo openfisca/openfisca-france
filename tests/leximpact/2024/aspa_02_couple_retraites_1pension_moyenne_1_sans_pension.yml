@@ -1,0 +1,243 @@
+name: aspa_02_couple_retraites_1pension_moyenne_1_sans_pension
+period: 2024
+max_spiral_loops: 1
+absolute_error_margin: 1
+input:
+  familles:
+    famille_n_1:
+      en_couple:
+        2022: true
+        2023: true
+        2024: true
+      parents:
+        - adulte_1
+        - adulte_2
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      declarants:
+        - adulte_1
+        - adulte_2
+      depcom_foyer:
+        2022: '75107'
+        2023: '75107'
+        2024: '75107'
+  menages:
+    logement_principal_n_1:
+      conjoint:
+        - adulte_2
+      depcom:
+        2022: '75107'
+        2023: '75107'
+        2024: '75107'
+      personne_de_reference:
+        - adulte_1
+      statut_occupation_logement:
+        2022: proprietaire
+        2023: proprietaire
+        2024: proprietaire
+  individus:
+    adulte_1:
+      activite:
+        2022: retraite
+        2023: retraite
+        2024: retraite
+      categorie_salarie:
+        2022: non_pertinent
+        2023: non_pertinent
+        2024: non_pertinent
+      contrat_de_travail:
+        2022: sans_objet
+        2023: sans_objet
+        2024: sans_objet
+      contrat_de_travail_type:
+        2022: aucun
+        2023: aucun
+        2024: aucun
+      date_naissance:
+        2024: '1946-12-24'
+      invalidite:
+        2022: false
+        2023: false
+        2024: false
+      retraite_brute:
+        2022-01: 1561.58
+        2022-02: 1561.58
+        2022-03: 1561.58
+        2022-04: 1561.58
+        2022-05: 1561.58
+        2022-06: 1561.58
+        2022-07: 1561.58
+        2022-08: 1561.58
+        2022-09: 1561.58
+        2022-10: 1561.58
+        2022-11: 1561.58
+        2022-12: 1561.58
+        2023-01: 1561.58
+        2023-02: 1561.58
+        2023-03: 1561.58
+        2023-04: 1561.58
+        2023-05: 1561.58
+        2023-06: 1561.58
+        2023-07: 1561.58
+        2023-08: 1561.58
+        2023-09: 1561.58
+        2023-10: 1561.58
+        2023-11: 1561.58
+        2023-12: 1561.58
+        2024-01: 1561.58
+        2024-02: 1561.58
+        2024-03: 1561.58
+        2024-04: 1561.58
+        2024-05: 1561.58
+        2024-06: 1561.58
+        2024-07: 1561.58
+        2024-08: 1561.58
+        2024-09: 1561.58
+        2024-10: 1561.58
+        2024-11: 1561.58
+        2024-12: 1561.58
+      statut_marital:
+        2022: marie
+        2023: marie
+        2024: marie
+    adulte_2:
+      activite:
+        2022: retraite
+        2023: retraite
+        2024: retraite
+      categorie_salarie:
+        2022: non_pertinent
+        2023: non_pertinent
+        2024: non_pertinent
+      contrat_de_travail:
+        2022: sans_objet
+        2023: sans_objet
+        2024: sans_objet
+      contrat_de_travail_type:
+        2022: aucun
+        2023: aucun
+        2024: aucun
+      date_naissance:
+        2024: '1944-05-11'
+      invalidite:
+        2022: false
+        2023: false
+        2024: false
+      statut_marital:
+        2022: marie
+        2023: marie
+        2024: marie
+output:
+  familles:
+    famille_n_1:
+      aide_logement_base_ressources:
+        2024-01: 16900
+        2024-02: 16900
+        2024-03: 16900
+        2024-04: 16900
+        2024-05: 16900
+        2024-06: 16900
+        2024-07: 16900
+        2024-08: 16900
+        2024-09: 16900
+        2024-10: 16900
+        2024-11: 16900
+        2024-12: 16900
+      asi_aspa_base_ressources:
+        2024-01: 1561.58
+        2024-02: 1561.58
+        2024-03: 1561.58
+        2024-04: 1561.58
+        2024-05: 1561.58
+        2024-06: 1561.58
+        2024-07: 1561.58
+        2024-08: 1561.58
+        2024-09: 1561.58
+        2024-10: 1561.58
+        2024-11: 1561.58
+        2024-12: 1561.58
+      aspa:
+        2024-01: 9.59
+        2024-02: 9.59
+        2024-03: 9.59
+        2024-04: 9.59
+        2024-05: 9.59
+        2024-06: 9.59
+        2024-07: 9.59
+        2024-08: 9.59
+        2024-09: 9.59
+        2024-10: 9.59
+        2024-11: 9.59
+        2024-12: 9.59
+      minima_sociaux:
+        2024: 115.06
+      ppa_base_ressources:
+        2024-01: 1571.17
+        2024-02: 1571.17
+        2024-03: 1571.17
+        2024-04: 1571.17
+        2024-05: 1571.17
+        2024-06: 1571.17
+        2024-07: 1571.17
+        2024-08: 1571.17
+        2024-09: 1571.17
+        2024-10: 1571.17
+        2024-11: 1571.17
+        2024-12: 1571.17
+      prestations_familiales_base_ressources:
+        2024-01: 16864.96
+        2024-02: 16864.96
+        2024-03: 16864.96
+        2024-04: 16864.96
+        2024-05: 16864.96
+        2024-06: 16864.96
+        2024-07: 16864.96
+        2024-08: 16864.96
+        2024-09: 16864.96
+        2024-10: 16864.96
+        2024-11: 16864.96
+        2024-12: 16864.96
+      prestations_sociales:
+        2024: 115.06
+      rsa_base_ressources:
+        2024-01: 1571.17
+        2024-02: 1571.17
+        2024-03: 1571.17
+        2024-04: 1571.17
+        2024-05: 1571.17
+        2024-06: 1571.17
+        2024-07: 1571.17
+        2024-08: 1571.17
+        2024-09: 1571.17
+        2024-10: 1571.17
+        2024-11: 1571.17
+        2024-12: 1571.17
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      nbptr:
+        2024: 2
+      rfr:
+        2024: 14069.96
+      rni:
+        2024: 14069.96
+  menages:
+    logement_principal_n_1:
+      niveau_de_vie:
+        2024: 12569.35
+      revenu_disponible:
+        2024: 18854.02
+      unites_consommation:
+        2024: 1.5
+      zone_apl:
+        2024-01: 1
+        2024-02: 1
+        2024-03: 1
+        2024-04: 1
+        2024-05: 1
+        2024-06: 1
+        2024-07: 1
+        2024-08: 1
+        2024-09: 1
+        2024-10: 1
+        2024-11: 1
+        2024-12: 1

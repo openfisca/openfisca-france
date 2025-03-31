@@ -1,0 +1,208 @@
+name: irpp_economique_11_salarie_cdhr
+period: 2024
+max_spiral_loops: 1
+absolute_error_margin: 1
+input:
+  familles:
+    famille_n_1:
+      en_couple:
+        2022: true
+        2023: true
+        2024: true
+      parents:
+        - adulte_1
+        - adulte_2
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      declarants:
+        - adulte_1
+        - adulte_2
+      depcom_foyer:
+        2022: '75107'
+        2023: '75107'
+        2024: '75107'
+      f2dc:
+        2022: 1000000
+        2023: 1000000
+        2024: 1000000
+      f2op:
+        2022: false
+        2023: false
+        2024: false
+  menages:
+    logement_principal_n_1:
+      conjoint:
+        - adulte_2
+      depcom:
+        2022: '75107'
+        2023: '75107'
+        2024: '75107'
+      personne_de_reference:
+        - adulte_1
+      statut_occupation_logement:
+        2022: proprietaire
+        2023: proprietaire
+        2024: proprietaire
+  individus:
+    adulte_1:
+      activite:
+        2022: inactif
+        2023: inactif
+        2024: inactif
+      contrat_de_travail_type:
+        2022: aucun
+        2023: aucun
+        2024: aucun
+      date_naissance:
+        2024: '1982-11-05'
+      statut_marital:
+        2022: marie
+        2023: marie
+        2024: marie
+    adulte_2:
+      activite:
+        2022: inactif
+        2023: inactif
+        2024: inactif
+      contrat_de_travail_type:
+        2022: aucun
+        2023: aucun
+        2024: aucun
+      date_naissance:
+        2024: '1979-01-22'
+      statut_marital:
+        2022: marie
+        2023: marie
+        2024: marie
+output:
+  familles:
+    famille_n_1:
+      aide_logement_base_ressources:
+        2024-01: 1000000
+        2024-02: 1000000
+        2024-03: 1000000
+        2024-04: 1000000
+        2024-05: 1000000
+        2024-06: 1000000
+        2024-07: 1000000
+        2024-08: 1000000
+        2024-09: 1000000
+        2024-10: 1000000
+        2024-11: 1000000
+        2024-12: 1000000
+      asi_aspa_base_ressources:
+        2024-01: 83333.34
+        2024-02: 83333.34
+        2024-03: 83333.34
+        2024-04: 83333.34
+        2024-05: 83333.34
+        2024-06: 83333.34
+        2024-07: 83333.34
+        2024-08: 83333.34
+        2024-09: 83333.34
+        2024-10: 83333.34
+        2024-11: 83333.34
+        2024-12: 83333.34
+      ppa_base_ressources:
+        2024-01: 83333.33
+        2024-02: 83333.33
+        2024-03: 83333.33
+        2024-04: 83333.33
+        2024-05: 83333.33
+        2024-06: 83333.33
+        2024-07: 83333.33
+        2024-08: 83333.33
+        2024-09: 83333.33
+        2024-10: 83333.33
+        2024-11: 83333.33
+        2024-12: 83333.33
+      prestations_familiales_base_ressources:
+        2024-01: 999999.94
+        2024-02: 999999.94
+        2024-03: 999999.94
+        2024-04: 999999.94
+        2024-05: 999999.94
+        2024-06: 999999.94
+        2024-07: 999999.94
+        2024-08: 999999.94
+        2024-09: 999999.94
+        2024-10: 999999.94
+        2024-11: 999999.94
+        2024-12: 999999.94
+      rsa_base_ressources:
+        2024-01: 83333.34
+        2024-02: 83333.34
+        2024-03: 83333.34
+        2024-04: 83333.34
+        2024-05: 83333.34
+        2024-06: 83333.34
+        2024-07: 83333.34
+        2024-08: 83333.34
+        2024-09: 83333.34
+        2024-10: 83333.34
+        2024-11: 83333.34
+        2024-12: 83333.34
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      assiette_csg_revenus_capital:
+        2024: 999999.94
+      contribution_exceptionnelle_hauts_revenus:
+        2024: 15000
+      crds_revenus_capital:
+        2024: -5000
+      csg_revenus_capital:
+        2024: -91999.99
+      irpp_economique:
+        2024: -143000
+      nbptr:
+        2024: 2
+      prelevement_forfaitaire_unique_ir:
+        2024: 128000
+      prelevement_forfaitaire_unique_ir_hors_assurance_vie:
+        2024: 128000
+      prelevements_sociaux_revenus_capital_hors_csg_crds:
+        2024: -75000
+      revenus_capitaux_prelevement_forfaitaire_unique_ir:
+        2024-01: 83333.34
+        2024-02: 83333.34
+        2024-03: 83333.34
+        2024-04: 83333.34
+        2024-05: 83333.34
+        2024-06: 83333.34
+        2024-07: 83333.34
+        2024-08: 83333.34
+        2024-09: 83333.34
+        2024-10: 83333.34
+        2024-11: 83333.34
+        2024-12: 83333.34
+      rfr:
+        2024: 999999.94
+  menages:
+    logement_principal_n_1:
+      impots_directs:
+        2024: -143000
+      niveau_de_vie:
+        2024: 456666.62
+      revenu_disponible:
+        2024: 684999.94
+      unites_consommation:
+        2024: 1.5
+      zone_apl:
+        2024-01: 1
+        2024-02: 1
+        2024-03: 1
+        2024-04: 1
+        2024-05: 1
+        2024-06: 1
+        2024-07: 1
+        2024-08: 1
+        2024-09: 1
+        2024-10: 1
+        2024-11: 1
+        2024-12: 1
+  individus:
+    adulte_1:
+      crds_hors_prestations:
+        2024: -5000
+      csg:
+        2024: -91999.99
