@@ -6,7 +6,7 @@ values:
     value: 0.75
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2025-03-31"
   label_en: Tax reductions for investment and donations
   ipp_csv_id: plaf_plaf_ifi
   unit: /1
