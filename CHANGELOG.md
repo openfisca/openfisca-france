@@ -1,5 +1,13 @@
 # Changelog
 
+## 169.19.3 [2477](https://github.com/openfisca/openfisca-france/pull/2477)
+
+* Changement mineur.
+* Périodes concernées : aucune
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/rsa_jeune_en_heure.yaml`.
+* Détails :
+  - Corrige le problème de cohérence de date sur le RSA jeune : https://control-center.tax-benefit.org/parameters/61352/github.com/openfisca/openfisca-france/master/raw_unprocessed_parameters/errors
+
 ## 169.19.2 [2473](https://github.com/openfisca/openfisca-france/pull/2473)
 
 * Changement mineur.
