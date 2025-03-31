@@ -1,0 +1,44 @@
+description: Ménage ou isolé avec 1 enfant, Zone 2 - Plafonds d'annuités de remboursement pour les accédants à la propriété des Allocations logement (APL)
+values:
+  2002-07-01:
+    value: 392.33
+  2003-07-01:
+    value: 397.04
+  2005-09-01:
+    value: 404.18
+  2007-01-01:
+    value: 415.50
+  2008-01-01:
+    value: 426.97
+  2009-01-01:
+    value: 439.57
+  2010-01-01:
+    value: 440.98
+  2011-01-01:
+    value: 445.83
+  2012-01-01:
+    value: 450.29
+  2013-01-01:
+    value: 459.97
+  2014-09-01:
+    value: 462.59
+  2015-10-01:
+    value: 462.96
+  2017-10-01: 
+    value: 466.43
+  2019-10-01: 
+    value: 467.83
+metadata:
+  short_label: Ménage ou isolé avec 1 enfant
+  last_value_still_valid_on: "2025-03-24"
+  label_en: Annual ceiling of reimbursement for new homebuyers
+  ipp_csv_id: plaf_remb_isol_z1_al
+  unit: currency
+  reference:
+    2019-10-01:
+    - title: Arrêté du 27/09/2019, art. 18 2°)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046834759
+    - title: Article D842-6 du Code la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878675
+  official_journal_date:
+    2019-10-01: "2019-10-01"

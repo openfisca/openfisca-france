@@ -1,0 +1,7 @@
+description: Allocations logement - Secteur accession
+metadata:
+  short_label: Secteur accession
+  order:
+  - formule
+  - minoration_forfaitaire
+  - seuil_minimum_versement

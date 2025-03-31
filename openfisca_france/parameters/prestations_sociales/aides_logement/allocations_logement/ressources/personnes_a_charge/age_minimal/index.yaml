@@ -1,0 +1,8 @@
+description: Âge minimal des ascendants du bénéficiaire ou de son conjoint pour être considéré personne à charge pour les allocations logement (AL)
+metadata:
+  short_label: Âge minimal des ascendants considérés comme personne à charge
+  label_en: Definition of dependants
+  order:
+  - pour_les_ascendants_et_leur_conjoint
+  - ascendants_aspa
+  - ascendants_invalides

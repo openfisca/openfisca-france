@@ -1,0 +1,8 @@
+description: Coefficient de prise en charge « K »
+metadata:
+  short_label: Allocations logement
+  label_en: Allowances
+  order:
+  - plafonds
+  - cm_et_r
+  - n_nombre_parts

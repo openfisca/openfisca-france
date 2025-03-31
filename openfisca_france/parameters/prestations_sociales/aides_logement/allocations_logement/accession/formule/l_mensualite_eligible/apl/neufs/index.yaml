@@ -1,0 +1,8 @@
+description: Mensualités plafonds utilisées pour le calcul de l’APL accession (Logements neufs construits ou acquis par l'accédant à la propriété)
+metadata:
+  short_label: Mensualité éligible
+  order:
+  - zone_1
+  - zone_2
+  - zone_3
+documentation: Mensualité éligible indiquée par le « L » de la formule de calcul des aides, mentionné au 3° de l'article D832-10 du Code de la construction et de l'habitation.

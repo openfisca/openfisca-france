@@ -1,0 +1,7 @@
+description: Mensualité éligible comptabilisée pour le calcul des aides au logement (Secteur accesion)
+metadata:
+  short_label: Mensualité éligible
+  order:
+  - al
+  - apl
+documentation: Mensualité éligible indiquée par le « L » de la formule de calcul des aides, mentionné au 3° de l'article D832-10 du Code de la construction et de l'habitation.

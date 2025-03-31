@@ -1,0 +1,6 @@
+description: Montant forfaitaire au titre des charges « C » des allocations logement (secteur locatif)
+metadata:
+  short_label: Forfait de charges « C »
+  order:
+  - cas_general
+  - cas_colocataires

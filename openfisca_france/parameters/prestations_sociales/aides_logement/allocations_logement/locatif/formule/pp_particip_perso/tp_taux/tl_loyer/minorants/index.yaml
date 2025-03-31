@@ -1,0 +1,8 @@
+description: Taux minorants de participation personnelle complémentaire (TL) (après la réforme de 2001) des Allocations Logement (AL)
+metadata:
+  short_label: Minorants
+  label_en: Parameters for the rental sector (after the 2001 reform)
+  order:
+  - minorant_1e_tranche
+  - minorant_2e_tranche
+  - minorant_3e_tranche

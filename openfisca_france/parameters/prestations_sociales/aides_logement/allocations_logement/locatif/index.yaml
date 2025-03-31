@@ -1,0 +1,8 @@
+description: Allocations logement - Secteur locatif
+metadata:
+  short_label: Allocations logement - Secteur locatif
+  order:
+  - formule
+  - coefficients_degressivite_suppression
+  - seuils_minimum_versement
+  - minoration_forfaitaire

@@ -1,0 +1,14 @@
+description: Taux fonction de la taille de la famille « TF » pris en compte dans le taux de participation personnel du ménage « Tp » pour le calcul des allocations logement
+metadata:
+  short_label: Taux « TF » pris en compte dans le calcul des aides
+  label_en: Parameters for the rental sector (after the 2001 reform)
+  order:
+  - personnes_isolees
+  - couples_0_enfant
+  - avec_1_enfant
+  - avec_2_enfants
+  - avec_3_enfants
+  - avec_4_enfants
+  - avec_5_enfants
+  - avec_6_enfants
+  - maj_par_enf_supp

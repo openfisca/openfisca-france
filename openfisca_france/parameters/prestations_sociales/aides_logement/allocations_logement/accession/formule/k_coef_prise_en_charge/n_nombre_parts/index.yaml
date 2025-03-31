@@ -1,0 +1,15 @@
+description: Paramètre « N » pour le calcul de l'AL du secteur accession APL
+metadata:
+  short_label: Nombre de parts (Secteur accession, APL)
+  reference:
+    title: Article D832-11 du Code de la construction et de l'habitation
+    href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047401383
+  order:
+  - isole_0_pac
+  - menage_0_pac
+  - 1_pac
+  - 2_pac
+  - 3_pac
+  - 4_pac
+  - maj_par_pac_supp
+

@@ -1,0 +1,7 @@
+description:  mensualités plafonds utilisées pour le calcul de l’APL accession
+metadata:
+  short_label: Mensualité éligible
+  order:
+  - neufs
+  - agrandis
+documentation: Mensualité éligible indiquée par le « L » de la formule de calcul des aides, mentionné au 3° de l'article D832-10 du Code de la construction et de l'habitation.

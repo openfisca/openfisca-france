@@ -1,5 +1,17 @@
 # Changelog
 
+# 170.0.0 [2423](https://github.com/openfisca/openfisca-france/pull/2423)
+
+* Évolution du système socio-fiscal | Réorganisation des dossiers de paramètres des allocations logement
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement`.
+* Détails :
+  - Réorganise entièrement l'arbre des dossiers de paramètres des allocations logement (notamment via une division par secteurs : locatif, foyer et accession), en explicitant dans les noms de dossiers les noms des paramètres présents dans les formules du code de construction et de l'habitation ; la structure globale est largement inspirée du Code de la construction et de l'habitation et de l'Arrêté du 27 septembre 2019 relatif au calcul des Aides personnelles au logement
+  - Crée des paramètres manquants
+  - Supprime des paramètres doublons inutilisés
+  - Modifie les noms de dossiers
+  - Mise à jour des last_value_still_valid_on
+
 ## 169.19.3 [2477](https://github.com/openfisca/openfisca-france/pull/2477)
 
 * Changement mineur.

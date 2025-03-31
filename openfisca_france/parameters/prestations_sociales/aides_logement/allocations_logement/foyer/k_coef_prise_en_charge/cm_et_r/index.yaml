@@ -1,0 +1,8 @@
+description: Coefficients multiplicateurs dans de calcul des aides logement (APL) en secteur foyer
+metadata:
+  short_label: 
+  label_en: Parameters for new home-buyers (APL)
+  order:
+  - r_apl1
+  - cm1_apl1
+  - cm2_apl2_et_al
