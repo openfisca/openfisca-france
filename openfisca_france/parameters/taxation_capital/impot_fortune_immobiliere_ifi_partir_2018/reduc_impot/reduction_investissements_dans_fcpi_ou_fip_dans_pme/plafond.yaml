@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Plafond
-  last_value_still_valid_on: "2018-12-31"
+  last_value_still_valid_on: "2025-03-31"
   label_en: Tax reductions for investment and donations
   unit: currency
   reference:
