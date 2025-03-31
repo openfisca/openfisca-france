@@ -499,6 +499,25 @@ class isf_inv_pme(Variable):
 
         return where(montant_reduc < plaf, montant_reduc, plaf)
 
+    def formula_2019(foyer_fiscal, period, parameters):
+        '''
+        Réductions pour investissements dans les PME
+        à partir de 2019!
+        '''
+        b2mt = foyer_fiscal('b2mt', period)
+        b2mv = foyer_fiscal('b2mv', period)
+        reduc_impot = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot
+        taux_dons = reduc_impot.reduction_dons_certains_organismes_interet_general.taux
+
+        inv_dir_soc = b2mt * taux_dons 
+        holdings = b2mv * taux_dons
+
+
+        montant_reduc = holdings + inv_dir_soc
+        plaf = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
+
+        return where(montant_reduc < plaf, montant_reduc, plaf)
+
 
 class isf_org_int_gen(Variable):
     value_type = float
