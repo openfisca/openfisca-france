@@ -1557,7 +1557,7 @@ class aides_logement_primo_accedant_k(Variable):
 
     def formula(famille, period, parameters):
         # en accession-al, le coefficient K est celui defini pour le secteur foyer-al
-        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_charge
+        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_en_charge
 
         plafond_k = param.plafonds.plafond_apl2_et_al
         cm2 = param.cm_et_r.cm2_apl2_et_al
@@ -1578,7 +1578,7 @@ class aides_logement_foyer_k_al(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_charge
+        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_en_charge
 
         plafond_k = param.plafonds.plafond_apl2_et_al
         cm2 = param.cm_et_r.cm2_apl2_et_al
@@ -1599,7 +1599,7 @@ class aides_logement_foyer_k_apl(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_charge
+        param = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_en_charge
 
         plafond_k = param.plafonds.plafond_apl1
         r_minuscule = param.cm_et_r.r_apl1
@@ -1635,7 +1635,7 @@ class aides_logement_nb_part(Variable):
         couple = famille('al_couple', period)
 
         categorie = famille('aides_logement_categorie', period)
-        params = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_charge.n_nombre_parts[categorie]
+        params = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_en_charge.n_nombre_parts[categorie]
 
         return (
             params['isole_0_personne_a_charge'] * not_(couple) * (al_nb_pac == 0)
