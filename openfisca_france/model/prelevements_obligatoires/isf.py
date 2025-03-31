@@ -509,10 +509,8 @@ class isf_inv_pme(Variable):
         reduc_impot = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot
         taux_dons = reduc_impot.reduction_dons_certains_organismes_interet_general.taux
 
-        inv_dir_soc = b2mt * taux_dons 
+        inv_dir_soc = b2mt * taux_dons
         holdings = b2mv * taux_dons
-
-
         montant_reduc = holdings + inv_dir_soc
         plaf = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
 
