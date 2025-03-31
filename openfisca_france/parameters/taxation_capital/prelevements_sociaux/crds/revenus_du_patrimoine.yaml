@@ -3,9 +3,8 @@ values:
   1996-02-01:
     value: 0.005
 metadata:
-  last_value_still_valid_on: "2025-03-31"
   short_label: Taux CRDS capital revenus du patrimoine
-  last_value_still_valid_on: "1996-01-01"
+  last_value_still_valid_on: "2025-03-31"
   label_en: CRDS on financial income
   ipp_csv_id: tx_crds_rk_patr
   unit: /1
