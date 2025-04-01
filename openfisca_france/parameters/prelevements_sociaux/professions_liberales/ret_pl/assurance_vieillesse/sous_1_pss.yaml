@@ -3,13 +3,16 @@ values:
   2015-01-01:
     value: 0.0823
 metadata:
+  last_value_still_valid_on: "2025-04-01"
   short_label: Taux sous 1 PSS
   label_en: SSCs for old-age insurance (professionals)
   ipp_csv_id: ret_plib_1
   unit: /1
   reference:
     2015-01-01:
-      title: Décret 2014-1413 du 27/11/2014
+    - title: Article D642-3 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029825130/2015-01-01/#:~:text=A%208%2C23%20%25%20sur%20les%20revenus%20d%C3%A9finis
+    - title: Décret 2014-1413 du 27/11/2014
       href: https://www.legifrance.gouv.fr/eli/decret/2014/11/27/2014-1413/jo/texte
   official_journal_date:
     2015-01-01: "2014-11-29"
