@@ -1,5 +1,13 @@
 # Changelog
 
+# 170.0.1 [2423](https://github.com/openfisca/openfisca-france/pull/2423)
+
+* Changement mineur.
+* Périodes concernées : aucunes.
+* Zones impactées : `openfisca_france/parameters/taxation_capital/prelevements_sociaux/*`.
+* Détails :
+  - Mise à jour de la last_value_still_valid_on et des références.
+
 # 170.0.0 [2423](https://github.com/openfisca/openfisca-france/pull/2423)
 
 * Évolution du système socio-fiscal | Réorganisation des dossiers de paramètres des allocations logement
