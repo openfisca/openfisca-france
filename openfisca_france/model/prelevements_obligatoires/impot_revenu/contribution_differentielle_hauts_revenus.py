@@ -115,7 +115,6 @@ class contribution_differentielle_hauts_revenus_majoration_impot(Variable):
     def formula_2025_01_01(foyer_fiscal, period, parameters):
         # [Ajout à ip_net + pfu + prelevement_forfaitaire_liberatoire + contribution_exceptionnelle_hauts_revenus]
         # IV A 2 et VII ; les cases qui ne sont pas dans openfisca ne sont pas ajoutées, et certaines n'ont pas été encore reliées
-        frais_de_comptabilite = foyer_fiscal('frais_de_comptabilite', period)
         f8wt = foyer_fiscal('f8wt', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tl = foyer_fiscal('f8tl', period)
@@ -136,7 +135,7 @@ class contribution_differentielle_hauts_revenus_majoration_impot(Variable):
         f7fm = foyer_fiscal('f7fm', period)
         f7fl = foyer_fiscal('f7fl', period)
         f7fy = foyer_fiscal('f7fy', period)
-        reduction_d_impot_majorantes = (frais_de_comptabilite + f8wt + f8tb + f8tl + f8tp + f8uz
+        reduction_d_impot_majorantes = (f8wt + f8tb + f8tl + f8tp + f8uz
             + f8wa + f8wd + f8wr + f8wc + f8te + interets_emprunt_reprise_societe
             + f7ik + f7il + f7gq + f7gr + f7fq + f7ft + f7fm + f7fl + f7fy)
         return reduction_d_impot_majorantes
