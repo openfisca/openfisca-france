@@ -246,7 +246,7 @@ values:
     value: 1801.80 
 metadata:
   short_label: Smic brut mensuel
-  last_value_still_valid_on: "2024-01-03"
+  last_value_still_valid_on: "2025-04-01"
   label_en: Minimum wage - Smic
   ipp_csv_id: smic_m
   unit: currency

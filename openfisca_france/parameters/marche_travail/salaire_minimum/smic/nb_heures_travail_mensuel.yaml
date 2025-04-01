@@ -8,7 +8,7 @@ values:
     value: 151.67
 metadata:
   short_label: Nombre d'heures temps plein
-  last_value_still_valid_on: "2022-08-03"
+  last_value_still_valid_on: "2025-04-01"
   label_en: Minimum wage - Smic
   ipp_csv_id: htp
   unit: hour
