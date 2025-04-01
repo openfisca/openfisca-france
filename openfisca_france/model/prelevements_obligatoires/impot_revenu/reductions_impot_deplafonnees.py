@@ -505,6 +505,9 @@ class dfppce(Variable):
         '''
         Dons versés à d’autres organismes d’intérêt général,
         aux associations d’utilité publique, aux candidats aux élections (2021)
+        
+        2026-01-01 : On retire la réduction exceptionnelle pour les dons aux patrimoines religieux,
+            voir Article 30 de la LF 2024 : https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048727383
         '''
         rni = foyer_fiscal('rni', period)
         f7uf = foyer_fiscal('f7uf', period)
