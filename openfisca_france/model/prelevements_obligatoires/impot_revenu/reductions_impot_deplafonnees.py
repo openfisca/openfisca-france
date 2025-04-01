@@ -36,6 +36,33 @@ class reductions_deplafonnees(Variable):
 
         return red_deplaf
 
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        '''
+        Le dispositif "Frais de comptabilité et d'adhésion à un CGA ou AA" a pris fin pour les revenus de 2025.
+        L'article 11 de la LOI n° 2025-127 du 14 février 2025 de finances pour 2025 l'a abrogé.
+        https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000051173017/2025-02-16#:~:text=Abroge%20Code%20g%C3%A9n%C3%A9ral%20des%20imp%C3%B4ts%2C%20CGI.%20%2D%20art.%20199%20quater%20B%20(Ab)
+        '''
+        reductions_sans_plafond = [
+            'accueil_dans_etablissement_personnes_agees',
+            'dfppce',
+            'assvie',
+            'reduction_cotisations_syndicales',
+            'creaen',
+            'interets_paiements_differes_agriculteurs',
+            'mecena',
+            'prestations_compensatoires',
+            'interets_emprunt_reprise_societe',
+            'restauration_patrimoine_bati',  # Malraux, non plafonnées pour les investissements réalisés après 2013
+            'reduction_enfants_scolarises',
+            'accult',
+            'rente_survie',
+            ]
+
+        # Step 4: Get other uncapped reductions
+        red_deplaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_sans_plafond])
+
+        return red_deplaf
+
 
 class accult(Variable):
     value_type = float
@@ -61,16 +88,32 @@ class frais_de_comptabilite(Variable):
     label = 'frais_de_comptabilite'
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
+    def formula_1982_01_01(foyer_fiscal, period, parameters):
         '''
         Frais de comptabilité et d'adhésion à un CGA ou AA
-        2002-
+        2002-2024
+        Ce dispositif a pris fin pour les revenus de 2025.
         '''
         f7ff = foyer_fiscal('f7ff', period)
         f7fg = foyer_fiscal('f7fg', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.divers.frais_de_comptabilite
 
         return min_(f7ff, P.plafond * f7fg)
+
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        '''
+        Frais de comptabilité et d'adhésion à un CGA ou AA
+        2002-2024
+        Ce dispositif a pris fin pour les revenus de 2025.
+        L'article 11 de la LOI n° 2025-127 du 14 février 2025 de finances pour 2025 l'a abrogé.
+        https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000051173017/2025-02-16#:~:text=Abroge%20Code%20g%C3%A9n%C3%A9ral%20des%20imp%C3%B4ts%2C%20CGI.%20%2D%20art.%20199%20quater%20B%20(Ab)
+        '''
+        # 7FF : Frais de comptabilité et d’adhésion à un organisme agréé
+        # TODO: La case va probablement disparaitre, donc il faut éteindre la variable, non ?
+        # Réponse le 10 avril avec l'ouverture de la campagne 2025
+        f7ff = foyer_fiscal('f7ff', period)
+
+        return f7ff
 
 
 class assvie(Variable):
