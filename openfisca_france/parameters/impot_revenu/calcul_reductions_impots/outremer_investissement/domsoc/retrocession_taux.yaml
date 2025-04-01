@@ -5,6 +5,7 @@ values:
   2015-01-01:
     value: 0.7
 metadata:
+  last_value_still_valid_on: "2025-04-01"
   short_label: Taux de rétrocession de la réduction d'impôt
   unit: /1
   reference:
