@@ -6,7 +6,7 @@ values:
     value: 50000
 metadata:
   short_label: Plafond pour la somme des trois réductions (PME, FCPI/FIP sur PME et dons)
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2023-03-31"
   label_en: Tax reductions for investment and donations
   unit: currency
   reference:
