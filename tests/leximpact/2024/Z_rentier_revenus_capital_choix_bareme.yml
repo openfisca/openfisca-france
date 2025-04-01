@@ -1,0 +1,178 @@
+name: Z_rentier_revenus_capital_choix_bareme
+period: 2024
+max_spiral_loops: 1
+absolute_error_margin: 1
+input:
+  familles:
+    famille_n_1:
+      parents:
+        - adulte_1
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      declarants:
+        - adulte_1
+      depcom_foyer:
+        2022: '75107'
+        2023: '75107'
+        2024: '75107'
+      f2dc:
+        2022: 100000
+        2023: 100000
+        2024: 100000
+      f2op:
+        2022: true
+        2023: true
+        2024: true
+      f2zz:
+        2022: 1500
+        2023: 1500
+        2024: 1500
+  menages:
+    logement_principal_n_1:
+      depcom:
+        2022: '75107'
+        2023: '75107'
+        2024: '75107'
+      personne_de_reference:
+        - adulte_1
+      statut_occupation_logement:
+        2022: proprietaire
+        2023: proprietaire
+        2024: proprietaire
+  individus:
+    adulte_1:
+      activite:
+        2022: inactif
+        2023: inactif
+        2024: inactif
+      contrat_de_travail_type:
+        2022: aucun
+        2023: aucun
+        2024: aucun
+      date_naissance:
+        2024: '1982-11-05'
+      statut_marital:
+        2022: celibataire
+        2023: celibataire
+        2024: celibataire
+output:
+  familles:
+    famille_n_1:
+      aide_logement_base_ressources:
+        2024-01: 61500
+        2024-02: 61500
+        2024-03: 61500
+        2024-04: 61500
+        2024-05: 61500
+        2024-06: 61500
+        2024-07: 61500
+        2024-08: 61500
+        2024-09: 61500
+        2024-10: 61500
+        2024-11: 61500
+        2024-12: 61500
+      asi_aspa_base_ressources:
+        2024-01: 8458.33
+        2024-02: 8458.33
+        2024-03: 8458.33
+        2024-04: 8458.33
+        2024-05: 8458.33
+        2024-06: 8458.33
+        2024-07: 8458.33
+        2024-08: 8458.33
+        2024-09: 8458.33
+        2024-10: 8458.33
+        2024-11: 8458.33
+        2024-12: 8458.33
+      ppa_base_ressources:
+        2024-01: 8458.33
+        2024-02: 8458.33
+        2024-03: 8458.33
+        2024-04: 8458.33
+        2024-05: 8458.33
+        2024-06: 8458.33
+        2024-07: 8458.33
+        2024-08: 8458.33
+        2024-09: 8458.33
+        2024-10: 8458.33
+        2024-11: 8458.33
+        2024-12: 8458.33
+      prestations_familiales_base_ressources:
+        2024-01: 61500
+        2024-02: 61500
+        2024-03: 61500
+        2024-04: 61500
+        2024-05: 61500
+        2024-06: 61500
+        2024-07: 61500
+        2024-08: 61500
+        2024-09: 61500
+        2024-10: 61500
+        2024-11: 61500
+        2024-12: 61500
+      rsa_base_ressources:
+        2024-01: 8458.33
+        2024-02: 8458.33
+        2024-03: 8458.33
+        2024-04: 8458.33
+        2024-05: 8458.33
+        2024-06: 8458.33
+        2024-07: 8458.33
+        2024-08: 8458.33
+        2024-09: 8458.33
+        2024-10: 8458.33
+        2024-11: 8458.33
+        2024-12: 8458.33
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      assiette_csg_revenus_capital:
+        2024: 101500.01
+      crds_revenus_capital:
+        2024: -507.5
+      csg_revenus_capital:
+        2024: -9338
+      iaidrdi:
+        2024: 11615
+      ip_net:
+        2024: 11615
+      ir_plaf_qf:
+        2024: 11615.48
+      irpp_economique:
+        2024: -11615
+      nbptr:
+        2024: 1
+      prelevements_sociaux_revenus_capital_hors_csg_crds:
+        2024: -7612.5
+      rfr:
+        2024: 101500
+      rni:
+        2024: 61500
+  menages:
+    logement_principal_n_1:
+      impots_directs:
+        2024: -11615
+      niveau_de_vie:
+        2024: 72427.01
+      revenu_disponible:
+        2024: 72427.01
+      unites_consommation:
+        2024: 1
+      zone_apl:
+        2024-01: 1
+        2024-02: 1
+        2024-03: 1
+        2024-04: 1
+        2024-05: 1
+        2024-06: 1
+        2024-07: 1
+        2024-08: 1
+        2024-09: 1
+        2024-10: 1
+        2024-11: 1
+        2024-12: 1
+  individus:
+    adulte_1:
+      crds_hors_prestations:
+        2024: -507.5
+      csg:
+        2024: -9338

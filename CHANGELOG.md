@@ -1,6 +1,14 @@
 # Changelog
 
-# 170.0.1 [2423](https://github.com/openfisca/openfisca-france/pull/2423)
+### 170.0.2 [2480](https://github.com/openfisca/openfisca-france/pull/2480)
+
+* Amélioration technique.
+* Périodes concernées : 2024
+* Zones impactées : `tests/leximpact/2024/`.
+* Détails :
+  - Ajouts de tests sur une large partie du système socio-fiscal pour l'année 2024
+
+### 170.0.1 [2423](https://github.com/openfisca/openfisca-france/pull/2423)
 
 * Changement mineur.
 * Périodes concernées : aucunes.
@@ -20,7 +28,7 @@
   - Modifie les noms de dossiers
   - Mise à jour des last_value_still_valid_on
 
-## 169.19.3 [2477](https://github.com/openfisca/openfisca-france/pull/2477)
+### 169.19.3 [2477](https://github.com/openfisca/openfisca-france/pull/2477)
 
 * Changement mineur.
 * Périodes concernées : aucune
@@ -28,7 +36,7 @@
 * Détails :
   - Corrige le problème de cohérence de date sur le RSA jeune : https://control-center.tax-benefit.org/parameters/61352/github.com/openfisca/openfisca-france/master/raw_unprocessed_parameters/errors
 
-## 169.19.2 [2473](https://github.com/openfisca/openfisca-france/pull/2473)
+### 169.19.2 [2473](https://github.com/openfisca/openfisca-france/pull/2473)
 
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -38,7 +46,7 @@
 * Détails :
   - Mise à jour des `last_value_still_valid_on` et références de la PPV et du micro-foncier.
 
-## 169.19.1 [2476](https://github.com/openfisca/openfisca-france/pull/2476)
+### 169.19.1 [2476](https://github.com/openfisca/openfisca-france/pull/2476)
 
 * Changement mineur.
 * Périodes concernées : toutes.

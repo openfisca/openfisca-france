@@ -1,0 +1,96 @@
+name: rsa_06_femme_enceinte_isolee
+period: 2024
+max_spiral_loops: 1
+absolute_error_margin: 1
+input:
+  familles:
+    famille_n_1:
+      parents:
+        - adulte_1
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      declarants:
+        - adulte_1
+      depcom_foyer:
+        2022: '59036'
+        2023: '59036'
+        2024: '59036'
+  menages:
+    logement_principal_n_1:
+      depcom:
+        2022: '59036'
+        2023: '59036'
+        2024: '59036'
+      personne_de_reference:
+        - adulte_1
+      statut_occupation_logement:
+        2022: loge_gratuitement
+        2023: loge_gratuitement
+        2024: loge_gratuitement
+  individus:
+    adulte_1:
+      activite:
+        2022: inactif
+        2023: inactif
+        2024: inactif
+      date_naissance:
+        2024: '2001-01-01'
+      enceinte:
+        2022: true
+        2023: true
+        2024: true
+      invalidite:
+        2022: false
+        2023: false
+        2024: false
+      statut_marital:
+        2022: celibataire
+        2023: celibataire
+        2024: celibataire
+output:
+  familles:
+    famille_n_1:
+      aefa:
+        2024: 152.45
+      minima_sociaux:
+        2024: 8935.32
+      prestations_sociales:
+        2024: 8935.32
+      rsa:
+        2024-01: 707.49
+        2024-02: 707.49
+        2024-03: 707.49
+        2024-04: 740.04
+        2024-05: 740.04
+        2024-06: 740.04
+        2024-07: 740.04
+        2024-08: 740.04
+        2024-09: 740.04
+        2024-10: 740.04
+        2024-11: 740.04
+        2024-12: 740.04
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      nbptr:
+        2024: 1
+  menages:
+    logement_principal_n_1:
+      niveau_de_vie:
+        2024: 8935.32
+      revenu_disponible:
+        2024: 8935.32
+      unites_consommation:
+        2024: 1
+      zone_apl:
+        2024-01: 3
+        2024-02: 3
+        2024-03: 3
+        2024-04: 3
+        2024-05: 3
+        2024-06: 3
+        2024-07: 3
+        2024-08: 3
+        2024-09: 3
+        2024-10: 3
+        2024-11: 3
+        2024-12: 3
