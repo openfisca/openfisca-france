@@ -2399,7 +2399,7 @@ class impot_revenu_restant_a_payer(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464766'
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
         iaidrdi = foyer_fiscal('iaidrdi', period)
         cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
@@ -2410,6 +2410,12 @@ class impot_revenu_restant_a_payer(Variable):
         correction_seuils_recouvrement = foyer_fiscal('correction_ir_seuils_recouvrement', period)
 
         return -(iaidrdi + cehr + pfu + autres_impositions_forfaitaires - credits_impot - acomptes_ir) - correction_seuils_recouvrement
+
+    def formula(foyer_fiscal, period, parameters):
+        impots_avant_seuils_recouvrement = foyer_fiscal('impot_revenu_avant_seuils_mise_recouvrement', period)
+        correction_seuils_recouvrement = foyer_fiscal('correction_ir_seuils_recouvrement', period)
+
+        return (impots_avant_seuils_recouvrement - correction_seuils_recouvrement)
 
 
 class foyer_impose(Variable):

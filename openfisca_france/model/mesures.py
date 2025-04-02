@@ -771,7 +771,7 @@ class irpp_economique(Variable):
     label = "Notion économique de l'impot sur le revenu"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
         '''
         Cette variable d'impot sur le revenu comptabilise dans les montants
         d'imposition les acomptes qui, dans la déclaration fiscale, sont considérés comme des crédits
@@ -797,6 +797,13 @@ class irpp_economique(Variable):
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
 
         return -(iaidrdi + cehr + pfu + autres_impositions_forfaitaires - credits_impot - acomptes_ir) - correction_seuils_recouvrement - acomptes_ir  # + prelevement_forfaitaire_liberatoire # Car par convention, impot_revenu_restant_a_payer et prelevement_forfaitaire_liberatoire sont des montants négatifs et acomptes_ir un montant positif
+
+    def formula(foyer_fiscal, period, parameters):
+        impot_revenu_restant_a_payer = foyer_fiscal('impot_revenu_restant_a_payer', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)
+
+        return impot_revenu_restant_a_payer + prelevement_forfaitaire_liberatoire - acomptes_ir  # Car par convention, impot_revenu_restant_a_payer et prelevement_forfaitaire_liberatoire sont des montants négatifs et acomptes_ir un montant positif
 
 
 class impots_directs(Variable):
