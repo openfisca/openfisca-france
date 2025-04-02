@@ -18,5 +18,6 @@ def split_tests(number_of_files, CI_NODE_TOTAL, CI_NODE_INDEX, test_files_list):
 if __name__ == '__main__':
     CI_NODE_TOTAL, CI_NODE_INDEX = int(sys.argv[1]), int(sys.argv[2])
     test_files_list = glob('tests/**/*.yaml', recursive=True) + glob('tests/**/*.yml', recursive=True)
+    test_files_list = [f for f in test_files_list if not f.startswith('tests/leximpact/')]
     number_of_files = len(test_files_list)
     sys.stdout.write(split_tests(number_of_files, CI_NODE_TOTAL, CI_NODE_INDEX, test_files_list))

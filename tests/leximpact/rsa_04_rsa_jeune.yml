@@ -1,0 +1,96 @@
+name: rsa_04_rsa_jeune
+period: 2025
+max_spiral_loops: 4
+absolute_error_margin: 1
+input:
+  familles:
+    famille_n_1:
+      parents:
+        - adulte_1
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      declarants:
+        - adulte_1
+      depcom_foyer:
+        2023: '59036'
+        2024: '59036'
+        2025: '59036'
+  menages:
+    logement_principal_n_1:
+      depcom:
+        2023: '59036'
+        2024: '59036'
+        2025: '59036'
+      personne_de_reference:
+        - adulte_1
+      statut_occupation_logement:
+        2023: loge_gratuitement
+        2024: loge_gratuitement
+        2025: loge_gratuitement
+  individus:
+    adulte_1:
+      activite:
+        2023: inactif
+        2024: inactif
+        2025: inactif
+      date_naissance:
+        2025: '2002-01-01'
+      invalidite:
+        2023: false
+        2024: false
+        2025: false
+      rsa_jeune_condition_heures_travail_remplie:
+        2023: true
+        2024: true
+        2025: true
+      statut_marital:
+        2023: celibataire
+        2024: celibataire
+        2025: celibataire
+output:
+  familles:
+    famille_n_1:
+      aefa:
+        2025: 152.45
+      minima_sociaux:
+        2025: 6865.548
+      prestations_sociales:
+        2025: 6865.548
+      rsa:
+        2025-01: 559.4248
+        2025-02: 559.4248
+        2025-03: 559.4248
+        2025-04: 559.4248
+        2025-05: 559.4248
+        2025-06: 559.4248
+        2025-07: 559.4248
+        2025-08: 559.4248
+        2025-09: 559.4248
+        2025-10: 559.4248
+        2025-11: 559.4248
+        2025-12: 559.4248
+  foyers_fiscaux:
+    declaration_d_impots_n_1:
+      nbptr:
+        2025: 1
+  menages:
+    logement_principal_n_1:
+      niveau_de_vie:
+        2025: 6865.548
+      revenu_disponible:
+        2025: 6865.548
+      unites_consommation:
+        2025: 1
+      zone_apl:
+        2025-01: 3
+        2025-02: 3
+        2025-03: 3
+        2025-04: 3
+        2025-05: 3
+        2025-06: 3
+        2025-07: 3
+        2025-08: 3
+        2025-09: 3
+        2025-10: 3
+        2025-11: 3
+        2025-12: 3
