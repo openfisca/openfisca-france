@@ -111,7 +111,7 @@ class revenus_nets_apres_impot_menage(Variable):
     def formula_2024_01_01(menage, period):
         revenus_nets_menage = menage('revenus_nets_menage', period, options = [ADD])
         impots_directs = menage('impots_directs', period)
-    
+
         return revenus_nets_menage + impots_directs
 
 
@@ -159,8 +159,8 @@ class revenus_bruts(Variable):
             + chomage_brut
             + pensions_rentes_complementaires
             + revenus_du_capital_avant_prelevements
-        )
-    
+            )
+
 
 class revenus_nets_du_travail(Variable):
     value_type = float
@@ -626,7 +626,7 @@ class prelevements_sociaux_menage(Variable):
             + prelevements_sociaux_revenus_capital_hors_csg_crds
             )
 
-    def formula_2024_01_01(menage,period):
+    def formula_2024_01_01(menage, period):
         # prelevements travail nets
         indemnite_compensatrice_csg_i = menage.members('indemnite_compensatrice_csg', period, options = [ADD])
         indemnite_compensatrice_csg = menage.sum(indemnite_compensatrice_csg_i)
