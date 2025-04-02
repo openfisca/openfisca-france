@@ -1,5 +1,13 @@
 # Changelog
 
+## 170.1.0 [2469](https://github.com/openfisca/openfisca-france/pull/2469)
+
+* Correction d'un crash.
+* Périodes concernées : à partir du 01/01/2026.
+* Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_deplafonnees.py.
+* Détails :
+  - Les dons au patrimoine religieux prennent fin le 31 décembre 2025. Le paramètre était bien éteint mais pas dans la variable.
+
 ### 170.0.2 [2480](https://github.com/openfisca/openfisca-france/pull/2480)
 
 * Amélioration technique.
