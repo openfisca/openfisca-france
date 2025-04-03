@@ -1,6 +1,14 @@
 # Changelog
 
-## 170.1.2 [2485](https://github.com/openfisca/openfisca-france/pull/2485)
+### 170.1.3 [2487](https://github.com/openfisca/openfisca-france/pull/2487)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_impot_revenu/pv`.
+* Détails :
+  - Renomme les fichiers .yml en .yaml
+
+### 170.1.2 [2485](https://github.com/openfisca/openfisca-france/pull/2485)
 
 * Changement mineur.
 * Périodes concernées : 2025.
