@@ -1,5 +1,18 @@
 # Changelog
 
+### 170.1.4 [2483](https://github.com/openfisca/openfisca-france/pull/2483)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/casa/pensions_retraite_preretraite_invalidite.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/complementaire_sante/part_employeur.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/retraite/ati/ati.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/retraite/pension/employeur/civils/pension.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/professions_liberales/ret_pl/assurance_vieillesse/*`
+* Détails :
+- Mise à jour des `last_value_still_valid_on`, des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 170.1.3 [2487](https://github.com/openfisca/openfisca-france/pull/2487)
 
 * Amélioration technique.
