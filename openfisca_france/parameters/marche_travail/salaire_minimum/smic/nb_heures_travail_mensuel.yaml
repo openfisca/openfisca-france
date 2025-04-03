@@ -14,13 +14,13 @@ metadata:
   unit: hour
   reference:
     2002-01-01:
-      title: Décret 2001-554 du 28/06/2001
+    - title: Décret 2001-554 du 28/06/2001
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000589597&categorieLien=id
-    2018-01-01:
-      title: Décret 2017-1719 du 20/12/2017
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036240563
+    - title: Article L3121-27 du Code du Travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020376
   official_journal_date:
     2002-01-01: "2001-06-29"
   notes:
     2001-07-01:
     - title: Attention au passage aux 35 heures. Existence d'un régime transitoire et d'un régime définitif pour les entreprises de plus de 20 salariés. dans l'ancien système. Pour les entreprises de moins de 20 salariés, ancien système. Le Smic donné ici correspond au Smic mensuel pour 39 heures
+documentation: Le montant de 151.67 heures n'est pas dans le code du travail mais se calcul de la façon suivante : 35 heures par semaine * 52 semaines / 12 mois = 151.67 
