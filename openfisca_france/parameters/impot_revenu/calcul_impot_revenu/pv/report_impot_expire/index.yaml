@@ -2,6 +2,5 @@ description: Imposition à l'impôt sur le revenu (IR) des plus-values en report
 metadata:
   short_label: Imposition des plus-values en report d'imposition et dont le report a expiré
   order:
-  - taux_cas_general
-  - taux_conditionnel
-  
+    - taux_cas_general
+    - taux_conditionnel
