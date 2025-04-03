@@ -13,7 +13,7 @@ values:
   2018-03-01:
     value: 0
 metadata:
-  short_label: Seuil minimum versement (APL)
+  short_label: APL
   last_value_still_valid_on: "2025-03-11"
   label_en: Minimal amount
   unit: currency

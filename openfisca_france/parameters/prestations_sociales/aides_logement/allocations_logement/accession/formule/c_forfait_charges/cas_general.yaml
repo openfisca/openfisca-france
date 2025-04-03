@@ -47,7 +47,7 @@ values:
   2024-10-01:
     value: 59.97
 metadata:
-  short_label: Montant forfaitaire des charges « C » (Cas général)
+  short_label: Cas général
   last_value_still_valid_on: "2025-03-10"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_gen

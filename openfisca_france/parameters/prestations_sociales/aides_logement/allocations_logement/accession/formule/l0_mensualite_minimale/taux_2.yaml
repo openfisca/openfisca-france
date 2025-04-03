@@ -3,7 +3,7 @@ values:
   2019-10-01:
     value: 0.416
 metadata:
-  short_label: Taux 2nde tranche
+  short_label: Taux 2ème tranche
   last_value_still_valid_on: "2025-03-10"
   unit: /1
   reference:

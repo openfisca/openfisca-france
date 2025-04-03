@@ -1,6 +1,6 @@
 description:  mensualités plafonds utilisées pour le calcul de l’APL accession
 metadata:
-  short_label: Mensualité éligible
+  short_label: APL
   order:
   - neufs
   - agrandis

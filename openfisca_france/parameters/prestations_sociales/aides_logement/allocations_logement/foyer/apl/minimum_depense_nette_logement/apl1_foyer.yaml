@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 26.68
 metadata:
-  short_label: Montant minimum de dépense nette de logement (APL1)
+  short_label: APL 1
   last_value_still_valid_on: "2025-03-10"
   label_en: Minimal amount
   unit: currency
