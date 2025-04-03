@@ -23,4 +23,4 @@ metadata:
   notes:
     2001-07-01:
     - title: Attention au passage aux 35 heures. Existence d'un régime transitoire et d'un régime définitif pour les entreprises de plus de 20 salariés. dans l'ancien système. Pour les entreprises de moins de 20 salariés, ancien système. Le Smic donné ici correspond au Smic mensuel pour 39 heures
-documentation: Le montant de 151.67 heures n'est pas dans le code du travail mais se calcul de la façon suivante : 35 heures par semaine * 52 semaines / 12 mois = 151.67 
+documentation: "Le montant de 151.67 heures n'est pas dans le code du travail mais se calcul de la façon suivante : 35 heures par semaine * 52 semaines / 12 mois = 151.67"
