@@ -107,6 +107,8 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-python-files.sh"
       - name: Lint YAML tests
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-yaml-tests.sh"
+      - name: Lint YAML parameters
+        run: "${GITHUB_WORKSPACE}/.github/lint-changed-yaml-parameters.sh"
 
   test-python:
     runs-on: ${{ matrix.os }}

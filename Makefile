@@ -46,6 +46,7 @@ check-path-length:
 check-yaml:
 	@# check yaml style
 	.github/lint-changed-yaml-tests.sh
+	.github/lint-changed-yaml-parameters.sh
 
 check-all-yaml:
 	@# check yaml style

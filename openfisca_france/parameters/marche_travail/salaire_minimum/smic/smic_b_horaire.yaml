@@ -246,7 +246,7 @@ values:
     value: 11.88
 metadata:
   short_label: Smic horaire brut
-  last_value_still_valid_on: "2024-01-03"
+  last_value_still_valid_on: "2025-04-01"
   label_en: Minimum wage - Smic
   ipp_csv_id: smic_h
   unit: currency
@@ -516,7 +516,7 @@ metadata:
       title: Décret 2016-1818 du 22/12/2016
       href: https://www.legifrance.gouv.fr/eli/decret/2016/12/22/2016-1818/jo/texte
     2018-01-01:
-      title: "Décret 2017-1719 du\_20/12/2017"
+      title: "Décret 2017-1719 du 20/12/2017"
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036240563
     2019-01-01:
       title: Décret 2018-1173 du 19/12/2018

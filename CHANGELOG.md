@@ -1,5 +1,17 @@
 # Changelog
 
+## 170.1.2 [2485](https://github.com/openfisca/openfisca-france/pull/2485)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/marche_travail/salaire_minimum/smic/smic_b_horaire.yaml`
+  - `openfisca_france/parameters/marche_travail/salaire_minimum/smic/nb_heures_travail_mensuel.yaml`
+  - `openfisca_france/parameters/marche_travail/indemnite_fin_contrat/taux.yaml`
+  - `openfisca_france/parameters/marche_travail/primes_exceptionnelles/prime_partage_valeur/plafond_exoneration.yaml`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` et des références sur les paramètres.
+
 ## 170.1.0 [2469](https://github.com/openfisca/openfisca-france/pull/2469)
 
 * Correction d'un crash.
