@@ -15,7 +15,7 @@ values:
   2024-10-01:
     value: 188.17
 metadata:
-  short_label: Seuls
+  short_label: Bénéficiaire seul
   last_value_still_valid_on: "2025-03-10"
   unit: currency
   reference:

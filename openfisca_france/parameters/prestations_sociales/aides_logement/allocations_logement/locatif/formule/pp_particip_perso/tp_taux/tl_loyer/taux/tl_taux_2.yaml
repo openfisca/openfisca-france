@@ -5,7 +5,7 @@ values:
   2007-07-01:
     value: 0.0045
 metadata:
-  short_label: TL pour la 2ème tranche
+  short_label: Taux « TL » 2ème tranche
   last_value_still_valid_on: "2025-03-11"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tl_1

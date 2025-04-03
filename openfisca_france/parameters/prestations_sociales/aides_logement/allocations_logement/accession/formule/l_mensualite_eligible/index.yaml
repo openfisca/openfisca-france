@@ -1,6 +1,6 @@
 description: Mensualité éligible comptabilisée pour le calcul des aides au logement (Secteur accesion)
 metadata:
-  short_label: Mensualité éligible
+  short_label: Mensualité éligible « L »
   order:
   - al
   - apl

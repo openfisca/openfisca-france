@@ -47,7 +47,7 @@ values:
   2024-10-01:
     value: 59.97
 metadata:
-  short_label: Majoration pour couple sans personne à charge ou bénéficiaire seul hors collocation/copropriété
+  short_label: Majoration pour bénéficiaire seul ou couple sans personne à charge
   last_value_still_valid_on: "2025-03-11"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_gen

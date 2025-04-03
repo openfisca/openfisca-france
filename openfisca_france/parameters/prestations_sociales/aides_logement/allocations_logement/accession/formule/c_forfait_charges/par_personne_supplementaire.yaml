@@ -47,7 +47,7 @@ values:
   2024-10-01:
     value: 13.60
 metadata:
-  short_label: Montant forfaitaire des charges « C » (Par personne supplémentaire à charge)
+  short_label: Par personne supplémentaire à charge
   last_value_still_valid_on: "2025-03-10"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_maj

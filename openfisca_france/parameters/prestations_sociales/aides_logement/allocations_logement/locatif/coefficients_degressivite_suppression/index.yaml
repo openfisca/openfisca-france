@@ -1,6 +1,6 @@
 description: Coefficients de dégressivité et de suppression par zone géographique pris en compte dans le calcul des allocations logement (AL) après la réforme de 2001
 metadata:
-  short_label: Coefficients de dégressivité et de suppression pris en compte dans le calcul de l'aide, selon la zone géographique
+  short_label: Coefficients de dégressivité et de suppression par zone
   order:
   - zone_1
   - zone_2
