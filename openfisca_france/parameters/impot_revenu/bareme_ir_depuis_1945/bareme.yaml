@@ -1234,6 +1234,7 @@ metadata:
   short_label: Barème de l'impôt sur le revenu
   last_value_still_valid_on: "2025-02-18"
   label_en: Thresholds and marginal tax rates
+  short_label_en: Thresholds and marginal tax rates
   reference:
     1945-01-01:
       title: Loi 48-24 du 06/01/1948
