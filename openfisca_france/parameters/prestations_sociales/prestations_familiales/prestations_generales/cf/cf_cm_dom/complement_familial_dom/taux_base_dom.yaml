@@ -9,6 +9,7 @@ values:
   2020-04-01:
     value: 0.4165
 metadata:
+  last_value_still_valid_on: "2025-04-01"
   short_label: Taux de base
   label_en: Prime rate
   unit: BMAF
@@ -23,8 +24,10 @@ metadata:
       title: Décret 2017-551 du 2017-04-14 - art. 4
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034429420
     2020-04-01:
-      title: Décret 2017-551 du 2017-04-14 - art. 2 et 4
+    - title: Décret 2017-551 du 2017-04-14 - art. 2 et 4
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034429420
+    - title: Article D755-6 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034433417/2020-04-01/
   official_journal_date:
     2002-01-01: "1991-08-06"
     2018-04-01: "2017-04-16"

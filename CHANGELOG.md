@@ -1,5 +1,19 @@
 # Changelog
 
+### 170.1.5 [2481](https://github.com/openfisca/openfisca-france/pull/2481)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/patrimoine/abattement_valeur_locative_terrains_non_loues.yaml`
+  - `openfisca_france/parameters/prestations_sociales/education/bourses/bourses_education/bourse_college/montant_taux_1.yaml`
+  - `openfisca_france/parameters/prestations_sociales/education/bourses/bourses_education/bourse_college/montant_taux_3.yaml`
+  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/*`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/cf/cf_cm_dom/complement_familial_dom/taux_majore_dom.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/patrimoine/taux_interet_forfaitaire_epargne_non_imposable.yaml`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, des valeurs et des références sur les paramètres qui n'étaient plus à jour et dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 170.1.4 [2483](https://github.com/openfisca/openfisca-france/pull/2483)
 
 * Changement mineur.
