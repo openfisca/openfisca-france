@@ -33,7 +33,7 @@ values:
   2023-10-01:
     value: 182.23
 metadata:
-  short_label: Personnes isolées
+  short_label: Bénéficiaire seul
   last_value_still_valid_on: "2024-05-21"
   label_en: Measure of rent for students living in university residences
   ipp_csv_id: alf_autre_isole
