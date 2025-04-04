@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate_yaml:
-    uses: tax-benefit/actions/.github/workflows/validate_yaml.yml@v1
+    uses: tax-benefit/actions/.github/workflows/validate_yaml.yml@v2.1.0
     with:
       parameters_path: "openfisca_france/parameters"
     secrets:
