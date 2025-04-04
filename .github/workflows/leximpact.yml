@@ -1,0 +1,79 @@
+name: Deploy to LexImpact Legislation Explorer
+
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  deploy_parameters:
+    if: github.ref == 'refs/heads/wip-leximpact'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clone Legislation Parameters Explorer
+        run: git clone https://git.leximpact.dev/leximpact/legislation-parameters-explorer.git
+      - name: Install Node.js version LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+      - name: Install viewer dependencies
+        run: npm install
+        working-directory: legislation-parameters-explorer/packages/viewer
+      - name: Configure viewer
+        run: |
+          rm -f .env
+          cat > .env << EOF
+          # Customizations to apply to the site (theme, URLs…)
+          CUSTOMIZATION="leximpact"
+
+          EDITOR_URL="https://editeur.legislation.leximpact.dev/"
+
+          EXPORT_CSV=true
+          EXPORT_JSON=false
+          EXPORT_XLSX=true
+
+          # Path of directory containing legislation parameters of country
+          PARAMETERS_DIR="../../../openfisca_france/parameters/"
+
+          # Description of parameters remote repository
+          PARAMETERS_AUTHOR_EMAIL="editeur.legislation@leximpact.dev"
+          PARAMETERS_AUTHOR_NAME="Éditeur LexImpact"
+          PARAMETERS_BRANCH="wip-leximpact"
+          PARAMETERS_FORGE_DOMAIN_NAME="github.com"
+          PARAMETERS_FORGE_TYPE="GitHub"
+          PARAMETERS_GROUP="openfisca"
+          PARAMETERS_PROJECT="openfisca-france"
+          PARAMETERS_PROJECT_DIR="openfisca_france/parameters"
+
+          SHOW_LAST_BREADCRUMB_ITEM = false
+
+          TABLE_OF_CONTENTS_DIR="../../../openfisca_france/tables/"
+
+          TITLE="Législation du système fiscal et social"
+
+          # Path of file containing units used by French legislation parameters
+          UNITS_FILE_PATH="../../../openfisca_france/units.yaml"
+          EOF
+        working-directory: legislation-parameters-explorer/packages/viewer
+      - name: Initialize .svelte-kit directory of viewer
+        run: npx svelte-kit sync
+        working-directory: legislation-parameters-explorer/packages/viewer
+      - name: Generate viewer data
+        run: npx tsx src/scripts/generate_data.ts
+        working-directory: legislation-parameters-explorer/packages/viewer
+      - name: Build viewer
+        run: npm run build
+        working-directory: legislation-parameters-explorer/packages/viewer
+      - name: Configure ssh for deployment to server
+        uses: tanmancan/action-setup-ssh-agent-key@1.0.0
+        with:
+          ssh-auth-sock: /tmp/my_auth.sock
+          ssh-private-key: ${{ secrets.PARAMETERS_EXPLORER_SSH_PRIVATE_KEY }}
+          ssh-public-key: ${{ secrets.PARAMETERS_EXPLORER_SSH_KNOWN_HOSTS }}
+      - name: Deploy to Server using rsync
+        run: rsync -az --delete build/ legislation@legislation.leximpact.dev:legislation-parameters-explorer-france/packages/viewer/build/
+        working-directory: legislation-parameters-explorer/packages/viewer
+      - name: Update editor parameters data
+        run: ssh legislation@legislation.leximpact.dev "cd openfisca-france && git pull && sudo systemctl restart legislation-edit.service"
+
