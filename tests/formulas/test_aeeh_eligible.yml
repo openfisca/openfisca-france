@@ -1,0 +1,77 @@
+- name: Éligibilité à l'aide nationale AEEH
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        taux_incapacite: 0.81
+    menage:
+      residence: metropole
+  output:
+    aeeh_eligible: True
+
+- name: Éligibilité à l'aide nationale AEEH avec besoin educatif particulier
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        taux_incapacite: 0.70
+        besoin_educatif_particulier:
+          2020-10: True
+    menage:
+      residence: metropole
+  output:
+    aeeh_eligible: True
+
+- name: Non éligibilité à l'aide nationale AEEH car taux_incapacité trop faible
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        taux_incapacite: 0.48
+        besoin_educatif_particulier:
+          2020-01: False
+    menage:
+      residence: metropole
+  output:
+    aeeh_eligible: False
+
+- name: Non éligibilité à l'aide nationale AEEH car trop âgé
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 29
+        taux_incapacite: 0.81
+    menage:
+      residence: metropole
+  output:
+    aeeh_eligible: False
+
+- name: Non éligibilité à l'aide nationale AEEH car résidence hors France
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        taux_incapacite: 0.81
+    menage:
+      residence: non_renseigne
+  output:
+    aeeh_eligible: False
+
+- name: Non éligibilité à l'aide nationale AEEH car taux < 80% mais pas besoin educatif
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        taux_incapacite: 0.78
+        besoin_educatif_particulier:
+          2020-01: False
+    menage:
+      residence: metropole
+  output:
+    aeeh_eligible: False
