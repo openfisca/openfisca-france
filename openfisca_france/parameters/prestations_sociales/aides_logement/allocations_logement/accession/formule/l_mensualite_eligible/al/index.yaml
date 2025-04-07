@@ -1,6 +1,6 @@
-description: Mensualités plafonds utilisées pour le calcul de l’AL accession
+description: Mensualités plafonds utilisées pour le calcul de l'AL accession
 metadata:
-  short_label: AL
+  short_label: Mensualités plafonds AL
   label_en: Annual ceiling of reimbursement for new homebuyers
   order:
   - zone_1

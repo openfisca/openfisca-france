@@ -1,6 +1,6 @@
 description: Barèmes de pourcentages appliqués à des tranches de ressources pour calculer l'équivalence de loyer et charges locatives minimales (paramètre « E0 »)
 metadata:
-  short_label: APL 2
+  short_label: Barème APL 2
   label_en: Parameters for new home-buyers (APL)
   order:
   - bareme

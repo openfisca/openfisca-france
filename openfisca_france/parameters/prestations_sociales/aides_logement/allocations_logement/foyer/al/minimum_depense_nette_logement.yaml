@@ -3,7 +3,7 @@ values:
   2019-09-01:
     value: 15
 metadata:
-  short_label: Montant minimum de dépense nette de logement (AL)
+  short_label: Montant minimum de dépense nette de logement
   last_value_still_valid_on: "2025-03-10"
   label_en: Minimal amount
   unit: currency

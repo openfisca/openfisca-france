@@ -1,6 +1,6 @@
 description: Allocations logement - Secteur foyer (APL)
 metadata:
-  short_label: Secteur foyer - APL
+  short_label: Paramètres spécifiques APL
   order:
   - formule
   - minimum_depense_nette_logement

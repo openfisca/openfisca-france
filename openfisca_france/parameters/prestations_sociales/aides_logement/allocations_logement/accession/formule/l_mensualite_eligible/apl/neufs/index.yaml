@@ -1,6 +1,6 @@
 description: Mensualités plafonds utilisées pour le calcul de l’APL accession (Logements neufs construits ou acquis par l'accédant à la propriété)
 metadata:
-  short_label: Mensualité éligible
+  short_label: Logements neufs
   order:
   - zone_1
   - zone_2

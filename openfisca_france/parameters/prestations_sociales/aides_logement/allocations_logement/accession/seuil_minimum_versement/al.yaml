@@ -3,7 +3,7 @@ values:
   2019-09-01:
     value: 10
 metadata:
-  short_label: AL
+  short_label: Seuil minimum de versement AL
   last_value_still_valid_on: "2025-03-10"
   label_en: Minimal amount
   unit: currency

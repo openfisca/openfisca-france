@@ -5,7 +5,7 @@ values:
   2007-07-01:
     value: 3900
 metadata:
-  short_label: Coefficient du plancher de ressources
+  short_label: Montant forfaitaire
   last_value_still_valid_on: "2025-03-12"
   unit: currency
   reference:

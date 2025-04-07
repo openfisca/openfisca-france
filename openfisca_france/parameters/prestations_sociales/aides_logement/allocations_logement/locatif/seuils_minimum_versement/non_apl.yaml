@@ -1,4 +1,4 @@
-description: Seuil minimum versement (AL)
+description: Seuil minimum de versement (AL)
 values:
   1989-11-12:
     value: 100
@@ -11,7 +11,7 @@ values:
   2017-10-01:
     value: 10
 metadata:
-  short_label: AL
+  short_label: Seuil minimum de versement AL
   last_value_still_valid_on: "2025-03-11"
   label_en: Minimal amount
   unit: currency
