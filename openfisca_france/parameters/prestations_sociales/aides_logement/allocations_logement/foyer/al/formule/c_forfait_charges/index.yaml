@@ -1,6 +1,6 @@
 description: Montant forfaitaire comptabilisé pour le calcul des aides au logement au titre des charges du logement (Secteur foyer AL)
 metadata:
-  short_label: Forfait de charges « C »
+  short_label: Montant forfaitaire des charges « C »
   order:
   - cas_general
   - par_personne_supplementaire
