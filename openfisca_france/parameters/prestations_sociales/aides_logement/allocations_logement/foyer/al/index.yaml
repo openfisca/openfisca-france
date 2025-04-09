@@ -1,6 +1,6 @@
 description: Allocations logement - Secteur foyer (AL)
 metadata:
-  short_label: Paramètres spécifiques AL
+  short_label: Termes de la formule
   order:
   - formule
   - minimum_depense_nette_logement
