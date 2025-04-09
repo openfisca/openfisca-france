@@ -1,6 +1,6 @@
 description: Mensualités plafonds utilisées pour le calcul de l’APL accession
 metadata:
-  short_label: Mensualités plafonds APL
+  short_label: Mensualités plafonds pour les APL
   order:
   - neufs
   - agrandis

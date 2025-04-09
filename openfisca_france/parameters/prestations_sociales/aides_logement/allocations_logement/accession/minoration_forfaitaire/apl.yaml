@@ -3,7 +3,7 @@ values:
   2017-10-01:
     value: 5
 metadata:
-  short_label: Minoration forfaitaire du montant de l'aide APL
+  short_label: Minoration forfaitaire du montant de l'APL
   last_value_still_valid_on: "2025-03-10"
   unit: currency
   reference:

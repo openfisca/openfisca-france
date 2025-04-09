@@ -47,7 +47,7 @@ values:
   2024-10-01:
     value: 59.97
 metadata:
-  short_label: Cas général
+  short_label: Bénéficiaire isolé ou couple sans personne à charge
   last_value_still_valid_on: "2025-03-10"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_gen
@@ -105,7 +105,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048107807
     2024-10-01:
       - title: Arrêté du 27/09/2019, art. 19
-        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286600
+        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286620
       - title: Article D842-15 du Code de la construction de l'habitation
         href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878655
 
