@@ -1,10 +1,15 @@
 # Changelog
 
+<<<<<<< HEAD
 ### 170.1.6 [2490](https://github.com/openfisca/openfisca-france/pull/2490)
+=======
+### 170.1.6 [2488](https://github.com/openfisca/openfisca-france/pull/2488)
+>>>>>>> 44d858206 (bump)
 
 * Changement mineur.
 * Périodes concernées : 2025.
 * Zones impactées :
+<<<<<<< HEAD
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
   - `openfisca_france/model/prestations/minima_sociaux/anciens_ms.py`
@@ -17,6 +22,11 @@
 
 * Détails :
   - Ajoute un attribut de classe calculate_output_add aux diverses classes crds
+=======
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement`
+* Détails :
+  - Corrige les short labels, références et orders des aides logement
+>>>>>>> 44d858206 (bump)
 
 ### 170.1.5 [2481](https://github.com/openfisca/openfisca-france/pull/2481)
 
