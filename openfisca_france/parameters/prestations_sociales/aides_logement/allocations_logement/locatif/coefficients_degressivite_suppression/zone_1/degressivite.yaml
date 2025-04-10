@@ -3,7 +3,7 @@ values:
   2016-07-01:
     value: 3.4
 metadata:
-  short_label: Coefficient appliqué au montant maximal de loyer pris en compte pour le calcul des aides, déterminant le seuil à partir duquel l'aide au logement décroît
+  short_label: Coefficient de dégressivité
   last_value_still_valid_on: "2023-02-20"
   reference:
     2016-07-01:

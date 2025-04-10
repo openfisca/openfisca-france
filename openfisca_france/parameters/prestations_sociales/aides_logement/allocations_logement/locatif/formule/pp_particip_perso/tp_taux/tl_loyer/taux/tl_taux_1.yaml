@@ -3,13 +3,15 @@ values:
   2001-01-01:
     value: 0
 metadata:
-  short_label: TL pour la 1ère tranche
+  short_label: Taux « TL » 1ère tranche
   last_value_still_valid_on: "2025-03-11"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tl_0
   unit: /1
   reference:
     2001-01-01:
+    - title: Arrêté du 27/09/2019, article 14, 2°
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286630
     - title: Décret 2000-1269, art. 2 du 26/12/2000 (crée art. D542-5-2 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779920&cidTexte=JORFTEXT000000578227
     - title: Arrêté du 26/12/2000

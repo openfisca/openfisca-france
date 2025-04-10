@@ -1,6 +1,6 @@
 description: Montant forfaitaire comptabilisé pour le calcul des aides au logement au titre des charges du logement dans le cas des colocataires
 metadata:
-  short_label: Montant forfaitaire pour les charges du logement (colocataires)
+  short_label: Colocataires
   label_en: Lump sum extra allowance for charges
   order:
   - beneficiaire_isole

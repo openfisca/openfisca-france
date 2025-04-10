@@ -1,6 +1,6 @@
 description: Allocations logement - Secteur locatif
 metadata:
-  short_label: Allocations logement - Secteur locatif
+  short_label: Secteur locatif
   order:
   - formule
   - coefficients_degressivite_suppression

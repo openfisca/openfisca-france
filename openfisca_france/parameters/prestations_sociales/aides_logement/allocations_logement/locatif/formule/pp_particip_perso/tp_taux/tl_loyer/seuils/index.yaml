@@ -1,6 +1,6 @@
 description: Seuils du taux de participation personnelle complémentaire (TL) (après la réforme de 2001) des Allocations Logement (AL)
 metadata:
-  short_label: TL (seuils)
+  short_label: Seuils
   label_en: Parameters for the rental sector (after the 2001 reform)
   order:
   - seuil_1

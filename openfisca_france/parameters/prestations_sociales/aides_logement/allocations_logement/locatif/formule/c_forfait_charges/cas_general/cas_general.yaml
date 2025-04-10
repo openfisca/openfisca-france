@@ -47,7 +47,7 @@ values:
   2024-10-01:
     value: 59.97
 metadata:
-  short_label: Majoration pour couple sans personne à charge ou bénéficiaire seul hors collocation/copropriété
+  short_label: Majoration pour bénéficiaire seul ou couple sans personne à charge
   last_value_still_valid_on: "2025-03-11"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_gen
@@ -104,10 +104,10 @@ metadata:
       title: Arrêté du 22/09/2023, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048107807
     2024-10-01:
-      - title: Arrêté du 27/09/2019, art. 9
-      - href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039160329/2024-09-29/
-      - title: Arrêté du 27/09/2024, art. 1
-      - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000050278404
+    - title: Arrêté du 27/09/2019, art. 9
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286639/2024-09-29
+    - title: Arrêté du 27/09/2024, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000050278404
   official_journal_date:
     1994-07-01: "1994-11-16"
     1997-07-01: "1997-09-11"

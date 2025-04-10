@@ -43,6 +43,7 @@ metadata:
   last_value_still_valid_on: "2025-03-10"
   label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: mult_k_al
+  unit: currency
   reference:
     1972-07-01:
       title: Décret 72-533 du 29/06/1972

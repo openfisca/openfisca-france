@@ -1,6 +1,6 @@
 description: Mensualités plafonds utilisées pour le calcul de l’APL accession (Logements agrandis ou aménagés à partir de locaux non destinés à l'habitation ou logements existants acquis et, le cas échéant, améliorés)
 metadata:
-  short_label: Mensualité éligible
+  short_label: Logements agrandis ou aménagés
   order:
   - zone_1
   - zone_2

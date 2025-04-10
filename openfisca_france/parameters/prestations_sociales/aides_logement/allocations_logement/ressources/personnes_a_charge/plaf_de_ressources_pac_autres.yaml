@@ -52,9 +52,9 @@ metadata:
   reference:
     1991-07-01:
       - title: Décret 91-1159 du 08/11/1991, art. 1 (modif art. D542-4 du CSS)
-      - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776071&cidTexte=JORFTEXT000000701067
+        href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776071&cidTexte=JORFTEXT000000701067
       - title: Décret n°91-752 du 31/01/1991, art. 2
-      - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006775821
+        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006775821
     2000-01-01:
       title: Décret 99-1146 du 29/12/1999, art. 4
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006779439
