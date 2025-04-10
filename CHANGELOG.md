@@ -1,5 +1,23 @@
 # Changelog
 
+### 170.1.6 [2490](https://github.com/openfisca/openfisca-france/pull/2490)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+  - `openfisca_france/model/prestations/minima_sociaux/anciens_ms.py`
+  - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  - `openfisca_france/model/prestations/prestations_familiales/ars.py`
+  - `openfisca_france/model/prestations/prestations_familiales/asf.py`
+  - `openfisca_france/model/prestations/prestations_familiales/cf.py`
+  - `openfisca_france/model/prestations/prestations_familiales/paje.py`
+
+* Détails :
+  - Ajoute un attribut de classe calculate_output_add aux diverses classes crds
+
 ### 170.1.5 [2481](https://github.com/openfisca/openfisca-france/pull/2481)
 
 * Changement mineur.
