@@ -4,7 +4,7 @@ values:
     value: 0.3
 metadata:
   short_label: Abattement sur résidence principale
-  last_value_still_valid_on: "2022-05-04"
+  last_value_still_valid_on: "2025-03-31"
   label_en: Discount and rebate
   ipp_csv_id: abt_residence_ifi
   unit: /1
