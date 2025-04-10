@@ -383,6 +383,7 @@ class csg_revenus_capital(Variable):
 
 
 class crds_revenus_capital(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = FoyerFiscal
     label = 'CRDS sur les revenus du capital'

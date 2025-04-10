@@ -755,6 +755,7 @@ class ape(Variable):
 
 
 class crds_ape(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = "CRDS sur l'allocation parentale d'éducation"
@@ -803,6 +804,7 @@ class apje(Variable):
 
 
 class crds_apje(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = "CRDS sur l'allocation pour le jeune enfant"
@@ -980,6 +982,7 @@ class paje_colca(Variable):
 
 
 class crds_paje(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = 'CRDS sur la PAJE - Ensemble des prestations'

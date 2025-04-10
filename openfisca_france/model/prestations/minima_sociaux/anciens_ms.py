@@ -173,6 +173,7 @@ class rsa_activite(Variable):
 
 
 class crds_rsa_activite(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     end = '2015-12-31'

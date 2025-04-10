@@ -442,6 +442,7 @@ class csg_deductible_non_salarie(Variable):
 
 
 class crds_non_salarie(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Individu
     label = 'Assiette CSG des personnes non salariées'

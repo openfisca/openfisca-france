@@ -520,6 +520,7 @@ class ppa(Variable):
 
 
 class crds_ppa(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = "CRDS sur la prime pour l'activité"
