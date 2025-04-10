@@ -252,6 +252,7 @@ class rsa_base_ressources_prestations_familiales(Variable):
 
 
 class crds_mini(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = 'CRDS versée sur les minimas sociaux'

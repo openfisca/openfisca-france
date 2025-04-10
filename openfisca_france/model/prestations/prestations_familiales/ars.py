@@ -65,6 +65,7 @@ class ars(Variable):
 
 
 class crds_ars(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = "CRDS sur l'allocation de rentrée scolaire"

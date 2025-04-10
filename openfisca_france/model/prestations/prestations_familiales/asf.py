@@ -82,6 +82,7 @@ class asf(Variable):
 
 
 class crds_asf(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = "CRDS sur l'allocation de soutien familial'"

@@ -346,6 +346,7 @@ class cf(Variable):
 
 
 class crds_cf(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = 'CRDS sur le complément familial'
