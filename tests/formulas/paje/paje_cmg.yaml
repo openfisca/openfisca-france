@@ -33,11 +33,15 @@
         enfants: [enfant1, enfant2]
         af_nbenf: 2
         ass_mat: 1
+        frais_garde:
+          2017-04: 1500
       famille_1:
         parents: [parent3, parent4]
         enfants: [enfant3, enfant4]
         af_nbenf: 2
         ass_mat: 1
+        frais_garde:
+          2017-04: 1500
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants: [parent1, parent2]
@@ -95,11 +99,15 @@
         enfants: [enfant1, enfant2]
         af_nbenf: 2
         ass_mat: 1
+        frais_garde:
+          2018-04: 1500
       famille_1:
         parents: [parent3, parent4]
         enfants: [enfant3, enfant4]
         af_nbenf: 2
         ass_mat: 1
+        frais_garde:
+          2018-04: 1500
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants: [parent1, parent2]

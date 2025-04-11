@@ -558,7 +558,7 @@ class paje_cmg(Variable):
 
         frais_garde = famille('frais_garde', period)
         # Le montant de la CMG ne doit pas dépasser 85% des frais de garde de la famille
-        montant_cmg = where(frais_garde > 0.0,
+        montant_cmg = where(frais_garde >= 0.0,
                             min_(montant_cmg, frais_garde * paje.paje_cmg.taux_prise_en_charge_maximale),
                             montant_cmg
                             )
