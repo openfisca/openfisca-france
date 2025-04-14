@@ -6,6 +6,7 @@ metadata:
   order:
   - taux
   - plafond_smic
+  - taux_om
 documentation: |-
   Formellement le CICE est une réduction de l'impôt sur les sociétés (IS) calculée en proportion des salaires versées par l'entreprise en dessous du plafond.
   En pratique, ce dispositif fonctionne comme un allègement des cotisations patronales.
