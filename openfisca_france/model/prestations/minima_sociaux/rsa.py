@@ -816,6 +816,39 @@ class rsa_forfait_logement(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2009_06_01(famille, period, parameters):
+        np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
+        aide_logement = famille('aide_logement', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        participation_frais = famille.demandeur.menage('participation_frais', period)
+        loyer = famille.demandeur.menage('loyer', period)
+
+        avantage_nature = or_(
+            ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * not_(loyer),
+            (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * not_(participation_frais)
+            )
+
+        avantage_al = aide_logement > 0
+
+        params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
+        montant_base = params.rsa_m.montant_de_base_du_rsa
+        taux_2p = 1 + params.rsa_maj.maj_montant_max.couples_celibataire_avec_enfant
+        taux_3p = taux_2p + params.rsa_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant
+        forf_logement_taux_1p = params.rsa_fl.forfait_logement.taux_1_personne
+        forf_logement_taux_2p = params.rsa_fl.forfait_logement.taux_2_personnes * taux_2p
+        forf_logement_taux_3p = params.rsa_fl.forfait_logement.taux_3_personnes_ou_plus * taux_3p
+
+        montant_forfait = montant_base * (
+            (np_pers == 1) * forf_logement_taux_1p
+            + (np_pers == 2) * forf_logement_taux_2p
+            + (np_pers >= 3) * forf_logement_taux_3p
+            )
+
+        montant_al = avantage_al * min_(aide_logement, montant_forfait)
+        montant_nature = avantage_nature * montant_forfait
+
+        return max_(montant_al, montant_nature)
+
     def formula(famille, period, parameters):
         np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
         aide_logement = famille('aide_logement', period)
@@ -830,23 +863,11 @@ class rsa_forfait_logement(Variable):
 
         avantage_al = aide_logement > 0
 
-        # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
-        # Pour le RSA, on utilise les taux des textes de lois, pour le RMI ils sont déjà aggrégés
-        # Il faudrait uniformiser, mais les taux légaux pour le RMI commencent par "1", et ne passent pas en python
-        if period.start.date >= date(2009, 6, 1):
-            params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-            montant_base = params.rsa_m.montant_de_base_du_rsa
-            taux_2p = 1 + params.rsa_maj.maj_montant_max.couples_celibataire_avec_enfant
-            taux_3p = taux_2p + params.rsa_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant
-            forf_logement_taux_1p = params.rsa_fl.forfait_logement.taux_1_personne
-            forf_logement_taux_2p = params.rsa_fl.forfait_logement.taux_2_personnes * taux_2p
-            forf_logement_taux_3p = params.rsa_fl.forfait_logement.taux_3_personnes_ou_plus * taux_3p
-        else:
-            params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
-            montant_base = params.rmi_m.montant_de_base_du_rmi
-            forf_logement_taux_1p = params.rmi_fl.forfait_logement.taux_1_personne
-            forf_logement_taux_2p = params.rmi_fl.forfait_logement.taux_2_personnes
-            forf_logement_taux_3p = params.rmi_fl.forfait_logement.taux_3_personnes_ou_plus
+        params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
+        montant_base = params.rmi_m.montant_de_base_du_rmi
+        forf_logement_taux_1p = params.rmi_fl.forfait_logement.taux_1_personne
+        forf_logement_taux_2p = params.rmi_fl.forfait_logement.taux_2_personnes
+        forf_logement_taux_3p = params.rmi_fl.forfait_logement.taux_3_personnes_ou_plus
 
         montant_forfait = montant_base * (
             (np_pers == 1) * forf_logement_taux_1p
