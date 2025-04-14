@@ -2,8 +2,6 @@ description: Paramètre « N » pour un bénéficiaire isolé pour le calcul de 
 values:
   2007-07-01:
     value: 1.4
-  2023-04-05:
-    value: 1.2
 metadata:
   short_label: Bénéficiaire isolé
   last_value_still_valid_on: "2025-02-20"
