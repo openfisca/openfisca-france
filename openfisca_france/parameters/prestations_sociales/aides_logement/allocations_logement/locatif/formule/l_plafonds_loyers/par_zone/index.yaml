@@ -1,6 +1,6 @@
 description: Plafonds de loyers « L » par zone géographique pris en compte dans le calcul des allocations logement (AL) après la réforme de 2001
 metadata:
-  short_label: Plafonds de loyers pris « L » en compte dans le calcul de l'aide, selon la zone géographique
+  short_label: Plafonds « L » par zone
   order:
   - zone_1
   - zone_2

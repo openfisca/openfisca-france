@@ -1,6 +1,6 @@
 description: Montant forfaitaire comptabilisé pour le calcul des aides au logement au titre des charges du logement (Secteur accesion)
 metadata:
-  short_label: Montant forfaitaire pour les charges du logement (Secteur accession)
+  short_label: Montant forfaitaire des charges « C »
   order:
   - cas_general
   - par_personne_supplementaire

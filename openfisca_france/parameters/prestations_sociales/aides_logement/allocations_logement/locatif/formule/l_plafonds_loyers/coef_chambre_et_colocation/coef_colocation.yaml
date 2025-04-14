@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 0.75
 metadata:
-  short_label: Coefficient plafonds de loyer (colocation)
+  short_label: Colocation
   last_value_still_valid_on: "2025-03-04"
   unit: /1
   reference:

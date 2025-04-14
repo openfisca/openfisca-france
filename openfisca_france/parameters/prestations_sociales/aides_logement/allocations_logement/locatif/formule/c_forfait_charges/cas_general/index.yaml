@@ -1,6 +1,6 @@
 description: Montant forfaitaire comptabilisé pour le calcul des aides au logement au titre des charges du logement
 metadata:
-  short_label: Montant forfaitaire pour les charges du logement
+  short_label: Cas général
   order:
   - cas_general
   - majoration_par_enfant

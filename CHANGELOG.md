@@ -1,5 +1,15 @@
 # Changelog
 
+### 170.1.7 [2488](https://github.com/openfisca/openfisca-france/pull/2488)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement`
+
+* Détails :
+  - Corrige les short labels, références et orders des aides logement
+
 ### 170.1.6 [2490](https://github.com/openfisca/openfisca-france/pull/2490)
 
 * Changement mineur.

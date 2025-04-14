@@ -4,6 +4,7 @@ values:
     value: 76.32
 metadata:
   short_label: Majoration
+  last_value_still_valid_on: "2025-04-07"
   unit: currency
   reference:
     2007-07-01:

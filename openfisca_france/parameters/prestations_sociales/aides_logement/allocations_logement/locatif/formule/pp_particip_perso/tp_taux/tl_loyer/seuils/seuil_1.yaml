@@ -3,7 +3,7 @@ values:
   2001-01-01:
     value: 0.45
 metadata:
-  short_label: Début de la 2ème tranche
+  short_label: Seuil 1
   last_value_still_valid_on: "2025-03-11"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tl_tr1

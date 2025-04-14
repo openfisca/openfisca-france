@@ -9,7 +9,6 @@ values:
 metadata:
   short_label: Bénéficiaire isolé ou un ménage ayant une personne à charge
   last_value_still_valid_on: "2023-02-23"
-  unit: /1
   reference:
     1988-07-01:
       title: Article D832-25, 2° du Code de la construction et de l'habitation
