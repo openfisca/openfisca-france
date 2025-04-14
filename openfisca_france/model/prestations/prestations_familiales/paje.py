@@ -237,6 +237,61 @@ class paje_base(Variable):
 
         return a_un_enfant_eligible * montant
 
+    def formula_2021_05_01(famille, period, parameters):
+        '''
+        Fin de la période de transition avec la réforme de 2018.
+        Tous les enfants de moins de 3 ans sont dans le nouveau régime
+        '''
+        couple_biactif = famille('biactivite', period)
+        parent_isole = not_(famille('en_couple', period))
+        nombre_enfants = famille('af_nbenf', period)
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+
+        montant_taux_plein = bmaf * paje.paje_cm.montant.allocation_base_taux_plein.apres_2018.taux
+
+        # A partir de la réforme d'avril 2018 (enfants nés apres avril 2018)
+        def plafond_taux_plein_apres_2018():
+            plafond_de_base = paje.paje_plaf.ne_adopte_apres_04_2018.taux_plein.plafond_ressources_0_enfant
+            maj_plafond_2_premiers_enfants = paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.premier_2eme_enfant * plafond_de_base
+            maj_plafond_par_enfant_sup = paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.troisieme_plus_enfant * plafond_de_base
+            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_apres_04_2018.taux_plein.biactifs_parents_isoles
+
+            return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
+
+        def plafond_taux_partiel_apres_2018():
+            plafond_de_base = paje.paje_plaf.ne_adopte_apres_04_2018.taux_partiel.plafond_ressources_0_enfant
+            maj_plafond_2_premiers_enfants = paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.premier_2eme_enfant * plafond_de_base
+            maj_plafond_par_enfant_sup = paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.troisieme_plus_enfant * plafond_de_base
+            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_apres_04_2018.taux_partiel.biactifs_parents_isoles
+
+            return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
+
+        def plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif):
+            plafond = (
+                plafond_de_base
+                + min_(nombre_enfants, 2) * maj_plafond_2_premiers_enfants
+                + max_(nombre_enfants - 2, 0) * maj_plafond_par_enfant_sup
+                + (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+                )
+            return plafond
+
+        a_un_enfant_eligible = famille.any(famille.members('enfant_eligible_paje', period))
+
+        plafond_taux_partiel = plafond_taux_partiel_apres_2018()
+        plafond_taux_plein = plafond_taux_plein_apres_2018()
+
+        ressources = famille('prestations_familiales_base_ressources', period)
+        montant_taux_partiel = montant_taux_plein / 2
+
+        montant = (
+            (ressources <= plafond_taux_plein) * montant_taux_plein
+            + (ressources <= plafond_taux_partiel)
+            * (ressources > plafond_taux_plein) * montant_taux_partiel
+            )
+
+        return a_un_enfant_eligible * montant
+
 
 class enfant_eligible_paje(Variable):
     value_type = bool
