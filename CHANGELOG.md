@@ -1,5 +1,17 @@
 # Changelog
 
+### 170.1.8 [2492](https://github.com/openfisca/openfisca-france/pull/2492)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/k_coef_prise_en_charge/n_nombre_parts/apl/isole_0_personne_a_charge.yaml`
+
+* Détails :
+  - Correction les short_label et références aides logement
+  - Correction du nombre de parts pour les APL en secteur foyer (bénéficiaire isolé)
+
 ### 170.1.7 [2488](https://github.com/openfisca/openfisca-france/pull/2488)
 
 * Changement mineur.
