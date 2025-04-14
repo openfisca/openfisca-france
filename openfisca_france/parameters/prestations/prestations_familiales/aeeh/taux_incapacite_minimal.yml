@@ -1,0 +1,6 @@
+taux_incapacite_minimal:
+  reference: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000006156691/#LEGIARTI000006750709
+  description: Taux d'incapacité  minimal à partir duquel l'enfant peut prétendre à l'aeeh
+  values:
+    2005-12-20:
+      value: 0.5

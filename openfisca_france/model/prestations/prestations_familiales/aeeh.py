@@ -1,4 +1,5 @@
 from openfisca_france.model.base import *
+from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
 
 
 class aeeh_niveau_handicap(Variable):
@@ -53,7 +54,7 @@ class aeeh(Variable):
             + (niveau_handicap == 6) * majoration._children['6e_categorie'] * isole
             ) + (niveau_handicap == 6) * complement_d_allocation._children['6e_categorie']
 
-        montant_total = famille.sum(montant_par_enfant, role = Famille.ENFANT)
+        montant_total = famille.sum(montant_par_enfant, role=Famille.ENFANT)
 
         # L'attribution de l'AEEH de base et de ses compléments éventuels ne fait pas obstacle au
         # versement des prestations familiales.
@@ -102,3 +103,53 @@ class aes(Variable):
 
         montant_total = famille.sum(montant_par_enfant, role = Famille.ENFANT)
         return montant_total
+
+
+class besoin_educatif_particulier(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Enfant possède une reconnaissance d’un besoin éducatif particulier"
+    definition_period = MONTH
+
+
+class aeeh_eligible(Variable):
+    value_type = bool
+    entity = Famille
+    label = "Éligibilité à l'allocation d'éducation de l'enfant handicapé (AEEH)"
+    reference = [
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743351/",
+        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000006156691/"
+        ]
+    documentation = """
+        L’Allocation d’éducation de l’enfant handicapé (AEEH) est une prestation familiale destinée, sous conditions, aux personnes qui ont à leur charge et à domicile un enfant de moins de 21 ans en situation de handicap.
+        L’attribution de cette aide fait l’objet d’une évaluation préalable.
+
+                    """
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
+
+    def formula_2005_12_20(famille, period, parameters):
+        age = famille.members('age', period)
+        taux_incapacite = famille.members('taux_incapacite', period)
+        besoin_educatif_particulier = famille.members('besoin_educatif_particulier', period)
+
+        aeeh_parameters = parameters(period).prestations.prestations_familiales.aeeh
+        residence = famille.members.menage('residence', period)
+
+        condition_age = (age < aeeh_parameters.age_maximum_de_l_enfant)
+        condition_taux_incapacite = (
+            (
+                taux_incapacite >= aeeh_parameters.taux_incapacite_maximal.taux_incapacite_maximal
+                ) + (
+                (
+                    taux_incapacite >= aeeh_parameters.taux_incapacite_minimal.taux_incapacite_minimal
+                    ) * (
+                        taux_incapacite < aeeh_parameters.taux_incapacite_maximal.taux_incapacite_maximal
+                        ) * besoin_educatif_particulier
+                )
+            )
+
+        condition_residence_FR = False if residence == TypesLieuResidence.non_renseigne else True
+
+        return condition_age * condition_taux_incapacite * condition_residence_FR
