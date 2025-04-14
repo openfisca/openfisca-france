@@ -314,6 +314,58 @@ class rsa_enfant_a_charge(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+    def formula_2009_06_01(individu, period, parameters):
+        P_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
+        P_rmi = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
+
+        enfant = individu('est_enfant_dans_famille', period)
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
+
+        ressources = individu('rsa_revenus_determination_enfant_a_charge', period)
+
+        age_pac = P_rsa.rsa_cond.age_pac
+        majo_rsa_femmes_enceintes = P_rsa.rsa_maj.majoration_isolement_en_base_rsa.femmes_enceintes
+        majo_rsa_par_enfant_a_charge = P_rsa.rsa_maj.majoration_isolement_en_base_rsa.par_enfant_a_charge
+        montant_base_rsa = P_rsa.rsa_m.montant_de_base_du_rsa
+        taux_personne_supp = P_rsa.rsa_maj.maj_montant_max.par_enfant_supplementaire
+
+        # Règle CAF: Si un enfant touche des ressources, et que son impact global
+        # (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors
+        # il doit être exclu du calcul du RSA.
+        # Cette règle est complexe, on applique donc l'approximation suivante:
+        #       - Cas général: enfant pris en compte si ressources <= augmentation du MF pour un enfant
+        #                      supplémentaire (taux marginal).
+        #       - Si la présence de l'enfant ouvre droit au RSA majoré, pris en compte si
+        #                      ressources <= majoration du RSA pour isolement avec un enfant.
+        def ouvre_droit_majoration():
+            famille = individu.famille
+            enceinte_fam = famille('enceinte_fam', period)
+            isole = not_(famille('en_couple', period))
+            isolement_recent = famille('rsa_isolement_recent', period)
+
+            presence_autres_enfants = famille.sum(enfant * not_(autonomie_financiere) * (age < age_pac)) > 1
+
+            return (
+                not_(enceinte_fam)
+                * isole
+                * isolement_recent
+                * not_(presence_autres_enfants)
+                )
+
+        rsa_enf_charge = (
+            enfant
+            * not_(autonomie_financiere)
+            * (age < age_pac)
+            * where(
+                ouvre_droit_majoration(),
+                ressources < (majo_rsa_femmes_enceintes - 1 + majo_rsa_par_enfant_a_charge) * montant_base_rsa,
+                ressources < taux_personne_supp * montant_base_rsa
+                )
+            )
+
+        return rsa_enf_charge
+
     def formula(individu, period, parameters):
         P_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
         P_rmi = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
@@ -324,19 +376,11 @@ class rsa_enfant_a_charge(Variable):
 
         ressources = individu('rsa_revenus_determination_enfant_a_charge', period)
 
-        # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
-        if period.start.date >= date(2009, 6, 1):
-            age_pac = P_rsa.rsa_cond.age_pac
-            majo_rsa_femmes_enceintes = P_rsa.rsa_maj.majoration_isolement_en_base_rsa.femmes_enceintes
-            majo_rsa_par_enfant_a_charge = P_rsa.rsa_maj.majoration_isolement_en_base_rsa.par_enfant_a_charge
-            montant_base_rsa = P_rsa.rsa_m.montant_de_base_du_rsa
-            taux_personne_supp = P_rsa.rsa_maj.maj_montant_max.par_enfant_supplementaire
-        else:
-            age_pac = P_rmi.rmi_cond.age_pac
-            majo_rsa_femmes_enceintes = 0
-            majo_rsa_par_enfant_a_charge = 0
-            montant_base_rsa = P_rmi.rmi_m.montant_de_base_du_rmi
-            taux_personne_supp = P_rmi.rmi_maj.maj_montant_max.par_enfant_supplementaire
+        age_pac = P_rmi.rmi_cond.age_pac
+        majo_rsa_femmes_enceintes = 0
+        majo_rsa_par_enfant_a_charge = 0
+        montant_base_rsa = P_rmi.rmi_m.montant_de_base_du_rmi
+        taux_personne_supp = P_rmi.rmi_maj.maj_montant_max.par_enfant_supplementaire
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global
         # (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors
