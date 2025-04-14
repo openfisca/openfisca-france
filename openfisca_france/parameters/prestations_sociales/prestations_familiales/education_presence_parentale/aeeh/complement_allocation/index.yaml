@@ -4,9 +4,9 @@ metadata:
   short_label: Complément d'allocation selon catégorie
   label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   order:
-  - 1ere_categorie
-  - 2e_categorie
-  - 3e_categorie
-  - 4e_categorie
-  - 5e_categorie
-  - 6e_categorie
+  - categorie_1
+  - categorie_2
+  - categorie_3
+  - categorie_4
+  - categorie_5
+  - categorie_6
