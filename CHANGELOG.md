@@ -1,5 +1,15 @@
 # Changelog
 
+### 170.1.9 [2483](https://github.com/openfisca/openfisca-france/pull/2493)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al/index.yaml`
+
+* Détails :
+  - Corrige le short label des paramètres spécifiques AL en secteur foyer
+
 ### 170.1.8 [2492](https://github.com/openfisca/openfisca-france/pull/2492)
 
 * Changement mineur.
