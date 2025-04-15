@@ -1,7 +1,7 @@
 from numpy import round, floor, datetime64, maximum
 
 from openfisca_france.model.base import *
-from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, nb_enf_age_en_mois
 from openfisca_core.periods import Instant
 
 
@@ -451,7 +451,7 @@ class paje_cmg(Variable):
 
         # condition de revenu minimal
 
-        cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.reduite - 1) > 0)
+        cond_age_enf = (nb_enf_age_en_mois(famille, period, -1, (paje.paje_cmg.limite_age.reduite - 1) * 12) > 0)
 
         # TODO:    cond_rpns    =
         # TODO: RSA insertion, alloc insertion, ass
@@ -533,7 +533,7 @@ class paje_cmg(Variable):
             )
 
         # On récupère le nombre d'enfants donnant droit à une prestation pleine du CMG
-        nb_enf_presta_pleine = nb_enf(famille, period, 0,
+        nb_enf_presta_pleine = nb_enf(famille, period, -1,
                                     paje.paje_cmg.limite_age.pleine - 1)
         # On récupère le nombre d'enfants donnant droit à une prestation réduite du CMG
         nb_enf_presta_reduite = nb_enf(famille, period, paje.paje_cmg.limite_age.pleine,
