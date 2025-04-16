@@ -1,9 +1,20 @@
 # Changelog
 
+### 170.1.11 [2484](https://github.com/openfisca/openfisca-france/pull/2484)
+
+* Changement mineur.
+* Périodes concernées : à partir de 2025.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/contribution_differentielle_hauts_revenus.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/divers/frais_de_comptabilite/plafond.yaml`
+
+* Détails :
+  - Suppression de la réduction pour frais de comptabilité suite à la LF 2025.
+
 ### 170.1.10 [2479](https://github.com/openfisca/openfisca-france/pull/2479)
 
 * Changement mineur.
-* Périodes concernées : 2025.
+* Périodes concernées : à partir de 2019.
 * Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/isf.py`
 
