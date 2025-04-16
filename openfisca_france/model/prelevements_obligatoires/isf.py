@@ -508,7 +508,6 @@ class isf_inv_pme(Variable):
         return where(montant_reduc < plaf, montant_reduc, plaf)
 
 
-
 class isf_org_int_gen(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -575,7 +574,7 @@ class isf_ifi_avant_plaf(Variable):
         isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
         borne_max = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
 
-        return max_(0, isf_ifi_avant_reduction - min_( isf_org_int_gen, borne_max) - isf_reduc_pac)
+        return max_(0, isf_ifi_avant_reduction - min_(isf_org_int_gen, borne_max) - isf_reduc_pac)
 
 
 # # calcul du plafonnement ##
