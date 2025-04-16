@@ -4,7 +4,7 @@ values:
     value: 1300000
 metadata:
   short_label: Borne inférieure
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2025-03-31"
   label_en: "\"Décote\" computation"
   ipp_csv_id: inf_decote1_ifi
   unit: currency

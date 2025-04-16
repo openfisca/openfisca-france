@@ -53,7 +53,7 @@ check-all-yaml:
 	yamllint openfisca_france/parameters
 	yamllint tests
 
-test: clean check-syntax-errors check-style
+test: clean check-syntax-errors check-style check-yaml
 	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
 	@# before parsing source files containing formulas.
 	openfisca test --country-package openfisca_france tests

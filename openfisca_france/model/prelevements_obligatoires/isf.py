@@ -133,6 +133,7 @@ class b2mt(Variable):
     entity = FoyerFiscal
     label = 'Réductions pour investissements directs dans une société'
     definition_period = YEAR
+    end = '2018-12-31'
 
 
 class b2ne(Variable):
@@ -149,6 +150,7 @@ class b2mv(Variable):
     entity = FoyerFiscal
     label = 'Réductions pour investissements par sociétés interposées, holdings'
     definition_period = YEAR
+    end = '2018-12-31'
 
 
 class b2nf(Variable):
@@ -165,6 +167,7 @@ class b2mx(Variable):
     entity = FoyerFiscal
     label = 'Réductions pour investissements par le biais de FIP'
     definition_period = YEAR
+    end = '2018-12-31'
 
 
 class b2na(Variable):
@@ -173,9 +176,13 @@ class b2na(Variable):
     entity = FoyerFiscal
     label = 'Réductions pour investissements par le biais de FCPI ou FCPR'
     definition_period = YEAR
+    end = '2018-12-31'
 
 
 class b2nc(Variable):
+    # TODO: est devenu 9NC avec l'IFI
+    # Et il manque 9NG pour les donations dans un autre état membre de l'UE
+    # qui équivaut à f7vc
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -446,6 +453,7 @@ class isf_inv_pme(Variable):
     entity = FoyerFiscal
     label = 'isf_inv_pme'
     definition_period = YEAR
+    end = '2018-12-31'
 
     def formula_2008(foyer_fiscal, period, parameters):
         '''
@@ -476,7 +484,7 @@ class isf_inv_pme(Variable):
     def formula_2018(foyer_fiscal, period, parameters):
         '''
         Réductions pour investissements dans les PME
-        à partir de 2008!
+        à partir de 2018!
         '''
         b2mt = foyer_fiscal('b2mt', period)
         b2ne = foyer_fiscal('b2ne', period)
@@ -558,6 +566,15 @@ class isf_ifi_avant_plaf(Variable):
         borne_max = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
 
         return max_(0, isf_ifi_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
+
+    def formula_2019(foyer_fiscal, period, parameters):
+        # Les réductions pour investissements dans les PME (FIP et FCPI) ne sont plus éligibles
+        isf_ifi_avant_reduction = foyer_fiscal('isf_ifi_avant_reduction', period)
+        isf_org_int_gen = foyer_fiscal('isf_org_int_gen', period)
+        isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
+        borne_max = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
+
+        return max_(0, isf_ifi_avant_reduction - min_(isf_org_int_gen, borne_max) - isf_reduc_pac)
 
 
 # # calcul du plafonnement ##
