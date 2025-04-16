@@ -1,5 +1,15 @@
 # Changelog
 
+### 170.1.10 [2479](https://github.com/openfisca/openfisca-france/pull/2479)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/isf.py`
+
+* Détails :
+  - Neutralise les réductions FIP et FCPI dans le cadre de l'IFI.
+
 ### 170.1.9 [2483](https://github.com/openfisca/openfisca-france/pull/2493)
 
 * Changement mineur.
