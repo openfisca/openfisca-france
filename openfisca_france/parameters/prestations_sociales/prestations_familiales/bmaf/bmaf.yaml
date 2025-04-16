@@ -447,8 +447,8 @@ metadata:
       title: Instruction interministérielle n° DSS/2B/2024/43 du 20 mars 2024 (p. 84)
       href: https://sante.gouv.fr/fichiers/bo/2024/2024.6.sante.pdf
     2025-04-01:
-      title: solidarites.gouv.fr (en attente du décret)
-      href: https://solidarites.gouv.fr/revalorisation-annuelle-des-prestations-sociales-au-1er-avril-2025
+      title: Bulletin officiel Santé - Protection sociale - Solidarité n° 2025/6 du 31 mars 2025
+      href: https://sante.gouv.fr/fichiers/bo/2025/2025.6.sante.pdf
   official_journal_date:
     1946-07-01: "1946-08-23"
     1947-02-01: "1947-04-06"
@@ -530,6 +530,7 @@ metadata:
     2012-04-01: "2011-12-22"
     2013-04-01: "2011-12-22"
     2014-04-01: "2013-12-24"
+    2025-04-01: "2025-03-31"
   notes:
     1946-07-01:
     - title: Fixation du régime des prestations familiales (allocations de maternité, allocations familiales, allocations de salaire unique et allocations prénatales). Journal Officiel introuvable
@@ -603,3 +604,5 @@ metadata:
     - title: Revalorisation de 1,8%
     2022-07-01:
     - title: Revalorisation de 4%
+    2025-04-01:
+    - title: Revalorisation de 1.7%
