@@ -7717,20 +7717,24 @@ class f7fh(Variable):
 
 # Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée))
 class f7ff(Variable):
+    # La LF 2025 met fin à ce dispositif
     cerfa_field = '7FF'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)"
     definition_period = YEAR
+    end = '2024-12-31'
 
 
 class f7fg(Variable):
+    # La LF 2025 met fin à ce dispositif
     cerfa_field = '7FG'
     value_type = int
     entity = FoyerFiscal
     label = "Frais de comptabilité et d'adhésion à un CGA ou à une AA: nombre d'exploitations"
     definition_period = YEAR
+    end = '2024-12-31'
 
 
 # Travaux de conservation et de restauration d’objets classés monuments historiques
