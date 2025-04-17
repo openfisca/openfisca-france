@@ -1,5 +1,19 @@
 # Changelog
 
+### 170.1.12 [2486](https://github.com/openfisca/openfisca-france/pull/2486)
+
+* Changement mineur.
+* Périodes concernées : à partir d'avril 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/montant_plein.yaml`
+  - `openfisca_france/parameters/prestations_sociales/education/contrat_engagement_jeune/montants/*`
+  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/*`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/bmaf/bmaf.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/*`
+
+* Détails :
+  - Revalorisation d'avril 2025.
+
 ### 170.1.11 [2484](https://github.com/openfisca/openfisca-france/pull/2484)
 
 * Changement mineur.
