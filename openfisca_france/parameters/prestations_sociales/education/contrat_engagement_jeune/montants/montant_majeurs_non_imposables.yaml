@@ -1,4 +1,4 @@
-description: Montant forfaitaire pour les majeurs constituant ou étant rattachés à un foyer fiscal non imposable à l'impôt sur le revenu
+description: Montant forfaitaire du Contrat d'engagement jeune pour les majeurs constituant ou étant rattachés à un foyer fiscal non imposable à l'impôt sur le revenu
 values:
   2022-03-01:
     value: 500
@@ -28,7 +28,10 @@ metadata:
       title: Instruction interministérielle N° DSS/2A/2C/2024/42 du 20 mars 2024
       href: https://sante.gouv.fr/fichiers/bo/2024/2024.6.sante.pdf#page=82
     2025-04-01:
-      title: solidarites.gouv.fr (en attente du décret)
-      href: https://solidarites.gouv.fr/revalorisation-annuelle-des-prestations-sociales-au-1er-avril-2025
+      title: Instruction interministérielle N° DSS/2A/2C/2025/32 du 7 mars 2025
+      href: https://sante.gouv.fr/fichiers/bo/2025/2025.6.sante.pdf#page=9
+  notes:
+    2025-04-01:
+      - Le montant de 561,68 € est le résultat de l'application du coefficient de revalorisation de 1,017 à compter du 1er avril 2025.
 documentation: |-
   L'article D5131-19 du code du travail contient les montants du dispositif à sa création. Cet article mentionne aussi que ces montants sont revalorisés le 1er avril de chaque année par application du coefficient mentionné à l'article L. 161-25 du CSS. Ce coefficient de revalorisation est publié chaque année séparément, sans que les nouveaux montants soient répercutés dans l'article D5131-19 du code du travail.
