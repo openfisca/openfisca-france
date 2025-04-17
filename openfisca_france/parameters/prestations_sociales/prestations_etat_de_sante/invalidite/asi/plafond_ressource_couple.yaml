@@ -40,6 +40,8 @@ values:
     value: 18060.13
   2024-04-01:
     value: 18890.89
+  2025-04-01:
+    value: 19212.03
 metadata:
   short_label: Plafond de ressource pour un couple
   last_value_still_valid_on: "2022-09-28"
@@ -122,6 +124,9 @@ metadata:
     2024-04-01:
       title: Circulaire Cnav 2024-13 du 4/04/2024
       href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2024_13_04042024.pdf
+    2025-04-01:
+      title: Circulaire Cnav 2025-13 du 03/04/2025
+      href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2025_13_03042025.pdf
   official_journal_date:
     2006-01-01: "2007-01-13"
     2008-01-01: "2007-12-28"
