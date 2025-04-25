@@ -649,7 +649,7 @@ class rsa_eligibilite(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def formula(famille, period, parameters):
+    def formula_2010_01_01(famille, period, parameters):
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
@@ -661,22 +661,38 @@ class rsa_eligibilite(Variable):
 
         etudiant_i = famille.members('etudiant', period)
 
-        # Avant 2009-06, les jeunes de moins de 25 ans ne sont pas éligibles au RMI
-        rsa_jeune_condition_i = False
         # Les jeunes de moins de 25 ans sont éligibles sous condition d'activité suffisante
-        # à partir de 2010
-        if period.start.date >= date(2010, 1, 1):
-            rsa_jeune_condition_i = (
-                (age_i > rsa.rsa_cond.age_min_rsa_jeune)
-                * (age_i < rsa.rsa_cond.age_max_rsa_jeune)
-                * rsa_jeune_condition_heures_travail_remplie_i
-                )
+        rsa_jeune_condition_i = (
+            (age_i > rsa.rsa_cond.age_min_rsa_jeune)
+            * (age_i < rsa.rsa_cond.age_max_rsa_jeune)
+            * rsa_jeune_condition_heures_travail_remplie_i
+            )
 
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i >= rsa.rsa_cond.age_pac)
 
         return (
             famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
+            * condition_nationalite
+            * rsa_eligibilite_tns
+            )
+
+    def formula(famille, period, parameters):
+        rsa_nb_enfants = famille('rsa_nb_enfants', period)
+        rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
+        condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
+        condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
+        rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
+
+        age_i = famille.members('age', period)
+
+        etudiant_i = famille.members('etudiant', period)
+
+        # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
+        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i >= rsa.rsa_cond.age_pac)
+
+        return (
+            famille.any(condition_age_i * not_(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
             * rsa_eligibilite_tns
             )
