@@ -316,7 +316,6 @@ class rsa_enfant_a_charge(Variable):
 
     def formula_2009_06_01(individu, period, parameters):
         P_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        P_rmi = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
 
         enfant = individu('est_enfant_dans_famille', period)
         age = individu('age', period)
@@ -367,7 +366,6 @@ class rsa_enfant_a_charge(Variable):
         return rsa_enf_charge
 
     def formula(individu, period, parameters):
-        P_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
         P_rmi = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
 
         enfant = individu('est_enfant_dans_famille', period)
