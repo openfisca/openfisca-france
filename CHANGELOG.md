@@ -1,5 +1,18 @@
 # Changelog
 
+# 171.0.0 [2496](https://github.com/openfisca/openfisca-france/pull/2496)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  - `openfisca_france/model/prestations/prestations_familiales/aeeh.py`
+  - `openfisca_france/model/prestations/prestations_familiales/paje.py`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aeeh/complement_allocation`
+* Détails :
+  - Enlève des if period et les remplace par une nouvelle formule à une nouvelle date  
+  - Renomme des fichiers de paramètre dont le nom commençait par un nombre 
+
 ### 170.1.12 [2486](https://github.com/openfisca/openfisca-france/pull/2486)
 
 * Changement mineur.
