@@ -1,0 +1,11 @@
+- name: Exonération cotisations employeur lodeom compétitivité
+  period: 2024
+  absolute_error_margin: 0.005
+  input:
+    effectif_entreprise: 20
+    salaire_de_base: 2000
+    depcom_entreprise: 971
+    categorie_salarie: prive_non_cadre
+  output:
+    exoneration_lodeom_competitivite:
+      2024-01: 641.20
