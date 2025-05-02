@@ -397,7 +397,7 @@ class crds_revenus_capital(Variable):
         crds_glo_assimile_salaire_ir_et_ps = foyer_fiscal.sum(crds_glo_assimile_salaire_ir_et_ps_i)
 
         return (
-            - assiette_csg_revenus_capital * prelevements_sociaux.crds.produits_de_placement
+            - assiette_csg_revenus_capital * prelevements_sociaux.contributions_sociales.crds.taux
             + crds_glo_assimile_salaire_ir_et_ps
             )
 
