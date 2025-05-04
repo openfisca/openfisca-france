@@ -4,6 +4,8 @@ values:
     value: 0.62
   2018-08-01:
     value: 0.61
+  2025-04-01:
+    value: 0.5985
 metadata:
   short_label: pente de la PPA
   last_value_still_valid_on: "2025-03-07"
@@ -17,10 +19,11 @@ metadata:
     - title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
     2018-08-01:
-    - title: Article D843-3 du code de la sécurité sociale
+      title: Article D843-3 du code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037462909
-    - title: Décret 2018-836 du 03/10/2018, art. 2
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037460547
+    2025-04-01:
+      title: Article D843-3 du code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037462909
   official_journal_date:
     2016-01-01: "2015-12-22"
     2018-08-01: "2018-10-04"
