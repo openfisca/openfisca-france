@@ -1,5 +1,13 @@
 # Changelog
 
+### 171.0.2 [2495](https://github.com/openfisca/openfisca-france/pull/2495)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/taxation_capital/prelevements_sociaux/crds/*.`
+* Détails :
+    - Supprime CRDS en doublon
+
 ### 171.0.1 [2498](https://github.com/openfisca/openfisca-france/pull/2498)
 
 * Changement mineur.
