@@ -1,5 +1,14 @@
 # Changelog
 
+### 171.0.1 [2498](https://github.com/openfisca/openfisca-france/pull/2498)
+
+* Changement mineur.
+* Périodes concernées : 2025
+* Zones impactées : 
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_m/montant_de_base_du_rsa.yaml`
+* Détails :
+  - Corrige la date de la référence législative pour le RSA (avril 2025)
+
 # 171.0.0 [2496](https://github.com/openfisca/openfisca-france/pull/2496)
 
 * Amélioration technique.
