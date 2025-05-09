@@ -1,5 +1,11 @@
 # Changelog
 
+### 174.0.1 [2506](https://github.com/openfisca/openfisca-france/pull/2506)
+
+* Amélioration technique.
+* Détails :
+  - Remplace l'usage de `pkg_resources` par `importlib` pour éviter les warnings de dépréciation.
+
 # 174.0.0 [2547](https://github.com/openfisca/openfisca-france/pull/2547)
 
 * Changement majeur.
