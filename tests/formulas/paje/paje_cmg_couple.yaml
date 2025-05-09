@@ -1,3 +1,33 @@
+- name: 'Cas montant frais de garde nul'
+  period: 2024-11
+  relative_error_margin: 0.01
+  input:
+    familles:
+      famille:
+        parents: [parent1, parent2]
+        enfants: [bebe1]
+        prestations_familiales_base_ressources:
+          2024-11: 20000
+        frais_garde:
+          2024-11: 0
+        ass_mat:
+          2024-11: 1
+    individus:
+      parent1:
+        date_naissance:
+          ETERNITY: 2000-10-15
+      parent2:
+        date_naissance:
+          ETERNITY: 1990-10-15
+      bebe1:
+        date_naissance:
+          ETERNITY: 2024-05-15
+  output:
+    familles:
+      famille:
+        paje_cmg:
+          2024-11: 0
+
 - name: 'Cas P2B1E0S1 : Assistant maternel, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais > CMG max'
   period: 2024-11
   relative_error_margin: 0.01
