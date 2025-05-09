@@ -451,7 +451,7 @@ class paje_cmg(Variable):
 
         # condition de revenu minimal
 
-        cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.reduite - 1) > 0)
+        cond_age_enf = (nb_enf(famille, period, -1, paje.paje_cmg.limite_age.reduite - 1) > 0)
 
         # TODO:    cond_rpns    =
         # TODO: RSA insertion, alloc insertion, ass
@@ -533,7 +533,7 @@ class paje_cmg(Variable):
             )
 
         # On récupère le nombre d'enfants donnant droit à une prestation pleine du CMG
-        nb_enf_presta_pleine = nb_enf(famille, period, 0,
+        nb_enf_presta_pleine = nb_enf(famille, period, -1,
                                     paje.paje_cmg.limite_age.pleine - 1)
         # On récupère le nombre d'enfants donnant droit à une prestation réduite du CMG
         nb_enf_presta_reduite = nb_enf(famille, period, paje.paje_cmg.limite_age.pleine,
