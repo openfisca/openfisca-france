@@ -1,7 +1,7 @@
 import os
 import csv
 import codecs
-import pkg_resources
+import importlib
 import openfisca_france
 from numpy import fromiter
 from openfisca_france.model.base import *
@@ -14,10 +14,10 @@ def preload_parametres_locaux_taxe_habitation(year = None, variable_to_load = No
     assert variable_to_load is not None
     assert year is not None
     if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
+        with importlib.resources.files(
+                openfisca_france.__name__).joinpath(
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
+                ).open('rb') as csv_file:
             utf8_reader = codecs.getreader('utf-8')
             csv_reader = csv.DictReader(utf8_reader(csv_file))
             return {
