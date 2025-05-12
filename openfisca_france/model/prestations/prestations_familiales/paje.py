@@ -536,7 +536,7 @@ class paje_cmg(Variable):
         nb_enf_presta_pleine = nb_enf_age_en_mois(famille, period, -1,
                                     (paje.paje_cmg.limite_age.pleine - 1) * 12)
         # On récupère le nombre d'enfants donnant droit à une prestation réduite du CMG
-        nb_enf_presta_reduite = nb_enf_age_en_mois(famille, period, paje.paje_cmg.limite_age.pleine * 12,
+        nb_enf_presta_reduite = nb_enf_age_en_mois(famille, period, (paje.paje_cmg.limite_age.pleine) * 12,
                                     (paje.paje_cmg.limite_age.reduite - 1) * 12)
 
         # On calcule le coefficient de majoration des différents types de CMG en fonction du nombre d'enfants
