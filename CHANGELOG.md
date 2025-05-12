@@ -64,6 +64,16 @@
   - Enlève des if period et les remplace par une nouvelle formule à une nouvelle date
   - Renomme des fichiers de paramètre dont le nom commençait par un nombre
 
+### 170.1.13 [2507](https://github.com/openfisca/openfisca-france/pull/2507)
+
+* Changement mineur.
+* Périodes concernées : à partir d'avril 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/cmu/plafond_base.yaml`
+
+* Détails :
+  - Revalorisation d'avril 2025.
+
 ### 170.1.12 [2486](https://github.com/openfisca/openfisca-france/pull/2486)
 
 * Changement mineur.
