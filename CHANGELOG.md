@@ -1,5 +1,14 @@
 # Changelog
 
+### 171.0.3
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/aides_logement.py`
+* Détails :
+    - Fiabilisation de l'aide au logement pour le secteur Foyer conventionné en s'assurant que le coefficient "K" utilisé pour le calcul ne puisse pas dépasser sa valeur plafond, ce qui peut arriver dans de très rares cas.
+    - Par exemple, une personne seule, sans revenus, en zone I, au plafond de l'équivalence loyer/charges E (locataire d'un logement en foyer conventionné dans le 92800 pour un loyer de 500€), dont le coefficient "K" atteint la valeur "1,04" si elle n'est pas plafonnée.
+
 ### 171.0.2 [2495](https://github.com/openfisca/openfisca-france/pull/2495)
 
 * Changement mineur.
