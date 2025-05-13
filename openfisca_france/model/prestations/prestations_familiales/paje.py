@@ -484,10 +484,14 @@ class paje_cmg(Variable):
         # Les plafonds de ressource
 
         paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
+        
         nombre_enfants = famille('af_nbenf', period)
-        nb_enf_ne_mois = famille.members('est_enfant_dans_famille', period) * famille.members('age_en_mois', period)
-        nbenfmois = famille.sum(nb_enf_ne_mois == -1)
-        nombre_enfants = nombre_enfants + nbenfmois
+        # 'af_nbenf' rate les enfants nés après le premier jour du même mois que 'period',
+        # du coup on les rajoute au total
+        nb_enf_ne_mois = famille.sum(
+            (famille.members('est_enfant_dans_famille', period) * famille.members('age_en_mois', period)) == -1
+        )
+        nombre_enfants = nombre_enfants + nb_enf_ne_mois
 
         # Il s'agit d'une famille monoparentale (parent isolé)
         parent_isole = famille('nb_parents', period) == 1
