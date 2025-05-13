@@ -229,6 +229,33 @@ def nb_enf(famille, period, age_min, age_max):
     return famille.sum(condition, role = Famille.ENFANT)
 
 
+def nb_enf_age_en_mois(famille, period, age_min, age_max):
+    '''
+    Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge en mois est compris entre age_min et age_max
+    '''
+
+    assert period.unit == 'month'
+    assert period.size == 1
+
+    age_en_mois = famille.members('age_en_mois', period)
+    autonomie_financiere = famille.members('autonomie_financiere', period)
+
+#        Les allocations sont dues à compter du mois civil qui suit la naissance
+#        age_min==0 ou suivant les anniversaires age_min>0.
+#        Le Complément de Mode de Garde (CMG) est une exception et peut être due
+#        à compter du mois civil de la naissance age_min==-1.
+#        Un enfant est reconnu à charge pour le versement des prestations
+#        jusqu'au mois précédant son age limite supérieur (age_max + 1) mais
+#        le versement à lieu en début de mois suivant
+    condition = (
+        (age_en_mois >= age_min)
+        * (age_en_mois <= age_max)
+        * not_(autonomie_financiere)
+        )
+
+    return famille.sum(condition, role = Famille.ENFANT)
+
+
 class abattements_speciaux_prestations_familiales(Variable):
     value_type = float
     entity = FoyerFiscal

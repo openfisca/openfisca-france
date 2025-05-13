@@ -1,7 +1,7 @@
 from numpy import round, floor, datetime64, maximum
 
 from openfisca_france.model.base import *
-from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, nb_enf_age_en_mois
 from openfisca_core.periods import Instant
 
 
@@ -451,7 +451,7 @@ class paje_cmg(Variable):
 
         # condition de revenu minimal
 
-        cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.reduite - 1) > 0)
+        cond_age_enf = (nb_enf_age_en_mois(famille, period, -1, (paje.paje_cmg.limite_age.reduite - 1) * 12) > 0)
 
         # TODO:    cond_rpns    =
         # TODO: RSA insertion, alloc insertion, ass
@@ -484,7 +484,15 @@ class paje_cmg(Variable):
         # Les plafonds de ressource
 
         paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
+        
         nombre_enfants = famille('af_nbenf', period)
+        # 'af_nbenf' rate les enfants nés après le premier jour du même mois que 'period',
+        # du coup on les rajoute au total
+        nb_enf_ne_mois = famille.sum(
+            (famille.members('est_enfant_dans_famille', period) * famille.members('age_en_mois', period)) == -1
+        )
+        nombre_enfants = nombre_enfants + nb_enf_ne_mois
+
         # Il s'agit d'une famille monoparentale (parent isolé)
         parent_isole = famille('nb_parents', period) == 1
 
@@ -533,11 +541,11 @@ class paje_cmg(Variable):
             )
 
         # On récupère le nombre d'enfants donnant droit à une prestation pleine du CMG
-        nb_enf_presta_pleine = nb_enf(famille, period, 0,
-                                    paje.paje_cmg.limite_age.pleine - 1)
+        nb_enf_presta_pleine = nb_enf_age_en_mois(famille, period, -1,
+                                    (paje.paje_cmg.limite_age.pleine - 1) * 12)
         # On récupère le nombre d'enfants donnant droit à une prestation réduite du CMG
-        nb_enf_presta_reduite = nb_enf(famille, period, paje.paje_cmg.limite_age.pleine,
-                                    paje.paje_cmg.limite_age.reduite - 1)
+        nb_enf_presta_reduite = nb_enf_age_en_mois(famille, period, (paje.paje_cmg.limite_age.pleine) * 12,
+                                    (paje.paje_cmg.limite_age.reduite - 1) * 12)
 
         # On calcule le coefficient de majoration des différents types de CMG en fonction du nombre d'enfants
         coeff_enfants_emploi_direct = (1.0 * (nb_enf_presta_pleine > 0) + 0.5 * (nb_enf_presta_reduite > 0))
