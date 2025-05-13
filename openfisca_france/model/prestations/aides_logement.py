@@ -1695,7 +1695,7 @@ class aides_logement_foyer_k_apl(Variable):
         R_majuscule = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_nb_part', period)
 
-        return plafond_k - (((R_majuscule - (r_minuscule * N))) / (cm1 * N))
+        return min_(plafond_k, plafond_k - (((R_majuscule - (r_minuscule * N))) / (cm1 * N)))
 
 
 class aides_logement_nb_part(Variable):
