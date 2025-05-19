@@ -311,7 +311,7 @@
         2000: 0.02
     individus:
       parent1:
-        date_naissance: '1953-01-01'
+        date_naissance: '1953-02-01'
       parent2:
         date_naissance: '1963-01-01'
   output:
