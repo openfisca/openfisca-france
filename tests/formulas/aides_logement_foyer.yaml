@@ -97,3 +97,21 @@
     aides_logement_foyer_plafond_mensualite: 383.47 # L.PLA
     aide_logement_montant_brut_avant_degressivite: 161.11 # APL = k*((L+C)-(L0-C))
     aide_logement: 155.78
+
+- name: 'Cas 6: Personne réside dans une chambre conventionnée en logement foyer, zone 1, fiabilisation coefficient K'
+  period: 2025-05
+  relative_error_margin: 0.02
+  input:
+    age: 38
+    loyer: 500
+    zone_apl: zone_1
+    statut_occupation_logement: locataire_foyer
+    salaire_imposable:
+      2025: 0
+      2024: 0
+      2023: 0
+    logement_conventionne: true
+    logement_chambre: true
+  output:
+    aides_logement_k: 0.95 # K
+    aide_logement: 456.56
