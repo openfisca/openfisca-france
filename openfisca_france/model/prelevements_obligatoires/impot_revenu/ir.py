@@ -75,8 +75,8 @@ class age(Variable):
                             )
 
         date_naissance = individu('date_naissance', period)
-        epsilon = timedelta64(1)
-        return (datetime64(period.start) - date_naissance + epsilon).astype('timedelta64[Y]')
+        epsilon = timedelta64(1, 'M')
+        return ((datetime64(period.start, 'M') + epsilon) - date_naissance).astype('timedelta64[Y]')
 
 
 class age_en_mois(Variable):
