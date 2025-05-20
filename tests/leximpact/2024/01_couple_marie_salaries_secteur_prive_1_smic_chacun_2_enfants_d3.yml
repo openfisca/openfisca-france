@@ -501,7 +501,7 @@ output:
         2024-11: -2.15
         2024-12: -2.13
       minima_sociaux:
-        2024: 4793.13
+        2024: 4797.59
       ppa:
         2024-01: 362.8
         2024-02: 362.8
@@ -514,7 +514,7 @@ output:
         2024-09: 429.67
         2024-10: 429.67
         2024-11: 429.67
-        2024-12: 425.19
+        2024-12: 429.67
       ppa_base_ressources:
         2024-01: 2940.06
         2024-02: 2940.06
@@ -540,7 +540,7 @@ output:
         2024-09: 427.53
         2024-10: 427.53
         2024-11: 427.53
-        2024-12: 423.06
+        2024-12: 427.53
       prestations_familiales:
         2024: 2641.32
       prestations_familiales_base_ressources:
@@ -557,7 +557,7 @@ output:
         2024-11: 31298.54
         2024-12: 31298.54
       prestations_sociales:
-        2024: 7434.45
+        2024: 7438.91
       rsa_base_ressources:
         2024-01: 2940.06
         2024-02: 2940.06
@@ -582,9 +582,9 @@ output:
   menages:
     logement_principal_n_1:
       niveau_de_vie:
-        2024: 19525.11
+        2024: 19527.23
       revenu_disponible:
-        2024: 41002.72
+        2024: 41007.18
       unites_consommation:
         2024: 2.1
       zone_apl:
