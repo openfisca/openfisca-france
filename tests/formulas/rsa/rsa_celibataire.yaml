@@ -246,7 +246,7 @@
 - period: 2015-01
   name: Pas de RSA si âge < 25
   input:
-    date_naissance: '1990-01-02'  # 24 ans
+    date_naissance: '1990-02-02'  # 24 ans
   output:
     rsa: 0
 
