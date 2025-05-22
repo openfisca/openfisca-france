@@ -761,7 +761,7 @@ class aides_logement(Variable):
     reference = 'http://vosdroits.service-public.fr/particuliers/N20360.xhtml'
     definition_period = YEAR
 
-    def formula(famille, period):
+    def formula(famille, period, parameters):
         return famille('aide_logement', period, options = [ADD])
 
 
