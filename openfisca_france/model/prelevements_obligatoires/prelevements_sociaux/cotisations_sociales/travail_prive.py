@@ -254,7 +254,7 @@ class agff_employeur(Variable):
         parameters = parameters(period).cotsoc
 
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = parameters.cotisations_employeur,
+            bareme_by_categorie_salarie = parameters.cotisations_employeur,
             bareme_name = 'agffnc',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -262,7 +262,7 @@ class agff_employeur(Variable):
             )
 
         cotisation_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = parameters.cotisations_employeur,
+            bareme_by_categorie_salarie = parameters.cotisations_employeur,
             bareme_name = 'agffc',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
