@@ -20,7 +20,7 @@ class ati_atiacl(Variable):
 
         # ATI : pour les fonctionnaires d'Etat, hors militaires
         cotisation_etat_hors_militaires = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
+            bareme_by_categorie_salarie = _P.cotsoc.cotisations_employeur,
             bareme_name = 'ati',
             base = remuneration_principale,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -28,7 +28,7 @@ class ati_atiacl(Variable):
             )
         # ATIACL : pour les fonctionnaires territoriaux et hospitaliers
         cotisation_collectivites_locales = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
+            bareme_by_categorie_salarie = _P.cotsoc.cotisations_employeur,
             bareme_name = 'atiacl',
             base = remuneration_principale,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -93,7 +93,7 @@ class contribution_exceptionnelle_solidarite(Variable):
             )
         # Ces déductions sont négatives
         cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
+            bareme_by_categorie_salarie = parameters.cotsoc.cotisations_salarie,
             bareme_name = 'excep_solidarite',
             base = assujettis * min_(
                 remuneration_brute + supplement_familial_traitement + primes_fonction_publique + deduction,
@@ -138,7 +138,7 @@ class fonds_emploi_hospitalier(Variable):
 
         # Que pour fonctionnaires hospitaliers
         cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
+            bareme_by_categorie_salarie = _P.cotsoc.cotisations_employeur,
             bareme_name = 'feh',
             base = remuneration_principale,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -161,7 +161,7 @@ class ircantec_salarie(Variable):
         _P = parameters(period)
 
         ircantec = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie,
+            bareme_by_categorie_salarie = _P.cotsoc.cotisations_salarie,
             bareme_name = 'ircantec',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -185,7 +185,7 @@ class ircantec_employeur(Variable):
         _P = parameters(period)
 
         ircantec = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
+            bareme_by_categorie_salarie = _P.cotsoc.cotisations_employeur,
             bareme_name = 'ircantec',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
