@@ -182,7 +182,7 @@ class exoneration_cotisations_employeur_jei(Variable):
         exoneration = smic_proratise * 0.0
         for bareme_name in bareme_names:
             exoneration += apply_bareme_for_relevant_type_sal(
-                bareme_by_type_sal_name = bareme_by_type_sal_name,
+                bareme_by_categorie_salarie = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
                 base = assiette_allegement,
@@ -227,7 +227,7 @@ class exoneration_cotisations_employeur_jei(Variable):
         exoneration = smic_proratise * 0.0
         for bareme_name in bareme_names:
             exoneration += apply_bareme_for_relevant_type_sal(
-                bareme_by_type_sal_name = bareme_by_type_sal_name,
+                bareme_by_categorie_salarie = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
                 base = min_(assiette_allegement, plafond_part_remuneration * smic_proratise),
