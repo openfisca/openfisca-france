@@ -528,7 +528,7 @@ class arrco_salarie(Variable):
             * arrco_tranche_a_taux_salarie
             )
 
-        public = (
+        prive = (
             (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
             )
@@ -537,7 +537,7 @@ class arrco_salarie(Variable):
             cotisation_minimale
             * (arrco_tranche_a_taux_salarie == 0)
             + cotisation_entreprise
-            ) * public
+            ) * prive
 
 
 class arrco_employeur(Variable):
@@ -569,13 +569,13 @@ class arrco_employeur(Variable):
             * arrco_tranche_a_taux_employeur
             )
 
-        public = (
+        prive = (
             (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
             )
         return (
             cotisation_minimale * (arrco_tranche_a_taux_employeur == 0) + cotisation_entreprise
-            ) * public
+            ) * prive
 
 
 class chomage_salarie(Variable):
