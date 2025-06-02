@@ -254,7 +254,7 @@ class agff_employeur(Variable):
         parameters = parameters(period).cotsoc
 
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = parameters.cotisations_employeur,
+            bareme_by_categorie_salarie = parameters.cotisations_employeur,
             bareme_name = 'agffnc',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -262,7 +262,7 @@ class agff_employeur(Variable):
             )
 
         cotisation_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = parameters.cotisations_employeur,
+            bareme_by_categorie_salarie = parameters.cotisations_employeur,
             bareme_name = 'agffc',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -528,7 +528,7 @@ class arrco_salarie(Variable):
             * arrco_tranche_a_taux_salarie
             )
 
-        public = (
+        prive = (
             (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
             )
@@ -537,7 +537,7 @@ class arrco_salarie(Variable):
             cotisation_minimale
             * (arrco_tranche_a_taux_salarie == 0)
             + cotisation_entreprise
-            ) * public
+            ) * prive
 
 
 class arrco_employeur(Variable):
@@ -569,13 +569,13 @@ class arrco_employeur(Variable):
             * arrco_tranche_a_taux_employeur
             )
 
-        public = (
+        prive = (
             (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
             )
         return (
             cotisation_minimale * (arrco_tranche_a_taux_employeur == 0) + cotisation_entreprise
-            ) * public
+            ) * prive
 
 
 class chomage_salarie(Variable):
