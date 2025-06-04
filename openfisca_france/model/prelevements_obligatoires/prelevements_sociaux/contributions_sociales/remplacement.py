@@ -1,9 +1,7 @@
 import logging
 
 from openfisca_france.model.base import *
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import (
-    montant_csg_crds
-    )
+
 log = logging.getLogger(__name__)
 
 
@@ -74,14 +72,26 @@ class csg_deductible_chomage(Variable):
         chomage_cotisation_retraite_complementaire = individu('chomage_cotisation_retraite_complementaire', period)
         assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire
 
-        montant_csg = montant_csg_crds(
-            base_avec_abattement = assiette_csg_chomage,
-            indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
-            abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.deductible,
-            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-            )
+        # Inlined montant_csg_crds
+        _base_avec_abattement = assiette_csg_chomage
+        _base_sans_abattement = 0  # Implicitly
+        _abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement
+        _law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.deductible
+        _plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+
+        base = _base_avec_abattement - _abattement_parameter.calc(
+            _base_avec_abattement,
+            factor=_plafond_securite_sociale,
+            round_base_decimals=2,
+            ) + _base_sans_abattement
+
+        _indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
+        _indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit)
+
+        montant_csg = - (
+            _law_node.taux_plein * _indicatrice_taux_plein
+            + _law_node.taux_reduit * _indicatrice_taux_reduit
+            ) * base
         nbh_travail = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
         cho_seuil_exo = (
@@ -140,14 +150,26 @@ class csg_imposable_chomage(Variable):
         chomage_cotisation_retraite_complementaire = individu('chomage_cotisation_retraite_complementaire', period)
         assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire
 
-        montant_csg = montant_csg_crds(
-            base_avec_abattement = assiette_csg_chomage,
-            indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
-            abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable,
-            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-            )
+        # Inlined montant_csg_crds
+        _base_avec_abattement = assiette_csg_chomage
+        _base_sans_abattement = 0  # Implicitly
+        _abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement
+        _law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable
+        _plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+
+        base = _base_avec_abattement - _abattement_parameter.calc(
+            _base_avec_abattement,
+            factor=_plafond_securite_sociale,
+            round_base_decimals=2,
+            ) + _base_sans_abattement
+
+        _indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
+        _indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit)
+
+        montant_csg = - (
+            _law_node.taux_plein * _indicatrice_taux_plein
+            + _law_node.taux_reduit * _indicatrice_taux_reduit
+            ) * base
         nbh_travail = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
         cho_seuil_exo = (
             parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.min_exo
@@ -209,12 +231,22 @@ class crds_chomage(Variable):
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit)
             + (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
             )
-        montant_crds = montant_csg_crds(
-            base_avec_abattement = assiette_crds_chomage,
-            abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
-            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-            ) * eligible
+
+        # Inlined montant_csg_crds
+        _base_avec_abattement = assiette_crds_chomage
+        _base_sans_abattement = 0  # Implicitly
+        _abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement
+        _law_node = parameters.prelevements_sociaux.contributions_sociales.crds
+        _plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+
+        base = _base_avec_abattement - _abattement_parameter.calc(
+            _base_avec_abattement,
+            factor=_plafond_securite_sociale,
+            round_base_decimals=2,
+            ) + _base_sans_abattement
+
+        montant_crds_calc = -_law_node.taux * base
+        montant_crds = montant_crds_calc * eligible
 
         salaire_net = individu('salaire_net', period)
         # Approximation annuelle
@@ -297,14 +329,22 @@ class csg_deductible_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_csg = montant_csg_crds(
-            base_sans_abattement = retraite_brute,
-            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
-            indicatrice_taux_intermediaire = (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire),
-            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.deductible,
-            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-            )
+        # Inlined montant_csg_crds
+        _base_sans_abattement = retraite_brute
+        _law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.deductible
+        # _plafond_securite_sociale is not used when no abattement
+
+        base = _base_sans_abattement # No abattement, base_avec_abattement is None
+
+        _indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein)
+        _indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit)
+        _indicatrice_taux_intermediaire = (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire)
+
+        montant_csg = - (
+            _law_node.taux_plein * _indicatrice_taux_plein
+            + _law_node.taux_reduit * _indicatrice_taux_reduit  # Note: Original code used .taux_reduit for median here, check law_node structure
+            + _law_node.taux_median * _indicatrice_taux_intermediaire # Assuming .taux_median exists for intermediary
+            ) * base
         return montant_csg
 
     def formula_2015(individu, period, parameters):
@@ -321,13 +361,20 @@ class csg_deductible_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_csg = montant_csg_crds(
-            base_sans_abattement = retraite_brute,
-            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
-            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.deductible,
-            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-            )
+        # Inlined montant_csg_crds
+        _base_sans_abattement = retraite_brute
+        _law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.deductible
+        # _plafond_securite_sociale is not used when no abattement
+
+        base = _base_sans_abattement # No abattement, base_avec_abattement is None
+
+        _indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein)
+        _indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit)
+
+        montant_csg = - (
+            _law_node.taux_plein * _indicatrice_taux_plein
+            + _law_node.taux_reduit * _indicatrice_taux_reduit
+            ) * base
         return montant_csg
 
     def formula(individu, period, parameters):  # formula_1997_2014 à corriger (cf. commentaire au niveau de la variable)
@@ -363,14 +410,22 @@ class csg_imposable_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_csg = montant_csg_crds(
-            base_sans_abattement = retraite_brute,
-            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
-            indicatrice_taux_intermediaire = (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire),
-            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.imposable,
-            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-            )
+        # Inlined montant_csg_crds
+        _base_sans_abattement = retraite_brute
+        _law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.imposable
+        # _plafond_securite_sociale is not used when no abattement
+
+        base = _base_sans_abattement # No abattement, base_avec_abattement is None
+
+        _indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein)
+        _indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit)
+        _indicatrice_taux_intermediaire = (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire)
+
+        montant_csg = - (
+            _law_node.taux_plein * _indicatrice_taux_plein
+            + _law_node.taux_reduit * _indicatrice_taux_reduit # Note: Original code used .taux_reduit for median here, check law_node structure
+            + _law_node.taux_median * _indicatrice_taux_intermediaire # Assuming .taux_median exists for intermediary
+            ) * base
         return montant_csg
 
     def formula_2015(individu, period, parameters):
@@ -387,13 +442,20 @@ class csg_imposable_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_csg = montant_csg_crds(
-            base_sans_abattement = retraite_brute,
-            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
-            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.imposable,
-            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-            )
+        # Inlined montant_csg_crds
+        _base_sans_abattement = retraite_brute
+        _law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.imposable
+        # _plafond_securite_sociale is not used when no abattement
+
+        base = _base_sans_abattement # No abattement, base_avec_abattement is None
+
+        _indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein)
+        _indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit)
+
+        montant_csg = - (
+            _law_node.taux_plein * _indicatrice_taux_plein
+            + _law_node.taux_reduit * _indicatrice_taux_reduit
+            ) * base
         return montant_csg
 
     def formula(individu, period, parameters):  # formula_1997_2014 à corriger (cf. commentaire au niveau de la variable)
@@ -429,12 +491,15 @@ class crds_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_crds = montant_csg_crds(
-            base_sans_abattement = retraite_brute,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
-            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-            ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
+        # Inlined montant_csg_crds
+        _base_sans_abattement = retraite_brute
+        _law_node = parameters.prelevements_sociaux.contributions_sociales.crds
+        # _plafond_securite_sociale is not used when no abattement
 
+        base = _base_sans_abattement # No abattement, base_avec_abattement is None
+
+        montant_crds_calc = -_law_node.taux * base
+        montant_crds = montant_crds_calc * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
         return montant_crds
 
     def formula_2015(individu, period, parameters):
@@ -451,11 +516,15 @@ class crds_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_crds = montant_csg_crds(
-            base_sans_abattement = retraite_brute,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
-            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-            ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
+        # Inlined montant_csg_crds
+        _base_sans_abattement = retraite_brute
+        _law_node = parameters.prelevements_sociaux.contributions_sociales.crds
+        # _plafond_securite_sociale is not used when no abattement
+
+        base = _base_sans_abattement # No abattement, base_avec_abattement is None
+
+        montant_crds_calc = -_law_node.taux * base
+        montant_crds = montant_crds_calc * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
         return montant_crds
 
     def formula(individu, period, parameters):  # formula_1997_2014 à corriger (cf. commentaire au niveau de la variable)

@@ -3,6 +3,7 @@ import logging
 from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
 
 from openfisca_core.periods import Period
+from openfisca_core.dates import date
 
 from openfisca_france.model.base import *
 
@@ -327,74 +328,211 @@ class allegement_general(Variable):
         exoneration_cotisations_employeur_tode = individu('exoneration_cotisations_employeur_tode', period)
         non_cumulee = not_(exoneration_cotisations_employeur_jei + exoneration_cotisations_employeur_tode)
 
-        # switch on 3 possible payment options
-        allegement = switch_on_allegement_mode(
-            individu, period, parameters,
-            allegement_mode_recouvrement,
-            'allegement_general',
+        # Inlined logic from switch_on_allegement_mode:
+        # variable_name is 'allegement_general'
+        # compute_function becomes compute_allegement_general
+        local_compute_function = compute_allegement_general
+        TypesAllegementModeRecouvrement = allegement_mode_recouvrement.possible_values
+        recouvrement_fin_annee = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.fin_d_annee)
+        recouvrement_anticipe = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.anticipe)
+        recouvrement_progressif = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.progressif)
+
+        # Fully inlined logic for allegement calculation
+        # local_compute_function (compute_allegement_general) is now inlined below
+
+        TypesAllegementModeRecouvrement = allegement_mode_recouvrement.possible_values
+        recouvrement_fin_annee = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.fin_d_annee)
+        recouvrement_anticipe = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.anticipe)
+        recouvrement_progressif = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.progressif)
+
+        allegement_annuel_value = 0.0
+        if recouvrement_fin_annee:
+            if period.start.month == 12:
+                sum_val_annuel = 0.0
+                for sub_period_ann in period.this_year.get_subperiods(MONTH):
+                    calc_assiette_ann = individu('assiette_allegement', sub_period_ann)
+                    calc_smic_proratise_ann = individu('smic_proratise', sub_period_ann)
+                    calc_effectif_entreprise_ann = individu('effectif_entreprise', sub_period_ann)
+                    calc_allegement_general_params_ann = parameters(sub_period_ann).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
+                    calc_seuil_ann = 0.0
+                    calc_tx_max_ann = 0.0
+                    current_period_start_date_ann = sub_period_ann.start.date
+                    if date(2003, 7, 1) <= current_period_start_date_ann <= date(2005, 6, 30):
+                        calc_seuil_ann = calc_allegement_general_params_ann.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+                        calc_tx_max_ann = calc_allegement_general_params_ann.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+                    elif date(2005, 7, 1) <= current_period_start_date_ann <= date(2019, 12, 31):
+                        calc_seuil_ann = calc_allegement_general_params_ann.ensemble_des_entreprises.plafond
+                        calc_petite_entreprise_ann = (calc_effectif_entreprise_ann < 20)
+                        calc_tx_max_ann = (
+                            calc_allegement_general_params_ann.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus * not_(calc_petite_entreprise_ann)
+                            + calc_allegement_general_params_ann.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries * calc_petite_entreprise_ann)
+                    else:
+                        calc_seuil_ann = calc_allegement_general_params_ann.ensemble_des_entreprises.plafond
+                        calc_petite_entreprise_ann = (calc_effectif_entreprise_ann < 50)
+                        calc_tx_max_ann = (
+                            calc_allegement_general_params_ann.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus * not_(calc_petite_entreprise_ann)
+                            + calc_allegement_general_params_ann.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries * calc_petite_entreprise_ann)
+                    computed_value_for_this_call_ann = 0.0
+                    if calc_seuil_ann <= 1:
+                        computed_value_for_this_call_ann = 0.0
+                    else:
+                        calc_ratio_smic_salaire_ann = calc_smic_proratise_ann / (calc_assiette_ann + 1e-16)
+                        calc_taux_allegement_general_ann = round_(calc_tx_max_ann * min_(1, max_(calc_seuil_ann * calc_ratio_smic_salaire_ann - 1, 0) / (calc_seuil_ann - 1)), 4)
+                        computed_value_for_this_call_ann = calc_taux_allegement_general_ann * calc_assiette_ann
+                    sum_val_annuel += computed_value_for_this_call_ann
+                allegement_annuel_value = sum_val_annuel
+
+        allegement_anticipe_value = 0.0
+        if recouvrement_anticipe:
+            if period.start.month < 12:
+                current_period_ant_direct = period.first_month
+                calc_assiette_ant_direct = individu('assiette_allegement', current_period_ant_direct)
+                calc_smic_proratise_ant_direct = individu('smic_proratise', current_period_ant_direct)
+                calc_effectif_entreprise_ant_direct = individu('effectif_entreprise', current_period_ant_direct)
+                calc_allegement_general_params_ant_direct = parameters(current_period_ant_direct).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
+                calc_seuil_ant_direct = 0.0
+                calc_tx_max_ant_direct = 0.0
+                current_period_start_date_ant_direct = current_period_ant_direct.start.date
+                if date(2003, 7, 1) <= current_period_start_date_ant_direct <= date(2005, 6, 30):
+                    calc_seuil_ant_direct = calc_allegement_general_params_ant_direct.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+                    calc_tx_max_ant_direct = calc_allegement_general_params_ant_direct.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+                elif date(2005, 7, 1) <= current_period_start_date_ant_direct <= date(2019, 12, 31):
+                    calc_seuil_ant_direct = calc_allegement_general_params_ant_direct.ensemble_des_entreprises.plafond
+                    calc_petite_entreprise_ant_direct = (calc_effectif_entreprise_ant_direct < 20)
+                    calc_tx_max_ant_direct = (
+                        calc_allegement_general_params_ant_direct.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus * not_(calc_petite_entreprise_ant_direct)
+                        + calc_allegement_general_params_ant_direct.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries * calc_petite_entreprise_ant_direct)
+                else:
+                    calc_seuil_ant_direct = calc_allegement_general_params_ant_direct.ensemble_des_entreprises.plafond
+                    calc_petite_entreprise_ant_direct = (calc_effectif_entreprise_ant_direct < 50)
+                    calc_tx_max_ant_direct = (
+                        calc_allegement_general_params_ant_direct.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus * not_(calc_petite_entreprise_ant_direct)
+                        + calc_allegement_general_params_ant_direct.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries * calc_petite_entreprise_ant_direct)
+                computed_value_for_this_call_ant_direct = 0.0
+                if calc_seuil_ant_direct <= 1:
+                    computed_value_for_this_call_ant_direct = 0.0
+                else:
+                    calc_ratio_smic_salaire_ant_direct = calc_smic_proratise_ant_direct / (calc_assiette_ant_direct + 1e-16)
+                    calc_taux_allegement_general_ant_direct = round_(calc_tx_max_ant_direct * min_(1, max_(calc_seuil_ant_direct * calc_ratio_smic_salaire_ant_direct - 1, 0) / (calc_seuil_ant_direct - 1)), 4)
+                    computed_value_for_this_call_ant_direct = calc_taux_allegement_general_ant_direct * calc_assiette_ant_direct
+                allegement_anticipe_value = computed_value_for_this_call_ant_direct
+            elif period.start.month == 12:
+                cumul_anticipe = individu('allegement_general', Period(('month', period.start.offset('first-of', 'year'), 11)), options = [ADD])
+                sum_val_ant_sum = 0.0
+                for sub_period_ant_sum in period.this_year.get_subperiods(MONTH):
+                    calc_assiette_ant_sum = individu('assiette_allegement', sub_period_ant_sum)
+                    calc_smic_proratise_ant_sum = individu('smic_proratise', sub_period_ant_sum)
+                    calc_effectif_entreprise_ant_sum = individu('effectif_entreprise', sub_period_ant_sum)
+                    calc_allegement_general_params_ant_sum = parameters(sub_period_ant_sum).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
+                    calc_seuil_ant_sum = 0.0
+                    calc_tx_max_ant_sum = 0.0
+                    current_period_start_date_ant_sum = sub_period_ant_sum.start.date
+                    if date(2003, 7, 1) <= current_period_start_date_ant_sum <= date(2005, 6, 30):
+                        calc_seuil_ant_sum = calc_allegement_general_params_ant_sum.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+                        calc_tx_max_ant_sum = calc_allegement_general_params_ant_sum.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+                    elif date(2005, 7, 1) <= current_period_start_date_ant_sum <= date(2019, 12, 31):
+                        calc_seuil_ant_sum = calc_allegement_general_params_ant_sum.ensemble_des_entreprises.plafond
+                        calc_petite_entreprise_ant_sum = (calc_effectif_entreprise_ant_sum < 20)
+                        calc_tx_max_ant_sum = (
+                            calc_allegement_general_params_ant_sum.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus * not_(calc_petite_entreprise_ant_sum)
+                            + calc_allegement_general_params_ant_sum.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries * calc_petite_entreprise_ant_sum)
+                    else:
+                        calc_seuil_ant_sum = calc_allegement_general_params_ant_sum.ensemble_des_entreprises.plafond
+                        calc_petite_entreprise_ant_sum = (calc_effectif_entreprise_ant_sum < 50)
+                        calc_tx_max_ant_sum = (
+                            calc_allegement_general_params_ant_sum.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus * not_(calc_petite_entreprise_ant_sum)
+                            + calc_allegement_general_params_ant_sum.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries * calc_petite_entreprise_ant_sum)
+                    computed_value_for_this_call_ant_sum = 0.0
+                    if calc_seuil_ant_sum <= 1:
+                        computed_value_for_this_call_ant_sum = 0.0
+                    else:
+                        calc_ratio_smic_salaire_ant_sum = calc_smic_proratise_ant_sum / (calc_assiette_ant_sum + 1e-16)
+                        calc_taux_allegement_general_ant_sum = round_(calc_tx_max_ant_sum * min_(1, max_(calc_seuil_ant_sum * calc_ratio_smic_salaire_ant_sum - 1, 0) / (calc_seuil_ant_sum - 1)), 4)
+                        computed_value_for_this_call_ant_sum = calc_taux_allegement_general_ant_sum * calc_assiette_ant_sum
+                    sum_val_ant_sum += computed_value_for_this_call_ant_sum
+                allegement_anticipe_value = sum_val_ant_sum - cumul_anticipe
+
+        allegement_progressif_value = 0.0
+        if recouvrement_progressif:
+            if period.start.month == 1:
+                current_period_prog_direct = period.first_month
+                calc_assiette_prog_direct = individu('assiette_allegement', current_period_prog_direct)
+                calc_smic_proratise_prog_direct = individu('smic_proratise', current_period_prog_direct)
+                calc_effectif_entreprise_prog_direct = individu('effectif_entreprise', current_period_prog_direct)
+                calc_allegement_general_params_prog_direct = parameters(current_period_prog_direct).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
+                calc_seuil_prog_direct = 0.0
+                calc_tx_max_prog_direct = 0.0
+                current_period_start_date_prog_direct = current_period_prog_direct.start.date
+                if date(2003, 7, 1) <= current_period_start_date_prog_direct <= date(2005, 6, 30):
+                    calc_seuil_prog_direct = calc_allegement_general_params_prog_direct.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+                    calc_tx_max_prog_direct = calc_allegement_general_params_prog_direct.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+                elif date(2005, 7, 1) <= current_period_start_date_prog_direct <= date(2019, 12, 31):
+                    calc_seuil_prog_direct = calc_allegement_general_params_prog_direct.ensemble_des_entreprises.plafond
+                    calc_petite_entreprise_prog_direct = (calc_effectif_entreprise_prog_direct < 20)
+                    calc_tx_max_prog_direct = (
+                        calc_allegement_general_params_prog_direct.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus * not_(calc_petite_entreprise_prog_direct)
+                        + calc_allegement_general_params_prog_direct.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries * calc_petite_entreprise_prog_direct)
+                else:
+                    calc_seuil_prog_direct = calc_allegement_general_params_prog_direct.ensemble_des_entreprises.plafond
+                    calc_petite_entreprise_prog_direct = (calc_effectif_entreprise_prog_direct < 50)
+                    calc_tx_max_prog_direct = (
+                        calc_allegement_general_params_prog_direct.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus * not_(calc_petite_entreprise_prog_direct)
+                        + calc_allegement_general_params_prog_direct.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries * calc_petite_entreprise_prog_direct)
+                computed_value_for_this_call_prog_direct = 0.0
+                if calc_seuil_prog_direct <= 1:
+                    computed_value_for_this_call_prog_direct = 0.0
+                else:
+                    calc_ratio_smic_salaire_prog_direct = calc_smic_proratise_prog_direct / (calc_assiette_prog_direct + 1e-16)
+                    calc_taux_allegement_general_prog_direct = round_(calc_tx_max_prog_direct * min_(1, max_(calc_seuil_prog_direct * calc_ratio_smic_salaire_prog_direct - 1, 0) / (calc_seuil_prog_direct - 1)), 4)
+                    computed_value_for_this_call_prog_direct = calc_taux_allegement_general_prog_direct * calc_assiette_prog_direct
+                allegement_progressif_value = computed_value_for_this_call_prog_direct
+            elif period.start.month > 1:
+                up_to_this_month = Period(('month', period.start.offset('first-of', 'year'), period.start.month))
+                up_to_previous_month = Period(('month', period.start.offset('first-of', 'year'), period.start.month - 1))
+                cumul_progressif = individu('allegement_general', up_to_previous_month, options = [ADD])
+                sum_val_prog_sum = 0.0
+                for sub_period_prog_sum in up_to_this_month.get_subperiods(MONTH):
+                    calc_assiette_prog_sum = individu('assiette_allegement', sub_period_prog_sum)
+                    calc_smic_proratise_prog_sum = individu('smic_proratise', sub_period_prog_sum)
+                    calc_effectif_entreprise_prog_sum = individu('effectif_entreprise', sub_period_prog_sum)
+                    calc_allegement_general_params_prog_sum = parameters(sub_period_prog_sum).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
+                    calc_seuil_prog_sum = 0.0
+                    calc_tx_max_prog_sum = 0.0
+                    current_period_start_date_prog_sum = sub_period_prog_sum.start.date
+                    if date(2003, 7, 1) <= current_period_start_date_prog_sum <= date(2005, 6, 30):
+                        calc_seuil_prog_sum = calc_allegement_general_params_prog_sum.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+                        calc_tx_max_prog_sum = calc_allegement_general_params_prog_sum.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+                    elif date(2005, 7, 1) <= current_period_start_date_prog_sum <= date(2019, 12, 31):
+                        calc_seuil_prog_sum = calc_allegement_general_params_prog_sum.ensemble_des_entreprises.plafond
+                        calc_petite_entreprise_prog_sum = (calc_effectif_entreprise_prog_sum < 20)
+                        calc_tx_max_prog_sum = (
+                            calc_allegement_general_params_prog_sum.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus * not_(calc_petite_entreprise_prog_sum)
+                            + calc_allegement_general_params_prog_sum.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries * calc_petite_entreprise_prog_sum)
+                    else:
+                        calc_seuil_prog_sum = calc_allegement_general_params_prog_sum.ensemble_des_entreprises.plafond
+                        calc_petite_entreprise_prog_sum = (calc_effectif_entreprise_prog_sum < 50)
+                        calc_tx_max_prog_sum = (
+                            calc_allegement_general_params_prog_sum.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus * not_(calc_petite_entreprise_prog_sum)
+                            + calc_allegement_general_params_prog_sum.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries * calc_petite_entreprise_prog_sum)
+                    computed_value_for_this_call_prog_sum = 0.0
+                    if calc_seuil_prog_sum <= 1:
+                        computed_value_for_this_call_prog_sum = 0.0
+                    else:
+                        calc_ratio_smic_salaire_prog_sum = calc_smic_proratise_prog_sum / (calc_assiette_prog_sum + 1e-16)
+                        calc_taux_allegement_general_prog_sum = round_(calc_tx_max_prog_sum * min_(1, max_(calc_seuil_prog_sum * calc_ratio_smic_salaire_prog_sum - 1, 0) / (calc_seuil_prog_sum - 1)), 4)
+                        computed_value_for_this_call_prog_sum = calc_taux_allegement_general_prog_sum * calc_assiette_prog_sum
+                    sum_val_prog_sum += computed_value_for_this_call_prog_sum
+                allegement_progressif_value = sum_val_prog_sum - cumul_progressif
+
+        allegement = (
+            (recouvrement_fin_annee * allegement_annuel_value)
+            + (recouvrement_anticipe * allegement_anticipe_value)
+            + (recouvrement_progressif * allegement_progressif_value)
             )
 
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
-
-def compute_allegement_general(individu, period, parameters):
-    '''
-        Exonération générale de cotisations patronales
-        https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
-    '''
-
-    assiette = individu('assiette_allegement', period)
-    smic_proratise = individu('smic_proratise', period)
-    effectif_entreprise = individu('effectif_entreprise', period)
-
-    # Calcul du taux
-    # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
-    # Le montant est calculé chaque année civile, pour chaque salarié ;
-    # il est égal au produit de la totalité de la rémunération annuelle telle
-    # que visée à l’article L. 242-1 du code de la Sécurité sociale par un
-    # coefficient.
-    # Ce montant est majoré de 10 % pour les entreprises de travail temporaire
-    # au titre des salariés temporaires pour lesquels elle est tenue à
-    # l’obligation d’indemnisation compensatrice de congés payés.
-
-    allegement_general = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
-
-    # Du 2003-07-01 au 2005-06-30
-    if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
-        seuil = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
-        tx_max = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
-    # Du 2005-07-01 au 2019-12-31
-    elif date(2005, 7, 1) <= period.start.date <= date(2019, 12, 31):
-        seuil = allegement_general.ensemble_des_entreprises.plafond
-        petite_entreprise = (effectif_entreprise < 20)
-        tx_max = (
-            allegement_general.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
-            * not_(petite_entreprise)
-            + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
-            * petite_entreprise
-            )
-    # Après le 2019-12-31
-    else:
-        seuil = allegement_general.ensemble_des_entreprises.plafond
-        petite_entreprise = (effectif_entreprise < 50)
-        tx_max = (
-            allegement_general.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus
-            * not_(petite_entreprise)
-            + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries
-            * petite_entreprise
-            )
-
-    if seuil <= 1:
-        return 0
-
-    ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
-
-    # règle d'arrondi: 4 décimales au dix-millième le plus proche
-    taux_allegement_general = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
-
-    # Montant de l'allegment
-    return taux_allegement_general * assiette
-
+        return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 class allegement_cotisation_allocations_familiales(Variable):
     value_type = float
@@ -428,38 +566,136 @@ class allegement_cotisation_allocations_familiales_base(Variable):
 
         non_cumulee = not_(exoneration_cotisations_employeur_jei)
 
-        # propose 3 modes de paiement possibles
-        allegement = switch_on_allegement_mode(
-            individu, period, parameters,
-            allegement_mode_recouvrement,
-            'allegement_cotisation_allocations_familiales_base',
+        # Fully inlined logic for allegement_cotisation_allocations_familiales_base
+        TypesAllegementModeRecouvrement = allegement_mode_recouvrement.possible_values
+        recouvrement_fin_annee = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.fin_d_annee)
+        recouvrement_anticipe = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.anticipe)
+        recouvrement_progressif = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.progressif)
+
+        allegement_annuel_value = 0.0
+        if recouvrement_fin_annee:
+            if period.start.month == 12:
+                sum_val_annuel_caf = 0.0
+                for sub_period_ann_caf in period.this_year.get_subperiods(MONTH):
+                    # BEGIN INLINE compute_allegement_cotisation_allocations_familiales_base for annuel
+                    calc_assiette_ann_caf = individu('assiette_allegement', sub_period_ann_caf)
+                    calc_smic_proratise_ann_caf = individu('smic_proratise', sub_period_ann_caf)
+                    calc_law_ann_caf = parameters(sub_period_ann_caf).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
+                    calc_taux_reduction_ann_caf = calc_law_ann_caf.reduction
+                    calc_plafond_reduction_ann_caf = 0.0
+                    if sub_period_ann_caf.start.year < 2024:
+                        calc_plafond_reduction_ann_caf = calc_law_ann_caf.plafond_smic * calc_smic_proratise_ann_caf
+                    else:
+                        calc_coefficient_proratisation_ann_caf = individu('coefficient_proratisation', sub_period_ann_caf)
+                        calc_parameters_smic_2023_12_ann_caf = parameters('2023-12').marche_travail.salaire_minimum.smic
+                        calc_smic_horaire_brut_2023_12_ann_caf = calc_parameters_smic_2023_12_ann_caf.smic_b_horaire
+                        calc_nbh_travail_2023_12_ann_caf = calc_parameters_smic_2023_12_ann_caf.nb_heures_travail_mensuel
+                        calc_smic_proratise_2O23_12_ann_caf = calc_coefficient_proratisation_ann_caf * calc_smic_horaire_brut_2023_12_ann_caf * calc_nbh_travail_2023_12_ann_caf
+                        calc_plafond_reduction_ann_caf = max_(calc_law_ann_caf.plafond_smic_courant * calc_smic_proratise_ann_caf, calc_law_ann_caf.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_ann_caf)
+                    computed_value_ann_caf = (calc_assiette_ann_caf < calc_plafond_reduction_ann_caf) * calc_taux_reduction_ann_caf * calc_assiette_ann_caf
+                    sum_val_annuel_caf += computed_value_ann_caf
+                    # END INLINE
+                allegement_annuel_value = sum_val_annuel_caf
+
+        allegement_anticipe_value = 0.0
+        if recouvrement_anticipe:
+            if period.start.month < 12:
+                current_period_ant_direct_caf = period.first_month
+                # BEGIN INLINE compute_allegement_cotisation_allocations_familiales_base for anticipe (direct)
+                calc_assiette_ant_direct_caf = individu('assiette_allegement', current_period_ant_direct_caf)
+                calc_smic_proratise_ant_direct_caf = individu('smic_proratise', current_period_ant_direct_caf)
+                calc_law_ant_direct_caf = parameters(current_period_ant_direct_caf).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
+                calc_taux_reduction_ant_direct_caf = calc_law_ant_direct_caf.reduction
+                calc_plafond_reduction_ant_direct_caf = 0.0
+                if current_period_ant_direct_caf.start.year < 2024:
+                    calc_plafond_reduction_ant_direct_caf = calc_law_ant_direct_caf.plafond_smic * calc_smic_proratise_ant_direct_caf
+                else:
+                    calc_coefficient_proratisation_ant_direct_caf = individu('coefficient_proratisation', current_period_ant_direct_caf)
+                    calc_parameters_smic_2023_12_ant_direct_caf = parameters('2023-12').marche_travail.salaire_minimum.smic
+                    calc_smic_horaire_brut_2023_12_ant_direct_caf = calc_parameters_smic_2023_12_ant_direct_caf.smic_b_horaire
+                    calc_nbh_travail_2023_12_ant_direct_caf = calc_parameters_smic_2023_12_ant_direct_caf.nb_heures_travail_mensuel
+                    calc_smic_proratise_2O23_12_ant_direct_caf = calc_coefficient_proratisation_ant_direct_caf * calc_smic_horaire_brut_2023_12_ant_direct_caf * calc_nbh_travail_2023_12_ant_direct_caf
+                    calc_plafond_reduction_ant_direct_caf = max_(calc_law_ant_direct_caf.plafond_smic_courant * calc_smic_proratise_ant_direct_caf, calc_law_ant_direct_caf.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_ant_direct_caf)
+                allegement_anticipe_value = (calc_assiette_ant_direct_caf < calc_plafond_reduction_ant_direct_caf) * calc_taux_reduction_ant_direct_caf * calc_assiette_ant_direct_caf
+                # END INLINE
+            elif period.start.month == 12:
+                cumul_anticipe_caf = individu('allegement_cotisation_allocations_familiales_base', Period(('month', period.start.offset('first-of', 'year'), 11)), options=[ADD])
+                sum_val_ant_sum_caf = 0.0
+                for sub_period_ant_sum_caf in period.this_year.get_subperiods(MONTH):
+                    # BEGIN INLINE compute_allegement_cotisation_allocations_familiales_base for anticipe (sum)
+                    calc_assiette_ant_sum_caf = individu('assiette_allegement', sub_period_ant_sum_caf)
+                    calc_smic_proratise_ant_sum_caf = individu('smic_proratise', sub_period_ant_sum_caf)
+                    calc_law_ant_sum_caf = parameters(sub_period_ant_sum_caf).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
+                    calc_taux_reduction_ant_sum_caf = calc_law_ant_sum_caf.reduction
+                    calc_plafond_reduction_ant_sum_caf = 0.0
+                    if sub_period_ant_sum_caf.start.year < 2024:
+                        calc_plafond_reduction_ant_sum_caf = calc_law_ant_sum_caf.plafond_smic * calc_smic_proratise_ant_sum_caf
+                    else:
+                        calc_coefficient_proratisation_ant_sum_caf = individu('coefficient_proratisation', sub_period_ant_sum_caf)
+                        calc_parameters_smic_2023_12_ant_sum_caf = parameters('2023-12').marche_travail.salaire_minimum.smic
+                        calc_smic_horaire_brut_2023_12_ant_sum_caf = calc_parameters_smic_2023_12_ant_sum_caf.smic_b_horaire
+                        calc_nbh_travail_2023_12_ant_sum_caf = calc_parameters_smic_2023_12_ant_sum_caf.nb_heures_travail_mensuel
+                        calc_smic_proratise_2O23_12_ant_sum_caf = calc_coefficient_proratisation_ant_sum_caf * calc_smic_horaire_brut_2023_12_ant_sum_caf * calc_nbh_travail_2023_12_ant_sum_caf
+                        calc_plafond_reduction_ant_sum_caf = max_(calc_law_ant_sum_caf.plafond_smic_courant * calc_smic_proratise_ant_sum_caf, calc_law_ant_sum_caf.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_ant_sum_caf)
+                    computed_value_ant_sum_caf = (calc_assiette_ant_sum_caf < calc_plafond_reduction_ant_sum_caf) * calc_taux_reduction_ant_sum_caf * calc_assiette_ant_sum_caf
+                    sum_val_ant_sum_caf += computed_value_ant_sum_caf
+                    # END INLINE
+                allegement_anticipe_value = sum_val_ant_sum_caf - cumul_anticipe_caf
+
+        allegement_progressif_value = 0.0
+        if recouvrement_progressif:
+            if period.start.month == 1:
+                current_period_prog_direct_caf = period.first_month
+                # BEGIN INLINE compute_allegement_cotisation_allocations_familiales_base for progressif (direct)
+                calc_assiette_prog_direct_caf = individu('assiette_allegement', current_period_prog_direct_caf)
+                calc_smic_proratise_prog_direct_caf = individu('smic_proratise', current_period_prog_direct_caf)
+                calc_law_prog_direct_caf = parameters(current_period_prog_direct_caf).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
+                calc_taux_reduction_prog_direct_caf = calc_law_prog_direct_caf.reduction
+                calc_plafond_reduction_prog_direct_caf = 0.0
+                if current_period_prog_direct_caf.start.year < 2024:
+                    calc_plafond_reduction_prog_direct_caf = calc_law_prog_direct_caf.plafond_smic * calc_smic_proratise_prog_direct_caf
+                else:
+                    calc_coefficient_proratisation_prog_direct_caf = individu('coefficient_proratisation', current_period_prog_direct_caf)
+                    calc_parameters_smic_2023_12_prog_direct_caf = parameters('2023-12').marche_travail.salaire_minimum.smic
+                    calc_smic_horaire_brut_2023_12_prog_direct_caf = calc_parameters_smic_2023_12_prog_direct_caf.smic_b_horaire
+                    calc_nbh_travail_2023_12_prog_direct_caf = calc_parameters_smic_2023_12_prog_direct_caf.nb_heures_travail_mensuel
+                    calc_smic_proratise_2O23_12_prog_direct_caf = calc_coefficient_proratisation_prog_direct_caf * calc_smic_horaire_brut_2023_12_prog_direct_caf * calc_nbh_travail_2023_12_prog_direct_caf
+                    calc_plafond_reduction_prog_direct_caf = max_(calc_law_prog_direct_caf.plafond_smic_courant * calc_smic_proratise_prog_direct_caf, calc_law_prog_direct_caf.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_prog_direct_caf)
+                allegement_progressif_value = (calc_assiette_prog_direct_caf < calc_plafond_reduction_prog_direct_caf) * calc_taux_reduction_prog_direct_caf * calc_assiette_prog_direct_caf
+                # END INLINE
+            elif period.start.month > 1:
+                up_to_this_month_caf = Period(('month', period.start.offset('first-of', 'year'), period.start.month))
+                up_to_previous_month_caf = Period(('month', period.start.offset('first-of', 'year'), period.start.month - 1))
+                cumul_progressif_caf = individu('allegement_cotisation_allocations_familiales_base', up_to_previous_month_caf, options=[ADD])
+                sum_val_prog_sum_caf = 0.0
+                for sub_period_prog_sum_caf in up_to_this_month_caf.get_subperiods(MONTH):
+                    # BEGIN INLINE compute_allegement_cotisation_allocations_familiales_base for progressif (sum)
+                    calc_assiette_prog_sum_caf = individu('assiette_allegement', sub_period_prog_sum_caf)
+                    calc_smic_proratise_prog_sum_caf = individu('smic_proratise', sub_period_prog_sum_caf)
+                    calc_law_prog_sum_caf = parameters(sub_period_prog_sum_caf).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
+                    calc_taux_reduction_prog_sum_caf = calc_law_prog_sum_caf.reduction
+                    calc_plafond_reduction_prog_sum_caf = 0.0
+                    if sub_period_prog_sum_caf.start.year < 2024:
+                        calc_plafond_reduction_prog_sum_caf = calc_law_prog_sum_caf.plafond_smic * calc_smic_proratise_prog_sum_caf
+                    else:
+                        calc_coefficient_proratisation_prog_sum_caf = individu('coefficient_proratisation', sub_period_prog_sum_caf)
+                        calc_parameters_smic_2023_12_prog_sum_caf = parameters('2023-12').marche_travail.salaire_minimum.smic
+                        calc_smic_horaire_brut_2023_12_prog_sum_caf = calc_parameters_smic_2023_12_prog_sum_caf.smic_b_horaire
+                        calc_nbh_travail_2023_12_prog_sum_caf = calc_parameters_smic_2023_12_prog_sum_caf.nb_heures_travail_mensuel
+                        calc_smic_proratise_2O23_12_prog_sum_caf = calc_coefficient_proratisation_prog_sum_caf * calc_smic_horaire_brut_2023_12_prog_sum_caf * calc_nbh_travail_2023_12_prog_sum_caf
+                        calc_plafond_reduction_prog_sum_caf = max_(calc_law_prog_sum_caf.plafond_smic_courant * calc_smic_proratise_prog_sum_caf, calc_law_prog_sum_caf.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_prog_sum_caf)
+                    computed_value_prog_sum_caf = (calc_assiette_prog_sum_caf < calc_plafond_reduction_prog_sum_caf) * calc_taux_reduction_prog_sum_caf * calc_assiette_prog_sum_caf
+                    sum_val_prog_sum_caf += computed_value_prog_sum_caf
+                    # END INLINE
+                allegement_progressif_value = sum_val_prog_sum_caf - cumul_progressif_caf
+
+        allegement = (
+            (recouvrement_fin_annee * allegement_annuel_value)
+            + (recouvrement_anticipe * allegement_anticipe_value)
+            + (recouvrement_progressif * allegement_progressif_value)
             )
 
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
-
-
-def compute_allegement_cotisation_allocations_familiales_base(individu, period, parameters):
-    '''
-        La réduction du taux de la cotisation d’allocations familiales
-    '''
-    assiette = individu('assiette_allegement', period)
-    smic_proratise = individu('smic_proratise', period)
-    law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
-    taux_reduction = law.reduction
-    if period.start.year < 2024:
-        plafond_reduction = law.plafond_smic * smic_proratise
-    else:
-        coefficient_proratisation = individu('coefficient_proratisation', period)
-        parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
-        smic_horaire_brut_2023_12 = parameters_smic_2023_12.smic_b_horaire
-        nbh_travail_2023_12 = parameters_smic_2023_12.nb_heures_travail_mensuel
-
-        smic_proratise_2O23_12 = coefficient_proratisation * smic_horaire_brut_2023_12 * nbh_travail_2023_12
-        plafond_reduction = max_(law.plafond_smic_courant * smic_proratise, law.plafond_smic_2023_12_31 * smic_proratise_2O23_12)
-
-    # Montant de l'allegment
-    return (assiette < plafond_reduction) * taux_reduction * assiette
-
 
 class allegement_cotisation_maladie(Variable):
     value_type = float
@@ -488,10 +724,133 @@ class allegement_cotisation_maladie_base(Variable):
         # propose 3 modes de paiement possibles
         allegement_mode_recouvrement = individu('allegement_cotisation_maladie_mode_recouvrement', period)
 
-        allegement = switch_on_allegement_mode(
-            individu, period, parameters,
-            allegement_mode_recouvrement,
-            'allegement_cotisation_maladie_base',
+        # Fully inlined logic for allegement_cotisation_maladie_base
+        TypesAllegementModeRecouvrement = allegement_mode_recouvrement.possible_values
+        recouvrement_fin_annee = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.fin_d_annee)
+        recouvrement_anticipe = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.anticipe)
+        recouvrement_progressif = (allegement_mode_recouvrement == TypesAllegementModeRecouvrement.progressif)
+
+        allegement_annuel_value = 0.0
+        if recouvrement_fin_annee:
+            if period.start.month == 12:
+                sum_val_annuel_maladie = 0.0
+                for sub_period_ann_maladie in period.this_year.get_subperiods(MONTH):
+                    # BEGIN INLINE compute_allegement_cotisation_maladie_base for annuel
+                    calc_allegement_mmid_ann_maladie = parameters(sub_period_ann_maladie).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
+                    calc_assiette_allegement_ann_maladie = individu('assiette_allegement', sub_period_ann_maladie)
+                    calc_smic_proratise_ann_maladie = individu('smic_proratise', sub_period_ann_maladie)
+                    calc_plafond_allegement_mmid_ann_maladie = 0.0
+                    if sub_period_ann_maladie.start.year < 2024:
+                        calc_plafond_allegement_mmid_ann_maladie = calc_allegement_mmid_ann_maladie.plafond * calc_smic_proratise_ann_maladie
+                    else:
+                        calc_coefficient_proratisation_ann_maladie = individu('coefficient_proratisation', sub_period_ann_maladie)
+                        calc_parameters_smic_2023_12_ann_maladie = parameters('2023-12').marche_travail.salaire_minimum.smic
+                        calc_smic_horaire_brut_2023_12_ann_maladie = calc_parameters_smic_2023_12_ann_maladie.smic_b_horaire
+                        calc_nbh_travail_2023_12_ann_maladie = calc_parameters_smic_2023_12_ann_maladie.nb_heures_travail_mensuel
+                        calc_smic_proratise_2O23_12_ann_maladie = calc_coefficient_proratisation_ann_maladie * calc_smic_horaire_brut_2023_12_ann_maladie * calc_nbh_travail_2023_12_ann_maladie
+                        calc_plafond_allegement_mmid_ann_maladie = max_(calc_allegement_mmid_ann_maladie.plafond_smic_courant * calc_smic_proratise_ann_maladie, calc_allegement_mmid_ann_maladie.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_ann_maladie)
+                    calc_sous_plafond_ann_maladie = calc_assiette_allegement_ann_maladie <= calc_plafond_allegement_mmid_ann_maladie
+                    computed_value_ann_maladie = calc_sous_plafond_ann_maladie * calc_allegement_mmid_ann_maladie.taux * calc_assiette_allegement_ann_maladie
+                    sum_val_annuel_maladie += computed_value_ann_maladie
+                    # END INLINE
+                allegement_annuel_value = sum_val_annuel_maladie
+
+        allegement_anticipe_value = 0.0
+        if recouvrement_anticipe:
+            if period.start.month < 12:
+                current_period_ant_direct_maladie = period.first_month
+                # BEGIN INLINE compute_allegement_cotisation_maladie_base for anticipe (direct)
+                calc_allegement_mmid_ant_direct_maladie = parameters(current_period_ant_direct_maladie).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
+                calc_assiette_allegement_ant_direct_maladie = individu('assiette_allegement', current_period_ant_direct_maladie)
+                calc_smic_proratise_ant_direct_maladie = individu('smic_proratise', current_period_ant_direct_maladie)
+                calc_plafond_allegement_mmid_ant_direct_maladie = 0.0
+                if current_period_ant_direct_maladie.start.year < 2024:
+                    calc_plafond_allegement_mmid_ant_direct_maladie = calc_allegement_mmid_ant_direct_maladie.plafond * calc_smic_proratise_ant_direct_maladie
+                else:
+                    calc_coefficient_proratisation_ant_direct_maladie = individu('coefficient_proratisation', current_period_ant_direct_maladie)
+                    calc_parameters_smic_2023_12_ant_direct_maladie = parameters('2023-12').marche_travail.salaire_minimum.smic
+                    calc_smic_horaire_brut_2023_12_ant_direct_maladie = calc_parameters_smic_2023_12_ant_direct_maladie.smic_b_horaire
+                    calc_nbh_travail_2023_12_ant_direct_maladie = calc_parameters_smic_2023_12_ant_direct_maladie.nb_heures_travail_mensuel
+                    calc_smic_proratise_2O23_12_ant_direct_maladie = calc_coefficient_proratisation_ant_direct_maladie * calc_smic_horaire_brut_2023_12_ant_direct_maladie * calc_nbh_travail_2023_12_ant_direct_maladie
+                    calc_plafond_allegement_mmid_ant_direct_maladie = max_(calc_allegement_mmid_ant_direct_maladie.plafond_smic_courant * calc_smic_proratise_ant_direct_maladie, calc_allegement_mmid_ant_direct_maladie.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_ant_direct_maladie)
+                calc_sous_plafond_ant_direct_maladie = calc_assiette_allegement_ant_direct_maladie <= calc_plafond_allegement_mmid_ant_direct_maladie
+                allegement_anticipe_value = calc_sous_plafond_ant_direct_maladie * calc_allegement_mmid_ant_direct_maladie.taux * calc_assiette_allegement_ant_direct_maladie
+                # END INLINE
+            elif period.start.month == 12:
+                cumul_anticipe_maladie = individu('allegement_cotisation_maladie_base', Period(('month', period.start.offset('first-of', 'year'), 11)), options=[ADD])
+                sum_val_ant_sum_maladie = 0.0
+                for sub_period_ant_sum_maladie in period.this_year.get_subperiods(MONTH):
+                    # BEGIN INLINE compute_allegement_cotisation_maladie_base for anticipe (sum)
+                    calc_allegement_mmid_ant_sum_maladie = parameters(sub_period_ant_sum_maladie).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
+                    calc_assiette_allegement_ant_sum_maladie = individu('assiette_allegement', sub_period_ant_sum_maladie)
+                    calc_smic_proratise_ant_sum_maladie = individu('smic_proratise', sub_period_ant_sum_maladie)
+                    calc_plafond_allegement_mmid_ant_sum_maladie = 0.0
+                    if sub_period_ant_sum_maladie.start.year < 2024:
+                        calc_plafond_allegement_mmid_ant_sum_maladie = calc_allegement_mmid_ant_sum_maladie.plafond * calc_smic_proratise_ant_sum_maladie
+                    else:
+                        calc_coefficient_proratisation_ant_sum_maladie = individu('coefficient_proratisation', sub_period_ant_sum_maladie)
+                        calc_parameters_smic_2023_12_ant_sum_maladie = parameters('2023-12').marche_travail.salaire_minimum.smic
+                        calc_smic_horaire_brut_2023_12_ant_sum_maladie = calc_parameters_smic_2023_12_ant_sum_maladie.smic_b_horaire
+                        calc_nbh_travail_2023_12_ant_sum_maladie = calc_parameters_smic_2023_12_ant_sum_maladie.nb_heures_travail_mensuel
+                        calc_smic_proratise_2O23_12_ant_sum_maladie = calc_coefficient_proratisation_ant_sum_maladie * calc_smic_horaire_brut_2023_12_ant_sum_maladie * calc_nbh_travail_2023_12_ant_sum_maladie
+                        calc_plafond_allegement_mmid_ant_sum_maladie = max_(calc_allegement_mmid_ant_sum_maladie.plafond_smic_courant * calc_smic_proratise_ant_sum_maladie, calc_allegement_mmid_ant_sum_maladie.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_ant_sum_maladie)
+                    calc_sous_plafond_ant_sum_maladie = calc_assiette_allegement_ant_sum_maladie <= calc_plafond_allegement_mmid_ant_sum_maladie
+                    computed_value_ant_sum_maladie = calc_sous_plafond_ant_sum_maladie * calc_allegement_mmid_ant_sum_maladie.taux * calc_assiette_allegement_ant_sum_maladie
+                    sum_val_ant_sum_maladie += computed_value_ant_sum_maladie
+                    # END INLINE
+                allegement_anticipe_value = sum_val_ant_sum_maladie - cumul_anticipe_maladie
+
+        allegement_progressif_value = 0.0
+        if recouvrement_progressif:
+            if period.start.month == 1:
+                current_period_prog_direct_maladie = period.first_month
+                # BEGIN INLINE compute_allegement_cotisation_maladie_base for progressif (direct)
+                calc_allegement_mmid_prog_direct_maladie = parameters(current_period_prog_direct_maladie).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
+                calc_assiette_allegement_prog_direct_maladie = individu('assiette_allegement', current_period_prog_direct_maladie)
+                calc_smic_proratise_prog_direct_maladie = individu('smic_proratise', current_period_prog_direct_maladie)
+                calc_plafond_allegement_mmid_prog_direct_maladie = 0.0
+                if current_period_prog_direct_maladie.start.year < 2024:
+                    calc_plafond_allegement_mmid_prog_direct_maladie = calc_allegement_mmid_prog_direct_maladie.plafond * calc_smic_proratise_prog_direct_maladie
+                else:
+                    calc_coefficient_proratisation_prog_direct_maladie = individu('coefficient_proratisation', current_period_prog_direct_maladie)
+                    calc_parameters_smic_2023_12_prog_direct_maladie = parameters('2023-12').marche_travail.salaire_minimum.smic
+                    calc_smic_horaire_brut_2023_12_prog_direct_maladie = calc_parameters_smic_2023_12_prog_direct_maladie.smic_b_horaire
+                    calc_nbh_travail_2023_12_prog_direct_maladie = calc_parameters_smic_2023_12_prog_direct_maladie.nb_heures_travail_mensuel
+                    calc_smic_proratise_2O23_12_prog_direct_maladie = calc_coefficient_proratisation_prog_direct_maladie * calc_smic_horaire_brut_2023_12_prog_direct_maladie * calc_nbh_travail_2023_12_prog_direct_maladie
+                    calc_plafond_allegement_mmid_prog_direct_maladie = max_(calc_allegement_mmid_prog_direct_maladie.plafond_smic_courant * calc_smic_proratise_prog_direct_maladie, calc_allegement_mmid_prog_direct_maladie.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_prog_direct_maladie)
+                calc_sous_plafond_prog_direct_maladie = calc_assiette_allegement_prog_direct_maladie <= calc_plafond_allegement_mmid_prog_direct_maladie
+                allegement_progressif_value = calc_sous_plafond_prog_direct_maladie * calc_allegement_mmid_prog_direct_maladie.taux * calc_assiette_allegement_prog_direct_maladie
+                # END INLINE
+            elif period.start.month > 1:
+                up_to_this_month_maladie = Period(('month', period.start.offset('first-of', 'year'), period.start.month))
+                up_to_previous_month_maladie = Period(('month', period.start.offset('first-of', 'year'), period.start.month - 1))
+                cumul_progressif_maladie = individu('allegement_cotisation_maladie_base', up_to_previous_month_maladie, options=[ADD])
+                sum_val_prog_sum_maladie = 0.0
+                for sub_period_prog_sum_maladie in up_to_this_month_maladie.get_subperiods(MONTH):
+                    # BEGIN INLINE compute_allegement_cotisation_maladie_base for progressif (sum)
+                    calc_allegement_mmid_prog_sum_maladie = parameters(sub_period_prog_sum_maladie).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
+                    calc_assiette_allegement_prog_sum_maladie = individu('assiette_allegement', sub_period_prog_sum_maladie)
+                    calc_smic_proratise_prog_sum_maladie = individu('smic_proratise', sub_period_prog_sum_maladie)
+                    calc_plafond_allegement_mmid_prog_sum_maladie = 0.0
+                    if sub_period_prog_sum_maladie.start.year < 2024:
+                        calc_plafond_allegement_mmid_prog_sum_maladie = calc_allegement_mmid_prog_sum_maladie.plafond * calc_smic_proratise_prog_sum_maladie
+                    else:
+                        calc_coefficient_proratisation_prog_sum_maladie = individu('coefficient_proratisation', sub_period_prog_sum_maladie)
+                        calc_parameters_smic_2023_12_prog_sum_maladie = parameters('2023-12').marche_travail.salaire_minimum.smic
+                        calc_smic_horaire_brut_2023_12_prog_sum_maladie = calc_parameters_smic_2023_12_prog_sum_maladie.smic_b_horaire
+                        calc_nbh_travail_2023_12_prog_sum_maladie = calc_parameters_smic_2023_12_prog_sum_maladie.nb_heures_travail_mensuel
+                        calc_smic_proratise_2O23_12_prog_sum_maladie = calc_coefficient_proratisation_prog_sum_maladie * calc_smic_horaire_brut_2023_12_prog_sum_maladie * calc_nbh_travail_2023_12_prog_sum_maladie
+                        calc_plafond_allegement_mmid_prog_sum_maladie = max_(calc_allegement_mmid_prog_sum_maladie.plafond_smic_courant * calc_smic_proratise_prog_sum_maladie, calc_allegement_mmid_prog_sum_maladie.plafond_smic_2023_12_31 * calc_smic_proratise_2O23_12_prog_sum_maladie)
+                    calc_sous_plafond_prog_sum_maladie = calc_assiette_allegement_prog_sum_maladie <= calc_plafond_allegement_mmid_prog_sum_maladie
+                    computed_value_prog_sum_maladie = calc_sous_plafond_prog_sum_maladie * calc_allegement_mmid_prog_sum_maladie.taux * calc_assiette_allegement_prog_sum_maladie
+                    sum_val_prog_sum_maladie += computed_value_prog_sum_maladie
+                    # END INLINE
+                allegement_progressif_value = sum_val_prog_sum_maladie - cumul_progressif_maladie
+
+        allegement = (
+            (recouvrement_fin_annee * allegement_annuel_value)
+            + (recouvrement_anticipe * allegement_anticipe_value)
+            + (recouvrement_progressif * allegement_progressif_value)
             )
 
         return allegement
