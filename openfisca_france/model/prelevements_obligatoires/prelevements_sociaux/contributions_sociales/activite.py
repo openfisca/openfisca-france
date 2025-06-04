@@ -1,7 +1,6 @@
 import logging
 
 from openfisca_france.model.base import *
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds
 
 
 log = logging.getLogger(__name__)
@@ -110,14 +109,20 @@ class csg_deductible_salaire(Variable):
         assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
-        csg = parameters(period).prelevements_sociaux.contributions_sociales.csg
-        montant_csg = montant_csg_crds(
-            base_avec_abattement = assiette_csg_abattue,
-            base_sans_abattement = assiette_csg_non_abattue,
-            abattement_parameter = csg.activite.abattement,
-            law_node = csg.activite.deductible,
-            plafond_securite_sociale = plafond_securite_sociale,
-            )
+        csg_params = parameters(period).prelevements_sociaux.contributions_sociales.csg
+        abattement_parameter_node = csg_params.activite.abattement
+
+        # Default base_sans_abattement to 0 if None
+        _base_sans_abattement = assiette_csg_non_abattue if assiette_csg_non_abattue is not None else 0
+
+        base = assiette_csg_abattue - abattement_parameter_node.calc(
+            assiette_csg_abattue,
+            factor=plafond_securite_sociale,
+            round_base_decimals=2,
+            ) + _base_sans_abattement
+
+        direct_taux = csg_params.activite.deductible.taux
+        montant_csg = -direct_taux * base
         return montant_csg
 
 
@@ -133,16 +138,20 @@ class csg_imposable_salaire(Variable):
         assiette_csg_abattue = individu('assiette_csg_abattue', period)
         assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        csg_parameters = parameters(period).prelevements_sociaux.contributions_sociales.csg
+        csg_params = parameters(period).prelevements_sociaux.contributions_sociales.csg
+        abattement_parameter_node = csg_params.activite.abattement
 
-        montant_csg = montant_csg_crds(
-            base_avec_abattement = assiette_csg_abattue,
-            base_sans_abattement = assiette_csg_non_abattue,
-            abattement_parameter = csg_parameters.activite.abattement,
-            law_node = csg_parameters.activite.imposable,
-            plafond_securite_sociale = plafond_securite_sociale,
-            )
+        # Default base_sans_abattement to 0 if None
+        _base_sans_abattement = assiette_csg_non_abattue if assiette_csg_non_abattue is not None else 0
 
+        base = assiette_csg_abattue - abattement_parameter_node.calc(
+            assiette_csg_abattue,
+            factor=plafond_securite_sociale,
+            round_base_decimals=2,
+            ) + _base_sans_abattement
+
+        direct_taux = csg_params.activite.imposable.taux
+        montant_csg = -direct_taux * base
         return montant_csg
 
 
@@ -159,16 +168,20 @@ class crds_salaire(Variable):
         assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
-        parameters = parameters(period).prelevements_sociaux.contributions_sociales
+        params = parameters(period).prelevements_sociaux.contributions_sociales
+        abattement_parameter_node = params.csg.activite.abattement
 
-        montant_crds = montant_csg_crds(
-            law_node = parameters.crds,
-            base_avec_abattement = assiette_csg_abattue,
-            base_sans_abattement = assiette_csg_non_abattue,
-            abattement_parameter = parameters.csg.activite.abattement,
-            plafond_securite_sociale = plafond_securite_sociale,
-            )
+        # Default base_sans_abattement to 0 if None
+        _base_sans_abattement = assiette_csg_non_abattue if assiette_csg_non_abattue is not None else 0
 
+        base = assiette_csg_abattue - abattement_parameter_node.calc(
+            assiette_csg_abattue,
+            factor=plafond_securite_sociale,
+            round_base_decimals=2,
+            ) + _base_sans_abattement
+
+        direct_taux = params.crds.taux
+        montant_crds = -direct_taux * base
         return montant_crds
 
 
