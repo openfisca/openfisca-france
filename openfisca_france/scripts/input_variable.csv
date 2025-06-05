@@ -1,0 +1,758 @@
+variable,entite,label,nb_fichiers,nb_utilisations,exemples_fichiers
+aacc_defn,individus,Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_nonpro_avec_cga.yaml
+aacc_exon,individus,Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_nonpro_avec_cga.yaml
+aacc_gits,individus,"Location de gîtes ruraux, chambres d",1,3,calculateur_impots/yaml/regime_micro_BIC_location.yaml
+aacc_impn,individus,Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel),2,4,calculateur_impots/yaml/regime_benef_reel_BIC_nonpro_avec_cga.yaml; calculateur_impots/yaml/regime_benef_reel_BIC_location_avec_cga.yaml
+aacc_imps,individus,Locations meublées non professionnelles (régime micro entreprise),1,3,calculateur_impots/yaml/regime_micro_BIC_location.yaml
+aacc_pvce,individus,Plus-values industrielles et commerciales non professionnelles de cession taxables selon droit commun avec CGA ou viseur (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_nonpro_avec_cga.yaml
+aah,individus,Allocation adulte handicapé mensualisée,19,37,formulas/cs/css_abattement_asi.yaml; mes-aides.gouv.fr/ludwig_test_1515421207606.yaml; formulas/ass_04_2018.yaml; ... et 16 autres
+aah_base_ressources_conjugalisee,individus,Base ressources de l,2,10,formulas/aah/aah_couple.yaml; formulas/aah/aah_famille.yaml
+aah_eligible,individus,Eligibilité à l,2,8,formulas/aah/aah_couple.yaml; formulas/aah/aah_famille.yaml
+abic_defm,individus,Déficits de locations meubléesavec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels),1,2,calculateur_impots/yaml/regime_benef_reel_BIC_pro_avec_cga.yaml
+abic_defn,individus,Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_pro_avec_cga.yaml
+abic_exon,individus,Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_pro_avec_cga.yaml
+abic_impm,individus,Locations meublées imposables avec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels),1,2,calculateur_impots/yaml/regime_benef_reel_BIC_pro_avec_cga.yaml
+abic_impn,individus,Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel),7,21,calculateur_impots/yaml/regime_benef_reel_BIC_location_avec_cga.yaml; calculateur_impots/yaml/rpns_pv.yaml; calculateur_impots/yaml/regime_benef_reel_BIC_pro_avec_cga.yaml; ... et 4 autres
+abic_info,individus,Revenus industriels et commerciaux professionnels : Revenus nets de la cession ou concession de brevets et assimilés,1,1,calculateur_impots/yaml/rpns_pv.yaml
+abic_pvce,individus,Plus-values industrielles et commerciales de cession taxables selon droit commun avec CGA ou viseur (régime du bénéfice réel),2,4,calculateur_impots/yaml/rpns_pv.yaml; calculateur_impots/yaml/regime_benef_reel_BIC_pro_avec_cga.yaml
+abnc_impo,individus,"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus bénéficiant de l",1,1,calculateur_impots/yaml/regime_benef_reel_BIC_location_avec_cga.yaml
+acs,famille,Montant (annuel) de l,123,123,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 120 autres
+activite,individus,Activité,116,381,calculateur_impots/yaml/caseP.yaml; mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; ... et 113 autres
+aeeh,famille,Allocation d,1,1,formulas/patrimoine.yaml
+aeeh_niveau_handicap,individus,Catégorie de handicap prise en compte pour l,1,1,formulas/aeeh.yaml
+aer,individus,Allocation équivalent retraite (AER),1,5,formulas/per.yaml
+af,famille,Allocations familiales - total des allocations,134,142,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 131 autres
+af_nbenf,famille,Nombre d,2,9,formulas/aah/aah_couple.yaml; formulas/aah/aah_famille.yaml
+age,individus,Âge (en années) au premier jour du mois,159,263,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 156 autres
+age_en_mois,individus,Âge (en mois),125,126,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 122 autres
+agepi,individus,Montant de l,1,14,formulas/agepi.yaml
+agepi_date_demande,individus,Date de demande d,1,14,formulas/agepi.yaml
+agepi_temps_travail_en_heure,individus,Temps de travail en heures pour le calcul de l,1,14,formulas/agepi.yaml
+aide_logement,famille,Aide au logement (tout type),130,154,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 127 autres
+aide_logement_base_ressources,famille,Base ressources des allocations logement,2,11,formulas/aides_logement_primo_accedant.yaml; formulas/aides_logement.yaml
+aide_logement_base_ressources_individu,individus,Base ressource individuelle des aides logement,1,2,formulas/aides_logement.yaml
+aide_logement_date_pret_conventionne,menage,Date de contraction du prêt conventionné ,6,17,mes-aides.gouv.fr/500E_mois_APL_Zone_3.yaml; mes-aides.gouv.fr/500E_mois_APL_Zone_2.yaml; mes-aides.gouv.fr/testMAcas1_6_couple_accedant_a_la_propriete_AL_1126_E_M_de_salaire_net.yaml; ... et 3 autres
+aides_logement_primo_accedant_eligibilite,menage,,1,1,formulas/aides_logement_primo_accedant.yaml
+alf,famille,Allocation logement familiale,118,122,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 115 autres
+allocation_retour_emploi_journaliere,individus,Allocation chômage d,2,15,formulas/agepi.yaml; formulas/complement_are.yaml
+allocation_securisation_professionnelle,individus,Allocation de sécurisation professionnelle,1,1,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml
+alnp_defs,individus,Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_location_avec_cga.yaml
+alnp_imps,individus,Locations meublées non professionnelles imposables avec CGA ou viseur (régime du bénéfice réel),1,4,calculateur_impots/yaml/regime_benef_reel_BIC_location_avec_cga.yaml
+als,famille,Allocation logement sociale,118,122,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 115 autres
+apl,famille,Aide personnalisée au logement,119,123,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 116 autres
+arag_defi,individus,"Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l",1,4,calculateur_impots/yaml/regime_benef_reel_agricole_avec_cga.yaml
+arag_impg,individus,"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l",5,14,calculateur_impots/yaml/regime_benef_reel_agricole_avec_cga.yaml; calculateur_impots/yaml/regime_benef_reel_BIC_location_avec_cga.yaml; calculateur_impots/yaml/rpns_pv.yaml; ... et 2 autres
+arag_impo_n2,individus,"Revenus agricoles, régime du bénéfice réel année n-2",1,1,calculateur_impots/yaml/regime_microBA.yaml
+arag_info,individus,Revenus agricoles: revenus nets de la cession ou concession de brevets et assimilés,1,1,calculateur_impots/yaml/rpns_pv.yaml
+arag_pvce,individus,"Plus-values agricoles de cession taxables au régime de droit commun (Régime du bénéfice réel, revenus bénéficiant de l",2,5,calculateur_impots/yaml/rpns_pv.yaml; calculateur_impots/yaml/regime_benef_reel_agricole_avec_cga.yaml
+are_salaire_journalier_reference,individus,Salaire journalier de référence (SJR) au sens des allocations chômage,1,1,formulas/complement_are.yaml
+asf,famille,Allocation de soutien familial (ASF),129,132,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 126 autres
+asf_elig_enfant,individus,Enfant pouvant ouvrir droit à l,1,1,formulas/asf/2018-07.yaml
+asi,individus,Allocation supplémentaire d,1,7,formulas/cs/css_abattement_asi.yaml
+asi_aspa_base_ressources_individu,individus,Base ressources individuelle du minimum vieillesse/ASPA,3,11,formulas/asi_aspa.yaml; formulas/aspa.yaml; formulas/asi.yaml
+asi_eligibilite,individus,Indicatrice individuelle d,1,2,formulas/asi.yaml
+asile_demandeur,famille,Famille demandant l,2,2,formulas/aefa.yaml; formulas/ada.yaml
+aspa,famille,Allocation de solidarité aux personnes agées,128,142,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 125 autres
+aspa_eligibilite,individus,Indicatrice individuelle d,1,3,formulas/asi_aspa.yaml
+ass,individus,Montant de l,1,5,formulas/per.yaml
+ass_base_ressources,famille,Base de ressources de l,2,9,formulas/ass_04_2018.yaml; formulas/ass_mayotte.yaml
+ass_precondition_remplie,individus,Éligible à l,19,36,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_546b4abfde0b44f86312e9e3.yaml; formulas/ass_mayotte.yaml; ... et 16 autres
+autres,menage,,1,1,formulas/visale.yaml
+bourse_college,famille,Montant annuel de la bourse de collège,123,123,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 120 autres
+bourse_criteres_sociaux_echelon,individus,Échelon de la bourse sur critères sociaux de l,12,12,mes-aides.gouv.fr/500E_mois_APL_Zone_3.yaml; mes-aides.gouv.fr/500E_mois_APL_Zone_2.yaml; mes-aides.gouv.fr/ludwig_test_1515421140631.yaml; ... et 9 autres
+bourse_enseignement_sup,individus,Toute bourse de l,2,3,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml; formulas/per.yaml
+bourse_lycee,famille,Montant annuel de la bourse de lycée,123,123,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 120 autres
+bourse_recherche,individus,Bourse de recherche,1,1,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml
+boursier,individus,Élève ou étudiant boursier,17,18,mes-aides.gouv.fr/test_mes_aides_54818ddcf2c0258f66c50c84.yaml; mes-aides.gouv.fr/test_mes_aides_54818d18ed60b88866befc61.yaml; mes-aides.gouv.fr/500E_mois_APL_Zone_3.yaml; ... et 14 autres
+caah,individus,Complément d,3,3,mes-aides.gouv.fr/ludwig_test_1515421140631.yaml; mes-aides.gouv.fr/ludwig_test_1515421207606.yaml; mes-aides.gouv.fr/ludwig_test_1515420730955.yaml
+caseF,foyer_fiscal,Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d,80,305,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 77 autres
+caseG,foyer_fiscal,Titulaire d,80,303,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 77 autres
+caseL,foyer_fiscal,Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l,68,256,calculateur_impots/yaml/reduc_doment.yaml; calculateur_impots/yaml/regime_forfait_agricole.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; ... et 65 autres
+caseP,foyer_fiscal,Titulaire d,82,306,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 79 autres
+caseS,foyer_fiscal,Vous êtes mariés/pacsés et l,80,303,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 77 autres
+caseT,foyer_fiscal,Vous êtes parent isolé au 1er janvier de l,68,266,calculateur_impots/yaml/reduc_doment.yaml; calculateur_impots/yaml/regime_forfait_agricole.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; ... et 65 autres
+caseW,foyer_fiscal,Vous ou votre conjoint (même s,81,304,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 78 autres
+categorie_salarie,individus,Catégorie de salarié,2,3,cotisations_sociales_simulateur_IPP.yaml; formulas/financement_organisations_syndicales.yaml
+celibataire_ou_divorce,foyer_fiscal,Déclarant célibataire ou divorcé,1,10,impot_revenu/nombre_de_parts/celibataire_ou_divorce.yaml
+cf,famille,Complément familial,130,133,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 127 autres
+cf_non_majore_avant_cumul,famille,Complément familial non majoré avant cumul,1,1,formulas/rsa.yaml
+charges_locatives,menage,Charges locatives,3,3,mes-aides.gouv.fr/ludwig_test_1520950068799.yaml; formulas/aides_logement_reforme_janvier_2021.yaml; mes-aides.gouv.fr/ludwig_test_1520961427075.yaml
+chomage_brut,individus,Chômage brut,3,3,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml; formulas/ass_revenus_immo.yaml; mes-aides.gouv.fr/test_mes_aides_54c8f41de45751d544f05fec.yaml
+chomage_imposable,individus,Allocations chômage imposables,8,8,mes-aides.gouv.fr/test_mes_aides_5592b42d131e5b05301ebc8f.yaml; mes-aides.gouv.fr/test_mes_aides_5591478e131e5b05301eb8fa.yaml; mes-aides.gouv.fr/test_mes_aides_55913e82131e5b05301eb89c.yaml; ... et 5 autres
+chomage_net,individus,Allocations chômage nettes,9,22,formulas/ass_eligibilite.yaml; formulas/cs/cmu_fiab.yaml; mes-aides.gouv.fr/test_mes_aides_54c8f41de45751d544f05fec.yaml; ... et 6 autres
+cncn_aimp,individus,Revenus imposables non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée),1,1,calculateur_impots/yaml/regime_benef_reel_BIC_location_avec_cga.yaml
+coloc,menage,Vie en colocation,9,9,mes-aides.gouv.fr/500E_mois_APL_Zone_3.yaml; mes-aides.gouv.fr/500E_mois_APL_Zone_2.yaml; mes-aides.gouv.fr/testMAcas1_6_couple_accedant_a_la_propriete_AL_1126_E_M_de_salaire_net.yaml; ... et 6 autres
+complement_are_nombre_jours_restants,individus,Nombre de jours restants avant épuisement des droits à l,1,1,formulas/complement_are.yaml
+conjoint,menage,,78,223,calculateur_impots/yaml/caseP.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 75 autres
+contrat_aide,individus,L,1,12,formulas/agepi.yaml
+contrat_de_travail_debut,individus,Date d,1,14,formulas/agepi.yaml
+contrat_de_travail_duree,individus,Durée du contrat de travail en mois,1,14,formulas/agepi.yaml
+contrat_de_travail_type,individus,Type du contrat de travail,1,14,formulas/agepi.yaml
+coupe_bois,individus,Revenus forfaitaire provenant des coupes de bois,1,1,calculateur_impots/yaml/regime_microBA.yaml
+css_cmu_forfait_logement_al,famille,Forfait logement applicable en cas d,3,5,formulas/cs/cmu.yaml; formulas/cs/acs.yaml; formulas/cs/cmu_rente_at.yaml
+css_cmu_forfait_logement_base,famille,Forfait logement applicable en cas de propriété ou d,2,2,formulas/cs/acs.yaml; formulas/cs/cmu_fiab.yaml
+date_arret_de_travail,individus,Date depuis laquelle la personne est en arrêt de travail,14,14,mes-aides.gouv.fr/500E_mois_APL_Zone_3.yaml; mes-aides.gouv.fr/500E_mois_APL_Zone_2.yaml; mes-aides.gouv.fr/ludwig_test_1515421140631.yaml; ... et 11 autres
+date_creation,individus,Revenus agricoles : Année de création de l’activité,1,2,calculateur_impots/yaml/regime_microBA.yaml
+date_naissance,individus,Date de naissance,236,604,calculateur_impots/yaml/caseP.yaml; mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; ... et 233 autres
+dedommagement_victime_amiante,individus,Dédommagement versé aux victimes de l,1,1,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml
+degressivite_are,individus,L,1,1,formulas/complement_are.yaml
+demande_rachat,individus,La victime a demandé le rachat partiel de la rente,1,1,formulas/rente_at.yaml
+depcom,menage,Code INSEE (depcom) de la commune du lieu de résidence,115,115,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 112 autres
+depcom_entreprise,individus,Localisation entreprise (depcom),1,2,cotisations_sociales_simulateur_IPP.yaml
+depcom_foyer,foyer_fiscal,Code AFT du lieu de domicile fiscal,1,8,impot_revenu/abattement_dom.yaml
+dependance_tarif_etablissement_gir_1_2,individus,Tarif dépendance de l,1,1,formulas/autonomie.yaml
+dependance_tarif_etablissement_gir_3_4,individus,Tarif dépendance de l,1,1,formulas/autonomie.yaml
+dependance_tarif_etablissement_gir_5_6,individus,Tarif dépendance de l,1,1,formulas/autonomie.yaml
+duree_formation,individus,Durée de la formation en heures,1,1,formulas/agepi.yaml
+duree_possession_titre_sejour,individus,Durée depuis laquelle l,1,3,formulas/aspa.yaml
+ebic_impv,individus,Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur ayant opté pour le versement libératoire),1,1,formulas/microsocial.yaml
+effectif_entreprise,individus,Effectif de l,1,2,cotisations_sociales_simulateur_IPP.yaml
+en_couple,famille,Indicatrice de vie en couple,3,13,formulas/aah/aah_couple.yaml; formulas/rsa/rsa_exclusion_foyer.yaml; formulas/aah/aah_famille.yaml
+enceinte,individus,Est enceinte,24,24,mes-aides.gouv.fr/test_mes_aides_53d7b76df6aa390200a6cd5c.yaml; mes-aides.gouv.fr/test_mes_aides_53d79de9f6aa390200a6cd31.yaml; mes-aides.gouv.fr/test_mes_aides_546b4b61ba32fff66335d381.yaml; ... et 21 autres
+enfant_a_charge,individus,"Enfant à charge non marié, de moins de 18 ans non émancipé au 1er janvier de l",14,14,mes-aides.gouv.fr/500E_mois_APL_Zone_3.yaml; mes-aides.gouv.fr/500E_mois_APL_Zone_2.yaml; mes-aides.gouv.fr/ludwig_test_1515421140631.yaml; ... et 11 autres
+enfant_place,individus,Enfant placé en structure spécialisée ou famille d,14,14,mes-aides.gouv.fr/500E_mois_APL_Zone_3.yaml; mes-aides.gouv.fr/500E_mois_APL_Zone_2.yaml; mes-aides.gouv.fr/ludwig_test_1515421140631.yaml; ... et 11 autres
+epargne_revenus_imposables,individus,Épargne générant des revenus imposables,2,5,formulas/aides_logement.yaml; mes-aides.gouv.fr/ludwig_test_1520961427075.yaml
+epargne_revenus_non_imposables,individus,Épargne générant des revenus non imposables hors Livret A,3,11,mes-aides.gouv.fr/test_mes_aides_542134d3fb35830200b31345.yaml; formulas/patrimoine.yaml; mes-aides.gouv.fr/test_mes_aides_5421356afb35830200b3134c.yaml
+etat_logement,menage,Etat du logement,1,12,formulas/aides_logement_accedant_eligibilite.yaml
+etudiant,individus,Indique que l,118,120,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 115 autres
+f2ca,foyer_fiscal,Frais et charges déductibles,1,2,impot_revenu/pfu_bareme.yaml
+f2ch,foyer_fiscal,Produits des contrats d,2,4,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/rvcm.yaml
+f2da,foyer_fiscal,Revenus des actions et parts soumis au prélèvement libératoire de 21 %,1,1,calculateur_impots/yaml/abat_dividendes.yaml
+f2dc,foyer_fiscal,Revenus des actions et parts donnant droit à abattement,3,5,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/abat_dividendes.yaml; calculateur_impots/yaml/rvcm.yaml
+f2dh,foyer_fiscal,Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %,1,2,calculateur_impots/yaml/rvcm.yaml
+f2fu,foyer_fiscal,Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement,2,3,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/rvcm.yaml
+f2go,foyer_fiscal,Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié (n,2,7,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/rvcm.yaml
+f2op,foyer_fiscal,Le foyer fiscal choisit l imposition au barème plutôt que le pfu si il coche la case 2op,1,10,impot_revenu/pfu_bareme.yaml
+f2tq,foyer_fiscal,Intérêts imposables des obligations remboursables en actions détenues dans le PEA-PME,1,4,impot_revenu/pfu_bareme.yaml
+f2tr,foyer_fiscal,"Produits de placements à revenu fixe, intérêts et autres revenus assimilés (n",3,7,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/reduc_intagr.yaml; calculateur_impots/yaml/rvcm.yaml
+f2ts,foyer_fiscal,"Revenus de valeurs mobilières, produits des contrats d",2,4,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/rvcm.yaml
+f2tt,foyer_fiscal,Intérêts des prêts participatifs nettes des pertes à imputer au titre de l,2,7,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/rvcm.yaml
+f2tz,foyer_fiscal,Produits des plans d,1,2,impot_revenu/pfu_bareme.yaml
+f2vv,foyer_fiscal,Produits des bons ou contrats de capitalisation et d,2,3,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/rvcm.yaml
+f2ww,foyer_fiscal,Produits des bons ou contrats de capitalisation et d,2,3,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/rvcm.yaml
+f2yy,foyer_fiscal,Produits des bons ou contrats de capitalisation et d,1,1,calculateur_impots/yaml/rvcm.yaml
+f2zz,foyer_fiscal,Produits des bons ou contrats de capitalisation et d,2,3,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/rvcm.yaml
+f3an,foyer_fiscal,Plus-value réalisée sur la cession d,2,3,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/pv_pfu.yaml
+f3pi,foyer_fiscal,Profits sur instruments financiers réalisés dans des ETNC ou paradis fiscaux,1,1,calculateur_impots/yaml/pv_pfu.yaml
+f3sb,foyer_fiscal,Plus-values en report d,1,2,impot_revenu/pfu_bareme.yaml
+f3sg,foyer_fiscal,Abattement net pour durée de détention (détention de droit commun à partir de 2015) : appliqué sur des plus-values,1,2,impot_revenu/pfu_bareme.yaml
+f3sk,foyer_fiscal,Gains de cession de bons de souscription de parts de créateur d,1,1,calculateur_impots/yaml/pv_pfu.yaml
+f3sl,foyer_fiscal,Abattement net pour durée de détention renforcée : appliqué sur des plus-values,1,2,impot_revenu/pfu_bareme.yaml
+f3tj,foyer_fiscal,Gains de cession de bons de souscription de parts de créateur d,1,4,impot_revenu/pfu_bareme.yaml
+f3tk,foyer_fiscal,Abattement forfaitaire sur les gains de cession de bons de souscription de parts de créateur d,1,2,impot_revenu/pfu_bareme.yaml
+f3ua,foyer_fiscal,Plus-values bénéficiant de l,1,6,impot_revenu/pfu_bareme.yaml
+f3va,foyer_fiscal,Abattement fixe spécial appliqué sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite,1,2,impot_revenu/pfu_bareme.yaml
+f3vg,foyer_fiscal,"Plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés",2,6,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/pv_pfu.yaml
+f3vi,foyer_fiscal,Gains de levée d,1,1,calculateur_impots/yaml/pv_pfu.yaml
+f3vt,foyer_fiscal,Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %,2,5,impot_revenu/pfu_bareme.yaml; calculateur_impots/yaml/pv_pfu.yaml
+f4ba,foyer_fiscal,Revenus fonciers imposables,1,4,calculateur_impots/yaml/credit_assloy.yaml
+f4bf,foyer_fiscal,Primes d,1,4,calculateur_impots/yaml/credit_assloy.yaml
+f5qf,foyer_fiscal,Déficits des revenus agricoles des années antérieures non encore déduits (n-6),1,4,calculateur_impots/yaml/regime_benef_reel_agricole_sans_cga.yaml
+f5qg,foyer_fiscal,Déficits des revenus agricoles des années antérieures non encore déduits (n-5),1,4,calculateur_impots/yaml/regime_benef_reel_agricole_sans_cga.yaml
+f5qn,foyer_fiscal,Déficits des revenus agricoles des années antérieures non encore déduits (n-4),1,4,calculateur_impots/yaml/regime_benef_reel_agricole_sans_cga.yaml
+f5qo,foyer_fiscal,Déficits des revenus agricoles des années antérieures non encore déduits (n-3),1,4,calculateur_impots/yaml/regime_benef_reel_agricole_avec_cga.yaml
+f5qp,foyer_fiscal,Déficits des revenus agricoles des années antérieures non encore déduits (n-2),1,4,calculateur_impots/yaml/regime_benef_reel_agricole_avec_cga.yaml
+f5qq,foyer_fiscal,Déficits des revenus agricoles des années antérieures non encore déduits (n-1),1,4,calculateur_impots/yaml/regime_benef_reel_agricole_avec_cga.yaml
+f6cb,foyer_fiscal,Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_reparations.yaml
+f6dd,foyer_fiscal,Déductions diverses,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_deddiv.yaml
+f6el,foyer_fiscal,Autres pensions alimentaires versées à des enfants majeurs: 1er enfant,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_pens_alim.yaml
+f6em,foyer_fiscal,Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_pens_alim.yaml
+f6eu,foyer_fiscal,Frais d,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_acc75a.yaml
+f6ev,foyer_fiscal,Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_acc75a.yaml
+f6gi,foyer_fiscal,Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_pens_alim.yaml
+f6gj,foyer_fiscal,Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_pens_alim.yaml
+f6gp,foyer_fiscal,"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)",1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_pens_alim.yaml
+f6gu,foyer_fiscal,"Autres pensions alimentaires versées (mineurs, ascendants)",1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_pens_alim.yaml
+f6hj,foyer_fiscal,Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_reparations.yaml
+f6hk,foyer_fiscal,Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_reparations.yaml
+f6hl,foyer_fiscal,Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_reparations.yaml
+f6hm,foyer_fiscal,Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_reparations.yaml
+f6hn,foyer_fiscal,Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l,1,4,calculateur_impots/yaml/charges_deduc_non_plafonnees_reparations.yaml
+f6ho,foyer_fiscal,Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l,1,3,calculateur_impots/yaml/charges_deduc_non_plafonnees_reparations.yaml
+f6hp,foyer_fiscal,Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l,1,2,calculateur_impots/yaml/charges_deduc_non_plafonnees_reparations.yaml
+f6hq,foyer_fiscal,Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l,1,1,calculateur_impots/yaml/charges_deduc_non_plafonnees_reparations.yaml
+f7aa,foyer_fiscal,Dépenses en faveur de la qualité environnementale des logements donnés en location : Chaudières à haute performance énergétique utilisant le fioul : dépenses payées en 2018 avec acceptation d’un devis et versement d’un acompte au plus tard le 31.12.2017 ,1,2,calculateur_impots/yaml/credit_quaenv.yaml
+f7ad,foyer_fiscal,Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : chaudières à micro-génération gaz,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7af,foyer_fiscal,Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : appareils de régulation de chauffage,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7ah,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7ai,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en métropole 2014 avec engagement de location 6 ans,1,5,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7ak,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7al,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7am,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7an,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7ao,foyer_fiscal,Dépenses en faveur de la qualité environnementale des logements donnés en location : Chaudières à très haute performance énergétique utilisant le fioul : dépenses payées du 1.1.2018 au 30.6.2018 et dépenses payées du 1.7.2018 au 31.12.2018 avec acceptation d’un devis et versement d’un acompte au plus tard le 30.6.2018.,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7ap,foyer_fiscal,"Dépenses en faveur de la qualité environnementale des logements donnés en location : Matériaux d’isolation thermique des parois vitrées (fenêtres, portes-fenêtres…) venant en remplacement de simples vitrages.",1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7aq,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7ar,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7as,foyer_fiscal,Dépenses en faveur de la qualité environnementale des logements donnés en location : Pompes à chaleur (autres que air/air) dédiées à la production d’eau chaude sanitaire (chauffe-eaux thermodynamiques); dépenses payées en 2018 avec acceptation d’un devis et versement d’un acompte au plus tard le 31.12.2017,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7av,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7ax,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7ay,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7az,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bb,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bc,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bd,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7be,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bf,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bh,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bi,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en métropole réalisés 2014 avec engagement de location 9 ans,1,7,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7bk,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bl,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bm,foyer_fiscal,Dépenses en faveur de la qualité environnementale des logements donnés en location : Audit énergétique,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bq,foyer_fiscal,Dépose d’une cuve à fioul,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7bz,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en métropole 2015 avec engagement de location 6 ans,1,5,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7cb,foyer_fiscal,Dépenses en faveur de la qualité environnementale des logements donnés en location : chaudières à haute performance energétique ,1,1,calculateur_impots/yaml/credit_quaenv.yaml
+f7cc,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de versement de l",1,3,calculateur_impots/yaml/reduc_cappme.yaml
+f7cf,foyer_fiscal,"Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d",1,3,calculateur_impots/yaml/reduc_cappme.yaml
+f7ci_2019,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en outre-mer 2014 avec engagement de location 6 ans,1,6,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7cl,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de versement de l",1,3,calculateur_impots/yaml/reduc_cappme.yaml
+f7cm,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de versement de l",1,3,calculateur_impots/yaml/reduc_cappme.yaml
+f7cn,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de versement de l",1,3,calculateur_impots/yaml/reduc_cappme.yaml
+f7cq,foyer_fiscal,Souscription au capital de petites entreprises en phase d,1,3,calculateur_impots/yaml/reduc_cappme.yaml
+f7cr,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de versement de l",1,3,calculateur_impots/yaml/reduc_cappme.yaml
+f7cu,foyer_fiscal,"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures",1,2,calculateur_impots/yaml/reduc_cappme.yaml
+f7cv,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de versement de l",1,2,calculateur_impots/yaml/reduc_cappme.yaml
+f7cx,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de versement de l",1,1,calculateur_impots/yaml/reduc_cappme.yaml
+f7cy,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de réduction d",1,3,calculateur_impots/yaml/reduc_cappme.yaml
+f7cz,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en métropole réalisés 2015 avec engagement de location 9 ans,1,6,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7db,foyer_fiscal,Sommes versées pour lemploi d,3,11,calculateur_impots/yaml/credit_saldom.yaml; calculateur_impots/yaml/credits_impot.yaml; calculateur_impots/yaml/credit_saldom2.yaml
+f7dd,foyer_fiscal,Sommes versées pour lemploi dun salarié à domicile pour un ascendant bénéficiaire de lAPA,1,3,calculateur_impots/yaml/reduc_saldom2.yaml
+f7df,foyer_fiscal,"Sommes versées pour lemploi dun salarié à domicile par les personnes retraités, ou inactives lannée de perception des revenus déclarés",1,3,calculateur_impots/yaml/reduc_saldom.yaml
+f7dg,foyer_fiscal,"Vous, votre conjoint ou une personne à votre charge à une carte d",4,12,calculateur_impots/yaml/credit_saldom.yaml; calculateur_impots/yaml/credits_impot.yaml; calculateur_impots/yaml/reduc_saldom.yaml; ... et 1 autres
+f7di,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en outre-mer 2014 avec engagement de location 9 ans,1,8,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7dl,foyer_fiscal,Nombre d,2,5,calculateur_impots/yaml/credit_saldom2.yaml; calculateur_impots/yaml/reduc_saldom2.yaml
+f7dq,foyer_fiscal,Emploi direct pour la première fois d,4,12,calculateur_impots/yaml/credit_saldom.yaml; calculateur_impots/yaml/credits_impot.yaml; calculateur_impots/yaml/reduc_saldom.yaml; ... et 1 autres
+f7dy,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de réduction d",1,2,calculateur_impots/yaml/reduc_cappme.yaml
+f7dz,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en outre-mer 2015 avec engagement de location 6 ans,1,6,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7ea,foyer_fiscal,Nombre d,1,4,calculateur_impots/yaml/reduc_enfants_scolarises.yaml
+f7eb,foyer_fiscal,Nombre d,1,4,calculateur_impots/yaml/reduc_enfants_scolarises.yaml
+f7ec,foyer_fiscal,Nombre d,1,4,calculateur_impots/yaml/reduc_enfants_scolarises.yaml
+f7ed,foyer_fiscal,Nombre d,1,4,calculateur_impots/yaml/reduc_enfants_scolarises.yaml
+f7ef,foyer_fiscal,Nombre d,1,4,calculateur_impots/yaml/reduc_enfants_scolarises.yaml
+f7eg,foyer_fiscal,Nombre d,1,4,calculateur_impots/yaml/reduc_enfants_scolarises.yaml
+f7ek,foyer_fiscal,Investissements locatifs intermÃ©diaires du 1.1 au 31.8.2014 en mÃ©tropole,1,4,calculateur_impots/yaml/reduc_duflot.yaml
+f7ey,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de réduction d",1,1,calculateur_impots/yaml/reduc_cappme.yaml
+f7ez,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en outre-mer 2015 avec engagement de location 9 ans,1,7,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7fa,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, BBC",3,10,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml
+f7fb,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, non-BBC",1,3,calculateur_impots/yaml/reduc_scelli_metro_non_bbc.yaml
+f7fc,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",2,6,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml; calculateur_impots/yaml/reduc_scelli_dom_poly.yaml
+f7ff,foyer_fiscal,Frais de comptabilité et d,1,4,calculateur_impots/yaml/reduc_adhcga.yaml
+f7fg,foyer_fiscal,Frais de comptabilité et d,1,4,calculateur_impots/yaml/reduc_adhcga.yaml
+f7fi,foyer_fiscal,Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2013 en mÃ©tropole et outre-mer,2,6,calculateur_impots/yaml/reduc_duflot.yaml; calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7fk,foyer_fiscal,Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2014 en mÃ©tropole et outre-mer,1,3,calculateur_impots/yaml/reduc_duflot.yaml
+f7fm,foyer_fiscal,Souscription de parts de fonds d,1,4,calculateur_impots/yaml/reduc_spfscpi.yaml
+f7fq,foyer_fiscal,Souscription de parts de fonds d,1,4,calculateur_impots/yaml/reduc_spfscpi.yaml
+f7fr,foyer_fiscal,Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2015 en mÃ©tropole et outre-mer,1,2,calculateur_impots/yaml/reduc_duflot.yaml
+f7fv,foyer_fiscal,Report concernant les investissements réalisés et achevés en 2016 en métropole et outre-mer,1,1,calculateur_impots/yaml/reduc_duflot.yaml
+f7fy,foyer_fiscal,"Souscriptions au capital des PME non cotées, report de réduction d",1,1,calculateur_impots/yaml/reduc_cappme.yaml
+f7ga,foyer_fiscal,Frais de garde des enfants de moins de 6 ans au 01/01 de l,1,4,calculateur_impots/yaml/credit_garext.yaml
+f7ge,foyer_fiscal,Frais de garde des enfants de moins de 6 ans au 01/01 de l,1,4,calculateur_impots/yaml/credit_garext.yaml
+f7gh,foyer_fiscal,Investissements locatifs intermédiaires en métropole,1,4,calculateur_impots/yaml/reduc_duflot.yaml
+f7gj,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7gk,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d",1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7gl,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7gp,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d",1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7gq,foyer_fiscal,Souscription de parts de fonds communs de placement dans l,2,8,calculateur_impots/yaml/reduc_spfscpi2.yaml; calculateur_impots/yaml/reduc_spfscpi.yaml
+f7gs,foyer_fiscal,Scellier,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7gt,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7gu,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7gv,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7gw_2016,foyer_fiscal,"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d",1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7gx,foyer_fiscal,Investissements achevés en n-2 avec promesse d,1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7ha,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7hb,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011, avec promesse d",1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7hd,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, réalisés en 2010, en métropole et dans les DOM-COM",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7he,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, en métropole et dans les DOM-COM avec promesse d",1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7hf,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, Investissements réalisés en 2009 en métropole et dans les DOM-COM",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7hg,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna",1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7hh,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna avec promesse d",1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7hj,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole,1,3,calculateur_impots/yaml/reduc_scelli_metro_non_bbc.yaml
+f7hk,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM,1,3,calculateur_impots/yaml/reduc_scelli_dom_poly.yaml
+f7hl_2010,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 (métropole et DOM ne respectant pas les plafonds),3,4,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml
+f7hm_2010,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 dans les DOM et respectant les plafonds,2,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml; calculateur_impots/yaml/reduc_scelli_dom_poly.yaml
+f7hn,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml
+f7hq,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018,1,1,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7hr_2017,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7hs,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018,1,1,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7hs_2017,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques,1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7ht,foyer_fiscal,Scellier,1,1,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7ht_2018,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7hu_2018,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques",1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7hv_2018,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7hw_2018,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM,1,2,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7hx_2018,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole avec promesse d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7hz,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM avec promesse d,1,2,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7ia_2019,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ib_2019,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 avec promesse d,1,4,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7ic_2019,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2011 avec promesse d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7id,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Engagement de réalisation de l",3,12,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ie_2016,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012 avec promesse d,3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7if_2016,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Logement acquis en l",3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ig_2016,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Logement acquis en l",3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ih_2017,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d",1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ij,foyer_fiscal,"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, engagement de réalisation de l",3,12,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ik,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Reports de 1/9 de l,1,4,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7il,foyer_fiscal,Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 avec promesse d,3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7im,foyer_fiscal,Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 avec promesse d,3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7in,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Logement acquis en l,3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7io_2015,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : ,3,6,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ip_2018,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : ,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7iq_2018,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : ,1,4,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7ir_2018,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : ,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7it_2016,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non encore imputé,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7iu_2016,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non encore imputé,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7iv_2016,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Logement acquis en l,3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7iw_2016,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 avec promesse d,3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ix_2017,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2009; réalisés en 2009 et achevés en 2010; réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report du solde de réduction d",1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7iy_2018,foyer_fiscal,Location Meublée Censi B,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7iz_2017,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 : report du solde de réduction d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ja,foyer_fiscal,Denormandie,1,2,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7ja_2017,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, BBC",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml
+f7jb,foyer_fiscal,Denormandie,1,2,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7jc,foyer_fiscal,Denormandie,1,2,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7jc_2018,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d",1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7jd,foyer_fiscal,Denormandie,1,2,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7jg,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, non-BBC",1,3,calculateur_impots/yaml/reduc_scelli_metro_non_bbc.yaml
+f7ji_2018,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7jm,foyer_fiscal,Pinel : investissements achevés en 2019 avec engagement de location de 6 ans : report de 1/6 de la réduction d’impôt,1,2,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7jo_2017,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",1,3,calculateur_impots/yaml/reduc_scelli_dom_poly.yaml
+f7jr,foyer_fiscal,Denormandie,1,1,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7js_2018,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7jt_2019,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l",3,13,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ju_2016,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013 avec promesse d,3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7jv,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2012",1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7jw,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 ou réalisés en 2012 avec promesse d",1,4,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7jx,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 avec promesse d",1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7jy,foyer_fiscal,"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2010 avec promesse d",1,4,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7kb_2016,foyer_fiscal,Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé),1,3,calculateur_impots/yaml/reduc_patnat.yaml
+f7kc_2017,foyer_fiscal,Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé),1,4,calculateur_impots/yaml/reduc_patnat.yaml
+f7kd_2018,foyer_fiscal,Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé),1,4,calculateur_impots/yaml/reduc_patnat.yaml
+f7ke,foyer_fiscal,Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé),1,4,calculateur_impots/yaml/reduc_patnat.yaml
+f7km,foyer_fiscal,Pinel : investissements achevés en 2019 avec engagement de location de 9 ans : report de 1/9 de la réduction d’impôt,1,2,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7kx,foyer_fiscal,Malraux : Report du solde de réduction d’impôt de l’année 2019,1,1,calculateur_impots/yaml/reduc_malraux.yaml
+f7ky,foyer_fiscal,Malraux : Report du solde de réduction d’impôt de l’année 2018,1,1,calculateur_impots/yaml/reduc_malraux.yaml
+f7kz,foyer_fiscal,Malraux : Report du solde de réduction d’impôt de l’année 2017,1,1,calculateur_impots/yaml/reduc_malraux.yaml
+f7la_2016,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lb_2016,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lc_2016,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7ld,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7le,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lf,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lg,foyer_fiscal,Scellier,2,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml; calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7lh,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7li,foyer_fiscal,Scellier,1,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lj,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lk,foyer_fiscal,,2,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml; calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7ll,foyer_fiscal,,1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lm_2018,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7ln,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,2,4,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml; calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7lo,foyer_fiscal,,1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lp,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7ls,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lt,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lx,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7lz,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7mg,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7mh,foyer_fiscal,Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml
+f7mw,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2021,1,1,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7mz,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2020,1,2,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7na,foyer_fiscal,Denormandie: Investissements réalisés en 2019 en métropole avec engagement de location de 6 ans,3,8,calculateur_impots/yaml/reduc_denormandie_metro.yaml; calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7nb,foyer_fiscal,Denormandie: Investissements réalisés en 2019 en métropole avec engagement de location de 9 ans,3,7,calculateur_impots/yaml/reduc_denormandie_metro.yaml; calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7nc,foyer_fiscal,Denormandie: Investissements réalisés en 2019 en outre-mer avec engagement de location de 6 ans,2,7,calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_denormandie_dom.yaml
+f7nd,foyer_fiscal,Denormandie: Investissements réalisés en 2019 en outre-mer avec engagement de location de 9 ans,2,5,calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_denormandie_dom.yaml
+f7ne,foyer_fiscal,Denormandie,2,4,calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7ne_2017,foyer_fiscal,Investissements locatifs neufs dispositif Scellier : Logement acquis en l,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml
+f7nf,foyer_fiscal,Denormandie,2,4,calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7ng,foyer_fiscal,Denormandie,1,2,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7ng_2016,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, ",1,3,calculateur_impots/yaml/reduc_scelli_metro_non_bbc.yaml
+f7nh,foyer_fiscal,Denormandie,1,2,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7ni,foyer_fiscal,Denormandie,2,2,calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7nj,foyer_fiscal,Denormandie,2,2,calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7nk,foyer_fiscal,Denormandie,1,1,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7nl,foyer_fiscal,Denormandie,1,1,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7nr,foyer_fiscal,Investissements locatifs neufs dispositif Scellier : Logement acquis en l,1,3,calculateur_impots/yaml/reduc_scelli_dom_poly.yaml
+f7nx,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,3,calculateur_impots/yaml/reduc_malraux.yaml
+f7ny,foyer_fiscal,Malraux,1,3,calculateur_impots/yaml/reduc_malraux.yaml
+f7oa,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ob,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,4,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7oc,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,2,5,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7od,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,4,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7oe,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7of,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7og,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7oh,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7oi,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7oj,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ok,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Autres investissements",1,2,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ol,foyer_fiscal,Location Meublée Censi B,1,2,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7om,foyer_fiscal,Location Meublée Censi B,1,2,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7on,foyer_fiscal,Location Meublée Censi B,1,2,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7oo,foyer_fiscal,Location Meublée Censi B,1,2,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7op,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7oq,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7or,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7os,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7ot,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ou,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2014,3,14,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ov,foyer_fiscal,Location Meublée Censi B,3,12,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ow,foyer_fiscal,Location Meublée Censi B,3,9,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ox,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2017,3,6,calculateur_impots/yaml/reduc_locmeu.yaml; calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7oy,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2018,1,2,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7pa,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pb,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pc_2019,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pd_2019,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d,2,5,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pe_2019,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d,1,4,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pf,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pg,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ph,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pi,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pj,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d,1,3,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pk,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,2,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pl,foyer_fiscal,Location Meublée Censi B,1,2,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pm,foyer_fiscal,Location Meublée Censi B,2,3,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pn,foyer_fiscal,Location Meublée Censi B,1,2,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7po,foyer_fiscal,Location Meublée Censi B,1,2,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pp,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016,1,1,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pq,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016,1,1,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pr,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016,2,2,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7ps,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016,2,2,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pt,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016,1,1,calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7pu,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017,1,1,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7pz,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2019,2,4,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7qa_2018,foyer_fiscal,Investissements locatifs intermédiaires en métropole réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 6 ans,1,5,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qb_2018,foyer_fiscal,Investissements locatifs intermédiaires en métropole réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 9 ans,1,5,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qc,foyer_fiscal,Investissements locatifs Pinel en outremer réalisés 2020 avec engagement de location 6 ans,1,2,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qc_2018,foyer_fiscal,Investissements locatifs intermédiaires en outremer réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 6 ans,1,6,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qd,foyer_fiscal,Investissements locatifs intermédiaires en outremer réalisés en 2020 avec engagement de location 9 ans,1,2,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qd_2018,foyer_fiscal,Investissements locatifs intermédiaires en outremer réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 9 ans,1,6,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qe,foyer_fiscal,Pinel,1,4,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qf,foyer_fiscal,Pinel,1,4,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qg,foyer_fiscal,Pinel,1,5,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qh,foyer_fiscal,Pinel,1,5,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qi_2019,foyer_fiscal,Investissements locatifs Pinel en métropole réalisés en 2016 avec engagement de location 6 ans,1,4,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qj_2019,foyer_fiscal,Investissements locatifs Pinel en métropole réalisés en 2016 avec engagement de location 9 ans,1,4,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qk_2019,foyer_fiscal,Investissements locatifs Pinel en outremer réalisés en 2016 avec engagement de location 6 ans,1,5,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7ql_2019,foyer_fiscal,Investissements locatifs Pinel en outremer réalisés en 2016 avec engagement de location 9 ans,1,5,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qm,foyer_fiscal,Investissements locatifs intermédiaires en métropole réalisés en 2017 avec engagement de location 6 ans,2,5,calculateur_impots/yaml/reduc_denormandie_metro.yaml; calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qn,foyer_fiscal,Investissements locatifs intermédiaires en métropole réalisés en 2017 avec engagement de location 9 ans,1,4,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qo,foyer_fiscal,Investissements locatifs intermédiaires en outre-mer réalisés en 2017 avec engagement de location 6 ans,1,5,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qp,foyer_fiscal,Investissements locatifs intermédiaires en outre-mer réalisés en 2017 avec engagement de location 9 ans,1,5,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qq,foyer_fiscal,Investissement locatifs intermédiaires en outre-mer réalisés en 2019 avec engagement de location 9 ans,2,3,calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_denormandie_dom.yaml
+f7qr,foyer_fiscal,Investissements locatifs intermédiaires en métropole réalisés en 2018 avec engagement de location 6 ans,1,4,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qs,foyer_fiscal,Investissements locatifs intermédiaires en métropole réalisés en 2018 avec engagement de location 9 ans,1,4,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qt,foyer_fiscal,Investissements locatifs intermédiaires en outre-mer réalisés en 2018 avec engagement de location 6 ans,1,3,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qu,foyer_fiscal,Investissements locatifs intermédiaires en outre-mer réalisés en 2018 avec engagement de location 9 ans,1,3,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7qw,foyer_fiscal,Investissement locatifs intermédiaires en métropole réalisés en 2019 avec engagement de location 6 ans,1,3,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qx,foyer_fiscal,Investissement locatifs intermédiaires en métropole réalisés en 2019 avec engagement de location 9 ans,3,5,calculateur_impots/yaml/reduc_denormandie_metro.yaml; calculateur_impots/yaml/reduc_denormandie_dom.yaml; calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7qy,foyer_fiscal,Investissement locatifs intermédiaires en outre-mer réalisés en 2019 avec engagement de location 6 ans,3,4,calculateur_impots/yaml/reduc_denormandie_metro.yaml; calculateur_impots/yaml/reduc_pinel_dom.yaml; calculateur_impots/yaml/reduc_denormandie_dom.yaml
+f7ra,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en métropole en 2017 avec engagement de location 6 ans,1,4,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7ra_2015,foyer_fiscal,"Travaux de restauration immobilière dans une zone de protection du patrimoine architectural, urbain et paysager",1,2,calculateur_impots/yaml/reduc_malraux.yaml
+f7rb,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en métropole en 2017 avec engagement de location 9 ans,1,4,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7rb_2015,foyer_fiscal,Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé : dépenses payées en 2014 sur opérations engagées en 2011,1,2,calculateur_impots/yaml/reduc_malraux.yaml
+f7rc,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en outre-mer en 2017 avec engagement de location 6 ans,1,4,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7rc_2015,foyer_fiscal,Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé,1,2,calculateur_impots/yaml/reduc_malraux.yaml
+f7rd,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en outre-mer en 2017 avec engagement de location 9 ans,1,4,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7rd_2015,foyer_fiscal,Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé,1,2,calculateur_impots/yaml/reduc_malraux.yaml
+f7re_2016,foyer_fiscal,Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé,1,3,calculateur_impots/yaml/reduc_malraux.yaml
+f7rf_2016,foyer_fiscal,Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé,1,3,calculateur_impots/yaml/reduc_malraux.yaml
+f7rr,foyer_fiscal,Pinel,1,2,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7rs,foyer_fiscal,Pinel,1,1,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7ry,foyer_fiscal,Pinel,1,1,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7rz,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en métropole en 2016 avec engagement de location 9 ans,1,3,calculateur_impots/yaml/reduc_pinel_metro.yaml
+f7sa,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7sn,foyer_fiscal,Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d,2,2,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml; calculateur_impots/yaml/reduc_locmeu_avec_reports.yaml
+f7sp,foyer_fiscal,Dépenses en faveur de la qualité environnementale de l,1,1,calculateur_impots/yaml/reduc_locmeu_plafonnee.yaml
+f7sx_2017,foyer_fiscal,Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé,1,4,calculateur_impots/yaml/reduc_malraux.yaml
+f7sy_2017,foyer_fiscal,Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé,1,4,calculateur_impots/yaml/reduc_malraux.yaml
+f7sz,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en outre-mer en 2016 avec engagement de location 6 ans,1,6,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7ta,foyer_fiscal,Inv. for.,1,1,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tb,foyer_fiscal,Dépenses en investissements forestiers,1,1,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7td,foyer_fiscal,Intérêts des prêts étudiants versés avant l,1,4,calculateur_impots/yaml/credit_preetu.yaml
+f7tg,foyer_fiscal,"Investissements forestiers : report 2011, après sinistre",1,1,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tj,foyer_fiscal,"Investissements forestiers : report N-1, après sinistre",1,6,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tk,foyer_fiscal,"Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs",1,6,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tm,foyer_fiscal,"Investissements forestiers : report 2015, après sinistre",1,5,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7to,foyer_fiscal,"Investissements forestiers : report 2015, après sinistre, avec adhésion à une association de producteurs",2,6,calculateur_impots/yaml/credit_invest_forestier.yaml; calculateur_impots/yaml/credits_impot.yaml
+f7tp,foyer_fiscal,Inv. forestiers: Report des dépenses de travaux des années antérieures 2016,1,4,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tq,foyer_fiscal,Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016,1,4,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tr,foyer_fiscal,Inv. forestiers: Report des dépenses de travaux des années antérieures 2017,1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7ts,foyer_fiscal,Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2017,1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tt,foyer_fiscal,Inf. for.,1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tu,foyer_fiscal,Inv. for.,1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tv,foyer_fiscal,Inv. for.,1,2,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tw,foyer_fiscal,Investissement forestiers report des dépenses de travaux des années antérieures: 2019 après sinistre,1,2,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7tx,foyer_fiscal,Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé; Opérations engagées en 2017 dans un site patrimonial remarquable couvert par un PSMV,1,2,calculateur_impots/yaml/reduc_malraux.yaml
+f7ty,foyer_fiscal,Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé; Opérations engagées en 2017 dans un site patrimonial remarquable non couvert par un PSMV,1,2,calculateur_impots/yaml/reduc_malraux.yaml
+f7tz,foyer_fiscal,Report concernant les investissements locatifs intermédiaires en outre-mer en 2016 avec engagement de location 9 ans,1,6,calculateur_impots/yaml/reduc_pinel_dom.yaml
+f7ua,foyer_fiscal,Investissements forestiers : travaux avec adhésion à une organisation de producteurs,1,7,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7ub,foyer_fiscal,"Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs",2,8,calculateur_impots/yaml/credit_invest_forestier.yaml; calculateur_impots/yaml/credits_impot.yaml
+f7ud,foyer_fiscal,Dons à des organismes d,2,7,calculateur_impots/yaml/reduc_dfppce.yaml; calculateur_impots/yaml/reduc_donapd.yaml
+f7ue,foyer_fiscal,Dons versés du 16.4 au 31.12.2019 pour la conservation et la restauration de la cathédrale Notre-Dame de Paris ,2,3,calculateur_impots/yaml/reduc_dfppce.yaml; calculateur_impots/yaml/reduc_notredame.yaml
+f7uf,foyer_fiscal,Dons à d,1,9,calculateur_impots/yaml/reduc_dfppce.yaml
+f7uh,foyer_fiscal,Dons et cotisations versés aux partis politiques,1,5,calculateur_impots/yaml/reduc_dfppce.yaml
+f7ui,foyer_fiscal,Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs ,2,8,calculateur_impots/yaml/credit_invest_forestier.yaml; calculateur_impots/yaml/credits_impot.yaml
+f7uj,foyer_fiscal,Dons effectés à pour la sauvegarde du patrimoine religieux,1,2,calculateur_impots/yaml/reduc_dfppce.yaml
+f7uj_2022,foyer_fiscal,Dons versés du 2.6.2021 au 31.12.2022 à des associations cultuelles,1,1,calculateur_impots/yaml/reduc_dfppce.yaml
+f7uk,foyer_fiscal,Intérêts des prêts étudiants versés durant l,1,4,calculateur_impots/yaml/credit_preetu.yaml
+f7um,foyer_fiscal,Intérêts pour paiement différé accordé aux agriculteurs,1,4,calculateur_impots/yaml/reduc_intagr.yaml
+f7up,foyer_fiscal,Crédit dimpôt pour investissements forestiers: travaux,1,7,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7uq,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7ut,foyer_fiscal,Investissements forestiers : indicatrice travaux consécutifs à un sinistre,1,7,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7uu_2017,foyer_fiscal,"Investissements forestiers : report N-4, hors sinistre",1,1,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7ux,foyer_fiscal,Scellier,1,1,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7ux_2018,foyer_fiscal,"Investissements forestiers : report N-1, hors sinistre",1,2,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7uy,foyer_fiscal,Investissements locatifs dans le secteur de touristique: Report des dépenses d,1,1,calculateur_impots/yaml/reduc_invlst1.yaml
+f7uz,foyer_fiscal,Investissements locatifs dans le secteur de touristique: Report des dépenses d,1,1,calculateur_impots/yaml/reduc_invlst2.yaml
+f7va,foyer_fiscal,Dons à des organismes d,2,8,calculateur_impots/yaml/reduc_dfppce.yaml; calculateur_impots/yaml/reduc_donapd.yaml
+f7vc,foyer_fiscal,Dons à des autres organismes établis dans un Etat européen,1,8,calculateur_impots/yaml/reduc_dfppce.yaml
+f7vh,foyer_fiscal,Inv. for.,1,2,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vi,foyer_fiscal,Inv. for.,1,2,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vj,foyer_fiscal,Inv. for.,1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vk,foyer_fiscal,Inv. for.,1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vl,foyer_fiscal,Inv. for.,1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vm,foyer_fiscal,"Investissements forestiers : report 2015, hors sinistre",2,6,calculateur_impots/yaml/credit_invest_forestier.yaml; calculateur_impots/yaml/credits_impot.yaml
+f7vn,foyer_fiscal,"Investissements forestiers : report 2015, hors sinistre, avec adhésion à une association de producteurs",1,5,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vo,foyer_fiscal,Nombre d,1,4,calculateur_impots/yaml/credit_preetu.yaml
+f7vp,foyer_fiscal,"Investissements forestiers : report 2014, hors sinistre, avec adhésion à une association de producteurs",1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vq,foyer_fiscal,"Investissements forestiers : report 2016, hors sinistre",1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vr,foyer_fiscal,"Investissements forestiers : report 2016, hors sinistre, avec adhésion à une association de producteurs",1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vs,foyer_fiscal,Inv. for.,1,3,calculateur_impots/yaml/credit_invest_forestier.yaml
+f7vt,foyer_fiscal,Intérêt des emprunts contractés pour l,1,4,calculateur_impots/yaml/credit_inthab.yaml
+f7vu,foyer_fiscal,Intérêt des emprunts contractés pour l,1,1,calculateur_impots/yaml/credit_inthab.yaml
+f7vv,foyer_fiscal,Intérêt des emprunts contractés pour l,1,2,calculateur_impots/yaml/credit_inthab.yaml
+f7vx,foyer_fiscal,Intérêt des emprunts contractés pour l,1,5,calculateur_impots/yaml/credit_inthab.yaml
+f7vz,foyer_fiscal,Intérêt des emprunts contractés pour l,1,4,calculateur_impots/yaml/credit_inthab.yaml
+f7wj,foyer_fiscal,Dépenses en faveur de l,1,4,calculateur_impots/yaml/credit_aidper.yaml
+f7wl,foyer_fiscal,Dépenses en faveur de l,1,4,calculateur_impots/yaml/credit_aidper.yaml
+f7wr,foyer_fiscal,Dépenses en faveur de l,1,4,calculateur_impots/yaml/credit_aidper.yaml
+f7wt,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7wu,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7wv,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7ww,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7xi_2015,foyer_fiscal,"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d",1,2,calculateur_impots/yaml/reduc_invlst1.yaml
+f7xj_2015,foyer_fiscal,Investissements locatifs dans le secteur de touristique: réhabilitation d,1,2,calculateur_impots/yaml/reduc_invlst2.yaml
+f7xp_2016,foyer_fiscal,Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d,1,1,calculateur_impots/yaml/reduc_invlst1.yaml
+f7xq_2016,foyer_fiscal,Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d,1,1,calculateur_impots/yaml/reduc_invlst2.yaml
+f7xs,foyer_fiscal,Report des années antérieures des dons (report des réductions et crédits d,1,7,calculateur_impots/yaml/reduc_dfppce.yaml
+f7xt,foyer_fiscal,Report des années antérieures des dons (report des réductions et crédits d,1,7,calculateur_impots/yaml/reduc_dfppce.yaml
+f7xu,foyer_fiscal,Report des années antérieures des dons (report des réductions et crédits d,1,7,calculateur_impots/yaml/reduc_dfppce.yaml
+f7xv,foyer_fiscal,Investissements locatifs dans le secteur de touristique: Report des dépenses d,1,4,calculateur_impots/yaml/reduc_dfppce.yaml
+f7xw,foyer_fiscal,Report des années antérieures des dons (report des réductions et crédits d,1,7,calculateur_impots/yaml/reduc_dfppce.yaml
+f7xy,foyer_fiscal,Report des années antérieures des dons (report des réductions et crédits d,1,3,calculateur_impots/yaml/reduc_dfppce.yaml
+f7ya,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés du 1.1.2013 au 31.3.2013 avec promesse d",2,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports2.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yb,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yc,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2012 avec promesse d",1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yd,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7ye,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2011 avec promesse d",1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yf,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yg,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2010 avec promesse d",1,1,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yh,foyer_fiscal,Investissements locatifs neufs dispositif Scellier : Report concernant les investissements réalisés en 2009 et achevés en 2013 en métropole et dans les DOM-COM ,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yi,foyer_fiscal,"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2009, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",1,1,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7yj,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7yk,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7yl,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,3,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7ym,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yn,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yo,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yp,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,3,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yq,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,2,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7yr,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,2,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7ys,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,2,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7yt,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yu,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yv,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yw,foyer_fiscal,Scellier: report de 1/9 de la réduction d,1,2,calculateur_impots/yaml/reduc_scelli_metro_bbc_et_reports1.yaml
+f7yx,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,1,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7yy,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,1,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f7yz,foyer_fiscal,Scellier: report de 1/5 de la réduction d,1,1,calculateur_impots/yaml/reduc_scelli_dom_poly_et_reports.yaml
+f8la,foyer_fiscal,Crédit d,1,2,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8tb,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8tc,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8te,foyer_fiscal,Crédit d,1,2,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8te_2018,foyer_fiscal,Crédit d,1,4,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8tf,foyer_fiscal,Reprises de réductions ou de crédits d,1,3,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8tg,foyer_fiscal,Crédits d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8tl,foyer_fiscal,Crédit d,1,5,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8to,foyer_fiscal,Crédit d,1,3,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8tp,foyer_fiscal,Crédit d,1,3,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8ts,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8tz,foyer_fiscal,Crédit d,1,4,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8uw,foyer_fiscal,Crédit d,1,5,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8uy,foyer_fiscal,Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé,1,4,calculateur_impots/yaml/reduc_autent.yaml
+f8uz,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8wa,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8wb,foyer_fiscal,Crédit d,1,4,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8wc,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8wd,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8we,foyer_fiscal,Crédit d,1,4,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8wg,foyer_fiscal,Crédit d,1,1,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8wh,foyer_fiscal,Crédit d,1,1,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8wr,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8wt,foyer_fiscal,Crédit d,1,7,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+f8wu,foyer_fiscal,Crédit d,1,5,calculateur_impots/yaml/reduc_credit_2042pro.yaml
+fhbs,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhbu,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhcc,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhcm,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhco,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhct,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhdi,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhdo,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhdp,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhes,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhet,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhfw,foyer_fiscal,Investissements outre-mer dans le cadre de l,1,1,calculateur_impots/yaml/reduc_doment.yaml
+fhoe,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhoj,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhot,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhoy,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhqb,foyer_fiscal,,1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhqd,foyer_fiscal,DomLog Investissements réalisés en 2010: autres investissements,1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhua,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2014, Investissements immobiliers engagés avant le 1.1.2011",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhuj,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2015, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhul,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2015, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhuq,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2016, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhva,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2017, Investissements immobiliers engagés avant le 1.1.2011",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhvg,foyer_fiscal,"Investissements outre-mer dans le logement : Investissements réalisés en 2017, Autres investissements",1,1,calculateur_impots/yaml/reduc_domlog.yaml
+fhxa,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2014,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxb,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2014,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxc,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2014,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxe,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2014,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxf,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2015,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxg,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2015,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxh,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2015,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxi,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2015,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxk,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2015,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxl,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2016,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxm,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2016,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxn,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2016,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxo,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2016,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxp,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2016,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxq,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2017,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxr,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2017,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxs,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2017,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxt,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2017,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhxu,foyer_fiscal,Investissements outre-mer dans le logement social : Investissements réalisés en 2017,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhya,foyer_fiscal,DomSoc,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhyb,foyer_fiscal,DomSoc,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhyc,foyer_fiscal,DomSoc,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+fhyd,foyer_fiscal,DomSoc,1,1,calculateur_impots/yaml/reduc_domsoc.yaml
+frag_fore,individus,Revenus des exploitants forestiers (régime du forfait),1,2,calculateur_impots/yaml/regime_forfait_agricole.yaml
+frag_impo,individus,Revenus agricoles imposables (régime du forfait),1,2,calculateur_impots/yaml/regime_forfait_agricole.yaml
+frag_impo_n1,individus,"Revenus agricoles, forfait ou microBA année n-1",1,1,calculateur_impots/yaml/regime_microBA.yaml
+frag_pvct,individus,Plus-values agricoles  à court terme (régime du forfait),1,2,calculateur_impots/yaml/regime_forfait_agricole.yaml
+frais_reels,individus,Frais réels,2,2,mes-aides.gouv.fr/ludwig_test_1520950068799.yaml; formulas/ass_revenus_immo.yaml
+gains_exceptionnels,individus,Gains exceptionnels,1,1,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml
+garantie_jeunes,individus,Montant de la Garantie Jeune,1,1,formulas/visale.yaml
+garde_alternee,individus,Enfant en garde alternée,11,16,formulas/asf/asf_2015_01.yaml; mes-aides.gouv.fr/test_mes_aides_551d4d49d8e0018545eb071b.yaml; formulas/asf/asf_2018_04.yaml; ... et 8 autres
+gir,individus,Groupe iso-ressources de l,8,8,mes-aides.gouv.fr/ludwig_test_1515421140631.yaml; mes-aides.gouv.fr/ludwig_test_1515420730955.yaml; mes-aides.gouv.fr/ludwig_test_1515421207606.yaml; ... et 5 autres
+handicap,individus,Individu en situation de handicap,126,132,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 123 autres
+heures_remunerees_volume,individus,Volume des heures rémunérées contractuellement,1,3,formulas/covid19/ap.yaml
+inapte_travail,individus,Reconnu inapte au travail,126,129,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 123 autres
+invalidite,individus,Individu titulaire d,1,3,formulas/personnes_a_charge.yaml
+lieu_emploi_ou_formation,individus,Zone de l,1,14,formulas/agepi.yaml
+livret_a,individus,Épargne sur Livret A,3,3,mes-aides.gouv.fr/test_mes_aides_542134d3fb35830200b31345.yaml; formulas/ass_revenus_immo.yaml; formulas/aides_logement.yaml
+logement_chambre,menage,Le logement est considéré comme une chambre,9,9,mes-aides.gouv.fr/500E_mois_APL_Zone_3.yaml; mes-aides.gouv.fr/500E_mois_APL_Zone_2.yaml; mes-aides.gouv.fr/testMAcas1_6_couple_accedant_a_la_propriete_AL_1126_E_M_de_salaire_net.yaml; ... et 6 autres
+logement_conventionne,menage,Logement conventionné,1,1,formulas/aides_logement_reforme_janvier_2021.yaml
+logement_crous,menage,Le logement est géré par les CROUS ,1,1,formulas/aides_logement_etudiant.yaml
+loyer,menage,Loyer ou mensualité d,54,66,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54367da883a4916e4d5a13a3.yaml; mes-aides.gouv.fr/test_mes_aides_54dc766af675ddd34432f3a4.yaml; ... et 51 autres
+macc_exon,individus,Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise),2,4,calculateur_impots/yaml/regime_micro_BIC_non_pro.yaml; calculateur_impots/yaml/rpns_pv.yaml
+macc_imps,individus,Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise),2,4,calculateur_impots/yaml/regime_micro_BIC_non_pro.yaml; calculateur_impots/yaml/rpns_pv.yaml
+macc_impv,individus,Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise),1,3,calculateur_impots/yaml/regime_micro_BIC_non_pro.yaml
+macc_pvce,individus,Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables selon droit commun (régime micro entreprise),2,4,calculateur_impots/yaml/regime_micro_BIC_non_pro.yaml; calculateur_impots/yaml/rpns_pv.yaml
+macc_pvct,individus,Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise),1,3,calculateur_impots/yaml/regime_micro_BIC_non_pro.yaml
+maries,famille,maries,2,5,formulas/asi_aspa.yaml; formulas/asi.yaml
+maries_ou_pacses,foyer_fiscal,Déclarants mariés ou pacsés,3,15,impot_revenu/nombre_de_parts/maries_ou_pacses.yaml; formulas/cs/acs.yaml; formulas/cs/cmu.yaml
+mbic_exon,individus,Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise),1,3,calculateur_impots/yaml/regime_micro_BIC_pro.yaml
+mbic_imps,individus,Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise),2,4,calculateur_impots/yaml/rpns_pv.yaml; calculateur_impots/yaml/regime_micro_BIC_pro.yaml
+mbic_impv,individus,Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise),1,3,calculateur_impots/yaml/regime_micro_BIC_pro.yaml
+mbic_pvce,individus,Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables selon droit commun (régime micro entreprise),2,4,calculateur_impots/yaml/rpns_pv.yaml; calculateur_impots/yaml/regime_micro_BIC_pro.yaml
+mbic_pvct,individus,Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise),2,4,calculateur_impots/yaml/rpns_pv.yaml; calculateur_impots/yaml/regime_micro_BIC_pro.yaml
+month:2021-01:12,individus,,1,14,formulas/agepi.yaml
+mrag_impo,individus,Revenus agricoles imposables (régime micro BA),1,2,calculateur_impots/yaml/regime_microBA.yaml
+mrag_pvce,individus,Plus-values agricoles (régime microBA) à long-terme taxable selon droit commun,1,1,calculateur_impots/yaml/rpns_pv.yaml
+mrag_pvct,individus,Plus-values agricoles (régime microBA) à court-terme,1,1,calculateur_impots/yaml/rpns_pv.yaml
+nacc_defn,individus,Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_nonpro_sans_cga.yaml
+nacc_exon,individus,Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_nonpro_sans_cga.yaml
+nacc_impn,individus,Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_nonpro_sans_cga.yaml
+nacc_meup,individus,Locations meublées non professionnelles: Locations meublées et chambre d,1,3,calculateur_impots/yaml/regime_micro_BIC_location.yaml
+nacc_pres,individus,Locations meublées non professionnelles: Gîtes ruraux et chambres d,1,3,calculateur_impots/yaml/regime_benef_reel_BIC_location_avec_cga.yaml
+nacc_pvce,individus,Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_location_sans_cga.yaml
+nbF,foyer_fiscal,Nombre d,83,330,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 80 autres
+nbG,foyer_fiscal,Nombre d,83,310,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 80 autres
+nbH,foyer_fiscal,Nombre d,83,318,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 80 autres
+nbI,foyer_fiscal,Nombre d,83,310,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 80 autres
+nbJ,foyer_fiscal,Nombre d,79,302,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 76 autres
+nbN,foyer_fiscal,Nombre d,13,48,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/plaf_qf_family.yaml; calculateur_impots/yaml/nbI.yaml; ... et 10 autres
+nbR,foyer_fiscal,Nombre de titulaires (autres que les enfants) de la carte invalidité d,79,302,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; calculateur_impots/yaml/reduc_intagr.yaml; ... et 76 autres
+nbic_defn,individus,Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_pro_sans_cga.yaml
+nbic_defs,individus,Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime simplifié du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_location_sans_cga.yaml
+nbic_exon,individus,Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_pro_sans_cga.yaml
+nbic_impm,individus,Locations meublées imposables sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_pro_sans_cga.yaml
+nbic_impn,individus,Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_pro_sans_cga.yaml
+nbnc_pvce,individus,Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_pro_sans_cga.yaml
+nlnp_defs,individus,Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel),1,3,calculateur_impots/yaml/regime_benef_reel_BIC_location_sans_cga.yaml
+nrag_defi,individus,"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l",1,4,calculateur_impots/yaml/regime_benef_reel_agricole_sans_cga.yaml
+nrag_impg,individus,"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l",1,4,calculateur_impots/yaml/regime_benef_reel_agricole_sans_cga.yaml
+paje_base,famille,Allocation de base de la PAJE,123,123,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 120 autres
+paje_naissance,famille,Allocation de naissance de la PAJE,1,1,formulas/cs/cmu_fiab.yaml
+paje_prepare,famille,Prestation Partagée d’éducation de l’Enfant (PreParE),1,1,formulas/cs/cmu_fiab.yaml
+participation_frais,menage,Partipation aux frais de logement pour un hebergé à titre gratuit,22,22,mes-aides.gouv.fr/test_mes_aides_546b4abfde0b44f86312e9e3.yaml; mes-aides.gouv.fr/test_mes_aides_5591409ca7a520fc2f41dc86.yaml; mes-aides.gouv.fr/test_mes_aides_553fb691f0058c5b39237060.yaml; ... et 19 autres
+pcrtp_nombre_actes_assistance,individus,Nombre d,1,1,formulas/rente_at.yaml
+pensions_alimentaires_percues,individus,Pensions alimentaires perçues,17,17,mes-aides.gouv.fr/test_mes_aides_546b4abfde0b44f86312e9e3.yaml; mes-aides.gouv.fr/test_mes_aides_5592b42d131e5b05301ebc8f.yaml; formulas/asf/asf_2018_04.yaml; ... et 14 autres
+pensions_alimentaires_versees,foyer_fiscal,Pensions alimentaires versées,6,6,mes-aides.gouv.fr/test_mes_aides_5592b42d131e5b05301ebc8f.yaml; mes-aides.gouv.fr/test_mes_aides_5591478e131e5b05301eb8fa.yaml; mes-aides.gouv.fr/test_mes_aides_55913e82131e5b05301eb89c.yaml; ... et 3 autres
+pensions_alimentaires_versees_individu,individus,Pensions alimentaires versées pour un individu,2,2,formulas/cs/acs.yaml; formulas/cs/cmu_fiab.yaml
+pensions_invalidite,individus,Pensions d,2,2,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml; formulas/ass_revenus_immo.yaml
+pole_emploi_categorie_demandeur_emploi,individus,Le classement des demandeurs d’emploi dans les différentes catégories d’inscription à Pôle Emploi,1,14,formulas/agepi.yaml
+ppa,famille,Prime Pour l,13,17,mes-aides.gouv.fr/500E_mois_APL_Zone_3.yaml; mes-aides.gouv.fr/ludwig_test_1515421140631.yaml; formulas/per.yaml; ... et 10 autres
+prestation_compensatoire,individus,Prestation compensatoire,2,2,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml; formulas/cs/cmu_rente_at.yaml
+prestations_familiales_base_ressources_individu,individus,Base ressource individuelle des prestations familiales,1,4,formulas/aides_logement.yaml
+prime_forfaitaire_mensuelle_reprise_activite,individus,Prime forfaitaire mensuelle pour la reprise d,1,1,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml
+primes_fonction_publique,individus,Calcul des primes pour les fonctionnaires,1,2,cotisations_sociales_simulateur_IPP.yaml
+proprietaire_proche_famille,famille,Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint,37,37,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54367da883a4916e4d5a13a3.yaml; mes-aides.gouv.fr/test_mes_aides_54dc766af675ddd34432f3a4.yaml; ... et 34 autres
+rente_accident_travail,individus,Montant mensuel de la rente d’accident du travail,1,4,formulas/cs/cmu_rente_at.yaml
+rente_viagere_titre_onereux,foyer_fiscal,Rentes viagères (rentes à titre onéreux),1,1,formulas/visale.yaml
+residence_mayotte,menage,,2,14,formulas/agepi.yaml; formulas/ass_mayotte.yaml
+ressortissant_eee,individus,Individu ressortissant d,1,1,formulas/aspa.yaml
+retraite_brute,individus,Retraite brute,2,2,mes-aides.gouv.fr/ludwig_test_1520950068799.yaml; mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml
+retraite_combattant,individus,Retraite du combattant,1,1,mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml
+retraite_imposable,individus,Retraites au sens strict imposables (rentes à titre onéreux exclues),8,8,mes-aides.gouv.fr/test_mes_aides_5592b42d131e5b05301ebc8f.yaml; mes-aides.gouv.fr/test_mes_aides_5591478e131e5b05301eb8fa.yaml; mes-aides.gouv.fr/test_mes_aides_55913e82131e5b05301eb89c.yaml; ... et 5 autres
+retraite_nette,individus,Pensions de retraite nettes,3,3,mes-aides.gouv.fr/ludwig_test_1520950068799.yaml; mes-aides.gouv.fr/test_mes_aides_54661ad9f36fa43e77898968.yaml; formulas/ass_abbattement.yaml
+revenu_assimile_pension,individus,"Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)",1,1,calculateur_impots/yaml/reduc_sous_conditions_ressources.yaml
+revenus_locatifs,individus,Revenus locatifs,3,3,formulas/rsa/rsa_revenus_locatifs.yaml; formulas/ass_revenus_immo.yaml; formulas/ass_abbattement.yaml
+revimpres,individus,Revenus nets à imposer aux prélèvements sociaux,1,1,calculateur_impots/yaml/regime_benef_reel_BIC_location_avec_cga.yaml
+rfr,foyer_fiscal,Revenu fiscal de référence,8,8,mes-aides.gouv.fr/test_mes_aides_55688ea5a3f5be1046accf60.yaml; mes-aides.gouv.fr/test_mes_aides_5592b42d131e5b05301ebc8f.yaml; mes-aides.gouv.fr/test_mes_aides_5591478e131e5b05301eb8fa.yaml; ... et 5 autres
+rpns_auto_entrepreneur_CA_bnc,individus,Chiffre d,1,1,mes-aides.gouv.fr/test_mes_aides_5540d71646bea9643939530f.yaml
+rpns_autres_revenus,individus,Autres revenus non salariés,2,2,mes-aides.gouv.fr/test_mes_aides_553fa8b7301cd06239697158.yaml; mes-aides.gouv.fr/test_mes_aides_5540d71646bea9643939530f.yaml
+rpns_autres_revenus_chiffre_affaires,individus,Chiffre d,1,1,mes-aides.gouv.fr/test_mes_aides_553fa8b7301cd06239697158.yaml
+rpns_benefice_exploitant_agricole,individus,Dernier bénéfice agricole,5,5,mes-aides.gouv.fr/test_mes_aides_553fb691f0058c5b39237060.yaml; mes-aides.gouv.fr/test_mes_aides_553fb8f917d9db60391c3418.yaml; mes-aides.gouv.fr/test_mes_aides_5550bb6d80e2305831984803.yaml; ... et 2 autres
+rsa,famille,Revenu de solidarité active,133,161,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 130 autres
+rsa_base_ressources_minima_sociaux,famille,Minima sociaux inclus dans la base ressource RSA/RMI,1,10,formulas/rsa/rsa_exclusion_foyer.yaml
+rsa_base_ressources_prestations_familiales,famille,Prestations familiales inclues dans la base ressource RSA/RMI,2,12,formulas/rsa/rsa_exclusion_foyer.yaml; formulas/ppa/ppa.yaml
+rsa_isolement_recent,famille,Situation d,40,43,mes-aides.gouv.fr/test_mes_aides_53d7b76df6aa390200a6cd5c.yaml; mes-aides.gouv.fr/test_mes_aides_546b4abfde0b44f86312e9e3.yaml; mes-aides.gouv.fr/test_mes_aides_546b0787fc9936ff63f8565c.yaml; ... et 37 autres
+rsa_jeune_condition_heures_travail_remplie,individus,Éligible au RSA si la personne a moins de vingt-cinq ans et a travaillé deux ans sur les trois dernières années,1,1,formulas/rsa.yaml
+salaire_de_base,individus,Salaire de base,17,19,mes-aides.gouv.fr/test_mes_aides_551d4d49d8e0018545eb071b.yaml; mes-aides.gouv.fr/test_mes_aides_55688ea5a3f5be1046accf60.yaml; mes-aides.gouv.fr/testMAcas1_6_couple_accedant_a_la_propriete_AL_1126_E_M_de_salaire_net.yaml; ... et 14 autres
+salaire_imposable,individus,Salaires imposables,100,339,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; formulas/irpp_cehr.yaml; ... et 97 autres
+salaire_net,individus,Salaires nets d,26,70,mes-aides.gouv.fr/test_mes_aides_5591409ca7a520fc2f41dc86.yaml; formulas/cs/cmu_rente_at.yaml; formulas/rente_at.yaml; ... et 23 autres
+scolarite,individus,Scolarité de l,15,15,mes-aides.gouv.fr/test_mes_aides_54ac0ceed20bc238169b4b06.yaml; mes-aides.gouv.fr/test_mes_aides_54ac15d34939ba3216001203.yaml; mes-aides.gouv.fr/test_mes_aides_54ac144061ba79341658e5c5.yaml; ... et 12 autres
+stagiaire,individus,L,1,12,formulas/agepi.yaml
+statut_marital,individus,Statut marital,131,402,calculateur_impots/yaml/caseP.yaml; calculateur_impots/yaml/reduc_scelli_metro_bbc.yaml; impot_revenu/pfu_bareme.yaml; ... et 128 autres
+statut_occupation_logement,menage,Statut d,140,198,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 137 autres
+taille_entreprise,individus,Catégorie de taille d,1,2,cotisations_sociales_simulateur_IPP.yaml
+taux_accident_travail,individus,Approximation du taux accident à partir de l,1,5,formulas/rente_at.yaml
+taux_incapacite,individus,Taux d,19,23,mes-aides.gouv.fr/ludwig_test_1515421207606.yaml; mes-aides.gouv.fr/test_mes_aides_556886e1a0084c3b26e9d1d5.yaml; mes-aides.gouv.fr/test_mes_aides_59415de47770d2503676954c.yaml; ... et 16 autres
+tns_autres_revenus_type_activite,individus,Type d,4,4,mes-aides.gouv.fr/ludwig_test_1520950068799.yaml; mes-aides.gouv.fr/test_mes_aides_553fa8b7301cd06239697158.yaml; mes-aides.gouv.fr/test_mes_aides_555aff483b9f6b603184d3a8.yaml; ... et 1 autres
+tns_avec_employe,individus,Le TNS a au moins un employé. Ne s,1,1,mes-aides.gouv.fr/test_mes_aides_555aff483b9f6b603184d3a8.yaml
+traitement_indiciaire_brut,individus,Traitement indiciaire brut (TIB),1,2,cotisations_sociales_simulateur_IPP.yaml
+type_intensite_activite,individus,Le type d,1,14,formulas/agepi.yaml
+valeur_immo_non_loue,individus,Valeur des biens immobiliers possédés et non loués,3,11,formulas/patrimoine.yaml; formulas/cs/acs.yaml; formulas/aides_logement.yaml
+valeur_locative_immo_non_loue,individus,"Valeur locative, à l",120,128,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 117 autres
+valeur_locative_terrains_non_loues,individus,"Valeur locative, à l",119,127,mes-aides.gouv.fr/test_mes_aides_5438036f6c1222dc0d3ec937.yaml; mes-aides.gouv.fr/test_mes_aides_54818e47aad65891668c6d8c.yaml; mes-aides.gouv.fr/test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml; ... et 116 autres
+valeur_patrimoine_loue,individus,Valeur des biens immobiliers et des terrains loués,1,1,formulas/ass_revenus_immo.yaml
+valeur_terrains_non_loues,individus,Valeur des terrains possédés et non loués,3,11,formulas/patrimoine.yaml; formulas/cs/acs.yaml; formulas/aides_logement.yaml
+year:2012:3,individus,,6,6,mes-aides.gouv.fr/test_mes_aides_54212b32fb35830200b31327.yaml; mes-aides.gouv.fr/test_mes_aides_54367da883a4916e4d5a13a3.yaml; mes-aides.gouv.fr/test_mes_aides_5421356afb35830200b3134c.yaml; ... et 3 autres
+year:2014-04,individus,,2,5,formulas/ass_eligibilite.yaml; formulas/ass_abbattement.yaml
+year:2017-04,individus,,1,4,formulas/ass_abbattement.yaml
+year:2018-01,foyer_fiscal,,2,2,formulas/cs/acs.yaml; formulas/cs/cmu.yaml
+zone_apl,menage,Zone APL,6,29,formulas/microsocial.yaml; cotisations_sociales_simulateur_IPP.yaml; formulas/aides_logement_etudiant.yaml; ... et 3 autres
