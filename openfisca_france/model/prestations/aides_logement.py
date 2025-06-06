@@ -1611,17 +1611,6 @@ class aides_logement_foyer_k_apl(Variable):
         return plafond_k - (((R_majuscule - (r_minuscule * N))) / (cm1 * N))
 
 
-class aides_logement_categorie(Variable):
-    value_type = str
-    entity = Famille
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-    def formula(famille, period, parameters):
-        categorie_apl = famille.demandeur.menage('logement_conventionne', period)
-        return where(categorie_apl, 'apl', 'al')
-
-
 class aides_logement_nb_part(Variable):
     value_type = float
     entity = Famille
@@ -1634,7 +1623,9 @@ class aides_logement_nb_part(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
 
-        categorie = famille('aides_logement_categorie', period)
+        categorie_apl = famille.demandeur.menage('logement_conventionne', period)
+        categorie = where(categorie_apl, 'apl', 'al')
+
         params = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_en_charge.n_nombre_parts[categorie]
 
         return (
