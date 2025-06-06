@@ -1,5 +1,13 @@
 # Changelog
 
+# 172.0.0 [2521](https://github.com/openfisca/openfisca-france/pull/2521)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/aides_logement.py`.
+* Détails :
+  - Supprime la variable `aides_logement_categorie` qui posait problème dans le dump (car string) pour l'intégrer directement dans le calcul de la variable qui l'appelait
+
 ### 171.0.2 [2495](https://github.com/openfisca/openfisca-france/pull/2495)
 
 * Changement mineur.

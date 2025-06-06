@@ -1706,7 +1706,7 @@ class aides_logement_nb_part(Variable):
     def formula(famille, period, parameters):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
-        
+
         categorie_apl = famille.demandeur.menage('logement_conventionne', period)
         categorie = where(categorie_apl, 'apl', 'al')
 
