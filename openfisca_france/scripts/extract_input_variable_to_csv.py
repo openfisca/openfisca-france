@@ -47,33 +47,59 @@ def extract_variable_labels_from_python_files(model_directory):
                         
                         for line in lines[1:]:  # Ignorer la ligne de définition de classe
                             # Arrêter si on trouve une nouvelle classe ou fonction
-                            if line.strip().startswith('class ') or line.strip().startswith('def '):
+                            if isinstance(line.strip(), str) and (line.strip().startswith('class ') or line.strip().startswith('def ')):
                                 break
                             
                             # Chercher la ligne contenant le label
                             if 'label' in line and '=' in line:
-                                # Extraire le label (peut être sur plusieurs lignes)
-                                label_match = re.search(r'label\s*=\s*["\']([^"\']*)', line)
-                                if label_match:
-                                    label = label_match.group(1)
-                                elif 'label' in line:
-                                    # Si le label est sur plusieurs lignes, essayer de l'extraire
-                                    try:
-                                        # Chercher la valeur complète du label
-                                        label_start = line.find('=') + 1
-                                        label_part = line[label_start:].strip()
-                                        if label_part.startswith('"'):
-                                            # Label sur une seule ligne
-                                            label = label_part.strip('"')
-                                        elif label_part.startswith('"""') or label_part.startswith("'''"):
-                                            # Label multiligne avec triple quotes
-                                            quote_type = '"""' if '"""' in label_part else "'''"
-                                            if label_part.count(quote_type) >= 2:
-                                                # Label complet sur une ligne
-                                                label = label_part.strip(quote_type)
-                                    except Exception:
-                                        pass
-                                break
+                                # Extraire le label en gérant correctement les guillemets
+                                try:
+                                    # Trouver la position du signe =
+                                    eq_pos = line.find('=')
+                                    if eq_pos == -1:
+                                        continue
+                                    
+                                    # Prendre la partie après le =
+                                    value_part = line[eq_pos + 1:].strip()
+                                    if isinstance(value_part, int):
+                                        continue
+                                    
+                                    # Gérer les différents types de quotes
+                                    if value_part.startswith('"""'):
+                                        # Triple quotes double
+                                        if value_part.endswith('"""') and len(value_part) > 6:
+                                            label = value_part[3:-3]
+                                        elif '"""' in value_part[3:]:
+                                            end_pos = value_part.find('"""', 3)
+                                            label = value_part[3:end_pos]
+                                    elif value_part.startswith("'''"):
+                                        # Triple quotes simple
+                                        if value_part.endswith("'''") and len(value_part) > 6:
+                                            label = value_part[3:-3]
+                                        elif "'''" in value_part[3:]:
+                                            end_pos = value_part.find("'''", 3)
+                                            label = value_part[3:end_pos]
+                                    elif value_part.startswith('"'):
+                                        # Guillemets doubles - chercher la fin en gérant les échappements
+                                        i = 1
+                                        while i < len(value_part):
+                                            if value_part[i] == '"' and (i == 1 or value_part[i-1] != '\\'):
+                                                label = value_part[1:i]
+                                                break
+                                            i += 1
+                                    elif value_part.startswith("'"):
+                                        # Guillemets simples - chercher la fin en gérant les échappements
+                                        i = 1
+                                        while i < len(value_part):
+                                            if value_part[i] == "'" and (i == 1 or value_part[i-1] != '\\'):
+                                                label = value_part[1:i]
+                                                break
+                                            i += 1
+                                except Exception:
+                                    pass
+                                
+                                if label:
+                                    break
                         
                         if label:
                             variable_labels[variable_name] = label
@@ -97,7 +123,7 @@ def extract_variables_from_input(input_data):
         if isinstance(data, dict):
             for key, value in data.items():
                 # Ignorer les clés qui sont des références à des individus ou des structures
-                if key.startswith('ind') or key in exclude_keys:
+                if isinstance(key, str) and (key.startswith('ind') or key in exclude_keys):
                     continue
                 
                 # Ignorer les variables qui commencent par 4 chiffres suivis d'un tiret (ex: 2011-10)
@@ -133,9 +159,10 @@ def extract_variables_from_input(input_data):
 
 def main():
     # Répertoires
-    tests_dir = "/home/ben/LEXIMPACT/openfisca-france/tests"
-    model_dir = "/home/ben/LEXIMPACT/openfisca-france/openfisca_france/model"
-    
+    tests_dir = "./tests"
+    model_dir = "./openfisca_france/model"
+    csv_filename = "./openfisca_france/scripts/input_variable.csv"
+
     print("Extraction des labels des variables depuis les fichiers Python...")
     variable_labels = extract_variable_labels_from_python_files(model_dir)
     print(f"Trouvé {len(variable_labels)} labels de variables")
@@ -186,13 +213,13 @@ def main():
                 
                 except Exception as e:
                     print(f"Erreur avec le fichier {file_path}: {e}")
-    
+                    raise e
+    if file_count == 0:
+        print(f"Aucun fichier YAML trouvé dans le répertoire {tests_dir}.")
+        return
     print("\nAnalyse terminée!")
     print(f"Fichiers traités: {file_count}")
     print(f"Variables uniques trouvées: {len(all_variables)}")
-    
-    # Créer le fichier CSV
-    csv_filename = "input_variable.csv"
     
     with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['variable', 'entite', 'label', 'nb_fichiers', 'nb_utilisations', 'exemples_fichiers']
@@ -224,17 +251,6 @@ def main():
     
     print(f"\nFichier CSV créé: {csv_filename}")
     
-    # Créer aussi un CSV simplifié avec juste les noms des variables
-    simple_csv_filename = "variables_liste_simple.csv"
-    
-    with open(simple_csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(['variable'])
-        for var_name in sorted(all_variables.keys()):
-            writer.writerow([var_name])
-    
-    print(f"Fichier CSV simple créé: {simple_csv_filename}")
-    
     # Afficher un résumé
     print(f"\n{'='*60}")
     print("RÉSUMÉ")
@@ -245,12 +261,12 @@ def main():
     for var_info in all_variables.values():
         entity_counts[var_info['entity']] += 1
     
-    print("Variables par entité:")
+    print("Variables d'entrées utilisées dans les tests YAML, par entité:")
     for entity, count in sorted(entity_counts.items()):
         print(f"  - {entity}: {count} variables")
-    
-    # Top 10 des variables les plus utilisées
-    print("\nTop 10 des variables les plus utilisées:")
+
+    # Top 10 des variables d'entrées les plus utilisées
+    print("\nTop 10 des variables d'entrées les plus utilisées dans les tests YAML:")
     most_used = sorted(all_variables.items(), key=lambda x: x[1]['count'], reverse=True)[:10]
     for var_name, var_info in most_used:
         print(f"  - {var_name}: {var_info['count']} utilisations dans {len(var_info['files'])} fichiers")
