@@ -1,5 +1,13 @@
 # Changelog
 
+### 172.0.1 [2523](https://github.com/openfisca/openfisca-france/pull/2523)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/01/2025.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone`.
+* Détails :
+  - Met à jour les montants de réduction de loyer solidarité
+
 # 172.0.0 [2521](https://github.com/openfisca/openfisca-france/pull/2521)
 
 * Correction d'un crash.
