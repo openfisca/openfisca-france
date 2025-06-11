@@ -75,5 +75,4 @@ jobs:
         run: rsync -az --delete build/ legislation@legislation.leximpact.dev:legislation-parameters-explorer-france/packages/viewer/build/
         working-directory: legislation-parameters-explorer/packages/viewer
       - name: Update editor parameters data
-        run: ssh legislation@legislation.leximpact.dev "cd openfisca-france && git pull && sudo systemctl restart legislation-edit.service"
-
+        run: ssh legislation@legislation.leximpact.dev "cd openfisca-france && git fetch && git reset --hard origin/leximpact_legislation_explorer && sudo systemctl restart legislation-edit.service"
