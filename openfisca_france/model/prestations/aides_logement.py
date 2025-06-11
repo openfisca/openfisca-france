@@ -229,6 +229,9 @@ class logement_conventionne(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+    def formula(menage, period, parameters):
+        return menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_hlm
+
 
 class TypeEtatLogement(Enum):
     order__ = ' non_renseigne construction_acquisition_logement_neuf travaux_amelioration_residence_principale agrandissement_amenagement acquisition_amelioration acquisition_sans_amelioration_logement_existant amelioration'  # Needed to preserve the enum order in Python 2
