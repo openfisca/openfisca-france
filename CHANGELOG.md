@@ -1,5 +1,13 @@
 # Changelog
 
+### 172.0.2 [2524](https://github.com/openfisca/openfisca-france/pull/2524)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/aides_logement.py.
+* Détails :
+  - ajoute une formule à la variable logement_conventionne pour qu'elle soit liée à la variable statut_occupation_logement
+
 ### 172.0.1 [2523](https://github.com/openfisca/openfisca-france/pull/2523)
 
 * Évolution du système socio-fiscal.

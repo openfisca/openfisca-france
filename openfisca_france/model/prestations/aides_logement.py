@@ -230,7 +230,7 @@ class logement_conventionne(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        return menage('statut_occupation_logement',period) == TypesStatutOccupationLogement.locataire_hlm
+        return menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_hlm
 
 
 class TypeEtatLogement(Enum):
