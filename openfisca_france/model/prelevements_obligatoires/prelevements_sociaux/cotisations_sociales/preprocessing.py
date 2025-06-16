@@ -74,7 +74,7 @@ def build_pat(parameters):
         'contribution_moins_de_50_salaries',
         'contribution_plus_de_50_salaries',
         'cotisation',
-    ]
+        ]
     for key in fnal_keys:
         commun.children[f'fnal_{key}'] = commun.children.pop(key)
     commun.metadata['order'] += [f'fnal_{key}' for key in fnal_keys]
