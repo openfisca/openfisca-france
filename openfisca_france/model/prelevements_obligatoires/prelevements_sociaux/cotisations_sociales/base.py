@@ -328,9 +328,9 @@ def apply_bareme(individu, period, parameters, cotisation_type = None, bareme_na
 def compute_cotisation(individu, period, parameters, cotisation_type = None, bareme_name = None):
     assert cotisation_type is not None
     if cotisation_type == 'employeur':
-        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
+        bareme_by_categorie_salarie_name = parameters(period).cotsoc.cotisations_employeur
     elif cotisation_type == 'salarie':
-        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_salarie
+        bareme_by_categorie_salarie_name = parameters(period).cotsoc.cotisations_salarie
     assert bareme_name is not None
 
     assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period, options = [ADD])
@@ -338,7 +338,7 @@ def compute_cotisation(individu, period, parameters, cotisation_type = None, bar
     categorie_salarie = individu('categorie_salarie', period.first_month)
 
     cotisation = apply_bareme_for_relevant_type_sal(
-        bareme_by_categorie_salarie = bareme_by_type_sal_name,
+        bareme_by_categorie_salarie = bareme_by_categorie_salarie_name,
         bareme_name = bareme_name,
         base = assiette_cotisations_sociales,
         plafond_securite_sociale = plafond_securite_sociale,

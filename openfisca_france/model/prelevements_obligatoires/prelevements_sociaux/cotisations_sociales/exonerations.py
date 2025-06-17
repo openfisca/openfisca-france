@@ -176,13 +176,13 @@ class exoneration_cotisations_employeur_jei(Variable):
         categorie_salarie = individu('categorie_salarie', period)
         smic_proratise = individu('smic_proratise', period)
 
-        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
+        bareme_by_categorie_salarie_name = parameters(period).cotsoc.cotisations_employeur
         bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
 
         exoneration = smic_proratise * 0.0
         for bareme_name in bareme_names:
             exoneration += apply_bareme_for_relevant_type_sal(
-                bareme_by_categorie_salarie = bareme_by_type_sal_name,
+                bareme_by_categorie_salarie = bareme_by_categorie_salarie_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
                 base = assiette_allegement,
@@ -220,14 +220,14 @@ class exoneration_cotisations_employeur_jei(Variable):
 
         # Cette formule ne tient pas compte du montant maximal d'exonération dont chaque établissement peut bénéficier et qui est de 5 PSS (231 840 € en 2024)
 
-        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
+        bareme_by_categorie_salarie_name = parameters(period).cotsoc.cotisations_employeur
         bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
         plafond_part_remuneration = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.jei.plafond_part_remuneration
 
         exoneration = smic_proratise * 0.0
         for bareme_name in bareme_names:
             exoneration += apply_bareme_for_relevant_type_sal(
-                bareme_by_categorie_salarie = bareme_by_type_sal_name,
+                bareme_by_categorie_salarie = bareme_by_categorie_salarie_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
                 base = min_(assiette_allegement, plafond_part_remuneration * smic_proratise),
