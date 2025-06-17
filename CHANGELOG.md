@@ -1,5 +1,15 @@
 # Changelog
 
+### 172.0.3 [2516](https://github.com/openfisca/openfisca-france/pull/2516)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `preprocessing`.
+* Détails :
+- Renommer les paramètres de bareme_by_type_sal_name à bareme_by_categorie_salarie dans plusieurs fichiers.
+- Mettre à jour les étiquettes et les noms de variables pour plus de clarté et d'exactitude.
+- Refactoriser la logique de prétraitement pour regrouper les thématiques et les clés finales.
+
 ### 172.0.2 [2524](https://github.com/openfisca/openfisca-france/pull/2524)
 
 * Amélioration technique.
@@ -36,7 +46,7 @@
 
 * Changement mineur.
 * Périodes concernées : 2025
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_m/montant_de_base_du_rsa.yaml`
 * Détails :
   - Corrige la date de la référence législative pour le RSA (avril 2025)
@@ -45,14 +55,14 @@
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
   - `openfisca_france/model/prestations/prestations_familiales/aeeh.py`
   - `openfisca_france/model/prestations/prestations_familiales/paje.py`
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aeeh/complement_allocation`
 * Détails :
-  - Enlève des if period et les remplace par une nouvelle formule à une nouvelle date  
-  - Renomme des fichiers de paramètre dont le nom commençait par un nombre 
+  - Enlève des if period et les remplace par une nouvelle formule à une nouvelle date
+  - Renomme des fichiers de paramètre dont le nom commençait par un nombre
 
 ### 170.1.12 [2486](https://github.com/openfisca/openfisca-france/pull/2486)
 

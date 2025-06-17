@@ -50,47 +50,34 @@ def build_pat(parameters):
         'construction_plus_de_50_salaries',
         ]
     # Autres thématiques
-    commun.children.update(chomage.ags.employeur.children)
-    if chomage.ags.employeur.metadata is not None and chomage.ags.employeur.metadata.get('order') is not None:
-        commun.metadata['order'] += chomage.ags.employeur.metadata['order']
-    commun.children.update(chomage.asf.employeur.children)
-    if chomage.asf.employeur.metadata is not None and chomage.asf.employeur.metadata.get('order') is not None:
-        commun.metadata['order'] += chomage.asf.employeur.metadata['order']
-    commun.children.update(chomage.chomage.employeur.children)
-    if chomage.chomage.employeur.metadata is not None and chomage.chomage.employeur.metadata.get('order') is not None:
-        commun.metadata['order'] += chomage.chomage.employeur.metadata['order']
-    commun.children.update(regime_general.csa.employeur.children)
-    if regime_general.csa.employeur.metadata is not None and regime_general.csa.employeur.metadata.get('order') is not None:
-        commun.metadata['order'] += regime_general.csa.employeur.metadata['order']
-    commun.children.update(regime_general.famille.employeur.children)
-    if regime_general.famille.employeur.metadata is not None and regime_general.famille.employeur.metadata.get('order') is not None:
-        commun.metadata['order'] += regime_general.famille.employeur.metadata['order']
-    commun.children.update(regime_general.penibilite.children)
-    if regime_general.penibilite.metadata is not None and regime_general.penibilite.metadata.get('order') is not None:
-        commun.metadata['order'] += regime_general.penibilite.metadata['order']
-    commun.children.update(regime_general.cnav.employeur.children)
-    if regime_general.cnav.employeur.metadata is not None and regime_general.cnav.employeur.metadata.get('order') is not None:
-        commun.metadata['order'] += regime_general.cnav.employeur.metadata['order']
-    commun.children.update(regime_general.mmid.employeur.children)
-    if regime_general.mmid.employeur.metadata is not None and regime_general.mmid.employeur.metadata.get('order') is not None:
-        commun.metadata['order'] += regime_general.mmid.employeur.metadata['order']
+    thematiques = [
+        chomage.ags.employeur,
+        chomage.asf.employeur,
+        chomage.chomage.employeur,
+        regime_general.csa.employeur,
+        regime_general.famille.employeur,
+        regime_general.penibilite,
+        regime_general.cnav.employeur,
+        regime_general.mmid.employeur,
+        ]
+    for thematique in thematiques:
+        if thematique.metadata is not None and thematique.metadata.get('order') is not None:
+            commun.metadata['order'] += thematique.metadata['order']
+        commun.children.update(thematique.children)
 
     # Fnal (avec renommage)
     commun.children.update(autres.fnal.children)
-    commun.children['fnal_contribution_moins_de_20_salaries'] = commun.children.pop('contribution_moins_de_20_salaries')
-    commun.children['fnal_contribution_moins_de_50_salaries'] = commun.children.pop('contribution_moins_de_50_salaries')
-    commun.children['fnal_contribution_plus_de_10_salaries'] = commun.children.pop('contribution_plus_de_10_salaries')
-    commun.children['fnal_contribution_plus_de_20_salaries'] = commun.children.pop('contribution_plus_de_20_salaries')
-    commun.children['fnal_contribution_plus_de_50_salaries'] = commun.children.pop('contribution_plus_de_50_salaries')
-    commun.children['fnal_cotisation'] = commun.children.pop('cotisation')
-    commun.metadata['order'] += [
-        'fnal_contribution_plus_de_10_salaries',
-        'fnal_contribution_moins_de_20_salaries',
-        'fnal_contribution_plus_de_20_salaries',
-        'fnal_contribution_moins_de_50_salaries',
-        'fnal_contribution_plus_de_50_salaries',
-        'fnal_cotisation',
+    fnal_keys = [
+        'contribution_plus_de_10_salaries',
+        'contribution_moins_de_20_salaries',
+        'contribution_plus_de_20_salaries',
+        'contribution_moins_de_50_salaries',
+        'contribution_plus_de_50_salaries',
+        'cotisation',
         ]
+    for key in fnal_keys:
+        commun.children[f'fnal_{key}'] = commun.children.pop(key)
+    commun.metadata['order'] += [f'fnal_{key}' for key in fnal_keys]
 
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
     if autres.fin_syndic.metadata is not None and autres.fin_syndic.metadata.get('order') is not None:
