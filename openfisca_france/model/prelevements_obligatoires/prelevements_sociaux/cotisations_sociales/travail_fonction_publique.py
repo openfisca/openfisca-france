@@ -280,7 +280,7 @@ class rafp_salarie(Variable):
 
         parametres_rafp = parameters(period).prelevements_sociaux.cotisations_secteur_public.rafp
         taux_plafond_tib = parametres_rafp.rafp_plaf_assiette
-        bareme_rafp_salarie = cotsoc.cotisations_salarie.public_titulaire_etat['rafp']
+        bareme_rafp_salarie = parameters(period).cotsoc.cotisations_salarie.public_titulaire_etat['rafp']
 
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + avantage_en_nature
         assiette = (min_(base_imposable, taux_plafond_tib * traitement_indiciaire_brut) + gipa) * eligible
