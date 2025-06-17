@@ -84,10 +84,10 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
         stagiaire = individu('stagiaire', period)
         categorie_salarie = individu('categorie_salarie', period)
 
-        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
+        bareme_by_categorie_salarie_name = parameters(period).cotsoc.cotisations_employeur
         exoneration = sum(
             apply_bareme_for_relevant_type_sal(
-                bareme_by_categorie_salarie = bareme_by_type_sal_name,
+                bareme_by_categorie_salarie = bareme_by_categorie_salarie_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
                 base = stage_gratification_reintegration,
@@ -124,13 +124,13 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
         stagiaire = individu('stagiaire', period)
         categorie_salarie = individu('categorie_salarie', period)
 
-        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_salarie
+        bareme_by_categorie_salarie_name = parameters(period).cotsoc.cotisations_salarie
         bareme_names = ['agff', 'chomage', 'asf']
 
         exoneration = plafond_securite_sociale * 0.0
         for bareme_name in bareme_names:
             exoneration += apply_bareme_for_relevant_type_sal(
-                bareme_by_categorie_salarie = bareme_by_type_sal_name,
+                bareme_by_categorie_salarie = bareme_by_categorie_salarie_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
                 base = stage_gratification_reintegration,
