@@ -499,7 +499,9 @@ class paje_cmg(Variable):
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         aah_i = famille.members('aah', period)
-        aah = famille.sum(aah_i)
+        aah = famille.sum(aah_i, role = Famille.PARENT)
+
+        aeeh = famille('aeeh', period)
 
         etudiant_i = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant_i, role = Famille.PARENT)
@@ -601,6 +603,8 @@ class paje_cmg(Variable):
             + micro_creche * taux_seuils_garde_domicile_micro_creche * coeff_enfants_assistant_maternel_micro_creche
             )
         montant_cmg = montant_cmg * (1 + parent_isole * paje.paje_cmg.majoration_montant_personne_isolee)
+        montant_cmg = montant_cmg * (1 + (aah > 0) * paje.paje_cmg.majoration_montant_aah)
+        montant_cmg = montant_cmg * (1 + (aeeh > 0) * paje.paje_cmg.majoration_montant_aeeh)
 
         # Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
         # dans l'entreprise), vous cumulez intégralement la PreParE et le CMG.
