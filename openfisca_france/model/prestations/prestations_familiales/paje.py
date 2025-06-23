@@ -520,7 +520,7 @@ class paje_cmg(Variable):
         paje_prepare_inactif = (paje_prepare > 0) * inactif
         eligible = cond_eligibilite * not_(paje_prepare_inactif)
 
-        def calculer_seuil(nombre_enfants, params, is_parent_isole, taux_parent_isole, paje_prepare_temps_partiel):
+        def calculer_seuil(nombre_enfants, params, is_parent_isole, taux_parent_isole):
             # On détermine la valeur initiale du plafond en fonction du nombre d'enfants
             seuil_revenus = ((nombre_enfants == 1) * params.enfant + (nombre_enfants >= 2) * params.deux_enfants
                              + max_(nombre_enfants - 2, 0) * params.majoration_enfant_supp)
@@ -528,27 +528,18 @@ class paje_cmg(Variable):
             # On applique la majoration "parent isolé" si applicable
             seuil_revenus = seuil_revenus * (1 + is_parent_isole * taux_parent_isole)
 
-            # Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
-            # dans l'entreprise), vous cumulez intégralement la PreParE et le Cmg.
-            # Si vous bénéficiez du PreParE taux partiel (= vous travaillez à 50% ou moins de la durée
-            # du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
-            seuil_revenus = seuil_revenus * (1 - .5 * paje_prepare_temps_partiel)
-
             return seuil_revenus
 
         # Les plafonds de ressource
 
-        paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
         nombre_enfants = famille('af_nbenf', period)
         # Il s'agit d'une famille monoparentale (parent isolé)
         parent_isole = famille('nb_parents', period) == 1
 
         seuil_revenus_1 = calculer_seuil(nombre_enfants, paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014,
-                                        parent_isole, paje.plaf_cmg.majoration_plafond_personne_isolee,
-                                        paje_prepare_temps_partiel)
+                                        parent_isole, paje.plaf_cmg.majoration_plafond_personne_isolee)
         seuil_revenus_2 = calculer_seuil(nombre_enfants, paje.plaf_cmg.deuxieme_plafond_ne_adopte_apres_04_2014,
-                                        parent_isole, paje.plaf_cmg.majoration_plafond_personne_isolee,
-                                        paje_prepare_temps_partiel)
+                                        parent_isole, paje.plaf_cmg.majoration_plafond_personne_isolee)
 
         # calcul du montant
 
@@ -610,6 +601,13 @@ class paje_cmg(Variable):
             + micro_creche * taux_seuils_garde_domicile_micro_creche * coeff_enfants_assistant_maternel_micro_creche
             )
         montant_cmg = montant_cmg * (1 + parent_isole * paje.paje_cmg.majoration_montant_personne_isolee)
+
+        # Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
+        # dans l'entreprise), vous cumulez intégralement la PreParE et le CMG.
+        # Si vous bénéficiez du PreParE taux partiel (= vous travaillez à 50% ou moins de la durée
+        # du travail fixée dans l'entreprise), le montant du CMG est divisé par 2.
+        paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
+        montant_cmg = montant_cmg * (1 - paje_prepare_temps_partiel * paje.paje_cmg.taux_reduit)
 
         frais_garde = famille('frais_garde', period)
         # Le montant de la CMG ne doit pas dépasser 85% des frais de garde de la famille

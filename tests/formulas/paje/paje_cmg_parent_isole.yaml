@@ -52,7 +52,7 @@
         paje_cmg:
           2024-11: 510
 
-- name: 'Cas P1B1E0S1 : Garde à domicile, Nombre de parents : 1, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais > CMG max'
+- name: 'Cas P1B1E0S1 : Garde à domicile, Nombre de parents : 1, Nombre de bébés : 1, Revenu imposable < Seuil1, Prepare > 0, Parent actif à moins de 50%, 85% des frais > CMG max'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -62,6 +62,10 @@
         enfants: [bebe1]
         prestations_familiales_base_ressources:
           2024-11: 20000
+        paje_prepare:
+          2024-11: 200
+        partiel1:
+          2024-11: true
         frais_garde:
           2024-11: 1500
         gar_dom:
@@ -77,7 +81,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 1264.47236180905
+          2024-11: 1264.47236180905 / 2
 
 - name: 'Cas P1B1E0S1 : Garde à domicile, Nombre de parents : 1, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais < CMG max'
   period: 2024-11
@@ -133,7 +137,7 @@
         paje_cmg:
           2024-11: 1264.47236180905
 
-- name: 'Cas P1B1E0S1 : Micro-crèche, Nombre de parents : 1, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais < CMG max'
+- name: 'Cas P1B1E0S1 : Micro-crèche, Nombre de parents : 1, Nombre de bébés : 1, Revenu imposable < Seuil1, Prepare > 0, Parent actif à moins de 50%, 85% des frais < CMG max, 85% des frais > CMG réduit'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -143,8 +147,12 @@
         enfants: [bebe1]
         prestations_familiales_base_ressources:
           2024-11: 20000
+        paje_prepare:
+          2024-11: 200
+        partiel1:
+          2024-11: true
         frais_garde:
-          2024-11: 600
+          2024-11: 800
         micro_creche:
           2024-11: 1
     individus:
@@ -158,7 +166,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 510
+          2024-11: 1258.15 / 2
 
 
 - name: 'Cas P1B1E0S2 : Assistant maternel, Nombre de parents : 1, Nombre de bébés : 1, Revenu imposable < Seuil2, 85% des frais > CMG max'
@@ -188,7 +196,7 @@
         paje_cmg:
           2024-11: 872.030150753769
 
-- name: 'Cas P1B1E0S2 : Assistant maternel, Nombre de parents : 1, Nombre de bébés : 1, Revenu imposable < Seuil2, 85% des frais < CMG max'
+- name: 'Cas P1B1E0S2 : Assistant maternel, Nombre de parents : 1, Nombre de bébés : 1, Revenu imposable < Seuil2, Prepare > 0, Parent inactif'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -198,6 +206,10 @@
         enfants: [bebe1]
         prestations_familiales_base_ressources:
           2024-11: 40000
+        paje_prepare:
+          2024-11: 200
+        inactif:
+          2024-11: true
         frais_garde:
           2024-11: 600
         ass_mat:
@@ -213,7 +225,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 510
+          2024-11: 0
 
 - name: 'Cas P1B1E0S2 : Garde à domicile, Nombre de parents : 1, Nombre de bébés : 1, Revenu imposable < Seuil2, 85% des frais > CMG max'
   period: 2024-11
