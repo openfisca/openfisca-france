@@ -1,0 +1,20 @@
+description: Majoration du montant pour une famille dont un des parents reçoit l'AAH pour le complément de libre choix de mode de garde (CMG) de la prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: null
+  2008-05-01:
+    value: 0.3
+metadata:
+  short_label: Majoration montant parent AAH
+  label_en: Increased amount for a person who receives the AAH
+  unit: /1
+  reference:
+    2004-01-01:
+    - title: Article L531-5 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048703849
+    2008-05-01:
+    - title: Code de la sécurité sociale, Article D531-23-1
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045660526
+  official_journal_date:
+    2004-01-01: "2004-01-01"
+    2008-05-01: "2008-05-01"
