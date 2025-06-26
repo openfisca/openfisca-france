@@ -1,0 +1,13 @@
+description: Plafond de l'exonération LODEOM - Compétitivité
+values:
+  2019-01-01:
+    value: 2.2
+metadata:
+  short_label: Plafond
+  last_value_still_valid_on: "2019-01-01"
+  label_en: Plafond parameter for lodeom_competitivite
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Article D752-7 du COde de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041404691
