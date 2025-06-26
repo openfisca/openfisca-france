@@ -7,7 +7,6 @@ metadata:
   last_value_still_valid_on: "2025-03-07"
   label_en: "Active solidarity income - Activity premium (PPA) : Amounts"
   ipp_csv_id: pa_seuil_min
-  unit: currency
   reference:
     2016-01-01:
     - title: Article D843-2 du Code de la sécurité sociale
