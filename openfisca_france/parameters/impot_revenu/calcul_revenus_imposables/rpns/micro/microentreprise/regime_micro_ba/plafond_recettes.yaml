@@ -48,6 +48,7 @@ metadata:
     2023-01-01: "2023-06-02"
     2024-01-01: "2023-12-30"
     2025-01-01: "2026-06-30"
+  inflator: inflateurs.inflateur_impot
 documentation: |-
   Ref : Article 69 I du CGI.
   Les seuils sont actualisés tous les trois ans dans la même proportion que l'évolution triennale de la limite supérieure de la première tranche du barème de l'impôt sur le revenu et sont arrondis, respectivement, à la centaine d'euros la plus proche et au millier d'euros le plus proche.
