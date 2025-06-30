@@ -6,3 +6,4 @@ metadata:
   - etudiants_en_chambre_rehabilitee
   - personnes_agees
   - autres_personnes
+  inflator: inflateurs.inflateur_aides_logement_loyer
