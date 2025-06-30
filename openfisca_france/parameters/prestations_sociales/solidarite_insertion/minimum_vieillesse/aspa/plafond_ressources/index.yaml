@@ -5,3 +5,4 @@ metadata:
   order:
   - personnes_seules
   - couples
+  inflator: inflateurs.inflateur_prestations_janvier
