@@ -7,6 +7,7 @@ metadata:
   - plafond_securite_sociale_annuel
   - plafond_securite_sociale_mensuel
   - plafond_securite_sociale_horaire
+  inflator: inflateurs.inflateur_pss
 documentation: |-
   La référence législative est le plafond mensuel, par quinzaine, par semaine, par jour ou par heure. C'est la périodicité de la paie qui détermine le montant des cotisations et du plafond applicable.
   Pour autant, la régularisation de la paie est effectuée en fin d'année, en fonction d'un plafond annuel, calculé comme la somme des plafonds applicables sur l'ensemble des périodicités de la paie.
