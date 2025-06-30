@@ -5,3 +5,4 @@ metadata:
   - zone_1
   - zone_2
   - zone_3
+  inflator: inflateurs.inflateur_aides_logement_loyer
