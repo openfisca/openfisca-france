@@ -5,4 +5,5 @@ metadata:
   - zone_1
   - zone_2
   - zone_3
+  inflator: inflateurs.inflateur_aides_logement_loyer
 documentation: Ce montant correspond au montant max du L de la formule mentionnée à l'article D823-6 du Code de la construction et de l'habitation https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878905/2022-03-30. Pour connaître la zone géographique d'une commune, il est possible d'utiliser ce simulateur de la DILA https://www.service-public.fr/simulateur/calcul/zones

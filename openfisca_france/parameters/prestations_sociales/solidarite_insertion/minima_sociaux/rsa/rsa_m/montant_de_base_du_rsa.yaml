@@ -159,5 +159,9 @@ metadata:
     - title: Revalorisation de 4%
     2023-04-01:
     - title: Revalorisation de 1.54%
+<<<<<<< HEAD
     2026-04-01:
     - title: Revalorisation de 0.8%
+=======
+  inflator: inflateurs.inflateur_prestations_avril
+>>>>>>> 501e6d9e9 (Ajoute tous les inflators des paramètres concernés par une revalorisation)

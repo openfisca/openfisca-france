@@ -9,6 +9,7 @@ metadata:
   - allocations_preretraite
   - indemnites_journalieres
   - seuils
+  inflator: inflateurs.inflateur_csg"
 documentation: |-
   Référence du Codes général des impôts :
   La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.
