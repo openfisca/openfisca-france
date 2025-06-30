@@ -258,6 +258,7 @@ metadata:
     - title: Décret 2011-645 du 09/06/2011 - art. 1 - JORF 11/06/2011
     2011-01-01:
     - title: Gel des barèmes d'imposition lors de l'imposition des revenus 2011.
+  inflator: inflateurs.inflateur_impot
 documentation: |-
   Abattement pour rattachement d'enfants mariés : article 196 B du CGI
   Abattement par personne rattachée - à doubler dans le cas d'un jeune ménage ou d'un célibataire avec jeune enfant, à tripler pour couple avec enfant rattaché
