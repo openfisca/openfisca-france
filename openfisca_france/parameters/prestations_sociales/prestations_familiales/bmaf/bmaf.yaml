@@ -606,3 +606,4 @@ metadata:
     - title: Revalorisation de 4%
     2025-04-01:
     - title: Revalorisation de 1.7%
+  inflator: inflateurs.inflateur_prestations_avril
