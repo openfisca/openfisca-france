@@ -90,3 +90,4 @@ metadata:
     - title: Revalorisation de la prime pour l'activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La PPA augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
     2022-07-01:
     - title: Revalorisation de 4%
+  inflator: inflateurs.inflateur_prestations_avril
