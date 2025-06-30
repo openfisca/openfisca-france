@@ -297,3 +297,4 @@ metadata:
     - title: La formule de calcul de la décote change
     2019-01-01:
     - title: La réduction d'impôt sous condition de revenus est supprimée. La décote est étendue à l'ensemble des contribuables de la première tranche.
+  inflator: inflateurs.inflateur_impot

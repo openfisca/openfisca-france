@@ -137,6 +137,7 @@ metadata:
     - title: La circulaire Cnav 2009/9 du 03/02/2009 met en œuvre de l'article 73 de la loi 2008-1330 du 17/12/2008 concernant la déconnexion de la revalorisation des montants et des plafonds de ressources de l'ASI de ceux de l'ASPA.
     2020-04-01:
     - title: Depuis le 01/04/2020, l'ASI cesse d'être une allocation forfaitaire.
+  inflator: inflateurs.inflateur_prestations_avril
 documentation: |-
   Les plafonds de ressources sont identiques à ceux de l'ASPA jusqu'en 2008.
   Les ressources sont estimées à partir des revenus des 3 derniers mois, si ces revenus dépassent le plafond, ce sont les revenus des 12 derniers mois qui sont considérés.
