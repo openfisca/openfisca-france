@@ -485,7 +485,7 @@ class ppa_fictive(Variable):
             + bonification
             + ppa_fictive_ressource_activite
             - max_(ppa_base_ressources + forfait_logement, montant_forfaitaire_familialise)
-        )
+            )
         ppa_fictive = max_(ppa_fictive, 0)
         return elig * ppa_fictive
 
