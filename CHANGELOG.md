@@ -1,5 +1,19 @@
 # Changelog
 
+### 172.0.5 [2532](https://github.com/openfisca/openfisca-france/pull/2532)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/majoration_ressources_revenus_activite.yaml`
+  - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/seuil_bonification.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/taux_bonification_max.yaml`
+* Détails :
+  - Met à jour la fraction des revenus professionnels de la prime d'activité
+  - Simplifie la formule de calcul de la prime d'activité fictive
+  - Supprime l'unité currency pour le seuil de salaire minimal de la bonification de la prime d'activité (exprimée en Smic horaires)
+
 ### 172.0.4 [2470](https://github.com/openfisca/openfisca-france/pull/2470)
 
 * Changement technique.
