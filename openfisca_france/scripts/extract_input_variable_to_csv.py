@@ -10,6 +10,7 @@ import csv
 import re
 from collections import defaultdict
 
+OUTPUT_DIR = './openfisca_france/scripts/output/'
 
 def extract_variable_labels_from_python_files(model_directory):
     '''
@@ -174,7 +175,7 @@ def main():
     # Répertoires
     tests_dir = './tests'
     model_dir = './openfisca_france/model'
-    csv_filename = './openfisca_france/scripts/input_variable.csv'
+    csv_filename = OUTPUT_DIR + 'input_variable.csv'
 
     print('Extraction des labels des variables depuis les fichiers Python...')
     variable_labels = extract_variable_labels_from_python_files(model_dir)
