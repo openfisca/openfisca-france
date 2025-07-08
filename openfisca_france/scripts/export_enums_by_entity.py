@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
+# flake8: noqa: T201
+'''
 Script to extract Enum values for variables listed in a CSV file,
 group them by entity, and export them to separate text files.
-"""
+'''
 
 import csv
 import os
@@ -19,10 +20,10 @@ OUTPUT_DIR = './openfisca_france/scripts/output/'
 
 
 def preload_definitions(model_directory):
-    """
+    '''
     Parses all Python files in the model directory to build maps of
     variable definitions and Enum class definitions.
-    """
+    '''
     variable_definitions = {}
     enum_definitions = {}
     model_path = Path(model_directory)
@@ -48,7 +49,7 @@ def preload_definitions(model_directory):
                     # If no '__order__', parse members directly from assignments
                     members = []
                     # Regex to find valid python identifiers at the start of a line, followed by =
-                    member_pattern = re.compile(r"^\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*=")
+                    member_pattern = re.compile(r'^\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*=')
                     for line in class_body.split('\n'):
                         member_match = member_pattern.match(line)
                         if member_match:
@@ -56,7 +57,7 @@ def preload_definitions(model_directory):
                             # Exclude special 'dunder' methods
                             if not (member_name.startswith('__') and member_name.endswith('__')):
                                 members.append(member_name)
-                    
+
                     if members:
                         enum_definitions[enum_name] = ' '.join(members)
 
@@ -67,7 +68,7 @@ def preload_definitions(model_directory):
                 class_body = match.group(2)
 
                 # Check if it's an Enum type
-                type_match = re.search(r"value_type\s*=\s*Enum", class_body)
+                type_match = re.search(r'value_type\s*=\s*Enum', class_body)
                 if type_match:
                     # Find the associated possible_values class
                     possible_values_match = re.search(r"possible_values\s*=\s*([a-zA-Z0-9_]+)", class_body)
@@ -82,20 +83,19 @@ def preload_definitions(model_directory):
 
 
 def main():
-    """Main function to execute the script."""
-    print(f"Loading variable and enum definitions from {MODEL_DIR}...")
+    '''Main function to execute the script.'''
     variable_to_enum_class, enum_class_to_values = preload_definitions(MODEL_DIR)
     print(f"Found {len(variable_to_enum_class)} variables with Enum types and {len(enum_class_to_values)} Enum classes.")
     all_enum = []
     for var, enum in variable_to_enum_class.items():
         all_enum.append({
-            var: enum_class_to_values.get(enum, "N/A").split(" "),
-        })
+            var: enum_class_to_values.get(enum, 'N/A').split(' '),
+            })
 
 
     print(all_enum)
     # Save to file
-    with open(OUTPUT_DIR +'all_enums.json', 'w', encoding='utf-8') as f:
+    with open(OUTPUT_DIR + 'all_enums.json', 'w', encoding='utf-8') as f:
         json.dump(all_enum, f, ensure_ascii=False, indent=4)
 
     if not os.path.exists(CSV_FILE):
@@ -125,8 +125,6 @@ def main():
     except Exception as e:
         print(f"Error reading or processing CSV file: {e}")
         return
-
-    print("\nScript finished.")
 
 
 if __name__ == '__main__':

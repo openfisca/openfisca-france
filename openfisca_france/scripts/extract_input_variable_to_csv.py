@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # flake8: noqa: T201
 '''
 Script pour extraire les variables des fichiers de tests YAML et les exporter en CSV.
