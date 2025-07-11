@@ -446,9 +446,9 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
     smic_proratise = individu('smic_proratise', period)
     law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
     taux_reduction = law.reduction
-    if period.start.year < 2024:
+    if period.start.year < date(2024, 1, 1):
         plafond_reduction = law.plafond_smic * smic_proratise
-    else:
+    elif date(2024, 1, 1) <= period.start.date < date(2025, 4, 1):
         coefficient_proratisation = individu('coefficient_proratisation', period)
         parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
         smic_horaire_brut_2023_12 = parameters_smic_2023_12.smic_b_horaire
@@ -456,6 +456,9 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
 
         smic_proratise_2O23_12 = coefficient_proratisation * smic_horaire_brut_2023_12 * nbh_travail_2023_12
         plafond_reduction = max_(law.plafond_smic_courant * smic_proratise, law.plafond_smic_2023_12_31 * smic_proratise_2O23_12)
+    else:
+        smic_horaire_brut_2025_1 = parameters('2025-1-1').marche_travail.salaire_minimum.smic.smic_b_horaire
+        plafond_reduction = law.plafond_smic_2025_01_01 * smic_horaire_brut_2025_1
 
     # Montant de l'allegment
     return (assiette < plafond_reduction) * taux_reduction * assiette
@@ -505,15 +508,18 @@ def compute_allegement_cotisation_maladie_base(individu, period, parameters):
 
     assiette_allegement = individu('assiette_allegement', period)
     smic_proratise = individu('smic_proratise', period)
-    if period.start.year < 2024:
+    if date(2024, 1, 1):
         plafond_allegement_mmid = allegement_mmid.plafond * smic_proratise
-    else:
+    elif date(2024, 1, 1) <= period.start.date < date(2025, 4, 1):
         coefficient_proratisation = individu('coefficient_proratisation', period)
         parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
         smic_horaire_brut_2023_12 = parameters_smic_2023_12.smic_b_horaire
         nbh_travail_2023_12 = parameters_smic_2023_12.nb_heures_travail_mensuel
         smic_proratise_2O23_12 = coefficient_proratisation * smic_horaire_brut_2023_12 * nbh_travail_2023_12
         plafond_allegement_mmid = max_(allegement_mmid.plafond_smic_courant * smic_proratise, allegement_mmid.plafond_smic_2023_12_31 * smic_proratise_2O23_12)
+    else:
+        smic_horaire_brut_2025_1 = parameters('2025-1-1').marche_travail.salaire_minimum.smic.smic_b_horaire
+        plafond_allegement_mmid = allegement_mmid.plafond_smic_2025_01_01 * smic_horaire_brut_2025_1
 
     sous_plafond = assiette_allegement <= plafond_allegement_mmid
     return sous_plafond * allegement_mmid.taux * assiette_allegement
