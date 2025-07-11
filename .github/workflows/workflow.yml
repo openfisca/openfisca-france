@@ -214,7 +214,7 @@ jobs:
           version: "latest"
       - name: Test max path length
         run: uv run python openfisca_france/scripts/check_path_length.py
-      - name: Test conda package
+      - name: Test lancement avec uv
         shell: pwsh
         run: uv run openfisca test --country-package openfisca_france tests/formulas/irpp.yaml
 
