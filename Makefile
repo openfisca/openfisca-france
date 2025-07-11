@@ -14,7 +14,7 @@ install: deps
 	@# Install OpenFisca-France for development.
 	@# `make install` installs the editable version of OpenFisca-France.
 	@# This allows contributors to test as they code.
-	pip install --editable .[dev] --upgrade
+	pip install --editable . --group dev --upgrade
 	pip install openfisca-core[web-api]
 
 build: clean deps
