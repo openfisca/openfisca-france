@@ -216,7 +216,7 @@ jobs:
         run: uv run python openfisca_france/scripts/check_path_length.py
       - name: Test conda package
         shell: pwsh
-        run: uv run openfisca --country-package openfisca_france test tests/formulas/irpp.yaml
+        run: uv run openfisca test --country-package openfisca_france tests/formulas/irpp.yaml
 
   test-on-windows-conda:
     runs-on: windows-latest
