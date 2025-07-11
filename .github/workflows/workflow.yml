@@ -203,7 +203,22 @@ jobs:
       - name: Test the Web API
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
-  test-on-windows:
+  test-on-windows-uv:
+    runs-on: windows-latest
+    needs: [ lint-files ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@caf0cab7a618c569241d31dcd442f54681755d39 # v3.2.4
+        with:
+          version: "latest"
+      - name: Test max path length
+        run: uv run python openfisca_france/scripts/check_path_length.py
+      - name: Test conda package
+        shell: pwsh
+        run: uv run openfisca test tests/formulas/irpp.yaml
+
+  test-on-windows-conda:
     runs-on: windows-latest
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ build-and-test-conda ]
@@ -304,7 +319,7 @@ jobs:
 
   publish-to-conda:
     runs-on: windows-latest
-    needs: [ deploy, test-on-windows ]
+    needs: [ deploy, test-on-windows-conda ]
     steps:
       - uses: actions/checkout@v4
       - name: Restore build
