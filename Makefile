@@ -23,7 +23,7 @@ build: clean deps
 	@# of OpenFisca-France, the same we put in the hands of users and reusers.
 	python -m build
 	pip uninstall --yes openfisca-france
-	find dist -name "*.whl" -exec pip install {}[dev] \;
+	find dist -name "*.whl" -exec pip install {} --group dev \;
 	pip install openfisca-core[web-api]
 
 check-syntax-errors:
