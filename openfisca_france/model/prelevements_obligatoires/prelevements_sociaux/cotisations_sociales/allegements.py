@@ -446,7 +446,7 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
     smic_proratise = individu('smic_proratise', period)
     law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
     taux_reduction = law.reduction
-    if period.start.year < date(2024, 1, 1):
+    if period.start.date < date(2024, 1, 1):
         plafond_reduction = law.plafond_smic * smic_proratise
     elif date(2024, 1, 1) <= period.start.date < date(2025, 1, 1):
         coefficient_proratisation = individu('coefficient_proratisation', period)
@@ -508,7 +508,7 @@ def compute_allegement_cotisation_maladie_base(individu, period, parameters):
 
     assiette_allegement = individu('assiette_allegement', period)
     smic_proratise = individu('smic_proratise', period)
-    if date(2024, 1, 1):
+    if period.start.date < date(2024, 1, 1):
         plafond_allegement_mmid = allegement_mmid.plafond * smic_proratise
     elif date(2024, 1, 1) <= period.start.date < date(2025, 1, 1):
         coefficient_proratisation = individu('coefficient_proratisation', period)
