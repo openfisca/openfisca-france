@@ -4,7 +4,4 @@ metadata:
   label_en: Reduction in SSCs for family benefits
   order:
   - reduction
-  - plafond_smic_courant
-  - plafond_smic_2023_12_31
-  - plafond_smic
-
+  - plafond_smic_2025_01_01
