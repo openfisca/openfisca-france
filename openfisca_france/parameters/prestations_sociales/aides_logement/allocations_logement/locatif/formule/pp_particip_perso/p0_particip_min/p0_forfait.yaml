@@ -164,4 +164,5 @@ metadata:
     - title: Idem en 2017
     2017-10-01:
     - title: Actualisation paramètres + baisse de 5 euros des aides au logement
+  inflator: inflateurs.inflateur_aides_logement_loyer
 documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

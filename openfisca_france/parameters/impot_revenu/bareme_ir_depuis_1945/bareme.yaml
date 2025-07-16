@@ -1550,6 +1550,7 @@ metadata:
     - title: Suite à la censure du gouvernement Barnier, la loi de finance a été publiée le 15 février 2025 avec effet rétro-actif au 1er janvier 2025.
   rate_unit: /1
   threshold_unit: currency_next_year
+  inflator: inflateurs.inflateur_impot
 documentation: |-
   Référence générale :
   T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001).

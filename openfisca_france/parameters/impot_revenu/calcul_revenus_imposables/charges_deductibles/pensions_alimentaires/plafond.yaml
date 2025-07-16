@@ -315,3 +315,4 @@ metadata:
     2021-01-01: "2021-12-31"
     2022-01-01: "2022-12-31"
     2023-01-01: "2023-12-30"
+  inflator: inflateurs.inflateur_impot

@@ -253,6 +253,7 @@ metadata:
     2021-01-01: "2021-05-06"
     2022-01-01: "2023-06-02"
     2023-01-01: "2024-06-01"
+  inflator: inflateurs.inflateur_impot
 documentation: |-
   Plafond frais personnes de plus de 75 ans : art. 156-II-2° ter du CGI
   https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
