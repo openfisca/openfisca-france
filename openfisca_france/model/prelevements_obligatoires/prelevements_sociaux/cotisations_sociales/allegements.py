@@ -457,10 +457,10 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
         smic_proratise_2O23_12 = coefficient_proratisation * smic_horaire_brut_2023_12 * nbh_travail_2023_12
         plafond_reduction = max_(law.plafond_smic_courant * smic_proratise, law.plafond_smic_2023_12_31 * smic_proratise_2O23_12)
     else:
-                smic_horaire_brut_2025_1 = parameters('2025-1-1').marche_travail.salaire_minimum.smic.smic_b_horaire
+        smic_horaire_brut_2025_1 = parameters('2025-1-1').marche_travail.salaire_minimum.smic.smic_b_horaire
         nbh_travail_2025_1 = parameters('2025-1-1').marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
         smic_proratise_2025_1 = coefficient_proratisation * smic_horaire_brut_2025_1 * nbh_travail_2025_1
-        plafond_reduction = law.plafond_smic_2025_01_01 * smic_horaire_brut_2025_1
+        plafond_reduction = law.plafond_smic_2025_01_01 * smic_proratise_2025_1
 
     # Montant de l'allegment
     return (assiette < plafond_reduction) * taux_reduction * assiette
