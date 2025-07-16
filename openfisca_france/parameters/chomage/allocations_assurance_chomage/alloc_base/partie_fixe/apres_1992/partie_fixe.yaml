@@ -62,6 +62,8 @@ values:
     value: 12.95
   2024-07-01:
     value: 13.11
+  2025-07-01:
+    value: 13.18
 metadata:
   short_label: Partie fixe
   label_en: "UI scheme: lump-sum and minimum"
@@ -149,6 +151,9 @@ metadata:
     2024-07-01:
       title: Circulaire Unedic 2024-05 du 1 juillet 2024
       href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2024-05_du_1er_juillet_2024.pdf
+    2025-07-01:
+      title: Circulaire Unedic 2025-07 du 1er juillet 2025
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2025-07_du_1er_juillet_2025.pdf
   official_journal_date:
     1992-07-01: "1994-01-08"
     1994-07-01: "1994-01-08"
