@@ -1,6 +1,6 @@
 description: Plafond de rémunération (en nombre de Smic du 01/01/2025) des salariés concernés par l'allègement des cotisations pour la branche famille des cotisations de Sécurité sociale (SS)
 values:
-  2025-04-01:
+  2025-01-01:
     value: 3.3
 metadata:
   short_label: Plafond de rémunération des salariés (Nombre de Smic 01/01/2025)
@@ -9,10 +9,10 @@ metadata:
   ipp_csv_id: pss_red_fam
   unit: smic_2025_01_01
   reference:
-    2025-04-01:
+    2025-01-01:
     - title: Article D241-3-2 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852528
     - title: Décret n°2025-318 du 04/04/2025, Art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051430146
   official_journal_date:
-    2025-04-01: "2025-04-06"
+    2025-01-01: "2025-04-06"
