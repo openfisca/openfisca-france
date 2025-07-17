@@ -446,10 +446,10 @@ def compute_allegement_cotisation_allocations_familiales_base(individu, period, 
     smic_proratise = individu('smic_proratise', period)
     law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
     taux_reduction = law.reduction
+    coefficient_proratisation = individu('coefficient_proratisation', period)
     if period.start.date < date(2024, 1, 1):
         plafond_reduction = law.plafond_smic * smic_proratise
     elif date(2024, 1, 1) <= period.start.date < date(2025, 1, 1):
-        coefficient_proratisation = individu('coefficient_proratisation', period)
         parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
         smic_horaire_brut_2023_12 = parameters_smic_2023_12.smic_b_horaire
         nbh_travail_2023_12 = parameters_smic_2023_12.nb_heures_travail_mensuel
@@ -510,10 +510,10 @@ def compute_allegement_cotisation_maladie_base(individu, period, parameters):
 
     assiette_allegement = individu('assiette_allegement', period)
     smic_proratise = individu('smic_proratise', period)
+    coefficient_proratisation = individu('coefficient_proratisation', period)
     if period.start.date < date(2024, 1, 1):
         plafond_allegement_mmid = allegement_mmid.plafond * smic_proratise
     elif date(2024, 1, 1) <= period.start.date < date(2025, 1, 1):
-        coefficient_proratisation = individu('coefficient_proratisation', period)
         parameters_smic_2023_12 = parameters('2023-12').marche_travail.salaire_minimum.smic
         smic_horaire_brut_2023_12 = parameters_smic_2023_12.smic_b_horaire
         nbh_travail_2023_12 = parameters_smic_2023_12.nb_heures_travail_mensuel
