@@ -1,4 +1,4 @@
-from numpy import round, floor, datetime64, maximum
+from numpy import round, floor, datetime64, timedelta64, maximum
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -421,8 +421,12 @@ class paje_adoption(Variable):
         bmaf = pfam.bmaf.bmaf
 
         nbenf = famille('af_nbenf', period)
+
+        dates_limite_versement = famille.members('date_adoption', period).astype('datetime64[M]') + timedelta64(3, 'M')
         nb_enfants_eligibles = famille.sum(famille.members('est_enfant_dans_famille', period)
                                 * famille.members('adoption', period)
+                                * (datetime64(period.start) >= famille.members('date_adoption', period))
+                                * (datetime64(period.start) < dates_limite_versement)
                                 * (famille.members('age', period) < pfam.def_pac.enfants.age_limite))
         prime_adoption = round(100 * paje.paje_cm2.montant.prime_adoption * bmaf) / 100
 
@@ -457,8 +461,12 @@ class paje_adoption(Variable):
 
         eligible_prime_adoption = (base_ressources <= plafond_de_ressources)
 
+        dates_limite_versement = famille.members('date_adoption', period).astype('datetime64[M]') + timedelta64(3, 'M')
+
         nb_enfants_eligibles = famille.sum(famille.members('est_enfant_dans_famille', period)
                                 * famille.members('adoption', period)
+                                * (datetime64(period.start) >= famille.members('date_adoption', period))
+                                * (datetime64(period.start) < dates_limite_versement)
                                 * (famille.members('age', period) < pfam.def_pac.enfants.age_limite))
 
         return prime_adoption * eligible_prime_adoption * nb_enfants_eligibles
@@ -498,8 +506,11 @@ class paje_adoption(Variable):
 
         elig = (base_ressources <= plaf)
 
+        dates_limite_versement = famille.members('date_adoption', period).astype('datetime64[M]') + timedelta64(3, 'M')
         nb_enfants_eligibles = famille.sum(famille.members('est_enfant_dans_famille', period)
                                 * famille.members('adoption', period)
+                                * (datetime64(period.start) >= famille.members('date_adoption', period))
+                                * (datetime64(period.start) < dates_limite_versement)
                                 * (famille.members('age', period) < pfam.def_pac.enfants.age_limite))
 
         return prime_adoption * elig * nb_enfants_eligibles

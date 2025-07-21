@@ -1,4 +1,4 @@
-- name: "Cas P1R1E1B1ELIGIBLE : Nombre de parents : 1, Nombre de bébés à naître : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
+- name: "Cas P1R1E1B1ELIGIBLE : Nombre de parents : 1, Nombre d'enfants à adopter : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -19,13 +19,15 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 2179.73015
 
-- name: "Cas P1R1E1B1NON_ELIGIBLE : Nombre de parents : 1, Nombre de bébés à naître : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
+- name: "Cas P1R1E1B1NON_ELIGIBLE : Nombre de parents : 1, Nombre d'enfants à adopter : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -46,13 +48,44 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 0
 
-- name: "Cas P1R1E2B2ELIGIBLE : Nombre de parents : 1, Nombre de bébés à naître : 2, Nombre d'enfants : 2, Nombre de revenus : 1"
+- name: "Cas P1R1E1B1NON_ELIGIBLE_TROP_TARD : Nombre de parents : 1, Nombre d'enfants à adopter : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
+  period: 2025-07
+  relative_error_margin: 0.01
+  input:
+    familles:
+      famille:
+        parents: [parent1]
+        enfants: [enfant1]
+        prestations_familiales_base_ressources:
+          2025-07: 48186
+        biactivite:
+          2025-07: false
+    individus:
+      parent1:
+        date_naissance:
+          ETERNITY: 2000-10-15
+      enfant1:
+        date_naissance:
+          ETERNITY: 2015-05-15
+        adoption:
+          2025-07: true
+        date_adoption:
+          ETERNITY: 2025-04-15
+  output:
+    familles:
+      famille:
+        paje_adoption:
+          2025-07: 0
+
+- name: "Cas P1R1E2B2ELIGIBLE : Nombre de parents : 1, Nombre d'enfants à adopter : 2, Nombre d'enfants : 2, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -73,18 +106,22 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 4337.78
 
-- name: "Cas P1R1E2B2NON_ELIGIBLE : Nombre de parents : 1, Nombre de bébés à naître : 2, Nombre d'enfants : 2, Nombre de revenus : 1"
+- name: "Cas P1R1E2B2NON_ELIGIBLE : Nombre de parents : 1, Nombre d'enfants à adopter : 2, Nombre d'enfants : 2, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -105,18 +142,22 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 0
 
-- name: "Cas P1R1E2B1ELIGIBLE : Nombre de parents : 1, Nombre de bébés à naître : 1, Nombre d'enfants : 2, Nombre de revenus : 1"
+- name: "Cas P1R1E2B2NON_ELIGIBLE_TROP_TARD : Nombre de parents : 1, Nombre d'enfants à adopter : 2, Nombre d'enfants : 2, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -137,6 +178,45 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-04-15
+      enfant2:
+        date_naissance:
+          ETERNITY: 2013-11-15
+        adoption:
+          2025-07: true
+        date_adoption:
+          ETERNITY: 2025-04-15
+  output:
+    familles:
+      famille:
+        paje_adoption:
+          2025-07: 0
+
+
+- name: "Cas P1R1E2B1ELIGIBLE : Nombre de parents : 1, Nombre d'enfants à adopter : 1, Nombre d'enfants : 2, Nombre de revenus : 1"
+  period: 2025-07
+  relative_error_margin: 0.01
+  input:
+    familles:
+      famille:
+        parents: [parent1]
+        enfants: [enfant1, enfant2]
+        prestations_familiales_base_ressources:
+          2025-07: 55478
+        biactivite:
+          2025-07: false
+    individus:
+      parent1:
+        date_naissance:
+          ETERNITY: 2000-10-15
+      enfant1:
+        date_naissance:
+          ETERNITY: 2015-05-15
+        adoption:
+          2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
@@ -148,7 +228,7 @@
         paje_adoption:
           2025-07: 2179.73015
 
-- name: "Cas P1R1E2B1NON_ELIGIBLE : Nombre de parents : 1, Nombre de bébés à naître : 1, Nombre d'enfants : 2, Nombre de revenus : 1"
+- name: "Cas P1R1E2B1NON_ELIGIBLE : Nombre de parents : 1, Nombre d'enfants à adopter : 1, Nombre d'enfants : 2, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -169,6 +249,8 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
@@ -180,7 +262,7 @@
         paje_adoption:
           2025-07: 0
 
-- name: "Cas P2R1E1B1ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
+- name: "Cas P2R1E1B1ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -204,13 +286,15 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 2179.73015
 
-- name: "Cas P2R1E1B1NON_ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
+- name: "Cas P2R1E1B1NON_ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -234,13 +318,15 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 0
 
-- name: "Cas P2R1E2B2ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 2, Nombre d'enfants : 2, Nombre de revenus : 1"
+- name: "Cas P2R1E2B2ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 2, Nombre d'enfants : 2, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -264,18 +350,22 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 4337.78
 
-- name: "Cas P2R1E2B2NON_ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 2, Nombre d'enfants : 2, Nombre de revenus : 1"
+- name: "Cas P2R1E2B2NON_ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 2, Nombre d'enfants : 2, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -299,18 +389,22 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 0
 
-- name: "Cas P2R1E2B1ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 1, Nombre d'enfants : 2, Nombre de revenus : 1"
+- name: "Cas P2R1E2B1ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 1, Nombre d'enfants : 2, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -334,6 +428,8 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
@@ -345,7 +441,7 @@
         paje_adoption:
           2025-07: 2179.73015
 
-- name: "Cas P2R1E2B1NON_ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 1, Nombre d'enfants : 2, Nombre de revenus : 1"
+- name: "Cas P2R1E2B1NON_ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 1, Nombre d'enfants : 2, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -369,6 +465,8 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
@@ -380,7 +478,7 @@
         paje_adoption:
           2025-07: 0
 
-- name: "Cas P2R2E1B1ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 1, Nombre d'enfants : 1, Nombre de revenus : 2"
+- name: "Cas P2R2E1B1ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 1, Nombre d'enfants : 1, Nombre de revenus : 2"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -404,13 +502,15 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 2179.73015
 
-- name: "Cas P2R2E1B1NON_ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
+- name: "Cas P2R2E1B1NON_ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 1, Nombre d'enfants : 1, Nombre de revenus : 1"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -434,13 +534,15 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
   output:
     familles:
       famille:
         paje_adoption:
           2025-07: 0
 
-- name: "Cas P2R2E2B1ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 1, Nombre d'enfants : 2, Nombre de revenus : 2"
+- name: "Cas P2R2E2B1ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 1, Nombre d'enfants : 2, Nombre de revenus : 2"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -464,6 +566,8 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
@@ -475,7 +579,7 @@
         paje_adoption:
           2025-07: 2179.73015
 
-- name: "Cas P2R2E2B1NON_ELIGIBLE : Nombre de parents : 2, Nombre de bébés à naître : 1, Nombre d'enfants : 2, Nombre de revenus : 2"
+- name: "Cas P2R2E2B1NON_ELIGIBLE : Nombre de parents : 2, Nombre d'enfants à adopter : 1, Nombre d'enfants : 2, Nombre de revenus : 2"
   period: 2025-07
   relative_error_margin: 0.01
   input:
@@ -499,6 +603,8 @@
           ETERNITY: 2015-05-15
         adoption:
           2025-07: true
+        date_adoption:
+          ETERNITY: 2025-06-15
       enfant2:
         date_naissance:
           ETERNITY: 2013-11-15
