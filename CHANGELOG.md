@@ -1,5 +1,11 @@
 # Changelog
 
+### 172.0.7 [2506]https://github.com/openfisca/openfisca-france/pull/2506)
+
+* Amélioration technique.
+* Détails :
+  - Remplace l'usage de `pkg_resources` pas `importlib`
+
 ### 172.0.6 [2543](https://github.com/openfisca/openfisca-france/pull/2543)
 
 * Évolution du système socio-fiscal.

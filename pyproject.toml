@@ -1,6 +1,6 @@
 [project]
 name = "OpenFisca-France"
-version = "172.0.6"
+version = "172.0.7"
 description = "OpenFisca Rules as Code model for France."
 readme = "README.md"
 keywords = ["microsimulation", "tax", "benefit", "rac", "rules-as-code", "france"]
@@ -21,7 +21,6 @@ requires-python = ">= 3.9"
 dependencies = [
     "numpy >=1.24.3, <2",
     "openfisca-core[web-api] >=43, <44",
-    "setuptools"
 ]
 
 [project.urls]

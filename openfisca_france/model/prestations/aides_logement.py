@@ -2,7 +2,7 @@ import csv
 import codecs
 import json
 import logging
-import pkg_resources
+import importlib
 import sys
 
 from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
@@ -1446,10 +1446,11 @@ zone_apl_by_depcom = None
 def preload_zone_apl():
     global zone_apl_by_depcom
     if zone_apl_by_depcom is None:
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/apl/20110914_zonage.csv',
-                ) as csv_file:
+        with importlib.resources.files(
+                openfisca_france.__name__
+                ).joinpath(
+                'assets/apl/20110914_zonage.csv'
+                ).open('rb') as csv_file:
             if sys.version_info < (3, 0):
                 csv_reader = csv.DictReader(csv_file)
             else:
@@ -1461,10 +1462,11 @@ def preload_zone_apl():
                 for row in csv_reader
                 }
         # Add subcommunes (arrondissements and communes associées), use the same value as their parent commune.
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
+        with importlib.resources.files(
+                openfisca_france.__name__
+                ).joinpath(
                 'assets/apl/commune_depcom_by_subcommune_depcom.json',
-                ) as json_file:
+                ).open('rb') as json_file:
             commune_depcom_by_subcommune_depcom = json.load(json_file)
             for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.items():
                 zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
