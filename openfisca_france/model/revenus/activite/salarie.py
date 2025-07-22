@@ -214,7 +214,7 @@ class apprentissage_contrat_debut(Variable):
 class arrco_tranche_a_taux_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Taux ARRCO tranche A employeur) propre à l'entreprise"
+    label = "Taux ARRCO tranche A employeur propre à l'entreprise"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -222,7 +222,7 @@ class arrco_tranche_a_taux_employeur(Variable):
 class arrco_tranche_a_taux_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Taux ARRCO tranche A salarié) propre à l'entreprise"
+    label = "Taux ARRCO tranche A salarié propre à l'entreprise"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -246,7 +246,7 @@ class avantage_en_nature_valeur_reelle(Variable):
 class indemnites_compensatrices_conges_payes(Variable):
     value_type = float
     entity = Individu
-    label = 'indemnites_compensatrices_conges_payes'
+    label = 'Indemnités compensatrices de congés payés'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -254,7 +254,7 @@ class indemnites_compensatrices_conges_payes(Variable):
 class indemnite_fin_contrat_due(Variable):
     value_type = bool
     entity = Individu
-    label = 'indemnite_fin_contrat_due'
+    label = 'Indemnité de fin de contrat due'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -266,7 +266,7 @@ class TypesContratDeTravail(Enum):
     forfait_heures_semaines = 'Convention de forfait heures sur la semaine'
     forfait_heures_mois = 'Convention de forfait heures sur le mois'
     forfait_heures_annee = 'Convention de forfait heures sur l’année'
-    forfait_jours_annee = 'Convention de forfait hours sur l’année'
+    forfait_jours_annee = 'Convention de forfait jours sur l’année'
     sans_objet = 'Non renseigné'
 
 
@@ -964,12 +964,10 @@ class indemnites_forfaitaires(Variable):
 
 
 class salaire_de_base(Variable):
-    # Salaire brut sans les primes et les heures supplémentaires - généralement la première ligne du bulletin de paye.
     value_type = float
     entity = Individu
     label = 'Salaire de base'
     set_input = set_input_divide_by_period
-    reference = 'https://www.insee.fr/fr/metadonnees/definition/c1937'
     definition_period = MONTH
     unit = 'currency'
 

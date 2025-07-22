@@ -480,21 +480,12 @@ class ppa_fictive(Variable):
         bonification_i = famille.members('ppa_bonification', period)
         bonification = famille.sum(bonification_i)
 
-        ppa_montant_base = (
+        ppa_fictive = (
             montant_forfaitaire_familialise
             + bonification
             + ppa_fictive_ressource_activite
-            - ppa_base_ressources
-            - forfait_logement
+            - max_(ppa_base_ressources + forfait_logement, montant_forfaitaire_familialise)
             )
-
-        ppa_deduction = (
-            montant_forfaitaire_familialise
-            - ppa_base_ressources
-            - forfait_logement
-            )
-
-        ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
         ppa_fictive = max_(ppa_fictive, 0)
         return elig * ppa_fictive
 

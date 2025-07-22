@@ -1,5 +1,92 @@
 # Changelog
 
+### 172.0.5 [2532](https://github.com/openfisca/openfisca-france/pull/2532)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/majoration_ressources_revenus_activite.yaml`
+  - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/seuil_bonification.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/taux_bonification_max.yaml`
+* Détails :
+  - Met à jour la fraction des revenus professionnels de la prime d'activité
+  - Simplifie la formule de calcul de la prime d'activité fictive
+  - Supprime l'unité currency pour le seuil de salaire minimal de la bonification de la prime d'activité (exprimée en Smic horaires)
+
+### 172.0.4 [2470](https://github.com/openfisca/openfisca-france/pull/2470)
+
+* Changement technique.
+* Périodes concernées : aucune.
+* Zones impactées :
+  - `pyproject.toml`
+* Détails :
+  - Corrige l'erreur de module 'pkg_resources' introuvable #2437.
+
+### 172.0.3 [2516](https://github.com/openfisca/openfisca-france/pull/2516)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `preprocessing`.
+* Détails :
+- Renommer les paramètres de bareme_by_type_sal_name à bareme_by_categorie_salarie dans plusieurs fichiers.
+- Mettre à jour les étiquettes et les noms de variables pour plus de clarté et d'exactitude.
+- Refactoriser la logique de prétraitement pour regrouper les thématiques et les clés finales.
+
+### 172.0.2 [2524](https://github.com/openfisca/openfisca-france/pull/2524)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/aides_logement.py.
+* Détails :
+  - ajoute une formule à la variable logement_conventionne pour qu'elle soit liée à la variable statut_occupation_logement
+
+### 172.0.1 [2523](https://github.com/openfisca/openfisca-france/pull/2523)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/01/2025.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone`.
+* Détails :
+  - Met à jour les montants de réduction de loyer solidarité
+
+# 172.0.0 [2521](https://github.com/openfisca/openfisca-france/pull/2521)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/aides_logement.py`.
+* Détails :
+  - Supprime la variable `aides_logement_categorie` qui posait problème dans le dump (car string) pour l'intégrer directement dans le calcul de la variable qui l'appelait
+
+### 171.0.2 [2495](https://github.com/openfisca/openfisca-france/pull/2495)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/taxation_capital/prelevements_sociaux/crds/*.`
+* Détails :
+    - Supprime CRDS en doublon
+
+### 171.0.1 [2498](https://github.com/openfisca/openfisca-france/pull/2498)
+
+* Changement mineur.
+* Périodes concernées : 2025
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_m/montant_de_base_du_rsa.yaml`
+* Détails :
+  - Corrige la date de la référence législative pour le RSA (avril 2025)
+
+# 171.0.0 [2496](https://github.com/openfisca/openfisca-france/pull/2496)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  - `openfisca_france/model/prestations/prestations_familiales/aeeh.py`
+  - `openfisca_france/model/prestations/prestations_familiales/paje.py`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aeeh/complement_allocation`
+* Détails :
+  - Enlève des if period et les remplace par une nouvelle formule à une nouvelle date
+  - Renomme des fichiers de paramètre dont le nom commençait par un nombre
+
 ### 170.1.12 [2486](https://github.com/openfisca/openfisca-france/pull/2486)
 
 * Changement mineur.

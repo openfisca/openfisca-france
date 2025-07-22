@@ -52,6 +52,14 @@ class adoption(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class date_adoption(Variable):
+    value_type = date
+    default_value = date(1970, 1, 1)
+    entity = Individu
+    label = "Date de l'arrivée au foyer de l'enfant adopté"
+    definition_period = ETERNITY
+
+
 class garde_alternee(Variable):
     value_type = bool
     entity = Individu
