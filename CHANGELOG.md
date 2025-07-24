@@ -1,5 +1,17 @@
 # Changelog
 
+### 172.1.2 [2555](https://github.com/openfisca/openfisca-france/pull/2555)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `openfisca_france/model/prestations/aides_logement.py`
+  * `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/k_coef_prise_en_charge/cm_et_r/cm3_apl3.yaml`
+* Détails :
+  - On a modifié `aides_logement_primo_accedant_eligibilite` afin qu'une règle spécifique à l'éligibilité à l'APL Accession ne soit pas appliquée à l'AL Accession.
+  - Le calcul du coefficient "K" pour l'APL Accession a été implémenté.
+  - Les variables `aide_logement_est_pret_conventionne` et `aide_logement_date_pret` ont été créées afin de pouvoir différencier un prêt conventionné d'un prêt qui ne l'est pas. On a quand même gardé la variable `aide_logement_date_pret_conventionne` qui peut être utilisée pour déterminer s'il s'agit d'un prêt conventionné.
+
 ### 172.1.1 [#2558](https://github.com/openfisca/openfisca-france/pull/2558)
 
 * Changement mineur.
