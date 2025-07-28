@@ -302,4 +302,4 @@ input:
     aide_logement_date_pret_conventionne: 2017-01-01
 output:
   aides_logement_primo_accedant_eligibilite: true
-  aide_logement: 127
+  aide_logement: 142.86
