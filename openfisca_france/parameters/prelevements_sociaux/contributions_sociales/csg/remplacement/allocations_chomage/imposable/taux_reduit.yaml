@@ -1,12 +1,17 @@
 description: Taux réduit de la contribution sociale généralisée (CSG) imposable sur les revenus d'activité
-values:
-  1997-01-01:
-    value: 0
+brackets:
+- threshold:
+    1997-01-01:
+      value: 0
+  rate:
+    1997-01-01:
+      value: 0
 metadata:
   short_label: Taux réduit
   last_value_still_valid_on: "2024-07-24"
   label_en: CSG - rates on work incomes
-  unit: /1
+  rate_unit: /1
+  threshold_unit: currency
   reference:
     1997-01-01:
     - title: Article L136-8 du Code de la sécurité sociale (taux global)
