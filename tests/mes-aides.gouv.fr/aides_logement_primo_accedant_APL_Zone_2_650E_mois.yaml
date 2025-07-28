@@ -1,0 +1,391 @@
+name: APL Accession Zone 2 650€/mois
+keywords:
+- Propriétaire ou accédant à la propriété
+- al
+description: |-
+  Métropole : APL - acquisition d'un logement neuf - contrat signé en déc. 2017
+  Soit un couple avec deux enfants à charge, ayant des ressources annuelles prises en
+  compte de 17 937 €, soient 18 000 € arrondies à la centaine d'euros supérieure. Il acquiert
+  un logement neuf avec un prêt aidé par l'État dont le contrat a été signé le 5 décembre
+  2017, dans une grande ville de province (zone II). Il paie une mensualité de 650 €.
+  Le calcul est effectué pour le droit de janvier 2024.
+period: month:2024-01
+relative_error_margin: 0.05
+input:
+  individus:
+    demandeur:
+      salaire_imposable:
+        2023-01: 1494
+        2023-02: 1494
+        2023-03: 1494
+        2023-04: 1494
+        2023-05: 1494
+        2023-06: 1494
+        2023-07: 1494
+        2023-08: 1494
+        2023-09: 1494
+        2023-10: 1494
+        2023-11: 1494
+        2023-12: 1494
+      aah:
+        2023-01: 0
+        2023-02: 0
+        2023-03: 0
+        2023-04: 0
+        2023-05: 0
+        2023-06: 0
+        2023-07: 0
+        2023-08: 0
+        2023-09: 0
+        2023-10: 0
+        2023-11: 0
+        2023-12: 0
+      age:
+        2023-10: 27
+        2023-11: 27
+        2023-12: 27
+        2024-01: 27
+      age_en_mois:
+        2023-10: 331
+        2023-11: 331
+        2023-12: 331
+        2024-01: 331
+      boursier:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      date_arret_de_travail:
+        2023-10: '2024-01-10'
+        2023-11: '2024-01-10'
+        2023-12: '2024-01-10'
+        2024-01: '2024-01-10'
+      date_naissance:
+        2023-10: '1990-01-01'
+        2023-11: '1990-01-01'
+        2023-12: '1990-01-01'
+        2024-01: '1990-01-01'
+      bourse_criteres_sociaux_echelon:
+        2023-10: -1
+        2023-11: -1
+        2023-12: -1
+        2024-01: -1
+      enfant_a_charge:
+        '2017': false
+      enfant_place:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      etudiant:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      handicap:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      inapte_travail:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      taux_incapacite:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      valeur_locative_immo_non_loue:
+        2012-01: 0
+      valeur_locative_terrains_non_loues:
+        2012-01: 0
+    conjoint:
+      aah:
+        2023-01: 0
+        2023-02: 0
+        2023-03: 0
+        2023-04: 0
+        2023-05: 0
+        2023-06: 0
+        2023-07: 0
+        2023-08: 0
+        2023-09: 0
+        2023-10: 0
+        2023-11: 0
+        2023-12: 0
+      age:
+        2023-10: 27
+        2023-11: 27
+        2023-12: 27
+        2024-01: 27
+      age_en_mois:
+        2023-10: 331
+        2023-11: 331
+        2023-12: 331
+        2024-01: 331
+      boursier:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      date_arret_de_travail:
+        2023-10: '2024-01-10'
+        2023-11: '2024-01-10'
+        2023-12: '2024-01-10'
+        2024-01: '2024-01-10'
+      date_naissance:
+        2023-10: '1990-01-01'
+        2023-11: '1990-01-01'
+        2023-12: '1990-01-01'
+        2024-01: '1990-01-01'
+      bourse_criteres_sociaux_echelon:
+        2023-10: -1
+        2023-11: -1
+        2023-12: -1
+        2024-01: -1
+      enfant_a_charge:
+        '2017': false
+      enfant_place:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      etudiant:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      handicap:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      inapte_travail:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      taux_incapacite:
+        2023-10: false
+        2023-11: false
+        2023-12: false
+        2024-01: false
+      valeur_locative_immo_non_loue:
+        2012-01: 0
+      valeur_locative_terrains_non_loues:
+        2012-01: 0
+    enfant1:
+      date_naissance:
+        'ETERNITY': '2013-12-12'
+      age:
+        2023-10: 10
+        2023-11: 10
+        2023-12: 10
+        2024-01: 10
+    enfant2:
+      date_naissance:
+        'ETERNITY': '2016-04-06'
+      age:
+        2023-10: 7
+        2023-11: 7
+        2023-12: 7
+        2024-01: 7
+  famille:
+    acs:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    af:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    aide_logement:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    alf:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    als:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    apl:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    asf:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    aspa:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    bourse_college:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    bourse_lycee:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    cf:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    enfants: [enfant1, enfant2]
+    paje_base:
+      2023-01: 0
+      2023-02: 0
+      2023-03: 0
+      2023-04: 0
+      2023-05: 0
+      2023-06: 0
+      2023-07: 0
+      2023-08: 0
+      2023-09: 0
+      2023-10: 0
+      2023-11: 0
+      2023-12: 0
+    parents:
+    - demandeur
+    - conjoint
+  foyer_fiscal:
+    declarants:
+    - demandeur
+    - conjoint
+    personnes_a_charge: []
+  menage:
+    coloc:
+      2023-10: false
+      2023-11: false
+      2023-12: false
+      2024-01: false
+    depcom:
+      2023-10: '33090'
+      2023-11: '33090'
+      2023-12: '33090'
+      2024-01: '33090'
+    enfants: [enfant1, enfant2]
+    logement_chambre:
+      2023-10: false
+      2023-11: false
+      2023-12: false
+      2024-01: false
+    loyer:
+      2023-10: 650
+      2023-11: 650
+      2023-12: 650
+      2024-01: 650
+    personne_de_reference: demandeur
+    statut_occupation_logement:
+      2023-10: primo_accedant
+      2023-11: primo_accedant
+      2023-12: primo_accedant
+      2024-01: primo_accedant
+    aide_logement_date_pret_conventionne: 2017-12-05
+output:
+  aide_logement: 185
