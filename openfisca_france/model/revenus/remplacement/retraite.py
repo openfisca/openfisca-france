@@ -20,10 +20,6 @@ class retraite_de_base(Variable):
     calculate_output = calculate_output_add
     unit = 'currency'
 
-    def formula(individu, period, parameters):
-        taux_revalorisation = parameters(period).inflateurs.inflateur_retraites
-        return individu('retraite_de_base_n_1',period) * taux_revalorisation
-
 
 class retraite_complementaire(Variable):
     value_type = float
