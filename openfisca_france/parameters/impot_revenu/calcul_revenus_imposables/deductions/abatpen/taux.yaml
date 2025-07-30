@@ -2,6 +2,8 @@ description: Taux de l'abattement forfaitaire sur les pensions ou retraites
 values:
   1943-01-01:
     value: 0.1
+  2025-01-01:
+    value: null
 metadata:
   last_value_still_valid_on: "2025-02-25"
   short_label: Taux de l'abattement sur pensions
