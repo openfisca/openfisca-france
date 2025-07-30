@@ -489,6 +489,8 @@ class prelevements_sociaux_menage(Variable):
         csg = menage.sum(csg_i)
         crds_hors_presta_i = menage.members('crds_hors_prestations', period, options = [ADD])
         crds_hors_prestations = menage.sum(crds_hors_presta_i)
+        casa_i = menage.members('casa', period, options = [ADD])
+        casa = enage.sum(casa_i)
 
         prelevements_sociaux_revenus_capital_hors_csg_crds_i = menage.members.foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period, options = [ADD])
         prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -497,6 +499,7 @@ class prelevements_sociaux_menage(Variable):
             csg
             + crds_hors_prestations
             + prelevements_sociaux_revenus_capital_hors_csg_crds
+            + casa
             )
 
 

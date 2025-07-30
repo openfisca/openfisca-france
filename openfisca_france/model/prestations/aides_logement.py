@@ -567,7 +567,7 @@ class aide_logement_base_ressources_individu(Variable):
     definition_period = MONTH
     is_period_size_independent = True
 
-    def formula_2025_01_01(individu, period, parameters):
+    def formula_2026_01_01(individu, period, parameters):
         period_frais = period.last_year
         annee_glissante = Period(('year', period.start, 1)).offset(-1).offset(-1, 'month')
 
