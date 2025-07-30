@@ -3,6 +3,8 @@ metadata:
   short_label: Allègement des cotisations employeur d’assurance maladie
   label_en: Reduction in SSCs
   order:
+  - taux
+  - plafond_smic_2025_01_01
   - plafond_smic_courant
   - plafond_smic_2023_12_31
-  - plafond
+  - plafond_smic

@@ -66,6 +66,8 @@ brackets:
       value: 0.04
     2017-10-01:
       value: 0.0405
+    2025-05-01:
+      value: 0.04
 - threshold:
     1975-07-01:
       value: 1
@@ -118,6 +120,8 @@ brackets:
       value: 0.04
     2017-10-01:
       value: 0.0405
+    2025-05-01:
+      value: 0.04
 - threshold:
     1959-01-01:
       value: 4
@@ -126,7 +130,7 @@ brackets:
       value: 0
 metadata:
   short_label: Barème
-  last_value_still_valid_on: "2024-03-14"
+  last_value_still_valid_on: "2025-07-15"
   ipp_csv_id:
     rate: chom_p_0_1, chom_p_1_4
   reference:
@@ -196,6 +200,11 @@ metadata:
     - title: Circulaire Unedic 2017-21 du 24/07/2017
       href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Ci2017-21.pdf
     - title: Convention relative à l'assurance chômage du 14/04/2017 (arrêté ministériel du 04/05/2017)
+    2025-05-01:
+    - title: Circulaire Unedic 2025-05 du 01/05/2025
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2025-05_du_1er_mai_2025.pdf
+    - title: Arrêté du 19 décembre 2024
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000050797861/
   official_journal_date:
     1982-11-06: "1982-11-05"
     1983-07-01: "1983-07-01"
@@ -211,5 +220,6 @@ metadata:
     2002-01-01: "2000-12-06"
     2006-01-01: "2006-03-02"
     2017-10-01: "2017-05-06"
+    2025-05-01: "2024-12-20"
   rate_unit: /1
   threshold_unit: PSS

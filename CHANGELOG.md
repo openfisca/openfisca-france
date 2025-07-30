@@ -1,5 +1,17 @@
 # Changelog
 
+## 172.1.0 [#2548](https://github.com/openfisca/openfisca-france/pull/2548)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/01/2025
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`.
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises`
+* Détails :
+  - Met à jour les paramètres de calcul des allègements de cotisations sociales
+
 ### 172.0.6 [2543](https://github.com/openfisca/openfisca-france/pull/2543)
 
 * Évolution du système socio-fiscal.
