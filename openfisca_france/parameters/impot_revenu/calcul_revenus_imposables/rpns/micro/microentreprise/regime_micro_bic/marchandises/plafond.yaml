@@ -84,6 +84,7 @@ metadata:
     - title: Jusqu'à l'imposition des revenus de 1998, les régimes spéciaux (appelé micro et micro_service ici) concernent les locations meublés non professionnelles, les BIC non professionnelles (depuis 98 seulement) et les autres activités industrielles et commerciales
     2013-01-01:
     - title: "Création du régime d'autoentrepreneur : voir BOI-BIC-DECLA-10-40 du 09/12/2012"
+  inflator: inflateurs.inflateur_impot
 documentation: |-
   Réf : Article 50-0 1° du CGI https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622490
   Les seuils sont actualisés tous les trois ans dans la même proportion que l'évolution triennale de la première tranche du barème de l'impôt sur le revenu et arrondis à la centaine d'euros la plus proche.

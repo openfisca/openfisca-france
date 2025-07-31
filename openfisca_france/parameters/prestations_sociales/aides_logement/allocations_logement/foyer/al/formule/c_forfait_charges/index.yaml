@@ -4,4 +4,5 @@ metadata:
   order:
   - cas_general
   - par_personne_supplementaire
+  inflator: inflateurs.inflateur_aides_logement_loyer
 documentation: Montant forfaitaire au titre des charges indiqué par le « C » de la formule de calcul des aides, mentionné au 3° de l'article D842-15 du Code de la construction et de l'habitation.
