@@ -376,8 +376,9 @@ class allegement_general(Variable):
 class taux_allegement_general(Variable):
     value_type = float
     entity = Individu
-    label = 'Assiette des allègements de cotisations sociales employeur'
+    label = "Taux de réduction générale des cotisations employeur"
     definition_period = MONTH
+    is_period_size_independent = True
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
