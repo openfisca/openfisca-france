@@ -1,5 +1,15 @@
 # Changelog
 
+### 172.1.1 [#2558](https://github.com/openfisca/openfisca-france/pull/2558)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid/index.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/index.yaml`
+* Détails :
+  - Corrige la liste de paramètres dans deux index.py 
+
 ## 172.1.0 [#2548](https://github.com/openfisca/openfisca-france/pull/2548)
 
 * Évolution du système socio-fiscal.
