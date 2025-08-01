@@ -68,8 +68,8 @@
           year:1999:20: 0
         date_debut_chomage: 2019-01-01
         autonomie_financiere:
-          year:1995:40: False
-        rsa_jeune_condition_heures_travail_remplie: False
+          year:1995:40: false
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           # month:2019-01:8: chomeur
           2018: actif
@@ -83,7 +83,7 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2019: 8
@@ -216,5 +216,3 @@
           2020-02: 13354.75390625
           2020-03: 13354.75390625
           2020-04: 13354.75390625
-
-     

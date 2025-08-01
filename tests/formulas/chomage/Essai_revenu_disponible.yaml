@@ -1,4 +1,4 @@
-- name: Revenu disponible - Célibataire sans enfant - Salaire brut de 506 euros - PPA 
+- name: Revenu disponible - Célibataire sans enfant - Salaire brut de 506 euros - PPA
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -47,11 +47,11 @@
     - revenu_categoriel_capital
   input:
     famille:
-      aide_logement: 
+      aide_logement:
         year:1998:20: 0
       parents:
       - parent_1
-      rsa: 
+      rsa:
         year:1998:20: 0
     foyer_fiscal:
       declarants:
@@ -64,19 +64,19 @@
           year:2013:5: progressif
         allegement_fillon_mode_recouvrement:
           year:2013:5: progressif
-        are: 
+        are:
           year:1998:20: 0
-        ass: 
+        ass:
           year:1998:20: 0
         categorie_salarie:
           year:2013:5: prive_non_cadre
-        chomage_brut: 
+        chomage_brut:
           year:1998:20: 0
-        chomage_net: 
+        chomage_net:
           year:1998:20: 0
         contrat_de_travail:
           year:2013:5: temps_partiel
-        contrat_de_travail_debut: 
+        contrat_de_travail_debut:
           year:1995:30: '2005-01-01'
         contrat_de_travail_duree:
           year:2013:5: cdi
@@ -101,12 +101,12 @@
           year:2018:6: 260.4
         nombre_jours_travailles_dans_les_x_derniers_mois:
           year:2018:6: 520.8
-        rsa_jeune_condition_heures_travail_remplie: 
+        rsa_jeune_condition_heures_travail_remplie:
           year:2018:6: false
         salaire_de_base:
           year:2013:5: 5 * 12 * 506.333333
           year:2018:6: 0
         taux_accident_travail:
           year:2013:5: 0.015
-  output: 
+  output:
     ppa: 244.19658

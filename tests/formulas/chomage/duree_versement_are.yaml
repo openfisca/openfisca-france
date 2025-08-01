@@ -19,10 +19,10 @@
       2019-05: 1000
       2019-06: 1000
       2019-07: 0
-    contrat_de_travail_fin: 
+    contrat_de_travail_fin:
       2019: 2019-07
       2020: 2019-07
-    jours_travailles_chomage: 
+    jours_travailles_chomage:
       2018-07: 22
       2018-08: 23
       2018-09: 20
@@ -57,7 +57,7 @@
       2020-06: 12000
       2020-07: 12000
       2020-08: 12000
-    nombre_jours_travailles_12_derniers_mois: 
+    nombre_jours_travailles_12_derniers_mois:
       2019-07: 260
       2019-08: 260
       2019-09: 260
@@ -110,5 +110,3 @@
       2020-10: 350
       2020-11: 371
       2020-12: 394
-
-

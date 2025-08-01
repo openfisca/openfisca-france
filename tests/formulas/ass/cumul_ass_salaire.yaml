@@ -1,5 +1,5 @@
 - name: Eligibilité cumul ASS et salaire - Cas n°1
-  description: Aucun salaire perçu 
+  description: Aucun salaire perçu
   period: 2019-07
   input:
     famille:
@@ -103,7 +103,7 @@
     ass_eligibilite_cumul_individu: true
 
 - name: Eligibilité cumul ASS et salaire - Cas n°4
-  description: Salaire perçu au 2019-07, 2019-08, et 2019-09 ainsi qu'auparavant, lors de la perception d'allocations chômage (ARE) 
+  description: Salaire perçu au 2019-07, 2019-08, et 2019-09 ainsi qu'auparavant, lors de la perception d'allocations chômage (ARE)
   period: 2019-09
   input:
     famille:
@@ -139,7 +139,7 @@
     ass_eligibilite_cumul_individu: true
 
 - name: Eligibilité cumul ASS et salaire - Cas n°5
-  description: Salaire perçu en même temps que l'ASS pendant 3 mois non consécutifs 
+  description: Salaire perçu en même temps que l'ASS pendant 3 mois non consécutifs
   period: 2019-09
   input:
     famille:
@@ -175,7 +175,7 @@
     ass_eligibilite_cumul_individu: true
 
 - name: Eligibilité cumul ASS et salaire - Cas n°6
-  description: Salaire perçu en même temps que l'ASS pendant 4 mois consécutifs 
+  description: Salaire perçu en même temps que l'ASS pendant 4 mois consécutifs
   period: 2019-09
   input:
     famille:
@@ -221,4 +221,3 @@
       - parent1
   output:
     ass_eligibilite_cumul_individu: false
-

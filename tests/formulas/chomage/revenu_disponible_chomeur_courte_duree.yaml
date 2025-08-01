@@ -1,4 +1,4 @@
-- name: Revenu disponible - Célibataire sans enfant - Salaire brut de 506 euros 
+- name: Revenu disponible - Célibataire sans enfant - Salaire brut de 506 euros
   period: 2018-01
   absolute_error_margin: 0.01
   max_spiral_loops: 60
@@ -68,9 +68,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -85,7 +85,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -100,7 +100,7 @@
           2017: 12 * 506.3333
           2016: 12 * 506.3333
           2015: 12 * 506.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -117,8 +117,8 @@
     reduction_loyer_solidarite: 27.739999771118164
     prestations_sociales_mensuelles: 508.1256
     revenu_disponible_avec_impots: 1258.125
-    
-- name: Revenu disponible - Célibataire sans enfant - Salaire brut de 1519 euros   
+
+- name: Revenu disponible - Célibataire sans enfant - Salaire brut de 1519 euros
   period: 2018-01
   absolute_error_margin: 0.01
   max_spiral_loops: 60
@@ -190,9 +190,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -207,7 +207,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -222,7 +222,7 @@
           2017: 12 * 1519
           2016: 12 * 1519
           2015: 12 * 1519
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -238,7 +238,7 @@
     aide_logement: 0
     prestations_sociales_mensuelles: 143.77948
     revenu_disponible_avec_impots: 1741.2148
-- name: Revenu disponible - Célibataire sans enfant - Salaire brut de 2025.333 euros 
+- name: Revenu disponible - Célibataire sans enfant - Salaire brut de 2025.333 euros
   period: 2018-01
   absolute_error_margin: 0.01
   max_spiral_loops: 60
@@ -308,9 +308,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -325,7 +325,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -340,7 +340,7 @@
           2017: 12 * 2025.333
           2016: 12 * 2025.333
           2015: 12 * 2025.333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -356,9 +356,8 @@
     aide_logement: 0
     prestations_sociales_mensuelles: 0
     revenu_disponible_avec_impots: 2129.9124
-  
 
-- name: Revenu disponible - Célibataire avec un enfant - Salaire brut de 506 euros 
+- name: Revenu disponible - Célibataire avec un enfant - Salaire brut de 506 euros
   period: 2018-01
   absolute_error_margin: 0.01
   max_spiral_loops: 60
@@ -430,9 +429,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -447,7 +446,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -462,19 +461,19 @@
           2017: 12 * 506.333
           2016: 12 * 506.333
           2015: 12 * 506.333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1:  
+      enfant1:
         date_naissance: 2014-12-25
     foyer_fiscal:
       declarants: [personne1]
       personnes_a_charge: [enfant1]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
         pensions_nettes_mensuelles: 749.9995
         rsa: 0
         ppa: 244.1964
@@ -483,7 +482,7 @@
         aide_logement: 335.17999267578125
         prestations_sociales_mensuelles: 730.237548828125
         revenu_disponible_avec_impots: 1480.237060546875
-- name: Revenu disponible - Célibataire avec un enfant - Salaire brut de 2025 euros 
+- name: Revenu disponible - Célibataire avec un enfant - Salaire brut de 2025 euros
   period: 2018-01
   absolute_error_margin: 0.01
   max_spiral_loops: 60
@@ -555,9 +554,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -572,7 +571,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -587,19 +586,19 @@
           2017: 12 * 2025.333
           2016: 12 * 2025.333
           2015: 12 * 2025.333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1:  
+      enfant1:
         date_naissance: 2014-12-25
     foyer_fiscal:
       declarants: [personne1]
       personnes_a_charge: [enfant1]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
         pensions_nettes_mensuelles: 2129.912353515625
         rsa: 0
         ppa: 16.0880126953125
@@ -609,8 +608,7 @@
         prestations_sociales_mensuelles: 206.09970092773438
         revenu_disponible_avec_impots: 2336.011962890625
 
-
-- name: Revenu disponible - Célibataire avec deux enfants - Salaire brut de 506 euros 
+- name: Revenu disponible - Célibataire avec deux enfants - Salaire brut de 506 euros
   period: 2018-01
   absolute_error_margin: 0.01
   max_spiral_loops: 60
@@ -682,9 +680,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -699,7 +697,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -714,21 +712,21 @@
           2017: 12 * 506.333
           2016: 12 * 506.333
           2015: 12 * 506.333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1:  
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
     foyer_fiscal:
       declarants: [personne1]
       personnes_a_charge: [enfant1, enfant2]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
         pensions_nettes_mensuelles: 749.9995
         rsa: 0
         ppa: 244.1964
@@ -737,7 +735,7 @@
         aide_logement: 387.760009765625
         prestations_sociales_mensuelles: 1033.0872802734375
         revenu_disponible_avec_impots: 1783.0867919921875
-- name: Revenu disponible - Célibataire avec deux enfants - Salaire brut de 2025 euros 
+- name: Revenu disponible - Célibataire avec deux enfants - Salaire brut de 2025 euros
   period: 2018-01
   absolute_error_margin: 0.01
   max_spiral_loops: 60
@@ -809,9 +807,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -826,7 +824,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -841,21 +839,21 @@
           2017: 12 * 2025.333
           2016: 12 * 2025.333
           2015: 12 * 2025.333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1:  
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
     foyer_fiscal:
       declarants: [personne1]
       personnes_a_charge: [enfant1, enfant2]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
         pensions_nettes_mensuelles: 2129.91235351562
         rsa: 0
         ppa: 0
@@ -865,8 +863,7 @@
         prestations_sociales_mensuelles: 530.1318359375
         revenu_disponible_avec_impots: 2660.044189453125
 
-
-- name: Revenu disponible - Célibataire avec trois enfants - Salaire brut de 2025 euros 
+- name: Revenu disponible - Célibataire avec trois enfants - Salaire brut de 2025 euros
   period: 2018-01
   absolute_error_margin: 0.01
   max_spiral_loops: 60
@@ -938,9 +935,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -955,7 +952,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -970,23 +967,23 @@
           2017: 12 * 2025.333
           2016: 12 * 2025.333
           2015: 12 * 2025.333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1:  
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
-      enfant3: 
+      enfant3:
         date_naissance: 2013-12-25
     foyer_fiscal:
       declarants: [personne1]
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
         pensions_nettes_mensuelles: 2129.912353515625
         rsa: 0
         ppa: 0
@@ -996,8 +993,7 @@
         prestations_sociales_mensuelles: 1163.859130859375
         revenu_disponible_avec_impots: 3293.771484375
 
-
-- name: Revenu disponible - En couple sans enfant - Salaire brut de 506 euros et le conjoint 500 euros 
+- name: Revenu disponible - En couple sans enfant - Salaire brut de 506 euros et le conjoint 500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -1068,9 +1064,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -1085,7 +1081,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -1100,21 +1096,21 @@
           2017: 12 * 506.3333
           2016: 12 * 506.3333
           2015: 12 * 506.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -1129,7 +1125,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 500
@@ -1137,7 +1133,7 @@
           2017: 12 * 500
           2016: 12 * 500
           2015: 12 * 500
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -1145,17 +1141,17 @@
     foyer_fiscal:
       declarants: [personne1, personne2]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        are_nette: 750
        rsa: 0
-       ppa: 365.6051330566406 
+       ppa: 365.6051330566406
        minima_sociaux_mensuel: 363.777099609375
        prestations_familiales_mensuelles: 0
        aide_logement: 210.77000427246094
        prestations_sociales_mensuelles: 608.4971313476562
        revenu_disponible_avec_impots: 1772.766845703125
-- name: Revenu disponible - En couple sans enfant - Salaire brut de 506 euros et le conjoint 1000 euros 
+- name: Revenu disponible - En couple sans enfant - Salaire brut de 506 euros et le conjoint 1000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -1226,9 +1222,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -1243,7 +1239,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -1258,21 +1254,21 @@
           2017: 12 * 506.3333
           2016: 12 * 506.3333
           2015: 12 * 506.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -1287,7 +1283,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 1000
@@ -1295,7 +1291,7 @@
           2017: 12 * 1000
           2016: 12 * 1000
           2015: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -1303,8 +1299,8 @@
     foyer_fiscal:
       declarants: [personne1, personne2]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 750
        rsa: 0
        ppa: 290.17974853515625
@@ -1313,7 +1309,7 @@
        aide_logement: 92.6100006103515
        prestations_sociales_mensuelles: 381.3388671875
        revenu_disponible_avec_impots: 1995.108642578125
-- name: Revenu disponible - En couple sans enfant - Salaire brut de 2025 euros et le conjoint 500 euros 
+- name: Revenu disponible - En couple sans enfant - Salaire brut de 2025 euros et le conjoint 500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -1384,9 +1380,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -1401,7 +1397,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -1417,21 +1413,21 @@
           2017: 12 * 2025.3333
           2016: 12 * 2025.3333
           2015: 12 * 2025.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -1446,7 +1442,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 500
@@ -1454,7 +1450,7 @@
           2017: 12 * 500
           2016: 12 * 500
           2015: 12 * 500
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -1462,8 +1458,8 @@
     foyer_fiscal:
       declarants: [personne1, personne2]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 2129.913818359375
        rsa: 0
        ppa: 110.1532974243164
@@ -1472,7 +1468,7 @@
        aide_logement: 0
        prestations_sociales_mensuelles: 109.60253143310547
        revenu_disponible_avec_impots: 4439.33203125
-- name: Revenu disponible - En couple sans enfant - Salaire brut de 2025 euros et le conjoint 1000 euros 
+- name: Revenu disponible - En couple sans enfant - Salaire brut de 2025 euros et le conjoint 1000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -1543,9 +1539,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -1560,7 +1556,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -1575,21 +1571,21 @@
           2017: 12 * 2025.3333
           2016: 12 * 2025.3333
           2015: 12 * 2025.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -1604,7 +1600,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 1000
@@ -1612,7 +1608,7 @@
           2017: 12 * 1000
           2016: 12 * 1000
           2015: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -1620,8 +1616,8 @@
     foyer_fiscal:
       declarants: [personne1, personne2]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 2129.913818359375
        rsa: 0
        ppa: 0
@@ -1631,8 +1627,7 @@
        prestations_sociales_mensuelles: 0
        revenu_disponible_avec_impots: 2993.68359375
 
-
-- name: Revenu disponible - En couple avec un enfant - Salaire brut de 506 euros et le conjoint 500 euros 
+- name: Revenu disponible - En couple avec un enfant - Salaire brut de 506 euros et le conjoint 500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -1705,9 +1700,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -1722,7 +1717,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -1737,21 +1732,21 @@
           2017: 12 * 506.3333
           2016: 12 * 506.3333
           2015: 12 * 506.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -1766,7 +1761,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 500
@@ -1774,20 +1769,20 @@
           2017: 12 * 500
           2016: 12 * 500
           2015: 12 * 500
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1]
   output:
-    individus: 
-      personne1: 
-       pensions_nettes_mensuelles:  750.0
+    individus:
+      personne1:
+       pensions_nettes_mensuelles: 750.0
        rsa: 0
        ppa: 307.9423828125
        minima_sociaux_mensuel: 306.4026794433594
@@ -1795,7 +1790,7 @@
        aide_logement: 305.07000732421875
        prestations_sociales_mensuelles: 649.6726684570312
        revenu_disponible_avec_impots: 1813.9423828125
-- name: Revenu disponible - En couple avec un enfant - Salaire brut de 506 euros et le conjoint 1000 euros 
+- name: Revenu disponible - En couple avec un enfant - Salaire brut de 506 euros et le conjoint 1000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -1868,9 +1863,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -1885,7 +1880,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -1900,21 +1895,21 @@
           2017: 12 * 506.3333
           2016: 12 * 506.3333
           2015: 12 * 506.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -1929,7 +1924,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 1000
@@ -1937,20 +1932,20 @@
           2017: 12 * 1000
           2016: 12 * 1000
           2015: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1]
   output:
-    individus: 
-      personne1: 
-       pensions_nettes_mensuelles:  750.0
+    individus:
+      personne1:
+       pensions_nettes_mensuelles: 750.0
        rsa: 0
        ppa: 198.8269805908203
        minima_sociaux_mensuel: 197.8328399658203
@@ -1958,7 +1953,7 @@
        aide_logement: 173.50999450683594
        prestations_sociales_mensuelles: 409.5428466796875
        revenu_disponible_avec_impots: 2023.312744140625
-- name: Revenu disponible - En couple avec un enfant - Salaire brut de 2025 euros et le conjoint 500 euros 
+- name: Revenu disponible - En couple avec un enfant - Salaire brut de 2025 euros et le conjoint 500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -2031,9 +2026,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -2048,7 +2043,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -2063,21 +2058,21 @@
           2017: 12 * 2025.3333
           2016: 12 * 2025.3333
           2015: 12 * 2025.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -2092,7 +2087,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 1000
@@ -2100,19 +2095,19 @@
           2017: 12 * 1000
           2016: 12 * 1000
           2015: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 2129.913818359375
        rsa: 0
        ppa: 0
@@ -2121,7 +2116,7 @@
        aide_logement: 0
        prestations_sociales_mensuelles: 0
        revenu_disponible_avec_impots: 2993.68359375
-- name: Revenu disponible - En couple avec un enfant - Salaire brut de 2025 euros et le conjoint 1000 euros 
+- name: Revenu disponible - En couple avec un enfant - Salaire brut de 2025 euros et le conjoint 1000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -2194,9 +2189,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -2211,7 +2206,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -2226,21 +2221,21 @@
           2017: 12 * 2025.3333
           2016: 12 * 2025.3333
           2015: 12 * 2025.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -2255,7 +2250,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 500
@@ -2263,19 +2258,19 @@
           2017: 12 * 1000
           2016: 12 * 1000
           2015: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 2129.913818359375
        rsa: 0
        ppa: 0
@@ -2285,8 +2280,7 @@
        prestations_sociales_mensuelles: 0
        revenu_disponible_avec_impots: 2993.68359375
 
-
-- name: Revenu disponible - En couple avec deux enfants - Salaire brut de 506 euros et le conjoint 1000 euros 
+- name: Revenu disponible - En couple avec deux enfants - Salaire brut de 506 euros et le conjoint 1000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -2359,9 +2353,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -2376,7 +2370,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -2391,21 +2385,21 @@
           2017: 12 * 506.3333
           2016: 12 * 506.3333
           2015: 12 * 506.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -2420,7 +2414,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 1000
@@ -2428,30 +2422,30 @@
           2017: 12 * 1000
           2016: 12 * 1000
           2015: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1, enfant2]
   output:
-    individus: 
-      personne1: 
-       pensions_nettes_mensuelles:  750.0
+    individus:
+      personne1:
+       pensions_nettes_mensuelles: 750.0
        rsa: 0
-       ppa: 382.4881896972656 
+       ppa: 382.4881896972656
        minima_sociaux_mensuel: 380.57574462890625
        prestations_familiales_mensuelles: 130.82757568359375
-       aide_logement:  248.0
+       aide_logement: 248.0
        prestations_sociales_mensuelles: 803.163330078125
        revenu_disponible_avec_impots: 2416.93310546875
-- name: Revenu disponible - En couple avec deux enfants - Salaire brut de 506 euros et le conjoint 500 euros 
+- name: Revenu disponible - En couple avec deux enfants - Salaire brut de 506 euros et le conjoint 500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -2524,9 +2518,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -2541,7 +2535,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -2556,21 +2550,21 @@
           2017: 12 * 506.3333
           2016: 12 * 506.3333
           2015: 12 * 506.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -2585,7 +2579,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 500
@@ -2593,22 +2587,22 @@
           2017: 12 * 500
           2016: 12 * 500
           2015: 12 * 500
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1, enfant2]
   output:
-    individus: 
-      personne1: 
-       pensions_nettes_mensuelles:  750.0
+    individus:
+      personne1:
+       pensions_nettes_mensuelles: 750.0
        rsa: 0
        ppa: 335.307373046875
        minima_sociaux_mensuel: 333.6308288574219
@@ -2616,7 +2610,7 @@
        aide_logement: 365.54998779296875
        prestations_sociales_mensuelles: 873.7684326171875
        revenu_disponible_avec_impots: 2038.0382080078125
-- name: Revenu disponible - En couple avec deux enfants - Salaire brut de 2025 euros et le conjoint 500 euros 
+- name: Revenu disponible - En couple avec deux enfants - Salaire brut de 2025 euros et le conjoint 500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -2689,9 +2683,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -2706,7 +2700,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -2721,21 +2715,21 @@
           2017: 12 * 2025.3333
           2016: 12 * 2025.3333
           2015: 12 * 2025.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -2750,7 +2744,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 500
@@ -2758,30 +2752,30 @@
           2017: 12 * 500
           2016: 12 * 500
           2015: 12 * 500
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1, enfant2]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 2129.913818359375
        rsa: 0
        ppa: 109.8517837524414
        minima_sociaux_mensuel: 109.30252838134766
        prestations_familiales_mensuelles: 130.82757568359375
-       aide_logement: 52.900001525878906 
+       aide_logement: 52.900001525878906
        prestations_sociales_mensuelles: 293.03009033203125
        revenu_disponible_avec_impots: 2837.213623046875
-- name: Revenu disponible - En couple avec deux enfants - Salaire brut de 2025 euros et le conjoint 1000 euros 
+- name: Revenu disponible - En couple avec deux enfants - Salaire brut de 2025 euros et le conjoint 1000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -2854,9 +2848,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -2871,7 +2865,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -2886,21 +2880,21 @@
           2017: 12 * 2025.3333
           2016: 12 * 2025.3333
           2015: 12 * 2025.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -2915,7 +2909,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 1000
@@ -2923,21 +2917,21 @@
           2017: 12 * 1000
           2016: 12 * 1000
           2015: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1, enfant2]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 2129.913818359375
        rsa: 0
        ppa: 0
@@ -2947,9 +2941,7 @@
        prestations_sociales_mensuelles: 130.82757568359375
        revenu_disponible_avec_impots: 3124.51123046875
 
-
-
-- name: Revenu disponible - En couple avec trois enfants - Salaire brut de 506 euros et le conjoint 500 euros 
+- name: Revenu disponible - En couple avec trois enfants - Salaire brut de 506 euros et le conjoint 500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -3022,9 +3014,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -3039,7 +3031,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -3054,21 +3046,21 @@
           2017: 12 * 506.3333
           2016: 12 * 506.3333
           2015: 12 * 506.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -3083,7 +3075,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 500
@@ -3091,23 +3083,23 @@
           2017: 12 * 500
           2016: 12 * 500
           2015: 12 * 500
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
-      enfant3: 
+      enfant3:
         date_naissance: 2013-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 750
        rsa: 0
        ppa: 378.597412109375
@@ -3116,7 +3108,7 @@
        aide_logement: 428.20001220703125
        prestations_sociales_mensuelles: 1403.9171142578125
        revenu_disponible_avec_impots: 2568.18701171875
-- name: Revenu disponible - En couple avec trois enfants - Salaire brut de 506 euros et le conjoint 1000 euros 
+- name: Revenu disponible - En couple avec trois enfants - Salaire brut de 506 euros et le conjoint 1000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -3189,9 +3181,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -3206,7 +3198,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -3221,21 +3213,21 @@
           2017: 12 * 506.3333
           2016: 12 * 506.3333
           2015: 12 * 506.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -3250,7 +3242,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 1000
@@ -3258,23 +3250,23 @@
           2017: 12 * 1000
           2016: 12 * 1000
           2015: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
-      enfant3: 
+      enfant3:
         date_naissance: 2013-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 750.0
        rsa: 0
        ppa: 269.48199462890625
@@ -3283,7 +3275,7 @@
        aide_logement: 326.8500061035156
        prestations_sociales_mensuelles: 1193.9971923828125
        revenu_disponible_avec_impots: 2807.76708984375
-- name: Revenu disponible - En couple avec trois enfants - Salaire brut de 2025 euros et le conjoint 500 euros 
+- name: Revenu disponible - En couple avec trois enfants - Salaire brut de 2025 euros et le conjoint 500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -3356,9 +3348,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -3373,7 +3365,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -3388,21 +3380,21 @@
           2017: 12 * 2025.3333
           2016: 12 * 2025.3333
           2015: 12 * 2025.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -3417,7 +3409,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 500
@@ -3425,23 +3417,23 @@
           2017: 12 * 500
           2016: 12 * 500
           2015: 12 * 500
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
-      enfant3: 
+      enfant3:
         date_naissance: 2013-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 2129.913818359375
        rsa: 0
        ppa: 0
@@ -3450,7 +3442,7 @@
        aide_logement: 121.8499984741211
        prestations_sociales_mensuelles: 639.9070434570312
        revenu_disponible_avec_impots: 3184.090576171875
-- name: Revenu disponible - En couple avec trois enfants - Salaire brut de 2025 euros et le conjoint 1000 euros 
+- name: Revenu disponible - En couple avec trois enfants - Salaire brut de 2025 euros et le conjoint 1000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -3523,9 +3515,9 @@
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: chomeur
           2018: chomeur
@@ -3540,7 +3532,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2018: 3
@@ -3555,21 +3547,21 @@
           2017: 12 * 2025.3333
           2016: 12 * 2025.3333
           2015: 12 * 2025.3333
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      personne2: 
+      personne2:
         are:
           year:1998:20: 0
         ass:
           year:1998:20: 0
         depcom_entreprise: 75114
         autonomie_financiere:
-          year:1995:40: False
+          year:1995:40: false
         date_debut_chomage: 2018-01-01
-        rsa_jeune_condition_heures_travail_remplie: False
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           2019: actif
           2018: actif
@@ -3584,7 +3576,7 @@
             year:1998:20: 0
         chomage_net:
             year:1998:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1998:20: 0
         salaire_de_base:
           2019: 12 * 1000
@@ -3592,23 +3584,23 @@
           2017: 12 * 1000
           2016: 12 * 1000
           2015: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
         allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
-      enfant1: 
+      enfant1:
         date_naissance: 2014-12-25
-      enfant2: 
+      enfant2:
         date_naissance: 2012-12-25
-      enfant3: 
+      enfant3:
         date_naissance: 2013-12-25
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
-    individus: 
-      personne1: 
+    individus:
+      personne1:
        pensions_nettes_mensuelles: 2129.913818359375
        rsa: 0
        ppa: 44.02640914916992
@@ -3617,4 +3609,3 @@
        aide_logement: 73.19999694824219
        prestations_sociales_mensuelles: 585.7433471679688
        revenu_disponible_avec_impots: 3579.427001953125
-

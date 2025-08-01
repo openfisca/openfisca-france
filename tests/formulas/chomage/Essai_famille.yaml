@@ -70,7 +70,7 @@
           2017: 12 * 1000
         nombre_jours_travailles_12_derniers_mois:
           2019: 80
-      personne2: 
+      personne2:
         activite:
           2019: actif
           2018: actif
@@ -82,9 +82,9 @@
           2019: 12 * 1000
           2018: 12 * 1000
           2017: 12 * 1000
-      enfant1: 
+      enfant1:
         age: 7
-      enfant2: 
+      enfant2:
         age: 10
     foyer_fiscal:
       declarants: [personne1, personne2]
@@ -118,8 +118,8 @@
           2019-10: 502.2
           2019-11: 502.2
           2019-12: 502.2
-      personne2: 
-        are: 
+      personne2:
+        are:
           2019-01: 0
           2019-02: 0
           2019-03: 0
@@ -145,7 +145,3 @@
           2019-10: 0
           2019-11: 0
           2019-12: 0
-        
-     
-        
-
