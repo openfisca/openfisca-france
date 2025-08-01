@@ -1,8 +1,8 @@
-from numpy import datetime64
 from functools import partial
 from numpy import busday_count as original_busday_count, datetime64, timedelta64
 from openfisca_france.model.base import *
-from openfisca_core.periods import Instant
+# from openfisca_core.periods import Instant
+
 
 class chomeur_longue_duree(Variable):
     cerfa_field = {
@@ -39,17 +39,18 @@ class indemnites_chomage_partiel(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+
 class chomeur_au_sens_du_BIT(Variable):
     value_type = bool
     entity = Individu
     label = "Demandeur d'emploi inscrit depuis plus d'un an"
     definition_period = MONTH
     reference = [
-        "INSEE - Chômeur au sens du BIT",
-        "https://www.insee.fr/fr/metadonnees/definition/c1129",
+        'INSEE - Chômeur au sens du BIT',
+        'https://www.insee.fr/fr/metadonnees/definition/c1129',
         ]
 
-    def formula(individu,period):
+    def formula(individu, period):
         # être sans emploi durant une semaine donnée
         salaire_de_base = individu('salaire_de_base', period)
         condition_salaire = (salaire_de_base == 0)
@@ -65,30 +66,30 @@ class chomeur_au_sens_du_BIT(Variable):
 class jours_travailles_chomage(Variable):
     value_type = float
     entity = Individu
-    label = "Nombre de jours travaillés pris en compte dans le calcul du salaire de référence journalier (5 au maximum par semaine civile)"
+    label = 'Nombre de jours travaillés pris en compte dans le calcul du salaire de référence journalier (5 au maximum par semaine civile)'
     definition_period = MONTH
     default_value = 21.75
 
-    def formula(individu, period) :
-      contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
-      contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-      busday_count = partial(original_busday_count, weekmask = "1111100")
-      debut_mois = datetime64(period.start.offset('first-of', 'month'))
-      fin_mois = datetime64(period.start.offset('last-of', 'month'))
-      jours_travailles = max_(
-        busday_count(
-            max_(contrat_de_travail_debut, debut_mois),
-            min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
-            ),
-        0,
-        )
-      return jours_travailles
+    def formula(individu, period):
+        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        busday_count = partial(original_busday_count, weekmask = '1111100')
+        debut_mois = datetime64(period.start.offset('first-of', 'month'))
+        fin_mois = datetime64(period.start.offset('last-of', 'month'))
+        jours_travailles = max_(
+            busday_count(
+                max_(contrat_de_travail_debut, debut_mois),
+                min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
+                ),
+            0,
+            )
+        return jours_travailles
 
 
 class salaire_de_reference(Variable):
     value_type = float
     entity = Individu
-    label = "Salaire de référence (SR)"
+    label = 'Salaire de référence (SR)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -111,7 +112,7 @@ class salaire_de_reference(Variable):
 class nombre_jours_travailles_12_derniers_mois(Variable):
     value_type = float
     entity = Individu
-    label = "Jours travaillés sur les 12 derniers mois avant la rupture de contrat"
+    label = 'Jours travaillés sur les 12 derniers mois avant la rupture de contrat'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -131,11 +132,10 @@ class nombre_jours_travailles_12_derniers_mois(Variable):
         return nombre_jours_travailles_chomage
 
 
-
 class salaire_de_reference_mensuel(Variable):
     value_type = float
     entity = Individu
-    label = "Salaire de référence mensuel (SRM)"
+    label = 'Salaire de référence mensuel (SRM)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -161,7 +161,6 @@ class are(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-
     def formula(individu, period, parameters):
         are_eligibilite_individu = individu('are_eligibilite_individu', period)
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
@@ -182,7 +181,7 @@ class are(Variable):
             are.max_en_pourcentage_sjr * salaire_de_reference_mensuel
             )
 
-        busday_count = partial(original_busday_count, weekmask = "1111100")
+        # busday_count = partial(original_busday_count, weekmask = "1111100")
 
         return (
             montant_plafond
@@ -204,8 +203,8 @@ class are_eligibilite_individu(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
-        "Unédic - Règlement général annexé à la convention du 6 mai 2011",
-        "https://www.unedic.org/sites/default/files/regulations/RglACh11.pdf",
+        'Unédic - Règlement général annexé à la convention du 6 mai 2011',
+        'https://www.unedic.org/sites/default/files/regulations/RglACh11.pdf',
         ]
 
     def formula_2017_11(individu, period, parameters):
@@ -238,7 +237,7 @@ class are_eligibilite_individu(Variable):
 class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
     value_type = float
     entity = Individu
-    label = "Nombre de jours travaillés sur les x derniers mois avant la rupture de contrat pour les moins de 53 ans"
+    label = 'Nombre de jours travaillés sur les x derniers mois avant la rupture de contrat pour les moins de 53 ans'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -281,8 +280,6 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
         return nombre_jours_travailles_reference
 
 
-
-
 class duree_versement_are(Variable):
     value_type = int
     entity = Individu
@@ -293,18 +290,16 @@ class duree_versement_are(Variable):
     def formula(individu, period):
         are = individu('are', period)
         duree_versement_are = individu('duree_versement_are', period.offset(-1))
-        busday_count = partial(original_busday_count, weekmask = "1" * 7)
+        busday_count = partial(original_busday_count, weekmask = '1' * 7)
         duree_versement_are = (
             duree_versement_are
             + (
                 (are > 0)
-                * busday_count(
-                   datetime64(period.start),
-                    datetime64(period.offset(1).start)
-                    )
+                * busday_count(datetime64(period.start), datetime64(period.offset(1).start))
                 )
             )
         return duree_versement_are
+
 
 class duree_maximale_versement_are(Variable):
     value_type = int
@@ -332,10 +327,9 @@ class eligibilite_cumul_are_salaire(Variable):
     def formula(individu, period):
         cumul_are_salaire = individu('cumul_are_salaire', period)
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
-
         condition_cumul = cumul_are_salaire <= salaire_de_reference_mensuel
-
         return condition_cumul
+
 
 class cumul_are_salaire(Variable):
     value_type = float
@@ -347,7 +341,8 @@ class cumul_are_salaire(Variable):
         are_activite_reduite = individu('are_activite_reduite', period)
         salaire_de_base = individu('salaire_de_base', period)
 
-        return are + salaire_de_base
+        return are_activite_reduite + salaire_de_base
+
 
 class are_activite_reduite(Variable):
     value_type = float
@@ -365,19 +360,12 @@ class are_activite_reduite(Variable):
         return nombre_jours_indemnisables_are * are * eligibilite_cumul_are_salaire * are_eligibilite_individu
 
 
-
-
-
-
-
-
-
 class csg_chomage_deductible(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = "CSG déductible sur les allocations chômage"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    label = 'CSG déductible sur les allocations chômage'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2329.xhtml'
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -387,12 +375,13 @@ class csg_chomage_deductible(Variable):
 
         return - csg_deductible
 
+
 class csg_chomage_imposable(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = "CSG imposable sur les allocations chômage"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    label = 'CSG imposable sur les allocations chômage'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2329.xhtml'
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -402,10 +391,11 @@ class csg_chomage_imposable(Variable):
 
         return - csg_imposable
 
+
 class csg_are(Variable):
     value_type = float
     entity = Individu
-    label = "CSG imposable et déductible sur les allocations chômage"
+    label = 'CSG imposable et déductible sur les allocations chômage'
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -417,11 +407,12 @@ class csg_are(Variable):
         smic_mensuel = [(smic_horaire * 35 / 7) * 30]
 
         csg_montant = select(
-            [are + csg > smic_mensuel , are + csg <= smic_mensuel],
+            [are + csg > smic_mensuel, are + csg <= smic_mensuel],
             [csg, 0],
             )
 
         return csg_montant
+
 
 class are_nette_csg(Variable):
     value_type = float
@@ -435,12 +426,13 @@ class are_nette_csg(Variable):
 
         return are + csg_are
 
+
 class crds_are(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = "CRDS imposable sur les allocations chômage"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    label = 'CRDS imposable sur les allocations chômage'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2329.xhtml'
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -451,11 +443,12 @@ class crds_are(Variable):
         smic_mensuel = [(smic_horaire * 35 / 7) * 30]
 
         crds_montant = select(
-            [are - crds > smic_mensuel , are - crds <= smic_mensuel],
+            [are - crds > smic_mensuel, are - crds <= smic_mensuel],
             [crds, 0],
             )
 
         return - crds_montant
+
 
 class are_nette_crds(Variable):
     value_type = float
@@ -468,6 +461,7 @@ class are_nette_crds(Variable):
         are = individu('are', period)
 
         return are + crds_are
+
 
 class are_nette_contributions_sociales(Variable):
     value_type = float
@@ -482,6 +476,7 @@ class are_nette_contributions_sociales(Variable):
 
         return are + csg_are + crds_are
 
+
 class retraite_complementaire_chomage(Variable):
     value_type = float
     entity = Individu
@@ -493,11 +488,9 @@ class retraite_complementaire_chomage(Variable):
         seuil_exoneration_retraite_complementaire = parameters(period).are.are_min
         are = individu('are', period)
         retraite_complementaire = 0.03 * salaire_de_reference_mensuel
-
-
         montant_retenue_retraite_complementaire = select(
             [are - retraite_complementaire > (seuil_exoneration_retraite_complementaire * 30), are - retraite_complementaire <= (seuil_exoneration_retraite_complementaire * 30)],
-            [retraite_complementaire , 0],
+            [retraite_complementaire, 0],
             )
 
         return - montant_retenue_retraite_complementaire
@@ -517,6 +510,7 @@ class are_nette(Variable):
         retraite_complementaire_chomage = individu('retraite_complementaire_chomage', period)
 
         return are + csg_are + crds_are + retraite_complementaire_chomage
+
 
 class are_imposable(Variable):
     value_type = float
@@ -543,6 +537,7 @@ class cumul_are_nette_rsa(Variable):
 
         return are_nette + rsa
 
+
 class cumul_are_nette_apl(Variable):
     value_type = float
     entity = Individu
@@ -554,6 +549,7 @@ class cumul_are_nette_apl(Variable):
         apl = individu.famille('apl', period)
 
         return are_nette + apl
+
 
 class cumul_are_nette_rsa_apl(Variable):
     value_type = float
@@ -567,6 +563,7 @@ class cumul_are_nette_rsa_apl(Variable):
         apl = individu.famille('apl', period)
 
         return are_nette + rsa + apl
+
 
 class cumul_are_nette_rsa_ass_apl(Variable):
     value_type = float
@@ -582,10 +579,11 @@ class cumul_are_nette_rsa_ass_apl(Variable):
 
         return are_nette + rsa + apl + ass
 
+
 class cumul_prestations_familiales(Variable):
     value_type = float
     entity = Famille
-    label = "Cumul des prestations familiales : AF, ASF, CF"
+    label = 'Cumul des prestations familiales : AF, ASF, CF'
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -594,6 +592,7 @@ class cumul_prestations_familiales(Variable):
         cf = famille('cf', period)
 
         return af + asf + cf
+
 
 class cumul_are_nette_rsa_ass_apl_prestations_familiales(Variable):
     value_type = float
@@ -610,11 +609,12 @@ class cumul_are_nette_rsa_ass_apl_prestations_familiales(Variable):
 
         return are_nette + rsa + apl + ass + prestations_familiales
 
+
 class revenu_disponible_mensuel(Variable):
     value_type = float
     entity = Menage
-    label = "Revenu disponible du ménage"
-    reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+    label = 'Revenu disponible du ménage'
+    reference = 'http://fr.wikipedia.org/wiki/Revenu_disponible'
     definition_period = MONTH
 
     def formula(menage, period, parameters):
@@ -626,8 +626,8 @@ class revenu_disponible_mensuel(Variable):
 class prestations_familiales_mensuelles(Variable):
     value_type = float
     entity = Famille
-    label = "Prestations familiales mensuelles"
-    reference = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
+    label = 'Prestations familiales mensuelles'
+    reference = 'http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html'
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -639,8 +639,8 @@ class prestations_familiales_mensuelles(Variable):
 class minima_sociaux_mensuel(Variable):
     value_type = float
     entity = Famille
-    label = "Minima sociaux mensuel"
-    reference = "http://fr.wikipedia.org/wiki/Minima_sociaux"
+    label = 'Minima sociaux mensuel'
+    reference = 'http://fr.wikipedia.org/wiki/Minima_sociaux'
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -662,12 +662,11 @@ class minima_sociaux_mensuel(Variable):
         return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa + crds_mini
 
 
-
 class prestations_sociales_mensuelles(Variable):
     value_type = float
     entity = Famille
-    label = "Prestations sociales mensuelles"
-    reference = "http://fr.wikipedia.org/wiki/Prestation_sociale"
+    label = 'Prestations sociales mensuelles'
+    reference = 'http://fr.wikipedia.org/wiki/Prestation_sociale'
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -680,6 +679,7 @@ class prestations_sociales_mensuelles(Variable):
         fse = famille.sum(fse_i)
 
         return prestations_familiales + minima_sociaux + aide_logement + reduction_loyer_solidarite + aide_exceptionnelle_covid + fse
+
 
 class aefa_mensuel(Variable):
     '''
@@ -700,7 +700,7 @@ class aefa_mensuel(Variable):
     value_type = float
     entity = Famille
     label = "Aide exceptionelle de fin d'année (prime de Noël)"
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F1325"
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F1325'
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -708,11 +708,12 @@ class aefa_mensuel(Variable):
 
         return aefa_month
 
+
 class minimum_vieillesse_mensuel(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "Minimum vieillesse (ASI + ASPA)"
+    label = 'Minimum vieillesse (ASI + ASPA)'
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -720,18 +721,18 @@ class minimum_vieillesse_mensuel(Variable):
 
         return minimum_vieillesse_month
 
+
 class pensions_nettes_mensuelles(Variable):
     value_type = float
     entity = Individu
-    label = "Pensions et revenus de remplacement"
-    reference = "http://fr.wikipedia.org/wiki/Rente"
+    label = 'Pensions et revenus de remplacement'
+    reference = 'http://fr.wikipedia.org/wiki/Rente'
     definition_period = MONTH
 
     def formula(famille, period, parameters):
         pensions_nettes_month = famille('pensions_nettes', period, options= [DIVIDE])
 
         return pensions_nettes_month
-
 
 
 class revenu_disponible_avec_impots(Variable):
@@ -759,10 +760,11 @@ class revenu_disponible_avec_impots(Variable):
             + prestations_sociales
             )
 
+
 class niveau_de_vie_avec_impots(Variable):
     value_type = float
     entity = Famille
-    label = "Niveau de vie du ménage en prenant le revenu disponible qui ne déduit pas les impôts"
+    label = 'Niveau de vie du ménage en prenant le revenu disponible qui ne déduit pas les impôts'
     definition_period = MONTH
 
     def formula(famille, period):
@@ -775,7 +777,7 @@ class unites_consommation_mensuel(Variable):
     value_type = float
     entity = Famille
     label = "Unités de consommation du ménage, selon l'échelle de l'INSEE"
-    reference = "https://insee.fr/fr/metadonnees/definition/c1802"
+    reference = 'https://insee.fr/fr/metadonnees/definition/c1802'
     definition_period = MONTH
 
     def formula(menage, period, parameters):

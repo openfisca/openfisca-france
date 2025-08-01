@@ -1,5 +1,4 @@
-from openfisca_france.model.base import Individu, Variable, MONTH, \
-    set_input_dispatch_by_period, round_, where
+from openfisca_france.model.base import Individu, Variable, MONTH, set_input_dispatch_by_period, round_, where
 
 
 class chomage_cotisation_retraite_complementaire_journaliere(Variable):

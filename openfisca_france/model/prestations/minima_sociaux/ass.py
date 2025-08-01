@@ -6,7 +6,8 @@ from openfisca_france.model.base import *
 
 from numpy import datetime64
 
-from openfisca_core.periods import Instant
+# from openfisca_core.periods import Instant
+
 
 class ass_precondition_remplie(Variable):
     value_type = bool
@@ -19,10 +20,9 @@ class ass_precondition_remplie(Variable):
         ]
     set_input = set_input_dispatch_by_period
 
-    def formula(individu,period):
+    def formula(individu, period):
         nombre_annees_travaillees_les_10_dernieres_annees = individu('nombre_annees_travaillees_les_10_dernieres_annees', period)
         condition_eligibilite = nombre_annees_travaillees_les_10_dernieres_annees >= 5
-
         return condition_eligibilite
 
 
@@ -49,8 +49,8 @@ class nombre_annees_travaillees_les_10_dernieres_annees(Variable):
 
         nombre_mois_travailles_10_dernieres_annees = nombre_jours_travailles_10_dernieres_annees / 30
         nombre_annees_travaillees_10_dernieres_annees = nombre_mois_travailles_10_dernieres_annees / 12
-
         return nombre_annees_travaillees_10_dernieres_annees
+
 
 class ass(Variable):
     value_type = float
