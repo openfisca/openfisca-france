@@ -13,6 +13,7 @@ class rsa_jeune_condition_heures_travail_remplie(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+
 class rsa_base_ressources(Variable):
     value_type = float
     label = 'Base ressources du Rmi ou du Rsa'
