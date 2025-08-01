@@ -320,7 +320,6 @@
       2019-07: 255.436525
 
 
-
 - name: Calcul de la PPA pour un parent isolé - Cas N°1
   description: PPA pour une femme enceinte sans enfant
   period: 2019-07
@@ -535,7 +534,6 @@
     ppa_bonification: 2.15889
     ppa:
       2019-07: 368.1588
-
 
 
 - name: Calcul de la PPA pour un parent isolé - Cas N°6
