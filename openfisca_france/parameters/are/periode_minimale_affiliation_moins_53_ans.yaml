@@ -1,5 +1,5 @@
 description: Période minimale d'affiliation pour les moins de 53 ans
-unit: days
+unit: day
 values:
   2019-11-01:
     value: 130
