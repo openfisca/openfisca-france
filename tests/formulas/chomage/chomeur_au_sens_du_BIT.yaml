@@ -1,39 +1,35 @@
 - name: Chômeur au sens du BIT - Cas n°1
   description: Un individu avec un salaire positif et un âge inférieur à 15 ans n'est pas un chômeur
   period: 2019-07
-  input: 
+  input:
     age: 14
-    salaire_de_base : 3000
-
-  output: 
+    salaire_de_base: 3000
+  output:
     chomeur_au_sens_du_BIT: false
 
 - name: Chômeur au sens du BIT - Cas n°2
   description: Un individu avec un salaire positif et un âge supérieur à 15 ans n'est pas un chômeur
   period: 2019-07
-  input: 
+  input:
     age: 17
-    salaire_de_base : 3000
-
-  output: 
+    salaire_de_base: 3000
+  output:
     chomeur_au_sens_du_BIT: false
 
 - name: Chômeur au sens du BIT - Cas n°3
   description: Un individu avec un salaire nul et un âge inférieur à 15 ans n'est pas un chômeur
   period: 2019-07
-  input: 
+  input:
     age: 14
-    salaire_de_base : 0
-
-  output: 
+    salaire_de_base: 0
+  output:
     chomeur_au_sens_du_BIT: false
 
 - name: Chômeur au sens du BIT - Cas n°4
   description: Un individu avec un salaire nul et un âge supérieur à 15 ans est un chômeur
   period: 2019-07
-  input: 
+  input:
     age: 18
-    salaire_de_base : 0
-
-  output: 
+    salaire_de_base: 0
+  output:
     chomeur_au_sens_du_BIT: true

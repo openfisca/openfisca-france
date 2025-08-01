@@ -1,5 +1,3 @@
-
-
 - name: "Cas 3 AL Reforme 2019"
   period: 2019-01
   relative_error_margin: 0.01
@@ -70,8 +68,8 @@
           year:1999:20: 0
         date_debut_chomage: 2019-01-01
         autonomie_financiere:
-          year:1995:40: False
-        rsa_jeune_condition_heures_travail_remplie: False
+          year:1995:40: false
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           # month:2019-01:8: chomeur
           2018: actif
@@ -85,7 +83,7 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2019: 3
@@ -235,5 +233,3 @@
         # #   2019-10: 605.907958984375
         # #   2019-11: 605.907958984375
         # #   2019-12: 605.907958984375
-
-

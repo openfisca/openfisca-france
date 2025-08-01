@@ -2,102 +2,102 @@
   description: Nombre de jours travaillés au 2018-07
   period: 2018-07
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2018-07: 22
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°2
   description: Nombre de jours travaillés au 2018-08
   period: 2018-08
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2018-08: 23
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°3
   description: Nombre de jours travaillés au 2018-09
   period: 2018-09
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2018-09: 20
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°4
   description: Nombre de jours travaillés au 2018-10
   period: 2018-10
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2018-10: 23
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°5
   description: Nombre de jours travaillés au 2018-11
   period: 2018-11
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2018-11: 22
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°6
   description: Nombre de jours travaillés au 2018-12
   period: 2018-12
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2018-12: 21
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°7
   description: Nombre de jours travaillés au 2019-01
   period: 2019-01
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2019-01: 23
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°8
   description: Nombre de jours travaillés au 2019-02
   period: 2019-02
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2019-02: 20
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°9
   description: Nombre de jours travaillés au 2019-03
   period: 2019-03
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2019-03: 21
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°10
   description: Nombre de jours travaillés au 2019-04
   period: 2019-04
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2019-04: 22
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°11
   description: Nombre de jours travaillés au 2019-05
   period: 2019-05
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2019-05: 23
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°12
   description: Nombre de jours travaillés au 2019-06
   period: 2019-06
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2019-06: 20
 
 - name: Nombre de jours travaillés comme calculés dans le salaire journalier de référence (5 jours maximum par semaine civile) - Cas n°13
   description: Nombre de jours travaillés au 2019-07
   period: 2019-07
   input: {}
-  output: 
-    jours_travailles_chomage: 
+  output:
+    jours_travailles_chomage:
       2019-07: 23

@@ -5,7 +5,7 @@
     salaire_de_reference_mensuel: 2200
     contrat_de_travail_fin: 2019-04
     are: 1254
-  output: 
+  output:
      retraite_complementaire_chomage: 66
 
 - name: Retenue de la retraite complémentaire sur les allocations chômage - Cas n°2
@@ -15,7 +15,7 @@
     salaire_de_reference_mensuel: 1400
     contrat_de_travail_fin: 2019-04
     are: 923.2001
-  output: 
+  output:
      retraite_complementaire_chomage: 42
 
 
@@ -26,7 +26,7 @@
     salaire_de_reference_mensuel: 800
     contrat_de_travail_fin: 2019-04
     are: 600
-  output: 
+  output:
      retraite_complementaire_chomage: 0
 
 - name: Retenue de la retraite complémentaire sur les allocations chômage - Cas n°4
@@ -36,5 +36,5 @@
     salaire_de_reference_mensuel: 400
     contrat_de_travail_fin: 2019-04
     are: 300
-  output: 
+  output:
      retraite_complementaire_chomage: 0

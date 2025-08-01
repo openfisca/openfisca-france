@@ -94,7 +94,7 @@
           2019-10: 0
           2019-11: 0
           2019-12: 0
-        ass: 
+        ass:
           2019-01: 0
           2019-02: 0
           2019-03: 0
@@ -124,10 +124,10 @@
           2019-01: 8900
           2019-02: 8800
           2019-03: 8800
-          2019-04: 6100  #ce qu'on devrait avoir : abattement de 30% sur les revenus de l'année N-2 pour s'adaptera au changement de situation de l'individu. 
+          2019-04: 6100  #ce qu'on devrait avoir : abattement de 30% sur les revenus de l'année N-2 pour s'adaptera au changement de situation de l'individu.
           2019-05: 6100
           2019-06: 6100
-          2019-07: 6100  
+          2019-07: 6100
           2019-08: 6100
           2019-09: 8800
           2019-10: 0  # neutralisation des revenus car on passe au RSA

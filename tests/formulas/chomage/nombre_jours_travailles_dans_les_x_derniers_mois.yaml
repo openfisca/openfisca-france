@@ -174,8 +174,6 @@
     nombre_jours_travailles_dans_les_x_derniers_mois:
       2019-12: 246
 
-
-
 - name: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat pour les personnes de 53 ans et plus - Cas n°1
   description: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat au 2018-12 pour les personnes de 53 ans, chaque mois affichant le même nombre de jours travaillés
   period: 2018-12
@@ -379,5 +377,3 @@
   output:
     nombre_jours_travailles_dans_les_x_derniers_mois:
       2019-12: 342
-
-

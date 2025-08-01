@@ -19,7 +19,7 @@
 
     contrat_de_travail_fin: 2018-12
   output:
-    nombre_jours_travailles_12_derniers_mois: 
+    nombre_jours_travailles_12_derniers_mois:
       2018-12: 120
 
 - name: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat - Cas n°2
@@ -43,11 +43,11 @@
 
     contrat_de_travail_fin: 2018-12
   output:
-    nombre_jours_travailles_12_derniers_mois: 
+    nombre_jours_travailles_12_derniers_mois:
       2018-12: 131
 
 - name: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat - Cas n°3
-  description: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat au 2018-02, en rajoutant des mois non pris en compte dans le calcul 
+  description: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat au 2018-02, en rajoutant des mois non pris en compte dans le calcul
   period: 2018-02
   input:
     jours_travailles_chomage:
@@ -74,7 +74,5 @@
 
     contrat_de_travail_fin: 2018-02
   output:
-    nombre_jours_travailles_12_derniers_mois: 
+    nombre_jours_travailles_12_derniers_mois:
       2018-02: 123
-
-

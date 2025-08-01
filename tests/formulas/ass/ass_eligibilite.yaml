@@ -78,7 +78,7 @@
     ass_eligibilite_individu: false
 
 - name: Eligibilité à l'ASS - Cas n°4
-  description: Eligible à l'ASS 
+  description: Eligible à l'ASS
   period: 2019-07
   input:
     famille:

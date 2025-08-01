@@ -1,11 +1,11 @@
 - name: Allocation chômage nette des retenues sociales - Cas n°1
-  description: ARE nette lorsque tous les seuils d'exonération sont franchis 
+  description: ARE nette lorsque tous les seuils d'exonération sont franchis
   period: 2019-04
   input:
     salaire_de_reference_mensuel: 3000
     contrat_de_travail_fin: 2019-04
     are: 1710
-  output: 
+  output:
     csg_chomage_deductible: -63.84285
     csg_chomage_imposable: -40.3218
     csg_are: -104.16465
@@ -17,13 +17,13 @@
     are_nette: 1507.4349
 
 - name: Allocation chômage nette des retenues sociales - Cas n°2
-  description: ARE nette lorsque le seuil d'exonération de la CSG n'est pas franchi 
+  description: ARE nette lorsque le seuil d'exonération de la CSG n'est pas franchi
   period: 2019-04
   input:
     salaire_de_reference_mensuel: 2800
     contrat_de_travail_fin: 2019-04
     are: 1596
-  output: 
+  output:
     csg_chomage_deductible: -59.586662
     csg_chomage_imposable: -37.63368
     csg_are: 0
@@ -41,7 +41,7 @@
     salaire_de_reference_mensuel: 2650
     contrat_de_travail_fin: 2019-04
     are: 1510.5
-  output: 
+  output:
     csg_chomage_deductible: -56.39452
     csg_chomage_imposable: -35.617588
     csg_are: 0
@@ -53,13 +53,13 @@
     are_nette: 1431.
 
 - name: Allocation chômage nette des retenues sociales - Cas n°4
-  description: ARE nette lorsque les seuils d'exonération ne sont tous pas franchis 
+  description: ARE nette lorsque les seuils d'exonération ne sont tous pas franchis
   period: 2019-04
   input:
     salaire_de_reference_mensuel: 1300
     contrat_de_travail_fin: 2019-04
     are: 882.80005
-  output: 
+  output:
     csg_chomage_deductible: -32.95934
     csg_chomage_imposable: -20.816425
     csg_are: 0

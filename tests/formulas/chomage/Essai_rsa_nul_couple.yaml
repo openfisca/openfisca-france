@@ -70,8 +70,8 @@
           year:1998:20: 0
         date_debut_chomage: 2019-01-01
         autonomie_financiere:
-          year:1995:40: False
-        rsa_jeune_condition_heures_travail_remplie: False
+          year:1995:40: false
+        rsa_jeune_condition_heures_travail_remplie: false
         activite:
           # month:2018-01:8: chomeur
           2017: actif
@@ -112,8 +112,8 @@
       declarants: [personne1, personne2]
   output:
     individus:
-      personne2: 
-        salaire_net: 
+      personne2:
+        salaire_net:
           2018-04: 391.5987548828125
           2019-04: 391.5987548828125
       personne1:
@@ -151,11 +151,11 @@
           2019-02: 456.362548828125
           2019-03: 456.362548828125
           2019-04: 467.463134765625
-        rsa_socle: 
+        rsa_socle:
           2018-01: 818.219970703125
           2018-04: 826.395
           2019-04: 839.61
-        rsa_base_ressources: 
+        rsa_base_ressources:
           2018-01: 383.3699951171875
           2018-04: 384.959228515625
           2019-01: 237.8092498779297
@@ -163,8 +163,3 @@
           2018-01: 150
           2018-04: 150
           2019-01: 0
-      
-        
-  
-
-      

@@ -102,7 +102,7 @@
         aah: 0
   output:
     ass: 0
-  
+
 - name: Allocation de solidarité spécifique - Cas N°6
   description: Montant ASS pour personne en couple avec ressources mensuelles inferieures à 1338.20
   period: 2019-07
@@ -149,7 +149,7 @@
   output:
     ass: [341.40, 0]
 
-  
+
 - name: Allocation de solidarité spécifique - Cas N°8
   description: Montant ASS pour personne en couple avec ressources mensuelles supérieures à 1841.4
   period: 2019-07
@@ -226,4 +226,3 @@
         aah: 600
   output:
     ass: [0, 0]
-

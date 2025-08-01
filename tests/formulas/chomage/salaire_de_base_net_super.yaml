@@ -1,4 +1,4 @@
-- name: Revenu disponible - Salaire brut de 400 euros 
+- name: Revenu disponible - Salaire brut de 400 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -74,13 +74,13 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         salaire_de_base:
           2019: 12 * 400
           2018: 12 * 400
           2017: 12 * 400
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -105,9 +105,7 @@
     allegement_fillon: 114.16
     allegement_cotisation_allocations_familiales: 7.2
 
-
-
-- name: Revenu disponible - Salaire brut de 1000 euros 
+- name: Revenu disponible - Salaire brut de 1000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -183,13 +181,13 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         salaire_de_base:
           2019: 12 * 1000
           2018: 12 * 1000
           2017: 12 * 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -213,8 +211,8 @@
     exonerations_et_allegements: 303.4
     allegement_fillon: 285.4
     allegement_cotisation_allocations_familiales: 18
-    
-- name: Revenu disponible - Salaire brut de 1500 euros 
+
+- name: Revenu disponible - Salaire brut de 1500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -290,13 +288,13 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         salaire_de_base:
           2019: 12 * 1500
           2018: 12 * 1500
           2017: 12 * 1500
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -316,7 +314,7 @@
     allegement_fillon: 426.9
     allegement_cotisation_allocations_familiales: 27
 
-- name: Revenu disponible - Salaire brut de 2000 euros 
+- name: Revenu disponible - Salaire brut de 2000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -392,13 +390,13 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         salaire_de_base:
           2019: 12 * 2000
           2018: 12 * 2000
           2017: 12 * 2000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -418,7 +416,7 @@
     allegement_fillon: 189
     allegement_cotisation_allocations_familiales: 36
 
-- name: Revenu disponible - Salaire brut de 2500 euros 
+- name: Revenu disponible - Salaire brut de 2500 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -494,13 +492,13 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         salaire_de_base:
           2019: 12 * 2500
           2018: 12 * 2500
           2017: 12 * 2500
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -520,8 +518,7 @@
     allegement_fillon: 0
     allegement_cotisation_allocations_familiales: 45
 
-
-- name: Revenu disponible - Salaire brut de 6000 euros 
+- name: Revenu disponible - Salaire brut de 6000 euros
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -597,13 +594,13 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         salaire_de_base:
           2019: 12 * 6000
           2018: 12 * 6000
           2017: 12 * 6000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -622,9 +619,8 @@
     exonerations_et_allegements: 0
     allegement_fillon: 0
     allegement_cotisation_allocations_familiales: 0
-   
 
-- name: Revenu disponible - Salaire brut de 1000 euros - mode recouvrement progressif 
+- name: Revenu disponible - Salaire brut de 1000 euros - mode recouvrement progressif
   period: 2018-01
   relative_error_margin: 0.01
   max_spiral_loops: 60
@@ -700,22 +696,22 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         salaire_de_base:
           2018-01: 1000
           2018-02: 1000
-          2018-03: 1000 
+          2018-03: 1000
           2018-04: 2000
           2018-05: 1000
           2018-06: 2000
           2018-07: 1000
           2018-08: 1000
-          2018-09: 1000 
+          2018-09: 1000
           2018-10: 2500
           2018-11: 2500
           2018-12: 1000
-        allegement_fillon_mode_recouvrement: progressif 
+        allegement_fillon_mode_recouvrement: progressif
         effectif_entreprise: 25
         code_postal_entreprise: '75001'
         categorie_salarie: prive_non_cadre
@@ -723,7 +719,7 @@
     foyer_fiscal:
       declarants: [personne1]
   output:
-    salaire_super_brut: 
+    salaire_super_brut:
       2018-01: 1124.5599
       2018-02: 1409.46
       2018-03: 1409.46
@@ -748,8 +744,8 @@
       2018-09: 1409.46
       2018-10: 3523.65
       2018-11: 3523.65
-      2018-12: 1409.46 
-    exonerations_et_allegements: 
+      2018-12: 1409.46
+    exonerations_et_allegements:
       2018-01: 303.4
       2018-02: 0
       2018-03: 0
@@ -761,8 +757,8 @@
       2018-09: 0
       2018-10: 0
       2018-11: 0
-      2018-12: 5157.8 
-    allegement_fillon: 
+      2018-12: 5157.8
+    allegement_fillon:
       2018-01: 285.4
       2018-02: 0
       2018-03: 0
@@ -775,7 +771,7 @@
       2018-10: 0
       2018-11: 0
       2018-12: 4851.8
-    allegement_cotisation_allocations_familiales: 
+    allegement_cotisation_allocations_familiales:
       2018-01: 18
       2018-02: 0
       2018-03: 0
@@ -788,7 +784,7 @@
       2018-10: 0
       2018-11: 0
       2018-12: 306
-   
+
 - name: Revenu disponible - Salaire brut de 1000 euros - mode recouvrement fin d'année
   period: 2018-01
   relative_error_margin: 0.01
@@ -865,18 +861,18 @@
             year:1999:20: 0
         chomage_net:
             year:1999:20: 0
-        duree_versement_are :
+        duree_versement_are:
             year:1999:20: 0
         salaire_de_base:
           2018-01: 1000
           2018-02: 1000
-          2018-03: 1000 
+          2018-03: 1000
           2018-04: 2000
           2018-05: 1000
           2018-06: 2000
           2018-07: 1000
           2018-08: 1000
-          2018-09: 1000 
+          2018-09: 1000
           2018-10: 2500
           2018-11: 2500
           2018-12: 1000
@@ -888,7 +884,7 @@
     foyer_fiscal:
       declarants: [personne1]
   output:
-    salaire_super_brut: 
+    salaire_super_brut:
       2018-01: 1427.96
       2018-02: 1409.46
       2018-03: 1409.46
@@ -913,7 +909,7 @@
       2018-09: 1409.46
       2018-10: 3523.65
       2018-11: 3523.65
-      2018-12: 1409.46 
+      2018-12: 1409.46
     exonerations_et_allegements: #allègement fillon
       2018-01: 0
       2018-02: 0
@@ -926,8 +922,8 @@
       2018-09: 0
       2018-10: 0
       2018-11: 0
-      2018-12: 5157.8 
-    allegement_fillon: 
+      2018-12: 5157.8
+    allegement_fillon:
       2018-01: 0
       2018-02: 0
       2018-03: 0
@@ -940,7 +936,7 @@
       2018-10: 0
       2018-11: 0
       2018-12: 4851.8
-    allegement_cotisation_allocations_familiales: 
+    allegement_cotisation_allocations_familiales:
       2018-01: 0
       2018-02: 0
       2018-03: 0

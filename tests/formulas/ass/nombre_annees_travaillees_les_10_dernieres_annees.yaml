@@ -130,8 +130,8 @@
   output:
     nombre_annees_travaillees_les_10_dernieres_annees:
       2018-12: 8.33
-    
-    ass_precondition_remplie: 
+
+    ass_precondition_remplie:
       2018-12: true
 
 - name: Nombre d'années travaillées durant les 10 dernières années précédant la rupture de contrat - Cas n°2
@@ -266,8 +266,8 @@
   output:
     nombre_annees_travaillees_les_10_dernieres_annees:
       2018-12: 4.39
-    
-    ass_precondition_remplie: 
+
+    ass_precondition_remplie:
       2018-12: false
 
 - name: Nombre d'années travaillées durant les 10 dernières années précédant la rupture de contrat - Cas n°3
@@ -413,5 +413,5 @@
     nombre_annees_travaillees_les_10_dernieres_annees:
       2018-02: 4.17
 
-    ass_precondition_remplie: 
+    ass_precondition_remplie:
       2018-12: false
