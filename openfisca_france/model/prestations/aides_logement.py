@@ -264,6 +264,22 @@ class aide_logement_date_pret_conventionne(Variable):
     definition_period = ETERNITY
 
 
+class aide_logement_est_pret_conventionne(Variable):
+    value_type = bool
+    default_value = False
+    entity = Menage
+    label = "Indique que le ménage a contracté un prêt conventionné pour l'acquisition un logement"
+    definition_period = ETERNITY
+
+
+class aide_logement_date_pret(Variable):
+    value_type = date
+    default_value = date.max
+    entity = Menage
+    label = "Date de contraction d'un prêt pour l'acquisition d'un logement"
+    definition_period = ETERNITY
+
+
 class date_debut_chomage(Variable):
     value_type = date
     default_value = date.max
@@ -286,7 +302,14 @@ class aides_logement_primo_accedant_eligibilite(Variable):
 
         zone_apl = menage('zone_apl', period)
         aide_logement_etat_logement = menage('etat_logement', period)
-        aide_logement_date_pret_conventionne = menage('aide_logement_date_pret_conventionne', period)
+
+        date_pret_conventionne = menage('aide_logement_date_pret_conventionne', period)
+        date_pret_conventionne_est_valide = (date_pret_conventionne is not None) * (date_pret_conventionne < date.max)
+        est_pret_conventionne = (menage('aide_logement_est_pret_conventionne', period)
+                                + date_pret_conventionne_est_valide)
+        aide_logement_date_pret = where(
+            date_pret_conventionne_est_valide, date_pret_conventionne, menage('aide_logement_date_pret', period))
+
         est_logement_ancien = (
             (aide_logement_etat_logement == TypeEtatLogement.acquisition_amelioration)
             + (aide_logement_etat_logement == TypeEtatLogement.acquisition_sans_amelioration_logement_existant)
@@ -295,12 +318,12 @@ class aides_logement_primo_accedant_eligibilite(Variable):
             )
 
         est_zone_3 = (zone_apl == TypesZoneApl.zone_3)
-        date_pret_conventionne_avant_2018_01 = (aide_logement_date_pret_conventionne < date(2018, 1, 1))
-        date_pret_conventionne_avant_2020_01 = (aide_logement_date_pret_conventionne < date(2020, 1, 1))
+        date_pret_avant_2018_01 = (aide_logement_date_pret < date(2018, 1, 1))
+        date_pret_avant_2020_01 = (aide_logement_date_pret < date(2020, 1, 1))
 
         eligibilite = select(
-            [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2020_01],
-            [True, (est_logement_ancien * est_zone_3)], default = False
+            [date_pret_avant_2018_01, date_pret_avant_2020_01],
+            [True, (est_pret_conventionne * est_logement_ancien * est_zone_3)], default = False
             )
 
         return accedant * eligibilite
@@ -1553,7 +1576,7 @@ class aides_logement_k(Variable):
 class aides_logement_primo_accedant_k(Variable):
     value_type = float
     entity = Famille
-    label = 'Allocation logement pour les primo-accédants K'
+    label = "Coefficient K pour l'allocation logement et l'aide personnalisée au logement pour les primo-accédants K"
     reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid'
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -1562,13 +1585,19 @@ class aides_logement_primo_accedant_k(Variable):
         # en accession-al, le coefficient K est celui defini pour le secteur foyer-al
         param = parameters(period).prestations_sociales.aides_logement.allocations_logement.foyer.k_coef_prise_en_charge
 
-        plafond_k = param.plafonds.plafond_apl2_et_al
-        cm2 = param.cm_et_r.cm2_apl2_et_al
+        # Le coefficient K n'est pas le même selon qu'il s'agisse d'un prêt conventionné ou non
+        date_pret_conventionne = famille.demandeur.menage('aide_logement_date_pret_conventionne', period)
+        date_pret_conventionne_est_valide = (date_pret_conventionne is not None) * (date_pret_conventionne < date.max)
+        est_pret_conventionne = (famille.demandeur.menage('aide_logement_est_pret_conventionne', period)
+                                + date_pret_conventionne_est_valide)
+
+        plafond_k = where(est_pret_conventionne, param.plafonds.plafond_apl1, param.plafonds.plafond_apl2_et_al)
+        cm = where(est_pret_conventionne, param.cm_et_r.cm3_apl3, param.cm_et_r.cm2_apl2_et_al)
 
         R = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_nb_part', period)
 
-        return plafond_k - (R / (cm2 * N))
+        return min_(plafond_k, plafond_k - (R / (cm * N)))
 
 
 class aides_logement_foyer_k_al(Variable):
