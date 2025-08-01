@@ -1,4 +1,4 @@
-description: Montant minimum journalier de l'allocation chômage 
+description: Montant minimum journalier de l'allocation chômage
 unit: currency
 values:
   2020-07-01:
