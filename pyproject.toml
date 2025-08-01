@@ -1,6 +1,6 @@
 [project]
 name = "OpenFisca-France"
-version = "172.1.2"
+version = "172.1.3"
 description = "OpenFisca Rules as Code model for France."
 readme = "README.md"
 keywords = ["microsimulation", "tax", "benefit", "rac", "rules-as-code", "france"]
