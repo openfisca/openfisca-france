@@ -357,3 +357,378 @@
       - parent1
   output:
     aides_logement_primo_accedant_eligibilite: 0
+
+
+# ---------- Utilisation de aide_logement_est_pret_conventionne et aide_logement_date_pret ---------- #
+
+- name: "Cas 1 (est_pret_conventionne et date_pret) eligible APL accession: - prêt conclu avant le 1er janvier 2018 - prêt conclu en zone 2 pour l'acquisition d'un logement neuf"
+  description: Eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2017-12-20
+      etat_logement: construction_acquisition_logement_neuf
+      zone_apl: zone_2
+    individus:
+      parent1: {}
+      parent2: {}
+      enfant1: {}
+      enfant2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
+    aides_logement_primo_accedant_eligibilite: 1
+
+- name: "Cas 2 (est_pret_conventionne et date_pret) eligible APL accession: - prêt conclu avant le 1er janvier 2018 - prêt conclu en zone 2 pour l'acquisition d'un logement neuf"
+  description: Eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2017-12-20
+      etat_logement: construction_acquisition_logement_neuf
+      zone_apl: zone_2
+    individus:
+      parent1: {}
+      parent2: {}
+      enfant1: {}
+      enfant2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
+    aides_logement_primo_accedant_eligibilite: 1
+
+- name: "Cas 3 (est_pret_conventionne et date_pret) eligible APL accession: - prêt conclu avant le 1er janvier 2018 - prêt conclu en zone 3 pour l'acquisition d'un logement ancien"
+  description: Eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2017-12-20
+      etat_logement: acquisition_sans_amelioration_logement_existant
+      zone_apl: zone_3
+    individus:
+      parent1: {}
+      parent2: {}
+      enfant1: {}
+      enfant2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
+    aides_logement_primo_accedant_eligibilite: 1
+
+- name: "Cas 4 (est_pret_conventionne et date_pret) eligible APL accession: - prêt conclu avant le 1er janvier 2020 - prêt conclu en zone 3 pour l'acquisition d'un logement ancien"
+  description: Eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2018-02-02
+      etat_logement: acquisition_sans_amelioration_logement_existant
+      zone_apl: zone_3
+    individus:
+      parent1: {}
+      parent2: {}
+      enfant1: {}
+      enfant2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
+    aides_logement_primo_accedant_eligibilite: 1
+
+- name: "Cas 5 (est_pret_conventionne et date_pret) eligible APL accession: - prêt conclu avant le 1er janvier 2018 - prêt conclu en zone 1 pour l'amelioration d'un logement ancien"
+  description: Eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2017-12-20
+      etat_logement: amelioration
+      zone_apl: zone_1
+    individus:
+      parent1: {}
+      parent2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+  output:
+    aides_logement_primo_accedant_eligibilite: 1
+
+- name: "Cas 6 (est_pret_conventionne et date_pret) eligible APL accession: - prêt conclu avant le 1er janvier 2018 - prêt conclu en zone 3 pour l'acquisition d'un logement neuf"
+  description: Eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2017-12-20
+      etat_logement: construction_acquisition_logement_neuf
+      zone_apl: zone_3
+    individus:
+      parent1: {}
+      parent2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+  output:
+    aides_logement_primo_accedant_eligibilite: 1
+
+- name: "Cas 7 (est_pret_conventionne et date_pret) eligible APL accession: - prêt conclu avant le 1er janvier 2018 - prêt conclu en zone 1 pour l'acquisition d'un logement neuf"
+  description: Eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1]
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2002-04-10
+      etat_logement: construction_acquisition_logement_neuf
+      zone_apl: zone_1
+    individus:
+      parent1: {}
+    foyer_fiscal:
+      declarants:
+      - parent1
+  output:
+    aides_logement_primo_accedant_eligibilite: 1
+
+- name: "Cas 1 (est_pret_conventionne et date_pret) non eligible APL accession: - prêt conclu avant le 1er janvier 2020 - prêt conclu en zone 2 pour l'acquisition d'un logement neuf"
+  description: Non eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2018-02-02
+      etat_logement: construction_acquisition_logement_neuf
+      zone_apl: zone_2
+    individus:
+      parent1: {}
+      parent2: {}
+      enfant1: {}
+      enfant2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
+    aides_logement_primo_accedant_eligibilite: 0
+
+- name: "Cas 2 (est_pret_conventionne et date_pret) non eligible APL accession: - prêt conclu avant le 1er janvier 2020 - prêt conclu en zone 2 pour l'acquisition d'un logement neuf"
+  description: Non eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2018-02-02
+      etat_logement: construction_acquisition_logement_neuf
+      zone_apl: zone_2
+    individus:
+      parent1: {}
+      parent2: {}
+      enfant1: {}
+      enfant2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
+    aides_logement_primo_accedant_eligibilite: 0
+
+- name: "Cas 3 (est_pret_conventionne et date_pret) non eligible APL accession: - prêt conclu avant le 1er janvier 2020 - prêt conclu en zone 1 pour l'amelioration d'un logement ancien"
+  description: Non eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2018-02-02
+      etat_logement: amelioration
+      zone_apl: zone_1
+    individus:
+      parent1: {}
+      parent2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+  output:
+    aides_logement_primo_accedant_eligibilite: 0
+
+- name: "Cas 4 (est_pret_conventionne et date_pret) non eligible APL accession: - prêt conclu avant le 1er janvier 2020 - prêt conclu en zone 3 pour l'acquisition d'un logement neuf"
+  description: Non eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2018-02-02
+      etat_logement: construction_acquisition_logement_neuf
+      zone_apl: zone_3
+    individus:
+      parent1: {}
+      parent2: {}
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+  output:
+    aides_logement_primo_accedant_eligibilite: 0
+
+- name: "Cas 5 (est_pret_conventionne et date_pret) non eligible APL accession: - prêt conclu avant le 1er janvier 2020 - prêt conclu en zone 1 pour l'acquisition d'un logement neuf"
+  description: Non eligiblite APL accession
+  period: 2018-04
+  input:
+    famille:
+      parents: [parent1]
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: primo_accedant
+      aide_logement_est_pret_conventionne: true
+      aide_logement_date_pret: 2018-02-02
+      etat_logement: construction_acquisition_logement_neuf
+      zone_apl: zone_1
+    individus:
+      parent1: {}
+    foyer_fiscal:
+      declarants:
+      - parent1
+  output:
+    aides_logement_primo_accedant_eligibilite: 0
