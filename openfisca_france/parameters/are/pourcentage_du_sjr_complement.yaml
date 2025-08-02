@@ -1,0 +1,27 @@
+description: Pourcentage du SJR (en complément de partie fixe)
+unit: /1
+values:
+  2020-07-01:
+    value: 0.404
+  2019-07-01:
+    value: 0.404
+  2018-07-01:
+    value: 0.404
+  2017-07-01:
+    value: 0.404
+  2015-07-01:
+    value: 0.404
+  2014-07-01:
+    value: 0.404
+  2013-07-01:
+    value: 0.404
+  2012-07-01:
+    value: 0.404
+  2011-07-01:
+    value: 0.404
+  2010-07-01:
+    value: 0.404
+  2009-07-01:
+    value: 0.404
+  2008-07-01:
+    value: 0.404

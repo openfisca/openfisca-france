@@ -1,0 +1,27 @@
+description: Partie fixe de l'allocation chômage (en complément avec % du SJR)
+unit: currency
+values:
+  2020-07-01:
+    value: 12.05
+  2019-07-01:
+    value: 12.0
+  2018-07-01:
+    value: 11.92
+  2017-07-01:
+    value: 11.84
+  2015-07-01:
+    value: 11.76
+  2014-07-01:
+    value: 11.72
+  2013-07-01:
+    value: 11.64
+  2012-07-01:
+    value: 11.57
+  2011-07-01:
+    value: 11.34
+  2010-07-01:
+    value: 11.17
+  2009-07-01:
+    value: 11.04
+  2008-07-01:
+    value: 10.93
