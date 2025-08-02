@@ -41,7 +41,7 @@ class nombre_annees_travaillees_les_10_dernieres_annees(Variable):
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'nombre_jours_calendaires',
-                    contrat_de_travail_fin_potentiel.offset(-120).start.period('month', 120),
+                    Period(('month', contrat_de_travail_fin_potentiel.offset(-120), 120)),
                     options = [ADD],
                     ),
                 nombre_jours_travailles_10_dernieres_annees,
