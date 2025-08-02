@@ -1,7 +1,7 @@
 from functools import partial
 from numpy import busday_count as original_busday_count, datetime64, timedelta64
 from openfisca_france.model.base import *
-# from openfisca_core.periods import Instant
+from openfisca_core.periods import Period
 
 
 class chomeur_longue_duree(Variable):
@@ -101,7 +101,7 @@ class salaire_de_reference(Variable):
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'salaire_de_base',
-                    contrat_de_travail_fin_potentiel.offset(-12).start.period('month', 12),
+                    Period(('month', contrat_de_travail_fin_potentiel.offset(-120), 120)),
                     options = [ADD],
                     ),
                 salaire_de_reference,
@@ -124,7 +124,7 @@ class nombre_jours_travailles_12_derniers_mois(Variable):
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'jours_travailles_chomage',
-                    contrat_de_travail_fin_potentiel.offset(-12).start.period('month', 12),
+                    Period(('month', contrat_de_travail_fin_potentiel.offset(-12), 12)),
                     options = [ADD],
                     ),
                 nombre_jours_travailles_chomage,
@@ -253,7 +253,7 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'jours_travailles_chomage',
-                    contrat_de_travail_fin_potentiel.offset(-periode_reference_moins_53).start.period('month', periode_reference_moins_53),
+                    Period(('month', contrat_de_travail_fin_potentiel.offset(-periode_reference_moins_53), periode_reference_moins_53)),
                     options = [ADD],
                     ),
                 nombre_jours_travailles_reference_moins_53,
@@ -267,7 +267,7 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'jours_travailles_chomage',
-                    contrat_de_travail_fin_potentiel.offset(-periode_reference_plus_53).start.period('month', periode_reference_plus_53),
+                    Period(('month', contrat_de_travail_fin_potentiel.offset(-periode_reference_plus_53), periode_reference_plus_53)),
                     options = [ADD],
                     ),
                 nombre_jours_travailles_reference_plus_53,
