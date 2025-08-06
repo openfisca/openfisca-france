@@ -101,7 +101,7 @@ class salaire_de_reference(Variable):
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'salaire_de_base',
-                    Period(('month', contrat_de_travail_fin_potentiel.offset(-120), 120)),
+                    Period(('month', contrat_de_travail_fin_potentiel.offset(-120).start, 120)),
                     options = [ADD],
                     ),
                 salaire_de_reference,
@@ -253,7 +253,7 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'jours_travailles_chomage',
-                    Period(('month', contrat_de_travail_fin_potentiel.offset(-periode_reference_moins_53), periode_reference_moins_53)),
+                    Period(('month', contrat_de_travail_fin_potentiel.offset(-periode_reference_moins_53).start, periode_reference_moins_53)),
                     options = [ADD],
                     ),
                 nombre_jours_travailles_reference_moins_53,
@@ -267,7 +267,7 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'jours_travailles_chomage',
-                    Period(('month', contrat_de_travail_fin_potentiel.offset(-periode_reference_plus_53), periode_reference_plus_53)),
+                    Period(('month', contrat_de_travail_fin_potentiel.offset(-periode_reference_plus_53).start, periode_reference_plus_53)),
                     options = [ADD],
                     ),
                 nombre_jours_travailles_reference_plus_53,
