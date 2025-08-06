@@ -93,3 +93,11 @@ filterwarnings = [
     "ignore:invalid value encountered in multiply:RuntimeWarning",
     "ignore:divide by zero encountered in divide:RuntimeWarning",
 ]
+
+[tool.uv.sources]
+openfisca-france = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "openfisca-france",
+]
