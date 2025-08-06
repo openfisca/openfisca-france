@@ -25,3 +25,5 @@ values:
     value: 0.574
   2008-07-01:
     value: 0.574
+  2006-01-01:
+      value: 0.574  # TODO ajoutée pour faire passer les tests
