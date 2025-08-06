@@ -839,6 +839,7 @@
         aide_logement: 334.5899963378906
         prestations_sociales_mensuelles: 1090.433837890625
         revenu_disponible_avec_impots: 1090.433837890625
+
 - name: Revenu disponible - Célibataire avec un enfant - Salaire brut de 506 euros - ASS
   period: 2019-01
   absolute_error_margin: 0.01
@@ -1216,7 +1217,6 @@
         prestations_sociales_mensuelles: 849.2670288085938
         revenu_disponible_avec_impots: 849.2670288085938
 
-
 - name: Revenu disponible - Célibataire avec deux enfants - Salaire brut de 506 euros
   period: 2019-01
   absolute_error_margin: 0.01
@@ -1344,6 +1344,7 @@
         aide_logement: 387.0799865722656
         prestations_sociales_mensuelles: 1304.961181640625
         revenu_disponible_avec_impots: 1304.961181640625
+
 - name: Revenu disponible - Célibataire avec deux enfants - Salaire brut de 506 euros - ASS
   period: 2019-01
   absolute_error_margin: 0.01
@@ -1599,6 +1600,7 @@
         aide_logement: 127.7300033569336
         prestations_sociales_mensuelles: 1081.5074462890625
         revenu_disponible_avec_impots: 1081.5074462890625
+
 - name: Revenu disponible - Célibataire avec deux enfants - Salaire brut de 2025 euros - ASS
   period: 2019-01
   absolute_error_margin: 0.01
@@ -1726,7 +1728,6 @@
         aide_logement: 127.7300033569336
         prestations_sociales_mensuelles: 1081.5074462890625
         revenu_disponible_avec_impots: 1081.5074462890625
-
 
 - name: Revenu disponible - Célibataire avec trois enfants - Salaire brut de 506 euros
   period: 2019-01
@@ -1857,8 +1858,8 @@
         aide_logement: 439.55999755859375
         prestations_sociales_mensuelles: 1690.9647216796875
         revenu_disponible_avec_impots: 1690.9647216796875
-- name: Revenu disponible - Célibataire avec trois enfants - Salaire brut de 506 euros - ASS
 
+- name: Revenu disponible - Célibataire avec trois enfants - Salaire brut de 506 euros - ASS
   period: 2019-01
   absolute_error_margin: 0.01
   max_spiral_loops: 60
@@ -2117,6 +2118,7 @@
         aide_logement: 222.99000549316406
         prestations_sociales_mensuelles: 1474.3946533203125
         revenu_disponible_avec_impots: 1474.3946533203125
+
 - name: Revenu disponible - Célibataire avec trois enfants - Salaire brut de 2025 euros - ASS
   period: 2019-01
   absolute_error_margin: 0.01
@@ -2246,7 +2248,6 @@
         aide_logement: 222.99000549316406
         prestations_sociales_mensuelles: 1670.6854248046875
         revenu_disponible_avec_impots: 1670.6854248046875
-
 
 - name: Revenu disponible - En couple sans enfant - Salaire brut de 506 euros et le conjoint 500 euros
   period: 2019-01
@@ -2406,6 +2407,7 @@
        aide_logement: 288.1499938964844
        prestations_sociales_mensuelles: 567.3017578125
        revenu_disponible_avec_impots: 1016.8017578125
+
 - name: Revenu disponible - En couple sans enfant - Salaire brut de 506 euros et le conjoint 500 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -2723,6 +2725,7 @@
        aide_logement: 92.6100006103515
        prestations_sociales_mensuelles: 93.2699966430664
        revenu_disponible_avec_impots: 992.27001953125
+
 - name: Revenu disponible - En couple sans enfant - Salaire brut de 506 euros et le conjoint 1000 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -3041,6 +3044,7 @@
        aide_logement: 0
        prestations_sociales_mensuelles: 376.89501953125
        revenu_disponible_avec_impots: 826.39501953125
+
 - name: Revenu disponible - En couple sans enfant - Salaire brut de 2025 euros et le conjoint 500 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -3360,6 +3364,7 @@
        aide_logement: 0
        prestations_sociales_mensuelles: 0
        revenu_disponible_avec_impots: 899.0
+
 - name: Revenu disponible - En couple sans enfant - Salaire brut de 2025 euros et le conjoint 1000 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -3519,7 +3524,6 @@
        aide_logement: 0
        prestations_sociales_mensuelles: 0
        revenu_disponible_avec_impots: 899
-
 
 - name: Revenu disponible - En couple avec un enfant - Salaire brut de 506 euros et le conjoint 500 euros
   period: 2019-01
@@ -3684,6 +3688,7 @@
        aide_logement: 334.5899963378906
        prestations_sociales_mensuelles: 751.9378051757812
        revenu_disponible_avec_impots: 1201.437744140625
+
 - name: Revenu disponible - En couple avec un enfant - Salaire brut de 506 euros et le conjoint 500 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -3848,7 +3853,6 @@
        prestations_sociales_mensuelles: 867.7899780273438
        revenu_disponible_avec_impots: 1317.2900390625
 
-
 - name: Revenu disponible - En couple avec un enfant - Salaire brut de 506 euros et le conjoint 1000 euros
   period: 2019-01
   relative_error_margin: 0.01
@@ -4012,6 +4016,7 @@
        aide_logement: 173.61000061035156
        prestations_sociales_mensuelles: 212.41000366210938
        revenu_disponible_avec_impots: 1111.4100341796875
+
 - name: Revenu disponible - En couple avec un enfant - Salaire brut de 506 euros et le conjoint 1000 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -4339,6 +4344,7 @@
        aide_logement: 0
        prestations_sociales_mensuelles: 542.1740112304688
        revenu_disponible_avec_impots: 991.6740112304688
+
 - name: Revenu disponible - En couple avec un enfant - Salaire brut de 2025 euros et le conjoint 500 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -4666,6 +4672,7 @@
        aide_logement: 0
        prestations_sociales_mensuelles: 92.67401123046875
        revenu_disponible_avec_impots: 991.6740112304688
+
 - name: Revenu disponible - En couple avec un enfant - Salaire brut de 2025 euros et le conjoint 1000 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -4995,6 +5002,7 @@
        aide_logement: 387.0799865722656
        prestations_sociales_mensuelles: 974.9962768554688
        revenu_disponible_avec_impots: 1424.496337890625
+
 - name: Revenu disponible - En couple avec deux enfants - Salaire brut de 506 euros et le conjoint 500 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -5326,6 +5334,7 @@
        aide_logement: 248.0
        prestations_sociales_mensuelles: 423.8394775390625
        revenu_disponible_avec_impots: 1322.8394775390625
+
 - name: Revenu disponible - En couple avec deux enfants - Salaire brut de 506 euros et le conjoint 1000 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -5657,6 +5666,7 @@
        aide_logement: 56.189998626708984
        prestations_sociales_mensuelles: 707.092529296875
        revenu_disponible_avec_impots: 1156.592529296875
+
 - name: Revenu disponible - En couple avec deux enfants - Salaire brut de 2025 euros et le conjoint 500 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -5988,6 +5998,7 @@
        aide_logement: 0
        prestations_sociales_mensuelles: 257.5924072265625
        revenu_disponible_avec_impots: 1156.5924072265625
+
 - name: Revenu disponible - En couple avec deux enfants - Salaire brut de 2025 euros et le conjoint 1000 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -6322,6 +6333,7 @@
        aide_logement: 439.55999755859375
        prestations_sociales_mensuelles: 1338.1273193359375
        revenu_disponible_avec_impots: 1787.6273193359375
+
 - name: Revenu disponible - En couple avec trois enfants - Salaire brut de 506 euros et le conjoint 500 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -6657,6 +6669,7 @@
        aide_logement: 326.8500061035156
        prestations_sociales_mensuelles: 933.2833251953125
        revenu_disponible_avec_impots: 1832.2833251953125
+
 - name: Revenu disponible - En couple avec trois enfants - Salaire brut de 506 euros et le conjoint 1000 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -6992,6 +7005,7 @@
        aide_logement: 123.94999694824219
        prestations_sociales_mensuelles: 976.6260375976562
        revenu_disponible_avec_impots: 1426.1259765625
+
 - name: Revenu disponible - En couple avec trois enfants - Salaire brut de 2025 euros et le conjoint 500 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
@@ -7327,6 +7341,7 @@
        aide_logement: 73.19999694824219
        prestations_sociales_mensuelles: 544.7158203125
        revenu_disponible_avec_impots: 1443.7158203125
+
 - name: Revenu disponible - En couple avec trois enfants - Salaire brut de 2025 euros et le conjoint 1000 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01
