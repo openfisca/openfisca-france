@@ -124,7 +124,7 @@ class nombre_jours_travailles_12_derniers_mois(Variable):
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'jours_travailles_chomage',
-                    period,
+                    Period(('month', contrat_de_travail_fin_potentiel.offset(-12).start, 12)),
                     options = [ADD],
                     ),
                 nombre_jours_travailles_chomage,
