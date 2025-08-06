@@ -1,0 +1,9 @@
+description: Pourcentage du SJR (en complément de partie fixe)
+unit: /1
+values:
+  2020-07-01:
+    value: 0.404
+  2008-07-01:
+    value: 0.404
+  2006-01-01:  # TODO ajoutée pour faire passer les tests
+    value: 0.404

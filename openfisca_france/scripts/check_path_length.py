@@ -39,7 +39,7 @@ def extract_paths_too_long(root_dir):
                 maxlen = max(maxlen, len(relative_file_path))
                 if len(relative_file_path) > 150:
                     path_too_long_detected = True
-                    logging.error(f'Path too long of {len(relative_file_path)-150} characters : {relative_file_path}')
+                    logging.error(f'Path too long of {len(relative_file_path) - 150} characters : {relative_file_path}')
                     outfile.write('{} here: {}\n'.format(
                         len(relative_file_path),
                         relative_file_path,

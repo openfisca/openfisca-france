@@ -21,7 +21,7 @@ requires-python = ">= 3.9"
 dependencies = [
     "numpy >=1.24.3, <2",
     "openfisca-core[web-api] >=43, <44",
-    "setuptools"
+    "setuptools",
 ]
 
 [project.urls]
@@ -92,4 +92,12 @@ filterwarnings = [
     "ignore:invalid value encountered in divide:RuntimeWarning",
     "ignore:invalid value encountered in multiply:RuntimeWarning",
     "ignore:divide by zero encountered in divide:RuntimeWarning",
+]
+
+[tool.uv.sources]
+openfisca-france = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "openfisca-france",
 ]

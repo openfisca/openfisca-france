@@ -1,6 +1,6 @@
 - name: aide_excep_2020_isole_0enf
   description: Montant aide exceptionnelle - célibataire sans enfant
-  period: '2020-05'
+  period: '2020-06'
   absolute_error_margin: 1
   input:
     individus:

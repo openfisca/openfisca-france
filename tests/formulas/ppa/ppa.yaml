@@ -689,7 +689,7 @@
     ppa_eligibilite_apprenants: false
     ppa: 0
 
-- name: "PPA: couple d'étudiants avec enfant:  pas de ppa"
+- name: "PPA: couple d'étudiants avec enfant: pas de ppa"
   period: 2016-01
   input:
     famille:
