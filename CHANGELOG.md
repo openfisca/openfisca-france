@@ -1,5 +1,14 @@
 # Changelog
 
+### 172.0.6 [2543](https://github.com/openfisca/openfisca-france/pull/2543)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2004.
+* Zones impactées :
+  - `openfisca_france/model/prestations/prestations_familiales/paje.py`.
+* Détails :
+  - Ajout de la variable "paje_adoption" pour le calcul de la prime d'adoption de la PAJE, pour compléter celui de la prime de naissance.
+
 ### 172.0.5 [2532](https://github.com/openfisca/openfisca-france/pull/2532)
 
 * Évolution du système socio-fiscal.
