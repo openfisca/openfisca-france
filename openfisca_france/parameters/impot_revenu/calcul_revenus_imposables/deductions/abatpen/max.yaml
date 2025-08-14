@@ -94,6 +94,8 @@ values:
     value: 4321
   2024-01-01:
     value: 4399
+  2025-01-01:
+    value: null
 metadata:
   short_label: Montant maximum de l'abattement, pour le foyer fiscal
   last_value_still_valid_on: "2025-02-25"

@@ -590,6 +590,55 @@ class aide_logement_base_ressources_individu(Variable):
     definition_period = MONTH
     is_period_size_independent = True
 
+    def formula_2026_01_01(individu, period, parameters):
+        period_frais = period.last_year
+        annee_glissante = Period(('year', period.start, 1)).offset(-1).offset(-1, 'month')
+
+        salaire_imposable = individu('salaire_imposable', annee_glissante, options=[ADD])
+        chomage_imposable = individu('chomage_imposable', annee_glissante, options=[ADD])
+        f1tt = individu('f1tt', period.n_2)
+        f3vj = individu('f3vj', period.n_2)
+
+        revenu_assimile_salaire = salaire_imposable + chomage_imposable + f1tt + f3vj
+
+        frais_reels = individu('frais_reels', period_frais)
+
+        P = parameters(period.last_year).impot_revenu.calcul_revenus_imposables.deductions
+        abattement_forfaitaire = round_(min_(max_(P.abatpro.taux * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
+
+        abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
+
+        rpns = individu('rpns_imposables', period.n_2)
+        rpns_pvce = individu('rpns_pvce', period.n_2)
+        rpns_pvct = individu('rpns_pvct', period.n_2)
+        rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
+        rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
+
+        rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
+        # TO DO : compléter la formule pour prendre en compte la disposition particulière concernant les indépendants ayant commencé une activité entre N-2 et N.
+        # Non implémentée car diffile à comprendre ce qui est fait exactement
+
+        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period.last_year, options = [ADD])
+        retraite_imposable = individu('retraite_imposable', annee_glissante, options=[ADD])
+        pension_invalidite = individu('pensions_invalidite', period.n_2, options = [ADD])
+        revenu_assimile_pension = pensions_alimentaires_percues + retraite_imposable + pension_invalidite
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
+        revenu_assimile_pension = max_(0, revenu_assimile_pension - P.abatpen.forfait)
+
+        abattement_revenus_activite_professionnelle = individu('aide_logement_abattement_revenus_activite_professionnelle', period)
+        abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
+        aide_logement_condition_neutralisation = individu('aide_logement_condition_neutralisation', period)
+
+        taux_abattement = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources.abattements.chomage_indemnise
+
+        revenus = (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
+
+        revenus = revenus + ((chomage_imposable + min_(0, (salaire_imposable + f1tt + f3vj - abattement_frais_pro) * (revenu_assimile_salaire > 0))) * (1 - taux_abattement * abattement_indemnites_chomage))
+
+        revenus = revenus * (1 - aide_logement_condition_neutralisation)
+
+        return revenus + revenu_assimile_pension
+
     def formula_2021_01_01(individu, period, parameters):
         period_frais = period.last_year
         annee_glissante = Period(('year', period.start, 1)).offset(-1).offset(-1, 'month')
