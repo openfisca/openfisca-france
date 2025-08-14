@@ -1,0 +1,25 @@
+description: Seuil de chiffre d'affaires pour être léigible à la réduction d'impôts définie à l'article 199 undecies B du Code Général des Impots (CGI)
+values:
+  2014-07-01:
+    value: 20000000
+  2019-01-01:
+    value: 15000000
+  2020-01-01:
+    value: 10000000
+metadata:
+  short_label: Seuil CA
+  label_en: Sales threshold to qualify for the tax reduction defined in article 199 undecies B of the French General Tax Code (CGI)
+  unit: /1
+  reference:
+    2014-07-01:
+      title: Article 199 Undecies B du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027978078
+    2019-01-01:
+      title: Article 199 Undecies B du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027978078
+    2020-01-01:
+      title: Article 199 Undecies B du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027978078
+  notes:
+    2019-01-01:
+    - title: Abrogation et remplacement par un allègement de cotisations employeur
