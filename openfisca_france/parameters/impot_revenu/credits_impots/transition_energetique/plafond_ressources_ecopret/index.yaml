@@ -1,0 +1,13 @@
+description: Plafond de revenus déterminant l'éligibilité au CITE pour les ménages ayant souscrit un éco-prêt à taux zéro
+metadata:
+  order:
+  - foyer_fiscal
+  - personne_seule
+  - couple
+  - pac
+  documentation: |-
+    Article 244 quater U du Code général des impôts (CGI).
+    Pour l'imposition des revenus de 2009, les foyers ayant bénéficié d'un "éco-prêt" à taux zéro pour financer, même partiellement, une dépense réalisée dans leur habitation principale, ne peuvent pas bénéficier du crédit d'impôt au titre de cette même dépense, à moins que le revenu de leur foyer fiscal n'excède pas le seuil indiqué.
+    Pour l'imposition des revenus de 2016, les foyers ayant bénéficié d'un "éco-prêt" à taux zéro pour financer, même partiellement, une dépense réalisée dans leur habitation principale, peuvent bénéficier du crédit d'impôt au titre de cette même dépense uniquement si le revenu fiscal de référence (RFR) du foyer au titre de l'avant-dernière année précédant celle de l'offre de prêt (RFR de l'année 2013 pour une offre de prêt émise en 2015 et RFR de l'année 2014 pour une offre de prêt émise du 1.1 au 29.2.2016) n'excède pas le plafond.
+    Pour les offres de prêt émises à compter du 1.3.2016, la condition de ressources est supprimée. 
+    Par conséquent, pour les offres émises à compter de cette date, tous les contribuables peuvent cumuler le bénéfice d'un "éco-prêt" à taux zéro et du crédit d'impôt pour la transition énergétique.

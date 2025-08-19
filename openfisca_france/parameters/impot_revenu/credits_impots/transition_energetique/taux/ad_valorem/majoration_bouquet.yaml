@@ -1,0 +1,46 @@
+description: Majoration du taux du crédit d'impôt lorsque plusieurs dépenses sont réalisées conjointement (bouquet de travaux).
+values:
+  2012-01-01:
+    value: .08
+  2014-01-01:
+    value: .1
+  2014-09-01:
+    value: null
+metadata:
+  short_label: Majoration "bouquet de travaux"
+  last_value_still_valid_on: "2025-08-18"
+  unit: /1
+  reference:
+    2012-01-01:
+    - title: LOI n° 2011-1977 du 28 décembre 2011 de finances pour 2012, art. 81 et 83
+      href: https://www.legifrance.gouv.fr/eli/loi/2011/12/28/BCRX1125684L/jo/texte
+    - title: Décret n° 2012-547 du 23 avril 2012 pris pour l'application de l'article 83 de la loi n° 2011-1977 du 28 décembre 2011 de finances pour 2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/4/23/EFIE1204479D/jo/texte
+    2014-01-01:
+      title: LOI n° 2013-1278 du 29 décembre 2013 de finances pour 2014, art. 74
+      href: https://www.legifrance.gouv.fr/eli/loi/2013/12/29/EFIX1323580L/jo/texte
+    2014-09-01:
+      title: LOI n° 2014-1654 du 29 décembre 2014 de finances pour 2015, art. 3
+      href: https://www.legifrance.gouv.fr/eli/loi/2014/12/29/FCPX1422605L/jo/texte
+  official_journal_date:
+    2012-01-01: 2011-12-29; 2012-04-25
+    2014-01-01: "2013-12-30"
+    2014-09-01: "2014-12-30"
+  notes:
+    2012-01-01: 
+      - title: En 2012, la loi de finances modifie le droit au 1er janvier (art. 81) puis le modifie une seconde fois pour tous les crédits d'impôt (art. 83), un décret d'avril matérialisant les changements cumulés. 
+    2014-01-01:
+      - title: En 2014, la majoration pour bouquet de travaux passe à 10 points (le taux pour geste seul étant désormais uniforme et de 15%, le taux majoré est de 25%). Le taux majoré est le seul accessible aux ménages non-modestes, ceux-ci n'étant plus éligible au crédit d'impôt que s'ils réalisent au minimum deux gestes.
+    2014-09-01:
+      - title: En septembre 2014, la majoration pour bouquet de travaux est supprimée pour les nouvelles dépenses. La condition cumulative sur deux ans pour les dépenses antérieures (du 1er janvier au 31 août) continue de s'appliquer.
+  documentation: |-
+    La majoration s'applique lorsque plusieurs dépenses (au moins deux) parmi un sous-ensemble des dépenses éligibles sont réalisées conjointement.
+    Dépenses éligibles à la majoration : 
+      - acquisition de matériaux d'isolation thermique des parois vitrées,
+      - acquisition et de pose de matériaux d'isolation thermique des parois opaques en vue de l'isolation des toitures et des murs, 
+      - acquisition de chaudières ou d'équipements de chauffage ou de production d'eau chaude fonctionnant au bois ou autres biomasses, 
+      - acquisition d'équipements de production d'eau chaude sanitaire utilisant une source d'énergie renouvelable,
+      - acquisition de chaudières à condensation,
+      - acquisition de chaudières à micro-cogénération gaz mentionnées
+      - acquisition d'équipements de production d'énergie utilisant une source d'énergie renouvelable ou de pompes à chaleur
+    NB : dans le texte, les taux de 10 %, 15 %, 17 %, 26 % et 32 % sont explicitement modifiés en 18 %, 23 %, 26 %, 34 % et 40 %. On simplifie ici en une majoration de 8 points.
