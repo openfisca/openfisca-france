@@ -2079,9 +2079,13 @@ class prlire(Variable):
 class quaenv(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Crédits d’impôt pour dépenses en faveur de la qualité environnementale (2005 - 2014) / de la transition energétique (2014 - ) '
+    label = 'Crédits d’impôt pour dépenses en faveur de la qualité environnementale, du développement durable (2005 - 2014) / de la transition energétique (2014 - 2020)'
     definition_period = YEAR
     end = '2019-12-31'
+    '''
+    Crédits d’impôt pour dépenses en faveur de la qualité environnementale
+        A noter : les travaux ouvrant droit au crédit d'impôt au taux le plus élevé sont retenus en priorité.
+    '''
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2091,20 +2095,28 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+        
         f7wf = foyer_fiscal('f7wf_2012', period)
         f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
 
+        P_plafond = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        P_taux = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.taux.ad_valorem
         n = nb_pac_majoration_plafond
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac2 * (max_(n - 2, 0))
+        plafond_depenses_0 = (
+            P_plafond.personne_seule * (1 - maries_ou_pacses)
+            + P_plafond.couple * maries_ou_pacses
+            + P_plafond.pac * (n >= 1)
+            + P_plafond.pac_2 * (n >= 2)
+            + P_plafond.pac_3 * (max_(n - 2, 0))
+            )
+        plaf1 = max_(0, plafond_depenses_0 - f7wf)
+        plaf2 = max_(0, plaf1 - f7wg)
 
-        max1 = max_(0, max0 - f7wf)
-        max2 = max_(0, max1 - f7wg)
         return (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_wg * min_(f7wg, max1)
-            + P.taux_wh * min_(f7wh, max2)
+            P_taux.energie_renouvelable * min_(f7wf, plafond_depenses_0)
+            + P_taux.chaudiere_condensation * min_(f7wg, plaf1) # même taux pour les chaudieres à condensation, matériaux d'isolation, appareils de régulation
+            + P_taux.chaudiere_basse_temperature * min_(f7wh, plaf2)
             )
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -2119,62 +2131,76 @@ class quaenv(Variable):
         f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wq = foyer_fiscal('f7wq', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
-
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-
-        max1 = max_(0, max0 - f7wf)
+        P_plafond = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        P_taux = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.taux.ad_valorem
+        plafond_depenses_0 = (
+            P_plafond.personne_seule * (1 - maries_ou_pacses)
+            + P_plafond.couple * maries_ou_pacses
+            + P_plafond.pac * nb_pac_majoration_plafond
+            )
+        max1 = max_(0, plafond_depenses_0 - f7wf)
         max2 = max_(0, max1 - f7wg)
         max3 = max_(0, max2 - f7wh)
+
         return (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_wg * min_(f7wg, max1)
-            + P.taux_wh * min_(f7wh, max2)
-            + P.taux_wq * min_(f7wq, max3)
+            P_taux.energie_renouvelable * min_(f7wf, plafond_depenses_0)
+            + P_taux.chaudiere_condensation_ancien * min_(f7wg, max1) # même taux pour les chaudieres à condensation, matériaux d'isolation, appareils de régulation quand ils concernent des logements anciens
+            + P_taux.chaudiere_condensation * min_(f7wh, max2) # même taux pour les chaudieres à condensation, matériaux d'isolation, appareils de régulation et raccordement au réseau
+            + P_taux.chaudiere_basse_temperature * min_(f7wq, max3)
             )
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-        (cases 7WF, 7WG, 7WH, 7WK, 7WQ, 7SB, 7SC, 7SD, 7SE)
+        (cases 7WF, 7WG, 7WH, 7WK, 7SA, 7SB, 7SC, 7SD, 7SE)
         2009
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7we = foyer_fiscal('f7we_2013', period)
+        f7we = foyer_fiscal('f7we_2013', period) # 1/0 dépenses financées par éco-ptz
         f7wf = foyer_fiscal('f7wf_2012', period)
         f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wk = foyer_fiscal('f7wk', period)
-        f7wq = foyer_fiscal('f7wq', period)
+        f7sa = foyer_fiscal('f7sa', period) # nb de logements en location
         f7sb = foyer_fiscal('f7sb_2011', period)
         f7sc = foyer_fiscal('f7sc_2009', period)
         f7sd = foyer_fiscal('f7sd_2015', period)
         f7se = foyer_fiscal('f7se_2015', period)
         rfr = foyer_fiscal('rfr', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-
-        max1 = max_(0, max0 - f7wf)
-        max2 = max_(0, max1 - f7se)
+        P_plafond = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        P_taux = parameters(period).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
+        P_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_ressources_ecopret
+        plafond_depenses_0 = (
+            P_plafond.personne_seule * (1 - maries_ou_pacses)
+            + P_plafond.couple * maries_ou_pacses
+            + P_plafond.pac * nb_pac_majoration_plafond
+            )
+        plafond_depenses_location_0 = (
+            P_plafond.location * min_(f7sa, 3)
+            )
+        max1 = max_(0, plafond_depenses_0 - f7wf)
+        max2 = max_(0, max1 - f7wg)
         max3 = max_(0, max2 - f7wk)
-        max4 = max_(0, max3 - f7sd)
-        max5 = max_(0, max4 - f7wg)
-        max6 = max_(0, max5 - f7sc)
-        max7 = max_(0, max6 - f7wh)
-        max8 = max_(0, max7 - f7sb)
+        max1_loc = max_(0, plafond_depenses_location_0 - f7se)
+        max2_loc = max_(0, max1_loc - f7sc)
+        max3_loc = max_(0, max2_loc - f7sd)
+        credit_res = (
+            P_taux.energie_renouvelable * min_(f7wf, plafond_depenses_0) # même taux pour énergie renouvelable et DPE
+            + P_taux.chaudiere_condensation_ancien * min_(f7wg, max1) # même taux pour les chaudieres à condensation, matériaux d'isolation, appareils de régulation quand ils concernent des logements anciens
+            + P_taux.chaudiere_bois * min_(f7wk, max2) # même taux pour chauffage au bois et pac autres que air/air
+            + P_taux.chaudiere_condensation * min_(f7wh, max3) # même taux pour les chaudieres à condensation, matériaux d'isolation, appareils de régulation, raccordement au réseau, et récupération eaux pluviales
+            )
+        credit_loc = (
+            P_taux.energie_renouvelable * min_(f7se, plafond_depenses_location_0) # même taux pour énergie renouvelable et DPE
+            + P_taux.chaudiere_condensation_ancien * min_(f7sc, max1_loc) # même taux pour les chaudieres à condensation, matériaux d'isolation, appareils de régulation quand ils concernent des logements anciens
+            + P_taux.chaudiere_bois * min_(f7sd, max2_loc) # même taux pour chauffage au bois et pac autres que air/air
+            + P_taux.chaudiere_condensation * min_(f7sb, max3_loc) # même taux pour les chaudieres à condensation, matériaux d'isolation, appareils de régulation, raccordement au réseau, et récupération eaux pluviales
+            )
 
-        return or_(not_(f7we), rfr < P.max_rfr) * (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_se * min_(f7se, max1)
-            + P.taux_wk * min_(f7wk, max2)
-            + P.taux_sd * min_(f7sd, max3)
-            + P.taux_wg * min_(f7wg, max4)
-            + P.taux_sc * min_(f7sc, max5)
-            + P.taux_wh * min_(f7wh, max6)
-            + P.taux_sb * min_(f7sb, max7)
-            + P.taux_wq * min_(f7wq, max8)
+        return or_(not_(f7we), rfr < P_plafond_ressources_ecopret.foyer_fiscal) * (
+            credit_res + credit_loc
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
