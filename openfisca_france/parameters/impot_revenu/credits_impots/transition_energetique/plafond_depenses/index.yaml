@@ -1,0 +1,11 @@
+description: Plafonds de dépenses éligibles au crédit d'impôt
+metadata:
+  short_label: Plafonds de dépenses
+  order:
+  - plafond_global
+  - plafonds_specifiques
+  documentation: |-
+    Le plafond global de dépenses éligibles s'applique au cumul des dépenses engagées par le foyer fiscal pendant une période de référence, en général de cinq ans : pour les impôts dûs sur les revenu de l'année N, on prend en compte les dépenses de N-5 à N.
+    Ce plafond n'est pas mis à jour de 2005 (réforme majeure du dispositif) à 2020.
+    En 2020, le plafond global de dépenses est remplacé par un plafond global sur le montant pluri-annuel du crédit d'impôt.
+    A ce plafond global (sur le total des dépenses, ou sur le crédit total) s'ajoutent des plafonds de dépenses spécifiques à certains gestes de rénovation.
