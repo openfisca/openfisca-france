@@ -2028,12 +2028,12 @@ class quaenv(Variable):
             + P_plafond.couple * maries_ou_pacses
             + P_plafond.pac * nb_pac_majoration_plafond
             )
-        plafond_depenses_location_0 = (
-            P_plafond.location * min_(f7sa, 3)
-            )
         max1 = max_(0, plafond_depenses_0 - f7wf)
         max2 = max_(0, max1 - f7wg)
         max3 = max_(0, max2 - f7wk)
+        plafond_depenses_location_0 = (
+            P_plafond.location * min_(f7sa, 3)
+            )
         max1_loc = max_(0, plafond_depenses_location_0 - f7se)
         max2_loc = max_(0, max1_loc - f7sc)
         max3_loc = max_(0, max2_loc - f7sd)
@@ -2064,35 +2064,46 @@ class quaenv(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7we = foyer_fiscal('f7we_2013', period)
         f7wf = foyer_fiscal('f7wf_2012', period)
-        f7wg = foyer_fiscal('f7wg_2013', period)
-        f7wh = foyer_fiscal('f7wh', period)
         f7wk = foyer_fiscal('f7wk', period)
+        f7wh = foyer_fiscal('f7wh', period)
         f7wq = foyer_fiscal('f7wq', period)
         f7sb = foyer_fiscal('f7sb_2011', period)
         f7sd = foyer_fiscal('f7sd_2015', period)
         f7se = foyer_fiscal('f7se_2015', period)
         f7sh = foyer_fiscal('f7sh_2015', period)
         rfr = foyer_fiscal('rfr', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        P_plafond = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        P_taux = parameters(period).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
+        P_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_ressources_ecopret
+        plafond_depenses_0 = (
+            P_plafond.personne_seule * (1 - maries_ou_pacses)
+            + P_plafond.couple * maries_ou_pacses
+            + P_plafond.pac * nb_pac_majoration_plafond
+            )
+        max1 = max_(0, plafond_depenses_0 - f7wf)
+        max2 = max_(0, max1 - f7wk)
+        max3 = max_(0, max2 - f7wh)
+        plafond_depenses_location_0 = (
+            P_plafond.location * min_(f7sa, 3)
+            )
+        max1_loc = max_(0, plafond_depenses_location_0 - f7se)
+        max2_loc = max_(0, max1_loc - f7sd)
+        max3_loc = max_(0, max2_loc - f7sb)
+        credit_res = (
+            P_taux.energie_renouvelable * min_(f7wf, plafond_depenses_0) # même taux pour énergie renouvelable et DPE
+            + P_taux.pac_geothermie_air_eau * min_(f7wk, max1) # même taux pour pac géothermiques, pac thermodynamiques, chauffage au bois (avec remplacement)
+            + P_taux.chaudiere_bois * min_(f7wh, max2) # même taux pour chauffage au bois (sans remplacement), isolation parois opaques, appareils de régulation, calorifugeage, raccordement au réseau, et récupération eaux pluviales, pac autres que air/air, photovoltaïque
+            + P_taux.chaudiere_condensation * min_(f7wq, max3) # même taux pour les chaudieres à condensation, matériaux d'isolation parois vitrées, portes d'entrée, volets isolants
+            )
+        credit_loc = (
+            P_taux.energie_renouvelable * min_(f7se, plafond_depenses_location_0) # même taux pour énergie renouvelable et DPE
+            + P_taux.pac_geothermie_air_eau * min_(f7sd, max1_loc) # même taux pour pac géothermiques, pac thermodynamiques, chauffage au bois (avec remplacement)
+            + P_taux.chaudiere_bois * min_(f7sb, max2_loc) # même taux pour chauffage au bois (sans remplacement), isolation parois opaques, appareils de régulation, calorifugeage, raccordement au réseau, et récupération eaux pluviales, pac autres que air/air, photovoltaïque
+            + P_taux.chaudiere_condensation * min_(f7sh, max3_loc) # même taux pour les chaudieres à condensation, matériaux d'isolation parois vitrées, portes d'entrée, volets isolants
+            )
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-
-        max1 = max_(0, max0 - f7wf)
-        max2 = max_(0, max1 - f7se)
-        max3 = max_(0, max2 - f7wk)
-        max4 = max_(0, max3 - f7sd)
-        max5 = max_(0, max4 - f7wh)
-        max6 = max_(0, max5 - f7sb)
-        max7 = max_(0, max6 - f7wq)
-        return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_se * min_(f7se, max1)
-            + P.taux_wk * min_(f7wk, max2)
-            + P.taux_sd * min_(f7sd, max3)
-            + P.taux_wh * min_(f7wh, max4)
-            + P.taux_sb * min_(f7sb, max5)
-            + P.taux_wq * min_(f7wq, max6)
-            + P.taux_sh * min_(f7sh, max7)
+        return or_(not_(f7we), rfr < P_plafond_ressources_ecopret.foyer_fiscal) * (
+            credit_res + credit_loc
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
