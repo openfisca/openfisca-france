@@ -5,6 +5,7 @@ values:
   2020-06-08:
     value: 28
 metadata:
+  last_value_still_valid_on: "2025-08-20"
   short_label: Âge max
   unit: year
   reference:
