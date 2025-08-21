@@ -3,6 +3,7 @@ values:
   2013-01-01:
     value: 0.08
 metadata:
+  last_value_still_valid_on: "2025-08-20"
   short_label: Taux entre 1 plafond RCI et 4 plafonds PSS
   label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
   ipp_csv_id: retc_rci_1_4plaf
