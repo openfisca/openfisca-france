@@ -4,7 +4,7 @@ values:
     value: 2.2975
 metadata:
   short_label: Prime naissance
-  last_value_still_valid_on: "2023-05-27"
+  last_value_still_valid_on: "2025-08-20"
   label_en: Birth bonus amount
   ipp_csv_id: tx_paje_naiss
   unit: BMAF
