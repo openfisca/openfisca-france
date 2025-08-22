@@ -1,8 +1,11 @@
-description: Nombre d'années sur lesquelles s'étalent la réduction d'impôt "Censi-Bouvard" pour l'investissement locatif meublé exercé à titre non professionnel dans certaines résidences (2009-)
+description: Nombre d'années sur lesquelles s'étalent la réduction d'impôt "Censi-Bouvard" pour l'investissement locatif meublé exercé à titre non professionnel dans certaines résidences (2009-2022)
 values:
   2009-01-01:
     value: 9
+  2023-01-01:
+    value: null
 metadata:
+  last_value_still_valid_on: "2025-08-22"
   short_label: Durée
   ipp_csv_id: duree_locmeu
   reference:
