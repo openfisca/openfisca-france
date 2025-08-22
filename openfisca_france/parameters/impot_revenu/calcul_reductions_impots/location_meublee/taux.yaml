@@ -2,6 +2,8 @@ description: Taux de la réduction d'impôt "Censi-Bouvard" pour l'investissemen
 values:
   2009-01-01:
     value: 0.25
+  2023-01-01:
+    value: null
 metadata:
   short_label: Logements acquis en 2009 et 2010
   ipp_csv_id: tx_locmeu
