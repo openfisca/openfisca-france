@@ -8,7 +8,7 @@ values:
     value: 0.3
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2025-03-25"
+  last_value_still_valid_on: "2025-08-22"
   ipp_csv_id: abt_micro_fon
   unit: /1
   reference:
