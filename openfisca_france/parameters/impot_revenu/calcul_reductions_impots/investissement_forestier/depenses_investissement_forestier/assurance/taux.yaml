@@ -6,7 +6,7 @@ values:
     value: 0.76
 metadata:
   short_label: Taux du crédit d'impôt
-  last_value_still_valid_on: "2022-10-11"
+  last_value_still_valid_on: "2025-08-22"
   unit: /1
   reference:
     2011-01-01:
@@ -19,3 +19,4 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025743489
     - title: Art. 199 decies H, 3 ter. du CGI
       href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000025746371/2012-04-26/
+documentation: "Article actuel : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028439825"
