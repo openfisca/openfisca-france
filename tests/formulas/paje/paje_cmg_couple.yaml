@@ -28,7 +28,7 @@
         paje_cmg:
           2024-11: 0
 
-- name: 'Cas P2B1E0S1 : Assistant maternel, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais > CMG max'
+- name: 'Cas P2B1E0S1 : Assistant maternel, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, Parent avec AAH, 85% des frais > CMG max'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -39,11 +39,13 @@
         prestations_familiales_base_ressources:
           2024-11: 20000
         frais_garde:
-          2024-11: 1200
+          2024-11: 1500
         ass_mat:
           2024-11: 1
     individus:
       parent1:
+        aah:
+          2024-11: 75
         date_naissance:
           ETERNITY: 2000-10-15
       parent2:
@@ -56,7 +58,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 804.94472361809
+          2024-11: 804.94472361809 * 1.3
 
 - name: 'Cas P2B1E0S1 : Assistant maternel, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais < CMG max'
   period: 2024-11
@@ -88,7 +90,7 @@
         paje_cmg:
           2024-11: 425.005025125628
 
-- name: 'Cas P2B1E0S1 : Garde à domicile, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais > CMG max'
+- name: 'Cas P2B1E0S1 : Garde à domicile, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, Parents avec AAH, 85% des frais > CMG max'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -99,16 +101,20 @@
         prestations_familiales_base_ressources:
           2024-11: 20000
         frais_garde:
-          2024-11: 1200
+          2024-11: 1800
         gar_dom:
           2024-11: 1
     individus:
       parent1:
         date_naissance:
           ETERNITY: 2000-10-15
+        aah:
+          2024-11: 75
       parent2:
         date_naissance:
           ETERNITY: 1990-10-15
+        aah:
+          2024-11: 100
       bebe1:
         date_naissance:
           ETERNITY: 2024-05-15
@@ -116,7 +122,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 972.673366834171
+          2024-11: 972.673366834171 * 1.3
 
 - name: 'Cas P2B1E0S1 : Garde à domicile, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais < CMG max'
   period: 2024-11
@@ -148,7 +154,7 @@
         paje_cmg:
           2024-11: 425.005025125628
 
-- name: 'Cas P2B1E0S1 : Micro-crèche, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais > CMG max'
+- name: 'Cas P2B1E0S1 : Micro-crèche, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, Famille avec AEEH, 85% des frais > CMG max'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -158,8 +164,10 @@
         enfants: [bebe1]
         prestations_familiales_base_ressources:
           2024-11: 20000
+        aeeh:
+          2024-11: 245
         frais_garde:
-          2024-11: 1200
+          2024-11: 1800
         micro_creche:
           2024-11: 1
     individus:
@@ -176,7 +184,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 972.673366834171
+          2024-11: 972.673366834171 * 1.3
 
 - name: 'Cas P2B1E0S1 : Micro-crèche, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil1, 85% des frais < CMG max'
   period: 2024-11
@@ -209,7 +217,7 @@
           2024-11: 425.005025125628
 
 
-- name: 'Cas P2B1E0S2 : Assistant maternel, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil2, 85% des frais > CMG max'
+- name: 'Cas P2B1E0S2 : Assistant maternel, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil2, Parent avec AAH, Famille avec AEEH, 85% des frais > CMG max'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -219,14 +227,18 @@
         enfants: [bebe1]
         prestations_familiales_base_ressources:
           2024-11: 40000
+        aeeh:
+          2024-11: 250
         frais_garde:
-          2024-11: 1200
+          2024-11: 1500
         ass_mat:
           2024-11: 1
     individus:
       parent1:
         date_naissance:
           ETERNITY: 2000-10-15
+        aah:
+          2024-11: 75
       parent2:
         date_naissance:
           ETERNITY: 1990-10-15
@@ -237,7 +249,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 670.793969849246
+          2024-11: 670.793969849246 * 1.3 * 1.3
 
 - name: 'Cas P2B1E0S2 : Assistant maternel, Nombre de parents : 2, Nombre de bébés : 1, Revenu imposable < Seuil2, 85% des frais < CMG max'
   period: 2024-11
@@ -1083,7 +1095,7 @@
         paje_cmg:
           2024-11: 352.1608040201
 
-- name: 'Cas P2B0E1S3 : Micro-crèche, Nombre de parents : 2, Nombre d''enfants : 1, Revenu imposable >Seuil 2, 85% des frais < CMG max'
+- name: 'Cas P2B0E1S3 : Micro-crèche, Nombre de parents : 2, Nombre d''enfants : 1, Revenu imposable >Seuil 2, Prepare > 0, Parent actif à moins de 50%, Parent avec AAH, Famille avec AEEH, 85% des frais < CMG max, 85% des frais > CMG réduit'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -1093,8 +1105,14 @@
         enfants: [enfant1]
         prestations_familiales_base_ressources:
           2024-11: 80000
-        frais_garde:
+        aeeh:
           2024-11: 250
+        paje_prepare:
+          2024-11: 200
+        partiel1:
+          2024-11: true
+        frais_garde:
+          2024-11: 500
         micro_creche:
           2024-11: 1
     individus:
@@ -1102,6 +1120,8 @@
         date_naissance:
           ETERNITY: 2000-10-15
       parent2:
+        aah:
+          2024-11: 75
         date_naissance:
           ETERNITY: 1990-10-15
       enfant1:
@@ -1111,7 +1131,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 212.502512562814
+          2024-11: (350.4 * 1.3 * 1.3) / 2
 
 
 - name: 'Cas P2B2E0S1 : Assistant maternel, Nombre de parents : 2, Nombre de bébés : 2, Revenu imposable < Seuil1, 85% des frais > CMG max'
@@ -1246,7 +1266,7 @@
         paje_cmg:
           2024-11: 510
 
-- name: 'Cas P2B2E0S1 : Micro-crèche, Nombre de parents : 2, Nombre de bébés : 2, Revenu imposable < Seuil1, 85% des frais > CMG max'
+- name: 'Cas P2B2E0S1 : Micro-crèche, Nombre de parents : 2, Nombre de bébés : 2, Revenu imposable < Seuil1, Prepare > 0, Parent actif à moins de 50%, 85% des frais > CMG max'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -1256,6 +1276,10 @@
         enfants: [bebe1, bebe2]
         prestations_familiales_base_ressources:
           2024-11: 20000
+        paje_prepare:
+          2024-11: 200
+        partiel1:
+          2024-11: true
         frais_garde:
           2024-11: 3000
         micro_creche:
@@ -1277,7 +1301,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 1945.34673366834
+          2024-11: 1945.34673366834 / 2
 
 - name: 'Cas P2B2E0S1 : Micro-crèche, Nombre de parents : 2, Nombre de bébés : 2, Revenu imposable < Seuil1, 85% des frais < CMG max'
   period: 2024-11
@@ -1379,7 +1403,7 @@
         paje_cmg:
           2024-11: 850
 
-- name: 'Cas P2B2E0S2 : Garde à domicile, Nombre de parents : 2, Nombre de bébés : 2, Revenu imposable < Seuil2, 85% des frais > CMG max'
+- name: 'Cas P2B2E0S2 : Garde à domicile, Nombre de parents : 2, Nombre de bébés : 2, Revenu imposable < Seuil2, Prepare > 0, Parent inactif'
   period: 2024-11
   relative_error_margin: 0.01
   input:
@@ -1389,6 +1413,10 @@
         enfants: [bebe1, bebe2]
         prestations_familiales_base_ressources:
           2024-11: 40000
+        paje_prepare:
+          2024-11: 200
+        inactif:
+          2024-11: true
         frais_garde:
           2024-11: 3000
         gar_dom:
@@ -1410,7 +1438,7 @@
     familles:
       famille:
         paje_cmg:
-          2024-11: 838.472361809045
+          2024-11: 0
 
 - name: 'Cas P2B2E0S2 : Garde à domicile, Nombre de parents : 2, Nombre de bébés : 2, Revenu imposable < Seuil2, 85% des frais < CMG max'
   period: 2024-11

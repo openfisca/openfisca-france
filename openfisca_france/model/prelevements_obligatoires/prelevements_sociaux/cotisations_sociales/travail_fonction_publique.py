@@ -16,11 +16,11 @@ class ati_atiacl(Variable):
         remuneration_principale = individu('remuneration_principale', period)
         categorie_salarie = individu('categorie_salarie', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        _P = parameters(period)
+        cotsoc = parameters(period).cotsoc
 
         # ATI : pour les fonctionnaires d'Etat, hors militaires
         cotisation_etat_hors_militaires = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
+            bareme_by_categorie_salarie = cotsoc.cotisations_employeur,
             bareme_name = 'ati',
             base = remuneration_principale,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -28,7 +28,7 @@ class ati_atiacl(Variable):
             )
         # ATIACL : pour les fonctionnaires territoriaux et hospitaliers
         cotisation_collectivites_locales = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
+            bareme_by_categorie_salarie =cotsoc.cotisations_employeur,
             bareme_name = 'atiacl',
             base = remuneration_principale,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -93,7 +93,7 @@ class contribution_exceptionnelle_solidarite(Variable):
             )
         # Ces déductions sont négatives
         cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
+            bareme_by_categorie_salarie = parameters.cotsoc.cotisations_salarie,
             bareme_name = 'excep_solidarite',
             base = assujettis * min_(
                 remuneration_brute + supplement_familial_traitement + primes_fonction_publique + deduction,
@@ -134,11 +134,11 @@ class fonds_emploi_hospitalier(Variable):
         remuneration_principale = individu('remuneration_principale', period)
         categorie_salarie = individu('categorie_salarie', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        _P = parameters(period)
+        cotsoc = parameters(period).cotsoc
 
         # Que pour fonctionnaires hospitaliers
         cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
+            bareme_by_categorie_salarie = cotsoc.cotisations_employeur,
             bareme_name = 'feh',
             base = remuneration_principale,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -158,10 +158,10 @@ class ircantec_salarie(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
-        _P = parameters(period)
+        cotsoc = parameters(period).cotsoc
 
         ircantec = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie,
+            bareme_by_categorie_salarie = cotsoc.cotisations_salarie,
             bareme_name = 'ircantec',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -182,10 +182,10 @@ class ircantec_employeur(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
-        _P = parameters(period)
+        cotsoc = parameters(period).cotsoc
 
         ircantec = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
+            bareme_by_categorie_salarie = cotsoc.cotisations_employeur,
             bareme_name = 'ircantec',
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -206,8 +206,8 @@ class pension_salarie(Variable):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         nouvelle_bonification_indiciaire = individu('nouvelle_bonification_indiciaire', period)
         categorie_salarie = individu('categorie_salarie', period)
-        _P = parameters(period)
-        sal = _P.cotsoc.cotisations_salarie
+        cotsoc = parameters(period).cotsoc
+        sal = cotsoc.cotisations_salarie
 
         terr_or_hosp = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
@@ -244,8 +244,7 @@ class pension_employeur(Variable):
             )
         etat = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
         militaire = (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
-        _P = parameters(period)
-        pat = _P.cotsoc.cotisations_employeur
+        pat = parameters(period).cotsoc.cotisations_employeur
 
         montant = (
             etat * pat['public_titulaire_etat']['pension'].calc(remuneration_principale)
@@ -281,8 +280,7 @@ class rafp_salarie(Variable):
 
         parametres_rafp = parameters(period).prelevements_sociaux.cotisations_secteur_public.rafp
         taux_plafond_tib = parametres_rafp.rafp_plaf_assiette
-        _P = parameters(period)
-        bareme_rafp_salarie = _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp']
+        bareme_rafp_salarie = parameters(period).cotsoc.cotisations_salarie.public_titulaire_etat['rafp']
 
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + avantage_en_nature
         assiette = (min_(base_imposable, taux_plafond_tib * traitement_indiciaire_brut) + gipa) * eligible
@@ -317,8 +315,7 @@ class rafp_employeur(Variable):
 
         parametres_rafp = parameters(period).prelevements_sociaux.cotisations_secteur_public.rafp
         taux_plafond_tib = parametres_rafp.rafp_plaf_assiette
-        _P = parameters(period)
-        bareme_rafp_employeur = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
+        bareme_rafp_employeur = parameters(period).cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
 
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + indemnite_compensatrice_csg + avantage_en_nature
         assiette = (min_(base_imposable, taux_plafond_tib * traitement_indiciaire_brut) + gipa) * eligible

@@ -236,11 +236,8 @@ cotisations_salarie_by_categorie_salarie = {
     }
 
 
-# TODO: Rename bareme_by_type_sal_name to bareme_by_categorie_salarie
-
-
 def apply_bareme_for_relevant_type_sal(
-        bareme_by_type_sal_name,
+        bareme_by_categorie_salarie,
         bareme_name,
         categorie_salarie,
         base,
@@ -248,7 +245,7 @@ def apply_bareme_for_relevant_type_sal(
         round_base_decimals = DEFAULT_ROUND_BASE_DECIMALS,
         ):
     '''Apply bareme corresponding to bareme_name to the relevant categorie_salarie.'''
-    assert bareme_by_type_sal_name is not None
+    assert bareme_by_categorie_salarie is not None
     assert bareme_name is not None
     assert categorie_salarie is not None
     assert base is not None
@@ -260,15 +257,15 @@ def apply_bareme_for_relevant_type_sal(
             if categorie_salarie_type == TypesCategorieSalarie.non_pertinent:
                 continue
 
-            if bareme_by_type_sal_name._name == 'cotisations_employeur_after_preprocessing':
+            if bareme_by_categorie_salarie._name == 'cotisations_employeur_after_preprocessing':
                 cotisations_by_categorie_salarie = cotisations_employeur_by_categorie_salarie
-            elif bareme_by_type_sal_name._name == 'cotisations_salarie_after_preprocessing':
+            elif bareme_by_categorie_salarie._name == 'cotisations_salarie_after_preprocessing':
                 cotisations_by_categorie_salarie = cotisations_salarie_by_categorie_salarie
             else:
                 NameError()
 
             try:
-                categorie_salarie_baremes = bareme_by_type_sal_name[categorie_salarie_type.name]
+                categorie_salarie_baremes = bareme_by_categorie_salarie[categorie_salarie_type.name]
             except KeyError as e:
                 # FIXME: dirty fix since public_titulaire_militaire does not exist
                 if categorie_salarie_type.name == 'public_titulaire_militaire':
@@ -278,7 +275,7 @@ def apply_bareme_for_relevant_type_sal(
             if bareme_name in cotisations_by_categorie_salarie[categorie_salarie_type.name]:
                 bareme = categorie_salarie_baremes[bareme_name]
             else:
-                KeyError(f'{bareme_name} not in {bareme_by_type_sal_name._name} for {categorie_salarie_type.name}')
+                KeyError(f'{bareme_name} not in {bareme_by_categorie_salarie._name} for {categorie_salarie_type.name}')
                 continue
 
             yield bareme.calc(
@@ -331,9 +328,9 @@ def apply_bareme(individu, period, parameters, cotisation_type = None, bareme_na
 def compute_cotisation(individu, period, parameters, cotisation_type = None, bareme_name = None):
     assert cotisation_type is not None
     if cotisation_type == 'employeur':
-        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
+        bareme_by_categorie_salarie_name = parameters(period).cotsoc.cotisations_employeur
     elif cotisation_type == 'salarie':
-        bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_salarie
+        bareme_by_categorie_salarie_name = parameters(period).cotsoc.cotisations_salarie
     assert bareme_name is not None
 
     assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period, options = [ADD])
@@ -341,7 +338,7 @@ def compute_cotisation(individu, period, parameters, cotisation_type = None, bar
     categorie_salarie = individu('categorie_salarie', period.first_month)
 
     cotisation = apply_bareme_for_relevant_type_sal(
-        bareme_by_type_sal_name = bareme_by_type_sal_name,
+        bareme_by_categorie_salarie = bareme_by_categorie_salarie_name,
         bareme_name = bareme_name,
         base = assiette_cotisations_sociales,
         plafond_securite_sociale = plafond_securite_sociale,

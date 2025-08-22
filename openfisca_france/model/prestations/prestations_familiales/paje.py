@@ -1,4 +1,4 @@
-from numpy import round, floor, datetime64, maximum
+from numpy import round, floor, datetime64, timedelta64, maximum
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -93,10 +93,11 @@ class paje(Variable):
         '''
         paje_base = famille('paje_base', period)
         paje_naissance = famille('paje_naissance', period)
+        paje_adoption = famille('paje_adoption', period)
         paje_prepare = famille('paje_prepare', period)
         paje_cmg = famille('paje_cmg', period)
 
-        return paje_base + (paje_naissance + paje_prepare + paje_cmg)
+        return paje_base + (paje_naissance + paje_adoption + paje_prepare + paje_cmg)
 
     def formula_2004_01_01(famille, period):
         '''
@@ -237,6 +238,61 @@ class paje_base(Variable):
 
         return a_un_enfant_eligible * montant
 
+    def formula_2021_05_01(famille, period, parameters):
+        '''
+        Fin de la période de transition avec la réforme de 2018.
+        Tous les enfants de moins de 3 ans sont dans le nouveau régime
+        '''
+        couple_biactif = famille('biactivite', period)
+        parent_isole = not_(famille('en_couple', period))
+        nombre_enfants = famille('af_nbenf', period)
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+
+        montant_taux_plein = bmaf * paje.paje_cm.montant.allocation_base_taux_plein.apres_2018.taux
+
+        # A partir de la réforme d'avril 2018 (enfants nés apres avril 2018)
+        def plafond_taux_plein_apres_2018():
+            plafond_de_base = paje.paje_plaf.ne_adopte_apres_04_2018.taux_plein.plafond_ressources_0_enfant
+            maj_plafond_2_premiers_enfants = paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.premier_2eme_enfant * plafond_de_base
+            maj_plafond_par_enfant_sup = paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.troisieme_plus_enfant * plafond_de_base
+            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_apres_04_2018.taux_plein.biactifs_parents_isoles
+
+            return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
+
+        def plafond_taux_partiel_apres_2018():
+            plafond_de_base = paje.paje_plaf.ne_adopte_apres_04_2018.taux_partiel.plafond_ressources_0_enfant
+            maj_plafond_2_premiers_enfants = paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.premier_2eme_enfant * plafond_de_base
+            maj_plafond_par_enfant_sup = paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.troisieme_plus_enfant * plafond_de_base
+            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_apres_04_2018.taux_partiel.biactifs_parents_isoles
+
+            return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
+
+        def plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif):
+            plafond = (
+                plafond_de_base
+                + min_(nombre_enfants, 2) * maj_plafond_2_premiers_enfants
+                + max_(nombre_enfants - 2, 0) * maj_plafond_par_enfant_sup
+                + (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+                )
+            return plafond
+
+        a_un_enfant_eligible = famille.any(famille.members('enfant_eligible_paje', period))
+
+        plafond_taux_partiel = plafond_taux_partiel_apres_2018()
+        plafond_taux_plein = plafond_taux_plein_apres_2018()
+
+        ressources = famille('prestations_familiales_base_ressources', period)
+        montant_taux_partiel = montant_taux_plein / 2
+
+        montant = (
+            (ressources <= plafond_taux_plein) * montant_taux_plein
+            + (ressources <= plafond_taux_partiel)
+            * (ressources > plafond_taux_plein) * montant_taux_partiel
+            )
+
+        return a_un_enfant_eligible * montant
+
 
 class enfant_eligible_paje(Variable):
     value_type = bool
@@ -270,39 +326,18 @@ class paje_naissance(Variable):
         Références législatives :git
         https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737121&dateTexte=&categorieLien=cid
         '''
-        af_nbenf = famille('af_nbenf', period)
-        base_ressources = famille('prestations_familiales_base_ressources', period)
-        isole = not_(famille('en_couple', period))
-        biactivite = famille('biactivite', period)
-        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
-        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
-        prime_naissance = round(100 * paje.paje_cm2.montant.prime_naissance * bmaf) / 100
-
         # Versée au 7ème mois de grossesse
         diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
         nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype('int') == 2, role = Famille.ENFANT)
 
+        af_nbenf = famille('af_nbenf', period)
         nbenf = af_nbenf + nb_enfants_eligibles  # Ajouter les enfants à naître
 
-        taux_plafond = (
-            (nbenf > 0)
-            + paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.premier_2eme_enfant * min_(nbenf, 2)
-            + paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.troisieme_plus_enfant * max_(nbenf - 2, 0)
-            )
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+        prime_naissance = round(100 * paje.paje_cm2.montant.prime_naissance * bmaf) / 100
 
-        majoration_isole_biactif = isole | biactivite
-
-        plafond_de_ressources = (
-            paje.paje_plaf.ne_adopte_apres_04_2018.taux_partiel.plafond_ressources_0_enfant
-            * taux_plafond
-            + (taux_plafond > 0)
-            * paje.paje_plaf.ne_adopte_apres_04_2018.taux_partiel.biactifs_parents_isoles
-            * majoration_isole_biactif
-            )
-
-        eligible_prime_naissance = (base_ressources <= plafond_de_ressources)
-
-        return prime_naissance * eligible_prime_naissance * nb_enfants_eligibles
+        return paje_naissance_adoption(famille, parameters, period, nbenf, nb_enfants_eligibles, prime_naissance)
 
     def formula_2014_04_01(famille, period, parameters):
         '''
@@ -383,6 +418,149 @@ class paje_naissance(Variable):
         return nais_prime * elig * nb_enfants_eligibles
 
 
+class paje_adoption(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = "Allocation d'adoption de la PAJE"
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F13220'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2018_04_01(famille, period, parameters):
+        '''
+        Prestation d'accueil du jeune enfant - Allocation d'adoption
+        Références législatives
+        https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737121&dateTexte=&categorieLien=cid
+        '''
+        pfam = parameters(period).prestations_sociales.prestations_familiales
+        paje = pfam.petite_enfance.paje
+        bmaf = pfam.bmaf.bmaf
+
+        nbenf = famille('af_nbenf', period)
+
+        dates_limite_versement = famille.members('date_adoption', period).astype('datetime64[M]') + timedelta64(3, 'M')
+        nb_enfants_eligibles = famille.sum(famille.members('est_enfant_dans_famille', period)
+                                * famille.members('adoption', period)
+                                * (datetime64(period.start) >= famille.members('date_adoption', period))
+                                * (datetime64(period.start) < dates_limite_versement)
+                                * (famille.members('age', period) < pfam.def_pac.enfants.age_limite))
+        prime_adoption = round(100 * paje.paje_cm2.montant.prime_adoption * bmaf) / 100
+
+        return paje_naissance_adoption(famille, parameters, period, nbenf, nb_enfants_eligibles, prime_adoption)
+
+    def formula_2014_04_01(famille, period, parameters):
+        '''
+        Prestation d'accueil du jeune enfant - Allocation d'adoption
+        Références législatives
+        https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737121&dateTexte=&categorieLien=cid
+        '''
+        nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+        isole = not_(famille('en_couple', period))
+        biactivite = famille('biactivite', period)
+        pfam = parameters(period).prestations_sociales.prestations_familiales
+        paje = pfam.petite_enfance.paje
+        fam_bmaf = pfam.bmaf
+
+        # Le montant de la PAJE est gelé depuis avril 2013.
+        date_gel_paje = Instant((2013, 4, 1))
+        bmaf = fam_bmaf.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.bmaf.bmaf
+        prime_adoption = round(100 * paje.paje_cm2.montant.prime_adoption * bmaf) / 100
+
+        majoration_isole_biactif = isole | biactivite
+
+        plafond_de_ressources = (
+            paje.paje_plaf.ne_adopte_04_2014_et_03_2018.taux_partiel.plafond_ressources_0_enfant
+            + paje.paje_plaf.ne_adopte_04_2014_et_03_2018.taux_partiel.plafond_ressources_0_enfant * nbenf * paje.paje_plaf.ne_adopte_04_2014_et_03_2018.majorations_enfants.majoration_enfant_supp
+            + paje.paje_plaf.ne_adopte_04_2014_et_03_2018.taux_partiel.biactifs_parents_isoles * majoration_isole_biactif
+            )
+
+        eligible_prime_adoption = (base_ressources <= plafond_de_ressources)
+
+        dates_limite_versement = famille.members('date_adoption', period).astype('datetime64[M]') + timedelta64(3, 'M')
+
+        nb_enfants_eligibles = famille.sum(famille.members('est_enfant_dans_famille', period)
+                                * famille.members('adoption', period)
+                                * (datetime64(period.start) >= famille.members('date_adoption', period))
+                                * (datetime64(period.start) < dates_limite_versement)
+                                * (famille.members('age', period) < pfam.def_pac.enfants.age_limite))
+
+        return prime_adoption * eligible_prime_adoption * nb_enfants_eligibles
+
+    def formula_2004_01_01(famille, period, parameters):
+        '''
+        Prestation d'accueil du jeune enfant - Allocation d'adoption
+        '''
+        nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+        isole = not_(famille('en_couple', period))
+        biactivite = famille('biactivite', period)
+        pfam = parameters(period).prestations_sociales.prestations_familiales
+        paje = pfam.petite_enfance.paje
+        fam_bmaf = pfam.bmaf
+
+        # Le montant de la PAJE est gelé depuis avril 2013.
+        date_gel_paje = Instant((2013, 4, 1))
+        bmaf = fam_bmaf.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.bmaf.bmaf
+        prime_adoption = round(100 * paje.paje_cm2.montant.prime_adoption * bmaf) / 100
+
+        plaf_tx = (
+            (nbenf > 0)
+            + paje.paje_plaf.ne_adopte_avant_04_2014.majorations_enfants.premier_2eme_enfant * min_(nbenf, 2)
+            + paje.paje_plaf.ne_adopte_avant_04_2014.majorations_enfants.troisieme_plus_enfant * max_(nbenf - 2, 0)
+            )
+
+        majo = isole | biactivite
+
+        plaf = (
+            paje.paje_plaf.ne_adopte_avant_04_2014.plafond_ressources_0_enfant
+            * plaf_tx
+            + (plaf_tx > 0)
+            * paje.paje_plaf.ne_adopte_avant_04_2014.biactifs_parents_isoles
+            * majo
+            )
+
+        elig = (base_ressources <= plaf)
+
+        dates_limite_versement = famille.members('date_adoption', period).astype('datetime64[M]') + timedelta64(3, 'M')
+        nb_enfants_eligibles = famille.sum(famille.members('est_enfant_dans_famille', period)
+                                * famille.members('adoption', period)
+                                * (datetime64(period.start) >= famille.members('date_adoption', period))
+                                * (datetime64(period.start) < dates_limite_versement)
+                                * (famille.members('age', period) < pfam.def_pac.enfants.age_limite))
+
+        return prime_adoption * elig * nb_enfants_eligibles
+
+
+def paje_naissance_adoption(famille, parameters, period, nb_enfants, nb_enfants_eligibles, montant_prime):
+    base_ressources = famille('prestations_familiales_base_ressources', period)
+    isole = not_(famille('en_couple', period))
+    biactivite = famille('biactivite', period)
+    pfam = parameters(period).prestations_sociales.prestations_familiales
+    paje = pfam.petite_enfance.paje
+
+    taux_plafond = (
+        (nb_enfants > 0)
+        + paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.premier_2eme_enfant * min_(nb_enfants, 2)
+        + paje.paje_plaf.ne_adopte_apres_04_2018.majorations_enfants.troisieme_plus_enfant * max_(nb_enfants - 2, 0)
+        )
+
+    majoration_isole_biactif = isole | biactivite
+
+    plafond_de_ressources = (
+        paje.paje_plaf.ne_adopte_apres_04_2018.taux_partiel.plafond_ressources_0_enfant
+        * taux_plafond
+        + (taux_plafond > 0)
+        * paje.paje_plaf.ne_adopte_apres_04_2018.taux_partiel.biactifs_parents_isoles
+        * majoration_isole_biactif
+        )
+
+    eligible_prime_adoption = (base_ressources <= plafond_de_ressources)
+
+    return montant_prime * eligible_prime_adoption * nb_enfants_eligibles
+
+
 class paje_prepare(Variable):
     value_type = float
     entity = Famille
@@ -444,7 +622,9 @@ class paje_cmg(Variable):
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         aah_i = famille.members('aah', period)
-        aah = famille.sum(aah_i)
+        aah = famille.sum(aah_i, role = Famille.PARENT)
+
+        aeeh = famille('aeeh', period)
 
         etudiant_i = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant_i, role = Famille.PARENT)
@@ -465,7 +645,7 @@ class paje_cmg(Variable):
         paje_prepare_inactif = (paje_prepare > 0) * inactif
         eligible = cond_eligibilite * not_(paje_prepare_inactif)
 
-        def calculer_seuil(nombre_enfants, params, is_parent_isole, taux_parent_isole, paje_prepare_temps_partiel):
+        def calculer_seuil(nombre_enfants, params, is_parent_isole, taux_parent_isole):
             # On détermine la valeur initiale du plafond en fonction du nombre d'enfants
             seuil_revenus = ((nombre_enfants == 1) * params.enfant + (nombre_enfants >= 2) * params.deux_enfants
                              + max_(nombre_enfants - 2, 0) * params.majoration_enfant_supp)
@@ -473,27 +653,18 @@ class paje_cmg(Variable):
             # On applique la majoration "parent isolé" si applicable
             seuil_revenus = seuil_revenus * (1 + is_parent_isole * taux_parent_isole)
 
-            # Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
-            # dans l'entreprise), vous cumulez intégralement la PreParE et le Cmg.
-            # Si vous bénéficiez du PreParE taux partiel (= vous travaillez à 50% ou moins de la durée
-            # du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
-            seuil_revenus = seuil_revenus * (1 - .5 * paje_prepare_temps_partiel)
-
             return seuil_revenus
 
         # Les plafonds de ressource
 
-        paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
         nombre_enfants = famille('af_nbenf', period)
         # Il s'agit d'une famille monoparentale (parent isolé)
         parent_isole = famille('nb_parents', period) == 1
 
         seuil_revenus_1 = calculer_seuil(nombre_enfants, paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014,
-                                        parent_isole, paje.plaf_cmg.majoration_plafond_personne_isolee,
-                                        paje_prepare_temps_partiel)
+                                        parent_isole, paje.plaf_cmg.majoration_plafond_personne_isolee)
         seuil_revenus_2 = calculer_seuil(nombre_enfants, paje.plaf_cmg.deuxieme_plafond_ne_adopte_apres_04_2014,
-                                        parent_isole, paje.plaf_cmg.majoration_plafond_personne_isolee,
-                                        paje_prepare_temps_partiel)
+                                        parent_isole, paje.plaf_cmg.majoration_plafond_personne_isolee)
 
         # calcul du montant
 
@@ -555,6 +726,15 @@ class paje_cmg(Variable):
             + micro_creche * taux_seuils_garde_domicile_micro_creche * coeff_enfants_assistant_maternel_micro_creche
             )
         montant_cmg = montant_cmg * (1 + parent_isole * paje.paje_cmg.majoration_montant_personne_isolee)
+        montant_cmg = montant_cmg * (1 + (aah > 0) * paje.paje_cmg.majoration_montant_aah)
+        montant_cmg = montant_cmg * (1 + (aeeh > 0) * paje.paje_cmg.majoration_montant_aeeh)
+
+        # Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
+        # dans l'entreprise), vous cumulez intégralement la PreParE et le CMG.
+        # Si vous bénéficiez du PreParE taux partiel (= vous travaillez à 50% ou moins de la durée
+        # du travail fixée dans l'entreprise), le montant du CMG est divisé par 2.
+        paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
+        montant_cmg = montant_cmg * (1 - paje_prepare_temps_partiel * paje.paje_cmg.taux_reduit)
 
         frais_garde = famille('frais_garde', period)
         # Le montant de la CMG ne doit pas dépasser 85% des frais de garde de la famille
