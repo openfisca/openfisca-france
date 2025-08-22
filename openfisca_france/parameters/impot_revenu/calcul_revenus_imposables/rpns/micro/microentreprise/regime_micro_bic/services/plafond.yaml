@@ -90,4 +90,4 @@ metadata:
 documentation: |-
   Réf : Article 50-0 2° du CGI https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622490
   Les seuils sont actualisés tous les trois ans dans la même proportion que l'évolution triennale de la première tranche du barème de l'impôt sur le revenu et arrondis à la centaine d'euros la plus proche.
-  NB : comme pour les autres fichiers, la valeur d'une année N est celle en application pour l'IR sur les revenus de l'année N. Néanmoins, ici, il faut avoir en tête qu'il s'agit de seuils appliqués à des revenus d'années précédentes par rapport à l'année des revenus de la déclaration. 
+  NB : comme pour les autres fichiers, la valeur d'une année N est celle en application pour l'IR sur les revenus de l'année N. Néanmoins, ici, il faut avoir en tête qu'il s'agit de seuils appliqués à des revenus d'années précédentes par rapport à l'année des revenus de la déclaration.
