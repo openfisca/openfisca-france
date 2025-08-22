@@ -4,13 +4,26 @@ values:
     value: null
   2009-01-01:
     value: 0.022
+  2023-01-01:
+    value: 0.212
+  2024-07-01:
+    value: 0.232
 metadata:
+  last_value_still_valid_on: "2025-08-22"
   short_label: Taux (micro BNC)
   ipp_csv_id: tx_bnc_vl
   unit: /1
   reference:
     2009-01-01:
-      title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021557902
+      - title: Article D613-4 du CSS
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041918199/2020-05-25/
+      - title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
+        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021557902
+    2023-01-01:
+      - title: Article D613-4 du CSS
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714712/2022-12-10/
+    2024-07-01:
+      - title: Article D613-4 du CSS
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656794/2024-07-01/
   official_journal_date:
     2009-01-01: "2009-12-31"

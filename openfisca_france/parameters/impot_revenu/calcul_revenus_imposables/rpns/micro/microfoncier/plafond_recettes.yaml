@@ -8,7 +8,7 @@ values:
     value: 15000
 metadata:
   short_label: Plafond de recettes
-  last_value_still_valid_on: "2025-03-25"
+  last_value_still_valid_on: "2025-08-22"
   ipp_csv_id: plaf_micro_foncier
   unit: currency_next_year
   reference:
