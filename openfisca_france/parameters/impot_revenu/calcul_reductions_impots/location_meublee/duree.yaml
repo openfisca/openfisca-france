@@ -2,6 +2,8 @@ description: Nombre d'années sur lesquelles s'étalent la réduction d'impôt "
 values:
   2009-01-01:
     value: 9
+  2023-01-01:
+    value: null
 metadata:
   short_label: Durée
   ipp_csv_id: duree_locmeu
