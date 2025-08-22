@@ -70,7 +70,7 @@ brackets:
       value: 0
 metadata:
   short_label: Barème
-  last_value_still_valid_on: "2021-08-24"
+  last_value_still_valid_on: "2025-08-22"
   label_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
   ipp_csv_id:
     rate: ircantec_p_0_1, ircantec_p_1_8, ircantec_p_1_4_75
@@ -127,3 +127,4 @@ metadata:
     2017-01-01: "2008-09-24"
   rate_unit: /1
   threshold_unit: PSS
+documentation: "Voir https://www.ircantec.retraites.fr/employeur/calcul-cotisations"
