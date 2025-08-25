@@ -39,6 +39,7 @@ values:
   2007-07-01:
     value: 2629.85
 metadata:
+  last_value_still_valid_on: "2025-08-22"
   short_label: 3ème tranche
   label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: seuil_tr3_lo
@@ -100,8 +101,10 @@ metadata:
       title: Décret 2004-464 du 28/05/2004, art. 1 (modif art. D542-5 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006231026&cidTexte=JORFTEXT000000618795
     2007-07-01:
-      title: Décret 2007-1081 du 10/07/2007, art. 1 (modif art. D542-5 du CSS)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006266095&cidTexte=JORFTEXT000000826498
+      - title: Article 31 de l'Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement
+        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046126968/2022-08-01/
+      - title: Décret 2007-1081 du 10/07/2007, art. 1 (modif art. D542-5 du CSS)
+        href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006266095&cidTexte=JORFTEXT000000826498
   official_journal_date:
     1972-07-01: "1972-06-30"
     1978-07-01: "1978-07-16"
