@@ -5,6 +5,7 @@ values:
   2015-01-01:
     value: 2.33
 metadata:
+  last_value_still_valid_on: "2025-08-22"
   unit: /1
   reference:
     2009-01-01:

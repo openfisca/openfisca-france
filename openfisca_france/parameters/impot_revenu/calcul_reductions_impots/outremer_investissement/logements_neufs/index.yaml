@@ -6,3 +6,5 @@ metadata:
   - rehabilitation
   - location_nue
   - location_intermediaire
+documentation: |-
+  TODO: Les paramètres de cette arborescence ne sont pas utilisés dans OpenFisca France.
