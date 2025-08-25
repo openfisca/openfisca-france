@@ -2474,6 +2474,7 @@ class location_meublee(Variable):
     label = "Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle - Dispositif Censi-Bouvard"
     reference = 'http://bofip.impots.gouv.fr/bofip/4885-PGP'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
