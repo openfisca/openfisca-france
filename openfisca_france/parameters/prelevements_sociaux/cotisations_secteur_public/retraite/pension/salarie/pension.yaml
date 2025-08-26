@@ -40,7 +40,7 @@ brackets:
       value: 0.111
 metadata:
   short_label: Pension
-  last_value_still_valid_on: "2021-08-24"
+  last_value_still_valid_on: "2025-08-22"
   label_en: Contributions for pensions - central government (employee contribution)
   ipp_csv_id: retpens_pu_s
   reference:
