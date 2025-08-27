@@ -1829,8 +1829,6 @@ class assiette_proflib(Variable):
         '''
         ebnc_impo_i = foyer_fiscal.members('ebnc_impo', period)
 
-        # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
-        # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
         return foyer_fiscal.sum(ebnc_impo_i)
 
     # assert (ebnc_impo <= parameters.microentreprise.regime_micro_bic.services.plafond)

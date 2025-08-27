@@ -338,6 +338,13 @@ class ebic_imps(Variable):
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
+class part_meubles_tourisme_classes(Variable):  
+    value_type = float
+    unit = '/1'
+    default_value = 0.0
+    entity = Individu
+    label = "Indicateur de la part des revenus de la case 5TB provenant de la location de meublés de tourisme classés"
+    definition_period = YEAR
 
 # (f5te, f5ue, f5ve))
 class ebnc_impo(Variable):
@@ -351,6 +358,13 @@ class ebnc_impo(Variable):
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
+class part_bnc_non_cipav(Variable):  
+    value_type = float
+    unit = '/1'
+    default_value = 0.0
+    entity = Individu
+    label = "Indicateur de la part des revenus de la case 5TE provenant de la location de meublés de tourisme classés"
+    definition_period = YEAR
 
 # (f5kn, f5ln, f5mn))
 class mbic_exon(Variable):
