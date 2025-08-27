@@ -57,33 +57,33 @@ class cotisations_non_salarie_micro_social(Variable):
         return - cotisations_non_salarie_micro_social
 
     def formula_2022_10_01(individu, period, parameters):
-        """
+        '''
         Les lettres des catégories sont celles utilisées dans l'article Article D613-4 du CSS
         Voir https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049624125/2026-01-01/
-        """
+        '''
         # Assiettes de base (cases 2042 C PRO)
         assiette_service = individu.foyer_fiscal('assiette_service', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         assiette_vente = individu.foyer_fiscal('assiette_vente', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         assiette_proflib = individu.foyer_fiscal('assiette_proflib', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        
+
         # Variables de dispatching pour 5TB (services + meublés)
         part_meubles_tourisme_classes = individu('part_meubles_tourisme_classes', period)
         part_service_bic = 1 - part_meubles_tourisme_classes
-        
-        # Variables de dispatching pour 5TE (BNC CIPAV + BNC non CIPAV)  
+
+        # Variables de dispatching pour 5TE (BNC CIPAV + BNC non CIPAV)
         part_bnc_non_cipav = individu('part_bnc_non_cipav', period)
         part_bnc_cipav = 1 - part_bnc_non_cipav
-        
+
         # Répartition des assiettes par vraie catégorie
         assiette_vente_cat_a = assiette_vente  # 5TA = uniquement catégorie a
         assiette_bnc_cipav_cat_b = assiette_proflib * part_bnc_cipav
         assiette_meubles_cat_c = assiette_service * part_meubles_tourisme_classes
         assiette_service_cat_d = assiette_service * part_service_bic
         assiette_bnc_non_cipav_cat_e = assiette_proflib * part_bnc_non_cipav
-        
+
         cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur.cotisations_prestations
         formation_professionnelle = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur.formation_professionnelle
-        
+
         cotisations_non_salarie_micro_social = (
             # Catégorie a - Ventes BIC (taux 1%)
             assiette_vente_cat_a * (cotisations_prestation.vente + formation_professionnelle.ventecom_chiffre_affaires)
@@ -95,9 +95,10 @@ class cotisations_non_salarie_micro_social(Variable):
             + assiette_service_cat_d * (cotisations_prestation.service_bic + formation_professionnelle.artisans_hors_alsace_chiffre_affaires)
             # Catégorie e - BNC non CIPAV (taux 26,1%)
             + assiette_bnc_non_cipav_cat_e * (cotisations_prestation.service + formation_professionnelle.servicecom_chiffre_affaires)
-        )
-        
+            )
+
         return -cotisations_non_salarie_micro_social
+
 
 class cotisations_non_salarie(Variable):
     value_type = float
