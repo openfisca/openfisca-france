@@ -18,7 +18,7 @@ values:
     value: 0.123
 metadata:
   short_label: Taux - Vente
-  last_value_still_valid_on: "2023-05-24"
+  last_value_still_valid_on: "2025-08-22"
   label_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_av_ca
   unit: /1
@@ -55,8 +55,13 @@ metadata:
     - title: Article D613-4, a) du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656794/2021-06-14
     2022-10-01:
-      title: Décret n° 2022-1529 du 7 décembre 2022
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046710847
+      - title: Décret n° 2022-1529 du 7 décembre 2022
+        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046710847
+      - title: Article D613-4 du CSS
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714712/2022-12-10/
+  notes:
+    2022-10-01:
+      title: LégiFrance indique "Version en vigueur du 10 décembre 2022 au 01 juin 2024", mais les notes indiquent bien "à compter du 1er octobre 2022"
   official_journal_date:
     2009-01-01: "2008-12-19"
     2013-01-01: "2012-12-30"
