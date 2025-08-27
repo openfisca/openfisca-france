@@ -140,7 +140,7 @@
     impot_revenu_restant_a_payer: 0
 
 
-- name: TNS - c et d - micro-BIC Meublés tourisme + Services 
+- name: TNS - c et d - micro-BIC Meublés tourisme + Services
   description: micro-BIC en meublés tourisme classés avec 20 000€ de CA et service BIC avec 60 000€ de CA, ayant opté pour le versement libératoire
   period: 2025
   relative_error_margin: 0.02
