@@ -1,4 +1,4 @@
-description: Taux de cotisations pour les prestations sociales des auto-entrepreneurs pour les activités d'achat-vente, vente à consommer sur place, prestations d'hebergement (sauf location hebergement meublé)
+description: Taux de cotisations pour les prestations sociales des auto-entrepreneurs pour les activités BIC d'achat-vente, vente à consommer sur place, prestations d'hebergement (sauf location hebergement meublé)
 values:
   2009-01-01:
     value: 0.12
