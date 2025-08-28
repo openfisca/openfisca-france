@@ -1,5 +1,19 @@
 # Changelog
 
+### 172.2.0 [2566](https://github.com/openfisca/openfisca-france/pull/2566)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : A partir de 2022-10-01
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie.py`
+  - `openfisca_france/parameters/prelevements_sociaux/professions_liberales/auto_entrepreneur/cotisations_prestations/*`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/rpns/microsocial/*`
+  - `openfisca_france/parameters/prelevements_sociaux/professions_liberales/auto_entrepreneur/formation_professionnelle/*`
+* Détails :
+  - Ajout de deux nouvelles variables `part_meubles_tourisme_classes` et `part_bnc_non_cipav` pour permettre le calcul des 5 catégories de micro-social au lieu des 3 précédemment définies.
+  - Ajout des paramètres nécessaires au calcul de cette exonération.
+  - Mise à jour des paramètres exsistants.
+
 ### 172.1.2 [2555](https://github.com/openfisca/openfisca-france/pull/2555)
 
 * Évolution du système socio-fiscal.
