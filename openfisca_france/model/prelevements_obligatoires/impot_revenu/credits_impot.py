@@ -2322,16 +2322,15 @@ class quaenv(Variable):
             + P_taux.chaudiere_condensation * min_(f7tt, maxc5)
             )
 
-        max1  = max_(0, maxc5 - quaenv_bouquet * (f7ss + f7st))  # 40% (32 + 8)
-        max2  = max_(0, max1  - quaenv_bouquet * (f7sn + f7sr + f7sq)) # 34 % (26 + 8)
-        max3  = max_(0, max2  - not_(quaenv_bouquet) * (f7ss + f7st) - f7sv) # 32 %
-        max4  = max_(0, max3  - not_(quaenv_bouquet) * (f7sn + f7sr + f7sq) - quaenv_bouquet * (f7se)) # 26 % (17 + 9)
-        max5  = max_(0, max4  - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp)) # 23 % (15 + 8)
-        max6  = max_(0, max5  - quaenv_bouquet * (f7sd + f7sj)) # 18 % (10 + 8)
-        max7  = max_(0, max6  - not_(quaenv_bouquet) * (f7se)) # 17 %
-        max8  = max_(0, max7  - not_(quaenv_bouquet) * (f7sg + f7sh + f7so + f7sp) - (f7su + f7sw + f7sf)) # 15 %
-        max9  = max_(0, max8  - (f7sm)) # 11 %
-        max10 = max_(0, max9  - not_(quaenv_bouquet) * (f7sd + f7sj) - (f7sk + f7sl)) # 10 %
+        max1 = max_(0, maxc5 - quaenv_bouquet * (f7ss + f7st))  # 40% (32 + 8)
+        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq)) # 34 % (26 + 8)
+        max3 = max_(0, max2 - not_(quaenv_bouquet) * (f7ss + f7st) - f7sv) # 32 %
+        max4 = max_(0, max3 - not_(quaenv_bouquet) * (f7sn + f7sr + f7sq) - quaenv_bouquet * (f7se)) # 26 % (17 + 9)
+        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp)) # 23 % (15 + 8)
+        max6 = max_(0, max5 - quaenv_bouquet * (f7sd + f7sj)) # 18 % (10 + 8)
+        max7 = max_(0, max6 - not_(quaenv_bouquet) * (f7se)) # 17 %
+        max8 = max_(0, max7 - not_(quaenv_bouquet) * (f7sg + f7sh + f7so + f7sp) - (f7su + f7sw + f7sf)) # 15 %
+        max9 = max_(0, max8 - (f7sm)) # 11 %
 
         individuel = (
             ((P_taux.majoration_bouquet + P_taux.renouvelable_energie) * min_(maxc5, quaenv_bouquet * (f7ss + f7st))) + # 40 %
@@ -2381,40 +2380,40 @@ class quaenv(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
         rfr = foyer_fiscal('rfr', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        P_plafond = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        P_taux = parameters(period).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
+        P_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_ressources_ecopret
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
-        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - not_(quaenv_bouquet) * (f7sn + f7sq + f7sr))
-        max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - not_(quaenv_bouquet) * (f7se))
-        max4 = max_(0, max3 - quaenv_bouquet * (f7se) - not_(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
-        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - not_(quaenv_bouquet) * (f7sm))
-        max6 = max_(0, max5 - quaenv_bouquet * (f7sd + f7sj))
-        max7 = max_(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
-        max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
+        plafond_depenses_0 = (
+            P_plafond.personne_seule * (1 - maries_ou_pacses)
+            + P_plafond.couple * maries_ou_pacses
+            + P_plafond.pac * nb_pac_majoration_plafond
+            )
+
+        max1 = max_(0, maxc5 - quaenv_bouquet * (f7ss + f7st))  # 40% (32 + 8)
+        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq)) # 34 % (26 + 8)
+        max3 = max_(0, max2 - not_(quaenv_bouquet) * (f7ss + f7st) - f7sv) # 32 %
+        max4 = max_(0, max3 - not_(quaenv_bouquet) * (f7sn + f7sr + f7sq) - quaenv_bouquet * (f7se)) # 26 % (17 + 9)
+        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp)) # 23 % (15 + 8)
+        max6 = max_(0, max5 - quaenv_bouquet * (f7sd + f7sj)) # 18 % (10 + 8)
+        max7 = max_(0, max6 - not_(quaenv_bouquet) * (f7se)) # 17 %
+        max8 = max_(0, max7 - not_(quaenv_bouquet) * (f7sg + f7sh + f7so + f7sp) - (f7su + f7sw + f7sf)) # 15 %
+        max9 = max_(0, max8 - (f7sm)) # 11 %
 
         montant = (
-            quaenv_bouquet * (
-                P.taux10 * min_(max8, f7sk + f7sl)
-                + P.taux11 * min_(max7, f7sm)
-                + P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw)
-                + P.taux18 * min_(max5, f7sd + f7sj)
-                + P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp)
-                + P.taux26 * min_(max3, f7se)
-                + P.taux32 * min_(max2, f7sv)
-                + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
-                + P.taux40 * min_(max0, f7ss + f7st)
-                )
-            + not_(quaenv_bouquet) * (
-                + P.taux32 * min_(max0, f7ss + f7st + f7sv)
-                + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
-                + P.taux17 * min_(max2, f7se)
-                + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
-                + P.taux11 * min_(max4, f7sm)
-                + P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))
-                )
+            ((P_taux.majoration_bouquet + P_taux.renouvelable_energie) * min_(maxc5, quaenv_bouquet * (f7ss + f7st))) + # 40 %
+            ((P_taux.majoration_bouquet + P_taux.chaudiere_bois_remplacement) * min_(max1, quaenv_bouquet * (f7sn + f7sr + f7sq))) + # 34 %
+            ((P_taux.dpe) * min_(max2, not_(quaenv_bouquet) * (f7ss + f7st) + f7sv)) + # 32 %
+            ((P_taux.chaudiere_bois_remplacement) * min_(max3, not_(quaenv_bouquet) * (f7sn + f7sr + f7sq) + quaenv_bouquet * (f7se))) + # 26 %
+            ((P_taux.majoration_bouquet + P_taux.chaudiere_bois) * min_(max4, quaenv_bouquet * (f7sg + f7sh + f7so + f7sp))) + # 23 %
+            ((P_taux.majoration_bouquet + P_taux.chaudiere_condensation) * min_(max5, quaenv_bouquet * (f7sd + f7sj))) + # 18 %
+            ((P_taux.chaudiere_microcogeneration) * min_(max6, not_(quaenv_bouquet) * (f7se))) + # 17 %
+            ((P_taux.recuperation_eau_pluviale) * min_(max7, not_(quaenv_bouquet) * (f7sg + f7sh + f7so + f7sp) - (f7su + f7sw + f7sf))) + # 15 %
+            ((P_taux.electricite_solaire) * min_(max8, f7sm)) + # 11 %
+            ((P_taux.volets_isolants) * min_(max9, not_(quaenv_bouquet) * (f7sd + f7sj) - (f7sk + f7sl))) # 10 %
             )
-        return or_(not_(or_(f7we, f7wg)), (rfr < P.max_rfr)) * montant + f7sz  # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
+
+        return or_(not_(or_(f7we, f7wg)), (rfr < P_ecopret.foyer_fiscal)) * montant + f7sz  # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
