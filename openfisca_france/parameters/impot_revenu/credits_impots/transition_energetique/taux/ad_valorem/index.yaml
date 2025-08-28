@@ -8,6 +8,7 @@ metadata:
   - chaudiere_condensation
   - chaudiere_condensation_ancien
   - chaudiere_bois
+  - chaudiere_bois_remplacement
   - chaudiere_microcogeneration
   - chaudiere_hpe
   - chaudiere_thpe
