@@ -2220,6 +2220,7 @@ class quaenv(Variable):
         f7sd = foyer_fiscal('f7sd_2015', period)
         f7se = foyer_fiscal('f7se_2015', period)
         f7sh = foyer_fiscal('f7sh_2015', period)
+        f7sa = foyer_fiscal('f7sa', period) # nb de logements en location
         rfr = foyer_fiscal('rfr', period)
         P_plafond = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
         P_taux = parameters(period).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
@@ -2254,95 +2255,98 @@ class quaenv(Variable):
         return or_(not_(f7we), rfr < P_plafond_ressources_ecopret.foyer_fiscal) * (
             credit_res + credit_loc
             )
+    
+    # Une formule spécifique pour 2011 pourrait exister : introduction de plafonds de dépenses spécifiques ; les données fiscales ne comprennent pas cette information, ce qui explique pourquoi ça n'a pas été inclus
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         2012
         '''
-        f7sd = foyer_fiscal('f7sd_2015', period)
-        f7se = foyer_fiscal('f7se_2015', period)
-        f7sf = foyer_fiscal('f7sf_2015', period)
-        f7sg = foyer_fiscal('f7sg_2015', period)
-        f7sh = foyer_fiscal('f7sh_2015', period)
-        f7si = foyer_fiscal('f7si_2015', period)
-        f7sj = foyer_fiscal('f7sj_2015', period)
-        f7sk = foyer_fiscal('f7sk_2015', period)
-        f7sl = foyer_fiscal('f7sl_2015', period)
-        f7sm = foyer_fiscal('f7sm_2015', period)
-        f7sn = foyer_fiscal('f7sn_2015', period)
-        f7so = foyer_fiscal('f7so_2015', period)
-        f7sp = foyer_fiscal('f7sp', period)
-        f7sq = foyer_fiscal('f7sq_2015', period)
-        f7sr = foyer_fiscal('f7sr_2015', period)
-        f7ss = foyer_fiscal('f7ss_2015', period)
-        f7tt = foyer_fiscal('f7tt_2012', period)
-        f7tu = foyer_fiscal('f7tu_2012', period)
-        f7tv = foyer_fiscal('f7tv_2012', period)
-        f7tw = foyer_fiscal('f7tw_2012', period)
-        f7tx = foyer_fiscal('f7tx_2012', period)
-        f7ty = foyer_fiscal('f7ty_2012', period)
-        f7st = foyer_fiscal('f7st_2015', period)
-        f7su = foyer_fiscal('f7su', period)
-        f7sv = foyer_fiscal('f7sv', period)
-        f7sw = foyer_fiscal('f7sw', period)
-        f7sz = foyer_fiscal('f7sz_2015', period)
-        f7we = foyer_fiscal('f7we_2013', period)
-        f7wg = foyer_fiscal('f7wg_2013', period)
-        f7wk = foyer_fiscal('f7wk', period)
+        f7sd = foyer_fiscal('f7sd_2015', period) # chaudieres à condensation
+        f7se = foyer_fiscal('f7se_2015', period) # chaudières à micro cogénération gaz
+        f7sf = foyer_fiscal('f7sf_2015', period) # régulation calorifugeage
+        f7sg = foyer_fiscal('f7sg_2015', period) # isolation des murs
+        f7sh = foyer_fiscal('f7sh_2015', period) # isolation des toitures
+        f7si = foyer_fiscal('f7si_2015', period) # isolation des planchers bas
+        f7sj = foyer_fiscal('f7sj_2015', period) # isolation des parois vitrées
+        f7sk = foyer_fiscal('f7sk_2015', period) # volets isolants
+        f7sl = foyer_fiscal('f7sl_2015', period) # porte d'entrées
+        f7sm = foyer_fiscal('f7sm_2015', period) # panneaux photovoltaïques
+        f7sn = foyer_fiscal('f7sn_2015', period) # chaudiere bois (avec remplacement)
+        f7so = foyer_fiscal('f7so_2015', period) # chaudiere bois (sans remplacement)
+        f7sp = foyer_fiscal('f7sp', period) # pac autre
+        f7sq = foyer_fiscal('f7sq_2015', period) # pac géothermique
+        f7sr = foyer_fiscal('f7sr_2015', period) # pac thermodynamique
+        f7ss = foyer_fiscal('f7ss_2015', period) # chaleur solaire
+        f7st = foyer_fiscal('f7st_2015', period) # energie renouvelable
+        f7su = foyer_fiscal('f7su', period) # récupération eau pluviale
+        f7sv = foyer_fiscal('f7sv', period) # dpe
+        f7sw = foyer_fiscal('f7sw', period) # raccordement réseau
+        f7tt = foyer_fiscal('f7tt_2012', period) # dépenses au taux de 10% (collectif, pas de bouquet)
+        f7tu = foyer_fiscal('f7tu_2012', period) # dépenses au taux de 11% (collectif, pas de bouquet)
+        f7tv = foyer_fiscal('f7tv_2012', period) # dépenses au taux de 15% (collectif, pas de bouquet)
+        f7tw = foyer_fiscal('f7tw_2012', period) # dépenses au taux de 17% (collectif, pas de bouquet)
+        f7tx = foyer_fiscal('f7tx_2012', period) # dépenses au taux de 26% (collectif, pas de bouquet)
+        f7ty = foyer_fiscal('f7ty_2012', period) # dépenses au taux de 32% (collectif, pas de bouquet)
+        f7sz = foyer_fiscal('f7sz_2015', period) # report du total de crédit crédit sur les logements en loc
+        f7we = foyer_fiscal('f7we_2013', period) # eco ptz 2011
+        f7wg = foyer_fiscal('f7wg_2013', period) # eco ptz 2012
+        f7wk = foyer_fiscal('f7wk', period) # maison individuelle
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
         rfr = foyer_fiscal('rfr', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        P_plafond = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        P_taux = parameters(period).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
+        P_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_ressources_ecopret
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-        maxi1 = max_(0, max0 - f7ty)
-        maxi2 = max_(0, maxi1 - f7tx)
-        maxi3 = max_(0, maxi2 - f7tw)
-        maxi4 = max_(0, maxi3 - f7tv)
-        maxi5 = max_(0, maxi4 - f7tu)
+        plafond_depenses_0 = (
+            P_plafond.personne_seule * (1 - maries_ou_pacses)
+            + P_plafond.couple * maries_ou_pacses
+            + P_plafond.pac * nb_pac_majoration_plafond
+            )
+
+        maxc1 = max_(0, plafond_depenses_0 - f7ty) # on applique le plafond par ordre décroissant de taux de crédit # 32
+        maxc2 = max_(0, maxc1 - f7tx) # 26
+        maxc3 = max_(0, maxc2 - f7tw) # 15
+        maxc4 = max_(0, maxc3 - f7tv) # 11
+        maxc5 = max_(0, maxc4 - f7tu)  # 10
+        
         collectif = (
-            P.taux_ty * min_(f7ty, max0)
-            + P.taux_tx * min_(f7tx, maxi1)
-            + P.taux_tw * min_(f7tw, maxi2)
-            + P.taux_tv * min_(f7tv, maxi3)
-            + P.taux_tu * min_(f7tu, maxi4)
-            + P.taux_tt * min_(f7tt, maxi5)
+            P_taux.renouvelable_energie * min_(f7ty, plafond_depenses_0)
+            + P_taux.pac_eau_chaude * min_(f7tx, maxc1)
+            + P_taux.chaudiere_microcogeneration * min_(f7tw, maxc2)
+            + P_taux.chaudiere_bois * min_(f7tv, maxc3)
+            + P_taux.electricite_solaire * min_(f7tu, maxc4)
+            + P_taux.chaudiere_condensation * min_(f7tt, maxc5)
             )
 
-        max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
-        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - not_(quaenv_bouquet) * (f7sn + f7sq + f7sr))
-        max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - not_(quaenv_bouquet) * (f7se))
-        max4 = max_(0, max3 - quaenv_bouquet * (f7se) - not_(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
-        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - not_(quaenv_bouquet) * (f7sm))
-        max6 = max_(0, max5 - quaenv_bouquet * (f7sd + f7sj))
-        max7 = max_(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
-        max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
+        max1  = max_(0, maxc5 - quaenv_bouquet * (f7ss + f7st))  # 40% (32 + 8)
+        max2  = max_(0, max1  - quaenv_bouquet * (f7sn + f7sr + f7sq)) # 34 % (26 + 8)
+        max3  = max_(0, max2  - not_(quaenv_bouquet) * (f7ss + f7st) - f7sv) # 32 %
+        max4  = max_(0, max3  - not_(quaenv_bouquet) * (f7sn + f7sr + f7sq) - quaenv_bouquet * (f7se)) # 26 % (17 + 9)
+        max5  = max_(0, max4  - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp)) # 23 % (15 + 8)
+        max6  = max_(0, max5  - quaenv_bouquet * (f7sd + f7sj)) # 18 % (10 + 8)
+        max7  = max_(0, max6  - not_(quaenv_bouquet) * (f7se)) # 17 %
+        max8  = max_(0, max7  - not_(quaenv_bouquet) * (f7sg + f7sh + f7so + f7sp) - (f7su + f7sw + f7sf)) # 15 %
+        max9  = max_(0, max8  - (f7sm)) # 11 %
+        max10 = max_(0, max9  - not_(quaenv_bouquet) * (f7sd + f7sj) - (f7sk + f7sl)) # 10 %
 
-        montant = (
-            quaenv_bouquet * (
-                P.taux10 * min_(max8, f7sk + f7sl)
-                + P.taux11 * min_(max7, f7sm)
-                + P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw)
-                + P.taux18 * min_(max5, f7sd + f7sj)
-                + P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp)
-                + P.taux26 * min_(max3, f7se)
-                + P.taux32 * min_(max2, f7sv)
-                + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
-                + P.taux40 * min_(max0, f7ss + f7st)
-                )
-            + not_(quaenv_bouquet) * (
-                P.taux32 * min_(max0, f7ss + f7st + f7sv)
-                + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
-                + P.taux17 * min_(max2, f7se)
-                + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
-                + P.taux11 * min_(max4, f7sm)
-                + P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))
-                )
+        individuel = (
+            ((P_taux.majoration_bouquet + P_taux.renouvelable_energie) * min_(maxc5, quaenv_bouquet * (f7ss + f7st))) + # 40 %
+            ((P_taux.majoration_bouquet + P_taux.chaudiere_bois_remplacement) * min_(max1, quaenv_bouquet * (f7sn + f7sr + f7sq))) + # 34 %
+            ((P_taux.dpe) * min_(max2, not_(quaenv_bouquet) * (f7ss + f7st) + f7sv)) + # 32 %
+            ((P_taux.chaudiere_bois_remplacement) * min_(max3, not_(quaenv_bouquet) * (f7sn + f7sr + f7sq) + quaenv_bouquet * (f7se))) + # 26 %
+            ((P_taux.majoration_bouquet + P_taux.chaudiere_bois) * min_(max4, quaenv_bouquet * (f7sg + f7sh + f7so + f7sp))) + # 23 %
+            ((P_taux.majoration_bouquet + P_taux.chaudiere_condensation) * min_(max5, quaenv_bouquet * (f7sd + f7sj))) + # 18 %
+            ((P_taux.chaudiere_microcogeneration) * min_(max6, not_(quaenv_bouquet) * (f7se))) + # 17 %
+            ((P_taux.recuperation_eau_pluviale) * min_(max7, not_(quaenv_bouquet) * (f7sg + f7sh + f7so + f7sp) - (f7su + f7sw + f7sf))) + # 15 %
+            ((P_taux.electricite_solaire) * min_(max8, f7sm)) + # 11 %
+            ((P_taux.volets_isolants) * min_(max9, not_(quaenv_bouquet) * (f7sd + f7sj) - (f7sk + f7sl))) # 10 %
             )
 
-        return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (montant + collectif) + f7sz
+        return not_(f7wg) * or_(not_(f7we), (rfr < P_ecopret.foyer_fiscal)) * (individuel + collectif) + f7sz
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
