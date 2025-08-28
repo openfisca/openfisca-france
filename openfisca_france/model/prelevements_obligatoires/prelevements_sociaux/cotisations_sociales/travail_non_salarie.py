@@ -75,7 +75,7 @@ class cotisations_non_salarie_micro_social(Variable):
         part_bnc_cipav = 1 - part_bnc_non_cipav
 
         # Répartition des assiettes par vraie catégorie
-        assiette_vente_cat_a = assiette_vente  # 5TA = uniquement catégorie a
+        assiette_vente_cat_a = assiette_vente
         assiette_bnc_cipav_cat_b = assiette_proflib * part_bnc_cipav
         assiette_meubles_cat_c = assiette_service * part_meubles_tourisme_classes
         assiette_service_cat_d = assiette_service * part_service_bic
@@ -85,15 +85,15 @@ class cotisations_non_salarie_micro_social(Variable):
         formation_professionnelle = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur.formation_professionnelle
 
         cotisations_non_salarie_micro_social = (
-            # Catégorie a - Ventes BIC (taux 1%)
+            # Catégorie a - Ventes BIC
             assiette_vente_cat_a * (cotisations_prestation.vente + formation_professionnelle.ventecom_chiffre_affaires)
-            # Catégorie b - BNC CIPAV (taux 2,2%)
+            # Catégorie b - BNC CIPAV
             + assiette_bnc_cipav_cat_b * (cotisations_prestation.cipav + formation_professionnelle.professions_liberales_chiffre_affaires)
-            # Catégorie c - Meublés tourisme classés (taux 6%)
+            # Catégorie c - Meublés tourisme classés
             + assiette_meubles_cat_c * (cotisations_prestation.meuble_tour_class + formation_professionnelle.ventecom_chiffre_affaires)
-            # Catégorie d - Services BIC (taux 1,7%)
+            # Catégorie d - Services BIC
             + assiette_service_cat_d * (cotisations_prestation.service_bic + formation_professionnelle.artisans_hors_alsace_chiffre_affaires)
-            # Catégorie e - BNC non CIPAV (taux 26,1%)
+            # Catégorie e - BNC non CIPAV
             + assiette_bnc_non_cipav_cat_e * (cotisations_prestation.service + formation_professionnelle.servicecom_chiffre_affaires)
             )
 
