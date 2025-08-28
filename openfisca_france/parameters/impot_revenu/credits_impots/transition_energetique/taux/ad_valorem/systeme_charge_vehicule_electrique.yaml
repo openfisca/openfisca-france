@@ -1,0 +1,23 @@
+description: Taux du crédit d'impôt pour les dépenses d'équipement de système de charge pour véhicule électrique
+values:
+  2014-09-01:
+    value: .3
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Sys. charge véhicule électrique
+  last_value_still_valid_on: "2025-08-18"
+  unit: /1
+  reference:
+    2014-09-01:
+      title: LOI n° 2014-1654 du 29 décembre 2014 de finances pour 2015, art. 3
+      href: https://www.legifrance.gouv.fr/eli/loi/2014/12/29/FCPX1422605L/jo/texte
+    2020-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000039683923&idArticle=LEGIARTI000039793071&dateTexte=20200623&categorieLien=id#LEGIARTI000039793071
+  official_journal_date:
+    2014-09-01: "2014-12-30"
+    2020-01-01: "2019-12-29"
+  documentation: |-
+    Le crédit d'impôt sur les systèmes de charge pour véhicule électrique, contrairement au reste du CITE, n'est pas transformé en prime dans le cadre du dispositif MaPrimeRénov'.
+    A partir de 2021, il fait l'objet d'un crédit d'impôt spécifique (article 200 quater C CGI).

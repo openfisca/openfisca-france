@@ -1,0 +1,6 @@
+description: Plafond de dépenses éligibles au crédit d'impôt pour les dépenses d'équipements solaires thermiques (produisant de la chaleur) à circulation air
+metadata:
+  short_label: à circulation air
+  order:
+  - sans_condition_ressources
+  - sous_condition_ressources

@@ -1,0 +1,16 @@
+description: Plafond de revenus déterminant l'éligibilité au crédit d'impôt
+metadata:
+  order:
+  - premiere_part
+  - increment
+  documentation: |-
+    En 2014, le taux "simple" du crédit d'impôt (15%) n'est ouvert qu'aux ménages "modestes", c'est-à-dire les foyers fiscaux dont le revenu fiscal de référence tombe en-deçà d'un certain seuil. 
+    Les ménages au-delà de ce seuil ne peuvent bénéficier que du taux "bouquet" du crédit d'impôt (25%) qui requiert qu'ils réalisent plusieurs gestes parmi une liste de gestes éligibles.
+    Ce taux "bouquet" reste également accessible aux ménages "modestes" qui réalisent plusieurs gestes éligibles.
+    Cette condition de revenu interagissant avec le taux "bouquet" disparaît en 2015.
+
+    A partir de 2020, le CITE est progressivement remplacé par le dispositif Ma Prime Rénov'.
+    Ne sont éligibles au CITE que les ménages ayant des revenus supérieurs aux seuils de revenus des ménages "intermédiaires" au sens du barème Ma Prime Rénov'.
+    Au-delà d'un plafond de revenus spécifique au CITE, les ménages ne sont plus éligibles au CITE qu'au titre des travaux réalisés pour trois gestes particuliers (isolation par l'intérieur et par l'extérieur, et système de charge de véhicule électrique).
+    La structure de ce plafond (par demi-part fiscale au sein du ménage fiscal) n'est pas la même que la structure des seuils Ma Prime Rénov (par nombre de personnes dans le ménage).
+    De plus ce plafond est homogène sur tout le territoire métropolitain (par opposition aux seuils Ma Prime Rénov, qui distinguent l'Île de France des autres régions).
