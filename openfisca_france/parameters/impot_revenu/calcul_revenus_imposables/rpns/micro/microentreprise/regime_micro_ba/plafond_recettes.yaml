@@ -11,7 +11,7 @@ values:
   2024-01-01:
     value: 120000
 metadata:
-  last_value_still_valid_on: "2025-03-02"
+  last_value_still_valid_on: "2025-08-22"
   ipp_csv_id: plaf_micro_ba
   unit: currency_next_year
   reference:
@@ -43,4 +43,4 @@ metadata:
 documentation: |-
   Ref : Article 69 I du CGI.
   Les seuils sont actualisés tous les trois ans dans la même proportion que l'évolution triennale de la limite supérieure de la première tranche du barème de l'impôt sur le revenu et sont arrondis, respectivement, à la centaine d'euros la plus proche et au millier d'euros le plus proche.
-  Comme pour les autres paramètres, la valeur d'une année N est celle en application pour l'IR sur les revenus de l'année N. Néanmoins, ici, il faut avoir en tête qu'il s'agit de seuils appliqués à des revenus d'années précédentes par rapport à l'année des revenus de la déclaration. 
+  Comme pour les autres paramètres, la valeur d'une année N est celle en application pour l'IR sur les revenus de l'année N. Néanmoins, ici, il faut avoir en tête qu'il s'agit de seuils appliqués à des revenus d'années précédentes par rapport à l'année des revenus de la déclaration.

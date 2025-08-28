@@ -1,10 +1,11 @@
-description: Taux du versement libératoire pour les activités de ventes (régime auto-entrepreneur/micro-social)
+description: Taux du versement libératoire pour les activités de ventes (BIC régime auto-entrepreneur/micro-social)
 values:
   1979-01-01:
     value: null
   2009-01-01:
     value: 0.01
 metadata:
+  last_value_still_valid_on: "2025-08-22"
   short_label: Taux (micro BIC vente)
   ipp_csv_id: tx_bic_vente_vl
   unit: /1
@@ -13,8 +14,10 @@ metadata:
       title: Loi 80-30 du 18/01/1980 (LF pour 1980)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000705191
     2009-01-01:
-      title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021557902
+      - title: Article Article 151-0 du CGI
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019287144/2009-01-01/
+      - title: Article 1 de la Loi n° 2008-776 du 4 août 2008 de modernisation de l'économie
+        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000019284945/2008-08-06
   official_journal_date:
     1979-01-01: "1980-01-19"
-    2009-01-01: "2009-12-31"
+    2009-01-01: "2008-08-05"

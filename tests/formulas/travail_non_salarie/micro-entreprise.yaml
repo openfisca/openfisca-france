@@ -1,0 +1,172 @@
+- name: TNS - a - Auto-Entrepreneur BIC vente
+  description: Micro-entrepreneur en vente de marchandises (BIC), 170 000€ de CA, ayant opté pour le versement libératoire
+  period: 2025
+  relative_error_margin: 0.02
+  input:
+    individus:
+      microentrepreneur:
+        date_naissance: '1982-08-12'
+        # 5TA 'Revenus industriels et commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)'
+        ebic_impv:
+          '2025': 170000
+    famille:
+      parents:
+      - microentrepreneur
+    foyer_fiscal:
+      declarants:
+      - microentrepreneur
+      personnes_a_charge: []
+  output:
+    # 'Impot libératoire régime microfiscal'
+    # microsocial.vente.yaml 1%
+    microsocial: 170000 * 0.01
+    # vente.yaml 12.3% +  ventecom_chiffre_affaires.yaml 0.1%
+    cotisations_non_salarie_micro_social: -170000 * (0.123 + 0.001)
+    impot_revenu_restant_a_payer: 0
+
+- name: TNS - b -Auto-Entrepreneur CIPAV BNC
+  description: Micro-entrepreneur libéral relevant de la CIPAV (architecte, ostéopathe...) en BNC, 50 000€ de CA, ayant opté pour le versement libératoire
+  period: 2025
+  relative_error_margin: 0.02
+  input:
+    individus:
+      microentrepreneur:
+        date_naissance: '1982-08-12'
+        # 5TE 'Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)'
+        ebnc_impo:
+          '2025': 50000
+    famille:
+      parents:
+      - microentrepreneur
+    foyer_fiscal:
+      declarants:
+      - microentrepreneur
+      personnes_a_charge: []
+  output:
+    assiette_proflib: 50000
+    # 'Impot libératoire régime microfiscal'
+    # microsocial.bnc.yaml 2.2%
+    microsocial: 50000 * 0.022
+    # cipav.yaml 23.2% +  professions_liberales_chiffre_affaires.yaml 0.2%
+    #  = 11 700
+    cotisations_non_salarie_micro_social: -1 * (50000 * 0.232 + 50000 * 0.002)
+    impot_revenu_restant_a_payer: 0
+
+- name: TNS - c - Meublés tourisme classés micro-BIC
+  description: micro-BIC en meublés tourisme classés, 170 000€ de CA, ayant opté pour le versement libératoire
+  period: 2025
+  relative_error_margin: 0.02
+  input:
+    individus:
+      microentrepreneur:
+        date_naissance: '1982-08-12'
+        # 5TB 'Revenus industriels et commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)'
+        ebic_imps:
+          '2025': 170000
+        part_meubles_tourisme_classes:
+          '2025': 1.0
+    famille:
+      parents:
+      - microentrepreneur
+    foyer_fiscal:
+      declarants:
+      - microentrepreneur
+      personnes_a_charge: []
+  output:
+    assiette_service: 170000
+    # 'Impot libératoire régime microfiscal'
+    # microsocial.servi.yaml 1.7%
+    microsocial: 170000 * 0.017
+    # meuble_tour_class.yaml 6% +  ventecom_chiffre_affaires.yaml 0.1%
+    cotisations_non_salarie_micro_social: -170000 * (0.06 + 0.001)
+    impot_revenu_restant_a_payer: 0
+
+- name: TNS - d - Services BIC artisanaux/commerciaux
+  description: Services BIC artisanaux/commerciaux, 170 000€ de CA, ayant opté pour le versement libératoire
+  period: 2025
+  relative_error_margin: 0.02
+  input:
+    individus:
+      microentrepreneur:
+        date_naissance: '1982-08-12'
+        # 5TB 'Revenus industriels et commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)'
+        ebic_imps:
+          '2025': 170000
+    famille:
+      parents:
+      - microentrepreneur
+    foyer_fiscal:
+      declarants:
+      - microentrepreneur
+      personnes_a_charge: []
+  output:
+    # 'Impot libératoire régime microfiscal'
+    # microsocial.servi.yaml 1.7%
+    microsocial: 170000 * 0.017
+    # service_bic.yaml 21.2% +  artisans_hors_alsace_chiffre_affaires.yaml 0.3%
+    cotisations_non_salarie_micro_social: -170000 * (0.212 + 0.003)
+    impot_revenu_restant_a_payer: 0
+
+
+- name: TNS - e - Auto-Entrepreneur BNC non-cipav
+  description: Micro-entrepreneur libéral (prestation de service) ne relevant pas de la CIPAV en BNC, 50 000€ de CA, ayant opté pour le versement libératoire
+  period: 2025
+  relative_error_margin: 0.02
+  input:
+    individus:
+      microentrepreneur:
+        age: 32
+        age_en_mois: 392
+        date_naissance: '1982-08-12'
+        # 5TE 'Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)'
+        ebnc_impo:
+          '2025': 50000
+        part_bnc_non_cipav:
+          '2025': 1.0
+    famille:
+      parents:
+      - microentrepreneur
+    foyer_fiscal:
+      declarants:
+      - microentrepreneur
+      personnes_a_charge: []
+  output:
+    assiette_proflib: 50000
+    # 'Impot libératoire régime microfiscal'
+    # microsocial.bnc.yaml 2.2%
+    microsocial: 50000 * 0.022
+    # service.yaml 24.6% + servicecom_chiffre_affaires.yaml 0.2%
+    cotisations_non_salarie_micro_social: -1 * (50000 * 0.246 + 50000 * 0.002)
+    impot_revenu_restant_a_payer: 0
+
+
+- name: TNS - c et d - micro-BIC Meublés tourisme + Services
+  description: micro-BIC en meublés tourisme classés avec 20 000€ de CA et service BIC avec 60 000€ de CA, ayant opté pour le versement libératoire
+  period: 2025
+  relative_error_margin: 0.02
+  input:
+    individus:
+      microentrepreneur:
+        date_naissance: '1982-08-12'
+        # 5TB 'Revenus industriels et commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)'
+        ebic_imps:
+          '2025': 20000 + 60000
+        part_meubles_tourisme_classes:
+          '2025': 0.25
+    famille:
+      parents:
+      - microentrepreneur
+    foyer_fiscal:
+      declarants:
+      - microentrepreneur
+      personnes_a_charge: []
+  output:
+    assiette_service: 20000 + 60000
+    # 'Impot libératoire régime microfiscal'
+    # microsocial.servi.yaml 1.7%
+    microsocial: (20000 + 60000) * 0.017
+    # 20 000 * (meuble_tour_class.yaml 6% +  ventecom_chiffre_affaires.yaml 0.1%) + 60 000 * (service_bic.yaml 21.2% +  artisans_hors_alsace_chiffre_affaires.yaml 0.3%)
+    # = 20_000 * 0.061 + 60_000 * 0.215 = 14_120
+    # differs from -11970.0
+    cotisations_non_salarie_micro_social: -80000 * 0.25 * (0.06 + 0.001) + -80000 * 0.75 * (0.212 + 0.003)
+    impot_revenu_restant_a_payer: 0

@@ -28,8 +28,10 @@ metadata:
       title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
     2006-01-01:
-      title: Loi 2006-1666 du 21/12/2006 (LF pour 2007)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615000
+      - title: Article 50-0 du CGI
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781671/2016-01-01/
+      - title: Loi 2006-1666 du 21/12/2006 (LF pour 2007)
+        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615000
   official_journal_date:
     1979-01-01: "1980-01-19"
     1991-01-01: "1991-12-31"
@@ -39,3 +41,5 @@ metadata:
   notes:
     1999-01-01:
     - title: Jusqu'à l'imposition des revenus de 1998, les régimes spéciaux(appelé micro et micro_service ici) concernent les locations meublés non professionnelles, les BIC non professionnelles (depuis 98 seulement) et les autres activités industrielles et commerciales
+documentation: |-
+  "montant du chiffre d'affaires hors taxes diminué d'un abattement de 71 %"
