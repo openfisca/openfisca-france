@@ -1,5 +1,15 @@
 # Changelog
 
+### 173.0.0 [2568](https://github.com/openfisca/openfisca-france/pull/2568)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/apl/formule/e0_equiv_loyers_minimale/*`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` et de certaines références.
+  - Suppression des dossiers seuils/taux au profit de `bareme.yaml`.
+
 ### 172.2.0 [2566](https://github.com/openfisca/openfisca-france/pull/2566)
 
 * Évolution du système socio-fiscal.
