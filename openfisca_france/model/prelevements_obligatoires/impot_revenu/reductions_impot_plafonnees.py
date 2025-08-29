@@ -3408,15 +3408,112 @@ class location_meublee(Variable):
             'f7og', 'f7oh', 'f7oi', 'f7oj',
             'f7ok', 'f7ol', 'f7om', 'f7on',
             'f7oo', 'f7op', 'f7oq', 'f7or',
-            'f7os', 'f7ot', 'f7jv', 'f7jw',
-            'f7jx', 'f7jy', 'f7pf', 'f7pg',
-            'f7ph', 'f7pi', 'f7pj', 'f7pk',
-            'f7pl', 'f7pm', 'f7pn', 'f7po',
-            'f7pp', 'f7pq', 'f7pr', 'f7ps',
-            'f7pt', 'f7pu', 'f7pv', 'f7pw',
-            'f7px', 'f7py', 'f7ho', 'f7hp',
-            'f7hq', 'f7hr', 'f7hs', 'f7ht',
-            'f7hu', 'f7hv', 'f7hw', 'f7hx']
+            'f7os', 'f7ot', 'f7pk', 'f7pl',
+            'f7pm', 'f7pn', 'f7po', 'f7pp',
+            'f7pq', 'f7pr', 'f7ps', 'f7pt',
+            'f7pu', 'f7pv', 'f7pw', 'f7px',
+            'f7py', 'f7ho', 'f7hp', 'f7hq',
+            'f7hr', 'f7hs', 'f7ht', 'f7hu',
+            'f7hv', 'f7hw', 'f7hx', 'f7hd',
+            'f7he', 'f7hf', 'f7hg', 'f7hh']
+
+        rep_ri = sum([foyer_fiscal(r, period) for r in rep])
+        inv_ri = sum([(P.taux11 * min_(P.plafond, foyer_fiscal(r, period)) / 9) for r in inv])
+
+        return rep_ri + inv_ri
+
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+        2022
+        '''
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
+
+        inv = ['f7ow',
+            'f7ox',
+            'f7oy',
+            'f7pz',
+            'f7mz',
+            'f7mw',
+            'f7mn']
+
+        rep = ['f7st', 'f7ss', 'f7sm', 'f7sp', 'f7sn',
+               'f7so', 'f7sa', 'f7sb', 'f7sc',
+               'f7of', 'f7og', 'f7oh', 'f7oi',
+               'f7oj', 'f7ok', 'f7ol', 'f7om',
+               'f7on', 'f7oo', 'f7op', 'f7oq',
+               'f7or', 'f7os', 'f7ot', 'f7pp',
+               'f7pq', 'f7pr', 'f7ps', 'f7pt',
+               'f7pu', 'f7pv', 'f7pw', 'f7px',
+               'f7py', 'f7ho', 'f7hp', 'f7hq',
+               'f7hr', 'f7hs', 'f7ht', 'f7hu',
+               'f7hv', 'f7hw', 'f7hx', 'f7hd',
+               'f7he', 'f7hf', 'f7hg', 'f7hh',
+               'f7ke', 'f7kf', 'f7kg', 'f7kh',
+               'f7ki']
+
+        rep_ri = sum([foyer_fiscal(r, period) for r in rep])
+        inv_ri = sum([(P.taux11 * min_(P.plafond, foyer_fiscal(r, period)) / 9) for r in inv])
+
+        return rep_ri + inv_ri
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+        2023
+        '''
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
+
+        inv = ['f7ox',
+            'f7oy',
+            'f7pz',
+            'f7mz',
+            'f7mw',
+            'f7mn']
+
+        rep = ['f7st', 'f7ss', 'f7sm', 'f7sp',
+               'f7sn', 'f7so', 'f7sa', 'f7sb',
+               'f7sc', 'f7ok', 'f7ol', 'f7om',
+               'f7on', 'f7oo', 'f7op', 'f7oq',
+               'f7or', 'f7os', 'f7ot', 'f7pu',
+               'f7pv', 'f7pw', 'f7px',
+               'f7py', 'f7ho', 'f7hp', 'f7hq',
+               'f7hr', 'f7hs', 'f7ht', 'f7hu',
+               'f7hv', 'f7hw', 'f7hx', 'f7hd',
+               'f7he', 'f7hf', 'f7hg', 'f7hh',
+               'f7ke', 'f7kf', 'f7kg', 'f7kh',
+               'f7ki', 'f7oa', 'f7ob', 'f7oc',
+               'f7od', 'f7oe']
+
+        rep_ri = sum([foyer_fiscal(r, period) for r in rep])
+        inv_ri = sum([(P.taux11 * min_(P.plafond, foyer_fiscal(r, period)) / 9) for r in inv])
+
+        return rep_ri + inv_ri
+
+    def formula_2024_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+        2024
+        '''
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
+
+        inv = ['f7oy',
+            'f7pz',
+            'f7mz',
+            'f7mw',
+            'f7mn']
+
+        rep = ['f7sx', 'f7st', 'f7ss', 'f7sm', 'f7sp',
+               'f7sn', 'f7so', 'f7sa', 'f7sb',
+               'f7sc', 'f7op', 'f7oq', 'f7or', 'f7os',
+               'f7ot', 'f7ho', 'f7hp', 'f7hq',
+               'f7hr', 'f7hs', 'f7ht', 'f7hu',
+               'f7hv', 'f7hw', 'f7hx', 'f7hd',
+               'f7he', 'f7hf', 'f7hg', 'f7hh',
+               'f7ke', 'f7kf', 'f7kg', 'f7kh',
+               'f7ki', 'f7oa', 'f7ob', 'f7oc',
+               'f7od', 'f7oe', 'f7po', 'f7pp',
+               'f7pq', 'f7pr', 'f7ps']
 
         rep_ri = sum([foyer_fiscal(r, period) for r in rep])
         inv_ri = sum([(P.taux11 * min_(P.plafond, foyer_fiscal(r, period)) / 9) for r in inv])

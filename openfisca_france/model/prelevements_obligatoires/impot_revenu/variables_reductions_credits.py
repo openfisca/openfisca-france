@@ -1825,7 +1825,6 @@ class f7ph(Variable):
     # start_date = '2015-01-01
     definition_period = YEAR
 
-
 class fhph(Variable):
     cerfa_field = 'HPH'
     value_type = int
