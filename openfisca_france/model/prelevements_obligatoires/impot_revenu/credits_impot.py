@@ -576,6 +576,7 @@ class ci_investissement_forestier(Variable):
 
         return ci_travaux
 
+
 class acqgpl(Variable):
     value_type = float
     entity = FoyerFiscal
