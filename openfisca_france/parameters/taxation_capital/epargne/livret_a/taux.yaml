@@ -92,24 +92,42 @@ values:
     value: 0.03
   2023-08-01:
     value: 0.03
+  2025-02-01:
+    value: 0.024
+  2025-08-01:
+    value: 0.017
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2023-08-01"
+  last_value_still_valid_on: "2025-08-01"
   unit: /1
   reference:
     2020-02-01:
-      title: JORF n°0020 du 24 janvier 2020
+      title: Avis relatif aux taux d'intérêt des produits d'épargne réglementée
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041460493
     2021-01-27:
-      title: JORF n°0036 du 11 février 2021
+      title: Arrêté du 27 janvier 2021 relatif aux taux d'intérêt des produits d'épargne réglementée
       href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043114027/
     2022-02-01:
-      title: JORF n° 0025 du 30 janvier 2022, Arrêté du 27 janvier 2022 relatif aux taux d'intérêt des produits d'épargne réglementée
+      title: Arrêté du 27 janvier 2022 relatif aux taux d'intérêt des produits d'épargne réglementée
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045084355
     2023-02-01:
-      title: JORF n°0025 du 29 janvier 2023, Arrêté du 27 janvier 2023 relatif aux taux d'intérêt des produits d'épargne réglementée
+      title: Arrêté du 27 janvier 2023 relatif aux taux d'intérêt des produits d'épargne réglementée
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047069197
     2023-08-01:
-      title: JORF n°0174 du 29 juillet 2023, Arrêté du 28 juillet 2023 relatif aux taux d'intérêt des produits d'épargne réglementée
+      title: Arrêté du 28 juillet 2023 relatif aux taux d'intérêt des produits d'épargne réglementée
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047901505
+    2025-02-01:
+      title: Arrêté du 28 janvier 2025 relatif aux taux d'intérêt des produits d'épargne réglementée
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051059093
+    2025-08-01:
+      title: Arrêté du 23 juillet 2025 relatif aux taux d'intérêt des produits d'épargne réglementée
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052009310
+  official_journal_date:
+    2020-02-01: "2020-01-24"
+    2021-01-27: "2021-02-11"
+    2022-02-01: "2022-01-30"
+    2023-02-01: "2023-01-29"
+    2023-08-01: "2023-07-29"
+    2025-02-01: "2025-01-30"
+    2025-08-01: "2025-07-31"
 documentation: Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2365"
