@@ -100,7 +100,7 @@
     prime_exceptionnelle_pouvoir_achat_exoneree: [0, 0]
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
     salaire_super_brut:
-      2022-05: [4243.68, 4243.68]
+      2022-05: [4241.58, 4241.58]
 
 
 - name: Prime exceptionnelle de pouvoir d'achat au dessus de 2000 € sans accord d'intéressement et effectif entreprise > 50 #  ( cas 6 exonération jusqu'à 1000)
