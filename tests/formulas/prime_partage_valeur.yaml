@@ -141,7 +141,7 @@
       # ATTENTION: le calcul est faux pour la partie non exonérée car il manque CSG/CRDS
       # C'est un problème OpenFisca qui ne remonte pas l'arbre des dépendance
       # Pour calculer le salaire_super_brut alors qu'on lui donne le salaire_de_base.
-      2023-09: [2863.12, 3113.12, 3256.28, 3113.12, 3113.12, 3363.12, 3506.28]
+      2023-09: [2861.12, 3111.12, 3254.18, 3111.12, 3111.12, 3361.12, 3504.18]
     salaire_imposable:
       # Il n'y a que pour la partie qui dépasse le plafond qu'il y a un impact sur salaire_imposable
       2023-09: [1640.18, 1640.18, 1722.189, 1640.18, 1640.18, 1640.18, 1722.189]
