@@ -6,7 +6,8 @@ on:
     types: [opened, reopened]
 
 env:
-  DEFAULT_PYTHON_VERSION: '3.10.11'
+  # Available versions can be found at https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
+  DEFAULT_PYTHON_VERSION: '3.13.7'
 
 jobs:
   build:
@@ -15,7 +16,7 @@ jobs:
       fail-fast: true
       matrix:
         os: ["ubuntu-24.04"]  # On peut ajouter "macos-latest" si besoin
-        python-version: ["3.9.12", "3.10.11"]
+        python-version: ["3.9.12", "3.13.7"]
         openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
@@ -117,7 +118,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ "ubuntu-24.04" ]  # On peut ajouter "macos-latest" si besoin
-        python-version: ["3.9.12", "3.10.11"]
+        python-version: ["3.9.12", "3.13.7"]
         openfisca-dependencies: [minimal, maximal]
     steps:
       - uses: actions/checkout@v4
