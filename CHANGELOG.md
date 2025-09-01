@@ -1,5 +1,18 @@
 # Changelog
 
+### 173.1.0 [2565](https://github.com/openfisca/openfisca-france/pull/2565)
+
+* Changement mineur.
+* Périodes concernées : A partir du 2024-01-01.
+* Zones impactées :
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/retraite/pension/*`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/ircantec/*`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/cnracl/*`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/rafp/rafp_plaf_assiette.yaml`
+* Détails :
+  - Mise à jour des last_value_still_valid_on et des références.
+  - Mise à jour du taux de prélèvement de la Caisse nationale de retraites des agents des collectivités locales (CNRACL)
+
 ### 173.0.0 [2568](https://github.com/openfisca/openfisca-france/pull/2568)
 
 * Évolution du système socio-fiscal.
