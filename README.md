@@ -96,7 +96,7 @@ Suivez cette installation si vous souhaitez :
 
 Premièrement, assurez-vous que [Git](https://www.git-scm.com/) est bien installé sur votre machine.
 
-Dans votre _virtualenv_, assurez-vous que vous êtes dans le répertoire où vous souhaitez cloner OpenFisca-France.
+Assurez-vous que vous êtes dans le répertoire où vous souhaitez cloner OpenFisca-France.
 
 Clonez OpenFisca-France sur votre machine :
 
@@ -157,7 +157,7 @@ uv run make test
 Pour utiliser une version spécifique de Python :
 
 ```sh
-uv run  --python 3.12.3 make test
+uv run --python 3.12.3 make test
 ```
 
 ## Style
@@ -188,6 +188,14 @@ tee -a .git/hooks/pre-commit << END
 # Automatically format your code before committing.
 exec make format-style
 END
+```
+
+## Mettre à jour les dépendances
+
+Pour mettre à jour les dépendances, exécutez la commande suivante :
+
+```sh
+uv lock --upgrade
 ```
 
 ## Servez OpenFisca-France avec l'API Web OpenFisca
