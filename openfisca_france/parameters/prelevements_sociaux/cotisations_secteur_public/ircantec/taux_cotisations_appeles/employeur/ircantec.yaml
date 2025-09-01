@@ -109,8 +109,10 @@ metadata:
       title: Décret 2008-996 du 23/09/2008
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
     2017-01-01:
-      title: Décret 2008-996 du 23/09/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    - title: Décret 2008-996 du 23/09/2008, art. 5
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000019509567
+    - title: Arrêté du 30 décembre 1970, art. 9 bis
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036755171
   official_journal_date:
     1971-01-01: 1971-01-19; 1970-12-30
     1983-01-01: "1982-12-29"
@@ -127,4 +129,6 @@ metadata:
     2017-01-01: "2008-09-24"
   rate_unit: /1
   threshold_unit: PSS
-documentation: "Voir https://www.ircantec.retraites.fr/employeur/calcul-cotisations"
+documentation: -|
+  Le taux de cotisation appelé est égale au taux de cotisation théorique + 25%
+  Voir https://www.ircantec.retraites.fr/employeur/parametres-utilises-ircantec
