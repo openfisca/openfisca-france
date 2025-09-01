@@ -1,5 +1,14 @@
 # Changelog
 
+### 173.1.1 [2564](https://github.com/openfisca/openfisca-france/pull/2564)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/*`
+* Détails :
+  - Mise à jour des last_value_still_valid_on.
+
 ### 173.1.0 [2565](https://github.com/openfisca/openfisca-france/pull/2565)
 
 * Changement mineur.
