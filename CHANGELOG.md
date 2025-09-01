@@ -1,5 +1,15 @@
 # Changelog
 
+# 174.0.0 [2547](https://github.com/openfisca/openfisca-france/pull/2547)
+
+* Changement majeur.
+* Périodes concernées : aucune.
+* Zones impactées :
+  - `pyproject.toml`
+  - `README.md`
+* Détails :
+  - Introduction de UV comme outil de gestion d'environnement.
+
 ### 173.1.1 [2564](https://github.com/openfisca/openfisca-france/pull/2564)
 
 * Changement mineur.
@@ -9,7 +19,7 @@
 * Détails :
   - Mise à jour des last_value_still_valid_on.
 
-### 173.1.0 [2565](https://github.com/openfisca/openfisca-france/pull/2565)
+## 173.1.0 [2565](https://github.com/openfisca/openfisca-france/pull/2565)
 
 * Changement mineur.
 * Périodes concernées : A partir du 2024-01-01.
@@ -22,7 +32,7 @@
   - Mise à jour des last_value_still_valid_on et des références.
   - Mise à jour du taux de prélèvement de la Caisse nationale de retraites des agents des collectivités locales (CNRACL)
 
-### 173.0.0 [2568](https://github.com/openfisca/openfisca-france/pull/2568)
+# 173.0.0 [2568](https://github.com/openfisca/openfisca-france/pull/2568)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -32,7 +42,7 @@
   - Mise à jour des `last_value_still_valid_on` et de certaines références.
   - Suppression des dossiers seuils/taux au profit de `bareme.yaml`.
 
-### 172.2.0 [2566](https://github.com/openfisca/openfisca-france/pull/2566)
+## 172.2.0 [2566](https://github.com/openfisca/openfisca-france/pull/2566)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : A partir de 2022-10-01

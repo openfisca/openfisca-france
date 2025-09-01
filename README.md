@@ -33,55 +33,16 @@ L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://
 
 ## Installation
 
-Ce paquet requiert [Python 3.9](https://www.python.org/downloads/release/python-390/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [conda](https://www.anaconda.com/products/individual).
+Ce paquet requiert [Python 3.9](https://www.python.org/downloads/release/python-390/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [conda](https://www.anaconda.com/products/individual) ou [UV](https://docs.astral.sh/uv/).
 
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
 - Mac OS X ;
-- Windows : Nous recommandons d'utiliser [conda](https://www.anaconda.com/products/individual), voir la procédure ci-dessous [Installez un environnement virtuel avec conda](./README.md#installez-un-environnement-virtuel-avec-conda)  ; OpenFisca fonctionne également dans le [sous-système Windows pour Linux (WSL)](https://docs.microsoft.com/fr-fr/windows/wsl/install). Dans ce dernier cas, il suffit de suivre la procédure pour Linux car vous êtes alors dans un environnement Linux.
+- Windows : Nous recommandons d'utiliser [UV](https://docs.astral.sh/uv/) car [conda](https://www.anaconda.com/products/individual) ne va surement plus être supporté par la communauté OpenFisca, si vous souhaitez tout de même l'utiliser, voir la procédure ci-dessous [Installez un environnement virtuel avec conda](./README.md#installez-un-environnement-virtuel-avec-conda)  ; OpenFisca fonctionne également dans le [sous-système Windows pour Linux (WSL)](https://docs.microsoft.com/fr-fr/windows/wsl/install). Dans ce dernier cas, il suffit de suivre la procédure pour Linux car vous êtes alors dans un environnement Linux.
 
 Pour les autres OS : si vous pouvez exécuter Python et Numpy, l'installation d'OpenFisca devrait fonctionner.
 
-### Installez un environnement virtuel avec Pew
-
-Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.pypa.io/en/stable/) (_virtualenv_) avec un gestionnaire de _virtualenv_ tel que [Pew](https://github.com/berdario/pew). Vous pouvez aussi utiliser le gestionnaire d'environnemnt officiel de Python : [venv](https://docs.python.org/3/library/venv.html).
-
-- Un _[virtualenv](https://virtualenv.pypa.io/en/stable/)_ crée un environnement pour les besoins spécifiques du projet sur lequel vous travaillez.
-- Un gestionnaire de _virtualenv_, tel que [Pew](https://github.com/berdario/pew), vous permet de facilement créer, supprimer et naviguer entre différents projets.
-
-Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions :
-
-```sh
-python --version # Python 3.9.0 ou plus récent devrait être installé sur votre ordinateur.
-# Si non, téléchargez-le sur http://www.python.org et téléchargez pip.
-```
-
-```sh
-pip install --upgrade pip
-pip install pew
-```
-Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python 3.9 :
-
-```sh
-pew new openfisca --python=python3.9
-# Si demandé, répondez "Y" à la question sur la modification du fichier de configuration de votre shell
-```
-Le  _virtualenv_  **openfisca** sera alors activé, c'est-à-dire que les commandes suivantes s'exécuteront directement dans l'environnement virtuel. Vous verrez dans votre terminal :
-
-```sh
-Installing setuptools, pip, wheel...done.
-Launching subshell in virtual environment. Type 'exit' or 'Ctrl+D' to return.
-```
-
-Informations complémentaires :
-- sortez du _virtualenv_ en tapant `exit` (or Ctrl-D) ;
-- re-rentrez en tapant `pew workon openfisca` dans votre terminal.
-
-Bravo :tada: Vous êtes prêt·e à installer OpenFisca-France !
-
-Nous proposons deux procédures d'installation. Choisissez l'installation A ou B ci-dessous en fonction de l'usage que vous souhaitez faire d'OpenFisca-France.
-
-### A. Installation minimale (pip install)
+### A. Installation minimale, sans les sources
 
 Suivez cette installation si vous souhaitez :
 - procéder à des calculs sur une large population ;
@@ -93,25 +54,27 @@ Pour pouvoir modifier OpenFisca-France, consultez l'[Installation avancée](#b-i
 
 #### Installer OpenFisca-France avec pip install
 
-Dans votre _virtualenv_, vérifiez les pré-requis :
+Placer vous dans le répertoire où vous souhaitez faire vos développements, puis :
 
 ```sh
-python --version  # Devrait afficher "Python 3.9.xx".
-#Si non, vérifiez que vous passez --python=python3.9 lors de la création de votre environnement virtuel.
+uv init
 ```
 
-```sh
-pip --version  # Devrait afficher au moins 9.0.x
-#Si non, exécutez "pip install --upgrade pip".
-```
-Installez OpenFisca-France :
+Ensuite, installez OpenFisca-France :
 
 ```sh
-pip install openfisca-france && pip install openfisca-core[web-api]
+uv add openfisca-france
+uv add openfisca-core[web-api]
 ```
-> _Note: La deuxième partie de la commande, à partir du `&&`, est optionnelle. Elle vous permet d'installer l'API Web d'OpenFisca._
+> _Note: La deuxième commande est optionnelle. Elle vous permet d'installer l'API Web d'OpenFisca._
 
 Félicitations :tada: OpenFisca-France est prêt à être utilisé !
+
+Vous pouvez vous assurer que votre installation s'est bien passée en exécutant :
+
+```sh
+uv run openfisca -h
+```
 
 #### Prochaines étapes
 
@@ -135,36 +98,23 @@ Premièrement, assurez-vous que [Git](https://www.git-scm.com/) est bien install
 
 Dans votre _virtualenv_, assurez-vous que vous êtes dans le répertoire où vous souhaitez cloner OpenFisca-France.
 
-Vérifiez les pré-requis :
-
-```sh
-python --version  # Devrait afficher "Python 3.9.xx".
-#Si non, vérifiez que vous passez --python=python3.9 lors de la création de votre environnement virtuel.
-```
-
-```sh
-pip --version  # Devrait afficher au moins 23.0.
-#Si non, exécutez "pip install --upgrade pip".
-```
-
 Clonez OpenFisca-France sur votre machine :
 
 ```sh
 git clone https://github.com/openfisca/openfisca-france.git
 cd openfisca-france
-pip install --editable .[dev] && pip install openfisca-core[web-api]
 ```
 
 Vous pouvez vous assurer que votre installation s'est bien passée en exécutant :
 
 ```sh
-pytest tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
+uv run pytest tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 ```
 :tada: OpenFisca-France est prêt à être utilisé !
 
 ### Installez un environnement virtuel avec conda
 
-Nous conseillons cette procédure pour les personnes utilisant Windows et n'ayant pas d'environnement Python fonctionnel. Elle fonctionne également sous Linux et macOS.
+Nous ne conseillons plus cette procédure, même pour les personnes utilisant Windows, il est préférable d'utiliser `uv`. En effet, nous pensons arrêter de supporter `conda` dans OpenFisca. Si vous en avez besoin, n'hésitez pas à ouvrir une issue sur le dépôt GitHub d'OpenFisca-France et nous expliquer votre cas d'utilisation.
 
 Ceci vous permet d'obtenir en une seule installation :
 - Python
@@ -201,23 +151,29 @@ A noter que l'installation d'Openfisca-France peut lever une erreur sur certaine
 Pour faire tourner les tests d'OpenFisca-France, exécutez la commande suivante :
 
 ```sh
-make test
+uv run make test
+```
+
+Pour utiliser une version spécifique de Python :
+
+```sh
+uv run  --python 3.12.3 make test
 ```
 
 ## Style
 
 Ce dépôt adhère à un style de code précis, et on vous invite à le suivre pour que vos contributions soient intégrées au plus vite.
 
-L'analyse de style est déjà exécutée avec `make test`. Pour le faire tourner de façon indépendante :
+L'analyse de style est déjà exécutée avec `uv run make test`. Pour le faire tourner de façon indépendante :
 
 ```sh
-make check-style
+uv run make check-style
 ```
 
 Pour corriger les erreurs de style de façon automatique:
 
 ```sh
-make format-style
+uv run make format-style
 ```
 
 Pour corriger les erreurs de style de façon automatique à chaque fois que vous faites un _commit_ :
@@ -239,10 +195,10 @@ END
 Il est possible de servir l'API Web d'OpenFisca-France sur votre propre serveur :
 
 ```sh
-openfisca serve
+uv run openfisca serve
 ```
 
-Pour en savoir plus sur la commande `openfisca serve` et ses options, consultez la [documentation de référence](https://openfisca.org/doc/openfisca-python-api/openfisca_serve.html).
+Pour en savoir plus sur la commande `uv run openfisca serve` et ses options, consultez la [documentation de référence](https://openfisca.org/doc/openfisca-python-api/openfisca_serve.html).
 
 Testez votre installation en requêtant la commande suivante :
 
