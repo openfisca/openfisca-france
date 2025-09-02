@@ -2469,6 +2469,8 @@ class invrev(Variable):
 
 
 class location_meublee(Variable):
+    # La disparition du dispositif Censi‑Bouvard au 31/12/2022 n'est pas rétroactive :
+    #  les opérations engagées avant cette date continuent à bénéficier des avantages du dispositif selon les règles en vigueur au moment de l'engagement.
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle - Dispositif Censi-Bouvard"
