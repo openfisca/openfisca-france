@@ -24,7 +24,7 @@ build: clean deps
 	python -m build
 	pip uninstall --yes openfisca-france
 	find dist -name "*.whl" -exec pip install {} --group dev \;
-	pip install openfisca-core[web-api]
+	pip install tomli openfisca-core[web-api]
 
 check-syntax-errors:
 	python -m compileall -q .
