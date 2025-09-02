@@ -2,8 +2,6 @@ description: Plafond du prix de revient du logement pour la réduction d'impôt 
 values:
   2009-01-01:
     value: 300000
-  2023-01-01:
-    value: null
 metadata:
   last_value_still_valid_on: "2025-03-28"
   short_label: Plafond

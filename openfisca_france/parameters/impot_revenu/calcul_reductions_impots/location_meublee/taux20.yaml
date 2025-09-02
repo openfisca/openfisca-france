@@ -2,8 +2,6 @@ description: Taux de la réduction d'impôt "Censi-Bouvard" pour l'investissemen
 values:
   2011-01-01:
     value: 0.2
-  2023-01-01:
-    value: null
 metadata:
   short_label: Taux pour les logements acquis en 2011 avec promesse d'achat en 2010
   unit: /1
