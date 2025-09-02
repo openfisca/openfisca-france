@@ -1,0 +1,72 @@
+description: Taux du crédit d'impôt pour les dépenses d'acquisition d'équipements de production d'énergie utilisant une source d'énergie renouvelable
+values:
+  2001-01-01:
+    value: .15
+  2005-01-01:
+    value: .40
+  2006-01-01:
+    value: .50
+  2011-01-01:
+    value: .45
+  2012-01-01:
+    value: .32
+  2014-01-01:
+    value: .15
+  2014-09-01:
+    value: .3
+  2016-01-01:
+    value: null
+metadata:
+  short_label: Equipements de production d'énergie renouvelable
+  last_value_still_valid_on: "2025-08-18"
+  unit: /1
+  reference:
+    2001-01-01:
+      title: LOI de finances pour 2001 (n° 2000-1352 du 30 décembre 2000)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000220595
+    2005-01-01:
+      title: LOI n° 2004-1484 du 30 décembre 2004 de finances pour 2005, art 90
+      href: https://www.legifrance.gouv.fr/eli/loi/2004/12/30/ECOX0400222L/jo/texte
+    2006-01-01:
+      title: LOI n° 2005-1719 du 30 décembre 2005 de finances pour 2006, art. 83
+      href: https://www.legifrance.gouv.fr/eli/loi/2005/12/30/ECOX0500239L/jo/texte
+    2011-01-01:
+    - title: LOI n° 2010-1657 du 29 décembre 2010 de finances pour 2011, art. 105
+      href: https://www.legifrance.gouv.fr/eli/loi/2010/12/29/BCRX1023155L/jo/article_105
+    - title: Décret n° 2011-520 du 13 mai 2011 pris pour l'application de l'article 105 de la loi n° 2010-1657 du 29 décembre 2010 de finances pour 2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/5/13/EFIE1100731D/jo/texte
+    2012-01-01:
+    - title: LOI n° 2011-1977 du 28 décembre 2011 de finances pour 2012, art. 81 et 83
+      href: https://www.legifrance.gouv.fr/eli/loi/2011/12/28/BCRX1125684L/jo/texte
+    - title: Décret n° 2012-547 du 23 avril 2012 pris pour l'application de l'article 83 de la loi n° 2011-1977 du 28 décembre 2011 de finances pour 2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/4/23/EFIE1204479D/jo/texte
+    2014-01-01:
+      title: LOI n° 2013-1278 du 29 décembre 2013 de finances pour 2014, art. 74
+      href: https://www.legifrance.gouv.fr/eli/loi/2013/12/29/EFIX1323580L/jo/texte
+    2014-09-01:
+      title: LOI n° 2014-1654 du 29 décembre 2014 de finances pour 2015, art. 3
+      href: https://www.legifrance.gouv.fr/eli/loi/2014/12/29/FCPX1422605L/jo/texte
+    2016-01-01:
+      title: LOI n° 2015-1785 du 29 décembre 2015 de finances pour 2016, art. 106 
+      href: https://www.legifrance.gouv.fr/eli/loi/2015/12/29/FCPX1519907L/jo/texte
+  official_journal_date:
+    2001-01-01: "2000-12-31"
+    2005-01-01: "2004-12-31"
+    2006-01-01: "2005-12-31"
+    2011-01-01: 2010-12-30; 2011-05-15
+    2012-01-01: 2011-12-29; 2012-04-25
+    2014-01-01: "2013-12-30"
+    2014-09-01: "2014-12-30"
+    2016-01-01: "2015-12-30"
+  notes:
+    2001-01-01: 
+      - title: En 2001, le crédit d'impôt s'applique aux logements neufs comme aux logements anciens.
+    2012-01-01: 
+      - title: En 2012, la loi de finances modifie le droit au 1er janvier (art. 81) puis le modifie une seconde fois pour tous les crédits d'impôt (art. 83), un décret d'avril matérialisant les changements cumulés.
+    2014-01-01:
+      - title: En 2014, seuls les foyers "modestes" (en-deçà d'un seuil de revenu) sont éligibles au taux "mono-gestes". Pour bénéficier du crédit d'impôt les foyers au-delà du seuil doivent réaliser au moins deux gestes différents, et bénéficient alors de la majoration de 10 points.
+    2016-01-01:
+      - title: En 2016, la catégorie des "équipements de production énergie utilisant une source d'énergie renouvelable" disparaît. Elle est remplacée par celle des "équipements de chauffage ou de fourniture d'eau chaude sanitaire utilisant une source d'énergie renouvelable". Ceci permet de ne plus couvrir la production d'électricité par défaut.
+  documentation: |-
+    Il s'agit ici du taux par défaut pour les dépenses d'acquisition d'équipements de production d'énergie utilisant une source d'énergie renouvelable.
+    Attention, en 2014 certaines catégories d'équipements sont explicitement exclues du crédit d'impôt, à savoir les panneaux photovoltaïques.
