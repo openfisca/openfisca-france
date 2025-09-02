@@ -2,12 +2,17 @@ from openfisca_france.model.base import *
 import openfisca_france
 import csv
 import codecs
-import pkg_resources
+import importlib
 import numpy as np
 
 
 def bail_reel_solidaire_zones_elligibles():
-    with pkg_resources.resource_stream(openfisca_france.__name__, 'assets/zonage-communes/zonage-abc-juillet-2024.csv') as csv_file:
+    with importlib.resources.files(
+        openfisca_france.__name__).joinpath(
+        'assets/zonage-communes/zonage-abc-juillet-2024.csv'
+        ).open(
+            'rb'
+            ) as csv_file:
         utf8_reader = codecs.getreader('utf-8')
         csv_reader = csv.DictReader(utf8_reader(csv_file), delimiter=';')
         return {
@@ -25,7 +30,8 @@ class bail_reel_solidaire_zones_menage(Variable):
     def formula(menage, period):
         depcom = menage('depcom', period)
         return np.fromiter(
-            (bail_reel_solidaire_zones_elligibles().get(depcom_cell.decode('utf-8')) for depcom_cell in depcom),
+            (bail_reel_solidaire_zones_elligibles().get(
+                depcom_cell.decode('utf-8')) for depcom_cell in depcom),
             dtype='<U4'  # String length max for zones (A, Abis, B1, B2, C)
             )
 
@@ -76,5 +82,6 @@ class bail_reel_solidaire(Variable):
     def formula(menage, period):
         plafond_total = menage('bail_reel_solidaire_plafond_total', period)
         zones_menage = menage('bail_reel_solidaire_zones_menage', period)
-        rfr = menage.sum(menage.members.foyer_fiscal('rfr', period.n_2), role=FoyerFiscal.DECLARANT_PRINCIPAL)
+        rfr = menage.sum(menage.members.foyer_fiscal(
+            'rfr', period.n_2), role=FoyerFiscal.DECLARANT_PRINCIPAL)
         return where(zones_menage is not None, rfr <= plafond_total, False)
