@@ -9,10 +9,10 @@ metadata:
   unit: /1
   reference:
     2019-01-01:
-      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+    - title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
       href: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2017/ANI_Retraite_17nov2017_01012019.pdf
     2025-08-20:
-      title: Paramètres et chiffres du régime
+    - title: Paramètres et chiffres du régime
       href: https://www.agirc-arrco.fr/nous-connaitre/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
   official_journal_date:
     2019-01-01: "2017-11-19"
