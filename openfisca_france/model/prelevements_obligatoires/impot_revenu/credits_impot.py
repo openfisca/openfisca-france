@@ -619,14 +619,14 @@ class ci_investissement_forestier(Variable):
         f7tf = foyer_fiscal('f7tf', period)
         f7vs = foyer_fiscal('f7vs', period)
         f7th = foyer_fiscal('f7th', period)
-        f7vu = foyer_fiscal('f7vu', period)
+        f7vu_2014 = foyer_fiscal('f7vu_2014', period)
         f7ti = foyer_fiscal('f7ti', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7to + f7tq + f7ts + f7tu + f7vi + f7tw + f7vn + f7tb + f7vr + f7tf + f7vs + f7th)
-        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7ti + f7vu)
+        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7ti + f7vu_2014)
 
         ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
@@ -659,7 +659,7 @@ class ci_investissement_forestier(Variable):
         f7tf = foyer_fiscal('f7tf', period)
         f7vs = foyer_fiscal('f7vs', period)
         f7th = foyer_fiscal('f7th', period)
-        f7vu = foyer_fiscal('f7vu', period)
+        f7vu_2014 = foyer_fiscal('f7vu_2014', period)
         f7ti = foyer_fiscal('f7ti', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7tj = foyer_fiscal('f7tj', period)
@@ -667,7 +667,7 @@ class ci_investissement_forestier(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
-        ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7vs + f7th + f7ti + f7vu)
+        ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7vs + f7th + f7ti + f7vu_2014)
         ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7vv + f7tj)
 
         ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
@@ -1710,7 +1710,7 @@ class inthab(Variable):
         invalidite_conj = foyer_fiscal('caseF', period)
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
-        f7vu = foyer_fiscal('f7vu', period)
+        f7vu_2014 = foyer_fiscal('f7vu_2014', period)
         f7vw = foyer_fiscal('f7vw', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
@@ -1724,14 +1724,14 @@ class inthab(Variable):
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
         max3 = max_(max2 - f7vw, 0)
-        max4 = max_(max3 - f7vu, 0)
+        max4 = max_(max3 - f7vu_2014, 0)
         max5 = max_(max4 - f7vz, 0)
 
         return (
             interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
             + interets_emprunt_habitation_principale.logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
-            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu, max3)
+            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu_2014, max3)
             + interets_emprunt_habitation_principale.cas_base.taux_2 * min_(f7vz, max4)
             + interets_emprunt_habitation_principale.logements_2010.taux_2 * min_(f7vv, max5)
             )
@@ -1749,7 +1749,7 @@ class inthab(Variable):
         nbpac_invalideR = foyer_fiscal('nbR', period)
         nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
-        f7vu = foyer_fiscal('f7vu', period)
+        f7vu_2014 = foyer_fiscal('f7vu_2014', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7vw = foyer_fiscal('f7vw', period)
         f7vx = foyer_fiscal('f7vx', period)
@@ -1763,7 +1763,7 @@ class inthab(Variable):
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
         max3 = max_(max2 - f7vw, 0)
-        max4 = max_(max3 - f7vu, 0)
+        max4 = max_(max3 - f7vu_2014, 0)
         max5 = max_(max4 - f7vz, 0)
         max6 = max_(max5 - f7vv, 0)
 
@@ -1771,7 +1771,7 @@ class inthab(Variable):
             interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
             + interets_emprunt_habitation_principale.logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
-            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu, max3)
+            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu_2014, max3)
             + interets_emprunt_habitation_principale.cas_base.taux_2 * min_(f7vz, max4)
             + interets_emprunt_habitation_principale.logements_2010.taux_2 * min_(f7vv, max5)
             + interets_emprunt_habitation_principale.logements_2011.taux_2 * min_(f7vt, max6)
@@ -1790,7 +1790,7 @@ class inthab(Variable):
         nbpac_invalideR = foyer_fiscal('nbR', period)
         nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
-        f7vu = foyer_fiscal('f7vu', period)
+        f7vu_2014 = foyer_fiscal('f7vu_2014', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
@@ -1801,13 +1801,13 @@ class inthab(Variable):
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
         max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vu, 0)
+        max2 = max_(max1 - f7vu_2014, 0)
         max3 = max_(max2 - f7vz, 0)
         max4 = max_(max3 - f7vv, 0)
 
         return (
             interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu, max1)
+            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu_2014, max1)
             + interets_emprunt_habitation_principale.cas_base.taux_2 * min_(f7vz, max2)
             + interets_emprunt_habitation_principale.logements_2010.taux_2 * min_(f7vv, max3)
             + interets_emprunt_habitation_principale.logements_2011.taux_2 * min_(f7vt, max4)
