@@ -530,8 +530,6 @@ class ci_investissement_forestier(Variable):
 
         return ci_travaux + ci_cg_tot
 
-
-
     def formula_2022_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2022
@@ -628,7 +626,7 @@ class ci_investissement_forestier(Variable):
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7to + f7tq + f7ts + f7tu + f7vi + f7tw + f7vn + f7tb + f7vr + f7tf + f7vs + f7th)
-        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7ti)
+        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7ti + f7vu)
 
         ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
