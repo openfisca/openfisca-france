@@ -1,4 +1,4 @@
-- name: reduc_scelli_metro_bbc_et_reports1
+- name: reduc_scelli_metro_bbc_et_reports1-1
   period: 2014
   absolute_error_margin: 1
   input:
@@ -22,13 +22,13 @@
       f7gu: 500
       f7ha: 500
       f7hb: 500
-      f7hd: 500
-      f7he: 500
-      f7hf: 500
-      f7hr_2017: 500
-      f7ht_2018: 500
-      f7hv_2018: 500
-      f7hx_2018: 500
+      f7hd_2019: 500  # 'Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, réalisés en 2010, en métropole et dans les DOM-COM'
+      f7he_2014: 500  # "Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, en métropole et dans les DOM-COM avec promesse d'achat avant le 1.1.2010"
+      f7hf_2019: 500  # 'Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, Investissements réalisés en 2009 en métropole et dans les DOM-COM'
+      f7hr_2017: 500  # "Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques"
+      f7ht_2018: 500  # "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques"
+      f7hv_2018: 500  # 'Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole'
+      f7hx_2018: 500  # "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole avec promesse d'achat avant le 1.1.2010"
       f7ya: 200
       f7yb: 200
       f7yc: 200
@@ -63,7 +63,7 @@
     reductions: 9314.0
     rfr: 137843.0
     rni: 137843.0
-- name: reduc_scelli_metro_bbc_et_reports1
+- name: reduc_scelli_metro_bbc_et_reports1-2
   period: 2015
   absolute_error_margin: 1
   input:
@@ -83,8 +83,8 @@
       f7gs: 500
       f7gu: 500
       f7ha: 500
-      f7hd: 500
-      f7hf: 500
+      f7hd_2019: 500
+      f7hf_2019: 500
       f7hl_2010: 500
       f7hr_2017: 500
       f7ht_2018: 500
@@ -123,7 +123,7 @@
     reductions: 9458.0
     rfr: 137830.0
     rni: 137830.0
-- name: reduc_scelli_metro_bbc_et_reports1
+- name: reduc_scelli_metro_bbc_et_reports1-3
   period: 2016
   absolute_error_margin: 1
   input:
@@ -143,8 +143,8 @@
       f7gs: 500
       f7gu: 500
       f7ha: 500
-      f7hd: 500
-      f7hf: 500
+      f7hd_2019: 500
+      f7hf_2019: 500
       f7hr_2017: 500
       f7ht_2018: 500
       f7hv_2018: 500
@@ -186,7 +186,7 @@
     reductions: 8344.0
     rfr: 137817.0
     rni: 137817.0
-- name: reduc_scelli_metro_bbc_et_reports1
+- name: reduc_scelli_metro_bbc_et_reports1-4
   period: 2017
   absolute_error_margin: 1
   input:
