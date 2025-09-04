@@ -41,7 +41,7 @@ class reductions_plafonnees(Variable):
             'ri_investissement_forestier',
             'location_meublee',  # Censi-Bouvard, plafonnement approximatif
             'invlst',  # Approximation
-            #'invrev', #se termine en 2003
+            # 'invrev', #se termine en 2003
             'protection_patrimoine_naturel',  # Approximation
             'rehab',
             'mohist',
