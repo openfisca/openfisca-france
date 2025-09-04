@@ -46,8 +46,6 @@ class reductions_deplafonnees(Variable):
             'accueil_dans_etablissement_personnes_agees',
             'dfppce',
             'assvie',
-            'reduction_cotisations_syndicales',
-            'creaen',
             'interets_paiements_differes_agriculteurs',
             'mecena',
             'prestations_compensatoires',

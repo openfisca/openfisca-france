@@ -41,7 +41,7 @@ class reductions_plafonnees(Variable):
             'ri_investissement_forestier',
             'location_meublee',  # Censi-Bouvard, plafonnement approximatif
             'invlst',  # Approximation
-            'invrev',
+            #'invrev', #se termine en 2003
             'protection_patrimoine_naturel',  # Approximation
             'rehab',
             'mohist',
@@ -3763,7 +3763,7 @@ class ri_saldom(Variable):
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
-        Sommes versées pour l'emploi d'un salariés à domicile
+        Sommes versées pour l'emploi d'un salarié à domicile
         2011 - 2016
         NB: Normalement, le plafond est aussi augmenté pour chaque personne
         agée de plus de 65 ans dans le foyer (en plus des PACs et des
