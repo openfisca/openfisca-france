@@ -403,3 +403,296 @@
     rbg: 45000.0
     rfr: 45000.0
     rni: 45000.0
+
+- name: Crédit Impôt pour investissement forestier - année 2022
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200
+      f7ut: 200
+      f7ua: 1500
+      f7ub: 300
+      f7uq: 2500
+      f7ui: 150
+      f7tj: 100
+      f7tk: 100
+      f7tm: 200
+      f7to: 300
+      f7tp: 100
+      f7tq: 250
+      f7vj: 100
+      f7tt: 150
+      f7vk: 50
+      f7tu: 200
+      f7vh: 140
+      f7tv: 400
+      f7vi: 200
+      f7tw: 300
+      f7vm: 75
+      f7ta: 300
+      f7vn: 150
+      f7tb: 200
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 1611.7
+
+- name: Crédit Impôt pour investissement forestier - année 2023
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200
+      f7ut: 200
+      f7ua: 1500
+      f7ub: 300
+      f7uq: 2500
+      f7ui: 150
+      f7tj: 100
+      f7tk: 100
+      f7tm: 200
+      f7to: 300
+      f7tp: 100
+      f7tq: 250
+      f7vj: 100
+      f7tt: 150
+      f7vk: 50
+      f7tu: 200
+      f7vh: 140
+      f7tv: 400
+      f7vi: 200
+      f7tw: 300
+      f7vm: 75
+      f7ta: 300
+      f7vn: 150
+      f7tb: 200
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 841.25
+
+- name: Crédit Impôt pour investissement forestier - année 2024
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200
+      f7ut: 200
+      f7ua: 1500
+      f7ub: 300
+      f7uq: 2500
+      f7ui: 150
+      f7tj: 100
+      f7tk: 100
+      f7tm: 200
+      f7to: 300
+      f7tp: 100
+      f7tq: 250
+      f7vj: 100
+      f7tt: 150
+      f7vk: 50
+      f7tu: 200
+      f7vh: 140
+      f7tv: 400
+      f7vi: 200
+      f7tw: 300
+      f7vm: 75
+      f7ta: 300
+      f7vn: 150
+      f7tb: 200
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 656.25
+
+- name: ci_investissement_forestier - 2022 CGA only
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      # CGA (contrat de gestion) focused inputs
+      f7ui: 5000
+      f7uq: 3000
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 500
+
+- name: Crédit Impôt pour investissement forestier - 2023 avec CGA
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      # CGA (contrat de gestion) focused inputs — check behaviour after plaf removal
+      f7ui: 5000
+      f7uq: 3000
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 0.0
+
+- name: Crédit Impôt pour investissement forestier - 2023 couple
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      # couple case to exercise (maries_ou_pacses + 1) scaling
+      declarants:
+      - ind0
+      - ind1
+      f7up: 400
+      f7ut: 400
+      f7ua: 3000
+      f7ub: 600
+      f7uq: 5000
+      f7ui: 300
+      f7tj: 200
+      f7tk: 200
+      f7tm: 400
+      f7to: 600
+      f7tp: 200
+      f7tq: 500
+      f7vj: 200
+      f7tt: 300
+      f7vk: 100
+      f7tu: 400
+      f7vh: 280
+      f7tv: 800
+      f7vi: 400
+      f7tw: 600
+      f7vm: 150
+      f7ta: 600
+      f7vn: 300
+      f7tb: 400
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: marie
+      ind1:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: marie
+    famille:
+      parents:
+      - ind0
+      - ind1
+    menage:
+      personne_de_reference: ind0
+  output:
+    ci_investissement_forestier: 1682.5
