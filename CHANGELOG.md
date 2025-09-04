@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.0.2 [2563](https://github.com/openfisca/openfisca-france/pull/2563)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/*`.
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` et de certaines références.
+
 ### 174.0.1 [2506](https://github.com/openfisca/openfisca-france/pull/2506)
 
 * Amélioration technique.
