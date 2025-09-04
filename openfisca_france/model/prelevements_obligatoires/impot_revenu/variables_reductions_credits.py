@@ -3005,6 +3005,16 @@ class f7mn_2012(Variable):
     definition_period = YEAR
 
 
+class fhmn(Variable):
+    cerfa_field = 'HMN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
+    # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
 class f7mn(Variable):
     cerfa_field = '7MN'
     value_type = int
