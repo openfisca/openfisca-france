@@ -14,14 +14,15 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006242585/2005-06-30
   official_journal_date:
     2005-07-01: "2005-07-01"
-documentation: -|
-  Explication de GPT-5 : la mention “plafond = 1 × le montant de base (100 %) pour une personne seule” n’apparaît pas telle quelle dans les articles R.821-1 et suivants. Dans le Code, ce “plafond à 100 %” ne figure pas sous forme d’un multiple; il découle de la règle de calcul du montant d’AAH. 
-  Références utiles et enchaînement juridique: 
-    L.821-3 du Code de la sécurité sociale: subordonne l’AAH à une condition de ressources “définie par décret”.
-    R.821-4 et R.821-4-1 CSS: précisent comment on apprécie les ressources (période de référence annuelle ou trimestrielle) et, au I de l’article R.821-4, incluent explicitement le cas où les revenus proviennent exclusivement d’un ESAT. Au II de R.821-4, 1° b, ils excluent de l’assiette la prime d’intéressement ESAT.
-    D.821-10 CSS: fixe la règle de calcul du montant versé. En substance, le montant mensuel de l’AAH est égal à la différence entre:
-    • le montant mensuel maximal de l’AAH (“montant de base”, fixé par arrêté ministériel),
+documentation: >-
+  Explication de GPT-5, à vérifier :
+  la mention "plafond = 1 × le montant de base (100 %) pour une personne seule" n'apparaît pas telle quelle dans les articles R.821-1 et suivants. Dans le Code, ce “plafond à 100 %” ne figure pas sous forme d'un multiple; il découle de la règle de calcul du montant d'AAH.
+  Références utiles et enchaînement juridique :
+    L.821-3 du Code de la sécurité sociale : subordonne l'AAH à une condition de ressources “définie par décret”.
+    R.821-4 et R.821-4-1 CSS : précisent comment on apprécie les ressources (période de référence annuelle ou trimestrielle) et, au I de l'article R.821-4, incluent explicitement le cas où les revenus proviennent exclusivement d'un ESAT. Au II de R.821-4, 1° b, ils excluent de l'assiette la prime d'intéressement ESAT.
+    D.821-10 CSS : fixe la règle de calcul du montant versé. En substance, le montant mensuel de l'AAH est égal à la différence entre:
+    • le montant mensuel maximal de l'AAH (“montant de base”, fixé par arrêté ministériel),
     • et la moyenne mensuelle des ressources retenues selon R.821-4/R.821-4-1 (avec plancher à zéro).
-    Conséquence directe: le droit s’annule lorsque la moyenne mensuelle des ressources atteint le montant mensuel maximal. Autrement dit, pour un bénéficiaire seul, le “plafond de ressources” correspond à 100 % du montant de base (1 × le montant de l’AAH à taux plein).
-  Cas des personnes travaillant en ESAT: 
-    Elles relèvent des mêmes règles de plafond: il n’existe pas un plafond “spécifique ESAT” différent. La particularité ESAT tient à l’assiette des ressources (R.821-4 I et II, 1° b: exclusion de la prime d’intéressement ESAT), et au fait que, si les revenus proviennent exclusivement de l’ESAT, on applique en principe l’appréciation annuelle des ressources (R.821-4), et non la trimestrielle (R.821-4-1).
+    Conséquence directe : le droit s'annule lorsque la moyenne mensuelle des ressources atteint le montant mensuel maximal. Autrement dit, pour un bénéficiaire seul, le “plafond de ressources” correspond à 100 % du montant de base (1 × le montant de l'AAH à taux plein).
+  Cas des personnes travaillant en ESAT :
+    Elles relèvent des mêmes règles de plafond : il n'existe pas un plafond “spécifique ESAT” différent. La particularité ESAT tient à l'assiette des ressources (R.821-4 I et II, 1° b : exclusion de la prime d'intéressement ESAT), et au fait que, si les revenus proviennent exclusivement de l'ESAT, on applique en principe l'appréciation annuelle des ressources (R.821-4), et non la trimestrielle (R.821-4-1).
