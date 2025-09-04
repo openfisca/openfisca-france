@@ -275,8 +275,7 @@ class f7vv(Variable):
     definition_period = YEAR
 
 
-# TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
-class f7vu(Variable):
+class f7vu_2014(Variable):
     cerfa_field = '7VU'
     value_type = int
     unit = 'currency'
