@@ -3458,7 +3458,6 @@ class location_meublee(Variable):
 
         return rep_ri + inv_ri
 
-
     def formula_2023_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
@@ -3491,7 +3490,6 @@ class location_meublee(Variable):
         inv_ri = sum([(P.taux11 * min_(P.plafond, foyer_fiscal(r, period)) / 9) for r in inv])
 
         return rep_ri + inv_ri
-
 
     def formula_2024_01_01(foyer_fiscal, period, parameters):
         '''
