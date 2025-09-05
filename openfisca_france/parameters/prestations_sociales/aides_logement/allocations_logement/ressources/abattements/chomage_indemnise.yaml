@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 0.3
 metadata:
-  short_label: Abattement sur les revenus d'activité en cas de chômage indemnisé
+  short_label: Abattement sur les revenus d'activité si chômage
   last_value_still_valid_on: "2025-03-12"
   unit: /1
   reference:

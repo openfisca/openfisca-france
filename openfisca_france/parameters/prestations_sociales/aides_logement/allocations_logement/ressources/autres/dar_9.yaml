@@ -32,6 +32,7 @@ values:
     value: null
 metadata:
   unit: currency
+  short_label: Condition de salaire pour un couple
   reference:
     2002-07-01:
       title: Arrêté du 23 décembre 2002, art. 4
