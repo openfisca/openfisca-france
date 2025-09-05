@@ -285,14 +285,16 @@ class f7vu_2014(Variable):
     end = '2014-12-31'
     definition_period = YEAR
 
+
 class f7vu(Variable):
     cerfa_field = '7VU'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements forestiers, Report des dépenses de travaux des années antérieures : 2022 avec adhésion à une organisation de producteurs"
+    label = 'Investissements forestiers, Report des dépenses de travaux des années antérieures : 2022 avec adhésion à une organisation de producteurs'
     # start_date = date(2023, 1, 1)
     definition_period = YEAR
+
 
 # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
 class f7vt(Variable):
