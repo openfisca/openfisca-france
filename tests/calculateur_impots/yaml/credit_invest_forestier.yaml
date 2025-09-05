@@ -17,7 +17,7 @@
       f7ua: 15000  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 30000  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 25000  # Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 15000  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 15000  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -63,7 +63,7 @@
       f7ua: 15000  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 3000  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 25000  # Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 1500  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 1500  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7ux: 10000  # Scellier
       f7tj: 1000  # Investissements forestiers : report N-1, après sinistre
       f7vp: 5000  # Investissements forestiers : report 2014, hors sinistre, avec adhésion à une association de producteurs
@@ -113,7 +113,7 @@
       f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7ux_2018: 1000  # Investissements forestiers : report N-1, hors sinistre
       f7tj: 100  # Investissements forestiers : report N-1, après sinistre
       f7vp: 500  # Investissements forestiers : report 2014, hors sinistre, avec adhésion à une association de producteurs
@@ -169,7 +169,7 @@
       f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7ux_2018: 1000  # Investissements forestiers : report N-1, hors sinistre
       f7tj: 100  # Investissements forestiers : report N-1, après sinistre
       f7vp: 500  # Investissements forestiers : report 2014, hors sinistre, avec adhésion à une association de producteurs
@@ -229,7 +229,7 @@
       f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7tj: 100  # Investissements forestiers : report N-1, après sinistre
       f7tk: 600  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
       f7vm: 300  # Investissements forestiers : report 2015, hors sinistre
@@ -293,7 +293,7 @@
       f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7tj: 100  # Investissements forestiers : report N-1, après sinistre
       f7tk: 100  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
       f7vm: 300  # Investissements forestiers : report 2015, hors sinistre
@@ -361,7 +361,7 @@
       f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7tj: 100  # Investissements forestiers : report N-1, après sinistre
       f7tk: 100  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
       f7tm: 200  # Investissements forestiers : report 2015, après sinistre
@@ -419,7 +419,7 @@
       declarants:
       - ind0
       # CGA (contrat de gestion) focused inputs
-      f7ui: 5000  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 5000  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7uq: 3000  # Crédit d'impôt pour investissements forestiers: contrat de gestion
       nbF: 0.0
       nbG: 0.0
@@ -465,7 +465,7 @@
       f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7tj: 100  # Investissements forestiers : report N-1, après sinistre
       f7tk: 100  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
       f7tm: 200  # Investissements forestiers : report 2015, après sinistre
@@ -524,7 +524,7 @@
       f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7tj: 100  # Investissements forestiers : report N-1, après sinistre
       f7tk: 100  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
       f7tm: 200  # Investissements forestiers : report 2015, après sinistre
@@ -575,7 +575,7 @@
       declarants:
       - ind0
       # CGA (contrat de gestion) focused inputs — check behaviour after plaf removal
-      f7ui: 5000  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 5000  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7uq: 3000  # Crédit d'impôt pour investissements forestiers: contrat de gestion
       nbF: 0.0
       nbG: 0.0
@@ -617,7 +617,7 @@
       f7ua: 1500 # Plus utilisé, Investissements forestiers : travaux avec adhésion à une organisation de producteurs
       f7ub: 300  # Plus utilisé, Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 2500 # Plus utilisé, Crédit d'impôt pour investissements forestiers: contrat de gestion
-      f7ui: 150  # Plus utilisé, Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 150  # Plus utilisé, Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7tp: 100  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2016
       f7tq: 250  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016
       f7tr: 100  # Inv. for. 2017
@@ -679,7 +679,7 @@
       f7ua: 3000 # travaux avec adhésion à une organisation de producteurs, pour validation car il ne donne plus droit à un Crédit d'impôt pour investissements forestiers en 2023.
       f7ub: 600  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
       f7uq: 5000 # contrat de gestion, pour validation car il ne donne plus droit à un Crédit d'impôt pour investissements forestiers en 2023.
-      f7ui: 300  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs 
+      f7ui: 300  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       f7tj: 200  # Investissements forestiers : report N-1, après sinistre
       f7tk: 200  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
       f7tm: 400  # Investissements forestiers : report 2015, après sinistre
