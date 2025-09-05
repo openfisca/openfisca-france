@@ -1,5 +1,14 @@
 # Changelog
 
+### 174.1.1 [2570](https://github.com/openfisca/openfisca-france/pull/2570)
+
+* Amélioration technique.
+* Périodes concernées : aucune.
+* Détails :
+  - Mise à jour de la CI pour tester Python 3.13.
+  - Améliorations de la doc.
+  - Petits ajustement pour que tout fonctionne.
+
 ## 174.1.0 [2567](https://github.com/openfisca/openfisca-france/pull/2567)
 
 * Changement mineur.
