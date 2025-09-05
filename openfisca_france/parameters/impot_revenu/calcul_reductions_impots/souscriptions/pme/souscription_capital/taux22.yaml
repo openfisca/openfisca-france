@@ -3,6 +3,7 @@ values:
   2011-01-01:
     value: 0.22
 metadata:
+  last_value_still_valid_on: "2025-08-22"
   unit: /1
   reference:
     2011-01-01:

@@ -12,12 +12,12 @@
       caseW: false
       declarants:
       - ind0
-      f7up: 20000
-      f7ut: 2000
-      f7ua: 15000
-      f7ub: 30000
-      f7uq: 25000
-      f7ui: 15000
+      f7up: 20000  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 2000  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 15000  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 30000  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 25000  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 15000  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -36,6 +36,7 @@
     menage:
       personne_de_reference: ind0
   output:
+    # Formule (simplifiée): ci_investissement_forestier ≈ (f7ua + f7ub + f7ui + f7up + f7uq + f7ut) * P.travaux.taux  # voir la formule exacte qui applique des plafonds et deux taux
     ci_investissement_forestier: 2063
     iai: 7861.0
     impot_revenu_restant_a_payer: -5798.0
@@ -57,16 +58,16 @@
       caseW: false
       declarants:
       - ind0
-      f7up: 2000
-      f7ut: 2000
-      f7ua: 15000
-      f7ub: 3000
-      f7uq: 25000
-      f7ui: 1500
-      f7ux: 10000
-      f7tj: 1000
-      f7vp: 5000
-      f7tk: 2000
+      f7up: 2000  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 2000  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 15000  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 3000  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 25000  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 1500  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7ux: 10000  # Scellier
+      f7tj: 1000  # Investissements forestiers : report N-1, après sinistre
+      f7vp: 5000  # Investissements forestiers : report 2014, hors sinistre, avec adhésion à une association de producteurs
+      f7tk: 2000  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -85,6 +86,7 @@
     menage:
       personne_de_reference: ind0
   output:
+    # Formule (simplifiée): ci_investissement_forestier ≈ (f7tj + f7tk + f7ua + f7ub + f7ui + f7up + f7uq + f7ut + f7ux + f7vp) * P.travaux.taux  # voir la formule exacte qui applique des plafonds et deux taux
     ci_investissement_forestier: 2028
     iai: 7855.0
     impot_revenu_restant_a_payer: -5827.0
@@ -106,21 +108,21 @@
       caseW: false
       declarants:
       - ind0
-      f7up: 200
-      f7ut: 200
-      f7ua: 1500
-      f7ub: 300
-      f7uq: 2500
-      f7ui: 150
-      f7ux_2018: 1000
-      f7tj: 100
-      f7vp: 500
-      f7tk: 200
-      f7vm: 300
-      f7tm: 200
-      f7vn: 150
-      f7to: 300
-      f7tg: 100
+      f7up: 200  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 200  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7ux_2018: 1000  # Investissements forestiers : report N-1, hors sinistre
+      f7tj: 100  # Investissements forestiers : report N-1, après sinistre
+      f7vp: 500  # Investissements forestiers : report 2014, hors sinistre, avec adhésion à une association de producteurs
+      f7tk: 200  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
+      f7vm: 300  # Investissements forestiers : report 2015, hors sinistre
+      f7tm: 200  # Investissements forestiers : report 2015, après sinistre
+      f7vn: 150  # Investissements forestiers : report 2015, hors sinistre, avec adhésion à une association de producteurs
+      f7to: 300  # Investissements forestiers : report 2015, après sinistre, avec adhésion à une association de producteurs
+      f7tg: 100  # Investissements forestiers : report 2011, après sinistre
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -139,6 +141,7 @@
     menage:
       personne_de_reference: ind0
   output:
+    # Formule (simplifiée): ci_investissement_forestier ≈ (f7tg + f7tj + f7tk + f7tm + f7to + f7ua + f7ub + f7ui + f7up + f7uq + f7ut + f7ux_2018 + f7vm + f7vn + f7vp) * P.travaux.taux  # voir la formule exacte qui applique des plafonds et deux taux
     ci_investissement_forestier: 1468
     reductions: 22
     iai: 7828.0
@@ -161,25 +164,25 @@
       caseW: false
       declarants:
       - ind0
-      f7up: 200
-      f7ut: 200
-      f7ua: 1500
-      f7ub: 300
-      f7uq: 2500
-      f7ui: 150
-      f7ux_2018: 1000
-      f7tj: 100
-      f7vp: 500
-      f7tk: 200
-      f7vm: 300
-      f7tm: 200
-      f7vn: 150
-      f7to: 300
-      f7uu_2017: 100
-      f7vq: 200
-      f7tp: 400
-      f7vr: 100
-      f7tq: 250
+      f7up: 200  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 200  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7ux_2018: 1000  # Investissements forestiers : report N-1, hors sinistre
+      f7tj: 100  # Investissements forestiers : report N-1, après sinistre
+      f7vp: 500  # Investissements forestiers : report 2014, hors sinistre, avec adhésion à une association de producteurs
+      f7tk: 200  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
+      f7vm: 300  # Investissements forestiers : report 2015, hors sinistre
+      f7tm: 200  # Investissements forestiers : report 2015, après sinistre
+      f7vn: 150  # Investissements forestiers : report 2015, hors sinistre, avec adhésion à une association de producteurs
+      f7to: 300  # Investissements forestiers : report 2015, après sinistre, avec adhésion à une association de producteurs
+      f7uu_2017: 100  # Investissements forestiers : report N-4, hors sinistre
+      f7vq: 200  # Investissements forestiers : report 2016, hors sinistre
+      f7tp: 400  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2016
+      f7vr: 100  # Investissements forestiers : report 2016, hors sinistre, avec adhésion à une association de producteurs
+      f7tq: 250  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -198,6 +201,7 @@
     menage:
       personne_de_reference: ind0
   output:
+    # Formule (simplifiée): ci_investissement_forestier ≈ (f7tj + f7tk + f7tm + f7to + f7tp + f7tq + f7ua + f7ub + f7ui + f7up + f7uq + f7ut + f7uu_2017 + f7ux_2018 + f7vm + f7vn + f7vp + f7vq + f7vr) * P.travaux.taux  # voir la formule exacte qui applique des plafonds et deux taux
     ci_investissement_forestier: 1664
     reductions: 18
     iai: 7775.0
@@ -220,30 +224,30 @@
       caseW: false
       declarants:
       - ind0
-      f7up: 200
-      f7ut: 200
-      f7ua: 1500
-      f7ub: 300
-      f7uq: 2500
-      f7ui: 150
-      f7tj: 100
-      f7tk: 600
-      f7vm: 300
-      f7tm: 200
-      f7vn: 150
-      f7to: 300
-      f7vq: 200
-      f7tp: 400
-      f7vr: 100
-      f7tq: 250
-      f7vs: 300
-      f7tr: 430
-      f7vl: 520
-      f7ts: 200
-      f7vj: 100
-      f7tt: 150
-      f7vk: 50
-      f7tu: 200
+      f7up: 200  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 200  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7tj: 100  # Investissements forestiers : report N-1, après sinistre
+      f7tk: 600  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
+      f7vm: 300  # Investissements forestiers : report 2015, hors sinistre
+      f7tm: 200  # Investissements forestiers : report 2015, après sinistre
+      f7vn: 150  # Investissements forestiers : report 2015, hors sinistre, avec adhésion à une association de producteurs
+      f7to: 300  # Investissements forestiers : report 2015, après sinistre, avec adhésion à une association de producteurs
+      f7vq: 200  # Investissements forestiers : report 2016, hors sinistre
+      f7tp: 400  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2016
+      f7vr: 100  # Investissements forestiers : report 2016, hors sinistre, avec adhésion à une association de producteurs
+      f7tq: 250  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016
+      f7vs: 300  # Inv. for.
+      f7tr: 430  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2017
+      f7vl: 520  # Inv. for.
+      f7ts: 200  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2017
+      f7vj: 100  # Inv. for.
+      f7tt: 150  # Inf. for.
+      f7vk: 50  # Inv. for.
+      f7tu: 200  # Inv. for.
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -262,6 +266,7 @@
     menage:
       personne_de_reference: ind0
   output:
+    # Formule (simplifiée): ci_investissement_forestier ≈ (f7tj + f7tk + f7tm + f7to + f7tp + f7tq + f7tr + f7ts + f7tt + f7tu + f7ua + f7ub + f7ui + f7up + f7uq + f7ut + f7vj + f7vk + f7vl + f7vm + f7vn + f7vq + f7vr + f7vs) * P.travaux.taux  # voir la formule exacte qui applique des plafonds et deux taux
     ci_investissement_forestier: 1787
     iai: 7644.0
     impot_revenu_restant_a_payer: -5857.0
@@ -283,34 +288,34 @@
       caseW: false
       declarants:
       - ind0
-      f7up: 200
-      f7ut: 200
-      f7ua: 1500
-      f7ub: 300
-      f7uq: 2500
-      f7ui: 150
-      f7tj: 100
-      f7tk: 100
-      f7vm: 300
-      f7tm: 200
+      f7up: 200  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 200  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7tj: 100  # Investissements forestiers : report N-1, après sinistre
+      f7tk: 100  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
+      f7vm: 300  # Investissements forestiers : report 2015, hors sinistre
+      f7tm: 200  # Investissements forestiers : report 2015, après sinistre
       f7vn: 100  #
-      f7to: 300
-      f7vq: 200
-      f7tp: 100
-      f7vr: 100
-      f7tq: 250
-      f7vs: 200
-      f7tr: 130
-      f7vl: 220
-      f7ts: 200
-      f7vj: 100
-      f7tt: 150
-      f7vk: 50
-      f7tu: 200
-      f7vh: 140
-      f7tv: 400
-      f7vi: 200
-      f7tw: 300
+      f7to: 300  # Investissements forestiers : report 2015, après sinistre, avec adhésion à une association de producteurs
+      f7vq: 200  # Investissements forestiers : report 2016, hors sinistre
+      f7tp: 100  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2016
+      f7vr: 100  # Investissements forestiers : report 2016, hors sinistre, avec adhésion à une association de producteurs
+      f7tq: 250  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016
+      f7vs: 200  # Inv. for.
+      f7tr: 130  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2017
+      f7vl: 220  # Inv. for.
+      f7ts: 200  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2017
+      f7vj: 100  # Inv. for.
+      f7tt: 150  # Inf. for.
+      f7vk: 50  # Inv. for.
+      f7tu: 200  # Inv. for.
+      f7vh: 140  # Inv. for.
+      f7tv: 400  # Inv. for.
+      f7vi: 200  # Inv. for.
+      f7tw: 300  # Investissement forestiers report des dépenses de travaux des années antérieures: 2019 après sinistre
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -329,6 +334,7 @@
     menage:
       personne_de_reference: ind0
   output:
+    # Formule (simplifiée): ci_investissement_forestier ≈ (f7tj + f7tk + f7tm + f7to + f7tp + f7tq + f7tr + f7ts + f7tt + f7tu + f7tv + f7tw + f7ua + f7ub + f7ui + f7up + f7uq + f7ut + f7vh + f7vi + f7vj + f7vk + f7vl + f7vm + f7vn + f7vq + f7vr + f7vs) * P.travaux.taux  # voir la formule exacte qui applique des plafonds et deux taux
     ci_investissement_forestier: 1682
     iai: 7506.0
     impot_revenu_restant_a_payer: -5824.0
@@ -350,34 +356,34 @@
       caseW: false
       declarants:
       - ind0
-      f7up: 200
-      f7ut: 200
-      f7ua: 1500
-      f7ub: 300
-      f7uq: 2500
-      f7ui: 150
-      f7tj: 100
-      f7tk: 100
-      f7tm: 200
-      f7to: 300
-      f7tp: 100
-      f7tq: 250
-      f7vs: 200
-      f7tr: 130
-      f7vl: 220
-      f7ts: 200
-      f7vj: 100
-      f7tt: 150
-      f7vk: 50
-      f7tu: 200
-      f7vh: 140
-      f7tv: 400
-      f7vi: 200
-      f7tw: 300
-      f7vm: 75
-      f7ta: 300
-      f7vn: 150
-      f7tb: 200
+      f7up: 200  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 200  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7tj: 100  # Investissements forestiers : report N-1, après sinistre
+      f7tk: 100  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
+      f7tm: 200  # Investissements forestiers : report 2015, après sinistre
+      f7to: 300  # Investissements forestiers : report 2015, après sinistre, avec adhésion à une association de producteurs
+      f7tp: 100  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2016
+      f7tq: 250  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016
+      f7vs: 200  # Inv. for.
+      f7tr: 130  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2017
+      f7vl: 220  # Inv. for.
+      f7ts: 200  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2017
+      f7vj: 100  # Inv. for.
+      f7tt: 150  # Inf. for.
+      f7vk: 50  # Inv. for.
+      f7tu: 200  # Inv. for.
+      f7vh: 140  # Inv. for.
+      f7tv: 400  # Inv. for.
+      f7vi: 200  # Inv. for.
+      f7tw: 300  # Investissement forestiers report des dépenses de travaux des années antérieures: 2019 après sinistre
+      f7vm: 75  # Investissements forestiers : report 2015, hors sinistre
+      f7ta: 300  # Inv. for.
+      f7vn: 150  # Investissements forestiers : report 2015, hors sinistre, avec adhésion à une association de producteurs
+      f7tb: 200  # Dépenses en investissements forestiers
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -396,6 +402,7 @@
     menage:
       personne_de_reference: ind0
   output:
+    # Formule (simplifiée): ci_investissement_forestier ≈ (f7ta + f7tb + f7tj + f7tk + f7tm + f7to + f7tp + f7tq + f7tr + f7ts + f7tt + f7tu + f7tv + f7tw + f7ua + f7ub + f7ui + f7up + f7uq + f7ut + f7vh + f7vi + f7vj + f7vk + f7vl + f7vm + f7vn + f7vs) * P.travaux.taux  # voir la formule exacte qui applique des plafonds et deux taux
     ci_investissement_forestier: 1773
     iai: 7422.0
     impot_revenu_restant_a_payer: -5649.0
@@ -403,3 +410,336 @@
     rbg: 45000.0
     rfr: 45000.0
     rni: 45000.0
+
+- name: ci_investissement_forestier - 2022 CGA only
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      # CGA (contrat de gestion) focused inputs
+      f7ui: 5000  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7uq: 3000  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    # ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui) = 2000
+    # ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq) = 0
+    # ci_cg_tot = P.travaux.taux_adhesion_org_producteurs (25%) * ci_cg_adh + P.travaux.taux (18%) * ci_cg
+    # f7ui, plafond de 2000 * 0.25 = 500
+    # f7uq, plafond de 2000 - 2000 = 0 * 0.18 = 270
+    ci_investissement_forestier: 2000 * 0.25 + (2000-2000) * 0.18  # 500
+
+- name: Crédit Impôt pour investissement forestier - année 2022
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 200  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7tj: 100  # Investissements forestiers : report N-1, après sinistre
+      f7tk: 100  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
+      f7tm: 200  # Investissements forestiers : report 2015, après sinistre
+      f7to: 300  # Investissements forestiers : report 2015, après sinistre, avec adhésion à une association de producteurs
+      f7tp: 100  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2016
+      f7tq: 250  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016
+      f7vj: 100  # Inv. for.
+      f7tt: 150  # Inf. for.
+      f7vk: 50  # Inv. for.
+      f7tu: 200  # Inv. for.
+      f7vh: 140  # Inv. for.
+      f7tv: 400  # Inv. for.
+      f7vi: 200  # Inv. for.
+      f7tw: 300  # Investissement forestiers report des dépenses de travaux des années antérieures: 2019 après sinistre
+      f7vm: 75  # Investissements forestiers : report 2015, hors sinistre
+      f7ta: 300  # Inv. for.
+      f7vn: 150  # Investissements forestiers : report 2015, hors sinistre, avec adhésion à une association de producteurs
+      f7tb: 200  # Dépenses en investissements forestiers
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    # Formule (simplifiée): ci_investissement_forestier ≈ (f7ta + f7tb + f7tj + f7tk + f7tm + f7to + f7tp + f7tq + f7tt + f7tu + f7tv + f7tw + f7ua + f7ub + f7ui + f7up + f7uq + f7ut + f7vh + f7vi + f7vj + f7vk + f7vm + f7vn) * P.travaux.taux  # voir la formule exacte qui applique des plafonds et deux taux
+    ci_investissement_forestier: 1611.7
+
+- name: Crédit Impôt pour investissement forestier - année 2023
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 200  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 1500  # Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 300  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 2500  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 150  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7tj: 100  # Investissements forestiers : report N-1, après sinistre
+      f7tk: 100  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
+      f7tm: 200  # Investissements forestiers : report 2015, après sinistre
+      f7to: 300  # Investissements forestiers : report 2015, après sinistre, avec adhésion à une association de producteurs
+      f7tp: 100  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2016
+      f7tq: 250  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016
+      f7vj: 100  # Inv. for.
+      f7tt: 150  # Inf. for.
+      f7vk: 50  # Inv. for.
+      f7tu: 200  # Inv. for.
+      f7vh: 140  # Inv. for.
+      f7tv: 400  # Inv. for.
+      f7vi: 200  # Inv. for.
+      f7tw: 300  # Investissement forestiers report des dépenses de travaux des années antérieures: 2019 après sinistre
+      f7vm: 75  # Investissements forestiers : report 2015, hors sinistre
+      f7ta: 300  # Inv. for.
+      f7vn: 150  # Investissements forestiers : report 2015, hors sinistre, avec adhésion à une association de producteurs
+      f7tb: 200  # Dépenses en investissements forestiers
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    # ci_trav_adh = f7to + f7tq + f7ts + f7tu + f7vi + f7tw + f7vn + f7tb + f7vr + f7tf + f7vs + f7th
+    # ci_trav = f7up + f7ut + f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7ti + f7vu
+    # P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
+    ci_investissement_forestier: 0.25 * 1_600 + 0.25 * 1_765 # 841.25
+
+
+- name: Crédit Impôt pour investissement forestier - 2023 avec CGA
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      # CGA (contrat de gestion) focused inputs — check behaviour after plaf removal
+      f7ui: 5000  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7uq: 3000  # Crédit d'impôt pour investissements forestiers: contrat de gestion
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    # Formule (simplifiée): ci_investissement_forestier ≈ (f7ui + f7uq) * P.travaux.taux  # voir la formule exacte qui applique des plafonds et deux taux
+    ci_investissement_forestier: 0.0
+
+- name: Crédit Impôt pour investissement forestier - année 2024
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7up: 200  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 200  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 1500 # Plus utilisé, Investissements forestiers : travaux avec adhésion à une organisation de producteurs
+      f7ub: 300  # Plus utilisé, Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 2500 # Plus utilisé, Crédit d'impôt pour investissements forestiers: contrat de gestion
+      f7ui: 150  # Plus utilisé, Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7tp: 100  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2016
+      f7tq: 250  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016
+      f7tr: 100  # Inv. for. 2017
+      f7ts: 150  # Inf. for. 2017
+      f7tt: 50  # Inv. for. 2018
+      f7tu: 200  # Inv. for. 2018
+      f7tv: 400  # Inv. for. 2019
+      f7tw: 300  # Investissement forestiers report des dépenses de travaux des années antérieures: 2019 après sinistre
+      f7vm: 75  # Investissements forestiers : report 2015, hors sinistre
+      f7ta: 300  # Inv. for.
+      f7vn: 150  # Investissements forestiers : report 2020, hors sinistre, avec adhésion à une association de producteurs
+      f7tb: 200  # Dépenses en investissements forestiers
+      f7vq: 100
+      f7te: 200
+      f7vr: 200
+      f7tf: 200
+      f7vs: 200
+      f7th: 200
+      f7vu: 200
+      f7ti: 200
+      f7vv: 200
+      f7tj: 200
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    # ci_trav_adh = f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7vs + f7th + f7ti + f7vu
+    # ci_trav_adh = 2_050
+    # ci_trav = f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7vv + f7tj
+    # ci_trav = 2_525
+    # ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
+    ci_investissement_forestier: 2_050 * 0.25 + 2_525 * 0.25 # 1 143.75
+
+- name: Crédit Impôt pour investissement forestier - 2024 couple
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      # couple case to exercise (maries_ou_pacses + 1) scaling
+      declarants:
+      - ind0
+      - ind1
+      f7up: 400  # Crédit dimpôt pour investissements forestiers: travaux
+      f7ut: 400  # Investissements forestiers : indicatrice travaux consécutifs à un sinistre
+      f7ua: 3000 # travaux avec adhésion à une organisation de producteurs, pour validation car il ne donne plus droit à un Crédit d'impôt pour investissements forestiers en 2023.
+      f7ub: 600  # Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs
+      f7uq: 5000 # contrat de gestion, pour validation car il ne donne plus droit à un Crédit d'impôt pour investissements forestiers en 2023.
+      f7ui: 300  # Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs
+      f7tj: 200  # Investissements forestiers : report N-1, après sinistre
+      f7tk: 200  # Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs
+      f7tm: 400  # Investissements forestiers : report 2015, après sinistre
+      f7to: 600  # Investissements forestiers : report 2015, après sinistre, avec adhésion à une association de producteurs
+      f7tp: 200  # Inv. forestiers: Report des dépenses de travaux des années antérieures 2016
+      f7tq: 500  # Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016
+      f7vj: 200  # Inv. for.
+      f7tt: 300  # Inf. for.
+      f7vk: 100  # Inv. for.
+      f7tu: 400  # Inv. for.
+      f7vh: 280  # Inv. for.
+      f7tv: 800  # Inv. for.
+      f7vi: 400  # Inv. for.
+      f7tw: 600  # Investissement forestiers report des dépenses de travaux des années antérieures: 2019 après sinistre
+      f7vm: 150  # Investissements forestiers : report 2015, hors sinistre
+      f7ta: 600  # Inv. for.
+      f7vu: 300  # Investissements forestiers : report 2022, hors sinistre, avec adhésion à une association de producteurs
+      f7tb: 400  # Dépenses en investissements forestiers
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: marie
+      ind1:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: marie
+    famille:
+      parents:
+      - ind0
+      - ind1
+    menage:
+      personne_de_reference: ind0
+  output:
+    # Formule exacte pour 2023 (couple - maries_ou_pacses = 1):
+    # ci_trav_adh = min(P.travaux.plafond * (maries_ou_pacses + 1), f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7vs + f7th + f7ti + f7vu)
+    # ci_trav = min(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7vv + f7tj)
+    # ci_investissement_forestier = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
+    #
+    # Calcul avec les valeurs de ce test (copier-coller dans Python):
+    # # Paramètres 2023:
+    # plafond = 6250  # Plafond de dépenses de travaux et assurances d'investissement forestier
+    # taux_adhesion = 0.25  # Taux pour les travaux avec adhésion à une organisation de producteurs (25%)
+    # taux_normal = 0.25   # Taux du crédit d'impôt pour les travaux réguliers (25%)
+    # maries_ou_pacses = 1  # couple
+    #
+    # # Travaux avec adhésion (taux majoré):
+    # ci_trav_adh = min(6250 * (1 + 1), 500 + 0 + 400 + 600 + 300 + 400 + 0 + 0 + 0 + 0 + 0 + 0)
+    # ci_trav_adh = min(12500, 2200) = 2200
+    # # Travaux sans adhésion (taux normal):
+    # ci_trav = min(12500 - 2200, 400 + 400 + 200 + 0 + 300 + 800 + 150 + 600 + 0 + 0 + 0 + 0 + 200)
+    # ci_trav = min(10300, 3050) = 3050
+    # # Résultat final:
+    # ci_investissement_forestier = 0.25 * 2200 + 0.25 * 3050 = 550 + 762.5 = 1312.5
+    ci_investissement_forestier: 0.25 * 2200 + 0.25 * 3050
