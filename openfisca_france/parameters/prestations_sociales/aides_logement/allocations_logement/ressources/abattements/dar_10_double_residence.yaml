@@ -9,7 +9,7 @@ values:
 metadata:
   unit: currency
   last_value_still_valid_on: "2025-03-12"
-  short_label: Abattement forfaitaire en cas de double résidence pour des raisons professionnelles
+  short_label: Abattement forfaitaire si double résidence professionnelle
   reference:
     2002-07-01:
       title: Arrêté du 23 décembre 2002, art. 5

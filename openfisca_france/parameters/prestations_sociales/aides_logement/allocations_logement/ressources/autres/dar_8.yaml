@@ -31,6 +31,7 @@ values:
   2021-01-01:
     value: null
 metadata:
+  short_label: condition de salaire pour une personne seule
   unit: currency
   reference:
     2002-07-01:

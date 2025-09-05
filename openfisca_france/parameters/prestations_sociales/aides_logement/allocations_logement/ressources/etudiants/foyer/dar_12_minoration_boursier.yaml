@@ -17,8 +17,7 @@ values:
   2025-01-01:
     value: 1200
 metadata:
-  short_label: Minoration du forfait de ressources pour les étudiants en logement-foyer titulaires d'une bourse d'enseignement supérieur non-assujettie à l'impôt sur le revenu
-  last_value_still_valid_on: "2023-02-20"
+  short_label: Minoration du forfait de ressources pour les boursiers en logement-foyer
   unit: currency
   reference:
     2003-01-01:

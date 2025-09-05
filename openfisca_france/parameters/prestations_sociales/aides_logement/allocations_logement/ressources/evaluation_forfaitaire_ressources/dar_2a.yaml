@@ -31,6 +31,7 @@ values:
   2017-10-01:
     value: 9754.15
 metadata:
+  short_label: Évaluation forfaitaire des ressources pour un salarié
   unit: currency
   reference:
     2016-01-01:
