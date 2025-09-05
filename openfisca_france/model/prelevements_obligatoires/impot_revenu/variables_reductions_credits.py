@@ -285,6 +285,14 @@ class f7vu_2014(Variable):
     end = '2014-12-31'
     definition_period = YEAR
 
+class f7vu(Variable):
+    cerfa_field = '7VU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements forestiers, Report des dépenses de travaux des années antérieures : 2022 avec adhésion à une organisation de producteurs"
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
 
 # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
 class f7vt(Variable):
@@ -5603,6 +5611,7 @@ class f7ua(Variable):
     entity = FoyerFiscal
     label = 'Investissements forestiers : travaux avec adhésion à une organisation de producteurs'
     # start_date = date(2014, 1, 1)
+    end = '2023-12-31'  # Présent dans Brochure-IR-2023.pdf mais plus dans Brochure-IR-2024.pdf
     definition_period = YEAR
 
 
@@ -8038,7 +8047,7 @@ class f7th(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements forestiers : report N-3, après sinistre'
+    label = 'Investissements forestiers : report 2012, après sinistre'
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
@@ -8048,7 +8057,7 @@ class f7ti(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements forestiers : report N-2, après sinistre'
+    label = 'Investissements forestiers : report 2013, après sinistre'
     # start_date = date(2014, 1, 1)
     definition_period = YEAR
 
@@ -8058,7 +8067,7 @@ class f7tj(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements forestiers : report N-1, après sinistre'
+    label = 'Investissements forestiers : report 2014, après sinistre'
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
 
@@ -8068,7 +8077,7 @@ class f7tk(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements forestiers : report N-1, après sinistre,  avec adhésion à une organisation de producteurs'
+    label = 'Investissements forestiers : report 2014, après sinistre,  avec adhésion à une organisation de producteurs'
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
 
@@ -8119,7 +8128,7 @@ class f7vm(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements forestiers : report 2015, hors sinistre'
+    label = 'Investissements forestiers : report 2015 (puis 2020), hors sinistre'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -8129,7 +8138,7 @@ class f7vn(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements forestiers : report 2015, hors sinistre, avec adhésion à une association de producteurs'
+    label = 'Investissements forestiers : report 2015 (puis 2020), hors sinistre, avec adhésion à une association de producteurs'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -8139,7 +8148,7 @@ class f7vq(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements forestiers : report 2016, hors sinistre'
+    label = 'Investissements forestiers : report 2016 (puis 2021), hors sinistre'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -8149,7 +8158,7 @@ class f7vr(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements forestiers : report 2016, hors sinistre, avec adhésion à une association de producteurs'
+    label = 'Investissements forestiers : report 2016 (puis 2021), hors sinistre, avec adhésion à une association de producteurs'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -11746,7 +11755,7 @@ class f7vj(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Inv. for.'
+    label = 'Inv. forestiers: Report des dépenses de travaux des années antérieures 2018 avec adhésion à une organisation de producteurs'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 

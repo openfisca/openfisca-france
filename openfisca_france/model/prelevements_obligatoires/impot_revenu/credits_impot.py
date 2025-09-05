@@ -533,6 +533,7 @@ class ci_investissement_forestier(Variable):
     def formula_2022_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2022
+        Voir https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2023/pdf_integral/Brochure-IR-2023.pdf page 277
         - Comme pour les autres années, les cases sont attachés à une même année et "roulent"
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
@@ -545,6 +546,7 @@ class ci_investissement_forestier(Variable):
         f7uq = foyer_fiscal('f7uq', period)
         f7ui = foyer_fiscal('f7ui', period)
 
+        # Reports des années précédentes
         f7tj = foyer_fiscal('f7tj', period)
         f7tk = foyer_fiscal('f7tk', period)
         f7tm = foyer_fiscal('f7tm', period)
@@ -589,6 +591,7 @@ class ci_investissement_forestier(Variable):
     def formula_2023_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2023
+        Voir https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_integral/Brochure-IR-2024.pdf page 24
         - Fin du plafond de dépenses de contrat de gestion (CGA) de dépenses d'investissement forestier
         - Comme pour les autres années, les cases sont attachés à une même année d'investissements et "roulent"
         '''
@@ -597,6 +600,7 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
+        # Reports des années précédentes
         f7tm = foyer_fiscal('f7tm', period)
         f7to = foyer_fiscal('f7to', period)
         f7tp = foyer_fiscal('f7tp', period)
@@ -619,14 +623,14 @@ class ci_investissement_forestier(Variable):
         f7tf = foyer_fiscal('f7tf', period)
         f7vs = foyer_fiscal('f7vs', period)
         f7th = foyer_fiscal('f7th', period)
-        f7vu_2014 = foyer_fiscal('f7vu_2014', period)
+        f7vu = foyer_fiscal('f7vu', period)
         f7ti = foyer_fiscal('f7ti', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
-        ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7to + f7tq + f7ts + f7tu + f7vi + f7tw + f7vn + f7tb + f7vr + f7tf + f7vs + f7th)
-        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7ti + f7vu_2014)
+        ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7to + f7tq + f7ts + f7tu + f7vi + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu)
+        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th)
 
         ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
@@ -641,6 +645,7 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
+        # Reports des années précédentes
         f7tp = foyer_fiscal('f7tp', period)
         f7tq = foyer_fiscal('f7tq', period)
         f7tr = foyer_fiscal('f7tr', period)
@@ -659,7 +664,7 @@ class ci_investissement_forestier(Variable):
         f7tf = foyer_fiscal('f7tf', period)
         f7vs = foyer_fiscal('f7vs', period)
         f7th = foyer_fiscal('f7th', period)
-        f7vu_2014 = foyer_fiscal('f7vu_2014', period)
+        f7vu = foyer_fiscal('f7vu', period)
         f7ti = foyer_fiscal('f7ti', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7tj = foyer_fiscal('f7tj', period)
@@ -667,8 +672,8 @@ class ci_investissement_forestier(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
-        ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7vs + f7th + f7ti + f7vu_2014)
-        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7vv + f7tj)
+        ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu)
+        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th + f7vv + f7tj)
 
         ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
