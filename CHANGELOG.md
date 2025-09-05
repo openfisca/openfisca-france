@@ -1,5 +1,22 @@
 # Changelog
 
+## 174.1.0 [2567](https://github.com/openfisca/openfisca-france/pull/2567)
+
+* Changement mineur.
+* Périodes concernées : à partir de 2022.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/location_meublee/*`.
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/dons/dons_aux_partis_politiques/*`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/investissement_forestier/depenses_investissement_forestier/*`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/reduction_domtom/*`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/*`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` et de certaines références.
+  - Fin des déduction des frais de contrat de gestion pour les investissements forestiers.
+  - Fin du dispositif Censi-Bouvard.
+
 ### 174.0.2 [2563](https://github.com/openfisca/openfisca-france/pull/2563)
 
 * Changement mineur.
