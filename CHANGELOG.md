@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.1 [2570](https://github.com/openfisca/openfisca-france/pull/2570)
+
+* Amélioration technique.
+* Périodes concernées : aucune.
+* Détails :
+  - Mise à jour de la CI pour tester Python 3.13.
+  - Mise à jour des classifiers dans le `pyproject.toml`.
+
 ## 174.2.0 [2562](https://github.com/openfisca/openfisca-france/pull/2562)
 
 * Évolution du système socio-fiscal.
