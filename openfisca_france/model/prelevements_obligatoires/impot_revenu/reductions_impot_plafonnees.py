@@ -3438,7 +3438,7 @@ class location_meublee(Variable):
             'f7mw',
             'f7mn']
 
-        rep = ['f7st', 'f7ss', 'f7sm', 'f7sp', 'f7sn',
+        rep = ['f7ss', 'f7sm', 'f7sp', 'f7sn',
                'f7so', 'f7sa', 'f7sb', 'f7sc',
                'f7of', 'f7og', 'f7oh', 'f7oi',
                'f7oj', 'f7ok', 'f7ol', 'f7om',
