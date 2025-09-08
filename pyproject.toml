@@ -40,7 +40,7 @@ build-backend = "setuptools.build_meta"
 dev = [
     "autopep8 >=2.0.2, <3.0",
     "Flake8-pyproject>=1.2.3, <2.0.0",  # To read flake8 configuration from pyproject.toml
-    "flake8 >=6.0.0, <7.0.0",
+    "flake8 >=6.0.0, <8.0.0",
     "flake8-print >=5.0.0, <6.0.0",
     "flake8-quotes >=3.3.2",
     "pytest",  # Let OpenFisca-Core decide pytest version
