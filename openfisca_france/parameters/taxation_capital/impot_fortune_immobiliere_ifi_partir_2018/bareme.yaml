@@ -32,7 +32,7 @@ brackets:
       value: 0.015
 metadata:
   short_label: Barème IFI
-  last_value_still_valid_on: "2022-04-28"
+  last_value_still_valid_on: "2025-08-20"
   label_en: Wealth tax schedule
   ipp_csv_id:
     threshold: seuil1_ifi, seuil2_ifi, seuil3_ifi, seuil4_ifi, seuil5_ifi
