@@ -1,5 +1,24 @@
 # Changelog
 
+## 174.2.0 [2562](https://github.com/openfisca/openfisca-france/pull/2562)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/age_max.yaml`
+  - `openfisca_france/parameters/impot_revenu/contributions_exceptionnelles/contribution_revenus_locatifs/taux.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/formation/toute_entreprise/cdd.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/accidents/taux/faible.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants/*`
+  - `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/*`
+  - `openfisca_france/parameters/prestations_sociales/education/bourses/enseignement_superieur/*`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/*`
+  - `openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/bareme.yaml`
+  - `openfisca_france/parameters/taxation_capital/prelevements_sociaux/prelevements_solidarite/produits_de_placement.yaml`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` de divers paramètres.
+  - Mise à Jour des Valeurs d'Accident du Travail et des tests associés.
+
 ## 174.1.0 [2567](https://github.com/openfisca/openfisca-france/pull/2567)
 
 * Changement mineur.
