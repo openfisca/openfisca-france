@@ -1,5 +1,17 @@
 # Changelog
 
+### 174.2.2 [#2557](https://github.com/openfisca/openfisca-france/pull/2557)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/02/2025.
+* Zones impactées :
+  - `openfisca_france/parameters/taxation_capital/epargne/livret_a/taux.yaml`.
+  - `openfisca_france/parameters/taxation_capital/epargne/livret_epargne_populaire/taux.yaml`.
+* Détails :
+  - Met à jour le taux du Livret A
+  - Met à jour le taux du LEP
+  - Ajoute les clefs aux metadata : `official_journal_date`
+
 ### 174.2.1 [2570](https://github.com/openfisca/openfisca-france/pull/2570)
 
 * Amélioration technique.
