@@ -1,4 +1,5 @@
 from openfisca_france.model.base import *
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 class asf_elig_enfant(Variable):
@@ -91,9 +92,14 @@ class crds_asf(Variable):
     def formula(famille, period, parameters):
         asf = famille('asf', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        law = parameters(period)
 
-        return -(asf) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = asf,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds,
+            )
+
+        return montant_crds
 
 
 class asf_nette_crds(Variable):
