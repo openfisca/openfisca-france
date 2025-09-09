@@ -1,5 +1,15 @@
 # Changelog
 
+### 174.2.3 [#2577](https://github.com/openfisca/openfisca-france/pull/2577)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+  *  `parameters/impot_revenu/contributions_exceptionnelles/contribution_revenus_locatifs/taux.yaml`.
+  * `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/travail_esat/plafond_ressources_en_multiple_montant_base.yaml`
+* Détails :
+  - Corrige des noms de champs YAML erronés.
+
 ### 174.2.2 [#2557](https://github.com/openfisca/openfisca-france/pull/2557)
 
 * Évolution du système socio-fiscal.
