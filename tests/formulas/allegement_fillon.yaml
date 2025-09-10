@@ -222,3 +222,18 @@
       2017-10: 0
       2017-11: 0
       2017-12: 32.04
+
+- name: Refonte des allègements généraux en réduction générale dégressive unique
+  period: 2026-01  
+  description: Taux de la réduction générale dégressive unique au Smic (petite entreprise)
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 1801.8
+    # allegement mode necessary when requesting on a 1 month salary :
+    allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail_debut: 2026-01-01
+    contrat_de_travail_fin: 2026-12-31
+    effectif_entreprise: 15
+  output:
+    taux_allegement_general: 0.3973
