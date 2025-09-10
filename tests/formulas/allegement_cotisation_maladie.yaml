@@ -85,3 +85,18 @@
     effectif_entreprise: 1
   output:
     allegement_cotisation_maladie: 254.44
+
+- name: Suppression du bandeau maladie
+  period: 2026-01  
+  description: A partir de janvier 2026 fusion du bandeau maladie avec la réduction générale dégressive unique
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 1801.80
+    # allegement mode necessary when requesting on a 1 month salary :
+    allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail_debut: 2026-01-01
+    contrat_de_travail_fin: 2026-12-31
+    effectif_entreprise: 15
+  output:
+    allegement_cotisation_allocations_familiales: 0
