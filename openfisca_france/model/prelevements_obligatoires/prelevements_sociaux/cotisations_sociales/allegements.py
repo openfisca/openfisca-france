@@ -353,7 +353,7 @@ def compute_allegement_general(individu, period, parameters):
 class taux_allegement_general(Variable):
     value_type = float
     entity = Individu
-    label = "Taux de réduction générale des cotisations employeur"
+    label = 'Taux de réduction générale des cotisations employeur'
     definition_period = MONTH
     is_period_size_independent = True
     set_input = set_input_dispatch_by_period
@@ -401,7 +401,7 @@ class taux_allegement_general(Variable):
                     + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries
                     * petite_entreprise
                     )
-            
+
             if seuil <= 1:
                 return 0
 
@@ -427,8 +427,7 @@ class taux_allegement_general(Variable):
             condition_sortie_seuil = ratio_salaire_smic < seuil_sortie
 
             taux_allegement_general = t_min + round_(
-                t_delta * (max_(((1/2) * (3 * (smic_proratise / remuneration) - 1)), 0) ** puissance), 4
-            )
+                t_delta * (max_(((1 / 2) * (3 * (smic_proratise / remuneration) - 1)), 0) ** puissance), 4)
 
             taux_allegement_general = condition_sortie_seuil * taux_allegement_general
             taux_allegement_general = min_(t_min + t_delta, taux_allegement_general)
