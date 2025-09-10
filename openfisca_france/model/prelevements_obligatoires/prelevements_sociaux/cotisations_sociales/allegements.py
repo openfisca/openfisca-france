@@ -442,6 +442,7 @@ class allegement_cotisation_allocations_familiales(Variable):
     reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    end = '2025-12-31'
 
     def formula_2015_01_01(individu, period, parameters):
         allegement_cotisation_allocations_familiales_base = individu('allegement_cotisation_allocations_familiales_base', period)
@@ -457,6 +458,7 @@ class allegement_cotisation_allocations_familiales_base(Variable):
     reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    end = '2025-12-31'
 
     def formula_2015_01_01(individu, period, parameters):
         stagiaire = individu('stagiaire', period)
@@ -512,6 +514,7 @@ class allegement_cotisation_maladie(Variable):
     set_input = set_input_divide_by_period
     label = 'Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)'
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559'
+    end = '2025-12-31'
 
     def formula_2019_01_01(individu, period, parameters):
         allegement_cotisation_maladie_base = individu('allegement_cotisation_maladie_base', period)
@@ -527,6 +530,7 @@ class allegement_cotisation_maladie_base(Variable):
     set_input = set_input_divide_by_period
     label = 'Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)'
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559'
+    end = '2025-12-31'
 
     def formula_2019_01_01(individu, period, parameters):
         # propose 3 modes de paiement possibles
