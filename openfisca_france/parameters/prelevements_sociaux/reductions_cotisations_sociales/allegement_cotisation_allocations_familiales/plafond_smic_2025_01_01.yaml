@@ -2,9 +2,11 @@ description: Plafond de rémunération (en nombre de Smic du 01/01/2025) des sal
 values:
   2025-01-01:
     value: 3.3
+  2026-01-01:
+    value: null
 metadata:
   short_label: Plafond de rémunération des salariés (Nombre de Smic 01/01/2025)
-  last_value_still_valid_on: "2025-07-11"
+  last_value_still_valid_on: "2025-09-10"
   label_en: Reduction in SSCs for family benefits
   ipp_csv_id: pss_red_fam
   unit: smic_2025_01_01
@@ -14,5 +16,11 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852528
     - title: Décret n°2025-318 du 04/04/2025, Art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051430146
+    2026-01-01:
+    - title: Décret n° 2025-887 du 04/09/2025
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052194026
   official_journal_date:
     2025-01-01: "2025-04-06"
+  notes:
+    2026-01-01:
+      - title: Fusion du bandeau d'allègement famille avec la réduction générale dégressive unique
