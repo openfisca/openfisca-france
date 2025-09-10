@@ -12,9 +12,11 @@ values:
     value: 0.3194
   2025-05-01:
     value: 0.3193
+  2026-01-01:
+    value: null
 metadata:
   short_label: Coefficient maximal pour les employeurs de moins de 50 salariés
-  last_value_still_valid_on: "2025-03-07"
+  last_value_still_valid_on: "2025-09-10"
   label_en: General SSC reductions, so called Fillon reductions
   ipp_csv_id: tx_fillon_20
   unit: /1
