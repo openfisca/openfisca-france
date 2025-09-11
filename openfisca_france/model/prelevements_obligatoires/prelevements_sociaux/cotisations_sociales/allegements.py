@@ -411,19 +411,16 @@ class taux_allegement_general(Variable):
         # à partir du 1er janvier 2026
         else:
             seuil_taille_entreprise = allegement_general.ensemble_des_entreprises.seuil_taille_entreprise
-            petite_entreprise = (effectif_entreprise < seuil_taille_entreprise)
-            t_delta = (
-                allegement_general.ensemble_des_entreprises.t_delta_grandes_entreprises
-                * not_(petite_entreprise)
-                + allegement_general.ensemble_des_entreprises.t_delta_petites_entreprises
-                * petite_entreprise
-                )
+            t_delta = where(
+                effectif_entreprise < seuil_taille_entreprise,
+                allegement_general.ensemble_des_entreprises.t_delta_petites_entreprises,
+                allegement_general.ensemble_des_entreprises.t_delta_grandes_entreprises,
+            )
             t_min = allegement_general.ensemble_des_entreprises.t_min
             seuil_sortie = allegement_general.ensemble_des_entreprises.plafond
             puissance = allegement_general.ensemble_des_entreprises.puissance
             remuneration = (assiette + 1e-16)
             ratio_salaire_smic = remuneration / smic_proratise
-
             condition_sortie_seuil = ratio_salaire_smic < seuil_sortie
 
             taux_allegement_general = t_min + round_(
