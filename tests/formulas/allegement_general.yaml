@@ -228,12 +228,40 @@
   description: Taux de la réduction générale dégressive unique au Smic (petite entreprise)
   relative_error_margin: 0.001
   input:
-    salaire_de_base: 1801.8
-    # allegement mode necessary when requesting on a 1 month salary :
+    assiette_allegement:
+      2026-01: 1801.8 # 1 Smic
+      2026-02: 2252.25 # 1.25 Smic
+      # 2026-03: 3603.6 # 2 Smic
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     allegement_general_mode_recouvrement: anticipe
     contrat_de_travail_debut: 2026-01-01
     contrat_de_travail_fin: 2026-12-31
-    effectif_entreprise: 15
+    effectif_entreprise:
+      2026-01: 15
+      2026-02: 15
   output:
-    taux_allegement_general: 0.3973
+    taux_allegement_general: 
+      2026-01: 0.3973
+      2026-02: 0.2221
+      # 2026-03: 0.0533
+
+
+- name: Refonte des allègements généraux en réduction générale dégressive unique
+  period: 2026-01  
+  description: Taux de la réduction générale dégressive unique au Smic (grande entreprise)
+  relative_error_margin: 0.001
+  input:
+    assiette_allegement: 
+      2026-01: 1801.8 # 1.25 Smic
+      2026-02: 2252.25 # 1.25 Smic
+    allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
+    allegement_general_mode_recouvrement: anticipe
+    contrat_de_travail_debut: 2026-01-01
+    contrat_de_travail_fin: 2026-12-31
+    effectif_entreprise:
+      2026-01: 100
+      2026-02: 100
+  output:
+    taux_allegement_general: 
+      2026-01: 0.4013
+      2026-02: 0.2243
