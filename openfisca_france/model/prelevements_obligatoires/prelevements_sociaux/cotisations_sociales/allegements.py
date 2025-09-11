@@ -359,6 +359,11 @@ class taux_allegement_general(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2026_01_01(individu, period, parameters):
+
+        # cf. Décret n° 2025-887 du 4 septembre 2025 
+        # https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052194026
+        # https://boss.gouv.fr/portail/accueil/actualites-boss-et-rescrits/actualites-boss/2025/septembre/reforme-des-allegements-generaux.html
+
         assiette = individu('assiette_allegement', period)
         smic_proratise = individu('smic_proratise', period)
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -426,9 +431,10 @@ class taux_allegement_general(Variable):
 
         if seuil <= 1:
             return 0
+
         ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
         # règle d'arrondi: 4 décimales au dix-millième le plus proche
-        taux_allegement_general = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
+        taux_allegement_general = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)            
 
         return taux_allegement_general
 
