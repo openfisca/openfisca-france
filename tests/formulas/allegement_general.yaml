@@ -224,7 +224,7 @@
       2017-12: 32.04
 
 - name: Refonte des allègements généraux en réduction générale dégressive unique
-  period: 2026-01  
+  period: 2026-01
   description: Taux de la réduction générale dégressive unique au Smic (petite entreprise)
   relative_error_margin: 0.001
   input:
@@ -240,18 +240,18 @@
       2026-01: 15
       2026-02: 15
   output:
-    taux_allegement_general: 
+    taux_allegement_general:
       2026-01: 0.3973
       2026-02: 0.2221
       2026-03: 0
 
 
 - name: Refonte des allègements généraux en réduction générale dégressive unique
-  period: 2026-01  
+  period: 2026-01
   description: Taux de la réduction générale dégressive unique au Smic (grande entreprise)
   relative_error_margin: 0.001
   input:
-    assiette_allegement: 
+    assiette_allegement:
       2026-01: 1801.8 # 1 Smic
       2026-02: 2252.25 # 1,25 Smic
       2026-03: 5585.58 # 3,1 Smic
@@ -263,7 +263,7 @@
       2026-01: 100
       2026-02: 100
   output:
-    taux_allegement_general: 
+    taux_allegement_general:
       2026-01: 0.4013
       2026-02: 0.2243
       2026-03: 0
