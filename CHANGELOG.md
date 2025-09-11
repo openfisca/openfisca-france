@@ -1,5 +1,32 @@
 # Changelog
 
+## 174.3.0 [#2578](https://github.com/openfisca/openfisca-france/pull/2578)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026.
+* Zones impactées :
+  * `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid/plafond_smic_2025_01_01.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid/taux.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/plafond_smic_2025_01_01.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/reduction.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_50_salaries_et_plus.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/entreprises_de_moins_de_50_salaries.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/plafond.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/puissance.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/seuil_taille_entreprise.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/t_delta_grandes_entreprises.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/t_delta_petites_entreprises.yaml`
+  * `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/t_min.yaml`
+  * `tests/formulas/allegement_cotisation_allocations_familiales.yaml`
+  * `tests/formulas/allegement_cotisation_maladie.yaml`
+  * `tests/formulas/allegement_general.yaml`
+* Détails :
+  - Ajoute une variable : taux de l'allègement général
+  - Modifie la formule de l'allègement général avec la refonte en réduction générale dégressive unique
+  - Met à jour et crée les paramètres de la formule de la réduction générale dégressive unique
+  - Met fin aux bandeaux de réduction maladie et famille à partir de 2026
+
 ### 174.2.5 [#2585](https://github.com/openfisca/openfisca-france/pull/2585)
 
 * Évolution du système socio-fiscal.
