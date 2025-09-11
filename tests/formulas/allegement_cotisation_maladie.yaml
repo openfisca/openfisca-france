@@ -87,7 +87,7 @@
     allegement_cotisation_maladie: 254.44
 
 - name: Suppression du bandeau maladie
-  period: 2026-01  
+  period: 2026-01
   description: A partir de janvier 2026 fusion du bandeau maladie avec la réduction générale dégressive unique
   relative_error_margin: 0.001
   input:
