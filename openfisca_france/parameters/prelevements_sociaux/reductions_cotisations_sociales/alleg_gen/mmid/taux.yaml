@@ -2,9 +2,11 @@ description: Taux d'allègement des cotisations du régime d'assurance maladie s
 values:
   2019-01-01:
     value: 0.06
+  2026-01-01:
+    value: null
 metadata:
   short_label: Taux d'allègement des cotisations d'assurance maladie
-  last_value_still_valid_on: "2025-02-21"
+  last_value_still_valid_on: "2025-09-10"
   label_en: SSCs for sickness, maternity, disability and death benefits
   unit: /1
   reference:
@@ -13,9 +15,14 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037069704/2019-01-01/
     - title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 9
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358458&cidTexte=JORFTEXT000036339090
+    2026-01-01:
+    - title: Décret n° 2025-887 du 04/09/2025
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052194026
   official_journal_date:
     2019-01-01: "2017-12-31"
   notes:
     2019-01-01:
     - title: Taux d'allègement pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
+    2026-01-01:
+    - title: Fusion du bandeau d'allègement maladie avec la réduction générale dégressive unique
 documentation: A partir de 2019, un allègement sur le taux normal est appliqué contrairement à précédemment où des taux d'imposition par tranche étaient en vigueur.
