@@ -230,8 +230,8 @@
   input:
     assiette_allegement:
       2026-01: 1801.8 # 1 Smic
-      2026-02: 2252.25 # 1.25 Smic
-      # 2026-03: 3603.6 # 2 Smic
+      2026-02: 2252.25 # 1,25 Smic
+      2026-03: 5585.58 # 3,1 Smic
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     allegement_general_mode_recouvrement: anticipe
     contrat_de_travail_debut: 2026-01-01
@@ -243,7 +243,7 @@
     taux_allegement_general: 
       2026-01: 0.3973
       2026-02: 0.2221
-      # 2026-03: 0.0533
+      2026-03: 0
 
 
 - name: Refonte des allègements généraux en réduction générale dégressive unique
@@ -252,8 +252,9 @@
   relative_error_margin: 0.001
   input:
     assiette_allegement: 
-      2026-01: 1801.8 # 1.25 Smic
-      2026-02: 2252.25 # 1.25 Smic
+      2026-01: 1801.8 # 1 Smic
+      2026-02: 2252.25 # 1,25 Smic
+      2026-03: 5585.58 # 3,1 Smic
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     allegement_general_mode_recouvrement: anticipe
     contrat_de_travail_debut: 2026-01-01
@@ -265,3 +266,4 @@
     taux_allegement_general: 
       2026-01: 0.4013
       2026-02: 0.2243
+      2026-03: 0
