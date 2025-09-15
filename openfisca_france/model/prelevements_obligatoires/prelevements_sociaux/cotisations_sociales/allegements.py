@@ -358,6 +358,31 @@ class taux_allegement_general(Variable):
     is_period_size_independent = True
     set_input = set_input_dispatch_by_period
 
+    def formula_2026_01_01(individu, period, parameters):
+        assiette = individu('assiette_allegement', period)
+        smic_proratise = individu('smic_proratise', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        allegement_general = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
+
+        seuil_taille_entreprise = allegement_general.ensemble_des_entreprises.seuil_taille_entreprise
+        t_delta = where(effectif_entreprise < seuil_taille_entreprise, allegement_general.ensemble_des_entreprises.t_delta_petites_entreprises, allegement_general.ensemble_des_entreprises.t_delta_grandes_entreprises)
+        t_min = allegement_general.ensemble_des_entreprises.t_min
+        seuil_sortie = allegement_general.ensemble_des_entreprises.plafond
+        puissance = allegement_general.ensemble_des_entreprises.puissance
+        remuneration = (assiette + 1e-16)
+        ratio_salaire_smic = remuneration / smic_proratise
+        condition_sortie_seuil = ratio_salaire_smic < seuil_sortie
+
+        taux_allegement_general = t_min + round_(
+            t_delta * (max_(((1 / 2) * (3 * (smic_proratise / remuneration) - 1)), 0) ** puissance), 4)
+
+        taux_allegement_general = condition_sortie_seuil * taux_allegement_general
+        taux_allegement_general = min_(t_min + t_delta, taux_allegement_general)
+
+        return taux_allegement_general
+
+
     def formula(individu, period, parameters):
         # Calcul du taux
         # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
@@ -375,55 +400,36 @@ class taux_allegement_general(Variable):
 
         allegement_general = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
 
-        # avant le 1er janvier 2026
-        if period.start.date <= date(2025, 12, 31):
-            # Du 2003-07-01 au 2005-06-30
-            if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
-                seuil = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
-                tx_max = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
-            # Du 2005-07-01 au 2019-12-31
-            elif date(2005, 7, 1) <= period.start.date <= date(2019, 12, 31):
-                seuil = allegement_general.ensemble_des_entreprises.plafond
-                petite_entreprise = (effectif_entreprise < 20)
-                tx_max = (
-                    allegement_general.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
-                    * not_(petite_entreprise)
-                    + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
-                    * petite_entreprise
-                    )
-            # Après le 2019-12-31
-            elif date(2019, 12, 31) <= period.start.date <= date(2025, 12, 31):
-                seuil = allegement_general.ensemble_des_entreprises.plafond
-                petite_entreprise = (effectif_entreprise < 50)
-                tx_max = (
-                    allegement_general.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus
-                    * not_(petite_entreprise)
-                    + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries
-                    * petite_entreprise
-                    )
+        # Du 2003-07-01 au 2005-06-30
+        if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
+            seuil = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+            tx_max = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+        # Du 2005-07-01 au 2019-12-31
+        elif date(2005, 7, 1) <= period.start.date <= date(2019, 12, 31):
+            seuil = allegement_general.ensemble_des_entreprises.plafond
+            petite_entreprise = (effectif_entreprise < 20)
+            tx_max = (
+                allegement_general.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
+                * not_(petite_entreprise)
+                + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
+                * petite_entreprise
+                )
+        # Après le 2019-12-31
+        elif date(2019, 12, 31) <= period.start.date <= date(2025, 12, 31):
+            seuil = allegement_general.ensemble_des_entreprises.plafond
+            petite_entreprise = (effectif_entreprise < 50)
+            tx_max = (
+                allegement_general.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus
+                * not_(petite_entreprise)
+                + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries
+                * petite_entreprise
+                )
 
-            if seuil <= 1:
-                return 0
-
-            ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
-            # règle d'arrondi: 4 décimales au dix-millième le plus proche
-            taux_allegement_general = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
-        # à partir du 1er janvier 2026
-        else:
-            seuil_taille_entreprise = allegement_general.ensemble_des_entreprises.seuil_taille_entreprise
-            t_delta = where(effectif_entreprise < seuil_taille_entreprise, allegement_general.ensemble_des_entreprises.t_delta_petites_entreprises, allegement_general.ensemble_des_entreprises.t_delta_grandes_entreprises)
-            t_min = allegement_general.ensemble_des_entreprises.t_min
-            seuil_sortie = allegement_general.ensemble_des_entreprises.plafond
-            puissance = allegement_general.ensemble_des_entreprises.puissance
-            remuneration = (assiette + 1e-16)
-            ratio_salaire_smic = remuneration / smic_proratise
-            condition_sortie_seuil = ratio_salaire_smic < seuil_sortie
-
-            taux_allegement_general = t_min + round_(
-                t_delta * (max_(((1 / 2) * (3 * (smic_proratise / remuneration) - 1)), 0) ** puissance), 4)
-
-            taux_allegement_general = condition_sortie_seuil * taux_allegement_general
-            taux_allegement_general = min_(t_min + t_delta, taux_allegement_general)
+        if seuil <= 1:
+            return 0
+        ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
+        # règle d'arrondi: 4 décimales au dix-millième le plus proche
+        taux_allegement_general = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
 
         return taux_allegement_general
 
