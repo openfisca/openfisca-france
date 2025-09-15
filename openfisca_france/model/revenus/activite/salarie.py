@@ -1613,6 +1613,21 @@ class cotisations_employeur_securite_sociale(Variable):
             + contribution_solidarite_autonomie
             )
 
+    def formula_2026_01_01(individu, period, parameters):
+        mmid_employeur = individu('mmid_employeur', period)
+        vieillesse_employeur = individu('vieillesse_employeur', period)
+        famille = individu('famille', period)
+        accident_du_travail = individu('accident_du_travail', period)
+        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
+
+        return (
+            mmid_employeur
+            + vieillesse_employeur
+            + famille
+            + accident_du_travail
+            + contribution_solidarite_autonomie
+            )
+
 
 class cotisations_employeur_autres(Variable):
     value_type = float
