@@ -142,6 +142,35 @@ class exoneration_cotisations_employeur_apprenti(Variable):
             * (effectif_entreprise < 11)
             ) * apprenti
 
+    def formula_2026_01_01(individu, period, parameters):
+        accident_du_travail = individu('accident_du_travail', period)
+        apprenti = individu('apprenti', period)
+        cotisations_employeur = individu('cotisations_employeur', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        famille = individu('famille', period)
+        mmid_employeur = individu('mmid_employeur', period)
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+
+        cotisations_non_exonerees = accident_du_travail
+        exoneration_moins_11 = cotisations_non_exonerees - cotisations_employeur
+
+        cotisations_exonerees = (
+            famille
+            + mmid_employeur
+            + vieillesse_plafonnee_employeur
+            + vieillesse_deplafonnee_employeur
+            )
+
+        exoneration_plus_11 = -cotisations_exonerees
+
+        return (
+            exoneration_plus_11
+            * (effectif_entreprise >= 11)
+            + exoneration_moins_11
+            * (effectif_entreprise < 11)
+            ) * apprenti
+
 
 class exoneration_cotisations_salariales_apprenti(Variable):
     value_type = float
