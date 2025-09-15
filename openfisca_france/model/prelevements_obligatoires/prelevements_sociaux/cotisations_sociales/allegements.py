@@ -382,7 +382,6 @@ class taux_allegement_general(Variable):
 
         return taux_allegement_general
 
-
     def formula(individu, period, parameters):
         # Calcul du taux
         # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
