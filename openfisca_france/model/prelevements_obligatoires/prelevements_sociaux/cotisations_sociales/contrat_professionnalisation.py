@@ -133,4 +133,14 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
         # FIXME: On est bien d'accord qu'il y a les exos uniquement pour les
         # plus de 45 ans?
 
+    def formula_2026_01_01(individu, period, parameters):
+        age = individu('age', period)
+        mmid_employeur = individu('mmid_employeur', period)
+        famille = individu('famille', period)
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+        # FIXME: correspond bien à vieillesse de base ?
+        cotisations_exonerees = mmid_employeur + famille + vieillesse_plafonnee_employeur
+
+        return cotisations_exonerees * (age > 45)
+
 # TODO: vérifier aucun avantage pour l'employé ??

@@ -41,7 +41,7 @@ class retraite_brute(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        retraite_de_base = individu('retraite_de_base',period)
+        retraite_de_base = individu('retraite_de_base', period)
         retraite_complementaire = individu('retraite_complementaire', period)
 
         return retraite_de_base + retraite_complementaire
