@@ -3,7 +3,7 @@ values:
   2026-01-01:
     value: 50
 metadata:
-  short_label: Puissance
+  short_label: Seuil taille entreprise
   last_value_still_valid_on: "2025-09-10"
   reference:
     2026-01-01:
