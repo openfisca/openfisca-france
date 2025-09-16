@@ -202,6 +202,7 @@ metadata:
     - title: Les limites sont révisées chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu. En 2021, l'augmentation était de 1,4 %.
     2024-01-01:
     - title: Les limites sont révisées chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu. En 2024, l'augmentation était de 1,8 %.
+  inflator: inflateurs.inflateur_impot
 documentation: |-
   Notes : Chaque année, il est révisé selon les mêmes modalités que la limite supérieure de la première tranche du barème de l'impôt sur le revenu.
   Ref : Article 158-5-a. du CGI https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622551
