@@ -985,6 +985,81 @@ class restauration_patrimoine_bati(Variable):
 
         return ri
 
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2022
+        '''
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7kx = foyer_fiscal('f7kx', period)
+        f7kw = foyer_fiscal('f7kw', period)
+        f7kz = foyer_fiscal('f7kz', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+
+        base_tx = min_(P.plafond, f7tx)
+        base_ty = min_(P.plafond - f7tx, f7ty)
+
+        ri = (f7kz + f7kx + f7kw
+            + P.taux_30 * (base_tx)
+            + P.taux_22 * (base_ty))
+
+        return ri
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2023
+        '''
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7ky = foyer_fiscal('f7ky', period)
+        f7kw = foyer_fiscal('f7kw', period)
+        f7kz = foyer_fiscal('f7kz', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+
+        base_tx = min_(P.plafond, f7tx)
+        base_ty = min_(P.plafond - f7tx, f7ty)
+
+        ri = (f7kz + f7ky + f7kw
+            + P.taux_30 * (base_tx)
+            + P.taux_22 * (base_ty))
+
+        return ri
+
+    def formula_2024_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2024
+        '''
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7ky = foyer_fiscal('f7ky', period)
+        f7kx = foyer_fiscal('f7kx', period)
+        f7kz = foyer_fiscal('f7kz', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+
+        base_tx = min_(P.plafond, f7tx)
+        base_ty = min_(P.plafond - f7tx, f7ty)
+
+        ri = (f7kz + f7ky + f7kx
+            + P.taux_30 * (base_tx)
+            + P.taux_22 * (base_ty))
+
+        return ri
+
 
 class rente_survie(Variable):
     value_type = float
