@@ -462,6 +462,17 @@ class revenu_assimile_pension_apres_abattements(Variable):
     label = 'Pensions après abattements'
     definition_period = YEAR
 
+    def formula_2025_01_01(individu, period, parameters):
+        revenu_assimile_pension = individu('revenu_assimile_pension', period)
+        parameters_deductions = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
+
+        #    TODO: problème car les pensions sont majorées au niveau du foyer
+    #    d11 = ( AS + BS + CS + DS + ES +
+    #            AO + BO + CO + DO + EO )
+    #    penv2 = (d11-f11> abatpen.max)*(penv + (d11-f11-abatpen.max)) + (d11-f11<= abatpen.max)*penv
+    #    Plus d'abatement de 20% en 2006
+        return max_(0, revenu_assimile_pension - parameters_deductions.abatpen.forfait)
+
     def formula(individu, period, parameters):
         revenu_assimile_pension = individu('revenu_assimile_pension', period)
         parameters_deductions = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
@@ -481,6 +492,7 @@ class indu_plaf_abat_pen(Variable):
     entity = FoyerFiscal
     label = "Plafonnement de l'abattement de 10% sur les pensions du foyer"
     definition_period = YEAR
+    end = '2024-12-31'
 
     def formula(foyer_fiscal, period, parameters):
         rev_pen_i = foyer_fiscal.members('revenu_assimile_pension', period)
