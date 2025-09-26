@@ -410,7 +410,7 @@ class taux_allegement_general(Variable):
                 * petite_entreprise
                 )
         # Après le 2019-12-31
-        elif date(2019, 12, 31) <= period.start.date <= date(2025, 12, 31):
+        else:
             seuil = allegement_general.ensemble_des_entreprises.plafond
             petite_entreprise = (effectif_entreprise < 50)
             tx_max = (
