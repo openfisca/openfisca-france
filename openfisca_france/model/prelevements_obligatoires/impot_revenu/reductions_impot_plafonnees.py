@@ -42,7 +42,7 @@ class reductions_plafonnees(Variable):
             'rehab',
             'mohist',
             'souscriptions_parts_fcpi_fip',
-            'duflot_pinel_denormandie', #fin de la séparation entre métropole et outre-mer
+            'duflot_pinel_denormandie',  # fin de la séparation entre métropole et outre-mer
 
             # Pas clair, dans le doute compté parmi les plafonnées :
             'reduction_impot_exceptionnelle',
@@ -501,6 +501,7 @@ class duflot_pinel_denormandie_om(Variable):
 
         return reduction_cumulee + report + reduc_2013 + reduc_2014
 
+
 class duflot_pinel_denormandie(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -538,7 +539,7 @@ class duflot_pinel_denormandie(Variable):
             }
 
         cases_report = {
-            2013:['f7fi'],
+            2013: ['f7fi'],
             2014: ['f7ci_2019', 'f7di', 'f7fk'],
             2015: ['f7dz', 'f7ez', 'f7fr'],
             2016: ['f7sz', 'f7tz', 'f7fv'],
@@ -816,8 +817,6 @@ class duflot_pinel_denormandie(Variable):
         f7uy = foyer_fiscal('f7uy', period)  # Metropole, 2015
         f7uz = foyer_fiscal('f7uz', period)  # Outre-Mer, 2015
 
-        ## Duflot ?
-
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
             depenses_cumulees = foyer_fiscal.empty_array()
@@ -940,8 +939,6 @@ class duflot_pinel_denormandie(Variable):
         f7rv = foyer_fiscal('f7rv', period)  # Metropole, 2014
         f7rw = foyer_fiscal('f7rw', period)  # Outre-Mer, 2014
 
-        ## Duflot ?
-
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
             depenses_cumulees = foyer_fiscal.empty_array()
@@ -1046,12 +1043,12 @@ class duflot_pinel_denormandie(Variable):
 
         cases_report = {
             2016: ['f7rz', 'f7tz', 'f7fv'],
-            2017: ['f7rb','f7rd', 'f7fw'],
+            2017: ['f7rb', 'f7rd', 'f7fw'],
             2018: ['f7rf', 'f7rh', 'f7fx'],
             2019: ['f7jm', 'f7km', 'f7lm', 'f7mm', 'f7ja', 'f7jb', 'f7jc', 'f7jd'],  # Pinel et Denormandie
             2020: ['f7jn', 'f7jo', 'f7jp', 'f7jq', 'f7jr', 'f7js', 'f7jt', 'f7ju'],  # Pinel et Denormandie
             2021: ['f7jv', 'f7jw', 'f7jx', 'f7jy', 'f7lg', 'f7lh', 'f7li', 'f7lj'],  # Pinel et Denormandie
-            2022: ['f7ji', 'f7jj', 'f7jk', 'f7jl', 'f7je', 'f7jf', 'f7jg', 'f7jh'], # Pinel et Denormandie
+            2022: ['f7ji', 'f7jj', 'f7jk', 'f7jl', 'f7je', 'f7jf', 'f7jg', 'f7jh'],  # Pinel et Denormandie
             2023: ['f7ia', 'f7ib', 'f7ic', 'f7id', 'f7ie', 'f7if', 'f7ig', 'f7ih'],  # Pinel et Denormandie
             }
 
@@ -1083,7 +1080,7 @@ class duflot_pinel_denormandie(Variable):
         f7of = foyer_fiscal('f7of', period)  # Metropole, 2014
         f7og = foyer_fiscal('f7og', period)  # Outre-Mer, 2014
 
-        #Prorogation reports 2023, 6 ans
+        # Prorogation reports 2023, 6 ans
         f7na = foyer_fiscal('f7na', period)  # Metropole, 2016
         f7nb = foyer_fiscal('f7nb', period)  # Outre-Mer, 2016
         f7nc = foyer_fiscal('f7nc', period)  # Metropole, 2017
@@ -1092,8 +1089,6 @@ class duflot_pinel_denormandie(Variable):
         # Seconde prorogation reports 2023, 6 ans
         f7sy = foyer_fiscal('f7sy', period)  # Metropole, 2014
         f7sz = foyer_fiscal('f7sz', period)  # Outre-Mer, 2014
-
-        ## Duflot ?
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -2357,7 +2352,6 @@ class ri_investissement_forestier(Variable):
         ri_ass_rep = ass_rep_2012 * P.acquisition.taux
 
         return ri_acq + ri_ass_rep
-
 
 
 class invlst(Variable):
