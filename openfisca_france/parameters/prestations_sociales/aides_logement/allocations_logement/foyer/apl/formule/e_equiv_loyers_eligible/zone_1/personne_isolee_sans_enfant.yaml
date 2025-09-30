@@ -14,6 +14,8 @@ values:
     value: 478.09
   2024-10-01:
     value: 493.68
+  2025-10-01:
+    value: 498.81
 metadata:
   short_label: Personne isolée sans enfant
   last_value_still_valid_on: "2024-11-12"
