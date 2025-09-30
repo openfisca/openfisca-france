@@ -44,6 +44,8 @@ values:
     value: 354.51
   2024-10-01:
     value: 366.07
+  2025-10-01:
+    value: 369.88
 metadata:
   short_label: Personne seule ou un couple avec un enfant à charge
   last_value_still_valid_on: "2025-03-04"
