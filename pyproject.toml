@@ -22,7 +22,7 @@ classifiers = [
 requires-python = ">= 3.9"
 dependencies = [
     "numpy >=1.24.3, <2",
-    "openfisca-core[web-api] >=43, <44",
+    "openfisca-core[web-api] >=43, <43.4.0",
 ]
 
 [project.urls]
