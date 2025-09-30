@@ -39,7 +39,7 @@ class TestPyprojectVersion(TestCase):
         if version_match:
             openfisca_version = version_match.group(1)
         # Extract dependencies
-        version = re.search(r"openfisca_core_api': '(>=\s*[\d\.]*,\s*<\d*)'", content, re.MULTILINE)
+        version = re.search(r"openfisca_core_api': '(>=\s*[\d.]+,\s*<\s*[\d.]+)'", content, re.MULTILINE)
         if version:
             openfisca_core_api = version.group(1)
         else:
