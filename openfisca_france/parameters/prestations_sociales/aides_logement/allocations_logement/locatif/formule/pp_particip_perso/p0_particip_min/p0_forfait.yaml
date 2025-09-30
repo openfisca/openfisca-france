@@ -40,6 +40,8 @@ values:
     value: 37.91
   2024-10-01:
     value: 39.15
+  2025-10-01:
+    value: 39.56
 metadata:
   short_label: Montant forfaitaire de la participation minimale « P0 »
   last_value_still_valid_on: "2025-03-04"
