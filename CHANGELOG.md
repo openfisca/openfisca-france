@@ -1,5 +1,15 @@
 # Changelog
 
+### 174.2.4 [#2584](https://github.com/openfisca/openfisca-france/pull/2584)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py
+  * openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py
+* Détails :
+  * Corrige le calcul vectoriel du crédit d'impôt pour emploi à domicile. Il y avait un problème dans le calcul vectoriel. Le test était fait sur l'entièreté du vecteur et non pas élément par élément de celui-ci.
+
 ### 174.2.3 [#2577](https://github.com/openfisca/openfisca-france/pull/2577)
 
 * Changement mineur.
