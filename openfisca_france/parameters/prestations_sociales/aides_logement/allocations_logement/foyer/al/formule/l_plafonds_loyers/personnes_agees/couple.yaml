@@ -14,6 +14,8 @@ values:
     value: 343.58
   2024-10-01:
     value: 354.78
+  2025-10-01:
+    value: 358.47
 metadata:
   short_label: Couple
   last_value_still_valid_on: "2025-03-10"
