@@ -44,6 +44,8 @@ values:
     value: 29.03
   2024-10-01:
     value: 29.98
+  2025-10-01:
+    value: 30.29
 metadata:
   short_label: Majoration colocataire ou copropriétaire seuls
   last_value_still_valid_on: "2025-03-04"

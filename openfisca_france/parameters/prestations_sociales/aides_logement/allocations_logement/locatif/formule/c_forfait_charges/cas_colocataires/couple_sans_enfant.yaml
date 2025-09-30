@@ -46,6 +46,8 @@ values:
     value: 58.08
   2024-10-01:
     value: 59.97
+  2025-10-01:
+    value: 60.59
 metadata:
   short_label: Majoration pour couple sans personne à charge ou bénéficiaire
   last_value_still_valid_on: "2025-03-04"
