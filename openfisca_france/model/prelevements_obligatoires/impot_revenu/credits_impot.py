@@ -2977,8 +2977,8 @@ class ci_saldom(Variable):
                 annee1,
                 min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl)),
                 min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                )
             )
-        )
 
         # calcul du CI
         ci = min_(plaf, f7db) * P.taux
@@ -3009,8 +3009,8 @@ class ci_saldom(Variable):
                 annee1,
                 min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl)),
                 min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                )
             )
-        )
 
         # calcul du CI
         ci = min_(plaf, max_(0, f7db - f7dr)) * P.taux
