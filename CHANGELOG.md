@@ -1,5 +1,18 @@
 # Changelog
 
+### 174.2.5 [#2585](https://github.com/openfisca/openfisca-france/pull/2585)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2025.
+* Zones impactées :
+  * `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/c_forfait_charges`
+  * `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso`
+  * `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/l_plafonds_loyers`
+  * `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/apl`
+  * `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al`
+* Détails :
+  - Mise à jour des paramètres des aides au logement pour octobre 2025.
+
 ### 174.2.4 [#2584](https://github.com/openfisca/openfisca-france/pull/2584)
 
 * Correction d'un crash.
