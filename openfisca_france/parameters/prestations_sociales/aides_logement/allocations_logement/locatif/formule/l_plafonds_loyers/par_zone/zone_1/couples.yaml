@@ -44,6 +44,8 @@ values:
     value: 385.09
   2024-10-01:
     value: 397.64
+  2025-10-01:
+    value: 401.78
 metadata:
   short_label: Couple sans personne à charge
   last_value_still_valid_on: "2025-03-04"
