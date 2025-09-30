@@ -44,6 +44,8 @@ values:
     value: 260.82
   2024-10-01:
     value: 269.32
+  2025-10-01:
+    value: 272.12
 metadata:
   short_label: Personne seule
   last_value_still_valid_on: "2025-03-04"

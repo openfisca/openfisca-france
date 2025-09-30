@@ -44,6 +44,8 @@ values:
     value: 55.79
   2024-10-01:
     value: 57.61
+  2025-10-01:
+    value: 58.21
 metadata:
   short_label: Par enfant supplémentaire
   last_value_still_valid_on: "2025-03-04"
