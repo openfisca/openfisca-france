@@ -14,6 +14,8 @@ values:
     value: 482.66
   2024-10-01:
     value: 498.39
+  2025-10-01:
+    value: 503.57
 metadata:
   short_label: Ménage seul
   last_value_still_valid_on: "2024-11-12"
