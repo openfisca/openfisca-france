@@ -272,6 +272,8 @@ def apply_bareme_for_relevant_type_sal(
                 else:
                     KeyError(f'{bareme_name} not in {bareme_by_categorie_salarie._name} for {categorie_salarie_type.name}')
                     continue
+            else:
+                continue
 
             yield bareme.calc(
                 base * (categorie_salarie == categorie_salarie_type),
