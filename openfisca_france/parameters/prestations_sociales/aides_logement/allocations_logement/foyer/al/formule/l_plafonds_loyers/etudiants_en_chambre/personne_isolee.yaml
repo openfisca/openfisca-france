@@ -16,6 +16,8 @@ values:
     value: 90.13
   2024-10-01:
     value: 93.07
+  2025-10-01:
+    value: 94.04
 metadata:
   short_label: Bénéficiaire seul
   last_value_still_valid_on: "2025-03-10"
