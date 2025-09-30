@@ -14,6 +14,8 @@ values:
     value: 512.07
   2024-10-01:
     value: 528.76
+  2025-10-01:
+    value: 534.26
 metadata:
   short_label: Ménage ou isolé avec 1 enfant
   last_value_still_valid_on: "2024-11-12"
