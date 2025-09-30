@@ -264,18 +264,15 @@ def apply_bareme_for_relevant_type_sal(
             else:
                 NameError()
 
-            try:
+            if categorie_salarie_type.name != 'public_titulaire_militaire':
                 categorie_salarie_baremes = bareme_by_categorie_salarie[categorie_salarie_type.name]
-            except KeyError as e:
-                # FIXME: dirty fix since public_titulaire_militaire does not exist
-                if categorie_salarie_type.name == 'public_titulaire_militaire':
-                    continue
-                raise e
 
-            if bareme_name in cotisations_by_categorie_salarie[categorie_salarie_type.name]:
-                bareme = categorie_salarie_baremes[bareme_name]
+                if bareme_name in cotisations_by_categorie_salarie[categorie_salarie_type.name]:
+                    bareme = categorie_salarie_baremes[bareme_name]
+                else:
+                    KeyError(f'{bareme_name} not in {bareme_by_categorie_salarie._name} for {categorie_salarie_type.name}')
+                    continue
             else:
-                KeyError(f'{bareme_name} not in {bareme_by_categorie_salarie._name} for {categorie_salarie_type.name}')
                 continue
 
             yield bareme.calc(
