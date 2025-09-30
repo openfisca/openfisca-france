@@ -267,11 +267,11 @@ def apply_bareme_for_relevant_type_sal(
             if categorie_salarie_type.name != 'public_titulaire_militaire':
                 categorie_salarie_baremes = bareme_by_categorie_salarie[categorie_salarie_type.name]
 
-            if bareme_name in cotisations_by_categorie_salarie[categorie_salarie_type.name]:
-                bareme = categorie_salarie_baremes[bareme_name]
-            else:
-                KeyError(f'{bareme_name} not in {bareme_by_categorie_salarie._name} for {categorie_salarie_type.name}')
-                continue
+                if bareme_name in cotisations_by_categorie_salarie[categorie_salarie_type.name]:
+                    bareme = categorie_salarie_baremes[bareme_name]
+                else:
+                    KeyError(f'{bareme_name} not in {bareme_by_categorie_salarie._name} for {categorie_salarie_type.name}')
+                    continue
 
             yield bareme.calc(
                 base * (categorie_salarie == categorie_salarie_type),
