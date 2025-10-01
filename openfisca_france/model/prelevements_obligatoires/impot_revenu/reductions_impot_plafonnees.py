@@ -3782,13 +3782,15 @@ class ri_saldom(Variable):
 
         # détérminer le plafond
 
-        if invalide.any():
-            plaf = P.plafond_invalides
-        else:
-            if annee1.any():
-                plaf = min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
-            else:
-                plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+        plaf = where(
+            invalide,
+            P.plafond_invalides,
+            where(
+                annee1,
+                min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl)),
+                min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                )
+            )
 
         # calcul de la RI et du CI
 
