@@ -4,3 +4,5 @@ values:
     value: 1015
   2013-01-01:
     value: null
+metadata:
+  short_label: Multiplicateur du smic pour salarié

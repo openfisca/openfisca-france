@@ -2,3 +2,5 @@ description: Coefficient multiplicateur du smic horaire brut au 01/07 précéden
 values:
   2007-07-01:
     value: 1500
+metadata:
+  short_label: Multiplicateur du smic pour indépendant
