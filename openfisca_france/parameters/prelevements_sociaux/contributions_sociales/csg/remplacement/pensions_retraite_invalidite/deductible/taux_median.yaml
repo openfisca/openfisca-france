@@ -1,14 +1,19 @@
 description: Taux médian de la contribution sociale généralisée (CSG) déductible sur les pensions de retraite et d'invalidité
-values:
-  1991-02-01:
-    value: null
-  2019-01-01:
-    value: 0.042
+brackets:
+- threshold:
+    1991-02-01:
+      value: 0
+  rate:
+    1991-02-01:
+      value: null
+    2019-01-01:
+      value: 0.042
 metadata:
   short_label: Taux médian
   last_value_still_valid_on: "2024-07-24"
   ipp_csv_id: csg_pens_median_deductible
-  unit: /1
+  rate_unit: /1
+  threshold_unit: currency
   reference:
     2019-01-01:
     - title: Article 154 quinquies du Code général des impôts (taux global)
