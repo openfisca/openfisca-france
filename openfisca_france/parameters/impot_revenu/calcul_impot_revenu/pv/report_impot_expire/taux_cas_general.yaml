@@ -3,7 +3,7 @@ values:
   2016-01-01:
     value: 0.24
 metadata:
-  short_label: Taux pour le cas général (case 3WI)
+  short_label: Taux pour le cas général
   last_value_still_valid_on: "2024-11-07"
   unit: /1
   reference:
