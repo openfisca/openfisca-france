@@ -3,6 +3,8 @@ metadata:
   short_label: Taxes exceptionnelles
   label_en: Exceptional contributions
   order:
+  - contribution_differentielle_hauts_revenus
+  - contribution_revenus_locatifs
   - contribution_exceptionnelle_hauts_revenus
   - majorations_exceptionnelles
   - minorations_exceptionnelles
