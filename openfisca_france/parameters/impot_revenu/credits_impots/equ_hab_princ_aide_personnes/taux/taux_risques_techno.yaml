@@ -6,7 +6,7 @@ values:
     value: 0.4
 metadata:
   last_value_still_valid_on: "2025-02-24"
-  short_label: Travaux de prévention des risques technologiques et diagnostic préalable (case 7WL)
+  short_label: Travaux de prévention des risques technologiques et diagnostic préalable
   ipp_csv_id: tx_risques_techno
   unit: /1
   reference:
