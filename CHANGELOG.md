@@ -1,5 +1,14 @@
 # Changelog
 
+### 174.2.7 [#2591](https://github.com/openfisca/openfisca-france/pull/2591)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+  * `openfisca_france/parameters/impot_revenu/calcul_reductions_impots`
+* Détails :
+  - Réorganisation et modifications des descriptions/short_labels des réductions d'IR
+
 ### 174.2.6 [#2590](https://github.com/openfisca/openfisca-france/pull/2590)
 
 * Changement mineur.
