@@ -1,5 +1,16 @@
 # Changelog
 
+### 174.2.6 [#2590](https://github.com/openfisca/openfisca-france/pull/2590)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+  * `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/pv`
+  * `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/bouclier_fiscal`
+  * `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+* Détails :
+  - Réorganisation et modifications des descriptions/short_labels des plus values
+
 ### 174.2.5 [#2585](https://github.com/openfisca/openfisca-france/pull/2585)
 
 * Évolution du système socio-fiscal.
