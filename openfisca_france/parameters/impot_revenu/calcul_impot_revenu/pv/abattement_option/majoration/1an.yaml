@@ -5,6 +5,6 @@ values:
   2014-01-01:
     value: 0.5
 metadata:
-  short_label: 1 à 4 ans
+  short_label: Abattement majoré pour titres détenus depuis 1 à 4 ans
   ipp_csv_id: abat_pv_majore_1
   unit: /1
