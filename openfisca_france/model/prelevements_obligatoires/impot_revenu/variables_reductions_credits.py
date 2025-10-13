@@ -2042,6 +2042,7 @@ class f7pk_2011(Variable):
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
     end = '2011-12-31'
+    definition_period = YEAR
 
 
 class f7pk_2021(Variable):
@@ -9311,7 +9312,7 @@ class f7nr_2021(Variable):
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
-    end_date = '2021-12-31'
+    end = '2021-12-31'
 
 
 class f7nr(Variable):
@@ -13002,7 +13003,7 @@ class f7qu_2021(Variable):
     label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2018 avec engagement de location 9 ans'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
-    end = 2021_12_31
+    end = '2021-12-31'
 
 
 class f7qu(Variable):
