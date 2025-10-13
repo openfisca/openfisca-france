@@ -2,6 +2,19 @@ description: Taxe d'apprentissage
 metadata:
   short_label: Taxes d'apprentissage
   label_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  reference:
+    1978-01-01:
+      title: Loi 78-653 du 22/06/1978 (LFR pour 1978)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000704926
+    1980-01-01:
+      title: Loi 80-30 du 18/01/80 (LF pour 1980), art. 21
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273412&cidTexte=JORFTEXT000000705191
+  official_journal_date:
+    1978-01-01: "1978-06-22"
+    1980-01-01: "1980-01-19"
+  notes:
+    1978-01-01:
+    - title: En 1978, création d'une cotisation supplémentaire de 0,2 % pour financer la formation en alternance (référence législative manquante)
   order:
   - apprentissage_taxe
   - apprentissage_taxe_alsace_moselle
