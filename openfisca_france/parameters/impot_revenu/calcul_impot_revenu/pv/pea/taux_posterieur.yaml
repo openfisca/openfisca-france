@@ -11,6 +11,7 @@ values:
   2019-01-01:
     value: null
 metadata:
+  short_label: Taux si clôture du PEA entre 2 et 5 ans
   ipp_csv_id: tx_pea_post
   unit: /1
   last_value_still_valid_on: "2024-11-07"
