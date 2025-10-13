@@ -1,7 +1,7 @@
 description: Cotisation salarié sous plafond pour la branche assurance vieillesse (CNAV) du régime général de sécurité sociale
 brackets:
 - threshold:
-    1967-10-01:
+    1993-07-01:
       value: 0
   rate:
     1967-10-01:
@@ -33,10 +33,10 @@ brackets:
     2016-01-01:
       value: 0.069
 - threshold:
-    1967-10-01:
+    1993-07-01:
       value: 1
   rate:
-    1967-10-01:
+    1993-07-01:
       value: 0
 metadata:
   short_label: Sous plafond
