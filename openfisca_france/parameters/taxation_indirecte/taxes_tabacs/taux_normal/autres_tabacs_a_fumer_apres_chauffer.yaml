@@ -3,7 +3,7 @@ values:
   2022-01-01:
     value: null
   2023-01-01:
-    value: 51.4
+    value: 0.514
 metadata:
   short_label: Tabacs fumés/inhalés après chauffe
   last_value_still_valid_on: "2022-12-28"
