@@ -1632,8 +1632,8 @@ class inthab(Variable):
         invalidite_conj = foyer_fiscal('caseF', period)
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
-        f7vy = foyer_fiscal('f7vy', period)
-        f7vz = foyer_fiscal('f7vz', period)
+        f7vy = foyer_fiscal('f7vy_2013', period)
+        f7vz = foyer_fiscal('f7vz_2016', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
@@ -1656,9 +1656,9 @@ class inthab(Variable):
         invalidite_conj = foyer_fiscal('caseF', period)
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
-        f7vx = foyer_fiscal('f7vx', period)
-        f7vy = foyer_fiscal('f7vy', period)
-        f7vz = foyer_fiscal('f7vz', period)
+        f7vx = foyer_fiscal('f7vx_2022', period)
+        f7vy = foyer_fiscal('f7vy_2013', period)
+        f7vz = foyer_fiscal('f7vz_2016', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
@@ -1684,10 +1684,10 @@ class inthab(Variable):
         invalidite_conj = foyer_fiscal('caseF', period)
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
-        f7vw = foyer_fiscal('f7vw', period)
-        f7vx = foyer_fiscal('f7vx', period)
-        f7vy = foyer_fiscal('f7vy', period)
-        f7vz = foyer_fiscal('f7vz', period)
+        f7vw = foyer_fiscal('f7vw_2013', period)
+        f7vx = foyer_fiscal('f7vx_2022', period)
+        f7vy = foyer_fiscal('f7vy_2013', period)
+        f7vz = foyer_fiscal('f7vz_2016', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
@@ -1716,11 +1716,11 @@ class inthab(Variable):
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
         f7vu_2014 = foyer_fiscal('f7vu_2014', period)
-        f7vw = foyer_fiscal('f7vw', period)
+        f7vw = foyer_fiscal('f7vw_2013', period)
         f7vv = foyer_fiscal('f7vv', period)
-        f7vx = foyer_fiscal('f7vx', period)
-        f7vy = foyer_fiscal('f7vy', period)
-        f7vz = foyer_fiscal('f7vz', period)
+        f7vx = foyer_fiscal('f7vx_2022', period)
+        f7vy = foyer_fiscal('f7vy_2013', period)
+        f7vz = foyer_fiscal('f7vz_2016', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
@@ -1756,10 +1756,10 @@ class inthab(Variable):
         f7vt = foyer_fiscal('f7vt', period)
         f7vu_2014 = foyer_fiscal('f7vu_2014', period)
         f7vv = foyer_fiscal('f7vv', period)
-        f7vw = foyer_fiscal('f7vw', period)
-        f7vx = foyer_fiscal('f7vx', period)
-        f7vy = foyer_fiscal('f7vy', period)
-        f7vz = foyer_fiscal('f7vz', period)
+        f7vw = foyer_fiscal('f7vw_2013', period)
+        f7vx = foyer_fiscal('f7vx_2022', period)
+        f7vy = foyer_fiscal('f7vy_2013', period)
+        f7vz = foyer_fiscal('f7vz_2016', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
@@ -1797,8 +1797,8 @@ class inthab(Variable):
         f7vt = foyer_fiscal('f7vt', period)
         f7vu_2014 = foyer_fiscal('f7vu_2014', period)
         f7vv = foyer_fiscal('f7vv', period)
-        f7vx = foyer_fiscal('f7vx', period)
-        f7vz = foyer_fiscal('f7vz', period)
+        f7vx = foyer_fiscal('f7vx_2022', period)
+        f7vz = foyer_fiscal('f7vz_2016', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
@@ -1832,8 +1832,8 @@ class inthab(Variable):
         nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
         f7vv = foyer_fiscal('f7vv', period)
-        f7vx = foyer_fiscal('f7vx', period)
-        f7vz = foyer_fiscal('f7vz', period)
+        f7vx = foyer_fiscal('f7vx_2022', period)
+        f7vz = foyer_fiscal('f7vz_2016', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
@@ -1864,8 +1864,8 @@ class inthab(Variable):
         nbpac_invalideR = foyer_fiscal('nbR', period)
         nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
-        f7vx = foyer_fiscal('f7vx', period)
-        f7vz = foyer_fiscal('f7vz', period)
+        f7vx = foyer_fiscal('f7vx_2022', period)
+        f7vz = foyer_fiscal('f7vz_2016', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
@@ -1895,7 +1895,7 @@ class inthab(Variable):
         nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
         f7vv = foyer_fiscal('f7vv', period)
-        f7vx = foyer_fiscal('f7vx', period)
+        f7vx = foyer_fiscal('f7vx_2022', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
@@ -1923,7 +1923,7 @@ class inthab(Variable):
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
         nbpac_invalideI = foyer_fiscal('nbI', period)
-        f7vx = foyer_fiscal('f7vx', period)
+        f7vx = foyer_fiscal('f7vx_2022', period)
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
@@ -2417,7 +2417,7 @@ class quaenv(Variable):
         f7sw = foyer_fiscal('f7sw', period)
         f7tv = foyer_fiscal('f7tv_2012', period)
         f7tw = foyer_fiscal('f7tw_2012', period)
-        f7vg = foyer_fiscal('f7vg', period)
+        f7vg = foyer_fiscal('f7vg_2015', period)
         f7vh = foyer_fiscal('f7vh_2014', period)
         f7wb = foyer_fiscal('f7wb_2015', period)
         f7wc = foyer_fiscal('f7wc_2015', period)
@@ -2562,7 +2562,7 @@ class quaenv(Variable):
         f7tw = foyer_fiscal('f7tw_2012', period)
         f7tx = foyer_fiscal('f7tx_2015', period)
         f7ty = foyer_fiscal('f7ty_2015', period)
-        f7vg = foyer_fiscal('f7vg', period)
+        f7vg = foyer_fiscal('f7vg_2015', period)
         f7vh = foyer_fiscal('f7vh_2014', period)
         f7vi = foyer_fiscal('f7vi_2015', period)
         f7vk = foyer_fiscal('f7vk_2015', period)
@@ -2575,7 +2575,7 @@ class quaenv(Variable):
         f7wu = foyer_fiscal('f7wu', period)
         f7wv = foyer_fiscal('f7wv', period)
         f7ww = foyer_fiscal('f7ww', period)
-        f7xb = foyer_fiscal('f7xb', period)
+        f7xb_2015 = foyer_fiscal('f7xb_2015', period)
         f7xc = foyer_fiscal('f7xc_2015', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
@@ -2587,7 +2587,7 @@ class quaenv(Variable):
             + f7rn + f7rp + f7rr + f7rs + f7rq + f7rt + f7rv + f7rw + f7rz + f7tv + f7tw
             )
         depenses_transition_energetique_bouquet_2ans_2015 = (
-            f7ta + f7tb + f7tc + f7xb + f7xc + f7wh + f7wi + f7vi + f7wv + f7ww + f7vk + f7vl
+            f7ta + f7tb + f7tc + f7xb_2015 + f7xc + f7wh + f7wi + f7vi + f7wv + f7ww + f7vk + f7vl
             + f7tn + f7tp + f7tr + f7ts + f7tq + f7tt + f7tx + f7ty + f7ru + f7su + f7sm + f7so + f7sz
             )
         depenses_transition_energetique_2015 = (
@@ -2728,9 +2728,9 @@ class quaenv_bouquet(Variable):
         f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss_2015', period)
         f7st = foyer_fiscal('f7st_2015', period)
-        f7ve = foyer_fiscal('f7ve', period)
-        f7vf = foyer_fiscal('f7vf', period)
-        f7vg = foyer_fiscal('f7vg', period)
+        f7ve = foyer_fiscal('f7ve_2012', period)
+        f7vf = foyer_fiscal('f7vf_2012', period)
+        f7vg = foyer_fiscal('f7vg_2015', period)
         f7wa = foyer_fiscal('f7wa_2012', period)
         f7wb = foyer_fiscal('f7wb_2015', period)
         f7wc = foyer_fiscal('f7wc_2015', period)
@@ -2763,7 +2763,7 @@ class quaenv_bouquet(Variable):
         f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss_2015', period)
         f7st = foyer_fiscal('f7st_2015', period)
-        f7vg = foyer_fiscal('f7vg', period)
+        f7vg = foyer_fiscal('f7vg_2015', period)
         f7wc = foyer_fiscal('f7wc_2015', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wt = foyer_fiscal('f7wt', period)
@@ -2807,7 +2807,7 @@ class quaenv_bouquet(Variable):
         f7st = foyer_fiscal('f7st_2015', period)
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
-        f7vg = foyer_fiscal('f7vg', period)
+        f7vg = foyer_fiscal('f7vg_2015', period)
         f7vh = foyer_fiscal('f7vh_2014', period)
         f7wb = foyer_fiscal('f7wb_2015', period)
         f7wc = foyer_fiscal('f7wc_2015', period)
@@ -2867,7 +2867,7 @@ class quaenv_bouquet(Variable):
         f7tr = foyer_fiscal('f7tr_2015', period)
         f7ts = foyer_fiscal('f7ts_2015', period)
         f7tt = foyer_fiscal('f7tt_2012', period)
-        f7vg = foyer_fiscal('f7vg', period)
+        f7vg = foyer_fiscal('f7vg_2015', period)
         f7vh = foyer_fiscal('f7vh_2014', period)
         f7wb = foyer_fiscal('f7wb_2015', period)
         f7wc = foyer_fiscal('f7wc_2015', period)
@@ -2875,17 +2875,17 @@ class quaenv_bouquet(Variable):
         f7wt = foyer_fiscal('f7wt', period)
         f7wu = foyer_fiscal('f7wu', period)
         f7wv = foyer_fiscal('f7wv', period)
-        f7xb = foyer_fiscal('f7xb', period)
+        f7xb_2015 = foyer_fiscal('f7xb_2015', period)
 
         depense_2014_eligible = (
             f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st
             + f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw
             )
 
-        depense_2015_eligible = (f7ta + f7tb + f7xb + f7wh + f7wv + f7tn + f7tp + f7tr + f7ts + f7tq + f7tt)
+        depense_2015_eligible = (f7ta + f7tb + f7xb_2015 + f7wh + f7wv + f7tn + f7tp + f7tr + f7ts + f7tq + f7tt)
 
         t1 = ((f7wt + f7wu + f7wv) > 0) * 1
-        t2 = ((f7wc + f7wb + f7xb) > 0) * 1
+        t2 = ((f7wc + f7wb + f7xb_2015) > 0) * 1
         t3 = ((f7vg + f7vh + f7wh) > 0) * 1
         t4 = ((f7sn + f7rn + f7tn) > 0) * 1
         t5 = ((f7sr + f7rr + f7tr + f7ss + f7rs + f7ts) > 0) * 1

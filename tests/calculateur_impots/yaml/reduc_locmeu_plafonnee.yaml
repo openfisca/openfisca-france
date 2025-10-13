@@ -12,8 +12,8 @@
       caseW: false
       declarants:
       - ind0
-      f7ib_2019: 500
-      f7id: 10000
+      f7ib_2021: 500
+      f7id_2018: 10000
       f7ie_2016: 10000
       f7if_2016: 10000
       f7ig_2016: 10000
@@ -73,8 +73,8 @@
       caseW: false
       declarants:
       - ind0
-      f7ib_2019: 500
-      f7id: 10000
+      f7ib_2021: 500
+      f7id_2018: 10000
       f7ie_2016: 10000
       f7if_2016: 10000
       f7ig_2016: 10000
@@ -136,8 +136,8 @@
       caseW: false
       declarants:
       - ind0
-      f7ib_2019: 500
-      f7id: 10000
+      f7ib_2021: 500
+      f7id_2018: 10000
       f7ie_2016: 10000
       f7if_2016: 10000
       f7ig_2016: 10000
@@ -201,8 +201,8 @@
       caseW: false
       declarants:
       - ind0
-      f7ib_2019: 500
-      f7id: 10000
+      f7ib_2021: 500
+      f7id_2018: 10000
       f7ij: 10000
       f7ik: 500
       f7iq_2018: 500
