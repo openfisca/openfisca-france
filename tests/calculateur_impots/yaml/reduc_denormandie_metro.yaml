@@ -5,7 +5,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7na: 100000.0
+      f7na_2022: 100000.0
     individus:
       ind0:
         activite: actif
@@ -34,7 +34,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7nb: 300000.0
+      f7nb_2022: 300000.0
     individus:
       ind0:
         activite: actif
@@ -63,7 +63,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7na: 200000.0
+      f7na_2022: 200000.0
       f7qy: 200000.0
     individus:
       ind0:
@@ -93,7 +93,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7na: 200000.0
+      f7na_2022: 200000.0
       f7qm: 200000.0
     individus:
       ind0:
@@ -123,7 +123,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7nb: 200000.0
+      f7nb_2022: 200000.0
       f7qx: 200000.0
     individus:
       ind0:

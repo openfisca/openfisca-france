@@ -474,7 +474,7 @@ class duflot_pinel_denormandie_om(Variable):
         cases_report = {
             2014: ['f7ci_2019', 'f7di'],
             2015: ['f7dz', 'f7ez'],
-            2016: ['f7sz', 'f7tz'],
+            2016: ['f7sz_2021', 'f7tz'],
             2017: ['f7rc', 'f7rd'],
             }
 
@@ -520,29 +520,29 @@ class duflot_pinel_denormandie(Variable):
                 ('f7qp_2021', 9, 'outremer'),  # Pinel 2017
                 ('f7qu_2021', 9, 'outremer'),  # Pinel 2018
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie
                 ('f7qk_2019', 6, 'outremer'),  # Pinel 2016
                 ('f7qo_2020', 6, 'outremer'),  # Pinel 2017
                 ('f7qt_2021', 6, 'outremer'),  # Pinel 2018
                 ('f7qy', 6, 'outremer'),  # Pinel
-                ('f7nc', 6, 'outremer'),  # Denormandie
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie
                 ('f7qj_2019', 9, 'metropole'),  # Pinel 2016
                 ('f7qn_2020', 9, 'metropole'),  # Pinel 2017
                 ('f7qs_2021', 9, 'metropole'),  # Pinel 2018
                 ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie
                 ('f7qi_2019', 6, 'metropole'),  # Pinel 2016
                 ('f7qm_2020', 6, 'metropole'),  # Pinel 2017
                 ('f7qr_2021', 6, 'metropole'),  # Pinel 2018
                 ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole')],  # Denormandie
+                ('f7na_2022', 6, 'metropole')],  # Denormandie
             }
 
         cases_report = {
             2013: ['f7fi'],
             2014: ['f7ci_2019', 'f7di', 'f7fk'],
             2015: ['f7dz', 'f7ez', 'f7fr'],
-            2016: ['f7sz', 'f7tz', 'f7fv'],
+            2016: ['f7sz_2021', 'f7tz', 'f7fv'],
             2017: ['f7rc', 'f7rd', 'f7fw'],
             2018: ['f7rg', 'f7rh', 'f7fx'],
             }
@@ -588,25 +588,25 @@ class duflot_pinel_denormandie(Variable):
                 ('f7qp_2021', 9, 'outremer'),  # Pinel 2017
                 ('f7qu_2021', 9, 'outremer'),  # Pinel 2018
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie 2019
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie 2019
                 ('f7qd', 9, 'outremer'),  # Pinel 2020
                 ('f7nh', 9, 'outremer'),  # Denormandie 2020
                 ('f7qo_2020', 6, 'outremer'),  # Pinel 2017
                 ('f7qt_2021', 6, 'outremer'),  # Pinel 2018
                 ('f7qy', 6, 'outremer'),  # Pinel 2019
-                ('f7nc', 6, 'outremer'),  # Denormandie 2019
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie 2019
                 ('f7qc', 6, 'outremer'),  # Pinel 2020
                 ('f7ng', 6, 'outremer'),  # Denormandie 2020
                 ('f7qn_2020', 9, 'metropole'),  # Pinel 2017
                 ('f7qs_2021', 9, 'metropole'),  # Pinel 2018
                 ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie 2019
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie 2019
                 ('f7qb', 9, 'metropole'),  # Pinel 2020
                 ('f7nf', 9, 'metropole'),  # Denormandie 2020
                 ('f7qm_2020', 6, 'metropole'),  # Pinel 2017
                 ('f7qr_2021', 6, 'metropole'),  # Pinel 2018
                 ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole'),  # Denormandie 2019
+                ('f7na_2022', 6, 'metropole'),  # Denormandie 2019
                 ('f7qa', 6, 'metropole'),  # Pinel 2020
                 ('f7ne', 6, 'metropole')],  # Denormandie 2020
             }
@@ -615,7 +615,7 @@ class duflot_pinel_denormandie(Variable):
             2013: ['f7fi'],  # Duflot
             2014: ['f7di', 'f7bi', 'f7fk'],  # Pinel et Duflot
             2015: ['f7bz', 'f7cz', 'f7dz', 'f7ez', 'f7fr'],
-            2016: ['f7qz', 'f7rz', 'f7sz', 'f7tz', 'f7fv'],
+            2016: ['f7qz', 'f7rz', 'f7sz_2021', 'f7tz', 'f7fv'],
             2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd', 'f7fw'],
             2018: ['f7re', 'f7rf', 'f7rg', 'f7rh', 'f7fx'],
             2019: ['f7jm', 'f7km', 'f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel, Denormandie
@@ -666,28 +666,28 @@ class duflot_pinel_denormandie(Variable):
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qu_2021', 9, 'outremer'),  # Pinel 2018
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie 2019
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie 2019
                 ('f7qd', 9, 'outremer'),  # Pinel 2020
                 ('f7nh', 9, 'outremer'),  # Denormandie 2020
                 ('f7ql', 9, 'outremer'),  # Pinel 2021
                 ('f7nl', 9, 'outremer'),  # Denormandie 2021
                 ('f7qt_2021', 6, 'outremer'),  # Pinel 2018
                 ('f7qy', 6, 'outremer'),  # Pinel 2019
-                ('f7nc', 6, 'outremer'),  # Denormandie 2019
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie 2019
                 ('f7qc', 6, 'outremer'),  # Pinel 2020
                 ('f7ng', 6, 'outremer'),  # Denormandie 2020
                 ('f7qk', 6, 'outremer'),  # Pinel 2021
                 ('f7nk', 6, 'outremer'),  # Denormandie 2021
                 ('f7qs_2021', 9, 'metropole'),  # Pinel 2018
                 ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie 2019
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie 2019
                 ('f7qb', 9, 'metropole'),  # Pinel 2020
                 ('f7nf', 9, 'metropole'),  # Denormandie 2020
                 ('f7qj', 9, 'metropole'),  # Pinel 2021
                 ('f7nj', 9, 'metropole'),  # Denormandie 2021
                 ('f7qr_2021', 6, 'metropole'),  # Pinel 2018
                 ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole'),  # Denormandie 2019
+                ('f7na_2022', 6, 'metropole'),  # Denormandie 2019
                 ('f7qa', 6, 'metropole'),  # Pinel 2020
                 ('f7ne', 6, 'metropole'),  # Denormandie 2020
                 ('f7qi', 6, 'metropole'),  # Pinel 2021
@@ -698,7 +698,7 @@ class duflot_pinel_denormandie(Variable):
             2013: ['f7fi'],  # Duflot
             2014: ['f7di', 'f7bi', 'f7fk'],  # Pinel et Duflot
             2015: ['f7bz', 'f7cz', 'f7dz', 'f7ez', 'f7fr'],
-            2016: ['f7qz', 'f7rz', 'f7sz', 'f7tz', 'f7fv'],
+            2016: ['f7qz', 'f7rz', 'f7sz_2021', 'f7tz', 'f7fv'],
             2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd', 'f7fw'],
             2018: ['f7re', 'f7rf', 'f7rg', 'f7rh', 'f7fx'],
             2019: ['f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel et Denormandie
@@ -708,12 +708,12 @@ class duflot_pinel_denormandie(Variable):
         # Première prorogation, 6 ans
         f7rs = foyer_fiscal('f7rs_2021', period)  # Outre-Mer, 2014
         f7rr = foyer_fiscal('f7rr_2021', period)  # Metropole, 2014
-        f7ry = foyer_fiscal('f7ry', period)  # Outre-Mer, 2015
+        f7ry = foyer_fiscal('f7ry_2022', period)  # Outre-Mer, 2015
         f7rx = foyer_fiscal('f7rx', period)  # Metropole, 2015
 
         # Prorogation reports, 6 ans
-        f7sy = foyer_fiscal('f7sy', period)  # Outre-Mer, 2014
-        f7sx = foyer_fiscal('f7sx', period)  # Metropole, 2014
+        f7sy = foyer_fiscal('f7sy_2022', period)  # Outre-Mer, 2014
+        f7sx = foyer_fiscal('f7sx_2022', period)  # Metropole, 2014
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -757,7 +757,7 @@ class duflot_pinel_denormandie(Variable):
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie 2019
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie 2019
                 ('f7qd', 9, 'outremer'),  # Pinel 2020
                 ('f7nh', 9, 'outremer'),  # Denormandie 2020
                 ('f7ql', 9, 'outremer'),  # Pinel 2021
@@ -765,7 +765,7 @@ class duflot_pinel_denormandie(Variable):
                 ('f7pg', 9, 'outremer'),  # Denormandie 2022
                 ('f7qp', 9, 'outremer'),  # Pinel 2022
                 ('f7qy', 6, 'outremer'),  # Pinel 2019
-                ('f7nc', 6, 'outremer'),  # Denormandie 2019
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie 2019
                 ('f7qc', 6, 'outremer'),  # Pinel 2020
                 ('f7ng', 6, 'outremer'),  # Denormandie 2020
                 ('f7qk', 6, 'outremer'),  # Pinel 2021
@@ -773,7 +773,7 @@ class duflot_pinel_denormandie(Variable):
                 ('f7pf', 6, 'outremer'),  # Denormandie 2022
                 ('f7qo', 6, 'outremer'),  # Pinel 2022
                 ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie 2019
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie 2019
                 ('f7qb', 9, 'metropole'),  # Pinel 2020
                 ('f7nf', 9, 'metropole'),  # Denormandie 2020
                 ('f7qj', 9, 'metropole'),  # Pinel 2021
@@ -781,7 +781,7 @@ class duflot_pinel_denormandie(Variable):
                 ('f7nn', 9, 'metropole'),  # Denormandie 2022
                 ('f7qn', 9, 'metropole'),  # Pinel 2022
                 ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole'),  # Denormandie 2019
+                ('f7na_2022', 6, 'metropole'),  # Denormandie 2019
                 ('f7qa', 6, 'metropole'),  # Pinel 2020
                 ('f7ne', 6, 'metropole'),  # Denormandie 2020
                 ('f7qi', 6, 'metropole'),  # Pinel 2021
@@ -803,13 +803,13 @@ class duflot_pinel_denormandie(Variable):
 
         # Première prorogation, 6 ans
         f7rx = foyer_fiscal('f7rx', period)  # Metropole, 2015
-        f7ry = foyer_fiscal('f7ry', period)  # Outre-Mer, 2015
+        f7ry = foyer_fiscal('f7ry_2022', period)  # Outre-Mer, 2015
         f7rp = foyer_fiscal('f7rp_2023', period)  # Metropole, 2016
         f7rq = foyer_fiscal('f7rq_2023', period)  # Outre-Mer, 2016
 
         # Prorogation reports 2020, 6 ans
-        f7sx = foyer_fiscal('f7sx', period)  # Metropole, 2014
-        f7sy = foyer_fiscal('f7sy', period)  # Outre-Mer, 2014
+        f7sx = foyer_fiscal('f7sx_2022', period)  # Metropole, 2014
+        f7sy = foyer_fiscal('f7sy_2022', period)  # Outre-Mer, 2014
 
         # Prorogation reports 2021, 6 ans
         f7ri = foyer_fiscal('f7ri_2023', period)  # Metropole, 2014
@@ -3012,8 +3012,8 @@ class location_meublee(Variable):
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -3113,8 +3113,8 @@ class location_meublee(Variable):
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -3212,8 +3212,8 @@ class location_meublee(Variable):
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -3339,8 +3339,8 @@ class location_meublee(Variable):
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -3467,8 +3467,8 @@ class location_meublee(Variable):
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -3602,8 +3602,8 @@ class location_meublee(Variable):
 
         rep = ['f7sp', 'f7sn', 'f7so', 'f7sa',
             'f7sb', 'f7sc', 'f7oa_2021', 'f7ob_2021',
-            'f7oc_2021', 'f7od_2021', 'f7oe_2021', 'f7of',
-            'f7og', 'f7oh', 'f7oi', 'f7oj',
+            'f7oc_2021', 'f7od_2021', 'f7oe_2021', 'f7of_2022',
+            'f7og_2022', 'f7oh', 'f7oi', 'f7oj',
             'f7ok', 'f7ol', 'f7om', 'f7on',
             'f7oo', 'f7op', 'f7oq', 'f7or',
             'f7os', 'f7ot', 'f7jv_2020', 'f7jw_2020',
@@ -3638,8 +3638,8 @@ class location_meublee(Variable):
 
         rep = ['f7sm', 'f7sp', 'f7sn', 'f7so', 'f7sa',
             'f7sb', 'f7sc', 'f7oa_2021', 'f7ob_2021',
-            'f7oc_2021', 'f7od_2021', 'f7oe_2021', 'f7of',
-            'f7og', 'f7oh', 'f7oi', 'f7oj',
+            'f7oc_2021', 'f7od_2021', 'f7oe_2021', 'f7of_2022',
+            'f7og_2022', 'f7oh', 'f7oi', 'f7oj',
             'f7ok', 'f7ol', 'f7om', 'f7on',
             'f7oo', 'f7op', 'f7oq', 'f7or',
             'f7os', 'f7ot', 'f7pk_2021', 'f7pl_2021',
@@ -3673,7 +3673,7 @@ class location_meublee(Variable):
 
         rep = ['f7ss', 'f7sm', 'f7sp', 'f7sn',
                'f7so', 'f7sa', 'f7sb', 'f7sc',
-               'f7of', 'f7og', 'f7oh', 'f7oi',
+               'f7of_2022', 'f7og_2022', 'f7oh', 'f7oi',
                'f7oj', 'f7ok', 'f7ol', 'f7om',
                'f7on', 'f7oo', 'f7op', 'f7oq',
                'f7or', 'f7os', 'f7ot', 'f7pp',
@@ -4914,7 +4914,7 @@ class scelli(Variable):
         inv_5 = [
             'f7ze', 'f7zh',
             'f7zj', 'f7zk',
-            'f7se_2022', 'f7sh',
+            'f7se_2022', 'f7sh_2022',
             'f7sj', 'f7sk',
             ]
 
@@ -4992,7 +4992,7 @@ class scelli(Variable):
             ]
 
         inv_5 = [
-            'f7se_2022', 'f7sh',
+            'f7se_2022', 'f7sh_2022',
             'f7sj', 'f7sk',
             'f7ri_2020', 'f7rl',
             'f7rn', 'f7ro',
@@ -5142,7 +5142,7 @@ class scelli(Variable):
 
         inv_6 = [
             'f7zd', 'f7ze', 'f7zg', 'f7zh',
-            'f7zn', 'f7si', 'f7sj', 'f7sl',
+            'f7zn', 'f7si_2022', 'f7sj', 'f7sl',
             'f7sq', 'f7sr', 'f7is', 'f7it',
             'f7ib', 'f7ic_2021', 'f7iq', 'f7jf_2021',
             'f7jg_2016', 'f7le', 'f7lf',
@@ -5150,7 +5150,7 @@ class scelli(Variable):
 
         inv_5 = [
             'f7zc', 'f7zf', 'f7se_2022', 'f7sf_2022',
-            'f7sh', 'f7sk', 'f7ir', 'f7iu',
+            'f7sh_2022', 'f7sk', 'f7ir', 'f7iu',
             'f7iw', 'f7ix', 'f7ia', 'f7ie_2022',
             'f7ig_2022', 'f7ih_2022', 'f7je_2021', 'f7jh_2021',
             'f7jj_2020', 'f7jk_2021', 'f7ld', 'f7ln',
