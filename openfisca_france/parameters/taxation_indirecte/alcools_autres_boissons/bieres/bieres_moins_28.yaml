@@ -1,7 +1,5 @@
 description: Bières moins de 2,8% vol. (€/degré/hl)
 values:
-  1979-07-01:
-    value: null
   1993-01-01:
     value: 6.25
   1997-01-01:
