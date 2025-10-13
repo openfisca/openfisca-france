@@ -5,7 +5,7 @@ values:
   2001-01-01:
     value: 153
 metadata:
-  short_label: Montant de la réduction par enfant au lycée (case 7EC)
+  short_label: Montant de la réduction par enfant au lycée
   last_value_still_valid_on: "2025-02-25"
   ipp_csv_id: reduc_enfscol2
   unit: currency_next_year
