@@ -56,7 +56,7 @@
     rfr: 45000.0
     rni: 45000.0
 
-- name: Test plafond commun Pinel et Denormandie ave investissements différents (OM et métropole)
+- name: Test plafond commun Pinel et Denormandie avec investissements différents (OM et métropole)
   period: 2019
   absolute_error_margin: 1
   input:
@@ -77,7 +77,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    duflot_pinel_denormandie: 5750.0
+    duflot_pinel_denormandie: 8750.0
     iai: 10407.0
     impot_revenu_restant_a_payer: -10407.0
     nbptr: 1.0
