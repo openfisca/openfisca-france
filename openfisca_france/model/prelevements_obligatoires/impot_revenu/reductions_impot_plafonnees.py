@@ -645,7 +645,7 @@ class duflot_pinel_denormandie(Variable):
 
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
-        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+        range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
 
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
@@ -700,8 +700,8 @@ class duflot_pinel_denormandie(Variable):
             2016: ['f7qz', 'f7rz', 'f7sz_2021', 'f7tz', 'f7fv'],
             2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd', 'f7fw'],
             2018: ['f7re', 'f7rf', 'f7rg', 'f7rh', 'f7fx'],
-            2019: ['f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel et Denormandie
-            2020: ['f7jp', 'f7jq', 'f7jt', 'f7ju'],  # Pinel et Denormandie
+            2019: ['f7jm', 'f7km', 'f7lm', 'f7mm', 'f7ja', 'f7jb', 'f7jc', 'f7jd'],  # Pinel et Denormandie
+            2020: ['f7jn', 'f7jo', 'f7jp', 'f7jq', 'f7jr', 'f7js', 'f7jt', 'f7ju'],  # Pinel et Denormandie
             }
 
         # Première prorogation, 6 ans
@@ -735,7 +735,7 @@ class duflot_pinel_denormandie(Variable):
 
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
-        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+        range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
 
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
@@ -971,7 +971,7 @@ class duflot_pinel_denormandie(Variable):
 
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
-        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+        range_year_report = list(set([year for year in range(2015, annee_fiscale)]) & set([year for year in cases_report.keys()]))
 
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
@@ -1122,7 +1122,7 @@ class duflot_pinel_denormandie(Variable):
 
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
-        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+        range_year_report = list(set([year for year in range(2016, annee_fiscale)]) & set([year for year in cases_report.keys()]))
 
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
