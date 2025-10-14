@@ -540,11 +540,11 @@ class duflot_pinel_denormandie(Variable):
 
         cases_report = {
             2013: ['f7fi'],
-            2014: ['f7ci_2019', 'f7di', 'f7fk'],
-            2015: ['f7dz', 'f7ez', 'f7fr'],
-            2016: ['f7sz_2021', 'f7tz', 'f7fv'],
-            2017: ['f7rc', 'f7rd', 'f7fw'],
-            2018: ['f7rg', 'f7rh', 'f7fx'],
+            2014: ['f7ci_2019', 'f7di', 'f7fk', 'f7ai', 'f7bi'],
+            2015: ['f7dz', 'f7ez', 'f7fr', 'f7bz', 'f7cz'],
+            2016: ['f7sz_2021', 'f7tz', 'f7fv', 'f7qz', 'f7rz'],
+            2017: ['f7rc', 'f7rd', 'f7fw', 'f7ra', 'f7rb'],
+            2018: ['f7rg', 'f7rh', 'f7fx', 'f7re', 'f7rh'],
             }
 
         def calcul_reduction_investissement(cases):
@@ -567,10 +567,9 @@ class duflot_pinel_denormandie(Variable):
             return reduction
 
         annee_fiscale = period.start.year
-        range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
 
-        reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
+        reduction_cumulee = sum(calcul_reduction_investissement(cases_investissement[2019]))
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
         return reduction_cumulee + report
@@ -618,7 +617,7 @@ class duflot_pinel_denormandie(Variable):
             2016: ['f7qz', 'f7rz', 'f7sz_2021', 'f7tz', 'f7fv'],
             2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd', 'f7fw'],
             2018: ['f7re', 'f7rf', 'f7rg', 'f7rh', 'f7fx'],
-            2019: ['f7jm', 'f7km', 'f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel, Denormandie
+            2019: ['f7jm', 'f7km', 'f7lm', 'f7mm', 'f7ja', 'f7jb', 'f7jc', 'f7jd'],  # Pinel, Denormandie
             }
 
         # Première prorogation, 6 ans, 2014
