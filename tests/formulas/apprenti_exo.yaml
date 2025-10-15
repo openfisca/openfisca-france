@@ -1,0 +1,27 @@
+- period: year:2026-01
+  input:
+    apprentissage_contrat_debut:
+      year:2024:3: '2024-01-01'
+    date_naissance: '2000-11-05'
+    salaire_de_base:
+      # TODO: utiliser la valeur du SMIC en fonction de l'année ?
+      # TODO: tenir compte d'un temps partiel ?
+      year:2024: 21838 * 0.53
+      year:2025: 21838 * 0.65
+      year:2026: 21838 * 0.78
+  output:
+    apprenti:
+      month:2024-01: 1
+      month:2025-03: 1
+      # TODO: doit encore être activé
+      month:2026-06: 0
+    salaire_net:
+      month:2024-06: 872.5914
+      month:2025-06: 1070.1592
+      month:2026-06: 1123.6509
+    remuneration_apprenti:
+      # TODO: Pourquoi 0 en juin 2024 ?
+      month:2024-06: 0
+      month:2025-06: 954.954
+      # TODO: Pourquoi 0 en juin 2026 ?
+      month:2026-06: 0
