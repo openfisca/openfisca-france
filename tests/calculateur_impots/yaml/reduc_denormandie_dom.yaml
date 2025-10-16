@@ -77,7 +77,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    duflot_pinel_denormandie_om: 8750.0
+    duflot_pinel_denormandie_om: 5750.0
     iai: 10407.0
     impot_revenu_restant_a_payer: -10407.0
     nbptr: 1.0
