@@ -132,6 +132,10 @@
   label:
     one: Smic au 31 décembre 2023
     other: Smic au 31 décembre 2023
+- name: smic_2025_01_01
+  label:
+    one: Smic au 1e janvier 2025
+    other: Smic au 1e janvier 2025
   ratio: false
 - name: year
   label:

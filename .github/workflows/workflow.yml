@@ -6,7 +6,12 @@ on:
     types: [opened, reopened]
 
 env:
-  DEFAULT_PYTHON_VERSION: '3.10.11'
+  # Versions disponibles visibles sur  https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
+  DEFAULT_PYTHON_VERSION: '3.13.7'
+  # Et sur https://anaconda.org/anaconda/python/files pour Conda.
+  # Mais la 3.13.7 disponible ne fonctionnait pas pour autant pour des problème de dépendances.
+  # On reste donc en 3.10.11 dans l'attente de la suppression de Conda.
+  CONDA_PYTHON_VERSION: '3.10.11'
 
 jobs:
   build:
@@ -15,7 +20,7 @@ jobs:
       fail-fast: true
       matrix:
         os: ["ubuntu-24.04"]  # On peut ajouter "macos-latest" si besoin
-        python-version: ["3.9.12", "3.10.11"]
+        python-version: ["3.9.12", "3.13.7"]
         openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
@@ -71,7 +76,7 @@ jobs:
         with:
           activate-environment: openfisca
           miniforge-version: latest
-          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
+          python-version: ${{ env.CONDA_PYTHON_VERSION }}
           use-mamba: true
           channels: conda-forge,defaults
       - name: Install package
@@ -117,7 +122,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ "ubuntu-24.04" ]  # On peut ajouter "macos-latest" si besoin
-        python-version: ["3.9.12", "3.10.11"]
+        python-version: ["3.9.12", "3.13.7"]
         openfisca-dependencies: [minimal, maximal]
     steps:
       - uses: actions/checkout@v4
@@ -203,7 +208,22 @@ jobs:
       - name: Test the Web API
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
-  test-on-windows:
+  test-on-windows-uv:
+    runs-on: windows-latest
+    needs: [ lint-files ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@caf0cab7a618c569241d31dcd442f54681755d39 # v3.2.4
+        with:
+          version: "latest"
+      - name: Test max path length
+        run: uv run python openfisca_france/scripts/check_path_length.py
+      - name: Test lancement avec uv
+        shell: pwsh
+        run: uv run openfisca test --country-package openfisca_france tests/formulas/irpp.yaml
+
+  test-on-windows-conda:
     runs-on: windows-latest
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ build-and-test-conda ]
@@ -214,7 +234,7 @@ jobs:
         with:
           activate-environment: openfisca
           miniforge-version: latest
-          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
+          python-version: ${{ env.CONDA_PYTHON_VERSION }}
           use-mamba: true
           channels: conda-forge,defaults
       - name: Restore build
@@ -339,7 +359,7 @@ jobs:
 
   publish-to-conda:
     runs-on: windows-latest
-    needs: [ deploy, test-on-windows ]
+    needs: [ deploy, test-on-windows-conda ]
     steps:
       - uses: actions/checkout@v4
       - name: Restore build
@@ -353,7 +373,7 @@ jobs:
         with:
           activate-environment: openfisca
           miniforge-version: latest
-          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
+          python-version: ${{ env.CONDA_PYTHON_VERSION }}
           use-mamba: true
           channels: conda-forge,defaults
       - name: Install package

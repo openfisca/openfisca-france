@@ -10,7 +10,7 @@ Usage example:
 import os
 import time
 import logging
-import pkg_resources
+import importlib
 
 from openfisca_core.tools.test_runner import run_tests
 from openfisca_france import CountryTaxBenefitSystem
@@ -30,8 +30,8 @@ tbs = CountryTaxBenefitSystem()
 time_spent_tbs = time.time() - start_time_tbs
 
 
-openfisca_france_dir = pkg_resources.get_distribution('OpenFisca-France').location
-yaml_tests_dir = os.path.join(openfisca_france_dir, 'tests', 'mes-aides.gouv.fr')
+folder = os.path.join('tests', 'mes-aides.gouv.fr')
+yaml_tests_dir = importlib.resources.path('OpenFisca-France', folder)
 
 
 # Time openfisca-run-test runner

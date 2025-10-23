@@ -15,15 +15,16 @@
     contribution_equilibre_technique_employeur: -0
     vieillesse_deplafonnee_employeur: -35.69
     vieillesse_plafonnee_employeur: -151.07
-    accident_du_travail: -15.90 # par défaut taux faible d'accident du travail
+    # 1766.92 * 0.0064 = 11.30
+    accident_du_travail: -11.30 # par défaut taux faible d'accident du travail
     contribution_solidarite_autonomie: -5.3
     famille_net_allegement: -60.95
     mmid_employeur_net_allegement: -123.68
     cotisations_employeur_main_d_oeuvre: -23.79
-    cotisations_employeur: -(3.53 + 83.4 + 71.56 + 22.79 + 35.69 + 151.07 +15.9 + 5.3 + 60.95 + 123.68 + 23.79) #-597.67
-    salaire_super_brut_hors_allegements: 1766.92 + 597.67
+    cotisations_employeur: -(3.53 + 83.4 + 71.56 + 22.79 + 35.69 + 151.07 +11.30 + 5.3 + 60.95 + 123.68 + 23.79) #-593.07
+    salaire_super_brut_hors_allegements: 1766.92 + 593.07
     allegement_general: 564.35
-    salaire_super_brut: 1766.92 + 597.67 - 564.35
+    salaire_super_brut: 1766.92 + 593.07 - 564.35
     agirc_arrco_salarie: -55.66
     contribution_equilibre_general_salarie: -15.2
     contribution_equilibre_technique_salarie: 0
@@ -48,15 +49,15 @@
     contribution_equilibre_technique_employeur: -0
     vieillesse_deplafonnee_employeur: -46.4
     vieillesse_plafonnee_employeur: -196.39
-    accident_du_travail: -20.67 # par défaut taux faible d'accident du travail
+    accident_du_travail: -14.7 # par défaut taux faible d'accident du travail
     contribution_solidarite_autonomie: -6.89
     famille_net_allegement: -79.24
     mmid_employeur_net_allegement: -160.78
     cotisations_employeur_main_d_oeuvre: -30.93
-    cotisations_employeur: -(4.59 + 108.42 + 93.03 + 29.63 + 46.4 + 196.39 + 20.67 + 6.89 + 79.24 + 160.78 + 30.93) # -776.98
-    salaire_super_brut_hors_allegements: 2297 + 776.98
+    cotisations_employeur: -(4.59 + 108.42 + 93.03 + 29.63 + 46.4 + 196.39 + 14.7 + 6.89 + 79.24 + 160.78 + 30.93) # -771
+    salaire_super_brut_hors_allegements: 2297 + 771
     allegement_general: 282.30
-    salaire_super_brut: 2297 + 776.98 - 282.30
+    salaire_super_brut: 2297 + 771 - 282.30
     agirc_arrco_salarie: -72.36
     contribution_equilibre_general_salarie: -19.76
     contribution_equilibre_technique_salarie: 0
@@ -81,15 +82,15 @@
     contribution_equilibre_technique_employeur: -0
     vieillesse_deplafonnee_employeur: -57.13
     vieillesse_plafonnee_employeur: -241.79
-    accident_du_travail: -25.45 # par défaut taux faible d'accident du travail
+    accident_du_travail: -18.1 # par défaut taux faible d'accident du travail
     contribution_solidarite_autonomie: -8.48
     famille_net_allegement: -97.52
     mmid_employeur_net_allegement: -197.89
     cotisations_employeur_main_d_oeuvre: -38.06
-    cotisations_employeur: -(6.66 + 133.44 + 114.5 + 36.46 + 57.13 + 241.79 + 25.45 + 8.48 + 97.52 + 197.89 + 38.06) # -958.59
-    salaire_super_brut_hors_allegements: 2828 + 958.59
+    cotisations_employeur: -(6.66 + 133.44 + 114.5 + 36.46 + 57.13 + 241.79 + 18.1 + 8.48 + 97.52 + 197.89 + 38.06) # -949.24
+    salaire_super_brut_hors_allegements: 2828 + 949.24
     allegement_general: 0
-    salaire_super_brut: 2828  + 958.59 - 0
+    salaire_super_brut: 2828  + 949.24 - 0
     agirc_arrco_salarie: -89.08
     contribution_equilibre_general_salarie: -24.32
     contribution_equilibre_technique_salarie: 0
@@ -115,15 +116,15 @@
     contribution_equilibre_technique_employeur: -9.28
     vieillesse_deplafonnee_employeur: -89.23
     vieillesse_plafonnee_employeur: -330.37
-    accident_du_travail: -39.76 # par défaut taux faible d'accident du travail
+    accident_du_travail: -28.27 # par défaut taux faible d'accident du travail
     contribution_solidarite_autonomie: -13.25
     famille_net_allegement: -152.4
     mmid_employeur_net_allegement: -574.25 # en 2024 l'allègement de cotisations mmid est à 2,5 SMIC de décembre 2023 donc en dessous de 2,5 SMIC de janvier 2024
     cotisations_employeur_main_d_oeuvre: -58.91
-    cotisations_employeur: -(8.83 + 254.03 + 178.9 + 58.81 + 9.28 + 89.23 + 330.37 + 39.76 + 13.25 + 152.4 + 574.25 + 58.91) # -1768.01
-    salaire_super_brut_hors_allegements: 4417.3 + 1768.01
+    cotisations_employeur: -(8.83 + 254.03 + 178.9 + 58.81 + 9.28 + 89.23 + 330.37 + 28.27 + 13.25 + 152.4 + 574.25 + 58.91) # -1756.52
+    salaire_super_brut_hors_allegements: 4417.3 + 1756.52
     allegement_general: 0
-    salaire_super_brut: 4417.3 + 1768.01 - 0
+    salaire_super_brut: 4417.3 + 1756.52 - 0
     agirc_arrco_salarie: -169.53
     contribution_equilibre_general_salarie: -39.21
     contribution_equilibre_technique_salarie: -6.18

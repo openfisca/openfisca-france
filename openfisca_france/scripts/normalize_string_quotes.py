@@ -22,10 +22,10 @@ def iterate_tokens(file_path):
         for token in tokenize.generate_tokens(python_file.readline):
             if token.type == tokenize.STRING:
                 token = token._replace(string=DOUBLE_QUOTE_DOCSTRING_RE.sub(
-                    "\g<prefix>'''\g<content>'''",  # noqa: W605
+                    r"\g<prefix>'''\g<content>'''",  # noqa: W605
                     token.string))
                 token = token._replace(string=DOUBLE_QUOTE_STRING_RE.sub(
-                    "\g<prefix>'\g<content>'",  # noqa: W605
+                    r"\g<prefix>'\g<content>'",  # noqa: W605
                     token.string))
             yield token
 

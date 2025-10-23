@@ -1,0 +1,1 @@
+Les tests de ce dossier sont [générés automatiquement par l'équipe Leximpact](https://git.leximpact.dev/leximpact/simulateur-socio-fiscal/leximpact-socio-fiscal-ui#g%C3%A9n%C3%A9rer-les-yaml-de-test-openfisca-%C3%A0-partir-des-cas-type-leximpact).
