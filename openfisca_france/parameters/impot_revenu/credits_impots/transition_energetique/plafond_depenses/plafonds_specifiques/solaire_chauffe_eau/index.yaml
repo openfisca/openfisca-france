@@ -1,0 +1,10 @@
+description: Plafond de dépenses éligibles au crédit d'impôt pour les dépenses d'équipements solaires thermiques (produisant de la chaleur)
+metadata:
+  short_label: Panneaux solaires thermiques
+  order:
+    - circulation_air
+    - circulation_liquide
+  documentation: |-
+    Un plafond de dépenses spécifiques est introduit pour chaque type de panneaux solaires thermiques en 2016.
+    Auparavant, un plafond de dépenses spécifiques pour les panneaux solaires thermiques sans distinction par type était appliqué (cf. "Panneau solaire thermique").
+    En 2019, un relèvement de chaque plafond est effectué pour les ménages satisfaisant une condition de ressources.
