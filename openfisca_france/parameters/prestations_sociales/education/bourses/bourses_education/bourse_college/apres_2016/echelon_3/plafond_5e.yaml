@@ -4,3 +4,10 @@ values:
     value: 570.8
 metadata:
   unit: /1
+  last_value_still_valid_on: "2016-07-01"
+  reference:
+    2016-07-01:
+    - title: "Code de l'éducation — Article D531-7"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034629530"
+    - title: "Arrêté du 22 mars 2016 fixant les plafonds de ressources..."
+      href: "https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000032325020"
