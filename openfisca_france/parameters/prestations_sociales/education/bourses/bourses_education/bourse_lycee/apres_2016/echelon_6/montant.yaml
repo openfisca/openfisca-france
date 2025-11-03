@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Montant
   unit: BMAF
-  last_value_still_valid_on: "2016-07-01"
+  last_value_still_valid_on: "2025-11-03"
   reference:
     2016-07-01:
     - title: "Code de l'éducation — Article D531-29"
