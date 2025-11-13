@@ -1,5 +1,14 @@
 # Changelog
 
+### 174.2.9 [#2601](https://github.com/openfisca/openfisca-france/pull/2601)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `openfisca_france/parameters/prestations_sociales/education/bourses/bourses_education/*/apres_2016/*`
+* Détails :
+  * Ajout de références et du champ `last_value_still_valid_on`.
+
 ### 174.2.8 [#2591](https://github.com/openfisca/openfisca-france/pull/2591)
 
 * Changement mineur.
