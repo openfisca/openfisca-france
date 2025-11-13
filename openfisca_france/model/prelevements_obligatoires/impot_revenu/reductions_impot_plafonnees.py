@@ -32,12 +32,36 @@ class reductions_plafonnees(Variable):
     label = "Réductions d'impôt sur le revenu plafonnées"
     definition_period = YEAR
 
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        reductions_plafonnees = [
+            'cappme',  # Approximation
+            'defense_forets_contre_incendies',  # fait partie de inv. for. ?
+            'ri_investissement_forestier',
+            'location_meublee',  # Censi-Bouvard, plafonnement approximatif
+            'protection_patrimoine_naturel',  # Approximation
+            'rehab',
+            'mohist',
+            'souscriptions_parts_fcpi_fip',
+            'duflot_pinel_denormandie_metropole',  # fin de la séparation entre métropole et outre-mer
+
+            # Pas clair, dans le doute compté parmi les plafonnées :
+            'reduction_impot_exceptionnelle',
+            ]
+
+        P = parameters(period).impot_revenu.credits_impots.plaf_nich
+
+        # Step 1: Apply ceiling to general reductions
+        montants_plaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees])
+        red_plaf = min_(P.plafond, montants_plaf)
+
+        return red_plaf
+
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         reductions_plafonnees = [
             'ri_saldom',
             'cappme',  # Approximation
             'defense_forets_contre_incendies',  # fait partie de inv. for. ?
-            'gardenf',
+            # 'gardenf', fini en 2005, remplacé par ci
             'ri_investissement_forestier',
             'location_meublee',  # Censi-Bouvard, plafonnement approximatif
             'invlst',  # Approximation
@@ -72,7 +96,7 @@ class reductions_plafonnees_om_sofica(Variable):
         reductions_om_sofica = [
             'sofica',
             'duflot_pinel_denormandie_om',
-            'scelli',  # Approximation (dispositif qui se termine en 2012, soumis à des plafonds supérieurs à 18 000€)
+            'scelli',  # Approximation (dispositif qui se termine en 2012, mais dont les effets continuent soumis à des plafonds supérieurs à 18 000€)
             ]
 
         P = parameters(period).impot_revenu.credits_impots.plaf_nich
@@ -201,7 +225,7 @@ class reductions(Variable):
 class duflot_pinel_denormandie_metropole(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Réduction d'impôt Duflot - Pinel - Denormandie"
+    label = "Réduction d'impôt Duflot - Pinel - Denormandie que metropole"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -278,11 +302,6 @@ class duflot_pinel_denormandie_metropole(Variable):
 
         # Duflot reports
         f7fi = foyer_fiscal('f7fi', period)  # 2013
-        f7fk = foyer_fiscal('f7fk', period)  # 2014
-        f7fr = foyer_fiscal('f7fr', period)  # 2015
-        f7fv = foyer_fiscal('f7fv', period)  # 2016
-        f7fw = foyer_fiscal('f7fw', period)  # 2017
-
         # Pinel année N, 2014
         f7qa = foyer_fiscal('f7qa_2018', period)  # Métropole, 6 ans
         f7qb = foyer_fiscal('f7qb_2018', period)  # Métropole, 9 ans
@@ -301,22 +320,22 @@ class duflot_pinel_denormandie_metropole(Variable):
                 ('f7qj_2019', 9, 'metropole'),
                 ('f7qi_2019', 6, 'metropole')],
             2017: [
-                ('f7qp', 9, 'outremer'),
-                ('f7qo', 6, 'outremer'),
-                ('f7qn', 9, 'metropole'),
-                ('f7qm', 6, 'metropole')],
+                ('f7qp_2021', 9, 'outremer'),
+                ('f7qo_2020', 6, 'outremer'),
+                ('f7qn_2020', 9, 'metropole'),
+                ('f7qm_2020', 6, 'metropole')],
             2018: [
-                ('f7qu', 9, 'outremer'),
-                ('f7qt', 6, 'outremer'),
-                ('f7qs', 9, 'metropole'),
-                ('f7qr', 6, 'metropole')],
+                ('f7qu_2021', 9, 'outremer'),
+                ('f7qt_2021', 6, 'outremer'),
+                ('f7qs_2021', 9, 'metropole'),
+                ('f7qr_2021', 6, 'metropole')],
             }
 
         cases_report = {
-            2014: ['f7ai', 'f7bi'],
-            2015: ['f7bz', 'f7cz'],
-            2016: ['f7qz', 'f7rz'],
-            2017: ['f7ra', 'f7rb'],
+            2014: ['f7ai', 'f7bi', 'f7fk'],  # deux premiers Pinel, dernier Duflot
+            2015: ['f7bz', 'f7cz', 'f7fr'],
+            2016: ['f7qz', 'f7rz', 'f7fv'],
+            2017: ['f7ra', 'f7rb', 'f7fw'],
             }
 
         # Duflot 2013
@@ -349,7 +368,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        return reduction_cumulee + report + reduc_2013 + reduc_2014 + f7fi + f7fk + f7fr + f7fv + f7fw
+        return reduction_cumulee + report + reduc_2013 + reduc_2014 + f7fi
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
@@ -360,42 +379,277 @@ class duflot_pinel_denormandie_metropole(Variable):
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7ql_2019', 9, 'outremer'),  # Pinel 2016
-                ('f7qp', 9, 'outremer'),  # Pinel 2017
-                ('f7qu', 9, 'outremer'),  # Pinel 2018
+                ('f7qp_2021', 9, 'outremer'),  # Pinel 2017
+                ('f7qu_2021', 9, 'outremer'),  # Pinel 2018
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie
                 ('f7qk_2019', 6, 'outremer'),  # Pinel 2016
-                ('f7qo', 6, 'outremer'),  # Pinel 2017
-                ('f7qt', 6, 'outremer'),  # Pinel 2018
+                ('f7qo_2020', 6, 'outremer'),  # Pinel 2017
+                ('f7qt_2021', 6, 'outremer'),  # Pinel 2018
                 ('f7qy', 6, 'outremer'),  # Pinel
-                ('f7nc', 6, 'outremer'),  # Denormandie
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie
                 ('f7qj_2019', 9, 'metropole'),  # Pinel 2016
-                ('f7qn', 9, 'metropole'),  # Pinel 2017
-                ('f7qs', 9, 'metropole'),  # Pinel 2018
+                ('f7qn_2020', 9, 'metropole'),  # Pinel 2017
+                ('f7qs_2021', 9, 'metropole'),  # Pinel 2018
                 ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie
                 ('f7qi_2019', 6, 'metropole'),  # Pinel 2016
-                ('f7qm', 6, 'metropole'),  # Pinel 2017
-                ('f7qr', 6, 'metropole'),  # Pinel 2018
+                ('f7qm_2020', 6, 'metropole'),  # Pinel 2017
+                ('f7qr_2021', 6, 'metropole'),  # Pinel 2018
                 ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole')],  # Denormandie
+                ('f7na_2022', 6, 'metropole')],  # Denormandie
             }
 
         cases_report = {
-            2014: ['f7ai', 'f7bi'],
-            2015: ['f7bz', 'f7cz'],
-            2016: ['f7qz', 'f7rz'],
-            2017: ['f7ra', 'f7rb'],
-            2018: ['f7re', 'f7rf']
+            2013: ['f7fi'],
+            2014: ['f7ai', 'f7bi', 'f7fk'],
+            2015: ['f7bz', 'f7cz', 'f7fr'],
+            2016: ['f7qz', 'f7rz', 'f7fv'],
+            2017: ['f7ra', 'f7rb', 'f7fw'],
+            2018: ['f7re', 'f7rf', 'f7fx'],
             }
 
-        # Duflot reports
-        f7fi = foyer_fiscal('f7fi', period)  # 2013
-        f7fk = foyer_fiscal('f7fk', period)  # 2014
-        f7fr = foyer_fiscal('f7fr', period)  # 2015
-        f7fv = foyer_fiscal('f7fv', period)  # 2016
-        f7fw = foyer_fiscal('f7fw', period)  # 2017
-        f7fx = foyer_fiscal('f7fx', period)  # 2018
+        def calcul_reduction_investissement(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'metropole':
+                    if duree == 9:
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                    elif duree == 6:
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                depenses_cumulees += depense
+            return reduction
+
+        annee_fiscale = period.start.year
+        range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        reduction_cumulee = sum(calcul_reduction_investissement(cases_investissement[2019]))
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        return reduction_cumulee + report
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Duflot + Pinel + Denormandie
+        NB: it is not clear whether the extension of the Pinel investment should also
+        count towards the ceiling of € 300K. I will assume it does.
+        '''
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+
+        cases_investissement = {
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
+                ('f7qp_2021', 9, 'outremer'),  # Pinel 2017
+                ('f7qu_2021', 9, 'outremer'),  # Pinel 2018
+                ('f7qq', 9, 'outremer'),  # Pinel 2019
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie 2019
+                ('f7qd', 9, 'outremer'),  # Pinel 2020
+                ('f7nh', 9, 'outremer'),  # Denormandie 2020
+                ('f7qo_2020', 6, 'outremer'),  # Pinel 2017
+                ('f7qt_2021', 6, 'outremer'),  # Pinel 2018
+                ('f7qy', 6, 'outremer'),  # Pinel 2019
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie 2019
+                ('f7qc', 6, 'outremer'),  # Pinel 2020
+                ('f7ng', 6, 'outremer'),  # Denormandie 2020
+                ('f7qn_2020', 9, 'metropole'),  # Pinel 2017
+                ('f7qs_2021', 9, 'metropole'),  # Pinel 2018
+                ('f7qx', 9, 'metropole'),  # Pinel 2019
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie 2019
+                ('f7qb', 9, 'metropole'),  # Pinel 2020
+                ('f7nf', 9, 'metropole'),  # Denormandie 2020
+                ('f7qm_2020', 6, 'metropole'),  # Pinel 2017
+                ('f7qr_2021', 6, 'metropole'),  # Pinel 2018
+                ('f7qw', 6, 'metropole'),  # Pinel 2019
+                ('f7na_2022', 6, 'metropole'),  # Denormandie 2019
+                ('f7qa', 6, 'metropole'),  # Pinel 2020
+                ('f7ne', 6, 'metropole')],  # Denormandie 2020
+            }
+
+        cases_report = {
+            2013: ['f7fi'],  # Duflot
+            2014: ['f7bi', 'f7fk'],  # Pinel et Duflot
+            2015: ['f7bz', 'f7cz', 'f7fr'],
+            2016: ['f7qz', 'f7rz', 'f7fv'],
+            2017: ['f7ra', 'f7rb', 'f7fw'],
+            2018: ['f7re', 'f7rf', 'f7fx'],
+            2019: ['f7jm', 'f7km', 'f7ja', 'f7jb'],  # Pinel, Denormandie
+            }
+
+        # Première prorogation, 6 ans, 2014
+        f7rr = foyer_fiscal('f7rr_2021', period)  # Metropole, 6 ans
+
+        def calcul_reduction_investissement(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'metropole':
+                    if duree == 9:
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                    elif duree == 6:
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                depenses_cumulees += depense
+            return reduction
+
+        annee_fiscale = period.start.year
+        range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
+        range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        prorogation = around(min_(duflot_pinel_denormandie.plafond, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+
+        return reduction_cumulee + report + prorogation
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        '''
+        Duflot + Pinel + Denormandie
+        '''
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+
+        cases_investissement = {
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
+                ('f7qu_2021', 9, 'outremer'),  # Pinel 2018
+                ('f7qq', 9, 'outremer'),  # Pinel 2019
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie 2019
+                ('f7qd', 9, 'outremer'),  # Pinel 2020
+                ('f7nh', 9, 'outremer'),  # Denormandie 2020
+                ('f7ql', 9, 'outremer'),  # Pinel 2021
+                ('f7nl', 9, 'outremer'),  # Denormandie 2021
+                ('f7qt_2021', 6, 'outremer'),  # Pinel 2018
+                ('f7qy', 6, 'outremer'),  # Pinel 2019
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie 2019
+                ('f7qc', 6, 'outremer'),  # Pinel 2020
+                ('f7ng', 6, 'outremer'),  # Denormandie 2020
+                ('f7qk', 6, 'outremer'),  # Pinel 2021
+                ('f7nk', 6, 'outremer'),  # Denormandie 2021
+                ('f7qs_2021', 9, 'metropole'),  # Pinel 2018
+                ('f7qx', 9, 'metropole'),  # Pinel 2019
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie 2019
+                ('f7qb', 9, 'metropole'),  # Pinel 2020
+                ('f7nf', 9, 'metropole'),  # Denormandie 2020
+                ('f7qj', 9, 'metropole'),  # Pinel 2021
+                ('f7nj', 9, 'metropole'),  # Denormandie 2021
+                ('f7qr_2021', 6, 'metropole'),  # Pinel 2018
+                ('f7qw', 6, 'metropole'),  # Pinel 2019
+                ('f7na_2022', 6, 'metropole'),  # Denormandie 2019
+                ('f7qa', 6, 'metropole'),  # Pinel 2020
+                ('f7ne', 6, 'metropole'),  # Denormandie 2020
+                ('f7qi', 6, 'metropole'),  # Pinel 2021
+                ('f7ni', 6, 'metropole')],  # Denormandie 2021
+            }
+
+        cases_report = {
+            2013: ['f7fi'],  # Duflot
+            2014: ['f7bi', 'f7fk'],  # Pinel et Duflot
+            2015: ['f7cz', 'f7fr'],
+            2016: ['f7qz', 'f7rz', 'f7fv'],
+            2017: ['f7ra', 'f7rb', 'f7fw'],
+            2018: ['f7re', 'f7rf', 'f7fx'],
+            2019: ['f7jm', 'f7km', 'f7ja', 'f7jb'],  # Pinel et Denormandie
+            2020: ['f7jn', 'f7jo', 'f7jr', 'f7js'],  # Pinel et Denormandie
+            }
+
+        # Première prorogation, 6 ans
+        f7rr = foyer_fiscal('f7rr_2021', period)  # Metropole, 2014
+        f7rx = foyer_fiscal('f7rx', period)  # Metropole, 2015
+
+        # Prorogation reports, 6 ans
+        f7sx = foyer_fiscal('f7sx_2022', period)  # Metropole, 2014
+
+        def calcul_reduction_investissement(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'metropole':
+                    if duree == 9:
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                    elif duree == 6:
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                depenses_cumulees += depense
+            return reduction
+
+        annee_fiscale = period.start.year
+        range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
+        range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rx) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
+
+        return reduction_cumulee + report + prorogation + f7sx
+
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Duflot + Pinel + Denormandie
+        '''
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+
+        cases_investissement = {
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
+                ('f7qq', 9, 'outremer'),  # Pinel 2019
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie 2019
+                ('f7qd', 9, 'outremer'),  # Pinel 2020
+                ('f7nh', 9, 'outremer'),  # Denormandie 2020
+                ('f7ql', 9, 'outremer'),  # Pinel 2021
+                ('f7nl', 9, 'outremer'),  # Denormandie 2021
+                ('f7pg', 9, 'outremer'),  # Denormandie 2022
+                ('f7qp', 9, 'outremer'),  # Pinel 2022
+                ('f7qy', 6, 'outremer'),  # Pinel 2019
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie 2019
+                ('f7qc', 6, 'outremer'),  # Pinel 2020
+                ('f7ng', 6, 'outremer'),  # Denormandie 2020
+                ('f7qk', 6, 'outremer'),  # Pinel 2021
+                ('f7nk', 6, 'outremer'),  # Denormandie 2021
+                ('f7pf', 6, 'outremer'),  # Denormandie 2022
+                ('f7qo', 6, 'outremer'),  # Pinel 2022
+                ('f7qx', 9, 'metropole'),  # Pinel 2019
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie 2019
+                ('f7qb', 9, 'metropole'),  # Pinel 2020
+                ('f7nf', 9, 'metropole'),  # Denormandie 2020
+                ('f7qj', 9, 'metropole'),  # Pinel 2021
+                ('f7nj', 9, 'metropole'),  # Denormandie 2021
+                ('f7nn', 9, 'metropole'),  # Denormandie 2022
+                ('f7qn', 9, 'metropole'),  # Pinel 2022
+                ('f7qw', 6, 'metropole'),  # Pinel 2019
+                ('f7na_2022', 6, 'metropole'),  # Denormandie 2019
+                ('f7qa', 6, 'metropole'),  # Pinel 2020
+                ('f7ne', 6, 'metropole'),  # Denormandie 2020
+                ('f7qi', 6, 'metropole'),  # Pinel 2021
+                ('f7ni', 6, 'metropole'),  # Denormandie 2021
+                ('f7nm', 6, 'metropole'),  # Denormandie 2022
+                ('f7qm', 6, 'metropole')],  # Pinel 2022
+            }
+
+        cases_report = {
+            2014: ['f7bi', 'f7fk'],
+            2015: ['f7cz', 'f7fr'],
+            2016: ['f7rz', 'f7fv'],
+            2017: ['f7ra', 'f7rb', 'f7fw'],
+            2018: ['f7re', 'f7rf', 'f7fx'],
+            2019: ['f7jm', 'f7km', 'f7ja', 'f7jb'],  # Pinel et Denormandie
+            2020: ['f7jn', 'f7jo', 'f7jr', 'f7js'],  # Pinel et Denormandie
+            2021: ['f7jv', 'f7jw', 'f7lg', 'f7lh'],  # Pinel et Denormandie
+            }
+
+        # Première prorogation, 6 ans
+        f7rx = foyer_fiscal('f7rx', period)  # Metropole, 2015
+        f7rp = foyer_fiscal('f7rp_2023', period)  # Metropole, 2016
+
+        # Prorogation reports 2020, 6 ans
+        f7sx = foyer_fiscal('f7sx_2022', period)  # Metropole, 2014
+
+        # Prorogation reports 2021, 6 ans
+        f7ri = foyer_fiscal('f7ri_2023', period)  # Metropole, 2014
+        f7uy = foyer_fiscal('f7uy_2023', period)  # Metropole, 2015
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -418,178 +672,255 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        return reduction_cumulee + report + f7fi + f7fk + f7fr + f7fv + f7fw + f7fx
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rx) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rp) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
 
-    def formula_2020_01_01(foyer_fiscal, period, parameters):
-        '''
-        Duflot + Pinel + Denormandie
-        NB: it is not clear whether the extension of the Pinel investment should also
-        count towards the ceiling of € 300K. I will assume it does.
-        '''
-        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
-        cases_investissement = {
-            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
-                ('f7qp', 9, 'outremer'),  # Pinel 2017
-                ('f7qu', 9, 'outremer'),  # Pinel 2018
-                ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie 2019
-                ('f7qd', 9, 'outremer'),  # Pinel 2020
-                ('f7nh', 9, 'outremer'),  # Denormandie 2020
-                ('f7qo', 6, 'outremer'),  # Pinel 2017
-                ('f7qt', 6, 'outremer'),  # Pinel 2018
-                ('f7qy', 6, 'outremer'),  # Pinel 2019
-                ('f7nc', 6, 'outremer'),  # Denormandie 2019
-                ('f7qc', 6, 'outremer'),  # Pinel 2020
-                ('f7ng', 6, 'outremer'),  # Denormandie 2020
-                ('f7qn', 9, 'metropole'),  # Pinel 2017
-                ('f7qs', 9, 'metropole'),  # Pinel 2018
-                ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie 2019
-                ('f7qb', 9, 'metropole'),  # Pinel 2020
-                ('f7nf', 9, 'metropole'),  # Denormandie 2020
-                ('f7qm', 6, 'metropole'),  # Pinel 2017
-                ('f7qr', 6, 'metropole'),  # Pinel 2018
-                ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole'),  # Denormandie 2019
-                ('f7qa', 6, 'metropole'),  # Pinel 2020
-                ('f7ne', 6, 'metropole')],  # Denormandie 2020
-            }
+        reports_prorogation = f7sx + f7ri + f7uy
 
-        cases_report = {
-            2014: ['f7bi'],
-            2015: ['f7bz', 'f7cz'],
-            2016: ['f7qz', 'f7rz'],
-            2017: ['f7ra', 'f7rb'],
-            2018: ['f7re', 'f7rf'],
-            2019: ['f7jm', 'f7km', 'f7ja', 'f7jb']  # reports Pinel et denormandie
-            }
+        return reduction_cumulee + report + prorogation + reports_prorogation
 
-        # Duflot reports
-        f7fi = foyer_fiscal('f7fi', period)  # 2013
-        f7fk = foyer_fiscal('f7fk', period)  # 2014
-        f7fr = foyer_fiscal('f7fr', period)  # 2015
-        f7fv = foyer_fiscal('f7fv', period)  # 2016
-        f7fw = foyer_fiscal('f7fw', period)  # 2017
-        f7fx = foyer_fiscal('f7fx', period)  # 2018
-
-        # Première prorogation, 6 ans, 2014
-        f7rr = foyer_fiscal('f7rr', period)  # Métropole, 6 ans
-        f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 6 ans
-
-        def calcul_reduction_investissement(cases):
-            reduction = foyer_fiscal.empty_array()
-            depenses_cumulees = foyer_fiscal.empty_array()
-            for case in cases:
-                variable, duree, zone = case
-                depense = foyer_fiscal(variable, period)
-                if zone == 'metropole':
-                    if duree == 9:
-                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6:
-                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
-                depenses_cumulees += depense
-            return reduction
-
-        annee_fiscale = period.start.year
-        range_year_investissement = list(set([year for year in range(2018, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
-        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
-
-        reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
-        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
-
-        prorogation = around(min_(duflot_pinel_denormandie.plafond - f7rs, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-
-        return reduction_cumulee + report + f7fi + f7fk + f7fr + f7fv + f7fw + f7fx + prorogation
-
-    def formula_2021_01_01(foyer_fiscal, period, parameters):
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
         '''
         Duflot + Pinel + Denormandie
         '''
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
-                ('f7qu', 9, 'outremer'),
-                ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie 2019
-                ('f7qd', 9, 'outremer'),  # Pinel 2020
-                ('f7nh', 9, 'outremer'),  # Denormandie 2020
-                ('f7ql', 9, 'outremer'),  # Pinel 2021
-                ('f7nl', 9, 'outremer'),  # Denormandie 2021
-                ('f7qt', 6, 'outremer'),  # Pinel 2018
-                ('f7qy', 6, 'outremer'),  # Pinel 2019
-                ('f7nc', 6, 'outremer'),  # Denormandie 2019
-                ('f7qc', 6, 'outremer'),  # Pinel 2020
-                ('f7ng', 6, 'outremer'),  # Denormandie 2020
-                ('f7qk', 6, 'outremer'),  # Pinel 2021
-                ('f7nk', 6, 'outremer'),  # Denormandie 2021
-                ('f7qs', 9, 'metropole'),  # Pinel 2018
-                ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie 2019
-                ('f7qb', 9, 'metropole'),  # Pinel 2020
-                ('f7nf', 9, 'metropole'),  # Denormandie 2020
-                ('f7qj', 9, 'metropole'),  # Pinel 2021
-                ('f7nj', 9, 'metropole'),  # Denormandie 2021
-                ('f7qr', 6, 'metropole'),  # Pinel 2018
-                ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole'),  # Denormandie 2019
-                ('f7qa', 6, 'metropole'),  # Pinel 2020
-                ('f7ne', 6, 'metropole'),  # Denormandie 2020
-                ('f7qi', 6, 'metropole'),  # Pinel 2021
-                ('f7ni', 6, 'metropole')],  # Denormandie 2021
+                ('f7qq', 9, 'outremer', 'taux_plein'),  # Pinel 2019
+                ('f7qd', 9, 'outremer', 'taux_plein'),  # Pinel 2020
+                ('f7nh', 9, 'outremer', 'taux_plein'),  # Denormandie 2020
+                ('f7ql', 9, 'outremer', 'taux_plein'),  # Pinel 2021
+                ('f7nl', 9, 'outremer', 'taux_plein'),  # Denormandie 2021
+                ('f7pg', 9, 'outremer', 'taux_plein'),  # Denormandie 2022
+                ('f7nr', 9, 'outremer', 'taux_plein'),  # Denormandie 2023
+                ('f7qp', 9, 'outremer', 'taux_plein'),  # Pinel 2022
+                ('f7qu', 9, 'outremer', 'taux_reduit'),  # Pinel 2023
+                ('f7vg', 9, 'outremer', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7qy', 6, 'outremer', 'taux_plein'),  # Pinel 2019
+                ('f7qc', 6, 'outremer', 'taux_plein'),  # Pinel 2020
+                ('f7ng', 6, 'outremer', 'taux_plein'),  # Denormandie 2020
+                ('f7qk', 6, 'outremer', 'taux_plein'),  # Pinel 2021
+                ('f7nk', 6, 'outremer', 'taux_plein'),  # Denormandie 2021
+                ('f7pf', 6, 'outremer', 'taux_plein'),  # Denormandie 2022
+                ('f7nq', 6, 'outremer', 'taux_plein'),  # Denormandie 2023
+                ('f7qo', 6, 'outremer', 'taux_plein'),  # Pinel 2022
+                ('f7qt', 6, 'outremer', 'taux_reduit'),  # Pinel 2023
+                ('f7vf', 6, 'outremer', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7qx', 9, 'metropole', 'taux_plein'),  # Pinel 2019
+                ('f7qb', 9, 'metropole', 'taux_plein'),  # Pinel 2020
+                ('f7nf', 9, 'metropole', 'taux_plein'),  # Denormandie 2020
+                ('f7qj', 9, 'metropole', 'taux_plein'),  # Pinel 2021
+                ('f7nj', 9, 'metropole', 'taux_plein'),  # Denormandie 2021
+                ('f7nn', 9, 'metropole', 'taux_plein'),  # Denormandie 2022
+                ('f7np', 9, 'metropole', 'taux_plein'),  # Denormandie 2023
+                ('f7qn', 9, 'metropole', 'taux_plein'),  # Pinel 2022
+                ('f7qs', 9, 'metropole', 'taux_reduit'),  # Pinel 2023
+                ('f7ve', 9, 'metropole', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7qw', 6, 'metropole', 'taux_plein'),  # Pinel 2019
+                ('f7qa', 6, 'metropole', 'taux_plein'),  # Pinel 2020
+                ('f7ne', 6, 'metropole', 'taux_plein'),  # Denormandie 2020
+                ('f7qi', 6, 'metropole', 'taux_plein'),  # Pinel 2021
+                ('f7ni', 6, 'metropole', 'taux_plein'),  # Denormandie 2021
+                ('f7nm', 6, 'metropole', 'taux_plein'),  # Denormandie 2022
+                ('f7no', 6, 'metropole', 'taux_plein'),  # Denormandie 2023
+                ('f7qm', 6, 'metropole', 'taux_plein'),  # Pinel 2022
+                ('f7vd', 6, 'metropole', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7qr', 6, 'metropole', 'taux_reduit')],  # Pinel 2023
             }
 
         cases_report = {
-            2014: ['f7bi'],
-            2015: ['f7cz'],
-            2016: ['f7qz', 'f7rz'],
-            2017: ['f7ra', 'f7rb'],
-            2018: ['f7re', 'f7rf'],
-            2019: ['f7jm', 'f7km', 'f7ja', 'f7jb'],  # reports Pinel et denormandie
-            2020: ['f7jn', 'f7jo', 'f7jr', 'f7js']  # reports Pinel et denormandie
+            2015: ['f7cz', 'f7fr'],
+            2016: ['f7rz', 'f7fv'],
+            2017: ['f7rb', 'f7fw'],
+            2018: ['f7re', 'f7rf', 'f7fx'],
+            2019: ['f7jm', 'f7km', 'f7ja', 'f7jb'],  # Pinel et Denormandie
+            2020: ['f7jn', 'f7jo', 'f7jr', 'f7js'],  # Pinel et Denormandie
+            2021: ['f7jv', 'f7jw', 'f7lg', 'f7lh'],  # Pinel et Denormandie
+            2022: ['f7ji', 'f7jj', 'f7je', 'f7jf'],  # Pinel et Denormandie
             }
 
-        # Duflot reports
-        f7fi = foyer_fiscal('f7fi', period)  # 2013
-        f7fk = foyer_fiscal('f7fk', period)  # 2014
-        f7fr = foyer_fiscal('f7fr', period)  # 2015
-        f7fv = foyer_fiscal('f7fv', period)  # 2016
-        f7fw = foyer_fiscal('f7fw', period)  # 2017
-        f7fx = foyer_fiscal('f7fx', period)  # 2018
+        # Prorogation, 9 ans
+        f7wa = foyer_fiscal('f7wa', period)  # Metropole, 2014
 
         # Première prorogation, 6 ans
-        f7rr = foyer_fiscal('f7rr', period)  # Métropole, 6 ans 2014
-        f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 6 ans 2014
-        f7rx = foyer_fiscal('f7rx', period)  # Métropole, 2015
-        f7ry = foyer_fiscal('f7ry', period)  # Outre-Mer, 2015
+        f7rp = foyer_fiscal('f7rp_2023', period)  # Metropole, 2016
+        f7rr = foyer_fiscal('f7rr', period)  # Metropole, 2017
 
-        # Prorogation reports, 6 ans
-        f7sx = foyer_fiscal('f7sx_2022', period)  # Métropole, 2014
+        # Prorogation reports 2021, 6 ans
+        f7ri = foyer_fiscal('f7ri_2023', period)  # Metropole, 2014
+        f7uy = foyer_fiscal('f7uy_2023', period)  # Metropole, 2015
+
+        # Prorogation reports 2022, 6 ans
+        f7pk = foyer_fiscal('f7pk', period)  # Metropole, 2015
+        f7pm = foyer_fiscal('f7pm', period)  # Metropole, 2016
+
+        # Seconde prorogation, 6 ans
+        f7rv = foyer_fiscal('f7rv', period)  # Metropole, 2014
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
             depenses_cumulees = foyer_fiscal.empty_array()
             for case in cases:
-                variable, duree, zone = case
+                variable, duree, zone, taux = case
                 depense = foyer_fiscal(variable, period)
-                if zone == 'metropole':
-                    if duree == 9:
-                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6:
-                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                if taux == 'taux_reduit':
+                    if zone == 'metropole':
+                        if duree == 9:
+                            reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                        elif duree == 6:
+                            reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                elif taux == 'taux_plein':
+                    if zone == 'metropole':
+                        if duree == 9:
+                            reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro_qpv_performant * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                        elif duree == 6:
+                            reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro_qpv_performant * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
         annee_fiscale = period.start.year
-        range_year_investissement = list(set([year for year in range(2018, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
-        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+        range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
+        range_year_report = list(set([year for year in range(2015, annee_fiscale)]) & set([year for year in cases_report.keys()]))
 
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond - f7rs, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond - f7ry, f7rx) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rp) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rv) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7wa) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3))
 
-        return reduction_cumulee + report + f7fi + f7fk + f7fr + f7fv + f7fw + f7fx + prorogation + f7sx
+        reports_prorogation = f7ri + f7uy + f7pk + f7pm
+
+        return reduction_cumulee + report + prorogation + reports_prorogation
+
+    def formula_2024_01_01(foyer_fiscal, period, parameters):
+        '''
+        Duflot + Pinel + Denormandie
+        '''
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+
+        cases_investissement = {
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
+
+                ('f7nh', 9, 'outremer', 'taux_plein'),  # Denormandie 2020
+                ('f7ql', 9, 'outremer', 'taux_plein'),  # Pinel 2021
+                ('f7nl', 9, 'outremer', 'taux_plein'),  # Denormandie 2021
+                ('f7pg', 9, 'outremer', 'taux_plein'),  # Denormandie 2022
+                ('f7nr', 9, 'outremer', 'taux_plein'),  # Denormandie 2023
+                ('f7qp', 9, 'outremer', 'taux_plein'),  # Pinel 2022
+                ('f7qu', 9, 'outremer', 'taux_reduit'),  # Pinel 2023
+                ('f7sg', 9, 'outremer', 'taux_reduit'),  # Pinel 2024
+                ('f7vg', 9, 'outremer', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7vz', 9, 'outremer', 'taux_plein'),  # Pinel 2024 QPV performant
+                ('f7ng', 6, 'outremer', 'taux_plein'),  # Denormandie 2020
+                ('f7qk', 6, 'outremer', 'taux_plein'),  # Pinel 2021
+                ('f7nk', 6, 'outremer', 'taux_plein'),  # Denormandie 2021
+                ('f7pf', 6, 'outremer', 'taux_plein'),  # Denormandie 2022
+                ('f7nq', 6, 'outremer', 'taux_plein'),  # Denormandie 2023
+                ('f7qo', 6, 'outremer', 'taux_plein'),  # Pinel 2022
+                ('f7qt', 6, 'outremer', 'taux_reduit'),  # Pinel 2023
+                ('f7sf', 6, 'outremer', 'taux_reduit'),  # Pinel 2024
+                ('f7vf', 6, 'outremer', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7vy', 6, 'outremer', 'taux_plein'),  # Pinel 2024 QPV performant
+                ('f7nf', 9, 'metropole', 'taux_plein'),  # Denormandie 2020
+                ('f7qj', 9, 'metropole', 'taux_plein'),  # Pinel 2021
+                ('f7nj', 9, 'metropole', 'taux_plein'),  # Denormandie 2021
+                ('f7nn', 9, 'metropole', 'taux_plein'),  # Denormandie 2022
+                ('f7np', 9, 'metropole', 'taux_plein'),  # Denormandie 2023
+                ('f7qn', 9, 'metropole', 'taux_plein'),  # Pinel 2022
+                ('f7qs', 9, 'metropole', 'taux_reduit'),  # Pinel 2023
+                ('f7se', 9, 'metropole', 'taux_reduit'),  # Pinel 2024
+                ('f7ve', 9, 'metropole', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7vx', 9, 'metropole', 'taux_plein'),  # Pinel 2024 QPV performant
+                ('f7ne', 6, 'metropole', 'taux_plein'),  # Denormandie 2020
+                ('f7qi', 6, 'metropole', 'taux_plein'),  # Pinel 2021
+                ('f7ni', 6, 'metropole', 'taux_plein'),  # Denormandie 2021
+                ('f7nm', 6, 'metropole', 'taux_plein'),  # Denormandie 2022
+                ('f7no', 6, 'metropole', 'taux_plein'),  # Denormandie 2023
+                ('f7qm', 6, 'metropole', 'taux_plein'),  # Pinel 2022
+                ('f7vd', 6, 'metropole', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7vw', 6, 'metropole', 'taux_plein'),  # Pinel 2024 QPV performant
+                ('f7qr', 6, 'metropole', 'taux_reduit'),  # Pinel 2023
+                ('f7sd', 6, 'metropole', 'taux_reduit')],  # Pinel 2024
+            }
+
+        cases_report = {
+            2016: ['f7rz', 'f7fv'],
+            2017: ['f7rb', 'f7fw'],
+            2018: ['f7rf', 'f7fx'],
+            2019: ['f7jm', 'f7km', 'f7ja', 'f7jb'],  # Pinel et Denormandie
+            2020: ['f7jn', 'f7jo', 'f7jr', 'f7js'],  # Pinel et Denormandie
+            2021: ['f7jv', 'f7jw', 'f7lg', 'f7lh'],  # Pinel et Denormandie
+            2022: ['f7ji', 'f7jj', 'f7je', 'f7jf'],  # Pinel et Denormandie
+            2023: ['f7ia', 'f7ib', 'f7ie', 'f7if'],  # Pinel et Denormandie
+            }
+
+        # Prorogation, 9 ans
+        f7wa = foyer_fiscal('f7wa', period)  # Metropole, 2014
+        f7xa = foyer_fiscal('f7xa', period)  # Metropole, 2015
+
+        # Première prorogation, 6 ans
+        f7rr = foyer_fiscal('f7rr', period)  # Metropole, 2017
+        f7rx = foyer_fiscal('f7rx', period)  # Metropole, 2018
+
+        # Seconde prorogation, 6 ans
+        f7rv = foyer_fiscal('f7rv', period)  # Metropole, 2014
+        f7sh = foyer_fiscal('f7sh', period)  # Metropole, 2015
+
+        # Prorogation reports 2022, 6 ans
+        f7pk = foyer_fiscal('f7pk', period)  # Metropole, 2015
+        f7pm = foyer_fiscal('f7pm', period)  # Metropole, 2016
+
+        # Prorogation reports 2023, 9 ans
+        f7of = foyer_fiscal('f7of', period)  # Metropole, 2014
+
+        # Prorogation reports 2023, 6 ans
+        f7na = foyer_fiscal('f7na', period)  # Metropole, 2016
+        f7nc = foyer_fiscal('f7nc', period)  # Metropole, 2017
+
+        # Seconde prorogation reports 2023, 6 ans
+        f7sy = foyer_fiscal('f7sy', period)  # Metropole, 2014
+
+        def calcul_reduction_investissement(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone, taux = case
+                depense = foyer_fiscal(variable, period)
+                if taux == 'taux_reduit':
+                    if zone == 'metropole':
+                        if duree == 9:
+                            reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                        elif duree == 6:
+                            reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                elif taux == 'taux_plein':
+                    if zone == 'metropole':
+                        if duree == 9:
+                            reduction += around(duflot_pinel_denormandie.location_9_ans.taux_metro_qpv_performant * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                        elif duree == 6:
+                            reduction += around(duflot_pinel_denormandie.location_6_ans.taux_metro_qpv_performant * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                depenses_cumulees += depense
+            return reduction
+
+        annee_fiscale = period.start.year
+        range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
+        range_year_report = list(set([year for year in range(2016, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rx) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rv) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7sh) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7wa) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7xa) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3))
+
+        reports_prorogation = f7pk + f7pm + f7of + f7na + f7nc + f7sy
+
+        return reduction_cumulee + report + prorogation + reports_prorogation
 
 
 class duflot_pinel_denormandie_om(Variable):
@@ -679,21 +1010,21 @@ class duflot_pinel_denormandie_om(Variable):
                 ('f7qj_2019', 9, 'metropole'),
                 ('f7qi_2019', 6, 'metropole')],
             2017: [
-                ('f7qp', 9, 'outremer'),
-                ('f7qo', 6, 'outremer'),
-                ('f7qn', 9, 'metropole'),
-                ('f7qm', 6, 'metropole')],
+                ('f7qp_2021', 9, 'outremer'),
+                ('f7qo_2020', 6, 'outremer'),
+                ('f7qn_2020', 9, 'metropole'),
+                ('f7qm_2020', 6, 'metropole')],
             2018: [
-                ('f7qu', 9, 'outremer'),
-                ('f7qt', 6, 'outremer'),
-                ('f7qs', 9, 'metropole'),
-                ('f7qr', 6, 'metropole')],
+                ('f7qu_2021', 9, 'outremer'),
+                ('f7qt_2021', 6, 'outremer'),
+                ('f7qs_2021', 9, 'metropole'),
+                ('f7qr_2021', 6, 'metropole')],
             }
 
         cases_report = {
             2014: ['f7ci_2019', 'f7di'],
             2015: ['f7dz', 'f7ez'],
-            2016: ['f7sz', 'f7tz'],
+            2016: ['f7sz_2021', 'f7tz'],
             2017: ['f7rc', 'f7rd'],
             }
 
@@ -722,40 +1053,40 @@ class duflot_pinel_denormandie_om(Variable):
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
-        Duflot + Pinel + Denormandie
+        Duflot + Pinel + Denormandie outremer
         '''
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7ql_2019', 9, 'outremer'),  # Pinel 2016
-                ('f7qp', 9, 'outremer'),  # Pinel 2017
-                ('f7qu', 9, 'outremer'),  # Pinel 2018
+                ('f7qp_2021', 9, 'outremer'),  # Pinel 2017
+                ('f7qu_2021', 9, 'outremer'),  # Pinel 2018
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie
                 ('f7qk_2019', 6, 'outremer'),  # Pinel 2016
-                ('f7qo', 6, 'outremer'),  # Pinel 2017
-                ('f7qt', 6, 'outremer'),  # Pinel 2018
+                ('f7qo_2020', 6, 'outremer'),  # Pinel 2017
+                ('f7qt_2021', 6, 'outremer'),  # Pinel 2018
                 ('f7qy', 6, 'outremer'),  # Pinel
-                ('f7nc', 6, 'outremer'),  # Denormandie
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie
                 ('f7qj_2019', 9, 'metropole'),  # Pinel 2016
-                ('f7qn', 9, 'metropole'),  # Pinel 2017
-                ('f7qs', 9, 'metropole'),  # Pinel 2018
+                ('f7qn_2020', 9, 'metropole'),  # Pinel 2017
+                ('f7qs_2021', 9, 'metropole'),  # Pinel 2018
                 ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie
                 ('f7qi_2019', 6, 'metropole'),  # Pinel 2016
-                ('f7qm', 6, 'metropole'),  # Pinel 2017
-                ('f7qr', 6, 'metropole'),  # Pinel 2018
+                ('f7qm_2020', 6, 'metropole'),  # Pinel 2017
+                ('f7qr_2021', 6, 'metropole'),  # Pinel 2018
                 ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole')],  # Denormandie
+                ('f7na_2022', 6, 'metropole')],  # Denormandie
             }
 
         cases_report = {
-            2014: ['f7ci_2019', 'f7di'],
-            2015: ['f7dz', 'f7ez'],
-            2016: ['f7sz', 'f7tz'],
-            2017: ['f7rc', 'f7rd'],
-            2018: ['f7rg', 'f7rh'],
+            2014: ['f7ci_2019', 'f7di', 'f7fk'],
+            2015: ['f7dz', 'f7ez', 'f7fr'],
+            2016: ['f7sz_2021', 'f7tz', 'f7fv'],
+            2017: ['f7rc', 'f7rd', 'f7fw'],
+            2018: ['f7rg', 'f7rh', 'f7fx'],
             }
 
         def calcul_reduction_investissement(cases):
@@ -773,10 +1104,9 @@ class duflot_pinel_denormandie_om(Variable):
             return reduction
 
         annee_fiscale = period.start.year
-        range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
-        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+        range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
 
-        reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
+        reduction_cumulee = sum(calcul_reduction_investissement(cases_investissement[2019]))
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
         return reduction_cumulee + report
@@ -791,43 +1121,43 @@ class duflot_pinel_denormandie_om(Variable):
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
-                ('f7qp', 9, 'outremer'),  # Pinel 2017
-                ('f7qu', 9, 'outremer'),  # Pinel 2018
+                ('f7qp_2021', 9, 'outremer'),  # Pinel 2017
+                ('f7qu_2021', 9, 'outremer'),  # Pinel 2018
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie 2019
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie 2019
                 ('f7qd', 9, 'outremer'),  # Pinel 2020
                 ('f7nh', 9, 'outremer'),  # Denormandie 2020
-                ('f7qo', 6, 'outremer'),  # Pinel 2017
-                ('f7qt', 6, 'outremer'),  # Pinel 2018
+                ('f7qo_2020', 6, 'outremer'),  # Pinel 2017
+                ('f7qt_2021', 6, 'outremer'),  # Pinel 2018
                 ('f7qy', 6, 'outremer'),  # Pinel 2019
-                ('f7nc', 6, 'outremer'),  # Denormandie 2019
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie 2019
                 ('f7qc', 6, 'outremer'),  # Pinel 2020
                 ('f7ng', 6, 'outremer'),  # Denormandie 2020
-                ('f7qn', 9, 'metropole'),  # Pinel 2017
-                ('f7qs', 9, 'metropole'),  # Pinel 2018
+                ('f7qn_2020', 9, 'metropole'),  # Pinel 2017
+                ('f7qs_2021', 9, 'metropole'),  # Pinel 2018
                 ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie 2019
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie 2019
                 ('f7qb', 9, 'metropole'),  # Pinel 2020
                 ('f7nf', 9, 'metropole'),  # Denormandie 2020
-                ('f7qm', 6, 'metropole'),  # Pinel 2017
-                ('f7qr', 6, 'metropole'),  # Pinel 2018
+                ('f7qm_2020', 6, 'metropole'),  # Pinel 2017
+                ('f7qr_2021', 6, 'metropole'),  # Pinel 2018
                 ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole'),  # Denormandie 2019
+                ('f7na_2022', 6, 'metropole'),  # Denormandie 2019
                 ('f7qa', 6, 'metropole'),  # Pinel 2020
                 ('f7ne', 6, 'metropole')],  # Denormandie 2020
             }
 
         cases_report = {
-            2014: ['f7di'],
+            2014: ['f7di'],  # Pinel
             2015: ['f7dz', 'f7ez'],
-            2016: ['f7sz', 'f7tz'],
+            2016: ['f7sz_2021', 'f7tz'],
             2017: ['f7rc', 'f7rd'],
             2018: ['f7rg', 'f7rh'],
-            2019: ['f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel et Denormandie
+            2019: ['f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel, Denormandie
             }
 
         # Première prorogation, 6 ans, 2014
-        f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 6 ans
+        f7rs = foyer_fiscal('f7rs_2021', period)  # Outre-Mer, 6 ans
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -845,7 +1175,7 @@ class duflot_pinel_denormandie_om(Variable):
 
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
-        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+        range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
 
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
@@ -862,29 +1192,30 @@ class duflot_pinel_denormandie_om(Variable):
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
+                ('f7qu_2021', 9, 'outremer'),  # Pinel 2018
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
-                ('f7nd', 9, 'outremer'),  # Denormandie 2019
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie 2019
                 ('f7qd', 9, 'outremer'),  # Pinel 2020
                 ('f7nh', 9, 'outremer'),  # Denormandie 2020
                 ('f7ql', 9, 'outremer'),  # Pinel 2021
                 ('f7nl', 9, 'outremer'),  # Denormandie 2021
-                ('f7qt', 6, 'outremer'),  # Pinel 2018
+                ('f7qt_2021', 6, 'outremer'),  # Pinel 2018
                 ('f7qy', 6, 'outremer'),  # Pinel 2019
-                ('f7nc', 6, 'outremer'),  # Denormandie 2019
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie 2019
                 ('f7qc', 6, 'outremer'),  # Pinel 2020
                 ('f7ng', 6, 'outremer'),  # Denormandie 2020
                 ('f7qk', 6, 'outremer'),  # Pinel 2021
                 ('f7nk', 6, 'outremer'),  # Denormandie 2021
-                ('f7qs', 9, 'metropole'),  # Pinel 2018
+                ('f7qs_2021', 9, 'metropole'),  # Pinel 2018
                 ('f7qx', 9, 'metropole'),  # Pinel 2019
-                ('f7nb', 9, 'metropole'),  # Denormandie 2019
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie 2019
                 ('f7qb', 9, 'metropole'),  # Pinel 2020
                 ('f7nf', 9, 'metropole'),  # Denormandie 2020
                 ('f7qj', 9, 'metropole'),  # Pinel 2021
                 ('f7nj', 9, 'metropole'),  # Denormandie 2021
-                ('f7qr', 6, 'metropole'),  # Pinel 2018
+                ('f7qr_2021', 6, 'metropole'),  # Pinel 2018
                 ('f7qw', 6, 'metropole'),  # Pinel 2019
-                ('f7na', 6, 'metropole'),  # Denormandie 2019
+                ('f7na_2022', 6, 'metropole'),  # Denormandie 2019
                 ('f7qa', 6, 'metropole'),  # Pinel 2020
                 ('f7ne', 6, 'metropole'),  # Denormandie 2020
                 ('f7qi', 6, 'metropole'),  # Pinel 2021
@@ -892,9 +1223,9 @@ class duflot_pinel_denormandie_om(Variable):
             }
 
         cases_report = {
-            2014: ['f7di'],
+            2014: ['f7di'],  # Pinel et Duflot
             2015: ['f7ez'],
-            2016: ['f7sz', 'f7tz'],
+            2016: ['f7sz_2021', 'f7tz'],
             2017: ['f7rc', 'f7rd'],
             2018: ['f7rg', 'f7rh'],
             2019: ['f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel et Denormandie
@@ -902,11 +1233,101 @@ class duflot_pinel_denormandie_om(Variable):
             }
 
         # Première prorogation, 6 ans
-        f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 2014
-        f7ry = foyer_fiscal('f7ry', period)  # Outre-Mer, 2015
+        f7rs = foyer_fiscal('f7rs_2021', period)  # Outre-Mer, 2014
+        f7ry = foyer_fiscal('f7ry_2022', period)  # Outre-Mer, 2015
 
         # Prorogation reports, 6 ans
-        f7sy = foyer_fiscal('f7sy', period)  # Outre-Mer, 2014
+        f7sy = foyer_fiscal('f7sy_2022', period)  # Outre-Mer, 2014
+
+        def calcul_reduction_investissement(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'outremer':
+                    if duree == 9:
+                        reduction += around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                    elif duree == 6:
+                        reduction += around(duflot_pinel_denormandie.location_6_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                depenses_cumulees += depense
+            return reduction
+
+        annee_fiscale = period.start.year
+        range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
+        range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7ry) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
+
+        return reduction_cumulee + report + prorogation + f7sy
+
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Duflot + Pinel + Denormandie
+        '''
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+
+        cases_investissement = {
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
+                ('f7qq', 9, 'outremer'),  # Pinel 2019
+                ('f7nd_2022', 9, 'outremer'),  # Denormandie 2019
+                ('f7qd', 9, 'outremer'),  # Pinel 2020
+                ('f7nh', 9, 'outremer'),  # Denormandie 2020
+                ('f7ql', 9, 'outremer'),  # Pinel 2021
+                ('f7nl', 9, 'outremer'),  # Denormandie 2021
+                ('f7pg', 9, 'outremer'),  # Denormandie 2022
+                ('f7qp', 9, 'outremer'),  # Pinel 2022
+                ('f7qy', 6, 'outremer'),  # Pinel 2019
+                ('f7nc_2022', 6, 'outremer'),  # Denormandie 2019
+                ('f7qc', 6, 'outremer'),  # Pinel 2020
+                ('f7ng', 6, 'outremer'),  # Denormandie 2020
+                ('f7qk', 6, 'outremer'),  # Pinel 2021
+                ('f7nk', 6, 'outremer'),  # Denormandie 2021
+                ('f7pf', 6, 'outremer'),  # Denormandie 2022
+                ('f7qo', 6, 'outremer'),  # Pinel 2022
+                ('f7qx', 9, 'metropole'),  # Pinel 2019
+                ('f7nb_2022', 9, 'metropole'),  # Denormandie 2019
+                ('f7qb', 9, 'metropole'),  # Pinel 2020
+                ('f7nf', 9, 'metropole'),  # Denormandie 2020
+                ('f7qj', 9, 'metropole'),  # Pinel 2021
+                ('f7nj', 9, 'metropole'),  # Denormandie 2021
+                ('f7nn', 9, 'metropole'),  # Denormandie 2022
+                ('f7qn', 9, 'metropole'),  # Pinel 2022
+                ('f7qw', 6, 'metropole'),  # Pinel 2019
+                ('f7na_2022', 6, 'metropole'),  # Denormandie 2019
+                ('f7qa', 6, 'metropole'),  # Pinel 2020
+                ('f7ne', 6, 'metropole'),  # Denormandie 2020
+                ('f7qi', 6, 'metropole'),  # Pinel 2021
+                ('f7ni', 6, 'metropole'),  # Denormandie 2021
+                ('f7nm', 6, 'metropole'),  # Denormandie 2022
+                ('f7qm', 6, 'metropole')],  # Pinel 2022
+            }
+
+        cases_report = {
+            2014: ['f7di'],
+            2015: ['f7ez'],
+            2016: ['f7tz'],
+            2017: ['f7rc', 'f7rd'],
+            2018: ['f7rg', 'f7rh'],
+            2019: ['f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel et Denormandie
+            2020: ['f7jp', 'f7jq', 'f7jt', 'f7ju'],  # Pinel et Denormandie
+            2021: ['f7jx', 'f7jy', 'f7li', 'f7lj'],  # Pinel et Denormandie
+            }
+
+        # Première prorogation, 6 ans
+        f7ry = foyer_fiscal('f7ry_2022', period)  # Outre-Mer, 2015
+        f7rq = foyer_fiscal('f7rq_2023', period)  # Outre-Mer, 2016
+
+        # Prorogation reports 2020, 6 ans
+        f7sy = foyer_fiscal('f7sy_2022', period)  # Outre-Mer, 2014
+
+        # Prorogation reports 2021, 6 ans
+        f7rj = foyer_fiscal('f7rj_2023', period)  # Outre-Mer, 2014
+        f7uz = foyer_fiscal('f7uz_2023', period)  # Outre-Mer, 2015
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -929,10 +1350,255 @@ class duflot_pinel_denormandie_om(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7ry) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7ry) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rq) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
 
-        return reduction_cumulee + report + prorogation + f7sy
+        reports_prorogation = f7sy + f7rj + f7uz
+
+        return reduction_cumulee + report + prorogation + reports_prorogation
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        '''
+        Duflot + Pinel + Denormandie
+        '''
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+
+        cases_investissement = {
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
+                ('f7qq', 9, 'outremer', 'taux_plein'),  # Pinel 2019
+                ('f7qd', 9, 'outremer', 'taux_plein'),  # Pinel 2020
+                ('f7nh', 9, 'outremer', 'taux_plein'),  # Denormandie 2020
+                ('f7ql', 9, 'outremer', 'taux_plein'),  # Pinel 2021
+                ('f7nl', 9, 'outremer', 'taux_plein'),  # Denormandie 2021
+                ('f7pg', 9, 'outremer', 'taux_plein'),  # Denormandie 2022
+                ('f7nr', 9, 'outremer', 'taux_plein'),  # Denormandie 2023
+                ('f7qp', 9, 'outremer', 'taux_plein'),  # Pinel 2022
+                ('f7qu', 9, 'outremer', 'taux_reduit'),  # Pinel 2023
+                ('f7vg', 9, 'outremer', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7qy', 6, 'outremer', 'taux_plein'),  # Pinel 2019
+                ('f7qc', 6, 'outremer', 'taux_plein'),  # Pinel 2020
+                ('f7ng', 6, 'outremer', 'taux_plein'),  # Denormandie 2020
+                ('f7qk', 6, 'outremer', 'taux_plein'),  # Pinel 2021
+                ('f7nk', 6, 'outremer', 'taux_plein'),  # Denormandie 2021
+                ('f7pf', 6, 'outremer', 'taux_plein'),  # Denormandie 2022
+                ('f7nq', 6, 'outremer', 'taux_plein'),  # Denormandie 2023
+                ('f7qo', 6, 'outremer', 'taux_plein'),  # Pinel 2022
+                ('f7qt', 6, 'outremer', 'taux_reduit'),  # Pinel 2023
+                ('f7vf', 6, 'outremer', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7qx', 9, 'metropole', 'taux_plein'),  # Pinel 2019
+                ('f7qb', 9, 'metropole', 'taux_plein'),  # Pinel 2020
+                ('f7nf', 9, 'metropole', 'taux_plein'),  # Denormandie 2020
+                ('f7qj', 9, 'metropole', 'taux_plein'),  # Pinel 2021
+                ('f7nj', 9, 'metropole', 'taux_plein'),  # Denormandie 2021
+                ('f7nn', 9, 'metropole', 'taux_plein'),  # Denormandie 2022
+                ('f7np', 9, 'metropole', 'taux_plein'),  # Denormandie 2023
+                ('f7qn', 9, 'metropole', 'taux_plein'),  # Pinel 2022
+                ('f7qs', 9, 'metropole', 'taux_reduit'),  # Pinel 2023
+                ('f7ve', 9, 'metropole', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7qw', 6, 'metropole', 'taux_plein'),  # Pinel 2019
+                ('f7qa', 6, 'metropole', 'taux_plein'),  # Pinel 2020
+                ('f7ne', 6, 'metropole', 'taux_plein'),  # Denormandie 2020
+                ('f7qi', 6, 'metropole', 'taux_plein'),  # Pinel 2021
+                ('f7ni', 6, 'metropole', 'taux_plein'),  # Denormandie 2021
+                ('f7nm', 6, 'metropole', 'taux_plein'),  # Denormandie 2022
+                ('f7no', 6, 'metropole', 'taux_plein'),  # Denormandie 2023
+                ('f7qm', 6, 'metropole', 'taux_plein'),  # Pinel 2022
+                ('f7vd', 6, 'metropole', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7qr', 6, 'metropole', 'taux_reduit')],  # Pinel 2023
+            }
+
+        cases_report = {
+            2015: ['f7ez'],
+            2016: ['f7tz'],
+            2017: ['f7rd'],
+            2018: ['f7rg', 'f7rh'],
+            2019: ['f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel et Denormandie
+            2020: ['f7jp', 'f7jq', 'f7jt', 'f7ju'],  # Pinel et Denormandie
+            2021: ['f7jx', 'f7jy', 'f7li', 'f7lj'],  # Pinel et Denormandie
+            2022: ['f7jk', 'f7jl', 'f7jg', 'f7jh'],  # Pinel et Denormandie
+            }
+
+        # Prorogation, 9 ans
+        f7wb = foyer_fiscal('f7wb', period)  # Outre-Mer, 2014
+
+        # Première prorogation, 6 ans
+        f7rq = foyer_fiscal('f7rq_2023', period)  # Outre-Mer, 2016
+        f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 2017
+
+        # Prorogation reports 2021, 6 ans
+        f7rj = foyer_fiscal('f7rj_2023', period)  # Outre-Mer, 2014
+        f7uz = foyer_fiscal('f7uz_2023', period)  # Outre-Mer, 2015
+
+        # Prorogation reports 2022, 6 ans
+        f7pl = foyer_fiscal('f7pl', period)  # Outre-Mer, 2015
+        f7pn = foyer_fiscal('f7pn', period)  # Outre-Mer, 2016
+
+        # Seconde prorogation, 6 ans
+        f7rw = foyer_fiscal('f7rw', period)  # Outre-Mer, 2014
+
+        def calcul_reduction_investissement(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone, taux = case
+                depense = foyer_fiscal(variable, period)
+                if taux == 'taux_reduit':
+                    if zone == 'outremer':
+                        if duree == 9:
+                            reduction += around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                        elif duree == 6:
+                            reduction += around(duflot_pinel_denormandie.location_6_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                elif taux == 'taux_plein':
+                    if zone == 'outremer':
+                        if duree == 9:
+                            reduction += around(duflot_pinel_denormandie.location_9_ans.taux_om_qpv_performant * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                        elif duree == 6:
+                            reduction += around(duflot_pinel_denormandie.location_6_ans.taux_om_qpv_performant * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                depenses_cumulees += depense
+            return reduction
+
+        annee_fiscale = period.start.year
+        range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
+        range_year_report = list(set([year for year in range(2015, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rq) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rw) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7wb) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3))
+
+        reports_prorogation = f7rj + f7uz + f7pl + f7pn
+
+        return reduction_cumulee + report + prorogation + reports_prorogation
+
+    def formula_2024_01_01(foyer_fiscal, period, parameters):
+        '''
+        Duflot + Pinel + Denormandie
+        '''
+        duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
+
+        cases_investissement = {
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
+
+                ('f7nh', 9, 'outremer', 'taux_plein'),  # Denormandie 2020
+                ('f7ql', 9, 'outremer', 'taux_plein'),  # Pinel 2021
+                ('f7nl', 9, 'outremer', 'taux_plein'),  # Denormandie 2021
+                ('f7pg', 9, 'outremer', 'taux_plein'),  # Denormandie 2022
+                ('f7nr', 9, 'outremer', 'taux_plein'),  # Denormandie 2023
+                ('f7qp', 9, 'outremer', 'taux_plein'),  # Pinel 2022
+                ('f7qu', 9, 'outremer', 'taux_reduit'),  # Pinel 2023
+                ('f7sg', 9, 'outremer', 'taux_reduit'),  # Pinel 2024
+                ('f7vg', 9, 'outremer', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7vz', 9, 'outremer', 'taux_plein'),  # Pinel 2024 QPV performant
+                ('f7ng', 6, 'outremer', 'taux_plein'),  # Denormandie 2020
+                ('f7qk', 6, 'outremer', 'taux_plein'),  # Pinel 2021
+                ('f7nk', 6, 'outremer', 'taux_plein'),  # Denormandie 2021
+                ('f7pf', 6, 'outremer', 'taux_plein'),  # Denormandie 2022
+                ('f7nq', 6, 'outremer', 'taux_plein'),  # Denormandie 2023
+                ('f7qo', 6, 'outremer', 'taux_plein'),  # Pinel 2022
+                ('f7qt', 6, 'outremer', 'taux_reduit'),  # Pinel 2023
+                ('f7sf', 6, 'outremer', 'taux_reduit'),  # Pinel 2024
+                ('f7vf', 6, 'outremer', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7vy', 6, 'outremer', 'taux_plein'),  # Pinel 2024 QPV performant
+                ('f7nf', 9, 'metropole', 'taux_plein'),  # Denormandie 2020
+                ('f7qj', 9, 'metropole', 'taux_plein'),  # Pinel 2021
+                ('f7nj', 9, 'metropole', 'taux_plein'),  # Denormandie 2021
+                ('f7nn', 9, 'metropole', 'taux_plein'),  # Denormandie 2022
+                ('f7np', 9, 'metropole', 'taux_plein'),  # Denormandie 2023
+                ('f7qn', 9, 'metropole', 'taux_plein'),  # Pinel 2022
+                ('f7qs', 9, 'metropole', 'taux_reduit'),  # Pinel 2023
+                ('f7se', 9, 'metropole', 'taux_reduit'),  # Pinel 2024
+                ('f7ve', 9, 'metropole', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7vx', 9, 'metropole', 'taux_plein'),  # Pinel 2024 QPV performant
+                ('f7ne', 6, 'metropole', 'taux_plein'),  # Denormandie 2020
+                ('f7qi', 6, 'metropole', 'taux_plein'),  # Pinel 2021
+                ('f7ni', 6, 'metropole', 'taux_plein'),  # Denormandie 2021
+                ('f7nm', 6, 'metropole', 'taux_plein'),  # Denormandie 2022
+                ('f7no', 6, 'metropole', 'taux_plein'),  # Denormandie 2023
+                ('f7qm', 6, 'metropole', 'taux_plein'),  # Pinel 2022
+                ('f7vd', 6, 'metropole', 'taux_plein'),  # Pinel 2023 QPV performant
+                ('f7vw', 6, 'metropole', 'taux_plein'),  # Pinel 2024 QPV performant
+                ('f7qr', 6, 'metropole', 'taux_reduit'),  # Pinel 2023
+                ('f7sd', 6, 'metropole', 'taux_reduit')],  # Pinel 2024
+            }
+
+        cases_report = {
+            2016: ['f7tz'],
+            2017: ['f7rd'],
+            2018: ['f7rh'],
+            2019: ['f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel et Denormandie
+            2020: ['f7jp', 'f7jq', 'f7jt', 'f7ju'],  # Pinel et Denormandie
+            2021: ['f7jx', 'f7jy', 'f7li', 'f7lj'],  # Pinel et Denormandie
+            2022: ['f7jk', 'f7jl', 'f7jg', 'f7jh'],  # Pinel et Denormandie
+            2023: ['f7ic', 'f7id', 'f7ig', 'f7ih'],  # Pinel et Denormandie
+            }
+
+        # Prorogation, 9 ans
+        f7wb = foyer_fiscal('f7wb', period)  # Outre-Mer, 2014
+        f7xb = foyer_fiscal('f7xb', period)  # Outre-Mer, 2015
+
+        # Première prorogation, 6 ans
+        f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 2017
+        f7ry = foyer_fiscal('f7ry', period)  # Outre-Mer, 2018
+
+        # Seconde prorogation, 6 ans
+        f7rw = foyer_fiscal('f7rw', period)  # Outre-Mer, 2014
+        f7si = foyer_fiscal('f7si', period)  # Outre-Mer, 2015
+
+        # Prorogation reports 2022, 6 ans
+        f7pl = foyer_fiscal('f7pl', period)  # Outre-Mer, 2015
+        f7pn = foyer_fiscal('f7pn', period)  # Outre-Mer, 2016
+
+        # Prorogation reports 2023, 9 ans
+        f7og = foyer_fiscal('f7og', period)  # Outre-Mer, 2014
+
+        # Prorogation reports 2023, 6 ans
+        f7nb = foyer_fiscal('f7nb', period)  # Outre-Mer, 2016
+        f7nd = foyer_fiscal('f7nd', period)  # Outre-Mer, 2017
+
+        # Seconde prorogation reports 2023, 6 ans
+        f7sz = foyer_fiscal('f7sz', period)  # Outre-Mer, 2014
+
+        def calcul_reduction_investissement(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone, taux = case
+                depense = foyer_fiscal(variable, period)
+                if taux == 'taux_reduit':
+                    if zone == 'outremer':
+                        if duree == 9:
+                            reduction += around(duflot_pinel_denormandie.location_9_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                        elif duree == 6:
+                            reduction += around(duflot_pinel_denormandie.location_6_ans.taux_om * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                elif taux == 'taux_plein':
+                    if zone == 'outremer':
+                        if duree == 9:
+                            reduction += around(duflot_pinel_denormandie.location_9_ans.taux_om_qpv_performant * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                        elif duree == 6:
+                            reduction += around(duflot_pinel_denormandie.location_6_ans.taux_om_qpv_performant * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / duree)
+                depenses_cumulees += depense
+            return reduction
+
+        annee_fiscale = period.start.year
+        range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
+        range_year_report = list(set([year for year in range(2016, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7ry) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7rw) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7si) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7wb) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3)
+            + around(min_(duflot_pinel_denormandie.plafond, f7xb) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3))
+
+        reports_prorogation = f7pl + f7pn + f7og + f7nb + f7nd + f7sz
+
+        return reduction_cumulee + report + prorogation + reports_prorogation
 
 
 class cappme(Variable):
@@ -1713,6 +2379,7 @@ class ri_investissement_forestier(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Crédit d'impôt au titre des investissements forestiers"
+    end = '2022-12-31'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -2121,6 +2788,26 @@ class ri_investissement_forestier(Variable):
 
         return ri_acq + ri_ass_rep
 
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2022
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7un = foyer_fiscal('f7un', period)
+        f7ul = foyer_fiscal('f7ul', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+
+        # acquisition
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
+
+        # assurance + reports des travaux (même plafond)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7ul)
+        ri_ass_rep = ass_rep_2012 * P.acquisition.taux
+
+        return ri_acq + ri_ass_rep
+
 
 class invlst(Variable):
     value_type = float
@@ -2128,6 +2815,7 @@ class invlst(Variable):
     label = "Réduction d'impôt en faveur des investissements dans le secteur touristique"
     reference = 'http://bofip.impots.gouv.fr/bofip/6265-PGP'
     definition_period = YEAR
+    end = '2018-12-31'
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2297,8 +2985,8 @@ class invlst(Variable):
         Investissements locatifs dans le secteur touristique
         2013
         '''
-        f7uy = foyer_fiscal('f7uy', period)
-        f7uz = foyer_fiscal('f7uz', period)
+        f7uy = foyer_fiscal('f7uy_2018', period)
+        f7uz = foyer_fiscal('f7uz_2018', period)
         f7xf = foyer_fiscal('f7xf', period)
         f7xi = foyer_fiscal('f7xi_2015', period)
         f7xj = foyer_fiscal('f7xj_2015', period)
@@ -2327,11 +3015,11 @@ class invlst(Variable):
         report_logement_neuf_2009 = foyer_fiscal('f7xi_2015', period)
         report_logement_neuf_2010 = foyer_fiscal('f7xp_2016', period)
         report_logement_neuf_2011 = foyer_fiscal('f7xn_2017', period)
-        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy_2018', period)
         report_rehabilitation_2009 = foyer_fiscal('f7xj_2015', period)
         report_rehabilitation_2010 = foyer_fiscal('f7xq_2016', period)
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
-        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz_2018', period)
         report_residence_sociale_2009 = foyer_fiscal('f7xk_2014', period)
         report_residence_sociale_2010 = foyer_fiscal('f7xr', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
@@ -2356,11 +3044,11 @@ class invlst(Variable):
         report_logement_neuf_2009 = foyer_fiscal('f7xi_2015', period)
         report_logement_neuf_2010 = foyer_fiscal('f7xp_2016', period)
         report_logement_neuf_2011 = foyer_fiscal('f7xn_2017', period)
-        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy_2018', period)
         report_rehabilitation_2009 = foyer_fiscal('f7xj_2015', period)
         report_rehabilitation_2010 = foyer_fiscal('f7xq_2016', period)
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
-        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz_2018', period)
         report_residence_sociale_2010 = foyer_fiscal('f7xr', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
@@ -2382,10 +3070,10 @@ class invlst(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)  # noqa F841
         report_logement_neuf_2010 = foyer_fiscal('f7xp_2016', period)
         report_logement_neuf_2011 = foyer_fiscal('f7xn_2017', period)
-        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy_2018', period)
         report_rehabilitation_2010 = foyer_fiscal('f7xq_2016', period)
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
-        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz_2018', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
@@ -2403,9 +3091,9 @@ class invlst(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)  # noqa F841
         report_logement_neuf_2011 = foyer_fiscal('f7xn_2017', period)
-        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy_2018', period)
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
-        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz_2018', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2011 + report_logement_neuf_2012)
@@ -2422,8 +3110,8 @@ class invlst(Variable):
         2018
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)  # noqa F841
-        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
-        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy_2018', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz_2018', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2012)
@@ -2540,10 +3228,10 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2012
         '''
-        f7ia = foyer_fiscal('f7ia_2019', period)
-        f7ib = foyer_fiscal('f7ib_2019', period)
-        f7ic = foyer_fiscal('f7ic_2019', period)
-        f7id = foyer_fiscal('f7id', period)
+        f7ia = foyer_fiscal('f7ia_2021', period)
+        f7ib = foyer_fiscal('f7ib_2021', period)
+        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
         f7ig = foyer_fiscal('f7ig_2016', period)
@@ -2587,10 +3275,10 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2013
         '''
-        f7ia = foyer_fiscal('f7ia_2019', period)
-        f7ib = foyer_fiscal('f7ib_2019', period)
-        f7ic = foyer_fiscal('f7ic_2019', period)
-        f7id = foyer_fiscal('f7id', period)
+        f7ia = foyer_fiscal('f7ia_2021', period)
+        f7ib = foyer_fiscal('f7ib_2021', period)
+        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
         f7ig = foyer_fiscal('f7ig_2016', period)
@@ -2617,10 +3305,10 @@ class location_meublee(Variable):
         f7js = foyer_fiscal('f7js_2018', period)
         f7jt = foyer_fiscal('f7jt_2019', period)
         f7ju = foyer_fiscal('f7ju_2016', period)
-        f7jv = foyer_fiscal('f7jv', period)
-        f7jw = foyer_fiscal('f7jw', period)
-        f7jx = foyer_fiscal('f7jx', period)
-        f7jy = foyer_fiscal('f7jy', period)
+        f7jv = foyer_fiscal('f7jv_2020', period)
+        f7jw = foyer_fiscal('f7jw_2020', period)
+        f7jx = foyer_fiscal('f7jx_2020', period)
+        f7jy = foyer_fiscal('f7jy_2020', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
         majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
@@ -2651,10 +3339,10 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2014
         '''
-        f7ia = foyer_fiscal('f7ia_2019', period)
-        f7ib = foyer_fiscal('f7ib_2019', period)
-        f7ic = foyer_fiscal('f7ic_2019', period)
-        f7id = foyer_fiscal('f7id', period)
+        f7ia = foyer_fiscal('f7ia_2021', period)
+        f7ib = foyer_fiscal('f7ib_2021', period)
+        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
         f7ig = foyer_fiscal('f7ig_2016', period)
@@ -2681,10 +3369,10 @@ class location_meublee(Variable):
         f7js = foyer_fiscal('f7js_2018', period)
         f7jt = foyer_fiscal('f7jt_2019', period)
         f7ju = foyer_fiscal('f7ju_2016', period)
-        f7jv = foyer_fiscal('f7jv', period)
-        f7jw = foyer_fiscal('f7jw', period)
-        f7jx = foyer_fiscal('f7jx', period)
-        f7jy = foyer_fiscal('f7jy', period)
+        f7jv = foyer_fiscal('f7jv_2020', period)
+        f7jw = foyer_fiscal('f7jw_2020', period)
+        f7jx = foyer_fiscal('f7jx_2020', period)
+        f7jy = foyer_fiscal('f7jy_2020', period)
         f7oa = foyer_fiscal('f7oa_2021', period)
         f7ob = foyer_fiscal('f7ob_2021', period)
         f7oc = foyer_fiscal('f7oc_2021', period)
@@ -2740,10 +3428,10 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2015
         '''
-        f7ia = foyer_fiscal('f7ia_2019', period)
-        f7ib = foyer_fiscal('f7ib_2019', period)
-        f7ic = foyer_fiscal('f7ic_2019', period)
-        f7id = foyer_fiscal('f7id', period)
+        f7ia = foyer_fiscal('f7ia_2021', period)
+        f7ib = foyer_fiscal('f7ib_2021', period)
+        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
         f7ig = foyer_fiscal('f7ig_2016', period)
@@ -2770,17 +3458,17 @@ class location_meublee(Variable):
         f7js = foyer_fiscal('f7js_2018', period)
         f7jt = foyer_fiscal('f7jt_2019', period)
         f7ju = foyer_fiscal('f7ju_2016', period)
-        f7jv = foyer_fiscal('f7jv', period)
-        f7jw = foyer_fiscal('f7jw', period)
-        f7jx = foyer_fiscal('f7jx', period)
-        f7jy = foyer_fiscal('f7jy', period)
+        f7jv = foyer_fiscal('f7jv_2020', period)
+        f7jw = foyer_fiscal('f7jw_2020', period)
+        f7jx = foyer_fiscal('f7jx_2020', period)
+        f7jy = foyer_fiscal('f7jy_2020', period)
         f7oa = foyer_fiscal('f7oa_2021', period)
         f7ob = foyer_fiscal('f7ob_2021', period)
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -2791,8 +3479,8 @@ class location_meublee(Variable):
         f7pc = foyer_fiscal('f7pc_2019', period)
         f7pd = foyer_fiscal('f7pd_2019', period)
         f7pe = foyer_fiscal('f7pe_2019', period)
-        f7pf = foyer_fiscal('f7pf', period)
-        f7pg = foyer_fiscal('f7pg', period)
+        f7pf = foyer_fiscal('f7pf_2020', period)
+        f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
         f7pi = foyer_fiscal('f7pi', period)
         f7pj = foyer_fiscal('f7pj', period)
@@ -2843,10 +3531,10 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2016
         '''
-        f7ia = foyer_fiscal('f7ia_2019', period)
-        f7ib = foyer_fiscal('f7ib_2019', period)
-        f7ic = foyer_fiscal('f7ic_2019', period)
-        f7id = foyer_fiscal('f7id', period)
+        f7ia = foyer_fiscal('f7ia_2021', period)
+        f7ib = foyer_fiscal('f7ib_2021', period)
+        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
         f7ig = foyer_fiscal('f7ig_2016', period)
@@ -2871,17 +3559,17 @@ class location_meublee(Variable):
         f7js = foyer_fiscal('f7js_2018', period)
         f7jt = foyer_fiscal('f7jt_2019', period)
         f7ju = foyer_fiscal('f7ju_2016', period)
-        f7jv = foyer_fiscal('f7jv', period)
-        f7jw = foyer_fiscal('f7jw', period)
-        f7jx = foyer_fiscal('f7jx', period)
-        f7jy = foyer_fiscal('f7jy', period)
+        f7jv = foyer_fiscal('f7jv_2020', period)
+        f7jw = foyer_fiscal('f7jw_2020', period)
+        f7jx = foyer_fiscal('f7jx_2020', period)
+        f7jy = foyer_fiscal('f7jy_2020', period)
         f7oa = foyer_fiscal('f7oa_2021', period)
         f7ob = foyer_fiscal('f7ob_2021', period)
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -2898,15 +3586,15 @@ class location_meublee(Variable):
         f7pc = foyer_fiscal('f7pc_2019', period)
         f7pd = foyer_fiscal('f7pd_2019', period)
         f7pe = foyer_fiscal('f7pe_2019', period)
-        f7pf = foyer_fiscal('f7pf', period)
-        f7pg = foyer_fiscal('f7pg', period)
+        f7pf = foyer_fiscal('f7pf_2020', period)
+        f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
         f7pi = foyer_fiscal('f7pi', period)
         f7pj = foyer_fiscal('f7pj', period)
-        f7pk = foyer_fiscal('f7pk', period)
-        f7pl = foyer_fiscal('f7pl', period)
-        f7pm = foyer_fiscal('f7pm', period)
-        f7pn = foyer_fiscal('f7pn', period)
+        f7pk = foyer_fiscal('f7pk_2021', period)
+        f7pl = foyer_fiscal('f7pl_2021', period)
+        f7pm = foyer_fiscal('f7pm_2021', period)
+        f7pn = foyer_fiscal('f7pn_2021', period)
         f7po = foyer_fiscal('f7po', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
@@ -2956,9 +3644,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2017
         '''
-        f7ia = foyer_fiscal('f7ia_2019', period)
-        f7ib = foyer_fiscal('f7ib_2019', period)
-        f7ic = foyer_fiscal('f7ic_2019', period)
+        f7ia = foyer_fiscal('f7ia_2021', period)
+        f7ib = foyer_fiscal('f7ib_2021', period)
+        f7ic = foyer_fiscal('f7ic_2021', period)
         f7ih = foyer_fiscal('f7ih_2017', period)
         f7ik = foyer_fiscal('f7ik', period)
         f7ip = foyer_fiscal('f7ip_2018', period)
@@ -2970,17 +3658,17 @@ class location_meublee(Variable):
         f7jc = foyer_fiscal('f7jc_2018', period)
         f7ji = foyer_fiscal('f7ji_2018', period)
         f7js = foyer_fiscal('f7js_2018', period)
-        f7jv = foyer_fiscal('f7jv', period)
-        f7jw = foyer_fiscal('f7jw', period)
-        f7jx = foyer_fiscal('f7jx', period)
-        f7jy = foyer_fiscal('f7jy', period)
+        f7jv = foyer_fiscal('f7jv_2020', period)
+        f7jw = foyer_fiscal('f7jw_2020', period)
+        f7jx = foyer_fiscal('f7jx_2020', period)
+        f7jy = foyer_fiscal('f7jy_2020', period)
         f7oa = foyer_fiscal('f7oa_2021', period)
         f7ob = foyer_fiscal('f7ob_2021', period)
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -2999,15 +3687,15 @@ class location_meublee(Variable):
         f7pc = foyer_fiscal('f7pc_2019', period)
         f7pd = foyer_fiscal('f7pd_2019', period)
         f7pe = foyer_fiscal('f7pe_2019', period)
-        f7pf = foyer_fiscal('f7pf', period)
-        f7pg = foyer_fiscal('f7pg', period)
+        f7pf = foyer_fiscal('f7pf_2020', period)
+        f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
         f7pi = foyer_fiscal('f7pi', period)
         f7pj = foyer_fiscal('f7pj', period)
-        f7pk = foyer_fiscal('f7pk', period)
-        f7pl = foyer_fiscal('f7pl', period)
-        f7pm = foyer_fiscal('f7pm', period)
-        f7pn = foyer_fiscal('f7pn', period)
+        f7pk = foyer_fiscal('f7pk_2021', period)
+        f7pl = foyer_fiscal('f7pl_2021', period)
+        f7pm = foyer_fiscal('f7pm_2021', period)
+        f7pn = foyer_fiscal('f7pn_2021', period)
         f7po = foyer_fiscal('f7po', period)
         f7pp = foyer_fiscal('f7pp', period)
         f7pq = foyer_fiscal('f7pq', period)
@@ -3015,7 +3703,7 @@ class location_meublee(Variable):
         f7ps = foyer_fiscal('f7ps', period)
         f7pt = foyer_fiscal('f7pt', period)
         invest_2011_acheves_2017 = foyer_fiscal('f7ij', period)
-        invest_2012_acheves_2017 = foyer_fiscal('f7id', period)
+        invest_2012_acheves_2017 = foyer_fiscal('f7id_2018', period)
         invest_2013_acheves_2017 = foyer_fiscal('f7jt_2019', period)
         invest_2014_acheves_2017 = foyer_fiscal('f7ou', period)
         invest_2015_acheves_2017 = foyer_fiscal('f7ov', period)
@@ -3087,9 +3775,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2018
         '''
-        f7ia = foyer_fiscal('f7ia_2019', period)
-        f7ib = foyer_fiscal('f7ib_2019', period)
-        f7ic = foyer_fiscal('f7ic_2019', period)
+        f7ia = foyer_fiscal('f7ia_2021', period)
+        f7ib = foyer_fiscal('f7ib_2021', period)
+        f7ic = foyer_fiscal('f7ic_2021', period)
         f7ip = foyer_fiscal('f7ip_2018', period)
         f7iq = foyer_fiscal('f7iq_2018', period)
         f7ir = foyer_fiscal('f7ir_2018', period)
@@ -3097,17 +3785,17 @@ class location_meublee(Variable):
         f7jc = foyer_fiscal('f7jc_2018', period)
         f7ji = foyer_fiscal('f7ji_2018', period)
         f7js = foyer_fiscal('f7js_2018', period)
-        f7jv = foyer_fiscal('f7jv', period)
-        f7jw = foyer_fiscal('f7jw', period)
-        f7jx = foyer_fiscal('f7jx', period)
-        f7jy = foyer_fiscal('f7jy', period)
+        f7jv = foyer_fiscal('f7jv_2020', period)
+        f7jw = foyer_fiscal('f7jw_2020', period)
+        f7jx = foyer_fiscal('f7jx_2020', period)
+        f7jy = foyer_fiscal('f7jy_2020', period)
         f7oa = foyer_fiscal('f7oa_2021', period)
         f7ob = foyer_fiscal('f7ob_2021', period)
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -3126,15 +3814,15 @@ class location_meublee(Variable):
         f7pc = foyer_fiscal('f7pc_2019', period)
         f7pd = foyer_fiscal('f7pd_2019', period)
         f7pe = foyer_fiscal('f7pe_2019', period)
-        f7pf = foyer_fiscal('f7pf', period)
-        f7pg = foyer_fiscal('f7pg', period)
+        f7pf = foyer_fiscal('f7pf_2020', period)
+        f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
         f7pi = foyer_fiscal('f7pi', period)
         f7pj = foyer_fiscal('f7pj', period)
-        f7pk = foyer_fiscal('f7pk', period)
-        f7pl = foyer_fiscal('f7pl', period)
-        f7pm = foyer_fiscal('f7pm', period)
-        f7pn = foyer_fiscal('f7pn', period)
+        f7pk = foyer_fiscal('f7pk_2021', period)
+        f7pl = foyer_fiscal('f7pl_2021', period)
+        f7pm = foyer_fiscal('f7pm_2021', period)
+        f7pn = foyer_fiscal('f7pn_2021', period)
         f7po = foyer_fiscal('f7po', period)
         f7pp = foyer_fiscal('f7pp', period)
         f7pq = foyer_fiscal('f7pq', period)
@@ -3149,7 +3837,7 @@ class location_meublee(Variable):
         f7sa = foyer_fiscal('f7sa', period)
         f7sb = foyer_fiscal('f7sb', period)
         f7sc = foyer_fiscal('f7sc', period)
-        invest_2012_acheves_2017 = foyer_fiscal('f7id', period)
+        invest_2012_acheves_2017 = foyer_fiscal('f7id_2018', period)
         invest_2013_acheves_2017 = foyer_fiscal('f7jt_2019', period)
         invest_2014_acheves_2017 = foyer_fiscal('f7ou', period)
         invest_2015_acheves_2017 = foyer_fiscal('f7ov', period)
@@ -3222,20 +3910,20 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2019
         '''
-        f7ia = foyer_fiscal('f7ia_2019', period)
-        f7ib = foyer_fiscal('f7ib_2019', period)
-        f7ic = foyer_fiscal('f7ic_2019', period)
-        f7jv = foyer_fiscal('f7jv', period)
-        f7jw = foyer_fiscal('f7jw', period)
-        f7jx = foyer_fiscal('f7jx', period)
-        f7jy = foyer_fiscal('f7jy', period)
+        f7ia = foyer_fiscal('f7ia_2021', period)
+        f7ib = foyer_fiscal('f7ib_2021', period)
+        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7jv = foyer_fiscal('f7jv_2020', period)
+        f7jw = foyer_fiscal('f7jw_2020', period)
+        f7jx = foyer_fiscal('f7jx_2020', period)
+        f7jy = foyer_fiscal('f7jy_2020', period)
         f7oa = foyer_fiscal('f7oa_2021', period)
         f7ob = foyer_fiscal('f7ob_2021', period)
         f7oc = foyer_fiscal('f7oc_2021', period)
         f7od = foyer_fiscal('f7od_2021', period)
         f7oe = foyer_fiscal('f7oe_2021', period)
-        f7of = foyer_fiscal('f7of', period)
-        f7og = foyer_fiscal('f7og', period)
+        f7of = foyer_fiscal('f7of_2022', period)
+        f7og = foyer_fiscal('f7og_2022', period)
         f7oh = foyer_fiscal('f7oh', period)
         f7oi = foyer_fiscal('f7oi', period)
         f7oj = foyer_fiscal('f7oj', period)
@@ -3254,15 +3942,15 @@ class location_meublee(Variable):
         f7pc = foyer_fiscal('f7pc_2019', period)
         f7pd = foyer_fiscal('f7pd_2019', period)
         f7pe = foyer_fiscal('f7pe_2019', period)
-        f7pf = foyer_fiscal('f7pf', period)
-        f7pg = foyer_fiscal('f7pg', period)
+        f7pf = foyer_fiscal('f7pf_2020', period)
+        f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
         f7pi = foyer_fiscal('f7pi', period)
         f7pj = foyer_fiscal('f7pj', period)
-        f7pk = foyer_fiscal('f7pk', period)
-        f7pl = foyer_fiscal('f7pl', period)
-        f7pm = foyer_fiscal('f7pm', period)
-        f7pn = foyer_fiscal('f7pn', period)
+        f7pk = foyer_fiscal('f7pk_2021', period)
+        f7pl = foyer_fiscal('f7pl_2021', period)
+        f7pm = foyer_fiscal('f7pm_2021', period)
+        f7pn = foyer_fiscal('f7pn_2021', period)
         f7po = foyer_fiscal('f7po', period)
         f7pp = foyer_fiscal('f7pp', period)
         f7pq = foyer_fiscal('f7pq', period)
@@ -3369,14 +4057,14 @@ class location_meublee(Variable):
 
         rep = ['f7sp', 'f7sn', 'f7so', 'f7sa',
             'f7sb', 'f7sc', 'f7oa_2021', 'f7ob_2021',
-            'f7oc_2021', 'f7od_2021', 'f7oe_2021', 'f7of',
-            'f7og', 'f7oh', 'f7oi', 'f7oj',
+            'f7oc_2021', 'f7od_2021', 'f7oe_2021', 'f7of_2022',
+            'f7og_2022', 'f7oh', 'f7oi', 'f7oj',
             'f7ok', 'f7ol', 'f7om', 'f7on',
             'f7oo', 'f7op', 'f7oq', 'f7or',
-            'f7os', 'f7ot', 'f7jv', 'f7jw',
-            'f7jx', 'f7jy', 'f7pf', 'f7pg',
-            'f7ph', 'f7pi', 'f7pj', 'f7pk',
-            'f7pl', 'f7pm', 'f7pn', 'f7po',
+            'f7os', 'f7ot', 'f7jv_2020', 'f7jw_2020',
+            'f7jx_2020', 'f7jy_2020', 'f7pf', 'f7pg_2020',
+            'f7ph', 'f7pi', 'f7pj', 'f7pk_2021',
+            'f7pl_2021', 'f7pm_2021', 'f7pn_2021', 'f7po',
             'f7pp', 'f7pq', 'f7pr', 'f7ps',
             'f7pt', 'f7pu', 'f7pv', 'f7pw',
             'f7px', 'f7py', 'f7ho', 'f7hp',
@@ -3405,12 +4093,12 @@ class location_meublee(Variable):
 
         rep = ['f7sm', 'f7sp', 'f7sn', 'f7so', 'f7sa',
             'f7sb', 'f7sc', 'f7oa_2021', 'f7ob_2021',
-            'f7oc_2021', 'f7od_2021', 'f7oe_2021', 'f7of',
-            'f7og', 'f7oh', 'f7oi', 'f7oj',
+            'f7oc_2021', 'f7od_2021', 'f7oe_2021', 'f7of_2022',
+            'f7og_2022', 'f7oh', 'f7oi', 'f7oj',
             'f7ok', 'f7ol', 'f7om', 'f7on',
             'f7oo', 'f7op', 'f7oq', 'f7or',
-            'f7os', 'f7ot', 'f7pk', 'f7pl',
-            'f7pm', 'f7pn', 'f7po', 'f7pp',
+            'f7os', 'f7ot', 'f7pk_2021', 'f7pl_2021',
+            'f7pm_2021', 'f7pn_2021', 'f7po', 'f7pp',
             'f7pq', 'f7pr', 'f7ps', 'f7pt',
             'f7pu', 'f7pv', 'f7pw', 'f7px',
             'f7py', 'f7ho', 'f7hp', 'f7hq',
@@ -3440,7 +4128,7 @@ class location_meublee(Variable):
 
         rep = ['f7ss', 'f7sm', 'f7sp', 'f7sn',
                'f7so', 'f7sa', 'f7sb', 'f7sc',
-               'f7of', 'f7og', 'f7oh', 'f7oi',
+               'f7of_2022', 'f7og_2022', 'f7oh', 'f7oi',
                'f7oj', 'f7ok', 'f7ol', 'f7om',
                'f7on', 'f7oo', 'f7op', 'f7oq',
                'f7or', 'f7os', 'f7ot', 'f7pp',
@@ -3882,12 +4570,12 @@ class scelli(Variable):
         f7nj = foyer_fiscal('f7nj_2017', period)
         f7nk = foyer_fiscal('f7nk_2017', period)
         f7nl = foyer_fiscal('f7nl_2016', period)
-        f7nm = foyer_fiscal('f7nm', period)
-        f7nn = foyer_fiscal('f7nn', period)
-        f7no = foyer_fiscal('f7no', period)
-        f7np = foyer_fiscal('f7np', period)
-        f7nq = foyer_fiscal('f7nq', period)
-        f7nr = foyer_fiscal('f7nr', period)
+        f7nm = foyer_fiscal('f7nm_2017', period)
+        f7nn = foyer_fiscal('f7nn_2017', period)
+        f7no = foyer_fiscal('f7no_2021', period)
+        f7np = foyer_fiscal('f7np_2017', period)
+        f7nq = foyer_fiscal('f7nq_2016', period)
+        f7nr = foyer_fiscal('f7nr_2021', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
         investissement_2009_2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
@@ -3939,13 +4627,13 @@ class scelli(Variable):
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
         f7jd = foyer_fiscal('f7jd_2017', period)
-        f7je = foyer_fiscal('f7je', period)
-        f7jf = foyer_fiscal('f7jf', period)
-        f7jg = foyer_fiscal('f7jg', period)
-        f7jh = foyer_fiscal('f7jh', period)
-        f7jj = foyer_fiscal('f7jj', period)
-        f7jk = foyer_fiscal('f7jk', period)
-        f7jl = foyer_fiscal('f7jl', period)
+        f7je = foyer_fiscal('f7je_2021', period)
+        f7jf = foyer_fiscal('f7jf_2021', period)
+        f7jg = foyer_fiscal('f7jg_2016', period)
+        f7jh = foyer_fiscal('f7jh_2021', period)
+        f7jj = foyer_fiscal('f7jj_2020', period)
+        f7jk = foyer_fiscal('f7jk_2021', period)
+        f7jl = foyer_fiscal('f7jl_2016', period)
         f7jm = foyer_fiscal('f7jm_2017', period)
         f7jn = foyer_fiscal('f7jn_2017', period)
         f7jo = foyer_fiscal('f7jo_2017', period)
@@ -3970,12 +4658,12 @@ class scelli(Variable):
         f7nj = foyer_fiscal('f7nj_2017', period)
         f7nk = foyer_fiscal('f7nk_2017', period)
         f7nl = foyer_fiscal('f7nl_2016', period)
-        f7nm = foyer_fiscal('f7nm', period)
-        f7nn = foyer_fiscal('f7nn', period)
-        f7no = foyer_fiscal('f7no', period)
-        f7np = foyer_fiscal('f7np', period)
-        f7nq = foyer_fiscal('f7nq', period)
-        f7nr = foyer_fiscal('f7nr', period)
+        f7nm = foyer_fiscal('f7nm_2017', period)
+        f7nn = foyer_fiscal('f7nn_2017', period)
+        f7no = foyer_fiscal('f7no_2021', period)
+        f7np = foyer_fiscal('f7np_2017', period)
+        f7nq = foyer_fiscal('f7nq_2016', period)
+        f7nr = foyer_fiscal('f7nr_2021', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
         investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
@@ -4050,13 +4738,13 @@ class scelli(Variable):
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
         f7jd = foyer_fiscal('f7jd_2017', period)
-        f7je = foyer_fiscal('f7je', period)
-        f7jf = foyer_fiscal('f7jf', period)
-        f7jg = foyer_fiscal('f7jg', period)
-        f7jh = foyer_fiscal('f7jh', period)
-        f7jj = foyer_fiscal('f7jj', period)
-        f7jk = foyer_fiscal('f7jk', period)
-        f7jl = foyer_fiscal('f7jl', period)
+        f7je = foyer_fiscal('f7je_2021', period)
+        f7jf = foyer_fiscal('f7jf_2021', period)
+        f7jg = foyer_fiscal('f7jg_2016', period)
+        f7jh = foyer_fiscal('f7jh_2021', period)
+        f7jj = foyer_fiscal('f7jj_2020', period)
+        f7jk = foyer_fiscal('f7jk_2021', period)
+        f7jl = foyer_fiscal('f7jl_2016', period)
         f7jm = foyer_fiscal('f7jm_2017', period)
         f7jn = foyer_fiscal('f7jn_2017', period)
         f7jo = foyer_fiscal('f7jo_2017', period)
@@ -4085,12 +4773,12 @@ class scelli(Variable):
         f7nj = foyer_fiscal('f7nj_2017', period)
         f7nk = foyer_fiscal('f7nk_2017', period)
         f7nl = foyer_fiscal('f7nl_2016', period)
-        f7nm = foyer_fiscal('f7nm', period)
-        f7nn = foyer_fiscal('f7nn', period)
-        f7no = foyer_fiscal('f7no', period)
-        f7np = foyer_fiscal('f7np', period)
-        f7nq = foyer_fiscal('f7nq', period)
-        f7nr = foyer_fiscal('f7nr', period)
+        f7nm = foyer_fiscal('f7nm_2017', period)
+        f7nn = foyer_fiscal('f7nn_2017', period)
+        f7no = foyer_fiscal('f7no_2021', period)
+        f7np = foyer_fiscal('f7np_2017', period)
+        f7nq = foyer_fiscal('f7nq_2016', period)
+        f7nr = foyer_fiscal('f7nr_2021', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
         investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
@@ -4168,13 +4856,13 @@ class scelli(Variable):
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
         f7jd = foyer_fiscal('f7jd_2017', period)
-        f7je = foyer_fiscal('f7je', period)
-        f7jf = foyer_fiscal('f7jf', period)
-        f7jg = foyer_fiscal('f7jg', period)
-        f7jh = foyer_fiscal('f7jh', period)
-        f7jj = foyer_fiscal('f7jj', period)
-        f7jk = foyer_fiscal('f7jk', period)
-        f7jl = foyer_fiscal('f7jl', period)
+        f7je = foyer_fiscal('f7je_2021', period)
+        f7jf = foyer_fiscal('f7jf_2021', period)
+        f7jg = foyer_fiscal('f7jg_2016', period)
+        f7jh = foyer_fiscal('f7jh_2021', period)
+        f7jj = foyer_fiscal('f7jj_2020', period)
+        f7jk = foyer_fiscal('f7jk_2021', period)
+        f7jl = foyer_fiscal('f7jl_2016', period)
         f7jm = foyer_fiscal('f7jm_2017', period)
         f7jn = foyer_fiscal('f7jn_2017', period)
         f7jo = foyer_fiscal('f7jo_2017', period)
@@ -4207,12 +4895,12 @@ class scelli(Variable):
         f7nj = foyer_fiscal('f7nj_2017', period)
         f7nk = foyer_fiscal('f7nk_2017', period)
         f7nl = foyer_fiscal('f7nl_2016', period)
-        f7nm = foyer_fiscal('f7nm', period)
-        f7nn = foyer_fiscal('f7nn', period)
-        f7no = foyer_fiscal('f7no', period)
-        f7np = foyer_fiscal('f7np', period)
-        f7nq = foyer_fiscal('f7nq', period)
-        f7nr = foyer_fiscal('f7nr', period)
+        f7nm = foyer_fiscal('f7nm_2017', period)
+        f7nn = foyer_fiscal('f7nn_2017', period)
+        f7no = foyer_fiscal('f7no_2021', period)
+        f7np = foyer_fiscal('f7np_2017', period)
+        f7nq = foyer_fiscal('f7nq_2016', period)
+        f7nr = foyer_fiscal('f7nr_2021', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
         f7ya = foyer_fiscal('f7ya', period)
@@ -4320,13 +5008,13 @@ class scelli(Variable):
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
         f7jd = foyer_fiscal('f7jd_2017', period)
-        f7je = foyer_fiscal('f7je', period)
-        f7jf = foyer_fiscal('f7jf', period)
-        f7jg = foyer_fiscal('f7jg', period)
-        f7jh = foyer_fiscal('f7jh', period)
-        f7jj = foyer_fiscal('f7jj', period)
-        f7jk = foyer_fiscal('f7jk', period)
-        f7jl = foyer_fiscal('f7jl', period)
+        f7je = foyer_fiscal('f7je_2021', period)
+        f7jf = foyer_fiscal('f7jf_2021', period)
+        f7jg = foyer_fiscal('f7jg_2016', period)
+        f7jh = foyer_fiscal('f7jh_2021', period)
+        f7jj = foyer_fiscal('f7jj_2020', period)
+        f7jk = foyer_fiscal('f7jk_2021', period)
+        f7jl = foyer_fiscal('f7jl_2016', period)
         f7jm = foyer_fiscal('f7jm_2017', period)
         f7jn = foyer_fiscal('f7jn_2017', period)
         f7jo = foyer_fiscal('f7jo_2017', period)
@@ -4339,10 +5027,10 @@ class scelli(Variable):
         f7ld = foyer_fiscal('f7ld', period)
         f7le = foyer_fiscal('f7le', period)
         f7lf = foyer_fiscal('f7lf', period)
-        f7lg = foyer_fiscal('f7lg', period)
-        f7lh = foyer_fiscal('f7lh', period)
-        f7li = foyer_fiscal('f7li', period)
-        f7lj = foyer_fiscal('f7lj', period)
+        f7lg = foyer_fiscal('f7lg_2020', period)
+        f7lh = foyer_fiscal('f7lh_2020', period)
+        f7li = foyer_fiscal('f7li_2020', period)
+        f7lj = foyer_fiscal('f7lj_2020', period)
         f7lm = foyer_fiscal('f7lm_2018', period)
         f7ln = foyer_fiscal('f7ln', period)
         f7ls = foyer_fiscal('f7ls', period)
@@ -4363,12 +5051,12 @@ class scelli(Variable):
         f7nj = foyer_fiscal('f7nj_2017', period)
         f7nk = foyer_fiscal('f7nk_2017', period)
         f7nl = foyer_fiscal('f7nl_2016', period)
-        f7nm = foyer_fiscal('f7nm', period)
-        f7nn = foyer_fiscal('f7nn', period)
-        f7no = foyer_fiscal('f7no', period)
-        f7np = foyer_fiscal('f7np', period)
-        f7nq = foyer_fiscal('f7nq', period)
-        f7nr = foyer_fiscal('f7nr', period)
+        f7nm = foyer_fiscal('f7nm_2017', period)
+        f7nn = foyer_fiscal('f7nn_2017', period)
+        f7no = foyer_fiscal('f7no_2021', period)
+        f7np = foyer_fiscal('f7np_2017', period)
+        f7nq = foyer_fiscal('f7nq_2016', period)
+        f7nr = foyer_fiscal('f7nr_2021', period)
         f7ns = foyer_fiscal('f7ns', period)
         f7nt = foyer_fiscal('f7nt', period)
         f7yb = foyer_fiscal('f7yb', period)
@@ -4467,10 +5155,10 @@ class scelli(Variable):
             'f7gv', 'f7yj', 'f7gw_2016', 'f7yk', 'f7gx', 'f7yl',
             'f7ha', 'f7hd_2019', 'f7hf_2019',
 
-            'f7lb_2016', 'f7le', 'f7lm_2018', 'f7ln', 'f7lg', 'f7lk',
-            'f7lc_2016', 'f7ld', 'f7ls', 'f7lt', 'f7lh', 'f7ll',
-            'f7lf', 'f7lz', 'f7lx', 'f7li', 'f7lo',
-            'f7mg', 'f7mh', 'f7lj', 'f7lp',
+            'f7lb_2016', 'f7le', 'f7lm_2018', 'f7ln', 'f7lg_2020', 'f7lk',
+            'f7lc_2016', 'f7ld', 'f7ls', 'f7lt', 'f7lh_2020', 'f7ll',
+            'f7lf', 'f7lz', 'f7lx', 'f7li_2020', 'f7lo',
+            'f7mg', 'f7mh', 'f7lj_2020', 'f7lp',
             ]
 
         reports_base_25 = [
@@ -4481,17 +5169,17 @@ class scelli(Variable):
             'f7hw_2018', 'f7hz', 'f7hu_2018', 'f7hs_2017',
             ]
 
-        inv_5_40 = ['f7nq', 'f7nr', 'f7ns', 'f7nt']
-        inv_5_36 = ['f7jp_2016', 'f7jq_2017', 'f7np']
+        inv_5_40 = ['f7nq_2016', 'f7nr_2021', 'f7ns', 'f7nt']
+        inv_5_36 = ['f7jp_2016', 'f7jq_2017', 'f7np_2017']
         inv_5_24 = ['f7fd', 'f7jo_2017', 'f7jr_2017']
-        inv_9_40 = ['f7nl_2016', 'f7nm', 'f7nn', 'f7no', 'f7hk', 'f7ho_2016']
-        inv_9_36 = ['f7jl', 'f7jm_2017', 'f7nk_2017']
+        inv_9_40 = ['f7nl_2016', 'f7nm_2017', 'f7nn_2017', 'f7no_2021', 'f7hk', 'f7ho_2016']
+        inv_9_36 = ['f7jl_2016', 'f7jm_2017', 'f7nk_2017']
         inv_9_25 = ['f7nb_2016', 'f7nc_2017', 'f7nh_2017', 'f7nd_2017', 'f7hj', 'f7hn']
-        inv_9_24 = ['f7fc', 'f7jk', 'f7jn_2017']
+        inv_9_24 = ['f7fc', 'f7jk_2021', 'f7jn_2017']
         inv_9_22 = ['f7jb_2016', 'f7jd_2017', 'f7na_2017', 'f7ne_2017']
         inv_9_15 = ['f7ni_2017', 'f7ng_2016']
-        inv_9_13 = ['f7fa', 'f7ja_2017', 'f7jg', 'f7jh', 'f7je', 'f7nf_2017', 'f7nj_2017']
-        inv_9_6 = ['f7fb', 'f7jf', 'f7jj']
+        inv_9_13 = ['f7fa', 'f7ja_2017', 'f7jg_2016', 'f7jh_2021', 'f7je_2021', 'f7nf_2017', 'f7nj_2017']
+        inv_9_6 = ['f7fb', 'f7jf_2021', 'f7jj_2020']
         inv_3_6 = ['f7zb', 'f7zc']
         inv_3_5 = ['f7za', 'f7zd']
 
@@ -4555,10 +5243,10 @@ class scelli(Variable):
             'f7hd_2019', 'f7gs', 'f7yf',
             'f7hf_2019', 'f7gu', 'f7yh',
             'f7yj', 'f7yk', 'f7yl',
-            'f7le', 'f7lm_2018', 'f7ln', 'f7lg', 'f7lk', 'f7lq',
-            'f7ld', 'f7ls', 'f7lt', 'f7lh', 'f7ll', 'f7lr',
-            'f7lf', 'f7lz', 'f7lx', 'f7li', 'f7lo', 'f7lu',
-            'f7mg', 'f7mh', 'f7lj', 'f7lp', 'f7lv',
+            'f7le', 'f7lm_2018', 'f7ln', 'f7lg_2020', 'f7lk', 'f7lq',
+            'f7ld', 'f7ls', 'f7lt', 'f7lh_2020', 'f7ll', 'f7lr',
+            'f7lf', 'f7lz', 'f7lx', 'f7li_2020', 'f7lo', 'f7lu',
+            'f7mg', 'f7mh', 'f7lj_2020', 'f7lp', 'f7lv',
             'f7zm', 'f7zn', 'f7zp', 'f7zo']
 
         reports_base_25 = [
@@ -4568,17 +5256,17 @@ class scelli(Variable):
             'f7hw_2018', 'f7hz', 'f7hu_2018', 'f7hs_2017'
             ]
 
-        inv_5_40 = ['f7nr', 'f7ns', 'f7nt']
-        inv_5_36 = ['f7jq_2017', 'f7np']
+        inv_5_40 = ['f7nr_2021', 'f7ns', 'f7nt']
+        inv_5_36 = ['f7jq_2017', 'f7np_2017']
         inv_5_24 = ['f7fd', 'f7jo_2017', 'f7jr_2017']
-        inv_9_40 = ['f7nm', 'f7nn', 'f7no']
+        inv_9_40 = ['f7nm_2017', 'f7nn_2017', 'f7no_2021']
         inv_9_36 = ['f7jm_2017', 'f7nk_2017']
         inv_9_25 = ['f7nc_2017', 'f7nh_2017', 'f7nd_2017']
-        inv_9_24 = ['f7fc', 'f7jk', 'f7jn_2017']
+        inv_9_24 = ['f7fc', 'f7jk_2021', 'f7jn_2017']
         inv_9_22 = ['f7jd_2017', 'f7na_2017', 'f7ne_2017']
         inv_9_15 = ['f7ni_2017']
-        inv_9_13 = ['f7fa', 'f7ja_2017', 'f7jh', 'f7je', 'f7nf_2017', 'f7nj_2017']
-        inv_9_6 = ['f7fb', 'f7jf', 'f7jj']
+        inv_9_13 = ['f7fa', 'f7ja_2017', 'f7jh_2021', 'f7je_2021', 'f7nf_2017', 'f7nj_2017']
+        inv_9_6 = ['f7fb', 'f7jf_2021', 'f7jj_2020']
         inv_3_6 = ['f7zb', 'f7zc', 'f7zf', 'f7zg']
         inv_3_5 = ['f7za', 'f7zd', 'f7ze', 'f7zh', 'f7zj', 'f7zk']
         inv_3_4 = ['f7zi', 'f7zl']
@@ -4633,7 +5321,7 @@ class scelli(Variable):
         '''
 
         reports = [
-            'f7rt', 'f7ru', 'f7rv', 'f7rw',
+            'f7rt', 'f7ru', 'f7rv_2021', 'f7rw_2021',
 
             'f7ym', 'f7yt', 'f7wt',
             'f7yn', 'f7yu', 'f7wu',
@@ -4649,10 +5337,10 @@ class scelli(Variable):
             'f7hd_2019', 'f7gs', 'f7yf',
             'f7hf_2019', 'f7gu', 'f7yh',
 
-            'f7lm_2018', 'f7ln', 'f7lg', 'f7lk', 'f7lq', 'f7la',
-            'f7ls', 'f7lt', 'f7lh', 'f7ll', 'f7lr', 'f7lb',
-            'f7lz', 'f7lx', 'f7li', 'f7lo', 'f7lu', 'f7lc',
-            'f7mg', 'f7mh', 'f7lj', 'f7lp', 'f7lv', 'f7ly',
+            'f7lm_2018', 'f7ln', 'f7lg_2020', 'f7lk', 'f7lq', 'f7la',
+            'f7ls', 'f7lt', 'f7lh_2020', 'f7ll', 'f7lr', 'f7lb',
+            'f7lz', 'f7lx', 'f7li_2020', 'f7lo', 'f7lu', 'f7lc',
+            'f7mg', 'f7mh', 'f7lj_2020', 'f7lp', 'f7lv', 'f7ly',
 
             'f7zm', 'f7zn',
             'f7zq', 'f7zr',
@@ -4674,14 +5362,14 @@ class scelli(Variable):
 
         inv_6 = [
             'f7zv', 'f7zf',
-            'f7zg', 'f7sf',
-            'f7sg',
+            'f7zg', 'f7sf_2022',
+            'f7sg_2022',
             ]
 
         inv_5 = [
             'f7ze', 'f7zh',
             'f7zj', 'f7zk',
-            'f7se', 'f7sh',
+            'f7se_2022', 'f7sh_2022',
             'f7sj', 'f7sk',
             ]
 
@@ -4722,7 +5410,7 @@ class scelli(Variable):
         investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         reports = [
-            'f7rt', 'f7ru', 'f7rv', 'f7rw',
+            'f7rt', 'f7ru', 'f7rv_2021', 'f7rw_2021',
 
             'f7ym', 'f7yt', 'f7wt', 'f7yn',
             'f7yu', 'f7wu', 'f7yo', 'f7yv',
@@ -4735,15 +5423,15 @@ class scelli(Variable):
             'f7yd', 'f7hd_2019', 'f7gs', 'f7yf',
             'f7hf_2019', 'f7gu', 'f7yh',
 
-            'f7ln', 'f7lg', 'f7lk', 'f7lq',
-            'f7la', 'f7ms', 'f7lt', 'f7lh',
+            'f7ln', 'f7lg_2020', 'f7lk', 'f7lq',
+            'f7la', 'f7ms', 'f7lt', 'f7lh_2020',
             'f7ll', 'f7lr', 'f7lb', 'f7mt',
-            'f7lx', 'f7li', 'f7lo', 'f7lu',
-            'f7lc', 'f7mu', 'f7mh', 'f7lj',
+            'f7lx', 'f7li_2020', 'f7lo', 'f7lu',
+            'f7lc', 'f7mu', 'f7mh', 'f7lj_2020',
             'f7lp', 'f7lv', 'f7ly', 'f7mv',
 
             'f7zq', 'f7zr', 'f7zs', 'f7zu',
-            'f7zt', 'f7wa', 'f7wb', 'f7wc',
+            'f7zt', 'f7wa_2020', 'f7wb_2020', 'f7wc',
             'f7wd', 'f7we', 'f7wf', 'f7wg',
 
             'f7yi', 'f7zp', 'f7xp', 'f7yj',
@@ -4752,24 +5440,24 @@ class scelli(Variable):
 
         inv_6 = [
             'f7zv', 'f7za',
-            'f7zb', 'f7sf',
-            'f7sg', 'f7rj',
+            'f7zb', 'f7sf_2022',
+            'f7sg_2022', 'f7rj_2020',
             'f7rk', 'f7xi',
             'f7xj',
             ]
 
         inv_5 = [
-            'f7se', 'f7sh',
+            'f7se_2022', 'f7sh_2022',
             'f7sj', 'f7sk',
-            'f7ri', 'f7rl',
+            'f7ri_2020', 'f7rl',
             'f7rn', 'f7ro',
             'f7xh', 'f7xk',
             ]
 
         inv_4 = [
             'f7sl', 'f7sm_2019',
-            'f7rm', 'f7rp',
-            'f7rq',
+            'f7rm', 'f7rp_2020',
+            'f7rq_2020',
             ]
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
@@ -4797,7 +5485,7 @@ class scelli(Variable):
         investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         reports = [
-            'f7rt', 'f7ru', 'f7rv', 'f7rw',
+            'f7rt', 'f7ru', 'f7rv_2021', 'f7rw_2021',
 
             'f7ym', 'f7yt', 'f7wt', 'f7yn',
             'f7yu', 'f7wu', 'f7yo', 'f7yv',
@@ -4809,15 +5497,15 @@ class scelli(Variable):
             'f7yd', 'f7gs', 'f7yf',
             'f7gu', 'f7yh',
 
-            'f7lg', 'f7lk', 'f7lq', 'f7la', 'f7ms', 'f7mo',
-            'f7lh', 'f7ll', 'f7lr', 'f7lb', 'f7mt', 'f7mp',
-            'f7li', 'f7lo', 'f7lu', 'f7lc', 'f7mu', 'f7mq',
-            'f7lj', 'f7lp', 'f7lv', 'f7ly', 'f7mv', 'f7mr',
+            'f7lg_2020', 'f7lk', 'f7lq', 'f7la', 'f7ms', 'f7mo',
+            'f7lh_2020', 'f7ll', 'f7lr', 'f7lb', 'f7mt', 'f7mp',
+            'f7li_2020', 'f7lo', 'f7lu', 'f7lc', 'f7mu', 'f7mq',
+            'f7lj_2020', 'f7lp', 'f7lv', 'f7ly', 'f7mv', 'f7mr',
 
-            'f7wa', 'f7wb', 'f7wc',
+            'f7wa_2020', 'f7wb_2020', 'f7wc',
             'f7wd', 'f7we', 'f7wf', 'f7wg',
-            'f7no', 'f7np', 'f7nq',
-            'f7nr', 'f7ns', 'f7nt',
+            'f7no_2021', 'f7np_2017', 'f7nq_2016',
+            'f7nr_2021', 'f7ns', 'f7nt',
             'f7nu', 'f7nv', 'f7nw',
 
             'f7yi', 'f7zi',
@@ -4831,20 +5519,20 @@ class scelli(Variable):
         inv_6 = [
             'f7za', 'f7zb', 'f7zm', 'f7zd',
             'f7ze', 'f7zg', 'f7zh', 'f7zn',
-            'f7rj', 'f7rk', 'f7is', 'f7it',
-            'f7xi', 'f7xj', 'f7jf', 'f7jg',
+            'f7rj_2020', 'f7rk', 'f7is', 'f7it',
+            'f7xi', 'f7xj', 'f7jf_2021', 'f7jg_2016',
             ]
 
         inv_5 = [
-            'f7zc', 'f7zf', 'f7ri', 'f7rl',
+            'f7zc', 'f7zf', 'f7ri_2020', 'f7rl',
             'f7rn', 'f7ro', 'f7ir', 'f7iu',
             'f7iw', 'f7ix', 'f7xh', 'f7xk',
-            'f7je', 'f7jh', 'f7jj', 'f7jk',
+            'f7je_2021', 'f7jh_2021', 'f7jj_2020', 'f7jk_2021',
             ]
 
         inv_4 = [
-            'f7rm', 'f7rp', 'f7rq', 'f7iv',
-            'f7iy', 'f7iz', 'f7ji', 'f7jl',
+            'f7rm', 'f7rp_2020', 'f7rq_2020', 'f7iv',
+            'f7iy', 'f7iz', 'f7ji_2020', 'f7jl_2016',
             ]
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
@@ -4872,14 +5560,12 @@ class scelli(Variable):
         investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         reports = [
-            'f7rt', 'f7ru', 'f7rv', 'f7rw',
+            'f7rt', 'f7ru', 'f7rv_2021', 'f7rw_2021',
 
             'f7ym', 'f7yt', 'f7wt',
             'f7yn', 'f7yu', 'f7wu',
             'f7yo', 'f7yv', 'f7wv',
             'f7yp', 'f7yw', 'f7ww',
-
-            'f7wx', 'f7wy', 'f7wz',
 
             'f7yb', 'f7yd', 'f7yf', 'f7yh',
 
@@ -4887,8 +5573,8 @@ class scelli(Variable):
             'f7ll', 'f7lr', 'f7lb', 'f7mt', 'f7mp', 'f7mb',
             'f7lo', 'f7lu', 'f7lc', 'f7mu', 'f7mq', 'f7mc',
             'f7lp', 'f7lv', 'f7ly', 'f7mv', 'f7mr', 'f7md',
-            'f7no', 'f7np', 'f7nq',
-            'f7nr', 'f7ns', 'f7nt',
+            'f7no_2021', 'f7np_2017', 'f7nq_2016',
+            'f7nr_2021', 'f7ns', 'f7nt',
             'f7nu', 'f7nv', 'f7nw',
 
             'f7xa', 'f7xb',
@@ -4911,25 +5597,25 @@ class scelli(Variable):
 
         inv_6 = [
             'f7zd', 'f7ze', 'f7zg', 'f7zh',
-            'f7zn', 'f7si', 'f7sj', 'f7sl',
+            'f7zn', 'f7si_2022', 'f7sj', 'f7sl',
             'f7sq', 'f7sr', 'f7is', 'f7it',
-            'f7ib', 'f7ic', 'f7iq', 'f7jf',
-            'f7jg', 'f7le', 'f7lf',
+            'f7ib', 'f7ic_2021', 'f7iq', 'f7jf_2021',
+            'f7jg_2016', 'f7le', 'f7lf',
             ]
 
         inv_5 = [
-            'f7zc', 'f7zf', 'f7se', 'f7sf',
-            'f7sh', 'f7sk', 'f7ir', 'f7iu',
-            'f7iw', 'f7ix', 'f7ia', 'f7ie',
-            'f7ig', 'f7ih', 'f7je', 'f7jh',
-            'f7jj', 'f7jk', 'f7ld', 'f7ln',
+            'f7zc', 'f7zf', 'f7se_2022', 'f7sf_2022',
+            'f7sh_2022', 'f7sk', 'f7ir', 'f7iu',
+            'f7iw', 'f7ix', 'f7ia', 'f7ie_2022',
+            'f7ig_2022', 'f7ih_2022', 'f7je_2021', 'f7jh_2021',
+            'f7jj_2020', 'f7jk_2021', 'f7ld', 'f7ln',
             'f7lx', 'f7lz',
             ]
 
         inv_4 = [
-            'f7sd', 'f7sg', 'f7iv', 'f7iy',
-            'f7iz', 'f7if', 'f7io', 'f7ip',
-            'f7ji', 'f7jl', 'f7lt', 'f7mg',
+            'f7sd_2022', 'f7sg_2022', 'f7iv', 'f7iy',
+            'f7iz', 'f7if_2022', 'f7io', 'f7ip',
+            'f7ji_2020', 'f7jl_2016', 'f7lt', 'f7mg',
             'f7mh',
             ]
 
