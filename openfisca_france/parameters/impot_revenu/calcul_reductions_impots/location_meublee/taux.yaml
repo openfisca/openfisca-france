@@ -3,6 +3,7 @@ values:
   2009-01-01:
     value: 0.25
 metadata:
+  last_value_still_valid_on: "2025-11-14"
   short_label: Logements acquis en 2009 et 2010
   ipp_csv_id: tx_locmeu
   unit: /1
