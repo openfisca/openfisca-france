@@ -11,12 +11,15 @@ values:
   2015-01-01:
     value: 50000
 metadata:
-  short_label: Plafond 2
+  short_label: Plafond  2
   ipp_csv_id: plaf_pme2
   unit: currency_next_year
   reference:
     2015-01-01:
-      title: Loi 2015-1786 du 29/12/2015 de finances rectificative pour 2015- art. 26, 2°
+      - title: Loi 2015-1786 du 29/12/2015 de finances rectificative pour 2015- art. 26, 2°
+        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031733118
+      - title: Article 199 terdecies-0 A du CGI
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030021439/2015-01-01
   official_journal_date:
     2015-01-01: "2012-12-30"
   notes:
