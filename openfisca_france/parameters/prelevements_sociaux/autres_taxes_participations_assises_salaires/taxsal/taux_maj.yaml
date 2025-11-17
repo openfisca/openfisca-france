@@ -79,9 +79,11 @@ brackets:
       value: 8573
     2024-01-01:
       value: 8985
+    2025-01-01:
+      value: 9147
   rate:
     1968-11-01:
-      value: 0.0425
+      value: 0.0425  # 8.50% - 4.25%
 - threshold:
     1968-11-01:
       value: 60000
@@ -155,9 +157,11 @@ brackets:
       value: 17114
     2024-01-01:
       value: 17936
+    2025-01-01:
+      value: 18259
   rate:
     1968-11-01:
-      value: 0.0935
+      value: 0.0935  # 13.60% - 4.25%
 - threshold:
     2013-01-01:
       value: 150000
@@ -279,6 +283,11 @@ metadata:
     2024-01-01:
     - title: Décret n° 2024-496 du 30/05/2024, art. 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
+    - title: Article 231 du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622885
+    2025-01-01:
+    - title: Décret n° 2025-547 du 17/06/2025, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000051754167
     - title: Article 231 du CGI
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622885
   official_journal_date:

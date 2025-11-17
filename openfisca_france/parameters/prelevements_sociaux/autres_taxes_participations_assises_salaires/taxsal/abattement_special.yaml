@@ -34,9 +34,11 @@ values:
     value: 22535
   2024-01-01:
     value: 23616
+  2025-01-01:
+    value: 24041
 metadata:
   short_label: Abattement spécial
-  last_value_still_valid_on: "2024-06-11"
+  last_value_still_valid_on: "2025-11-17"
   unit: currency
   reference:
     2018-01-01:
@@ -62,3 +64,8 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
     - title: Article 1679-A du CGI
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042160214
+    2025-01-01:
+    - title: Décret n° 2025-547 du 17/06/2025, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051754167
+    - title: Article 1679-A du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051764500/2025-06-19
