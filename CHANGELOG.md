@@ -1,5 +1,15 @@
 # Changelog
 
+### 174.2.10 [#2602](https://github.com/openfisca/openfisca-france/pull/2602)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+  * `parameters/impot_revenu/calcul_reductions_impots/investissements_immobiliers/invlst/*`
+* Détails :
+  * Ajout de références et du champ `last_value_still_valid_on`.
+
 ### 174.2.9 [#2601](https://github.com/openfisca/openfisca-france/pull/2601)
 
 * Changement mineur.
