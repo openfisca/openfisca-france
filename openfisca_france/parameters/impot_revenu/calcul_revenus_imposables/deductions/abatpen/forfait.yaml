@@ -1,0 +1,11 @@
+description: Abattement forfaitaire sur les pensions de retraite
+values:
+  2025-01-01:
+    value: 2000
+metadata:
+  last_value_still_valid_on: "0001-00-00"
+  short_label: Forfait pensions
+  unit: currency_next_year
+  reference:
+
+
