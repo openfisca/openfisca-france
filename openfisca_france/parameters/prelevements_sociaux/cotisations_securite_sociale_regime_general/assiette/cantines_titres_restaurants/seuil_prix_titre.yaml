@@ -17,7 +17,7 @@ metadata:
   last_value_still_valid_on: "2025-11-20"
   unit: currency
   reference:
-    2023-01-01:
+    2022-01-01:
       title: Code général des impôts, art. 81 (19°)
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048600731/2023-01-01
     2023-01-01:
