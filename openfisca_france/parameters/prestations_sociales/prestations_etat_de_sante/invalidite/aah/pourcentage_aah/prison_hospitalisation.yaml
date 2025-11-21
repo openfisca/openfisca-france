@@ -3,6 +3,7 @@ values:
   2000-01-01:
     value: 0.3
 metadata:
+  last_value_still_valid_on: "2025-11-21"
   short_label: Personne hospitalisée ou incarcérée depuis 60 jours
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: pourcentage_aah_prison_hopital
