@@ -3,7 +3,7 @@ values:
   2005-07-01:
     value: 0.05
 metadata:
-  last_value_still_valid_on: "2025-08-22"
+  last_value_still_valid_on: "2025-11-21"
   short_label: Taux maximal de capacité de travail
   label_en: Adult disability allowance (AAH)
   unit: /1
