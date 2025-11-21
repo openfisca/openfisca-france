@@ -1,5 +1,15 @@
 # Changelog
 
+### 174.2.12 [#2620](https://github.com/openfisca/openfisca-france/pull/2620)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  *  `model/prestations/minima_sociaux/aefa.py`.
+  * `arameters/prestations_sociales/solidarite_insertion/autre_solidarite/aefa/prime_exceptionnelle.yaml`
+* Détails :
+  - Eteind la prime de Noël exceptionnelle de 2008.
+
 ### 174.2.11 [#2623](https://github.com/openfisca/openfisca-france/pull/2623)
 
 * Changement mineur.
