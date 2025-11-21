@@ -24,7 +24,7 @@ values:
     value: 0.007
 metadata:
   short_label: Taux des employés de bureau
-  last_value_still_valid_on: "2025-08-20"
+  last_value_still_valid_on: "2025-11-21"
   label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   unit: /1
   reference:
@@ -90,6 +90,3 @@ documentation: |-
   Voir la nomenclature des risques établie par l'arrêté du 17/10/1995 et modifiée par les arrêtés successifs.
   Le taux applicable à chaque entreprise une année donnée est notifié par la CNAM-TS de la région (ou la CRAM pour les entreprises situées en Ile-de-France).
   Changement 2020 : le taux bureaux est supprimé et remplacé, pour les entreprises en tarification collective, ainsi que pour celles en tarification mixte qui le demandent, par le taux "Fonctions support" (même taux). Pour les entreprises en tarification individuelle, le taux appliqué est la "fusion" (moyenne ?) du taux Fonctions support et du taux de l'activité principale de l'entreprise.
-  official_journal_date:
-  notes:
-  label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
