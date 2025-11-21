@@ -5,6 +5,7 @@ values:
   2026-01-01:
     value: 804
 metadata:
+  last_value_still_valid_on: "2025-11-21"
   short_label: Age limite
   label_en: Special UI scheme
   unit: month
