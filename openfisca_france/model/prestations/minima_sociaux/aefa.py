@@ -62,9 +62,9 @@ class aefa(Variable):
         return condition * montant_aefa
 
     def formula_2009_01_01(famille, period, parameters):
-        """
+        '''
         Retire la prime exceptionnelle de 100 euros instituée en 2008 uniquement
-        """
+        '''
         rsa = famille('rsa', period, options = [ADD])
         ass_i = famille.members('ass', period, options = [ADD])
         ass = famille.sum(ass_i)
