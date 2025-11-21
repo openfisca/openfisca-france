@@ -45,7 +45,7 @@ values:
   2023-01-01:
     value: 14416.28
 metadata:
-  short_label: Plafond individuel de ressources pour les ascendants
+  short_label: Plafond de ressources pour les ascendants
   last_value_still_valid_on: "2023-02-09"
   label_en: Definition of dependants
   unit: currency

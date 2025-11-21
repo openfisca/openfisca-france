@@ -11,6 +11,7 @@ values:
   2019-09-01:
     value: null
 metadata:
+  short_label: Plancher de ressources secteur accession
   unit: currency
   reference:
     2003-07-01:

@@ -5,7 +5,7 @@ values:
   2000-01-01:
     value: 0.8
 metadata:
-  short_label: Pourcentage minimal de handicap pour un ascendant, descendant ou collatéral invalide
+  short_label: Pourcentage minimal de handicap
   last_value_still_valid_on: "2023-02-09"
   label_en: Definition of dependants
   ipp_csv_id: pct_handicap

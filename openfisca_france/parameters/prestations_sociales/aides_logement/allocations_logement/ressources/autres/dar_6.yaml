@@ -11,6 +11,7 @@ values:
   2011-01-01:
     value: null
 metadata:
+  short_label: Forfait pour demande avant le 01/07/1999
   unit: currency
   reference:
     2002-07-01:
