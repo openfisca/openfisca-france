@@ -1,5 +1,14 @@
 # Changelog
 
+### 174.2.11 [#2623](https://github.com/openfisca/openfisca-france/pull/2623)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `parameters/geopolitique/*`
+* Détails :
+  * Ajout du champ `last_value_still_valid_on`.
+
 ### 174.2.10 [#2602](https://github.com/openfisca/openfisca-france/pull/2602)
 
 * Changement mineur.
