@@ -26,6 +26,7 @@ class aefa(Variable):
         'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046738342'
         ]
     definition_period = YEAR
+    end = '2008-12-31'
 
     def formula_2002_01_01(famille, period, parameters):
         rsa = famille('rsa', period, options = [ADD])
