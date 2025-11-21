@@ -5,7 +5,7 @@ values:
   2006-01-01:
     value: 1.25
 metadata:
-  short_label: Majoration pour revenus distribués et structures hors France (case GO)
+  short_label: Majoration pour revenus distribués et structures hors France
   last_value_still_valid_on: "2025-02-25"
   unit: /1
   reference:

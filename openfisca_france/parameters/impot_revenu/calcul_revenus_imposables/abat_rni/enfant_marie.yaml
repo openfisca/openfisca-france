@@ -97,7 +97,7 @@ values:
   2024-01-01:
     value: 6794
 metadata:
-  short_label: Abattement pour enfant marié/pacsé et enfant non marié chargé de famille (case N)
+  short_label: Abattement pour enfant marié/pacsé et enfant non marié chargé de famille
   last_value_still_valid_on: "2025-02-18"
   label_en: Tax allowance for net taxable income
   ipp_csv_id: abt_enfmaries

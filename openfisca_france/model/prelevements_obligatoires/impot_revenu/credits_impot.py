@@ -890,7 +890,7 @@ class assloy(Variable):
         f4bf = foyer_fiscal('f4bf', period)
         P = parameters(period).impot_revenu.credits_impots.assloy
 
-        return P.taux * f4bf
+        return P * f4bf
 
 
 class autent(Variable):
@@ -1593,7 +1593,7 @@ class drbail(Variable):
         f4tq = foyer_fiscal('f4tq', period)
         P = parameters(period).impot_revenu.credits_impots.drbail
 
-        return P.taux * f4tq
+        return P * f4tq
 
 
 class inthab(Variable):
