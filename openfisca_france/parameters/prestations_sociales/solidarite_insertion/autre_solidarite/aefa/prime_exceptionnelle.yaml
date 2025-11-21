@@ -5,7 +5,7 @@ values:
   2008-01-01:
     value: 67.55
   2009-01-01:
-    value: 0
+    value: null
 metadata:
   short_label: Montant Prime de Noël 2008
   unit: currency
