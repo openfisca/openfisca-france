@@ -47,7 +47,7 @@ values:
 metadata:
   short_label: Pour couple avec deux revenus ou parent isolé
   label_en: Increase for couple with two incomes or single parent
-  last_value_still_valid_on: "2025-01-21"
+  last_value_still_valid_on: "2025-11-21"
   ipp_csv_id: maj_plaf_cf_apje_adopt_bi
   unit: currency
   reference:
