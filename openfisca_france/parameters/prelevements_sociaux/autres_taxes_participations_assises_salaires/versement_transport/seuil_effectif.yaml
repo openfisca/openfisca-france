@@ -4,3 +4,10 @@ values:
     value: 10
   2016-01-01:
     value: 11
+metadata:
+  last_value_still_valid_on: "2025-11-21"
+  short_label: Âge majorité
+  reference:
+    2016-01-01:
+      title: Article L2333-64 du Code général des collectivités territoriales
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031843605/2016-01-01
