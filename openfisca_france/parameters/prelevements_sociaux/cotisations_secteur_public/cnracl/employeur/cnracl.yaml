@@ -68,15 +68,15 @@ brackets:
       value: 0.3165
     2025-01-01:
       value: 0.3465
-    2026-02-01:
-      value: 0.3765
-    2027-01-01:
-      value: 0.4065
-    2028-01-01:
-      value: 0.4365
+    # 2026-02-01:
+    #   value: 0.3765
+    # 2027-01-01:
+    #   value: 0.4065
+    # 2028-01-01:
+    #   value: 0.4365
 metadata:
   short_label: Barème
-  last_value_still_valid_on: "2025-08-22"
+  last_value_still_valid_on: "2025-11-21"
   label_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   ipp_csv_id: cnracl_p
   reference:
