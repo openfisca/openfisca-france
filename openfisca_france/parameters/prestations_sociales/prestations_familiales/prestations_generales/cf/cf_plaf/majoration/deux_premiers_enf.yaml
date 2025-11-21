@@ -4,7 +4,7 @@ values:
     value: 0.25
 metadata:
   short_label: Pour les deux premiers enfants
-  last_value_still_valid_on: "2025-02-20"
+  last_value_still_valid_on: "2025-11-21"
   label_en: Increase, per child, in % of the resource ceiling base, for the first two children
   ipp_csv_id: maj_plaf_cf_apje_adopt_enf1et2
   unit: /1

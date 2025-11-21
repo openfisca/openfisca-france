@@ -3,6 +3,7 @@ values:
   2002-01-01:
     value: 3
 metadata:
+  last_value_still_valid_on: "2025-11-21"
   short_label: Âge sous lequel l'enfant prive du CF
   label_en: Age under which the child is deprived of the CF
   unit: year
