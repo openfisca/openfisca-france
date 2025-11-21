@@ -1,0 +1,53 @@
+- name: Vérification plafond_foyer pour dons aux partis - 2021
+  period: 2021
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7uh: 20000
+      f7uf: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    dfppce: 7_500 * 0.66
+
+- name: Vérification plafond_foyer pour dons aux partis - couple 2021
+  period: 2021
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      - ind1
+      f7uh: 30000
+      f7uf: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: marie
+      ind1:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: marie
+    famille:
+      parents:
+      - ind0
+      - ind1
+    menage:
+      personne_de_reference: ind0
+  output:
+    # Plafond de 15_000 € pour le foyer
+    dfppce: 15_000 * 0.66

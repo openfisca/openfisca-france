@@ -1,0 +1,18 @@
+description: Taux de cotisations pour les prestations sociales des auto-entrepreneurs pour les prestations de services commerciales et artisanales (BIC)
+values:
+  2022-10-01:
+    value: 0.212
+metadata:
+  short_label: Taux - service BIC
+  last_value_still_valid_on: "2025-08-22"
+  unit: /1
+  reference:
+    2020-05-25:
+      - title: Article D613-4 du CSS
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656794/2020-05-25/
+      - title: Décret n° 2020-621 du 22 mai 2020 - art. 1
+        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000049622560/2020-05-25/
+  official_journal_date:
+    2020-05-25: "2020-05-24"
+documentation: |-
+  Le dispositif existait probablement avant le 25 mai 2020, mais le code de la sécurité sociale a été remanié à cette date.

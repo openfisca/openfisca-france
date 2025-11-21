@@ -3,6 +3,7 @@ values:
   2006-03-31:
     value: 0.9
 metadata:
+  last_value_still_valid_on: "2025-08-20"
   short_label: Seuil de ressources
   unit: smic
   reference:

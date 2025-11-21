@@ -5,6 +5,7 @@ values:
   2005-08-01:
     value: 4.595
 metadata:
+  last_value_still_valid_on: "2025-08-20"
   short_label: Prime adoption
   label_en: Adoption premium amount
   ipp_csv_id: tx_paje_adopt
@@ -16,6 +17,8 @@ metadata:
     - title: Décret 2003-1394 du 31/12/2003, art. 1 (crée art. D531-2 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
     2005-08-01:
+    - title: Article D531-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737122/2005-09-17/
     - title: Loi 2005-744 du 04/07/2005, art. 8 (modif art. L531-2 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006242678&cidTexte=JORFTEXT000000262154
     - title: Décret 2005-1172 du 12/09/2005, art. 1 (modif art. D531-2 du CSS)

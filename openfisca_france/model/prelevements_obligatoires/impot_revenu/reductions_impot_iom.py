@@ -134,7 +134,7 @@ class doment(Variable):
         f7ma = foyer_fiscal('f7ma_2012', period)
         f7mb = foyer_fiscal('f7mb_2012', period)
         f7mc = foyer_fiscal('f7mc_2012', period)
-        f7mn = foyer_fiscal('f7mn', period)
+        f7mn = foyer_fiscal('f7mn_2012', period)
         f7oz = foyer_fiscal('f7oz_2011', period)
         f7pa = foyer_fiscal('f7pa_2012', period)
         f7pb = foyer_fiscal('f7pb_2012', period)
@@ -179,7 +179,7 @@ class doment(Variable):
         f7mb = foyer_fiscal('f7mb_2012', period)
         f7mc = foyer_fiscal('f7mc_2012', period)
         f7mm = foyer_fiscal('f7mm_2012', period)
-        f7mn = foyer_fiscal('f7mn', period)
+        f7mn = foyer_fiscal('f7mn_2012', period)
         f7nu = foyer_fiscal('f7nu_2012', period)
         f7nv = foyer_fiscal('f7nv_2012', period)
         f7nw = foyer_fiscal('f7nw_2012', period)
@@ -3005,7 +3005,7 @@ class domsoc(Variable):
         '''
         f7qn = foyer_fiscal('f7qn_2012', period)
         f7qk = foyer_fiscal('f7qk_2012', period)
-        f7kg = foyer_fiscal('f7kg', period)
+        f7kg = foyer_fiscal('f7kg_2012', period)
 
         return f7qn + f7qk + f7kg
 
@@ -3017,9 +3017,9 @@ class domsoc(Variable):
         f7qn = foyer_fiscal('f7qn_2012', period)
         f7qk = foyer_fiscal('f7qk_2012', period)
         f7qu = foyer_fiscal('f7qu_2012', period)
-        f7kg = foyer_fiscal('f7kg', period)
-        f7kh = foyer_fiscal('f7kh', period)
-        f7ki = foyer_fiscal('f7ki', period)
+        f7kg = foyer_fiscal('f7kg_2012', period)
+        f7kh = foyer_fiscal('f7kh_2012', period)
+        f7ki = foyer_fiscal('f7ki_2012', period)
 
         return f7qn + f7qk + f7qu + f7kg + f7kh + f7ki
 
@@ -3031,9 +3031,9 @@ class domsoc(Variable):
         f7qn = foyer_fiscal('f7qn_2012', period)
         f7qk = foyer_fiscal('f7qk_2012', period)
         f7qu = foyer_fiscal('f7qu_2012', period)
-        f7kg = foyer_fiscal('f7kg', period)
-        f7kh = foyer_fiscal('f7kh', period)
-        f7ki = foyer_fiscal('f7ki', period)
+        f7kg = foyer_fiscal('f7kg_2012', period)
+        f7kh = foyer_fiscal('f7kh_2012', period)
+        f7ki = foyer_fiscal('f7ki_2012', period)
         f7qj = foyer_fiscal('f7qj_2012', period)
         f7qs = foyer_fiscal('f7qs_2012', period)
         f7qw_2012 = foyer_fiscal('f7qw_2012', period)

@@ -247,7 +247,7 @@ class assiette_csg_revenus_capital(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Hypothèses dérrière ce calcul :
+        Hypothèses derrière ce calcul :
             (1) On ne distingue pas la CSG sur les revenus du patrimoine (art. L136-6 du CSS)
                 de celle sur les revenus de placement (art. L136-6 du CSS)
                 ATTENTION : Les taux de la CSG et de l'ensemble des prélèvements sociaux sont identiques pour
