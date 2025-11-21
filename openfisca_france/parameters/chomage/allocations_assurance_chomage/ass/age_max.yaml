@@ -22,4 +22,4 @@ metadata:
   notes:
     1984-01-01:
     - title: L'âge limite pour bénéficier de l'ASS est de 789 mois, soit 65 ans et 9 mois.  l'ASS ne peut être versée aux personnes qui sont éligibles à un départ à la retraite à taux plein.
-description: Age légal de départ (64) plus 3 ans : 67 ans = 804 mois
+documentation: "Age légal de départ (64) plus 3 ans : 67 ans = 804 mois"
