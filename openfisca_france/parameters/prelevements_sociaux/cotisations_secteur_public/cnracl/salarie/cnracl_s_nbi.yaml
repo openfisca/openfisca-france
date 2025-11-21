@@ -40,7 +40,7 @@ brackets:
       value: 0.111
 metadata:
   short_label: Barème NBI
-  last_value_still_valid_on: "2021-08-24"
+  last_value_still_valid_on: "2025-11-21"
   label_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   ipp_csv_id: cnracl_p
   reference:
@@ -205,3 +205,6 @@ metadata:
     - title: "A compter du 01/01/2012, le taux de la retenue sur le NBI est le même que le taux de la retenue sur le traitement (Décret 2011-192 du 18/02/2011, JO : 20/02/2011)."
   rate_unit: /1
   threshold_unit: PSS
+documentation: |
+  Rechercher "Décret <ANNEE> relatif au taux des cotisations d'allocations familiales et d'assurance vieillesse de divers régimes de sécurité sociale"
+  Voir aussi https://www.cnracl.retraites.fr/actif/ma-carriere-mes-droits/la-cotisation-cnracl-obligatoire/les-taux-de-cotisation
