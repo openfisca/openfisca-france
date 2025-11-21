@@ -1363,9 +1363,8 @@ class aide_logement_taux_loyer(Variable):
 
         al_plafonds_z2 = al_locatif.formule.l_plafonds_loyers.par_zone.zone_2
 
-        al_tl = al_locatif.formule.pp_particip_perso.tp_taux.tl_loyer
-        al_tl_seuils = al_tl.seuils
-        al_tl_taux = al_tl.taux
+        al_tl_seuils = al_locatif.formule.pp_particip_perso.tp_taux.tl_loyer.seuils
+        al_tl_taux = al_locatif.formule.pp_particip_perso.tp_taux.tl_loyer.taux
 
         L = famille('aide_logement_loyer_retenu', period)
         couple = famille('al_couple', period)
