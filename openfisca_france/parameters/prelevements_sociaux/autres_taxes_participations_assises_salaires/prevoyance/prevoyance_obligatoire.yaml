@@ -5,6 +5,7 @@ values:
   2019-01-01:
     value: 0.015
 metadata:
+  last_value_still_valid_on: "2025-11-17"
   short_label: Taux minimum
   label_en: Minimum rate of employer contribution for invalidity insurance for cadres
   unit: /1
