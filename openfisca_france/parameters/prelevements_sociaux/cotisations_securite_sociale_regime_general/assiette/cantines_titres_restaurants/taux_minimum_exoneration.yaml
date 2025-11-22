@@ -4,5 +4,10 @@ values:
     value: 0.5
 metadata:
   short_label: Taux minimum
-  last_value_still_valid_on: "2015-01-01"
+  last_value_still_valid_on: "2025-11-20"
   unit: /1
+  reference:
+    2000-01-01:
+      title: "Titres-restaurant : les 5 informations à connaître"
+      href: https://www.economie.gouv.fr/entreprises/gerer-ses-ressources-humaines-et-ses-salaries/titres-restaurant-les-5-informations
+      note: Le Code général des impôts, art. 81 (19°), indique que le taux est fixé par arrêté ministériel.
