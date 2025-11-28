@@ -228,6 +228,8 @@
         aah_eligible: true
       parent2:
         activite: actif
+        salaire_imposable:
+          2023: 12
         aah_eligible: true
     foyers_fiscaux:
       foyer_fiscal_0:

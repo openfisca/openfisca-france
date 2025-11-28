@@ -116,7 +116,7 @@ class aah_base_ressources_conjugalisee(Variable):
             base_ressource_eval_annuelle() / 12
             )
 
-    def formula_2011_05_20(individu, period, parameters):
+    def formula_2011_05(individu, period, parameters):
         parameters = parameters(period)
         aah = parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
