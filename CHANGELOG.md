@@ -1,5 +1,185 @@
 # Changelog
 
+### 174.2.4 [#2584](https://github.com/openfisca/openfisca-france/pull/2584)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py
+  * openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py
+* Détails :
+  * Corrige le calcul vectoriel du crédit d'impôt pour emploi à domicile. Il y avait un problème dans le calcul vectoriel. Le test était fait sur l'entièreté du vecteur et non pas élément par élément de celui-ci.
+
+### 174.2.3 [#2577](https://github.com/openfisca/openfisca-france/pull/2577)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+  *  `parameters/impot_revenu/contributions_exceptionnelles/contribution_revenus_locatifs/taux.yaml`.
+  * `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/travail_esat/plafond_ressources_en_multiple_montant_base.yaml`
+* Détails :
+  - Corrige des noms de champs YAML erronés.
+
+### 174.2.2 [#2557](https://github.com/openfisca/openfisca-france/pull/2557)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/02/2025.
+* Zones impactées :
+  - `openfisca_france/parameters/taxation_capital/epargne/livret_a/taux.yaml`.
+  - `openfisca_france/parameters/taxation_capital/epargne/livret_epargne_populaire/taux.yaml`.
+* Détails :
+  - Met à jour le taux du Livret A
+  - Met à jour le taux du LEP
+  - Ajoute les clefs aux metadata : `official_journal_date`
+
+### 174.2.1 [2570](https://github.com/openfisca/openfisca-france/pull/2570)
+
+* Amélioration technique.
+* Périodes concernées : aucune.
+* Détails :
+  - Mise à jour de la CI pour tester Python 3.13.
+  - Mise à jour des classifiers dans le `pyproject.toml`.
+
+## 174.2.0 [2562](https://github.com/openfisca/openfisca-france/pull/2562)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/age_max.yaml`
+  - `openfisca_france/parameters/impot_revenu/contributions_exceptionnelles/contribution_revenus_locatifs/taux.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/formation/toute_entreprise/cdd.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/accidents/taux/faible.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants/*`
+  - `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/*`
+  - `openfisca_france/parameters/prestations_sociales/education/bourses/enseignement_superieur/*`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/*`
+  - `openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/bareme.yaml`
+  - `openfisca_france/parameters/taxation_capital/prelevements_sociaux/prelevements_solidarite/produits_de_placement.yaml`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` de divers paramètres.
+  - Mise à Jour des Valeurs d'Accident du Travail et des tests associés.
+
+## 174.1.0 [2567](https://github.com/openfisca/openfisca-france/pull/2567)
+
+* Changement mineur.
+* Périodes concernées : à partir de 2022.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/location_meublee/*`.
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/dons/dons_aux_partis_politiques/*`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/investissement_forestier/depenses_investissement_forestier/*`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/reduction_domtom/*`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/*`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` et de certaines références.
+  - Fin des déduction des frais de contrat de gestion pour les investissements forestiers.
+  - Fin du dispositif Censi-Bouvard.
+
+### 174.0.2 [2563](https://github.com/openfisca/openfisca-france/pull/2563)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/*`.
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` et de certaines références.
+
+### 174.0.1 [2506](https://github.com/openfisca/openfisca-france/pull/2506)
+
+* Amélioration technique.
+* Détails :
+  - Remplace l'usage de `pkg_resources` par `importlib` pour éviter les warnings de dépréciation.
+
+# 174.0.0 [2547](https://github.com/openfisca/openfisca-france/pull/2547)
+
+* Changement majeur.
+* Périodes concernées : aucune.
+* Zones impactées :
+  - `pyproject.toml`
+  - `README.md`
+* Détails :
+  - Introduction de UV comme outil de gestion d'environnement.
+
+### 173.1.1 [2564](https://github.com/openfisca/openfisca-france/pull/2564)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/*`
+* Détails :
+  - Mise à jour des last_value_still_valid_on.
+
+## 173.1.0 [2565](https://github.com/openfisca/openfisca-france/pull/2565)
+
+* Changement mineur.
+* Périodes concernées : A partir du 2024-01-01.
+* Zones impactées :
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/retraite/pension/*`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/ircantec/*`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/cnracl/*`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/rafp/rafp_plaf_assiette.yaml`
+* Détails :
+  - Mise à jour des last_value_still_valid_on et des références.
+  - Mise à jour du taux de prélèvement de la Caisse nationale de retraites des agents des collectivités locales (CNRACL)
+
+# 173.0.0 [2568](https://github.com/openfisca/openfisca-france/pull/2568)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/apl/formule/e0_equiv_loyers_minimale/*`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on` et de certaines références.
+  - Suppression des dossiers seuils/taux au profit de `bareme.yaml`.
+
+## 172.2.0 [2566](https://github.com/openfisca/openfisca-france/pull/2566)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : A partir de 2022-10-01
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie.py`
+  - `openfisca_france/parameters/prelevements_sociaux/professions_liberales/auto_entrepreneur/cotisations_prestations/*`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/rpns/microsocial/*`
+  - `openfisca_france/parameters/prelevements_sociaux/professions_liberales/auto_entrepreneur/formation_professionnelle/*`
+* Détails :
+  - Ajout de deux nouvelles variables `part_meubles_tourisme_classes` et `part_bnc_non_cipav` pour permettre le calcul des 5 catégories de micro-social au lieu des 3 précédemment définies.
+  - Ajout des paramètres nécessaires au calcul de cette exonération.
+  - Mise à jour des paramètres exsistants.
+
+### 172.1.2 [2555](https://github.com/openfisca/openfisca-france/pull/2555)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `openfisca_france/model/prestations/aides_logement.py`
+  * `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/k_coef_prise_en_charge/cm_et_r/cm3_apl3.yaml`
+* Détails :
+  - On a modifié `aides_logement_primo_accedant_eligibilite` afin qu'une règle spécifique à l'éligibilité à l'APL Accession ne soit pas appliquée à l'AL Accession.
+  - Le calcul du coefficient "K" pour l'APL Accession a été implémenté.
+  - Les variables `aide_logement_est_pret_conventionne` et `aide_logement_date_pret` ont été créées afin de pouvoir différencier un prêt conventionné d'un prêt qui ne l'est pas. On a quand même gardé la variable `aide_logement_date_pret_conventionne` qui peut être utilisée pour déterminer s'il s'agit d'un prêt conventionné.
+
+### 172.1.1 [#2558](https://github.com/openfisca/openfisca-france/pull/2558)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid/index.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/index.yaml`
+* Détails :
+  - Corrige la liste de paramètres dans deux index.py 
+
+## 172.1.0 [#2548](https://github.com/openfisca/openfisca-france/pull/2548)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/01/2025
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`.
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises`
+* Détails :
+  - Met à jour les paramètres de calcul des allègements de cotisations sociales
+
 ### 172.0.6 [2543](https://github.com/openfisca/openfisca-france/pull/2543)
 
 * Évolution du système socio-fiscal.

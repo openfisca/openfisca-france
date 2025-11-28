@@ -30,7 +30,7 @@ brackets:
       value: 0.7428
 metadata:
   short_label: Barème
-  last_value_still_valid_on: "2025-04-01"
+  last_value_still_valid_on: "2025-08-22"
   label_en: Contributions for pensions - central government (employer contribution)
   ipp_csv_id: txexp_civ_p
   reference:

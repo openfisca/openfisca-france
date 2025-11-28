@@ -6,7 +6,6 @@ Afin de faciliter la réutilisation d'OpenFisca et d'améliorer la qualité du c
 
 Certaines règles sont communes à tous les dépôts OpenFisca et sont détaillées dans [la documentation générale](https://openfisca.org/doc/contribute/guidelines.html).
 
-
 ## Format du Changelog
 
 Les évolutions d'OpenFisca-France doivent pouvoir être comprises par des réutilisateurs qui n'interviennent pas nécessairement sur le code. Le Changelog, rédigé en français, se doit donc d'être le plus explicite possible.

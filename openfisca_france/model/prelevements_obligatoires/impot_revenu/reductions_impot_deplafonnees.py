@@ -46,8 +46,6 @@ class reductions_deplafonnees(Variable):
             'accueil_dans_etablissement_personnes_agees',
             'dfppce',
             'assvie',
-            'reduction_cotisations_syndicales',
-            'creaen',
             'interets_paiements_differes_agriculteurs',
             'mecena',
             'prestations_compensatoires',
@@ -482,6 +480,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
         plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
         taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.taux
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
         red_7ud_7va = min_(plafond_reduction_don_coluche, f7va + f7ud) * taux_donapd
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
@@ -489,7 +488,7 @@ class dfppce(Variable):
         red_7uj = min_(P.dons_cultuels.plafond_dons, f7uj_2022) * taux_donapd
         report_7uj = max_(0, f7uj_2022 - P.dons_cultuels.plafond_dons)
 
-        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_foyer, f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + report_7uj + dons_partipol
         max = P.plafond_dons * rni
@@ -517,6 +516,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
         plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
         taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.taux
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
         red_7ud_7va = min_(plafond_reduction_don_coluche, f7va + f7ud) * taux_donapd
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
@@ -524,7 +524,7 @@ class dfppce(Variable):
         red_7uj = min_(P.dons_patrimoine_religieux.plafond, f7uj) * taux_donapd
         report_7uj = max_(0, f7uj - P.dons_patrimoine_religieux.plafond)
 
-        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_foyer, f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + report_7uj + dons_partipol
         max = P.plafond_dons * rni
@@ -553,11 +553,12 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
         plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
         taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.taux
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
         red_7ud_7va = min_(plafond_reduction_don_coluche, f7va + f7ud) * taux_donapd
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
 
-        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_foyer, f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
         max = P.plafond_dons * rni

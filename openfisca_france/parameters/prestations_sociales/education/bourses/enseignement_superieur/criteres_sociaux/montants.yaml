@@ -113,6 +113,7 @@ brackets:
     2023-03-15:
       value: 633.5
 metadata:
+  last_value_still_valid_on: "2025-08-20"
   short_label: Montants
   reference:
     2015-07-15:
@@ -127,5 +128,6 @@ metadata:
     - title: Arrêté du 18 juillet 2022 relatif aux taux des bourses d'enseignement supérieur du ministère de l'enseignement supérieur et de la recherche pour l'année universitaire 2022-2023
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046096018
     2023-03-15:
-      title: À renseigner dès que la publication officielle est disponible.
+    - title: Arrêté du 13 avril 2023 fixant les taux des bourses d'enseignement supérieur du ministère de l'enseignement supérieur et de la recherche pour l'année universitaire 2023-2024
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047483284
   type: single_amount

@@ -59,6 +59,7 @@ brackets:
     2016-01-01:
       value: 0.0675
     2017-01-01:
+      # 5.56 * 1.25 = 6.95
       value: 0.0695
 - threshold:
     1971-01-01:
@@ -70,7 +71,7 @@ brackets:
       value: 0
 metadata:
   short_label: Barème
-  last_value_still_valid_on: "2021-08-24"
+  last_value_still_valid_on: "2025-08-22"
   label_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
   ipp_csv_id:
     rate: ircantec_s_0_1, ircantec_s_1_8, ircantec_s_1_4_75
@@ -109,8 +110,10 @@ metadata:
       title: Décret 2008-996 du 23/09/2008
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
     2017-01-01:
-      title: Décret 2008-996 du 23/09/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    - title: Décret 2008-996 du 23/09/2008, art. 5
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000019509567
+    - title: Arrêté du 30 décembre 1970, art. 9 bis
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036755171
   official_journal_date:
     1971-01-01: 1971-01-19; 1970-12-30
     1983-01-01: "1982-12-29"
@@ -127,3 +130,6 @@ metadata:
     2017-01-01: "2008-09-24"
   rate_unit: /1
   threshold_unit: PSS
+documentation: -|
+  Le taux de cotisation appelé est égale au taux de cotisation théorique + 25%
+  Voir https://www.ircantec.retraites.fr/employeur/parametres-utilises-ircantec

@@ -1,0 +1,54 @@
+name: credit_saldom2025
+period: 2025
+absolute_error_margin: 1
+max_spiral_loops: 1
+input:
+  foyers_fiscaux:
+    foyer_fiscal0:
+      declarants:
+        - ind0
+      f7db:
+        2025: 200000
+      f7dg:
+        2025:
+          false
+    foyer_fiscal1:
+      declarants:
+        - ind1
+      f7db:
+        2025: 200000
+      f7dg:
+        2025:
+          true
+  individus:
+    ind0:
+      salaire_imposable:
+        2025: 50000.0
+    ind1:
+      salaire_imposable:
+        2025: 50000.0
+  famille:
+    parents:
+      - ind0
+      - ind1
+  menage:
+    personne_de_reference:
+      - ind0
+    conjoint:
+      - ind1
+output:
+  foyers_fiscaux:
+    foyer_fiscal0:
+      ci_saldom:
+        2025: 6000
+      iai:
+        2025: 6665.0
+      impot_revenu_restant_a_payer:
+        2025: -665.0
+    foyer_fiscal1:
+      ci_saldom:
+        2025: 10000
+      iai:
+        2025: 6665.0
+      impot_revenu_restant_a_payer:
+        2025: 3335.0
