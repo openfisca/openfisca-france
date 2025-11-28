@@ -1,0 +1,12 @@
+description: Taux d'abattement des revenus d'activité du bénéficiaire en cas de cessation d'activité pour bénéficier de l'Allocation aux adultes handicapés (AAH)
+values:
+  2011-05-20:
+    value: 0.3
+metadata:
+  ux_name: Taux d'abbatement (cessation d'activité)
+  description_en: Adult disability allowance (AAH)
+  ipp_csv_id: abbatement_cessation_activite
+  unit: /1
+  reference:
+    2011-05-20:
+      title: Circulaire n°2011-011 du 20/05/2011
