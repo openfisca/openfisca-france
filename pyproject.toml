@@ -56,7 +56,7 @@ de_net_a_brut = [
     "scipy >=1.10.1, <2.0",
 ]
 taxipp = [
-    "pandas >=1.5.3, <2.0",
+    "pandas >=1.5.3, <3.0",
 ]
 casd-dev = [
     # Same as dev with packages not available at CASD removed
