@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.17 [#2633](https://github.com/openfisca/openfisca-france/pull/2633)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/*`.
+* Détails :
+  - last_value_still_valid_on et références
+
 ### 174.2.16 [#2634](https://github.com/openfisca/openfisca-france/pull/2634)
 
 * Changement mineur.
