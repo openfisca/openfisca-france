@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.16 [#2634](https://github.com/openfisca/openfisca-france/pull/2634)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/assiette/cantines_titres_restaurants/*`.
+* Détails :
+  - Références et last_value_still_valid_on
+
 ### 174.2.15 [#2636](https://github.com/openfisca/openfisca-france/pull/2636)
 
 * Changement mineur.
