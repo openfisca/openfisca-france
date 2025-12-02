@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.14 [#2638](https://github.com/openfisca/openfisca-france/pull/2638)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/location_meublee/*`.
+* Détails :
+  - last_value_still_valid_on
+
 ### 174.2.13 [#2642](https://github.com/openfisca/openfisca-france/pull/2642)
 * Changement mineur.
 * Périodes concernées : toutes.
