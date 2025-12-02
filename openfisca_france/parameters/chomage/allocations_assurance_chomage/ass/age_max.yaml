@@ -2,8 +2,10 @@ description: Age limite (en mois) pour bénéficier de l'allocation de solidarit
 values:
   1984-01-01:
     value: 789
-  2026-01-01:
-    value: 804
+  # 2026-01-01:
+  #   value: 789
+  # 2035-01-01:
+  #   value: 804
 metadata:
   last_value_still_valid_on: "2025-11-21"
   short_label: Age limite
@@ -22,4 +24,8 @@ metadata:
   notes:
     1984-01-01:
     - title: L'âge limite pour bénéficier de l'ASS est de 789 mois, soit 65 ans et 9 mois.  l'ASS ne peut être versée aux personnes qui sont éligibles à un départ à la retraite à taux plein.
-documentation: "Age légal de départ (64) plus 3 ans : 67 ans = 804 mois"
+documentation: |-
+  "Age légal de départ (64) plus 3 ans : 67 ans = 804 mois"
+  Cependant c'est pour le chômage, donc pour les personnes qui arrivent à l'age maximale de retraite au moment du calcul.
+  Donc c'est en 2035 qu'il faudra mettre en place ce paramètre car il y a un passage progressif de 65 ans à 67 ans entre 2026 et 2035.
+  https://www.lassuranceretraite.fr/portail-info/home/actif/age-depart/age-depart-retraite.html
