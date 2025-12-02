@@ -1,5 +1,12 @@
 # Changelog
 
+### 174.2.13 [#2642](https://github.com/openfisca/openfisca-france/pull/2642)
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_secteur_public/cnracl/employeur/*`.
+* Détails :
+  - last_value_still_valid_on
+
 ### 174.2.12 [#2620](https://github.com/openfisca/openfisca-france/pull/2620)
 
 * Changement mineur.
