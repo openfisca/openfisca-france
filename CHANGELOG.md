@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.18 [#2632](https://github.com/openfisca/openfisca-france/pull/2632)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prestations/aides_logement.py`.
+* Détails :
+  - Change le code pour ne pas appeler tout l'arbre de paramètre, qui contient des paramètres non utilisés.
+
 ### 174.2.17 [#2633](https://github.com/openfisca/openfisca-france/pull/2633)
 
 * Changement mineur.
