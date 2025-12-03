@@ -2,5 +2,7 @@ description: Taux_RD
 values:
   2011-01-01:
     value: 0.4
+  2016-01-01:
+    value: null
 metadata:
   unit: /1
