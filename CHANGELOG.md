@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.32 [#2650](https://github.com/openfisca/openfisca-france/pull/2650)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/rpns/micro/microentreprise/regime_micro_bic/marchandises/*`.
+* Détails :
+  - last_value_still_valid_on
+
 ### 174.2.31 [#2646](https://github.com/openfisca/openfisca-france/pull/2646)
 
 * Changement mineur.
