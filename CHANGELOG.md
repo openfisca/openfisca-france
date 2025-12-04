@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.26 [#2637](https://github.com/openfisca/openfisca-france/pull/2637)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/divers/aide_createurs_repreneurs_entreprise/*`.
+* Détails :
+  - last_value_still_valid_on
+
 ### 174.2.25 [#2646](https://github.com/openfisca/openfisca-france/pull/2646)
 
 * Changement mineur.
