@@ -1,4 +1,4 @@
-description: Taux sous PSS de la cotisation de sécurité sociale (SS) de la branche vieillesse des indépendants artisans
+description: Taux sous PSS de la cotisation de sécurité sociale (SS) de la branche vieillesse des indépendants et artisans
 values:
   1973-01-01:
     value: 0.0875
@@ -33,6 +33,7 @@ values:
   2016-01-01:
     value: 0.1715
 metadata:
+  last_value_still_valid_on: "2025-11-21"
   short_label: Taux sous PSS
   label_en: SSCs for old-age insurance (sales retailers and craftsmen)
   ipp_csv_id: ret_art_0_1
@@ -107,3 +108,7 @@ metadata:
     - title: La loi 2013-1203 du 23/12/2013 (LFSS pour 2014, JO du 24/12/2013) a instauré une contribution déplafonnée (art. 10, §2).
     2016-01-01:
     - title: L'article 10-II du décret 2015-1856 donne une exception à l'article 7 pour l'année 2016.
+documentation: |-
+  Revenus dans la limite de 1 Pass : 17,75 % (17,15 + 0,60)
+  à compter de la déclaration de vos revenus 2025, en 2026 : 17,87 % (17,15 + 0,72)
+  Source : https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
