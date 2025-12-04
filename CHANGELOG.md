@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.24 [#2649](https://github.com/openfisca/openfisca-france/pull/2649)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/taxation_capital/prelevement_forfaitaire/partir_2018/produits_epargne_solidaire_partage.yaml`.
+* Détails :
+  - last_value_still_valid_on
+
 ### 174.2.23 [#2648](https://github.com/openfisca/openfisca-france/pull/2648)
 
 * Changement mineur.
