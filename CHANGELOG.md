@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.30 [#2644](https://github.com/openfisca/openfisca-france/pull/2644)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/marche_travail/remuneration_dans_fonction_publique/indemnite_residence/min.yaml`.
+* Détails :
+  - last_value_still_valid_on et références
+
 ### 174.2.29 [#2645](https://github.com/openfisca/openfisca-france/pull/2645)
 
 * Changement mineur.
