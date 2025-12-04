@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.27 [#2641](https://github.com/openfisca/openfisca-france/pull/2641)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants/ret_ac/*`.
+* Détails :
+  - last_value_still_valid_on et référence
+
 ### 174.2.26 [#2637](https://github.com/openfisca/openfisca-france/pull/2637)
 
 * Changement mineur.
