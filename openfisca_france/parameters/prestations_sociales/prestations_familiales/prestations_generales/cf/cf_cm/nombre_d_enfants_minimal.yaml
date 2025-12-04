@@ -6,7 +6,7 @@ values:
     value: 3
 metadata:
   short_label: Nombre minimal d'enfants à charge
-  last_value_still_valid_on: "2025-02-20"
+  last_value_still_valid_on: "2025-11-21"
   label_en: Minimum number of dependent children
   ipp_csv_id: nenf_cf_min
   reference:
