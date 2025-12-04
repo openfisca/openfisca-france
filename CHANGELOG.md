@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.21 [#2652](https://github.com/openfisca/openfisca-france/pull/2652)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire/forfait_social/*`.
+* Détails :
+  - Références et last_value_still_valid_on
+
 ### 174.2.20 [#2631](https://github.com/openfisca/openfisca-france/pull/2631)
 
 * Changement mineur.
