@@ -12,8 +12,6 @@ metadata:
   unit: people
   reference:
     2016-01-01:
-    - title: QR 9 de la lettre n° 2016-0000006 de l'URSSAF
-      href: https://www.urssaf.fr/files/live/sites/urssaffr/files/outils-documentation/outils/lettres-circulaires/2016/ref_LCIRC-2016-0000006.pdf
-    - title: Article 34 de la LFSS 2016
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031663781
-      note: Cette article est cité comme source par la QR 9 mais le seuil ne semble pas y être présent.
+    - title: Article L137-15 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031843575/2016-01-01
+      note : "ne sont pas assujettis à cette contribution les employeurs de moins de onze salariés"
