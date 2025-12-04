@@ -4,9 +4,7 @@ values:
     value: 0
   2002-07-01:
     value: 2000
-  2005-09-01:
-    value: 0
-  2019-09-01:
+  2007-07-01:
     value: null
 metadata:
   last_value_still_valid_on: "2025-11-20"
