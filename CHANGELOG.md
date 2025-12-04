@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.28 [#2640](https://github.com/openfisca/openfisca-france/pull/2640)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/accidents/taux/*`.
+* Détails :
+  - last_value_still_valid_on et références.
+
 ### 174.2.27 [#2641](https://github.com/openfisca/openfisca-france/pull/2641)
 
 * Changement mineur.
