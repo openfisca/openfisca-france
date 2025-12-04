@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.20 [#2631](https://github.com/openfisca/openfisca-france/pull/2631)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/ressources/etudiants/*`.
+* Détails :
+  - Extinction des paramètres, qui ne sont pas utilisés par le modèle
+
 ### 174.2.19 [#2653](https://github.com/openfisca/openfisca-france/pull/2653)
 
 * Changement mineur.
