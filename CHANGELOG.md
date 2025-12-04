@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.19 [#2653](https://github.com/openfisca/openfisca-france/pull/2653)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/seuil_effectif.yaml`.
+* Détails :
+  - last_value_still_valid_on et référence
+
 ### 174.2.18 [#2632](https://github.com/openfisca/openfisca-france/pull/2632)
 
 * Changement mineur.
