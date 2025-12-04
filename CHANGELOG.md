@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.29 [#2645](https://github.com/openfisca/openfisca-france/pull/2645)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/domsoc/*`.
+* Détails :
+  - last_value_still_valid_on
+
 ### 174.2.28 [#2640](https://github.com/openfisca/openfisca-france/pull/2640)
 
 * Changement mineur.
