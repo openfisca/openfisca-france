@@ -11,6 +11,7 @@ values:
   1987-01-01:
     value: null
 metadata:
+  last_value_still_valid_on: "2025-11-21"
   short_label: Majoration du plafond de ressources - enfant supplémentaire
   label_en: Increase of the resource ceiling -additional child
   ipp_csv_id: plaf_suppenf_biact
