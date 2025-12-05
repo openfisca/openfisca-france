@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.35 [#2635](https://github.com/openfisca/openfisca-france/pull/2635)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/pourcentage_aah/*`.
+* Détails :
+  - last_value_still_valid_on et références.
+
 ### 174.2.34 [#2639](https://github.com/openfisca/openfisca-france/pull/2639)
 
 * Changement mineur.
