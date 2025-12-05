@@ -135,7 +135,7 @@ class aah_base_ressources_conjugalisee(Variable):
             base_ressource_eval_annuelle() / 12
             )
 
-    def formula_2011_05_20(individu, period, parameters):
+    def formula_2011_05(individu, period, parameters):
         parameters = parameters(period)
         aah = parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
@@ -196,7 +196,7 @@ class aah_base_ressources_conjugalisee(Variable):
         parameters = parameters(period)
         aah = parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
-        en_activite = individu('activite', period) == TypesActivite.actif
+        en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year) > 0))
 
         def assiette_conjoint(revenus_conjoint):
             af_nbenf = individu.famille('af_nbenf', period)
@@ -263,7 +263,7 @@ class aah_base_ressources_deconjugalisee(Variable):
         parameters = parameters(period)
         aah = parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
-        en_activite = individu('activite', period) == TypesActivite.actif
+        en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year)) > 0)
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire * parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
