@@ -10,6 +10,7 @@
     individus:
       parent1:
         aah_eligible: true
+        salaire_imposable: 500
         activite: actif
         aah_base_ressources_conjugalisee: 16790.72 / 12
       parent2:
@@ -48,6 +49,7 @@
     individus:
       parent1:
         aah_eligible: true
+        salaire_imposable: 500
         activite: actif
         aah_base_ressources_conjugalisee: 8777.70 / 12
       parent2:
@@ -89,6 +91,7 @@
         activite: inactif
       parent2:
         aah_eligible: true
+        salaire_imposable: 500
         activite: actif
         aah_base_ressources_conjugalisee: 12585.68 / 12
     foyers_fiscaux:
