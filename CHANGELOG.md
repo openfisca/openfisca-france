@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.36 [#2630](https://github.com/openfisca/openfisca-france/pull/2630)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa/*`.
+* Détails :
+  - last_value_still_valid_on et références
+
 ### 174.2.35 [#2635](https://github.com/openfisca/openfisca-france/pull/2635)
 
 * Changement mineur.
