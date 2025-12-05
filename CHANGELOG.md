@@ -1,5 +1,16 @@
 # Changelog
 
+### 174.2.37 [#2662](https://github.com/openfisca/openfisca-france/pull/2662)
+
+* Changement mineur.
+* Périodes concernées : 2009 à maintenant
+* Zones impactées : 
+  - `impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati.*`
+
+* Détails :
+  - Ajoute des références aux paramètres.
+  - Passe à null, à compter de 2016, les paramètres `taux_ra`, `taux_rb`, `taux_rc`, `taux_rd` car ils ne sont plus utilisés par aucune formule à compter de cette date.
+
 ### 174.2.36 [#2630](https://github.com/openfisca/openfisca-france/pull/2630)
 
 * Changement mineur.
