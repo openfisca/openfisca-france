@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.33 [#2643](https://github.com/openfisca/openfisca-france/pull/2643)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/emprunts_contractes_reprise_pme/plafond_2.yaml`.
+* Détails :
+  - last_value_still_valid_on
+
 ### 174.2.32 [#2650](https://github.com/openfisca/openfisca-france/pull/2650)
 
 * Changement mineur.
