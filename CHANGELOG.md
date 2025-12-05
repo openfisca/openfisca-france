@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.34 [#2639](https://github.com/openfisca/openfisca-france/pull/2639)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/chomage/allocations_assurance_chomage/ass/age_max.yaml`.
+* Détails :
+  - last_value_still_valid_on et référence
+
 ### 174.2.33 [#2643](https://github.com/openfisca/openfisca-france/pull/2643)
 
 * Changement mineur.
