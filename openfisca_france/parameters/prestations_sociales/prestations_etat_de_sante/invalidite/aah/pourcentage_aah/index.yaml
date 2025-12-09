@@ -3,5 +3,4 @@ metadata:
   short_label: Pourcentage d'AAH perçu
   label_en: Disability
   order:
-  - normal
   - prison_hospitalisation
