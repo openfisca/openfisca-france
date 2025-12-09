@@ -1,5 +1,18 @@
 # Changelog
 
+### 174.2.39 [#2664](https://github.com/openfisca/openfisca-france/pull/2664)
+
+* Changement mineur.
+* Périodes concernées : 2009 à maintenant
+* Zones impactées : 
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/decote_montant.yaml`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/decote_taux.yaml`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/franchise.yaml`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/pourcentage_aah/index.yaml`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/abattement_cessation_activite.yaml`
+* Détails :
+  - Corrige des problèmes de compilation YAML
+
 ### 174.2.38 [#2663](https://github.com/openfisca/openfisca-france/pull/2663)
 
 * Évolution du système socio-fiscal.
@@ -14,7 +27,6 @@
 * Périodes concernées : 2009 à maintenant
 * Zones impactées : 
   - `impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati.*`
-
 * Détails :
   - Ajoute des références aux paramètres.
   - Passe à null, à compter de 2016, les paramètres `taux_ra`, `taux_rb`, `taux_rc`, `taux_rd` car ils ne sont plus utilisés par aucune formule à compter de cette date.
