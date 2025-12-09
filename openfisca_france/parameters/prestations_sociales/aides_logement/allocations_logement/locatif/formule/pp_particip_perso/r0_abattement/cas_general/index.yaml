@@ -12,4 +12,5 @@ metadata:
   - taux5pac
   - taux6pac
   - taux_pac_supp
+  inflator: inflateurs.inflateur_aides_logement_depenses
 documentation: Mentionné à l'article D823-17 du Code de la construction et de l'habitation. Également mentionné à l'article 2 ter de l'arrêté du 3 juillet 1978 - secteur locatif (après 2001)
