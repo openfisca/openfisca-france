@@ -407,56 +407,93 @@ def compute_allegement_general(individu, period, parameters):
     '''
 
     assiette = individu('assiette_allegement', period)
-    smic_proratise = individu('smic_proratise', period)
-    effectif_entreprise = individu('effectif_entreprise', period)
-
-    # Calcul du taux
-    # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
-    # Le montant est calculé chaque année civile, pour chaque salarié ;
-    # il est égal au produit de la totalité de la rémunération annuelle telle
-    # que visée à l’article L. 242-1 du code de la Sécurité sociale par un
-    # coefficient.
-    # Ce montant est majoré de 10 % pour les entreprises de travail temporaire
-    # au titre des salariés temporaires pour lesquels elle est tenue à
-    # l’obligation d’indemnisation compensatrice de congés payés.
-
-    allegement_general = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
-
-    # Du 2003-07-01 au 2005-06-30
-    if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
-        seuil = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
-        tx_max = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
-    # Du 2005-07-01 au 2019-12-31
-    elif date(2005, 7, 1) <= period.start.date <= date(2019, 12, 31):
-        seuil = allegement_general.ensemble_des_entreprises.plafond
-        petite_entreprise = (effectif_entreprise < 20)
-        tx_max = (
-            allegement_general.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
-            * not_(petite_entreprise)
-            + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
-            * petite_entreprise
-            )
-    # Après le 2019-12-31
-    else:
-        seuil = allegement_general.ensemble_des_entreprises.plafond
-        petite_entreprise = (effectif_entreprise < 50)
-        tx_max = (
-            allegement_general.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus
-            * not_(petite_entreprise)
-            + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries
-            * petite_entreprise
-            )
-
-    if seuil <= 1:
-        return 0
-
-    ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
-
-    # règle d'arrondi: 4 décimales au dix-millième le plus proche
-    taux_allegement_general = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
+    taux_allegement_general = individu('taux_allegement_general', period)
 
     # Montant de l'allegment
     return taux_allegement_general * assiette
+
+
+class taux_allegement_general(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Taux de réduction générale des cotisations employeur'
+    definition_period = MONTH
+    is_period_size_independent = True
+    set_input = set_input_dispatch_by_period
+
+    def formula_2026_01_01(individu, period, parameters):
+        assiette = individu('assiette_allegement', period)
+        smic_proratise = individu('smic_proratise', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        allegement_general = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
+
+        seuil_taille_entreprise = allegement_general.ensemble_des_entreprises.seuil_taille_entreprise
+        t_delta = where(effectif_entreprise < seuil_taille_entreprise, allegement_general.ensemble_des_entreprises.t_delta_petites_entreprises, allegement_general.ensemble_des_entreprises.t_delta_grandes_entreprises)
+        t_min = allegement_general.ensemble_des_entreprises.t_min
+        seuil_sortie = allegement_general.ensemble_des_entreprises.plafond
+        puissance = allegement_general.ensemble_des_entreprises.puissance
+        remuneration = (assiette + 1e-16)
+        ratio_salaire_smic = remuneration / smic_proratise
+        condition_sortie_seuil = ratio_salaire_smic < seuil_sortie
+
+        taux_allegement_general = t_min + round_(
+            t_delta * (max_(((1 / 2) * (3 * (smic_proratise / remuneration) - 1)), 0) ** puissance), 4)
+
+        taux_allegement_general = condition_sortie_seuil * taux_allegement_general
+        taux_allegement_general = min_(t_min + t_delta, taux_allegement_general)
+
+        return taux_allegement_general
+
+    def formula(individu, period, parameters):
+        # Calcul du taux
+        # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
+        # Le montant est calculé chaque année civile, pour chaque salarié ;
+        # il est égal au produit de la totalité de la rémunération annuelle telle
+        # que visée à l’article L. 242-1 du code de la Sécurité sociale par un
+        # coefficient.
+        # Ce montant est majoré de 10 % pour les entreprises de travail temporaire
+        # au titre des salariés temporaires pour lesquels elle est tenue à
+        # l’obligation d’indemnisation compensatrice de congés payés.
+
+        assiette = individu('assiette_allegement', period)
+        smic_proratise = individu('smic_proratise', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        allegement_general = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
+
+        # Du 2003-07-01 au 2005-06-30
+        if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
+            seuil = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+            tx_max = allegement_general.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+        # Du 2005-07-01 au 2019-12-31
+        elif date(2005, 7, 1) <= period.start.date <= date(2019, 12, 31):
+            seuil = allegement_general.ensemble_des_entreprises.plafond
+            petite_entreprise = (effectif_entreprise < 20)
+            tx_max = (
+                allegement_general.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
+                * not_(petite_entreprise)
+                + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
+                * petite_entreprise
+                )
+        # Après le 2019-12-31
+        elif date(2019, 12, 31) <= period.start.date <= date(2025, 12, 31):
+            seuil = allegement_general.ensemble_des_entreprises.plafond
+            petite_entreprise = (effectif_entreprise < 50)
+            tx_max = (
+                allegement_general.ensemble_des_entreprises.entreprises_de_50_salaries_et_plus
+                * not_(petite_entreprise)
+                + allegement_general.ensemble_des_entreprises.entreprises_de_moins_de_50_salaries
+                * petite_entreprise
+                )
+
+        if seuil <= 1:
+            return 0
+        ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
+        # règle d'arrondi: 4 décimales au dix-millième le plus proche
+        taux_allegement_general = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
+
+        return taux_allegement_general
 
 
 class allegement_cotisation_allocations_familiales(Variable):
@@ -466,6 +503,7 @@ class allegement_cotisation_allocations_familiales(Variable):
     reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    end = '2025-12-31'
 
     def formula_2015_01_01(individu, period, parameters):
         allegement_cotisation_allocations_familiales_base = individu('allegement_cotisation_allocations_familiales_base', period)
@@ -481,6 +519,7 @@ class allegement_cotisation_allocations_familiales_base(Variable):
     reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    end = '2025-12-31'
 
     def formula_2015_01_01(individu, period, parameters):
         stagiaire = individu('stagiaire', period)
@@ -536,6 +575,7 @@ class allegement_cotisation_maladie(Variable):
     set_input = set_input_divide_by_period
     label = 'Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)'
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559'
+    end = '2025-12-31'
 
     def formula_2019_01_01(individu, period, parameters):
         allegement_cotisation_maladie_base = individu('allegement_cotisation_maladie_base', period)
@@ -551,6 +591,7 @@ class allegement_cotisation_maladie_base(Variable):
     set_input = set_input_divide_by_period
     label = 'Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)'
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559'
+    end = '2025-12-31'
 
     def formula_2019_01_01(individu, period, parameters):
         # propose 3 modes de paiement possibles

@@ -2,9 +2,11 @@ description: Taux d'allègement des cotisations pour la branche famille des coti
 values:
   2015-01-01:
     value: 0.018
+  2026-01-01:
+    value: null
 metadata:
   short_label: Taux d'allègement des cotisations famille
-  last_value_still_valid_on: "2025-02-21"
+  last_value_still_valid_on: "2025-09-10"
   label_en: Reduction in SSCs for family benefits
   ipp_csv_id: tx_red_fam
   unit: /1
@@ -14,5 +16,8 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947548
     - title: Loi 2014-892 du 08/08/2014 (LFRSS 2014), art. 2 I.3°
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000029349696
+    2026-01-01:
+    - title: Décret n° 2025-887 du 04/09/2025
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052194026
   official_journal_date:
     2015-01-01: "2014-08-09"
