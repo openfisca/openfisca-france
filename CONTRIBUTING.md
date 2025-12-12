@@ -60,9 +60,15 @@ Certaines interventions sur OpenFica concernent à la fois [OpenFica-Core](https
 
 C'est par exemple le cas lorsqu'une version à paraître de Core contient un changement non-rétrocompatible, et que l'on souhaite s'assurer qu'il est possible d'adapter France à cette nouvelle version.
 
-Dans ce cas, il peut être pertinent d'exécuter les tests d'OpenFisca-France en se basant sur une version non-publiée de Core, disponible sur une branche spécifique. Pour ce faire, éditer le fichier [`.circleci/config.yml`](https://github.com/openfisca/openfisca-france/blob/9c44a5e2d44e1319c64326e7c528b2ac37cbfc05/.circleci/config.yml#L26).
+Dans ce cas, il peut être pertinent d'exécuter les tests d'OpenFisca-France en se basant sur une version non-publiée de Core, disponible sur une branche spécifique. Pour ce faire :
 
-Bien sûr, une fois la version spécifique de core publiée, **ce changement doit être reverté** avant le merge de la pull request sur France.
+- Cloner le dépôt de Core dans le dossier châpeau de openfisca-france.
+- Placer vous sur la branche de core souhaitée `git switch branche-de-test`
+- Revenez dans le dossier de France : `cd ../openfisca-france`
+- Installer la version de Core : `uv pip install -e ../openfisca-core`
+- Lancez les tests de France : `uv run make test`
+
+Pour revenir à la version normale : `uv sync`
 
 ## Debug des tests YAML avec VS Code
 
