@@ -217,6 +217,7 @@ values:
     - SI
     - SK
 metadata:
+  last_value_still_valid_on: "2025-11-21"
   unit: ISO 3166-1 alpha-2
   reference:
     href: https://fr.wikipedia.org/wiki/Espace_économique_européen#Évolution

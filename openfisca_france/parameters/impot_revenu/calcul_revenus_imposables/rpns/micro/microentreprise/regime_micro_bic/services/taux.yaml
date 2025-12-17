@@ -9,7 +9,7 @@ values:
   2006-01-01:
     value: 0.5
 metadata:
-  last_value_still_valid_on: "2024-08-22"
+  last_value_still_valid_on: "2025-11-14"
   short_label: Taux (Prestations de services)
   ipp_csv_id: txabt_micro_service
   unit: /1

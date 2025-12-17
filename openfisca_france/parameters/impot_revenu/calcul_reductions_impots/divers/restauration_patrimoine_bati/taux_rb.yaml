@@ -4,5 +4,8 @@ values:
     value: 0.4
   2011-01-01:
     value: 0.36
+  2016-01-01:
+    value: null
 metadata:
   unit: /1
+documentation: Paramètre plus utilisé dans le code OpenFisca depuis 2016.

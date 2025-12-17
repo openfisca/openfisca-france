@@ -1,5 +1,294 @@
 # Changelog
 
+### 174.2.39 [#2664](https://github.com/openfisca/openfisca-france/pull/2664)
+
+* Changement mineur.
+* Périodes concernées : 2009 à maintenant
+* Zones impactées : 
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/decote_montant.yaml`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/decote_taux.yaml`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/franchise.yaml`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/pourcentage_aah/index.yaml`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/abattement_cessation_activite.yaml`
+* Détails :
+  - Corrige des problèmes de compilation YAML
+
+### 174.2.38 [#2663](https://github.com/openfisca/openfisca-france/pull/2663)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 20/05/2011.
+* Zones impactées : `openfisca_france\model\prestations\minima_sociaux\aah.py`.
+* Détails :
+  - Ajout de l'abattement sur les ressources prévu pour les individus en cessation d'activité pour l'allocation aux adultes handicapés
+
+### 174.2.37 [#2662](https://github.com/openfisca/openfisca-france/pull/2662)
+
+* Changement mineur.
+* Périodes concernées : 2009 à maintenant
+* Zones impactées : 
+  - `impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati.*`
+* Détails :
+  - Ajoute des références aux paramètres.
+  - Passe à null, à compter de 2016, les paramètres `taux_ra`, `taux_rb`, `taux_rc`, `taux_rd` car ils ne sont plus utilisés par aucune formule à compter de cette date.
+
+### 174.2.36 [#2630](https://github.com/openfisca/openfisca-france/pull/2630)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa/*`.
+* Détails :
+  - last_value_still_valid_on et références
+
+### 174.2.35 [#2635](https://github.com/openfisca/openfisca-france/pull/2635)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/pourcentage_aah/*`.
+* Détails :
+  - last_value_still_valid_on et références.
+
+### 174.2.34 [#2639](https://github.com/openfisca/openfisca-france/pull/2639)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/chomage/allocations_assurance_chomage/ass/age_max.yaml`.
+* Détails :
+  - last_value_still_valid_on et référence
+
+### 174.2.33 [#2643](https://github.com/openfisca/openfisca-france/pull/2643)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/emprunts_contractes_reprise_pme/plafond_2.yaml`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.32 [#2650](https://github.com/openfisca/openfisca-france/pull/2650)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/rpns/micro/microentreprise/regime_micro_bic/marchandises/*`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.31 [#2646](https://github.com/openfisca/openfisca-france/pull/2646)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/credits_impots/prlire/taux.yaml`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.30 [#2644](https://github.com/openfisca/openfisca-france/pull/2644)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/marche_travail/remuneration_dans_fonction_publique/indemnite_residence/min.yaml`.
+* Détails :
+  - last_value_still_valid_on et références
+
+### 174.2.29 [#2645](https://github.com/openfisca/openfisca-france/pull/2645)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/domsoc/*`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.28 [#2640](https://github.com/openfisca/openfisca-france/pull/2640)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/accidents/taux/*`.
+* Détails :
+  - last_value_still_valid_on et références.
+
+### 174.2.27 [#2641](https://github.com/openfisca/openfisca-france/pull/2641)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants/ret_ac/*`.
+* Détails :
+  - last_value_still_valid_on et référence
+
+### 174.2.26 [#2637](https://github.com/openfisca/openfisca-france/pull/2637)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/divers/aide_createurs_repreneurs_entreprise/*`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.25 [#2646](https://github.com/openfisca/openfisca-france/pull/2646)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/credits_impots/prlire/taux.yaml`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.24 [#2649](https://github.com/openfisca/openfisca-france/pull/2649)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/taxation_capital/prelevement_forfaitaire/partir_2018/produits_epargne_solidaire_partage.yaml`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.23 [#2648](https://github.com/openfisca/openfisca-france/pull/2648)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/prestations_familiales/*`.
+* Détails :
+  - last_value_still_valid_on et référence
+
+### 174.2.22 [#2652](https://github.com/openfisca/openfisca-france/pull/2652)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  -  `parameters/prestations_sociales/prestations_familiales/def_pac/enfants/age_limite.yaml`.
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/cf/*`
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.21 [#2652](https://github.com/openfisca/openfisca-france/pull/2652)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire/forfait_social/*`.
+* Détails :
+  - Références et last_value_still_valid_on
+
+### 174.2.20 [#2631](https://github.com/openfisca/openfisca-france/pull/2631)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/ressources/etudiants/*`.
+* Détails :
+  - Extinction des paramètres, qui ne sont pas utilisés par le modèle
+
+### 174.2.19 [#2653](https://github.com/openfisca/openfisca-france/pull/2653)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport/seuil_effectif.yaml`.
+* Détails :
+  - last_value_still_valid_on et référence
+
+### 174.2.18 [#2632](https://github.com/openfisca/openfisca-france/pull/2632)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prestations/aides_logement.py`.
+* Détails :
+  - Change le code pour ne pas appeler tout l'arbre de paramètre, qui contient des paramètres non utilisés.
+
+### 174.2.17 [#2633](https://github.com/openfisca/openfisca-france/pull/2633)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/*`.
+* Détails :
+  - last_value_still_valid_on et références
+
+### 174.2.16 [#2634](https://github.com/openfisca/openfisca-france/pull/2634)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/assiette/cantines_titres_restaurants/*`.
+* Détails :
+  - Références et last_value_still_valid_on
+
+### 174.2.15 [#2636](https://github.com/openfisca/openfisca-france/pull/2636)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/location_meublee/*`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.14 [#2638](https://github.com/openfisca/openfisca-france/pull/2638)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/location_meublee/*`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.13 [#2642](https://github.com/openfisca/openfisca-france/pull/2642)
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_secteur_public/cnracl/employeur/*`.
+* Détails :
+  - last_value_still_valid_on
+
+### 174.2.12 [#2620](https://github.com/openfisca/openfisca-france/pull/2620)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  *  `model/prestations/minima_sociaux/aefa.py`.
+  * `arameters/prestations_sociales/solidarite_insertion/autre_solidarite/aefa/prime_exceptionnelle.yaml`
+* Détails :
+  - Eteind la prime de Noël exceptionnelle de 2008.
+
+### 174.2.11 [#2623](https://github.com/openfisca/openfisca-france/pull/2623)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `parameters/geopolitique/*`
+* Détails :
+  * Ajout du champ `last_value_still_valid_on`.
+
+### 174.2.10 [#2602](https://github.com/openfisca/openfisca-france/pull/2602)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+  * `parameters/impot_revenu/calcul_reductions_impots/investissements_immobiliers/invlst/*`
+* Détails :
+  * Ajout de références et du champ `last_value_still_valid_on`.
+
+### 174.2.9 [#2601](https://github.com/openfisca/openfisca-france/pull/2601)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `openfisca_france/parameters/prestations_sociales/education/bourses/bourses_education/*/apres_2016/*`
+* Détails :
+  * Ajout de références et du champ `last_value_still_valid_on`.
+
+### 174.2.8 [#2591](https://github.com/openfisca/openfisca-france/pull/2591)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Détails :
+  - Nettoie certains paramètres.
+
+### 174.2.7 [#2589](https://github.com/openfisca/openfisca-france/pull/2589)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/base.py`
+* Détails :
+  * Ajuste la logique de gestion d'erreurs pour éviter un crash suite à l'évolution de la gestion des paramètres complexes.
+
+### 174.2.6 [#2590](https://github.com/openfisca/openfisca-france/pull/2590)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+  * `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/pv`
+  * `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/bouclier_fiscal`
+  * `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+* Détails :
+  - Réorganisation et modifications des descriptions/short_labels des plus values
+
 ### 174.2.5 [#2585](https://github.com/openfisca/openfisca-france/pull/2585)
 
 * Évolution du système socio-fiscal.
@@ -18,8 +307,8 @@
 * Correction d'un crash.
 * Périodes concernées : toutes.
 * Zones impactées :
-  * openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py
-  * openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py
+  * `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+  * `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py`
 * Détails :
   * Corrige le calcul vectoriel du crédit d'impôt pour emploi à domicile. Il y avait un problème dans le calcul vectoriel. Le test était fait sur l'entièreté du vecteur et non pas élément par élément de celui-ci.
 
@@ -175,17 +464,17 @@
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid/index.yaml`
   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/index.yaml`
 * Détails :
-  - Corrige la liste de paramètres dans deux index.py 
+  - Corrige la liste de paramètres dans deux index.py
 
 ## 172.1.0 [#2548](https://github.com/openfisca/openfisca-france/pull/2548)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  à partir du 01/01/2025
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`.
   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales`
   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid`
