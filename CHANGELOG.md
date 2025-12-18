@@ -1,5 +1,14 @@
 # Changelog
 
+### 174.2.40 [#2669](https://github.com/openfisca/openfisca-france/pull/2669)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées : 
+  - `openfisca_france/parameters/marche_travail/salaire_minimum/smic/smic_b_horaire.yaml`
+* Détails :
+  - Revalorisation du SMIC horaire de janvier 2026.
+
 ### 174.2.39 [#2664](https://github.com/openfisca/openfisca-france/pull/2664)
 
 * Changement mineur.
