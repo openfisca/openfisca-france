@@ -26,7 +26,7 @@ class TestPyprojectVersion(TestCase):
     def test_pyproject_version_script(self):
         # Create a temporary file with the specified content
         temp_file = tempfile.NamedTemporaryFile(delete=False, mode='w')
-        temp_file.write('version: X.X.X\n    - openfisca-core-api>=43,<44\n    - numpy>=1.24.3,<2')
+        temp_file.write('version: X.X.X\n    - openfisca-core-api>=43,<45\n    - numpy>=1.24.3,<2')
         temp_file.close()
 
         # Read the values
