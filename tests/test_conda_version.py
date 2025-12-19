@@ -30,7 +30,7 @@ class TestPyprojectVersion(TestCase):
         temp_file.close()
 
         # Read the values
-        # Run the pyproject_version.py script without arguments and read {'openfisca_france': '169.1.0', 'openfisca_core_api': '>=43,<44'}
+        # Run the pyproject_version.py script without arguments and read {'openfisca_france': '169.1.0', 'openfisca_core_api': '>=43,<45'}
         script_path = os.path.join('.github', 'pyproject_version.py')
         result = subprocess.run(['python3', script_path], stdout=subprocess.PIPE, check=True)
         # Extract the version of openfisca_france
