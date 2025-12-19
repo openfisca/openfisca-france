@@ -1,5 +1,11 @@
 # Changelog
 
+### 174.2.43 [#2670](https://github.com/openfisca/openfisca-france/pull/2670)
+
+* Changement mineur.
+* Détails :
+  - Ajoute le support de OpenFisca 44 pour permettre la gestion des tests en parallèle.
+
 ### 174.2.42 [#2677](https://github.com/openfisca/openfisca-france/pull/2677)
 
 * Évolution du système socio-fiscal.
