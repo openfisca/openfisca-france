@@ -6,7 +6,7 @@ import re
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 PACKAGE_VERSION = 'X.X.X'
-CORE_VERSION = '>=43,<44'
+CORE_VERSION = '>=43,<45'
 NUMPY_VERSION = '>=1.24.3,<2'
 
 
