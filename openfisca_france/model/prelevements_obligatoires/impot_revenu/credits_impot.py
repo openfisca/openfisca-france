@@ -888,9 +888,9 @@ class assloy(Variable):
         2005-2016
         '''
         f4bf = foyer_fiscal('f4bf', period)
-        P = parameters(period).impot_revenu.credits_impots.assloy
+        assloy = parameters(period).impot_revenu.credits_impots.assloy
 
-        return P * f4bf
+        return assloy * f4bf
 
 
 class autent(Variable):
@@ -1591,9 +1591,9 @@ class drbail(Variable):
         2002-2017
         '''
         f4tq = foyer_fiscal('f4tq', period)
-        P = parameters(period).impot_revenu.credits_impots.drbail
+        drbail = parameters(period).impot_revenu.credits_impots.drbail
 
-        return P * f4tq
+        return drbail * f4tq
 
 
 class inthab(Variable):
