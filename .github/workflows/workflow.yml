@@ -138,7 +138,7 @@ jobs:
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
       - run: |
           shopt -s globstar
-          openfisca test --country-package openfisca_france tests/**/*.py
+          openfisca test --country-package openfisca_france tests/**/*.py --in-parallel
         if: matrix.openfisca-dependencies != 'minimal' || matrix.python-version != '3.9.12'
 
   test-path-length:
