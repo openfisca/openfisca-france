@@ -4,7 +4,9 @@
 
 * Changement mineur.
 * Détails :
-  - Ajoute le support de OpenFisca 44 pour permettre la gestion des tests en parallèle.
+  - Ajoute le support de OpenFisca 44 :
+    - Support de Python 3.13 et Numpy 2.3.
+    - Permet la parallèlisation des tests en local. Et l'augmente en CI.
 
 ### 174.2.42 [#2677](https://github.com/openfisca/openfisca-france/pull/2677)
 
