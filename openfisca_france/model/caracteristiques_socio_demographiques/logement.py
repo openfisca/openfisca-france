@@ -1,4 +1,4 @@
-from numpy.core.defchararray import startswith
+from numpy import char
 
 from openfisca_france.model.base import *
 
@@ -78,7 +78,7 @@ class region(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage('depcom', period).astype(str)
         regions_list: list[str] = parameters(period).geopolitique.regions.liste
         regions = [
             (parameters(period).geopolitique.regions[region], TypesCodeInseeRegion[region])
@@ -86,7 +86,7 @@ class region(Variable):
             ]
 
         regions_elig = [
-            sum([startswith(depcom, str.encode(codes_insee)) for codes_insee in parametres_region.departements]) > 0
+            sum([char.startswith(depcom, codes_insee) for codes_insee in parametres_region.departements]) > 0
             for (parametres_region, _) in regions
             ]
         codes_insee_regions = [code_insee_region for (_, code_insee_region) in regions]
@@ -136,8 +136,8 @@ class residence_ile_de_france(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
-        return sum([startswith(depcom, str.encode(departement_idf)) for departement_idf in parameters(period).geopolitique.regions.ile_de_france.departements])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+        depcom = menage('depcom', period).astype(str)
+        return sum([char.startswith(depcom, departement_idf) for departement_idf in parameters(period).geopolitique.regions.ile_de_france.departements])
 
 
 class residence_dom(Variable):
@@ -163,8 +163,8 @@ class residence_guadeloupe(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
-        return startswith(depcom, b'971')
+        depcom = menage('depcom', period).astype(str)
+        return char.startswith(depcom, '971')
 
 
 class residence_martinique(Variable):
@@ -174,8 +174,8 @@ class residence_martinique(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
-        return startswith(depcom, b'972')
+        depcom = menage('depcom', period).astype(str)
+        return char.startswith(depcom, '972')
 
 
 class residence_guyane(Variable):
@@ -185,8 +185,8 @@ class residence_guyane(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
-        return startswith(depcom, b'973')
+        depcom = menage('depcom', period).astype(str)
+        return char.startswith(depcom, '973')
 
 
 class residence_reunion(Variable):
@@ -196,8 +196,8 @@ class residence_reunion(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
-        return startswith(depcom, b'974')
+        depcom = menage('depcom', period).astype(str)
+        return char.startswith(depcom, '974')
 
 
 class residence_saint_pierre_et_miquelon(Variable):
@@ -207,8 +207,8 @@ class residence_saint_pierre_et_miquelon(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
-        return startswith(depcom, b'975')
+        depcom = menage('depcom', period).astype(str)
+        return char.startswith(depcom, '975')
 
 
 class residence_mayotte(Variable):
@@ -218,8 +218,8 @@ class residence_mayotte(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
-        return startswith(depcom, b'976')
+        depcom = menage('depcom', period).astype(str)
+        return char.startswith(depcom, '976')
 
 
 class residence_saint_bartelemy(Variable):
@@ -229,8 +229,8 @@ class residence_saint_bartelemy(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
-        return startswith(depcom, b'977')
+        depcom = menage('depcom', period).astype(str)
+        return char.startswith(depcom, '977')
 
 
 class residence_saint_martin(Variable):
@@ -240,8 +240,8 @@ class residence_saint_martin(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
-        return startswith(depcom, b'978')
+        depcom = menage('depcom', period).astype(str)
+        return char.startswith(depcom, '978')
 
 
 class TypesLieuResidence(Enum):
