@@ -183,15 +183,15 @@ jobs:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         run: |
           echo "TEST_FILES_SUBLIST=$(python "${GITHUB_WORKSPACE}/.github/split_tests.py" ${CI_NODE_TOTAL} ${CI_NODE_INDEX})" >> $GITHUB_ENV
-      - name: Run YAML test
+      - name: Run YAML test sequencialy with minimal Core version
+        if: matrix.openfisca-dependencies == 'minimal'
+        run: |
+          openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST}
+      - name: Run YAML test in parallel with maximal Core version
+        if: matrix.openfisca-dependencies == 'maximal'  
         run: |
           openfisca --version
-          openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST}
-          if: matrix.openfisca-dependencies == 'minimal'
-      - run: |
-          openfisca --version
           openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST} --in-parallel
-          if: matrix.openfisca-dependencies == 'maximal'
 
   test-api:
     runs-on: ubuntu-24.04
