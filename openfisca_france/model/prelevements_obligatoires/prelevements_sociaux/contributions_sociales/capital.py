@@ -305,6 +305,76 @@ class assiette_csg_revenus_capital(Variable):
             )
 
 
+class assiette_csg_revenus_capital_alleges(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = 'Assiette des revenus du capital soumis à la CSG'
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        '''
+        Hypothèses derrière ce calcul :
+            (1) On ne distingue pas la CSG sur les revenus du patrimoine (art. L136-6 du CSS)
+                de celle sur les revenus de placement (art. L136-6 du CSS)
+                ATTENTION : Les taux de la CSG et de l'ensemble des prélèvements sociaux sont identiques pour
+                ces deux types de revenu depuis 2013 seulement, la formule devrait donc être corrigée pour les années avant 2013.
+            (2) Le timing de la soumission des intérêts des PEL et CEL aux prélèvements sociaux
+                est complexe. Cette soumission peut se faire annuellement, ou en cumulé, et ce
+                en fonction de différents paramètres. Mais on ne prend pas en compte cette fonctionnalité.
+        NB : catégorie(s) de revenu non encore incluse(s) dans cette assiette : épargne salariale
+        Note à partir de 2018 : du fait du PFU, la base des revenus du capital au titre de l'impôt sur le revenu se rapproche de la base au titre des prélèvements sociaux,
+                                d'où le fait qu'on utilise cette variable. En revanche, concernant les prêts participatifs, le montant au titre de l'impôt sur le revenu
+                                forfaitaire est le montant net des pertes, alors que celui soumis au titre des prélèvements sociaux est le montant brut. Cependant,
+                                la case 2TT contient le montant des intérêts de ces prêts après déduction de ces pertes. Donc, on est contraint de prendre un montant net.
+        '''
+
+        # Revenus du capital présents dans la section 2 de la déclaration de revenus, assurances-vie :
+        f2vv = foyer_fiscal('f2vv', year)
+        f2ww = foyer_fiscal('f2ww', year)
+        f2zz = foyer_fiscal('f2zz', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2dh = foyer_fiscal('f2dh', period.this_year)
+        f2yy = foyer_fiscal('f2yy', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        assurance_vie_pfu_ir_moins4ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_1990_19970926', period)
+        assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
+        assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
+        assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
+        f2xx = foyer_fiscal('f2xx', period.this_year)
+
+        assurance_vie = (
+            f2vv + f2ww + f2zz + f2ch + f2dh + f2yy + f2ts + assurance_vie_pfu_ir_moins4ans_1990_19970926 +
+            assurance_vie_pfu_ir_4_8_ans_1990_19970926 + assurance_vie_pfu_ir_4_8_ans_1990_19970926 +
+            assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 +
+            assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 + f2xx
+            )
+
+        # Rentes viagères à titre onéreux
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
+
+        # Revenus des produits d'épargne logement
+        interets_pel_cel_non_soumis_IR_i = foyer_fiscal.members('interets_pel_cel_non_soumis_IR', period)
+        interets_pel_cel_non_soumis_IR = foyer_fiscal.sum(interets_pel_cel_non_soumis_IR_i)
+
+        # Revenus fonciers
+        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
+
+        # Plus-values
+        assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
+
+        # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
+        assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
+
+        return (
+            assurance_vie
+            + rente_viagere_titre_onereux_net
+            + interets_pel_cel_non_soumis_IR
+            + rev_cat_rfon
+            + assiette_csg_plus_values
+            + assurance_vie_ps_exoneree_irpp_pl
+            )
+
+
 # 3. Variables de prélèvements sociaux sur les revenus du capital
 
 class csg_glo_assimile_salaire_ir_et_ps(Variable):
@@ -378,6 +448,26 @@ class csg_revenus_capital(Variable):
         # et reste à être pris en compte ici : cf. II.B de l'art. 67 de loi 2017-1837 et 3° et 4° du V.A de l'art. 8 de loi 2017-1836
         return (
             - assiette_csg_revenus_capital * csg.taux_global.produits_de_placement
+            + csg_glo_assimile_salaire_ir_et_ps
+            )
+
+    def formula_2026_01_01(foyer_fiscal, period, parameters):
+        '''
+        En 2026, le taux général est augmenté et l'ancien taux est conservé dans certains cas
+        '''
+        assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
+        assiette_csg_revenus_capital_alleges = foyer_fiscal('assiette_csg_revenus_capital_alleges', period)
+        csg = parameters(period).taxation_capital.prelevements_sociaux.csg
+
+        csg_glo_assimile_salaire_ir_et_ps_i = foyer_fiscal.members('csg_glo_assimile_salaire_ir_et_ps', period)
+        csg_glo_assimile_salaire_ir_et_ps = foyer_fiscal.sum(csg_glo_assimile_salaire_ir_et_ps_i)
+
+        # Pour les revenus du patrimoine, le changement de CSG se fait à partir des revenus de 2017,
+        # mais le taux de CSG déductible se fait à partir des revenus 2018. Pour les revenus de placement le timing est différent,
+        # et reste à être pris en compte ici : cf. II.B de l'art. 67 de loi 2017-1837 et 3° et 4° du V.A de l'art. 8 de loi 2017-1836
+        return (
+            - (assiette_csg_revenus_capital - assiette_csg_revenus_capital_alleges) * csg.taux_global.produits_de_placement
+            - assiette_csg_revenus_capital_alleges * csg.taux_global.produits_de_placement_alleges
             + csg_glo_assimile_salaire_ir_et_ps
             )
 
