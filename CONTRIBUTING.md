@@ -64,6 +64,14 @@ Dans ce cas, il peut être pertinent d'exécuter les tests d'OpenFisca-France en
 
 Bien sûr, une fois la version spécifique de core publiée, **ce changement doit être reverté** avant le merge de la pull request sur France.
 
+## Mettre à jour les dépendances
+
+Pour mettre à jour le fichier `uv.lock` avec les dernières version compatible avec le [pyproject.toml](pyproject.toml) il faut lancer la commande suivante :
+
+```sh
+uv sync --upgrade
+```
+
 ## Debug des tests YAML avec VS Code
 
 Si vous souhaitez utiliser le debugger de VS Code avec les tests YAML, par exemple pour investiguer la commande suivante :
