@@ -190,6 +190,7 @@ jobs:
       - name: Run YAML test in parallel with maximal Core version
         if: matrix.openfisca-dependencies == 'maximal'  
         run: |
+          pip show openfisca_core
           openfisca --version
           openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST} --in-parallel
 
