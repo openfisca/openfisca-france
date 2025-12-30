@@ -329,24 +329,24 @@ class assiette_csg_revenus_capital_alleges(Variable):
         '''
 
         # Revenus du capital présents dans la section 2 de la déclaration de revenus, assurances-vie :
-        f2vv = foyer_fiscal('f2vv', year)
-        f2ww = foyer_fiscal('f2ww', year)
-        f2zz = foyer_fiscal('f2zz', year)
-        f2ch = foyer_fiscal('f2ch', year)
-        f2dh = foyer_fiscal('f2dh', period.this_year)
-        f2yy = foyer_fiscal('f2yy', year)
-        f2ts = foyer_fiscal('f2ts', year)
+        f2vv = foyer_fiscal('f2vv', period)
+        f2ww = foyer_fiscal('f2ww', period)
+        f2zz = foyer_fiscal('f2zz', period)
+        f2ch = foyer_fiscal('f2ch', period)
+        f2dh = foyer_fiscal('f2dh', period)
+        f2yy = foyer_fiscal('f2yy', period)
+        f2ts = foyer_fiscal('f2ts', period)
         assurance_vie_pfu_ir_moins4ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_1990_19970926', period)
         assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
         assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
         assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
-        f2xx = foyer_fiscal('f2xx', period.this_year)
+        f2xx = foyer_fiscal('f2xx', period)
 
         assurance_vie = (
-            f2vv + f2ww + f2zz + f2ch + f2dh + f2yy + f2ts + assurance_vie_pfu_ir_moins4ans_1990_19970926 +
-            assurance_vie_pfu_ir_4_8_ans_1990_19970926 + assurance_vie_pfu_ir_4_8_ans_1990_19970926 +
-            assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 +
-            assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 + f2xx
+            f2vv + f2ww + f2zz + f2ch + f2dh + f2yy + f2ts + assurance_vie_pfu_ir_moins4ans_1990_19970926
+            + assurance_vie_pfu_ir_4_8_ans_1990_19970926 + assurance_vie_pfu_ir_4_8_ans_1990_19970926
+            + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
+            + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 + f2xx
             )
 
         # Rentes viagères à titre onéreux

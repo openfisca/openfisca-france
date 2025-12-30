@@ -256,3 +256,13 @@
     f4ba: 10000
   output:
     prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: csg_capital_2026
+  description: Montant de CSG sur capital en 2026
+  period: 2026
+  absolute_error_margin: 1
+  input:
+    f1aw: 10000
+    f2dc: 4000
+  output:
+    csg_revenus_capital: -10000 * 0.7 * 0.092 - 4000 * 0.106
