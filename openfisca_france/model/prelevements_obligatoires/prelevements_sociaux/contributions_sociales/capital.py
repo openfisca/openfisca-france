@@ -308,24 +308,12 @@ class assiette_csg_revenus_capital(Variable):
 class assiette_csg_revenus_capital_alleges(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Assiette des revenus du capital soumis à la CSG'
+    label = 'Assiette des revenus du capital soumis à la CSG minorée'
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
+    def formula_2026_01_01(foyer_fiscal, period, parameters):
         '''
-        Hypothèses derrière ce calcul :
-            (1) On ne distingue pas la CSG sur les revenus du patrimoine (art. L136-6 du CSS)
-                de celle sur les revenus de placement (art. L136-6 du CSS)
-                ATTENTION : Les taux de la CSG et de l'ensemble des prélèvements sociaux sont identiques pour
-                ces deux types de revenu depuis 2013 seulement, la formule devrait donc être corrigée pour les années avant 2013.
-            (2) Le timing de la soumission des intérêts des PEL et CEL aux prélèvements sociaux
-                est complexe. Cette soumission peut se faire annuellement, ou en cumulé, et ce
-                en fonction de différents paramètres. Mais on ne prend pas en compte cette fonctionnalité.
-        NB : catégorie(s) de revenu non encore incluse(s) dans cette assiette : épargne salariale
-        Note à partir de 2018 : du fait du PFU, la base des revenus du capital au titre de l'impôt sur le revenu se rapproche de la base au titre des prélèvements sociaux,
-                                d'où le fait qu'on utilise cette variable. En revanche, concernant les prêts participatifs, le montant au titre de l'impôt sur le revenu
-                                forfaitaire est le montant net des pertes, alors que celui soumis au titre des prélèvements sociaux est le montant brut. Cependant,
-                                la case 2TT contient le montant des intérêts de ces prêts après déduction de ces pertes. Donc, on est contraint de prendre un montant net.
+        TODO: Certaines plus-values ne sont pas concernées par l'allègement.
         '''
 
         # Revenus du capital présents dans la section 2 de la déclaration de revenus, assurances-vie :
