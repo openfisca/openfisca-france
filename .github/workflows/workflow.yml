@@ -139,14 +139,7 @@ jobs:
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
       - run: |
           shopt -s globstar
-          openfisca --version
-          openfisca test --country-package openfisca_france tests/**/*.py --in-parallel
-        if: matrix.openfisca-dependencies == 'maximal'
-      - run: |
-          shopt -s globstar
           openfisca test --country-package openfisca_france tests/**/*.py
-        if: matrix.openfisca-dependencies == 'minimal'
-        #  && matrix.python-version != *min_pyver
 
   test-path-length:
     runs-on: ubuntu-24.04
@@ -192,7 +185,13 @@ jobs:
           echo "TEST_FILES_SUBLIST=$(python "${GITHUB_WORKSPACE}/.github/split_tests.py" ${CI_NODE_TOTAL} ${CI_NODE_INDEX})" >> $GITHUB_ENV
       - name: Run YAML test
         run: |
+          openfisca --version
           openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST}
+          if: matrix.openfisca-dependencies == 'minimal'
+      - run: |
+          openfisca --version
+          openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST} --in-parallel
+          if: matrix.openfisca-dependencies == 'maximal'
 
   test-api:
     runs-on: ubuntu-24.04
