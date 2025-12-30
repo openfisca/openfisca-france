@@ -56,10 +56,10 @@ Dans le cas où une Pull Request contient plusieurs évolutions distinctes, plus
 
 ## Tester une version spécifique de Python
 
-Grace à UV il est facile de tester la compatibilité d'OpenFisca-France avec une version spécifique de Python et de Numpy par exemple :
+Grace à UV il est facile de tester la compatibilité d'OpenFisca-France avec une version spécifique de Python, de Numpy et de Core par exemple :
 
 ```sh
-uv run --python 3.11 --with numpy==1.24.3 pytest tests/test_basics.py
+uv run --python 3.13.7 --with numpy==2.4.0 --with openfisca_core==44.0.3 openfisca test  --country-package openfisca_france tests/calculateur_impots/yaml/credit_assloy.yaml
 ```
 
 ## Mettre à jour les dépendances
