@@ -16,9 +16,11 @@ values:
     value: 0.099
   2019-01-01:
     value: 0.092
+  2026-01-01:
+    value: 0.106
 metadata:
   short_label: Produits de placement
-  last_value_still_valid_on: "2025-03-31"
+  last_value_still_valid_on: "2026-01-01"
   label_en: CSG on financial income
   ipp_csv_id: tx_csg_rk_plac
   unit: /1
