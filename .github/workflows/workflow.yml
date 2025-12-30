@@ -139,6 +139,8 @@ jobs:
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
       - run: |
           shopt -s globstar
+          pip show openfisca_core
+          pip show numpy
           openfisca test --country-package openfisca_france tests/**/*.py
 
   test-path-length:
@@ -187,11 +189,13 @@ jobs:
         if: matrix.openfisca-dependencies == 'minimal'
         run: |
           pip show openfisca_core
+          pip show numpy
           openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST}
       - name: Run YAML test in parallel with maximal Core version
         if: matrix.openfisca-dependencies == 'maximal'
         run: |
           pip show openfisca_core
+          pip show numpy
           openfisca --version
           openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST} --in-parallel
 
