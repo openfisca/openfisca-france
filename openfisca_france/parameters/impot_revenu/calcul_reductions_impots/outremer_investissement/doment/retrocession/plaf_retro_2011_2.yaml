@@ -7,6 +7,7 @@ values:
   2015-01-01:
     value: 1.27
 metadata:
+  short_label: Majoration 2ème taux
   last_value_still_valid_on: "2024-04-26"
   unit: /1
   reference:

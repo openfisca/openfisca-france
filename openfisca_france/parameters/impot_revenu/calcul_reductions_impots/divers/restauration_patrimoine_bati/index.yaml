@@ -1,5 +1,6 @@
 description: Restauration du patrimoine bâti (Dispositif "Malraux")
 metadata:
+  short_label: Restauration patrimoine bâti
   order:
   - plafond
   - taux_22

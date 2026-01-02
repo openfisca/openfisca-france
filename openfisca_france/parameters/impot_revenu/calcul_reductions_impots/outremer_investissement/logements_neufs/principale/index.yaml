@@ -1,5 +1,6 @@
 description: Taux annuel de réduction du prix d'investissement pendant 10 ans si habitation principale du contribuable pour les investissements réalisés en Outre-Mer (2003-2021)
 metadata:
+  short_label: Taux annuel sur 10 ans si habitation principale
   order:
   - taux_normal
   - taux_vert
