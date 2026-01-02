@@ -197,7 +197,9 @@ jobs:
           pip show openfisca_core
           pip show numpy
           openfisca --version
-          openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST} --in-parallel
+          # Force 4 workers comme la CI dispose de 4 coeurs
+          # https://docs.github.com/en/actions/reference/runners/github-hosted-runners
+          openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST} --in-parallel --num-workers 4
 
   test-api:
     runs-on: ubuntu-24.04
