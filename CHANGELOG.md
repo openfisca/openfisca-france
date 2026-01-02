@@ -6,7 +6,8 @@
 * Détails :
   - Ajoute le support de OpenFisca 44 :
     - Support de Python 3.13 et Numpy 2.3.
-    - Permet la parallèlisation des tests en local. Et l'augmente en CI.
+    - Permet la parallèlisation des tests en local : `uv run make test openfisca_args="--in-parallel"`.
+    - Augmente la parallèlisation en CI avec `--num-workers 4`.
 
 ### 174.2.42 [#2677](https://github.com/openfisca/openfisca-france/pull/2677)
 
