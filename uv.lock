@@ -726,7 +726,7 @@ wheels = [
 
 [[package]]
 name = "openfisca-core"
-version = "44.0.3"
+version = "44.0.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dpath" },
@@ -742,9 +742,9 @@ dependencies = [
     { name = "strenum" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/fe/e8/eb3275baac6fe489525fa5a25c61535d07c16695f16e26a178e9a7b0390d/openfisca_core-44.0.3.tar.gz", hash = "sha256:15321d457ba3e34a0743dcd5bd70668bb94db71247d200b34f3fc9f40f3f6fb4", size = 206259, upload-time = "2025-12-30T08:04:49.53Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1b/16/8929a985f2d16d5db4e6ebbd596bd48dfca0da5cfde527d3d2cc4008ae54/openfisca_core-44.0.4.tar.gz", hash = "sha256:9307ee8d05bfc1133a1e750734afb35d0927f1eda26a77d94371207c54afb54b", size = 206473, upload-time = "2025-12-30T17:17:33.149Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a3/85/1e4fbbe06c4d147d417e1c954e1dac6546e7f9639838de3fa647dddbf267/openfisca_core-44.0.3-py3-none-any.whl", hash = "sha256:922c2d0c5a05e8227b23ac5093e64d69eac2feb3766594bdb459493820de9b35", size = 266391, upload-time = "2025-12-30T08:04:47.849Z" },
+    { url = "https://files.pythonhosted.org/packages/17/d5/66d1c83d17fe189229d32bc654b97f92de60e99967e38d5b37e33a477660/openfisca_core-44.0.4-py3-none-any.whl", hash = "sha256:7d34b4a02f024a436e06b76aac993d44b6552a061e72630a2a3bd2144a22b242", size = 266565, upload-time = "2025-12-30T17:17:31.224Z" },
 ]
 
 [package.optional-dependencies]
