@@ -1,5 +1,6 @@
 # Changelog
 
+<<<<<<< HEAD
 ### 174.2.44 [#2680](https://github.com/openfisca/openfisca-france/pull/2680)
 
 * Évolution du système socio-fiscal.
@@ -16,6 +17,24 @@
     - Support de Python 3.13 et Numpy 2.3.
     - Permet la parallèlisation des tests en local : `uv run make test openfisca_args="--in-parallel"`.
     - Augmente la parallèlisation en CI avec `--num-workers 4`.
+=======
+# 175.0.0 [#2578](https://github.com/openfisca/openfisca-france/pull/2578)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/exonerations.py`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/cnav/employeur/vieillesse_deplafonnee.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises`
+  - `tests/formulas/allegement_cotisation_allocations_familiales.yaml`
+* Détails :
+  - Ajoute une variable : taux de l'allègement général
+  - Modifie la formule de l'allègement général avec la refonte en réduction générale dégressive unique
+  - Met à jour et crée les paramètres de la formule de la réduction générale dégressive unique
+  - Met fin aux bandeaux de réduction maladie et famille à partir de 2026
+  - Met à jour la valeur de la cotisation vieillesse part déplafonnée
+>>>>>>> 93c460589 (Bump + changelog)
 
 ### 174.2.42 [#2677](https://github.com/openfisca/openfisca-france/pull/2677)
 
