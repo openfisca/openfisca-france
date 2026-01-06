@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.44 [#2680](https://github.com/openfisca/openfisca-france/pull/2680)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/prestations_familiales`.
+* Détails :
+  - Met à jour les montants de paramètres des prestations familiales pour les montants revalorisés en janvier 2026
+
 ### 174.2.43 [#2670](https://github.com/openfisca/openfisca-france/pull/2670)
 
 * Changement mineur.
