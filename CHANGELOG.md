@@ -1,5 +1,13 @@
 # Changelog
 
+### 174.2.42 [#2677](https://github.com/openfisca/openfisca-france/pull/2677)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/pss`.
+* Détails :
+  - Mise à jour des paramètres du plafond de la sécurité sociale pour 2026
+
 ### 174.2.41 [#2676](https://github.com/openfisca/openfisca-france/pull/2676)
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2026
