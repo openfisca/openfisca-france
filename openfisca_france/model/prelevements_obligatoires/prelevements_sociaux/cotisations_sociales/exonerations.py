@@ -460,19 +460,19 @@ class exoneration_cotisations_employeur_zrd(Variable):
 
         # Paramètre T mis en dur initialement dans la formule et laissé tel quel car le paramètre reductions_cotisations_sociales.alleg_gen.mmid.taux existe uniquement depuis 2019.
         if period.start.year < 2019:
-            taux_max = .281 
+            taux_max = .281
         elif period.start.year >= 2019 and period.start.year < 2026:
-            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] 
-                        - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] 
+            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0]
+                        - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0]
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0]
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0]
                         - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
         else:
-            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] )
+            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0]
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0]
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0]
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0])
         seuil_max = seuils.plafond_part_remuneration
         seuil_min = seuils.plafond_exoneration_integrale_part_remuneration
 
@@ -588,16 +588,16 @@ class exoneration_cotisations_employeur_zrr(Variable):
         elif period.start.year < 2019:
             taux_max = 0.2655
         elif period.start.year >= 2019 and period.start.year < 2026:
-            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] 
-                        - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0] 
+            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0]
+                        - t_max_parameters.reductions_cotisations_sociales.alleg_gen.mmid.taux
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0]
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0]
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0]
                         - t_max_parameters.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales.reduction)
         else:
-            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0] 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0] 
-                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0] 
+            taux_max = (t_max_parameters.cotisations_securite_sociale_regime_general.mmid.employeur.maladie.rates[0]
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_plafonnee.rates[0]
+                        + t_max_parameters.cotisations_securite_sociale_regime_general.cnav.employeur.vieillesse_deplafonnee.rates[0]
                         + t_max_parameters.cotisations_securite_sociale_regime_general.famille.employeur.famille.rates[0])
 
         seuil_max = seuils.plafond_part_remuneration
