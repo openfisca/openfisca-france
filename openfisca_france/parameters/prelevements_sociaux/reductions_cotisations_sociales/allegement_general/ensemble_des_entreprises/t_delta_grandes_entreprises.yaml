@@ -1,7 +1,7 @@
 description: Taux delta pour les grandes entreprises dans la formule de calcul de la réduction générale dégressive unique
 values:
   2026-01-01:
-    value: 0.3813
+    value: 0.3821
 metadata:
   short_label: Taux delta (grandes entreprises)
   last_value_still_valid_on: "2026-01-06"
@@ -10,6 +10,8 @@ metadata:
     2026-01-01:
     - title: Article L241-13 du Code de la Sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051285243
+    - title: Décret n° 2025-1446 du 31/12/2025
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053276542
     - title: Décret n° 2025-887 du 04/09/2025
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052194026
     - title: Article 18 III 2° de la Loi de financement de la sécurité sociale pour 2025
@@ -21,9 +23,9 @@ metadata:
     Le taux delta pour les grandes entreprises correspond à la somme des taux de cotisations :
     - 7,00 % (taux réduit maladie)
     - 8,55 % (vieillesse plafonnée)
-    - 2,02 % (vieillesse déplafonnée)
+    - 2,11 % (vieillesse déplafonnée)
     - 3,45 % (taux famille réduit)
-    - 0,50 % (ATMP)
+    - 0,49 % (ATMP)
     - 0,30 % (CSA)
     - 4,72 % (Agirc Arrco)
     - 1,29 % (CEG)
