@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.1 [#2678](https://github.com/openfisca/openfisca-france/pull/2678)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026.
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/remplacement/seuils`.
+* Détails :
+  - Mise à jours des paramètres de la csg sur les revenus de remplacement pour l'année 2026
+
 # 175.0.0 [#2578](https://github.com/openfisca/openfisca-france/pull/2578)
 
 * Évolution du système socio-fiscal.
