@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.2 [#2679](https://github.com/openfisca/openfisca-france/pull/2679)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement`.
+* Détails :
+  - Met à jour les last_value_still_valid_on pour des paramètres des aides au logement qui ne sont pas revalorisés en 2026
+
 ### 175.0.1 [#2678](https://github.com/openfisca/openfisca-france/pull/2678)
 
 * Évolution du système socio-fiscal.

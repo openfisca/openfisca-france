@@ -26,7 +26,7 @@ values:
     value: 6600
 metadata:
   short_label: Forfait de ressources pour les étudiants en logement-foyer
-  last_value_still_valid_on: "2025-01-08"
+  last_value_still_valid_on: "2026-01-06"
   unit: currency
   reference:
     2003-01-01:
@@ -45,6 +45,9 @@ metadata:
       title: Arrêté du 15/12/2023 relatif au calcul des aides personnelles au logement pour l'année 2024, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048621292
     2025-01-01:
+    - title: Arrêté du 28/12/2025, art. 1
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000053202812/
+      note: Les paramètres ne sont pas revalorisés pour l'année 2026
     - title: Arrêté du 30/12/2024, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050873291
     - title: Arrêté du 27 septembre 2019, article 6 (montant non revalorisé)
