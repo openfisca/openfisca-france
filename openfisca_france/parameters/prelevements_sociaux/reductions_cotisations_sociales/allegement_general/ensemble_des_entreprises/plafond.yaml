@@ -2,9 +2,11 @@ description: Plafond de rémunération (en nombre de Smic) des salariés concern
 values:
   2005-07-01:
     value: 1.6
+  2026-01-01:
+    value: 3
 metadata:
   short_label: Plafond de rémunération des salariés
-  last_value_still_valid_on: "2025-02-21"
+  last_value_still_valid_on: "2026-01-06"
   label_en: General SSC reductions, so called Fillon reductions
   ipp_csv_id: plaf_fillon
   unit: smic_annuel
@@ -16,5 +18,12 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042912368/2021-01-01/
     - title: Décret 2005-88 du 04/02/2005
       href: https://www.legifrance.gouv.fr/eli/decret/2005/2/4/2005-88/jo/texte
+    2026-01-01:
+    - title: Article L241-13 du Code de la Sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051285243
+    - title: Décret n° 2025-887 du 04/09/2025
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052194026
+    - title: Article 18 III 2° de la Loi de financement de la sécurité sociale pour 2025
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051269563
   official_journal_date:
-    2005-07-01: "2005-02-06"
+    2005-07-01: "2025-09-05"
