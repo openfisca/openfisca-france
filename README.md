@@ -151,7 +151,14 @@ A noter que l'installation d'Openfisca-France peut lever une erreur sur certaine
 Pour faire tourner les tests d'OpenFisca-France, exécutez la commande suivante :
 
 ```sh
-uv run make test
+uv run make test openfisca_args="--in-parallel"
+```
+(Ne fonctionne que si vous avez installé `openfisca-core` version 44.0.1 ou supérieure.)
+
+Si cela utilise trop de mémoire, vous pouvez limiter le nombre de processus parallèles avec l'option `--num-workers` :
+
+```sh
+uv run make test openfisca_args="--in-parallel --num-workers 2"
 ```
 
 Pour utiliser une version spécifique de Python :

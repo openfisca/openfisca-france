@@ -54,15 +54,21 @@ Chaque évolution sera documentée par les éléments suivants :
 
 Dans le cas où une Pull Request contient plusieurs évolutions distinctes, plusieurs paragraphes peuvent être ajoutés au Changelog.
 
-## Utiliser une branche spécifique d'OpenFisca-Core pour faire passer les tests d'intégration continue
+## Tester une version spécifique de Python
 
-Certaines interventions sur OpenFica concernent à la fois [OpenFica-Core](https://github.com/openfisca/openfisca-core) et OpenFisca-France.
+Grace à UV il est facile de tester la compatibilité d'OpenFisca-France avec une version spécifique de Python, de Numpy et de Core par exemple :
 
-C'est par exemple le cas lorsqu'une version à paraître de Core contient un changement non-rétrocompatible, et que l'on souhaite s'assurer qu'il est possible d'adapter France à cette nouvelle version.
+```sh
+uv run --python 3.13.7 --with numpy==2.4.0 --with openfisca_core==44.0.3 openfisca test  --country-package openfisca_france tests/calculateur_impots/yaml/credit_assloy.yaml
+```
 
-Dans ce cas, il peut être pertinent d'exécuter les tests d'OpenFisca-France en se basant sur une version non-publiée de Core, disponible sur une branche spécifique. Pour ce faire, éditer le fichier [`.circleci/config.yml`](https://github.com/openfisca/openfisca-france/blob/9c44a5e2d44e1319c64326e7c528b2ac37cbfc05/.circleci/config.yml#L26).
+## Mettre à jour les dépendances
 
-Bien sûr, une fois la version spécifique de core publiée, **ce changement doit être reverté** avant le merge de la pull request sur France.
+Pour mettre à jour le fichier `uv.lock` avec les dernières version compatible avec le [pyproject.toml](pyproject.toml) il faut lancer la commande suivante :
+
+```sh
+uv sync --upgrade
+```
 
 ## Debug des tests YAML avec VS Code
 

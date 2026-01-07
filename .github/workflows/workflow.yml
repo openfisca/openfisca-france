@@ -7,11 +7,12 @@ on:
 
 env:
   # Versions disponibles visibles sur  https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
-  DEFAULT_PYTHON_VERSION: '3.13.7'
+  DEFAULT_PYTHON_VERSION: &upper_pyver 3.13.11
+  MIN_PYTHON_VERSION: &min_pyver 3.10.11
   # Et sur https://anaconda.org/anaconda/python/files pour Conda.
-  # Mais la 3.13.7 disponible ne fonctionnait pas pour autant pour des problème de dépendances.
+  # Mais la 3.13.11 disponible ne fonctionnait pas pour autant pour des problème de dépendances.
   # On reste donc en 3.10.11 dans l'attente de la suppression de Conda.
-  CONDA_PYTHON_VERSION: '3.10.11'
+  CONDA_PYTHON_VERSION: &conda_pyver 3.10.11
 
 jobs:
   build:
@@ -20,7 +21,7 @@ jobs:
       fail-fast: true
       matrix:
         os: ["ubuntu-24.04"]  # On peut ajouter "macos-latest" si besoin
-        python-version: ["3.9.12", "3.13.7"]
+        python-version: [*min_pyver, *upper_pyver]
         openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
@@ -122,7 +123,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ "ubuntu-24.04" ]  # On peut ajouter "macos-latest" si besoin
-        python-version: ["3.9.12", "3.13.7"]
+        python-version: [*min_pyver, *upper_pyver]
         openfisca-dependencies: [minimal, maximal]
     steps:
       - uses: actions/checkout@v4
@@ -138,8 +139,9 @@ jobs:
           key: build-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
       - run: |
           shopt -s globstar
+          pip show openfisca_core
+          pip show numpy
           openfisca test --country-package openfisca_france tests/**/*.py
-        if: matrix.openfisca-dependencies != 'minimal' || matrix.python-version != '3.9.12'
 
   test-path-length:
     runs-on: ubuntu-24.04
@@ -183,9 +185,21 @@ jobs:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         run: |
           echo "TEST_FILES_SUBLIST=$(python "${GITHUB_WORKSPACE}/.github/split_tests.py" ${CI_NODE_TOTAL} ${CI_NODE_INDEX})" >> $GITHUB_ENV
-      - name: Run YAML test
+      - name: Run YAML test sequencialy with minimal Core version
+        if: matrix.openfisca-dependencies == 'minimal'
         run: |
+          pip show openfisca_core
+          pip show numpy
           openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST}
+      - name: Run YAML test in parallel with maximal Core version
+        if: matrix.openfisca-dependencies == 'maximal'
+        run: |
+          pip show openfisca_core
+          pip show numpy
+          openfisca --version
+          # Force 4 workers comme la CI dispose de 4 coeurs
+          # https://docs.github.com/en/actions/reference/runners/github-hosted-runners
+          openfisca test --country-package openfisca_france ${TEST_FILES_SUBLIST} --in-parallel --num-workers 4
 
   test-api:
     runs-on: ubuntu-24.04
