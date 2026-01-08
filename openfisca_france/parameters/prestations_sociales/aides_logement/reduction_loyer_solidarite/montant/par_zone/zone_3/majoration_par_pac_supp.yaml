@@ -28,7 +28,7 @@ values:
     value: 9.4
 metadata:
   short_label: Majoration par personne à charge supplémentaire
-  last_value_still_valid_on: "2025-06-06"
+  last_value_still_valid_on: "2026-01-08"
   ipp_csv_id: rls_z3_pac_supplementaire
   unit: currency
   reference:

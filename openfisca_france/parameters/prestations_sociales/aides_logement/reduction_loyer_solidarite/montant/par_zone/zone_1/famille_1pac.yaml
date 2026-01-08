@@ -28,7 +28,7 @@ values:
     value: 83.46
 metadata:
   short_label: Bénéficiaire isolé ou couple ayant 1 personne à charge
-  last_value_still_valid_on: "2025-06-06"
+  last_value_still_valid_on: "2026-01-08"
   ipp_csv_id: rls_z1_famille_1pac
   unit: currency
   reference:
