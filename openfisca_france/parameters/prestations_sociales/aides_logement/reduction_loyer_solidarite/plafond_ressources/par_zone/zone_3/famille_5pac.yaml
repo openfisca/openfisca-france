@@ -10,7 +10,7 @@ values:
     value: 2555
 metadata:
   short_label: Bénéficiaire isolé ou couple ayant 5 personnes à charge
-  last_value_still_valid_on: "2023-05-24"
+  last_value_still_valid_on: "2026-01-08"
   ipp_csv_id: plafond_ressources_rls_z3_famille_5pac
   unit: currency
   reference:
