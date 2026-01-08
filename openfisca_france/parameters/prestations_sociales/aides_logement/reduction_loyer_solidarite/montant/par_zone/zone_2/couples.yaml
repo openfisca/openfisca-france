@@ -28,7 +28,7 @@ values:
     value: 65.83
 metadata:
   short_label: Couple sans personne à charge
-  last_value_still_valid_on: "2025-06-06"
+  last_value_still_valid_on: "2026-01-08"
   ipp_csv_id: rls_z2_couple
   unit: currency
   reference:

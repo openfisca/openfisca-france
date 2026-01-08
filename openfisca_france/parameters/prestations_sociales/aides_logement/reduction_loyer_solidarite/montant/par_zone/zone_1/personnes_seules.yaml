@@ -28,7 +28,7 @@ values:
     value: 61.13
 metadata:
   short_label: Bénéficiaire isolé
-  last_value_still_valid_on: "2025-06-06"
+  last_value_still_valid_on: "2026-01-08"
   ipp_csv_id: rls_z1_personne_isolee
   unit: currency
   reference:
