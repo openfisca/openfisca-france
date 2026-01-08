@@ -1,5 +1,15 @@
 # Changelog
 
+### 175.0.3
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/plafond_ressources`
+* Détails :
+  - Mise à jour des paramètres de la Réduction du Loyer de Solidarité (RLS) pour janvier 2026
+
 ### 175.0.2 [#2679](https://github.com/openfisca/openfisca-france/pull/2679)
 
 * Changement mineur.
