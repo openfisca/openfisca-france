@@ -3,6 +3,7 @@ values:
   2011-01-01:
     value: 0.22
 metadata:
+  short_label: Taux pour numéraire avant 2012
   last_value_still_valid_on: "2025-08-22"
   unit: /1
   reference:
