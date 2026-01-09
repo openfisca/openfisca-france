@@ -1,5 +1,18 @@
 # Changelog
 
+### 175.0.4 [#2667](https://github.com/openfisca/openfisca-france/pull/2667)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_deplafonnees.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables`
+  - `openfisca_france/parameters/impot_revenu/contributions_exeptionnelles`
+  - `openfisca_france/parameters/impot_revenu/credits_impots`
+* Détails :
+  - Réorganisation et mise à jour impôt sur le revenu (crédits/calcul revenus imposables et contributions exceptionnelles)
+
 ### 175.0.3 [#2681](https://github.com/openfisca/openfisca-france/pull/2681)
 
 * Évolution du système socio-fiscal.
