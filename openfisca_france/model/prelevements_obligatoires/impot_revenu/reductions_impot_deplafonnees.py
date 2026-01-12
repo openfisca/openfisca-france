@@ -75,9 +75,9 @@ class accult(Variable):
         2002-
         '''
         f7uo = foyer_fiscal('f7uo', period)
-        P = parameters(period).impot_revenu.credits_impots.accult
+        accult = parameters(period).impot_revenu.credits_impots.accult
 
-        return P.taux * f7uo
+        return accult * f7uo
 
 
 class frais_de_comptabilite(Variable):
