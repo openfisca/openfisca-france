@@ -4,3 +4,4 @@ metadata:
   order:
   - cas_general
   - cas_colocataires
+  inflator: inflateurs.inflateur_aides_logement_loyer
