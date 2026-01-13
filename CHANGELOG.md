@@ -1,5 +1,22 @@
 # Changelog
 
+### 175.0.6 [#2666](https://github.com/openfisca/openfisca-france/pull/2666)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées :
+  - `openfisca_france/parameters/prelevements_sociaux`
+  - `openfisca_france/parameters/taxation_capital`
+  - `openfisca_france/parameters/taxation_indirecte`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/base.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique.py`
+
+* Détails :
+  - Diverses mises à jour
+
 ### 175.0.5 [#2668](https://github.com/openfisca/openfisca-france/pull/2668)
 
 * Évolution du système socio-fiscal.
