@@ -424,7 +424,7 @@ class csg_imposable_non_salarie(Variable):
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
         csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = csg.imposable.taux
+        taux = csg.imposable
         return - taux * assiette_csg_crds_non_salarie
 
 
@@ -437,7 +437,7 @@ class csg_deductible_non_salarie(Variable):
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
         csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = csg.deductible.taux
+        taux = csg.deductible
         return - taux * assiette_csg_crds_non_salarie
 
 
@@ -450,7 +450,7 @@ class crds_non_salarie(Variable):
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
-        taux = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        taux = parameters(period).prelevements_sociaux.contributions_sociales.crds
         return - taux * assiette_csg_crds_non_salarie
 
 

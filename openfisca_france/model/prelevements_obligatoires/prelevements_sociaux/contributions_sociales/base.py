@@ -16,7 +16,7 @@ def montant_csg_crds(base_avec_abattement = None, base_sans_abattement = None, i
             round_base_decimals = 2,
             ) + base_sans_abattement
     if indicatrice_taux_plein is None and indicatrice_taux_reduit is None and indicatrice_taux_intermediaire is None:
-        return -law_node.taux * base
+        return -law_node * base
     elif indicatrice_taux_plein is not None and indicatrice_taux_reduit is not None and indicatrice_taux_intermediaire is None:
         return - (
             law_node.taux_plein * indicatrice_taux_plein

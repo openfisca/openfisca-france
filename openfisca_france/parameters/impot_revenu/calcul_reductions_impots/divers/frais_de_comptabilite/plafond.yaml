@@ -14,7 +14,7 @@ values:
     value: null
 metadata:
   last_value_still_valid_on: "2025-04-01"
-  short_label: Plafond de réduction d'impôt
+  short_label: Montant plafond de réduction d'impôt
   ipp_csv_id: frais_compta
   unit: currency_next_year
   reference:
