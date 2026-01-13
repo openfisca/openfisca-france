@@ -5,6 +5,7 @@ values:
   2022-01-01:
     value: null
 metadata:
+  short_label: Majoration ESUS et SFS
   last_value_still_valid_on: "2022-10-11"
   unit: currency_next_year
   reference:

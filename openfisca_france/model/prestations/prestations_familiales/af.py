@@ -438,7 +438,7 @@ class crds_af(Variable):
     def formula(famille, period, parameters):
         af = famille('af', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 
         return -(af) * taux_crds
 
