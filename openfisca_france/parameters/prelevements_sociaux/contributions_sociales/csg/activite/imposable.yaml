@@ -5,7 +5,7 @@ values:
   1993-07-01:
     value: 0.024
 metadata:
-  short_label: Taux
+  short_label: Taux CSG imposable sur les revenus d'activité
   last_value_still_valid_on: "2024-07-22"
   label_en: CSG - rates on work incomes
   unit: /1

@@ -942,7 +942,7 @@ class crds_ape(Variable):
     def formula(famille, period, parameters):
         ape = famille('ape', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 
         return -(ape) * taux_crds
 
@@ -991,7 +991,7 @@ class crds_apje(Variable):
     def formula(famille, period, parameters):
         apje = famille('apje', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 
         return -(apje) * taux_crds
 
@@ -1169,7 +1169,7 @@ class crds_paje(Variable):
     def formula(famille, period, parameters):
         paje = famille('paje', period)
 
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 
         return -(paje) * taux_crds
 
