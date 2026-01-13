@@ -4,7 +4,6 @@ values:
     value: 7500
 metadata:
   last_value_still_valid_on: "2025-08-22"
-  short_label: Plafond individuel des dons consentis aux partis politiques
   unit: currency_next_year
   reference:
     2013-01-01:

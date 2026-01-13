@@ -1,5 +1,6 @@
 description: Taux de réduction sur 5 ans en cas de travaux de réhabilitation contre les séismes ou les cyclones pour les investissements réalisés en Outre-Mer
 metadata:
+  short_label: Taux sur 5 ans si réhabilitation catastrophes nat.
   order:
   - taux_normal
   - taux_vert
