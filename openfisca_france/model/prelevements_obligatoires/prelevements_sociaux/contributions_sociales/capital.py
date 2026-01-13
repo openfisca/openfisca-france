@@ -347,8 +347,8 @@ class assiette_csg_revenus_capital_alleges(Variable):
         # Revenus fonciers
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
 
-        # Plus-values
-        assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
+        # Plus-values immobilières
+        f3vz = foyer_fiscal('f3vz', period)
 
         # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
@@ -358,7 +358,7 @@ class assiette_csg_revenus_capital_alleges(Variable):
             + rente_viagere_titre_onereux_net
             + interets_pel_cel_non_soumis_IR
             + rev_cat_rfon
-            + assiette_csg_plus_values
+            + f3vz
             + assurance_vie_ps_exoneree_irpp_pl
             )
 
