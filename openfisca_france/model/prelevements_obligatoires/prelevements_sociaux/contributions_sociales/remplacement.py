@@ -461,7 +461,7 @@ class crds_retraite(Variable):
     def formula(individu, period, parameters):  # formula_1997_2014 à corriger (cf. commentaire au niveau de la variable)
         retraite_brute = individu('retraite_brute', period)
         parameters = parameters(period)
-        taux = parameters.prelevements_sociaux.contributions_sociales.crds.taux
+        taux = parameters.prelevements_sociaux.contributions_sociales.crds
 
         return - taux * retraite_brute
 

@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: De 1,1 à 1,2 Smic
-  last_value_still_valid_on: "1996-10-01"
+  last_value_still_valid_on: "2025-01-17"
   label_en: Global reduction in SSCs
   ipp_csv_id: tx_csp_exo_fam_1_2
   unit: /1

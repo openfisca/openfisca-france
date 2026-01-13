@@ -5,4 +5,6 @@ metadata:
   order:
   - taux_global
   - deductible
+  - imposable
   - abattement
+  - indemnite_compensatrice_fonctionnaires

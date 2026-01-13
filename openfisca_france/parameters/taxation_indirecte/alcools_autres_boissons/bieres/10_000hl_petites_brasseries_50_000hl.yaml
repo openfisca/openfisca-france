@@ -1,7 +1,5 @@
 description: Taxes sur les bières des petites brasseries comprises 10 000 hl et 50 000 hl (en €/degré/hl)
 values:
-  1979-07-01:
-    value: null
   1993-01-01:
     value: 6.25
   1997-01-01:
