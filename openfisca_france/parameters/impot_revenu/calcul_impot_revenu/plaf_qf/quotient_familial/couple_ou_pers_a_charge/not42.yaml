@@ -4,7 +4,7 @@ values:
     value: 0.5
 metadata:
   short_label: Contribuable marié, de plus de 74 ans, avec carte du combattant ou pension militaire d'invalidité ou de victime de guerre
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2026-01-13"
   unit: part_quotient_familial
   reference:
     1987-01-01:
