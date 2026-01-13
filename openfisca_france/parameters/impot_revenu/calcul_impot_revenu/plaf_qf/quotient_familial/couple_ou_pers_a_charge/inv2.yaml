@@ -4,7 +4,7 @@ values:
     value: 0.5
 metadata:
   short_label: Personne à charge titulaire de la carte invalidité ou CMI-invalidité
-  last_value_still_valid_on: "2024-10-23"
+  last_value_still_valid_on: "2026-01-13"
   unit: part_quotient_familial
   reference:
     2000-01-01:
