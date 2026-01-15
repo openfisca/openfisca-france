@@ -1,5 +1,16 @@
 # Changelog
 
+### 175.0.7 [#2687](https://github.com/openfisca/openfisca-france/pull/2687)
+
+* Correction d'un crash.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées : 
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa/plafond_ressources/personnes_seules.yaml`.
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/cf/cf_plaf/majoration/biactifs_isoles.yaml`
+* Détails :
+  - Corrige la date d'entrée en vigueur de deux paramètres.
+  
+
 ### 175.0.6 [#2666](https://github.com/openfisca/openfisca-france/pull/2666)
 
 * Évolution du système socio-fiscal.
