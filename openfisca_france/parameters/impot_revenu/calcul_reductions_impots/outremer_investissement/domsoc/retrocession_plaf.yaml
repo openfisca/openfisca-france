@@ -5,6 +5,7 @@ values:
   2015-01-01:
     value: 2.33
 metadata:
+  short_label: Plafond rétrocession
   last_value_still_valid_on: "2025-12-03"
   unit: /1
   reference:

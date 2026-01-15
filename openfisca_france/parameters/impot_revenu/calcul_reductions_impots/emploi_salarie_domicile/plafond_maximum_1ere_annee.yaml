@@ -4,10 +4,10 @@ values:
     value: null
   2008-01-01:
     value: 18000
-  2017-01-01: 
+  2017-01-01:
     value: null
 metadata:
-  short_label: Plafond des dépenses, après majorations, la première année
+  short_label: Plafond des dépenses, après majorations, la 1ère année
   last_value_still_valid_on: "2024-11-14"
   unit: currency_next_year
   reference:

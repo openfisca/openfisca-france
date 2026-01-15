@@ -1,6 +1,5 @@
 description: Contribution différentielle sur les hauts revenus
 metadata:
-  short_label: Contribution différentielle sur les hauts revenus
   order:
   - taux_cdhr
   - seuil_celibataire
