@@ -4,7 +4,22 @@ metadata:
   reference:
     2011-12-30:
       title: I de l'article 1417 du code général des impôts
-      href: https://www.legifrance.gouv.fr/codes/id/LEGITEXT000006069577/
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038994951/2019-10-01
+    2021-06-12:
+      title: I de l'article 1417 du code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043662261/2021-06-12
+    2022-05-07:
+      title: I de l'article 1417 du code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045765115/2022-05-07
+    2023-06-03:
+      title: I de l'article 1417 du code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047623022/2023-06-03
+    2024-07-01:
+      title: I de l'article 1417 du code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805626/2024-07-01
+    2025-06-19:
+      title: I de l'article 1417 du code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051764856/2025-06-19
 guadeloupe:
   demi_part_supplementaire:
     values:
@@ -14,6 +29,16 @@ guadeloupe:
         value: 2888
       2019-01-01:
         value: 2934
+      2021-06-12:
+        value: 2969
+      2022-05-07:
+        value: 3011
+      2023-06-03:
+        value: 3174
+      2024-07-01:
+        value: 3326
+      2025-06-19:
+        value: 3386
   premiere_demi_part:
     values:
       2011-12-30:
@@ -22,6 +47,16 @@ guadeloupe:
         value: 3057
       2019-01-01:
         value: 3106
+      2021-06-12:
+        value: 3143
+      2022-05-07:
+        value: 3187
+      2023-06-03:
+        value: 3359
+      2024-07-01:
+        value: 3520
+      2025-06-19:
+        value: 3583
   valeur_de_base:
     values:
       2011-12-30:
@@ -30,6 +65,16 @@ guadeloupe:
         value: 12798
       2019-01-01:
         value: 13003
+      2021-06-12:
+        value: 13159
+      2022-05-07:
+        value: 13343
+      2023-06-03:
+        value: 14064
+      2024-07-01:
+        value: 14739
+      2025-06-19:
+        value: 15004
 guyane:
   demi_part_supplementaire:
     values:
@@ -39,6 +84,16 @@ guyane:
         value: 2888
       2019-01-01:
         value: 2934
+      2021-06-12:
+        value: 2969
+      2022-05-07:
+        value: 3011
+      2023-06-03:
+        value: 3174
+      2024-07-01:
+        value: 3326
+      2025-06-19:
+        value: 3386
   premiere_demi_part:
     values:
       2011-12-30:
@@ -47,6 +102,16 @@ guyane:
         value: 3683
       2019-01-01:
         value: 3742
+      2021-06-12:
+        value: 3787
+      2022-05-07:
+        value: 3840
+      2023-06-03:
+        value: 4047
+      2024-07-01:
+        value: 4241
+      2025-06-19:
+        value: 4317
   valeur_de_base:
     values:
       2011-12-30:
@@ -55,6 +120,16 @@ guyane:
         value: 13380
       2019-01-01:
         value: 13594
+      2021-06-12:
+        value: 13757
+      2022-05-07:
+        value: 13950
+      2023-06-03:
+        value: 14703
+      2024-07-01:
+        value: 15409
+      2025-06-19:
+        value: 15686
 la_reunion:
   demi_part_supplementaire:
     values:
@@ -64,6 +139,16 @@ la_reunion:
         value: 2888
       2019-01-01:
         value: 2934
+      2021-06-12:
+        value: 2969
+      2022-05-07:
+        value: 3011
+      2023-06-03:
+        value: 3174
+      2024-07-01:
+        value: 3326
+      2025-06-19:
+        value: 3386
   premiere_demi_part:
     values:
       2011-12-30:
@@ -72,6 +157,16 @@ la_reunion:
         value: 3057
       2019-01-01:
         value: 3106
+      2021-06-12:
+        value: 3143
+      2022-05-07:
+        value: 3187
+      2023-06-03:
+        value: 3359
+      2024-07-01:
+        value: 3520
+      2025-06-19:
+        value: 3583
   valeur_de_base:
     values:
       2011-12-30:
@@ -80,6 +175,16 @@ la_reunion:
         value: 12798
       2019-01-01:
         value: 13003
+      2021-06-12:
+        value: 13159
+      2022-05-07:
+        value: 13343
+      2023-06-03:
+        value: 14064
+      2024-07-01:
+        value: 14739
+      2025-06-19:
+        value: 15004
 martinique:
   demi_part_supplementaire:
     values:
@@ -89,6 +194,16 @@ martinique:
         value: 2888
       2019-01-01:
         value: 2934
+      2021-06-12:
+        value: 2969
+      2022-05-07:
+        value: 3011
+      2023-06-03:
+        value: 3174
+      2024-07-01:
+        value: 3326
+      2025-06-19:
+        value: 3386
   premiere_demi_part:
     values:
       2011-12-30:
@@ -97,6 +212,16 @@ martinique:
         value: 3057
       2019-01-01:
         value: 3106
+      2021-06-12:
+        value: 3143
+      2022-05-07:
+        value: 3187
+      2023-06-03:
+        value: 3359
+      2024-07-01:
+        value: 3520
+      2025-06-19:
+        value: 3583
   valeur_de_base:
     values:
       2011-12-30:
@@ -105,6 +230,16 @@ martinique:
         value: 12798
       2019-01-01:
         value: 13003
+      2021-06-12:
+        value: 13159
+      2022-05-07:
+        value: 13343
+      2023-06-03:
+        value: 14064
+      2024-07-01:
+        value: 14739
+      2025-06-19:
+        value: 15004
 martinique_guadeloupe_la_reunion:
   demi_part_supplementaire:
     values:
@@ -114,6 +249,16 @@ martinique_guadeloupe_la_reunion:
         value: 2888
       2019-01-01:
         value: 2934
+      2021-06-12:
+        value: 2969
+      2022-05-07:
+        value: 3011
+      2023-06-03:
+        value: 3174
+      2024-07-01:
+        value: 3326
+      2025-06-19:
+        value: 3386
   premiere_demi_part:
     values:
       2011-12-30:
@@ -122,6 +267,16 @@ martinique_guadeloupe_la_reunion:
         value: 3057
       2019-01-01:
         value: 3106
+      2021-06-12:
+        value: 3143
+      2022-05-07:
+        value: 3187
+      2023-06-03:
+        value: 3359
+      2024-07-01:
+        value: 3520
+      2025-06-19:
+        value: 3583
   valeur_de_base:
     values:
       2011-12-30:
@@ -130,6 +285,16 @@ martinique_guadeloupe_la_reunion:
         value: 12798
       2019-01-01:
         value: 13003
+      2021-06-12:
+        value: 13159
+      2022-05-07:
+        value: 13343
+      2023-06-03:
+        value: 14064
+      2024-07-01:
+        value: 14739
+      2025-06-19:
+        value: 15004
 mayotte:
   demi_part_supplementaire:
     values:
@@ -139,6 +304,16 @@ mayotte:
         value: 4326
       2019-01-01:
         value: 4395
+      2021-06-12:
+        value: 4448
+      2022-05-07:
+        value: 4510
+      2023-06-03:
+        value: 4754
+      2024-07-01:
+        value: 3326
+      2025-06-19:
+        value: 3386
   premiere_demi_part:
     values:
       2011-12-30:
@@ -147,6 +322,16 @@ mayotte:
         value: 5518
       2019-01-01:
         value: 5606
+      2021-06-12:
+        value: 5673
+      2022-05-07:
+        value: 5752
+      2023-06-03:
+        value: 6063
+      2024-07-01:
+        value: 4241
+      2025-06-19:
+        value: 4317
   valeur_de_base:
     values:
       2011-12-30:
@@ -155,6 +340,16 @@ mayotte:
         value: 20052
       2019-01-01:
         value: 20373
+      2021-06-12:
+        value: 20618
+      2022-05-07:
+        value: 20907
+      2023-06-03:
+        value: 22036
+      2024-07-01:
+        value: 15409
+      2025-06-19:
+        value: 15686
 metropole:
   demi_part_supplementaire:
     values:
@@ -164,6 +359,16 @@ metropole:
         value: 2888
       2019-01-01:
         value: 2934
+      2021-06-12:
+        value: 2969
+      2022-05-07:
+        value: 3011
+      2023-06-03:
+        value: 3174
+      2024-07-01:
+        value: 3326
+      2025-06-19:
+        value: 3386
   premiere_demi_part:
     values:
       2011-12-30:
@@ -172,6 +377,16 @@ metropole:
         value: 2888
       2019-01-01:
         value: 2934
+      2021-06-12:
+        value: 2969
+      2022-05-07:
+        value: 3011
+      2023-06-03:
+        value: 3174
+      2024-07-01:
+        value: 3326
+      2025-06-19:
+        value: 3386
   valeur_de_base:
     values:
       2011-12-30:
@@ -180,6 +395,16 @@ metropole:
         value: 10815
       2019-01-01:
         value: 10988
+      2021-06-12:
+        value: 11120
+      2022-05-07:
+        value: 11276
+      2023-06-03:
+        value: 11885
+      2024-07-01:
+        value: 12455
+      2025-06-19:
+        value: 12679
 non_renseigne:
   demi_part_supplementaire:
     values:
