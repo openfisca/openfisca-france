@@ -3,8 +3,10 @@ values:
   2020-07-31:
     value: 10
 metadata:
+  last_value_still_valid_on: "2026-01-19"
   short_label: Durée versement
   unit: month
   reference:
     2020-07-31:
       href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000042170743/
+      note: "Taux annuel sur 10 mois"
