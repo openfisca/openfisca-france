@@ -2,5 +2,8 @@ description: Taux (XA)
 values:
   2011-01-01:
     value: 0.4
+  2013-01-01:
+    value: null
 metadata:
   unit: /1
+documentation: N'est plus utilisé depuis 2013.

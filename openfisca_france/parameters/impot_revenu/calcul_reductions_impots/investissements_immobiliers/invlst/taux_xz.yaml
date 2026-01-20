@@ -2,5 +2,8 @@ description: Taux (XZ)
 values:
   2012-01-01:
     value: 0.15
+  2013-01-01:
+    value: null
 metadata:
   unit: /1
+documentation: N'est plus utilisé depuis 2013.
