@@ -8,7 +8,7 @@ metadata:
   label_en: smaller CSG on financial income
   unit: /1
   reference:
-    2019-01-01:
+    2026-01-01:
       - title: Code de la sécurité sociale - art. L136-6
         href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033812508/2026-01-01/
       - title: Code de la sécurité sociale - art. L136-8
