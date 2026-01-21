@@ -1,5 +1,14 @@
 # Changelog
 
+### 175.0.8 [#2672](https://github.com/openfisca/openfisca-france/pull/2672)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées : 
+  - `openfisca_france/parameters/taxation_capital/prelevements_sociaux/csg/taux_global`
+* Détails :
+  - Augmentation de la CSG sur une partie des revenus du capital.
+
 ### 175.0.7 [#2687](https://github.com/openfisca/openfisca-france/pull/2687)
 
 * Correction d'un crash.
