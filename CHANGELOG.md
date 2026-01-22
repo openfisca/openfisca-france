@@ -1,5 +1,15 @@
 # Changelog
 
+### 175.0.10 [#2686](https://github.com/openfisca/openfisca-france/pull/2686)
+
+* Changement mineur.
+* Périodes concernées : 2026
+* Zones impactées : 
+- `parameters/marche_travail/salaire_minimum/smic/*`
+
+* Détails :
+  - Mise à jour de `last_value_still_valid_on`
+
 ### 175.0.9 [#2685](https://github.com/openfisca/openfisca-france/pull/2685)
 
 * Changement mineur.
@@ -8,7 +18,7 @@
 - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/couple_ou_pers_a_charge/*`
 
 * Détails :
-  - Mise à jour de `last_value_still_valid_on` et d références.
+  - Mise à jour de `last_value_still_valid_on` et des références.
  
 ### 175.0.8 [#2672](https://github.com/openfisca/openfisca-france/pull/2672)
 
