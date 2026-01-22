@@ -1,5 +1,15 @@
 # Changelog
 
+### 175.0.9 [#2685](https://github.com/openfisca/openfisca-france/pull/2685)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : 
+- `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/couple_ou_pers_a_charge/*`
+
+* Détails :
+  - Mise à jour de `last_value_still_valid_on` et d références.
+ 
 ### 175.0.8 [#2672](https://github.com/openfisca/openfisca-france/pull/2672)
 
 * Évolution du système socio-fiscal.
