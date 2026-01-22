@@ -1,5 +1,16 @@
 # Changelog
 
+### 175.0.11 [#2691](https://github.com/openfisca/openfisca-france/pull/2691)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : 
+- `parameters/taxation_capital/epargne/livret_epargne_populaire/coefficient_multiplicateur.yaml`
+- `parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/plafond_somme_trois_reductions_pme_fcip_fip_pme_dons.yaml`
+
+* Détails :
+  - Mise à jour de `last_value_still_valid_on`.
+
 ### 175.0.10 [#2686](https://github.com/openfisca/openfisca-france/pull/2686)
 
 * Changement mineur.
