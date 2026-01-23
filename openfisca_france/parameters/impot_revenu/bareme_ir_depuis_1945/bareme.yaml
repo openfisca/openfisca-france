@@ -133,6 +133,8 @@ brackets:
       value: 11294
     2024-01-01:
       value: 11497
+    2025-01-01:
+      value: 11600
   rate:
     1945-01-01:
       value: 0.12
@@ -287,6 +289,8 @@ brackets:
       value: 28797
     2024-01-01:
       value: 29315
+    2025-01-01:
+      value: 29579
   rate:
     1945-01-01:
       value: 0.3
@@ -443,6 +447,8 @@ brackets:
       value: 82341
     2024-01-01:
       value: 83823
+    2025-01-01:
+      value: 84577
   rate:
     1945-01-01:
       value: 0.45
@@ -601,6 +607,8 @@ brackets:
       value: 177106
     2024-01-01:
       value: 180294
+    2025-01-01:
+      value: 181917
   rate:
     1945-01-01:
       value: 0.6
@@ -1456,6 +1464,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2025-02-16/
     - title: Loi 2025-127, art. 2 du 14/02/2025 de finances (LF pour 2025)
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051168019
+    2025-01-01:
+    - title: art. 2 ter du 21/01/2026 de finances (PLF pour 2026)
+      href: https://www.assemblee-nationale.fr/dyn/17/textes/l17b2247-n0_rapport-fond
   official_journal_date:
     1946-01-01: "1949-01-01"
     1959-01-01: "1959-12-31"
