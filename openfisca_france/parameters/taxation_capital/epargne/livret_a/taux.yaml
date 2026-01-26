@@ -96,9 +96,11 @@ values:
     value: 0.024
   2025-08-01:
     value: 0.017
+  2026-02-01:
+    value: 0.015
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2025-08-01"
+  last_value_still_valid_on: "2026-01-12"
   unit: /1
   reference:
     2020-02-01:

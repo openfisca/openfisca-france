@@ -13,3 +13,42 @@
       2017: 1.5
   output:
     livret_epargne_populaire_plafond: 25060 # ceil(1.8 * (10988 + 2934))
+
+- name: "Livret d'épargne populaire - Plafond Metropole 2025"
+  period: 2025-05
+  input:
+    residence: metropole
+    nbptr:
+      # pour ouvrir un LEP en 2025, en fonction de la date de la demande d'ouverture, la banque vérifiera le revenu fiscal de référence de l'année 2023
+      2023: 1.5
+  output:
+    livret_epargne_populaire_plafond: 28_406 # ceil(1.8 * (12455 + 3326))
+
+- name: "Livret d'épargne populaire - Plafond Mayotte 2025"
+  period: 2025-05
+  input:
+    residence: mayotte
+    nbptr:
+      2023: 1.5
+  output:
+    livret_epargne_populaire_plafond: 35_370  # ceil(1.8 * (15409 + 3326))
+
+- name: "Livret d'épargne populaire - Plafond Metropole 2026"
+  period: 2026-05
+  input:
+    residence: metropole
+    nbptr:
+      2024: 1.5
+  output:
+    livret_epargne_populaire_plafond: 28_917 # ceil(1.8 * (12_679 + 3_386))
+
+- name: "Livret d'épargne populaire - Plafond Mayotte 2026"
+  period: 2026-05
+  input:
+    residence: mayotte
+    nbptr:
+      2024: 1.5
+  output:
+    livret_epargne_populaire_plafond: 36_006
+
+# Voir https://www.service-public.gouv.fr/particuliers/vosdroits/F2367 pour les derniers plafonds connus
