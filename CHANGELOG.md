@@ -1,5 +1,26 @@
 # Changelog
 
+### 175.0.12 [#2694](https://github.com/openfisca/openfisca-france/pull/2694)
+
+* Changement mineur.
+* Périodes concernées : -
+* Zones impactées : 
+- `parameters/prestations_sociales/education/bourses/enseignement_superieur/criteres_sociaux/*`
+- `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/majoration_plafond/majoration_plafond_couple.yaml`
+- `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aeeh/age_maximum_enfant.yaml`
+- `parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/paje_plaf/ne_adopte_apres_04_2018/majorations_enfants/*`
+- `parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_maj/maj_age_deux_enfants/age1.yaml`
+- `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/accident_travail/rente/salaire_net/bareme.yaml`
+- `parameters/marche_travail/remuneration_dans_fonction_publique/indicefp/*`
+- `parameters/prestations_sociales/aides_logement/allocations_logement/*`
+- `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/*`
+- `prestations_sociales.aides_logement.allocations_logement.locatif.formule.pp_particip_perso.tp_taux.tf_taille_famille.dom.*`
+- `parameters/impot_revenu/calcul_reductions_impots/investissements_immobiliers/invlst/*`
+
+* Détails :
+  - Mise à jour de valeurs, références et `last_value_still_valid_on`.
+  - Extinction des paramètres inutilisés.
+
 ### 175.0.11 [#2691](https://github.com/openfisca/openfisca-france/pull/2691)
 
 * Changement mineur.
