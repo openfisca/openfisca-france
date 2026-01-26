@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Plafond célibataire
   unit: currency_next_year
-  last_value_still_valid_on: "2025-11-13"
+  last_value_still_valid_on: "2026-01-20"
   reference:
     2010-01-01:
       title: Article 199 decies E du Code général des impôts

@@ -12,7 +12,11 @@ values:
     value:
     - CH
     - UK
+  2021-06-23:
+    value:
+    - CH
 metadata:
+  last_value_still_valid_on: "2026-01-19"
   short_label: Nationalités hors EEE
   reference:
     2004-07-21:
@@ -23,7 +27,7 @@ metadata:
       href: https://www.education.gouv.fr/bo/19/Hebdo26/ESRS1916927C.htm
     2020-06-08:
       href: https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm
-  notes:
-    2024-06-27:
-    - title: Le Royaume-Uni ne semble plus faire partie des pays éligibles
-      href: https://www.enseignementsup-recherche.gouv.fr/fr/bo/2024/Hebdo26/ESRS2413977C
+      note: C'est la seule année où la nationalité britannique ouvre droit à une bourse
+    2021-06-23:
+      title: Circulaire du 23-6-2021 Modalités d'attribution des bourses d'enseignement supérieur sur critères sociaux, des aides au mérite et des aides à la mobilité internationale - année 2021-2022
+      href: https://www.education.gouv.fr/bo/21/Hebdo26/ESRS2117943C.htm

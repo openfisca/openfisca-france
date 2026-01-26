@@ -3,12 +3,16 @@ values:
   2004-01-01:
     value: 0.3
 metadata:
+  last_value_still_valid_on: 2026-01-20
   short_label: Taux d'abattement (cessation d'activité)
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: abbatement_cessation_activite
   unit: /1
   reference:
+    2004-01-01:
+      title: Article R532-5 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750910/2004-01-01
+      note: "L'article est dans la partie PAJE du code mais parle bien 'des dispositions du titre II du livre VIII du présent code' qui correspondes à l'AAH."
     2011-05-20:
-      - title: Circulaire n°2011-011 du 20/05/2011
-      - title: Article R532-5 du Code de la Sécurité sociale
-        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750910
+      title: Circulaire n°2011-011 du 20/05/2011
+      note: Pas de lien trouvé vers cette circulaire.
