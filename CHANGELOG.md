@@ -1,5 +1,17 @@
 # Changelog
 
+### 175.0.13 [#2690](https://github.com/openfisca/openfisca-france/pull/2690)
+
+* Changement mineur.
+* Périodes concernées : 2021 à maintenant
+* Zones impactées : 
+- `parameters/taxation_capital/epargne/*`
+
+* Détails :
+  - Mise à jour de `last_value_still_valid_on`.
+  - Revalorisation des barèmes du LEP.
+  - Ajoute des tests.
+
 ### 175.0.12 [#2694](https://github.com/openfisca/openfisca-france/pull/2694)
 
 * Changement mineur.
