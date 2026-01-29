@@ -31,7 +31,10 @@
     nbptr:
       2023: 1.5
   output:
-    livret_epargne_populaire_plafond: 33_723  # ceil(1.8 * (15_409 + 3_326))
+    # plafond = min_(1, nbptr) * bareme.valeur_de_base + 2 * (min_(max_(0, nbptr - 1), 0.5) * bareme.premiere_demi_part + max_(0, nbptr - 1.5) * bareme.demi_part_supplementaire)
+    # return ceil(coef * plafond)
+    # 1.8 * (1 * 15_409 + 2*0.5*4_241 + 0*3_326) = 35_370
+    livret_epargne_populaire_plafond: 35_370  # ceil(1.8 * (15_409 + 4_241))
 
 - name: "Livret d'épargne populaire - Plafond Metropole 2026"
   period: 2026-05
