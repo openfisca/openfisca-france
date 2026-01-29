@@ -10,9 +10,11 @@ values:
     value: 0.035
   2025-08-01:
     value: 0.027
+  2026-02-01:
+    value: 0.025
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2025-08-01"
+  last_value_still_valid_on: "2026-01-29"
   unit: /1
   reference:
     2023-08-01:
@@ -29,15 +31,26 @@ metadata:
     - title: Baisse du taux du livret d'épargne populaire à 4 % le 1er août 2024
       href: https://www.service-public.fr/particuliers/actualites/A15521#:~:text=%C3%80%20partir%20du%201er,point%2C%20passant%20%C3%A0%204%20%25.
     2025-02-01:
-      - title: Arrêté du 28 janvier 2025 relatif aux taux d'intérêt des produits d'épargne réglementée
-        href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051059093
+    - title: Arrêté du 28 janvier 2025 relatif aux taux d'intérêt des produits d'épargne réglementée
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051059093
     2025-08-01:
       title: Arrêté du 23 juillet 2025 relatif aux taux d'intérêt des produits d'épargne réglementée
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052009310
+    2026-02-01:
+      title: Arrêté du 28 janvier 2026 relatif aux taux d'intérêt des produits d'épargne réglementée
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053411507
   official_journal_date:
     2023-08-01: "2023-07-29"
     2024-02-01: "2024-01-26"
     2024-08-01: "2024-07-25"
     2025-02-01: "2025-01-30"
     2025-08-01: "2025-07-31"
-documentation: "Notes : Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2367"
+    2026-02-01: "2026-01-29"
+documentation: |-
+  Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2367
+  Avant le 1er août 2023 la majoration de base du livret A servait dans le calcul du taux d'intérêt du livret d'épargne populaire.
+  Avant sur https://www.legifrance.gouv.fr/loda/id/LEGIARTI000043117108/2021-02-12 on lit :
+  "3° Le taux des comptes sur livret d'épargne populaire est égal au chiffre le plus élevé entre :
+    a) Le taux des livrets A mentionné au 1° majoré d'un demi-point ; et
+    b) L'inflation en France telle que définie au a du 1° ;"
+  Après sur https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047901508 on lit "le taux des comptes sur livret d'épargne populaire est égal à 6,0 %."

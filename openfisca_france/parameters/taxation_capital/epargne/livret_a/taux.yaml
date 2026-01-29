@@ -96,9 +96,11 @@ values:
     value: 0.024
   2025-08-01:
     value: 0.017
+  2026-02-01:
+    value: 0.015
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2025-08-01"
+  last_value_still_valid_on: "2026-01-12"
   unit: /1
   reference:
     2020-02-01:
@@ -122,6 +124,9 @@ metadata:
     2025-08-01:
       title: Arrêté du 23 juillet 2025 relatif aux taux d'intérêt des produits d'épargne réglementée
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052009310
+    2026-02-01:
+      title: Arrêté du 28 janvier 2026 relatif aux taux d'intérêt des produits d'épargne réglementée
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053411507
   official_journal_date:
     2020-02-01: "2020-01-24"
     2021-01-27: "2021-02-11"
@@ -130,4 +135,5 @@ metadata:
     2023-08-01: "2023-07-29"
     2025-02-01: "2025-01-30"
     2025-08-01: "2025-07-31"
-documentation: Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2365"
+    2026-02-01: "2026-01-29"
+documentation: Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2365
