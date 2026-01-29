@@ -46,4 +46,8 @@ metadata:
     2025-02-01: "2025-01-30"
     2025-08-01: "2025-07-31"
     2026-02-01: "2026-01-29"
-documentation: "Notes : Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2367"
+documentation: |-
+  Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2367
+  Avant le 1er août 2023 la majoration de base du livret A servait dans le calcul du taux d'intérêt du livret d'épargne populaire.
+  Avant sur https://www.legifrance.gouv.fr/loda/id/LEGIARTI000043117108/2021-02-12 on lit  "3° Le taux des comptes sur livret d'épargne populaire est égal au chiffre le plus élevé entre :"
+  Après sur https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047901508 on lit "le taux des comptes sur livret d'épargne populaire est égal à 6,0 %."
