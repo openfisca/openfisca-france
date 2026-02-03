@@ -108,7 +108,7 @@ uv sync --upgrade
 
 Si vous souhaitez utiliser le debugger de VS Code avec les tests YAML, par exemple pour investiguer la commande suivante :
 
-`openfisca test --country-package openfisca_france tests/impot_revenu/cdhr.yaml`
+`openfisca test --country-package openfisca_france --verbose tests/impot_revenu/contribution_differentielle_hauts_revenus_2026.yaml`
 
 Il faut créer un fichier de configuration `.vscode/launch.json` avec le contenu suivant :
 
@@ -120,14 +120,17 @@ Il faut créer un fichier de configuration `.vscode/launch.json` avec le contenu
             "name": "Python: Debug current YAML test file",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/.venv/bin/openfisca",
+            "module": "openfisca_core.scripts.openfisca_command",
             "args": [
                 "test",
                 "--country-package",
                 "openfisca_france",
+                "--verbose",
                 "${file}"
             ],
             "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "python": "${workspaceFolder}/.venv/bin/python",
             "justMyCode": false,
         }
     ]
