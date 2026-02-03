@@ -1,0 +1,41 @@
+- name: Célibataire à plus de 250 000€ de revenus, au PFU
+  period: 2027
+  input:
+    f3ua:
+      2026: 300_000
+    f7ud:
+      2026: 2000
+  output:
+    dfppce:
+      # TODO: Passer à 1 500 € après merge de l'autre PR
+      2026: 750
+    rni:
+      2026: 0
+    taux_moyen_imposition:
+      2026: 0
+    contribution_exceptionnelle_hauts_revenus:
+      # 3% de 50_000€ (300_000 de rfr - 250_000 de seuil de CEHR)
+      # Moins les dons 50_000 - (2_000 * 0.75) = 48_500
+      # 48_500 * 0.03
+      # 2026: 1_455
+      2026: 1_500
+      2027: 0
+    rfr:
+      2026: 300_000
+    prelevement_forfaitaire_unique_ir:
+      2026: 300_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2026: -39_900
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: true
+      2027: false
+    contribution_differentielle_hauts_revenus_decote:
+      2026: 18_750
+      2027: 0
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 300_000
+    contribution_differentielle_hauts_revenus:
+      # CDHR = (300_000 de RFR * 20% - décote) - impot_revenu_restant_a_payer
+      # = (60_000 - 18_750) - (-1 pour retirer le signe négatif de l'impôt * -39_900)
+      2026: 1350 # était à 20_100 sans décote
+      2027: 0
