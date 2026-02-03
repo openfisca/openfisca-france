@@ -1,0 +1,9 @@
+description: Taux de pénalité sur l'acompte de la contribution différentielle sur les hauts revenus
+metadata:
+  unit: /1
+  reference:
+    2026-01-01:
+      title: LF 2026 - Art. 10 - III bis C
+values:
+  2026-01-01:
+    value: 0.20

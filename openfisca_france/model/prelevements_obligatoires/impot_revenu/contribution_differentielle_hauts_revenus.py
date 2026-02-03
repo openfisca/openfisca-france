@@ -43,7 +43,40 @@ class contribution_differentielle_hauts_revenus_ressources(Variable):
         # pour chaque année, le revenu mentionné au présent II.
 
         return rfr
+    def formula_2026_01_01(foyer_fiscal, period, parameters):
+        # LF 2026 : Modifications de l'article 224 CGI
+        # II. – Le revenu mentionné au I s'entend du revenu fiscal de référence défini au 1° du IV de l'article 1417,
+        # sans qu'il soit fait application des règles de quotient définies au I de l'article 163-0 A,
+        rfr = foyer_fiscal('rfr', period)
 
+        # [leximpact : TODO - exclure le système du quotient (art. 163-0 A) du RFR]
+        # Le RFR doit être calculé sans application des règles de quotient pour revenus exceptionnels
+
+        # diminué du montant :
+        # 1° Des abattements mentionnés au a bis du même 1° autres que ceux mentionnés aux 1 ter ou 1 quater de l'article 150-0 D ;
+        # 2° Des bénéfices exonérés mentionnés au b du 1° du IV de l'article 1417 ;
+        # 3° Des produits et revenus exonérés en application de l'article 155 B ;
+        # 4° Du résultat net bénéficiaire déterminé en application de l'article 238 effectivement imposé au taux de 10 % ;
+        # 5° Des produits imposés au taux de 10 % mentionnés au second alinéa du I de l'article 93 quater ;
+        # 6° Des plus-values mentionnées au I de l'article 150-0 B ter pour lesquelles le report d'imposition expire ;
+        # 7° Des produits et revenus exonérés en application d'une convention internationale relative aux doubles impositions.
+
+        # [leximpact : condition revenus exceptionnels - inchangée]
+        # Pour la détermination du revenu mentionné au présent II,
+        # les revenus qui, par leur nature, ne sont pas susceptibles d'être recueillis annuellement
+        # et dont le montant dépasse la moyenne des revenus nets d'après lesquels le contribuable
+        # a été soumis à l'impôt sur le revenu au titre des trois dernières années,
+        # sont retenus pour le quart de leur montant.
+
+        # [leximpact : nouvelles règles de changement de situation familiale (LF 2026)]
+        # En cas de modification de la situation de famille du contribuable au cours de l'année d'imposition
+        # ou des trois années précédentes (et non plus deux), les revenus nets sont ceux :
+        # a) Du couple passible de la contribution et des foyers fiscaux auxquels les conjoints ou les partenaires
+        #    de ce couple ont appartenu au cours de l'année d'imposition, ou des trois années précédentes en cas d'union.
+        # b) Du contribuable passible de la contribution et des foyers fiscaux auxquels il a appartenu au cours
+        #    de l'année d'imposition, ou des trois années précédentes en cas de divorce, de séparation ou de décès.
+
+        return rfr
 
 class contribution_differentielle_hauts_revenus_eligible(Variable):
     value_type = float
@@ -138,6 +171,40 @@ class contribution_differentielle_hauts_revenus_majoration_impot(Variable):
         reduction_d_impot_majorantes = (f8wt + f8tb + f8tl + f8tp + f8uz
             + f8wa + f8wd + f8wr + f8wc + f8te + interets_emprunt_reprise_societe
             + f7ik + f7il + f7gq + f7gr + f7fq + f7ft + f7fm + f7fl + f7fy)
+        return reduction_d_impot_majorantes
+
+    def formula_2026_01_01(foyer_fiscal, period, parameters):
+        # LF 2026 : IV.A.2° - Ajout de l'article 200 (dons aux oeuvres) aux réductions majorantes
+        # « à l'article 200 » est inséré après « I, »
+        f8wt = foyer_fiscal('f8wt', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8te = foyer_fiscal('f8te', period)
+        interets_emprunt_reprise_societe = foyer_fiscal('interets_emprunt_reprise_societe', period)
+        f7ik = foyer_fiscal('f7ik', period)
+        f7il = foyer_fiscal('f7il', period)
+        f7gq = foyer_fiscal('f7gq', period)
+        f7gr = foyer_fiscal('f7gr', period)
+        f7fq = foyer_fiscal('f7fq', period)
+        f7ft = foyer_fiscal('f7ft', period)
+        f7fm = foyer_fiscal('f7fm', period)
+        f7fl = foyer_fiscal('f7fl', period)
+        f7fy = foyer_fiscal('f7fy', period)
+
+        # LF 2026 : Ajout de l'article 200 (réduction d'impôt pour dons)
+        # Les dons aux oeuvres (art. 200) sont maintenant inclus dans les réductions majorantes
+        reductions_dons = foyer_fiscal('reductions_dons', period)
+
+        reduction_d_impot_majorantes = (f8wt + f8tb + f8tl + f8tp + f8uz
+            + f8wa + f8wd + f8wr + f8wc + f8te + interets_emprunt_reprise_societe
+            + f7ik + f7il + f7gq + f7gr + f7fq + f7ft + f7fm + f7fl + f7fy
+            + reductions_dons)
         return reduction_d_impot_majorantes
 
 
@@ -328,3 +395,148 @@ class contribution_differentielle_hauts_revenus(Variable):
             contribution_differentielle_hauts_revenus_eligible
             * contribution_differentielle_hauts_revenus_montant
             )
+    def formula_2026_01_01(foyer_fiscal, period, parameters):
+        # LF 2026 : Modifications de l'article 224 CGI
+        contribution_differentielle_hauts_revenus_eligible = foyer_fiscal(
+            'contribution_differentielle_hauts_revenus_eligible', period
+            )
+
+        # III. – La contribution mentionnée au I est égale à la différence, lorsqu'elle est positive, entre :
+        # 1° Le montant résultant de l'application d'un taux de 20 % au revenu défini au II ;
+        taux = parameters(
+            period
+            ).impot_revenu.contributions_exceptionnelles.contribution_differentielle_hauts_revenus.taux_cdhr
+        contribution_differentielle_hauts_revenus_ressources = foyer_fiscal(
+            'contribution_differentielle_hauts_revenus_ressources', period
+            )
+
+        # [on soustrait la décote définie en V]
+        contribution_differentielle_hauts_revenus_decote = foyer_fiscal(
+            'contribution_differentielle_hauts_revenus_decote', period
+            )
+        impot_cible_apres_decote = (
+            contribution_differentielle_hauts_revenus_ressources * taux
+            ) - contribution_differentielle_hauts_revenus_decote
+
+        # 2° Et le montant résultant de la somme de l'impôt sur le revenu et de la contribution prévue à l'article
+        # 223 sexies définis au IV ainsi que des prélèvements libératoires de l'impôt sur le revenu
+        # mentionnés au c du 1° du IV de l'article 1417,
+        contribution_exceptionnelle_hauts_revenus = foyer_fiscal(
+            'contribution_exceptionnelle_hauts_revenus', period
+            )
+        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        prelevement_forfaitaire_liberatoire = -1 * foyer_fiscal(
+            'prelevement_forfaitaire_liberatoire', period
+            )
+        ip_net = foyer_fiscal('ip_net', period)
+
+        # LF 2026 IV.A dernier alinéa : L'impôt sur le revenu est minoré du montant de l'imposition
+        # se rapportant aux plus-values mentionnées au I de l'article 150-0 B ter pour lesquelles le report d'imposition expire.
+        # [leximpact : TODO - implémenter la minoration pour PV en report 150-0 B ter]
+        minoration_pv_report = 0  # À implémenter si variable disponible
+
+        impot_avant_creation_cdhr = (
+            ip_net
+            + pfu
+            + prelevement_forfaitaire_liberatoire
+            + contribution_exceptionnelle_hauts_revenus
+            + foyer_fiscal(
+                'contribution_differentielle_hauts_revenus_majoration', period
+                )
+            + foyer_fiscal(
+                'contribution_differentielle_hauts_revenus_majoration_impot', period
+                )
+            - minoration_pv_report
+            )
+        contribution_differentielle_hauts_revenus_montant = max_(
+            impot_cible_apres_decote - impot_avant_creation_cdhr, 0
+            )
+
+        # LF 2026 : IV.B - Nouvelles règles pour la CEHR
+        # B. – Pour la détermination de la contribution mentionnée au 2° du III du présent article :
+        # 1° Il n'est pas fait application du 1 du II de l'article 223 sexies ; (inchangé)
+        # 2° La contribution est minorée de la part de son montant se rapportant aux éléments mentionnés aux 1° à 7° du II ;
+        # 3° La contribution se rapportant aux revenus remplissant les conditions prévues au neuvième alinéa du même II
+        #    est retenue pour le quart de son montant.
+        # [leximpact : TODO - implémenter les minorations de la CEHR pour éléments du II et revenus exceptionnels]
+
+        return (
+            contribution_differentielle_hauts_revenus_eligible
+            * contribution_differentielle_hauts_revenus_montant
+            )
+
+
+class contribution_differentielle_hauts_revenus_acompte(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Acompte de la contribution différentielle sur les hauts revenus (CDHR)"
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000051200465'
+    definition_period = YEAR
+    calculate_output = calculate_output_divide
+    documentation = '''
+    LF 2026 : III bis. – A. – 1. La contribution mentionnée au I de l'article 224 du code
+    général des impôts donne lieu au versement d'un acompte entre le 1er et le 15 décembre
+    de l'année d'imposition.
+    Cet acompte est égal à 95 % du montant de la contribution estimé par le contribuable.
+    '''
+
+    def formula_2026_01_01(foyer_fiscal, period, parameters):
+        # L'acompte est égal à 95 % du montant de la contribution estimée par le contribuable
+        cdhr_parameters = parameters(
+            period
+            ).impot_revenu.contributions_exceptionnelles.contribution_differentielle_hauts_revenus
+        taux_acompte = cdhr_parameters.taux_acompte  # 0.95
+
+        cdhr = foyer_fiscal('contribution_differentielle_hauts_revenus', period)
+        return cdhr * taux_acompte
+
+
+class contribution_differentielle_hauts_revenus_penalite_acompte(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Pénalité sur l'acompte de la CDHR en cas de défaut, retard ou sous-estimation"
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000051200465'
+    definition_period = YEAR
+    calculate_output = calculate_output_divide
+    documentation = '''
+    LF 2026 : III bis. – C. – 1. Par dérogation au chapitre II du livre II du code général des impôts,
+    une pénalité prenant la forme d'une majoration de 20 % s'applique :
+    a) En cas de défaut ou de retard de paiement de l'acompte ;
+    b) Lorsque le montant de l'acompte versé s'avère inférieur, de plus de 20 %,
+       à 95 % du montant de la contribution prévue à l'article 224 du code général des impôts.
+
+    Cette variable calcule le montant de la pénalité potentielle.
+    '''
+
+    def formula_2026_01_01(foyer_fiscal, period, parameters):
+        # Pénalité de 20% si acompte versé < 95% * CDHR - 20% (soit < 76% de la CDHR)
+        cdhr_parameters = parameters(
+            period
+            ).impot_revenu.contributions_exceptionnelles.contribution_differentielle_hauts_revenus
+        taux_penalite = cdhr_parameters.taux_penalite_acompte  # 0.20
+        taux_acompte = cdhr_parameters.taux_acompte  # 0.95
+
+        cdhr = foyer_fiscal('contribution_differentielle_hauts_revenus', period)
+        acompte_verse = foyer_fiscal('contribution_differentielle_hauts_revenus_acompte_verse', period)
+
+        # Seuil de sous-estimation toléré = 20% de marge
+        seuil_acompte_minimum = cdhr * taux_acompte * (1 - 0.20)
+
+        # Pénalité si acompte insuffisant
+        assiette_penalite = max_(cdhr * taux_acompte - acompte_verse, 0)
+        penalite = (acompte_verse < seuil_acompte_minimum) * assiette_penalite * taux_penalite
+
+        return penalite
+
+
+class contribution_differentielle_hauts_revenus_acompte_verse(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Acompte versé pour la contribution différentielle sur les hauts revenus (CDHR)"
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000051200465'
+    definition_period = YEAR
+    default_value = 0
+    documentation = '''
+    Montant de l'acompte effectivement versé par le contribuable entre le 1er et le 15 décembre.
+    Variable d'entrée à renseigner par l'utilisateur.
+    '''

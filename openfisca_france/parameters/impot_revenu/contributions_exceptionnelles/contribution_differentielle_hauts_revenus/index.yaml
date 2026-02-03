@@ -9,6 +9,10 @@ metadata:
   - taux_decote
   - plafond_revenus_decote_celibataire
   - plafond_revenus_decote_couple
+  - taux_acompte
+  - taux_penalite_acompte
   notes:
     2025-01-01:
     - title: Dispositif applicable à partir de l'imposition des revenus de l'année 2025.
+    2026-01-01:
+    - title: LF 2026 - Modifications et ajout du mécanisme d'acompte (III bis).

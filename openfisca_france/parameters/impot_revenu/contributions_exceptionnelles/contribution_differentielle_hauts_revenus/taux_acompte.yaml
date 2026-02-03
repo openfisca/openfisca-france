@@ -1,0 +1,9 @@
+description: Taux de l'acompte de la contribution différentielle sur les hauts revenus
+metadata:
+  unit: /1
+  reference:
+    2026-01-01:
+      title: LF 2026 - Art. 10 - III bis A
+values:
+  2026-01-01:
+    value: 0.95
