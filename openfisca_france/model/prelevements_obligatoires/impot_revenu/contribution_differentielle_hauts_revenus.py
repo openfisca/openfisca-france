@@ -43,14 +43,17 @@ class contribution_differentielle_hauts_revenus_ressources(Variable):
         # pour chaque année, le revenu mentionné au présent II.
 
         return rfr
+
     def formula_2026_01_01(foyer_fiscal, period, parameters):
         # LF 2026 : Modifications de l'article 224 CGI
         # II. – Le revenu mentionné au I s'entend du revenu fiscal de référence défini au 1° du IV de l'article 1417,
-        # sans qu'il soit fait application des règles de quotient définies au I de l'article 163-0 A,
+        # sans qu'il soit fait application des règles de quotient définies au I de
+        # l'[article 163-0 A](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044978385/2022-01-01).
         rfr = foyer_fiscal('rfr', period)
 
-        # [leximpact : TODO - exclure le système du quotient (art. 163-0 A) du RFR]
+        # [leximpact : TODO: - exclure le système du quotient (art. 163-0 A) du RFR]
         # Le RFR doit être calculé sans application des règles de quotient pour revenus exceptionnels
+        # Ce quotient n'existe pas dans OpenFisca.
 
         # diminué du montant :
         # 1° Des abattements mentionnés au a bis du même 1° autres que ceux mentionnés aux 1 ter ou 1 quater de l'article 150-0 D ;
@@ -77,6 +80,7 @@ class contribution_differentielle_hauts_revenus_ressources(Variable):
         #    de l'année d'imposition, ou des trois années précédentes en cas de divorce, de séparation ou de décès.
 
         return rfr
+
 
 class contribution_differentielle_hauts_revenus_eligible(Variable):
     value_type = float
@@ -199,7 +203,7 @@ class contribution_differentielle_hauts_revenus_majoration_impot(Variable):
 
         # LF 2026 : Ajout de l'article 200 (réduction d'impôt pour dons)
         # Les dons aux oeuvres (art. 200) sont maintenant inclus dans les réductions majorantes
-        reductions_dons = foyer_fiscal('reductions_dons', period)
+        reductions_dons = foyer_fiscal('dfppce', period)
 
         reduction_d_impot_majorantes = (f8wt + f8tb + f8tl + f8tp + f8uz
             + f8wa + f8wd + f8wr + f8wc + f8te + interets_emprunt_reprise_societe
@@ -395,6 +399,7 @@ class contribution_differentielle_hauts_revenus(Variable):
             contribution_differentielle_hauts_revenus_eligible
             * contribution_differentielle_hauts_revenus_montant
             )
+
     def formula_2026_01_01(foyer_fiscal, period, parameters):
         # LF 2026 : Modifications de l'article 224 CGI
         contribution_differentielle_hauts_revenus_eligible = foyer_fiscal(
@@ -516,8 +521,8 @@ class contribution_differentielle_hauts_revenus_penalite_acompte(Variable):
         taux_penalite = cdhr_parameters.taux_penalite_acompte  # 0.20
         taux_acompte = cdhr_parameters.taux_acompte  # 0.95
 
-        cdhr = foyer_fiscal('contribution_differentielle_hauts_revenus', period)
-        acompte_verse = foyer_fiscal('contribution_differentielle_hauts_revenus_acompte_verse', period)
+        cdhr = foyer_fiscal("contribution_differentielle_hauts_revenus", period)
+        acompte_verse = foyer_fiscal("contribution_differentielle_hauts_revenus_acompte_verse", period)
 
         # Seuil de sous-estimation toléré = 20% de marge
         seuil_acompte_minimum = cdhr * taux_acompte * (1 - 0.20)
