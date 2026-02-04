@@ -2,6 +2,7 @@ from numpy import logical_or as or_
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 class af_nbenf(Variable):
@@ -440,7 +441,12 @@ class crds_af(Variable):
 
         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 
-        return -(af) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = af,
+            law_node = taux_crds,
+            )
+
+        return montant_crds
 
 
 class af_nettes_crds(Variable):
