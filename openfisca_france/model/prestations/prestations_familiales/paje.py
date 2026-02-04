@@ -1184,7 +1184,7 @@ class crds_paje(Variable):
 
         montant_crds = montant_csg_crds_bareme(
             base_sans_abattement = paje,
-            law_node =         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
+            taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 ,
             )
 
