@@ -543,6 +543,7 @@ metadata:
     - title: Voir documentation
     2024-01-01:
     - title: La Loi de finance 2025 relève les montants de 1.8%.
+  inflator: inflateurs.inflateur_impot
 documentation: |-
   Les ressources à considérer sont le revenu net global du foyer fiscal.
   Abattement et plafond de ressources pour personne âgée : art. 157 bis du CGI (abattement doublé si le conjoint répond aux mêmes conditions)
