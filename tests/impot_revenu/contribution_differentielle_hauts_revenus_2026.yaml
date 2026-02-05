@@ -1,42 +1,3 @@
-
-- name: Test acompte avec pénalité si sous-estimation 2026
-  period: 2026
-  absolute_error_margin: 0.07
-  input:
-    f3ua:
-      2026: 400_000
-    contribution_differentielle_hauts_revenus_acompte_verse:
-      2026: 10_000  # Versement insuffisant (bien en dessous des 95%)
-      # 2026: 0  # Versement insuffisant (bien en dessous des 95%)
-  output:
-    rfr:
-      2026: 400_000
-    contribution_differentielle_hauts_revenus_eligible:
-      2026: true
-      2027: false
-    contribution_differentielle_hauts_revenus_ressources:
-      2026: 400_000
-    prelevement_forfaitaire_unique_ir:
-      2026: 400_000 * 0.128
-    impot_revenu_restant_a_payer:
-      2026: -55_700
-    contribution_differentielle_hauts_revenus_decote:
-      2026: 0
-      2027: 0
-    contribution_differentielle_hauts_revenus:
-      # CDHR 2026 = (400_000 * 0.20) - 55_700
-      2026: 24_300
-    contribution_differentielle_hauts_revenus_penalite_acompte:
-      # Acompte attendu = 24_300 * 0.95 = 23_085.0
-      # Seuil minimum (avec 20% de marge) = 24_300 * 0.80 = 19_440
-      # Versement = 10_000 < 19_440, donc pénalité
-      # Assiette = max(19_440 - 10_000, 0) = 9_440
-      # Pénalité = 9_440 * 0.20 = 1 888
-      2026: 1_888
-      2027: 0
-    contribution_differentielle_hauts_revenus_acompte:
-      2026: 0 # 24_300 * 0.95
-
 - name: Célibataire non éligible 2026 (revenus < 250 000€)
   period: 2027
   input:
@@ -303,4 +264,44 @@
       2027: 0
     contribution_differentielle_hauts_revenus_acompte:
       2026: (44_500 - 750) * 0.95
+      2027: 0
+
+- name: Test acompte avec pénalité si sous-estimation 2026
+  period: 2027
+  absolute_error_margin: 0.07
+  input:
+    f3ua:
+      2026: 400_000
+    contribution_differentielle_hauts_revenus_acompte_verse:
+      2026: 10_000  # Versement insuffisant (bien en dessous des 95%)
+      # 2026: 0  # Versement insuffisant (bien en dessous des 95%)
+  output:
+    rfr:
+      2026: 400_000
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: true
+      2027: false
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 400_000
+    prelevement_forfaitaire_unique_ir:
+      2026: 400_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2026: -55_700
+    contribution_differentielle_hauts_revenus_decote:
+      2026: 0
+      2027: 0
+    contribution_differentielle_hauts_revenus:
+      # CDHR 2026 = (400_000 * 0.20) - 55_700
+      2026: 24_300
+    contribution_differentielle_hauts_revenus_acompte:
+      2025: 0
+      2026: 23_085 # 24_300 * 0.95
+      2027: 0
+    contribution_differentielle_hauts_revenus_penalite_acompte:
+      # Acompte attendu = 24_300 * 0.95 = 23_085.0
+      # Seuil minimum (avec 20% de marge) = 23_085 * 0.80 = 18_468.0
+      # Versement = 10_000 < 18_468.0, donc pénalité
+      # Assiette = 24_300 * 0.95 - 10_000 = 13_085
+      # Pénalité = 13_085 * 0.20 = _61
+      2026: 2_617
       2027: 0
