@@ -474,7 +474,7 @@ class contribution_differentielle_hauts_revenus(Variable):
 class contribution_differentielle_hauts_revenus_acompte(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Acompte de la contribution différentielle sur les hauts revenus (CDHR)"
+    label = 'Acompte de la contribution différentielle sur les hauts revenus (CDHR)'
     reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000051200465'
     definition_period = YEAR
     calculate_output = calculate_output_divide
@@ -521,8 +521,8 @@ class contribution_differentielle_hauts_revenus_penalite_acompte(Variable):
         taux_penalite = cdhr_parameters.taux_penalite_acompte  # 0.20
         taux_acompte = cdhr_parameters.taux_acompte  # 0.95
 
-        cdhr = foyer_fiscal("contribution_differentielle_hauts_revenus", period)
-        acompte_verse = foyer_fiscal("contribution_differentielle_hauts_revenus_acompte_verse", period)
+        cdhr = foyer_fiscal('contribution_differentielle_hauts_revenus', period)
+        acompte_verse = foyer_fiscal('contribution_differentielle_hauts_revenus_acompte_verse', period)
 
         # Seuil de sous-estimation toléré = 20% de marge
         # TODO: A mettre en paramètre ?
@@ -538,7 +538,7 @@ class contribution_differentielle_hauts_revenus_penalite_acompte(Variable):
 class contribution_differentielle_hauts_revenus_acompte_verse(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Acompte versé pour la contribution différentielle sur les hauts revenus (CDHR)"
+    label = 'Acompte versé pour la contribution différentielle sur les hauts revenus (CDHR)'
     reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000051200465'
     definition_period = YEAR
     default_value = 0
