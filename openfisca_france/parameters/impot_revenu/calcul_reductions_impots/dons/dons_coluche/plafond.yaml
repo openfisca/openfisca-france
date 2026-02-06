@@ -60,7 +60,7 @@ values:
     value: 546
   2020-01-01:
     value: 1000
-  2025-01-01:
+  2026-01-01:
     value: 2000
 metadata:
   short_label: Plafond des dons
@@ -119,6 +119,11 @@ metadata:
     2025-01-01:
     - title: Loi 2026-103, art. 28 du 19/02/2026 de finances (LF pour 2026)
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000053508326
+    2026-01-01:
+    - title: Article 200, 1.ter. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045764695
+    - title: art. 28 de la loi de finances pour 2026
+      href: https://www.assemblee-nationale.fr/dyn/17/textes/l17t0227_texte-adopte-provisoire.pdf
   official_journal_date:
     2002-01-01: "2003-08-02"
     2005-01-01: "2005-01-19"
