@@ -525,8 +525,7 @@ class contribution_differentielle_hauts_revenus_penalite_acompte(Variable):
         acompte_verse = foyer_fiscal('contribution_differentielle_hauts_revenus_acompte_verse', period)
 
         # Seuil de sous-estimation toléré = 20% de marge
-        # TODO: A mettre en paramètre ?
-        seuil_acompte_minimum = cdhr * taux_acompte * (1 - 0.20)
+        seuil_acompte_minimum = cdhr * taux_acompte * (1 - cdhr_parameters.taux_seuil_sous_estimation)
 
         # Pénalité si acompte insuffisant
         assiette_penalite = max_(cdhr * taux_acompte - acompte_verse, 0)
