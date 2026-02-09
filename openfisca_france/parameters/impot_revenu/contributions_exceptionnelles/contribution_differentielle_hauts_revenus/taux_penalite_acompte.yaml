@@ -1,5 +1,6 @@
 description: Taux de pénalité sur l'acompte de la contribution différentielle sur les hauts revenus
 metadata:
+  last_value_still_valid_on: "2026-02-09"
   unit: /1
   reference:
     2026-01-01:
