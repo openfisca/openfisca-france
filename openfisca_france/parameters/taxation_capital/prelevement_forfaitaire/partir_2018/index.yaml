@@ -1,7 +1,7 @@
 description: Prélèvements, au titre de l'IR, sur les revenus des valeurs mobilières suite à la réfomrme du PFU en 2018
 metadata:
   documentation_start: true
-  short_label: Prélèvements après 2018 sur les revenus des valeurs mobilières 
+  short_label: Prélèvements après 2018 sur les revenus des valeurs mobilières
   label_en: Flat tax on capital income (from 2018)
   order:
   - taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc

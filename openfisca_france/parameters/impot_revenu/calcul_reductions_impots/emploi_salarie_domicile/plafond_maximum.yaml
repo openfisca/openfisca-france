@@ -4,7 +4,7 @@ values:
     value: null
   2005-01-01:
     value: 15000
-  2017-01-01: 
+  2017-01-01:
     value: null
 metadata:
   short_label: Plafond des dépenses, après majorations
