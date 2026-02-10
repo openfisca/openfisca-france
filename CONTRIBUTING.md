@@ -6,6 +6,40 @@ Afin de faciliter la réutilisation d'OpenFisca et d'améliorer la qualité du c
 
 Certaines règles sont communes à tous les dépôts OpenFisca et sont détaillées dans [la documentation générale](https://openfisca.org/doc/contribute/guidelines.html).
 
+## Vérifications de code automatiques avec pre-commit
+
+Avant chaque commit, des vérifications automatiques sont exécutées via [pre-commit](https://pre-commit.com/) pour assurer la qualité du code et la cohérence du style.
+
+### Installation
+
+Pre-commit est installé comme dépendance du projet. Pour l'activer, lancez :
+
+```sh
+uv run pre-commit install
+```
+
+### Vérifications exécutées
+
+Les vérifications suivantes sont automatiquement exécutées avant chaque commit :
+
+- **flake8** : Validation du style Python (même chose que `make check-style`)
+- **yamllint** : Validation du format YAML des paramètres et tests
+- **Vérifications de base** : Fusion de conflits, fin de fichier, espaces inutiles, etc.
+
+### Exécuter les vérifications manuellement
+
+Vous pouvez exécuter les vérifications manuellement sur tous les fichiers :
+
+```sh
+uv run pre-commit run --all-files
+```
+
+Ou sur les fichiers staged uniquement :
+
+```sh
+uv run pre-commit run
+```
+
 ## Format du Changelog
 
 Les évolutions d'OpenFisca-France doivent pouvoir être comprises par des réutilisateurs qui n'interviennent pas nécessairement sur le code. Le Changelog, rédigé en français, se doit donc d'être le plus explicite possible.
