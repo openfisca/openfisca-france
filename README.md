@@ -33,12 +33,12 @@ L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://
 
 ## Installation
 
-Ce paquet requiert [Python 3.9](https://www.python.org/downloads/release/python-390/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [conda](https://www.anaconda.com/products/individual) ou [UV](https://docs.astral.sh/uv/).
+Ce paquet requiert [Python 3.9](https://www.python.org/downloads/release/python-390/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [UV](https://docs.astral.sh/uv/).
 
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
 - Mac OS X ;
-- Windows : Nous recommandons d'utiliser [UV](https://docs.astral.sh/uv/) car [conda](https://www.anaconda.com/products/individual) ne va surement plus être supporté par la communauté OpenFisca, si vous souhaitez tout de même l'utiliser, voir la procédure ci-dessous [Installez un environnement virtuel avec conda](./README.md#installez-un-environnement-virtuel-avec-conda)  ; OpenFisca fonctionne également dans le [sous-système Windows pour Linux (WSL)](https://docs.microsoft.com/fr-fr/windows/wsl/install). Dans ce dernier cas, il suffit de suivre la procédure pour Linux car vous êtes alors dans un environnement Linux.
+- Windows : Nous recommandons d'utiliser [UV](https://docs.astral.sh/uv/) car [conda](https://www.anaconda.com/products/individual) n'est plus supporté par la communauté OpenFisca; OpenFisca fonctionne également dans le [sous-système Windows pour Linux (WSL)](https://docs.microsoft.com/fr-fr/windows/wsl/install). Dans ce dernier cas, il suffit de suivre la procédure pour Linux car vous êtes alors dans un environnement Linux.
 
 Pour les autres OS : si vous pouvez exécuter Python et Numpy, l'installation d'OpenFisca devrait fonctionner.
 
@@ -47,7 +47,7 @@ Pour les autres OS : si vous pouvez exécuter Python et Numpy, l'installation d'
 Suivez cette installation si vous souhaitez :
 - procéder à des calculs sur une large population ;
 - créer des simulations fiscales ;
-- écrire une extension au-dessus de la législation française (exemple : les extensions de [Paris](https://github.com/sgmap/openfisca-paris) et [Rennes](https://github.com/sgmap/openfisca-rennesmetropole) ;
+- écrire une extension au-dessus de la législation française, exemple : les extensions de [Paris](https://github.com/sgmap/openfisca-paris) et [Rennes](https://github.com/sgmap/openfisca-rennesmetropole) ;
 - servir OpenFisca-France avec l'API Web OpenFisca.
 
 Pour pouvoir modifier OpenFisca-France, consultez l'[Installation avancée](#b-installation-avancée-git-clone).
@@ -111,35 +111,6 @@ Vous pouvez vous assurer que votre installation s'est bien passée en exécutant
 uv run pytest tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 ```
 :tada: OpenFisca-France est prêt à être utilisé !
-
-### Installez un environnement virtuel avec conda
-
-Nous ne conseillons plus cette procédure, même pour les personnes utilisant Windows, il est préférable d'utiliser `uv`. En effet, nous pensons arrêter de supporter `conda` dans OpenFisca. Si vous en avez besoin, n'hésitez pas à ouvrir une issue sur le dépôt GitHub d'OpenFisca-France et nous expliquer votre cas d'utilisation.
-
-Ceci vous permet d'obtenir en une seule installation :
-- Python
-- Le gestionnaire de paquets [Anaconda.org](https://docs.anaconda.com/anacondaorg/user-guide/)
-- Le gestionnaire d'environnement Python virtuel : [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
-
-Voici les étapes à suivre :
-
-- Installer la version communautaire/gratuite en suivant la procédure décrite sur [le site Anaconda](https://www.anaconda.com/products/individual). A noter que Anaconda occupe beaucoup d'espace disque (>2 Go), vous pouvez installer à la place [Miniconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html) qui occupe beaucoup moins d'espace disque. Cependant vous n'aurez pas l'interface graphique [Anaconda Navigator](https://docs.anaconda.com/anaconda/navigator/index.html) qui vous permet de gérer vos environnements. Si vous êtes habituée à gérer les choses en ligne de commande, préfèrez Miniconda.
-- Depuis le menu démarrer, exécuter `Anaconda Powershell Prompt`. Ou utiliser votre shell préféré avec Miniconda, il vous faudra peut-être utiliser la commande `conda init`, mais conda vous le dira.
-- Exécuter les commandes suivantes dans le shell:
-  - Ajouter `conda-forge` comme channel par défaut : `conda config --add channels conda-forge && conda config --set channel_priority strict `
-  - Créer un environnement virtuel dédié : `conda create --name openfisca python=3.9`
-  - Activer l'environnement : `conda activate openfisca`
-  - Installer OpenFisca : `conda install openfisca-france`
-
-:tada: OpenFisca-France est prêt à être utilisé !
-
-Ensuite, pour quitter l'environnement OpenFisca : `conda deactivate`
-
-Pour y revenir : `conda activate openfisca`
-
-A noter que OpenFisca-France est présent sur [conda-forge](https://anaconda.org/conda-forge/openfisca-france) et sur un _channel_ dédié [openfisca](https://anaconda.org/openfisca/openfisca-france). C'est conda-forge qui est mis en avant dans cette documentation, car accessible par défaut dans les installations Anaconda.
-
-A noter que l'installation d'Openfisca-France peut lever une erreur sur certaines machines Windows à cause de la longueur des chemins de certains fichiers de paramètres et des restrictions de longueur de chemin sous Windows. Une option possible pour résoudre ce problème est de lever cette limite (voir cette documentation pour [Windows >=10](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry#enable-long-paths-in-windows-10-version-1607-and-later))
 
 #### Prochaines étapes
 
