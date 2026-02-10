@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.14 [#2698](https://github.com/openfisca/openfisca-france/pull/2698)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `.conda/*`.
+* Détails :
+  - Supprime Conda qui ne fonctionnait plus : `ModuleNotFoundError: No module named 'pkg_resources'`.
+
 ### 175.0.13 [#2690](https://github.com/openfisca/openfisca-france/pull/2690)
 
 * Changement mineur.
