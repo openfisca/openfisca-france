@@ -8,7 +8,7 @@ values:
     value: 13800
   2005-01-01:
     value: 20000
-  2017-01-01: 
+  2017-01-01:
     value: null
 metadata:
   short_label: Plafond des dépenses, avant majorations, pour les contribuables invalides ou ayant à charge une personne invalide

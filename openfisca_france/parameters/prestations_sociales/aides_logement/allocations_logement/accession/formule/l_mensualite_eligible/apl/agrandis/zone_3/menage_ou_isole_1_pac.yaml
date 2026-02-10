@@ -24,9 +24,9 @@ values:
     value: 345.42
   2015-10-01:
     value: 345.7
-  2017-10-01: 
+  2017-10-01:
     value: 348.29
-  2019-10-01: 
+  2019-10-01:
     value: 349.34
 metadata:
   short_label: Ménage ou isolé avec 1 enfant
