@@ -1,12 +1,23 @@
 # Changelog
 
+### 175.0.15 [#2697](https://github.com/openfisca/openfisca-france/pull/2697)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `*`.
+* Détails :
+  - Mise en place de `pre-commit` pour contrôler la mise en forme lors du commit.
+  - Documenter comment l'installer.
+  - Correction des erreurs de lint existantes.
+  - Exclusion des erreurs `BLK100 Black would make changes.`.
+
 ### 175.0.14 [#2699](https://github.com/openfisca/openfisca-france/pull/2699)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `.conda/*`.
 * Détails :
-  - Supprime Conda qui ne fonctionnait plus : `ModuleNotFoundError: No module named 'pkg_resources'`.
+  - Suppression de la publication Conda, qui n'est plus utilisée.
 
 ### 175.0.13 [#2690](https://github.com/openfisca/openfisca-france/pull/2690)
 
