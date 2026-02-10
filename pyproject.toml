@@ -74,14 +74,14 @@ casd-dev = [
 # ; F403/405: We ignore * imports
 # ; W503/504: We break lines before binary operators (Knuth's style)
 hang-closing = true
-ignore       = ["E128","E251","F403","F405","E501","W503", ]
+ignore       = ["BLK100", "E128","E251","F403","F405","E501","W503", ]
 docstring-quotes = "single"
 inline-quotes = "single"
 multiline-quotes = "single"
 
 [tool.pep8]
 hang-closing = true
-ignore       = ["E128","E251","F403","F405","E501","W503"]
+ignore       = ["E128", "E251","F403","F405","E501","W503"]
 in-place     = true
 
 [tool.pytest.ini_options]
