@@ -1,6 +1,11 @@
 metadata:
   reference:
-    href: https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/texte
+    2019-01-03:
+      title: Décret n° 2019-1 du 3 janvier 2019 relatif à l'aide au financement du permis de conduire pour les apprentis
+      href: https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/texte
+    2026-01-01:
+      title: PLF 2026
+      href: https://www.legifrance.gouv.fr/eli/decret/2025/12/30/MTRD2525610D/jo/texte
 age_min:
   values:
     2019-01-03:
@@ -9,3 +14,5 @@ montant:
   values:
     2019-01-03:
       value: 500
+    2026-01-01:
+      value: 0
