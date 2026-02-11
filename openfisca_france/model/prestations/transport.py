@@ -35,7 +35,8 @@ class aide_financement_permis_apprenti(Variable):
     set_input = set_input_divide_by_period
     reference = [
         "Décret n° 2019-1 du 3 janvier 2019 relatif à l'aide au financement du permis de conduire pour les apprentis",
-        'https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/article_1'
+        'https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/article_1',
+        'https://www.legifrance.gouv.fr/contenu/Media/files/autour-de-la-loi/legislatif-et-reglementaire/actualite-legislative/2025/plf_cppx2524517l_cm_14.10.2025.pdf'
         ]
 
     def formula(individu, period, parameters):
@@ -44,16 +45,17 @@ class aide_financement_permis_apprenti(Variable):
 
         return montant * eligibilite
 
-
 class aide_financement_permis_apprenti_eligibilite(Variable):
     value_type = bool
     label = "Éligibilité à l'aide au financement du permis de conduire pour les apprentis"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+    end = "2025-12-31"
     reference = [
         "Décret n° 2019-1 du 3 janvier 2019 relatif à l'aide au financement du permis de conduire pour les apprentis",
-        'https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/article_1'
+        'https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/article_1',
+        'https://www.legifrance.gouv.fr/contenu/Media/files/autour-de-la-loi/legislatif-et-reglementaire/actualite-legislative/2025/plf_cppx2524517l_cm_14.10.2025.pdf'
         ]
 
     def formula(individu, period, parameters):
