@@ -1,18 +1,29 @@
 # Changelog
 
+### 175.0.15 [#2697](https://github.com/openfisca/openfisca-france/pull/2697)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `*`.
+* Détails :
+  - Mise en place de `pre-commit` pour contrôler la mise en forme lors du commit.
+  - Documenter comment l'installer.
+  - Correction des erreurs de lint existantes.
+  - Exclusion des erreurs `BLK100 Black would make changes.`.
+
 ### 175.0.14 [#2699](https://github.com/openfisca/openfisca-france/pull/2699)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `.conda/*`.
 * Détails :
-  - Supprime Conda qui ne fonctionnait plus : `ModuleNotFoundError: No module named 'pkg_resources'`.
+  - Suppression de la publication Conda, qui n'est plus utilisée.
 
 ### 175.0.13 [#2690](https://github.com/openfisca/openfisca-france/pull/2690)
 
 * Changement mineur.
 * Périodes concernées : 2021 à maintenant
-* Zones impactées : 
+* Zones impactées :
 - `parameters/taxation_capital/epargne/*`
 
 * Détails :
@@ -24,7 +35,7 @@
 
 * Changement mineur.
 * Périodes concernées : -
-* Zones impactées : 
+* Zones impactées :
 - `parameters/prestations_sociales/education/bourses/enseignement_superieur/criteres_sociaux/*`
 - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/majoration_plafond/majoration_plafond_couple.yaml`
 - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aeeh/age_maximum_enfant.yaml`
@@ -45,7 +56,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
 - `parameters/taxation_capital/epargne/livret_epargne_populaire/coefficient_multiplicateur.yaml`
 - `parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/reduc_impot/plafond_somme_trois_reductions_pme_fcip_fip_pme_dons.yaml`
 
@@ -56,7 +67,7 @@
 
 * Changement mineur.
 * Périodes concernées : 2026
-* Zones impactées : 
+* Zones impactées :
 - `parameters/marche_travail/salaire_minimum/smic/*`
 
 * Détails :
@@ -66,17 +77,17 @@
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
 - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/couple_ou_pers_a_charge/*`
 
 * Détails :
   - Mise à jour de `last_value_still_valid_on` et des références.
- 
+
 ### 175.0.8 [#2672](https://github.com/openfisca/openfisca-france/pull/2672)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2026
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/taxation_capital/prelevements_sociaux/csg/taux_global`
 * Détails :
   - Augmentation de la CSG sur une partie des revenus du capital.
@@ -85,12 +96,12 @@
 
 * Correction d'un crash.
 * Périodes concernées : à partir du 01/01/2026
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa/plafond_ressources/personnes_seules.yaml`.
   - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/cf/cf_plaf/majoration/biactifs_isoles.yaml`
 * Détails :
   - Corrige la date d'entrée en vigueur de deux paramètres.
-  
+
 
 ### 175.0.6 [#2666](https://github.com/openfisca/openfisca-france/pull/2666)
 
@@ -150,7 +161,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2026.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/exonerations.py`
   - `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/cnav/employeur/vieillesse_deplafonnee.yaml`
@@ -214,7 +225,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2026
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/marche_travail/salaire_minimum/smic/smic_b_horaire.yaml`
 * Détails :
   - Revalorisation du SMIC horaire de janvier 2026.
@@ -223,7 +234,7 @@
 
 * Changement mineur.
 * Périodes concernées : 2009 à maintenant
-* Zones impactées : 
+* Zones impactées :
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/decote_montant.yaml`
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/decote_taux.yaml`
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/franchise.yaml`
@@ -244,7 +255,7 @@
 
 * Changement mineur.
 * Périodes concernées : 2009 à maintenant
-* Zones impactées : 
+* Zones impactées :
   - `impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati.*`
 * Détails :
   - Ajoute des références aux paramètres.
