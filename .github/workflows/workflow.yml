@@ -9,10 +9,6 @@ env:
   # Versions disponibles visibles sur  https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
   DEFAULT_PYTHON_VERSION: &upper_pyver 3.13.11
   MIN_PYTHON_VERSION: &min_pyver 3.10.11
-  # Et sur https://anaconda.org/anaconda/python/files pour Conda.
-  # Mais la 3.13.11 disponible ne fonctionnait pas pour autant pour des problème de dépendances.
-  # On reste donc en 3.10.11 dans l'attente de la suppression de Conda.
-  CONDA_PYTHON_VERSION: &conda_pyver 3.10.11
 
 jobs:
   build:
@@ -51,41 +47,6 @@ jobs:
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
-
-  build-and-test-conda:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache build
-        uses: actions/cache@v4
-        with:
-          path: ./conda-bld
-          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
-          enableCrossOsArchive: true
-      - name: set version
-        run: |
-          python3 .github/pyproject_version.py --replace True
-      - name: Build conda package
-        uses: prefix-dev/rattler-build-action@v0.2.16
-        with:
-          build-args: --quiet --channel openfisca --channel conda-forge --output-dir ./conda-bld
-          recipe-path: .conda/recipe.yaml
-          upload-artifact: false
-      - name: Setup conda
-        uses: conda-incubator/setup-miniconda@v3
-        with:
-          activate-environment: openfisca
-          miniforge-version: latest
-          python-version: ${{ env.CONDA_PYTHON_VERSION }}
-          use-mamba: true
-          channels: conda-forge,defaults
-      - name: Install package
-        shell: pwsh
-        run: mamba install --channel ./conda-bld --channel openfisca openfisca-france
-      - name: Test openfisca-france conda package
-        shell: pwsh
-        run: openfisca test tests/formulas/irpp.yaml
 
   lint-files:
     runs-on: ubuntu-24.04
@@ -237,36 +198,6 @@ jobs:
         shell: pwsh
         run: uv run openfisca test --country-package openfisca_france tests/formulas/irpp.yaml
 
-  test-on-windows-conda:
-    runs-on: windows-latest
-    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
-    needs: [ build-and-test-conda ]
-    steps:
-      # Checkout needed to get github.sha
-      - uses: actions/checkout@v4
-      - uses: conda-incubator/setup-miniconda@v3
-        with:
-          activate-environment: openfisca
-          miniforge-version: latest
-          python-version: ${{ env.CONDA_PYTHON_VERSION }}
-          use-mamba: true
-          channels: conda-forge,defaults
-      - name: Restore build
-        uses: actions/cache@v4
-        with:
-          path: ./conda-bld
-          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
-          fail-on-cache-miss: true
-          enableCrossOsArchive: true
-      - name: Test max path length
-        run: "python3 openfisca_france/scripts/check_path_length.py"
-      - name: Install package
-        shell: pwsh
-        run: mamba install --channel ./conda-bld --channel openfisca openfisca-france
-      - name: Test conda package
-        shell: pwsh
-        run: openfisca test tests/formulas/irpp.yaml
-
   check-version-and-changelog:
     runs-on: ubuntu-24.04
     needs: [ lint-files, test-python, test-yaml, test-api ] # Last job to run
@@ -335,34 +266,3 @@ jobs:
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_TOKEN
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
-
-  publish-to-conda:
-    runs-on: windows-latest
-    needs: [ deploy, test-on-windows-conda ]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Restore build
-        uses: actions/cache@v4
-        with:
-          path: ./conda-bld
-          key: build-conda-${{ hashFiles('pyproject.toml') }}-${{ github.sha }}
-          fail-on-cache-miss: true
-          enableCrossOsArchive: true
-      - uses: conda-incubator/setup-miniconda@v3
-        with:
-          activate-environment: openfisca
-          miniforge-version: latest
-          python-version: ${{ env.CONDA_PYTHON_VERSION }}
-          use-mamba: true
-          channels: conda-forge,defaults
-      - name: Install package
-        shell: pwsh
-        run: mamba install --channel ./conda-bld --channel openfisca openfisca-france
-      - name: Test conda package
-        shell: pwsh
-        run: openfisca test tests/formulas/irpp.yaml
-      - name: Conda upload already built package
-        shell: pwsh
-        run: |
-          conda install --yes anaconda-client
-          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload --user openfisca ./conda-bld\noarch\openfisca-france-*
