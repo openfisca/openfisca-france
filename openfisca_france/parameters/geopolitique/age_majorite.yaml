@@ -7,6 +7,7 @@ values:
   1974-07-05:
     value: 18
 metadata:
+  last_value_still_valid_on: "2025-11-21"
   short_label: Âge majorité
   unit: year
   reference:

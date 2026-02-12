@@ -1,7 +1,6 @@
+from openfisca_core.errors import ParameterNotFoundError
 from openfisca_core.periods import Period
-
 from openfisca_france.model.base import *
-
 
 DEFAULT_ROUND_BASE_DECIMALS = 2
 
@@ -266,7 +265,7 @@ def apply_bareme_for_relevant_type_sal(
 
             try:
                 categorie_salarie_baremes = bareme_by_categorie_salarie[categorie_salarie_type.name]
-            except KeyError as e:
+            except (KeyError, ParameterNotFoundError) as e:
                 # FIXME: dirty fix since public_titulaire_militaire does not exist
                 if categorie_salarie_type.name == 'public_titulaire_militaire':
                     continue

@@ -2,10 +2,15 @@ description: Taux élevé des cotisations de sécurité sociale (SS) pour les ac
 values:
   2012-01-01:
     value: 0.05
-  2015-01-01: expected
+  2025-01-01:
+    value: 0.05
 metadata:
   short_label: Taux élevé
-  last_value_still_valid_on: "2015-01-01"
+  last_value_still_valid_on: "2025-11-21"
   label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   unit: /1
-documentation: ""
+  reference:
+    2025-01-01:
+      title: Arrêté du 29/04/2025 relatif à la tarification des risques d'accidents du travail
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051533180
+documentation: Un taux de 5% correspond à un "Fabrication et pose de produits de marbrerie.", qui est de 5,38%.

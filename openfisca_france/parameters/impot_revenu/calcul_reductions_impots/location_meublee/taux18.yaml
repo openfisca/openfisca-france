@@ -3,6 +3,7 @@ values:
   2011-01-01:
     value: 0.18
 metadata:
+  last_value_still_valid_on: "2025-11-14"
   short_label: Taux pour les logements acquis en 2011
   unit: /1
   reference:

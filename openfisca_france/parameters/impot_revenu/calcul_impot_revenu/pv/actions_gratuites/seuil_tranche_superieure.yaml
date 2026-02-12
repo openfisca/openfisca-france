@@ -1,0 +1,8 @@
+description: Seuil tranche supérieure
+values:
+  2008-01-01:
+    value: 152500
+metadata:
+  short_label: Seuil des gains d'acquisition d'actions gratuites attribuées avant 28.09.2012
+  ipp_csv_id: seuil_pv1
+  unit: currency_next_year

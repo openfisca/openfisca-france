@@ -1,10 +1,10 @@
-description: Actions, parts, droits ou titres détenus depuis 1 à 4 ans
+description: Abattement majoré pour titres détenus depuis 1 à 4 ans, si choix d'imposition des plus-values au barème progressif (titres acquis ou souscrits avant le 1er janvier 2018)
 values:
   1977-01-01:
     value: null
   2014-01-01:
     value: 0.5
 metadata:
-  short_label: 1 à 4 ans
+  short_label: Abattement majoré pour titres détenus depuis 1 à 4 ans
   ipp_csv_id: abat_pv_majore_1
   unit: /1

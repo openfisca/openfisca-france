@@ -5,3 +5,11 @@ values:
 metadata:
   short_label: Âge maximal pour bénéficier de l'aide au logement spécifique aux étudiants
   unit: year
+  last_value_still_valid_on: "2025-11-20"
+  reference:
+    2020-01-01:
+    - title: Article R822-20 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419188/2021-01-01
+      note: Il est écrit "conditions d'âge fixées pour l'attribution d'une bourse", qui est de 28 ans.
+    - title: Circulaire relative aux modalités d'attribution des bourses d'enseignement supérieur, page 3
+      href: https://www.culture.gouv.fr/Media/Thematiques/Enseignement-superieur-et-recherche/Enseignement-Sup-Culture/bourse-etudiants/circulaire-du-22-juillet-2025-relative-aux-modalites-d-attribution-des-bourses-d-enseignement-superieur-sur-criteres-sociaux-des-aides-specifiques

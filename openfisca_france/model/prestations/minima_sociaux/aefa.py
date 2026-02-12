@@ -60,3 +60,39 @@ class aefa(Variable):
         montant_aefa += aefa.prime_exceptionnelle
 
         return condition * montant_aefa
+
+    def formula_2009_01_01(famille, period, parameters):
+        '''
+        Retire la prime exceptionnelle de 100 euros instituée en 2008 uniquement
+        '''
+        rsa = famille('rsa', period, options = [ADD])
+        ass_i = famille.members('ass', period, options = [ADD])
+        ass = famille.sum(ass_i)
+        api = famille('api', period, options = [ADD])
+        aer_i = famille.members('aer', period, options = [ADD])
+        aer = famille.sum(aer_i)
+        condition = (ass > 0) + (aer > 0) + (api > 0) + (rsa > 0)
+        condition_majoration = rsa > 0
+
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        janvier = period.first_month
+        af_nbenf = famille('af_nbenf', janvier)
+        nb_parents = famille('nb_parents', janvier)
+        if hasattr(af, 'age3'):
+            nombre_enfants = nb_enf(famille, janvier, af.af_cm.age1, af.af_cm.age3)
+        else:
+            nombre_enfants = af_nbenf
+
+        aefa = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.aefa
+
+        nombre_de_personnes_supplementaires_eligibles = (nb_parents >= 2) + nombre_enfants
+        majoration = 1 + (condition_majoration * (
+            (nombre_de_personnes_supplementaires_eligibles >= 1) * aefa.taux_majoration.tx_2p
+            + min_(nombre_enfants, 2) * aefa.taux_majoration.tx_supp * (nb_parents == 2)
+            + aefa.taux_majoration.tx_supp * (nb_parents == 1) * (nombre_enfants >= 2)
+            + aefa.taux_majoration.tx_3pac * max_(nombre_enfants - 2, 0)
+            ))
+
+        montant_aefa = aefa.montant_prime * majoration
+
+        return condition * montant_aefa

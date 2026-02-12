@@ -2,10 +2,15 @@ description: Taux moyen des cotisations de sécurité sociale (SS) pour les acci
 values:
   2012-01-01:
     value: 0.03
-  2015-01-01: expected
+  2025-01-01:
+    value: 0.03
 metadata:
   short_label: Taux moyen
-  last_value_still_valid_on: "2015-01-01"
+  last_value_still_valid_on: "2025-11-21"
   label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   unit: /1
-documentation: ""
+  reference:
+    2025-01-01:
+      title: Arrêté du 29/04/2025 relatif à la tarification des risques d'accidents du travail
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051533180
+documentation: Un taux de 3% correspond à un "Concierges et employés d'immeubles", qui est de 3,3%.

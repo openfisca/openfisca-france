@@ -11,6 +11,7 @@ values:
   2006-01-01:
     value: 0.71
 metadata:
+  last_value_still_valid_on: "2025-11-14"
   short_label: Taux (ventes de marchandises)
   ipp_csv_id: txabt_micro
   unit: /1

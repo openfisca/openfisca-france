@@ -2,8 +2,11 @@ description: Majoration pour 3 enfants de l'Allocation solidarité aux personne 
 values:
   1986-01-01:
     value: 0.1
-  2007-02-01:
-    value: 0
 metadata:
+  last_value_still_valid_on: "2025-11-21"
   short_label: Majoration pour 3 enfants
   unit: /1
+  reference:
+    1986-01-01:
+      title: Article R351-30 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750045

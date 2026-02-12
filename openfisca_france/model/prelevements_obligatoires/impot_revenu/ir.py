@@ -1921,15 +1921,15 @@ class taxation_plus_values_hors_bareme(Variable):
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
         return round_(
-            pv.pvce.taux * rpns_pvce
+            pv.pvce * rpns_pvce
             + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * max_(0, f3vg - f3vh)
-            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
+            + pv.actions_gratuites.cession_plus_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux2
             + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * f3vl
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
             + pv.plus_values.taux_pv_entrep * f3sa_2012
-            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
-            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_superieure * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.taux_plus_3_ans_pre_2018 * f3sj
             + pv.bspce.taux_moins_3_ans * f3sk
             )
@@ -1951,12 +1951,12 @@ class taxation_plus_values_hors_bareme(Variable):
         pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            pv.pvce.taux * rpns_pvce
+            pv.pvce * rpns_pvce
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
-            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
-            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
-            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
+            + pv.actions_gratuites.cession_plus_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux2
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_superieure * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.taux_plus_3_ans_pre_2018 * f3sj
             + pv.bspce.taux_moins_3_ans * f3sk
             )
@@ -1980,12 +1980,12 @@ class taxation_plus_values_hors_bareme(Variable):
         pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            pv.pvce.taux * rpns_pvce
+            pv.pvce * rpns_pvce
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
-            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
-            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
-            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
+            + pv.actions_gratuites.cession_plus_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux2
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_superieure * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.taux_plus_3_ans_pre_2018 * f3sj
             + pv.bspce.taux_moins_3_ans * f3sk
             + pv.report_impot_expire.taux_cas_general * f3wi
@@ -2013,17 +2013,17 @@ class taxation_plus_values_hors_bareme(Variable):
         pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            pv.pvce.taux * rpns_pvce
-            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
-            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
-            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
+            pv.pvce * rpns_pvce
+            + pv.actions_gratuites.cession_plus_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux2
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_superieure * glo_taxation_ir_forfaitaire_taux4
             + pv.bspce.taux_plus_3_ans_pre_2018 * f3sj
             + pv.bspce.taux_moins_3_ans * f3sk
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
             + pv.report_impot_expire.taux_cas_general * f3wi
             + pv.report_impot_expire.taux_conditionnel * f3wj
-            + pv.etnc.taux * f3pi
+            + pv.etnc * f3pi
             )
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
@@ -2049,16 +2049,16 @@ class taxation_plus_values_hors_bareme(Variable):
         parameters_rpns = parameters(period).impot_revenu.calcul_revenus_imposables.rpns
 
         return round_(
-            pv.pvce.taux * rpns_pvce
-            + pv.actions_gratuites.taux2 * glo_taxation_ir_forfaitaire_taux2
-            + pv.actions_gratuites.taux3 * glo_taxation_ir_forfaitaire_taux3
-            + pv.actions_gratuites.taux4 * glo_taxation_ir_forfaitaire_taux4
+            pv.pvce * rpns_pvce
+            + pv.actions_gratuites.cession_plus_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux2
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_inferieure * glo_taxation_ir_forfaitaire_taux3
+            + pv.actions_gratuites.cession_moins_2.taux_tranche_superieure * glo_taxation_ir_forfaitaire_taux4
             + parameters_rpns.taux10 * rpns_info
             + pv.bspce.taux_plus_3_ans_pre_2018 * f3sj
             + pv.bspce.taux_moins_3_ans * f3sk
             + pv.report_impot_expire.taux_cas_general * f3wi
             + pv.report_impot_expire.taux_conditionnel * f3wj
-            + pv.etnc.taux * f3pi
+            + pv.etnc * f3pi
             )
 
 
