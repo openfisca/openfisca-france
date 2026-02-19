@@ -1,5 +1,16 @@
 # Changelog
 
+### 175.0.16[#2700](https://github.com/openfisca/openfisca-france/pull/2700)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées :
+  - `openfisca_france/model/prestations/transport.py`
+  - `openfisca_france/parameters/prestations_sociales/transport/permis_de_conduire/aide_financement_permis_apprenti.yaml`
+  - `tests/formulas/aide_financement_permis_apprenti.yaml`
+* Détails :
+  - Met fin à l’aide au financement du permis de conduire pour les apprentis en 2026.
+
 ### 175.0.15 [#2697](https://github.com/openfisca/openfisca-france/pull/2697)
 
 * Amélioration technique.
