@@ -87,7 +87,7 @@
     rfr:
       2025: 300_000
     impot_revenu_restant_a_payer:
-      2025: -9_665
+      2025: -9_604
     contribution_differentielle_hauts_revenus_ressources:
       2025: 300_000  # devrait être différent du rfr ?
     contribution_differentielle_hauts_revenus_decote:
@@ -96,9 +96,9 @@
       # 60_000 - (82,5 % de (300_000 - 250_000)) = 60_000 - 41_250 = 18_750
       2025: 18_750
     contribution_differentielle_hauts_revenus:
-      # CDHR = (300_000 de RFR * 20% - décote) - 9_665 d'IRRP
-      # = (60_000 - 18_750) - 9_665
-      2025: 31_585
+      # CDHR = (300_000 de RFR * 20% - décote) - 9_604 d'IRRP
+      # = (60_000 - 18_750) - 9_604
+      2025: 31_646
       2026: 0
     contribution_differentielle_hauts_revenus_eligible:
       2025: true
