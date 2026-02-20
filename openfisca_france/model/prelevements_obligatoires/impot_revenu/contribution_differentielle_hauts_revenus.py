@@ -1,3 +1,5 @@
+from openfisca_core.model_api import min_
+
 from openfisca_france.model.base import (
     calculate_output_divide,
     FoyerFiscal,
@@ -395,7 +397,7 @@ class contribution_differentielle_hauts_revenus(Variable):
         # du revenu défini au II de l’article 224 du même code et ces prélèvements libératoires ne sont pas retenus
         # pour déterminer le montant défini au 2° du III de l’article 224 du même code.
 
-        return (
+        return -(
             contribution_differentielle_hauts_revenus_eligible
             * contribution_differentielle_hauts_revenus_montant
             )
@@ -465,7 +467,7 @@ class contribution_differentielle_hauts_revenus(Variable):
         #    est retenue pour le quart de son montant.
         # [leximpact : TODO - implémenter les minorations de la CEHR pour éléments du II et revenus exceptionnels]
 
-        return (
+        return -(
             contribution_differentielle_hauts_revenus_eligible
             * contribution_differentielle_hauts_revenus_montant
             )
@@ -485,7 +487,7 @@ class contribution_differentielle_hauts_revenus_acompte(Variable):
     Cet acompte est égal à 95 % du montant de la contribution estimé par le contribuable.
     '''
 
-    def formula_2026_01_01(foyer_fiscal, period, parameters):
+    def formula(foyer_fiscal, period, parameters):
         # L'acompte est égal à 95 % du montant de la contribution estimée par le contribuable
         cdhr_parameters = parameters(
             period
@@ -513,7 +515,7 @@ class contribution_differentielle_hauts_revenus_penalite_acompte(Variable):
     Cette variable calcule le montant de la pénalité potentielle.
     '''
 
-    def formula_2026_01_01(foyer_fiscal, period, parameters):
+    def formula(foyer_fiscal, period, parameters):
         # Pénalité de 20% si acompte versé < 95% * CDHR - 20% (soit < 76% de la CDHR)
         cdhr_parameters = parameters(
             period
@@ -528,8 +530,9 @@ class contribution_differentielle_hauts_revenus_penalite_acompte(Variable):
         seuil_acompte_minimum = cdhr * taux_acompte * (1 - cdhr_parameters.taux_seuil_sous_estimation)
 
         # Pénalité si acompte insuffisant
-        assiette_penalite = max_(cdhr * taux_acompte - acompte_verse, 0)
-        penalite = (acompte_verse < seuil_acompte_minimum) * assiette_penalite * taux_penalite
+        assiette_penalite = min_(cdhr * taux_acompte + acompte_verse, 0)
+        eligible_a_penalite = (-acompte_verse > seuil_acompte_minimum)
+        penalite = eligible_a_penalite * assiette_penalite * taux_penalite
 
         return penalite
 
@@ -542,6 +545,6 @@ class contribution_differentielle_hauts_revenus_acompte_verse(Variable):
     definition_period = YEAR
     default_value = 0
     documentation = '''
-    Montant de l'acompte effectivement versé par le contribuable entre le 1er et le 15 décembre.
+    Montant positif de l'acompte effectivement versé par le contribuable entre le 1er et le 15 décembre.
     Variable d'entrée à renseigner par l'utilisateur.
     '''

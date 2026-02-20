@@ -641,7 +641,7 @@ class impots_directs(Variable):
         return (
             irpp_economique
             + isf_ifi
-            - contribution_differentielle_hauts_revenus  # Il s'agit d'un montant positif, contrairement aux autres impôts
+            + contribution_differentielle_hauts_revenus
             )
 
     def formula(menage, period, parameters):
