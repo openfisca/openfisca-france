@@ -1,5 +1,14 @@
 # Changelog
 
+### 175.0.16 [#2695](https://github.com/openfisca/openfisca-france/pull/2695)
+
+* Évolution du système socio-fiscal. Changement mineur.
+* Périodes concernées : à partir du 01/01/2025.
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Mise à jour du barème de l'IR et des autres paramètres dans l'article 4 de la LF 2026.
+  - Mise à jour du plafond coluche
+
 ### 175.0.15 [#2697](https://github.com/openfisca/openfisca-france/pull/2697)
 
 * Amélioration technique.
