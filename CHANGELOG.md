@@ -1,5 +1,15 @@
 # Changelog
 
+### 175.0.17 [#2696](https://github.com/openfisca/openfisca-france/pull/2696)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2025.
+* Zones impactées : `parameters/impot_revenu/contributions_exceptionnelles/contribution_differentielle_hauts_revenus/*`.
+* Détails :
+  - Modification mineure de la CDHR.
+  - Ajout du mécanisme d'acompte et de pénalité.
+  - Ajout de tests.
+
 ### 175.0.16 [#2695](https://github.com/openfisca/openfisca-france/pull/2695)
 
 * Évolution du système socio-fiscal. Changement mineur.

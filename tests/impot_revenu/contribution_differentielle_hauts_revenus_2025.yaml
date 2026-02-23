@@ -29,7 +29,7 @@
     contribution_differentielle_hauts_revenus:
       # CDHR = (300_000 de RFR * 20% - décote) - impot_revenu_restant_a_payer
       # = (60_000 - 18_750) - (-1 pour retirer le signe négatif de l'impôt * -39_900)
-      2025: 1350 # était à 20_100 sans décote
+      2025: -1350 # était à 20_100 sans décote
       2026: 0
 
 - name: Célibataire à 500 000€ de revenus, au PFU
@@ -59,7 +59,7 @@
       2026: 0
     contribution_differentielle_hauts_revenus:
       # CDHR = 500_000 de RFR * 20% - impot_revenu_restant_a_payer
-      2025: 500_000 * 0.2 - 71500
+      2025: -1 * ((500_000 * 0.2)-71500)
       2026: 0
     contribution_differentielle_hauts_revenus_eligible:
       2025: true
@@ -98,7 +98,7 @@
     contribution_differentielle_hauts_revenus:
       # CDHR = (300_000 de RFR * 20% - décote) - 9_604 d'IRRP
       # = (60_000 - 18_750) - 9_604
-      2025: 31_646
+      2025: -31_646
       2026: 0
     contribution_differentielle_hauts_revenus_eligible:
       2025: true
@@ -185,7 +185,10 @@
       2025: 1_000_000
     contribution_differentielle_hauts_revenus:
       # CDHR = 1_000_000 de RFR * 20% - (impot_revenu_restant_a_payer + majoration couple)
-      2025: 1_000_000 * 0.2 - 143_000 - 12_500
+      # -200_000 € d'impôt théorique
+      # On retire l'IR déjà imposé : -200_000 + 143_000 = -57_000
+      # On retire aussi la majoration : -57_000 + 12_500 = -44_500
+      2025: -1*(1_000_000 * 0.2) + 143_000 + 12_500
       2026: 0
     contribution_differentielle_hauts_revenus_eligible:
       2025: true
@@ -235,7 +238,7 @@
       2026: 0
     contribution_differentielle_hauts_revenus:
       # CDHR = 1_000_000 de RFR * 20% - (impot_revenu_restant_a_payer + majoration enfant)
-      2025: 1_000_000 * 0.2 - (155_500 + 1_500 * 3)
+      2025: -1*(1_000_000 * 0.2) + (155_500 + 1_500 * 3)
       2026: 0
     contribution_differentielle_hauts_revenus_eligible:
       2025: true

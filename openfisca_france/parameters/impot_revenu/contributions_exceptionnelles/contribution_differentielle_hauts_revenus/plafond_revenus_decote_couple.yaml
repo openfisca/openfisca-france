@@ -3,7 +3,7 @@ values:
   2025-01-01:
     value: 660_000
 metadata:
-  last_value_still_valid_on: "2025-03-04"
+  last_value_still_valid_on: "2026-02-23"
   short_label: Plafond d'éligibilité décote pour un couple (revenus/an)
   reference:
     2025-01-01:
