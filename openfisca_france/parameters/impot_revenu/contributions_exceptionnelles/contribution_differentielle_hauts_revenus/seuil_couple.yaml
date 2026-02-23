@@ -3,7 +3,7 @@ values:
   2025-01-01:
     value: 500_000
 metadata:
-  last_value_still_valid_on: "2026-02-09"
+  last_value_still_valid_on: "2026-02-23"
   short_label: Seuil d'éligibilité à la CDHR pour un couple (revenus/an)
   reference:
     2025-01-01:

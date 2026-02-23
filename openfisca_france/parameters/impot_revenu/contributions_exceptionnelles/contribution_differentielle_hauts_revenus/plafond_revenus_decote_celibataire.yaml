@@ -3,7 +3,7 @@ values:
   2025-01-01:
     value: 330_000
 metadata:
-  last_value_still_valid_on: "2026-02-09"
+  last_value_still_valid_on: "2026-02-23"
   short_label: Plafond d'éligibilité décote pour un célibataire (revenus/an)
   reference:
     2025-01-01:
