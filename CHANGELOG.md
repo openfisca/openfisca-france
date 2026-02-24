@@ -1,5 +1,14 @@
 # Changelog
 
+### 175.0.18 [#2705](https://github.com/openfisca/openfisca-france/pull/2705)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées : `openfisca_france/parameters/impot_revenu`.
+* Détails :
+  - Ajout des last_value_still_valid_on pour les paramètres mis à jour par la loi de finances pour 2026
+  - Mets à jours deux paramètres
+
 ### 175.0.17 [#2696](https://github.com/openfisca/openfisca-france/pull/2696)
 
 * Évolution du système socio-fiscal.
