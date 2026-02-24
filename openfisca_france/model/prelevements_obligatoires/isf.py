@@ -433,10 +433,10 @@ class isf_ifi_imm_non_bati(Variable):
         b9ac_exon = b9ac * exonerations.taux_bois_forets
         # bien ruraux loués à long terme
         b9ad_exon_sous_seuil = min_(b9ad, exonerations.taux_avec_seuil.seuil) * exonerations.taux_avec_seuil.taux_sous_seuil
-        b9ad_exon_dessus_seuil = max_(b9ad - exonerations.taux_avec_seuil.seuil, 0) * exonerations.taux_avec_seuil.taux_dessous_seuil
+        b9ad_exon_dessus_seuil = max_(b9ad - exonerations.taux_avec_seuil.seuil, 0) * exonerations.taux_avec_seuil.taux_dessus_seuil
         # part de groupements forestiers- agricoles fonciers
         b9ba_exon_sous_seuil = min_(b9ba, exonerations.taux_avec_seuil.seuil) * exonerations.taux_avec_seuil.taux_sous_seuil
-        b9ba_exon_dessus_seuil = max_(b9ba - exonerations.taux_avec_seuil.seuil, 0) * exonerations.taux_avec_seuil.taux_dessous_seuil
+        b9ba_exon_dessus_seuil = max_(b9ba - exonerations.taux_avec_seuil.seuil, 0) * exonerations.taux_avec_seuil.taux_dessus_seuil
         return b9ac_exon + b9ad_exon_sous_seuil + b9ad_exon_dessus_seuil + b9ba_exon_sous_seuil + b9ba_exon_dessus_seuil + b9bb
 
     def formula(foyer_fiscal, period, parameters):
