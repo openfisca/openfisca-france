@@ -24,6 +24,8 @@ values:
     value: 622.63
   2025-04-01:
     value: 633.21
+  2026-04-01:
+    value: 638.91
 metadata:
   short_label: Montant de base
   last_value_still_valid_on: "2024-05-17"
@@ -71,6 +73,9 @@ metadata:
     2025-04-01:
       title: Décret n° 2025-294 du 29 mars 2025, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051393100
+    2026-04-01: #TODO
+      title: Décret n° 2025-294 du 29 mars 2025, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051393100
   official_journal_date:
     2016-01-01: "2015-12-22"
     2016-04-01: "2016-05-03"
@@ -83,6 +88,7 @@ metadata:
     2022-07-01: "2022-08-17"
     2023-04-01: "2023-05-05"
     2024-04-01: "2024-05-02"
+    2026-04-01: "2026-05-02"#TODO
   notes:
     2016-01-01:
     - title: Création de la prime pour l'activité.
@@ -90,3 +96,5 @@ metadata:
     - title: Revalorisation de la prime pour l'activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La PPA augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
     2022-07-01:
     - title: Revalorisation de 4%
+    2026-04-01:
+    - title: Revalorisation de 0.9%

@@ -186,8 +186,10 @@ values:
     value: 466.44
   2025-04-01:
     value: 474.37
+  2026-04-01:
+    value: 478.64
 metadata:
-  last_value_still_valid_on: "2023-05-04"
+  last_value_still_valid_on: "2026-02-23"
   label_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: bmaf
   unit: currency
@@ -449,6 +451,10 @@ metadata:
     2025-04-01:
       title: Instruction interministérielle N° DSS/2A/2C/2025/32 du 7 mars 2025
       href: https://sante.gouv.fr/fichiers/bo/2025/2025.6.sante.pdf#page=9
+    2026-04-01:
+#      TODO
+#      title: Pas encore publie
+#      href: https://sante.gouv.fr/fichiers/bo/2025/2025.6.sante.pdf#page=9
   official_journal_date:
     1946-07-01: "1946-08-23"
     1947-02-01: "1947-04-06"
@@ -531,6 +537,7 @@ metadata:
     2013-04-01: "2011-12-22"
     2014-04-01: "2013-12-24"
     2025-04-01: "2025-03-31"
+    2026-04-01: "2025-03-31" #      TODO
   notes:
     1946-07-01:
     - title: Fixation du régime des prestations familiales (allocations de maternité, allocations familiales, allocations de salaire unique et allocations prénatales). Journal Officiel introuvable
@@ -606,3 +613,5 @@ metadata:
     - title: Revalorisation de 4%
     2025-04-01:
     - title: Revalorisation de 1.7%
+    2026-04-01:
+    - title: Revalorisation de 0.9%

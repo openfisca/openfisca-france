@@ -46,9 +46,11 @@ values:
     value: 635.71
   2025-04-01:
     value: 646.52
+  2026-04-01:
+    value: 652.34
 metadata:
   short_label: RSA socle
-  last_value_still_valid_on: "2024-05-17"
+  last_value_still_valid_on: "2026-02-24"
   label_en: "Active solidarity income (RSA): Basic amount"
   ipp_csv_id: brsa
   unit: currency
@@ -124,6 +126,9 @@ metadata:
     2025-04-01:
       title: Décret n° 2025-293 du 29 mars 2025, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051393086
+    2026-04-01:
+      title: Décret n° 2025-293 du 29 mars 2025, art. 1 #TODO
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051393086
   official_journal_date:
     2009-06-01: "2009-04-16"
     2010-01-01: "2010-01-17"
@@ -147,8 +152,11 @@ metadata:
     2022-07-01: "2022-08-17"
     2023-04-01: "2023-05-05"
     2024-04-01: "2024-04-30"
+    2026-04-01: "2026-04-01" #TODO
   notes:
     2022-07-01:
     - title: Revalorisation de 4%
     2023-04-01:
     - title: Revalorisation de 1.54%
+    2026-04-01:
+    - title: Revalorisation de 0.9%
