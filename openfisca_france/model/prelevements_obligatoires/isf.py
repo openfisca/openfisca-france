@@ -5,12 +5,33 @@ from openfisca_france.model.base import *
 # Immeubles bâtis
 
 
+class b9aa(Variable):
+    value_type = int
+    cerfa_field = '9AA'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Résidence principale (après abattement)'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
+class b9ab(Variable):
+    value_type = int
+    cerfa_field = '9AB'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Autres immeubles bâtis'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
 class b1ab(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Valeur de la résidence principale avant abattement'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1ac(Variable):
@@ -19,15 +40,67 @@ class b1ac(Variable):
     entity = FoyerFiscal
     label = 'Valeur des autres immeubles avant abattement'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 # non bâtis
+class b9ac(Variable):
+    value_type = int
+    cerfa_field = '9AC'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Bois, forêts et parts de groupements forestiers exonérés partiellement (avant exonération)'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
+class b9ad(Variable):
+    value_type = int
+    cerfa_field = '9AD'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Biens ruraux loués à long terme exonérés partiellement (avant exonération)'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
+class b9ba(Variable):
+    value_type = int
+    cerfa_field = '9BA'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Parts de Groupements Fonciers Agricoles et de Groupements Agricoles Fonciers exonérés partiellement (avant exonération)'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
+class b9bb(Variable):
+    value_type = int
+    cerfa_field = '9BB'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Autres biens non bâtis'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
+class b9ca(Variable):
+    value_type = int
+    cerfa_field = '9CA'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Fraction de la valeur des parts ou actions représentative des immeubles'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
 class b1bc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Immeubles non bâtis : bois, fôrets et parts de groupements forestiers'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1be(Variable):
@@ -36,6 +109,7 @@ class b1be(Variable):
     entity = FoyerFiscal
     label = 'Immeubles non bâtis : biens ruraux loués à long termes'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1bh(Variable):
@@ -44,6 +118,7 @@ class b1bh(Variable):
     entity = FoyerFiscal
     label = 'Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1bk(Variable):
@@ -52,6 +127,7 @@ class b1bk(Variable):
     entity = FoyerFiscal
     label = 'Immeubles non bâtis : autres biens'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 # droits sociaux- valeurs mobilières-liquidités- autres meubles
@@ -61,6 +137,7 @@ class b1cl(Variable):
     entity = FoyerFiscal
     label = 'Parts et actions détenues par les salariés et mandataires sociaux'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1cb(Variable):
@@ -69,6 +146,7 @@ class b1cb(Variable):
     entity = FoyerFiscal
     label = 'Parts et actions de sociétés avec engagement de conservation de 6 ans minimum'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1cd(Variable):
@@ -77,6 +155,7 @@ class b1cd(Variable):
     entity = FoyerFiscal
     label = 'Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1ce(Variable):
@@ -85,6 +164,7 @@ class b1ce(Variable):
     entity = FoyerFiscal
     label = 'Autres valeurs mobilières'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1cf(Variable):
@@ -93,6 +173,7 @@ class b1cf(Variable):
     entity = FoyerFiscal
     label = 'Liquidités'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1cg(Variable):
@@ -101,6 +182,7 @@ class b1cg(Variable):
     entity = FoyerFiscal
     label = 'Autres biens meubles'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b1co(Variable):
@@ -109,6 +191,7 @@ class b1co(Variable):
     entity = FoyerFiscal
     label = "Autres biens meubles : contrats d'assurance-vie"
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 #    b1ch
@@ -118,22 +201,63 @@ class b1co(Variable):
 
 
 # passifs et autres réductions
+class b9gf(Variable):
+    value_type = int
+    cerfa_field = '9GF'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Dettes afférentes aux travaux réalisés'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
+class b9gh(Variable):
+    value_type = int
+    cerfa_field = '9GH'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Autres dettes'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
 class b2gh(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Total du passif et autres déductions'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 # réductions
+class b9nc(Variable):
+    value_type = int
+    cerfa_field = '9NC'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Dons à des organismes d’intérêt général établis en France'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
+class b9ng(Variable):
+    value_type = int
+    cerfa_field = '9NG'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Dons à des organismes d’intérêt général établis dans un autre État européen'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
 class b2mt(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Réductions pour investissements directs dans une société'
     definition_period = YEAR
-    end = '2018-12-31'
+    end = '2017-12-31'
 
 
 class b2ne(Variable):
@@ -142,6 +266,7 @@ class b2ne(Variable):
     entity = FoyerFiscal
     label = 'Réductions pour investissements directs dans une société'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b2mv(Variable):
@@ -150,7 +275,7 @@ class b2mv(Variable):
     entity = FoyerFiscal
     label = 'Réductions pour investissements par sociétés interposées, holdings'
     definition_period = YEAR
-    end = '2018-12-31'
+    end = '2017-12-31'
 
 
 class b2nf(Variable):
@@ -159,6 +284,7 @@ class b2nf(Variable):
     entity = FoyerFiscal
     label = 'Réductions pour investissements par sociétés interposées, holdings'
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 class b2mx(Variable):
@@ -167,7 +293,7 @@ class b2mx(Variable):
     entity = FoyerFiscal
     label = 'Réductions pour investissements par le biais de FIP'
     definition_period = YEAR
-    end = '2018-12-31'
+    end = '2017-12-31'
 
 
 class b2na(Variable):
@@ -176,18 +302,16 @@ class b2na(Variable):
     entity = FoyerFiscal
     label = 'Réductions pour investissements par le biais de FCPI ou FCPR'
     definition_period = YEAR
-    end = '2018-12-31'
+    end = '2017-12-31'
 
 
 class b2nc(Variable):
-    # TODO: est devenu 9NC avec l'IFI
-    # Et il manque 9NG pour les donations dans un autre état membre de l'UE
-    # qui équivaut à f7vc
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Réductions pour dons à certains organismes d'intérêt général"
     definition_period = YEAR
+    end = '2017-12-31'
 
 
 # montant impôt acquitté hors de France
@@ -197,10 +321,41 @@ class b4rs(Variable):
     entity = FoyerFiscal
     label = "Montant de l'impôt acquitté hors de France"
     definition_period = YEAR
+    end = '2017-12-31'
+
+
+# plafonnement
+class b9pr(Variable):
+    value_type = int
+    cerfa_field = '9PR'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Impôts dus au titre des revenus et produits 2018'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
+class b9px(Variable):
+    value_type = int
+    cerfa_field = '9PX'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Revenus et produits de l’année 2018 en cas de montant négatif, inscrivez 0'
+    definition_period = YEAR
+    # start = '2018-01-01'
+
+
+class b9rs(Variable):
+    value_type = int
+    cerfa_field = '9RS'
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Impôts payés à l'étranger dont les caractéristiques sont similaires à celles de l'ifi"
+    definition_period = YEAR
+    # start = '2018-01-01'
 
 
 # BOUCLIER FISCAL
-
 class rev_or(Variable):
     value_type = int
     unit = 'currency'
@@ -247,12 +402,11 @@ class isf_ifi_imm_bati(Variable):
     label = "Base de l'ISF-IFI sur l'immobilier bâti"
     definition_period = YEAR
 
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        b1ab = foyer_fiscal('b1ab', period)
-        b1ac = foyer_fiscal('b1ac', period)
-        reduc_exo = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_exo
+    def formula_2018_01_01(foyer_fiscal, period, paramaters):
+        b9aa = foyer_fiscal('b9aa', period)
+        b9ab = foyer_fiscal('b9ab', period)
 
-        return (1 - reduc_exo.abattement_residence_principale) * b1ab + b1ac
+        return b9aa + b9ab
 
     def formula(foyer_fiscal, period, parameters):
         b1ab = foyer_fiscal('b1ab', period)
@@ -269,21 +423,38 @@ class isf_ifi_imm_non_bati(Variable):
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        b1bc = foyer_fiscal('b1bc', period)
-        b1be = foyer_fiscal('b1be', period)
+        b9ac = foyer_fiscal('b9ac', period)
+        b9ad = foyer_fiscal('b9ad', period)
         b1bh = foyer_fiscal('b1bh', period)
         b1bk = foyer_fiscal('b1bk', period)
         non_bati = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.forfait_mobilier.non_bati
 
         # forêts
-        b1bd = b1bc * non_bati.taux_bois_forets
+        b9ac_exon = b9ac * non_bati.taux_bois_forets
         # bien ruraux loués à long terme
-        b1bf = min_(b1be, non_bati.seuil) * non_bati.taux_biens_ruraux
-        b1bg = max_(b1be - non_bati.seuil, 0) * non_bati.taux_forestier_agricole
+        b9ad_exon_sous_seuil = min_(b9ad, non_bati.seuil) * non_bati.taux_biens_ruraux
+        b9ad_exon_dessus_seuil = max_(b9ad - non_bati.seuil, 0) * non_bati.taux_forestier_agricole
         # part de groupements forestiers- agricoles fonciers
         b1bi = min_(b1bh, non_bati.seuil) * non_bati.taux_biens_ruraux
         b1bj = max_(b1bh - non_bati.seuil, 0) * non_bati.taux_forestier_agricole
-        return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
+        return b9ac_exon + b9ad_exon_sous_seuil + b9ad_exon_dessus_seuil + b1bi + b1bj + b1bk
+
+    # def formula_2018_01_01(foyer_fiscal, period, parameters):
+    #     b1bc = foyer_fiscal('b1bc', period)
+    #     b1be = foyer_fiscal('b1be', period)
+    #     b1bh = foyer_fiscal('b1bh', period)
+    #     b1bk = foyer_fiscal('b1bk', period)
+    #     non_bati = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.forfait_mobilier.non_bati
+
+    #     # forêts
+    #     b1bd = b1bc * non_bati.taux_bois_forets
+    #     # bien ruraux loués à long terme
+    #     b1bf = min_(b1be, non_bati.seuil) * non_bati.taux_biens_ruraux
+    #     b1bg = max_(b1be - non_bati.seuil, 0) * non_bati.taux_forestier_agricole
+    #     # part de groupements forestiers- agricoles fonciers
+    #     b1bi = min_(b1bh, non_bati.seuil) * non_bati.taux_biens_ruraux
+    #     b1bj = max_(b1bh - non_bati.seuil, 0) * non_bati.taux_forestier_agricole
+    #     return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
 
     def formula(foyer_fiscal, period, parameters):
         b1bc = foyer_fiscal('b1bc', period)
