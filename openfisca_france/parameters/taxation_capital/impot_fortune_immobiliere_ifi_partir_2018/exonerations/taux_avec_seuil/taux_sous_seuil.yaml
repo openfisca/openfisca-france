@@ -1,0 +1,14 @@
+description: Taux d'exonération bail long-terme et foncier agricole pour l'IFI, sous le seuil
+values:
+  2018-01-01:
+    value: 0.75
+metadata:
+  last_value_still_valid_on: "2026-02-24"
+  unit: /1
+  reference:
+    2018-01-01:
+      title: Article 976 III du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036385037
+  notes:
+    2018-01-01:
+    - title: Le taux d'exonération est de 75 % si la valeur totale des biens loués ne dépasse pas le seuil de 101 897 euros et que la durée du bail soit d'au moins de dix-huit ans

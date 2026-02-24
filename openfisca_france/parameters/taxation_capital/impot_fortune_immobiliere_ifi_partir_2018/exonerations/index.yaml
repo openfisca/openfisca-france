@@ -1,0 +1,7 @@
+description: Taux d'exoneration de certains actifs non batis pour l'IFI
+metadata:
+  short_label: Taux d'exoneration
+  order:
+  - taux_bois_forets
+  - taux_groupements_forestiers
+  - taux_avec_seuil

@@ -1,0 +1,7 @@
+description: Seuil et taux Exonération pour bail long-terme et foncier agricole, IFI
+metadata:
+  short_label: Taux et seuil d'exoneration
+  order:
+  - seuil
+  - taux_sou_seuil
+  - taux_dessus_seuil
