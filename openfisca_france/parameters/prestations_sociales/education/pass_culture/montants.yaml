@@ -18,7 +18,6 @@ brackets:
   amount:
     2022-01-01:
       value: 30
-  amount:
     2025-01-01:
       value: 50
 - threshold:
