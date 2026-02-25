@@ -1,6 +1,6 @@
 # Changelog
 
-## 175.0.18 [#2706](https://github.com/openfisca/openfisca-france/pull/270)
+## 175.0.19 [#2706](https://github.com/openfisca/openfisca-france/pull/270)
 
 - Évolution du système socio-fiscal.
 - Périodes concernées : à partir du 01/01/2025
