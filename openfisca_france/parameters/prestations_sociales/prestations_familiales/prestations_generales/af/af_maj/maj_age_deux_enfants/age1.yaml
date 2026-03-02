@@ -4,7 +4,7 @@ values:
     value: 11
   2008-05-01:
     value: 14
-  2026-04-01:
+  2026-03-01:
     value: 15
 metadata:
   short_label: Âge seuil de la majoration
@@ -16,9 +16,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000018731950/2022-02-28/
     - title: Article R521-1 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018735853
-    2026-04-01:
+    2026-03-01:
       title: Décret n° 2026-138 du 27 février 2026 portant à dix-huit ans l'âge de la majoration des allocations familiales
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053594174
   notes:
-    2026-04-01:
+    2026-03-01:
       title: L'âge passe à 18 ans pour ceux dont le 14e anniversaire est après le 1er mars 2026 ; c'est équivalent à un âge minimum de 15 ans en 2026, 16 en 2027...
