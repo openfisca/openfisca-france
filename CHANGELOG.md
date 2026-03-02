@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.19 [#2773](https://github.com/openfisca/openfisca-france/pull/2773)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2026
+* Zones impactées : `parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_maj/maj_age_deux_enfants`.
+* Détails :
+  - Met à jour l'age de la majoration
+
 ### 175.0.18 [#2705](https://github.com/openfisca/openfisca-france/pull/2705)
 
 * Évolution du système socio-fiscal.
