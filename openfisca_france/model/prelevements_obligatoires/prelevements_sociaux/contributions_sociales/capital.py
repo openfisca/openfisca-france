@@ -337,9 +337,6 @@ class assiette_csg_revenus_capital_alleges(Variable):
             + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 + f2xx
             )
 
-        # Rentes viagères à titre onéreux
-        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
-
         # Revenus des produits d'épargne logement
         interets_pel_cel_non_soumis_IR_i = foyer_fiscal.members('interets_pel_cel_non_soumis_IR', period)
         interets_pel_cel_non_soumis_IR = foyer_fiscal.sum(interets_pel_cel_non_soumis_IR_i)
@@ -355,7 +352,6 @@ class assiette_csg_revenus_capital_alleges(Variable):
 
         return (
             assurance_vie
-            + rente_viagere_titre_onereux_net
             + interets_pel_cel_non_soumis_IR
             + rev_cat_rfon
             + f3vz
