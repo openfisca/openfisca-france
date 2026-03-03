@@ -265,4 +265,4 @@
     f3vz: 10000
     f2dc: 4000
   output:
-    csg_revenus_capital: -10000 * 0.7 * 0.092 - 4000 * 0.106
+    csg_revenus_capital: -10000 * 0.092 - 4000 * 0.106
