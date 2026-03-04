@@ -12,7 +12,7 @@ brackets:
     amount:
       2022-01-01:
         value: 30
-      2025-01-01:
+      2025-03-01:
         value: 0
   - threshold:
       2022-01-01:
@@ -20,7 +20,7 @@ brackets:
     amount:
       2022-01-01:
         value: 30
-      2025-01-01:
+      2025-03-01:
         value: 50
   - threshold:
       2019-02-01:
@@ -32,7 +32,7 @@ brackets:
         value: 300
       2022-01-01:
         value: 300
-      2025-01-01:
+      2025-03-01:
         value: 150
 metadata:
   short_label: Montant

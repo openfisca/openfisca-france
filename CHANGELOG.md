@@ -5,7 +5,7 @@
 - Évolution du système socio-fiscal.
 - Périodes concernées : à partir du 01/01/2025
 - Zones impactées :
-    - `/parameters/prestations/pass_culture/montants.yaml`
+    - `/parameters/prestations_sociales/education/pass_culture/montants.yaml`
 - Détails :
     - Mise à jour des montants
 
