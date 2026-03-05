@@ -332,7 +332,7 @@ class assiette_csg_revenus_capital_alleges(Variable):
 
         assurance_vie = (
             f2vv + f2ww + f2zz + f2ch + f2dh + f2yy + f2ts + assurance_vie_pfu_ir_moins4ans_1990_19970926
-            + assurance_vie_pfu_ir_4_8_ans_1990_19970926 + assurance_vie_pfu_ir_4_8_ans_1990_19970926
+            + assurance_vie_pfu_ir_4_8_ans_1990_19970926
             + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
             + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 + f2xx
             )
