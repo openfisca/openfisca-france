@@ -9,6 +9,8 @@ env:
   # Versions disponibles visibles sur  https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
   DEFAULT_PYTHON_VERSION: &upper_pyver 3.13.11
   MIN_PYTHON_VERSION: &min_pyver 3.10.11
+  # Branch or tag of openfisca-core to use in CI when pyproject has "file:../openfisca-core". Change this to test a core PR (e.g. fix/entity-links-person-key).
+  OPENFISCA_CORE_REF: master
 
 jobs:
   build:
@@ -22,6 +24,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Use openfisca-core from GitHub PR in CI
+        run: sed -i "s|@ file:../openfisca-core|@ git+https://github.com/openfisca/openfisca-core.git@${{ env.OPENFISCA_CORE_REF }}|" pyproject.toml
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -58,6 +62,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
+      - name: Use openfisca-core from GitHub PR in CI
+        run: sed -i "s|@ file:../openfisca-core|@ git+https://github.com/openfisca/openfisca-core.git@${{ env.OPENFISCA_CORE_REF }}|" pyproject.toml
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -88,6 +94,8 @@ jobs:
         openfisca-dependencies: [minimal, maximal]
     steps:
       - uses: actions/checkout@v4
+      - name: Use openfisca-core from GitHub PR in CI
+        run: sed -i "s|@ file:../openfisca-core|@ git+https://github.com/openfisca/openfisca-core.git@${{ env.OPENFISCA_CORE_REF }}|" pyproject.toml
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -129,6 +137,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Use openfisca-core from GitHub PR in CI
+        run: sed -i "s|@ file:../openfisca-core|@ git+https://github.com/openfisca/openfisca-core.git@${{ env.OPENFISCA_CORE_REF }}|" pyproject.toml
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -170,6 +180,8 @@ jobs:
     needs: [ build ]
     steps:
       - uses: actions/checkout@v4
+      - name: Use openfisca-core from GitHub PR in CI
+        run: sed -i "s|@ file:../openfisca-core|@ git+https://github.com/openfisca/openfisca-core.git@${{ env.OPENFISCA_CORE_REF }}|" pyproject.toml
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -188,6 +200,8 @@ jobs:
     needs: [ lint-files ]
     steps:
       - uses: actions/checkout@v4
+      - name: Use openfisca-core from GitHub PR in CI
+        run: python -c "import os; r=os.environ.get('OPENFISCA_CORE_REF','master'); p=open('pyproject.toml'); s=p.read(); p.close(); open('pyproject.toml','w').write(s.replace('@ file:../openfisca-core', '@ git+https://github.com/openfisca/openfisca-core.git@'+r))"
       - name: Install uv
         uses: astral-sh/setup-uv@caf0cab7a618c569241d31dcd442f54681755d39 # v3.2.4
         with:
@@ -246,6 +260,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all the tags
+      - name: Use openfisca-core from GitHub PR in CI
+        run: sed -i "s|@ file:../openfisca-core|@ git+https://github.com/openfisca/openfisca-core.git@${{ env.OPENFISCA_CORE_REF }}|" pyproject.toml
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
