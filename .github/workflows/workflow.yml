@@ -40,7 +40,7 @@ jobs:
       - name: Minimal version
         if: matrix.openfisca-dependencies == 'minimal'
         run: | # Installs the OpenFisca dependencies minimal version from pyproject.toml
-            pip install $(python ${GITHUB_WORKSPACE}/.github/get_minimal_version.py)
+            pip install "$(python ${GITHUB_WORKSPACE}/.github/get_minimal_version.py)"
       - name: Cache release
         id: restore-release
         uses: actions/cache@v4
