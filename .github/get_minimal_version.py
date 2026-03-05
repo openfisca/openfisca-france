@@ -5,6 +5,10 @@ with open('./pyproject.toml', 'rb') as file:
     config = tomli.load(file)
     deps = config['project']['dependencies']
     for dep in deps:
+        # Git URL (e.g. from a PR branch): pass through as-is for pip install
+        if 'openfisca-core' in dep and '@' in dep:
+            print(dep.strip())  # noqa: T201
+            break
         version = re.search(r'openfisca-core\[([^\]]+)\]\s*>=\s*([\d\.]*)', dep)
         if version:
             try:
@@ -12,3 +16,4 @@ with open('./pyproject.toml', 'rb') as file:
             except Exception as e:
                 print(f'Error processing "{dep}": {e}')  # noqa: T201 <- This is to avoid flake8 print detection.
                 exit(1)
+            break
