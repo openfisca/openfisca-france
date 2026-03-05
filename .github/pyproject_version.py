@@ -28,6 +28,9 @@ def get_versions():
     version = re.search(r'"openfisca-core\[web-api\]\s*(>=\s*[\d.]+,\s*<\s*[\d.]+)"', content, re.MULTILINE)
     if version:
         openfisca_core_api = version.group(1)
+    # Git URL (e.g. PR branch): use same range as conda recipe for replace_in_file
+    if not openfisca_core_api and 'openfisca-core' in content and '@' in content:
+        openfisca_core_api = '>=43,<45'
     version = re.search(r'numpy\s*(>=\s*[\d\.]*,\s*<\d*)"', content, re.MULTILINE)
     if version:
         numpy = version.group(1)
