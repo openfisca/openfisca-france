@@ -822,8 +822,8 @@ wheels = [
 
 [[package]]
 name = "openfisca-core"
-version = "44.0.4"
-source = { registry = "https://pypi.org/simple" }
+version = "44.5.0"
+source = { git = "https://github.com/openfisca/openfisca-core.git?rev=fix%2Fentity-links-person-key#9eeaff0af5f1a8267507e37ee5f69afc46d0988a" }
 dependencies = [
     { name = "dpath" },
     { name = "numexpr", version = "2.10.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
@@ -838,10 +838,6 @@ dependencies = [
     { name = "strenum" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1b/16/8929a985f2d16d5db4e6ebbd596bd48dfca0da5cfde527d3d2cc4008ae54/openfisca_core-44.0.4.tar.gz", hash = "sha256:9307ee8d05bfc1133a1e750734afb35d0927f1eda26a77d94371207c54afb54b", size = 206473 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/17/d5/66d1c83d17fe189229d32bc654b97f92de60e99967e38d5b37e33a477660/openfisca_core-44.0.4-py3-none-any.whl", hash = "sha256:7d34b4a02f024a436e06b76aac993d44b6552a061e72630a2a3bd2144a22b242", size = 266565 },
-]
 
 [package.optional-dependencies]
 web-api = [
@@ -853,7 +849,7 @@ web-api = [
 
 [[package]]
 name = "openfisca-france"
-version = "175.0.13"
+version = "175.0.20"
 source = { editable = "." }
 dependencies = [
     { name = "numpy", version = "1.26.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
@@ -901,7 +897,7 @@ dev = [
 requires-dist = [
     { name = "autopep8", marker = "extra == 'casd-dev'", specifier = ">=2.0.2,<3.0" },
     { name = "numpy", specifier = ">=1.24.3,<3" },
-    { name = "openfisca-core", extras = ["web-api"], specifier = ">=43,<45" },
+    { name = "openfisca-core", extras = ["web-api"], git = "https://github.com/openfisca/openfisca-core.git?rev=fix%2Fentity-links-person-key" },
     { name = "pandas", marker = "extra == 'taxipp'", specifier = ">=1.5.3,<2.0" },
     { name = "pytest", marker = "extra == 'casd-dev'" },
     { name = "requests", marker = "extra == 'casd-dev'", specifier = ">=2.28.2,<3.0" },
