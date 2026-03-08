@@ -2,7 +2,7 @@ name: Test compatibilité nouvelle version openfisca-core
 
 on:
   schedule:
-    - cron: '0 8 * * 1'  # Chaque lundi à 8h UTC
+    - cron: '0 4 * * *'  # Chaque jour à 5h heure de Paris (UTC+1, hiver)
   workflow_dispatch:  # Déclenchement manuel possible
 
 jobs:
@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-24.04
     outputs:
       has_new_version: ${{ steps.check.outputs.has_new_version }}
+      bump_type: ${{ steps.check.outputs.bump_type }}          # 'major' ou 'minor'
       new_version: ${{ steps.check.outputs.new_version }}
       new_max_bound: ${{ steps.check.outputs.new_max_bound }}
       current_max_bound: ${{ steps.check.outputs.current_max_bound }}
+      current_min_bound: ${{ steps.check.outputs.current_min_bound }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,11 +35,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13.11'
-      - name: Mettre à jour la borne supérieure dans pyproject.toml
+      - name: Mettre à jour pyproject.toml pour autoriser la version à tester
         env:
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
           NEW_MAX_BOUND: ${{ needs.check-new-version.outputs.new_max_bound }}
         run: |
-          sed -i "s/openfisca-core\[web-api\] >=\([0-9]*\), <[0-9]*/openfisca-core[web-api] >=\1, <${NEW_MAX_BOUND}/" pyproject.toml
+          # Pour les versions majeures : étendre la borne supérieure
+          # Pour les versions mineures : étendre temporairement la borne inférieure
+          # Dans les deux cas on s'assure que NEW_VERSION est installable
+          sed -i "s/openfisca-core\[web-api\] >=\([0-9.]*\), <[0-9]*/openfisca-core[web-api] >=${NEW_VERSION}, <${NEW_MAX_BOUND}/" pyproject.toml
           echo "pyproject.toml mis à jour :"
           grep openfisca-core pyproject.toml
       - name: Construire et installer openfisca-france
@@ -74,6 +80,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
+          BUMP_TYPE: ${{ needs.check-new-version.outputs.bump_type }}
+          CURRENT_MIN_BOUND: ${{ needs.check-new-version.outputs.current_min_bound }}
           CURRENT_MAX_BOUND: ${{ needs.check-new-version.outputs.current_max_bound }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
@@ -84,14 +92,14 @@ jobs:
 
           ### Versions concernées
 
-          - openfisca-core testé : \`${NEW_VERSION}\`
-          - Borne actuelle dans \`pyproject.toml\` : \`<${CURRENT_MAX_BOUND}\`
+          - openfisca-core testé : \`${NEW_VERSION}\` (bump ${BUMP_TYPE})
+          - Bornes actuelles dans \`pyproject.toml\` : \`>=${CURRENT_MIN_BOUND}, <${CURRENT_MAX_BOUND}\`
 
           ### Actions possibles
 
           - Investiguer la cause de l'incompatibilité (voir les logs ci-dessous)
           - Corriger le code si nécessaire
-          - Mettre à jour la borne dans \`pyproject.toml\` une fois la compatibilité rétablie
+          - Mettre à jour les bornes dans \`pyproject.toml\` une fois la compatibilité rétablie
 
           ### Logs
 
@@ -134,43 +142,76 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - name: Mettre à jour la borne supérieure dans pyproject.toml
+      - name: Mettre à jour pyproject.toml
         env:
+          BUMP_TYPE: ${{ needs.check-new-version.outputs.bump_type }}
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
           NEW_MAX_BOUND: ${{ needs.check-new-version.outputs.new_max_bound }}
         run: |
-          sed -i "s/openfisca-core\[web-api\] >=\([0-9]*\), <[0-9]*/openfisca-core[web-api] >=\1, <${NEW_MAX_BOUND}/" pyproject.toml
+          if [ "${BUMP_TYPE}" = "major" ]; then
+            # Étendre la borne supérieure, garder la borne min intacte
+            sed -i "s/openfisca-core\[web-api\] >=\([0-9.]*\), <[0-9]*/openfisca-core[web-api] >=\1, <${NEW_MAX_BOUND}/" pyproject.toml
+          else
+            # Mettre à jour la borne min vers la dernière version testée, garder la borne max
+            sed -i "s/openfisca-core\[web-api\] >=[0-9.]*, </openfisca-core[web-api] >=${NEW_VERSION}, </" pyproject.toml
+          fi
+          echo "pyproject.toml mis à jour :"
+          grep openfisca-core pyproject.toml
+
       - name: Créer une branche et ouvrir une PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUMP_TYPE: ${{ needs.check-new-version.outputs.bump_type }}
           NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
           NEW_MAX_BOUND: ${{ needs.check-new-version.outputs.new_max_bound }}
           CURRENT_MAX_BOUND: ${{ needs.check-new-version.outputs.current_max_bound }}
+          CURRENT_MIN_BOUND: ${{ needs.check-new-version.outputs.current_min_bound }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          BRANCH="bump-openfisca-core-<${NEW_MAX_BOUND}"
+          BRANCH="bump-openfisca-core-${NEW_VERSION}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "${BRANCH}"
           git add pyproject.toml
-          git commit -m "Bump openfisca-core upper bound to <${NEW_MAX_BOUND}"
-          git push origin "${BRANCH}"
 
-          cat > /tmp/pr-body.md << EOF
-          ## Mise à jour automatique de la borne openfisca-core
+          if [ "${BUMP_TYPE}" = "major" ]; then
+            git commit -m "Bump openfisca-core upper bound to <${NEW_MAX_BOUND}"
+            PR_TITLE="Bump openfisca-core upper bound to <${NEW_MAX_BOUND}"
+            cat > /tmp/pr-body.md << EOF
+          ## Mise à jour automatique — nouvelle version majeure openfisca-core
 
-          La version **${NEW_VERSION}** d'openfisca-core a été testée avec succès contre openfisca-france.
+          La version **${NEW_VERSION}** d'openfisca-core (au-delà de la borne \`<${CURRENT_MAX_BOUND}\`) a été testée avec succès.
 
           ### Changement
 
           \`\`\`
-          - openfisca-core[web-api] >=43, <${CURRENT_MAX_BOUND}
-          + openfisca-core[web-api] >=43, <${NEW_MAX_BOUND}
+          - openfisca-core[web-api] >=${CURRENT_MIN_BOUND}, <${CURRENT_MAX_BOUND}
+          + openfisca-core[web-api] >=${CURRENT_MIN_BOUND}, <${NEW_MAX_BOUND}
           \`\`\`
 
           🤖 Générée automatiquement par le [workflow de compatibilité](${RUN_URL})
           EOF
+          else
+            git commit -m "Bump openfisca-core minimum tested version to >=${NEW_VERSION}"
+            PR_TITLE="Bump openfisca-core minimum tested version to >=${NEW_VERSION}"
+            cat > /tmp/pr-body.md << EOF
+          ## Mise à jour automatique — nouvelle version mineure openfisca-core
 
+          La version **${NEW_VERSION}** d'openfisca-core a été testée avec succès. La borne minimale est mise à jour pour refléter la dernière version testée.
+
+          ### Changement
+
+          \`\`\`
+          - openfisca-core[web-api] >=${CURRENT_MIN_BOUND}, <${CURRENT_MAX_BOUND}
+          + openfisca-core[web-api] >=${NEW_VERSION}, <${CURRENT_MAX_BOUND}
+          \`\`\`
+
+          🤖 Générée automatiquement par le [workflow de compatibilité](${RUN_URL})
+          EOF
+          fi
+
+          git push origin "${BRANCH}"
           gh pr create \
-            --title "Bump openfisca-core upper bound to <${NEW_MAX_BOUND}" \
+            --title "${PR_TITLE}" \
             --body-file /tmp/pr-body.md \
             --base master

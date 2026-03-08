@@ -1,6 +1,14 @@
 '''
-Vérifie si une nouvelle version d'openfisca-core est disponible au-delà de la borne
-supérieure définie dans pyproject.toml. Si oui, écrit les outputs GitHub Actions.
+Vérifie si une nouvelle version d'openfisca-core est disponible sur PyPI
+par rapport à la borne minimale définie dans pyproject.toml.
+
+Deux cas déclenchent un test :
+- Version mineure/patch dans les bornes (ex: 44.3.0 > borne min 44.2.2)
+  → si le test passe : PR pour mettre à jour la borne min (>=44.3.0)
+- Version majeure au-delà de la borne supérieure (ex: 45.0.0 >= <45)
+  → si le test passe : PR pour mettre à jour la borne max (<46)
+
+La borne minimale sert ainsi de marqueur de "dernière version testée".
 '''
 
 import os
@@ -46,15 +54,27 @@ if __name__ == '__main__':
 
     current_max_major = int(max_bound.split('.')[0])
 
+    if Version(latest) <= Version(min_bound):
+        print(f'La version {latest} est déjà couverte par la borne min >={min_bound} — aucune action requise')  # noqa: T201
+        set_github_output('has_new_version', 'false')
+        sys.exit(0)
+
     if Version(latest) >= Version(max_bound):
+        # Nouvelle version majeure au-delà de la borne supérieure
         new_max_major = current_max_major + 1
-        print(f'Nouvelle version {latest} dépasse la borne <{max_bound} — test requis')  # noqa: T201
+        print(f'Nouvelle version majeure {latest} dépasse la borne <{max_bound} — test requis')  # noqa: T201
         set_github_output('has_new_version', 'true')
+        set_github_output('bump_type', 'major')
         set_github_output('new_version', latest)
         set_github_output('new_max_bound', str(new_max_major))
         set_github_output('current_max_bound', str(current_max_major))
-        sys.exit(0)
+        set_github_output('current_min_bound', min_bound)
     else:
-        print(f'La version {latest} est déjà dans les bornes — aucune action requise')  # noqa: T201
-        set_github_output('has_new_version', 'false')
-        sys.exit(0)
+        # Nouvelle version mineure/patch dans les bornes
+        print(f'Nouvelle version mineure {latest} > borne min >={min_bound} — test requis')  # noqa: T201
+        set_github_output('has_new_version', 'true')
+        set_github_output('bump_type', 'minor')
+        set_github_output('new_version', latest)
+        set_github_output('new_max_bound', max_bound.split('.')[0])
+        set_github_output('current_max_bound', str(current_max_major))
+        set_github_output('current_min_bound', min_bound)
