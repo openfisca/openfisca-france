@@ -42,11 +42,21 @@ open-issue                    open-pr
 | `GITHUB_TOKEN` | ✅ automatique | Ouvrir tickets et PRs sur openfisca-france |
 | `CROSS_REPO_TOKEN` | ⚠️ optionnel | Ouvrir tickets sur openfisca-core (PAT avec `issues: write`) |
 
-## Test manuel
+## Comment tester cette PR
+
+### En local
 
 ```bash
-# Déclencher manuellement depuis GitHub Actions → workflow_dispatch
-# Ou tester le script localement :
-pip install requests packaging
-python .github/get_latest_core_version.py
+uv pip install requests packaging --python .venv/bin/python
+.venv/bin/python .github/get_latest_core_version.py
 ```
+
+### Dans la CI
+
+La branche contient un commit temporaire qui abaisse la borne à `<44` pour forcer le déclenchement de toute la chaîne de jobs :
+
+1. Pousser la branche
+2. GitHub → Actions → "Test compatibilité nouvelle version openfisca-core" → **Run workflow**
+3. Vérifier que les 4 jobs s'enchaînent : `check-new-version` → `test-new-version` → `open-issue` ou `open-pr`
+
+⚠️ **Avant de merger** : supprimer le commit temporaire avec `git revert HEAD`.
