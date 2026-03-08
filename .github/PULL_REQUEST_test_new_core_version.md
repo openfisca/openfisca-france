@@ -1,39 +1,41 @@
-# Test hebdomadaire de compatibilité avec les nouvelles versions d'openfisca-core
+# Test quotidien de compatibilité avec les nouvelles versions d'openfisca-core
 
 ## Contexte
 
-Le déploiement de l'API via openfisca-ops installe toujours la dernière version disponible sur PyPI (`state: latest`). Si une nouvelle version majeure d'openfisca-core est publiée au-delà de la borne supérieure définie dans `pyproject.toml`, elle peut casser la compatibilité sans qu'on le sache avant un déploiement.
+Le déploiement de l'API via openfisca-ops installe toujours la dernière version disponible sur PyPI (`state: latest`). Une nouvelle version d'openfisca-core — mineure ou majeure — peut casser la compatibilité sans qu'on le sache avant un déploiement.
 
 ## Ce que cette PR ajoute
 
-### `.github/get_latest_core_version.py`
+### `.github/test-api.sh` (modifié)
+
+Enrichi avec un test fonctionnel en plus du test de démarrage existant :
+- Calcule `revenu_disponible`, `cout_du_travail`, `revenus_nets_du_travail`, `prestations_sociales` et `impots_directs` pour un célibataire salarié à 2000€/mois brut sur l'année **N-1** (dynamique)
+- Vérifie la cohérence : `revenu_disponible = revenus_nets_du_travail + impots_directs + prestations_sociales`
+- L'objectif est de détecter un plantage lié à une incompatibilité avec openfisca-core, pas de valider les montants (c'est le rôle des tests YAML)
+
+### `.github/get_latest_core_version.py` (nouveau)
 
 Script Python qui :
 - Interroge l'API PyPI pour obtenir la dernière version publiée d'openfisca-core
-- La compare avec la borne supérieure définie dans `pyproject.toml` (actuellement `<45`)
-- Expose des outputs GitHub Actions si une nouvelle version à tester est détectée
+- Compare avec les deux bornes de `pyproject.toml` (`>=min, <max`)
+- Détecte deux cas : **mineure** (nouvelle version dans les bornes) ou **majeure** (au-delà de la borne supérieure)
+- La borne minimale sert de marqueur de "dernière version testée" : on ne reteste que quand une vraie nouveauté sort
 
-### `.github/workflows/test_new_core_version.yml`
+### `.github/workflows/test_new_core_version.yml` (nouveau)
 
-Workflow GitHub Actions déclenché **chaque lundi à 8h UTC** (et manuellement via `workflow_dispatch`) avec 4 jobs :
+Workflow déclenché **chaque jour à 5h heure de Paris** (et manuellement via `workflow_dispatch`) :
 
 ```
-check-new-version
-      ↓ (si version > borne actuelle)
-test-new-version
-      ↙ échec                    ↘ succès
-open-issue                    open-pr
-(openfisca-france              (bump borne dans
-+ openfisca-core)               pyproject.toml)
+check-new-version  (latest > borne min ?)
+        ↓ oui
+test-new-version   (make build + force install + test-api.sh)
+    ↙ échec                        ↘ succès
+open-issue                      open-pr
+(france + core)            minor → bump borne min (>=44.2.2, <45)
+                           major → bump borne max (>=43, <46)
 ```
 
-**`check-new-version`** — vérifie s'il existe une nouvelle version à tester.
-
-**`test-new-version`** — patche temporairement `pyproject.toml`, reconstruit openfisca-france depuis les sources, force l'installation de la nouvelle version d'openfisca-core, puis exécute `.github/test-api.sh`.
-
-**`open-issue-on-failure`** — en cas d'échec, ouvre un ticket sur openfisca-france (et optionnellement sur openfisca-core via un secret `CROSS_REPO_TOKEN`). La déduplication évite d'ouvrir plusieurs tickets pour la même version.
-
-**`open-pr-on-success`** — en cas de succès, crée une PR qui met à jour la borne supérieure dans `pyproject.toml`.
+**`open-issue-on-failure`** — déduplication : vérifie qu'un ticket pour cette version n'existe pas déjà avant d'en ouvrir un.
 
 ## Secrets requis
 
