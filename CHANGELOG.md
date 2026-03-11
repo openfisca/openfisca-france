@@ -1,5 +1,14 @@
 # Changelog
 
+## 175.0.21 [#2709](https://github.com/openfisca/openfisca-france/pull/2709)
+
+- Évolution du système socio-fiscal.
+- Périodes concernées : à partir du 01/03/2025
+- Zones impactées :
+    - `/parameters/prestations_sociales/education/pass_culture/montants.yaml`
+- Détails :
+    - Mise à jour des montants
+
 ### 175.0.20 [#2708](https://github.com/openfisca/openfisca-france/pull/2708)
 
 * Évolution du système socio-fiscal.
