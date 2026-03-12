@@ -3,6 +3,7 @@ name: Test compatibilité nouvelle version openfisca-core
 on:
   schedule:
     - cron: '0 4 * * *'  # Chaque jour à 5h heure de Paris (UTC+1, hiver)
+  pull_request:
   workflow_dispatch:  # Déclenchement manuel possible
 
 permissions:
