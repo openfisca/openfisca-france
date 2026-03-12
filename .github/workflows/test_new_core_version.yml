@@ -6,13 +6,13 @@ on:
   workflow_dispatch:  # Déclenchement manuel possible
 
 permissions:
-  contents: write
-  issues: write
-  pull-requests: write
+  contents: read
 
 jobs:
   check-new-version:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     outputs:
       has_new_version: ${{ steps.check.outputs.has_new_version }}
       bump_type: ${{ steps.check.outputs.bump_type }}          # 'major' ou 'minor'
@@ -22,6 +22,8 @@ jobs:
       current_min_bound: ${{ steps.check.outputs.current_min_bound }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13.11'
@@ -35,8 +37,12 @@ jobs:
     needs: check-new-version
     if: needs.check-new-version.outputs.has_new_version == 'true'
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13.11'
@@ -65,8 +71,10 @@ jobs:
       needs.check-new-version.outputs.has_new_version == 'true' &&
       needs.test-new-version.result == 'failure'
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      issues: write
     steps:
-      - uses: actions/checkout@v4
       - name: Vérifier si un ticket existe déjà
         id: check-issue
         env:
@@ -145,6 +153,9 @@ jobs:
       needs.check-new-version.outputs.has_new_version == 'true' &&
       needs.test-new-version.result == 'success'
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - name: Vérifier si une PR ou une branche existent déjà
