@@ -124,14 +124,14 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           cat > /tmp/issue-core.md << EOF
-          ## Incompatibilité détectée avec openfisca-france
+          ## Incompatibility detected with openfisca-france
 
-          Le test hebdomadaire de compatibilité d'openfisca-france a détecté que la version **${NEW_VERSION}** d'openfisca-core n'est pas compatible avec openfisca-france.
+          The weekly compatibility test of openfisca-france has detected that version **${NEW_VERSION}** of openfisca-core is not compatible with openfisca-france.
 
-          ### Référence
+          ### Reference
 
-          - [Ticket openfisca-france](https://github.com/openfisca/openfisca-france/issues) (voir le ticket ouvert automatiquement)
-          - [Workflow en échec](${RUN_URL})
+          - [Ticket openfisca-france](https://github.com/openfisca/openfisca-france/issues) (see the automatically opened ticket)
+          - [Failed workflow](${RUN_URL})
           EOF
           gh issue create \
             --repo openfisca/openfisca-core \
