@@ -5,6 +5,11 @@ on:
     - cron: '0 4 * * *'  # Chaque jour à 5h heure de Paris (UTC+1, hiver)
   workflow_dispatch:  # Déclenchement manuel possible
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
 jobs:
   check-new-version:
     runs-on: ubuntu-24.04
@@ -43,7 +48,7 @@ jobs:
           # Pour les versions majeures : étendre la borne supérieure
           # Pour les versions mineures : étendre temporairement la borne inférieure
           # Dans les deux cas on s'assure que NEW_VERSION est installable
-          sed -i "s/openfisca-core\[web-api\] >=\([0-9.]*\), <[0-9]*/openfisca-core[web-api] >=${NEW_VERSION}, <${NEW_MAX_BOUND}/" pyproject.toml
+          sed -i "s/openfisca-core\[web-api\] >=\([0-9.]*\), <[0-9.]*/openfisca-core[web-api] >=${NEW_VERSION}, <${NEW_MAX_BOUND}/" pyproject.toml
           echo "pyproject.toml mis à jour :"
           grep openfisca-core pyproject.toml
       - name: Construire et installer openfisca-france
@@ -142,7 +147,28 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+      - name: Vérifier si une PR ou une branche existent déjà
+        id: check-pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
+        run: |
+          BRANCH="bump-openfisca-core-${NEW_VERSION}"
+          EXISTING_PR=$(gh pr list \
+            --head "${BRANCH}" \
+            --state open \
+            --json number \
+            --jq '.[0].number // ""')
+          EXISTING_BRANCH=$(git ls-remote --heads origin "${BRANCH}")
+
+          if [ -n "${EXISTING_PR}" ] || [ -n "${EXISTING_BRANCH}" ]; then
+            echo "should_create=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_create=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Mettre à jour pyproject.toml
+        if: steps.check-pr.outputs.should_create == 'true'
         env:
           BUMP_TYPE: ${{ needs.check-new-version.outputs.bump_type }}
           NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
@@ -150,7 +176,7 @@ jobs:
         run: |
           if [ "${BUMP_TYPE}" = "major" ]; then
             # Étendre la borne supérieure, garder la borne min intacte
-            sed -i "s/openfisca-core\[web-api\] >=\([0-9.]*\), <[0-9]*/openfisca-core[web-api] >=\1, <${NEW_MAX_BOUND}/" pyproject.toml
+            sed -i "s/openfisca-core\[web-api\] >=\([0-9.]*\), <[0-9.]*/openfisca-core[web-api] >=\1, <${NEW_MAX_BOUND}/" pyproject.toml
           else
             # Mettre à jour la borne min vers la dernière version testée, garder la borne max
             sed -i "s/openfisca-core\[web-api\] >=[0-9.]*, </openfisca-core[web-api] >=${NEW_VERSION}, </" pyproject.toml
@@ -159,6 +185,7 @@ jobs:
           grep openfisca-core pyproject.toml
 
       - name: Créer une branche et ouvrir une PR
+        if: steps.check-pr.outputs.should_create == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BUMP_TYPE: ${{ needs.check-new-version.outputs.bump_type }}

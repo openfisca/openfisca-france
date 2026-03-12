@@ -48,26 +48,28 @@ def set_github_output(name: str, value: str):
 if __name__ == '__main__':
     latest = get_latest_version('openfisca-core')
     min_bound, max_bound = get_core_bounds()
+    latest_version = Version(latest)
+    max_bound_version = Version(max_bound)
 
     print(f'Dernière version openfisca-core sur PyPI : {latest}')  # noqa: T201
     print(f'Borne actuelle dans pyproject.toml : >={min_bound}, <{max_bound}')  # noqa: T201
 
-    current_max_major = int(max_bound.split('.')[0])
+    current_max_major = max_bound_version.major
 
-    if Version(latest) <= Version(min_bound):
+    if latest_version <= Version(min_bound):
         print(f'La version {latest} est déjà couverte par la borne min >={min_bound} — aucune action requise')  # noqa: T201
         set_github_output('has_new_version', 'false')
         sys.exit(0)
 
-    if Version(latest) >= Version(max_bound):
+    if latest_version >= max_bound_version:
         # Nouvelle version majeure au-delà de la borne supérieure
-        new_max_major = current_max_major + 1
+        new_max_major = latest_version.major + 1
         print(f'Nouvelle version majeure {latest} dépasse la borne <{max_bound} — test requis')  # noqa: T201
         set_github_output('has_new_version', 'true')
         set_github_output('bump_type', 'major')
         set_github_output('new_version', latest)
         set_github_output('new_max_bound', str(new_max_major))
-        set_github_output('current_max_bound', str(current_max_major))
+        set_github_output('current_max_bound', max_bound)
         set_github_output('current_min_bound', min_bound)
     else:
         # Nouvelle version mineure/patch dans les bornes
@@ -75,6 +77,6 @@ if __name__ == '__main__':
         set_github_output('has_new_version', 'true')
         set_github_output('bump_type', 'minor')
         set_github_output('new_version', latest)
-        set_github_output('new_max_bound', max_bound.split('.')[0])
-        set_github_output('current_max_bound', str(current_max_major))
+        set_github_output('new_max_bound', max_bound)
+        set_github_output('current_max_bound', max_bound)
         set_github_output('current_min_bound', min_bound)
