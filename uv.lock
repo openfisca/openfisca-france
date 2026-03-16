@@ -862,14 +862,6 @@ dependencies = [
 ]
 
 [package.optional-dependencies]
-casd-dev = [
-    { name = "autopep8" },
-    { name = "pytest" },
-    { name = "requests" },
-    { name = "scipy", version = "1.13.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "scipy", version = "1.15.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.10.*'" },
-    { name = "scipy", version = "1.16.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-]
 de-net-a-brut = [
     { name = "scipy", version = "1.13.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "scipy", version = "1.15.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.10.*'" },
@@ -896,16 +888,12 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "autopep8", marker = "extra == 'casd-dev'", specifier = ">=2.0.2,<3.0" },
     { name = "numpy", specifier = ">=1.24.3,<3" },
     { name = "openfisca-core", extras = ["web-api"], specifier = ">=43,<45" },
-    { name = "pytest", marker = "extra == 'casd-dev'" },
-    { name = "requests", marker = "extra == 'casd-dev'", specifier = ">=2.28.2,<3.0" },
-    { name = "scipy", marker = "extra == 'casd-dev'", specifier = ">=1.10.1,<2.0" },
     { name = "scipy", marker = "extra == 'de-net-a-brut'", specifier = ">=1.10.1,<2.0" },
     { name = "scipy", marker = "extra == 'inversion-revenus'", specifier = ">=1.10.1,<2.0" },
 ]
-provides-extras = ["inversion-revenus", "de-net-a-brut", "casd-dev"]
+provides-extras = ["inversion-revenus", "de-net-a-brut"]
 
 [package.metadata.requires-dev]
 dev = [
