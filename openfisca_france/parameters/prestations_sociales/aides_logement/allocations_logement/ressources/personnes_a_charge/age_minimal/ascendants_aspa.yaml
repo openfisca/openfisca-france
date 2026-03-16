@@ -6,7 +6,7 @@ values:
     value: 65
 metadata:
   short_label: Ascendant titulaire de l'ASPA
-  last_value_still_valid_on: "2023-02-09"
+  last_value_still_valid_on: "2026-01-19"
   label_en: Definition of dependants
   unit: year
   reference:
@@ -16,6 +16,7 @@ metadata:
     2016-07-01:
     - title: Article R823-4, 2°a) du Code de la construction et de l'habitation
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878933
+      note: "s'ils sont titulaires de l'allocation de solidarité aux personnes âgées, soixante-cinq ans ;"
     - title: Décret 2013-140 du 14/02/2013, art. 2 (modifie art.D542-4 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000027069681&cidTexte=JORFTEXT000027068336
   official_journal_date:

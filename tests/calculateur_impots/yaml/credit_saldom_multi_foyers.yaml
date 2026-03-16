@@ -1,5 +1,5 @@
-name: credit_saldom2025
-period: 2025
+name: credit_saldom2024
+period: 2024
 absolute_error_margin: 1
 max_spiral_loops: 1
 input:
@@ -8,25 +8,25 @@ input:
       declarants:
         - ind0
       f7db:
-        2025: 200000
+        2024: 200000
       f7dg:
-        2025:
+        2024:
           false
     foyer_fiscal1:
       declarants:
         - ind1
       f7db:
-        2025: 200000
+        2024: 200000
       f7dg:
-        2025:
+        2024:
           true
   individus:
     ind0:
       salaire_imposable:
-        2025: 50000.0
+        2024: 50000.0
     ind1:
       salaire_imposable:
-        2025: 50000.0
+        2024: 50000.0
   famille:
     parents:
       - ind0
@@ -40,15 +40,15 @@ output:
   foyers_fiscaux:
     foyer_fiscal0:
       ci_saldom:
-        2025: 6000
+        2024: 6000
       iai:
-        2025: 6665.0
+        2024: 6665.0
       impot_revenu_restant_a_payer:
-        2025: -665.0
+        2024: -665.0
     foyer_fiscal1:
       ci_saldom:
-        2025: 10000
+        2024: 10000
       iai:
-        2025: 6665.0
+        2024: 6665.0
       impot_revenu_restant_a_payer:
-        2025: 3335.0
+        2024: 3335.0

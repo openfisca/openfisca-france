@@ -24,9 +24,9 @@ values:
     value: 61.10
   2015-10-01:
     value: 61.15
-  2017-10-01: 
+  2017-10-01:
     value: 61.61
-  2019-10-01: 
+  2019-10-01:
     value: 61.79
 metadata:
   short_label: Par personne à charge supplémentaire

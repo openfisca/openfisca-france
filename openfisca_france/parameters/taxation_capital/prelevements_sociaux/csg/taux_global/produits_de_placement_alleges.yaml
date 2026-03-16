@@ -1,0 +1,17 @@
+description: Taux de la contribution sociale généralisée (CSG) sur sur les produits de placement
+values:
+  2026-01-01:
+    value: 0.092
+metadata:
+  short_label: Produits de placement
+  last_value_still_valid_on: "2026-01-01"
+  label_en: smaller CSG on financial income
+  unit: /1
+  reference:
+    2026-01-01:
+      - title: Code de la sécurité sociale - art. L136-8
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683546/2026-01-01/
+      - title: Article 12 de la LFSS pour 2026
+        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000053226452
+  official_journal_date:
+    2026-01-01: "2025-12-31"

@@ -5,7 +5,12 @@ values:
   2008-05-01:
     value: 1
 metadata:
+  last_value_still_valid_on: "2026-01-13"
   short_label: Abattement revenus interrompus et non substitués
   label_en: Special UI scheme
   unit: /1
+  reference:
+    2008-05-01:
+      title: Article R5423-5 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018525076/2008-05-01
 documentation: Pas de pension de retraite, ni de chômage, etc.

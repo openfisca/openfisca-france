@@ -22,10 +22,12 @@ values:
     value: 57881
   2025-01-01:
     value: 60659
+  2026-01-01:
+    value: 61751
 metadata:
   short_label: Deux enfants
   label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
-  last_value_still_valid_on: "2025-01-21"
+  last_value_still_valid_on: "2026-01-06"
   unit: currency
   reference:
     2015-01-01:
@@ -63,6 +65,9 @@ metadata:
     - title: Bulletin officiel Santé - Protection sociale - Solidarité n° 2024/34 du 31/12/2024
       href: https://sante.gouv.fr/fichiers/bo/2024/2024.34.sante.pdf
     - title: instruction interministérielle n° DSS/2B/2024/181 20/12/2024
+    2026-01-01:
+      title: Instruction interministérielle n° DSS/2B/2025/177 du 18/12/2025
+      href: https://bulletins-officiels.social.gouv.fr/sites/textes-officiels/files/2025-12/SFHS2535630J_0.pdf
   official_journal_date:
     2015-01-01: "2014-12-16"
     2016-01-01: "2015-12-25"

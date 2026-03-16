@@ -1,0 +1,310 @@
+- name: Célibataire non éligible 2026 (revenus < 250 000€)
+  period: 2027
+  input:
+    f3ua:
+      2026: 200_000
+  output:
+    rfr:
+      2026: 200_000
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: false
+      2027: false
+    contribution_differentielle_hauts_revenus_decote:
+      2026: 0
+      2027: 0
+    contribution_differentielle_hauts_revenus:
+      2026: 0
+      2027: 0
+    contribution_differentielle_hauts_revenus_acompte:
+      2026: 0
+      2027: 0
+
+- name: Célibataire à 300 000€ de revenus 2026, au PFU
+  period: 2027
+  input:
+    f3ua:
+      2026: 300_000
+  output:
+    rni:
+      2026: 0
+    taux_moyen_imposition:
+      2026: 0
+    rfr:
+      2026: 300_000
+    prelevement_forfaitaire_unique_ir:
+      2026: 300_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2026: -39_900
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: true
+      2027: false
+    contribution_differentielle_hauts_revenus_decote:
+      2026: 18_750
+      2027: 0
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 300_000
+    contribution_differentielle_hauts_revenus:
+      # CDHR 2026 = (300_000 * 20% - décote) - impôt avant création
+      # = (60_000 - 18_750) - 39_900
+      # = 41_250 - 39_900 = 1_350
+      2026: -1_350
+      2027: 0
+    contribution_differentielle_hauts_revenus_acompte:
+      2026: -1_350 * 0.95
+      2027: 0
+    impots_directs:
+      2026: -39_900 - 1_350
+      2027: 0
+
+- name: Célibataire à 500 000€ de revenus 2026, au PFU
+  period: 2027
+  absolute_error_margin: 0.07
+  input:
+    f3ua:
+      2026: 500_000
+  output:
+    rni:
+      2026: 0
+    taux_moyen_imposition:
+      2026: 0
+    rfr:
+      2026: 500_000
+    prelevement_forfaitaire_unique_ir:
+      2026: 500_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2026: -71_500
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: true
+      2027: false
+    contribution_differentielle_hauts_revenus_decote:
+      2026: 0
+      2027: 0
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 500_000
+    contribution_differentielle_hauts_revenus:
+      # CDHR 2026 = (500_000 * 20% - 0) - 71_500
+      # = 100_000 - 71_500 = 28 500
+      2026: -28_500
+      2027: 0
+    contribution_differentielle_hauts_revenus_acompte:
+      2026: -28_500 * 0.95
+      2027: 0
+
+- name: Couple à 600 000€ de revenus 2026, au PFU
+  period: 2027
+  absolute_error_margin: 0.07
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      - ind1
+      f2dc:
+        2026: 600_000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+      ind1:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+  output:
+    rfr:
+      2026: 600_000
+    prelevement_forfaitaire_unique_ir:
+      2026: 600_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2026: -79_800
+    contribution_differentielle_hauts_revenus_decote:
+      # couple et revenus à 600_000 <= 660_000
+      # 20% de 600_000 = 120_000
+      # 120_000 - (82,5 % de (600_000 - 500_000)) = 120_000 - 82_500 = 37_500
+      2026: 37_500
+      2027: 0
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 600_000
+    contribution_differentielle_hauts_revenus_majoration:
+      2026: 12_500
+    contribution_differentielle_hauts_revenus:
+      # CDHR 2026 = (600_000 * 20% - 37_500 - 79_800 - 12_500 majoration couple) = - 92 300
+      # Donc max(0, -92_300) = 0
+      2026: 0
+      2027: 0
+    contribution_differentielle_hauts_revenus_acompte:
+      2026: 0
+      2027: 0
+
+- name: Couple à 1 000 000€ de revenus 2026, au PFU
+  period: 2027
+  absolute_error_margin: 0.07
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      - ind1
+      f2dc:
+        2026: 1_000_000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+      ind1:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+  output:
+    rfr:
+      2026: 1_000_000
+    prelevement_forfaitaire_unique_ir:
+      2026: 1_000_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2026: -143_000
+    contribution_differentielle_hauts_revenus_decote:
+      2026: 0
+      2027: 0
+    contribution_differentielle_hauts_revenus_majoration:
+      2026: 12_500
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 1_000_000
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: true
+      2027: false
+    contribution_differentielle_hauts_revenus:
+      # CDHR 2026 = (1_000_000 * 20% - 0) - 143_000 - 12_500
+      # = 200_000 - 155_500
+      2026: -44_500
+      2027: 0
+    contribution_differentielle_hauts_revenus_acompte:
+      2026: -44_500 * 0.95
+      2027: 0
+
+- name: Célibataire à 270 000€ avec dons 2026, au barème
+  period: 2027
+  absolute_error_margin: 0.01
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f2dc:
+        2026: 270_000
+      f7ud:
+        2026: 1_000  # Dons aux oeuvres (nouvellement inclus en 2026)
+      f7uf:
+        2026: 4_000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+  output:
+    rni:
+      2026: 0
+    rfr:
+      2026: 270_000
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: true
+      2027: false
+    contribution_differentielle_hauts_revenus_decote:
+      # Célibataire et revenus à 270_000 <= 330_000
+      # 20% de 270_000 = 54_000
+      # 54_000 - (82,5 % de (270_000 - 250_000)) = 54_000 - 16_500 = 37_500
+      2026: 37_500
+      2027: 0
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 270_000
+    dfppce:
+      # Le f7uf * 0.60 ne s'applique pas car le RNI est à 0 !!!
+      2026: 1_000 * 0.75
+    contribution_differentielle_hauts_revenus_majoration_impot:
+      # Inclut dfppce depuis 2026
+      2026: 1_000 * 0.75
+    contribution_differentielle_hauts_revenus:
+      2026: 0
+      2027: 0
+
+
+- name: Couple à 1 000 000€ avec dons en 2026, au PFU
+  period: 2027
+  absolute_error_margin: 0.07
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      - ind1
+      f2dc:
+        2026: 1_000_000
+      f7ud:
+        2026: 1_000  # Dons aux oeuvres (nouvellement inclus en 2026)
+      f7uf:
+        2026: 4_000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+      ind1:
+        date_naissance: '1970-01-01'
+        statut_marital: marie
+  output:
+    rni:
+      2026: 0
+    rfr:
+      2026: 1_000_000
+    prelevement_forfaitaire_unique_ir:
+      2026: 1_000_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2026: -143_000
+    contribution_differentielle_hauts_revenus_decote:
+      2026: 0
+      2027: 0
+    contribution_differentielle_hauts_revenus_majoration:
+      2026: 12_500
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 1_000_000
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: true
+      2027: false
+    contribution_differentielle_hauts_revenus:
+      # CDHR 2026 = (1_000_000 * 20% - 0) - 143_000 - 12_500
+      # = 200_000 - 155_500
+      2026: -(44_500 - 750)
+      2027: 0
+    contribution_differentielle_hauts_revenus_acompte:
+      2026: -(44_500 - 750) * 0.95
+      2027: 0
+
+- name: Test acompte avec pénalité si sous-estimation 2026
+  period: 2027
+  absolute_error_margin: 0.07
+  input:
+    f3ua:
+      2026: 400_000
+    contribution_differentielle_hauts_revenus_acompte_verse:
+      2026: 10_000  # Versement insuffisant (bien en dessous des 95%)
+  output:
+    rfr:
+      2026: 400_000
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: true
+      2027: false
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 400_000
+    prelevement_forfaitaire_unique_ir:
+      2026: 400_000 * 0.128
+    impot_revenu_restant_a_payer:
+      2026: -55_700
+    contribution_differentielle_hauts_revenus_decote:
+      2026: 0
+      2027: 0
+    contribution_differentielle_hauts_revenus:
+      # CDHR 2026 = (400_000 * 0.20) - 55_700
+      2026: -24_300
+    contribution_differentielle_hauts_revenus_acompte:
+      2025: 0
+      # Acompte qui aurait dû être versé
+      2026: -23_085 # 24_300 * 0.95
+      2027: 0
+    contribution_differentielle_hauts_revenus_penalite_acompte:
+      # Acompte attendu = 24_300 * 0.95 = 23_085.0
+      # Seuil minimum (avec 20% de marge) = 23_085 * 0.80 = 18_468.0
+      # Versement = 10_000 < 18_468.0, donc pénalité
+      # Assiette = 24_300 * 0.95 - 10_000 = 13_085
+      # Pénalité = 13_085 * 0.20 = 2_617
+      2026: -2_617
+      2027: 0

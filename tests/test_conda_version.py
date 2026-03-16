@@ -26,11 +26,11 @@ class TestPyprojectVersion(TestCase):
     def test_pyproject_version_script(self):
         # Create a temporary file with the specified content
         temp_file = tempfile.NamedTemporaryFile(delete=False, mode='w')
-        temp_file.write('version: X.X.X\n    - openfisca-core-api>=43,<44\n    - numpy>=1.24.3,<2')
+        temp_file.write('version: X.X.X\n    - openfisca-core-api>=43,<45\n    - numpy>=1.24.3,<3')
         temp_file.close()
 
         # Read the values
-        # Run the pyproject_version.py script without arguments and read {'openfisca_france': '169.1.0', 'openfisca_core_api': '>=43,<44'}
+        # Run the pyproject_version.py script without arguments and read {'openfisca_france': '169.1.0', 'openfisca_core_api': '>=43,<45'}
         script_path = os.path.join('.github', 'pyproject_version.py')
         result = subprocess.run(['python3', script_path], stdout=subprocess.PIPE, check=True)
         # Extract the version of openfisca_france

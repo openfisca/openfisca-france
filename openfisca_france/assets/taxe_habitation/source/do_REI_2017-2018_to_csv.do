@@ -64,7 +64,7 @@ forval i=2019/2020 {
 	set excelxlsxlargefile on
 	import excel using "${input_`i'}.xlsx", firstrow clear
 	keep DEPARTEMENT COMMUNE NUMEROSIRENDELEPCI THCOMMUNETAUXNET THINTERCOMMUNALITETAUXAPP THVLMOYENNEUTILISEEPOUR IJ  THQUOTITEDESABATTEMENTSAVA THQUOTITEDESABATTEMENTSAJ IL THQUOTITEDESABATTEMENTSAJU IO IP IQ IR IS IT IU IV IW IX IY IZ
-	
+
 	compress
 
 	foreach var of varlist THCOMMUNETAUXNET THINTERCOMMUNALITETAUXAPP THQUOTITEDESABATTEMENTSAVA THQUOTITEDESABATTEMENTSAJ IL THQUOTITEDESABATTEMENTSAJU IO IP IQ IR IS IT IU IV IW IX IY IZ {
@@ -75,11 +75,11 @@ forval i=2019/2020 {
 	gen taux_com   = THCOMMUNETAUXNET/100
 	gen taux_epci  = THINTERCOMMUNALITETAUXAPP/100
 
-	
+
 	gen valeur_locative_moyenne_com  = THVLMOYENNEUTILISEEPOUR
 	gen valeur_locative_moyenne_epci = IJ
-	
-	
+
+
 	* Pour certaines intercom, il n'y a pas de quotité ajustée mais seulement une quotité simple. Surement due aux interco créées après 2010 (qui est l'année du transfert de la TH départementale justifiant cet ajustement). Donc, si la valeur ajustée est nulle, on prend la quotité simple
 	gen abt_general_base_com       = cond(IU~=0,IU,IS)
 	gen abt_general_base_epci      = cond(IV~=0,IV,IT)

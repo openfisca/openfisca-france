@@ -1,0 +1,19 @@
+description: Seuil de la taille de l'entreprise dans la formule de calcul de la réduction générale dégressive unique
+values:
+  2026-01-01:
+    value: 50
+metadata:
+  short_label: Seuil taille entreprise
+  last_value_still_valid_on: "2026-01-06"
+  reference:
+    2026-01-01:
+    - title: Article L241-13 du Code de la Sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051285243
+    - title: Décret n° 2025-887 du 04/09/2025
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052194026
+    - title: Article L813-5 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038839912
+    - title: Article 18 III 2° de la Loi de financement de la sécurité sociale pour 2025
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051269563
+  official_journal_date:
+    2005-07-01: "2025-09-05"

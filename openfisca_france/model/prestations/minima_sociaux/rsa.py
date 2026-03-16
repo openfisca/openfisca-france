@@ -959,7 +959,8 @@ class rsa_non_calculable(Variable):
 
         return select(
             [non_calculable == 0, non_calculable == 1, non_calculable == 2],
-            [TypesRSANonCalculable.calculable, TypesRSANonCalculable.tns, TypesRSANonCalculable.conjoint_tns]
+            [TypesRSANonCalculable.calculable, TypesRSANonCalculable.tns, TypesRSANonCalculable.conjoint_tns],
+            default = TypesRSANonCalculable.calculable
             )
 
 

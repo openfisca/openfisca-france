@@ -445,8 +445,8 @@
     menage:
       personne_de_reference: ind0
   output:
-    iai: 6665.0
-    impot_revenu_restant_a_payer: -6665.0
+    iai: 6604.0
+    impot_revenu_restant_a_payer: -6604.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 45000.0

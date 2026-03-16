@@ -2,5 +2,13 @@ description: Taux (XA)
 values:
   2011-01-01:
     value: 0.4
+  2013-01-01:
+    value: null
 metadata:
   unit: /1
+  reference:
+    2011-01-01:
+      title: Article 199 decies F du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024020675/2011-01-01
+      note: "b) 40 % du montant des dépenses afférentes à des logements mentionnés au c du 1"
+documentation: N'est plus utilisé depuis 2013.

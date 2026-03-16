@@ -4,3 +4,10 @@ values:
     value: 1
   2020-08-06:
     value: 2
+metadata:
+  last_value_still_valid_on: 2026-01-20
+  reference:
+    2020-08-06:
+      title: Modalités d'attribution des bourses d'enseignement supérieur sur critères sociaux, des aides au mérite et des aides à la mobilité internationale pour l'année 2020-2021
+      href: https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm
+      note: "Pour chaque autre enfant à charge, à l'exclusion du candidat boursier : 2 points ;"

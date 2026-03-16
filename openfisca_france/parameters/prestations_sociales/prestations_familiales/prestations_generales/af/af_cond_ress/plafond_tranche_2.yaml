@@ -20,9 +20,11 @@ values:
     value: 99922
   2025-01-01:
     value: 104719
+  2026-01-01:
+    value: 106604
 metadata:
   short_label: Tranche 2
-  last_value_still_valid_on: "2025-01-21"
+  last_value_still_valid_on: "2026-01-06"
   label_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: plaf_t2_2enf
   unit: currency
@@ -65,6 +67,9 @@ metadata:
     - title: Bulletin officiel Santé - Protection sociale - Solidarité n° 2024/34 du 31/12/2024
       href: https://sante.gouv.fr/fichiers/bo/2024/2024.34.sante.pdf
     - title: instruction interministérielle n° DSS/2B/2024/181 20/12/2024
+    2026-01-01:
+      title: Instruction interministérielle n° DSS/2B/2025/177 du 18/12/2025
+      href: https://bulletins-officiels.social.gouv.fr/sites/textes-officiels/files/2025-12/SFHS2535630J_0.pdf
   official_journal_date:
     2015-07-01: "2015-06-05"
     2016-01-01: "2015-12-12"

@@ -44,9 +44,13 @@ values:
     value: 14301.88
   2023-01-01:
     value: 14416.28
+  2024-01-01:
+    value: 15180.33
+  2025-01-01:
+    value: 15514.3
 metadata:
   short_label: Plafond individuel de ressources pour les ascendants
-  last_value_still_valid_on: "2023-02-09"
+  last_value_still_valid_on: "2026-01-19"
   label_en: Definition of dependants
   unit: currency
   reference:
@@ -121,6 +125,14 @@ metadata:
     2023-01-01:
       title: Circulaire Cnav 2023/3 du 09/01/2023
       href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2023_03_09012023.pdf
+    2024-01-01:
+      - title: Instruction interministérielle n° DSS/3A/2023/189 du 28 novembre 2023
+        href: https://legislation.lassuranceretraite.fr/Pdf/instruction_ministerielle_2023_189_28112023.pdf
+        note: La valeur est calculée comme 12 144.27 * 1.25 (Plafond ASPA 2024)
+    2025-01-01:
+      - title: Circulaire Cnav 2024/39 du 23/12/2024
+        href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2024_39_23122024.pdf
+        note: La valeur est calculée comme 12 411.44 * 1.25 (Plafond ASPA 2025)
   official_journal_date:
     1991-11-11: "1991-11-10"
     2007-07-01: "2007-07-12"

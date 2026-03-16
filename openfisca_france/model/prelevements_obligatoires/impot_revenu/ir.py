@@ -1,8 +1,6 @@
 import logging
 
-from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
-
-from numpy.core.defchararray import startswith
+from numpy import char, datetime64, timedelta64, logical_xor as xor_, round as round_, around
 
 from openfisca_core.model_api import *
 from openfisca_france.model.base import *
@@ -128,8 +126,8 @@ class residence_fiscale_guadeloupe(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'971')
+        depcom_foyer = foyer_fiscal('depcom_foyer', period).astype(str)
+        return char.startswith(depcom_foyer, '971')
 
 
 class residence_fiscale_martinique(Variable):
@@ -138,8 +136,8 @@ class residence_fiscale_martinique(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'972')
+        depcom_foyer = foyer_fiscal('depcom_foyer', period).astype(str)
+        return char.startswith(depcom_foyer, '972')
 
 
 class residence_fiscale_guyane(Variable):
@@ -148,8 +146,8 @@ class residence_fiscale_guyane(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'973')
+        depcom_foyer = foyer_fiscal('depcom_foyer', period).astype(str)
+        return char.startswith(depcom_foyer, '973')
 
 
 class residence_fiscale_reunion(Variable):
@@ -158,8 +156,8 @@ class residence_fiscale_reunion(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'974')
+        depcom_foyer = foyer_fiscal('depcom_foyer', period).astype(str)
+        return char.startswith(depcom_foyer, '974')
 
 
 class residence_fiscale_mayotte(Variable):
@@ -168,8 +166,8 @@ class residence_fiscale_mayotte(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'976')
+        depcom_foyer = foyer_fiscal('depcom_foyer', period).astype(str)
+        return char.startswith(depcom_foyer, '976')
 
 
 class nb_adult(Variable):

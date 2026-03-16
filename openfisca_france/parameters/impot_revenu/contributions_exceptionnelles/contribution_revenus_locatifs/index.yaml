@@ -1,3 +1,7 @@
 description: Contribution sur les revenus locatifs
 metadata:
   short_label: Revenus locatifs
+  order:
+  - seuil
+  - taux
+documentation: Contribution sur les loyers de locaux d'habitation, professionnels ou commerciaux situés dans des immeubles achevés depuis 15 ans. La CRL est payée uniquement par les propriétaires personnes morales (c'est-à-dire les sociétés, associations, organismes de droit privé, etc). Lorsque les revenus de location donnent lieu au paiement de la TVA ils ne sont pas concernés par la CRL.

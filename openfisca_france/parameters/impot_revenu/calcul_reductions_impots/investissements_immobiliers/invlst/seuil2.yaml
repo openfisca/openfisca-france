@@ -1,8 +1,11 @@
-description: Seuil2
+description: Deuxième seuil de réduction d'impôt pour investissements en immobiliers touristiques
 values:
   2004-01-01:
     value: 38120
   2005-01-01:
     value: 50000
+  2013-01-01:
+    value: null
 metadata:
   unit: currency_next_year
+documentation: N'est plus utilisé depuis 2013.

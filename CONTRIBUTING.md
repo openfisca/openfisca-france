@@ -6,6 +6,40 @@ Afin de faciliter la réutilisation d'OpenFisca et d'améliorer la qualité du c
 
 Certaines règles sont communes à tous les dépôts OpenFisca et sont détaillées dans [la documentation générale](https://openfisca.org/doc/contribute/guidelines.html).
 
+## Vérifications de code automatiques avec pre-commit
+
+Avant chaque commit, des vérifications automatiques sont exécutées via [pre-commit](https://pre-commit.com/) pour assurer la qualité du code et la cohérence du style.
+
+### Installation
+
+Pre-commit est installé comme dépendance du projet. Pour l'activer, lancez :
+
+```sh
+uv run pre-commit install
+```
+
+### Vérifications exécutées
+
+Les vérifications suivantes sont automatiquement exécutées avant chaque commit :
+
+- **flake8** : Validation du style Python (même chose que `make check-style`)
+- **yamllint** : Validation du format YAML des paramètres et tests
+- **Vérifications de base** : Fusion de conflits, fin de fichier, espaces inutiles, etc.
+
+### Exécuter les vérifications manuellement
+
+Vous pouvez exécuter les vérifications manuellement sur tous les fichiers :
+
+```sh
+uv run pre-commit run --all-files
+```
+
+Ou sur les fichiers staged uniquement :
+
+```sh
+uv run pre-commit run
+```
+
 ## Format du Changelog
 
 Les évolutions d'OpenFisca-France doivent pouvoir être comprises par des réutilisateurs qui n'interviennent pas nécessairement sur le code. Le Changelog, rédigé en français, se doit donc d'être le plus explicite possible.
@@ -54,21 +88,27 @@ Chaque évolution sera documentée par les éléments suivants :
 
 Dans le cas où une Pull Request contient plusieurs évolutions distinctes, plusieurs paragraphes peuvent être ajoutés au Changelog.
 
-## Utiliser une branche spécifique d'OpenFisca-Core pour faire passer les tests d'intégration continue
+## Tester une version spécifique de Python
 
-Certaines interventions sur OpenFica concernent à la fois [OpenFica-Core](https://github.com/openfisca/openfisca-core) et OpenFisca-France.
+Grace à UV il est facile de tester la compatibilité d'OpenFisca-France avec une version spécifique de Python, de Numpy et de Core par exemple :
 
-C'est par exemple le cas lorsqu'une version à paraître de Core contient un changement non-rétrocompatible, et que l'on souhaite s'assurer qu'il est possible d'adapter France à cette nouvelle version.
+```sh
+uv run --python 3.13.7 --with numpy==2.4.0 --with openfisca_core==44.0.3 openfisca test  --country-package openfisca_france tests/calculateur_impots/yaml/credit_assloy.yaml
+```
 
-Dans ce cas, il peut être pertinent d'exécuter les tests d'OpenFisca-France en se basant sur une version non-publiée de Core, disponible sur une branche spécifique. Pour ce faire, éditer le fichier [`.circleci/config.yml`](https://github.com/openfisca/openfisca-france/blob/9c44a5e2d44e1319c64326e7c528b2ac37cbfc05/.circleci/config.yml#L26).
+## Mettre à jour les dépendances
 
-Bien sûr, une fois la version spécifique de core publiée, **ce changement doit être reverté** avant le merge de la pull request sur France.
+Pour mettre à jour le fichier `uv.lock` avec les dernières version compatible avec le [pyproject.toml](pyproject.toml) il faut lancer la commande suivante :
+
+```sh
+uv sync --upgrade
+```
 
 ## Debug des tests YAML avec VS Code
 
 Si vous souhaitez utiliser le debugger de VS Code avec les tests YAML, par exemple pour investiguer la commande suivante :
 
-`openfisca test --country-package openfisca_france tests/impot_revenu/cdhr.yaml`
+`openfisca test --country-package openfisca_france --verbose tests/impot_revenu/contribution_differentielle_hauts_revenus_2026.yaml`
 
 Il faut créer un fichier de configuration `.vscode/launch.json` avec le contenu suivant :
 
@@ -80,14 +120,17 @@ Il faut créer un fichier de configuration `.vscode/launch.json` avec le contenu
             "name": "Python: Debug current YAML test file",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/.venv/bin/openfisca",
+            "module": "openfisca_core.scripts.openfisca_command",
             "args": [
                 "test",
                 "--country-package",
                 "openfisca_france",
+                "--verbose",
                 "${file}"
             ],
             "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "python": "${workspaceFolder}/.venv/bin/python",
             "justMyCode": false,
         }
     ]

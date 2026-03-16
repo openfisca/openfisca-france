@@ -86,7 +86,7 @@ values:
     value: 19.33
 metadata:
   short_label: Montant journalier (taux plein)
-  last_value_still_valid_on: "2024-05-17"
+  last_value_still_valid_on: "2026-01-12"
   label_en: Special UI scheme
   ipp_csv_id: ass_base
   unit: currency
