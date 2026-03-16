@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.23[#2717](https://github.com/openfisca/openfisca-france/pull/2717)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `pyproject.toml`.
+* Détails :
+  - Mise à jour de pandas (#2655), pre-commit (#2703) et flake8 (#2656)
+
 ### 175.0.22[#2700](https://github.com/openfisca/openfisca-france/pull/2710)
 
 * Évolution du système socio-fiscal.
