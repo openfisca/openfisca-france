@@ -1,5 +1,11 @@
 # Changelog
 
+### 175.0.24[#2085](https://github.com/openfisca/openfisca-france/pull/2085)
+
+* Évolution du système socio-fiscal. 
+* Périodes concernées : toutes 
+* Zones impactées : `prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid_am/maladie_alsace_moselle.yaml`.
+
 ### 175.0.23[#2717](https://github.com/openfisca/openfisca-france/pull/2717)
 
 * Amélioration technique.
