@@ -34,6 +34,8 @@ brackets:
       value: 0.016
     2012-01-01:
       value: 0.015
+    2022-04-01:
+      value: 0.013
 - threshold:
     1946-07-01:
       value: 1
@@ -46,7 +48,7 @@ brackets:
       value: null
 metadata:
   short_label: Barème salarié
-  last_value_still_valid_on: "2021-08-05"
+  last_value_still_valid_on: "2026-03-17"
   label_en: SSCs of the local sickness scheme of Alsace-Moselle
   ipp_csv_id:
     rate: am_s_0_1, am_s_0_
@@ -99,6 +101,10 @@ metadata:
       title: Décision du régime local du 16/04/2007 (Avis publié au JO)
     2012-01-01:
       title: Décision du régime local du 28/11/2011 (Avis publié au JO)
+    2022-04-01:
+    - title: Décision du régime local du 17/12/2021 (Avis publié au JO)
+      href: https://regime-local.fr/2021/12/21/baisse-du-taux-de-cotisation/
+      note: "Une baisse de son taux de cotisation à 1,3% à compter d'avril 2022"
   official_journal_date:
     1946-07-01: "1946-06-14"
     1986-01-11: "1986-01-04"
@@ -113,6 +119,7 @@ metadata:
     2007-07-01: "2007-06-09"
     2008-01-01: "2007-12-19"
     2012-01-01: "2011-12-30"
+    2022-04-01: "2021-12-21"
   notes:
     1946-07-01:
     - title: La date de début d'effet est supputée.
