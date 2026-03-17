@@ -5,6 +5,7 @@
     salaire_imposable: 250000
   output:
     contribution_exceptionnelle_hauts_revenus: 0
+
 - name: impot_revenu_restant_a_payer/contribution_exceptionnelle_hauts_revenus - Couple ayant des revenus salariaux (1AJ) de 500 000 €
   period: 2011
   absolute_error_margin: 0.5

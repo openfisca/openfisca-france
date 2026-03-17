@@ -4,6 +4,7 @@ from numpy import char, datetime64, timedelta64, logical_xor as xor_, round as r
 
 from openfisca_core.model_api import *
 from openfisca_france.model.base import *
+from openfisca_france.model.prelevements_obligatoires.impot_revenu import arrondi_fiscal
 
 
 log = logging.getLogger(__name__)
@@ -2285,7 +2286,7 @@ class iai(Variable):
 
 
 class contribution_exceptionnelle_hauts_revenus(Variable):
-    value_type = float
+    value_type = int
     entity = FoyerFiscal
     label = 'Contribution exceptionnelle sur les hauts revenus'
     reference = 'http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019'
@@ -2293,15 +2294,23 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
-        Contribution exceptionnelle sur les hauts revenus
-        'foy'
+        Contribution exceptionnelle sur les hauts revenus (art. 223 sexies du CGI)
+
+        Selon les règles de droit commun, la CEHR est calculée
+        sur une assiette égale au revenu fiscal de référence (RFR) de l'année N (art. 223 sexies, I).
+
+        Le montant de la cotisation est arrondi à l'euro, selon les règles d'arrondi fiscal
+        prévues à l'article 1657 du CGI (arrondi à l'euro le plus proche,
+        la fraction égale à 0,5 étant arrondie à l'euro supérieur).
+
+        Note : le mécanisme de lissage prévu à l'article 223 sexies, II du CGI n'est pas implémenté ici.
         '''
         rfr = foyer_fiscal('rfr', period)
         nb_adult = foyer_fiscal('nb_adult', period)
         bareme = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_exceptionnelle_hauts_revenus
 
-        return bareme.calc(rfr / nb_adult) * nb_adult
-        # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
+        cotisation = bareme.calc(rfr / nb_adult) * nb_adult
+        return arrondi_fiscal(cotisation)
 
 
 class impot_revenu_avant_seuils_mise_recouvrement(Variable):
