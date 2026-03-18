@@ -437,7 +437,12 @@ class isf_ifi_imm_non_bati(Variable):
         # part de groupements forestiers- agricoles fonciers
         b9ba_exon_sous_seuil = min_(b9ba, exonerations.taux_avec_seuil.seuil) * exonerations.taux_avec_seuil.taux_sous_seuil
         b9ba_exon_dessus_seuil = max_(b9ba - exonerations.taux_avec_seuil.seuil, 0) * exonerations.taux_avec_seuil.taux_dessus_seuil
-        return b9ac_exon + b9ad_exon_sous_seuil + b9ad_exon_dessus_seuil + b9ba_exon_sous_seuil + b9ba_exon_dessus_seuil + b9bb
+
+        b9ac_non_exo = b9ac - b9ac_exon
+        b9ad_non_exo = b9ad - b9ad_exon_sous_seuil - b9ad_exon_dessus_seuil
+        b9ba_non_exo = b9ba - b9ba_exon_sous_seuil - b9ba_exon_dessus_seuil
+
+        return b9ac_non_exo + b9ad_non_exo + b9ba_non_exo + b9bb
 
     def formula(foyer_fiscal, period, parameters):
         b1bc = foyer_fiscal('b1bc', period)
