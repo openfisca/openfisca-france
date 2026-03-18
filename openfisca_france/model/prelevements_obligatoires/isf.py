@@ -807,6 +807,21 @@ class decote_isf_ifi(Variable):
         return lb * elig
 
 
+class ifi_plafond(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = 'Montant du plafonnement IFI'
+    definition_period = YEAR
+    
+    def formula(foyer_fiscal, period, parameters):
+        isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
+        b9pr = foyer_fiscal('b9pr', period)
+        b9px = foyer_fiscal('b9px', period)
+        taux_plafond_ifi = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.plaf.plafonnement_taux_imposition
+
+        return max_(0, (isf_ifi_avant_plaf + b9pr) - taux_plafond_ifi * b9px)
+
+
 class isf_ifi_apres_plaf(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -848,13 +863,10 @@ class isf_ifi_apres_plaf(Variable):
         return max_(isf_ifi_avant_plaf - plafond, 0)
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        total_impots_plafonnement_isf_ifi = foyer_fiscal('total_impots_plafonnement_isf_ifi', period)
-        revenus_et_produits_plafonnement_isf_ifi = foyer_fiscal('revenus_et_produits_plafonnement_isf_ifi', period)
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
-        plaf = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.plaf
+        ifi_plafond = foyer_fiscal('ifi_plafond', period)
 
-        plafond = max_(0, total_impots_plafonnement_isf_ifi - plaf.plafonnement_taux_imposition * revenus_et_produits_plafonnement_isf_ifi)  # case 9PV sur le formulaire 2042C des revenus 2013 aux revenus 2016
-        return max_(isf_ifi_avant_plaf - plafond, 0)
+        return max_(isf_ifi_avant_plaf - ifi_plafond, 0)
 
 
 class isf_ifi(Variable):
