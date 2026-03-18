@@ -506,10 +506,11 @@ class assiette_isf_ifi(Variable):
         # TODO: Gérer les trois option meubles meublants
         isf_ifi_imm_bati = foyer_fiscal('isf_ifi_imm_bati', period)
         isf_ifi_imm_non_bati = foyer_fiscal('isf_ifi_imm_non_bati', period)
+        isf_ifi_biens_detenus_indirectement = foyer_fiscal('b9ca', period)
         b9gf = foyer_fiscal('b9gf', period)
         b9gh = foyer_fiscal('b9gh', period)
 
-        return max_(isf_ifi_imm_bati + isf_ifi_imm_non_bati - b9gf - b9gh, 0)
+        return max_(isf_ifi_imm_bati + isf_ifi_imm_non_bati + isf_ifi_biens_detenus_indirectement - b9gf - b9gh, 0)
 
     def formula_1989_01_01(foyer_fiscal, period, parameters):
         # TODO: Gérer les trois option meubles meublants
