@@ -52,6 +52,14 @@ brackets:
       value: 418.54
     2022-04-01:
       value: 425.65
+    2022-07-01:
+      value: 443.98
+    2023-04-01:
+      value: 450.81
+    2024-04-01:
+      value: 471.54
+    2025-04-01:
+      value: 479.55
 - threshold:
     2002-04-01:
       value: 2
@@ -98,6 +106,14 @@ brackets:
       value: 686.32
     2022-04-01:
       value: 698.67
+    2022-07-01:
+      value: 721.65
+    2023-04-01:
+      value: 732.76
+    2024-04-01:
+      value: 766.46
+    2025-04-01:
+      value: 779.48
 - threshold:
     2002-04-01:
       value: 3
@@ -144,6 +160,14 @@ brackets:
       value: 992.96
     2022-04-01:
       value: 1010.83
+    2022-07-01:
+      value: 1054.54
+    2023-04-01:
+      value: 1070.77
+    2024-04-01:
+      value: 1120.02
+    2025-04-01:
+      value: 1139.06
 - threshold:
     2002-04-01:
       value: 4
@@ -190,6 +214,14 @@ brackets:
       value: 1582.84
     2022-04-01:
       value: 1611.33
+    2022-07-01:
+      value: 1664.44
+    2023-04-01:
+      value: 1690.07
+    2024-04-01:
+      value: 1767.81
+    2025-04-01:
+      value: 1797.86
 - threshold:
     2002-04-01:
       value: 5
@@ -236,6 +268,14 @@ brackets:
       value: 2005.14
     2022-04-01:
       value: 2041.24
+    2022-07-01:
+      value: 2108.55
+    2023-04-01:
+      value: 2141.02
+    2024-04-01:
+      value: 2239.5
+    2025-04-01:
+      value: 2277.57
 - threshold:
     2002-04-01:
       value: 6
@@ -282,6 +322,14 @@ brackets:
       value: 2479.99
     2022-04-01:
       value: 2524.63
+    2022-07-01:
+      value: 2607.94
+    2023-04-01:
+      value: 2648.10
+    2024-04-01:
+      value: 2769.91
+    2025-04-01:
+      value: 2816.99
 - threshold:
     2002-04-01:
       value: 7
@@ -328,6 +376,14 @@ brackets:
       value: 3007.4
     2022-04-01:
       value: 3061.53
+    2022-07-01:
+      value: 3162.58
+    2023-04-01:
+      value: 3211.28
+    2024-04-01:
+      value: 3358.99
+    2025-04-01:
+      value: 3416.09
 - threshold:
     2002-04-01:
       value: 8
@@ -374,6 +430,14 @@ brackets:
       value: 3587.99
     2022-04-01:
       value: 3652.57
+    2022-07-01:
+      value: 3773.19
+    2023-04-01:
+      value: 3831.29
+    2024-04-01:
+      value: 4007.52
+    2025-04-01:
+      value: 4075.64
 - threshold:
     2002-04-01:
       value: 9
@@ -420,6 +484,14 @@ brackets:
       value: 4221.13
     2022-04-01:
       value: 4297.11
+    2022-07-01:
+      value: 4439
+    2023-04-01:
+      value: 4507.36
+    2024-04-01:
+      value: 4714.69
+    2025-04-01:
+      value: 4794.83
 - threshold:
     2002-04-01:
       value: 10
@@ -445,6 +517,21 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
     - title: Article L161-25 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781092/
+    - title: CIRCULAIRE CIR-10/2022, Annexe 2
+      href: https://circulaires.ameli.fr/circulaire/cir-102022
+    2022-07-01:
+      title: CIRCULAIRE CIR-5/2023, Annexe 3
+      href: https://circulaires.ameli.fr/circulaire/cir-52023
+      note: Revalorisation exceptionnelle en juillet 2022 pour compenser la forte inflation
+    2023-04-01:
+      title: CIRCULAIRE CIR-5/2023, Annexe 3
+      href: https://circulaires.ameli.fr/circulaire/cir-52023
+    2024-04-01:
+      title: CIRCULAIRE CIR-11/2024, Annexe 3
+      href: https://circulaires.ameli.fr/circulaire/cir-112024
+    2025-04-01:
+      title: CIRCULAIRE CIR-3/2026, Annexe 3
+      href: https://circulaires.ameli.fr/circulaire/cir-32025
   notes:
     2003-04-01:
     - title: Revalorisation de 0,0029%
