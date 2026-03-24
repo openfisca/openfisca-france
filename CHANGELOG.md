@@ -1,5 +1,21 @@
 # Changelog
 
+### 175.0.24 [#2726](https://github.com/openfisca/openfisca-france/pull/2726)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2025.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/accession/formule/c_forfait_charges/cas_general.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/accession/formule/c_forfait_charges/par_personne_supplementaire.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al/formule/c_forfait_charges/cas_general.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al/formule/c_forfait_charges/par_personne_supplementaire.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/c_forfait_charges/cas_colocataires/majoration_par_enfant.yaml`
+* Détails :
+  - Mise à jour des forfaits de charges des allocations logement (accession, foyer AL, locatif colocation) au 01/10/2025 conformément à l'[arrêté du 05/09/2025](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052212770).
+  - Cas général : 59.97 → 60.59 €
+  - Par personne supplémentaire : 13.60 → 13.74 €
+  - Majoration par enfant (colocataires) : 13.60 → 13.74 €
+
 ### 175.0.23[#2717](https://github.com/openfisca/openfisca-france/pull/2717)
 
 * Amélioration technique.
