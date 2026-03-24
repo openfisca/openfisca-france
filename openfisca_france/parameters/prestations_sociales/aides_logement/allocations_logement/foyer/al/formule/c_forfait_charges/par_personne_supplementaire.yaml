@@ -50,7 +50,7 @@ values:
     value: 13.74
 metadata:
   short_label: Majoration par enfant
-  last_value_still_valid_on: "2025-03-10"
+  last_value_still_valid_on: "2026-03-24"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_maj
   unit: currency

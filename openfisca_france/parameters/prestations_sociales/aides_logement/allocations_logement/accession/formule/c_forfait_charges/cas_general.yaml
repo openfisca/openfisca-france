@@ -50,7 +50,7 @@ values:
     value: 60.59
 metadata:
   short_label: Bénéficiaire isolé ou couple sans personne à charge
-  last_value_still_valid_on: "2025-03-10"
+  last_value_still_valid_on: "2026-03-24"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_gen
   unit: currency
