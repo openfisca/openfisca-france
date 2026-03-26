@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.25 [#2724](https://github.com/openfisca/openfisca-france/pull/2724)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 1988-07-01.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/foyer/k_coef_prise_en_charge/n_nombre_parts/apl/*.yaml`.
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`.
+
 ### 175.0.24 [#2726](https://github.com/openfisca/openfisca-france/pull/2726)
 
 * Évolution du système socio-fiscal.
