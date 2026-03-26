@@ -1,15 +1,24 @@
 # Changelog
 
+### 175.0.27 [#2725](https://github.com/openfisca/openfisca-france/pull/2725)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/04/2022.
+* Zones impactées :
+  -  `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/accident_travail/rente/salaire_net/salaire_minimum.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/accident_travail/rente/taux/*`
+* Détails :
+  - Mise à jours des valeurs.
+
 ### 175.0.26 [#2723](https://github.com/openfisca/openfisca-france/pull/2723)
 
-Description
-    * Changement mineur.
-    * Périodes concernées : 2025.
-    * Zones impactées :
-      - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/ars/ars_cond/age_entree_primaire.yaml`
-      - `parameters/prestations_sociales/aides_logement/allocations_logement/locatif/coefficients_degressivite_suppression/*`
-    * Détails :
-      - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/ars/ars_cond/age_entree_primaire.yaml`
+  - `parameters/prestations_sociales/aides_logement/allocations_logement/locatif/coefficients_degressivite_suppression/*`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
 ### 175.0.25 [#2724](https://github.com/openfisca/openfisca-france/pull/2724)
 
 * Évolution du système socio-fiscal.
