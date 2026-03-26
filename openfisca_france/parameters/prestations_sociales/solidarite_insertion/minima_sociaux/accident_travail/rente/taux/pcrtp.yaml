@@ -1,7 +1,7 @@
 description: Montant de la prestation complémentaire versé en fonction de besoins d'assistance
 metadata:
   short_label: Montant prestation complémentaire
-  last_value_still_valid_on: "2022-03-25"
+  last_value_still_valid_on: "2026-03-24"
   unit: currency
   reference:
     2013-03-01:
@@ -9,6 +9,15 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027267037
     - title: Décret 2013-278 du 2/04/2013
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000027267016/2013-04-05/
+    2023-04-01:
+      title: CIRCULAIRE CIR-5/2023, Annexe 2
+      href: https://circulaires.ameli.fr/circulaire/cir-52023
+    2024-04-01:
+      title: CIRCULAIRE CIR-11/2024, Annexe 2
+      href: https://circulaires.ameli.fr/circulaire/cir-112024
+    2025-04-01:
+      title: CIRCULAIRE CIR-3/2026, Annexe 2
+      href: https://circulaires.ameli.fr/circulaire/cir-32025
 0:
   values:
     1985-12-21:
@@ -33,45 +42,96 @@ metadata:
       value: 559.26
     2013-03-01:
       value: 541.22
+    2023-04-01:
+      value: 605.41
+    2024-04-01:
+      value: 633.25
+    2025-04-01:
+      value: 644.01
 4:
   values:
     1985-12-21:
       value: 559.26
     2013-03-01:
       value: 541.22
+    2023-04-01:
+      value: 605.41
+    2024-04-01:
+      value: 633.25
+    2025-04-01:
+      value: 644.01
 5:
   values:
     1985-12-21:
       value: 1118.54
     2013-03-01:
       value: 1082.43
+    2023-04-01:
+      value: 1210.86
+    2024-04-01:
+      value: 1266.55
+    2025-04-01:
+      value: 1288.08
 6:
   values:
     1985-12-21:
       value: 1118.54
     2013-03-01:
       value: 1082.43
+    2023-04-01:
+      value: 1210.86
+    2024-04-01:
+      value: 1266.55
+    2025-04-01:
+      value: 1288.08
 7:
   values:
     1985-12-21:
       value: 1677.83
     2013-03-01:
       value: 1623.65
+    2023-04-01:
+      value: 1816.32
+    2024-04-01:
+      value: 1899.87
+    2025-04-01:
+      value: 1932.16
 8:
   values:
     1985-12-21:
       value: 1677.83
     2013-03-01:
       value: 1623.65
+    2023-04-01:
+      value: 1816.32
+    2024-04-01:
+      value: 1899.87
+    2025-04-01:
+      value: 1932.16
 9:
   values:
     1985-12-21:
       value: 1677.83
     2013-03-01:
       value: 1623.65
+    2023-04-01:
+      value: 1816.32
+    2024-04-01:
+      value: 1899.87
+    2025-04-01:
+      value: 1932.16
 10:
   values:
     1985-12-21:
       value: 1677.83
     2013-03-01:
       value: 1623.65
+    2023-04-01:
+      value: 1816.32
+    2024-04-01:
+      value: 1899.87
+    2025-04-01:
+      value: 1932.16
+documentation: |
+  Pour les directives à partir de 2014, utilisez la page https://circulaires.ameli.fr/directives?field_date_de_publication_value=&field_date_de_publication_value_1=&title=&term_node_tid_depth=738&term_node_tid_depth_1=All&keys=Revalorisation
+  TODO: Mettre à jour de 2014 à 2023.

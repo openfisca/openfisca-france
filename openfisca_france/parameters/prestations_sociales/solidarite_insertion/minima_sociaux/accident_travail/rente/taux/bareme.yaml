@@ -14,5 +14,11 @@ brackets:
       value: 1.5
 metadata:
   short_label: Barème
+  last_value_still_valid_on: "2026-03-24"
+  reference:
+    2018-01-01:
+      title: Article R434-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750340/2018-01-01
+      note: Le taux d'incapacité est réduit de moitié pour la part <= 50 %, et majoré de moitié pour la part > 50 %.
   rate_unit: /1
-  threshold_unit: smic
+  threshold_unit: /1
