@@ -3,7 +3,7 @@ name: OpenFisca France
 on:
   push:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize]
 
 env:
   # Versions disponibles visibles sur  https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
