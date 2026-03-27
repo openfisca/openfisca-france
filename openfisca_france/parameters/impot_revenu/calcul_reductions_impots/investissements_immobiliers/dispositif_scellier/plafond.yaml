@@ -4,7 +4,7 @@ values:
     value: 300000
 metadata:
   short_label: Plafond
-  last_value_still_valid_on: "2024-03-19"
+  last_value_still_valid_on: "2026-03-27"
   ipp_csv_id: plafond_Scellier
   unit: currency
   reference:
@@ -14,4 +14,4 @@ metadata:
     - title: Art. 199 septvicies, IV. du Code général des impôts
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028434648
   official_journal_date:
-    2009-01-01: "2008-12-31"
+    2009-01-01: 2008-12-31
