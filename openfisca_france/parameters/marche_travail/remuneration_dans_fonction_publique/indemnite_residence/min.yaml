@@ -27,12 +27,12 @@ values:
   2024-01-01:
     value: 366
 metadata:
-  last_value_still_valid_on: "2025-11-14"
+  last_value_still_valid_on: "2026-03-27"
   short_label: Montant plancher
   reference:
     2013-01-01:
-      - title: Art. 9 du Décret n° 85-1148 du 24 octobre 1985 modifié relatif à la rémunération des personnels civils et militaires de l'Etat
-        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006454590/2013-01-01
+    - title: Art. 9 du Décret n° 85-1148 du 24 octobre 1985 modifié relatif à la rémunération des personnels civils et militaires de l'Etat
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006454590/2013-01-01
     2021-10-01:
     - title: Art. 8 du Décret n° 85-1148 du 24 octobre 1985 modifié relatif à la rémunération des personnels civils et militaires de l'Etat
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044129999/2021-10-01/
