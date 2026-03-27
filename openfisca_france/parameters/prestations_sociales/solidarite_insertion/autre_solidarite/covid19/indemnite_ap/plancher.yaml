@@ -10,11 +10,19 @@ values:
     value: 7.47
   2022-01-01:
     value: 7.53
+  2023-01-01:
+    value: 8.03
+  2023-05-01:
+    value: 8.21
   2024-01-01:
     value: 8.3
+  2024-11-01:
+    value: 8.46
+  2026-01-01:
+    value: 8.57
 metadata:
   short_label: Montant horaire minimum
-  last_value_still_valid_on: "2024-05-01"
+  last_value_still_valid_on: "2026-03-27"
   label_en: Exceptional benefit - covid-19 crisis
   unit: currency
   reference:
@@ -35,10 +43,22 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000044842453/2021-12-31/
     - title: Article D5122-13 du Code du Travail
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044877405/2021-12-31/
+    2023-01-01:
+      title: Art. D5122-13 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046813768/2022-12-25
+    2023-05-01:
+      title: Art. D5122-13 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047513726/2023-04-30
     2024-01-01:
     - title: Code du travail - D5122-13
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048723703/2024-01-01/
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048723703/2023-12-30
     - title: Décret n°2023-1305 du 27/12/2023
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048707152
+    2024-11-01:
+      title: Art. D5122-13 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000050742823/2024-12-06
+    2026-01-01:
+      title: Art. D5122-13 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053419237/2026-01-31
   official_journal_date:
-    2022-01-01: "2021-12-30"
+    2022-01-01: 2021-12-30
