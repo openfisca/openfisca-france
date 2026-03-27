@@ -4,7 +4,7 @@ values:
     value: 0
 metadata:
   short_label: Taux réduit
-  last_value_still_valid_on: "2024-07-24"
+  last_value_still_valid_on: "2026-03-27"
   label_en: CSG - rates on work incomes
   unit: /1
   reference:

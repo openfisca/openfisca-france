@@ -18,7 +18,7 @@ brackets:
       value: 0
 metadata:
   short_label: Taux d'abattement, pour frais professionnels, appliqué sur l'assiette de la CSG
-  last_value_still_valid_on: "2024-07-22"
+  last_value_still_valid_on: "2026-03-27"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_abt
   reference:

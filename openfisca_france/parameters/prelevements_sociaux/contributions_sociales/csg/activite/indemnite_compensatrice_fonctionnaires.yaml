@@ -4,7 +4,7 @@ values:
     value: 0.0076
 metadata:
   short_label: Taux indemnité compensatrice
-  last_value_still_valid_on: "2025-01-22"
+  last_value_still_valid_on: "2026-03-27"
   label_en: CSG compensatory allowance rate
   ipp_csv_id: csg_act
   unit: /1
@@ -17,4 +17,5 @@ metadata:
   official_journal_date:
     2018-01-01: "2017-12-31"
 documentation: |-
-    Cette indemnité compensatrice concerne les agents publics civils et les militaires, mais « n'est pas versée aux agents [...] qui sont affiliés au régime général de la sécurité sociale au titre des prestations en espèces de l'assurance maladie.» II. de l'article 2 du Décret n° 2017-1889 du 30 décembre 2017
+    Cette indemnité compensatrice concerne les agents publics civils et les militaires, mais « n'est pas versée aux agents [...]
+    qui sont affiliés au régime général de la sécurité sociale au titre des prestations en espèces de l'assurance maladie.» II. de l'article 2 du Décret n° 2017-1889 du 30 décembre 2017

@@ -38,7 +38,7 @@ values:
     value: 24041
 metadata:
   short_label: Abattement spécial
-  last_value_still_valid_on: "2025-11-17"
+  last_value_still_valid_on: "2026-03-27"
   unit: currency
   reference:
     2018-01-01:
