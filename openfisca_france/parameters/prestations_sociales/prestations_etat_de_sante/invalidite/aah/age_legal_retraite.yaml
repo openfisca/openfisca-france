@@ -16,7 +16,7 @@ values:
     value: 64
 metadata:
   short_label: Âge légal de départ à la retraite
-  last_value_still_valid_on: "2024-05-01"
+  last_value_still_valid_on: "2026-03-27"
   unit: year
   reference:
     2017-01-01:

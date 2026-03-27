@@ -6,7 +6,7 @@ values:
     value: 2
 metadata:
   short_label: 1 enfant
-  last_value_still_valid_on: "2023-05-09"
+  last_value_still_valid_on: "2026-03-27"
   label_en: One child
   ipp_csv_id: periode_ref_cotisations_vieillesse_prepare_1enf
   unit: year
@@ -30,7 +30,7 @@ metadata:
   official_journal_date:
     2004-01-01: 2003-12-19; 2004-01-01
     2008-05-01: 2006-06-24; 2008-04-11
-    2015-01-01: "2014-12-31"
+    2015-01-01: 2014-12-31
   notes:
     2004-01-01:
     - title: "art. D531-1 : fixe l'âge limite; art. D531-3 : fixe le montant de l'aide (en % de la BMAF); La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi)."
