@@ -3,6 +3,7 @@ values:
   2016-01-01:
     value: 30
 metadata:
+  last_value_still_valid_on: "2026-03-31"
   short_label: Âge max
   unit: year
   reference:
