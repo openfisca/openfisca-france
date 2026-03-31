@@ -20,7 +20,7 @@ values:
     value: 0.232
 metadata:
   short_label: Taux - CIPAV
-  last_value_still_valid_on: "2025-08-22"
+  last_value_still_valid_on: "2026-03-31"
   label_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_plib_ca
   unit: /1
@@ -77,6 +77,9 @@ metadata:
     2022-10-01: "2022-12-09"
     2024-07-01: "2024-05-31"
 documentation: |-
+
+  Dans le tableau Article D613-4 du CSS, appelé "b) Travailleurs indépendants affiliés à la section professionnelle mentionnée au 11° de l'article R. 641-1"
+
   Notes :
   (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.
   Chaque mois ou chaque trimestre, selon son choix, il doit calculer et payer l’ensemble de ses charges sociales personnelles en fonction de son chiffre d’affaires réalisé au cours de cette période selon les pourcentages indiqués

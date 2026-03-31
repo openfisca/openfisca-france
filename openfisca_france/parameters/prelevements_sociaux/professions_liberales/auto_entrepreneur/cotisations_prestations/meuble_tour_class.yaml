@@ -4,7 +4,7 @@ values:
     value: 0.06
 metadata:
   short_label: Taux - Meuble
-  last_value_still_valid_on: "2025-08-22"
+  last_value_still_valid_on: "2026-03-31"
   unit: /1
   reference:
     2020-05-25:
@@ -15,4 +15,7 @@ metadata:
   official_journal_date:
     2020-05-25: "2020-05-24"
 documentation: |-
+
+  Dans le tableau Article D613-4 du CSS, appelé "c) Travailleurs indépendant mentionnés au 6° de l'article L. 611-1 lorsqu'ils exercent une activité de location de locaux d'habitation meublés de tourisme, définis conformément à l'article L. 324-1 du code du tourisme"
+
   Le dispositif existait probablement avant le 25 mai 2020, mais le code de la sécurité sociale a été remanié à cette date.
