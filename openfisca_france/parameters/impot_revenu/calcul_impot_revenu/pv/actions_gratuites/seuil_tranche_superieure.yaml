@@ -4,5 +4,11 @@ values:
     value: 152500
 metadata:
   short_label: Seuil des gains d'acquisition d'actions gratuites attribuées avant 28.09.2012
+  last_value_still_valid_on: "2026-03-31"
+  reference:
+    2008-01-01:
+    - title: Article 200 A du Code général des impôts (version en vigueur au 27/09/2012)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023377886/2012-09-27/
+      note: "à concurrence de la fraction annuelle qui n'excède pas 152 500 €"
   ipp_csv_id: seuil_pv1
   unit: currency_next_year

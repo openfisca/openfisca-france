@@ -4,5 +4,10 @@ values:
     value: 0.18
 metadata:
   short_label: Taux pour la fraction inférieure au seuil
-  last_value_still_valid_on: "2024-11-07"
+  last_value_still_valid_on: "2026-03-31"
+  reference:
+    2008-01-01:
+    - title: Article 200 A du Code général des impôts (version en vigueur au 27/09/2012)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023377886/2012-09-27/
+      note: "Ces taux sont réduits respectivement à 18 % (1) et 30 %"
   unit: /1
