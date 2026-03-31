@@ -640,7 +640,7 @@ class isf_inv_pme(Variable):
 class isf_org_int_gen(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'isf_org_int_gen'
+    label = 'Réductions pour dons à certains organismes d intérêt général'
     definition_period = YEAR
 
     def formula_2008(foyer_fiscal, period, parameters):
