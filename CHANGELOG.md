@@ -1,5 +1,23 @@
 # Changelog
 
+### 175.0.28 [#2740](https://github.com/openfisca/openfisca-france/pull/2740)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/04/2026.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/seuil_max_bonification.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/taux_bonification_max.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/montant_de_base.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_m/montant_de_base_du_rsa.yaml`
+  - `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/montant_plein.yaml`
+  - `openfisca_france/parameters/chomage/allocations_assurance_chomage/ass/montant_plein_mayotte.yaml`
+  - `openfisca_france/parameters/chomage/preretraites/aer/montant_journalier.yaml`
+  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/montant.yaml`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/bmaf/bmaf.yaml`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/autre_solidarite/ata/montant_journalier.yaml`
+* Détails :
+  -  Mise à jour des paramètres de prestations au 1er avril 2026.
+
 ### 175.0.27 [#2725](https://github.com/openfisca/openfisca-france/pull/2725)
 
 * Changement mineur.
