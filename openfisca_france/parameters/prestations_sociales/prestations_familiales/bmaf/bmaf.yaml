@@ -186,8 +186,10 @@ values:
     value: 466.44
   2025-04-01:
     value: 474.37
+  2026-04-01:
+    value: 478.16
 metadata:
-  last_value_still_valid_on: "2023-05-04"
+  last_value_still_valid_on: "2026-04-01"
   label_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: bmaf
   unit: currency
@@ -449,6 +451,9 @@ metadata:
     2025-04-01:
       title: Instruction interministérielle N° DSS/2A/2C/2025/32 du 7 mars 2025
       href: https://sante.gouv.fr/fichiers/bo/2025/2025.6.sante.pdf#page=9
+    2026-04-01:
+      title: Instruction interministérielle n° DSS/2A/2026/36 du 26 mars 2026
+      href: https://bulletins-officiels.social.gouv.fr/instruction-interministerielle-ndeg-dss2a202636-du-26-mars-2026-relative-levolution-des-pensions-dinvalidite-de-lallocation-supplementaire-dinvalidite-de-la-majoration-pour-aide-constante-dune-tierce-personne-des-prestations-versees-au-titre-d
   official_journal_date:
     1946-07-01: "1946-08-23"
     1947-02-01: "1947-04-06"
