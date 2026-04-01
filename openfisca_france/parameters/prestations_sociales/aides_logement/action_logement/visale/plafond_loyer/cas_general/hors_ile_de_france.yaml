@@ -1,9 +1,9 @@
-description: Montant maximum du loyer éligible à la caution Visale dans le cas général pour les personnes logeant hors Île-de-France
+description: Montant maximum du loyer éligible à la caution Visale dans le cas général pour les personnes logeant hors Île-de-France, agglomération > 100 000 habitants, départements outre-mer, Corse, ou Saint-Martin
 values:
   2018-06-19:
     value: 1300
 metadata:
-  short_label: Hors Île-de-France
+  short_label: Communes hors cas particuliers
   unit: currency
   reference:
     2018-06-19:

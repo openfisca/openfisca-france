@@ -1,4 +1,4 @@
-description: Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant hors Île-de-France
+description: Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant hors Île-de-France, agglomération > 100 000 habitants, départements outre-mer, Corse, ou Saint-Martin
 values:
   2016-01-01:
     value: 425
@@ -6,7 +6,7 @@ values:
     value: 600
 metadata:
   last_value_still_valid_on: "2026-03-31"
-  short_label: Hors Île-de-France
+  short_label: Communes hors cas particuliers
   unit: currency
   reference:
     2016-01-01:
