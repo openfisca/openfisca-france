@@ -2,7 +2,10 @@ description: Montant maximum du loyer éligible à la caution Visale dans le cas
 values:
   2018-06-19:
     value: 1300
+  2026-01-06:
+    value: 1365  
 metadata:
+  last_value_still_valid_on: "2026-03-31"
   short_label: Communes hors cas particuliers
   unit: currency
   reference:
@@ -11,7 +14,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFSCTA000036580381
     - title: Décret 2016-1769 du 19/12/2016
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000033652118#JORFARTI000033652118
-      note: C'est le décret de création de l'Action Logement Services, il ne mentionne pas les montants.
+      note: Décret de création de l'Action Logement Services, il ne mentionne pas les montants.
+    2026-01-06:
+    - title: Visale.fr
+      href: https://www.visale.fr/evolution_visale_2026/
 documentation: |-
-  TODO: La valeur n'est plus à jour mais je n'ai pas trouvé de source indiquant la date du changement.
-  Voir https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#3
+  À compter du 6 janvier 2026, les plafonds de loyers garantis par Visale évoluent à la hausse, une nouvelle catégorie de ville est introduite en plus du cas général et du cas Ile-de-France.
