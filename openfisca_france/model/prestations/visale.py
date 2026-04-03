@@ -29,7 +29,7 @@ class visale_eligibilite(Variable):
         nationalite = menage.personne_de_reference('nationalite', period)
         ressortissant_pays_eligible = sum([nationalite == str.encode(etat) for etat in parameters(period).prestations_sociales.aides_logement.action_logement.visale.eligibilite.residence_hors_eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
-        eligibilite_nationalite = ressortissant_eee + ressortissant_pays_eligible + etudiant  # Sont éligibles les « étudiant‧e‧s hors Union Européenne justifiant d’un visa long séjour valant titre de séjour mention étudiant ou passeport talent en cours de validité, ou d’un titre de séjour mention étudiant en cours de validité ». Vu qu'il s'agit d'une aide au logement, on suppose que le visa long séjour (4 mois à 1 an) est acquis, et on ignore donc les cas où un étudiant hors UE vient pour une durée de moins de 4 mois sans visa (ex : étudiante néo-zélandaise en visa touristique de 90 jours, l'éligibilité à Visale sera indiquée à tort comme positive).
+        eligibilite_nationalite = ressortissant_eee + ressortissant_pays_eligible + etudiant  # Sont éligibles les « étudiant‧e‧s hors Union Européenne justifiant d'un visa long séjour valant titre de séjour mention étudiant ou passeport talent en cours de validité, ou d'un titre de séjour mention étudiant en cours de validité ». Vu qu'il s'agit d'une aide au logement, on suppose que le visa long séjour (4 mois à 1 an) est acquis, et on ignore donc les cas où un étudiant hors UE vient pour une durée de moins de 4 mois sans visa (ex : étudiante néo-zélandaise en visa touristique de 90 jours, l'éligibilité à Visale sera indiquée à tort comme positive).
 
         loyer = menage('loyer', period)
         charges_locatives = menage('charges_locatives', period)
@@ -39,6 +39,39 @@ class visale_eligibilite(Variable):
         eligibilite_date_entree_logement = menage('date_entree_logement', period) > datetime64(period.start)
 
         return eligibilite_age * eligibilite_nationalite * eligibilite_loyer * eligibilite_date_entree_logement
+
+    def formula_2026_01_06(menage, period, parameters):
+        '''
+        À compter du 6 janvier 2026, la garantie Visale est étendue aux salariés de plus de 30 ans
+        avec un plafond de ressources de 1710 € nets/mois.
+        '''
+        age = menage.personne_de_reference('age', period)
+        majeur = menage.personne_de_reference('majeur', period)
+
+        age_max = parameters(period).prestations_sociales.aides_logement.action_logement.visale.eligibilite.age_max
+        plafond_ressources_plus_30_ans = parameters(period).prestations_sociales.aides_logement.action_logement.visale.eligibilite.plafond_ressources_salaries_plus_30_ans
+
+        etudiant = menage.personne_de_reference('etudiant', period)
+        ressortissant_eee = menage.personne_de_reference('ressortissant_eee', period)
+        nationalite = menage.personne_de_reference('nationalite', period)
+        ressortissant_pays_eligible = sum([nationalite == str.encode(etat) for etat in parameters(period).prestations_sociales.aides_logement.action_logement.visale.eligibilite.residence_hors_eee])
+
+        eligibilite_nationalite = ressortissant_eee + ressortissant_pays_eligible + etudiant
+
+        loyer = menage('loyer', period)
+        charges_locatives = menage('charges_locatives', period)
+        montant_max = menage('visale_montant_max', period)
+
+        eligibilite_loyer = (loyer + charges_locatives) <= montant_max
+        eligibilite_date_entree_logement = menage('date_entree_logement', period) > datetime64(period.start)
+
+        base_ressources = menage('visale_base_ressources', period)
+        eligibilite_ressources_plus_30_ans = base_ressources <= plafond_ressources_plus_30_ans * 12
+
+        eligibilite_age_moins_30_ans = majeur * (age < age_max)
+        eligibilite_age_plus_30_ans = majeur * (age >= age_max) * eligibilite_ressources_plus_30_ans
+
+        return (eligibilite_age_moins_30_ans + eligibilite_age_plus_30_ans) * eligibilite_nationalite * eligibilite_loyer * eligibilite_date_entree_logement
 
 
 class visale_montant_max(Variable):
