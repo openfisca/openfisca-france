@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.29 [#2738](https://github.com/openfisca/openfisca-france/pull/2738)
+
+* Changement mineur.
+* Périodes concernées : 2026
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/professions_liberales/auto_entrepreneur/cotisations_prestations/*`.
+* Détails :
+  - Augmentation du taux de cotisation BNC
+
 ### 175.0.28 [#2740](https://github.com/openfisca/openfisca-france/pull/2740)
 
 * Changement mineur.
