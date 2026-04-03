@@ -300,7 +300,7 @@
     depcom: [ "06088", "06088", "06088", "06088", "06088" ]
     salaire_net:
       2026-01: [ 500, 500, 1680, 1680, 3362 ]
-    loyer: [ 840, 841, 841, 845, 1576 ]
+    loyer: [ 840, 841, 840, 845, 1576 ]
   output:
     visale_eligibilite: [ true, false, true, false, false ]
     visale_montant_max: [ 840, 840, 840, 840, 1575 ]
