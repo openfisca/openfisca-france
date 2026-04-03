@@ -66,7 +66,7 @@ class visale_eligibilite(Variable):
         eligibilite_date_entree_logement = menage('date_entree_logement', period) > datetime64(period.start)
 
         base_ressources = menage('visale_base_ressources', period)
-        eligibilite_ressources_plus_30_ans = base_ressources <= plafond_ressources_plus_30_ans * 12
+        eligibilite_ressources_plus_30_ans = base_ressources <= plafond_ressources_plus_30_ans
 
         eligibilite_age_moins_30_ans = majeur * (age < age_max)
         eligibilite_age_plus_30_ans = majeur * (age >= age_max) * eligibilite_ressources_plus_30_ans

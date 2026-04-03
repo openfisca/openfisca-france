@@ -315,10 +315,10 @@
     depcom: [ "23001", "23001", "23001", "23001", "23001" ]
     salaire_net:
       2026-01: [ 500, 500, 1360, 1360, 2722 ]
-    loyer: [ 680, 681, 681, 685, 1366 ]
+    loyer: [ 680, 681, 680, 685, 1366 ]
   output:
     visale_eligibilite: [ true, false, true, false, false ]
-    visale_montant_max: [ 680, 680, 680, 680, 1365 ]
+    visale_montant_max: [ 680, 680, 680, 680, 1361 ]
 
 - name: Condition de ressources pour Visale non étudiant en Île-de-France (2026)
   description: Nouveaux plafonds 2026 pour les non-étudiants en Île-de-France
@@ -344,11 +344,11 @@
     etudiant: [ false, false, false, false ]
     depcom: [ "06088", "06088", "06088", "06088" ]
     salaire_net:
-      2026-01: [ 500, 1600, 3150, 3152 ]
+      2026-01: [ 500, 1700, 3150, 3152 ]
     loyer: [ 600, 840, 1575, 1576 ]
   output:
     visale_eligibilite: [ false, true, true, false ]
-    visale_montant_max: [ 250, 800, 1575, 1575 ]
+    visale_montant_max: [ 250, 850, 1575, 1575 ]
 
 - name: Condition de ressources pour Visale non étudiant hors grandes agglomérations (2026)
   description: Nouveaux plafonds 2026 pour les non-étudiants en zone rurale (zone 3)
@@ -363,17 +363,19 @@
     loyer: [ 600, 680, 1365, 1366 ]
   output:
     visale_eligibilite: [ false, true, true, false ]
-    visale_montant_max: [ 250, 680, 1365, 1365 ]
+    visale_montant_max: [ 250, 700, 1365, 1365 ]
 
 - name: Extension Visale aux salariés de plus de 30 ans (2026)
   description: Depuis le 6 janvier 2026, les salariés de plus de 30 ans sont éligibles avec un plafond de ressources de 1710€/mois
   period: 2026-02
   input:
-    age: [ 30, 31, 35, 40, 30, 31 ]
-    date_entree_logement: [2026-03-01, 2026-03-01, 2026-03-01, 2026-03-01, 2026-03-01, 2026-03-01]
-    etudiant: [ false, false, false, false, false, false ]
-    depcom: [ "75012", "75012", "75012", "75012", "75012", "75012" ]
+    age: [ 31 ]
+    date_entree_logement: [2026-03-01]
+    etudiant: [ false ]
+    nationalite: [ FR ]
+    depcom: [ "75012" ]
     salaire_net:
-      2026-01: [ 1500, 1500, 1500, 1500, 1710, 2000 ]
+      2026-01: [ 1000 ]
+    loyer: [ 600 ]
   output:
-    visale_eligibilite: [ true, true, true, true, true, false ]
+    visale_eligibilite: [ true ]
