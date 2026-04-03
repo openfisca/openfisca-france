@@ -291,7 +291,7 @@
     visale_montant_max: [ 1000, 1000, 1000, 1000, 1940 ]
 
 - name: Condition de ressources pour Visale étudiant en grande agglomération (2026)
-  description: Nouveaux plafonds 2026 pour les étudiants en agglomération > 100 000 hab (ex: Nice, Lyon, Marseille)
+  description: "Nouveaux plafonds 2026 pour les étudiants en agglomération > 100 000 hab (ex: Nice, Lyon, Marseille)"
   period: 2026-02
   input:
     age: [ 18, 18, 18, 18, 18 ]
@@ -336,7 +336,7 @@
     visale_montant_max: [ 250, 1000, 1940, 1940 ]
 
 - name: Condition de ressources pour Visale non étudiant en grande agglomération (2026)
-  description: Nouveaux plafonds 2026 pour les non-étudiants en agglomération > 100 000 hab
+  description: "Nouveaux plafonds 2026 pour les non-étudiants en agglomération > 100 000 hab"
   period: 2026-02
   input:
     age: [ 18, 18, 18, 18 ]
