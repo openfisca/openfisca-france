@@ -119,7 +119,6 @@ class visale_montant_max(Variable):
         '''
         residence_ile_de_france = menage('residence_ile_de_france', period)
         zone_apl = menage('zone_apl', period)
-        depcom = menage('depcom', period.first_month)
 
         grandes_agglomerations = (zone_apl == TypesZoneApl.zone_1) + (zone_apl == TypesZoneApl.zone_2)
         residence_grande_agglomeration = grandes_agglomerations * not_(residence_ile_de_france)
@@ -136,9 +135,9 @@ class visale_montant_max(Variable):
             where(
                 etudiant * residence_grande_agglomeration,
                 minimum_etudiant_agglomeration,
-                minimum_etudiant_reste
+                minimum_etudiant_reste,
+                ),
             )
-        )
 
         plafond_loyer_idf = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.ile_de_france
         plafond_loyer_agglomeration = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.grandes_agglomerations_DROM_Corse_SaintMartin
@@ -150,9 +149,9 @@ class visale_montant_max(Variable):
             where(
                 residence_grande_agglomeration,
                 plafond_loyer_agglomeration,
-                plafond_loyer_reste
+                plafond_loyer_reste,
+                ),
             )
-        )
 
         moitie_des_ressources = menage('visale_base_ressources', period) / 2
 
