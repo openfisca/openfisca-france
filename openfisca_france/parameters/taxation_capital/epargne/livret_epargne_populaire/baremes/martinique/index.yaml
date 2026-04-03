@@ -1,0 +1,7 @@
+description: Barèmes du livret d'épargne populaire pour la Martinique
+metadata:
+  short_label: Martinique
+  order:
+    - demi_part_supplementaire
+    - premiere_demi_part
+    - valeur_de_base

@@ -1,0 +1,7 @@
+description: Barèmes du livret d'épargne populaire pour la Métropole
+metadata:
+  short_label: Métropole
+  order:
+    - demi_part_supplementaire
+    - premiere_demi_part
+    - valeur_de_base

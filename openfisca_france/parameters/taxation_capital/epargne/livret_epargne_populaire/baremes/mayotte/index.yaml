@@ -1,0 +1,7 @@
+description: Barèmes du livret d'épargne populaire pour Mayotte
+metadata:
+  short_label: Mayotte
+  order:
+    - demi_part_supplementaire
+    - premiere_demi_part
+    - valeur_de_base

@@ -1,0 +1,7 @@
+description: Barèmes du livret d'épargne populaire pour Saint-Martin
+metadata:
+  short_label: Saint-Martin
+  order:
+    - demi_part_supplementaire
+    - premiere_demi_part
+    - valeur_de_base

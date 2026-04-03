@@ -1,0 +1,7 @@
+description: Barèmes du livret d'épargne populaire pour la Réunion
+metadata:
+  short_label: Réunion
+  order:
+    - demi_part_supplementaire
+    - premiere_demi_part
+    - valeur_de_base
