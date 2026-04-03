@@ -47,6 +47,7 @@ class visale_eligibilite(Variable):
         '''
         age = menage.personne_de_reference('age', period)
         majeur = menage.personne_de_reference('majeur', period)
+        activite = menage.personne_de_reference('activite', period)
 
         age_max = parameters(period).prestations_sociales.aides_logement.action_logement.visale.eligibilite.age_max
         plafond_ressources_plus_30_ans = parameters(period).prestations_sociales.aides_logement.action_logement.visale.eligibilite.plafond_ressources_salaries_plus_30_ans
@@ -66,10 +67,11 @@ class visale_eligibilite(Variable):
         eligibilite_date_entree_logement = menage('date_entree_logement', period) > datetime64(period.start)
 
         base_ressources = menage('visale_base_ressources', period)
+        eligibilite_statut_plus_30_ans = activite == TypesActivite.actif
         eligibilite_ressources_plus_30_ans = base_ressources <= plafond_ressources_plus_30_ans
 
-        eligibilite_age_moins_30_ans = majeur * (age < age_max)
-        eligibilite_age_plus_30_ans = majeur * (age >= age_max) * eligibilite_ressources_plus_30_ans
+        eligibilite_age_moins_30_ans = majeur * (age <= age_max)
+        eligibilite_age_plus_30_ans = majeur * (age > age_max) * eligibilite_statut_plus_30_ans * eligibilite_ressources_plus_30_ans
 
         return (eligibilite_age_moins_30_ans + eligibilite_age_plus_30_ans) * eligibilite_nationalite * eligibilite_loyer * eligibilite_date_entree_logement
 
@@ -120,6 +122,9 @@ class visale_montant_max(Variable):
         residence_ile_de_france = menage('residence_ile_de_france', period)
         zone_apl = menage('zone_apl', period)
 
+        # TODO: Ce zonage APL sert ici de contournement pour approcher le zonage Visale 2026.
+        # Il ne recouvre pas exactement les grandes agglomérations > 100 000 habitants,
+        # les DROM, la Corse et Saint-Martin dans tous les cas.
         grandes_agglomerations = (zone_apl == TypesZoneApl.zone_1) + (zone_apl == TypesZoneApl.zone_2)
         residence_grande_agglomeration = grandes_agglomerations * not_(residence_ile_de_france)
 

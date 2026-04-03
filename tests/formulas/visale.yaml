@@ -370,6 +370,7 @@
   period: 2026-02
   input:
     age: [ 31 ]
+    activite: [ actif ]
     date_entree_logement: [2026-03-01]
     etudiant: [ false ]
     nationalite: [ FR ]
@@ -379,3 +380,35 @@
     loyer: [ 600 ]
   output:
     visale_eligibilite: [ true ]
+
+- name: Visale conserve l'éligibilité à 30 ans en 2026
+  description: À 30 ans exacts, l'éligibilité historique ne doit pas basculer vers le nouveau plafond des plus de 30 ans
+  period: 2026-02
+  input:
+    age: [ 30 ]
+    activite: [ inactif ]
+    date_entree_logement: [2026-03-01]
+    etudiant: [ false ]
+    nationalite: [ FR ]
+    depcom: [ "75012" ]
+    salaire_net:
+      2026-01: [ 2000 ]
+    loyer: [ 600 ]
+  output:
+    visale_eligibilite: [ true ]
+
+- name: Visale n'est pas étendue aux plus de 30 ans non salariés (2026)
+  description: Le nouveau critère 2026 vise les salariés de plus de 30 ans, pas les personnes ayant uniquement des ressources de remplacement
+  period: 2026-02
+  input:
+    age: [ 31 ]
+    activite: [ retraite ]
+    date_entree_logement: [2026-03-01]
+    etudiant: [ false ]
+    nationalite: [ FR ]
+    depcom: [ "75012" ]
+    retraite_nette:
+      2026-01: [ 1000 ]
+    loyer: [ 600 ]
+  output:
+    visale_eligibilite: [ false ]
