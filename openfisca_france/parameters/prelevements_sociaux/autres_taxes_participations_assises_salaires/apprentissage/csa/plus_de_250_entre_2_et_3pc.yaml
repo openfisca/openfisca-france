@@ -9,7 +9,7 @@ values:
   2015-01-01:
     value: 0.001
 metadata:
-  last_value_still_valid_on: "2024-05-16"
+  last_value_still_valid_on: "2026-03-27"
   unit: /1
   reference:
     2009-01-01:
@@ -35,7 +35,7 @@ metadata:
     - title: Article L6242-1 du Code du travail
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043701803/2024-05-16/
   official_journal_date:
-    2009-01-01: "2009-11-25"
-    2011-01-01: "2011-07-30"
-    2012-01-01: "2012-03-15"
-    2015-01-01: "2012-03-15"
+    2009-01-01: 2009-11-25
+    2011-01-01: 2011-07-30
+    2012-01-01: 2012-03-15
+    2015-01-01: 2012-03-15

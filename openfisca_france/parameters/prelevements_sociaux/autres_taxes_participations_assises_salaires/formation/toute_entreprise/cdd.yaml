@@ -3,7 +3,7 @@ values:
   1990-07-14:
     value: 0.01
 metadata:
-  last_value_still_valid_on: "2025-08-18"
+  last_value_still_valid_on: "2026-03-27"
   short_label: Taux
   ipp_csv_id: formcdd_p_0_
   unit: /1
@@ -19,12 +19,12 @@ metadata:
     1990-07-14:
     - title: Cette loi instaure la contribution de 1 % sur les salaires des employés en CDD; elle s'applique aux contrats conclus après l'entrée en vigueur de la loi.
 documentation: |-
-  Depuis la loi initiale de 1990, la contribution « 1 % CDD » a connu plusieurs modifications. Le changement
-  majeur est intervenu avec la **loi n° 2018‑771 du 5 septembre 2018** « pour la liberté de choisir son avenir
+  Depuis la loi initiale de 1990, la contribution « 1 % CDD » a connu plusieurs modifications. Le changement
+  majeur est intervenu avec la **loi n° 2018-771 du 5 septembre 2018** « pour la liberté de choisir son avenir
   professionnel », qui a réformé la formation professionnelle et supprimé le CIF, remplacé par le **compte
   personnel de formation (CPF)**.
   Cette réforme a :
   - **Supprimé la référence au CIF** dans le Code du travail.
-  - Maintenu, en revanche, **l’existence d’une contribution spécifique de 1 % pour les CDD**, désormais dédiée :
+  - Maintenu, en revanche, **l'existence d'une contribution spécifique de 1 % pour les CDD**, désormais dédiée :
     - au financement du CPF pour les salariés sous CDD,
     - et plus largement à la formation professionnelle.
