@@ -191,12 +191,8 @@ metadata:
     2022-04-01: "2022-04-27"
     2023-04-01: "2023-04-30"
     2024-04-01: "2024-04-30"
-<<<<<<< HEAD
     2025-04-01: "2025-03-30"
     2026-04-01: "2026-03-31"
-=======
-  inflator: inflateurs.inflateur_prestations_avril
->>>>>>> 501e6d9e9 (Ajoute tous les inflators des paramètres concernés par une revalorisation)
 documentation: |-
   Si le bénéficiaire touche une pension ou une rente (invalidité, retraite, accident du travail), le montant d'AAH reçu équivaut à la différence entre le montant de l'AAH en vigueur et le montant de la pension/rente perçu.
   Si le bénéficiaire est titulaire d'une carte d'invalidité, l'abattement s'applique sur le montant perçu au cours de l'année au titre de sa rente ou de sa pension.
