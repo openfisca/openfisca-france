@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.32 [#2741](https://github.com/openfisca/openfisca-france/pull/2741)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/taxation_capital/epargne/livret_epargne_populaire/baremes.yaml`.
+* Détails :
+  - Séparation du paramètre `livret_epargne_populaire/baremes.yaml`
+
 ### 175.0.31 [#2730](https://github.com/openfisca/openfisca-france/pull/2730)
 
 * Changement mineur.
