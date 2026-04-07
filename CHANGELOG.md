@@ -1,5 +1,22 @@
 # Changelog
 
+### 175.0.30 [#2728](https://github.com/openfisca/openfisca-france/pull/2728)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/impot_revenu/credits_impots/cotisations_syndicales/taux.yaml`
+  - `openfisca_france/parameters/impot_revenu/credits_impots/cotisations_syndicales/plafond.yaml`
+  - `openfisca_france/parameters/impot_revenu/contributions_exceptionnelles/contribution_revenus_locatifs/seuil.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/outremer_investissement/doment/retrocession/taux_retro_2.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/investissements_immobiliers/*`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/investissement_forestier/depenses_investissement_forestier/travaux/taux_adhesion_org_producteurs.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/pv/pvce.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/pv/bspce/taux_plus_3_ans_pre_2018.yaml`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+  - Mise à jour de la valeur du plafond des déficits agricoles de l'Imputation sur le revenu global.
+
 ### 175.0.29 [#2738](https://github.com/openfisca/openfisca-france/pull/2738)
 
 * Changement mineur.
