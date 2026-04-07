@@ -1,5 +1,16 @@
 # Changelog
 
+### 175.0.31 [#2730](https://github.com/openfisca/openfisca-france/pull/2730)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+    - `openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/*`
+    - `openfisca_france/parameters/prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire/*`
+    - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/activite/indemnite_compensatrice_fonctionnaires.yaml`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 175.0.30 [#2728](https://github.com/openfisca/openfisca-france/pull/2728)
 
 * Changement mineur.
