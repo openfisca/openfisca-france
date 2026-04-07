@@ -1,0 +1,7 @@
+description: Barèmes du livret d'épargne populaire pour la Guadeloupe
+metadata:
+  short_label: Guadeloupe
+  order:
+    - demi_part_supplementaire
+    - premiere_demi_part
+    - valeur_de_base

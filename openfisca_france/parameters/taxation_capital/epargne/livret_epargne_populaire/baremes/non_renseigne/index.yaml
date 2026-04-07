@@ -1,0 +1,7 @@
+description: Barèmes du livret d'épargne populaire pour un territoire non renseigné
+metadata:
+  short_label: Non renseigné
+  order:
+    - demi_part_supplementaire
+    - premiere_demi_part
+    - valeur_de_base
