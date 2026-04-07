@@ -1,5 +1,23 @@
 # Changelog
 
+### 175.0.33 [#2731](https://github.com/openfisca/openfisca-france/pull/2731)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al/formule/l_plafonds_loyers/autres_personnes/personne_isolee.yaml`
+    - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/age_legal_retraite.yaml`
+    - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aeeh/complement_allocation/categorie_6.yaml`
+    - `openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/paje_prepare/periode_ref_8_trimestres_cotis_vieillesse/un_enfant.yaml`
+    - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_cm/age3.yaml`
+    - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/css/forfait_logement_avec_al/*`
+    - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/majoration_isolement_en_base_rsa/*`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al/formule/l_plafonds_loyers/autres_personnes/couple.yaml`
+    - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/autre_solidarite/covid19/indemnite_ap/plancher.yaml`
+
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 175.0.32 [#2741](https://github.com/openfisca/openfisca-france/pull/2741)
 
 * Changement mineur.
