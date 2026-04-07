@@ -4,8 +4,6 @@ from numpy import char, datetime64, timedelta64, logical_xor as xor_, round as r
 
 from openfisca_core.model_api import *
 from openfisca_france.model.base import *
-from openfisca_france.model.prelevements_obligatoires.impot_revenu import arrondi_fiscal
-
 
 log = logging.getLogger(__name__)
 
