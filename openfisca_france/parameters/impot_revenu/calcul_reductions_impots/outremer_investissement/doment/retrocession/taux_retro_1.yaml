@@ -8,7 +8,7 @@ values:
     value: 0.66
 metadata:
   short_label: Taux de rétrocession de la réduction d'impôt (investissement supérieur à 300 000 €)
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2026-03-27"
   unit: /1
   reference:
     2011-01-01:
@@ -20,4 +20,5 @@ metadata:
     - title: Loi 2013-1278 du 29/12/2013 de finances pour 2014 (modifie Art. 199 undecies B)
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000030062101/
     - title: Art. 199 undecies B, I. du CGI
-      href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000006191613/#LEGISCTA000006191613
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046892900/2016-01-01
+      note: "si 66 % de la réduction d'impôt sont rétrocédés à l'entreprise locataire"

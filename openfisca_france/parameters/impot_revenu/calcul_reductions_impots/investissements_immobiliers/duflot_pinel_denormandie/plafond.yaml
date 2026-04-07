@@ -4,7 +4,7 @@ values:
     value: 300000
 metadata:
   short_label: Plafond
-  last_value_still_valid_on: "2024-04-26"
+  last_value_still_valid_on: "2026-03-27"
   unit: currency_next_year
   reference:
     2013-01-01:
