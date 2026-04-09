@@ -2324,14 +2324,14 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
         '''
         rfr = arrondi_fiscal(foyer_fiscal('rfr', period))
         celibataire_ou_assimile = invert(foyer_fiscal('maries_ou_pacses', period))
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_exceptionnelle_hauts_revenus
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.CEHR
 
         # --- Droit commun ---
         cotisation_droit_commun = where(
             celibataire_ou_assimile,
             arrondi_fiscal(bareme.celibataire_ou_assimile.calc(rfr)),
             arrondi_fiscal(bareme.maries_ou_pacses.calc(rfr)),
-        )
+            )
 
         # --- Lissage (art. 223 sexies, II) ---
         rfr_n1 = arrondi_fiscal(foyer_fiscal('rfr', period.last_year))
@@ -2342,7 +2342,7 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
             celibataire_ou_assimile,
             bareme.celibataire_ou_assimile.thresholds[1],
             bareme.maries_ou_pacses.thresholds[1],
-        )
+            )
 
         condition_1 = (rfr_n1 < seuil_lissage) & (rfr_n2 < seuil_lissage)
         condition_2 = rfr >= 1.5 * ((rfr_n1 + rfr_n2) / 2)
@@ -2358,12 +2358,12 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
             celibataire_ou_assimile,
             arrondi_fiscal(bareme.celibataire_ou_assimile.calc(revenu_ordinaire)),
             arrondi_fiscal(bareme.maries_ou_pacses.calc(revenu_ordinaire)),
-        )
+            )
         cehr_assiette_lissage = where(
             celibataire_ou_assimile,
             arrondi_fiscal(bareme.celibataire_ou_assimile.calc(assiette_lissage)),
             arrondi_fiscal(bareme.maries_ou_pacses.calc(assiette_lissage)),
-        )
+            )
         cotisation_lissage = cehr_ordinaire + (cehr_assiette_lissage - cehr_ordinaire) * 2
 
         return where(lissage, cotisation_lissage, cotisation_droit_commun)
