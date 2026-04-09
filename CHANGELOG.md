@@ -1,5 +1,18 @@
 # Changelog
 
+### 175.0.36 [#2733](https://github.com/openfisca/openfisca-france/pull/2733)
+
+* Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées :
+    - `openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018/*`
+    - `openfisca_france/parameters/taxation_capital/prelevement_forfaitaire/liberatoire_assurance_vie/*`
+    - `openfisca_france/parameters/taxation_capital/prelevement_forfaitaire/partir_2018/*`
+    - `openfisca_france/parameters/taxation_capital/prelevements_sociaux/csg/taux_deductible/revenus_du_patrimoine.yaml`
+    - `openfisca_france/parameters/taxation_capital/prelevements_sociaux/prelevements_solidarite/produits_de_placement.yaml`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 175.0.35 [#2729](https://github.com/openfisca/openfisca-france/pull/2729)
 
 * Changement mineur.

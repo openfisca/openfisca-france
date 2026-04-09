@@ -4,14 +4,15 @@ values:
     value: 0.35
 metadata:
   short_label: Durée de moins de 4 ans
-  last_value_still_valid_on: "2024-04-08"
+  last_value_still_valid_on: "2026-03-30"
   label_en: Levy in discharge on life insurance
   ipp_csv_id: tx_pl_av_4
   unit: /1
   reference:
     1990-01-01:
     - title: Loi 89-936 du 29/12/1989, art. 112 (LF pour 1990)
-    - title: Code général des impôts, art. 125-0 A
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044989424
+    - title: Code général des impôts, art. 125-0 A, II, 1, a
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006308131/1989-12-30
+      note: "ce taux est de 35 p. 100 pour les contrats souscrits à compter du 1er janvier 1990"
   official_journal_date:
     1990-01-01: "1989-12-30"

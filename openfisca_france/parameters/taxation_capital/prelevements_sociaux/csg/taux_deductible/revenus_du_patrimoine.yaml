@@ -14,7 +14,7 @@ values:
     value: 0.068
 metadata:
   short_label: Revenus du patrimoine
-  last_value_still_valid_on: "2025-03-31"
+  last_value_still_valid_on: "2026-03-30"
   label_en: CSG on financial income
   ipp_csv_id: tx_csg_ded_rk_patr
   unit: /1
@@ -45,12 +45,15 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358456&cidTexte=JORFTEXT000036339090
     - title: Loi 2017-1837 du 30/12/2017 - art. 67 (modifie l'art. 154 quinquies)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377512&cidTexte=JORFTEXT000036339197
+    - title: Article 154 quinquies du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036431149/2018-01-01
+      note: "à hauteur de 6,8 points"
   official_journal_date:
-    1990-01-01: "1990-12-30"
+    1990-01-01: 1990-12-30
     1996-01-01: 1996-12-29; 1996-12-31
     1997-01-01: 1996-12-27; 1997-12-31; 1997-12-23
     2004-01-01: 2004-08-17; 2004-12-31
-    2012-01-01: "2012-12-30"
+    2012-01-01: 2012-12-30
   notes:
     1996-01-01:
     - title: Crée art. 154 quinquies du CGI

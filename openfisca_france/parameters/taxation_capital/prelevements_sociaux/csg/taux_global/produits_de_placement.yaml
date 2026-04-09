@@ -20,7 +20,7 @@ values:
     value: 0.106
 metadata:
   short_label: Produits de placement
-  last_value_still_valid_on: "2026-01-01"
+  last_value_still_valid_on: "2026-03-30"
   label_en: CSG on financial income
   ipp_csv_id: tx_csg_rk_plac
   unit: /1
@@ -61,7 +61,8 @@ metadata:
       - title: Article 12 de la LFSS pour 2026
         href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000053226452
       - title: Article L136-8 du Code de la sécurité sociale
-        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947799
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053278668/2025-12-31
+        note: "2° A 10,6 % pour les contributions sociales mentionnées aux articles L. 136-6 et L. 136-7 ;"
   official_journal_date:
     1990-01-01: "1990-12-30"
     1991-02-01: "1990-12-30"
