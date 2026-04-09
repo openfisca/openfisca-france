@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.34 [#2736](https://github.com/openfisca/openfisca-france/pull/2736)
+
+* Changement mineur.
+* Périodes concernées : aucune
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_impot_revenu/pv/actions_gratuites/*`.
+* Détails :
+  - Ajout de références législatives
+
 ### 175.0.33 [#2731](https://github.com/openfisca/openfisca-france/pull/2731)
 
 * Changement mineur.
