@@ -1,5 +1,16 @@
 # Changelog
 
+### 175.0.35 [#2729](https://github.com/openfisca/openfisca-france/pull/2729)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+  - `openfisca_france/parameters/marche_travail/salaire_minimum/minstage/taux_gratification_min.yaml`
+  - `openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique/sft/*`
+  - `openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique/indemnite_residence/min.yaml`
+* Détails :
+    - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 175.0.34 [#2736](https://github.com/openfisca/openfisca-france/pull/2736)
 
 * Changement mineur.
