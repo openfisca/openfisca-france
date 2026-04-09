@@ -46,6 +46,8 @@ jobs:
           PARAMETERS_PROJECT="openfisca-france"
           PARAMETERS_PROJECT_DIR="openfisca_france/parameters"
 
+          PUBLIC_LANGUAGES="fr"
+
           SHOW_LAST_BREADCRUMB_ITEM = false
 
           TABLE_OF_CONTENTS_DIR="../../../openfisca_france/tables/"
