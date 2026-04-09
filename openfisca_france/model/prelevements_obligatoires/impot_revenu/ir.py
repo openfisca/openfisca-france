@@ -1,6 +1,10 @@
 import logging
 
 from numpy import char, datetime64, timedelta64, logical_xor as xor_, round as round_, around, invert
+# TODO: L'utilisation de round/around ne semble pas conforme aux règles fiscales
+# Cependant cette modification ne doit pas être faite à la légère : https://github.com/openfisca/openfisca-france/issues/1430
+from openfisca_france.model.prelevements_obligatoires.impot_revenu import arrondi_fiscal
+
 
 from openfisca_core.model_api import *
 from openfisca_france.model.base import *
