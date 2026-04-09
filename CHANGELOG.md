@@ -1,5 +1,14 @@
 # Changelog
 
+### 175.0.37 [#2732](https://github.com/openfisca/openfisca-france/pull/2732)
+
+* Changement mineur.
+* Périodes concernées : 2025.
+* Zones impactées :
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/logement_social/plu/*`
+* Détails :
+  - Mise à jour des `last_value_still_valid_on`, sur les paramètres dont la nouvelle valeur a pu être trouvée avec un bon niveau de fiabilité.
+
 ### 175.0.36 [#2733](https://github.com/openfisca/openfisca-france/pull/2733)
 
 * Changement mineur.
