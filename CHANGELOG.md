@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.38 [#2737](https://github.com/openfisca/openfisca-france/pull/2737)
+
+* Changement mineur.
+* Périodes concernées : 2026.
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants/ret_ac/*`.
+* Détails :
+  - Revalorisation du plafond du RCI
+
 ### 175.0.37 [#2732](https://github.com/openfisca/openfisca-france/pull/2732)
 
 * Changement mineur.
