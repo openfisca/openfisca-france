@@ -79,7 +79,7 @@
   output:
     prelevement_forfaitaire_unique_ir: 25600  # (700000 - 500000)*0.128
     rfr: 700000
-    impot_revenu_restant_a_payer: -41100  # pfu + cehr
+    impot_revenu_restant_a_payer: -31600  # pfu + CEHR lissée (6000 au lieu de 15500)
 
 - name: option_bareme_abattement_fixe
   description: Test imposition bareme avec abattement fixe
@@ -97,7 +97,7 @@
         statut_marital: celibataire
   output:
     prelevement_forfaitaire_unique_ir: 0  # option bareme
-    impot_revenu_restant_a_payer: -85337
+    impot_revenu_restant_a_payer: -75837
     rfr: 700000
 
 - name: option_prelevement_forfaitaire_unique_abattements_plus_values_2019
@@ -122,7 +122,7 @@
         statut_marital: celibataire
   output:
     prelevement_forfaitaire_unique_ir: 37120
-    impot_revenu_restant_a_payer: -41320  # pfu + cehr
+    impot_revenu_restant_a_payer: -37120  # CEHR lissée nulle
     rfr: 390000
 
 - name: option_imposition_bareme_abattements_plus_values_2019
@@ -148,7 +148,7 @@
   output:
     prelevement_forfaitaire_unique_ir: 2560  # pfu des actifs numériques f3an qui ne peuvent pas être imposé au barème
     rfr: 390000
-    impot_revenu_restant_a_payer: -94395  # pfu des an + taxation au barème des revenus éligibles au pfu
+    impot_revenu_restant_a_payer: -90195  # pfu des an + taxation au barème des revenus éligibles au pfu, avec CEHR lissée nulle
 
 - name: option_prelevement_forfaitaire_unique_capital_2019
   description: Test pfu pour 2019 avec des revenus de capital
