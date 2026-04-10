@@ -42,6 +42,8 @@ values:
     value: 10794.79
   2025-04-01:
     value: 10978.3
+  2026-04-01:
+    value: 11066.12
 metadata:
   short_label: Plafond de ressources pour une personne seule
   last_value_still_valid_on: "2023-07-05"
@@ -125,6 +127,9 @@ metadata:
     2025-04-01:
       title: Circulaire Cnav 2025-13 du 03/04/2025
       href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2025_13_03042025.pdf
+    2026-04-01:
+      title: Circulaire Cnav 2026/10 du 02/04/2026
+      href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2026_10_02042026.pdf
   official_journal_date:
     2006-01-01: "2007-01-13"
     2008-01-01: "2007-12-28"
