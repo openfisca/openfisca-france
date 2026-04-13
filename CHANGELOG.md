@@ -10,6 +10,8 @@
     - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees/mtp.yaml`
 * Détails :
   - Correction du calcul APA établissement pour les couples (utilisation des ressources proratisées).
+  - Correction du calcul de la participation APA domicile : les fractions du plan d'aide (A1, A2, A3) sont des seuils cumulatifs en parts de MTP conformément à l'article R. 232-11 du CASF.
+  - Remplacement de la valeur en dur 0.725 par le paramètre `seuil_inferieur` dans le calcul de la participation APA domicile.
   - Ajout de la référence à l'article R232-19 du CASF.
   - Mise à jour de la MTP et des paramètres APA domicile.
 
