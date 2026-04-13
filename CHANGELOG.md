@@ -1,5 +1,18 @@
 # Changelog
 
+### 175.0.38
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026.
+* Zones impactées :
+    - `openfisca_france/model/prestations/autonomie.py`
+    - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees/apa_domicile/*`
+    - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees/mtp.yaml`
+* Détails :
+  - Correction du calcul APA établissement pour les couples (utilisation des ressources proratisées).
+  - Ajout de la référence à l'article R232-19 du CASF.
+  - Mise à jour de la MTP et des paramètres APA domicile.
+
 ### 175.0.37 [#2732](https://github.com/openfisca/openfisca-france/pull/2732)
 
 * Changement mineur.
