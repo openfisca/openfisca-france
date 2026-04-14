@@ -232,23 +232,57 @@
   period: 2018
   absolute_error_margin: 1
   input:
+    # 2DH
     assurance_vie_pfu_ir_plus8ans_1990_19970926: 100000
+    # 2DH
     assurance_vie_pfu_ir_plus6ans_avant1990: 200000
+    # 2EE
     assurance_vie_pfu_ir_moins4ans_1990_19970926: 300000
+    # 2EE
     assurance_vie_pfu_ir_4_8_ans_1990_19970926: 400000
+    # 2DH
     assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927: 500000
+    # 2EE
     assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927: 600000
+    # 2EE
     assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927: 700000
+    # 2DH = 100_000 + 200_000 + 500_000 = 800_000
+    # 2EE = 300_000 + 400_000 + 600_000 + 700_000 = 2_000_000
+    # 2ZZ : rachats issus des sommes versées depuis 3 ans.
     f2zz: 800000
+    # 2VV : produits d’assurance-vie issus des primes versées jusqu’à 150 000 € peuvent être imposés au prélèvement libératoire (7.5%).
     f2vv: 150000
+    # 2WW : Sinon, la flat-tax (ou prélèvement forfaitaire unique) de 12.8% s’applique via la case 2WW.
     f2ww: 750000
+    # 2UU = 2VV + 2WW = 900 000
     rsa: 0
   output:
+    # RESULTAT du simulateur de la DGFiP
+    # Nombre de personnes à charge 	0
+    # Nombre de parts 	1
+    # Revenu net imposable ou déficit à reporter 	0
+    # Droits simples 	0
+    # Impôt proportionnel 	209650
+    # Impôt sur les plus-values mobilières au taux spécifique 	0
+    # Contribution sur les hauts revenus 	167500
+    # Impôt avant imputations 	377150
+    # Prélèvement libératoire de 7,5 % 	345
+    # IR net 	209305
+    # Revenu fiscal de référence 	4500000
+    # Base CSG 	1700000
+    # Base CRDS 	1700000
+    # Base prélèvement de solidarité à 7,5% 	1700000
+    # Montant CSG 	156400
+    # Montant CRDS 	8500
+    # Montant prélèvement de solidarité à 7,5% 	127500
+    # Montant net des prélèvements sociaux (sur revenus du patrimoine et revenus d'activité et de remplacement de source étrangère)	292400
+    # MONTANT NET À PAYER AU TITRE DE L'ANNÉE 2018 * 	669205
+    # Trop versé sur prélèvement libératoire de 7,5 % 	345
     prelevements_sociaux_revenus_capital: -774000 # -4500000*(0.045+0.02+0.003+0.005+0.099)
     revenus_nets_du_capital: 4500000 - 774000
     prelevement_forfaitaire_unique_ir_sur_assurance_vie: 209305.0 # ((150000 - 4600)  * 0.075 + 800000 * 0.128 + 750000 * 0.128)
-    impots_directs: -364305  # La CEHR est lissée en 2018, ce qui diminue l'impot direct de 12 500 €.
-    revenu_disponible: 4500000 - 774000 - 364305
+    impots_directs: -376805
+    revenu_disponible: 4500000 - 774000 - 376805
 
 - name: pfu_hors_av_epargne_non_solidaire_etats_non_cooperatifs_2018
   description: Test du prélèvement forfaitaire unique en 2018 hors assurance-vie, produits d'épargne solidaire et produits des états non-coopératifs'
