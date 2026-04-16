@@ -339,7 +339,7 @@ class contribution_differentielle_hauts_revenus(Variable):
         # ainsi que des prélèvements libératoires de l’impôt sur le revenu
         # mentionnés au c du 1° du IV de l’article 1417,
         contribution_exceptionnelle_hauts_revenus = foyer_fiscal(
-            'contribution_exceptionnelle_hauts_revenus', period
+            'contribution_exceptionnelle_hauts_revenus_sans_lissage', period
             )
         pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         prelevement_forfaitaire_liberatoire = -1 * foyer_fiscal(
@@ -429,7 +429,7 @@ class contribution_differentielle_hauts_revenus(Variable):
         # 223 sexies définis au IV ainsi que des prélèvements libératoires de l'impôt sur le revenu
         # mentionnés au c du 1° du IV de l'article 1417,
         contribution_exceptionnelle_hauts_revenus = foyer_fiscal(
-            'contribution_exceptionnelle_hauts_revenus', period
+            'contribution_exceptionnelle_hauts_revenus_sans_lissage', period
             )
         pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         prelevement_forfaitaire_liberatoire = -1 * foyer_fiscal(

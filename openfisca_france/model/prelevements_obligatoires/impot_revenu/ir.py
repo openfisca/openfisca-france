@@ -1,9 +1,10 @@
 import logging
 
-from numpy import char, datetime64, timedelta64, logical_xor as xor_, round as round_, around
+from numpy import char, datetime64, timedelta64, logical_xor as xor_, round as round_, around, invert
 
 from openfisca_core.model_api import *
 from openfisca_france.model.base import *
+from openfisca_france.model.prelevements_obligatoires.impot_revenu import arrondi_fiscal
 
 
 log = logging.getLogger(__name__)
@@ -2284,8 +2285,16 @@ class iai(Variable):
         return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + indemnite_compensatrice_agents_assurance
 
 
+class contribution_exceptionnelle_hauts_revenus_appliquer_lissage(Variable):
+    value_type = bool
+    default_value = False
+    entity = FoyerFiscal
+    label = 'Appliquer le lissage de la contribution exceptionnelle sur les hauts revenus'
+    definition_period = YEAR
+
+
 class contribution_exceptionnelle_hauts_revenus(Variable):
-    value_type = float
+    value_type = int
     entity = FoyerFiscal
     label = 'Contribution exceptionnelle sur les hauts revenus'
     reference = 'http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019'
@@ -2293,15 +2302,94 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
-        Contribution exceptionnelle sur les hauts revenus
-        'foy'
-        '''
-        rfr = foyer_fiscal('rfr', period)
-        nb_adult = foyer_fiscal('nb_adult', period)
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_exceptionnelle_hauts_revenus
+        Contribution exceptionnelle sur les hauts revenus (art. 223 sexies du CGI)
 
-        return bareme.calc(rfr / nb_adult) * nb_adult
-        # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
+        Selon les règles de droit commun, la CEHR est calculée sur une assiette égale
+        au revenu fiscal de référence (RFR) de l'année N (art. 223 sexies, I).
+        Les seuils du barème diffèrent selon la situation maritale :
+        - célibataires, veufs, divorcés ou séparés : 250 000 € (3%) et 500 000 € (4%)
+        - contribuables soumis à imposition commune (mariés ou pacsés) : 500 000 € (3%) et 1 000 000 € (4%)
+
+        Par exception, un mécanisme de lissage est applicable lorsque les 3 conditions
+        cumulatives suivantes sont réunies (art. 223 sexies, II du CGI) :
+        1. les RFR des deux années précédentes (N-1 et N-2) sont inférieurs au premier seuil
+           d'imposition à la CEHR ;
+        2. le RFR de l'année N est supérieur à une fois et demie la moyenne des RFR N-1 et N-2 ;
+        3. le foyer fiscal a été soumis à l'IR en France pour plus de la moitié de son RFR
+           « mondial » au titre des années N-1 et N-2 (indication portée en case 8TD).
+
+        En cas de lissage, la cotisation est :
+          CEHR(revenu_ordinaire) + 2 × (CEHR(assiette_lissage) − CEHR(revenu_ordinaire))
+        où :
+          revenu_ordinaire = moyenne(RFR N-1, RFR N-2)
+          assiette_lissage = revenu_ordinaire + (RFR N − revenu_ordinaire) / 2
+
+        Tous les montants sont arrondis à l'euro selon l'article 1657 du CGI (arrondi
+        à l'euro le plus proche, 0,5 arrondi à l'euro supérieur).
+
+        Note : les règles spécifiques de changement de composition du foyer fiscal
+        entre les années N-2 et N ne sont pas prises en compte ici.
+        '''
+        rfr = arrondi_fiscal(foyer_fiscal('rfr', period))
+        celibataire_ou_assimile = invert(foyer_fiscal('maries_ou_pacses', period))
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.CEHR
+
+        # --- Droit commun ---
+        cotisation_droit_commun = foyer_fiscal('contribution_exceptionnelle_hauts_revenus_sans_lissage', period)
+
+        # --- Lissage (art. 223 sexies, II) ---
+        appliquer_lissage = foyer_fiscal('contribution_exceptionnelle_hauts_revenus_appliquer_lissage', period)
+        rfr_n1 = arrondi_fiscal(foyer_fiscal('rfr', period.last_year))
+        rfr_n2 = arrondi_fiscal(foyer_fiscal('rfr', period.last_year.last_year))
+
+        # Les seuils du premier taux positif du barème
+        seuil_lissage = where(
+            celibataire_ou_assimile,
+            bareme.celibataire_ou_assimile.thresholds[1],
+            bareme.maries_ou_pacses.thresholds[1],
+            )
+
+        condition_1 = (rfr_n1 < seuil_lissage) & (rfr_n2 < seuil_lissage)
+        condition_2 = rfr >= 1.5 * ((rfr_n1 + rfr_n2) / 2)
+        condition_3 = invert(foyer_fiscal('f8td', period))
+
+        lissage = appliquer_lissage * condition_1 * condition_2 * condition_3
+
+        revenu_ordinaire = arrondi_fiscal((rfr_n1 + rfr_n2) / 2)
+        revenu_exceptionnel = rfr - revenu_ordinaire
+        assiette_lissage = arrondi_fiscal(revenu_ordinaire + revenu_exceptionnel / 2)
+
+        cehr_ordinaire = where(
+            celibataire_ou_assimile,
+            arrondi_fiscal(bareme.celibataire_ou_assimile.calc(revenu_ordinaire)),
+            arrondi_fiscal(bareme.maries_ou_pacses.calc(revenu_ordinaire)),
+            )
+        cehr_assiette_lissage = where(
+            celibataire_ou_assimile,
+            arrondi_fiscal(bareme.celibataire_ou_assimile.calc(assiette_lissage)),
+            arrondi_fiscal(bareme.maries_ou_pacses.calc(assiette_lissage)),
+            )
+        cotisation_lissage = cehr_ordinaire + (cehr_assiette_lissage - cehr_ordinaire) * 2
+
+        return where(lissage, cotisation_lissage, cotisation_droit_commun)
+
+
+class contribution_exceptionnelle_hauts_revenus_sans_lissage(Variable):
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Contribution exceptionnelle sur les hauts revenus hors lissage'
+    definition_period = YEAR
+
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
+        rfr = arrondi_fiscal(foyer_fiscal('rfr', period))
+        celibataire_ou_assimile = invert(foyer_fiscal('maries_ou_pacses', period))
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.CEHR
+
+        return where(
+            celibataire_ou_assimile,
+            arrondi_fiscal(bareme.celibataire_ou_assimile.calc(rfr)),
+            arrondi_fiscal(bareme.maries_ou_pacses.calc(rfr)),
+            )
 
 
 class impot_revenu_avant_seuils_mise_recouvrement(Variable):

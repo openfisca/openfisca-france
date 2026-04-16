@@ -9,7 +9,12 @@
     taux_moyen_imposition:
       2025: 0
     contribution_exceptionnelle_hauts_revenus:
-      # 3% de 50_000€ (300_000 de rfr - 250_000 de seuil de CEHR)
+      # La CEHR publique est lissée: revenu ordinaire = 0, assiette de lissage = 150_000.
+      2025: 1_500
+      2026: 0
+    contribution_exceptionnelle_hauts_revenus_sans_lissage:
+      # La CDHR retient la CEHR hors lissage (art. 224, III, 2° du CGI).
+      # 3% de 50_000€ (300_000 de rfr - 250_000 de seuil de CEHR) = 1 500€
       2025: 1_500
       2026: 0
     rfr:
@@ -81,7 +86,6 @@
     taux_moyen_imposition:
       2025: 0.19572
     contribution_exceptionnelle_hauts_revenus:
-      # 3% de 50_000€ (300_000 de rfr - 250_000 de seuil de CEHR)
       2025: 1_500
       2026: 0
     rfr:
@@ -89,7 +93,7 @@
     impot_revenu_restant_a_payer:
       2025: -9_604
     contribution_differentielle_hauts_revenus_ressources:
-      2025: 300_000  # devrait être différent du rfr ?
+      2025: 300_000
     contribution_differentielle_hauts_revenus_decote:
       # célibataire et revenus à 300_000 <= 330_000
       # 20% de 300_000 = 60_000
@@ -204,9 +208,9 @@
       f2dc:
         2025: 1_000_000
       personnes_a_charge:
-        - enfant1
-        - enfant2
-        - enfant3
+      - enfant1
+      - enfant2
+      - enfant3
     individus:
       ind0:
         date_naissance: '1970-01-01'
@@ -222,7 +226,7 @@
         date_naissance: '2020-01-01'
   output:
     contribution_exceptionnelle_hauts_revenus:
-      # 3% de 500_000€ (1_000_000 de rfr - 500_000 de seuil de CEHR pour couple)
+      # 3% de 500_000€ (1_000_000 de rfr - 500_000 de seuil de CEHR pour couple) + 4% de 500 000 (CEHR)
       2025: (250_000 * 0.03) + (500_000 * 0.04)
       2026: 0
     rfr:
@@ -250,7 +254,7 @@
     rfr:
       2025: 205_000
     contribution_differentielle_hauts_revenus_ressources:
-      2025: 205_000  # devrait être différent du rfr ?
+      2025: 205_000
   output:
     contribution_differentielle_hauts_revenus_decote:
       2025: 0
