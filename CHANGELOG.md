@@ -1,5 +1,17 @@
 # Changelog
 
+### 175.0.39 [#2718](https://github.com/openfisca/openfisca-france/pull/2718)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2011.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/__init__.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+* Détails :
+  - Ajoute une fonction `arrondi_fiscal` appliquant l'arrondi fiscal à l'euro (art. 1657 du CGI : fraction de 0,5 arrondie à l'euro supérieur).
+  - Applique cet arrondi au calcul de `contribution_exceptionnelle_hauts_revenus`.
+  - Typage de la variable CEHR en entier (`int`) pour refléter un montant arrondi à l'euro.
+
 ### 175.0.38 [#2719](https://github.com/openfisca/openfisca-france/pull/2719)
 
 * Évolution du système socio-fiscal.
