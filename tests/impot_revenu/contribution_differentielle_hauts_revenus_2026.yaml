@@ -82,8 +82,8 @@
     contribution_differentielle_hauts_revenus_ressources:
       2026: 500_000
     contribution_differentielle_hauts_revenus:
-      # CDHR 2026 = (500_000 * 20% - 0) - (PFU + CEHR hors lissage)
-      # = 100_000 - (64_000 + 7_500) = 28 500
+      # CDHR 2026 = (500_000 * 20% - 0) - 71_500
+      # = 100_000 - 71_500 = 28 500
       2026: -28_500
       2027: 0
     contribution_differentielle_hauts_revenus_acompte:
@@ -185,8 +185,8 @@
     contribution_differentielle_hauts_revenus_majoration:
       2026: 12_500
     contribution_differentielle_hauts_revenus:
-      # CDHR 2026 = (600_000 * 20% - 37_500) - (76_800 + 3_000 + 12_500 majoration couple) = - 9_800
-      # Donc max(0, -9_800) = 0
+      # CDHR 2026 = (600_000 * 20% - 37_500 - 79_800 - 12_500 majoration couple) = - 92 300
+      # Donc max(0, -92_300) = 0
       2026: 0
       2027: 0
     contribution_differentielle_hauts_revenus_acompte:
@@ -228,7 +228,8 @@
       2026: true
       2027: false
     contribution_differentielle_hauts_revenus:
-      # CDHR 2026 = (1_000_000 * 20% - 0) - (128_000 + 15_000 + 12_500)
+      # CDHR 2026 = (1_000_000 * 20% - 0) - 143_000 - 12_500
+      # = 200_000 - 155_500
       2026: -44_500
       2027: 0
     contribution_differentielle_hauts_revenus_acompte:
@@ -320,7 +321,8 @@
       2026: true
       2027: false
     contribution_differentielle_hauts_revenus:
-      # CDHR 2026 = (1_000_000 * 20% - 0) - (128_000 + 15_000 + 12_500) + 750 de dons
+      # CDHR 2026 = (1_000_000 * 20% - 0) - 143_000 - 12_500 - 750 (dons)
+      # = 200_000 - 155_500 = 44_500 - 750
       2026: -(44_500 - 750)
       2027: 0
     contribution_differentielle_hauts_revenus_acompte:
@@ -351,7 +353,7 @@
       2026: 0
       2027: 0
     contribution_differentielle_hauts_revenus:
-      # CDHR 2026 = (400_000 * 0.20) - (51_200 + 4_500 de CEHR hors lissage)
+      # CDHR 2026 = (400_000 * 0.20) - 55_700
       2026: -24_300
     contribution_differentielle_hauts_revenus_acompte:
       2025: 0
