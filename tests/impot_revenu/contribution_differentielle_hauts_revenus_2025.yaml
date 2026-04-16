@@ -127,6 +127,7 @@
         statut_marital: marie
   output:
     contribution_exceptionnelle_hauts_revenus:
+      # 3% de 100_000€ (600_000 de rfr - 500_000 de seuil de CEHR pour couple)
       2025: 100_000 * 0.03
       2026: 0
     rfr:
@@ -170,6 +171,7 @@
         statut_marital: marie
   output:
     contribution_exceptionnelle_hauts_revenus:
+      # 3% de 500_000€ (1_000_000 de rfr - 500_000 de seuil de CEHR pour couple)
       2025: 500_000 * 0.03
       2026: 0
     rfr:
@@ -224,6 +226,7 @@
         date_naissance: '2020-01-01'
   output:
     contribution_exceptionnelle_hauts_revenus:
+      # 3% de 500_000€ (1_000_000 de rfr - 500_000 de seuil de CEHR pour couple) + 4% de 500 000 (CEHR)
       2025: (250_000 * 0.03) + (500_000 * 0.04)
       2026: 0
     rfr:
@@ -231,7 +234,6 @@
     prelevement_forfaitaire_unique_ir:
       2025: 1_000_000 * 0.128
     impot_revenu_restant_a_payer:
-      # PFU + CEHR
       2025: -155_500
     contribution_differentielle_hauts_revenus_ressources:
       2025: 1_000_000
@@ -239,8 +241,7 @@
       2025: 0
       2026: 0
     contribution_differentielle_hauts_revenus:
-      # CDHR = 1_000_000 de RFR * 20% - (impot_revenu_restant_a_payer hors lissage + majoration enfant)
-      # impot_revenu_restant_a_payer hors lissage = 143_000 + 27_500 = 155_500
+      # CDHR = 1_000_000 de RFR * 20% - (impot_revenu_restant_a_payer + majoration enfant)
       2025: -1*(1_000_000 * 0.2) + (155_500 + 1_500 * 3)
       2026: 0
     contribution_differentielle_hauts_revenus_eligible:

@@ -89,6 +89,66 @@
     contribution_differentielle_hauts_revenus_acompte:
       2026: -28_500 * 0.95
       2027: 0
+    impots_directs:
+      2026: -71_500 + -28_500
+      2027: 0
+
+- name: Célibataire à 500 000€ de revenus 2026, au PFU, avec lissage CEHR
+  period: 2027
+  absolute_error_margin: 0.07
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      contribution_exceptionnelle_hauts_revenus_appliquer_lissage:
+        2026: true
+      rfr:
+        2025: 100_000
+        2024: 200_000
+      f3ua:
+        2026: 500_000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+  output:
+    rfr:
+      2026: 500_000
+    contribution_exceptionnelle_hauts_revenus:
+      # RFR N-1 = 100_000, RFR N-2 = 200_000, revenu ordinaire = 150_000.
+      # Assiette de lissage = 150_000 + (500_000 - 150_000) / 2 = 325_000.
+      # CEHR publique lissée = 2 * (325_000 - 250_000) * 3% = 4_500.
+      2026: 4_500
+      2027: 0
+    contribution_exceptionnelle_hauts_revenus_sans_lissage:
+      # La CDHR retient toujours la CEHR hors lissage.
+      2026: (500_000 - 250_000) * 0.03
+      2027: 0
+    prelevement_forfaitaire_unique_ir:
+      2026: 500_000 * 0.128
+    impot_revenu_restant_a_payer:
+      # PFU + CEHR publique lissée
+      2026: -(64_000 + 4_500)
+      2027: 0
+    contribution_differentielle_hauts_revenus_eligible:
+      2026: true
+      2027: false
+    contribution_differentielle_hauts_revenus_decote:
+      2026: 0
+      2027: 0
+    contribution_differentielle_hauts_revenus_ressources:
+      2026: 500_000
+    contribution_differentielle_hauts_revenus:
+      # La CDHR reste calculée avec la CEHR hors lissage : 100_000 - (64_000 + 7_500) = 28_500.
+      2026: -28_500
+      2027: 0
+    contribution_differentielle_hauts_revenus_acompte:
+      2026: -28_500 * 0.95
+      2027: 0
+    impots_directs:
+      # Total = PFU + CEHR lissée + CDHR = 64_000 + 4_500 + 28_500 = 97_000.
+      2026: -97_000
+      2027: 0
 
 - name: Couple à 600 000€ de revenus 2026, au PFU
   period: 2027
