@@ -34,7 +34,7 @@
     prelevement_forfaitaire_unique_ir:
       2026: 300_000 * 0.128
     impot_revenu_restant_a_payer:
-      2026: -38_400
+      2026: -39_900
     contribution_differentielle_hauts_revenus_eligible:
       2026: true
       2027: false
@@ -53,7 +53,7 @@
       2026: -1_350 * 0.95
       2027: 0
     impots_directs:
-      2026: -38_400 - 1_350
+      2026: -39_900 - 1_350
       2027: 0
 
 - name: Célibataire à 500 000€ de revenus 2026, au PFU
@@ -72,7 +72,7 @@
     prelevement_forfaitaire_unique_ir:
       2026: 500_000 * 0.128
     impot_revenu_restant_a_payer:
-      2026: -64_000
+      2026: -71_500
     contribution_differentielle_hauts_revenus_eligible:
       2026: true
       2027: false
@@ -113,7 +113,7 @@
     prelevement_forfaitaire_unique_ir:
       2026: 600_000 * 0.128
     impot_revenu_restant_a_payer:
-      2026: -76_800
+      2026: -79_800
     contribution_differentielle_hauts_revenus_decote:
       # couple et revenus à 600_000 <= 660_000
       # 20% de 600_000 = 120_000
@@ -156,7 +156,7 @@
     prelevement_forfaitaire_unique_ir:
       2026: 1_000_000 * 0.128
     impot_revenu_restant_a_payer:
-      2026: -128_000
+      2026: -143_000
     contribution_differentielle_hauts_revenus_decote:
       2026: 0
       2027: 0
@@ -248,7 +248,7 @@
     prelevement_forfaitaire_unique_ir:
       2026: 1_000_000 * 0.128
     impot_revenu_restant_a_payer:
-      2026: -128_000
+      2026: -143_000
     contribution_differentielle_hauts_revenus_decote:
       2026: 0
       2027: 0
@@ -286,7 +286,7 @@
     prelevement_forfaitaire_unique_ir:
       2026: 400_000 * 0.128
     impot_revenu_restant_a_payer:
-      2026: -51_200
+      2026: -55_700
     contribution_differentielle_hauts_revenus_decote:
       2026: 0
       2027: 0

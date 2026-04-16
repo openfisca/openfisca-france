@@ -2285,6 +2285,14 @@ class iai(Variable):
         return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + indemnite_compensatrice_agents_assurance
 
 
+class contribution_exceptionnelle_hauts_revenus_appliquer_lissage(Variable):
+    value_type = bool
+    default_value = False
+    entity = FoyerFiscal
+    label = 'Appliquer le lissage de la contribution exceptionnelle sur les hauts revenus'
+    definition_period = YEAR
+
+
 class contribution_exceptionnelle_hauts_revenus(Variable):
     value_type = int
     entity = FoyerFiscal
@@ -2330,6 +2338,7 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
         cotisation_droit_commun = foyer_fiscal('contribution_exceptionnelle_hauts_revenus_sans_lissage', period)
 
         # --- Lissage (art. 223 sexies, II) ---
+        appliquer_lissage = foyer_fiscal('contribution_exceptionnelle_hauts_revenus_appliquer_lissage', period)
         rfr_n1 = arrondi_fiscal(foyer_fiscal('rfr', period.last_year))
         rfr_n2 = arrondi_fiscal(foyer_fiscal('rfr', period.last_year.last_year))
 
@@ -2344,7 +2353,7 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
         condition_2 = rfr >= 1.5 * ((rfr_n1 + rfr_n2) / 2)
         condition_3 = invert(foyer_fiscal('f8td', period))
 
-        lissage = condition_1 * condition_2 * condition_3
+        lissage = appliquer_lissage * condition_1 * condition_2 * condition_3
 
         revenu_ordinaire = arrondi_fiscal((rfr_n1 + rfr_n2) / 2)
         revenu_exceptionnel = rfr - revenu_ordinaire
