@@ -1,5 +1,21 @@
 # Changelog
 
+### 175.0.38 [#2719](https://github.com/openfisca/openfisca-france/pull/2719)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2011.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `openfisca_france/model/revenus/autres.py`
+  - `openfisca_france/parameters/impot_revenu/contributions_exceptionnelles/contribution_exceptionnelle_hauts_revenus.yaml`
+  - `tests/formulas/` liés à l'impôt.
+* Détails :
+  - Implémente le mécanisme de lissage de la CEHR (conditions cumulatives N, N-1, N-2) dans `contribution_exceptionnelle_hauts_revenus`.
+  - Sépare le barème CEHR entre `celibataire_ou_assimile` et `maries_ou_pacses`.
+  - Corrige `f8td` (suppression de la fin de validité 2014 et libellé explicite).
+  - Ajoute/ajuste des tests de CEHR, incluant des cas avec lissage et sans lissage.
+  - Introduit l'arrondi des montants conformément aux règles prévues à l'article 1657 du CGI
+
 ### 175.0.37 [#2732](https://github.com/openfisca/openfisca-france/pull/2732)
 
 * Changement mineur.
