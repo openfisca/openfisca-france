@@ -10,7 +10,7 @@
       2025: 0
     contribution_exceptionnelle_hauts_revenus:
       # La CEHR publique est lissée: revenu ordinaire = 0, assiette de lissage = 150_000.
-      2025: 0
+      2025: 1_500
       2026: 0
     contribution_exceptionnelle_hauts_revenus_sans_lissage:
       # La CDHR retient la CEHR hors lissage (art. 224, III, 2° du CGI).
@@ -22,7 +22,7 @@
     prelevement_forfaitaire_unique_ir:
       2025: 300_000 * 0.128
     impot_revenu_restant_a_payer:
-      2025: -38_400
+      2025: -39_900
     contribution_differentielle_hauts_revenus_eligible:
       2025: true
       2026: false
@@ -32,9 +32,9 @@
     contribution_differentielle_hauts_revenus_ressources:
       2025: 300_000
     contribution_differentielle_hauts_revenus:
-      # CDHR = (300_000 de RFR * 20% - décote) - (PFU + CEHR hors lissage)
+      # CDHR = (300_000 de RFR * 20% - décote) - impot_revenu_restant_a_payer
       # = (60_000 - 18_750) - (-1 pour retirer le signe négatif de l'impôt * -39_900)
-      2025: -1_350
+      2025: -1350 # était à 20_100 sans décote
       2026: 0
 
 - name: Célibataire à 500 000€ de revenus, au PFU
@@ -49,9 +49,6 @@
     taux_moyen_imposition:
       2025: 0
     contribution_exceptionnelle_hauts_revenus:
-      2025: 0
-      2026: 0
-    contribution_exceptionnelle_hauts_revenus_sans_lissage:
       2025: (500_000 - 250_000) * 0.03
       2026: 0
     rfr:
@@ -59,14 +56,14 @@
     prelevement_forfaitaire_unique_ir:
       2025: 500_000 * 0.128
     impot_revenu_restant_a_payer:
-      2025: -64_000
+      2025: -71500
     contribution_differentielle_hauts_revenus_ressources:
       2025: 500_000
     contribution_differentielle_hauts_revenus_decote:
       2025: 0
       2026: 0
     contribution_differentielle_hauts_revenus:
-      # CDHR = 500_000 de RFR * 20% - (PFU + CEHR hors lissage)
+      # CDHR = 500_000 de RFR * 20% - impot_revenu_restant_a_payer
       2025: -1 * ((500_000 * 0.2)-71500)
       2026: 0
     contribution_differentielle_hauts_revenus_eligible:
@@ -87,18 +84,14 @@
     rni:
       2025: 300_000 - 250_000
     taux_moyen_imposition:
-      2025: 0.16208
+      2025: 0.19572
     contribution_exceptionnelle_hauts_revenus:
-      # La CEHR publique est lissée: revenu ordinaire = 0, assiette de lissage = 150_000.
-      2025: 0
-      2026: 0
-    contribution_exceptionnelle_hauts_revenus_sans_lissage:
       2025: 1_500
       2026: 0
     rfr:
       2025: 300_000
     impot_revenu_restant_a_payer:
-      2025: -8_104
+      2025: -9_604
     contribution_differentielle_hauts_revenus_ressources:
       2025: 300_000
     contribution_differentielle_hauts_revenus_decote:
@@ -134,10 +127,6 @@
         statut_marital: marie
   output:
     contribution_exceptionnelle_hauts_revenus:
-      # La CEHR publique est lissée: revenu ordinaire = 0, assiette de lissage = 300_000.
-      2025: 0
-      2026: 0
-    contribution_exceptionnelle_hauts_revenus_sans_lissage:
       2025: 100_000 * 0.03
       2026: 0
     rfr:
@@ -145,7 +134,7 @@
     prelevement_forfaitaire_unique_ir:
       2025: 600_000 * 0.128
     impot_revenu_restant_a_payer:
-      2025: -76_800
+      2025: -79_800
     contribution_differentielle_hauts_revenus_decote:
       # couple et revenus à 600_000 <= 660_000
       # 20% de 600_000 = 120_000
@@ -181,10 +170,6 @@
         statut_marital: marie
   output:
     contribution_exceptionnelle_hauts_revenus:
-      # La CEHR publique est lissée: revenu ordinaire = 0, assiette de lissage = 500_000.
-      2025: 0
-      2026: 0
-    contribution_exceptionnelle_hauts_revenus_sans_lissage:
       2025: 500_000 * 0.03
       2026: 0
     rfr:
@@ -192,7 +177,7 @@
     prelevement_forfaitaire_unique_ir:
       2025: 1_000_000 * 0.128
     impot_revenu_restant_a_payer:
-      2025: -128_000
+      2025: -143_000
     contribution_differentielle_hauts_revenus_decote:
       2025: 0
       2026: 0
@@ -239,10 +224,6 @@
         date_naissance: '2020-01-01'
   output:
     contribution_exceptionnelle_hauts_revenus:
-      # La CEHR publique est lissée: revenu ordinaire = 0, assiette de lissage = 500_000.
-      2025: 15_000
-      2026: 0
-    contribution_exceptionnelle_hauts_revenus_sans_lissage:
       2025: (250_000 * 0.03) + (500_000 * 0.04)
       2026: 0
     rfr:
@@ -251,7 +232,7 @@
       2025: 1_000_000 * 0.128
     impot_revenu_restant_a_payer:
       # PFU + CEHR
-      2025: -(128_000 + 15_000)
+      2025: -155_500
     contribution_differentielle_hauts_revenus_ressources:
       2025: 1_000_000
     contribution_differentielle_hauts_revenus_decote:
@@ -259,7 +240,7 @@
       2026: 0
     contribution_differentielle_hauts_revenus:
       # CDHR = 1_000_000 de RFR * 20% - (impot_revenu_restant_a_payer hors lissage + majoration enfant)
-      # impot_revenu_restant_a_payer hors lissage = 128_000 + 27_500 = 155_500
+      # impot_revenu_restant_a_payer hors lissage = 143_000 + 27_500 = 155_500
       2025: -1*(1_000_000 * 0.2) + (155_500 + 1_500 * 3)
       2026: 0
     contribution_differentielle_hauts_revenus_eligible:
