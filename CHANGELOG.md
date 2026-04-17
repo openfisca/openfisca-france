@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.0.40 [#2745](https://github.com/openfisca/openfisca-france/pull/2745)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu/contributions_exceptionnelles/contribution_exceptionnelle_hauts_revenus/index.yaml`.
+* Détails :
+  - Ajoute un `index.yaml` manquant
+
 ### 175.0.39 [#2718](https://github.com/openfisca/openfisca-france/pull/2718)
 
 * Évolution du système socio-fiscal.
