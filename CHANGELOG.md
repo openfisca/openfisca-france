@@ -1,9 +1,9 @@
 # Changelog
 
-### 175.0.38
+### 175.0.40
 
 * Évolution du système socio-fiscal.
-* Périodes concernées : à partir du 01/01/2026.
+* Périodes concernées : à partir du 01/01/2024.
 * Zones impactées :
     - `openfisca_france/model/prestations/autonomie.py`
     - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees/apa_domicile/*`
@@ -14,6 +14,35 @@
   - Remplacement de la valeur en dur 0.725 par le paramètre `seuil_inferieur` dans le calcul de la participation APA domicile.
   - Ajout de la référence à l'article R232-19 du CASF.
   - Mise à jour de la MTP et des paramètres APA domicile.
+
+### 175.0.39 [#2718](https://github.com/openfisca/openfisca-france/pull/2718)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2011.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/__init__.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+* Détails :
+  - Ajoute une fonction `arrondi_fiscal` appliquant l'arrondi fiscal à l'euro (art. 1657 du CGI : fraction de 0,5 arrondie à l'euro supérieur).
+  - Applique cet arrondi au calcul de `contribution_exceptionnelle_hauts_revenus`.
+  - Typage de la variable CEHR en entier (`int`) pour refléter un montant arrondi à l'euro.
+
+### 175.0.38 [#2719](https://github.com/openfisca/openfisca-france/pull/2719)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2011.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `openfisca_france/model/revenus/autres.py`
+  - `openfisca_france/parameters/impot_revenu/contributions_exceptionnelles/contribution_exceptionnelle_hauts_revenus.yaml`
+  - `tests/formulas/` liés à l'impôt.
+* Détails :
+  - Implémente le mécanisme de lissage de la CEHR (conditions cumulatives N, N-1, N-2) dans `contribution_exceptionnelle_hauts_revenus`.
+  - Sépare le barème CEHR entre `celibataire_ou_assimile` et `maries_ou_pacses`.
+  - Corrige `f8td` (suppression de la fin de validité 2014 et libellé explicite).
+  - Ajoute/ajuste des tests de CEHR, incluant des cas avec lissage et sans lissage.
+  - Introduit l'arrondi des montants conformément aux règles prévues à l'article 1657 du CGI
+
 
 ### 175.0.37 [#2732](https://github.com/openfisca/openfisca-france/pull/2732)
 

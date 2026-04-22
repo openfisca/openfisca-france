@@ -5,12 +5,15 @@
     salaire_imposable: 250000
   output:
     contribution_exceptionnelle_hauts_revenus: 0
+
 - name: impot_revenu_restant_a_payer/contribution_exceptionnelle_hauts_revenus - Couple ayant des revenus salariaux (1AJ) de 500 000 €
   period: 2011
   absolute_error_margin: 0.5
   input:
     foyer_fiscal:
       declarants: [parent1, parent2]
+      rfr:
+        2010: 500_001
     individus:
       parent1:
         age: 40
@@ -39,6 +42,8 @@
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 1500000
+    rfr:
+      2010: 250_001
   output:
     impot_revenu_restant_a_payer: -642772
 
@@ -48,6 +53,8 @@
   input:
     foyer_fiscal:
       declarants: [parent1, parent2]
+      rfr:
+        2010: 500_001
     individus:
       parent1:
         age: 40
@@ -77,6 +84,8 @@
   input:
     foyer_fiscal:
       declarants: [parent1, parent2]
+      rfr:
+        2010: 500_001
     individus:
       parent1:
         age: 40
@@ -106,5 +115,79 @@
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 1500000
+    rfr:
+      2011: 250_001
   output:
     impot_revenu_restant_a_payer: -697262
+
+# Tests spécifiques pour le mécanisme de lissage (art. 223 sexies, II du CGI)
+
+- name: CEHR - Célibataire sans lissage (RFR N-1 au-dessus du seuil)
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+    foyer_fiscal:
+      declarants: [individu1]
+      rfr:
+        2019: 800_000
+        2018: 250_001
+  output:
+    contribution_exceptionnelle_hauts_revenus: 19_500
+
+- name: CEHR - Couple sans lissage (RFR N-1 au-dessus du seuil)
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+      individu2:
+        age: 55
+    foyer_fiscal:
+      declarants: [individu1, individu2]
+      rfr:
+        2019: 1_500_000
+        2018: 500_001
+  output:
+    contribution_exceptionnelle_hauts_revenus: 35_000
+
+- name: |
+    CEHR - Couple avec conditions de lissage réunies, non appliqué par défaut
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+      individu2:
+        age: 55
+    foyer_fiscal:
+      declarants: [individu1, individu2]
+      rfr:
+        2019: 800_000
+        2018: 350_000
+        2017: 400_000
+  output:
+    contribution_exceptionnelle_hauts_revenus: 9_000
+
+- name: |
+    CEHR - Couple avec lissage applicable (RFR N=800k, RFR N-1=350k, RFR N-2=400k)
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+      individu2:
+        age: 55
+    foyer_fiscal:
+      declarants: [individu1, individu2]
+      rfr:
+        2019: 800_000
+        2018: 350_000
+        2017: 400_000
+      contribution_exceptionnelle_hauts_revenus_appliquer_lissage:
+        2019: true
+        2018: true
+        2017: true
+  output:
+    contribution_exceptionnelle_hauts_revenus: 5_250

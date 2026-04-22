@@ -1,0 +1,34 @@
+description: Barème CEHR pour les célibataires, veufs, divorcés ou séparés
+brackets:
+- threshold:
+    2011-01-01:
+      value: 0
+  rate:
+    2011-01-01:
+      value: 0
+- threshold:
+    2011-01-01:
+      value: 250_000
+  rate:
+    2011-01-01:
+      value: 0.03
+- threshold:
+    2011-01-01:
+      value: 500_000
+  rate:
+    2011-01-01:
+      value: 0.04
+metadata:
+  threshold_unit: currency_next_year
+  rate_unit: /1
+  last_value_still_valid_on: "2026-04-09"
+  short_label: Barème CEHR célibataires
+  label_en: Exceptional tax on high incomes (single)
+  official_journal_date:
+    2011-01-01: "2011-12-28"
+  reference:
+    2011-01-01:
+    - title: Article 223 sexies, I.1., du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025049027/2011-12-30
+    - title: Loi 2011-1977 du 28/12/2011 (LF pour 2012) - art. 2
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025044460#LEGIARTI000025048418
