@@ -25,7 +25,10 @@ class base_ressources_apa(Variable):
 class apa_domicile_participation(Variable):
     value_type = float
     label = "Participation du bénéficiaire de l'APA à domicile en euros"
-    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032112672'
+    reference = [
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032112672',
+        'https://www.cnsa.fr/sites/default/files/2026-01/Tarifs-APA-1er-janvier-2026.pdf',
+        ]
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -102,12 +105,12 @@ class apa_domicile_participation(Variable):
         choicelist_2 = [
             0,
             dependance_plan_aide_domicile_accepte - premier_seuil,
-            second_seuil,
+            second_seuil - premier_seuil,
             ]
         choicelist_3 = [
             0,
             0,
-            dependance_plan_aide_domicile_accepte - (premier_seuil + second_seuil)
+            dependance_plan_aide_domicile_accepte - second_seuil,
             ]
         A_1 = select(condlist, choicelist_1)
         A_2 = select(condlist, choicelist_2)
@@ -116,7 +119,7 @@ class apa_domicile_participation(Variable):
         apa_domicile_participation = min_(
             taux_part_max * dependance_plan_aide_domicile_accepte,
             taux_part_max
-            * max_(0, base_ressources_apa_domicile - 0.725 * majoration_tierce_personne)
+            * max_(0, base_ressources_apa_domicile - seuil_inf * majoration_tierce_personne)
             / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
             * (
                 A_1
@@ -178,7 +181,10 @@ class apa_domicile_taux_participation(Variable):
 class apa_domicile(Variable):
     value_type = float
     label = "Allocation personalisée d'autonomie"
-    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000444131'
+    reference = [
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000444131',
+        'https://www.cnsa.fr/sites/default/files/2026-01/Tarifs-APA-1er-janvier-2026.pdf',
+        ]
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -200,7 +206,10 @@ class apa_domicile(Variable):
 class apa_etablissement(Variable):
     value_type = float
     label = "Allocation personalisée d'autonomie en institution"
-    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000588742'
+    reference = [
+        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000588742',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032138500',
+        ]
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -231,7 +240,7 @@ class apa_etablissement(Variable):
         conditions_ressources = [
             base_ressources_apa_etablissement <= seuil_inf_inst * majoration_tierce_personne,
             (seuil_inf_inst * majoration_tierce_personne < base_ressources_apa_etablissement) * (base_ressources_apa_etablissement <= seuil_sup_inst * majoration_tierce_personne),
-            base_ressources_apa > seuil_sup_inst * majoration_tierce_personne
+            base_ressources_apa_etablissement > seuil_sup_inst * majoration_tierce_personne,
             ]
 
         participations = [
@@ -240,7 +249,7 @@ class apa_etablissement(Variable):
                 dependance_tarif_etablissement_gir_5_6
                 + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6)
                 * (
-                    (base_ressources_apa - seuil_inf_inst * majoration_tierce_personne)
+                    (base_ressources_apa_etablissement - seuil_inf_inst * majoration_tierce_personne)
                     / ((seuil_sup_inst - seuil_inf_inst) * majoration_tierce_personne)
                     * 0.80
                     )

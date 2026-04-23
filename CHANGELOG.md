@@ -1,5 +1,20 @@
 # Changelog
 
+### 175.0.40
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2024.
+* Zones impactées :
+    - `openfisca_france/model/prestations/autonomie.py`
+    - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees/apa_domicile/*`
+    - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees/mtp.yaml`
+* Détails :
+  - Correction du calcul APA établissement pour les couples (utilisation des ressources proratisées).
+  - Correction du calcul de la participation APA domicile : les fractions du plan d'aide (A1, A2, A3) sont des seuils cumulatifs en parts de MTP conformément à l'article R. 232-11 du CASF.
+  - Remplacement de la valeur en dur 0.725 par le paramètre `seuil_inferieur` dans le calcul de la participation APA domicile.
+  - Ajout de la référence à l'article R232-19 du CASF.
+  - Mise à jour de la MTP et des paramètres APA domicile.
+
 ### 175.0.39 [#2718](https://github.com/openfisca/openfisca-france/pull/2718)
 
 * Évolution du système socio-fiscal.
@@ -27,6 +42,7 @@
   - Corrige `f8td` (suppression de la fin de validité 2014 et libellé explicite).
   - Ajoute/ajuste des tests de CEHR, incluant des cas avec lissage et sans lissage.
   - Introduit l'arrondi des montants conformément aux règles prévues à l'article 1657 du CGI
+
 
 ### 175.0.37 [#2732](https://github.com/openfisca/openfisca-france/pull/2732)
 
