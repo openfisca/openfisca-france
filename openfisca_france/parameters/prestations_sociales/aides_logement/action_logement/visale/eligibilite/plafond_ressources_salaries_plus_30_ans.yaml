@@ -1,0 +1,16 @@
+description: Plafond de ressources mensuel net pour les salariés de plus de 30 ans éligibles à la caution Visale
+values:
+  2026-01-06:
+    value: 1710
+metadata:
+  last_value_still_valid_on: "2026-04-03"
+  short_label: Plafond ressources > 30 ans
+  unit: currency
+  reference:
+    2026-01-06:
+      - title: Visale.fr - Évolutions 2026
+        href: https://www.visale.fr/evolution_visale_2026/
+        note: Le plafond de ressources pour les salariés de plus de 30 ans passe de 1500 € à 1710 € nets par mois
+documentation: |-
+  Depuis le 6 janvier 2026, la garantie Visale est étendue aux salariés de plus de 30 ans avec un plafond de ressources de 1710 € nets/mois.
+  Ce nouveau critère permet à davantage d'actifs d'accéder au logement privé dans un contexte de forte tension locative.
