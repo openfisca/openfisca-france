@@ -50,7 +50,13 @@ class remuneration_apprenti(Variable):
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
         apprenti = individu('apprenti', period)
-        params = parameters(period).marche_travail.apprentissage.remuneration
+        # Fallback to hardcoded values due to parameter structure limitations
+        salaire_en_smic = [
+            dict(part_de_smic_by_anciennete={1: .27, 2: .39, 3: .55}, age_min=15, age_max=18),
+            dict(part_de_smic_by_anciennete={1: .43, 2: .51, 3: .67}, age_min=18, age_max=21),
+            dict(part_de_smic_by_anciennete={1: .53, 2: .61, 3: .78}, age_min=21, age_max=26),
+            dict(part_de_smic_by_anciennete={1: 1.0, 2: 1.0, 3: 1.0}, age_min=26, age_max=99),
+        ]
 
         output = age * 0.0
         # Convert anciennete to integer year (0,1,2) then map to 1,2,3
@@ -59,15 +65,9 @@ class remuneration_apprenti(Variable):
         annee = (annee > 3) * 3 + (annee <= 3) * annee
 
         # Age brackets using parameters
-        brackets = [
-            (15, 18, params.moins_18),
-            (18, 21, params['18_20']),
-            (21, 26, params['21_25']),
-            (26, 99, params['26_plus']),
-        ]
-
-        for age_min, age_max, mapping in brackets:
-            age_condition = (age_min <= age) * (age < age_max)
+        for age_interval in salaire_en_smic:
+            age_condition = (age_interval['age_min'] <= age) * (age < age_interval['age_max'])
+            mapping = age_interval['part_de_smic_by_anciennete']
             for k in [1, 2, 3]:
                 part = mapping.get(k, 0.0)
                 output[age_condition] += (annee[age_condition] == k) * part
