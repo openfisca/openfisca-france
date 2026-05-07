@@ -1,0 +1,27 @@
+description: Conditions d'âge applicables au contrat d'apprentissage
+metadata:
+  reference:
+    2015-01-01:
+      title: Code du travail - Article L6222-1
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027699180
+    2019-01-01:
+      title: Loi n° 2018-771 du 5 septembre 2018 pour la liberté de choisir son avenir professionnel
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037367660
+
+minimum:
+  description: Âge minimal de droit commun pour être apprenti
+  values:
+    1900-01-01:
+      value: 16
+    2015-01-01:
+      value: 16
+
+maximum_exclusif:
+  description: Âge maximal exclusif de droit commun pour être apprenti
+  values:
+    1900-01-01:
+      value: 26
+    2015-01-01:
+      value: 26
+    2019-01-01:
+      value: 30

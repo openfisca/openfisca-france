@@ -14,18 +14,8 @@ class apprenti(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        age_condition = (16 <= age) * (age < 26)
-        apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
-        duree_contrat = (
-            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
-            ).astype('timedelta64[Y]')
-        anciennete_contrat = duree_contrat < timedelta64(3, 'Y')
-
-        return age_condition * anciennete_contrat
-
-    def formula_2019(individu, period, parameters):
-        age = individu('age', period)
-        age_condition = (16 <= age) * (age < 30)
+        age_params = parameters(period).marche_travail.apprentissage.age
+        age_condition = (age_params.minimum <= age) * (age < age_params.maximum_exclusif)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         duree_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
