@@ -114,7 +114,7 @@
   description: Contribution de Formation Professionnelle (CFP) < 11 salaries et apprenti
   relative_error_margin: 0.001
   input:
-    salaire_de_base: 1467
+    remuneration_apprenti: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_general_mode_recouvrement: anticipe
     effectif_entreprise: 8
