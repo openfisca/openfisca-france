@@ -5,8 +5,8 @@
     date_naissance: '1996-01-01'
   output:
     apprenti: 1
-    # 19 years old -> bracket 18-20, 2nd year -> 0.51
-    remuneration_apprenti: 35 * 52 * 9.61 * 0.51 / 12
+    # 19 years old -> bracket 18-20, 3rd year (contract started 2013-01, period 2015-03) -> 0.61 (pre-2019 law)
+    remuneration_apprenti: 35 * 52 * 9.61 * 0.61 / 12
 - period: month:2015-03
   input:
     apprentissage_contrat_debut:
@@ -17,9 +17,9 @@
       month:2015-01: 1
       month:2015-03: 1
     remuneration_apprenti:
-      # 19 years old -> bracket 18-20, 2nd year -> 0.51
-      month:2015-01: 35 * 52 * 9.61 * 0.51 / 12
-      month:2015-03: 35 * 52 * 9.61 * 0.51 / 12
+      # 19 years old -> bracket 18-20, 3rd year -> 0.61 (pre-2019 law)
+      month:2015-01: 35 * 52 * 9.61 * 0.61 / 12
+      month:2015-03: 35 * 52 * 9.61 * 0.61 / 12
 
 - period: month:2015-03
   input:

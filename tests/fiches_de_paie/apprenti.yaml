@@ -39,23 +39,23 @@ input:
 output:
   # salaire_super_brut: 0
   remboursement_transport: 0
-  ags: -2.14
-  agff_employeur: -8.57
+  ags: -2.67
+  agff_employeur: -10.67
   agirc_employeur: 0
   agirc_gmp_employeur: 0
   apec_employeur: 0
-  arrco_employeur: -33.21
-  chomage_employeur: -28.57
+  arrco_employeur: -41.34
+  chomage_employeur: -35.56
   cotisation_exceptionnelle_temporaire_employeur: 0
-  vieillesse_deplafonnee_employeur: -12.86
-  vieillesse_plafonnee_employeur: -60.71
+  vieillesse_deplafonnee_employeur: -16.
+  vieillesse_plafonnee_employeur: -75.57
   fonds_emploi_hospitalier: 0
   ircantec_employeur: 0
   pension_employeur: 0
   rafp_employeur: 0
   ati_atiacl: 0
-  accident_du_travail: -10.71
-  famille: -37.49
+  accident_du_travail: -13.34
+  famille: -46.68
   mmid_employeur: -91.42
   taxe_salaires: 0
   #

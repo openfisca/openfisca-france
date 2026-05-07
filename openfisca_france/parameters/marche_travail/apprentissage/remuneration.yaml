@@ -1,0 +1,113 @@
+description: Rémunération minimale des apprentis en pourcentage du SMIC
+metadata:
+  reference:
+    2015-01-01:
+      title: Code du travail - Article L6222-27 (rémunération des apprentis)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006903120
+    2019-01-01:
+      title: Loi n° 2018-771 du 5 septembre 2018 (réforme de l'apprentissage)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037367660
+
+moins_18:
+  annee_1:
+    values:
+      1900-01-01:
+        value: 0.25
+      2015-01-01:
+        value: 0.25
+      2019-01-01:
+        value: 0.27
+  annee_2:
+    values:
+      1900-01-01:
+        value: 0.41
+      2015-01-01:
+        value: 0.41
+      2019-01-01:
+        value: 0.39
+  annee_3:
+    values:
+      1900-01-01:
+        value: 0.53
+      2015-01-01:
+        value: 0.53
+      2019-01-01:
+        value: 0.55
+
+age_18_20:
+  annee_1:
+    values:
+      1900-01-01:
+        value: 0.37
+      2015-01-01:
+        value: 0.37
+      2019-01-01:
+        value: 0.43
+  annee_2:
+    values:
+      1900-01-01:
+        value: 0.49
+      2015-01-01:
+        value: 0.49
+      2019-01-01:
+        value: 0.51
+  annee_3:
+    values:
+      1900-01-01:
+        value: 0.61
+      2015-01-01:
+        value: 0.61
+      2019-01-01:
+        value: 0.67
+
+age_21_25:
+  annee_1:
+    values:
+      1900-01-01:
+        value: 0.53
+      2015-01-01:
+        value: 0.53
+      2019-01-01:
+        value: 0.53
+  annee_2:
+    values:
+      1900-01-01:
+        value: 0.65
+      2015-01-01:
+        value: 0.65
+      2019-01-01:
+        value: 0.61
+  annee_3:
+    values:
+      1900-01-01:
+        value: 0.78
+      2015-01-01:
+        value: 0.78
+      2019-01-01:
+        value: 0.78
+
+age_26_plus:
+  annee_1:
+    values:
+      1900-01-01:
+        value: 1.0
+      2015-01-01:
+        value: 1.0
+      2019-01-01:
+        value: 1.0
+  annee_2:
+    values:
+      1900-01-01:
+        value: 1.0
+      2015-01-01:
+        value: 1.0
+      2019-01-01:
+        value: 1.0
+  annee_3:
+    values:
+      1900-01-01:
+        value: 1.0
+      2015-01-01:
+        value: 1.0
+      2019-01-01:
+        value: 1.0
