@@ -14,11 +14,13 @@ class apprenti(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        age_condition = (16 <= age) * (age < 25)
+        # Updated age bounds: apprenticeship generally allowed up to 29 years old
+        age_condition = (16 <= age) * (age < 30)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         duree_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
+        # Keep basic guard (< 3 years) but expose real anciennete elsewhere if needed
         anciennete_contrat = (duree_contrat < timedelta64(3, 'Y'))
 
         return age_condition * anciennete_contrat
@@ -48,43 +50,42 @@ class remuneration_apprenti(Variable):
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
         apprenti = individu('apprenti', period)
-        salaire_en_smic = [  # TODO: move to parameters
+        # Updated brackets (approximate current law). TODO: move to parameters
+        salaire_en_smic = [
             dict(
-                part_de_smic_by_anciennete = {
-                    1: .25,
-                    2: .41,
-                    3: .53,
-                    },
-                age_min = 15,
-                age_max = 18,
-                ),
+                part_de_smic_by_anciennete={1: .27, 2: .39, 3: .55},
+                age_min=15,
+                age_max=18,
+            ),
             dict(
-                part_de_smic_by_anciennete = {
-                    1: .37,
-                    2: .49,
-                    3: .61,
-                    },
-                age_min = 18,
-                age_max = 21,
-                ),
+                part_de_smic_by_anciennete={1: .43, 2: .51, 3: .67},
+                age_min=18,
+                age_max=21,
+            ),
             dict(
-                part_de_smic_by_anciennete = {
-                    1: .53,
-                    2: .65,
-                    3: .78,
-                    },
-                age_min = 21,
-                age_max = 99
-                )
-            ]
+                part_de_smic_by_anciennete={1: .53, 2: .61, 3: .78},
+                age_min=21,
+                age_max=26,
+            ),
+            dict(
+                part_de_smic_by_anciennete={1: 1.0, 2: 1.0, 3: 1.0},
+                age_min=26,
+                age_max=99,
+            ),
+        ]
 
         output = age * 0.0
+        # Convert anciennete to integer year (0,1,2) then map to 1,2,3
+        anciennete_int = anciennete_contrat.astype(int)
+        annee = anciennete_int + 1
+        annee = (annee > 3) * 3 + (annee <= 3) * annee
+
         for age_interval in salaire_en_smic:
             age_condition = (age_interval['age_min'] <= age) * (age < age_interval['age_max'])
-            output[age_condition] = sum([
-                (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
-                for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].items()
-                ])
+            mapping = age_interval['part_de_smic_by_anciennete']
+            for k in [1, 2, 3]:
+                part = mapping.get(k, 0.0)
+                output[age_condition] += (annee[age_condition] == k) * part
         return output * smic * apprenti
 
 
@@ -154,9 +155,16 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     def formula(individu, period, parameters):
         apprenti = individu('apprenti', period)
         cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
-        cotisations_salariales_non_contributives = individu(
-            'cotisations_salariales_non_contributives', period)
-        return - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
+        cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives', period)
+        # Approximate SMIC monthly (same computation as remuneration)
+        smic_mensuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire * 52 * 35 / 12
+        salaire = individu('remuneration_apprenti', period)
+
+        # Exoneration applies up to SMIC: prorate if salary exceeds SMIC
+        ratio = (salaire <= smic_mensuel) + (salaire > smic_mensuel) * (smic_mensuel / (salaire + 1e-9))
+
+        exoneration = (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * ratio
+        return - exoneration * apprenti
 
 
 class prime_apprentissage(Variable):
