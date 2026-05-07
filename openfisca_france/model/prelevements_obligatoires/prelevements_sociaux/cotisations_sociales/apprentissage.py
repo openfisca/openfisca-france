@@ -17,15 +17,10 @@ class apprenti(Variable):
         # Updated age bounds: apprenticeship generally allowed up to 29 years
         # old
         age_condition = (16 <= age) * (age < 30)
-        apprentissage_contrat_debut = individu(
-            "apprentissage_contrat_debut", period)
+        apprentissage_contrat_debut = individu("apprentissage_contrat_debut", period)
         duree_contrat = (
-            datetime64(
-                period.start) +
-            timedelta64(
-                1,
-                "D") -
-            apprentissage_contrat_debut).astype("timedelta64[Y]")
+            datetime64(period.start) + timedelta64(1, "D") - apprentissage_contrat_debut
+        ).astype("timedelta64[Y]")
         # Keep basic guard (< 3 years) but expose real anciennete elsewhere if
         # needed
         anciennete_contrat = duree_contrat < timedelta64(3, "Y")
@@ -51,20 +46,16 @@ class remuneration_apprenti(Variable):
 
     def formula(individu, period, parameters):
         age = individu("age", period)
-        apprentissage_contrat_debut = individu(
-            "apprentissage_contrat_debut", period)
+        apprentissage_contrat_debut = individu("apprentissage_contrat_debut", period)
         smic = (
-            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire *
-            52 *
-            35 /
-            12)
+            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
+            * 52
+            * 35
+            / 12
+        )
         anciennete_contrat = (
-            datetime64(
-                period.start) +
-            timedelta64(
-                1,
-                "D") -
-            apprentissage_contrat_debut).astype("timedelta64[Y]")
+            datetime64(period.start) + timedelta64(1, "D") - apprentissage_contrat_debut
+        ).astype("timedelta64[Y]")
         apprenti = individu("apprenti", period)
         params = parameters(period).marche_travail.apprentissage.remuneration
 
@@ -74,35 +65,42 @@ class remuneration_apprenti(Variable):
         annee = anciennete_int + 1
         annee = (annee > 3) * 3 + (annee <= 3) * annee
 
-        # Age brackets using parameters
-        def part_for(bracket, annee_k):
-            if annee_k == 1:
-                return bracket.annee_1
-            if annee_k == 2:
-                return bracket.annee_2
-            return bracket.annee_3
+        # Sélection du taux de rémunération selon l'âge et l'année du contrat
+        from numpy import select
 
-        # < 18
-        cond = age < 18
-        for k in [1, 2, 3]:
-            output[cond] += (annee[cond] == k) * part_for(params.moins_18, k)
+        part = select(
+            [
+                (age < 18) * (annee == 1),
+                (age < 18) * (annee == 2),
+                (age < 18) * (annee == 3),
+                (18 <= age) * (age < 21) * (annee == 1),
+                (18 <= age) * (age < 21) * (annee == 2),
+                (18 <= age) * (age < 21) * (annee == 3),
+                (21 <= age) * (age < 26) * (annee == 1),
+                (21 <= age) * (age < 26) * (annee == 2),
+                (21 <= age) * (age < 26) * (annee == 3),
+                (age >= 26) * (annee == 1),
+                (age >= 26) * (annee == 2),
+                (age >= 26) * (annee == 3),
+            ],
+            [
+                params.moins_18.annee_1,
+                params.moins_18.annee_2,
+                params.moins_18.annee_3,
+                params.age_18_20.annee_1,
+                params.age_18_20.annee_2,
+                params.age_18_20.annee_3,
+                params.age_21_25.annee_1,
+                params.age_21_25.annee_2,
+                params.age_21_25.annee_3,
+                params.age_26_plus.annee_1,
+                params.age_26_plus.annee_2,
+                params.age_26_plus.annee_3,
+            ],
+            default=0,
+        )
 
-        # 18-20
-        cond = (18 <= age) * (age < 21)
-        for k in [1, 2, 3]:
-            output[cond] += (annee[cond] == k) * part_for(params.age_18_20, k)
-
-        # 21-25
-        cond = (21 <= age) * (age < 26)
-        for k in [1, 2, 3]:
-            output[cond] += (annee[cond] == k) * part_for(params.age_21_25, k)
-
-        # 26+
-        cond = age >= 26
-        for k in [1, 2, 3]:
-            output[cond] += (annee[cond] == k) * \
-                part_for(params.age_26_plus, k)
-        return output * smic * apprenti
+        return part * smic * apprenti
 
 
 class exoneration_cotisations_employeur_apprenti(Variable):
@@ -228,10 +226,11 @@ class exoneration_cotisations_salariales_apprenti(Variable):
         # cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives', period)
 
         smic_mensuel = (
-            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire *
-            52 *
-            35 /
-            12)
+            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
+            * 52
+            * 35
+            / 12
+        )
         salaire = individu("remuneration_apprenti", period)
 
         ratio = (salaire <= smic_mensuel) + (salaire > smic_mensuel) * (
