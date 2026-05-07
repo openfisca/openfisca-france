@@ -14,13 +14,20 @@ class apprenti(Variable):
 
     def formula(individu, period, parameters):
         age = individu("age", period)
-        # Updated age bounds: apprenticeship generally allowed up to 29 years old
+        # Updated age bounds: apprenticeship generally allowed up to 29 years
+        # old
         age_condition = (16 <= age) * (age < 30)
-        apprentissage_contrat_debut = individu("apprentissage_contrat_debut", period)
+        apprentissage_contrat_debut = individu(
+            "apprentissage_contrat_debut", period)
         duree_contrat = (
-            datetime64(period.start) + timedelta64(1, "D") - apprentissage_contrat_debut
-        ).astype("timedelta64[Y]")
-        # Keep basic guard (< 3 years) but expose real anciennete elsewhere if needed
+            datetime64(
+                period.start) +
+            timedelta64(
+                1,
+                "D") -
+            apprentissage_contrat_debut).astype("timedelta64[Y]")
+        # Keep basic guard (< 3 years) but expose real anciennete elsewhere if
+        # needed
         anciennete_contrat = duree_contrat < timedelta64(3, "Y")
 
         return age_condition * anciennete_contrat
@@ -44,16 +51,20 @@ class remuneration_apprenti(Variable):
 
     def formula(individu, period, parameters):
         age = individu("age", period)
-        apprentissage_contrat_debut = individu("apprentissage_contrat_debut", period)
+        apprentissage_contrat_debut = individu(
+            "apprentissage_contrat_debut", period)
         smic = (
-            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
-            * 52
-            * 35
-            / 12
-        )
+            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire *
+            52 *
+            35 /
+            12)
         anciennete_contrat = (
-            datetime64(period.start) + timedelta64(1, "D") - apprentissage_contrat_debut
-        ).astype("timedelta64[Y]")
+            datetime64(
+                period.start) +
+            timedelta64(
+                1,
+                "D") -
+            apprentissage_contrat_debut).astype("timedelta64[Y]")
         apprenti = individu("apprenti", period)
         params = parameters(period).marche_travail.apprentissage.remuneration
 
@@ -89,7 +100,8 @@ class remuneration_apprenti(Variable):
         # 26+
         cond = age >= 26
         for k in [1, 2, 3]:
-            output[cond] += (annee[cond] == k) * part_for(params.age_26_plus, k)
+            output[cond] += (annee[cond] == k) * \
+                part_for(params.age_26_plus, k)
         return output * smic * apprenti
 
 
@@ -216,11 +228,10 @@ class exoneration_cotisations_salariales_apprenti(Variable):
         # cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives', period)
 
         smic_mensuel = (
-            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
-            * 52
-            * 35
-            / 12
-        )
+            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire *
+            52 *
+            35 /
+            12)
         salaire = individu("remuneration_apprenti", period)
 
         ratio = (salaire <= smic_mensuel) + (salaire > smic_mensuel) * (
@@ -230,7 +241,8 @@ class exoneration_cotisations_salariales_apprenti(Variable):
         exoneration = cotisations_salariales_contributives * ratio
         return -exoneration * apprenti
 
-    # Legacy regime (pre-2019): keep previous behaviour (full exemption of salariales)
+    # Legacy regime (pre-2019): keep previous behaviour (full exemption of
+    # salariales)
     def formula(individu, period, parameters):
         apprenti = individu("apprenti", period)
         cotisations_salariales_contributives = individu(
@@ -269,7 +281,8 @@ class prime_apprentissage(Variable):
     # Son versement est subordonné à la condition que l'embauche de l'apprenti soit confirmée à l'issue des deux
     # premiers mois de l'apprentissage.
     #
-    # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
+    # Son versement cesse lorsque l'apprenti n'est plus salarié dans
+    # l'entreprise ou l'établissement qui l'a embauché.
 
     def formula(individu, period, parameters):
         apprenti = individu("apprenti", period)
@@ -311,4 +324,5 @@ class prime_apprentissage(Variable):
 # Son montant est calculé selon la formule suivante : pourcentage d'alternants ouvrant droit à l'aide x effectif annuel
 # moyen de l'entreprise au 31 décembre de l'année précédente x un montant forfaitaire de 400 € par alternant.
 # Par exemple, une entreprise de 300 salariés employant 6 % de salariés en alternance, ce qui porte le nombre
-# d'alternants ouvrant droit à l'aide à 2 % (6 % - 4 %), peut bénéficier d'une prime de : 2 % x 300 x 400 = 2 400 €.
+# d'alternants ouvrant droit à l'aide à 2 % (6 % - 4 %), peut bénéficier
+# d'une prime de : 2 % x 300 x 400 = 2 400 €.
