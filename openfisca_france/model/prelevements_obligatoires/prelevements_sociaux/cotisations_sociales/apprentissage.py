@@ -13,17 +13,17 @@ class apprenti(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        age = individu("age", period)
+        age = individu('age', period)
         # Updated age bounds: apprenticeship generally allowed up to 29 years
         # old
         age_condition = (16 <= age) * (age < 30)
-        apprentissage_contrat_debut = individu("apprentissage_contrat_debut", period)
+        apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         duree_contrat = (
-            datetime64(period.start) + timedelta64(1, "D") - apprentissage_contrat_debut
-        ).astype("timedelta64[Y]")
+            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
+            ).astype('timedelta64[Y]')
         # Keep basic guard (< 3 years) but expose real anciennete elsewhere if
         # needed
-        anciennete_contrat = duree_contrat < timedelta64(3, "Y")
+        anciennete_contrat = duree_contrat < timedelta64(3, 'Y')
 
         return age_condition * anciennete_contrat
 
@@ -32,7 +32,7 @@ class remuneration_apprenti(Variable):
     value_type = float
     entity = Individu
     label = "Rémunération de l'apprenti"
-    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -52,10 +52,10 @@ class remuneration_apprenti(Variable):
             * 52
             * 35
             / 12
-        )
+            )
         anciennete_contrat = (
-            datetime64(period.start) + timedelta64(1, "D") - apprentissage_contrat_debut
-        ).astype("timedelta64[Y]")
+            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
+            ).astype('timedelta64[Y]')
         apprenti = individu('apprenti', period)
         params = parameters(period).marche_travail.apprentissage.remuneration
 
@@ -80,7 +80,7 @@ class remuneration_apprenti(Variable):
                 (age >= 26) * (annee == 1),
                 (age >= 26) * (annee == 2),
                 (age >= 26) * (annee == 3),
-            ],
+                ],
             [
                 params.moins_18.annee_1,
                 params.moins_18.annee_2,
@@ -94,9 +94,9 @@ class remuneration_apprenti(Variable):
                 params.age_26_plus.annee_1,
                 params.age_26_plus.annee_2,
                 params.age_26_plus.annee_3,
-            ],
+                ],
             default=0,
-        )
+            )
 
         return part * smic * apprenti
 
@@ -104,7 +104,7 @@ class remuneration_apprenti(Variable):
 class exoneration_cotisations_employeur_apprenti(Variable):
     value_type = float
     entity = Individu
-    label = "Exonération de cotisations employeur pour un apprenti"
+    label = 'Exonération de cotisations employeur pour un apprenti'
     reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -134,12 +134,8 @@ class exoneration_cotisations_employeur_apprenti(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         famille = individu('famille', period)
         mmid_employeur = individu('mmid_employeur_net_allegement', period)
-        vieillesse_deplafonnee_employeur = individu(
-            "vieillesse_deplafonnee_employeur", period
-        )
-        vieillesse_plafonnee_employeur = individu(
-            "vieillesse_plafonnee_employeur", period
-        )
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
         # Références législatives:
         # - Code du travail, articles L6243-2 et suivants (exonérations liées à l'apprentissage)
         # - Code de la sécurité sociale, articles L241-5 et L241-6 (assiette et exonérations de cotisations)
@@ -164,13 +160,13 @@ class exoneration_cotisations_employeur_apprenti(Variable):
             + mmid_employeur
             + vieillesse_plafonnee_employeur
             + vieillesse_deplafonnee_employeur
-        )
+            )
 
         exoneration_plus_11 = -cotisations_exonerees
 
         result = exoneration_plus_11 * (
             effectif_entreprise >= 11
-        ) + exoneration_moins_11 * (effectif_entreprise < 11)
+            ) + exoneration_moins_11 * (effectif_entreprise < 11)
         return result * apprenti
 
     # Legacy regime (pre-2019): keep previous model behaviour
@@ -181,12 +177,8 @@ class exoneration_cotisations_employeur_apprenti(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         famille = individu('famille', period)
         mmid_employeur = individu('mmid_employeur_net_allegement', period)
-        vieillesse_deplafonnee_employeur = individu(
-            "vieillesse_deplafonnee_employeur", period
-        )
-        vieillesse_plafonnee_employeur = individu(
-            "vieillesse_plafonnee_employeur", period
-        )
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
 
         cotisations_non_exonerees = accident_du_travail
         exoneration_moins_11 = cotisations_non_exonerees - cotisations_employeur
@@ -196,13 +188,13 @@ class exoneration_cotisations_employeur_apprenti(Variable):
             + mmid_employeur
             + vieillesse_plafonnee_employeur
             + vieillesse_deplafonnee_employeur
-        )
+            )
 
         exoneration_plus_11 = -cotisations_exonerees
 
         result = exoneration_plus_11 * (
             effectif_entreprise >= 11
-        ) + exoneration_moins_11 * (effectif_entreprise < 11)
+            ) + exoneration_moins_11 * (effectif_entreprise < 11)
         return result * apprenti
 
 
@@ -217,9 +209,7 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     # Modern regime (post-2019): exclude CSG/CRDS from exemption, cap at SMIC
     def formula_2019(individu, period, parameters):
         apprenti = individu('apprenti', period)
-        cotisations_salariales_contributives = individu(
-            'cotisations_salariales_contributives', period
-        )
+        cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
         # CSG/CRDS are in non_contributives; do not exempt them
         # cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives', period)
 
@@ -228,12 +218,12 @@ class exoneration_cotisations_salariales_apprenti(Variable):
             * 52
             * 35
             / 12
-        )
+            )
         salaire = individu('remuneration_apprenti', period)
 
         ratio = (salaire <= smic_mensuel) + (salaire > smic_mensuel) * (
             smic_mensuel / (salaire + 1e-9)
-        )
+            )
 
         exoneration = cotisations_salariales_contributives * ratio
         return -exoneration * apprenti
@@ -242,19 +232,15 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     # salariales)
     def formula(individu, period, parameters):
         apprenti = individu('apprenti', period)
-        cotisations_salariales_contributives = individu(
-            'cotisations_salariales_contributives', period
-        )
-        cotisations_salariales_non_contributives = individu(
-            'cotisations_salariales_non_contributives', period
-        )
+        cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
+        cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives', period)
         return (
             -(
                 cotisations_salariales_contributives
                 + cotisations_salariales_non_contributives
-            )
+                )
             * apprenti
-        )
+            )
 
 
 class prime_apprentissage(Variable):
