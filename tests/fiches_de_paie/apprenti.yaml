@@ -39,69 +39,69 @@ input:
 output:
   # salaire_super_brut: 0
   remboursement_transport: 0
-  ags: -2.67
-  agff_employeur: -10.67
+  ags: -2.84
+  agff_employeur: -11.37
   agirc_employeur: 0
   agirc_gmp_employeur: 0
   apec_employeur: 0
-  arrco_employeur: -41.34
-  chomage_employeur: -35.56
+  arrco_employeur: -44.05
+  chomage_employeur: -37.90
   cotisation_exceptionnelle_temporaire_employeur: 0
-  vieillesse_deplafonnee_employeur: -16.
-  vieillesse_plafonnee_employeur: -75.57
+  vieillesse_deplafonnee_employeur: -17.05
+  vieillesse_plafonnee_employeur: -80.53
   fonds_emploi_hospitalier: 0
   ircantec_employeur: 0
   pension_employeur: 0
   rafp_employeur: 0
   ati_atiacl: 0
-  accident_du_travail: -13.34
-  famille: -46.68
-  mmid_employeur: -91.42
+  accident_du_travail: -14.21
+  famille: -49.74
+  mmid_employeur: -121.27
   taxe_salaires: 0
   #
   # # cotisations_employeur_main_d_oeuvre: 0
   conge_individuel_formation_cdd: 0
   contribution_developpement_apprentissage: 0
-  contribution_solidarite_autonomie: -2.14
+  contribution_solidarite_autonomie: -2.84
   contribution_supplementaire_apprentissage: 0
-  financement_organisations_syndicales: -.11  # -35 * 52 * 9.61 * 0.49 / 12 * 0.00016
-  formation_professionnelle: -3.93
-  fnal: -.714
+  financement_organisations_syndicales: -.15  # -35 * 52 * 9.61 * 0.65 / 12 * 0.00016
+  formation_professionnelle: -5.21
+  fnal: -.95
   participation_effort_construction: 0 # was incorrectly : -3.21
   prevoyance_obligatoire_cadre: 0
   taxe_apprentissage: 0
   versement_transport: 0
   #
   allegement_general: 0
-  credit_impot_competitivite_emploi: 42.85
+  credit_impot_competitivite_emploi: 56.84
   forfait_social: 0
   tehr: {'2014': 0}
-  assiette_cotisations_sociales: 35 * 52 * 9.61 * 0.49 / 12
-  cotisations_employeur: -2.14 -8.57 -33.21 -28.57 -12.86 -60.71 -10.71 -37.49 -91.42 -2.14 -3.93 -.714 -.11
-  exoneration_cotisations_employeur_apprenti: 281.86
+  assiette_cotisations_sociales: 35 * 52 * 9.61 * 0.65 / 12
+  cotisations_employeur: -388.11
+  exoneration_cotisations_employeur_apprenti: 373.90
 
   #
   cotisations_salariales: 0  #-5.71 -22.14 -17.14 -2.14 -48.92 -5.36
   #
-  cotisations_salariales_contributives: -5.71 -22.14 -17.14 -2.14 -48.92
-  cotisations_salariales_non_contributives: -5.36
-  exoneration_cotisations_salariales_apprenti: -(-5.71 -22.14 -17.14 -2.14 -48.92 -5.36)
+  cotisations_salariales_contributives: -127.43
+  cotisations_salariales_non_contributives: -7.11
+  exoneration_cotisations_salariales_apprenti: 134.54
 
-  agff_salarie: -5.71
+  agff_salarie: -7.58
   agirc_salarie: 0
   agirc_gmp_salarie: 0
   apec_salarie: 0
-  arrco_salarie: -22.14
-  chomage_salarie: -17.14
+  arrco_salarie: -29.37
+  chomage_salarie: -22.74
   cotisation_exceptionnelle_temporaire_salarie: 0
-  vieillesse_deplafonnee_salarie: -2.14
-  vieillesse_plafonnee_salarie: -48.92
+  vieillesse_deplafonnee_salarie: -2.84
+  vieillesse_plafonnee_salarie: -64.90
   ircantec_salarie: 0
   pension_salarie: 0
   rafp_salarie: 0
   #
   # cotisations_salariales_non_contributives: 0
-  mmid_salarie: -5.36
+  mmid_salarie: -7.11
   # contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: 0
   # salaire_net: 0
@@ -112,6 +112,6 @@ output:
   hsup: 0
   # salaire_imposable: 0  # salaire imposable
   depense_cantine_titre_restaurant_employe: 0
-  salaire_net_a_payer: 35 * 52 * 9.61 * 0.49 / 12
+  salaire_net_a_payer: 35 * 52 * 9.61 * 0.65 / 12
   apprenti: 1
-  remuneration_apprenti: 35 * 52 * 9.61 * 0.49 / 12
+  remuneration_apprenti: 35 * 52 * 9.61 * 0.65 / 12

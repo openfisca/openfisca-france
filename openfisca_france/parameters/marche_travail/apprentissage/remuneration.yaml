@@ -20,9 +20,9 @@ moins_18:
   annee_2:
     values:
       1900-01-01:
-        value: 0.41
+        value: 0.37
       2015-01-01:
-        value: 0.41
+        value: 0.37
       2019-01-01:
         value: 0.39
   annee_3:
@@ -38,9 +38,9 @@ age_18_20:
   annee_1:
     values:
       1900-01-01:
-        value: 0.37
+        value: 0.41
       2015-01-01:
-        value: 0.37
+        value: 0.41
       2019-01-01:
         value: 0.43
   annee_2:
@@ -54,9 +54,9 @@ age_18_20:
   annee_3:
     values:
       1900-01-01:
-        value: 0.61
+        value: 0.65
       2015-01-01:
-        value: 0.61
+        value: 0.65
       2019-01-01:
         value: 0.67
 
@@ -72,9 +72,9 @@ age_21_25:
   annee_2:
     values:
       1900-01-01:
-        value: 0.65
+        value: 0.61
       2015-01-01:
-        value: 0.65
+        value: 0.61
       2019-01-01:
         value: 0.61
   annee_3:

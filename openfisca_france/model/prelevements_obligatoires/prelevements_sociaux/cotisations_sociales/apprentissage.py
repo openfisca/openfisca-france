@@ -14,15 +14,22 @@ class apprenti(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        # Updated age bounds: apprenticeship generally allowed up to 29 years
-        # old
+        age_condition = (16 <= age) * (age < 26)
+        apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
+        duree_contrat = (
+            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
+            ).astype('timedelta64[Y]')
+        anciennete_contrat = duree_contrat < timedelta64(3, 'Y')
+
+        return age_condition * anciennete_contrat
+
+    def formula_2019(individu, period, parameters):
+        age = individu('age', period)
         age_condition = (16 <= age) * (age < 30)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         duree_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
-        # Keep basic guard (< 3 years) but expose real anciennete elsewhere if
-        # needed
         anciennete_contrat = duree_contrat < timedelta64(3, 'Y')
 
         return age_condition * anciennete_contrat
