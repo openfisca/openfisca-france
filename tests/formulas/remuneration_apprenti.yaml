@@ -5,7 +5,8 @@
     date_naissance: '1996-01-01'
   output:
     apprenti: 1
-    remuneration_apprenti: 35 * 52 * 9.61 * 0.49 / 12
+    # 19 years old -> bracket 18-20, 3rd year (contract started 2013-01, period 2015-03) -> 0.65 (pre-2019 law)
+    remuneration_apprenti: 35 * 52 * 9.61 * 0.65 / 12
 - period: month:2015-03
   input:
     apprentissage_contrat_debut:
@@ -16,5 +17,26 @@
       month:2015-01: 1
       month:2015-03: 1
     remuneration_apprenti:
-      month:2015-01: 35 * 52 * 9.61 * 0.49 / 12
-      month:2015-03: 35 * 52 * 9.61 * 0.49 / 12
+      # 19 years old -> bracket 18-20, 3rd year -> 0.65 (pre-2019 law)
+      month:2015-01: 35 * 52 * 9.61 * 0.65 / 12
+      month:2015-03: 35 * 52 * 9.61 * 0.65 / 12
+
+- period: month:2015-03
+  input:
+    apprentissage_contrat_debut:
+      year:2014:3: '2014-01-01'
+    date_naissance: '1985-01-01'
+  output:
+    # 30 years old -> not apprenti (age >= 30 excluded)
+    apprenti: 0
+    remuneration_apprenti: 0
+
+- period: month:2015-03
+  input:
+    apprentissage_contrat_debut:
+      year:2015:3: '2015-01-01'
+    date_naissance: '1989-01-01'
+  output:
+    # 26 years old in 2015 -> not eligible under the pre-2019 age limit
+    apprenti: 0
+    remuneration_apprenti: 0

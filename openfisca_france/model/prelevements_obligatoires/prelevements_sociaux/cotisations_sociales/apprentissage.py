@@ -14,12 +14,13 @@ class apprenti(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        age_condition = (16 <= age) * (age < 25)
+        age_params = parameters(period).marche_travail.apprentissage.age
+        age_condition = (age_params.minimum <= age) * (age < age_params.maximum_exclusif)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         duree_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
-        anciennete_contrat = (duree_contrat < timedelta64(3, 'Y'))
+        anciennete_contrat = duree_contrat < timedelta64(3, 'Y')
 
         return age_condition * anciennete_contrat
 
@@ -43,49 +44,62 @@ class remuneration_apprenti(Variable):
     def formula(individu, period, parameters):
         age = individu('age', period)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
-        smic = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire * 52 * 35 / 12
+        smic = (
+            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
+            * 52
+            * 35
+            / 12
+            )
         anciennete_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
         apprenti = individu('apprenti', period)
-        salaire_en_smic = [  # TODO: move to parameters
-            dict(
-                part_de_smic_by_anciennete = {
-                    1: .25,
-                    2: .41,
-                    3: .53,
-                    },
-                age_min = 15,
-                age_max = 18,
-                ),
-            dict(
-                part_de_smic_by_anciennete = {
-                    1: .37,
-                    2: .49,
-                    3: .61,
-                    },
-                age_min = 18,
-                age_max = 21,
-                ),
-            dict(
-                part_de_smic_by_anciennete = {
-                    1: .53,
-                    2: .65,
-                    3: .78,
-                    },
-                age_min = 21,
-                age_max = 99
-                )
-            ]
+        params = parameters(period).marche_travail.apprentissage.remuneration
+        age_params = parameters(period).marche_travail.apprentissage.age.remuneration
+        seuil_deuxieme_tranche = age_params.seuil_deuxieme_tranche
+        seuil_troisieme_tranche = age_params.seuil_troisieme_tranche
+        seuil_quatrieme_tranche = age_params.seuil_quatrieme_tranche
 
-        output = age * 0.0
-        for age_interval in salaire_en_smic:
-            age_condition = (age_interval['age_min'] <= age) * (age < age_interval['age_max'])
-            output[age_condition] = sum([
-                (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
-                for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].items()
-                ])
-        return output * smic * apprenti
+        # Convert anciennete to integer year (0,1,2) then map to 1,2,3
+        anciennete_int = anciennete_contrat.astype(int)
+        annee = anciennete_int + 1
+        annee = (annee > 3) * 3 + (annee <= 3) * annee
+
+        # Sélection du taux de rémunération selon l'âge et l'année du contrat
+
+        part = select(
+            [
+                (age < seuil_deuxieme_tranche) * (annee == 1),
+                (age < seuil_deuxieme_tranche) * (annee == 2),
+                (age < seuil_deuxieme_tranche) * (annee == 3),
+                (seuil_deuxieme_tranche <= age) * (age < seuil_troisieme_tranche) * (annee == 1),
+                (seuil_deuxieme_tranche <= age) * (age < seuil_troisieme_tranche) * (annee == 2),
+                (seuil_deuxieme_tranche <= age) * (age < seuil_troisieme_tranche) * (annee == 3),
+                (seuil_troisieme_tranche <= age) * (age < seuil_quatrieme_tranche) * (annee == 1),
+                (seuil_troisieme_tranche <= age) * (age < seuil_quatrieme_tranche) * (annee == 2),
+                (seuil_troisieme_tranche <= age) * (age < seuil_quatrieme_tranche) * (annee == 3),
+                (seuil_quatrieme_tranche <= age) * (annee == 1),
+                (seuil_quatrieme_tranche <= age) * (annee == 2),
+                (seuil_quatrieme_tranche <= age) * (annee == 3),
+                ],
+            [
+                params.premiere_tranche.annee_1,
+                params.premiere_tranche.annee_2,
+                params.premiere_tranche.annee_3,
+                params.deuxieme_tranche.annee_1,
+                params.deuxieme_tranche.annee_2,
+                params.deuxieme_tranche.annee_3,
+                params.troisieme_tranche.annee_1,
+                params.troisieme_tranche.annee_2,
+                params.troisieme_tranche.annee_3,
+                params.quatrieme_tranche.annee_1,
+                params.quatrieme_tranche.annee_2,
+                params.quatrieme_tranche.annee_3,
+                ],
+            default=0,
+            )
+
+        return part * smic * apprenti
 
 
 class exoneration_cotisations_employeur_apprenti(Variable):
@@ -113,6 +127,50 @@ class exoneration_cotisations_employeur_apprenti(Variable):
     # Précision : le décompte de l'effectif des entreprises non artisanales s'apprécie au 31 décembre précédant la date
     # de conclusion du contrat d'apprentissage.
 
+    # Modern regime (post reform apprenticeship law)
+    def formula_2019(individu, period, parameters):
+        accident_du_travail = individu('accident_du_travail', period)
+        apprenti = individu('apprenti', period)
+        cotisations_employeur = individu('cotisations_employeur', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        famille = individu('famille', period)
+        mmid_employeur = individu('mmid_employeur_net_allegement', period)
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+        # Références législatives:
+        # - Code du travail, articles L6243-2 et suivants (exonérations liées à l'apprentissage)
+        # - Code de la sécurité sociale, articles L241-5 et L241-6 (assiette et exonérations de cotisations)
+        # - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902742
+        # - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902743
+        # Additional employer contributions often due even for apprentices
+        # (kept implicit: not included in exempted set => remain due)
+
+        # < 11 salariés:
+        # Exonération quasi totale des cotisations patronales,
+        # hors accidents du travail et maladies professionnelles
+        # (références: Code du travail L6243-2, CSS L241-5)
+        cotisations_non_exonerees = accident_du_travail
+        exoneration_moins_11 = cotisations_non_exonerees - cotisations_employeur
+
+        # >= 11 salariés:
+        # Exonération limitée aux cotisations de sécurité sociale (maladie, vieillesse, famille)
+        # Les autres contributions restent dues (AT/MP, chômage, FNAL, etc.)
+        # (références: Code du travail L6243-2, CSS L241-5, L241-6)
+        cotisations_exonerees = (
+            famille
+            + mmid_employeur
+            + vieillesse_plafonnee_employeur
+            + vieillesse_deplafonnee_employeur
+            )
+
+        exoneration_plus_11 = -cotisations_exonerees
+
+        result = exoneration_plus_11 * (
+            effectif_entreprise >= 11
+            ) + exoneration_moins_11 * (effectif_entreprise < 11)
+        return result * apprenti
+
+    # Legacy regime (pre-2019): keep previous model behaviour
     def formula(individu, period, parameters):
         accident_du_travail = individu('accident_du_travail', period)
         apprenti = individu('apprenti', period)
@@ -135,12 +193,10 @@ class exoneration_cotisations_employeur_apprenti(Variable):
 
         exoneration_plus_11 = -cotisations_exonerees
 
-        return (
-            exoneration_plus_11
-            * (effectif_entreprise >= 11)
-            + exoneration_moins_11
-            * (effectif_entreprise < 11)
-            ) * apprenti
+        result = exoneration_plus_11 * (
+            effectif_entreprise >= 11
+            ) + exoneration_moins_11 * (effectif_entreprise < 11)
+        return result * apprenti
 
 
 class exoneration_cotisations_salariales_apprenti(Variable):
@@ -151,12 +207,41 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    # Modern regime (post-2019): exclude CSG/CRDS from exemption, cap at SMIC
+    def formula_2019(individu, period, parameters):
+        apprenti = individu('apprenti', period)
+        cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
+        # CSG/CRDS are in non_contributives; do not exempt them
+        # cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives', period)
+
+        smic_mensuel = (
+            parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
+            * 52
+            * 35
+            / 12
+            )
+        salaire = individu('remuneration_apprenti', period)
+
+        ratio = (salaire <= smic_mensuel) + (salaire > smic_mensuel) * (
+            smic_mensuel / (salaire + 1e-9)
+            )
+
+        exoneration = cotisations_salariales_contributives * ratio
+        return -exoneration * apprenti
+
+    # Legacy regime (pre-2019): keep previous behaviour (full exemption of
+    # salariales)
     def formula(individu, period, parameters):
         apprenti = individu('apprenti', period)
         cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
-        cotisations_salariales_non_contributives = individu(
-            'cotisations_salariales_non_contributives', period)
-        return - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
+        cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives', period)
+        return (
+            -(
+                cotisations_salariales_contributives
+                + cotisations_salariales_non_contributives
+                )
+            * apprenti
+            )
 
 
 class prime_apprentissage(Variable):
@@ -180,11 +265,13 @@ class prime_apprentissage(Variable):
     # Son versement est subordonné à la condition que l'embauche de l'apprenti soit confirmée à l'issue des deux
     # premiers mois de l'apprentissage.
     #
-    # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
+    # Son versement cesse lorsque l'apprenti n'est plus salarié dans
+    # l'entreprise ou l'établissement qui l'a embauché.
 
     def formula(individu, period, parameters):
         apprenti = individu('apprenti', period)
         return 1000 * apprenti
+
 
 # # class credit_impot_emploi_apprenti(Variable):
 #     value_type = float
@@ -221,4 +308,5 @@ class prime_apprentissage(Variable):
 # Son montant est calculé selon la formule suivante : pourcentage d'alternants ouvrant droit à l'aide x effectif annuel
 # moyen de l'entreprise au 31 décembre de l'année précédente x un montant forfaitaire de 400 € par alternant.
 # Par exemple, une entreprise de 300 salariés employant 6 % de salariés en alternance, ce qui porte le nombre
-# d'alternants ouvrant droit à l'aide à 2 % (6 % - 4 %), peut bénéficier d'une prime de : 2 % x 300 x 400 = 2 400 €.
+# d'alternants ouvrant droit à l'aide à 2 % (6 % - 4 %), peut bénéficier
+# d'une prime de : 2 % x 300 x 400 = 2 400 €.
