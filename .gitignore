@@ -21,6 +21,7 @@ build
 /.settings
 /.vscode
 .history/
+.claude/
 /build
 /cover
 /dist
