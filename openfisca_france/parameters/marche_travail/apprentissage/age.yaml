@@ -25,3 +25,22 @@ maximum_exclusif:
       value: 26
     2019-01-01:
       value: 30
+
+remuneration:
+  seuil_deuxieme_tranche:
+    description: Âge minimal de la deuxième tranche de rémunération des apprentis
+    values:
+      1900-01-01:
+        value: 18
+
+  seuil_troisieme_tranche:
+    description: Âge minimal de la troisième tranche de rémunération des apprentis
+    values:
+      1900-01-01:
+        value: 21
+
+  seuil_quatrieme_tranche:
+    description: Âge minimal de la quatrième tranche de rémunération des apprentis
+    values:
+      1900-01-01:
+        value: 26

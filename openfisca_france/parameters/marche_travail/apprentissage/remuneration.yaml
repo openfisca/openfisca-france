@@ -8,7 +8,7 @@ metadata:
       title: Loi n° 2018-771 du 5 septembre 2018 (réforme de l'apprentissage)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037367660
 
-moins_18:
+premiere_tranche:
   annee_1:
     values:
       1900-01-01:
@@ -34,7 +34,7 @@ moins_18:
       2019-01-01:
         value: 0.55
 
-age_18_20:
+deuxieme_tranche:
   annee_1:
     values:
       1900-01-01:
@@ -60,7 +60,7 @@ age_18_20:
       2019-01-01:
         value: 0.67
 
-age_21_25:
+troisieme_tranche:
   annee_1:
     values:
       1900-01-01:
@@ -86,7 +86,7 @@ age_21_25:
       2019-01-01:
         value: 0.78
 
-age_26_plus:
+quatrieme_tranche:
   annee_1:
     values:
       1900-01-01:

@@ -55,6 +55,10 @@ class remuneration_apprenti(Variable):
             ).astype('timedelta64[Y]')
         apprenti = individu('apprenti', period)
         params = parameters(period).marche_travail.apprentissage.remuneration
+        age_params = parameters(period).marche_travail.apprentissage.age.remuneration
+        seuil_deuxieme_tranche = age_params.seuil_deuxieme_tranche
+        seuil_troisieme_tranche = age_params.seuil_troisieme_tranche
+        seuil_quatrieme_tranche = age_params.seuil_quatrieme_tranche
 
         # Convert anciennete to integer year (0,1,2) then map to 1,2,3
         anciennete_int = anciennete_contrat.astype(int)
@@ -65,32 +69,32 @@ class remuneration_apprenti(Variable):
 
         part = select(
             [
-                (age < 18) * (annee == 1),
-                (age < 18) * (annee == 2),
-                (age < 18) * (annee == 3),
-                (18 <= age) * (age < 21) * (annee == 1),
-                (18 <= age) * (age < 21) * (annee == 2),
-                (18 <= age) * (age < 21) * (annee == 3),
-                (21 <= age) * (age < 26) * (annee == 1),
-                (21 <= age) * (age < 26) * (annee == 2),
-                (21 <= age) * (age < 26) * (annee == 3),
-                (age >= 26) * (annee == 1),
-                (age >= 26) * (annee == 2),
-                (age >= 26) * (annee == 3),
+                (age < seuil_deuxieme_tranche) * (annee == 1),
+                (age < seuil_deuxieme_tranche) * (annee == 2),
+                (age < seuil_deuxieme_tranche) * (annee == 3),
+                (seuil_deuxieme_tranche <= age) * (age < seuil_troisieme_tranche) * (annee == 1),
+                (seuil_deuxieme_tranche <= age) * (age < seuil_troisieme_tranche) * (annee == 2),
+                (seuil_deuxieme_tranche <= age) * (age < seuil_troisieme_tranche) * (annee == 3),
+                (seuil_troisieme_tranche <= age) * (age < seuil_quatrieme_tranche) * (annee == 1),
+                (seuil_troisieme_tranche <= age) * (age < seuil_quatrieme_tranche) * (annee == 2),
+                (seuil_troisieme_tranche <= age) * (age < seuil_quatrieme_tranche) * (annee == 3),
+                (seuil_quatrieme_tranche <= age) * (annee == 1),
+                (seuil_quatrieme_tranche <= age) * (annee == 2),
+                (seuil_quatrieme_tranche <= age) * (annee == 3),
                 ],
             [
-                params.moins_18.annee_1,
-                params.moins_18.annee_2,
-                params.moins_18.annee_3,
-                params.age_18_20.annee_1,
-                params.age_18_20.annee_2,
-                params.age_18_20.annee_3,
-                params.age_21_25.annee_1,
-                params.age_21_25.annee_2,
-                params.age_21_25.annee_3,
-                params.age_26_plus.annee_1,
-                params.age_26_plus.annee_2,
-                params.age_26_plus.annee_3,
+                params.premiere_tranche.annee_1,
+                params.premiere_tranche.annee_2,
+                params.premiere_tranche.annee_3,
+                params.deuxieme_tranche.annee_1,
+                params.deuxieme_tranche.annee_2,
+                params.deuxieme_tranche.annee_3,
+                params.troisieme_tranche.annee_1,
+                params.troisieme_tranche.annee_2,
+                params.troisieme_tranche.annee_3,
+                params.quatrieme_tranche.annee_1,
+                params.quatrieme_tranche.annee_2,
+                params.quatrieme_tranche.annee_3,
                 ],
             default=0,
             )
