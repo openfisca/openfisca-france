@@ -91,13 +91,19 @@ troisieme_tranche:
 quatrieme_tranche:
   annee_1:
     values:
+      1900-01-01:
+        value: 0  # tranche inexistante avant 2019
       2019-01-01:
         value: 1.0
   annee_2:
     values:
+      1900-01-01:
+        value: 0  # tranche inexistante avant 2019
       2019-01-01:
         value: 1.0
   annee_3:
     values:
+      1900-01-01:
+        value: 0  # tranche inexistante avant 2019
       2019-01-01:
         value: 1.0

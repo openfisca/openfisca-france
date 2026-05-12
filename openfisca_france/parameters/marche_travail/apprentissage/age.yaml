@@ -42,15 +42,23 @@ remuneration:
     values:
       1900-01-01:
         value: 18
+      2008-05-01:
+        value: 18
 
   seuil_troisieme_tranche:
     description: Âge minimal de la troisième tranche de rémunération des apprentis
     values:
       1900-01-01:
         value: 21
+      2008-05-01:
+        value: 21
 
   seuil_quatrieme_tranche:
     description: Âge minimal de la quatrième tranche de rémunération des apprentis
     values:
-      2019-05-01:
+      1900-01-01:
+        value: 9999
+      2008-05-01:
+        value: 9999
+      2019-01-01:
         value: 26
