@@ -1,11 +1,13 @@
-description: Conditions d'âge applicables au contrat d'apprentissage
+description: Conditions d'âge (en début de contrat) applicables au contrat d'apprentissage
 metadata:
   reference:
-    2015-01-01:
-      title: Code du travail - Article L6222-1
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027699180
+    2008-05-01:
+    - title: Code du travail - Article L6222-1
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006903997/2008-05-01
     2019-01-01:
-      title: Loi n° 2018-771 du 5 septembre 2018 pour la liberté de choisir son avenir professionnel
+    - title: Code du travail - Article L6222-1 
+      href : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037385936/2019-01-01
+    - title: ... modifié par Loi n° 2018-771 du 5 septembre 2018 pour la liberté de choisir son avenir professionnel
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037367660
 
 minimum:
@@ -13,7 +15,7 @@ minimum:
   values:
     1900-01-01:
       value: 16
-    2015-01-01:
+    2008-05-01:
       value: 16
 
 maximum_exclusif:
@@ -21,14 +23,22 @@ maximum_exclusif:
   values:
     1900-01-01:
       value: 26
-    2015-01-01:
+    2008-05-01:
       value: 26
     2019-01-01:
       value: 30
 
 remuneration:
+  reference:
+    2008-05-01:
+    - title: Code du travail - Article D6222-26
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018524108/2008-05-01
+    2019-01-01:
+    - title: Code du travail - Article D6222-26 
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038033238/2019-01-01  
+  
   seuil_deuxieme_tranche:
-    description: Âge minimal de la deuxième tranche de rémunération des apprentis
+    description: Âge minimal de la deuxième tranche de rémunération des apprentis 
     values:
       1900-01-01:
         value: 18
@@ -42,5 +52,5 @@ remuneration:
   seuil_quatrieme_tranche:
     description: Âge minimal de la quatrième tranche de rémunération des apprentis
     values:
-      1900-01-01:
+      2019-05-01:
         value: 26
