@@ -19,7 +19,6 @@ minimum:
 maximum_exclusif:
   description: Âge maximal exclusif de droit commun pour être apprenti
   values:
-``
     2008-05-01:
       value: 26
     2019-01-01:
@@ -49,7 +48,5 @@ remuneration:
   seuil_quatrieme_tranche:
     description: Âge minimal de la quatrième tranche de rémunération des apprentis
     values:
-      2008-05-01:
-        value: 9999
       2019-01-01:
         value: 26
