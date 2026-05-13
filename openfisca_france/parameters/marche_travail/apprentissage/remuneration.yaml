@@ -13,8 +13,6 @@ metadata:
 premiere_tranche:
   annee_1:
     values:
-      1900-01-01:
-        value: 0.25
       2008-05-01:
         value: 0.25
       2019-01-01:
