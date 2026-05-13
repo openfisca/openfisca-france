@@ -19,8 +19,6 @@ premiere_tranche:
         value: 0.27
   annee_2:
     values:
-      1900-01-01:
-        value: 0.37
       2008-05-01:
         value: 0.37
       2019-01-01:
