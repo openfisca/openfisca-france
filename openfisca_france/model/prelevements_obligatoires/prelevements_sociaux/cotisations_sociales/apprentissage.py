@@ -16,7 +16,6 @@ class apprenti(Variable):
         date_naissance = individu('date_naissance', period)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         age_debut_contrat = (apprentissage_contrat_debut - date_naissance).astype('timedelta64[Y]')
-        
         regime_post_2019 = apprentissage_contrat_debut >= datetime64('2019-01-01')
 
         age_params_2008 = parameters('2008-05-01').marche_travail.apprentissage.age
@@ -26,7 +25,7 @@ class apprenti(Variable):
         maximum = where(regime_post_2019, age_params_2019.maximum_exclusif, age_params_2008.maximum_exclusif)
 
         age_condition = (minimum <= age_debut_contrat) * (age_debut_contrat < maximum)
-        
+
         duree_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
@@ -67,7 +66,7 @@ class remuneration_apprenti(Variable):
             ).astype('timedelta64[Y]')
         apprenti = individu('apprenti', period)
 
-        p_pre  = parameters('2008-05-01').marche_travail.apprentissage
+        p_pre = parameters('2008-05-01').marche_travail.apprentissage
         p_post = parameters('2019-01-01').marche_travail.apprentissage
 
         seuil_2 = p_pre.age.remuneration.seuil_deuxieme_tranche
