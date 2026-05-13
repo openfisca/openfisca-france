@@ -1,11 +1,11 @@
-description: Rémunération minimale des apprentis en pourcentage du SMIC brut
+﻿description: Rémunération minimale des apprentis en pourcentage du SMIC brut
 metadata:
   reference:
     2008-05-01:
     - title: Code du travail - Article D6222-26
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018524108/2008-05-01
     2019-01-01:
-    - title: Code du travail - Article D6222-26 
+    - title: Code du travail - Article D6222-26
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038033238/2019-01-01
     - title: ... modifié par Décret n° 2018-1347 du 28 décembre 2018 relatif à la rémunération des apprentis
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000037999735/2019-01-01

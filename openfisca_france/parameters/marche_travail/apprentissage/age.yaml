@@ -1,11 +1,11 @@
-description: Conditions d'âge (en début de contrat) applicables au contrat d'apprentissage
+﻿description: Conditions d'âge (en début de contrat) applicables au contrat d'apprentissage
 metadata:
   reference:
     2008-05-01:
     - title: Code du travail - Article L6222-1
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006903997/2008-05-01
     2019-01-01:
-    - title: Code du travail - Article L6222-1 
+    - title: Code du travail - Article L6222-1
       href : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037385936/2019-01-01
     - title: ... modifié par Loi n° 2018-771 du 5 septembre 2018 pour la liberté de choisir son avenir professionnel
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037367660
@@ -30,11 +30,11 @@ remuneration:
     - title: Code du travail - Article D6222-26
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018524108/2008-05-01
     2019-01-01:
-    - title: Code du travail - Article D6222-26 
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038033238/2019-01-01  
-  
+    - title: Code du travail - Article D6222-26
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038033238/2019-01-01
+
   seuil_deuxieme_tranche:
-    description: Âge minimal de la deuxième tranche de rémunération des apprentis 
+    description: Âge minimal de la deuxième tranche de rémunération des apprentis
     values:
       2008-05-01:
         value: 18
