@@ -13,8 +13,6 @@ metadata:
 minimum:
   description: Âge minimal de droit commun pour être apprenti
   values:
-    1900-01-01:
-      value: 16
     2008-05-01:
       value: 16
 
