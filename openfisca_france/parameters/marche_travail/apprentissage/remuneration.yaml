@@ -59,8 +59,6 @@ deuxieme_tranche:
 troisieme_tranche:
   annee_1:
     values:
-      1900-01-01:
-        value: 0.53
       2008-05-01:
         value: 0.53
       2019-01-01:
