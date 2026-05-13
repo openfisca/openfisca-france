@@ -19,8 +19,7 @@ minimum:
 maximum_exclusif:
   description: Âge maximal exclusif de droit commun pour être apprenti
   values:
-    1900-01-01:
-      value: 26
+``
     2008-05-01:
       value: 26
     2019-01-01:
