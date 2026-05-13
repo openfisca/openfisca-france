@@ -49,8 +49,6 @@ remuneration:
   seuil_quatrieme_tranche:
     description: Âge minimal de la quatrième tranche de rémunération des apprentis
     values:
-      1900-01-01:
-        value: 9999
       2008-05-01:
         value: 9999
       2019-01-01:
