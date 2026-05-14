@@ -1,0 +1,161 @@
+# Tests unitaires : éligibilité et rémunération minimale des apprentis
+#
+# Couvre :
+#   - apprenti : conditions d'âge au début du contrat (min 16, max exclusif 26 avant 2019 / 30 après)
+#   - remuneration_apprenti : % du SMIC selon tranche d'âge (actuel) et année de contrat
+#
+# Rupture législative clé : Loi n° 2018-771 du 5 septembre 2018 (applicable 2019-01-01)
+#   - maximum_exclusif : 26 → 30 ans
+#   - 4ème tranche de rémunération (26+ ans) : introduite au 2019-01-01
+
+# ──────────────────────────────────────────────────────────────────
+# ÉLIGIBILITÉ (variable apprenti)
+# ──────────────────────────────────────────────────────────────────
+
+- name: "Éligibilité - cas nominal avant 2019 (17 ans au début du contrat)"
+  period: 2018-01
+  input:
+    date_naissance: '2000-07-01'
+    apprentissage_contrat_debut: '2017-09-01'  # âge au début : 17 ans
+  output:
+    apprenti: true
+
+- name: "Éligibilité - trop jeune (14 ans au début du contrat)"
+  period: 2018-01
+  input:
+    date_naissance: '2003-07-01'
+    apprentissage_contrat_debut: '2017-09-01'  # âge au début : 14 ans < minimum (16)
+  output:
+    apprenti: false
+
+- name: "Éligibilité - trop vieux avant 2019 (26 ans au début du contrat, max exclusif = 26)"
+  period: 2018-01
+  input:
+    date_naissance: '1991-07-01'
+    apprentissage_contrat_debut: '2017-09-01'  # âge au début : 26 ans >= maximum_exclusif (26)
+  output:
+    apprenti: false
+
+- name: "Éligibilité - juste en dessous du max avant 2019 (25 ans au début du contrat)"
+  period: 2018-01
+  input:
+    date_naissance: '1992-07-01'
+    apprentissage_contrat_debut: '2017-09-01'  # âge au début : 25 ans < maximum_exclusif (26)
+  output:
+    apprenti: true
+
+- name: "Éligibilité - contrat trop long (> 3 ans)"
+  period: 2018-01
+  input:
+    date_naissance: '1998-07-01'
+    apprentissage_contrat_debut: '2014-09-01'  # durée en 2018-01 : > 3 ans
+  output:
+    apprenti: false
+
+- name: "Éligibilité - 26 ans désormais autorisé après 2019 (max exclusif = 30)"
+  period: 2020-01
+  input:
+    date_naissance: '1993-07-01'
+    apprentissage_contrat_debut: '2019-09-01'  # âge au début : 26 ans < maximum_exclusif (30)
+  output:
+    apprenti: true
+
+- name: "Éligibilité - 29 ans autorisé après 2019"
+  period: 2020-01
+  input:
+    date_naissance: '1990-07-01'
+    apprentissage_contrat_debut: '2019-09-01'  # âge au début : 29 ans < maximum_exclusif (30)
+  output:
+    apprenti: true
+
+- name: "Éligibilité - 30 ans refusé après 2019 (max exclusif = 30)"
+  period: 2020-01
+  input:
+    date_naissance: '1989-07-01'
+    apprentissage_contrat_debut: '2019-09-01'  # âge au début : 30 ans >= maximum_exclusif (30)
+  output:
+    apprenti: false
+
+- name: "Éligibilité - 26 ans refusé si contrat signé avant réforme à plus de 25 ans"
+  period: 2019-01
+  input:
+    date_naissance: '1992-07-01'
+    apprentissage_contrat_debut: '2018-09-01'  # âge au début : 26 ans >= maximum_exclusif (26)
+  output:
+    apprenti: false
+
+# ──────────────────────────────────────────────────────────────────
+# RÉMUNÉRATION (variable remuneration_apprenti)
+# Toutes les valeurs sont exprimées en % du SMIC mensuel brut
+# smic_mensuel = smic_b_horaire * 52 * 35 / 12
+# ──────────────────────────────────────────────────────────────────
+
+- name: "Rémunération - 1ère tranche (< 18 ans), année 1, post-2019 (27% SMIC)"
+  period: 2020-01
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '2003-07-01'    # âge courant : 16 ans
+    apprentissage_contrat_debut: '2019-09-01'  # âge au début : 16 ans, ancienneté : année 1
+  output:
+    apprenti: true
+    remuneration_apprenti: 10.15 * 52 * 35 / 12 * 0.27
+
+- name: "Rémunération - 2ème tranche (18-20 ans), année 1, post-2019 (43% SMIC)"
+  period: 2020-01
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '2001-07-01'    # âge courant : 18 ans
+    apprentissage_contrat_debut: '2019-09-01'  # ancienneté : année 1
+  output:
+    apprenti: true
+    remuneration_apprenti: 10.15 * 52 * 35 / 12 * 0.43
+
+- name: "Rémunération - 3ème tranche (21-25 ans), année 1, post-2019 (53% SMIC)"
+  period: 2020-01
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '1998-07-01'    # âge courant : 21 ans
+    apprentissage_contrat_debut: '2019-09-01'  # ancienneté : année 1
+  output:
+    apprenti: true
+    remuneration_apprenti: 10.15 * 52 * 35 / 12 * 0.53
+
+- name: "Rémunération - 4ème tranche (26+ ans), année 1, post-2019-05 (100% SMIC)"
+  period: 2020-01
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '1993-07-01'    # âge courant : 26 ans
+    apprentissage_contrat_debut: '2019-09-01'  # ancienneté : année 1
+  output:
+    apprenti: true
+    remuneration_apprenti: 10.15 * 52 * 35 / 12 * 1.0
+
+- name: "Rémunération - 26 ans en 2018 → 3ème tranche"
+  period: 2018-01
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '1991-07-01'    # âge courant : 26 ans
+    apprentissage_contrat_debut: '2016-09-01'  # âge au début : 25 ans (eligible), ancienneté : année 2
+  output:
+    apprenti: true
+    remuneration_apprenti: 9.88 * 52 * 35 / 12 * 0.61
+
+- name: "Rémunération 18 - 21 ans en 2015 → 3ème tranche"
+  period: 2015-01
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '1996-07-01'    # âge courant : 18 ans
+    apprentissage_contrat_debut: '2012-09-01'  # âge au début : 16 ans (eligible), ancienneté : année 3
+  output:
+    apprenti: true
+    remuneration_apprenti: 9.61 * 52 * 35 / 12 * 0.65
+
+- name: "Rémunération 26 ans en 2019, contrat débuté/signé avant la réforme → 3ème tranche ancien référentiel"
+  period: 2019-01
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '1992-07-01'    # âge courant : 26 ans
+    apprentissage_contrat_debut: '2017-09-01'  # âge au début : 25 ans (éligible), ancienneté : année 2
+  output:
+    apprenti: true
+    remuneration_apprenti: 10.03 * 52 * 35 / 12 * 0.61

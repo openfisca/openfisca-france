@@ -8,19 +8,28 @@ class apprenti(Variable):
     value_type = bool
     entity = Individu
     label = "L'individu est apprenti"
-    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037385936'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        age_params = parameters(period).marche_travail.apprentissage.age
-        age_condition = (age_params.minimum <= age) * (age < age_params.maximum_exclusif)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
+        regime_post_2019 = apprentissage_contrat_debut >= datetime64('2019-01-01')
+
+        age_params_2008 = parameters('2008-05-01').marche_travail.apprentissage.age
+        age_params_2019 = parameters('2019-01-01').marche_travail.apprentissage.age
+
+        minimum = where(regime_post_2019, age_params_2019.minimum, age_params_2008.minimum)
+        maximum = where(regime_post_2019, age_params_2019.maximum_exclusif, age_params_2008.maximum_exclusif)
+
         duree_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
         anciennete_contrat = duree_contrat < timedelta64(3, 'Y')
+
+        age_debut_contrat = age - duree_contrat.astype(int)
+        age_condition = (minimum <= age_debut_contrat) * (age_debut_contrat < maximum)
 
         return age_condition * anciennete_contrat
 
@@ -29,11 +38,13 @@ class remuneration_apprenti(Variable):
     value_type = float
     entity = Individu
     label = "Rémunération de l'apprenti"
-    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
+    reference = ['https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037385936',
+                 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006904023',
+                 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038033238']
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    # Aux jeunes de 16 à 25 ans (exceptionnellement 15 ans, s'ils ont effectué la scolarité du premier cycle de
+    # Aux jeunes de 16 à 29 ans (exceptionnellement 15 ans, s'ils ont effectué la scolarité du premier cycle de
     # l'enseignement secondaire, ou, s'ils suivent une "formation apprentissage junior").
     #
     # Depuis le 30 juillet 2011, il est possible pour un jeune mineur ayant 15 ans au cours de l'année civile, de
@@ -44,57 +55,68 @@ class remuneration_apprenti(Variable):
     def formula(individu, period, parameters):
         age = individu('age', period)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
+        regime_post_2019 = apprentissage_contrat_debut >= datetime64('2019-01-01')
+
         smic = (
             parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
-            * 52
-            * 35
-            / 12
+            * 52 * 35 / 12
             )
         anciennete_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
         apprenti = individu('apprenti', period)
-        params = parameters(period).marche_travail.apprentissage.remuneration
-        age_params = parameters(period).marche_travail.apprentissage.age.remuneration
-        seuil_deuxieme_tranche = age_params.seuil_deuxieme_tranche
-        seuil_troisieme_tranche = age_params.seuil_troisieme_tranche
-        seuil_quatrieme_tranche = age_params.seuil_quatrieme_tranche
 
-        # Convert anciennete to integer year (0,1,2) then map to 1,2,3
+        p_pre = parameters('2008-05-01').marche_travail.apprentissage
+        p_post = parameters('2019-01-01').marche_travail.apprentissage
+
+        seuil_2 = p_pre.age.remuneration.seuil_deuxieme_tranche
+        seuil_3 = p_pre.age.remuneration.seuil_troisieme_tranche
+        seuil_4 = p_post.age.remuneration.seuil_quatrieme_tranche
+
         anciennete_int = anciennete_contrat.astype(int)
         annee = anciennete_int + 1
         annee = (annee > 3) * 3 + (annee <= 3) * annee
 
-        # Sélection du taux de rémunération selon l'âge et l'année du contrat
+        def taux(pre, post):
+            return where(regime_post_2019, post, pre)
 
         part = select(
             [
-                (age < seuil_deuxieme_tranche) * (annee == 1),
-                (age < seuil_deuxieme_tranche) * (annee == 2),
-                (age < seuil_deuxieme_tranche) * (annee == 3),
-                (seuil_deuxieme_tranche <= age) * (age < seuil_troisieme_tranche) * (annee == 1),
-                (seuil_deuxieme_tranche <= age) * (age < seuil_troisieme_tranche) * (annee == 2),
-                (seuil_deuxieme_tranche <= age) * (age < seuil_troisieme_tranche) * (annee == 3),
-                (seuil_troisieme_tranche <= age) * (age < seuil_quatrieme_tranche) * (annee == 1),
-                (seuil_troisieme_tranche <= age) * (age < seuil_quatrieme_tranche) * (annee == 2),
-                (seuil_troisieme_tranche <= age) * (age < seuil_quatrieme_tranche) * (annee == 3),
-                (seuil_quatrieme_tranche <= age) * (annee == 1),
-                (seuil_quatrieme_tranche <= age) * (annee == 2),
-                (seuil_quatrieme_tranche <= age) * (annee == 3),
+                (age < seuil_2) * (annee == 1),
+                (age < seuil_2) * (annee == 2),
+                (age < seuil_2) * (annee == 3),
+                (seuil_2 <= age) * (age < seuil_3) * (annee == 1),
+                (seuil_2 <= age) * (age < seuil_3) * (annee == 2),
+                (seuil_2 <= age) * (age < seuil_3) * (annee == 3),
+                # 3ème tranche pré-2019 : pas de borne supérieure
+                ~regime_post_2019 * (seuil_3 <= age) * (annee == 1),
+                ~regime_post_2019 * (seuil_3 <= age) * (annee == 2),
+                ~regime_post_2019 * (seuil_3 <= age) * (annee == 3),
+                # 3ème tranche post-2019 : bornée par seuil_4
+                regime_post_2019 * (seuil_3 <= age) * (age < seuil_4) * (annee == 1),
+                regime_post_2019 * (seuil_3 <= age) * (age < seuil_4) * (annee == 2),
+                regime_post_2019 * (seuil_3 <= age) * (age < seuil_4) * (annee == 3),
+                # 4ème tranche : post-2019 uniquement
+                regime_post_2019 * (seuil_4 <= age) * (annee == 1),
+                regime_post_2019 * (seuil_4 <= age) * (annee == 2),
+                regime_post_2019 * (seuil_4 <= age) * (annee == 3),
                 ],
             [
-                params.premiere_tranche.annee_1,
-                params.premiere_tranche.annee_2,
-                params.premiere_tranche.annee_3,
-                params.deuxieme_tranche.annee_1,
-                params.deuxieme_tranche.annee_2,
-                params.deuxieme_tranche.annee_3,
-                params.troisieme_tranche.annee_1,
-                params.troisieme_tranche.annee_2,
-                params.troisieme_tranche.annee_3,
-                params.quatrieme_tranche.annee_1,
-                params.quatrieme_tranche.annee_2,
-                params.quatrieme_tranche.annee_3,
+                taux(p_pre.remuneration.premiere_tranche.annee_1, p_post.remuneration.premiere_tranche.annee_1),
+                taux(p_pre.remuneration.premiere_tranche.annee_2, p_post.remuneration.premiere_tranche.annee_2),
+                taux(p_pre.remuneration.premiere_tranche.annee_3, p_post.remuneration.premiere_tranche.annee_3),
+                taux(p_pre.remuneration.deuxieme_tranche.annee_1, p_post.remuneration.deuxieme_tranche.annee_1),
+                taux(p_pre.remuneration.deuxieme_tranche.annee_2, p_post.remuneration.deuxieme_tranche.annee_2),
+                taux(p_pre.remuneration.deuxieme_tranche.annee_3, p_post.remuneration.deuxieme_tranche.annee_3),
+                taux(p_pre.remuneration.troisieme_tranche.annee_1, p_post.remuneration.troisieme_tranche.annee_1),
+                taux(p_pre.remuneration.troisieme_tranche.annee_2, p_post.remuneration.troisieme_tranche.annee_2),
+                taux(p_pre.remuneration.troisieme_tranche.annee_3, p_post.remuneration.troisieme_tranche.annee_3),
+                taux(p_pre.remuneration.troisieme_tranche.annee_1, p_post.remuneration.troisieme_tranche.annee_1),
+                taux(p_pre.remuneration.troisieme_tranche.annee_2, p_post.remuneration.troisieme_tranche.annee_2),
+                taux(p_pre.remuneration.troisieme_tranche.annee_3, p_post.remuneration.troisieme_tranche.annee_3),
+                p_post.remuneration.quatrieme_tranche.annee_1,
+                p_post.remuneration.quatrieme_tranche.annee_2,
+                p_post.remuneration.quatrieme_tranche.annee_3,
                 ],
             default=0,
             )
