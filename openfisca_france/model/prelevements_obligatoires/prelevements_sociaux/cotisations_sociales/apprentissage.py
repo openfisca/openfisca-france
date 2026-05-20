@@ -13,8 +13,23 @@ class apprenti(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        age = individu('age', period)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
+
+        duree_contrat = (
+            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
+            ).astype('timedelta64[Y]')
+        anciennete_contrat = duree_contrat < timedelta64(3, 'Y')
+
+        has_birth = individu.get_holder('date_naissance').get_known_periods()
+        if has_birth:
+            date_naissance = individu('date_naissance',period)
+            age_debut_contrat = (apprentissage_contrat_debut -
+                                 date_naissance).astype('timedelta64[Y]').astype(int)
+
+        else:
+            age = individu('age', period)
+            age_debut_contrat = age - duree_contrat.astype(int)
+
         regime_post_2019 = apprentissage_contrat_debut >= datetime64('2019-01-01')
 
         age_params_2008 = parameters('2008-05-01').marche_travail.apprentissage.age
@@ -23,12 +38,6 @@ class apprenti(Variable):
         minimum = where(regime_post_2019, age_params_2019.minimum, age_params_2008.minimum)
         maximum = where(regime_post_2019, age_params_2019.maximum_exclusif, age_params_2008.maximum_exclusif)
 
-        duree_contrat = (
-            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
-            ).astype('timedelta64[Y]')
-        anciennete_contrat = duree_contrat < timedelta64(3, 'Y')
-
-        age_debut_contrat = age - duree_contrat.astype(int)
         age_condition = (minimum <= age_debut_contrat) * (age_debut_contrat < maximum)
 
         return age_condition * anciennete_contrat
