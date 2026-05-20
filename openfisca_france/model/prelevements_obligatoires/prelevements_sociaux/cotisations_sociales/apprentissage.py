@@ -22,9 +22,9 @@ class apprenti(Variable):
 
         has_birth = individu.get_holder('date_naissance').get_known_periods()
         if has_birth:
-            date_naissance = individu('date_naissance',period)
-            age_debut_contrat = (apprentissage_contrat_debut -
-                                 date_naissance).astype('timedelta64[Y]').astype(int)
+            date_naissance = individu('date_naissance', period)
+            age_debut_contrat = (apprentissage_contrat_debut
+                                 - date_naissance).astype('timedelta64[Y]').astype(int)
 
         else:
             age = individu('age', period)
