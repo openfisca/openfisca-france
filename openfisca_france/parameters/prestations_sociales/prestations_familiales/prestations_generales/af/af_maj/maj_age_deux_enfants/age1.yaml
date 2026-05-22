@@ -5,10 +5,10 @@ values:
   2008-05-01:
     value: 14
   2026-03-01:
-    value: 15
+    value: 18
 metadata:
   short_label: Âge seuil de la majoration
-  last_value_still_valid_on: "2026-01-12"
+  last_value_still_valid_on: "2026-05-26"
   unit: year
   reference:
     2008-05-01:

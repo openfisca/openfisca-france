@@ -1,0 +1,57 @@
+- name: Allocations familiales - Majoration pour âge - maintien à 14 ans pour les enfants dont le 14e anniversaire précède le 1er mars 2026
+  description: Un enfant né avant le 1er mars 2012 relève de l'ancien régime et ouvre droit à la majoration dès 14 ans.
+  period: 2026-03
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        date_naissance: '1980-01-01'
+      parent2:
+        date_naissance: '1980-01-01'
+      enfant1:
+        date_naissance: '2012-02-28'
+      enfant2:
+        date_naissance: '2014-01-01'
+      enfant3:
+        date_naissance: '2016-01-01'
+  output:
+    af_majoration: 474.37 * 0.16
+
+- name: Allocations familiales - Majoration pour âge - passage à 18 ans pour les enfants dont le 14e anniversaire intervient à compter du 1er mars 2026
+  description: Un enfant né le 1er mars 2012 relève du nouveau régime et n'ouvre pas droit à la majoration à 14 ans.
+  period: 2026-03
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        date_naissance: '1980-01-01'
+      parent2:
+        date_naissance: '1980-01-01'
+      enfant1:
+        date_naissance: '2012-03-01'
+      enfant2:
+        date_naissance: '2014-01-01'
+      enfant3:
+        date_naissance: '2016-01-01'
+  output:
+    af_majoration: 0
