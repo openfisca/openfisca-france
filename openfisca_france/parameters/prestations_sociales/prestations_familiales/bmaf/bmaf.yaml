@@ -452,9 +452,8 @@ metadata:
       title: Instruction interministérielle N° DSS/2A/2C/2025/32 du 7 mars 2025
       href: https://sante.gouv.fr/fichiers/bo/2025/2025.6.sante.pdf#page=9
     2026-04-01:
-#      TODO
-#      title: Pas encore publie
-#      href: https://sante.gouv.fr/fichiers/bo/2025/2025.6.sante.pdf#page=9
+      title: Instruction interministérielle n° DSS/2B/2026/46 du 20 mars 2026 relative à la revalorisation au 1er avril 2026 des prestations familiales servies en métropole, DOM, Saint-Barthélemy, Saint-Martin et Mayotte.
+      href: https://bulletins-officiels.social.gouv.fr/sites/textes-officiels/files/2026-03/SFHS2607952J.pdf
   official_journal_date:
     1946-07-01: "1946-08-23"
     1947-02-01: "1947-04-06"
@@ -537,7 +536,7 @@ metadata:
     2013-04-01: "2011-12-22"
     2014-04-01: "2013-12-24"
     2025-04-01: "2025-03-31"
-    2026-04-01: "2025-03-31" #      TODO
+    2026-04-01: "2026-03-20"
   notes:
     1946-07-01:
     - title: Fixation du régime des prestations familiales (allocations de maternité, allocations familiales, allocations de salaire unique et allocations prénatales). Journal Officiel introuvable
