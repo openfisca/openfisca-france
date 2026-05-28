@@ -1,4 +1,4 @@
-from numpy import logical_or as or_
+from numpy import logical_or as or_, datetime64
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -180,6 +180,80 @@ class af_majoration_enfant(Variable):
     label = "Allocations familiales - Majoration pour âge applicable à l'enfant"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+    def formula_2026_03_01(individu, period, parameters):
+        pfam_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
+        age = individu('age', period)
+        garde_alternee = individu('garde_alternee', period)
+
+        af_nbenf = individu.famille('af_nbenf', period)
+        af_base = individu.famille('af_base', period)
+        age_aine = individu.famille('af_age_aine', period)
+
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+
+        montant_enfant_seul = bmaf * (
+            (af.af_maj_dom.tranches_age.age_debut_premiere_tranche <= age)
+            * (age < af.af_maj_dom.tranches_age.age_debut_deuxieme_tranche)
+            * af.af_maj_dom.majoration_premier_enfant.taux_tranche_1
+            + (af.af_maj_dom.tranches_age.age_debut_deuxieme_tranche <= age)
+            * af.af_maj_dom.majoration_premier_enfant.taux_tranche_2
+            )
+
+        seuil_ancien_regime = 14  # valeur de af.af_maj.maj_age_deux_enfants.age1 en 2008
+        seuil_nouveau_regime = af.af_maj.maj_age_deux_enfants.age1
+
+        date_naissance_holder = individu.get_holder('date_naissance')
+        date_naissance = individu('date_naissance', period)
+        date_naissance_par_defaut = date_naissance_holder.default_array()
+
+        date_naissance_renseignee = date_naissance != date_naissance_par_defaut
+
+        ancien_regime_selon_date_naissance = date_naissance < datetime64('2012-03-01')
+
+        # Lorsque date_naissance n'est pas renseignée, on évite d'utiliser sa
+        # valeur par défaut et on approxime le régime applicable à partir de
+        # l'âge et de la période de calcul. Cette approximation ne permet pas de
+        # trancher tous les cas autour de la date pivot du 1er mars 2012.
+        annee_naissance_estimee = period.start.year - age
+        ancien_regime_selon_age = or_(
+            annee_naissance_estimee < 2012,
+            (annee_naissance_estimee == 2012)
+            * (period.start.month < 3),
+            )
+
+        ancien_regime = where(
+            date_naissance_renseignee,
+            ancien_regime_selon_date_naissance,
+            ancien_regime_selon_age,
+            )
+
+        age_ouverture_droit = where(
+            ancien_regime,
+            seuil_ancien_regime,
+            seuil_nouveau_regime,
+            )
+
+        montant_plusieurs_enfants = bmaf * (
+            (age_ouverture_droit <= age)
+            * af.af_maj.maj_age_deux_enfants.taux1
+            )
+
+        montant = (af_nbenf == 1) * montant_enfant_seul + (af_nbenf > 1) * montant_plusieurs_enfants
+
+        # Attention ! Ne fonctionne pas pour les enfants du même âge (typiquement les jumeaux...)
+        pas_aine = or_(af_nbenf != 2, (af_nbenf == 2) * not_(age == age_aine))
+
+        coeff_garde_alternee = where(garde_alternee, af.af_cm.facteur_garde_alternee, 1)
+
+        return (
+            pfam_enfant_a_charge
+            * (af_base > 0)
+            * pas_aine
+            * montant
+            * coeff_garde_alternee
+            )
 
     def formula_2008_05_01(individu, period, parameters):
         pfam_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
