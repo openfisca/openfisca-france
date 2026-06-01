@@ -1,5 +1,15 @@
 # Changelog
 
+### 175.0.41
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/06/2026.
+* Zones impactées :
+    - `openfisca_france/parameters/marche_travail/salaire_minimum/smic/smic_b_horaire.yaml`
+    - `openfisca_france/parameters/marche_travail/salaire_minimum/smic/smic_b_mensuel.yaml`
+* Détails :
+  - Revalorisation du SMIC au 1er juin 2026
+
 ### 175.0.40
 
 * Évolution du système socio-fiscal.
