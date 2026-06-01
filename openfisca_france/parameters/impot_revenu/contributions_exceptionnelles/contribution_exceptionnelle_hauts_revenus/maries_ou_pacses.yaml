@@ -8,13 +8,13 @@ brackets:
       value: 0
 - threshold:
     2011-01-01:
-      value: 500_000
+      value: 500000
   rate:
     2011-01-01:
       value: 0.03
 - threshold:
     2011-01-01:
-      value: 1_000_000
+      value: 1000000
   rate:
     2011-01-01:
       value: 0.04
