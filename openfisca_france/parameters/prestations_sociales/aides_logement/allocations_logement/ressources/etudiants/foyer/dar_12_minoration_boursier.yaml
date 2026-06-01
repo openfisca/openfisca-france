@@ -39,4 +39,5 @@ metadata:
   notes:
     2025-01-01:
       title: 6600 - 5400
+  inflator: inflateurs.inflateur_aides_logement_forfait_etudiant
 documentation: Minoration du plancher de ressources étudiant (avant 2021) puis du forfait de ressources étudiant (depuis 2021) pour les boursiers dans un logement foyer (avant oct 2019, R.351-7-2 du CCH et art. 8 de l'arrêté du 30 juin 1979 ; oct 2019 - dec 2020, art. 6 de l'arrêté du 27 sept 2019 et art. R822-21 du CCH ; depuis janv 2021, même arrêté et art. R822-20 du CCH. Cette minoration est obtenue en soustrayant le montant forfaitaire des ressources pour les étudiants en résidence-foyer sans bourse de l'enseignement supérieur du montant pour ceux qui en ont.
