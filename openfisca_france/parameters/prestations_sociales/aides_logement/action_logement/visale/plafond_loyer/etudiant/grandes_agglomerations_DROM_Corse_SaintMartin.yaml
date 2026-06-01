@@ -1,0 +1,14 @@
+description: Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant en agglomération de plus de 100 000 habitants, en Corse, dans les départements d'outre-mer ou Saint-Martin
+values:
+  2026-01-06:
+    value: 840
+metadata:
+  last_value_still_valid_on: "2026-04-01"
+  short_label: En agglomération > 100 000 habitants, départements outre-mer, Corse, ou Saint-Martin
+  unit: currency
+  reference:
+    2026-01-06:
+    - title: Visale.fr
+      href: https://www.visale.fr/evolution_visale_2026/
+documentation: |-
+  À compter du 6 janvier 2026, les plafonds de loyers garantis par Visale évoluent, une nouvelle catégorie de ville est introduite en plus du cas général et du cas Ile-de-France.
