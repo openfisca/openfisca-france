@@ -1,4 +1,4 @@
-description: Barème CEHR pour les célibataires, veufs, divorcés ou séparés
+description: Barème CEHR pour les contribuables soumis à une imposition commune (mariés ou pacsés)
 brackets:
 - threshold:
     2011-01-01:
@@ -8,13 +8,13 @@ brackets:
       value: 0
 - threshold:
     2011-01-01:
-      value: 250_000
+      value: 500000
   rate:
     2011-01-01:
       value: 0.03
 - threshold:
     2011-01-01:
-      value: 500_000
+      value: 1000000
   rate:
     2011-01-01:
       value: 0.04
@@ -22,8 +22,8 @@ metadata:
   threshold_unit: currency_next_year
   rate_unit: /1
   last_value_still_valid_on: "2026-04-09"
-  short_label: Barème CEHR célibataires
-  label_en: Exceptional tax on high incomes (single)
+  short_label: Barème CEHR couples
+  label_en: Exceptional tax on high incomes (couples)
   official_journal_date:
     2011-01-01: "2011-12-28"
   reference:

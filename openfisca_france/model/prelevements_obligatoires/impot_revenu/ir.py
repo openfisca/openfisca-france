@@ -2334,7 +2334,7 @@ class contribution_exceptionnelle_hauts_revenus(Variable):
         '''
         rfr = arrondi_fiscal(foyer_fiscal('rfr', period))
         celibataire_ou_assimile = invert(foyer_fiscal('maries_ou_pacses', period))
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.CEHR
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_exceptionnelle_hauts_revenus
 
         # --- Droit commun ---
         cotisation_droit_commun = foyer_fiscal('contribution_exceptionnelle_hauts_revenus_sans_lissage', period)
@@ -2385,7 +2385,7 @@ class contribution_exceptionnelle_hauts_revenus_sans_lissage(Variable):
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         rfr = arrondi_fiscal(foyer_fiscal('rfr', period))
         celibataire_ou_assimile = invert(foyer_fiscal('maries_ou_pacses', period))
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.CEHR
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_exceptionnelle_hauts_revenus
 
         return where(
             celibataire_ou_assimile,
