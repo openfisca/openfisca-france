@@ -250,7 +250,7 @@ values:
     value: 12.31
 metadata:
   short_label: Smic horaire brut
-  last_value_still_valid_on: "2026-01-12"
+  last_value_still_valid_on: "2026-06-01"
   label_en: Minimum wage - Smic
   ipp_csv_id: smic_h
   unit: currency
