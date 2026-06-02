@@ -1,5 +1,22 @@
 # Changelog
 
+### 175.0.44 [#2754](https://github.com/openfisca/openfisca-france/pull/2754)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/03/2026.
+* Zones impactées :
+  - `openfisca_france/model/prestations/prestations_familiales/af.py`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_maj/maj_age_deux_enfants/age1.yaml`
+  - `tests/formulas/af_majoration_age_2026.yaml`
+* Détails :
+  - Prise en compte du décret n° 2026-138 du 27 février 2026 portant à dix-huit ans l'âge de la majoration des allocations familiales.
+  - Passage du seuil d'âge de la majoration des allocations familiales de 14 à 18 ans à partir du 1er mars 2026.
+  - Application de la clause transitoire prévue par le décret : les enfants nés avant le 1er mars 2012 conservent l'ancien seuil de 14 ans ; les enfants nés à partir du 1er mars 2012 relèvent du nouveau seuil de 18 ans.
+  - Lorsque `date_naissance` est renseignée, elle est utilisée pour déterminer précisément le régime applicable.
+  - Lorsque `date_naissance` n'est pas renseignée, le régime applicable est approximé à partir de `age` et de la période de calcul afin d'éviter l'utilisation implicite de la valeur par défaut de `date_naissance`.
+  - Cette approximation ne permet pas de trancher tous les cas autour de la date pivot du 1er mars 2012 : le calcul exact de la clause transitoire nécessite de renseigner `date_naissance`.
+  - Ajout de tests sur la date de naissance pivot du 1er mars 2012 et sur le fallback lorsque seule la variable `age` est renseignée.
+
 ### 175.0.43 [#2737](https://github.com/openfisca/openfisca-france/pull/2737)
 
 * Changement mineur.
