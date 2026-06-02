@@ -1,5 +1,14 @@
 # Changelog
 
+### 175.0.43 [#2756](https://github.com/openfisca/openfisca-france/pull/2756)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2026.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/*`.
+* Détails :
+  - Mise à jour des montants de juin 2026.
+  - Suppression des valeurs de janvier 2026, qui correspondaient à la limite du montant et pas au montant lui-même (cf historique de https://www.legifrance.gouv.fr/loda/id/JORFARTI000036650016#JORFARTI000036650016).
+
 ### 175.0.44 [#2754](https://github.com/openfisca/openfisca-france/pull/2754)
 
 * Évolution du système socio-fiscal.
@@ -27,7 +36,7 @@
 
 ### 175.0.42 [#2745](https://github.com/openfisca/openfisca-france/pull/2745)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/impot_revenu/contributions_exceptionnelles/contribution_exceptionnelle_hauts_revenus/index.yaml`.
 * Détails :
