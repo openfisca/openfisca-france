@@ -13,7 +13,7 @@ metadata:
       href: https://www.unedic.org/la-reglementation/conventions-d-assurance-chomage/reglement-general-annexe-a-la-convention-du-14-avril-2017
     2014-07-01:
       title: Article 3 du règlement général annexé à la convention du 14 mai 2014
-      href: https://www.unedic.org/ged/documents/regulatory_texts/pdf/RglACh11.pdf
+      href: https://www.unedic.org/ged/documents/regulatory_texts/pdf/RglACh14.pdf
     2011-06-01:
       title: Article 3 du règlement général annexé à la convention du 6 mai 2011
       href: https://www.unedic.org/ged/documents/regulatory_texts/pdf/RglACh11.pdf
@@ -21,21 +21,14 @@ metadata:
       title: Article 3 du règlement général annexé à la convention du 19 février 2009
       href: https://www.unedic.org/ged/documents/regulatory_texts/pdf/RglACh09.pdf
 
-#vérifier date mise en oeuvre
-
 premiere_categorie:
   values:
     2019-11-01:
-      value: 130
-    2017-10-01:
-      value: 88
+      value: 24
     2009-04-01:
-      value: 122
+      value: 28
 
 seconde_categorie:
   values:
-    2019-11-01:
-      value: 910
     2009-04-01:
-      value: 610
-
+      value: 36

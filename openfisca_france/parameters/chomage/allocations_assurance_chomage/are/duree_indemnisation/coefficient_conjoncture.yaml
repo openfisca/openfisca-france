@@ -1,5 +1,4 @@
-description: Coefficient de conjoncture modulant la durée maximale d'indemnisation ARE lorsque les indicateurs du marché du travail sont jugés en situation favorable. Une valeur de 1 correspond à l'absence de modulation (pleine durée).
-unit: /1
+description: Coefficient de conjoncture modulant la durée maximale d'indemnisation ARE
 metadata:
   reference:
     2023-02-01:
