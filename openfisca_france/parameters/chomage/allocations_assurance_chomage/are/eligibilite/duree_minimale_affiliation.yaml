@@ -20,7 +20,7 @@ metadata:
       title: Article 3 du règlement général annexé à la convention du 19 février 2009
       href: https://www.unedic.org/ged/documents/regulatory_texts/pdf/RglACh09.pdf
 
-days_worked:
+jours_travailles:
   description: Nombre de jours de travail salarié minimum
   unit: day
   values:
@@ -31,7 +31,7 @@ days_worked:
     2009-04-01:
       value: 122
 
-hours_worked:
+heures_travaillees:
   description: Nombre d'heures de travail salarié minimum
   unit: hour
   values:
