@@ -1,3 +1,19 @@
+  # Neutralisation par bénéfice du RSA le mois précédent
+- name: "Condition de neutralisation AL si RSA calculable le mois précédent"
+  period: 2018-11
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        date_naissance: 1968-01-10
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement_condition_neutralisation: true
+
  # Cas N° 1
 - name: "Cas 1-zone_1: Personne seule chômeur indemnisé réside dans un secteur locatif vide non conventionné dans la zone 1"
   period: 2018-11

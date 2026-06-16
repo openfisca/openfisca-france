@@ -12,6 +12,7 @@ from openfisca_core.periods import Instant, Period
 import openfisca_france
 from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesConges
+from openfisca_france.model.prestations.minima_sociaux.rsa import TypesRSANonCalculable
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
@@ -499,6 +500,37 @@ class al_couple(Variable):
 
 # Eligibilités aux différents abattements, evaluation forfaitaire et neutralisation
 
+class aide_logement_beneficiaire_rsa_mois_precedent(Variable):
+    value_type = bool
+    entity = Famille
+    label = "Bénéficiaire du RSA le mois précédent, pour la neutralisation des ressources dans le calcul de l'aide au logement"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula_2009_07_01(famille, period, parameters):
+        previous_month = period.last_month
+        rsa_input = famille.get_holder('rsa').get_array(previous_month)
+        if rsa_input is not None:
+            return rsa_input > 0
+
+        # Ne pas calculer `rsa` ici : cela créerait une récurrence infinie avec `aide_logement`.
+        rsa_socle_non_majore = famille('rsa_socle', previous_month)
+        rsa_socle_majore = famille('rsa_socle_majore', previous_month)
+        rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
+
+        rsa_revenu_activite = famille('rsa_revenu_activite', previous_month)
+        rsa_base_ressources = famille('rsa_base_ressources', previous_month)
+        rsa_non_calculable = famille('rsa_non_calculable', previous_month)
+        seuil_non_versement = parameters(previous_month).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_maj.montant_minimum_verse
+
+        montant = max_(rsa_socle - rsa_base_ressources + rsa_revenu_activite, 0)
+
+        return (
+            (rsa_non_calculable == TypesRSANonCalculable.calculable)
+            * (montant >= seuil_non_versement)
+            )
+
+
 class aide_logement_condition_neutralisation(Variable):
     value_type = bool
     entity = Individu
@@ -526,9 +558,9 @@ class aide_logement_condition_neutralisation(Variable):
         type_conges = individu('type_conges', period)
         conge_parental = (type_conges == TypesConges.conge_parental)
 
-        rsa_mois_dernier = individu.famille('rsa', period.last_month)
+        beneficiaire_rsa_mois_precedent = individu.famille('aide_logement_beneficiaire_rsa_mois_precedent', period)
 
-        return min_((((chomage_non_indemnise > 0) + conge_parental + (rsa_mois_dernier > 0)) * individu.has_role(Famille.PARENT)), 1)
+        return min_((((chomage_non_indemnise > 0) + conge_parental + beneficiaire_rsa_mois_precedent) * individu.has_role(Famille.PARENT)), 1)
 
 
 class aide_logement_abattement_revenus_activite_professionnelle(Variable):
