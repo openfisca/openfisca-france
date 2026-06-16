@@ -1,0 +1,610 @@
+# Tests ARE - Allocation de Retour à l'Emploi
+# Hypothèses communes :
+#   - individu né le 1985-01-01 (39 ans à fin de contrat → premiere_categorie, période référence 24 mois)
+#   - salaire mensuel 2000€, quotité 1.0 (temps plein)
+#   - motif : licenciement
+#   - ARE calculée le mois suivant la fin du contrat
+
+- name: are_contrat_6_mois
+  description: >
+    Contrat de 6 mois (juillet à décembre 2024), fin le 31/12/2024.
+    Jours travaillés : 132 (>= seuil 130) → éligible.
+    Durée indemnisation plafonnée au minimum légal (182 jours) car peu de jours non travaillés.
+  period: 2025-01
+  input:
+    individus:
+      ind0:
+        date_naissance: '1985-01-01'
+        contrat_de_travail_debut:
+          2024-07: '2024-07-01'
+          2024-08: '2024-07-01'
+          2024-09: '2024-07-01'
+          2024-10: '2024-07-01'
+          2024-11: '2024-07-01'
+          2024-12: '2024-07-01'
+        contrat_de_travail_fin:
+          2024-07: '2024-12-31'
+          2024-08: '2024-12-31'
+          2024-09: '2024-12-31'
+          2024-10: '2024-12-31'
+          2024-11: '2024-12-31'
+          2024-12: '2024-12-31'
+        motif_fin_contrat:
+          2024-12: licenciement
+        salaire_de_base:
+          2024-07: 2000
+          2024-08: 2000
+          2024-09: 2000
+          2024-10: 2000
+          2024-11: 2000
+          2024-12: 2000
+        quotite_de_travail:
+          2024-07: 1.0
+          2024-08: 1.0
+          2024-09: 1.0
+          2024-10: 1.0
+          2024-11: 1.0
+          2024-12: 1.0
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    are_eligible: true
+    are_jours_travailles: 132
+    are_debut_prc: '2024-07-01'
+    are_jours_prc: 184
+    are_duree_nette_indemnisation: 182
+
+
+- name: are_contrat_12_mois
+  description: >
+    Contrat de 12 mois (janvier à décembre 2024), fin le 31/12/2024.
+    Jours travaillés : 262 → éligible.
+    2024 étant une année bissextile, jours_prc = 366.
+  period: 2025-01
+  input:
+    individus:
+      ind0:
+        date_naissance: '1985-01-01'
+        contrat_de_travail_debut:
+          2024-01: '2024-01-01'
+          2024-02: '2024-01-01'
+          2024-03: '2024-01-01'
+          2024-04: '2024-01-01'
+          2024-05: '2024-01-01'
+          2024-06: '2024-01-01'
+          2024-07: '2024-01-01'
+          2024-08: '2024-01-01'
+          2024-09: '2024-01-01'
+          2024-10: '2024-01-01'
+          2024-11: '2024-01-01'
+          2024-12: '2024-01-01'
+        contrat_de_travail_fin:
+          2024-01: '2024-12-31'
+          2024-02: '2024-12-31'
+          2024-03: '2024-12-31'
+          2024-04: '2024-12-31'
+          2024-05: '2024-12-31'
+          2024-06: '2024-12-31'
+          2024-07: '2024-12-31'
+          2024-08: '2024-12-31'
+          2024-09: '2024-12-31'
+          2024-10: '2024-12-31'
+          2024-11: '2024-12-31'
+          2024-12: '2024-12-31'
+        motif_fin_contrat:
+          2024-12: licenciement
+        salaire_de_base:
+          2024-01: 2000
+          2024-02: 2000
+          2024-03: 2000
+          2024-04: 2000
+          2024-05: 2000
+          2024-06: 2000
+          2024-07: 2000
+          2024-08: 2000
+          2024-09: 2000
+          2024-10: 2000
+          2024-11: 2000
+          2024-12: 2000
+        quotite_de_travail:
+          2024-01: 1.0
+          2024-02: 1.0
+          2024-03: 1.0
+          2024-04: 1.0
+          2024-05: 1.0
+          2024-06: 1.0
+          2024-07: 1.0
+          2024-08: 1.0
+          2024-09: 1.0
+          2024-10: 1.0
+          2024-11: 1.0
+          2024-12: 1.0
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    are_eligible: true
+    are_jours_travailles: 262
+    are_debut_prc: '2024-01-01'
+    are_jours_prc: 366
+    are_duree_nette_indemnisation: 275
+
+
+- name: are_deux_contrats_avec_trou
+  description: >
+    Deux contrats de 6 mois séparés par 12 mois de trou :
+      - Contrat 1 : janvier à juin 2023 (130 jours travaillés)
+      - Contrat 2 : juillet à décembre 2024 (132 jours travaillés)
+    Total : 262 jours → éligible.
+    Le trou de 13 mois est inclus dans la PRC (730 jours calendaires),
+    ce qui allonge la durée d'indemnisation (482 jours).
+  period: 2025-01
+  input:
+    individus:
+      ind0:
+        date_naissance: '1985-01-01'
+        contrat_de_travail_debut:
+          2023-01: '2023-01-01'
+          2023-02: '2023-01-01'
+          2023-03: '2023-01-01'
+          2023-04: '2023-01-01'
+          2023-05: '2023-01-01'
+          2023-06: '2023-01-01'
+          2024-07: '2024-07-01'
+          2024-08: '2024-07-01'
+          2024-09: '2024-07-01'
+          2024-10: '2024-07-01'
+          2024-11: '2024-07-01'
+          2024-12: '2024-07-01'
+        contrat_de_travail_fin:
+          2023-01: '2023-06-30'
+          2023-02: '2023-06-30'
+          2023-03: '2023-06-30'
+          2023-04: '2023-06-30'
+          2023-05: '2023-06-30'
+          2023-06: '2023-06-30'
+          2024-07: '2024-12-31'
+          2024-08: '2024-12-31'
+          2024-09: '2024-12-31'
+          2024-10: '2024-12-31'
+          2024-11: '2024-12-31'
+          2024-12: '2024-12-31'
+        motif_fin_contrat:
+          2024-12: licenciement
+        salaire_de_base:
+          2023-01: 2000
+          2023-02: 2000
+          2023-03: 2000
+          2023-04: 2000
+          2023-05: 2000
+          2023-06: 2000
+          2024-07: 2000
+          2024-08: 2000
+          2024-09: 2000
+          2024-10: 2000
+          2024-11: 2000
+          2024-12: 2000
+        quotite_de_travail:
+          2023-01: 1.0
+          2023-02: 1.0
+          2023-03: 1.0
+          2023-04: 1.0
+          2023-05: 1.0
+          2023-06: 1.0
+          2024-07: 1.0
+          2024-08: 1.0
+          2024-09: 1.0
+          2024-10: 1.0
+          2024-11: 1.0
+          2024-12: 1.0
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    are_eligible: true
+    are_jours_travailles: 262
+    are_debut_prc: '2023-01-01'
+    are_jours_prc: 731
+    are_duree_nette_indemnisation: 482
+
+
+- name: are_cdd_6_mois_eligible
+  description: >
+    Contrat CDD de 6 mois (juillet à décembre 2025), fin le 31/12/2025.
+    Motif : fin de CDD. Salaire 2500€/mois, temps plein, né le 16/09/1992.
+    Jours travaillés : 132 (>= seuil 130) → éligible.
+    Durée nette plafonnée au minimum légal (182 jours) : ceil(184 × 0.75) = 138 < 182.
+    SJR = 15000 / 184 = 81.52€/j. Brute/j = 0.57 × SJR = 46.47€. PRC = -2.45€. CSG/CRDS = 0.
+    Simulateur France Travail : 182 jours, 1320.6€ net/mois (écart +0.08€ dû à l'arrondi journalier côté FT).
+  period: 2026-01
+  input:
+    individus:
+      ind0:
+        date_naissance: '1992-09-16'
+        contrat_de_travail_debut:
+          2025-07: '2025-07-01'
+          2025-08: '2025-07-01'
+          2025-09: '2025-07-01'
+          2025-10: '2025-07-01'
+          2025-11: '2025-07-01'
+          2025-12: '2025-07-01'
+        contrat_de_travail_fin:
+          2025-07: '2025-12-31'
+          2025-08: '2025-12-31'
+          2025-09: '2025-12-31'
+          2025-10: '2025-12-31'
+          2025-11: '2025-12-31'
+          2025-12: '2025-12-31'
+        motif_fin_contrat:
+          2025-12: fin_cdd
+        salaire_de_base:
+          2025-07: 2500
+          2025-08: 2500
+          2025-09: 2500
+          2025-10: 2500
+          2025-11: 2500
+          2025-12: 2500
+        quotite_de_travail:
+          2025-07: 1.0
+          2025-08: 1.0
+          2025-09: 1.0
+          2025-10: 1.0
+          2025-11: 1.0
+          2025-12: 1.0
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    are_eligible_ouverture: true
+    are_jours_travailles: 132
+    are_debut_prc: '2025-07-01'
+    are_jours_prc: 184
+    are_duree_nette_indemnisation: 182
+    are_allocation_super_brute_mensuelle: 1394.02
+    are_allocation_nette_mensuelle: 1320.52
+
+
+- name: are_deux_cdd_avec_trou_387j
+  description: >
+    Deux CDD séparés par un trou de 6 mois :
+      - Contrat 1 : janvier à juin 2025 (129 jours ouvrés)
+      - Contrat 2 : janvier à mai 2026 (107 jours ouvrés)
+    Total : 236 jours → éligible. PRC = 516 jours calendaires (2025-01-01 → 2026-05-31).
+    duree_brute = ceil(236×1.4) + (516−331) = 331+185 = 516 → nette = ceil(516×0.75) = 387 jours.
+    SJR = 27500 / 516 = 53.29€/j. Brute/j = partie_fixe + 0.404×SJR = 34.71€. PRC = −1.60€. CSG/CRDS = 0.
+    Simulateur France Travail : 387 jours, 1041.3€ brut/mois, 993.3€ net/mois (écart ±0.03€ arrondi journalier FT).
+  period: 2026-06
+  input:
+    individus:
+      ind0:
+        date_naissance: '1992-09-16'
+        contrat_de_travail_debut:
+          2025-01: '2025-01-01'
+          2025-02: '2025-01-01'
+          2025-03: '2025-01-01'
+          2025-04: '2025-01-01'
+          2025-05: '2025-01-01'
+          2025-06: '2025-01-01'
+          2026-01: '2026-01-01'
+          2026-02: '2026-01-01'
+          2026-03: '2026-01-01'
+          2026-04: '2026-01-01'
+          2026-05: '2026-01-01'
+        contrat_de_travail_fin:
+          2025-01: '2025-06-30'
+          2025-02: '2025-06-30'
+          2025-03: '2025-06-30'
+          2025-04: '2025-06-30'
+          2025-05: '2025-06-30'
+          2025-06: '2025-06-30'
+          2026-01: '2026-05-31'
+          2026-02: '2026-05-31'
+          2026-03: '2026-05-31'
+          2026-04: '2026-05-31'
+          2026-05: '2026-05-31'
+        motif_fin_contrat:
+          2025-06: fin_cdd
+          2026-05: fin_cdd
+        salaire_de_base:
+          2025-01: 2500
+          2025-02: 2500
+          2025-03: 2500
+          2025-04: 2500
+          2025-05: 2500
+          2025-06: 2500
+          2026-01: 2500
+          2026-02: 2500
+          2026-03: 2500
+          2026-04: 2500
+          2026-05: 2500
+        quotite_de_travail:
+          2025-01: 1.0
+          2025-02: 1.0
+          2025-03: 1.0
+          2025-04: 1.0
+          2025-05: 1.0
+          2025-06: 1.0
+          2026-01: 1.0
+          2026-02: 1.0
+          2026-03: 1.0
+          2026-04: 1.0
+          2026-05: 1.0
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    are_eligible_ouverture: true
+    are_jours_travailles: 236
+    are_debut_prc: '2025-01-01'
+    are_jours_prc: 516
+    are_duree_nette_indemnisation: 387
+    are_allocation_super_brute_mensuelle: 1041.33
+    are_allocation_nette_mensuelle: 993.33
+
+
+- name: are_demission_non_eligible
+  description: >
+    Contrat de 6 mois (juillet à décembre 2025), fin le 31/12/2025.
+    Motif : démission non légitime → motif non éligible à l'ARE.
+    Simulateur France Travail : non éligible (départ volontaire).
+  period: 2026-01
+  input:
+    individus:
+      ind0:
+        date_naissance: '1992-09-16'
+        contrat_de_travail_debut:
+          2025-07: '2025-07-01'
+          2025-08: '2025-07-01'
+          2025-09: '2025-07-01'
+          2025-10: '2025-07-01'
+          2025-11: '2025-07-01'
+          2025-12: '2025-07-01'
+        contrat_de_travail_fin:
+          2025-07: '2025-12-31'
+          2025-08: '2025-12-31'
+          2025-09: '2025-12-31'
+          2025-10: '2025-12-31'
+          2025-11: '2025-12-31'
+          2025-12: '2025-12-31'
+        motif_fin_contrat:
+          2025-12: demission
+        salaire_de_base:
+          2025-07: 2500
+          2025-08: 2500
+          2025-09: 2500
+          2025-10: 2500
+          2025-11: 2500
+          2025-12: 2500
+        quotite_de_travail:
+          2025-07: 1.0
+          2025-08: 1.0
+          2025-09: 1.0
+          2025-10: 1.0
+          2025-11: 1.0
+          2025-12: 1.0
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    are_eligible_ouverture: false
+    are_jours_travailles: 132
+
+
+- name: are_cdd_4_mois_non_eligible
+  description: >
+    Contrat CDD de 4 mois (janvier à avril 2025), fin le 30/04/2025.
+    Motif : fin de CDD. Salaire 2500€/mois, temps plein, né le 16/09/1992.
+    Jours travaillés : 86 (< seuil 130) → non éligible.
+  period: 2025-05
+  input:
+    individus:
+      ind0:
+        date_naissance: '1992-09-16'
+        contrat_de_travail_debut:
+          2025-01: '2025-01-01'
+          2025-02: '2025-01-01'
+          2025-03: '2025-01-01'
+          2025-04: '2025-01-01'
+        contrat_de_travail_fin:
+          2025-01: '2025-04-30'
+          2025-02: '2025-04-30'
+          2025-03: '2025-04-30'
+          2025-04: '2025-04-30'
+        motif_fin_contrat:
+          2025-04: fin_cdd
+        salaire_de_base:
+          2025-01: 2500
+          2025-02: 2500
+          2025-03: 2500
+          2025-04: 2500
+        quotite_de_travail:
+          2025-01: 1.0
+          2025-02: 1.0
+          2025-03: 1.0
+          2025-04: 1.0
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    are_eligible_ouverture: false
+    are_jours_travailles: 86
+    are_debut_prc: '2025-01-01'
+    are_jours_prc: 120
+
+
+- name: are_cdd_12_mois_4000_eligible
+  description: >
+    Contrat CDD de 12 mois (janvier à décembre 2025), fin le 31/12/2025.
+    Motif : fin de CDD. Salaire 4000€/mois, temps plein, né le 16/09/1992.
+    Jours travaillés : 261 (>= seuil 130) → éligible. PRC : 365 jours.
+    SJR = 48 000 / 365 = 131.51€/j. Super brute/j = 0.57 × SJR = 74.96€ (seuil).
+    PRC = -3.95€/j. Brute/j = 71.01€. CSG (3.8%+2.4%) + CRDS (0.5%) sur base 98% = -4.67€/j.
+    Nette/j = 66.34€. Durée nette : ceil(365 × 0.75) = 274 jours.
+    Super brute mensuelle : 30 × 74.96 = 2248.80€. Nette mensuelle : 30 × 66.34 = 1990.20€.
+    Simulateur France Travail : 274 jours, 1989.9€ net/mois (écart 0.30€ arrondi journalier).
+  period: 2026-01
+  input:
+    individus:
+      ind0:
+        date_naissance: '1992-09-16'
+        contrat_de_travail_debut:
+          2025-01: '2025-01-01'
+          2025-02: '2025-01-01'
+          2025-03: '2025-01-01'
+          2025-04: '2025-01-01'
+          2025-05: '2025-01-01'
+          2025-06: '2025-01-01'
+          2025-07: '2025-01-01'
+          2025-08: '2025-01-01'
+          2025-09: '2025-01-01'
+          2025-10: '2025-01-01'
+          2025-11: '2025-01-01'
+          2025-12: '2025-01-01'
+        contrat_de_travail_fin:
+          2025-01: '2025-12-31'
+          2025-02: '2025-12-31'
+          2025-03: '2025-12-31'
+          2025-04: '2025-12-31'
+          2025-05: '2025-12-31'
+          2025-06: '2025-12-31'
+          2025-07: '2025-12-31'
+          2025-08: '2025-12-31'
+          2025-09: '2025-12-31'
+          2025-10: '2025-12-31'
+          2025-11: '2025-12-31'
+          2025-12: '2025-12-31'
+        motif_fin_contrat:
+          2025-12: fin_cdd
+        salaire_de_base:
+          2025-01: 4000
+          2025-02: 4000
+          2025-03: 4000
+          2025-04: 4000
+          2025-05: 4000
+          2025-06: 4000
+          2025-07: 4000
+          2025-08: 4000
+          2025-09: 4000
+          2025-10: 4000
+          2025-11: 4000
+          2025-12: 4000
+        quotite_de_travail:
+          2025-01: 1.0
+          2025-02: 1.0
+          2025-03: 1.0
+          2025-04: 1.0
+          2025-05: 1.0
+          2025-06: 1.0
+          2025-07: 1.0
+          2025-08: 1.0
+          2025-09: 1.0
+          2025-10: 1.0
+          2025-11: 1.0
+          2025-12: 1.0
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    are_eligible_ouverture: true
+    are_jours_travailles: 261
+    are_debut_prc: '2025-01-01'
+    are_jours_prc: 365
+    are_duree_nette_indemnisation: 274
+    are_allocation_super_brute_mensuelle: 2248.80
+    are_allocation_nette_mensuelle: 1990.20
+
+
+- name: are_cdd_12_mois_6000_degressivite
+  description: >
+    Contrat CDD de 12 mois (janvier à décembre 2025), fin le 31/12/2025.
+    Motif : fin de CDD. Salaire 6000€/mois, temps plein, né le 16/09/1992.
+    Jours travaillés : 261. SJR = 72 000 / 365 = 197.26€/j. Durée nette : 274 jours.
+    Éligible à la dégressivité : allocation tx_plein (112.44€) > seuil (92.57€).
+    Taux plein (182 jours) : 112.44€ super brute/j → 99.51€ net/j → 3373.20€ brut/mois, 2985.30€ net/mois.
+    Taux réduit (92 jours) : plancher montant_minimum_application = 92.57€ super brute/j
+      (car 70% × 112.44 = 78.71 < 92.57), → 80.95€ net/j → 2777.10€ brut/mois, 2428.50€ net/mois.
+    Simulateur France Travail : 3373.2€/2985.3€ taux plein, 2777.1€/2428.2€ taux réduit (écart 0.01€/j arrondi).
+  period: 2026-01
+  input:
+    individus:
+      ind0:
+        date_naissance: '1992-09-16'
+        contrat_de_travail_debut:
+          2025-01: '2025-01-01'
+          2025-02: '2025-01-01'
+          2025-03: '2025-01-01'
+          2025-04: '2025-01-01'
+          2025-05: '2025-01-01'
+          2025-06: '2025-01-01'
+          2025-07: '2025-01-01'
+          2025-08: '2025-01-01'
+          2025-09: '2025-01-01'
+          2025-10: '2025-01-01'
+          2025-11: '2025-01-01'
+          2025-12: '2025-01-01'
+        contrat_de_travail_fin:
+          2025-01: '2025-12-31'
+          2025-02: '2025-12-31'
+          2025-03: '2025-12-31'
+          2025-04: '2025-12-31'
+          2025-05: '2025-12-31'
+          2025-06: '2025-12-31'
+          2025-07: '2025-12-31'
+          2025-08: '2025-12-31'
+          2025-09: '2025-12-31'
+          2025-10: '2025-12-31'
+          2025-11: '2025-12-31'
+          2025-12: '2025-12-31'
+        motif_fin_contrat:
+          2025-12: fin_cdd
+        salaire_de_base:
+          2025-01: 6000
+          2025-02: 6000
+          2025-03: 6000
+          2025-04: 6000
+          2025-05: 6000
+          2025-06: 6000
+          2025-07: 6000
+          2025-08: 6000
+          2025-09: 6000
+          2025-10: 6000
+          2025-11: 6000
+          2025-12: 6000
+        quotite_de_travail:
+          2025-01: 1.0
+          2025-02: 1.0
+          2025-03: 1.0
+          2025-04: 1.0
+          2025-05: 1.0
+          2025-06: 1.0
+          2025-07: 1.0
+          2025-08: 1.0
+          2025-09: 1.0
+          2025-10: 1.0
+          2025-11: 1.0
+          2025-12: 1.0
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    are_eligible_ouverture: true
+    are_jours_travailles: 261
+    are_debut_prc: '2025-01-01'
+    are_jours_prc: 365
+    are_duree_nette_indemnisation: 274
+    are_allocation_journaliere_super_brute_tx_plein: 112.44
+    are_allocation_nette_journaliere_tx_plein: 99.51
+    are_allocation_journaliere_super_brute_tx_deg: 92.57
+    are_allocation_nette_journaliere_tx_deg: 80.95
+    are_allocation_super_brute_mensuelle: 3373.20
+    are_allocation_nette_mensuelle: 2985.30
