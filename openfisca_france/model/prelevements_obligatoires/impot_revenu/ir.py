@@ -3364,6 +3364,49 @@ class aacc_timp(Variable):
             )
         return aacc_timp
 
+    def formula_2025_01_01(individu, period, parameters):
+        aacc_gits = individu('aacc_gits', period)
+        tourisme_non_classes = individu('tourisme_non_classes', period)
+        nacc_meup = individu('nacc_meup', period)
+        nacc_meup_non_classes = individu('nacc_meup_non_classes', period)
+        autres_location_meublees_micro = individu('autres_location_meublees_micro', period)
+        autres_location_meublees_micro_prelev = individu('autres_location_meublees_micro_prelev', period)
+        nacc_pres = individu('nacc_pres', period)
+        alnp_defs = individu('alnp_defs', period)
+        aacc_defn = individu('aacc_defn', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+        aacc_timp = (
+            max_(
+                0,
+                (max_(
+                    micro.microentreprise.montant_minimum,
+                    aacc_gits * (1 - micro.microentreprise.regime_micro_bic.services.taux)
+                    ))
+                + (tourisme_non_classes > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    tourisme_non_classes * (1 - micro.microentreprise.regime_micro_bic.meubles_tourisme.taux)
+                    )
+                + (nacc_meup > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    nacc_meup * (1 - micro.microentreprise.regime_micro_bic.services.taux)
+                    )
+                + (nacc_meup_non_classes > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    nacc_meup_non_classes * (1 - micro.microentreprise.regime_micro_bic.meubles_tourisme.taux)
+                    )
+                + (autres_location_meublees_micro > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    autres_location_meublees_micro * (1 - micro.microentreprise.regime_micro_bic.services.taux)
+                    )
+                + (autres_location_meublees_micro_prelev > 0) * max_(
+                    micro.microentreprise.montant_minimum,
+                    autres_location_meublees_micro_prelev * (1 - micro.microentreprise.regime_micro_bic.services.taux)
+                    )
+                + max_(0, nacc_pres - alnp_defs) - aacc_defn
+                )
+            )
+        return aacc_timp
+
 
 class atimp(Variable):
     value_type = float

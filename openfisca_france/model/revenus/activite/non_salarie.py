@@ -692,6 +692,31 @@ class aacc_imps(Variable):
     label = 'Locations meublées non professionnelles (régime micro entreprise)'
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
+    end = '2025-12-31'
+
+
+class tourisme_non_classes(Variable):
+    cerfa_field = {0: '5NH',
+        1: '5OH',
+        2: '5PH', }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Locations meublées non professionnelles de tourisme non classées '
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class tourisme_non_classes_prelev(Variable):
+    cerfa_field = {0: '5NK',
+        1: '5OK',
+        2: '5PK', }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = 'Locations meublées non professionnelles de tourisme non classées déjà soumises aux prélèvements sociaux (régime micro entreprise)'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
 
 
 # (f5nf, f5of, f5pf))
@@ -714,7 +739,7 @@ class aacc_gits(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)"
+    label = "Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise), classés"
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
@@ -758,6 +783,42 @@ class nacc_meup(Variable):
     definition_period = YEAR
 
 
+class nacc_meup_non_classes(Variable):
+    cerfa_field = {0: '5NK',
+        1: '5OK',
+        2: '5PK', }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Locations meublées non professionnelles: Locations meublées et chambre d'hôtes déjà soumises aux prélèvements sociaux (régime micro entreprise) non classes"
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class autres_location_meublees_micro(Variable):
+    cerfa_field = {0: '5NI',
+        1: '5OI',
+        2: '5PI', }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Locations meublées non professionnelles : hors tourisme (longue durée) (régime micro entreprise)"
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class autres_location_meublees_micro_prelev(Variable):
+    cerfa_field = {0: '5NL',
+        1: '5OL',
+        2: '5PL', }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Locations meublées non professionnelles : hors tourisme (longue durée) déjà soumises aux prélèvements sociaux (régime micro entreprise)"
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
 # (f5nw, f5ow, f5pw))
 class nacc_meuc(Variable):
     cerfa_field = {0: '5NW',
@@ -769,6 +830,7 @@ class nacc_meuc(Variable):
     label = 'Locations meublées non professionnelles: cas général des locations déjà soumises aux prélèvements sociaux (régime micro entreprise)'
     # start_date = (2017,1,1)
     definition_period = YEAR
+    end = '2025-12-31'
 
 
 # (f5nl, f5ol, f5pl))
