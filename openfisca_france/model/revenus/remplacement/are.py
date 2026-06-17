@@ -1,6 +1,4 @@
-from numpy import ceil, floor, round, busday_count, datetime64, maximum, minimum, timedelta64, where
-
-from openfisca_core.periods import Period
+from numpy import ceil, floor, round, datetime64, maximum, minimum, timedelta64, where
 
 from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesMotifFinContrat
@@ -48,21 +46,21 @@ class are_age_fin_contrat(Variable):
         date_naissance = individu('date_naissance', period)
         fin_dernier_contrat = individu('fin_dernier_contrat', period)
 
-        annee_fin  = fin_dernier_contrat.astype('datetime64[Y]')
+        annee_fin = fin_dernier_contrat.astype('datetime64[Y]')
         annee_nais = date_naissance.astype('datetime64[Y]')
 
         delta_annee = annee_fin.astype(int) - annee_nais.astype(int)
 
-        mois_fin  = fin_dernier_contrat.astype('datetime64[M]').astype(int) % 12 + 1
+        mois_fin = fin_dernier_contrat.astype('datetime64[M]').astype(int) % 12 + 1
         mois_nais = date_naissance.astype('datetime64[M]').astype(int) % 12 + 1
 
-        jour_fin  = (fin_dernier_contrat - fin_dernier_contrat.astype('datetime64[M]')).astype(int) + 1
+        jour_fin = (fin_dernier_contrat - fin_dernier_contrat.astype('datetime64[M]')).astype(int) + 1
         jour_nais = (date_naissance - date_naissance.astype('datetime64[M]')).astype(int) + 1
 
         anniversaire_non_passe = (
-            (mois_fin < mois_nais) |
-            ((mois_fin == mois_nais) & (jour_fin < jour_nais))
-        )
+            (mois_fin < mois_nais)
+            | ((mois_fin == mois_nais) & (jour_fin < jour_nais))
+            )
 
         return where(anniversaire_non_passe, delta_annee - 1, delta_annee)
 
@@ -95,7 +93,7 @@ class are_debut_prc(Variable):
     value_type = date
     default_value = date(1870, 1, 1)
     entity = Individu
-    label = "Date de début de la période de référence calcul (PRC)"
+    label = 'Date de début de la période de référence calcul (PRC)'
     definition_period = MONTH
     reference = ['https://www.unedic.org/ged/documents/regulatory_texts/pdf/TXT-RG-Reglement_general_annexe_a_la_convention.pdf',
                  'Article 3']
@@ -139,13 +137,13 @@ class are_jours_travailles(Variable):
         return sum([
             jours_travailles(i) * (i <= periode_consideree)
             for i in range(MAX_MOIS_PRC, 0, -1)
-        ]).astype(int)
+            ]).astype(int)
 
 
 class are_jours_prc(Variable):
     value_type = int
     entity = Individu
-    label = "Nombre de jours calendaires sur la prc"
+    label = 'Nombre de jours calendaires sur la prc'
     unit = 'day'
     definition_period = MONTH
 
@@ -166,7 +164,7 @@ class are_eligible_ouverture(Variable):
     definition_period = MONTH
     reference = ['https://www.unedic.org/ged/documents/regulatory_texts/pdf/TXT-RG-Reglement_general_annexe_a_la_convention.pdf',
                  'Articles 2 et 3']
-    
+
     def formula(individu, period, parameters):
         fin_dernier_contrat = individu('fin_dernier_contrat', period)
         sans_contrat = fin_dernier_contrat < datetime64(period.start)
@@ -211,13 +209,13 @@ class are_debut_indemnisation(Variable):
                 delta == i,
                 individu('are_eligible_ouverture', period.offset(-i, 'month')),
                 eligible_a_m0
-            )
+                )
 
         return where(
             (fin_contrat != fin_contrat_default) & eligible_a_m0,
             debut_candidate,
             default
-        )
+            )
 
 
 class are_duree_max_indemnisation(Variable):
@@ -228,7 +226,7 @@ class are_duree_max_indemnisation(Variable):
     definition_period = MONTH
     reference = ['https://www.unedic.org/ged/documents/regulatory_texts/pdf/TXT-RG-Reglement_general_annexe_a_la_convention.pdf',
                  'Article 9']
-    
+
     def formula(individu, period, parameters):
         params = parameters(period).chomage.allocations_assurance_chomage.are.duree_indemnisation
         age_fin_contrat = individu('are_age_fin_contrat', period)
@@ -244,8 +242,8 @@ class are_duree_max_indemnisation(Variable):
                 age_fin_contrat < params.categorie_age.max_seconde_categorie,
                 params.duree_maximale_indemnisation.seconde_categorie,
                 params.duree_maximale_indemnisation.troisieme_categorie
-            )
-        ) * avec_contrat
+                )
+            ) * avec_contrat
 
 
 class are_duree_brute_indemnisation(Variable):
@@ -256,7 +254,7 @@ class are_duree_brute_indemnisation(Variable):
     unit = 'day'
     reference = ['https://www.unedic.org/ged/documents/regulatory_texts/pdf/TXT-RG-Reglement_general_annexe_a_la_convention.pdf',
                  'Article 9']
-    
+
     def formula(individu, period, parameters):
         max_inactivite = parameters(period).chomage.allocations_assurance_chomage.are.duree_indemnisation.plafonnement_inactivite
         jours_travailles = individu('are_jours_travailles', period)
@@ -268,7 +266,7 @@ class are_duree_brute_indemnisation(Variable):
         duree_brute = (
             jours_travailles_calendaires
             + min_(jours_non_travailles_prc, floor(jours_travailles_calendaires * max_inactivite))
-        )
+            )
 
         return duree_brute
 
@@ -282,7 +280,7 @@ class are_duree_nette_indemnisation(Variable):
     reference = ['https://www.unedic.org/ged/documents/regulatory_texts/pdf/TXT-RG-Reglement_general_annexe_a_la_convention.pdf',
                  'Article 9']
 
-    def formula(individu, period, parameters):
+    def formula_2023_02_01(individu, period, parameters):
         duree_brute = individu('are_duree_brute_indemnisation', period)
         coef_conjoncture = parameters(period).chomage.allocations_assurance_chomage.are.duree_indemnisation.coefficient_conjoncture
         duree_min = parameters(period).chomage.allocations_assurance_chomage.are.duree_indemnisation.duree_minimale_indemnisation
@@ -294,6 +292,19 @@ class are_duree_nette_indemnisation(Variable):
 
         return max_(
             min_(ceil(duree_brute * coef_conjoncture).astype(int), duree_max),
+            duree_min) * avec_contrat
+
+    def formula(individu, period, parameters):
+        duree_brute = individu('are_duree_brute_indemnisation', period)
+        duree_min = parameters(period).chomage.allocations_assurance_chomage.are.duree_indemnisation.duree_minimale_indemnisation
+        duree_max = individu('are_duree_max_indemnisation', period)
+
+        fin_contrat = individu('fin_dernier_contrat', period)
+        fin_contrat_default = datetime64(date(2099, 12, 31))
+        avec_contrat = fin_contrat != fin_contrat_default
+
+        return max_(
+            min_(duree_brute.astype(int), duree_max),
             duree_min) * avec_contrat
 
 
@@ -319,7 +330,7 @@ class are_duree_nette_gelee(Variable):
                 (delta == i) & (debut != default),
                 individu('are_duree_nette_indemnisation', period.offset(-i, 'month')),
                 result
-            )
+                )
         return result
 
 
@@ -331,7 +342,7 @@ class are_fin_indemnisation(Variable):
     definition_period = MONTH
     reference = ['https://www.unedic.org/ged/documents/regulatory_texts/pdf/TXT-RG-Reglement_general_annexe_a_la_convention.pdf',
                  'Article 9']
-    
+
     def formula(individu, period):
         debut = individu('are_debut_indemnisation', period)
         default = datetime64(date(1870, 1, 1))
@@ -348,7 +359,7 @@ class are_fin_indemnisation(Variable):
         fin = where(duree_j_reliquat > nb_jours_dernier_mois,
                     mois_fin_debut.astype('datetime64[D]') + (nb_jours_dernier_mois - 1).astype('timedelta64[D]'),
                     mois_fin_debut.astype('datetime64[D]') + (duree_j_reliquat - 1).astype('timedelta64[D]'))
-            
+
         return where(debut != default, fin, default)
 
 
@@ -366,10 +377,10 @@ class are_eligible(Variable):
         default = datetime64(date(1870, 1, 1))
 
         dans_periode = (
-            (debut != default) &
-            (datetime64(period.start) >= debut) &
-            (datetime64(period.start) <= fin)
-        )
+            (debut != default)
+            & (datetime64(period.start) >= debut)
+            & (datetime64(period.start) <= fin)
+            )
         sans_remuneration = individu('salaire_de_base', period) == 0
 
         return dans_periode * sans_remuneration
@@ -395,13 +406,13 @@ class are_sr(Variable):
         return sum([
             salaire_plafonne(i) * (i <= periode_consideree)
             for i in range(MAX_MOIS_PRC, 0, -1)
-        ])
+            ])
 
 
 class are_duree_calcul_sjr(Variable):
     value_type = int
     entity = Individu
-    label = "Nombre de jours utilisés pour le diviseur dans le calcul du SJR"
+    label = 'Nombre de jours utilisés pour le diviseur dans le calcul du SJR'
     definition_period = MONTH
     unit = 'day'
     reference = ['https://www.unedic.org/ged/documents/regulatory_texts/pdf/TXT-RG-Reglement_general_annexe_a_la_convention.pdf',
@@ -417,7 +428,7 @@ class are_duree_calcul_sjr(Variable):
         avec_contrat = fin_contrat != fin_contrat_default
 
         return max_(
-            min_(duree_brute.astype(int), duree_max),duree_min) * avec_contrat
+            min_(duree_brute.astype(int), duree_max), duree_min) * avec_contrat
 
 
 class are_sjr(Variable):
@@ -434,6 +445,7 @@ class are_sjr(Variable):
         duree_retenue = individu('are_duree_calcul_sjr', period)
 
         return where(duree_retenue > 0, round_(salaire_reference / duree_retenue, 2), 0)
+
 
 # Il s'agit ici de récupérer la valeur au moment de l'ouverture : à modifier à terme pour intégrer les revalorisations des rémunérations
 class are_sjr_gele(Variable):
@@ -457,7 +469,7 @@ class are_sjr_gele(Variable):
                 (delta == i) & (debut != default),
                 individu('are_sjr', period.offset(-i, 'month')),
                 result
-            )
+                )
         return result
 
 
@@ -484,7 +496,7 @@ class are_date_debut_degressivite(Variable):
         alloc_pleine = maximum(
             params_alloc.partie_fixe + params_alloc.partie_prop * sjr,
             params_alloc.pourcentage_sjr_seuil * sjr
-        )
+            )
         alloc_pleine = minimum(alloc_pleine, params_alloc.pourcentage_sjr_plafond * sjr)
 
         jours_deg = params_deg.jours_application
@@ -494,14 +506,14 @@ class are_date_debut_degressivite(Variable):
 
         date_deg = (
             debut.astype('datetime64[M]') + timedelta64(duree_m_deg, 'M')
-        ).astype('datetime64[D]') + timedelta64(duree_j_reliquat_deg, 'D')
+            ).astype('datetime64[D]') + timedelta64(duree_j_reliquat_deg, 'D')
 
         conditions = (
-            (debut != default_debut) &
-            (age < params_deg.age_application) &
-            (alloc_pleine >= params_deg.montant_minimum_application) &
-            (date_deg <= fin)
-        )
+            (debut != default_debut)
+            & (age < params_deg.age_application)
+            & (alloc_pleine >= params_deg.montant_minimum_application)
+            & (date_deg <= fin)
+            )
 
         return where(conditions, date_deg, default_deg)
 
@@ -509,7 +521,7 @@ class are_date_debut_degressivite(Variable):
 class are_smic_journalier(Variable):
     value_type = float
     entity = Individu
-    label = "Montant du smic brut journalier : smic horaire * 5 (35h étant sur 7 jours)"
+    label = 'Montant du smic brut journalier : smic horaire * 5 (35h étant sur 7 jours)'
     unit = 'currency'
     definition_period = MONTH
     reference = ['']
@@ -519,7 +531,8 @@ class are_smic_journalier(Variable):
 
         return ceil(5 * smic_h)
 
-## TAUX PLEIN
+
+# TAUX PLEIN
 class are_allocation_journaliere_super_brute_tx_plein(Variable):
     value_type = float
     entity = Individu
@@ -537,10 +550,10 @@ class are_allocation_journaliere_super_brute_tx_plein(Variable):
         alloc_pleine = maximum(
             params_alloc.partie_fixe + params_alloc.partie_prop * sjr,
             params_alloc.pourcentage_sjr_seuil * sjr
-        )
+            )
         alloc_pleine = minimum(alloc_pleine, params_alloc.pourcentage_sjr_plafond * sjr)
 
-        return individu('are_eligible', period) * round_(alloc_pleine,2)
+        return individu('are_eligible', period) * round_(alloc_pleine, 2)
 
 
 class are_retraires_complementaires_tx_plein(Variable):
@@ -576,6 +589,7 @@ class are_allocation_journaliere_brute_tx_plein(Variable):
         prc = individu('are_retraires_complementaires_tx_plein', period)
 
         return individu('are_eligible', period) * (super_brute + prc)
+
 
 # Calculs en partie repris d'une précédente modélisation de l'ARE : probablement quelques cas limites et pas ultra lisible
 # L'ordre d'application correspond à ma compréhension de la CIRCULAIRE UNEDIC (et aux tests FT)
@@ -706,11 +720,11 @@ class are_crds_tx_plein(Variable):
         brute = individu('are_allocation_journaliere_brute_tx_plein', period)
 
         montant_crds_th = -round(montant_csg_crds(
-                base_avec_abattement = brute,
-                abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
-                law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
-                plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-                ), 2) * eligible
+            base_avec_abattement = brute,
+            abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
+            ), 2) * eligible
 
         smic_j = individu('are_smic_journalier', period)
 
@@ -734,7 +748,7 @@ class are_allocation_nette_journaliere_tx_plein(Variable):
         return individu('are_eligible', period) * (brut + csg_deductible + csg_non_deductible + crds)
 
 
-## TAUX DEGRESSIF
+# TAUX DEGRESSIF
 class are_allocation_journaliere_super_brute_tx_deg(Variable):
     value_type = float
     entity = Individu
@@ -758,7 +772,7 @@ class are_allocation_journaliere_super_brute_tx_deg(Variable):
         return max_(
             round_(alloc_tx_plein * taux_deg, 0),
             montant_min) * degressivite
-    
+
 
 class are_allocation_journaliere_brute_tx_deg(Variable):
     value_type = float
@@ -774,6 +788,7 @@ class are_allocation_journaliere_brute_tx_deg(Variable):
         prc = individu('are_retraires_complementaires_tx_plein', period)
 
         return individu('are_eligible', period) * (super_brute + prc)
+
 
 class are_csg_deductible_tx_deg(Variable):
     calculate_output = calculate_output_add
@@ -902,11 +917,11 @@ class are_crds_tx_deg(Variable):
         brute = individu('are_allocation_journaliere_brute_tx_deg', period)
 
         montant_crds_th = -round(montant_csg_crds(
-                base_avec_abattement = brute,
-                abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
-                law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
-                plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
-                ), 2) * eligible
+            base_avec_abattement = brute,
+            abattement_parameter = parameters.prelevements_sociaux.contributions_sociales.csg.activite.abattement,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.crds,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
+            ), 2) * eligible
 
         smic_j = individu('are_smic_journalier', period)
 
@@ -930,12 +945,12 @@ class are_allocation_nette_journaliere_tx_deg(Variable):
         return individu('are_eligible', period) * (brut + csg_deductible + csg_non_deductible + crds)
 
 
-## Pas sûr de la façon dont on doit intégrer les jours non indemnisés
-## La formule actuelle ne traite pas le cas où la date de fin est 28 février... on compte 30 jours
+# Pas sûr de la façon dont on doit intégrer les jours non indemnisés
+# La formule actuelle ne traite pas le cas où la date de fin est 28 février... on compte 30 jours
 class are_jours_indemnises_mensuels(Variable):
     value_type = int
     entity = Individu
-    label = "Nombre de jours indemnisés sur le mois courant"
+    label = 'Nombre de jours indemnisés sur le mois courant'
     unit = 'day'
     definition_period = MONTH
     reference = ['https://www.unedic.org/ged/documents/regulatory_texts/pdf/TXT-RG-Reglement_general_annexe_a_la_convention.pdf',
@@ -958,16 +973,16 @@ class are_jours_indemnises_mensuels(Variable):
 
         return where(
             (debut != default) & (debut_courant <= fin),
-                     where(last_month,
-                        reliquat_j,
-                        30),
-                    0)
+            where(last_month,
+                reliquat_j,
+                30),
+            0)
 
 
 class are_jours_indemnises_mensuels_tx_plein(Variable):
     value_type = int
     entity = Individu
-    label = "Nombre de jours indemnisés à taux plein sur le mois courant"
+    label = 'Nombre de jours indemnisés à taux plein sur le mois courant'
     unit = 'day'
     definition_period = MONTH
     reference = ['']
@@ -980,9 +995,9 @@ class are_jours_indemnises_mensuels_tx_plein(Variable):
 
         debut_deg = individu('are_date_debut_degressivite', period)
         default_deg = datetime64(date(2099, 12, 31))
-        
+
         jours_mois = individu('are_jours_indemnises_mensuels', period)
-        
+
         jours_deg = parameters(period).chomage.allocations_assurance_chomage.are.degressivite.jours_application
 
         debut_courant = datetime64(period.start)
@@ -993,20 +1008,20 @@ class are_jours_indemnises_mensuels_tx_plein(Variable):
                     jours_deg - ((debut_courant.astype('datetime64[M]') - debut.astype('datetime64[M]')).astype(int) * 30),
                     30),
             0),
-           0)        
+            0)
 
         return where(
             (debut != default) & (debut_courant <= fin),
-                     where(debut_deg != default_deg,
-                        j_plein,
-                        jours_mois),
-                    0)
+            where(debut_deg != default_deg,
+                j_plein,
+                jours_mois),
+            0)
 
 
 class are_jours_indemnises_mensuels_tx_deg(Variable):
     value_type = int
     entity = Individu
-    label = "Nombre de jours indemnisés à taux dégressif sur le mois courant"
+    label = 'Nombre de jours indemnisés à taux dégressif sur le mois courant'
     unit = 'day'
     definition_period = MONTH
     reference = ['']
@@ -1028,7 +1043,7 @@ class are_allocation_super_brute_mensuelle(Variable):
 
     def formula(individu, period, parameters):
         jours_plein = individu('are_jours_indemnises_mensuels_tx_plein', period)
-        jours_deg = individu('are_jours_indemnises_mensuels_tx_deg', period)        
+        jours_deg = individu('are_jours_indemnises_mensuels_tx_deg', period)
 
         tx_plein = individu('are_allocation_journaliere_super_brute_tx_plein', period)
         tx_deg = individu('are_allocation_journaliere_super_brute_tx_deg', period)
@@ -1046,7 +1061,7 @@ class are_allocation_nette_mensuelle(Variable):
 
     def formula(individu, period, parameters):
         jours_plein = individu('are_jours_indemnises_mensuels_tx_plein', period)
-        jours_deg = individu('are_jours_indemnises_mensuels_tx_deg', period)        
+        jours_deg = individu('are_jours_indemnises_mensuels_tx_deg', period)
 
         tx_plein = individu('are_allocation_nette_journaliere_tx_plein', period)
         tx_deg = individu('are_allocation_nette_journaliere_tx_deg', period)
