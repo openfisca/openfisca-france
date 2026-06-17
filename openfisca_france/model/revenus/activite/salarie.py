@@ -1,7 +1,5 @@
 from functools import partial
-import numpy as np
 from numpy import busday_count as original_busday_count, datetime64, timedelta64, where
-from openfisca_core.indexed_enums import EnumArray
 
 from openfisca_core.periods import Period
 
@@ -347,7 +345,7 @@ class motif_fin_contrat(Variable):
     possible_values = TypesMotifFinContrat
     default_value = TypesMotifFinContrat.autre
     entity = Individu
-    label = "Motif de fin du contrat de travail"
+    label = 'Motif de fin du contrat de travail'
     definition_period = MONTH
 
 
@@ -356,7 +354,7 @@ class motif_fin_dernier_contrat(Variable):
     possible_values = TypesMotifFinContrat
     default_value = TypesMotifFinContrat.autre
     entity = Individu
-    label = "Motif de fin du dernier contrat de travail"
+    label = 'Motif de fin du dernier contrat de travail'
     definition_period = MONTH
 
     def formula(individu, period):

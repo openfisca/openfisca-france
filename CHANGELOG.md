@@ -1,5 +1,20 @@
 # Changelog
 
+### 175.0.46 [#2763](https://github.com/openfisca/openfisca-france/pull/2763)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/02/2023.
+* Zones impactées :
+  - `openfisca_france/model/revenus/remplacement/are.py`
+  - `openfisca_france/model/revenus/activite/salarie.py`
+  - `openfisca_france/parameters/chomage/allocations_assurance_chomage/are/`
+  - `tests/chomage/are.yaml`
+* Détails :
+  - Modélisation de l'Allocation de Retour à l'Emploi (ARE) : éligibilité à l'ouverture de droits, durée d'indemnisation (brute, nette, avec coefficient de conjoncture), calcul du SJR et de la PRC, allocation journalière super brute et brute (taux plein et dégressif), prélèvements sociaux (PRC, CSG déductible, CSG non déductible, CRDS), allocation nette journalière et mensuelle.
+  - Ajout des variables `fin_dernier_contrat`, `motif_fin_contrat`, `motif_fin_dernier_contrat` dans `salarie.py`.
+  - Ajout de paramètres ARE dans `parameters/chomage/allocations_assurance_chomage/are/`.
+  - Ajout de 6 tests dans `tests/chomage/are.yaml`.
+
 ### 175.0.45 [#2756](https://github.com/openfisca/openfisca-france/pull/2756)
 
 * Évolution du système socio-fiscal.
