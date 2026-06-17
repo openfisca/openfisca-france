@@ -5,7 +5,7 @@
     Jours travaillés : 132 (>= seuil 130) → éligible.
     Durée nette plafonnée au minimum légal (182 jours) : ceil(184 × 0.75) = 138 < 182.
     SJR = 15000 / 184 = 81.52€/j. Brute/j = 0.57 × SJR = 46.47€. PRC = -2.45€. CSG/CRDS = 0.
-    Simulateur France Travail : 182 jours, 1320.6€ net/mois (écart +0.08€ dû à l'arrondi journalier côté FT).
+    Simulateur France Travail : 182 jours, 1320.6€ net/mois (notre calcul coïncide avec le simulateur FT).
   period: 2026-01
   input:
     individus:
@@ -51,8 +51,8 @@
     are_debut_prc: '2025-07-01'
     are_jours_prc: 184
     are_duree_nette_indemnisation: 182
-    are_allocation_super_brute_mensuelle: 1394.02
-    are_allocation_nette_mensuelle: 1320.52
+    are_allocation_super_brute_mensuelle: 1394.10
+    are_allocation_nette_mensuelle: 1320.60
 
 
 - name: are_deux_cdd_avec_trou_387j
@@ -63,7 +63,7 @@
     Total : 236 jours → éligible. PRC = 516 jours calendaires (2025-01-01 → 2026-05-31).
     duree_brute = ceil(236×1.4) + (516−331) = 331+185 = 516 → nette = ceil(516×0.75) = 387 jours.
     SJR = 27500 / 516 = 53.29€/j. Brute/j = partie_fixe + 0.404×SJR = 34.71€. PRC = −1.60€. CSG/CRDS = 0.
-    Simulateur France Travail : 387 jours, 1041.3€ brut/mois, 993.3€ net/mois (écart ±0.03€ arrondi journalier FT).
+    Simulateur France Travail : 387 jours, 1041.3€ brut/mois, 993.3€ net/mois (notre calcul coïncide avec le simulateur FT).
   period: 2026-06
   input:
     individus:
@@ -130,8 +130,8 @@
     are_debut_prc: '2025-01-01'
     are_jours_prc: 516
     are_duree_nette_indemnisation: 387
-    are_allocation_super_brute_mensuelle: 1041.33
-    are_allocation_nette_mensuelle: 993.33
+    are_allocation_super_brute_mensuelle: 1041.30
+    are_allocation_nette_mensuelle: 993.30
 
 
 - name: are_demission_non_eligible
@@ -235,7 +235,7 @@
     PRC = -3.95€/j. Brute/j = 71.01€. CSG (3.8%+2.4%) + CRDS (0.5%) sur base 98% = -4.67€/j.
     Nette/j = 66.34€. Durée nette : ceil(365 × 0.75) = 274 jours.
     Super brute mensuelle : 30 × 74.96 = 2248.80€. Nette mensuelle : 30 × 66.34 = 1990.20€.
-    Simulateur France Travail : 274 jours, 1989.9€ net/mois (écart 0.30€ arrondi journalier).
+    Simulateur France Travail : 274 jours, 1989.9€ net/mois (notre calcul est +0.30€ au-dessus du simulateur FT).
   period: 2026-01
   input:
     individus:
@@ -295,6 +295,11 @@
           2025-10: 1.0
           2025-11: 1.0
           2025-12: 1.0
+    foyers_fiscaux:
+      foy0:
+        declarants: [ind0]
+        rfr:
+          2024: 48000
     famille:
       parents: [ind0]
     menage:
@@ -318,7 +323,7 @@
     Taux plein (182 jours) : 112.44€ super brute/j → 99.51€ net/j → 3373.20€ brut/mois, 2985.30€ net/mois.
     Taux réduit (92 jours) : plancher montant_minimum_application = 92.57€ super brute/j
       (car 70% × 112.44 = 78.71 < 92.57), → 80.95€ net/j → 2777.10€ brut/mois, 2428.50€ net/mois.
-    Simulateur France Travail : 3373.2€/2985.3€ taux plein, 2777.1€/2428.2€ taux réduit (écart 0.01€/j arrondi).
+    Simulateur France Travail : 3373.2€/2985.3€ taux plein (notre calcul coïncide avec FT), 2777.1€/2428.2€ taux réduit (notre calcul net +0.30€ au-dessus du simulateur FT).
   period: 2026-01
   input:
     individus:
@@ -378,6 +383,11 @@
           2025-10: 1.0
           2025-11: 1.0
           2025-12: 1.0
+    foyers_fiscaux:
+      foy0:
+        declarants: [ind0]
+        rfr:
+          2024: 72000
     famille:
       parents: [ind0]
     menage:

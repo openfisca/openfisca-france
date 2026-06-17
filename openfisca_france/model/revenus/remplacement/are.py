@@ -494,10 +494,10 @@ class are_date_debut_degressivite(Variable):
         age = individu('are_age_fin_contrat', period)
 
         alloc_pleine = maximum(
-            params_alloc.partie_fixe + params_alloc.partie_prop * sjr,
-            params_alloc.pourcentage_sjr_seuil * sjr
+            params_alloc.partie_fixe + round_(params_alloc.partie_prop * sjr, 2),
+            round_(params_alloc.pourcentage_sjr_seuil * sjr, 2)
             )
-        alloc_pleine = minimum(alloc_pleine, params_alloc.pourcentage_sjr_plafond * sjr)
+        alloc_pleine = minimum(alloc_pleine, round_(params_alloc.pourcentage_sjr_plafond * sjr, 2))
 
         jours_deg = params_deg.jours_application
 
@@ -548,12 +548,12 @@ class are_allocation_journaliere_super_brute_tx_plein(Variable):
         sjr = individu('are_sjr_gele', period)
 
         alloc_pleine = maximum(
-            params_alloc.partie_fixe + params_alloc.partie_prop * sjr,
-            params_alloc.pourcentage_sjr_seuil * sjr
+            params_alloc.partie_fixe + round_(params_alloc.partie_prop * sjr, 2),
+            round_(params_alloc.pourcentage_sjr_seuil * sjr, 2)
             )
-        alloc_pleine = minimum(alloc_pleine, params_alloc.pourcentage_sjr_plafond * sjr)
+        alloc_pleine = minimum(alloc_pleine, round_(params_alloc.pourcentage_sjr_plafond * sjr, 2))
 
-        return individu('are_eligible', period) * round_(alloc_pleine, 2)
+        return individu('are_eligible', period) * alloc_pleine
 
 
 class are_retraires_complementaires_tx_plein(Variable):
@@ -1048,7 +1048,7 @@ class are_allocation_super_brute_mensuelle(Variable):
         tx_plein = individu('are_allocation_journaliere_super_brute_tx_plein', period)
         tx_deg = individu('are_allocation_journaliere_super_brute_tx_deg', period)
 
-        return jours_plein * tx_plein + jours_deg * tx_deg
+        return round_(jours_plein * tx_plein + jours_deg * tx_deg, 2)
 
 
 class are_allocation_nette_mensuelle(Variable):
@@ -1066,4 +1066,4 @@ class are_allocation_nette_mensuelle(Variable):
         tx_plein = individu('are_allocation_nette_journaliere_tx_plein', period)
         tx_deg = individu('are_allocation_nette_journaliere_tx_deg', period)
 
-        return jours_plein * tx_plein + jours_deg * tx_deg
+        return round_(jours_plein * tx_plein + jours_deg * tx_deg, 2)

@@ -315,14 +315,14 @@ class fin_dernier_contrat(Variable):
     entity = Individu
     label = "Date de départ de l'entreprise du dernier contrat connu"
     definition_period = MONTH
-    
+
     def formula(individu, period):
         holder = individu.get_holder('contrat_de_travail_fin')
         fin_default_value = datetime64(date(2099, 12, 31))
         past_periods = sorted(
             [p for p in holder.get_known_periods() if p.start <= period.start],
             key=lambda p: p.start
-        )
+            )
         if not past_periods:
             return individu.get_holder('fin_dernier_contrat').default_array()
         # Iterate forward so the last non-default value wins (most recent contract end)
@@ -334,12 +334,12 @@ class fin_dernier_contrat(Variable):
 
 
 class TypesMotifFinContrat(Enum):
-    licenciement = "Licenciement (dont inaptitude)"
-    fin_cdd = "Fin de CDD"
-    rupture_conventionnelle = "Rupture conventionnelle"
-    demission_legitime = "Démission pour motif légitime"
-    demission = "Démission"
-    autre = "Autre"
+    licenciement = 'Licenciement (dont inaptitude)'
+    fin_cdd = 'Fin de CDD'
+    rupture_conventionnelle = 'Rupture conventionnelle'
+    demission_legitime = 'Démission pour motif légitime'
+    demission = 'Démission'
+    autre = 'Autre'
 
 
 class motif_fin_contrat(Variable):
@@ -358,13 +358,13 @@ class motif_fin_dernier_contrat(Variable):
     entity = Individu
     label = "Motif de fin du dernier contrat de travail"
     definition_period = MONTH
-    
+
     def formula(individu, period):
         holder = individu.get_holder('motif_fin_contrat')
         past_periods = sorted(
             [p for p in holder.get_known_periods() if p.start <= period.start],
             key=lambda p: p.start
-        )
+            )
         if not past_periods:
             return individu.get_holder('motif_fin_dernier_contrat').default_array()
         return individu('motif_fin_contrat', past_periods[-1])
