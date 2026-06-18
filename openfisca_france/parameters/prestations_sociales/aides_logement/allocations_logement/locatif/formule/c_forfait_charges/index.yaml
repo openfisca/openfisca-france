@@ -4,3 +4,5 @@ metadata:
   order:
   - cas_general
   - cas_colocataires
+  - dom
+  - dom_colocataires
