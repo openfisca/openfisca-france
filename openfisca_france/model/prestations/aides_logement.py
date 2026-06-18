@@ -1101,6 +1101,9 @@ class aide_logement_loyer_plafond(Variable):
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
         chambre = famille.demandeur.menage('logement_chambre', period)
+        hebergement_onereux_personne_agee_ou_handicapee = famille.demandeur.menage(
+            'hebergement_onereux_personne_agee_ou_handicapee', period
+            )
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
         plafonds_loyers = al.locatif.formule.l_plafonds_loyers

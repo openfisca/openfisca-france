@@ -1,0 +1,7 @@
+description: Coefficient applique aux loyers plafonds pour une chambre occupee par une personne agee ou handicapee hebergee a titre onereux
+metadata:
+  short_label: Coef chambre hebergement onereux
+  unit: /1
+values:
+  1986-01-01:
+    value: 0.75

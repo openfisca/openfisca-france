@@ -3,4 +3,5 @@ metadata:
   short_label: Coefficients pour les chambres ou colocations
   order:
   - coef_chambre
+  - coef_chambre_hebergement_onereux_personne_agee_ou_handicapee
   - coef_colocation
