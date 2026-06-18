@@ -5,7 +5,7 @@ import logging
 import importlib
 import sys
 
-from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
+from numpy import ceil, floor, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
 
 from openfisca_core.periods import Instant, Period
 
@@ -97,6 +97,9 @@ class aide_logement_montant(Variable):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
         crds_logement = famille('crds_logement', period)
 
+        # Arrondi à l'euro inférieur du montant net de CRDS
+        aide_logement_montant_net_arrondi = floor(aide_logement_montant_brut + crds_logement)
+
         # De 2022 à 2025, l'AL à Saint-Pierre-et-Miquelon s'aligne progressivement sur les montants en vigueur en métropole
         # Décret n° 2021-1750 du 21 décembre 2021, art. 7
         # https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044608297/2021-12-24
@@ -109,9 +112,9 @@ class aide_logement_montant(Variable):
             1,
             )
 
-        montant = aide_logement_montant_brut * coefficient
+        montant = aide_logement_montant_net_arrondi * coefficient
 
-        return round_(montant + crds_logement, 2)
+        return floor(montant)
 
 
 class aide_logement_montant_brut_crds(Variable):
