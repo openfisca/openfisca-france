@@ -1,0 +1,256 @@
+name: Test compatibilité nouvelle version openfisca-core
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # Chaque jour à 5h heure de Paris (UTC+1, hiver)
+  pull_request:
+  workflow_dispatch:  # Déclenchement manuel possible
+
+permissions:
+  contents: read
+
+jobs:
+  check-new-version:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    outputs:
+      has_new_version: ${{ steps.check.outputs.has_new_version }}
+      bump_type: ${{ steps.check.outputs.bump_type }}          # 'major' ou 'minor'
+      new_version: ${{ steps.check.outputs.new_version }}
+      new_max_bound: ${{ steps.check.outputs.new_max_bound }}
+      current_max_bound: ${{ steps.check.outputs.current_max_bound }}
+      current_min_bound: ${{ steps.check.outputs.current_min_bound }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.13.11'
+      - name: Installer les dépendances du script
+        run: pip install requests packaging
+      - name: Vérifier si une nouvelle version existe
+        id: check
+        run: python .github/get_latest_core_version.py
+
+  test-new-version:
+    needs: check-new-version
+    if: needs.check-new-version.outputs.has_new_version == 'true'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.13.11'
+      - name: Mettre à jour pyproject.toml pour autoriser la version à tester
+        env:
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
+          NEW_MAX_BOUND: ${{ needs.check-new-version.outputs.new_max_bound }}
+        run: |
+          # Pour les versions majeures : étendre la borne supérieure
+          # Pour les versions mineures : étendre temporairement la borne inférieure
+          # Dans les deux cas on s'assure que NEW_VERSION est installable
+          sed -i "s/openfisca-core\[web-api\] >=\([0-9.]*\), <[0-9.]*/openfisca-core[web-api] >=${NEW_VERSION}, <${NEW_MAX_BOUND}/" pyproject.toml
+          echo "pyproject.toml mis à jour :"
+          grep openfisca-core pyproject.toml
+      - name: Construire et installer openfisca-france
+        run: make build
+      - name: Installer la nouvelle version d'openfisca-core
+        run: pip install "openfisca-core[web-api]==${{ needs.check-new-version.outputs.new_version }}"
+      - name: Tester l'API web
+        run: bash .github/test-api.sh
+
+  open-issue-on-failure:
+    needs: [check-new-version, test-new-version]
+    if: |
+      always() &&
+      needs.check-new-version.outputs.has_new_version == 'true' &&
+      needs.test-new-version.result == 'failure'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Vérifier si un ticket existe déjà
+        id: check-issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
+        run: |
+          EXISTING=$(gh issue list \
+            --search "Incompatibilité openfisca-core ${NEW_VERSION}" \
+            --state open \
+            --json number \
+            --jq '.[0].number')
+          echo "existing=${EXISTING}" >> $GITHUB_OUTPUT
+
+      - name: Ouvrir un ticket sur openfisca-france
+        if: steps.check-issue.outputs.existing == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
+          BUMP_TYPE: ${{ needs.check-new-version.outputs.bump_type }}
+          CURRENT_MIN_BOUND: ${{ needs.check-new-version.outputs.current_min_bound }}
+          CURRENT_MAX_BOUND: ${{ needs.check-new-version.outputs.current_max_bound }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          cat > /tmp/issue-france.md << EOF
+          ## Incompatibilité détectée automatiquement
+
+          Le test hebdomadaire de compatibilité a détecté qu'**openfisca-france** n'est pas compatible avec **openfisca-core ${NEW_VERSION}**.
+
+          ### Versions concernées
+
+          - openfisca-core testé : \`${NEW_VERSION}\` (bump ${BUMP_TYPE})
+          - Bornes actuelles dans \`pyproject.toml\` : \`>=${CURRENT_MIN_BOUND}, <${CURRENT_MAX_BOUND}\`
+
+          ### Actions possibles
+
+          - Investiguer la cause de l'incompatibilité (voir les logs ci-dessous)
+          - Corriger le code si nécessaire
+          - Mettre à jour les bornes dans \`pyproject.toml\` une fois la compatibilité rétablie
+
+          ### Logs
+
+          Voir le [workflow en échec](${RUN_URL}) pour les détails.
+          EOF
+          gh issue create \
+            --title "Incompatibilité openfisca-core ${NEW_VERSION}" \
+            --body-file /tmp/issue-france.md \
+            --label "bug"
+
+      - name: Ouvrir un ticket sur openfisca-core
+        if: steps.check-issue.outputs.existing == ''
+        continue-on-error: true  # Nécessite un PAT avec accès en écriture sur openfisca-core
+        env:
+          GH_TOKEN: ${{ secrets.CROSS_REPO_TOKEN }}
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          cat > /tmp/issue-core.md << EOF
+          ## Incompatibility detected with openfisca-france
+
+          The weekly compatibility test of openfisca-france has detected that version **${NEW_VERSION}** of openfisca-core is not compatible with openfisca-france.
+
+          ### Reference
+
+          - [Ticket openfisca-france](https://github.com/openfisca/openfisca-france/issues) (see the automatically opened ticket)
+          - [Failed workflow](${RUN_URL})
+          EOF
+          gh issue create \
+            --repo openfisca/openfisca-core \
+            --title "openfisca-france incompatible avec openfisca-core ${NEW_VERSION}" \
+            --body-file /tmp/issue-core.md
+
+  open-pr-on-success:
+    needs: [check-new-version, test-new-version]
+    if: |
+      always() &&
+      needs.check-new-version.outputs.has_new_version == 'true' &&
+      needs.test-new-version.result == 'success'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Vérifier si une PR ou une branche existent déjà
+        id: check-pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
+        run: |
+          BRANCH="bump-openfisca-core-${NEW_VERSION}"
+          EXISTING_PR=$(gh pr list \
+            --head "${BRANCH}" \
+            --state open \
+            --json number \
+            --jq '.[0].number // ""')
+          EXISTING_BRANCH=$(git ls-remote --heads origin "${BRANCH}")
+
+          if [ -n "${EXISTING_PR}" ] || [ -n "${EXISTING_BRANCH}" ]; then
+            echo "should_create=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_create=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Mettre à jour pyproject.toml
+        if: steps.check-pr.outputs.should_create == 'true'
+        env:
+          BUMP_TYPE: ${{ needs.check-new-version.outputs.bump_type }}
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
+          NEW_MAX_BOUND: ${{ needs.check-new-version.outputs.new_max_bound }}
+        run: |
+          if [ "${BUMP_TYPE}" = "major" ]; then
+            # Étendre la borne supérieure, garder la borne min intacte
+            sed -i "s/openfisca-core\[web-api\] >=\([0-9.]*\), <[0-9.]*/openfisca-core[web-api] >=\1, <${NEW_MAX_BOUND}/" pyproject.toml
+          else
+            # Mettre à jour la borne min vers la dernière version testée, garder la borne max
+            sed -i "s/openfisca-core\[web-api\] >=[0-9.]*, </openfisca-core[web-api] >=${NEW_VERSION}, </" pyproject.toml
+          fi
+          echo "pyproject.toml mis à jour :"
+          grep openfisca-core pyproject.toml
+
+      - name: Créer une branche et ouvrir une PR
+        if: steps.check-pr.outputs.should_create == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUMP_TYPE: ${{ needs.check-new-version.outputs.bump_type }}
+          NEW_VERSION: ${{ needs.check-new-version.outputs.new_version }}
+          NEW_MAX_BOUND: ${{ needs.check-new-version.outputs.new_max_bound }}
+          CURRENT_MAX_BOUND: ${{ needs.check-new-version.outputs.current_max_bound }}
+          CURRENT_MIN_BOUND: ${{ needs.check-new-version.outputs.current_min_bound }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          BRANCH="bump-openfisca-core-${NEW_VERSION}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "${BRANCH}"
+          git add pyproject.toml
+
+          if [ "${BUMP_TYPE}" = "major" ]; then
+            git commit -m "Bump openfisca-core upper bound to <${NEW_MAX_BOUND}"
+            PR_TITLE="Bump openfisca-core upper bound to <${NEW_MAX_BOUND}"
+            cat > /tmp/pr-body.md << EOF
+          ## Mise à jour automatique — nouvelle version majeure openfisca-core
+
+          La version **${NEW_VERSION}** d'openfisca-core (au-delà de la borne \`<${CURRENT_MAX_BOUND}\`) a été testée avec succès.
+
+          ### Changement
+
+          \`\`\`
+          - openfisca-core[web-api] >=${CURRENT_MIN_BOUND}, <${CURRENT_MAX_BOUND}
+          + openfisca-core[web-api] >=${CURRENT_MIN_BOUND}, <${NEW_MAX_BOUND}
+          \`\`\`
+
+          🤖 Générée automatiquement par le [workflow de compatibilité](${RUN_URL})
+          EOF
+          else
+            git commit -m "Bump openfisca-core minimum tested version to >=${NEW_VERSION}"
+            PR_TITLE="Bump openfisca-core minimum tested version to >=${NEW_VERSION}"
+            cat > /tmp/pr-body.md << EOF
+          ## Mise à jour automatique — nouvelle version mineure openfisca-core
+
+          La version **${NEW_VERSION}** d'openfisca-core a été testée avec succès. La borne minimale est mise à jour pour refléter la dernière version testée.
+
+          ### Changement
+
+          \`\`\`
+          - openfisca-core[web-api] >=${CURRENT_MIN_BOUND}, <${CURRENT_MAX_BOUND}
+          + openfisca-core[web-api] >=${NEW_VERSION}, <${CURRENT_MAX_BOUND}
+          \`\`\`
+
+          🤖 Générée automatiquement par le [workflow de compatibilité](${RUN_URL})
+          EOF
+          fi
+
+          git push origin "${BRANCH}"
+          gh pr create \
+            --title "${PR_TITLE}" \
+            --body-file /tmp/pr-body.md \
+            --base master
