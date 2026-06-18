@@ -3230,9 +3230,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2012
         '''
-        f7ia = foyer_fiscal('f7ia_2021', period)
-        f7ib = foyer_fiscal('f7ib_2021', period)
-        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7ia = foyer_fiscal('f7ia_2019', period)
+        f7ib = foyer_fiscal('f7ib_2019', period)
+        f7ic = foyer_fiscal('f7ic_2019', period)
         f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
@@ -3277,9 +3277,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2013
         '''
-        f7ia = foyer_fiscal('f7ia_2021', period)
-        f7ib = foyer_fiscal('f7ib_2021', period)
-        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7ia = foyer_fiscal('f7ia_2019', period)
+        f7ib = foyer_fiscal('f7ib_2019', period)
+        f7ic = foyer_fiscal('f7ic_2019', period)
         f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
@@ -3341,9 +3341,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2014
         '''
-        f7ia = foyer_fiscal('f7ia_2021', period)
-        f7ib = foyer_fiscal('f7ib_2021', period)
-        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7ia = foyer_fiscal('f7ia_2019', period)
+        f7ib = foyer_fiscal('f7ib_2019', period)
+        f7ic = foyer_fiscal('f7ic_2019', period)
         f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
@@ -3430,9 +3430,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2015
         '''
-        f7ia = foyer_fiscal('f7ia_2021', period)
-        f7ib = foyer_fiscal('f7ib_2021', period)
-        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7ia = foyer_fiscal('f7ia_2019', period)
+        f7ib = foyer_fiscal('f7ib_2019', period)
+        f7ic = foyer_fiscal('f7ic_2019', period)
         f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
@@ -3533,9 +3533,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2016
         '''
-        f7ia = foyer_fiscal('f7ia_2021', period)
-        f7ib = foyer_fiscal('f7ib_2021', period)
-        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7ia = foyer_fiscal('f7ia_2019', period)
+        f7ib = foyer_fiscal('f7ib_2019', period)
+        f7ic = foyer_fiscal('f7ic_2019', period)
         f7id = foyer_fiscal('f7id_2018', period)
         f7ie = foyer_fiscal('f7ie_2016', period)
         f7if = foyer_fiscal('f7if_2016', period)
@@ -3646,9 +3646,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2017
         '''
-        f7ia = foyer_fiscal('f7ia_2021', period)
-        f7ib = foyer_fiscal('f7ib_2021', period)
-        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7ia = foyer_fiscal('f7ia_2019', period)
+        f7ib = foyer_fiscal('f7ib_2019', period)
+        f7ic = foyer_fiscal('f7ic_2019', period)
         f7ih = foyer_fiscal('f7ih_2017', period)
         f7ik = foyer_fiscal('f7ik', period)
         f7ip = foyer_fiscal('f7ip_2018', period)
@@ -3777,9 +3777,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2018
         '''
-        f7ia = foyer_fiscal('f7ia_2021', period)
-        f7ib = foyer_fiscal('f7ib_2021', period)
-        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7ia = foyer_fiscal('f7ia_2019', period)
+        f7ib = foyer_fiscal('f7ib_2019', period)
+        f7ic = foyer_fiscal('f7ic_2019', period)
         f7ip = foyer_fiscal('f7ip_2018', period)
         f7iq = foyer_fiscal('f7iq_2018', period)
         f7ir = foyer_fiscal('f7ir_2018', period)
@@ -3912,9 +3912,9 @@ class location_meublee(Variable):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2019
         '''
-        f7ia = foyer_fiscal('f7ia_2021', period)
-        f7ib = foyer_fiscal('f7ib_2021', period)
-        f7ic = foyer_fiscal('f7ic_2021', period)
+        f7ia = foyer_fiscal('f7ia_2019', period)
+        f7ib = foyer_fiscal('f7ib_2019', period)
+        f7ic = foyer_fiscal('f7ic_2019', period)
         f7jv = foyer_fiscal('f7jv_2020', period)
         f7jw = foyer_fiscal('f7jw_2020', period)
         f7jx = foyer_fiscal('f7jx_2020', period)

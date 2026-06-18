@@ -10915,14 +10915,14 @@ class f7is(Variable):
     definition_period = YEAR
 
 
-class f7ia_2021(Variable):
+class f7ia_2019(Variable):
     cerfa_field = '7IA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011'
     # start_date = date(2012, 1, 1)
-    end = '2021-12-31'
+    end = '2019-12-31'
     definition_period = YEAR
 
 
@@ -10936,14 +10936,14 @@ class f7ia(Variable):
     definition_period = YEAR
 
 
-class f7ib_2021(Variable):
+class f7ib_2019(Variable):
     cerfa_field = '7IB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010"
     # start_date = date(2012, 1, 1)
-    end = '2021-12-31'
+    end = '2019-12-31'
     definition_period = YEAR
 
 
@@ -10957,14 +10957,14 @@ class f7ib(Variable):
     definition_period = YEAR
 
 
-class f7ic_2021(Variable):
+class f7ic_2019(Variable):
     cerfa_field = '7IC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2011 avec promesse d'achat en 2009 ou réalisés en 2009"
     # start_date = date(2012, 1, 1)
-    end = '2021-12-31'
+    end = '2019-12-31'
     definition_period = YEAR
 
 
