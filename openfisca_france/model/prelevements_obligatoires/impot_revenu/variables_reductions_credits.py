@@ -10968,6 +10968,16 @@ class f7ic_2019(Variable):
     definition_period = YEAR
 
 
+class f7ic_2021(Variable):
+    cerfa_field = '7IC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Scellier : investissement réalisé en janvier à mars 2011 achevé en 2016 en Polynésie"
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
 class f7ic(Variable):
     cerfa_field = '7IC'
     value_type = int
