@@ -3365,15 +3365,18 @@ class aacc_timp(Variable):
         return aacc_timp
 
     def formula_2025_01_01(individu, period, parameters):
+        # LMNP micro-bic
         aacc_gits = individu('aacc_gits', period)
         tourisme_non_classes = individu('tourisme_non_classes', period)
         nacc_meup = individu('nacc_meup', period)
         nacc_meup_non_classes = individu('nacc_meup_non_classes', period)
         autres_location_meublees_micro = individu('autres_location_meublees_micro', period)
         autres_location_meublees_micro_prelev = individu('autres_location_meublees_micro_prelev', period)
+
         nacc_pres = individu('nacc_pres', period)
         alnp_defs = individu('alnp_defs', period)
-        aacc_defn = individu('aacc_defn', period)
+        alnp_imps = individu('alnp_imps', period)
+        nacc_defs = individu('nacc_defs', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
         aacc_timp = (
             max_(
@@ -3402,7 +3405,7 @@ class aacc_timp(Variable):
                     micro.microentreprise.montant_minimum,
                     autres_location_meublees_micro_prelev * (1 - micro.microentreprise.regime_micro_bic.services.taux)
                     )
-                + max_(0, nacc_pres - alnp_defs) - aacc_defn
+                + max_(0, alnp_imps - alnp_defs) + max_(0, nacc_pres - nacc_defs)
                 )
             )
         return aacc_timp

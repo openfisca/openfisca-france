@@ -859,6 +859,18 @@ class nacc_pres(Variable):
     definition_period = YEAR
 
 
+class nacc_defs(Variable):
+    cerfa_field = {0: '5NY',
+        1: '5OY',
+        2: '5PY', }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Locations meublées non professionnelles: Gîtes ruraux et chambres d'hôtes déjà soumis aux prélèvements sociaux avec CGA (régime du bénéfice réel), déficits"
+    # start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
 # (f5ku, f5lu, f5mu))
 class mncn_impo(Variable):
     cerfa_field = {0: '5KU',
@@ -2066,8 +2078,13 @@ class rpns_micro_entreprise_CA_bic_service_imp(Variable):
         aacc_gits = individu('aacc_gits', period)
         nacc_meuc = individu('nacc_meuc', period)
         nacc_meup = individu('nacc_meup', period)
+        tourisme_non_classes = individu('tourisme_non_classes', period)
+        nacc_meup_non_classes = individu('nacc_meup_non_classes', period)
+        autres_location_meublees_micro = individu('autres_location_meublees_micro', period)
+        autres_location_meublees_micro_prelev = individu('autres_location_meublees_micro_prelev', period)
 
-        return mbic_imps + macc_imps + aacc_imps + aacc_gits + nacc_meuc + nacc_meup
+        return (mbic_imps + macc_imps + aacc_imps + aacc_gits + nacc_meuc + nacc_meup + tourisme_non_classes +
+            nacc_meup_non_classes + autres_location_meublees_micro + autres_location_meublees_micro_prelev)
 
 
 class rpns_micro_entreprise_bic_exon(Variable):
