@@ -3381,7 +3381,7 @@ class aacc_timp(Variable):
         aacc_timp = (
             max_(
                 0,
-                (max_(
+                ( (aacc_gits > 0) * max_(
                     micro.microentreprise.montant_minimum,
                     aacc_gits * (1 - micro.microentreprise.regime_micro_bic.services.taux)
                     ))

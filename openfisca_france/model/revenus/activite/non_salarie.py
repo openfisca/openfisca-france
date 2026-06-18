@@ -802,7 +802,7 @@ class autres_location_meublees_micro(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Locations meublées non professionnelles : hors tourisme (longue durée) (régime micro entreprise)"
+    label = 'Locations meublées non professionnelles : hors tourisme (longue durée) (régime micro entreprise)'
     # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
@@ -814,7 +814,7 @@ class autres_location_meublees_micro_prelev(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Locations meublées non professionnelles : hors tourisme (longue durée) déjà soumises aux prélèvements sociaux (régime micro entreprise)"
+    label = 'Locations meublées non professionnelles : hors tourisme (longue durée) déjà soumises aux prélèvements sociaux (régime micro entreprise)'
     # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
@@ -2083,8 +2083,8 @@ class rpns_micro_entreprise_CA_bic_service_imp(Variable):
         autres_location_meublees_micro = individu('autres_location_meublees_micro', period)
         autres_location_meublees_micro_prelev = individu('autres_location_meublees_micro_prelev', period)
 
-        return (mbic_imps + macc_imps + aacc_imps + aacc_gits + nacc_meuc + nacc_meup + tourisme_non_classes +
-            nacc_meup_non_classes + autres_location_meublees_micro + autres_location_meublees_micro_prelev)
+        return (mbic_imps + macc_imps + aacc_imps + aacc_gits + nacc_meuc + nacc_meup + tourisme_non_classes
+            + nacc_meup_non_classes + autres_location_meublees_micro + autres_location_meublees_micro_prelev)
 
 
 class rpns_micro_entreprise_bic_exon(Variable):
