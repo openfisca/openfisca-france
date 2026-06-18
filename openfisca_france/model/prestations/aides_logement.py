@@ -5,7 +5,7 @@ import logging
 import importlib
 import sys
 
-from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
+from numpy import ceil, datetime64, floor, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
 
 from openfisca_core.periods import Instant, Period
 
@@ -1451,7 +1451,9 @@ class crds_logement(Variable):
     def formula(famille, period, parameters):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
         crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
-        return -aide_logement_montant_brut * crds
+        # Arrondi au centime d'euro inferieur (plancher)
+        crds_arrondie = floor((aide_logement_montant_brut * crds) * 100) / 100
+        return -crds_arrondie
 
 
 class TypesZoneApl(Enum):
