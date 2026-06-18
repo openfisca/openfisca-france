@@ -3110,7 +3110,7 @@ class invlst(Variable):
         2018
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)  # noqa F841
-        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy_2018', period)
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
         seuil1 = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst.seuil1
         taux_xi = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst.taux_xi
