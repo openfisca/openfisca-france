@@ -96,9 +96,22 @@ class aide_logement_montant(Variable):
     def formula(famille, period):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
         crds_logement = famille('crds_logement', period)
-        montant = round_(aide_logement_montant_brut + crds_logement, 2)
 
-        return montant
+        # De 2022 à 2025, l'AL à Saint-Pierre-et-Miquelon s'aligne progressivement sur les montants en vigueur en métropole
+        # Décret n° 2021-1750 du 21 décembre 2021, art. 7
+        # https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044608297/2021-12-24
+        residence_saint_pierre_et_miquelon = famille.demandeur.menage('residence_saint_pierre_et_miquelon', period)
+        annee = period.start.year
+        coefficient_saint_pierre_et_miquelon = 1 - (2026 - annee) / 8
+        coefficient = where(
+            residence_saint_pierre_et_miquelon * (annee >= 2022) * (annee <= 2025),
+            coefficient_saint_pierre_et_miquelon,
+            1,
+            )
+
+        montant = aide_logement_montant_brut * coefficient
+
+        return round_(montant + crds_logement, 2)
 
 
 class aide_logement_montant_brut_crds(Variable):
