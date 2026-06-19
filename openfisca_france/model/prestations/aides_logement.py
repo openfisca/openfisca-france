@@ -165,19 +165,14 @@ class aide_logement_montant_brut(Variable):
         return famille('aide_logement_montant_brut_avant_degressivite', period)
 
 
-class aide_logement_montant_brut_avant_degressivite(Variable):
+class aide_logement_montant_selectionne_avant_seuil(Variable):
     value_type = float
-    label = 'Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS'
-    reference = 'https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1'
+    label = 'Montant des aides aux logements avant minimum de versement et exclusions'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
-
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-
+    def formula(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
@@ -195,8 +190,24 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         montant_accedant_et_foyer = famille('aides_logement_accedant_et_foyer', period)
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
 
-        montant = select([locataire, accedant + locataire_logement_foyer + logement_crous],
-                         [montant_locataire, montant_accedant_et_foyer])
+        return select([locataire, accedant + locataire_logement_foyer + logement_crous],
+                      [montant_locataire, montant_accedant_et_foyer])
+
+
+class aide_logement_montant_brut_avant_degressivite(Variable):
+    value_type = float
+    label = 'Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS'
+    reference = 'https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1'
+    entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period, parameters):
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+
+        montant = famille('aide_logement_montant_selectionne_avant_seuil', period)
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         type_aide = where(logement_conventionne, 'apl', 'non_apl', )
@@ -1101,6 +1112,7 @@ class aide_logement_loyer_plafond(Variable):
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
         chambre = famille.demandeur.menage('logement_chambre', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
         personne_agee_handicapee = famille.demandeur.menage(
             'personne_agee_handicapee', period
             )
@@ -1112,7 +1124,8 @@ class aide_logement_loyer_plafond(Variable):
 
         plafond_personne_seule = plafonds_loyers_par_zone.personnes_seules
         plafond_couple = plafonds_loyers_par_zone.couples
-        plafond_famille = plafonds_loyers_par_zone.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * plafonds_loyers_par_zone.majoration_par_enf_supp
+        al_nb_pac_plafond = where(residence_dom, min_(al_nb_pac, 6), al_nb_pac)
+        plafond_famille = plafonds_loyers_par_zone.un_enfant + (al_nb_pac_plafond > 1) * (al_nb_pac_plafond - 1) * plafonds_loyers_par_zone.majoration_par_enf_supp
 
         plafond = select(
             [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
@@ -1301,6 +1314,36 @@ class aide_logement_R0(Variable):
             + al_r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
+    def formula_2020_01_01(famille, period, parameters):
+        al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif.formule.pp_particip_perso.r0_abattement
+        couple = famille('al_couple', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+
+        R0_cas_general = (
+            al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
+            + al_r0.cas_general.taux_couple * couple * (al_nb_pac == 0)
+            + al_r0.cas_general.taux1pac * (al_nb_pac == 1)
+            + al_r0.cas_general.taux2pac * (al_nb_pac == 2)
+            + al_r0.cas_general.taux3pac * (al_nb_pac == 3)
+            + al_r0.cas_general.taux4pac * (al_nb_pac == 4)
+            + al_r0.cas_general.taux5pac * (al_nb_pac == 5)
+            + al_r0.cas_general.taux6pac * (al_nb_pac >= 6)
+            + al_r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            )
+
+        R0_mayotte = (
+            al_r0.mayotte.taux_seul * not_(couple) * (al_nb_pac == 0)
+            + al_r0.mayotte.taux_couple * couple * (al_nb_pac == 0)
+            + al_r0.mayotte.taux1pac * (al_nb_pac == 1)
+            + al_r0.mayotte.taux2pac * (al_nb_pac == 2)
+            + al_r0.mayotte.taux3pac * (al_nb_pac == 3)
+            + al_r0.mayotte.taux4pac * (al_nb_pac == 4)
+            + al_r0.mayotte.taux5pac * (al_nb_pac == 5)
+            + al_r0.mayotte.taux6pac * (al_nb_pac >= 6)
+            )
+        return where(residence_mayotte, R0_mayotte, R0_cas_general)
+
     def formula_2021_01_01(famille, period, parameters):
         al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif.formule.pp_particip_perso.r0_abattement
         couple = famille('al_couple', period)
@@ -1426,6 +1469,86 @@ class aide_logement_taux_famille(Variable):
         return where(residence_dom, TF_dom, TF_metropole)
 
 
+class aide_logement_loyer_reference(Variable):
+    value_type = float
+    entity = Famille
+    label = 'Loyer de référence dans le calcul du taux de participation personnelle'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(famille, period, parameters):
+        al_locatif = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif
+        al_plafonds_z2 = al_locatif.formule.l_plafonds_loyers.par_zone.zone_2
+
+        couple = famille('al_couple', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        al_nb_pac_reference = where(residence_dom, min_(al_nb_pac, 6), al_nb_pac)
+
+        return (
+            al_plafonds_z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0)
+            + al_plafonds_z2.couples * (couple) * (al_nb_pac == 0)
+            + al_plafonds_z2.un_enfant * (al_nb_pac >= 1)
+            + al_plafonds_z2.majoration_par_enf_supp * (al_nb_pac_reference > 1) * (al_nb_pac_reference - 1)
+            )
+
+
+class aide_logement_rapport_loyers(Variable):
+    value_type = float
+    entity = Famille
+    label = 'Rapport entre le loyer retenu et le loyer de référence'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(famille, period):
+        loyer_retenu = famille('aide_logement_loyer_retenu', period)
+        loyer_reference = famille('aide_logement_loyer_reference', period)
+
+        return loyer_retenu / loyer_reference
+
+
+class aide_logement_rapport_loyers_arrondi_pourcent(Variable):
+    value_type = float
+    entity = Famille
+    label = 'Rapport entre le loyer retenu et le loyer de référence, arrondi en pourcentage'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(famille, period):
+        rapport_loyers = famille('aide_logement_rapport_loyers', period)
+
+        # RL and TL rounding follow regulatory wording:
+        # - RL is rounded to 2 decimals in percent
+        # - TL is rounded to 3 decimals in percent
+        # In decimal representation, rounding TL at 3 decimals in percent
+        # is equivalent to rounding at 5 decimals.
+        return round_(rapport_loyers * 100, 2)
+
+
+class aide_logement_taux_loyer_formule(Variable):
+    value_type = float
+    entity = Famille
+    label = 'Taux de loyer avant arrondi final'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(famille, period, parameters):
+        al_locatif = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif
+
+        al_tl_seuils = al_locatif.formule.pp_particip_perso.tp_taux.tl_loyer.seuils
+        al_tl_taux = al_locatif.formule.pp_particip_perso.tp_taux.tl_loyer.taux
+
+        RL_pct = famille('aide_logement_rapport_loyers_arrondi_pourcent', period)
+
+        TL_pct = where(RL_pct >= al_tl_seuils.seuil_2 * 100,
+            al_tl_taux.tl_taux_3 * (RL_pct - al_tl_seuils.seuil_2 * 100)
+            + al_tl_taux.tl_taux_2 * ((al_tl_seuils.seuil_2 - al_tl_seuils.seuil_1) * 100),
+            max_(0, al_tl_taux.tl_taux_2 * (RL_pct - al_tl_seuils.seuil_1 * 100))
+            )
+
+        return TL_pct / 100
+
+
 class aide_logement_taux_loyer(Variable):
     value_type = float
     entity = Famille
@@ -1470,6 +1593,65 @@ class aide_logement_taux_loyer(Variable):
         return TL
 
 
+class aide_logement_ressources_apres_abattement(Variable):
+    value_type = float
+    entity = Famille
+    label = 'Ressources prises en compte après abattement forfaitaire'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        ressources = famille('aide_logement_base_ressources', period)
+        abattement = famille('aide_logement_R0', period)
+
+        return max_(0, ressources - abattement)
+
+
+class aide_logement_taux_participation_personnelle(Variable):
+    value_type = float
+    entity = Famille
+    label = 'Taux de participation personnelle'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(famille, period):
+        taux_famille = famille('aide_logement_taux_famille', period)
+        taux_loyer = famille('aide_logement_taux_loyer', period)
+
+        return taux_famille + taux_loyer
+
+
+class aide_logement_participation_minimale(Variable):
+    value_type = float
+    entity = Famille
+    label = 'Participation personnelle minimale'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period, parameters):
+        al_participation_minimale = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif.formule.pp_particip_perso.p0_particip_min
+
+        loyer_retenu = famille('aide_logement_loyer_retenu', period)
+        charges_retenues = famille('aide_logement_charges', period)
+        E = loyer_retenu + charges_retenues
+
+        return max_(al_participation_minimale.p0_taux * E, al_participation_minimale.p0_forfait)
+
+
+class aide_logement_participation_ressources(Variable):
+    value_type = float
+    entity = Famille
+    label = 'Participation personnelle liée aux ressources'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        ressources_apres_abattement = famille('aide_logement_ressources_apres_abattement', period)
+        taux_participation = famille('aide_logement_taux_participation_personnelle', period)
+
+        return taux_participation * ressources_apres_abattement
+
+
 class aide_logement_participation_personnelle(Variable):
     value_type = float
     entity = Famille
@@ -1477,23 +1659,11 @@ class aide_logement_participation_personnelle(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, parameters):
-        al_participation_minimale = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif.formule.pp_particip_perso.p0_particip_min
+    def formula(famille, period):
+        participation_minimale = famille('aide_logement_participation_minimale', period)
+        participation_ressources = famille('aide_logement_participation_ressources', period)
 
-        R = famille('aide_logement_base_ressources', period)
-        R0 = famille('aide_logement_R0', period)
-        Rp = max_(0, R - R0)
-
-        loyer_retenu = famille('aide_logement_loyer_retenu', period)
-        charges_retenues = famille('aide_logement_charges', period)
-        E = loyer_retenu + charges_retenues
-        P0 = max_(al_participation_minimale.p0_taux * E, al_participation_minimale.p0_forfait)  # Participation personnelle minimale
-
-        Tf = famille('aide_logement_taux_famille', period)
-        Tl = famille('aide_logement_taux_loyer', period)
-        Tp = Tf + Tl  # Taux de participation
-
-        return P0 + Tp * Rp
+        return participation_minimale + participation_ressources
 
 
 class TypesAideLogementNonCalculable(Enum):
