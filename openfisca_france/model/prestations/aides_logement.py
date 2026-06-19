@@ -205,8 +205,6 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
     def formula(famille, period, parameters):
         al = parameters(period).prestations_sociales.aides_logement.allocations_logement
 
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-
         montant = famille('aide_logement_montant_selectionne_avant_seuil', period)
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
@@ -214,7 +212,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         seuil_versement = al.locatif.seuils_minimum_versement[type_aide]
         minimum_atteint = montant >= seuil_versement
 
-        return minimum_atteint * montant * not_(residence_mayotte)
+        return minimum_atteint * montant
 
 
 class TypeEtatLogementFoyer(Enum):
