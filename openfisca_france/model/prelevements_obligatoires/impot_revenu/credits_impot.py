@@ -2488,25 +2488,25 @@ class quaenv(Variable):
         2015
         '''
         f7aa = foyer_fiscal('f7aa_2016', period)
-        f7ad = foyer_fiscal('f7ad', period)
-        f7af = foyer_fiscal('f7af', period)
-        f7ah = foyer_fiscal('f7ah', period)
-        f7ak = foyer_fiscal('f7ak', period)
-        f7al = foyer_fiscal('f7al', period)
-        f7am = foyer_fiscal('f7am', period)
-        f7an = foyer_fiscal('f7an', period)
+        f7ad = foyer_fiscal('f7ad_2020', period)
+        f7af = foyer_fiscal('f7af_2020', period)
+        f7ah = foyer_fiscal('f7ah_2020', period)
+        f7ak = foyer_fiscal('f7ak_2018', period)
+        f7al = foyer_fiscal('f7al_2018', period)
+        f7am = foyer_fiscal('f7am_2018', period)
+        f7an = foyer_fiscal('f7an_2018', period)
         f7aq = foyer_fiscal('f7aq', period)
-        f7ar = foyer_fiscal('f7ar', period)
-        f7av = foyer_fiscal('f7av', period)
-        f7ax = foyer_fiscal('f7ax', period)
-        f7ay = foyer_fiscal('f7ay', period)
-        f7az = foyer_fiscal('f7az', period)
-        f7bb = foyer_fiscal('f7bb', period)
-        f7bc = foyer_fiscal('f7bc', period)
-        f7bd = foyer_fiscal('f7bd', period)
-        f7be = foyer_fiscal('f7be', period)
-        f7bf = foyer_fiscal('f7bf', period)
-        f7bh = foyer_fiscal('f7bh', period)
+        f7ar = foyer_fiscal('f7ar_2019', period)
+        f7av = foyer_fiscal('f7av_2020', period)
+        f7ax = foyer_fiscal('f7ax_2019', period)
+        f7ay = foyer_fiscal('f7ay_2020', period)
+        f7az = foyer_fiscal('f7az_2020', period)
+        f7bb = foyer_fiscal('f7bb_2020', period)
+        f7bc = foyer_fiscal('f7bc_2020', period)
+        f7bd = foyer_fiscal('f7bd_2020', period)
+        f7be = foyer_fiscal('f7be_2020', period)
+        f7bf = foyer_fiscal('f7bf_2020', period)
+        f7bh = foyer_fiscal('f7bh_2020', period)
         f7bk = foyer_fiscal('f7bk', period)
         f7bl = foyer_fiscal('f7bl', period)
         f7rg = foyer_fiscal('f7rg_2015', period)
@@ -2591,7 +2591,7 @@ class quaenv(Variable):
             + f7tn + f7tp + f7tr + f7ts + f7tq + f7tt + f7tx + f7ty + f7ru + f7su + f7sm + f7so + f7sz
             )
         depenses_transition_energetique_2015 = (
-            f7aa + f7ad + f7af + f7ah + f7ak + f7al + f7am + f7an + f7aq + f7ar + f7av + f7ax
+            f7aa + f7ad + f7af + f7ah + f7ak + f7al + f7am_2018 + f7an + f7aq + f7ar + f7av + f7ax
             + f7ay + f7az + f7bb + f7bc + f7bd + f7be + f7bf + f7bh + f7bk + f7bl
             )
         depenses_transition_energetique = (
@@ -2630,8 +2630,8 @@ class quaenv(Variable):
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
         cases_depenses = [
-            'f7aa_2016', 'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7am', 'f7an', 'f7aq', 'f7ar', 'f7av', 'f7ax',
-            'f7ay', 'f7az', 'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7bm_2016', 'f7cb',
+            'f7aa_2016', 'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7am_2018', 'f7an_2018', 'f7aq', 'f7ar_2019', 'f7av_2020', 'f7ax_2019',
+            'f7ay_2020', 'f7az_2020', 'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7bm_2016', 'f7cb_2019',
             ]
         depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
 
@@ -2647,8 +2647,8 @@ class quaenv(Variable):
         P = parameters(period).impot_revenu.credits_impots.quaenv
 
         cases_depenses = [
-            'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7am', 'f7an', 'f7aq', 'f7ar', 'f7av', 'f7ax', 'f7ay', 'f7az',
-            'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7cb',
+            'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7am_2018', 'f7an_2018', 'f7aq', 'f7ar_2019', 'f7av_2020', 'f7ax_2019', 'f7ay_2020', 'f7az_2020',
+            'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7cb_2019',
             ]
         depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
         plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
@@ -2665,11 +2665,11 @@ class quaenv(Variable):
         P = parameters(period).impot_revenu.credits_impots.quaenv
 
         cases_depenses = [
-            'f7aa', 'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7am', 'f7an', 'f7aq', 'f7ar', 'f7as', 'f7av', 'f7ax', 'f7ay', 'f7az',
-            'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7bm', 'f7cb',
+            'f7aa', 'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7am_2018', 'f7an_2018', 'f7aq', 'f7ar_2019', 'f7as_2019', 'f7av_2020', 'f7ax_2019', 'f7ay_2020', 'f7az_2020',
+            'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7bm', 'f7cb_2019',
             ]
         depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
-        cases_depense_taux_reduit = ['f7ao', 'f7ap']
+        cases_depense_taux_reduit = ['f7ao_2018', 'f7ap_2018']
         depenses_transition_energetique_taux_reduit = sum([foyer_fiscal(case, period) for case in cases_depense_taux_reduit])
 
         plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
@@ -2690,8 +2690,8 @@ class quaenv(Variable):
         P = parameters(period).impot_revenu.credits_impots.quaenv
 
         cases_depenses = [
-            'f7aa', 'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7ar', 'f7as', 'f7av', 'f7ax', 'f7ay', 'f7az',
-            'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7bm', 'f7cb', 'f7bn',
+            'f7aa', 'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7ar_2019', 'f7as_2019', 'f7av_2020', 'f7ax_2019', 'f7ay_2020', 'f7az_2020',
+            'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7bm', 'f7cb_2019', 'f7bn',
             ]
         depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
         f7bq = foyer_fiscal('f7bq', period)

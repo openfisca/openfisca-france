@@ -235,7 +235,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
-        f7gh = foyer_fiscal('f7gh', period)  # Métropole
+        f7gh = foyer_fiscal('f7gh_2016', period)  # Métropole
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
         inv_om = min_(reduction.plafond, f7gi)
@@ -255,7 +255,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
-        f7gh = foyer_fiscal('f7gh', period)  # Métropole
+        f7gh = foyer_fiscal('f7gh_2016', period)  # Métropole
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
         # Duflot année N, 2014
@@ -293,7 +293,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
-        f7gh = foyer_fiscal('f7gh', period)  # Métropole
+        f7gh = foyer_fiscal('f7gh_2016', period)  # Métropole
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
         # Duflot année N, 2014
@@ -313,7 +313,7 @@ class duflot_pinel_denormandie_metropole(Variable):
                 ('f7qh', 9, 'outremer'),
                 ('f7qg', 6, 'outremer'),
                 ('f7qf', 9, 'metropole'),
-                ('f7qe', 6, 'metropole')],
+                ('f7qe_2015', 6, 'metropole')],
             2016: [
                 ('f7ql_2019', 9, 'outremer'),
                 ('f7qk_2019', 6, 'outremer'),
@@ -332,7 +332,7 @@ class duflot_pinel_denormandie_metropole(Variable):
             }
 
         cases_report = {
-            2014: ['f7ai', 'f7bi', 'f7fk'],  # deux premiers Pinel, dernier Duflot
+            2014: ['f7ai_2019', 'f7bi', 'f7fk'],  # deux premiers Pinel, dernier Duflot
             2015: ['f7bz', 'f7cz', 'f7fr'],
             2016: ['f7qz', 'f7rz', 'f7fv'],
             2017: ['f7ra', 'f7rb', 'f7fw'],
@@ -402,7 +402,7 @@ class duflot_pinel_denormandie_metropole(Variable):
 
         cases_report = {
             2013: ['f7fi'],
-            2014: ['f7ai', 'f7bi', 'f7fk'],
+            2014: ['f7ai_2019', 'f7bi', 'f7fk'],
             2015: ['f7bz', 'f7cz', 'f7fr'],
             2016: ['f7qz', 'f7rz', 'f7fv'],
             2017: ['f7ra', 'f7rb', 'f7fw'],
@@ -1003,7 +1003,7 @@ class duflot_pinel_denormandie_om(Variable):
                 ('f7qh', 9, 'outremer'),
                 ('f7qg', 6, 'outremer'),
                 ('f7qf', 9, 'metropole'),
-                ('f7qe', 6, 'metropole')],
+                ('f7qe_2015', 6, 'metropole')],
             2016: [
                 ('f7ql_2019', 9, 'outremer'),
                 ('f7qk_2019', 6, 'outremer'),
@@ -1614,7 +1614,7 @@ class cappme(Variable):
         2002
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cf = foyer_fiscal('f7cf', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
         base = f7cf
@@ -1627,8 +1627,8 @@ class cappme(Variable):
         2003
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cf = foyer_fiscal('f7cf', period)
-        f7cl = foyer_fiscal('f7cl', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
         base = f7cf + f7cl
@@ -1641,9 +1641,9 @@ class cappme(Variable):
         2004
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cf = foyer_fiscal('f7cf', period)
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm
@@ -1656,10 +1656,10 @@ class cappme(Variable):
         2005-2008
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cf = foyer_fiscal('f7cf', period)
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm + f7cn
@@ -1672,10 +1672,10 @@ class cappme(Variable):
         2009-2010
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cf = foyer_fiscal('f7cf', period)
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
         f7cu = foyer_fiscal('f7cu', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
@@ -1690,10 +1690,10 @@ class cappme(Variable):
         2011
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cf = foyer_fiscal('f7cf', period)
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq_2012', period)
         f7cu = foyer_fiscal('f7cu', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
@@ -1709,10 +1709,10 @@ class cappme(Variable):
         2012 cf. 2041 GR
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cf = foyer_fiscal('f7cf', period)
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq_2012', period)
         f7cu = foyer_fiscal('f7cu', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
@@ -1735,11 +1735,11 @@ class cappme(Variable):
         2013
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cc = foyer_fiscal('f7cc', period)
-        f7cf = foyer_fiscal('f7cf', period)
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
+        f7cc = foyer_fiscal('f7cc_2018', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
@@ -1761,11 +1761,11 @@ class cappme(Variable):
         2014
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cc = foyer_fiscal('f7cc', period)
-        f7cf = foyer_fiscal('f7cf', period)
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
+        f7cc = foyer_fiscal('f7cc_2018', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
         f7cu = foyer_fiscal('f7cu', period)
@@ -1810,11 +1810,11 @@ class cappme(Variable):
         2015
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7cc = foyer_fiscal('f7cc', period)
-        f7cf = foyer_fiscal('f7cf', period)
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
+        f7cc = foyer_fiscal('f7cc_2018', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
         f7cu = foyer_fiscal('f7cu', period)
@@ -1867,12 +1867,12 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        f7cf = foyer_fiscal('f7cf', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
 
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
-        f7cc = foyer_fiscal('f7cc', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
+        f7cc = foyer_fiscal('f7cc_2018', period)
         f7cu = foyer_fiscal('f7cu', period)
 
         f7cq = foyer_fiscal('f7cq', period)
@@ -1925,12 +1925,12 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        f7cf = foyer_fiscal('f7cf', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
 
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
-        f7cc = foyer_fiscal('f7cc', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
+        f7cc = foyer_fiscal('f7cc_2018', period)
 
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
@@ -1983,11 +1983,11 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        f7cf = foyer_fiscal('f7cf', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
 
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
-        f7cn = foyer_fiscal('f7cn', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
+        f7cn = foyer_fiscal('f7cn_2018', period)
 
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
@@ -2039,10 +2039,10 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        f7cf = foyer_fiscal('f7cf', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
 
-        f7cl = foyer_fiscal('f7cl', period)
-        f7cm = foyer_fiscal('f7cm', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
+        f7cm = foyer_fiscal('f7cm_2019', period)
 
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
@@ -2092,11 +2092,11 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        f7cf = foyer_fiscal('f7cf', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
         f7ch = foyer_fiscal('f7ch', period)
         f7gw = foyer_fiscal('f7gw', period)
 
-        f7cl = foyer_fiscal('f7cl', period)
+        f7cl = foyer_fiscal('f7cl_2020', period)
 
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
@@ -2150,7 +2150,7 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        f7cf = foyer_fiscal('f7cf', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
         f7ch = foyer_fiscal('f7ch', period)
 
         f7cq = foyer_fiscal('f7cq', period)
@@ -2212,7 +2212,7 @@ class cappme_esus_sfs(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        f7cf = foyer_fiscal('f7cf', period)
+        f7cf = foyer_fiscal('f7cf_2021', period)
         f7ch = foyer_fiscal('f7ch', period)
         f7ci = foyer_fiscal('f7ci', period)
         f7gw = foyer_fiscal('f7gw', period)
@@ -3484,8 +3484,8 @@ class location_meublee(Variable):
         f7pf = foyer_fiscal('f7pf_2020', period)
         f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
-        f7pi = foyer_fiscal('f7pi', period)
-        f7pj = foyer_fiscal('f7pj', period)
+        f7pi = foyer_fiscal('f7pi_2020', period)
+        f7pj = foyer_fiscal('f7pj_2020', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
@@ -3591,8 +3591,8 @@ class location_meublee(Variable):
         f7pf = foyer_fiscal('f7pf_2020', period)
         f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
-        f7pi = foyer_fiscal('f7pi', period)
-        f7pj = foyer_fiscal('f7pj', period)
+        f7pi = foyer_fiscal('f7pi_2020', period)
+        f7pj = foyer_fiscal('f7pj_2020', period)
         f7pk = foyer_fiscal('f7pk_2021', period)
         f7pl = foyer_fiscal('f7pl_2021', period)
         f7pm = foyer_fiscal('f7pm_2021', period)
@@ -3692,8 +3692,8 @@ class location_meublee(Variable):
         f7pf = foyer_fiscal('f7pf_2020', period)
         f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
-        f7pi = foyer_fiscal('f7pi', period)
-        f7pj = foyer_fiscal('f7pj', period)
+        f7pi = foyer_fiscal('f7pi_2020', period)
+        f7pj = foyer_fiscal('f7pj_2020', period)
         f7pk = foyer_fiscal('f7pk_2021', period)
         f7pl = foyer_fiscal('f7pl_2021', period)
         f7pm = foyer_fiscal('f7pm_2021', period)
@@ -3819,8 +3819,8 @@ class location_meublee(Variable):
         f7pf = foyer_fiscal('f7pf_2020', period)
         f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
-        f7pi = foyer_fiscal('f7pi', period)
-        f7pj = foyer_fiscal('f7pj', period)
+        f7pi = foyer_fiscal('f7pi_2020', period)
+        f7pj = foyer_fiscal('f7pj_2020', period)
         f7pk = foyer_fiscal('f7pk_2021', period)
         f7pl = foyer_fiscal('f7pl_2021', period)
         f7pm = foyer_fiscal('f7pm_2021', period)
@@ -3947,8 +3947,8 @@ class location_meublee(Variable):
         f7pf = foyer_fiscal('f7pf_2020', period)
         f7pg = foyer_fiscal('f7pg_2020', period)
         f7ph = foyer_fiscal('f7ph', period)
-        f7pi = foyer_fiscal('f7pi', period)
-        f7pj = foyer_fiscal('f7pj', period)
+        f7pi = foyer_fiscal('f7pi_2020', period)
+        f7pj = foyer_fiscal('f7pj_2020', period)
         f7pk = foyer_fiscal('f7pk_2021', period)
         f7pl = foyer_fiscal('f7pl_2021', period)
         f7pm = foyer_fiscal('f7pm_2021', period)
@@ -4065,7 +4065,7 @@ class location_meublee(Variable):
             'f7oo', 'f7op', 'f7oq', 'f7or',
             'f7os', 'f7ot', 'f7jv_2020', 'f7jw_2020',
             'f7jx_2020', 'f7jy_2020', 'f7pf', 'f7pg_2020',
-            'f7ph', 'f7pi', 'f7pj', 'f7pk_2021',
+            'f7ph', 'f7pi_2020', 'f7pj_2020', 'f7pk_2021',
             'f7pl_2021', 'f7pm_2021', 'f7pn_2021', 'f7po',
             'f7pp', 'f7pq', 'f7pr', 'f7ps',
             'f7pt', 'f7pu', 'f7pv', 'f7pw',
@@ -4205,6 +4205,35 @@ class location_meublee(Variable):
                'f7ki', 'f7oa', 'f7ob', 'f7oc',
                'f7od', 'f7oe', 'f7po', 'f7pp',
                'f7pq', 'f7pr', 'f7ps']
+
+        rep_ri = sum([foyer_fiscal(r, period) for r in rep])
+        inv_ri = sum([(P.taux11 * min_(P.plafond, foyer_fiscal(r, period)) / 9) for r in inv])
+
+        return rep_ri + inv_ri
+
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+        2024
+        '''
+        P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
+
+        inv = ['f7pz',
+            'f7mz',
+            'f7mw',
+            'f7mn']
+
+        rep = ['f7sl', 'f7sx', 'f7st', 'f7ss', 'f7sm', 'f7sp',
+               'f7sn', 'f7so', 'f7sa', 'f7sb',
+               'f7sc',
+               'f7ht', 'f7hd', 'f7ke', 'f7oa',
+               'f7po', 'f7pt', 'f7hu', 'f7he',
+               'f7kf', 'f7ob', 'f7pp', 'f7pu',
+               'f7hv', 'f7hf', 'f7kg', 'f7oc',
+               'f7pq', 'f7pv', 'f7hw', 'f7hg',
+               'f7kh', 'f7of', 'f7pr', 'f7pw',
+               'f7hx', 'f7hh', 'f7ki', 'f7oe',
+               'f7ps', 'f7px']
 
         rep_ri = sum([foyer_fiscal(r, period) for r in rep])
         inv_ri = sum([(P.taux11 * min_(P.plafond, foyer_fiscal(r, period)) / 9) for r in inv])
@@ -4381,7 +4410,7 @@ class ri_saldom(Variable):
         Sommes versées pour l'emploi d'un salariés à domicile
         2002-2004
         '''
-        f7df = foyer_fiscal('f7df', period)
+        f7df = foyer_fiscal('f7df_2016', period)
         invalide = foyer_fiscal('f7dg', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
@@ -4394,7 +4423,7 @@ class ri_saldom(Variable):
         2005-2006
         '''
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7df = foyer_fiscal('f7df', period)
+        f7df = foyer_fiscal('f7df_2016', period)
         f7dl = foyer_fiscal('f7dl', period)
         invalide = foyer_fiscal('f7dg', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
@@ -4413,7 +4442,7 @@ class ri_saldom(Variable):
         '''
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
-        f7df = foyer_fiscal('f7df', period)
+        f7df = foyer_fiscal('f7df_2016', period)
         f7dl = foyer_fiscal('f7dl', period)
         invalide = foyer_fiscal('f7dg', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
@@ -4433,7 +4462,7 @@ class ri_saldom(Variable):
         '''
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
-        f7df = foyer_fiscal('f7df', period)
+        f7df = foyer_fiscal('f7df_2016', period)
         f7dl = foyer_fiscal('f7dl', period)
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
@@ -4461,8 +4490,8 @@ class ri_saldom(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
 
         f7db = foyer_fiscal('f7db', period)
-        f7dd = foyer_fiscal('f7dd', period)
-        f7df = foyer_fiscal('f7df', period)
+        f7dd = foyer_fiscal('f7dd_2016', period)
+        f7df = foyer_fiscal('f7df_2016', period)
         f7dl = foyer_fiscal('f7dl', period)
 
         annee1 = foyer_fiscal('f7dq', period)
@@ -4556,7 +4585,7 @@ class scelli(Variable):
         f7hv = foyer_fiscal('f7hv_2018', period)
         f7hw = foyer_fiscal('f7hw_2018', period)
         f7hx = foyer_fiscal('f7hx_2018', period)
-        f7hz = foyer_fiscal('f7hz', period)
+        f7hz = foyer_fiscal('f7hz_2018', period)
         f7la = foyer_fiscal('f7la', period)
         f7lb = foyer_fiscal('f7lb', period)
         f7lc = foyer_fiscal('f7lc', period)
@@ -4578,8 +4607,8 @@ class scelli(Variable):
         f7np = foyer_fiscal('f7np_2017', period)
         f7nq = foyer_fiscal('f7nq_2016', period)
         f7nr = foyer_fiscal('f7nr_2021', period)
-        f7ns = foyer_fiscal('f7ns', period)
-        f7nt = foyer_fiscal('f7nt', period)
+        f7ns = foyer_fiscal('f7ns_2021', period)
+        f7nt = foyer_fiscal('f7nt_2022', period)
         investissement_2009_2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
         investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
@@ -4625,7 +4654,7 @@ class scelli(Variable):
         f7hv = foyer_fiscal('f7hv_2018', period)
         f7hw = foyer_fiscal('f7hw_2018', period)
         f7hx = foyer_fiscal('f7hx_2018', period)
-        f7hz = foyer_fiscal('f7hz', period)
+        f7hz = foyer_fiscal('f7hz_2018', period)
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
         f7jd = foyer_fiscal('f7jd_2017', period)
@@ -4666,8 +4695,8 @@ class scelli(Variable):
         f7np = foyer_fiscal('f7np_2017', period)
         f7nq = foyer_fiscal('f7nq_2016', period)
         f7nr = foyer_fiscal('f7nr_2021', period)
-        f7ns = foyer_fiscal('f7ns', period)
-        f7nt = foyer_fiscal('f7nt', period)
+        f7ns = foyer_fiscal('f7ns_2021', period)
+        f7nt = foyer_fiscal('f7nt_2022', period)
         investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
         investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
         investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
@@ -4706,16 +4735,16 @@ class scelli(Variable):
         f7fb = foyer_fiscal('f7fb', period)
         f7fc = foyer_fiscal('f7fc', period)
         f7fd = foyer_fiscal('f7fd', period)
-        f7gj = foyer_fiscal('f7gj', period)
+        f7gj = foyer_fiscal('f7gj_2020', period)
         f7gk = foyer_fiscal('f7gk', period)
         f7gl = foyer_fiscal('f7gl', period)
         f7gp = foyer_fiscal('f7gp', period)
-        f7gs = foyer_fiscal('f7gs', period)
+        f7gs = foyer_fiscal('f7gs_2020', period)
         f7gt = foyer_fiscal('f7gt', period)
-        f7gu = foyer_fiscal('f7gu', period)
+        f7gu = foyer_fiscal('f7gu_2020', period)
         f7gv = foyer_fiscal('f7gv', period)
         f7gw = foyer_fiscal('f7gw_2016', period)
-        f7gx = foyer_fiscal('f7gx', period)
+        f7gx = foyer_fiscal('f7gx_2016', period)
         f7ha = foyer_fiscal('f7ha', period)
         f7hb = foyer_fiscal('f7hb', period)
         f7hg = foyer_fiscal('f7hg_2015', period)
@@ -4736,7 +4765,7 @@ class scelli(Variable):
         f7hv = foyer_fiscal('f7hv_2018', period)
         f7hw = foyer_fiscal('f7hw_2018', period)
         f7hx = foyer_fiscal('f7hx_2018', period)
-        f7hz = foyer_fiscal('f7hz', period)
+        f7hz = foyer_fiscal('f7hz_2018', period)
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
         f7jd = foyer_fiscal('f7jd_2017', period)
@@ -4781,8 +4810,8 @@ class scelli(Variable):
         f7np = foyer_fiscal('f7np_2017', period)
         f7nq = foyer_fiscal('f7nq_2016', period)
         f7nr = foyer_fiscal('f7nr_2021', period)
-        f7ns = foyer_fiscal('f7ns', period)
-        f7nt = foyer_fiscal('f7nt', period)
+        f7ns = foyer_fiscal('f7ns_2021', period)
+        f7nt = foyer_fiscal('f7nt_2022', period)
         investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
         investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
         investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
@@ -4824,16 +4853,16 @@ class scelli(Variable):
         f7fb = foyer_fiscal('f7fb', period)
         f7fc = foyer_fiscal('f7fc', period)
         f7fd = foyer_fiscal('f7fd', period)
-        f7gj = foyer_fiscal('f7gj', period)
+        f7gj = foyer_fiscal('f7gj_2020', period)
         f7gk = foyer_fiscal('f7gk', period)
         f7gl = foyer_fiscal('f7gl', period)
         f7gp = foyer_fiscal('f7gp', period)
-        f7gs = foyer_fiscal('f7gs', period)
+        f7gs = foyer_fiscal('f7gs_2020', period)
         f7gt = foyer_fiscal('f7gt', period)
-        f7gu = foyer_fiscal('f7gu', period)
+        f7gu = foyer_fiscal('f7gu_2020', period)
         f7gv = foyer_fiscal('f7gv', period)
         f7gw = foyer_fiscal('f7gw_2016', period)
-        f7gx = foyer_fiscal('f7gx', period)
+        f7gx = foyer_fiscal('f7gx_2016', period)
         f7ha = foyer_fiscal('f7ha', period)
         f7hb = foyer_fiscal('f7hb', period)
         f7hg = foyer_fiscal('f7hg_2015', period)
@@ -4854,7 +4883,7 @@ class scelli(Variable):
         f7hv = foyer_fiscal('f7hv_2018', period)
         f7hw = foyer_fiscal('f7hw_2018', period)
         f7hx = foyer_fiscal('f7hx_2018', period)
-        f7hz = foyer_fiscal('f7hz', period)
+        f7hz = foyer_fiscal('f7hz_2018', period)
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
         f7jd = foyer_fiscal('f7jd_2017', period)
@@ -4903,14 +4932,14 @@ class scelli(Variable):
         f7np = foyer_fiscal('f7np_2017', period)
         f7nq = foyer_fiscal('f7nq_2016', period)
         f7nr = foyer_fiscal('f7nr_2021', period)
-        f7ns = foyer_fiscal('f7ns', period)
-        f7nt = foyer_fiscal('f7nt', period)
+        f7ns = foyer_fiscal('f7ns_2021', period)
+        f7nt = foyer_fiscal('f7nt_2022', period)
         f7ya = foyer_fiscal('f7ya', period)
-        f7yb = foyer_fiscal('f7yb', period)
+        f7yb = foyer_fiscal('f7yb_2021', period)
         f7yc = foyer_fiscal('f7yc', period)
-        f7yd = foyer_fiscal('f7yd', period)
+        f7yd = foyer_fiscal('f7yd_2021', period)
         f7ye = foyer_fiscal('f7ye', period)
-        f7yf = foyer_fiscal('f7yf', period)
+        f7yf = foyer_fiscal('f7yf_2021', period)
         f7yg = foyer_fiscal('f7yg', period)
         f7yh = foyer_fiscal('f7yh', period)
         f7yi = foyer_fiscal('f7yi', period)
@@ -4981,13 +5010,13 @@ class scelli(Variable):
         f7fb = foyer_fiscal('f7fb', period)
         f7fc = foyer_fiscal('f7fc', period)
         f7fd = foyer_fiscal('f7fd', period)
-        f7gj = foyer_fiscal('f7gj', period)
+        f7gj = foyer_fiscal('f7gj_2020', period)
         f7gl = foyer_fiscal('f7gl', period)
-        f7gs = foyer_fiscal('f7gs', period)
-        f7gu = foyer_fiscal('f7gu', period)
+        f7gs = foyer_fiscal('f7gs_2020', period)
+        f7gu = foyer_fiscal('f7gu_2020', period)
         f7gv = foyer_fiscal('f7gv', period)
         f7gw = foyer_fiscal('f7gw_2016', period)
-        f7gx = foyer_fiscal('f7gx', period)
+        f7gx = foyer_fiscal('f7gx_2016', period)
         f7ha = foyer_fiscal('f7ha', period)
         f7hg = foyer_fiscal('f7hg_2015', period)
         f7hh = foyer_fiscal('f7hh_2015', period)
@@ -5006,7 +5035,7 @@ class scelli(Variable):
         f7hv = foyer_fiscal('f7hv_2018', period)
         f7hw = foyer_fiscal('f7hw_2018', period)
         f7hx = foyer_fiscal('f7hx_2018', period)
-        f7hz = foyer_fiscal('f7hz', period)
+        f7hz = foyer_fiscal('f7hz_2018', period)
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
         f7jd = foyer_fiscal('f7jd_2017', period)
@@ -5059,11 +5088,11 @@ class scelli(Variable):
         f7np = foyer_fiscal('f7np_2017', period)
         f7nq = foyer_fiscal('f7nq_2016', period)
         f7nr = foyer_fiscal('f7nr_2021', period)
-        f7ns = foyer_fiscal('f7ns', period)
-        f7nt = foyer_fiscal('f7nt', period)
-        f7yb = foyer_fiscal('f7yb', period)
-        f7yd = foyer_fiscal('f7yd', period)
-        f7yf = foyer_fiscal('f7yf', period)
+        f7ns = foyer_fiscal('f7ns_2021', period)
+        f7nt = foyer_fiscal('f7nt_2022', period)
+        f7yb = foyer_fiscal('f7yb_2021', period)
+        f7yd = foyer_fiscal('f7yd_2021', period)
+        f7yf = foyer_fiscal('f7yf_2021', period)
         f7yh = foyer_fiscal('f7yh', period)
         f7yj = foyer_fiscal('f7yj', period)
         f7yk = foyer_fiscal('f7yk', period)
@@ -5145,22 +5174,22 @@ class scelli(Variable):
             'f7yo', 'f7yv',
             'f7yp', 'f7yw',
 
-            'f7yq', 'f7yx',
-            'f7yr', 'f7yy',
-            'f7ys', 'f7yz',
+            'f7yq', 'f7yx_2019',
+            'f7yr', 'f7yy_2019',
+            'f7ys', 'f7yz_2019',
 
-            'f7gj', 'f7yb',
-            'f7gl', 'f7yd',
-            'f7gs', 'f7yf',
-            'f7gu', 'f7yh',
+            'f7gj_2020', 'f7yb_2021',
+            'f7gl', 'f7yd_2021',
+            'f7gs_2020', 'f7yf_2021',
+            'f7gu_2020', 'f7yh',
 
-            'f7gv', 'f7yj', 'f7gw_2016', 'f7yk', 'f7gx', 'f7yl',
+            'f7gv', 'f7yj', 'f7gw_2016', 'f7yk', 'f7gx_2016', 'f7yl',
             'f7ha', 'f7hd_2019', 'f7hf_2019',
 
-            'f7lb_2016', 'f7le', 'f7lm_2018', 'f7ln', 'f7lg_2020', 'f7lk',
-            'f7lc_2016', 'f7ld', 'f7ls', 'f7lt', 'f7lh_2020', 'f7ll',
-            'f7lf', 'f7lz', 'f7lx', 'f7li_2020', 'f7lo',
-            'f7mg', 'f7mh', 'f7lj_2020', 'f7lp',
+            'f7lb_2016', 'f7le', 'f7lm_2018', 'f7ln', 'f7lg_2020', 'f7lk_2021',
+            'f7lc_2016', 'f7ld', 'f7ls', 'f7lt', 'f7lh_2020', 'f7ll_2021',
+            'f7lf', 'f7lz', 'f7lx', 'f7li_2020', 'f7lo_2021',
+            'f7mg', 'f7mh', 'f7lj_2020', 'f7lp_2021',
             ]
 
         reports_base_25 = [
@@ -5168,10 +5197,10 @@ class scelli(Variable):
             ]
 
         reports_base_40 = [
-            'f7hw_2018', 'f7hz', 'f7hu_2018', 'f7hs_2017',
+            'f7hw_2018', 'f7hz_2018', 'f7hu_2018', 'f7hs_2017',
             ]
 
-        inv_5_40 = ['f7nq_2016', 'f7nr_2021', 'f7ns', 'f7nt']
+        inv_5_40 = ['f7nq_2016', 'f7nr_2021', 'f7ns_2021', 'f7nt_2022']
         inv_5_36 = ['f7jp_2016', 'f7jq_2017', 'f7np_2017']
         inv_5_24 = ['f7fd', 'f7jo_2017', 'f7jr_2017']
         inv_9_40 = ['f7nl_2016', 'f7nm_2017', 'f7nn_2017', 'f7no_2021', 'f7hk', 'f7ho_2016']
@@ -5182,8 +5211,8 @@ class scelli(Variable):
         inv_9_15 = ['f7ni_2017', 'f7ng_2016']
         inv_9_13 = ['f7fa', 'f7ja_2017', 'f7jg_2016', 'f7jh_2021', 'f7je_2021', 'f7nf_2017', 'f7nj_2017']
         inv_9_6 = ['f7fb', 'f7jf_2021', 'f7jj_2020']
-        inv_3_6 = ['f7zb', 'f7zc']
-        inv_3_5 = ['f7za', 'f7zd']
+        inv_3_6 = ['f7zb_2017', 'f7zc_2017']
+        inv_3_5 = ['f7za_2017', 'f7zd_2017']
 
         investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
         investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
@@ -5237,28 +5266,28 @@ class scelli(Variable):
             'f7yn', 'f7yu', 'f7wu',
             'f7yo', 'f7yv', 'f7wv',
             'f7yp', 'f7yw', 'f7ww',
-            'f7yq', 'f7yx', 'f7wx',
-            'f7yr', 'f7yy', 'f7wy',
-            'f7ys', 'f7yz', 'f7wz',
-            'f7gj', 'f7yb',
-            'f7ha', 'f7gl', 'f7yd',
-            'f7hd_2019', 'f7gs', 'f7yf',
-            'f7hf_2019', 'f7gu', 'f7yh',
+            'f7yq', 'f7yx_2019', 'f7wx_2020',
+            'f7yr', 'f7yy_2019', 'f7wy_2020',
+            'f7ys', 'f7yz_2019', 'f7wz_2020',
+            'f7gj_2020', 'f7yb_2021',
+            'f7ha', 'f7gl', 'f7yd_2021',
+            'f7hd_2019', 'f7gs_2020', 'f7yf_2021',
+            'f7hf_2019', 'f7gu_2020', 'f7yh',
             'f7yj', 'f7yk', 'f7yl',
-            'f7le', 'f7lm_2018', 'f7ln', 'f7lg_2020', 'f7lk', 'f7lq',
-            'f7ld', 'f7ls', 'f7lt', 'f7lh_2020', 'f7ll', 'f7lr',
-            'f7lf', 'f7lz', 'f7lx', 'f7li_2020', 'f7lo', 'f7lu',
-            'f7mg', 'f7mh', 'f7lj_2020', 'f7lp', 'f7lv',
-            'f7zm', 'f7zn', 'f7zp', 'f7zo']
+            'f7le', 'f7lm_2018', 'f7ln', 'f7lg_2020', 'f7lk_2021', 'f7lq',
+            'f7ld', 'f7ls', 'f7lt', 'f7lh_2020', 'f7ll_2021', 'f7lr',
+            'f7lf', 'f7lz', 'f7lx', 'f7li_2020', 'f7lo_2021', 'f7lu',
+            'f7mg', 'f7mh', 'f7lj_2020', 'f7lp_2021', 'f7lv',
+            'f7zm_2020', 'f7zn_2018', 'f7zp', 'f7zo']
 
         reports_base_25 = [
             'f7hv_2018', 'f7hx_2018', 'f7ht_2018', 'f7hr_2017']
 
         reports_base_40 = [
-            'f7hw_2018', 'f7hz', 'f7hu_2018', 'f7hs_2017'
+            'f7hw_2018', 'f7hz_2018', 'f7hu_2018', 'f7hs_2017'
             ]
 
-        inv_5_40 = ['f7nr_2021', 'f7ns', 'f7nt']
+        inv_5_40 = ['f7nr_2021', 'f7ns_2021', 'ff7nt_20227nt']
         inv_5_36 = ['f7jq_2017', 'f7np_2017']
         inv_5_24 = ['f7fd', 'f7jo_2017', 'f7jr_2017']
         inv_9_40 = ['f7nm_2017', 'f7nn_2017', 'f7no_2021']
@@ -5269,8 +5298,8 @@ class scelli(Variable):
         inv_9_15 = ['f7ni_2017']
         inv_9_13 = ['f7fa', 'f7ja_2017', 'f7jh_2021', 'f7je_2021', 'f7nf_2017', 'f7nj_2017']
         inv_9_6 = ['f7fb', 'f7jf_2021', 'f7jj_2020']
-        inv_3_6 = ['f7zb', 'f7zc', 'f7zf', 'f7zg']
-        inv_3_5 = ['f7za', 'f7zd', 'f7ze', 'f7zh', 'f7zj', 'f7zk']
+        inv_3_6 = ['f7zb_2017', 'f7zc_2017', 'f7zf_2018', 'f7zg_2018']
+        inv_3_5 = ['f7za_2017', 'f7zd_2017', 'f7ze_2018', 'f7zh_2018', 'f7zj', 'f7zk']
         inv_3_4 = ['f7zi', 'f7zl']
 
         investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
@@ -5330,21 +5359,21 @@ class scelli(Variable):
             'f7yo', 'f7yv', 'f7wv',
             'f7yp', 'f7yw', 'f7ww',
 
-            'f7yq', 'f7yx', 'f7wx',
-            'f7yr', 'f7yy', 'f7wy',
-            'f7ys', 'f7yz', 'f7wz',
+            'f7yq', 'f7yx_2019', 'f7wx_2020',
+            'f7yr', 'f7yy_2019', 'f7wy_2020',
+            'f7ys', 'f7yz_2019', 'f7wz_2020',
 
-            'f7gj', 'f7yb',
-            'f7ha', 'f7gl', 'f7yd',
-            'f7hd_2019', 'f7gs', 'f7yf',
-            'f7hf_2019', 'f7gu', 'f7yh',
+            'f7gj_2020', 'f7yb_2021',
+            'f7ha', 'f7gl', 'f7yd_2021',
+            'f7hd_2019', 'f7gs_2020', 'f7yf_2021',
+            'f7hf_2019', 'f7gu_2020', 'f7yh',
 
-            'f7lm_2018', 'f7ln', 'f7lg_2020', 'f7lk', 'f7lq', 'f7la',
-            'f7ls', 'f7lt', 'f7lh_2020', 'f7ll', 'f7lr', 'f7lb',
-            'f7lz', 'f7lx', 'f7li_2020', 'f7lo', 'f7lu', 'f7lc',
-            'f7mg', 'f7mh', 'f7lj_2020', 'f7lp', 'f7lv', 'f7ly',
+            'f7lm_2018', 'f7ln', 'f7lg_2020', 'f7lk_2021', 'f7lq', 'f7la',
+            'f7ls', 'f7lt', 'f7lh_2020', 'f7ll_2021', 'f7lr', 'f7lb',
+            'f7lz', 'f7lx', 'f7li_2020', 'f7lo_2021', 'f7lu', 'f7lc',
+            'f7mg', 'f7mh', 'f7lj_2020', 'f7lp_2021', 'f7lv', 'f7ly',
 
-            'f7zm', 'f7zn',
+            'f7zm_2020', 'f7zn_2018',
             'f7zq', 'f7zr',
             'f7zs',
             'f7zu', 'f7zt',
@@ -5359,17 +5388,17 @@ class scelli(Variable):
             ]
 
         reports_base_40 = [
-            'f7hw_2018', 'f7hz', 'f7hu_2018',
+            'f7hw_2018', 'f7hz_2018', 'f7hu_2018',
             ]
 
         inv_6 = [
-            'f7zv', 'f7zf',
-            'f7zg', 'f7sf_2022',
+            'f7zv', 'f7zf_2018',
+            'f7zg_2018', 'f7sf_2022',
             'f7sg_2022',
             ]
 
         inv_5 = [
-            'f7ze', 'f7zh',
+            'f7ze_2018', 'f7zh_2018',
             'f7zj', 'f7zk',
             'f7se_2022', 'f7sh_2022',
             'f7sj', 'f7sk',
@@ -5418,47 +5447,47 @@ class scelli(Variable):
             'f7yu', 'f7wu', 'f7yo', 'f7yv',
             'f7wv', 'f7yp', 'f7yw', 'f7ww',
 
-            'f7yx', 'f7wx', 'f7yy', 'f7wy',
-            'f7yz', 'f7wz',
+            'f7yx_2019', 'f7wx_2020', 'f7yy_2019', 'f7wy_2020',
+            'f7yz_2019', 'f7wz_2020',
 
-            'f7gj', 'f7yb', 'f7ha', 'f7gl',
-            'f7yd', 'f7hd_2019', 'f7gs', 'f7yf',
-            'f7hf_2019', 'f7gu', 'f7yh',
+            'f7gj_2020', 'f7yb_2021', 'f7ha', 'f7gl',
+            'f7yd_2021', 'f7hd_2019', 'f7gs_2020', 'f7yf_2021',
+            'f7hf_2019', 'f7gu_2020', 'f7yh',
 
-            'f7ln', 'f7lg_2020', 'f7lk', 'f7lq',
+            'f7ln', 'f7lg_2020', 'f7lk_2021', 'f7lq',
             'f7la', 'f7ms', 'f7lt', 'f7lh_2020',
-            'f7ll', 'f7lr', 'f7lb', 'f7mt',
-            'f7lx', 'f7li_2020', 'f7lo', 'f7lu',
+            'f7ll_2021', 'f7lr', 'f7lb', 'f7mt',
+            'f7lx', 'f7li_2020', 'f7lo_2021', 'f7lu',
             'f7lc', 'f7mu', 'f7mh', 'f7lj_2020',
-            'f7lp', 'f7lv', 'f7ly', 'f7mv',
+            'f7lp_2021', 'f7lv', 'f7ly', 'f7mv',
 
             'f7zq', 'f7zr', 'f7zs', 'f7zu',
-            'f7zt', 'f7wa_2020', 'f7wb_2020', 'f7wc',
-            'f7wd', 'f7we', 'f7wf', 'f7wg',
+            'f7zt', 'f7wa_2020', 'f7wb_2020', 'f7wc_2020',
+            'f7wd_2020', 'f7we_2020', 'f7wf_2020', 'f7wg_2020',
 
             'f7yi', 'f7zp', 'f7xp', 'f7yj',
             'f7zo', 'f7xo', 'f7yk', 'f7xq',
             'f7yl']
 
         inv_6 = [
-            'f7zv', 'f7za',
-            'f7zb', 'f7sf_2022',
+            'f7zv', 'f7za_2020',
+            'f7zb_2020', 'f7sf_2022',
             'f7sg_2022', 'f7rj_2020',
-            'f7rk', 'f7xi',
-            'f7xj',
+            'f7rk_2020', 'f7xi_2020',
+            'f7xj_2020',
             ]
 
         inv_5 = [
             'f7se_2022', 'f7sh_2022',
             'f7sj', 'f7sk',
-            'f7ri_2020', 'f7rl',
-            'f7rn', 'f7ro',
-            'f7xh', 'f7xk',
+            'f7ri_2020', 'f7rl_2020',
+            'f7rn_2020', 'f7ro',
+            'f7xh_2020', 'f7xk_2020',
             ]
 
         inv_4 = [
             'f7sl', 'f7sm_2019',
-            'f7rm', 'f7rp_2020',
+            'f7rm_2020', 'f7rp_2020',
             'f7rq_2020',
             ]
 
@@ -5493,22 +5522,22 @@ class scelli(Variable):
             'f7yu', 'f7wu', 'f7yo', 'f7yv',
             'f7wv', 'f7yp', 'f7yw', 'f7ww',
 
-            'f7wx', 'f7wy', 'f7wz',
+            'f7wx_2020', 'f7wy_2020', 'f7wz_2020',
 
-            'f7gj', 'f7yb', 'f7gl',
-            'f7yd', 'f7gs', 'f7yf',
-            'f7gu', 'f7yh',
+            'f7gj_2020', 'f7yb_2021', 'f7gl',
+            'f7yd_2021', 'f7gs_2020', 'f7yf_2021',
+            'f7gu_2020', 'f7yh',
 
-            'f7lg_2020', 'f7lk', 'f7lq', 'f7la', 'f7ms', 'f7mo',
-            'f7lh_2020', 'f7ll', 'f7lr', 'f7lb', 'f7mt', 'f7mp',
-            'f7li_2020', 'f7lo', 'f7lu', 'f7lc', 'f7mu', 'f7mq',
-            'f7lj_2020', 'f7lp', 'f7lv', 'f7ly', 'f7mv', 'f7mr',
+            'f7lg_2020', 'f7lk_2021', 'f7lq', 'f7la', 'f7ms', 'f7mo',
+            'f7lh_2020', 'f7ll_2021', 'f7lr', 'f7lb', 'f7mt', 'f7mp',
+            'f7li_2020', 'f7lo_2021', 'f7lu', 'f7lc', 'f7mu', 'f7mq',
+            'f7lj_2020', 'f7lp_2021', 'f7lv', 'f7ly', 'f7mv', 'f7mr',
 
-            'f7wa_2020', 'f7wb_2020', 'f7wc',
-            'f7wd', 'f7we', 'f7wf', 'f7wg',
-            'f7no_2021', 'f7np_2017', 'f7nq_2016',
-            'f7nr_2021', 'f7ns', 'f7nt',
-            'f7nu', 'f7nv', 'f7nw',
+            'f7wa_2020', 'f7wb_2020', 'f7wc_2020',
+            'f7wd_2020', 'f7we_2020', 'f7wf_2020', 'f7wg_2020',
+            'f7no_2021', 'f7np_2021', 'f7nq_2021',
+            'f7nr_2021', 'f7ns_2021', 'f7nt_2022',
+            'f7nu_2021', 'f7nv_2021', 'f7nw',
 
             'f7yi', 'f7zi',
             'f7zp', 'f7xp', 'f7yj', 'f7zj',
@@ -5519,22 +5548,22 @@ class scelli(Variable):
             ]
 
         inv_6 = [
-            'f7za', 'f7zb', 'f7zm', 'f7zd',
-            'f7ze', 'f7zg', 'f7zh', 'f7zn',
-            'f7rj_2020', 'f7rk', 'f7is', 'f7it',
-            'f7xi', 'f7xj', 'f7jf_2021', 'f7jg_2016',
+            'f7za_2020', 'f7zb_2020', 'f7zm_2020', 'f7zd_2021',
+            'f7ze_2021', 'f7zg_2021', 'f7zh_2021', 'f7zn_2021',
+            'f7rj_2020', 'f7rk_2020', 'f7is_2021', 'f7it_2021',
+            'f7xi_2020', 'f7xj_2020', 'f7jf_2021', 'f7jg_2016',
             ]
 
         inv_5 = [
-            'f7zc', 'f7zf', 'f7ri_2020', 'f7rl',
-            'f7rn', 'f7ro', 'f7ir', 'f7iu',
-            'f7iw', 'f7ix', 'f7xh', 'f7xk',
+            'f7zc_2021', 'f7zf_2021', 'f7ri_2020', 'f7rl_2020',
+            'f7rn_2020', 'f7ro', 'f7ir_2021', 'f7iu_2021',
+            'f7iw', 'f7ix_2021', 'f7xh_2020', 'f7xk_2020',
             'f7je_2021', 'f7jh_2021', 'f7jj_2020', 'f7jk_2021',
             ]
 
         inv_4 = [
-            'f7rm', 'f7rp_2020', 'f7rq_2020', 'f7iv',
-            'f7iy', 'f7iz', 'f7ji_2020', 'f7jl_2016',
+            'f7rm_2020', 'f7rp_2020', 'f7rq_2020', 'f7iv_2021',
+            'f7iy_2021', 'f7iz_2021', 'f7ji_2020', 'f7jl_2016',
             ]
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
@@ -5569,15 +5598,15 @@ class scelli(Variable):
             'f7yo', 'f7yv', 'f7wv',
             'f7yp', 'f7yw', 'f7ww',
 
-            'f7yb', 'f7yd', 'f7yf', 'f7yh',
+            'f7yb_2021', 'f7yd_2021', 'f7yf_2021', 'f7yh',
 
-            'f7lk', 'f7lq', 'f7la', 'f7ms', 'f7mo', 'f7ma',
-            'f7ll', 'f7lr', 'f7lb', 'f7mt', 'f7mp', 'f7mb',
-            'f7lo', 'f7lu', 'f7lc', 'f7mu', 'f7mq', 'f7mc',
-            'f7lp', 'f7lv', 'f7ly', 'f7mv', 'f7mr', 'f7md',
-            'f7no_2021', 'f7np_2017', 'f7nq_2016',
-            'f7nr_2021', 'f7ns', 'f7nt',
-            'f7nu', 'f7nv', 'f7nw',
+            'f7lk_2021', 'f7lq', 'f7la', 'f7ms', 'f7mo', 'f7ma',
+            'f7ll_2021', 'f7lr', 'f7lb', 'f7mt', 'f7mp', 'f7mb',
+            'f7lo_2021', 'f7lu', 'f7lc', 'f7mu', 'f7mq', 'f7mc',
+            'f7lp_2021', 'f7lv', 'f7ly', 'f7mv', 'f7mr', 'f7md',
+            'f7no_2021', 'f7np_2021', 'f7nq_2021',
+            'f7nr_2021', 'f7ns_2021', 'f7nt_2022',
+            'f7nu_2021', 'f7nv_2021', 'f7nw',
 
             'f7xa', 'f7xb',
             'f7ys', 'f7xc', 'f7xl',
@@ -5598,28 +5627,259 @@ class scelli(Variable):
             ]
 
         inv_6 = [
-            'f7zd', 'f7ze', 'f7zg', 'f7zh',
-            'f7zn', 'f7si_2022', 'f7sj', 'f7sl',
-            'f7sq', 'f7sr', 'f7is', 'f7it',
-            'f7ib', 'f7ic_2021', 'f7iq', 'f7jf_2021',
-            'f7jg_2016', 'f7le', 'f7lf',
+            'f7zd_2021', 'f7ze_2021', 'f7zg_2021', 'f7zh_2021',
+            'f7zn_2021', 'f7si_2022', 'f7sj', 'f7sl',
+            'f7sq', 'f7sr', 'f7is_2021', 'f7it_2021',
+            'f7ib_2021', 'f7ic_2021', 'f7iq', 'f7jf_2021',
+            'f7jg_2021', 'f7le', 'f7lf',
             ]
 
         inv_5 = [
-            'f7zc', 'f7zf', 'f7se_2022', 'f7sf_2022',
-            'f7sh_2022', 'f7sk', 'f7ir', 'f7iu',
-            'f7iw', 'f7ix', 'f7ia', 'f7ie_2022',
+            'f7zc_2021', 'f7zf_2021', 'f7se_2022', 'f7sf_2022',
+            'f7sh_2022', 'f7sk', 'f7ir_2021', 'f7iu_2021',
+            'f7iw', 'f7ix_2021', 'f7ia_2021', 'f7ie_2022',
             'f7ig_2022', 'f7ih_2022', 'f7je_2021', 'f7jh_2021',
             'f7jj_2020', 'f7jk_2021', 'f7ld', 'f7ln',
             'f7lx', 'f7lz',
             ]
+        #7iq
 
         inv_4 = [
-            'f7sd_2022', 'f7sg_2022', 'f7iv', 'f7iy',
-            'f7iz', 'f7if_2022', 'f7io', 'f7ip',
-            'f7ji_2020', 'f7jl_2016', 'f7lt', 'f7mg',
+            'f7sd_2022', 'f7sg_2022', 'f7iv_2021', 'f7iy_2021',
+            'f7iz_2021', 'f7if_2022', 'f7io', 'f7ip',
+            'f7ji_2020', 'f7jl_2021', 'f7lt', 'f7mg',
             'f7mh',
             ]
+
+        ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
+
+        base_ri_6 = min_(investissement_2012.plafond, sum([foyer_fiscal(inv, period) for inv in inv_6]))
+        base_ri_5 = min_(investissement_2012.plafond - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
+        base_ri_4 = min_(investissement_2012.plafond - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
+
+        ri_6 = base_ri_6 * investissement_2009_2010.taux_prorogation / 3
+        ri_5 = base_ri_5 * investissement_2011.taux_prorogation / 3
+        ri_4 = base_ri_4 * investissement_2012.taux_prorogation / 3
+
+        reductions = ri_rep + ri_6 + ri_5 + ri_4
+
+        return
+
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatif neufs : Dispositif Scellier
+        2022
+        '''
+
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+
+        reports = [
+            'f7rt', 'f7ru'
+
+            'f7ym', 'f7yt', 'f7wt',
+            'f7yn', 'f7yu', 'f7wu',
+            'f7yo', 'f7yv', 'f7wv',
+            'f7yp', 'f7yw', 'f7ww',
+
+
+            'f7lq', 'f7la', 'f7ms', 'f7mo', 'f7ma', 'f7mi',
+            'f7lr', 'f7lb', 'f7mt', 'f7mp', 'f7mb', 'f7mj',
+            'f7lu', 'f7lc', 'f7mu', 'f7mq', 'f7mc', 'f7mk',
+            'f7lv', 'f7ly', 'f7mv', 'f7mr', 'f7md', 'f7ml',
+
+            'f7xa', 'f7xb',
+            'f7ys', 'f7xc', 'f7xl',
+            'f7xm', 'f7xn', 'f7ya',
+            'f7yc', 'f7yg', 'f7yr',
+
+            'f7qe_2023', 'f7pi_2023', 'f7pj_2023',
+            'f7au_2023', 'f7ab_2023', 'f7ad_2023', 'f7af_2023',
+            'f7ah_2023', 'f7ai_2023', 'f7ap_2023',
+            'f7ar_2023', 'f7as_2023', 'f7at_2023',
+
+
+            'f7yi', 'f7zi', 'f7uu', 'f7rk',
+            'f7zp', 'f7xp', 'f7yj', 'f7zj', 'f7uv', 'f7rl',
+            'f7zo', 'f7xo', 'f7yk', 'f7zk', 'f7uw', 'f7rm',
+            'f7xq', 'f7yl', 'f7zl', 'f7ux', 'f7rn',
+
+            #'f7ka', 'f7kb',
+            'f7ha', 'f7hj', 'f7hk', 'f7hn', 'f7hy',
+            'f7zm_2023', 'f7gs_2023', 'f7gu_2023', 'f7gx_2023',
+            'f7wx_2023', 'f7wy_2023', 'f7wz_2023',
+
+
+            'f7kc', 'f7pc','f7kt',
+            'f7kd', 'f7pd', 'f7ku',
+            'f7pe', 'f7kv','f7hz',
+            ]
+
+        inv_6 = [ # engagement 2010
+            # achevés 2012
+            'f7si_2022', 'f7sj', 'f7sl',
+            'f7sq', 'f7sr',
+            # achevés 2013
+            'f7xi_2023', 'f7xj_2023', 'f7yy_2023', 'f7yx_2023', 'f7yz_2023',
+            # achevés 2016
+            'f7ib_2021', 'f7ic_2021',
+            # achevés 2017
+            'f7kl_2023',
+            # Prorogation 2
+            'f7iq', 'f7hl', 'f7hm',
+            # achevés 2013 OM
+            'f7le', 'f7lf',
+            # achevés 2014 OM
+            'f7bb_2023', 'f7bc_2023',
+            ]
+
+        inv_5 = [ # engagement 2011
+            # achevés 2012
+            'f7se_2022',
+            'f7sf_2022',
+            'f7sh_2022', 'f7sk',
+            # achevés 2013
+            'f7we_2023', 'f7wf_2023', 'f7xh_2023', 'f7xk_2023'
+            # achevés 2016
+            'f7ia_2021', 'f7ie_2022',
+            'f7ig_2022', 'f7ih_2022',
+            # achevés 2017
+            'f7kj_2023', 'f7kn_2023', 'f7kq_2023'
+            # achevés 2013 OM
+            'f7ld', 'f7ln',
+            'f7lx', 'f7lz',
+            # achevés 2014 OM
+            'f7ba_2023', 'f7bd_2023', 'f7bf_2023', 'f7bg_2023',
+            ]
+
+        inv_4 = [ # engagement 2012
+            # achevés 2012
+            'f7sd_2022', 'f7sg_2022',
+            # achevés 2013
+            'f7wc_2023', 'f7wd_2023', 'f7wg_2023'
+            # achevés 2016
+            'f7if_2022', 'f7io', 'f7ip',
+            # achevés 2017
+            'f7ko_2023', 'f7kr_2023', 'f7ks_2023',
+            # achevés 2013 OM
+            'f7lt', 'f7mg', 'f7mh',
+            # achevés 2014 OM
+            'f7be_2023', 'f7bh_2023', 'f7bj'
+            ]
+
+
+        ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
+
+        base_ri_6 = min_(investissement_2012.plafond, sum([foyer_fiscal(inv, period) for inv in inv_6]))
+        base_ri_5 = min_(investissement_2012.plafond - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
+        base_ri_4 = min_(investissement_2012.plafond - base_ri_6 - base_ri_5, sum([foyer_fiscal(inv, period) for inv in inv_4]))
+
+        ri_6 = base_ri_6 * investissement_2009_2010.taux_prorogation / 3
+        ri_5 = base_ri_5 * investissement_2011.taux_prorogation / 3
+        ri_4 = base_ri_4 * investissement_2012.taux_prorogation / 3
+
+        reductions = ri_rep + ri_6 + ri_5 + ri_4
+
+        return reductions
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatif neufs : Dispositif Scellier
+        2023
+        '''
+
+        investissement_2009_2010 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+        investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
+
+        reports = [
+            'f7rt', 'f7ru'
+
+            'f7yt', 'f7wt',
+            'f7yu', 'f7wu',
+            'f7yv', 'f7wv',
+            'f7yw', 'f7ww',
+
+
+            'f7la', 'f7ms', 'f7mo', 'f7ma', 'f7mi', 'f7ns',
+            'f7lb', 'f7mt', 'f7mp', 'f7mb', 'f7mj', 'f7nt',
+            'f7lc', 'f7mu', 'f7mq', 'f7mc', 'f7mk', 'f7nu',
+            'f7ly', 'f7mv', 'f7mr', 'f7md', 'f7ml', 'f7nv',
+
+            'f7qe_2023', 'f7pi_2023', 'f7pj_2023',
+            'f7au_2023', 'f7ab_2023', 'f7ad_2023', 'f7af_2023',
+            'f7ah_2023', 'f7ai_2023', 'f7ap_2023',
+            'f7ar_2023', 'f7as_2023', 'f7at_2023',
+
+            'f7ak_2024', 'f7al_2024', 'f7am_2024', 'f7an_2024',
+            'f7ao_2024', 'f7av_2024', 'f7aw_2024', 'f7ax_2024',
+            'f7ay_2024', 'f7az_2024', 'f7bp_2024',
+            'f7br_2024', 'f7bv_2024',
+
+
+            'f7yi', 'f7zi', 'f7uu', 'f7rk', 'f7lk',
+            'f7xp', 'f7yj', 'f7zj', 'f7uv', 'f7rl', 'f7ll',
+            'f7xo', 'f7yk', 'f7zk', 'f7uw', 'f7rm', 'f7lo',
+            'f7xq', 'f7yl', 'f7zl', 'f7ux', 'f7rn', 'f7lp',
+
+
+            'f7zm_2023', 'f7gs_2023', 'f7gu_2023', 'f7gx_2023',
+            'f7wx_2023', 'f7wy_2023', 'f7wz_2023',
+
+            'f7da', 'f7dd','f7de',
+            'f7df', 'f7dh','f7dj',
+            'f7dk', 'f7dm','f7dn',
+
+            'f7kc', 'f7pc','f7kt', 'f7ix', 'f7iz', 'f7iv',
+            'f7kd', 'f7pd', 'f7ku', 'f7iy',
+            'f7pe', 'f7kv','f7hz',
+            ]
+
+        inv_6 = [ # engagement 2010
+            # achevés 2013
+            'f7xi_2023', 'f7xj_2023', 'f7yy_2023', 'f7yx_2023', 'f7yz_2023',
+            # achevés 2014
+            'f7zd_2024', 'f7ze_2024', 'f7zg_2024', 'f7zh_2024', 'f7zn_2024',
+            # achevés 2017
+            'f7kl_2023',
+            # Prorogation 2
+            'f7hl', 'f7hm',
+            'f7hi', 'f7is', 'f7it', 'f7gh', 'f7gi', 'f7gj'
+            # achevés 2014 OM
+            'f7bb_2023', 'f7bc_2023',
+            # achevés 2015 OM
+            'f7cc_2024', 'f7cf_2024',
+            ]
+
+        inv_5 = [ # engagement 2011
+            # achevés 2013
+            'f7we_2023', 'f7wf_2023', 'f7xh_2023', 'f7xk_2023'
+            # achevés 2014
+            'f7yf_2024', 'f7za_2024', 'f7zc_2024', 'f7zf_2024'
+            # achevés 2017
+            'f7kj_2023', 'f7kn_2023', 'f7kq_2023'
+            # Prorogation 2
+            'f7ir_2024', 'f7iu_2024',
+            # achevés 2014 OM
+            'f7ba_2023', 'f7bd_2023', 'f7bf_2023', 'f7bg_2023',
+            # achevés 2015 OM
+            'f7cb_2024', 'f7cg_2024', 'f7ck_2024', 'f7cl_2024',
+            ]
+
+        inv_4 = [ # engagement 2012
+            # achevés 2013
+            'f7wc_2023', 'f7wd_2023', 'f7wg_2023'
+            # achevés 2014
+            'f7yb_2024', 'f7yd_2024', 'f7zb_2024'
+            # achevés 2017
+            'f7ko_2023', 'f7kr_2023', 'f7ks_2023',
+            # achevés 2014 OM
+            'f7be_2023', 'f7bh_2023', 'f7bj',
+            # achevés 2015 OM
+            'f7cj_2024', 'f7cm_2024', 'f7cn_2024'
+            ]
+
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
@@ -5784,7 +6044,7 @@ class souscriptions_parts_fcpi_fip(Variable):
         f7fq = foyer_fiscal('f7fq', period)
         f7ft = foyer_fiscal('f7ft', period)
         f7fm = foyer_fiscal('f7fm', period)
-        f7hm = foyer_fiscal('f7hm', period)
+        f7hm = foyer_fiscal('f7hm_2020', period)
         f7fl = foyer_fiscal('f7fl', period)
         f7hl = foyer_fiscal('f7hl', period)
 

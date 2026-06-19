@@ -30,11 +30,11 @@
       f7hv_2018: 500  # 'Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole'
       f7hx_2018: 500  # "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole avec promesse d'achat avant le 1.1.2010"
       f7ya: 200
-      f7yb: 200
+      f7yb_2021: 200
       f7yc: 200
-      f7yd: 200
+      f7yd_2021: 200
       f7ye: 500
-      f7yf: 500
+      f7yf_2021: 500
       f7yg: 500
       f7yh: 500
       nbF: 0.0
@@ -90,9 +90,9 @@
       f7ht_2018: 500
       f7hv_2018: 500
       f7hx_2018: 500
-      f7yb: 500
-      f7yd: 500
-      f7yf: 500
+      f7yb_2021: 500
+      f7yd_2021: 500
+      f7yf_2021: 500
       f7yh: 500
       f7ym: 500
       f7yn: 500
@@ -149,9 +149,9 @@
       f7ht_2018: 500
       f7hv_2018: 500
       f7hx_2018: 500
-      f7yb: 200
-      f7yd: 500
-      f7yf: 200
+      f7yb_2021: 200
+      f7yd_2021: 500
+      f7yf_2021: 200
       f7yh: 500
       f7ym: 200
       f7yn: 500
