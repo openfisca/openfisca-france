@@ -203,7 +203,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         seuil_versement = al.locatif.seuils_minimum_versement[type_aide]
         minimum_atteint = montant >= seuil_versement
 
-        return minimum_atteint * montant * not_(residence_mayotte)
+        return minimum_atteint * montant
 
 
 class TypeEtatLogementFoyer(Enum):
