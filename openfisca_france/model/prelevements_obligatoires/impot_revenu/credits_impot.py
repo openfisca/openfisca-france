@@ -191,10 +191,10 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2023', period)
+        f7ub = foyer_fiscal('f7ub_2022', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7ui = foyer_fiscal('f7ui', period)
+        f7ui = foyer_fiscal('f7ui_2022', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
@@ -221,10 +221,10 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2023', period)
+        f7ub = foyer_fiscal('f7ub_2022', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7ui = foyer_fiscal('f7ui', period)
+        f7ui = foyer_fiscal('f7ui_2022', period)
 
         f7ux = foyer_fiscal('f7ux_2018', period)
         f7tj = foyer_fiscal('f7tj', period)
@@ -256,10 +256,10 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2023', period)
+        f7ub = foyer_fiscal('f7ub_2022', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7ui = foyer_fiscal('f7ui', period)
+        f7ui = foyer_fiscal('f7ui_2022', period)
 
         f7ux = foyer_fiscal('f7ux_2018', period)
         f7tj = foyer_fiscal('f7tj', period)
@@ -295,10 +295,10 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2023', period)
+        f7ub = foyer_fiscal('f7ub_2022', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7ui = foyer_fiscal('f7ui', period)
+        f7ui = foyer_fiscal('f7ui_2022', period)
 
         f7ux = foyer_fiscal('f7ux_2018', period)
         f7tj = foyer_fiscal('f7tj', period)
@@ -338,10 +338,10 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2023', period)
+        f7ub = foyer_fiscal('f7ub_2022', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7ui = foyer_fiscal('f7ui', period)
+        f7ui = foyer_fiscal('f7ui_2022', period)
 
         f7ux = foyer_fiscal('f7ux_2018', period)
         f7tj = foyer_fiscal('f7tj', period)
@@ -357,7 +357,7 @@ class ci_investissement_forestier(Variable):
         f7tq = foyer_fiscal('f7tq', period)
         f7vs = foyer_fiscal('f7vs', period)
         f7tr = foyer_fiscal('f7tr', period)
-        f7vl = foyer_fiscal('f7vl', period)
+        f7vl = foyer_fiscal('f7vl_2021', period)
         f7ts = foyer_fiscal('f7ts', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
@@ -385,10 +385,10 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2023', period)
+        f7ub = foyer_fiscal('f7ub_2022', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7ui = foyer_fiscal('f7ui', period)
+        f7ui = foyer_fiscal('f7ui_2022', period)
 
         f7tj = foyer_fiscal('f7tj', period)
         f7tk = foyer_fiscal('f7tk', period)
@@ -403,11 +403,11 @@ class ci_investissement_forestier(Variable):
         f7tq = foyer_fiscal('f7tq', period)
         f7vs = foyer_fiscal('f7vs', period)
         f7tr = foyer_fiscal('f7tr', period)
-        f7vl = foyer_fiscal('f7vl', period)
+        f7vl = foyer_fiscal('f7vl_2021', period)
         f7ts = foyer_fiscal('f7ts', period)
-        f7vj = foyer_fiscal('f7vj', period)
+        f7vj = foyer_fiscal('f7vj_2022', period)
         f7tt = foyer_fiscal('f7tt', period)
-        f7vk = foyer_fiscal('f7vk', period)
+        f7vk = foyer_fiscal('f7vk_2022', period)
         f7tu = foyer_fiscal('f7tu', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
@@ -435,10 +435,10 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2023', period)
+        f7ub = foyer_fiscal('f7ub_2022', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7ui = foyer_fiscal('f7ui', period)
+        f7ui = foyer_fiscal('f7ui_2022', period)
 
         f7tj = foyer_fiscal('f7tj', period)
         f7tk = foyer_fiscal('f7tk', period)
@@ -450,11 +450,11 @@ class ci_investissement_forestier(Variable):
         f7tq = foyer_fiscal('f7tq', period)
         f7vs = foyer_fiscal('f7vs', period)
         f7tr = foyer_fiscal('f7tr', period)
-        f7vl = foyer_fiscal('f7vl', period)
+        f7vl = foyer_fiscal('f7vl_2021', period)
         f7ts = foyer_fiscal('f7ts', period)
-        f7vj = foyer_fiscal('f7vj', period)
+        f7vj = foyer_fiscal('f7vj_2022', period)
         f7tt = foyer_fiscal('f7tt', period)
-        f7vk = foyer_fiscal('f7vk', period)
+        f7vk = foyer_fiscal('f7vk_2022', period)
         f7tu = foyer_fiscal('f7tu', period)
         f7vh = foyer_fiscal('f7vh', period)
         f7tv = foyer_fiscal('f7tv', period)
@@ -486,10 +486,10 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2023', period)
+        f7ub = foyer_fiscal('f7ub_2022', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7ui = foyer_fiscal('f7ui', period)
+        f7ui = foyer_fiscal('f7ui_2022', period)
 
         f7tj = foyer_fiscal('f7tj', period)
         f7tk = foyer_fiscal('f7tk', period)
@@ -499,11 +499,11 @@ class ci_investissement_forestier(Variable):
         f7tq = foyer_fiscal('f7tq', period)
         f7vs = foyer_fiscal('f7vs', period)
         f7tr = foyer_fiscal('f7tr', period)
-        f7vl = foyer_fiscal('f7vl', period)
+        f7vl = foyer_fiscal('f7vf7vl_2021l', period)
         f7ts = foyer_fiscal('f7ts', period)
-        f7vj = foyer_fiscal('f7vj', period)
+        f7vj = foyer_fiscal('f7vj_2022', period)
         f7tt = foyer_fiscal('f7tt', period)
-        f7vk = foyer_fiscal('f7vk', period)
+        f7vk = foyer_fiscal('f7vk_2022', period)
         f7tu = foyer_fiscal('f7tu', period)
         f7vh = foyer_fiscal('f7vh', period)
         f7tv = foyer_fiscal('f7tv', period)
@@ -541,10 +541,10 @@ class ci_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2023', period)
+        f7ub = foyer_fiscal('f7ub_2022', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7ui = foyer_fiscal('f7ui', period)
+        f7ui = foyer_fiscal('f7ui_2022', period)
 
         # Reports des années précédentes
         f7tj = foyer_fiscal('f7tj', period)
@@ -555,9 +555,9 @@ class ci_investissement_forestier(Variable):
         f7tq = foyer_fiscal('f7tq', period)
         f7tr = foyer_fiscal('f7tr', period)
         f7ts = foyer_fiscal('f7ts', period)
-        f7vj = foyer_fiscal('f7vj', period)
+        f7vj = foyer_fiscal('f7vj_2022', period)
         f7tt = foyer_fiscal('f7tt', period)
-        f7vk = foyer_fiscal('f7vk', period)
+        f7vk = foyer_fiscal('f7vk_2022', period)
         f7tu = foyer_fiscal('f7tu', period)
         f7vh = foyer_fiscal('f7vh', period)
         f7tv = foyer_fiscal('f7tv', period)
@@ -2024,7 +2024,7 @@ class preetu(Variable):
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
         2005
         '''
-        f7uk = foyer_fiscal('f7uk', period)
+        f7uk = foyer_fiscal('f7uk_2018', period)
         P = parameters(period).impot_revenu.credits_impots.preetu
 
         return P.taux * min_(f7uk, P.max)
@@ -2034,8 +2034,8 @@ class preetu(Variable):
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
         2006-2007
         '''
-        f7uk = foyer_fiscal('f7uk', period)
-        f7vo = foyer_fiscal('f7vo', period)
+        f7uk = foyer_fiscal('f7uk_2018', period)
+        f7vo = foyer_fiscal('f7vo_2018', period)
         P = parameters(period).impot_revenu.credits_impots.preetu
 
         max1 = P.max * (1 + f7vo)
@@ -2046,9 +2046,9 @@ class preetu(Variable):
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
         2008-
         '''
-        f7uk = foyer_fiscal('f7uk', period)
-        f7vo = foyer_fiscal('f7vo', period)
-        f7td = foyer_fiscal('f7td', period)
+        f7uk = foyer_fiscal('f7uk_2018', period)
+        f7vo = foyer_fiscal('f7vo_2018', period)
+        f7td = foyer_fiscal('f7td_2018', period)
         P = parameters(period).impot_revenu.credits_impots.preetu
 
         max1 = P.max * f7vo
@@ -2551,7 +2551,7 @@ class quaenv(Variable):
         f7sz = foyer_fiscal('f7sz_2015', period)
         f7ta = foyer_fiscal('f7ta_2015', period)
         f7tb = foyer_fiscal('f7tb_2015', period)
-        f7tc = foyer_fiscal('f7tc', period)
+        f7tc = foyer_fiscal('f7tc_2015', period)
         f7tn = foyer_fiscal('f7tn', period)
         f7tp = foyer_fiscal('f7tp_2015', period)
         f7tq = foyer_fiscal('f7tq_2015', period)
@@ -2694,7 +2694,7 @@ class quaenv(Variable):
             'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7bm', 'f7cb_2019', 'f7bn',
             ]
         depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
-        f7bq = foyer_fiscal('f7bq', period)
+        f7bq = foyer_fiscal('f7bq_2020', period)
 
         plafond = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
         plafondint = min_(plafond, f7bq)

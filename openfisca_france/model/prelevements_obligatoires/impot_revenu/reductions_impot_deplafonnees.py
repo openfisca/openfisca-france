@@ -398,7 +398,7 @@ class dfppce(Variable):
         rni = foyer_fiscal('rni', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7uh = foyer_fiscal('f7uh', period)
-        f7ue = foyer_fiscal('f7ue', period)
+        f7ue = foyer_fiscal('f7ue_2019', period)
         f7xs = foyer_fiscal('f7xs', period)
         f7xt = foyer_fiscal('f7xt', period)
         f7xu = foyer_fiscal('f7xu', period)

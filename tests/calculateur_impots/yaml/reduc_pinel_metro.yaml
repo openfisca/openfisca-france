@@ -55,7 +55,7 @@
       declarants:
       - ind0
       f7ai: 500
-      f7bi: 500
+      f7bi_2022: 500
       f7qa_2018: 100000
       f7qb_2018: 100000
       f7qe: 100000
@@ -99,8 +99,8 @@
       declarants:
       - ind0
       f7ai: 500
-      f7bi: 500
-      f7bz: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7qa_2018: 10000
       f7qb_2018: 10000
@@ -148,8 +148,8 @@
       declarants:
       - ind0
       f7ai: 500
-      f7bi: 500
-      f7bz: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7qa_2018: 10000
       f7qb_2018: 10000
@@ -200,8 +200,8 @@
       declarants:
       - ind0
       f7ai: 500
-      f7bi: 500
-      f7bz: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7ra: 300
       f7rb: 200
@@ -256,8 +256,8 @@
       declarants:
       - ind0
       f7ai: 500
-      f7bi: 500
-      f7bz: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7ra: 300
       f7rb: 200
@@ -311,8 +311,8 @@
       caseW: false
       declarants:
       - ind0
-      f7bi: 500
-      f7bz: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7ra: 300
       f7rb: 200
@@ -371,7 +371,7 @@
       caseW: false
       declarants:
       - ind0
-      f7bi: 500
+      f7bi_2022: 500
       f7cz: 500
       f7ra: 300
       f7rb: 200

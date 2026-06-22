@@ -12,9 +12,9 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000
+      f7fa_2017: 100000
       f7hl_2010: 10000
-      f7hn: 10000
+      f7hn_2016: 10000
       f7ja_2017: 10000
       f7ne_2017: 10000
       nbF: 0.0
@@ -57,9 +57,9 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000
+      f7fa_2017: 100000
       f7hl_2010: 10000
-      f7hn: 10000
+      f7hn_2016: 10000
       f7ja_2017: 10000
       f7ne_2017: 10000
       nbF: 0.0
@@ -101,8 +101,8 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000
-      f7hn: 10000
+      f7fa_2017: 100000
+      f7hn_2016: 10000
       f7ja_2017: 10000
       f7ne_2017: 10000
       nbF: 0.0
