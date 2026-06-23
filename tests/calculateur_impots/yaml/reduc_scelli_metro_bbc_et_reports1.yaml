@@ -17,9 +17,9 @@
       f7gk: 500
       f7gl: 500
       f7gp: 500
-      f7gs: 500
+      f7gs_2020: 500
       f7gt: 500
-      f7gu: 500
+      f7gu_2020: 500
       f7ha_2022: 500
       f7hb: 500
       f7hd_2019: 500  # 'Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, réalisés en 2010, en métropole et dans les DOM-COM'
@@ -80,8 +80,8 @@
       f7fa_2017: 100000
       f7gj: 500
       f7gl: 500
-      f7gs: 500
-      f7gu: 500
+      f7gs_2020: 500
+      f7gu_2020: 500
       f7ha_2022: 500
       f7hd_2019: 500
       f7hf_2019: 500
@@ -140,8 +140,8 @@
       f7fa_2017: 10000
       f7gj: 500
       f7gl: 500
-      f7gs: 500
-      f7gu: 500
+      f7gs_2020: 500
+      f7gu_2020: 500
       f7ha_2022: 500
       f7hd_2019: 500
       f7hf_2019: 500

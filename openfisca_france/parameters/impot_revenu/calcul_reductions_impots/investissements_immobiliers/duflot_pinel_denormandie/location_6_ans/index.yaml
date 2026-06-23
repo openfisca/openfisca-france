@@ -4,3 +4,5 @@ metadata:
   order:
   - taux_metro
   - taux_om
+  - taux_metro_qpv_performant
+  - taux_om_qpv_performant

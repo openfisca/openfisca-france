@@ -499,7 +499,7 @@ class ci_investissement_forestier(Variable):
         f7tq = foyer_fiscal('f7tq', period)
         f7vs = foyer_fiscal('f7vs', period)
         f7tr = foyer_fiscal('f7tr', period)
-        f7vl = foyer_fiscal('f7vf7vl_2021l', period)
+        f7vl = foyer_fiscal('f7vl_2021', period)
         f7ts = foyer_fiscal('f7ts', period)
         f7vj = foyer_fiscal('f7vj_2022', period)
         f7tt = foyer_fiscal('f7tt', period)
