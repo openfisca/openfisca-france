@@ -10659,7 +10659,7 @@ class f7ha_2022(Variable):
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011'
     # start_date = date(2012, 1, 1)
-    end = '2022-13-31'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -10670,7 +10670,7 @@ class f7ha_2025(Variable):
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2024, 1, 1)
-    end = '2025-13-31'
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -12298,7 +12298,7 @@ class f7wz_2023(Variable):
     cerfa_field = '7WZ'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier "
+    label = 'Scellier'
     # start_date = date(2022, 1, 1)
     definition_period = YEAR
     end = '2023-12-31'
@@ -12843,7 +12843,7 @@ class f7ic_2021(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Scellier : investissement réalisé en janvier à mars 2011 achevé en 2016 en Polynésie"
+    label = 'Scellier : investissement réalisé en janvier à mars 2011 achevé en 2016 en Polynésie'
     # start_date = date(2020, 1, 1)
     end = '2021-12-31'
     definition_period = YEAR
