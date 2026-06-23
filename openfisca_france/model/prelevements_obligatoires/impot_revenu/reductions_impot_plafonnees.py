@@ -3606,7 +3606,7 @@ class location_meublee(Variable):
         reduction_investissements_acheve_2016_realise_2012 = P.taux18 * min_(P.plafond, f7ie + f7if) + P.taux11 * min_(max_(0, P.plafond - f7ie - f7if), f7id + f7ig)
         reduction_investissements_acheve_2016_realise_2013 = P.taux11 * min_(P.plafond, f7jt + f7ju)
         reduction_investissements_acheve_2016_realise_2014 = P.taux11 * min_(P.plafond, f7ou)
-        reduction_investissements_acheve_2016_realise_2015 = P.taux11 * min_(P.plafond, f7ov_2021)
+        reduction_investissements_acheve_2016_realise_2015 = P.taux11 * min_(P.plafond, f7ov)
         reduction_investissements_acheve_2016_realise_2016 = P.taux11 * min_(P.plafond, f7ow)
 
         report_invest_anterieur = (
@@ -5642,7 +5642,6 @@ class scelli(Variable):
             'f7jj_2020', 'f7jk_2021', 'f7ld', 'f7ln',
             'f7lx', 'f7lz',
             ]
-        #7iq
 
         inv_4 = [
             'f7sd_2022', 'f7sg_2022', 'f7iv_2021', 'f7iy_2021',
@@ -5663,7 +5662,7 @@ class scelli(Variable):
 
         reductions = ri_rep + ri_6 + ri_5 + ri_4
 
-        return
+        return reductions
 
     def formula_2022_01_01(foyer_fiscal, period, parameters):
         '''
@@ -5705,18 +5704,17 @@ class scelli(Variable):
             'f7zo', 'f7xo', 'f7yk', 'f7zk', 'f7uw', 'f7rm',
             'f7xq', 'f7yl', 'f7zl', 'f7ux', 'f7rn',
 
-            #'f7ka', 'f7kb',
             'f7ha_2022', 'f7hj_2016', 'f7hk_2016', 'f7hn_2016', 'f7hy_2022',
             'f7zm_2023', 'f7gs_2023', 'f7gu_2023', 'f7gx_2023',
             'f7wx_2023', 'f7wy_2023', 'f7wz_2023',
 
 
-            'f7kc', 'f7pc','f7kt',
+            'f7kc', 'f7pc', 'f7kt',
             'f7kd', 'f7pd', 'f7ku',
-            'f7pe', 'f7kv','f7hz',
+            'f7pe', 'f7kv', 'f7hz',
             ]
 
-        inv_6 = [ # engagement 2010
+        inv_6 = [  # engagement 2010
             # achevés 2012
             'f7si_2022', 'f7sj_2022', 'f7sl',
             'f7sq', 'f7sr_2022',
@@ -5734,7 +5732,7 @@ class scelli(Variable):
             'f7bb_2023', 'f7bc_2023',
             ]
 
-        inv_5 = [ # engagement 2011
+        inv_5 = [  # engagement 2011
             # achevés 2012
             'f7se_2022',
             'f7sf_2022',
@@ -5753,7 +5751,7 @@ class scelli(Variable):
             'f7ba_2023', 'f7bd_2023', 'f7bf_2023', 'f7bg_2023',
             ]
 
-        inv_4 = [ # engagement 2012
+        inv_4 = [  # engagement 2012
             # achevés 2012
             'f7sd_2022', 'f7sg_2022',
             # achevés 2013
@@ -5767,7 +5765,6 @@ class scelli(Variable):
             # achevés 2014 OM
             'f7be_2023', 'f7bh_2023', 'f7bj'
             ]
-
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
@@ -5836,7 +5833,7 @@ class scelli(Variable):
             'f7pe', 'f7kv', 'f7hz',
             ]
 
-        inv_6 = [ # engagement 2010
+        inv_6 = [  # engagement 2010
             # achevés 2013
             'f7xi_2023', 'f7xj_2023', 'f7yy_2023', 'f7yx_2023', 'f7yz_2023',
             # achevés 2014
@@ -5852,7 +5849,7 @@ class scelli(Variable):
             'f7cc_2024', 'f7cf_2024',
             ]
 
-        inv_5 = [ # engagement 2011
+        inv_5 = [  # engagement 2011
             # achevés 2013
             'f7we_2023', 'f7wf_2023', 'f7xh_2023', 'f7xk_2023'
             # achevés 2014
@@ -5867,7 +5864,7 @@ class scelli(Variable):
             'f7cb_2024', 'f7cg_2024', 'f7ck_2024', 'f7cl_2024',
             ]
 
-        inv_4 = [ # engagement 2012
+        inv_4 = [  # engagement 2012
             # achevés 2013
             'f7wc_2023', 'f7wd_2023', 'f7wg_2023'
             # achevés 2014
@@ -5879,7 +5876,6 @@ class scelli(Variable):
             # achevés 2015 OM
             'f7cj_2024', 'f7cm_2024', 'f7cn_2024'
             ]
-
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
@@ -5946,7 +5942,7 @@ class scelli(Variable):
 
             # Report prorogation 2 : 2023
 
-            'f7sj', 'f7sk', 
+            'f7sj', 'f7sk',
             'f7sr', 'f7tc', 'f7td',
             'f7ua', 'f7ub', 'f7ue',
             'f7ug', 'f7ui', 'f7uk',
@@ -5954,11 +5950,11 @@ class scelli(Variable):
             # Report solde non imputé
             'f7hz', 'f7iv', 'f7vj',
             'f7kd', 'f7pd', 'f7ku', 'f7iy', 'f7vl',
-            'f7kc', 'f7pc','f7kt', 'f7ix', 'f7vk',
+            'f7kc', 'f7pc', 'f7kt', 'f7ix', 'f7vk',
             'f7pe', 'f7kv', 'f7iz', 'f7vo',
             ]
 
-        inv_6 = [ # engagement 2010
+        inv_6 = [  # engagement 2010
             # achevés 2014
             'f7zd_2024', 'f7ze_2024', 'f7zg_2024', 'f7zh_2024', 'f7zn_2024',
             # achevés 2015
@@ -5973,7 +5969,7 @@ class scelli(Variable):
             'f7bq_2025', 'f7bx_2025',
             ]
 
-        inv_5 = [ # engagement 2011
+        inv_5 = [  # engagement 2011
             # achevés 2014
             'f7yf_2024', 'f7za_2024', 'f7zc_2024', 'f7zf_2024',
             # achevés 2015
@@ -5988,7 +5984,7 @@ class scelli(Variable):
             'f7bi_2025', 'f7by_2025', 'f7di_2025', 'f7du_2025'
             ]
 
-        inv_4 = [ # engagement 2012
+        inv_4 = [  # engagement 2012
             # achevés 2014
             'f7yb_2024', 'f7yd_2024', 'f7zb_2024',
             # achevés 2015
@@ -6000,7 +5996,6 @@ class scelli(Variable):
             # achevés 2016 OM
             'f7bz_2025', 'f7dv', 'f7dx',
             ]
-
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 

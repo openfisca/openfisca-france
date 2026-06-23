@@ -2591,7 +2591,7 @@ class quaenv(Variable):
             + f7tn + f7tp + f7tr + f7ts + f7tq + f7tt + f7tx + f7ty + f7ru + f7su + f7sm + f7so + f7sz
             )
         depenses_transition_energetique_2015 = (
-            f7aa + f7ad + f7af + f7ah + f7ak + f7al + f7am_2018 + f7an + f7aq + f7ar + f7av + f7ax
+            f7aa + f7ad + f7af + f7ah + f7ak + f7al + f7am + f7an + f7aq + f7ar + f7av + f7ax
             + f7ay + f7az + f7bb + f7bc + f7bd + f7be + f7bf + f7bh + f7bk + f7bl
             )
         depenses_transition_energetique = (
