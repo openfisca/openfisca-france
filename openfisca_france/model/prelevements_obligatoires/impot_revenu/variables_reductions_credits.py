@@ -1652,6 +1652,15 @@ class f7bv_2024(Variable):
     definition_period = YEAR
 
 
+class f7su(Variable):
+    cerfa_field = '7SU'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de récupération et de traitement des eaux pluviales"
+    # start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
 class f7sv(Variable):
     cerfa_field = '7SV'
     value_type = int
