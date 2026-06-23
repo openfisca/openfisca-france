@@ -11899,7 +11899,7 @@ class f7yd_2021(Variable):
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon'
     # start_date = date(2014, 1, 1)
-    end = '2021_12_31'
+    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -11931,7 +11931,7 @@ class f7yf_2021(Variable):
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon'
     # start_date = date(2014, 1, 1)
-    end = '2021_12_31'
+    end = '2021-12-31'
     definition_period = YEAR
 
 
