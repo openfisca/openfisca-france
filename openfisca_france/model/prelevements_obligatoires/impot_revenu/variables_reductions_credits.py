@@ -2467,7 +2467,7 @@ class f7ph(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés en 2011 et achevés de 2012 à 2016)"
-    # start_date = '2015-01-01
+    # start_date = '2015-01-01'
     definition_period = YEAR
     end = '2020-12-31'
 
@@ -3933,16 +3933,6 @@ class f7lh(Variable):
     entity = FoyerFiscal
     label = 'Denormandie : report investissement 2021 métropole avec engagement 9 ans'
     # start_date = date(2022, 1, 1)
-    definition_period = YEAR
-
-
-class fhlh(Variable):  # noqa 728
-    cerfa_field = 'HLH'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-    # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -5455,7 +5445,7 @@ class fhsx(Variable):
 
 
 class fhsy(Variable):
-    cerfa_field = 'HS'
+    cerfa_field = 'HSY'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -6753,17 +6743,6 @@ class f7cc_2024(Variable):
     definition_period = YEAR
 
 
-class f7cq_2012(Variable):
-    cerfa_field = '7CQ'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1"
-    # start_date = date(2011, 1, 1)
-    end = '2012-01-01'
-    definition_period = YEAR
-
-
 class f7cq(Variable):
     cerfa_field = '7CQ'
     value_type = int
@@ -6771,7 +6750,6 @@ class f7cq(Variable):
     entity = FoyerFiscal
     label = "Souscription au capital de petites entreprises en phase d'amorçage, de démarrage ou d'expansion"
     # start_date = date(2011, 1, 1)
-    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -7685,7 +7663,6 @@ class f7kr_2023(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     # start_date = date(2022, 1, 1)
-    unit = 'currency'
     definition_period = YEAR
     end = '2023-12-31'
 
@@ -7695,7 +7672,6 @@ class fhks(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    unit = 'currency'
     definition_period = YEAR
 
 
@@ -10505,14 +10481,14 @@ class f7ns(Variable):
     definition_period = YEAR
 
 
-class f7nt_2022(Variable):
+class f7nt_2021(Variable):
     cerfa_field = '7NT'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
     # start_date = date(2011, 1, 1)
-    end = '2022-12-31'
+    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -10522,7 +10498,7 @@ class f7nt(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
-    # start_date = date(2022, 1, 1)
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -11421,7 +11397,7 @@ class f7ze_2018(Variable):
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2017, 1, 1)
-    end = '2018-31-12'
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -11432,7 +11408,7 @@ class f7ze_2021(Variable):
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
-    end = '2021-31-12'
+    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -11443,7 +11419,7 @@ class f7ze_2024(Variable):
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2023, 1, 1)
-    end = '2024-31-12'
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -15092,7 +15068,7 @@ class f7qm(Variable):
 
 
 class f7vd(Variable):
-    cerfa_field = '7QM'
+    cerfa_field = '7VD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
