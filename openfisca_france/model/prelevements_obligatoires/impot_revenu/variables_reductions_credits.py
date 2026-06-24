@@ -1724,7 +1724,7 @@ class f7bd_2023(Variable):
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
-    # start_date = date(2015, 1, 1)
+    # start_date = date(2022, 1, 1)
     end = '2023-12-31'
     definition_period = YEAR
 
@@ -2517,7 +2517,7 @@ class f7pi_2023(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
-    # start_date = date(2015, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
     end = '2023-12-31'
 
@@ -3431,7 +3431,7 @@ class f7rt(Variable):
 
 
 class fhkt(Variable):
-    cerfa_field = '7KT'
+    cerfa_field = 'HKT'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
