@@ -1374,7 +1374,6 @@ class aide_logement_taux_famille(Variable):
 
         return where(residence_dom, TF_dom, TF_metropole)
 
-
 class aide_logement_taux_loyer(Variable):
     value_type = float
     entity = Famille
@@ -1393,12 +1392,19 @@ class aide_logement_taux_loyer(Variable):
         L = famille('aide_logement_loyer_retenu', period)
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        limitation_six_pac_dom = residence_dom * (period.start.year < 2023)
+        al_nb_pac_reference = where(
+            limitation_six_pac_dom,
+            min_(al_nb_pac, 6),
+            al_nb_pac,
+            )
 
         loyer_reference = (
             al_plafonds_z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0)
             + al_plafonds_z2.couples * (couple) * (al_nb_pac == 0)
             + al_plafonds_z2.un_enfant * (al_nb_pac >= 1)
-            + al_plafonds_z2.majoration_par_enf_supp * (al_nb_pac > 1) * (al_nb_pac - 1)
+            + al_plafonds_z2.majoration_par_enf_supp * (al_nb_pac_reference > 1) * (al_nb_pac_reference - 1)
             )
 
         RL = L / loyer_reference
