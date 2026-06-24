@@ -417,8 +417,8 @@ class al_nb_personnes_a_charge(Variable):
             return famille.sum(adulte_handicape, role = Famille.ENFANT)
 
         nb_pac = al_nb_enfants() + al_nb_adultes_handicapes()
-        nb_pac = where(residence_dom, min_(nb_pac, 6), nb_pac)
-        # Dans les DOMs, le barème est fixe à partir de 6 enfants.
+        limitation_six_pac_dom = residence_dom * (period.start.year < 2023)
+        nb_pac = where(limitation_six_pac_dom, min_(nb_pac, 6), nb_pac)
 
         return nb_pac
 
