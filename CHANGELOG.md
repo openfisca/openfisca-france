@@ -1,5 +1,16 @@
 # Changelog
 
+### 175.1.5 [#2766](https://github.com/openfisca/openfisca-france/pull/2766)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : du 01/07/2022 au 31/12/2022.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/r0_abattement/cas_general/*`.
+* Détails :
+  - Ajout des valeurs du forfait `R0` applicables au 1er juillet 2022.
+  - Mise à jour des valeurs pour les personnes seules, les couples et les ménages avec une à six personnes à charge.
+  - Ajout de la majoration applicable par personne à charge au-delà de six.
+  - Valeurs fixées par l'article 1 de l'arrêté du 29 juillet 2022 (https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046114998).
+
 ### 175.1.4 [#2781](https://github.com/openfisca/openfisca-france/pull/2781)
 
 * Évolution du système socio-fiscal
