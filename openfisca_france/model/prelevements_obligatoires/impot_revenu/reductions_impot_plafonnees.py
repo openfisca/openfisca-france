@@ -5961,7 +5961,7 @@ class scelli(Variable):
             # achevés 2013 OM
             'f7lt', 'f7mg', 'f7mh',
             # achevés 2014 OM
-            'f7be_2023', 'f7bh_2023', 'f7bj_2023'
+            'f7be_2023', 'f7bh_2023', 'f7bj_2023',
             ]
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
@@ -6053,7 +6053,7 @@ class scelli(Variable):
             # achevés 2014
             'f7yf_2024', 'f7za_2024', 'f7zc_2024', 'f7zf_2024'
             # achevés 2017
-            'f7kj_2023', 'f7kn_2023', 'f7kq_2023'
+            'f7kj_2023', 'f7kn_2023', 'f7kq_2023',
             # Prorogation 2
             'f7ir_2024', 'f7iu_2024',
             # achevés 2014 OM
@@ -6064,7 +6064,7 @@ class scelli(Variable):
 
         inv_4 = [  # engagement 2012
             # achevés 2013
-            'f7wc_2023', 'f7wd_2023', 'f7wg_2023'
+            'f7wc_2023', 'f7wd_2023', 'f7wg_2023',
             # achevés 2014
             'f7yb_2024', 'f7yd_2024', 'f7zb_2024'
             # achevés 2017
@@ -6072,7 +6072,7 @@ class scelli(Variable):
             # achevés 2014 OM
             'f7be_2023', 'f7bh_2023', 'f7bj_2023',
             # achevés 2015 OM
-            'f7cj_2024', 'f7cm_2024', 'f7cn_2024'
+            'f7cj_2024', 'f7cm_2024', 'f7cn_2024',
             ]
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
@@ -6100,7 +6100,7 @@ class scelli(Variable):
         investissement_2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissements_immobiliers.dispositif_scellier
 
         reports = [
-            'f7rt', 'f7ru'
+            'f7rt', 'f7ru',
 
             'f7wt',
             'f7wu',
@@ -6179,7 +6179,7 @@ class scelli(Variable):
             # achevés 2015 OM
             'f7cb_2024', 'f7cg_2024', 'f7ck_2024', 'f7cl_2024',
             # achevés 2016 OM
-            'f7bi_2025', 'f7by_2025', 'f7di_2025', 'f7du_2025'
+            'f7bi_2025', 'f7by_2025', 'f7di_2025', 'f7du_2025',
             ]
 
         inv_4 = [  # engagement 2012
