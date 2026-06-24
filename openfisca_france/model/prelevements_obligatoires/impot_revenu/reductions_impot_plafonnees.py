@@ -477,8 +477,11 @@ class duflot_pinel_denormandie_metropole(Variable):
             2019: ['f7jm', 'f7km', 'f7ja', 'f7jb'],  # Pinel, Denormandie
             }
 
-        # Première prorogation, 6 ans, 2014
-        f7rr = foyer_fiscal('f7rr_2021', period)  # Metropole, 6 ans
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2014: [  
+                ('f7rs_2021', 1, 'outremer'),
+                ('f7rr_2021', 1, 'metropole')],
+            }
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -494,6 +497,22 @@ class duflot_pinel_denormandie_metropole(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'metropole':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -501,9 +520,9 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = around(min_(duflot_pinel_denormandie.plafond, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
-        return reduction_cumulee + report + prorogation
+        return reduction_cumulee + report + prorogation_cumulee
 
     def formula_2021_01_01(foyer_fiscal, period, parameters):
         '''
@@ -554,6 +573,15 @@ class duflot_pinel_denormandie_metropole(Variable):
             2020: ['f7jn', 'f7jo', 'f7jr', 'f7js'],  # Pinel et Denormandie
             }
 
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2014: [  
+                ('f7rs_2021', 1, 'outremer'),
+                ('f7rr_2021', 1, 'metropole')],
+            2015: [  
+                ('f7ry_2022', 1, 'outremer'),
+                ('f7rx', 1, 'metropole')],
+            }
+
         # Première prorogation, 6 ans
         f7rr = foyer_fiscal('f7rr_2021', period)  # Metropole, 2014
         f7rx = foyer_fiscal('f7rx', period)  # Metropole, 2015
@@ -575,6 +603,22 @@ class duflot_pinel_denormandie_metropole(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'metropole':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -582,10 +626,9 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rx) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
-        return reduction_cumulee + report + prorogation + f7sx
+        return reduction_cumulee + report + prorogation_cumulee + f7sx
 
     def formula_2022_01_01(foyer_fiscal, period, parameters):
         '''
@@ -640,9 +683,14 @@ class duflot_pinel_denormandie_metropole(Variable):
             2021: ['f7jv', 'f7jw', 'f7lg', 'f7lh'],  # Pinel et Denormandie
             }
 
-        # Première prorogation, 6 ans
-        f7rx = foyer_fiscal('f7rx', period)  # Metropole, 2015
-        f7rp = foyer_fiscal('f7rp_2023', period)  # Metropole, 2016
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2015: [  
+                ('f7ry_2022', 1, 'outremer'),
+                ('f7rx', 1, 'metropole')],
+            2016: [  
+                ('f7rq_2023', 1, 'outremer'),
+                ('f7rp_2023', 1, 'metropole')],
+            }
 
         # Prorogation reports 2020, 6 ans
         f7sx = foyer_fiscal('f7sx_2022', period)  # Metropole, 2014
@@ -665,6 +713,22 @@ class duflot_pinel_denormandie_metropole(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'metropole':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -672,12 +736,11 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rx) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rp) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
         reports_prorogation = f7sx + f7ri + f7uy
 
-        return reduction_cumulee + report + prorogation + reports_prorogation
+        return reduction_cumulee + report + prorogation_cumulee + reports_prorogation
 
     def formula_2023_01_01(foyer_fiscal, period, parameters):
         '''
@@ -740,13 +803,20 @@ class duflot_pinel_denormandie_metropole(Variable):
             2022: ['f7ji', 'f7jj', 'f7je', 'f7jf'],  # Pinel et Denormandie
             }
 
-        # Prorogation, 9 ans
-        f7wa = foyer_fiscal('f7wa', period)  # Metropole, 2014
-
-        # Première prorogation, 6 ans
-        f7rp = foyer_fiscal('f7rp_2023', period)  # Metropole, 2016
-        f7rr = foyer_fiscal('f7rr', period)  # Metropole, 2017
-
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2014: [
+                ('f7rw', 2, 'outremer'),
+                ('f7rv', 2, 'metropole'),
+                ('f7wb', 3, 'outremer'),
+                ('f7wa', 3, 'metropole'),],
+            2016: [  
+                ('f7rq_2023', 1, 'outremer'),
+                ('f7rp_2023', 1, 'metropole')],
+            2017: [  
+                ('f7rs', 1, 'outremer'),
+                ('f7rr', 1, 'metropole')],
+            }
+        
         # Prorogation reports 2021, 6 ans
         f7ri = foyer_fiscal('f7ri_2023', period)  # Metropole, 2014
         f7uy = foyer_fiscal('f7uy_2023', period)  # Metropole, 2015
@@ -754,9 +824,6 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Prorogation reports 2022, 6 ans
         f7pk = foyer_fiscal('f7pk', period)  # Metropole, 2015
         f7pm = foyer_fiscal('f7pm', period)  # Metropole, 2016
-
-        # Seconde prorogation, 6 ans
-        f7rv = foyer_fiscal('f7rv', period)  # Metropole, 2014
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -779,6 +846,22 @@ class duflot_pinel_denormandie_metropole(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'metropole':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2015, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -786,14 +869,11 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rp) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rv) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7wa) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3))
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
         reports_prorogation = f7ri + f7uy + f7pk + f7pm
 
-        return reduction_cumulee + report + prorogation + reports_prorogation
+        return reduction_cumulee + report + prorogation_cumulee + reports_prorogation
 
     def formula_2024_01_01(foyer_fiscal, period, parameters):
         '''
@@ -857,17 +937,24 @@ class duflot_pinel_denormandie_metropole(Variable):
             2023: ['f7ia', 'f7ib', 'f7ie', 'f7if'],  # Pinel et Denormandie
             }
 
-        # Prorogation, 9 ans
-        f7wa = foyer_fiscal('f7wa', period)  # Metropole, 2014
-        f7xa = foyer_fiscal('f7xa', period)  # Metropole, 2015
-
-        # Première prorogation, 6 ans
-        f7rr = foyer_fiscal('f7rr', period)  # Metropole, 2017
-        f7rx = foyer_fiscal('f7rx', period)  # Metropole, 2018
-
-        # Seconde prorogation, 6 ans
-        f7rv = foyer_fiscal('f7rv', period)  # Metropole, 2014
-        f7sh = foyer_fiscal('f7sh', period)  # Metropole, 2015
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2014: [
+                ('f7rw', 2, 'outremer'),
+                ('f7rv', 2, 'metropole'),
+                ('f7wb', 3, 'outremer'),
+                ('f7wa', 3, 'metropole'),],
+            2015: [
+                ('f7si', 2, 'outremer'),
+                ('f7sh', 2, 'metropole'),
+                ('f7xb', 3, 'outremer'),
+                ('f7xa', 3, 'metropole'),],
+            2017: [  
+                ('f7rs', 1, 'outremer'),
+                ('f7rr', 1, 'metropole')],
+            2018: [  
+                ('f7ry', 1, 'outremer'),
+                ('f7rx', 1, 'metropole')],
+            }
 
         # Prorogation reports 2022, 6 ans
         f7pk = foyer_fiscal('f7pk', period)  # Metropole, 2015
@@ -904,6 +991,22 @@ class duflot_pinel_denormandie_metropole(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'metropole':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2016, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -911,16 +1014,11 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rx) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rr) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rv) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7sh) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7wa) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7xa) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3))
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
         reports_prorogation = f7pk + f7pm + f7of + f7na + f7nc + f7sy
 
-        return reduction_cumulee + report + prorogation + reports_prorogation
+        return reduction_cumulee + report + prorogation_cumulee + reports_prorogation
 
 
 class duflot_pinel_denormandie_om(Variable):
@@ -1156,8 +1254,11 @@ class duflot_pinel_denormandie_om(Variable):
             2019: ['f7lm', 'f7mm', 'f7jc', 'f7jd'],  # Pinel, Denormandie
             }
 
-        # Première prorogation, 6 ans, 2014
-        f7rs = foyer_fiscal('f7rs_2021', period)  # Outre-Mer, 6 ans
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2014: [  
+                ('f7rs_2021', 1, 'outremer'),
+                ('f7rr_2021', 1, 'metropole')],
+            }
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -1173,6 +1274,22 @@ class duflot_pinel_denormandie_om(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'outremer':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -1180,9 +1297,9 @@ class duflot_pinel_denormandie_om(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
-        return reduction_cumulee + report + prorogation
+        return reduction_cumulee + report + prorogation_cumulee
 
     def formula_2021_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1232,9 +1349,14 @@ class duflot_pinel_denormandie_om(Variable):
             2020: ['f7jp', 'f7jq', 'f7jt', 'f7ju'],  # Pinel et Denormandie
             }
 
-        # Première prorogation, 6 ans
-        f7rs = foyer_fiscal('f7rs_2021', period)  # Outre-Mer, 2014
-        f7ry = foyer_fiscal('f7ry_2022', period)  # Outre-Mer, 2015
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2014: [  
+                ('f7rs_2021', 1, 'outremer'),
+                ('f7rr_2021', 1, 'metropole')],
+            2015: [  
+                ('f7ry_2022', 1, 'outremer'),
+                ('f7rx', 1, 'metropole')],
+            }
 
         # Prorogation reports, 6 ans
         f7sy = foyer_fiscal('f7sy_2022', period)  # Outre-Mer, 2014
@@ -1253,6 +1375,22 @@ class duflot_pinel_denormandie_om(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'outremer':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2013, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -1260,10 +1398,9 @@ class duflot_pinel_denormandie_om(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7ry) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
-        return reduction_cumulee + report + prorogation + f7sy
+        return reduction_cumulee + report + prorogation_cumulee + f7sy
 
     def formula_2022_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1318,9 +1455,14 @@ class duflot_pinel_denormandie_om(Variable):
             2021: ['f7jx', 'f7jy', 'f7li', 'f7lj'],  # Pinel et Denormandie
             }
 
-        # Première prorogation, 6 ans
-        f7ry = foyer_fiscal('f7ry_2022', period)  # Outre-Mer, 2015
-        f7rq = foyer_fiscal('f7rq_2023', period)  # Outre-Mer, 2016
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2015: [  
+                ('f7ry_2022', 1, 'outremer'),
+                ('f7rx', 1, 'metropole')],
+            2016: [  
+                ('f7rq_2023', 1, 'outremer'),
+                ('f7rp_2023', 1, 'metropole')],
+            }
 
         # Prorogation reports 2020, 6 ans
         f7sy = foyer_fiscal('f7sy_2022', period)  # Outre-Mer, 2014
@@ -1343,6 +1485,22 @@ class duflot_pinel_denormandie_om(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'outremer':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -1350,12 +1508,11 @@ class duflot_pinel_denormandie_om(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7ry) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rq) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3))
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
         reports_prorogation = f7sy + f7rj + f7uz
 
-        return reduction_cumulee + report + prorogation + reports_prorogation
+        return reduction_cumulee + report + prorogation_cumulee + reports_prorogation
 
     def formula_2023_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1418,12 +1575,19 @@ class duflot_pinel_denormandie_om(Variable):
             2022: ['f7jk', 'f7jl', 'f7jg', 'f7jh'],  # Pinel et Denormandie
             }
 
-        # Prorogation, 9 ans
-        f7wb = foyer_fiscal('f7wb', period)  # Outre-Mer, 2014
-
-        # Première prorogation, 6 ans
-        f7rq = foyer_fiscal('f7rq_2023', period)  # Outre-Mer, 2016
-        f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 2017
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2014: [
+                ('f7rw', 2, 'outremer'),
+                ('f7rv', 2, 'metropole'),
+                ('f7wb', 3, 'outremer'),
+                ('f7wa', 3, 'metropole'),],
+            2016: [  
+                ('f7rq_2023', 1, 'outremer'),
+                ('f7rp_2023', 1, 'metropole')],
+            2017: [  
+                ('f7rs', 1, 'outremer'),
+                ('f7rr', 1, 'metropole')],
+            }
 
         # Prorogation reports 2021, 6 ans
         f7rj = foyer_fiscal('f7rj_2023', period)  # Outre-Mer, 2014
@@ -1432,9 +1596,6 @@ class duflot_pinel_denormandie_om(Variable):
         # Prorogation reports 2022, 6 ans
         f7pl = foyer_fiscal('f7pl', period)  # Outre-Mer, 2015
         f7pn = foyer_fiscal('f7pn', period)  # Outre-Mer, 2016
-
-        # Seconde prorogation, 6 ans
-        f7rw = foyer_fiscal('f7rw', period)  # Outre-Mer, 2014
 
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
@@ -1457,6 +1618,22 @@ class duflot_pinel_denormandie_om(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'outremer':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2015, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -1464,14 +1641,11 @@ class duflot_pinel_denormandie_om(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7rq) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rw) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7wb) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3))
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
         reports_prorogation = f7rj + f7uz + f7pl + f7pn
 
-        return reduction_cumulee + report + prorogation + reports_prorogation
+        return reduction_cumulee + report + prorogation_cumulee + reports_prorogation
 
     def formula_2024_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1535,17 +1709,24 @@ class duflot_pinel_denormandie_om(Variable):
             2023: ['f7ic', 'f7id', 'f7ig', 'f7ih'],  # Pinel et Denormandie
             }
 
-        # Prorogation, 9 ans
-        f7wb = foyer_fiscal('f7wb', period)  # Outre-Mer, 2014
-        f7xb = foyer_fiscal('f7xb', period)  # Outre-Mer, 2015
-
-        # Première prorogation, 6 ans
-        f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 2017
-        f7ry = foyer_fiscal('f7ry', period)  # Outre-Mer, 2018
-
-        # Seconde prorogation, 6 ans
-        f7rw = foyer_fiscal('f7rw', period)  # Outre-Mer, 2014
-        f7si = foyer_fiscal('f7si', period)  # Outre-Mer, 2015
+        cases_prorogation = {  # case, n prorogation (3 pour après 9 ans), lieu
+            2014: [
+                ('f7rw', 2, 'outremer'),
+                ('f7rv', 2, 'metropole'),
+                ('f7wb', 3, 'outremer'),
+                ('f7wa', 3, 'metropole'),],
+            2015: [
+                ('f7si', 2, 'outremer'),
+                ('f7sh', 2, 'metropole'),
+                ('f7xb', 3, 'outremer'),
+                ('f7xa', 3, 'metropole'),],
+            2017: [  
+                ('f7rs', 1, 'outremer'),
+                ('f7rr', 1, 'metropole')],
+            2018: [  
+                ('f7ry', 1, 'outremer'),
+                ('f7rx', 1, 'metropole')],
+            }
 
         # Prorogation reports 2022, 6 ans
         f7pl = foyer_fiscal('f7pl', period)  # Outre-Mer, 2015
@@ -1582,6 +1763,22 @@ class duflot_pinel_denormandie_om(Variable):
                 depenses_cumulees += depense
             return reduction
 
+        def calcul_reduction_investissement_prorogation(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, prorogation, zone = case
+                depense = foyer_fiscal(variable, period)
+                if zone == 'outremer':
+                    if prorogation == 1:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 2:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                    elif prorogation == 3:
+                        reduction += around(duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans * min_(max_(0, duflot_pinel_denormandie.plafond - depenses_cumulees), depense) / 3)
+                depenses_cumulees += depense
+            return reduction
+
         annee_fiscale = period.start.year
         range_year_investissement = list(set([year for year in range(2016, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
         range_year_report = list(set([year for year in range(2016, annee_fiscale)]) & set([year for year in cases_report.keys()]))
@@ -1589,16 +1786,11 @@ class duflot_pinel_denormandie_om(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(duflot_pinel_denormandie.plafond, f7ry) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rs) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7rw) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7si) * duflot_pinel_denormandie.taux_prolongation.taux_prolong2_6ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7wb) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3)
-            + around(min_(duflot_pinel_denormandie.plafond, f7xb) * duflot_pinel_denormandie.taux_prolongation.taux_prolong1_9ans / 3))
+        prorogation_cumulee = sum([calcul_reduction_investissement_prorogation(cases_investissement[year]) for year in range_year_investissement])
 
         reports_prorogation = f7pl + f7pn + f7og + f7nb + f7nd + f7sz
 
-        return reduction_cumulee + report + prorogation + reports_prorogation
+        return reduction_cumulee + report + prorogation_cumulee + reports_prorogation
 
 
 class cappme(Variable):
@@ -1713,7 +1905,7 @@ class cappme(Variable):
         f7cl = foyer_fiscal('f7cl_2020', period)
         f7cm = foyer_fiscal('f7cm_2019', period)
         f7cn = foyer_fiscal('f7cn_2018', period)
-        f7cq = foyer_fiscal('f7cq_2012', period)
+        f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
