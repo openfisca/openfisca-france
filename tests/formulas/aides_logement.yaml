@@ -56,6 +56,40 @@
   output:
     al_nb_personnes_a_charge: 0
 
+- name: Aides logements - R0 outre-mer avec une personne à charge en 2020
+  period: 2020-01
+  input:
+    famille:
+      parents: [parent1]
+      al_nb_personnes_a_charge: 1
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+      depcom: "97100"
+    individus:
+      parent1:
+        age: 40
+  output:
+    aide_logement_R0: 7584
+
+- name: Aides logements - R0 outre-mer avec une personne à charge en 2021
+  period: 2021-01
+  input:
+    famille:
+      parents: [parent1]
+      al_nb_personnes_a_charge: 1
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+      depcom: "97100"
+    individus:
+      parent1:
+        age: 40
+  output:
+    aide_logement_R0: 7584
+
 - name: Aides logements - la limite de six personnes à charge dans les DOM s'applique en 2022
   period: 2022-12
   input:
