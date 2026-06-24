@@ -1288,6 +1288,10 @@ class aide_logement_R0(Variable):
         al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif.formule.pp_particip_perso.r0_abattement
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        nb_pac_supp = max_(al_nb_pac - 6, 0)
+        if period.start.date < date(2023, 1, 1):
+            nb_pac_supp = where(residence_dom, 0, nb_pac_supp)
 
         R0 = (
             al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
@@ -1298,7 +1302,7 @@ class aide_logement_R0(Variable):
             + al_r0.cas_general.taux4pac * (al_nb_pac == 4)
             + al_r0.cas_general.taux5pac * (al_nb_pac == 5)
             + al_r0.cas_general.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
-            + al_r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            + al_r0.cas_general.taux_pac_supp * nb_pac_supp
             )
 
         return R0
