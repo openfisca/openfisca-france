@@ -13,7 +13,7 @@
       declarants:
       - ind0
       f7fa_2017: 1000
-      f7gj: 500
+      f7gj_2020: 500
       f7gk: 500
       f7gl: 500
       f7gp: 500
@@ -78,7 +78,7 @@
       declarants:
       - ind0
       f7fa_2017: 100000
-      f7gj: 500
+      f7gj_2020: 500
       f7gl: 500
       f7gs_2020: 500
       f7gu_2020: 500
@@ -138,7 +138,7 @@
       declarants:
       - ind0
       f7fa_2017: 10000
-      f7gj: 500
+      f7gj_2020: 500
       f7gl: 500
       f7gs_2020: 500
       f7gu_2020: 500
