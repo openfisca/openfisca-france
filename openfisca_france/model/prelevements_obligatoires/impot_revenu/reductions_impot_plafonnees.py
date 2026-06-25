@@ -373,8 +373,8 @@ class duflot_pinel_denormandie_metropole(Variable):
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
         Duflot + Pinel + Denormandie
-        Le plafonnement spécifiquement Duflot + Pinel + Denormandie est fait en commun outre-mer et métropole, 
-        mais chacun est ensuite plafonné séparément avec les autres réductions. 
+        Le plafonnement spécifiquement Duflot + Pinel + Denormandie est fait en commun outre-mer et métropole,
+        mais chacun est ensuite plafonné séparément avec les autres réductions.
         '''
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
@@ -6053,7 +6053,7 @@ class scelli(Variable):
             # achevés 2013
             'f7we_2023', 'f7wf_2023', 'f7xh_2023', 'f7xk_2023',
             # achevés 2014
-            'f7yf_2024', 'f7za_2024', 'f7zc_2024', 'f7zf_2024'
+            'f7yf_2024', 'f7za_2024', 'f7zc_2024', 'f7zf_2024',
             # achevés 2017
             'f7kj_2023', 'f7kn_2023', 'f7kq_2023',
             # Prorogation 2
