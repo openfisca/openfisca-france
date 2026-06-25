@@ -2558,7 +2558,7 @@ class f7pj_2023(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
-    # start_date = date(2015, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
     end = '2023-12-31'
 
@@ -11033,7 +11033,7 @@ class f7mi(Variable):
     definition_period = YEAR
 
 
-class f7mJ(Variable):
+class f7mj(Variable):
     cerfa_field = '7MJ'
     value_type = int
     unit = 'currency'
@@ -12166,7 +12166,7 @@ class f7yx_2023(Variable):
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
-    # start_date = date(2016, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
     end = '2023-12-30'
 
@@ -14672,14 +14672,14 @@ class f7tw(Variable):
 
 # Réduction d'impôts sur les investissements locatifs intermédiaires (loi Duflot)
 
-class f7gh_2016(Variable):
+class f7gh_2018(Variable):
     cerfa_field = '7GH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs intermédiaires en métropole'
     # start_date = date(2013, 1, 1)
-    end = '2016-12-31'
+    end = '2018-12-31'
     definition_period = YEAR
 
 

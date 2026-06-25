@@ -42,7 +42,7 @@ class reductions_plafonnees(Variable):
             'rehab',
             'mohist',
             'souscriptions_parts_fcpi_fip',
-            'duflot_pinel_denormandie_metropole',  # fin de la séparation entre métropole et outre-mer
+            'duflot_pinel_denormandie_metropole',
 
             # Pas clair, dans le doute compté parmi les plafonnées :
             'reduction_impot_exceptionnelle',
@@ -235,7 +235,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
-        f7gh = foyer_fiscal('f7gh_2016', period)  # Métropole
+        f7gh = foyer_fiscal('f7gh_2018', period)  # Métropole
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
         inv_om = min_(reduction.plafond, f7gi)
@@ -255,7 +255,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
-        f7gh = foyer_fiscal('f7gh_2016', period)  # Métropole
+        f7gh = foyer_fiscal('f7gh_2018', period)  # Métropole
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
         # Duflot année N, 2014
@@ -293,7 +293,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
-        f7gh = foyer_fiscal('f7gh_2016', period)  # Métropole
+        f7gh = foyer_fiscal('f7gh_2018', period)  # Métropole
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
 
         # Duflot année N, 2014
@@ -373,6 +373,8 @@ class duflot_pinel_denormandie_metropole(Variable):
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
         Duflot + Pinel + Denormandie
+        Le plafonnement spécifiquement Duflot + Pinel + Denormandie est fait en commun outre-mer et métropole, 
+        mais chacun est ensuite plafonné séparément avec les autres réductions. 
         '''
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
