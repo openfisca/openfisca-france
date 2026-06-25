@@ -6068,7 +6068,7 @@ class scelli(Variable):
             # achevés 2013
             'f7wc_2023', 'f7wd_2023', 'f7wg_2023',
             # achevés 2014
-            'f7yb_2024', 'f7yd_2024', 'f7zb_2024'
+            'f7yb_2024', 'f7yd_2024', 'f7zb_2024',
             # achevés 2017
             'f7ko_2023', 'f7kr_2023', 'f7ks_2023',
             # achevés 2014 OM
