@@ -366,7 +366,7 @@ class part_bnc_non_cipav(Variable):
     unit = '/1'
     default_value = 0.0
     entity = Individu
-    label = 'Indicateur de la part des revenus de la case 5TE provenant de la location de meublés de tourisme classés'
+    label = 'Indicateur de la part des revenus de la case 5TE ne relevant pas de la CIPAV'
     definition_period = YEAR
 
 
@@ -828,7 +828,7 @@ class nacc_meuc(Variable):
     unit = 'currency'
     entity = Individu
     label = 'Locations meublées non professionnelles: cas général des locations déjà soumises aux prélèvements sociaux (régime micro entreprise)'
-    # start_date = (2017,1,1)
+    # start_date = date(2017,1,1)
     definition_period = YEAR
     end = '2025-12-31'
 
@@ -2321,6 +2321,26 @@ class rpns_micro_entreprise_revenus_net(Variable):
 
     def formula(individu, period, parameters):
         rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period, options = [DIVIDE])
+        bareme_cs_me = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
+        rpns_micro_entreprise_charges_sociales = (
+            (rpns_micro_entreprise_CA_bic_vente_imp * (bareme_cs_me.formation_professionnelle.ventecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.vente))
+            + (rpns_micro_entreprise_CA_bnc_imp * (bareme_cs_me.formation_professionnelle.artisans_hors_alsace_chiffre_affaires + bareme_cs_me.cotisations_prestations.cipav))
+            + (rpns_micro_entreprise_CA_bic_service_imp * (bareme_cs_me.formation_professionnelle.servicecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.service))
+            )
+        revenus = rpns_micro_entreprise_benefice - rpns_micro_entreprise_charges_sociales
+
+class rpns_micro_entreprise_revenus_net(Variable):
+    value_type = float
+    label = "Revenu d'un TNS dans une micro-entreprise"
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period, options = [DIVIDE])
+        rpns_micro_entreprise_CA_bic_vente_imp = individu('rpns_micro_entreprise_CA_bic_vente_imp', period, options = [DIVIDE])
+        rpns_micro_entreprise_CA_bnc_imp = individu('rpns_micro_entreprise_CA_bnc_imp', period, options = [DIVIDE])
+        rpns_micro_entreprise_CA_bic_service_imp = individu('rpns_micro_entreprise_CA_bic_service_imp', period, options = [DIVIDE])
         bareme_cs_me = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
         rpns_micro_entreprise_charges_sociales = (
             (rpns_micro_entreprise_CA_bic_vente_imp * (bareme_cs_me.formation_professionnelle.ventecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.vente))
