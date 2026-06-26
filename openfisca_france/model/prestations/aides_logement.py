@@ -1396,7 +1396,6 @@ class aide_logement_R0(Variable):
             R0_cas_general,
             )
 
-
 class aide_logement_taux_famille(Variable):
     value_type = float
     entity = Famille
