@@ -1,0 +1,6 @@
+description: Plafond de dépenses éligibles au crédit d'impôt pour les dépenses d'équipements solaires hybrides (produisant de la chaleur et de l'électricité) à circulation liquide
+metadata:
+  short_label: à circulation liquide
+  order:
+  - sans_condition_ressources
+  - sous_condition_ressources

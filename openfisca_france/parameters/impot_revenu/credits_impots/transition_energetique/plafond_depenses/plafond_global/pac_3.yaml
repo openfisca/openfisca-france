@@ -1,0 +1,37 @@
+description:  Majoration au titre de chaque personne à charge à partir de la troisième du plafond de dépenses éligibles au crédit d'impôt, par période quinquennale
+values:
+  1999-09-15:
+    value: 3000
+  2002-01-01:
+    value: 600
+  2005-01-01:
+    value: 600
+  2006-01-01:
+    value: null
+metadata:
+  short_label: Troisième p. à c. et suivante
+  last_value_still_valid_on: "2025-08-18"
+  unit: currency_next_year
+  reference:
+    1999-09-15:
+      title: LOI de finances pour 2000 (n° 99-1172 du 30 décembre 1999), art. 5
+      href: https://www.legifrance.gouv.fr/eli/loi/1999/12/30/ECOX9900112L/jo/texte
+    2002-01-01:
+      title: LOI n° 2001-1275 du 28 décembre 2001 de finances pour 2002, art. 14
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000592233
+    2005-01-01:
+      title: Loi n° 2004-1484 du 30 décembre 2004 (LF 2005), art. 90
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000789373&idArticle=LEGIARTI000006322191&dateTexte=20051230&categorieLien=id#LEGIARTI000006322191
+    2006-01-01:
+      title: LOI n° 2005-1719 du 30 décembre 2005 de finances pour 2006, art. 83
+      href: https://www.legifrance.gouv.fr/eli/loi/2005/12/30/ECOX0500239L/jo/texte
+  official_journal_date:
+    1999-09-15: "1999-12-31"
+    2002-01-01: "2001-12-29"
+    2005-01-01: "2004-12-31"
+    2006-01-01: "2005-12-31"
+  notes:
+    2006-01-01:
+    - title: Disparition de la majoration spécifique pour 2è et 3è P.à.C.
+  documentation: |-
+    Le montant par personne à charge est à diviser par 2 si la personne à charge est en garde partagée.

@@ -1,0 +1,48 @@
+description: Taux du crédit d'impôt pour différentes catégories de dépenses
+metadata:
+  order:
+  - chauffage 
+  - renouvelable_energie
+  - renouvelable_chauffage
+  - chaudiere_basse_temperature
+  - chaudiere_condensation
+  - chaudiere_condensation_ancien
+  - chaudiere_bois
+  - chaudiere_bois_remplacement
+  - chaudiere_microcogeneration
+  - chaudiere_hpe
+  - chaudiere_thpe
+  - pac_autres
+  - pac_geothermie_air_eau
+  - pac_eau_chaude
+  - solaire_chauffe_eau
+  - solaire_hybride
+  - raccordement_reseau_chaud
+  - raccordement_reseau_froid
+  - electricite_hydraulique_biomasse
+  - electricite_solaire
+  - systeme_charge_vehicule_electrique
+  - compteurs_individuels
+  - regulation
+  - regulation_ancien
+  - isolation_thermique
+  - isolation_thermique_ancien
+  - calorifugeage
+  - isolation_thermique_parois_opaques
+  - isolation_thermique_parois_opaques_ancien
+  - isolation_thermique_parois_vitrees
+  - porte_entree
+  - volets_isolants
+  - ventilation
+  - protection_vitres_rayonnement
+  - diagnostic_performance_energetique
+  - audit_energetique
+  - recuperation_eau_pluviale
+  - depose_cuve_fioul
+  - majoration_bouquet
+  documentation: |-
+    Au fur et à mesure du temps, certaines catégories de gestes subventionnés disparaissent, ce qui ne signifie pas que les gestes concernés ne sont plus subventionnés, mais qu'ils ne sont plus catégorisés de la même manière.
+    Ainsi les "matériaux d'isolation thermique" sont remplacés par les "matériaux d'isolation thermique des parois vitrées", les "matériaux d'isolation thermique des parois opaques" et les "matériaux de calorifugeage".
+    De même des différents types de moyens de production d'énergie : l'électricité est séparée du chauffage ou de la fourniture d'eau chaude ; puis les différents types de chaudière ou de pompes à chaleur subissent la même recatégorisation.
+    On fait le choix ici de rester au plus proche de la loi, et d'ainsi interrompre ou initier de nouveaux barèmes lorsque les catégories explicites de travaux disparaissent ou apparaissent.
+    En 2020, la structure du crédit d'impôt (dont la disparition était prévue après 2019, prolongé exceptionnellement d'un an) ressemble à celle de Ma Prime Renov', avec un barème par forfait pour chaque geste subventionné remplaçant le taux préexistant.

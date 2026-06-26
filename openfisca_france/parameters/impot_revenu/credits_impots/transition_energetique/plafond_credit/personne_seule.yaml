@@ -1,0 +1,21 @@
+description: Plafond pluri-annuel pour personne seule du Crédit d'impôt à la transition énergétique
+values:
+  2020-01-01:
+    value: 2400
+  2021-01-01:
+    value: null
+metadata:
+  short_label: Personne seule
+  last_value_still_valid_on: "2025-08-18"
+  unit: currency_next_year
+  reference:
+    2020-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000039683923&idArticle=LEGIARTI000039793071&dateTexte=20200623&categorieLien=id#LEGIARTI000039793071
+    2021-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000039683923&idArticle=LEGIARTI000039793071&dateTexte=20200623&categorieLien=id#LEGIARTI000039793071
+  official_journal_date:
+    2020-01-01: "2019-12-29"
+    2021-01-01: "2019-12-29"
+    

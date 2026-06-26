@@ -1,0 +1,39 @@
+description: Taux du crédit d'impôt pour les dépenses d'équipements de chauffage ou de production d'eau chaude fonctionnant au bois ou autres biomasses, lorsque l'acquisition vient en remplacement des mêmes matériels
+values:
+  2010-01-01:
+    value: .40
+  2011-01-01:
+    value: .36
+  2012-01-01:
+    value: .26
+  2014-01-01:
+    value: null
+metadata:
+  short_label: Chaudière bois (remplacement)
+  last_value_still_valid_on: "2025-08-18"
+  unit: /1
+  reference:
+    2010-01-01:
+      title: LOI n° 2009-1674 du 30 décembre 2009 de finances rectificative pour 2009, art. 58
+      href: https://www.legifrance.gouv.fr/eli/loi/2009/12/30/BCFX0924140L/jo/texte
+    2011-01-01:
+    - title: LOI n° 2010-1657 du 29 décembre 2010 de finances pour 2011, art. 105
+      href: https://www.legifrance.gouv.fr/eli/loi/2010/12/29/BCRX1023155L/jo/article_105
+    - title: Décret n° 2011-520 du 13 mai 2011 pris pour l'application de l'article 105 de la loi n° 2010-1657 du 29 décembre 2010 de finances pour 2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/5/13/EFIE1100731D/jo/texte
+    2012-01-01:
+    - title: LOI n° 2011-1977 du 28 décembre 2011 de finances pour 2012, art. 81 et 83
+      href: https://www.legifrance.gouv.fr/eli/loi/2011/12/28/BCRX1125684L/jo/texte
+    - title: Décret n° 2012-547 du 23 avril 2012 pris pour l'application de l'article 83 de la loi n° 2011-1977 du 28 décembre 2011 de finances pour 2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/4/23/EFIE1204479D/jo/texte
+    2014-01-01:
+      title: LOI n° 2013-1278 du 29 décembre 2013 de finances pour 2014, art. 74
+      href: https://www.legifrance.gouv.fr/eli/loi/2013/12/29/EFIX1323580L/jo/texte
+  official_journal_date:
+    2010-01-01: "2009-12-31"
+    2011-01-01: 2010-12-30; 2011-05-15
+    2012-01-01: 2011-12-29; 2012-04-25
+    2014-01-01: "2013-12-30"
+  notes:
+    2014-01-01:
+      - title: La mention explicite des chaudières et chauffe-eau bois et biomasse disparait ; les équipements concernés sont désormais regroupés sous la notion plus large de "systèmes de chauffage ou de production d'énergie utilisant des énergies renouvelables".

@@ -1,0 +1,9 @@
+description: Plafond de dépenses éligibles au crédit d'impôt pour les dépenses d'équipements en pompe à chaleur
+metadata:
+  short_label: Pompe à chaleur (eau chaude sanitaire)
+  order:
+  - sans_condition_ressources
+  - sous_condition_ressources
+  documentation: |-
+    Un plafond de dépense est introduit en 2018 sans notion de condition de ressources. 
+    Une distinction en fonction du revenu de référence du ménage est introduite en 2019, le plafond de dépenses précédant continue à s'appliquer aux foyers au-delà du seuil.

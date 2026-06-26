@@ -1,0 +1,29 @@
+description: Plafond de dépenses éligibles au crédit d'impôt, par logement loué pour les propriétaires réalisant des travaux dans les logements loués
+values:
+  2009-01-01:
+    value: 8000
+  2014-01-01:
+    value: null
+metadata:
+  short_label: Logement en location
+  last_value_still_valid_on: "2025-08-18"
+  unit: currency_next_year
+  reference:
+    2009-01-01:
+      title: LOI n° 2008-1425 du 27 décembre 2008 de finances pour 2009 
+      href: https://www.legifrance.gouv.fr/eli/loi/2008/12/27/BCFX0821595L/jo/texte
+    2014-01-01:
+      title: LOI n° 2013-1278 du 29 décembre 2013 de finances pour 2014
+      href: https://www.legifrance.gouv.fr/eli/loi/2013/12/29/EFIX1323580L/jo/texte
+  official_journal_date:
+    2009-01-01: "2008-12-28"
+    2014-01-01: "2013-12-30"
+  notes:
+    2009-01-01:
+    - title: Avant 2009, les logements loués n'étaient pas éligibles au crédit d'impôt.
+    2020-01-01:
+    - title: A partir de 2014, les logements loués ne sont plus éligibles au crédit d'impôt.
+  documentation: |-
+    Ce plafond s'applique pour chaque logement loué. 
+    Pour être éligible un logement loué doit être achevé depuis plus de deux ans et être loué nu à usage d'habitation principale, pendant une durée minimale de cinq ans, à des personnes autres que le conjoint ou un membre du foyer fiscal du propriétaire.
+    Au titre de la même année, le nombre de logements donnés en location et faisant l'objet de dépenses ouvrant droit au crédit d'impôt est limité à trois par foyer fiscal.
