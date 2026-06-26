@@ -1406,11 +1406,29 @@ class aide_logement_R0(Variable):
             + al_r0.cas_general.taux_pac_supp * nb_pac_supp
             )
 
-        return where(
+        R0_hors_saint_pierre_et_miquelon = where(
             residence_outre_mer * (al_nb_pac == 1),
             al_r0.outre_mer.taux1pac,
             R0_cas_general,
             )
+
+        if period.start.date < date(2022, 7, 1):
+            return R0_hors_saint_pierre_et_miquelon
+
+        residence_saint_pierre_et_miquelon = famille.demandeur.menage('residence_saint_pierre_et_miquelon', period)
+        R0_saint_pierre_et_miquelon = (
+            al_r0.saint_pierre_et_miquelon.taux_seul * not_(couple) * (al_nb_pac == 0)
+            + al_r0.saint_pierre_et_miquelon.taux_couple * couple * (al_nb_pac == 0)
+            + al_r0.saint_pierre_et_miquelon.taux1pac * (al_nb_pac == 1)
+            + al_r0.saint_pierre_et_miquelon.taux2pac * (al_nb_pac == 2)
+            + al_r0.saint_pierre_et_miquelon.taux3pac * (al_nb_pac == 3)
+            + al_r0.saint_pierre_et_miquelon.taux4pac * (al_nb_pac == 4)
+            + al_r0.saint_pierre_et_miquelon.taux5pac * (al_nb_pac == 5)
+            + al_r0.saint_pierre_et_miquelon.taux6pac * (al_nb_pac >= 6)
+            + al_r0.saint_pierre_et_miquelon.taux_pac_supp * nb_pac_supp
+            )
+
+        return where(residence_saint_pierre_et_miquelon, R0_saint_pierre_et_miquelon, R0_hors_saint_pierre_et_miquelon)
 
 
 class aide_logement_taux_famille(Variable):
