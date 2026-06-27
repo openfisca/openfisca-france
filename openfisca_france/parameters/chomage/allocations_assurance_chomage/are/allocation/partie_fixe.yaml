@@ -1,0 +1,96 @@
+description: Partie fixe de l'allocation journalière (ARE)
+unit: currency
+metadata:
+  reference:
+    2025-07-01:
+      title: CIRCULAIRE n° 2025-07 du 1er juillet 2025
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2025-07_du_1er_juillet_2025.pdf
+    2024-07-01:
+      title: CIRCULAIRE n° 2024-04 du 1er juillet 2024
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2024-04_du_1er_juillet_2024.pdf
+    2023-07-01:
+      title: CIRCULAIRE n° 2023-06 du 3 juillet 2023
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-circulaire_2023-06_du_3_juillet_2023.pdf
+    2023-04-01:
+      title: CIRCULAIRE n° 2023-03 du 1er avril 2023
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2023-03_du_1er_avril_2023.pdf
+    2022-07-01:
+      title: CIRCULAIRE n° 2022-09 du 1er juillet 2022
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2022-09_du_1er_juillet_2022.pdf
+    2021-07-01:
+      title: CIRCULAIRE n° 2021-08 du 1er juillet 2021
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2021-08_du_1er_juillet_2021.pdf
+    2020-07-01:
+      title: CIRCULAIRE n° 2020-09 du 1er juillet 2020
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2020-09_du_1er_juillet_2020.pdf
+    2019-07-01:
+      title: CIRCULAIRE n° 2019-08 du 27 juin 2019
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n2019-08_du_27_juin_2019.pdf
+    2018-07-01:
+      title: CIRCULAIRE n° 2018-14 du 16 juillet 2018
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_2018-14_du_16_juillet_2018.pdf
+    2017-04-01:
+      title: CIRCULAIRE n° 2017-14 du 29 juin 2017
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Ci2017-14.pdf
+    2015-07-01:
+      title: CIRCULAIRE n° 2015-14 du 1er juillet 2015
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-1445354913952.pdf
+    2014-07-01:
+      title: CIRCULAIRE n° 2014-20 du 1er juillet 2014
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201420.pdf
+    2013-07-01:
+      title: CIRCULAIRE n° 2013-11 du 1er juillet 2013
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201311.pdf
+    2012-07-01:
+      title: CIRCULAIRE n° 2012-18 du 11 juillet 2012
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201218.pdf
+    2011-07-01:
+      title: CIRCULAIRE n° 2011-28 du 1er août 2011
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201128.pdf
+    2010-07-01:
+      title: CIRCULAIRE n° 2010-10 du 2 juillet 2010
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201010.pdf
+    2009-04-01:
+      title: CIRCULAIRE n° 2009-16 du 9 juillet 2009
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci200916.pdf
+    2008-07-01:
+      title: CIRCULAIRE n° 2008-04 du 1er juillet 2008
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci200804.pdf
+
+values:
+  2025-07-01:
+    value: 13.18
+  2024-07-01:
+    value: 13.11
+  2023-07-01:
+    value: 12.95
+  2023-04-01:
+    value: 12.71
+  2022-07-01:
+    value: 12.47
+  2021-07-01:
+    value: 12.12
+  2020-07-01:
+    value: 12.05
+  2019-07-01:
+    value: 12.0
+  2018-07-01:
+    value: 11.92
+  2017-07-01:
+    value: 11.84
+  2015-07-01:
+    value: 11.76
+  2014-07-01:
+    value: 11.72
+  2013-07-01:
+    value: 11.64
+  2012-07-01:
+    value: 11.57
+  2011-07-01:
+    value: 11.34
+  2010-07-01:
+    value: 11.17
+  2009-07-01:
+    value: 11.04
+  2008-07-01:
+    value: 10.93
