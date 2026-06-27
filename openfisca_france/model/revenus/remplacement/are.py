@@ -129,10 +129,9 @@ class are_jours_travailles(Variable):
 
         def jours_travailles(i):
             salaire = individu('salaire_de_base', period.offset(-i, 'month'))
-            quotite = individu('quotite_de_travail', period.offset(-i, 'month'))
 
             jours_travail = individu('nombre_jours_travailles', period.offset(-i, 'month'))
-            return (salaire > 0) * quotite * jours_travail
+            return (salaire > 0) * jours_travail
 
         return sum([
             jours_travailles(i) * (i <= periode_consideree)

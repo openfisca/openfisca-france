@@ -1225,11 +1225,12 @@ class nombre_jours_travailles(Variable):
     def formula(individu, period, parameters):
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        quotite = individu('quotite_de_travail', period)
 
         busday_count = partial(original_busday_count, weekmask = '1111100')
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month'))
-        jours_travailles = max_(
+        jours_travailles = quotite * max_(
             busday_count(
                 max_(contrat_de_travail_debut, debut_mois),
                 min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
