@@ -6024,9 +6024,9 @@ class scelli(Variable):
             'f7zm_2023', 'f7gs_2023', 'f7gu_2023', 'f7gx_2023',
             'f7wx_2023', 'f7wy_2023', 'f7wz_2023',
 
-            'f7da', 'f7dd', 'f7de',
-            'f7df', 'f7dh', 'f7dj',
-            'f7dk', 'f7dm', 'f7dn',
+            'f7da_2024', 'f7dd_2024', 'f7de_2024',
+            'f7df_2024', 'f7dh_2024', 'f7dj_2024',
+            'f7dk_2024', 'f7dm_2024', 'f7dn_2024',
 
             'f7kc', 'f7pc', 'f7kt', 'f7ix', 'f7iz', 'f7iv',
             'f7kd', 'f7pd', 'f7ku', 'f7iy',
@@ -6136,9 +6136,9 @@ class scelli(Variable):
 
             # Report prorogation 2 : 2022
 
-            'f7da', 'f7dd', 'f7de',
-            'f7df', 'f7dh', 'f7dj',
-            'f7dk', 'f7dm', 'f7dn',
+            'f7da_2024', 'f7dd_2024', 'f7de_2024',
+            'f7df_2024', 'f7dh_2024', 'f7dj_2024',
+            'f7dk_2024', 'f7dm_2024', 'f7dn_2024',
 
             # Report prorogation 2 : 2023
 
