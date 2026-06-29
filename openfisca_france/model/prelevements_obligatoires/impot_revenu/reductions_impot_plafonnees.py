@@ -808,8 +808,8 @@ class duflot_pinel_denormandie_metropole(Variable):
             2014: [
                 ('f7rw', 2, 'outremer'),
                 ('f7rv', 2, 'metropole'),
-                ('f7wb', 3, 'outremer'),
-                ('f7wa', 3, 'metropole'),],
+                ('f7wb_2024', 3, 'outremer'),
+                ('f7wa_2024', 3, 'metropole'),],
             2016: [
                 ('f7rq_2023', 1, 'outremer'),
                 ('f7rp_2023', 1, 'metropole')],
@@ -943,8 +943,8 @@ class duflot_pinel_denormandie_metropole(Variable):
             2014: [
                 ('f7rw', 2, 'outremer'),
                 ('f7rv', 2, 'metropole'),
-                ('f7wb', 3, 'outremer'),
-                ('f7wa', 3, 'metropole'),],
+                ('f7wb_2024', 3, 'outremer'),
+                ('f7wa_2024', 3, 'metropole'),],
             2015: [
                 ('f7si', 2, 'outremer'),
                 ('f7sh', 2, 'metropole'),
@@ -1585,8 +1585,8 @@ class duflot_pinel_denormandie_om(Variable):
             2014: [
                 ('f7rw', 2, 'outremer'),
                 ('f7rv', 2, 'metropole'),
-                ('f7wb', 3, 'outremer'),
-                ('f7wa', 3, 'metropole'),],
+                ('f7wb_2024', 3, 'outremer'),
+                ('f7wa_2024', 3, 'metropole'),],
             2016: [
                 ('f7rq_2023', 1, 'outremer'),
                 ('f7rp_2023', 1, 'metropole')],
@@ -1720,8 +1720,8 @@ class duflot_pinel_denormandie_om(Variable):
             2014: [
                 ('f7rw', 2, 'outremer'),
                 ('f7rv', 2, 'metropole'),
-                ('f7wb', 3, 'outremer'),
-                ('f7wa', 3, 'metropole'),],
+                ('f7wb_2024', 3, 'outremer'),
+                ('f7wa_2024', 3, 'metropole'),],
             2015: [
                 ('f7si', 2, 'outremer'),
                 ('f7sh', 2, 'metropole'),

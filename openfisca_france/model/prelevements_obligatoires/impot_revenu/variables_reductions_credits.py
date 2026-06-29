@@ -803,12 +803,13 @@ class f7wa_2020(Variable):
     definition_period = YEAR
 
 
-class f7wa(Variable):
+class f7wa_2024(Variable):
     cerfa_field = '7WA'
     value_type = int
     entity = FoyerFiscal
     label = 'Pinel : Prorogation 1 année en cours, investissement en 2014 en métropole avec engagement 9 ans'
     # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -832,12 +833,13 @@ class f7wb_2020(Variable):
     end = '2020-12-31'
 
 
-class f7wb(Variable):
+class f7wb_2024(Variable):
     cerfa_field = '7WB'
     value_type = int
     entity = FoyerFiscal
     label = 'Pinel : Prorogation 1 année en cours, investissement en 2014 en outre-mer avec engagement 9 ans'
     # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
