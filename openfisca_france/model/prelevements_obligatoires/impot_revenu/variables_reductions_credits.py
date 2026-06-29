@@ -283,7 +283,7 @@ class f7dn_2024(Variable):
     definition_period = YEAR
 
 
-class f7dq_2024(Variable):
+class f7dq(Variable):
     cerfa_field = '7DQ'
     value_type = bool
     entity = FoyerFiscal
