@@ -2422,8 +2422,8 @@ class quaenv(Variable):
         f7wb = foyer_fiscal('f7wb_2015', period)
         f7wc = foyer_fiscal('f7wc_2015', period)
         f7wk = foyer_fiscal('f7wk', period)
-        f7wt = foyer_fiscal('f7wt', period)
-        f7wu = foyer_fiscal('f7wu', period)
+        f7wt = foyer_fiscal('f7wt_2024', period)
+        f7wu = foyer_fiscal('f7wu_2024', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
@@ -2571,10 +2571,10 @@ class quaenv(Variable):
         f7wc = foyer_fiscal('f7wc_2015', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wi = foyer_fiscal('f7wi_2015', period)
-        f7wt = foyer_fiscal('f7wt', period)
-        f7wu = foyer_fiscal('f7wu', period)
-        f7wv = foyer_fiscal('f7wv', period)
-        f7ww = foyer_fiscal('f7ww', period)
+        f7wt = foyer_fiscal('f7wt_2024', period)
+        f7wu = foyer_fiscal('f7wu_2024', period)
+        f7wv = foyer_fiscal('f7wv_2024', period)
+        f7ww = foyer_fiscal('f7ww_2024', period)
         f7xb_2015 = foyer_fiscal('f7xb_2015', period)
         f7xc = foyer_fiscal('f7xc_2015', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
@@ -2738,7 +2738,7 @@ class quaenv_bouquet(Variable):
         f7wh = foyer_fiscal('f7wh', period)
         f7wq = foyer_fiscal('f7wq', period)
         f7ws = foyer_fiscal('f7ws', period)
-        f7wt = foyer_fiscal('f7wt', period)
+        f7wt = foyer_fiscal('f7wt_2024', period)
 
         t1 = ((f7wt * f7ws + f7wq + f7wf) > 0) * 1
         t2 = ((f7wc * f7wb + f7wa) > 0) * 1
@@ -2766,7 +2766,7 @@ class quaenv_bouquet(Variable):
         f7vg = foyer_fiscal('f7vg_2015', period)
         f7wc = foyer_fiscal('f7wc_2015', period)
         f7wh = foyer_fiscal('f7wh', period)
-        f7wt = foyer_fiscal('f7wt', period)
+        f7wt = foyer_fiscal('f7wt_2024', period)
 
         t1 = f7wt
         t2 = f7wc
@@ -2811,8 +2811,8 @@ class quaenv_bouquet(Variable):
         f7vh = foyer_fiscal('f7vh_2014', period)
         f7wb = foyer_fiscal('f7wb_2015', period)
         f7wc = foyer_fiscal('f7wc_2015', period)
-        f7wt = foyer_fiscal('f7wt', period)
-        f7wu = foyer_fiscal('f7wu', period)
+        f7wt = foyer_fiscal('f7wt_2024', period)
+        f7wu = foyer_fiscal('f7wu_2024', period)
 
         depense_2014_eligible = (
             f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st
@@ -2872,9 +2872,9 @@ class quaenv_bouquet(Variable):
         f7wb = foyer_fiscal('f7wb_2015', period)
         f7wc = foyer_fiscal('f7wc_2015', period)
         f7wh = foyer_fiscal('f7wh', period)
-        f7wt = foyer_fiscal('f7wt', period)
-        f7wu = foyer_fiscal('f7wu', period)
-        f7wv = foyer_fiscal('f7wv', period)
+        f7wt = foyer_fiscal('f7wt_2024', period)
+        f7wu = foyer_fiscal('f7wu_2024', period)
+        f7wv = foyer_fiscal('f7wv_2024', period)
         f7xb_2015 = foyer_fiscal('f7xb_2015', period)
 
         depense_2014_eligible = (

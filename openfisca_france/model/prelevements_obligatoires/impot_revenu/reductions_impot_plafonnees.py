@@ -236,7 +236,7 @@ class duflot_pinel_denormandie_metropole(Variable):
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh_2018', period)  # Métropole
-        f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
+        f7gi = foyer_fiscal('f7gi_2018', period)  # Outre-Mer
 
         inv_om = min_(reduction.plafond, f7gi)
         inv_metro = min_(reduction.plafond - inv_om, f7gh)
@@ -256,7 +256,7 @@ class duflot_pinel_denormandie_metropole(Variable):
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh_2018', period)  # Métropole
-        f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
+        f7gi = foyer_fiscal('f7gi_2018', period)  # Outre-Mer
 
         # Duflot année N, 2014
         f7ek = foyer_fiscal('f7ek', period)  # Métropole
@@ -294,7 +294,7 @@ class duflot_pinel_denormandie_metropole(Variable):
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh_2018', period)  # Métropole
-        f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
+        f7gi = foyer_fiscal('f7gi_2018', period)  # Outre-Mer
 
         # Duflot année N, 2014
         f7ek = foyer_fiscal('f7ek', period)  # Métropole
@@ -1037,7 +1037,7 @@ class duflot_pinel_denormandie_om(Variable):
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
-        f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
+        f7gi = foyer_fiscal('f7gi_2018', period)  # Outre-Mer
 
         inv_om = min_(duflot_pinel_denormandie.plafond, f7gi)
 
@@ -1055,7 +1055,7 @@ class duflot_pinel_denormandie_om(Variable):
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
-        f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
+        f7gi = foyer_fiscal('f7gi_2018', period)  # Outre-Mer
 
         # Duflot année N, 2014
         f7el = foyer_fiscal('f7el_2015', period)  # Outre-Mer
@@ -1083,7 +1083,7 @@ class duflot_pinel_denormandie_om(Variable):
         duflot_pinel_denormandie = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
-        f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
+        f7gi = foyer_fiscal('f7gi_2018', period)  # Outre-Mer
 
         # Duflot année N, 2014
         f7el = foyer_fiscal('f7el_2015', period)  # Outre-Mer
@@ -5369,10 +5369,10 @@ class scelli(Variable):
         NB: Formulas prior to 2016 need to be checked.
         '''
         reports = [
-            'f7ym_2022', 'f7yt',
-            'f7yn_2022', 'f7yu',
-            'f7yo_2022', 'f7yv',
-            'f7yp_2022', 'f7yw',
+            'f7ym_2022', 'f7yt_2023',
+            'f7yn_2022', 'f7yu_2023',
+            'f7yo_2022', 'f7yv_2023',
+            'f7yp_2022', 'f7yw_2023',
 
             'f7yq', 'f7yx_2019',
             'f7yr', 'f7yy_2019',
@@ -5462,10 +5462,10 @@ class scelli(Variable):
         '''
 
         reports = [
-            'f7ym_2022', 'f7yt', 'f7wt',
-            'f7yn_2022', 'f7yu', 'f7wu',
-            'f7yo_2022', 'f7yv', 'f7wv',
-            'f7yp_2022', 'f7yw', 'f7ww',
+            'f7ym_2022', 'f7yt_2023', 'f7wt_2024',
+            'f7yn_2022', 'f7yu_2023', 'f7wu_2024',
+            'f7yo_2022', 'f7yv_2023', 'f7wv_2024',
+            'f7yp_2022', 'f7yw_2023', 'f7ww_2024',
             'f7yq', 'f7yx_2019', 'f7wx_2020',
             'f7yr', 'f7yy_2019', 'f7wy_2020',
             'f7ys', 'f7yz_2019', 'f7wz_2020',
@@ -5554,10 +5554,10 @@ class scelli(Variable):
         reports = [
             'f7rt', 'f7ru', 'f7rv_2021', 'f7rw_2021',
 
-            'f7ym_2022', 'f7yt', 'f7wt',
-            'f7yn_2022', 'f7yu', 'f7wu',
-            'f7yo_2022', 'f7yv', 'f7wv',
-            'f7yp_2022', 'f7yw', 'f7ww',
+            'f7ym_2022', 'f7yt_2023', 'f7wt_2024',
+            'f7yn_2022', 'f7yu_2023', 'f7wu_2024',
+            'f7yo_2022', 'f7yv_2023', 'f7wv_2024',
+            'f7yp_2022', 'f7yw_2023', 'f7ww_2024',
 
             'f7yq', 'f7yx_2019', 'f7wx_2020',
             'f7yr', 'f7yy_2019', 'f7wy_2020',
@@ -5643,9 +5643,9 @@ class scelli(Variable):
         reports = [
             'f7rt', 'f7ru', 'f7rv_2021', 'f7rw_2021',
 
-            'f7ym_2022', 'f7yt', 'f7wt', 'f7yn_2022',
-            'f7yu', 'f7wu', 'f7yo_2022', 'f7yv',
-            'f7wv', 'f7yp_2022', 'f7yw', 'f7ww',
+            'f7ym_2022', 'f7yt_2023', 'f7wt_2024', 'f7yn_2022',
+            'f7yu_2023', 'f7wu_2024', 'f7yo_2022', 'f7yv_2023',
+            'f7wv_2024', 'f7yp_2022', 'f7yw_2023', 'f7ww_2024',
 
             'f7yx_2019', 'f7wx_2020', 'f7yy_2019', 'f7wy_2020',
             'f7yz_2019', 'f7wz_2020',
@@ -5718,9 +5718,9 @@ class scelli(Variable):
         reports = [
             'f7rt', 'f7ru', 'f7rv_2021', 'f7rw_2021',
 
-            'f7ym_2022', 'f7yt', 'f7wt', 'f7yn_2022',
-            'f7yu', 'f7wu', 'f7yo_2022', 'f7yv',
-            'f7wv', 'f7yp_2022', 'f7yw', 'f7ww',
+            'f7ym_2022', 'f7yt_2023', 'f7wt_2024', 'f7yn_2022',
+            'f7yu_2023', 'f7wu_2024', 'f7yo_2022', 'f7yv_2023',
+            'f7wv_2024', 'f7yp_2022', 'f7yw_2023', 'f7ww_2024',
 
             'f7wx_2020', 'f7wy_2020', 'f7wz_2020',
 
@@ -5793,10 +5793,10 @@ class scelli(Variable):
         reports = [
             'f7rt', 'f7ru', 'f7rv_2021', 'f7rw_2021',
 
-            'f7ym_2022', 'f7yt', 'f7wt',
-            'f7yn_2022', 'f7yu', 'f7wu',
-            'f7yo_2022', 'f7yv', 'f7wv',
-            'f7yp_2022', 'f7yw', 'f7ww',
+            'f7ym_2022', 'f7yt_2023', 'f7wt_2024',
+            'f7yn_2022', 'f7yu_2023', 'f7wu_2024',
+            'f7yo_2022', 'f7yv_2023', 'f7wv_2024',
+            'f7yp_2022', 'f7yw_2023', 'f7ww_2024',
 
             'f7yb_2021', 'f7yd_2021', 'f7yf_2021', 'f7yh',
 
@@ -5808,7 +5808,7 @@ class scelli(Variable):
             'f7nr_2021', 'f7ns_2021', 'f7nt_2021',
             'f7nu_2021', 'f7nv_2021', 'f7nw',
 
-            'f7xa', 'f7xb',
+            'f7xa_2022', 'f7xb_2022',
             'f7ys', 'f7xc_2022', 'f7xl_2022',
             'f7xm_2022', 'f7xn_2022', 'f7ya_2022',
             'f7yc_2022', 'f7yg', 'f7yr',
@@ -5877,10 +5877,10 @@ class scelli(Variable):
         reports = [
             'f7rt', 'f7ru',
 
-            'f7ym_2022', 'f7yt', 'f7wt',
-            'f7yn_2022', 'f7yu', 'f7wu',
-            'f7yo_2022', 'f7yv', 'f7wv',
-            'f7yp_2022', 'f7yw', 'f7ww',
+            'f7ym_2022', 'f7yt_2023', 'f7wt_2024',
+            'f7yn_2022', 'f7yu_2023', 'f7wu_2024',
+            'f7yo_2022', 'f7yv_2023', 'f7wv_2024',
+            'f7yp_2022', 'f7yw_2023', 'f7ww_2024',
 
 
             'f7lq', 'f7la', 'f7ms', 'f7mo', 'f7ma', 'f7mi',
@@ -5888,7 +5888,7 @@ class scelli(Variable):
             'f7lu', 'f7lc', 'f7mu', 'f7mq', 'f7mc', 'f7mk',
             'f7lv', 'f7ly', 'f7mv', 'f7mr', 'f7md', 'f7ml',
 
-            'f7xa', 'f7xb',
+            'f7xa_2022', 'f7xb_2022',
             'f7ys', 'f7xc_2022', 'f7xl_2022',
             'f7xm_2022', 'f7xn_2022', 'f7ya_2022',
             'f7yc_2022', 'f7yg', 'f7yr',
@@ -5925,7 +5925,7 @@ class scelli(Variable):
             # achevés 2017
             'f7kl_2023',
             # Prorogation 2
-            'f7iq_2022', 'f7hl', 'f7hm',
+            'f7iq_2022', 'f7hl', 'f7hm_2023',
             # achevés 2013 OM
             'f7le', 'f7lf',
             # achevés 2014 OM
@@ -5993,10 +5993,10 @@ class scelli(Variable):
         reports = [
             'f7rt', 'f7ru',
 
-            'f7yt', 'f7wt',
-            'f7yu', 'f7wu',
-            'f7yv', 'f7wv',
-            'f7yw', 'f7ww',
+            'f7yt_2023', 'f7wt_2024',
+            'f7yu_2023', 'f7wu_2024',
+            'f7yv_2023', 'f7wv_2024',
+            'f7yw_2023', 'f7ww_2024',
 
 
             'f7la', 'f7ms', 'f7mo', 'f7ma', 'f7mi', 'f7ns',
@@ -6041,8 +6041,8 @@ class scelli(Variable):
             # achevés 2017
             'f7kl_2023',
             # Prorogation 2
-            'f7hl', 'f7hm',
-            'f7hi', 'f7is', 'f7it', 'f7gh', 'f7gi', 'f7gj',
+            'f7hl', 'f7hm_2023',
+            'f7hi_2023', 'f7is', 'f7it', 'f7gh_2024', 'f7gi_2024', 'f7gj_2024',
             # achevés 2014 OM
             'f7bb_2023', 'f7bc_2023',
             # achevés 2015 OM
@@ -6104,10 +6104,10 @@ class scelli(Variable):
         reports = [
             'f7rt', 'f7ru',
 
-            'f7wt',
-            'f7wu',
-            'f7wv',
-            'f7ww',
+            'f7wt_2024',
+            'f7wu_2024',
+            'f7wv_2024',
+            'f7ww_2024',
 
 
             'f7ms', 'f7mo', 'f7ma', 'f7mi', 'f7ns', 'f7oj',
@@ -6160,7 +6160,7 @@ class scelli(Variable):
             # achevés 2015
             'f7ya_2025', 'f7yc_2025', 'f7yn_2025', 'f7yo_2025', 'f7yp_2025',
             # Prorogation 2 achevé 2011
-            'f7is', 'f7it', 'f7gh', 'f7gi', 'f7gj',
+            'f7is', 'f7it', 'f7gh_2024', 'f7gi_2024', 'f7gj_2024',
             # Prorogation 2 achevé 2012
             'f7ij_2025', 'f7iq_2025', 'f7ka_2025', 'f7kb_2025', 'f7kk_2025',
             # achevés 2015 OM
