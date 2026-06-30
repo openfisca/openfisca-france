@@ -1733,7 +1733,7 @@ class f7bc(Variable):
     cerfa_field = '7BC'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier"
+    label = 'Scellier'
     # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
@@ -9356,6 +9356,7 @@ class f7hl_2020(Variable):
     end = '2020-12-31'
     definition_period = YEAR
 
+
 class f7hl_2023(Variable):
     cerfa_field = '7HL'
     value_type = int
@@ -12280,7 +12281,7 @@ class f7yt(Variable):
     cerfa_field = '7YT'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier"
+    label = 'Scellier'
     # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
@@ -12329,7 +12330,7 @@ class f7yu(Variable):
     cerfa_field = '7YU'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier"
+    label = 'Scellier'
     # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
@@ -12378,7 +12379,7 @@ class f7yv(Variable):
     cerfa_field = '7YV'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier"
+    label = 'Scellier'
     # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
@@ -12427,7 +12428,7 @@ class f7yw(Variable):
     cerfa_field = '7YW'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier"
+    label = 'Scellier'
     # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
