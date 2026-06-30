@@ -1584,6 +1584,15 @@ class f7bb_2023(Variable):
     end = '2023-12-31'
 
 
+class f7bb(Variable):
+    cerfa_field = '7BB'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
 class f7bm_2016(Variable):
     cerfa_field = '7BM'
     value_type = int
@@ -1720,6 +1729,15 @@ class f7bc_2023(Variable):
     end = '2023-12-31'
 
 
+class f7bc(Variable):
+    cerfa_field = '7BC'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Scellier"
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
 class f7bd_2020(Variable):
     cerfa_field = '7BD'
     value_type = int
@@ -1737,6 +1755,15 @@ class f7bd_2023(Variable):
     label = 'Scellier'
     # start_date = date(2022, 1, 1)
     end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7bd(Variable):
+    cerfa_field = '7BD'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
