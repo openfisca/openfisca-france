@@ -5925,7 +5925,7 @@ class scelli(Variable):
             # achevés 2017
             'f7kl_2023',
             # Prorogation 2
-            'f7iq_2022', 'f7hl', 'f7hm_2023',
+            'f7iq_2022', 'f7hl_2023', 'f7hm_2023',
             # achevés 2013 OM
             'f7le', 'f7lf',
             # achevés 2014 OM
@@ -6041,8 +6041,8 @@ class scelli(Variable):
             # achevés 2017
             'f7kl_2023',
             # Prorogation 2
-            'f7hl', 'f7hm_2023',
-            'f7hi_2023', 'f7is', 'f7it', 'f7gh_2024', 'f7gi_2024', 'f7gj_2024',
+            'f7hl_2023', 'f7hm_2023',
+            'f7hi_2023', 'f7is_2024', 'f7it_2024', 'f7gh_2024', 'f7gi_2024', 'f7gj_2024',
             # achevés 2014 OM
             'f7bb_2023', 'f7bc_2023',
             # achevés 2015 OM
@@ -6160,7 +6160,7 @@ class scelli(Variable):
             # achevés 2015
             'f7ya_2025', 'f7yc_2025', 'f7yn_2025', 'f7yo_2025', 'f7yp_2025',
             # Prorogation 2 achevé 2011
-            'f7is', 'f7it', 'f7gh_2024', 'f7gi_2024', 'f7gj_2024',
+            'f7is_2024', 'f7it_2024', 'f7gh_2024', 'f7gi_2024', 'f7gj_2024',
             # Prorogation 2 achevé 2012
             'f7ij_2025', 'f7iq_2025', 'f7ka_2025', 'f7kb_2025', 'f7kk_2025',
             # achevés 2015 OM
@@ -6362,7 +6362,7 @@ class souscriptions_parts_fcpi_fip(Variable):
         f7fm = foyer_fiscal('f7fm', period)
         f7hm = foyer_fiscal('f7hm_2020', period)
         f7fl = foyer_fiscal('f7fl', period)
-        f7hl = foyer_fiscal('f7hl', period)
+        f7hl = foyer_fiscal('f7hl_2020', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.souscriptions_parts_fcpi_fip
         P1 = parameters('2020-08-01').impot_revenu.calcul_reductions_impots.souscriptions.souscriptions_parts_fcpi_fip

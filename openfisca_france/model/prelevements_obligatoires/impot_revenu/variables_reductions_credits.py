@@ -5867,7 +5867,7 @@ class f7ky(Variable):
     cerfa_field = '7KY'
     value_type = int
     entity = FoyerFiscal
-    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2018'
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2018 et 2022'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -5876,7 +5876,7 @@ class f7kz(Variable):
     cerfa_field = '7KZ'
     value_type = int
     entity = FoyerFiscal
-    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2017'
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2017 et 2021'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -5885,7 +5885,7 @@ class f7kx(Variable):
     cerfa_field = '7KX'
     value_type = int
     entity = FoyerFiscal
-    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2019'
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2019 et 2023'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -5894,7 +5894,7 @@ class f7kw(Variable):
     cerfa_field = '7KW'
     value_type = int
     entity = FoyerFiscal
-    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2020'
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2020 et 2024'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -6095,7 +6095,7 @@ class f7sy(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel : report prorogation 2 en 2023 investissement 2014 en outre-mer pour 6 ans'
+    label = 'Pinel : report prorogation 2 en 2023 investissement 2014 en métropole pour 6 ans'
     # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
@@ -9346,13 +9346,34 @@ class f7fl(Variable):
     definition_period = YEAR
 
 
-class f7hl(Variable):
+class f7hl_2020(Variable):
     cerfa_field = '7HL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer"
     # start_date = date(2020, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+class f7hl_2023(Variable):
+    cerfa_field = '7HL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7hl(Variable):
+    cerfa_field = '7HL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie ancien'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -12519,6 +12540,15 @@ class f7wy_2023(Variable):
     end = '2023-12-31'
 
 
+class f7wy(Variable):
+    cerfa_field = '7WY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
 class f7ys(Variable):
     cerfa_field = '7YS'
     value_type = int
@@ -12566,6 +12596,15 @@ class f7wz_2023(Variable):
     # start_date = date(2022, 1, 1)
     definition_period = YEAR
     end = '2023-12-31'
+
+
+class f7wz(Variable):
+    cerfa_field = '7WZ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
 
 # Investissement dans l'immobilier ancien:
 
@@ -12985,13 +13024,14 @@ class f7it_2021(Variable):
     definition_period = YEAR
 
 
-class f7it(Variable):
+class f7it_2024(Variable):
     cerfa_field = '7IT'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -13017,13 +13057,14 @@ class f7is_2021(Variable):
     definition_period = YEAR
 
 
-class f7is(Variable):
+class f7is_2024(Variable):
     cerfa_field = '7IS'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -13300,7 +13341,7 @@ class f7ih(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Denormandie : report investissement en outre-mer en 2023 avec engagement de 9 ans'
-    # start_date = date(2021, 1, 1)
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -13416,7 +13457,7 @@ class f7jv(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Pinel : report investissement en métropole en 2021 avec engagement 6 ans'
-    # start_date = date(2021, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -13437,7 +13478,7 @@ class f7jw(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Pinel : report investissement en métropole en 2021 avec engagement 9 ans'
-    # start_date = date(2021, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -13458,7 +13499,7 @@ class f7jx(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Pinel : report investissement en outre-mer en 2021 avec engagement 6 ans'
-    # start_date = date(2021, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -13490,7 +13531,7 @@ class f7jy(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Pinel : report investissement en outre-mer en 2021 avec engagement 9 ans'
-    # start_date = date(2021, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -15601,8 +15642,8 @@ class f7sz(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel : report prorogation 2 investissement 2014 en métropole avec engagement 6 ans'
-    # start_date = date(2017, 1, 1)
+    label = 'Pinel : report prorogation 2 en 2023 investissement 2014 en outre-mer avec engagement 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
