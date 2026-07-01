@@ -8832,6 +8832,44 @@ class fhoz(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+class fhvl(Variable):
+    cerfa_field = 'HVL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class fhvm(Variable):
+    cerfa_field = 'HVM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class fhvn(Variable):
+    cerfa_field = 'HVN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class fhvo(Variable):
+    cerfa_field = 'HVO'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
 
 class fhua(Variable):
     cerfa_field = 'HUA'
