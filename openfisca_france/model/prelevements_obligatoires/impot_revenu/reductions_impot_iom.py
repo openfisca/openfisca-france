@@ -1614,30 +1614,22 @@ class doment(Variable):
             + fhct)
         
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945 - nr_5263_36_40))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_306_51 - nr_56_306_38945))
 
         r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
-        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_1) * P11.taux_retro_1
-        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P11.taux_retro_1) * P11.taux_retro_1
         r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
-        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2) * P11.taux_retro_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P11.taux_retro_2) * P11.taux_retro_2
 
         inv = (nr_66_306_594
-            + nr_625_36_60
             + nr_625_306_51
             + nr_56_306_38945
-            + nr_5263_36_40
             + nr_5263_306_34
             + r_66_306_594
-            + r_625_36_60
             + r_625_306_51
             + r_56_306_38945
-            + r_5263_36_40
             + r_5263_306_34)
 
         # propre entreprise
@@ -1751,32 +1743,24 @@ class doment(Variable):
             + fhft
             + fhgt
             + fhct + fhht)
-
+        
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945 - nr_5263_36_40))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_306_51 - nr_56_306_38945))
 
         r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
-        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_1) * P11.taux_retro_1
-        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P11.taux_retro_1) * P11.taux_retro_1
         r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
-        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2) * P11.taux_retro_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P11.taux_retro_2) * P11.taux_retro_2
 
         inv = (nr_66_306_594
-            + nr_625_36_60
             + nr_625_306_51
             + nr_56_306_38945
-            + nr_5263_36_40
             + nr_5263_306_34
             + r_66_306_594
-            + r_625_36_60
             + r_625_306_51
             + r_56_306_38945
-            + r_5263_36_40
             + r_5263_306_34)
 
         # propre entreprise
@@ -1911,37 +1895,30 @@ class doment(Variable):
         fhiw = foyer_fiscal('fhiw', period) # Nouveau 2022
 
         # Calcul de la réduction d'impôt (Article 199 undecies D du CGI)
+                
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945 - nr_5263_36_40))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_306_51 - nr_56_306_38945))
 
         r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
-        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_1) * P11.taux_retro_1
-        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P11.taux_retro_1) * P11.taux_retro_1
         r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
-        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2) * P11.taux_retro_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P11.taux_retro_2) * P11.taux_retro_2
 
         inv = (nr_66_306_594
-            + nr_625_36_60
             + nr_625_306_51
             + nr_56_306_38945
-            + nr_5263_36_40
             + nr_5263_306_34
             + r_66_306_594
-            + r_625_36_60
             + r_625_306_51
             + r_56_306_38945
-            + r_5263_36_40
             + r_5263_306_34)
         
         propre_306 = (fhdk + fhdu + fhdp + fhep + fheu + fhfp + fhfu + fhgu + fhhu + fhiu)
         propre_765 = (fhdm + fhdw + fhew + fhdr + fher + fhfr + fhfw + fhgw + fhhw + fhiw)
 
-        ri_propre = (min_(PP.plafond, propre_306) + min_(PP.plafond * PP.doment.propre_entreprise.majoration, propre_765))
+        ri_propre = (min_(PP15.plafond, propre_306) + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
         return ri_propre + inv
     
@@ -1981,31 +1958,24 @@ class doment(Variable):
         inv_66_306_594 = (fhet + fhft + fhgt + fhht + fhit + fhjt)
 
         # Calcul de la réduction d'impôt (Article 199 undecies D du CGI)
+        
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945 - nr_5263_36_40))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_306_51 - nr_56_306_38945))
 
         r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
-        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_1) * P11.taux_retro_1
-        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P11.taux_retro_1) * P11.taux_retro_1
         r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
-        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2) * P11.taux_retro_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P11.taux_retro_2) * P11.taux_retro_2
 
         inv = (nr_66_306_594
-            + nr_625_36_60
             + nr_625_306_51
             + nr_56_306_38945
-            + nr_5263_36_40
             + nr_5263_306_34
             + r_66_306_594
-            + r_625_36_60
             + r_625_306_51
             + r_56_306_38945
-            + r_5263_36_40
             + r_5263_306_34)
 
         fhep = foyer_fiscal('fhep', period)  # Report 2018
@@ -2030,8 +2000,7 @@ class doment(Variable):
         
         propre_765 = (fher + fhew + fhfr + fhfw + fhgw + fhhw + fhiw + fhjw)
 
-        ri_propre = (min_(PP.plafond, propre_306)
-                    + min_(PP.plafond * PP.doment.propre_entreprise.majoration, propre_765))
+        ri_propre = (min_(PP15.plafond, propre_306) + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
         return ri_propre + inv
     
@@ -2068,31 +2037,24 @@ class doment(Variable):
         inv_66_306_594 = ( fhft + fhgt + fhht + fhit + fhjt + fhkt)
 
         # Calcul de la réduction d'impôt (Article 199 undecies D du CGI)
+        
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945 - nr_5263_36_40))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_306_51 - nr_56_306_38945))
 
         r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
-        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_1) * P11.taux_retro_1
-        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P11.taux_retro_1) * P11.taux_retro_1
         r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
-        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2) * P11.taux_retro_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P11.taux_retro_2) * P11.taux_retro_2
 
         inv = (nr_66_306_594
-            + nr_625_36_60
             + nr_625_306_51
             + nr_56_306_38945
-            + nr_5263_36_40
             + nr_5263_306_34
             + r_66_306_594
-            + r_625_36_60
             + r_625_306_51
             + r_56_306_38945
-            + r_5263_36_40
             + r_5263_306_34)
 
         fhfp = foyer_fiscal('fhfp', period)  # Report 2019
@@ -2116,8 +2078,7 @@ class doment(Variable):
         
         propre_765 = ( fhfr + fhfw + fhgw + fhhw + fhiw + fhjw + fhkw)
 
-        ri_propre = (min_(PP.plafond, propre_306)
-                    + min_(PP.plafond * PP.doment.propre_entreprise.majoration, propre_765))
+        ri_propre = (min_(PP15.plafond, propre_306) + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
         return ri_propre + inv
 
@@ -2125,8 +2086,8 @@ def formula_2025_01_01(foyer_fiscal, period, parameters):
     '''
     Calcul de la réduction d'impôt pour investissements outre-mer dans le cadre d'une entreprise
     '''
-    P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
-    PP = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
+    P15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+    PP15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement
 
     fhgs = foyer_fiscal('fhgs', period)  # Report 2020
     fhhs = foyer_fiscal('fhhs', period)  # Report 2021
@@ -2144,12 +2105,12 @@ def formula_2025_01_01(foyer_fiscal, period, parameters):
     fhlt = foyer_fiscal('fhlt', period)  # Nouveaux investissements réalisés en 2025
     inv_66_306_594 = (fhgt + fhht + fhit + fhjt + fhkt + fhlt)
 
-    nr_66_306_594 = min_(inv_66_306_594 * (1 - P.taux_retro_1), max_(0, PP.plafond))
-    nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P.taux_retro_2 ), max_(0, PP.plafond - nr_66_306_594))
+    nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
+    nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2 ), max_(0, PP15.plafond - nr_66_306_594))
 
 
-    r_66_306_594 = nr_66_306_594 / (1 - P.taux_retro_1) * P.taux_retro_1
-    r_56_306_38945 = nr_56_306_38945 / (1 - P.taux_retro_2 ) * P.taux_retro_2 
+    r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+    r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2 ) * P15.taux_retro_2 
 
     inv = (nr_66_306_594 + nr_56_306_38945 + r_66_306_594 + r_56_306_38945)
 
@@ -2171,8 +2132,8 @@ def formula_2025_01_01(foyer_fiscal, period, parameters):
     
     propre_765 = (fhgw + fhhw + fhiw + fhjw + fhkw + fhlw)
 
-    ri_propre = (min_(PP.plafond, propre_306)
-                 + min_(PP.plafond * PP.doment.propre_entreprise.majoration, propre_765))
+    ri_propre = (min_(PP15.plafond, propre_306)
+                 + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
     return ri_propre + inv
         
