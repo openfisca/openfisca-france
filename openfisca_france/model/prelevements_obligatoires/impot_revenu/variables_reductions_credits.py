@@ -3556,7 +3556,8 @@ class fhkt(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise"
-    # start_date = date(2013, 1, 1)
+    # start_date = date(2010, 1, 1)
+    # end-date = date(2015, 31,12) la dernière brochure qui les prend en compte est celle de 2016 sur les revenus de 2015 et à partir des revenus de 2024, ce nom de variable est utilisé à nouveau. (cf fhkt_2024)
     definition_period = YEAR
 
 
@@ -4207,7 +4208,8 @@ class fhku(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements dans votre entreprise"
-    # start_date = date(2013, 1, 1)
+    # start_date = date(2010, 1, 1)
+    # end-date = date(2015, 31,12) la dernière brochure qui les prend en compte est celle de 2016 sur les revenus de 2015 et à partir des revenus de 2024, ce nom de variable est utilisé à nouveau. (cf fhku_2024)
     definition_period = YEAR
 
 
@@ -5313,7 +5315,7 @@ class fhjw(Variable):
     definition_period = YEAR
 
 
-class fhks(Variable):
+class fhks_2024(Variable):
     cerfa_field = 'HKS'
     value_type = int
     unit = 'currency'
@@ -5323,7 +5325,7 @@ class fhks(Variable):
     definition_period = YEAR
 
 
-class fhkt(Variable):
+class fhkt_2024(Variable):
     cerfa_field = 'HKT'
     value_type = int
     unit = 'currency'
@@ -5333,12 +5335,12 @@ class fhkt(Variable):
     definition_period = YEAR
 
 
-class fhku(Variable):
+class fhku_2024(Variable):
     cerfa_field = 'HKU'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    label = "Investissements outre-mer dans le cadre de l'entreprise, réalisés en 2024 dans votre entreprise"
     # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
@@ -8063,6 +8065,8 @@ class fhks(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
+    # start_date = date(2009, 1, 1)
+    # end-date = date(2014, 31, 12) la dernière brochure qui les prend en compte est celle de 2015 sur les revenus de 2014 et à partir des revenus de 2024, ce nom de variable est utilisé à nouveau. (cf fhks_2024)
     definition_period = YEAR
 
 

@@ -2017,16 +2017,16 @@ class doment(Variable):
         fhhs = foyer_fiscal('fhhs', period)  # Report 2021
         fhis = foyer_fiscal('fhis', period)  # Report 2022
         fhjs = foyer_fiscal('fhjs', period)  # Report 2023
-        fhks = foyer_fiscal('fhks', period)  # Nouveau 2024
-        inv_56_306_38945 = (fhfs + fhgs + fhhs + fhis + fhjs + fhks)
+        fhks_2024 = foyer_fiscal('fhks_2024', period)  # Nouveau 2024
+        inv_56_306_38945 = (fhfs + fhgs + fhhs + fhis + fhjs + fhks_2024)
 
         fhft = foyer_fiscal('fhft', period)  # Report 2019
         fhgt = foyer_fiscal('fhgt', period)  # Report 2020
         fhht = foyer_fiscal('fhht', period)  # Report 2021
         fhit = foyer_fiscal('fhit', period)  # Report 2022
         fhjt = foyer_fiscal('fhjt', period)  # Report 2023
-        fhkt = foyer_fiscal('fhkt', period)  # Nouveau 2024
-        inv_66_306_594 = (fhft + fhgt + fhht + fhit + fhjt + fhkt)
+        fhkt_2024 = foyer_fiscal('fhkt_2024', period)  # Nouveau 2024
+        inv_66_306_594 = (fhft + fhgt + fhht + fhit + fhjt + fhkt_2024)
 
         # Calcul de la réduction d'impôt (Article 199 undecies D du CGI)
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
@@ -2054,10 +2054,9 @@ class doment(Variable):
         fhhu = foyer_fiscal('fhhu', period)  # Report 2021
         fhiu = foyer_fiscal('fhiu', period)  # Report 2022
         fhju = foyer_fiscal('fhju', period)  # Report 2023
-        fhku = foyer_fiscal('fhku', period)  # Nouveau 2024
+        fhku_2024 = foyer_fiscal('fhku_2024', period)  # Nouveau 2024
 
-        propre_306 = (fhfp + fhfu + fhgu + fhhu + fhiu + fhju + fhku)
-
+        propre_306 = (fhfp + fhfu + fhgu + fhhu + fhiu + fhju + fhku_2024)
 
         fhfr = foyer_fiscal('fhfr', period)  # Report 2019
         fhfw = foyer_fiscal('fhfw', period)  # Report 2019
@@ -2073,6 +2072,7 @@ class doment(Variable):
 
         return ri_propre + inv
 
+
 def formula_2025_01_01(foyer_fiscal, period, parameters):
     '''
     Calcul de la réduction d'impôt pour investissements outre-mer dans le cadre d'une entreprise
@@ -2084,17 +2084,17 @@ def formula_2025_01_01(foyer_fiscal, period, parameters):
     fhhs = foyer_fiscal('fhhs', period)  # Report 2021
     fhis = foyer_fiscal('fhis', period)  # Report 2022
     fhjs = foyer_fiscal('fhjs', period)  # Report 2023
-    fhks = foyer_fiscal('fhks', period)  # Report 2024
+    fhks_2024 = foyer_fiscal('fhks_2024', period)  # Report 2024
     fhls = foyer_fiscal('fhls', period)  # Nouveaux investissements réalisés en 2025
-    inv_56_306_38945 = (fhgs + fhhs + fhis + fhjs + fhks + fhls)
+    inv_56_306_38945 = (fhgs + fhhs + fhis + fhjs + fhks_2024 + fhls)
 
     fhgt = foyer_fiscal('fhgt', period)  # Report 2020
     fhht = foyer_fiscal('fhht', period)  # Report 2021
     fhit = foyer_fiscal('fhit', period)  # Report 2022
     fhjt = foyer_fiscal('fhjt', period)  # Report 2023
-    fhkt = foyer_fiscal('fhkt', period)  # Report 2024
+    fhkt_2024 = foyer_fiscal('fhkt_2024', period)  # Report 2024
     fhlt = foyer_fiscal('fhlt', period)  # Nouveaux investissements réalisés en 2025
-    inv_66_306_594 = (fhgt + fhht + fhit + fhjt + fhkt + fhlt)
+    inv_66_306_594 = (fhgt + fhht + fhit + fhjt + fhkt_2024 + fhlt)
 
     nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
     nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594))
@@ -2112,10 +2112,10 @@ def formula_2025_01_01(foyer_fiscal, period, parameters):
     fhhu = foyer_fiscal('fhhu', period)  # Report 2021
     fhiu = foyer_fiscal('fhiu', period)  # Report 2022
     fhju = foyer_fiscal('fhju', period)  # Report 2023
-    fhku = foyer_fiscal('fhku', period)  # Report 2024
+    fhku_2024 = foyer_fiscal('fhku_2024', period)  # Report 2024
     fhlu = foyer_fiscal('fhlu', period)  # Nouveaux investissements 2025
 
-    propre_306 = (fhgu + fhhu + fhiu + fhju + fhku + fhlu)
+    propre_306 = (fhgu + fhhu + fhiu + fhju + fhku_2024 + fhlu)
 
     fhgw = foyer_fiscal('fhgw', period)  # Report 2020
     fhhw = foyer_fiscal('fhhw', period)  # Report 2021
