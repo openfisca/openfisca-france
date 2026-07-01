@@ -1,7 +1,7 @@
 description: Taux du crédit d'impôt pour les dépenses de chaudières à très haute performance énergétique
 values:
   2018-01-01:
-    value: .3
+    value: .15
   2019-01-01:
     value: .3
   2020-01-01:
@@ -24,8 +24,8 @@ metadata:
     2018-01-01: "2017-12-31"
     2019-01-01: "2018-12-30"
     2020-01-01: "2019-12-29"
-  notes: 
+  notes:
     2018-01-01:
-      - title: Pour les chaudières utilisant le fioul, dépenses payées du 1.1.2018 au 30.6.2018 et dépenses payées du 1.7.2018 au 31.12.2018 avec acceptation d'un devis et versement d'un acompte au plus tard le 30.6.2018. Pour les autres chaudières, cf. chaudières HPE.
+      - title: "À compter de 2018, le taux applicable aux chaudières à très haute performance énergétique utilisant le FIOUL est réduit de 30 % à 15 % (LF 2018, art. 79). Concerne les dépenses payées du 1.1.2018 au 30.6.2018, et celles payées du 1.7.2018 au 31.12.2018 avec acceptation d'un devis et versement d'un acompte au plus tard le 30.6.2018. Les chaudières à très haute performance n'utilisant pas le fioul relèvent du taux général (cf. chaudières HPE)."
     2019-01-01:
       - title: Dépenses payées du 8.3 au 31.12.2019 (et du 1er janvier au 7 mars, cf. chaudière à haute performance énergétique). Ne concerne que les chaudières n'utilisant pas le fioul.

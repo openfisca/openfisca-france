@@ -7,9 +7,9 @@ values:
   2006-01-01:
     value: .50
   2011-01-01:
-    value: .45
+    value: .50
   2012-01-01:
-    value: .32
+    value: .38
   2014-01-01:
     value: .15
   2014-09-01:
@@ -61,7 +61,9 @@ metadata:
   notes:
     2001-01-01: 
       - title: En 2001, le crédit d'impôt s'applique aux logements neufs comme aux logements anciens.
-    2012-01-01: 
+    2011-01-01:
+      - title: "Premier « coup de rabot » : réduction homothétique de 10 % des taux du crédit d'impôt (art. 105 de la LF 2011, décret n° 2011-520). La valeur stockée pour 2011 est le taux AVANT rabot ; le taux effectivement appliqué vaut plancher(taux x 0,90). En 2011, la majoration « bouquet » n'existe pas encore (instaurée par la LF 2012). Voir le paramètre `rabot`."
+    2012-01-01:
       - title: En 2012, la loi de finances modifie le droit au 1er janvier (art. 81) puis le modifie une seconde fois pour tous les crédits d'impôt (art. 83), un décret d'avril matérialisant les changements cumulés.
     2014-01-01:
       - title: En 2014, seuls les foyers "modestes" (en-deçà d'un seuil de revenu) sont éligibles au taux "mono-gestes". Pour bénéficier du crédit d'impôt les foyers au-delà du seuil doivent réaliser au moins deux gestes différents, et bénéficient alors de la majoration de 10 points.

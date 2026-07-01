@@ -3,9 +3,9 @@ values:
   2007-01-01:
     value: .25
   2011-01-01:
-    value: .22
+    value: .25
   2012-01-01:
-    value: .15
+    value: .18
   2014-01-01:
     value: null
 metadata:
@@ -35,5 +35,7 @@ metadata:
     2012-01-01: 2011-12-29; 2012-04-25
     2014-01-01: "2013-12-30"
   notes:
-    2012-01-01: 
+    2011-01-01:
+      - title: "Premier « coup de rabot » : réduction homothétique de 10 % des taux du crédit d'impôt (art. 105 de la LF 2011, décret n° 2011-520). La valeur stockée pour 2011 est le taux AVANT rabot ; le taux effectivement appliqué vaut plancher(taux x 0,90). En 2011, la majoration « bouquet » n'existe pas encore (instaurée par la LF 2012). Voir le paramètre `rabot`."
+    2012-01-01:
       - title: En 2012, la loi de finances modifie le droit au 1er janvier (art. 81) puis le modifie une seconde fois pour tous les crédits d'impôt (art. 83), un décret d'avril matérialisant les changements cumulés.

@@ -5,9 +5,9 @@ values:
   2010-09-29:
     value: .25
   2011-01-01:
-    value: .22
+    value: .25
   2012-01-01:
-    value: .11
+    value: .13
   2014-01-01:
     value: null
 metadata:
@@ -43,5 +43,7 @@ metadata:
   notes:
     2010-01-01:
       - title: Avant 2010, les équipements de production d'électricité utilisant l'énergie radiative du soleil sont implicitement couvert par le crédit d'impôt, dans la catégorie "équipements de production d'énergie utilisant une source d'énergie renouvelable".
+    2011-01-01:
+      - title: "Premier « coup de rabot » : réduction homothétique de 10 % des taux du crédit d'impôt (art. 105 de la LF 2011, décret n° 2011-520). La valeur stockée pour 2011 est le taux AVANT rabot (ici 25 %, après la réduction propre au photovoltaïque du 29.9.2010) ; le taux effectivement appliqué vaut plancher(taux x 0,90) = 22 %. En 2011, la majoration « bouquet » n'existe pas encore (instaurée par la LF 2012). Voir le paramètre `rabot`."
     2014-01-01:
       - title: En 2014, les équipements de production d'électricité utilisant l'énergie radiative du soleil sont explicitement exclus du bénéfice du crédit d'impôt.

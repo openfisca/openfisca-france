@@ -5,9 +5,9 @@ values:
   2010-01-01:
     value: .25
   2011-01-01:
-    value: .22
+    value: .25
   2012-01-01:
-    value: .15
+    value: .18
   2014-01-01:
     value: null
 metadata:
@@ -45,6 +45,7 @@ metadata:
       - title: Quand l'acquisition vient en remplacement des mêmes matériels, le taux du crédit d'impôt est de 40%.
     2011-01-01: 
       - title: Quand l'acquisition vient en remplacement des mêmes matériels, le taux du crédit d'impôt est de 36%.
+      - title: "Premier « coup de rabot » : réduction homothétique de 10 % des taux du crédit d'impôt (art. 105 de la LF 2011, décret n° 2011-520). La valeur stockée pour 2011 est le taux AVANT rabot ; le taux effectivement appliqué vaut plancher(taux x 0,90) = 22 % (geste seul), soit 36 % en remplacement. En 2011, la majoration « bouquet » n'existe pas encore (instaurée par la LF 2012). Voir le paramètre `rabot`."
     2012-01-01: 
       - title: Quand l'acquisition vient en remplacement des mêmes matériels, le taux du crédit d'impôt est de 26%.
     2014-01-01:

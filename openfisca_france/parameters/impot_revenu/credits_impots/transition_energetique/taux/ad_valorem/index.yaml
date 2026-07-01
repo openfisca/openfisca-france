@@ -40,9 +40,14 @@ metadata:
   - recuperation_eau_pluviale
   - depose_cuve_fioul
   - majoration_bouquet
+  - rabot
   documentation: |-
     Au fur et à mesure du temps, certaines catégories de gestes subventionnés disparaissent, ce qui ne signifie pas que les gestes concernés ne sont plus subventionnés, mais qu'ils ne sont plus catégorisés de la même manière.
     Ainsi les "matériaux d'isolation thermique" sont remplacés par les "matériaux d'isolation thermique des parois vitrées", les "matériaux d'isolation thermique des parois opaques" et les "matériaux de calorifugeage".
     De même des différents types de moyens de production d'énergie : l'électricité est séparée du chauffage ou de la fourniture d'eau chaude ; puis les différents types de chaudière ou de pompes à chaleur subissent la même recatégorisation.
     On fait le choix ici de rester au plus proche de la loi, et d'ainsi interrompre ou initier de nouveaux barèmes lorsque les catégories explicites de travaux disparaissent ou apparaissent.
     En 2020, la structure du crédit d'impôt (dont la disparition était prévue après 2019, prolongé exceptionnellement d'un an) ressemble à celle de Ma Prime Renov', avec un barème par forfait pour chaque geste subventionné remplaçant le taux préexistant.
+
+    IMPORTANT — taux « avant rabot » 2011-2013 : pour les dépenses de 2011, 2012 et 2013, les taux stockés dans chaque geste sont les taux AVANT « rabot » (réduction homothétique appliquée ex post). Deux coups de rabot successifs ont existé : 10 % en 2011 (art. 105 de la LF 2011, coefficient 0,90) puis 15 % en 2012-2013 (art. 83 de la LF 2012, coefficient 0,85). Le taux effectivement appliqué se calcule en ajoutant d'abord la `majoration_bouquet` (+10 points) si un bouquet de travaux est réalisé — la majoration n'existe toutefois qu'à partir de 2012 —, puis en multipliant par le coefficient `rabot` de l'année, et enfin en tronquant au point de pourcentage entier :
+        taux_appliqué = plancher((taux + majoration_bouquet_si_bouquet) x rabot)
+    En 2011 (sans majoration) : 25→22, 40→36, 15→13, 50→45. En 2012-2013 (geste seul / bouquet) : 12→10/18, 13→11/—, 18→15/23, 21→17/26, 31→26/34, 38→32/40. Voir `rabot` et `majoration_bouquet`. La majoration n'est due que pour les gestes éligibles au bouquet (cf. documentation de `majoration_bouquet`). Les deux rabots ne se cumulent pas : le coefficient de chaque année s'applique aux taux faciaux votés pour cette année-là. Pour les autres années, le coefficient `rabot` est sans objet et le taux stocké est directement le taux appliqué.

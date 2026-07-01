@@ -1,7 +1,7 @@
 description: Majoration du taux du crédit d'impôt lorsque plusieurs dépenses sont réalisées conjointement (bouquet de travaux).
 values:
   2012-01-01:
-    value: .08
+    value: .1
   2014-01-01:
     value: .1
   2014-09-01:
@@ -27,8 +27,9 @@ metadata:
     2014-01-01: "2013-12-30"
     2014-09-01: "2014-12-30"
   notes:
-    2012-01-01: 
-      - title: En 2012, la loi de finances modifie le droit au 1er janvier (art. 81) puis le modifie une seconde fois pour tous les crédits d'impôt (art. 83), un décret d'avril matérialisant les changements cumulés. 
+    2012-01-01:
+      - title: En 2012, la loi de finances modifie le droit au 1er janvier (art. 81) puis le modifie une seconde fois pour tous les crédits d'impôt (art. 83), un décret d'avril matérialisant les changements cumulés.
+      - title: "En 2012-2013, la majoration de 10 points s'ajoute au taux AVANT le « rabot » de 15 % (art. 83), puis le rabot s'applique à l'ensemble : taux bouquet = plancher((taux + 10 pts) x 0,85). Voir le paramètre `rabot`."
     2014-01-01:
       - title: En 2014, la majoration pour bouquet de travaux passe à 10 points (le taux pour geste seul étant désormais uniforme et de 15%, le taux majoré est de 25%). Le taux majoré est le seul accessible aux ménages non-modestes, ceux-ci n'étant plus éligible au crédit d'impôt que s'ils réalisent au minimum deux gestes.
     2014-09-01:
@@ -43,4 +44,4 @@ metadata:
       - acquisition de chaudières à condensation,
       - acquisition de chaudières à micro-cogénération gaz mentionnées
       - acquisition d'équipements de production d'énergie utilisant une source d'énergie renouvelable ou de pompes à chaleur
-    NB : dans le texte, les taux de 10 %, 15 %, 17 %, 26 % et 32 % sont explicitement modifiés en 18 %, 23 %, 26 %, 34 % et 40 %. On simplifie ici en une majoration de 8 points.
+    En 2012-2013, la majoration de 10 points porte sur le taux AVANT « rabot » de 15 % (art. 83 LF 2012) ; le rabot s'applique ensuite à l'ensemble, avec troncature. Le taux appliqué pour un bouquet vaut donc plancher((taux_avant_rabot + 10 pts) x 0,85). Cette mécanique reproduit exactement les taux du texte : 10/15/17/26/32 % deviennent 18/23/26/34/40 % (écarts après rabot de +8/+8/+9/+8/+8 points — le +9 du taux de 17 % vient de l'interaction arrondi/rabot). À partir de 2014, le rabot est supprimé : la majoration de 10 points s'ajoute directement (taux uniforme 15 % → taux majoré 25 %).
