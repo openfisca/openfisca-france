@@ -3587,7 +3587,7 @@ class domlog(Variable):
         fhvm = foyer_fiscal('fhvm', period)  # 2023
         fhvn = foyer_fiscal('fhvn', period)  # 2024
 
-        ri_avant_2011 = (fhqb + fhqc + fhql + fhqt + fhqm + fhqd + fhoa + fhob + fhoc
+        ri_avant_2011 = (fhqt + fhqm + fhqd + fhoa + fhob + fhoc
                         + fhol + fhom + fhon + fhod + fhua + fhuh + fhuo + fhva)
 
         ri_2011 = (fhoh + fhoi + fhoj + fhok + fhoo + fhop + fhoq + fhor + fhoe + fhof
