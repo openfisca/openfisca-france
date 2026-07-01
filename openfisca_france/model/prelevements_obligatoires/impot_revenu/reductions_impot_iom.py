@@ -3313,6 +3313,398 @@ class domlog(Variable):
         #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
         return ri_abs
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité (art. 199 undecies A du CGI)
+        '''
+
+        # --- Bloc 1 ---
+        fhqb = foyer_fiscal('fhqb', period)  # Avant 2009
+        fhqc = foyer_fiscal('fhqc', period)  # 2009
+        fhql = foyer_fiscal('fhql', period)  # 2009
+        fhqt = foyer_fiscal('fhqt', period)  # 2010
+        fhqm = foyer_fiscal('fhqm', period)  # 2010
+        fhqd = foyer_fiscal('fhqd', period)  # 2010
+        fhoa = foyer_fiscal('fhoa', period)  # 2011
+        fhob = foyer_fiscal('fhob', period)  # 2011
+        fhoc = foyer_fiscal('fhoc', period)  # 2011
+        fhol = foyer_fiscal('fhol', period)  # 2012
+        fhom = foyer_fiscal('fhom', period)  # 2012
+        fhon = foyer_fiscal('fhon', period)  # 2012
+        fhod = foyer_fiscal('fhod', period)  # 2013
+        fhua = foyer_fiscal('fhua', period)  # 2014
+        fhuh = foyer_fiscal('fhuh', period)  # 2015
+        fhuo = foyer_fiscal('fhuo', period)  # 2016
+        fhva = foyer_fiscal('fhva', period)  # 2017
+
+        # --- Bloc 2 ---
+        fhoh = foyer_fiscal('fhoh', period)  # 2011
+        fhoi = foyer_fiscal('fhoi', period)  # 2011
+        fhoj = foyer_fiscal('fhoj', period)  # 2011
+        fhok = foyer_fiscal('fhok', period)  # 2011
+        fhoo = foyer_fiscal('fhoo', period)  # 2012
+        fhop = foyer_fiscal('fhop', period)  # 2012
+        fhoq = foyer_fiscal('fhoq', period)  # 2012
+        fhor = foyer_fiscal('fhor', period)  # 2012
+        fhoe = foyer_fiscal('fhoe', period)  # 2013
+        fhof = foyer_fiscal('fhof', period)  # 2013
+        fhub = foyer_fiscal('fhub', period)  # 2014
+        fhuc = foyer_fiscal('fhuc', period)  # 2014
+        fhui = foyer_fiscal('fhui', period)  # 2015
+        fhuj = foyer_fiscal('fhuj', period)  # 2015
+        fhup = foyer_fiscal('fhup', period)  # 2016
+        fhuq = foyer_fiscal('fhuq', period)  # 2016
+        fhvb = foyer_fiscal('fhvb', period)  # 2017
+        fhvc = foyer_fiscal('fhvc', period)  # 2017
+
+        # --- Bloc 3 ---
+        fhos = foyer_fiscal('fhos', period)  # 2012
+        fhot = foyer_fiscal('fhot', period)  # 2012
+        fhou = foyer_fiscal('fhou', period)  # 2012
+        fhov = foyer_fiscal('fhov', period)  # 2012
+        fhow = foyer_fiscal('fhow', period)  # 2012
+        fhog = foyer_fiscal('fhog', period)  # 2013
+        fhox = foyer_fiscal('fhox', period)  # 2013
+        fhoy = foyer_fiscal('fhoy', period)  # 2013
+        fhoz = foyer_fiscal('fhoz', period)  # 2013
+        fhud = foyer_fiscal('fhud', period)  # 2014
+        fhue = foyer_fiscal('fhue', period)  # 2014
+        fhuf = foyer_fiscal('fhuf', period)  # 2014
+        fhug = foyer_fiscal('fhug', period)  # 2014
+        fhuk = foyer_fiscal('fhuk', period)  # 2015
+        fhul = foyer_fiscal('fhul', period)  # 2015
+        fhum = foyer_fiscal('fhum', period)  # 2015
+        fhun = foyer_fiscal('fhun', period)  # 2015
+        fhur = foyer_fiscal('fhur', period)  # 2016
+        fhus = foyer_fiscal('fhus', period)  # 2016
+        fhut = foyer_fiscal('fhut', period)  # 2016
+        fhuu = foyer_fiscal('fhuu', period)  # 2016
+        fhvd = foyer_fiscal('fhvd', period)  # 2017
+        fhve = foyer_fiscal('fhve', period)  # 2017
+        fhvf = foyer_fiscal('fhvf', period)  # 2017
+        fhvg = foyer_fiscal('fhvg', period)  # 2017
+        fhvh = foyer_fiscal('fhvh', period)  # 2018
+        fhvi = foyer_fiscal('fhvi', period)  # 2019
+        fhvj = foyer_fiscal('fhvj', period)  # 2020
+        fhvk = foyer_fiscal('fhvk', period)  # 2021
+        fhvl = foyer_fiscal('fhvl', period)  # 2022
+
+        ri_avant_2011 = (fhqb + fhqc + fhql + fhqt + fhqm + fhqd + fhoa + fhob + fhoc
+                        + fhol + fhom + fhon + fhod + fhua + fhuh + fhuo + fhva)
+
+        ri_2011 = (fhoh + fhoi + fhoj + fhok + fhoo + fhop + fhoq + fhor + fhoe + fhof
+                + fhub + fhuc + fhui + fhuj + fhup + fhuq + fhvb + fhvc)
+
+        ri_apres_2011 = (fhos + fhot + fhou + fhov + fhow + fhog + fhox + fhoy + fhoz
+                        + fhud + fhue + fhuf + fhug + fhuk + fhul + fhum + fhun + fhur
+                        + fhus + fhut + fhuu + fhvd + fhve + fhvf + fhvg + fhvh + fhvi
+                        + fhvj + fhvk + fhvl)
+
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
+
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+
+        ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
+
+        return ri_abs
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité (art. 199 undecies A du CGI)
+        '''
+
+        # ÉLÉMENTS DU BLOC 1 : INVESTISSEMENTS ENGAGÉS AVANT LE 1er JANVIER 2011
+        fhqb = foyer_fiscal('fhqb', period)  # Avant 2009
+        fhqc = foyer_fiscal('fhqc', period)  # 2009
+        fhql = foyer_fiscal('fhql', period)  # 2009
+        fhqt = foyer_fiscal('fhqt', period)  # 2010
+        fhqm = foyer_fiscal('fhqm', period)  # 2010
+        fhqd = foyer_fiscal('fhqd', period)  # 2010
+        fhoa = foyer_fiscal('fhoa', period)  # 2011
+        fhob = foyer_fiscal('fhob', period)  # 2011
+        fhoc = foyer_fiscal('fhoc', period)  # 2011
+        fhol = foyer_fiscal('fhol', period)  # 2012
+        fhom = foyer_fiscal('fhom', period)  # 2012
+        fhon = foyer_fiscal('fhon', period)  # 2012
+        fhod = foyer_fiscal('fhod', period)  # 2013
+        fhua = foyer_fiscal('fhua', period)  # 2014
+        fhuh = foyer_fiscal('fhuh', period)  # 2015
+        fhuo = foyer_fiscal('fhuo', period)  # 2016
+        fhva = foyer_fiscal('fhva', period)  # 2017
+
+        # ÉLÉMENTS DU BLOC 2 : INVESTISSEMENTS ENGAGÉS AU COURS DE L'ANNÉE 2011
+        fhoh = foyer_fiscal('fhoh', period)  # 2011
+        fhoi = foyer_fiscal('fhoi', period)  # 2011
+        fhoj = foyer_fiscal('fhoj', period)  # 2011
+        fhok = foyer_fiscal('fhok', period)  # 2011
+        fhoo = foyer_fiscal('fhoo', period)  # 2012
+        fhop = foyer_fiscal('fhop', period)  # 2012
+        fhoq = foyer_fiscal('fhoq', period)  # 2012
+        fhor = foyer_fiscal('fhor', period)  # 2012
+        fhoe = foyer_fiscal('fhoe', period)  # 2013
+        fhof = foyer_fiscal('fhof', period)  # 2013
+        fhub = foyer_fiscal('fhub', period)  # 2014
+        fhuc = foyer_fiscal('fhuc', period)  # 2014
+        fhui = foyer_fiscal('fhui', period)  # 2015
+        fhuj = foyer_fiscal('fhuj', period)  # 2015
+        fhup = foyer_fiscal('fhup', period)  # 2016
+        fhuq = foyer_fiscal('fhuq', period)  # 2016
+        fhvb = foyer_fiscal('fhvb', period)  # 2017
+        fhvc = foyer_fiscal('fhvc', period)  # 2017
+
+        # ÉLÉMENTS DU BLOC 3 : INVESTISSEMENTS ENGAGÉS À COMPTER DE 2012
+        fhos = foyer_fiscal('fhos', period)  # 2012
+        fhot = foyer_fiscal('fhot', period)  # 2012
+        fhou = foyer_fiscal('fhou', period)  # 2012
+        fhov = foyer_fiscal('fhov', period)  # 2012
+        fhow = foyer_fiscal('fhow', period)  # 2012
+        fhog = foyer_fiscal('fhog', period)  # 2013
+        fhox = foyer_fiscal('fhox', period)  # 2013
+        fhoy = foyer_fiscal('fhoy', period)  # 2013
+        fhoz = foyer_fiscal('fhoz', period)  # 2013
+        fhud = foyer_fiscal('fhud', period)  # 2014
+        fhue = foyer_fiscal('fhue', period)  # 2014
+        fhuf = foyer_fiscal('fhuf', period)  # 2014
+        fhug = foyer_fiscal('fhug', period)  # 2014
+        fhuk = foyer_fiscal('fhuk', period)  # 2015
+        fhul = foyer_fiscal('fhul', period)  # 2015
+        fhum = foyer_fiscal('fhum', period)  # 2015
+        fhun = foyer_fiscal('fhun', period)  # 2015
+        fhur = foyer_fiscal('fhur', period)  # 2016
+        fhus = foyer_fiscal('fhus', period)  # 2016
+        fhut = foyer_fiscal('fhut', period)  # 2016
+        fhuu = foyer_fiscal('fhuu', period)  # 2016
+        fhvd = foyer_fiscal('fhvd', period)  # 2017
+        fhve = foyer_fiscal('fhve', period)  # 2017
+        fhvf = foyer_fiscal('fhvf', period)  # 2017
+        fhvg = foyer_fiscal('fhvg', period)  # 2017
+        fhvh = foyer_fiscal('fhvh', period)  # 2018
+        fhvi = foyer_fiscal('fhvi', period)  # 2019
+        fhvj = foyer_fiscal('fhvj', period)  # 2020
+        fhvk = foyer_fiscal('fhvk', period)  # 2021
+        fhvl = foyer_fiscal('fhvl', period)  # 2022
+        fhvm = foyer_fiscal('fhvm', period)  # 2023
+
+        ri_avant_2011 = (fhqb + fhqc + fhql + fhqt + fhqm + fhqd + fhoa + fhob + fhoc
+                        + fhol + fhom + fhon + fhod + fhua + fhuh + fhuo + fhva)
+
+        ri_2011 = (fhoh + fhoi + fhoj + fhok + fhoo + fhop + fhoq + fhor + fhoe + fhof
+                + fhub + fhuc + fhui + fhuj + fhup + fhuq + fhvb + fhvc)
+
+        ri_apres_2011 = (fhos + fhot + fhou + fhov + fhow + fhog + fhox + fhoy + fhoz
+                        + fhud + fhue + fhuf + fhug + fhuk + fhul + fhum + fhun + fhur
+                        + fhus + fhut + fhuu + fhvd + fhve + fhvf + fhvg + fhvh + fhvi
+                        + fhvj + fhvk + fhvl + fhvm)
+
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
+
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+
+        ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
+
+        return ri_abs
+
+    def formula_2024_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité (art. 199 undecies A du CGI)
+        '''
+
+        # --- Bloc 1 ---
+        fhqt = foyer_fiscal('fhqt', period)  # 2010
+        fhqm = foyer_fiscal('fhqm', period)  # 2010
+        fhqd = foyer_fiscal('fhqd', period)  # 2010
+        fhoa = foyer_fiscal('fhoa', period)  # 2011
+        fhob = foyer_fiscal('fhob', period)  # 2011
+        fhoc = foyer_fiscal('fhoc', period)  # 2011
+        fhol = foyer_fiscal('fhol', period)  # 2012
+        fhom = foyer_fiscal('fhom', period)  # 2012
+        fhon = foyer_fiscal('fhon', period)  # 2012
+        fhod = foyer_fiscal('fhod', period)  # 2013
+        fhua = foyer_fiscal('fhua', period)  # 2014
+        fhuh = foyer_fiscal('fhuh', period)  # 2015
+        fhuo = foyer_fiscal('fhuo', period)  # 2016
+        fhva = foyer_fiscal('fhva', period)  # 2017
+
+        # --- Bloc 2 ---
+        fhoh = foyer_fiscal('fhoh', period)  # 2011
+        fhoi = foyer_fiscal('fhoi', period)  # 2011
+        fhoj = foyer_fiscal('fhoj', period)  # 2011
+        fhok = foyer_fiscal('fhok', period)  # 2011
+        fhoo = foyer_fiscal('fhoo', period)  # 2012
+        fhop = foyer_fiscal('fhop', period)  # 2012
+        fhoq = foyer_fiscal('fhoq', period)  # 2012
+        fhor = foyer_fiscal('fhor', period)  # 2012
+        fhoe = foyer_fiscal('fhoe', period)  # 2013
+        fhof = foyer_fiscal('fhof', period)  # 2013
+        fhub = foyer_fiscal('fhub', period)  # 2014
+        fhuc = foyer_fiscal('fhuc', period)  # 2014
+        fhui = foyer_fiscal('fhui', period)  # 2015
+        fhuj = foyer_fiscal('fhuj', period)  # 2015
+        fhup = foyer_fiscal('fhup', period)  # 2016
+        fhuq = foyer_fiscal('fhuq', period)  # 2016
+        fhvb = foyer_fiscal('fhvb', period)  # 2017
+        fhvc = foyer_fiscal('fhvc', period)  # 2017
+
+        # --- Bloc 3 ---
+        fhos = foyer_fiscal('fhos', period)  # 2012
+        fhot = foyer_fiscal('fhot', period)  # 2012
+        fhou = foyer_fiscal('fhou', period)  # 2012
+        fhov = foyer_fiscal('fhov', period)  # 2012
+        fhow = foyer_fiscal('fhow', period)  # 2012
+        fhog = foyer_fiscal('fhog', period)  # 2013
+        fhox = foyer_fiscal('fhox', period)  # 2013
+        fhoy = foyer_fiscal('fhoy', period)  # 2013
+        fhoz = foyer_fiscal('fhoz', period)  # 2013
+        fhud = foyer_fiscal('fhud', period)  # 2014
+        fhue = foyer_fiscal('fhue', period)  # 2014
+        fhuf = foyer_fiscal('fhuf', period)  # 2014
+        fhug = foyer_fiscal('fhug', period)  # 2014
+        fhuk = foyer_fiscal('fhuk', period)  # 2015
+        fhul = foyer_fiscal('fhul', period)  # 2015
+        fhum = foyer_fiscal('fhum', period)  # 2015
+        fhun = foyer_fiscal('fhun', period)  # 2015
+        fhur = foyer_fiscal('fhur', period)  # 2016
+        fhus = foyer_fiscal('fhus', period)  # 2016
+        fhut = foyer_fiscal('fhut', period)  # 2016
+        fhuu = foyer_fiscal('fhuu', period)  # 2016
+        fhvd = foyer_fiscal('fhvd', period)  # 2017
+        fhve = foyer_fiscal('fhve', period)  # 2017
+        fhvf = foyer_fiscal('fhvf', period)  # 2017
+        fhvg = foyer_fiscal('fhvg', period)  # 2017
+        fhvh = foyer_fiscal('fhvh', period)  # 2018
+        fhvi = foyer_fiscal('fhvi', period)  # 2019
+        fhvj = foyer_fiscal('fhvj', period)  # 2020
+        fhvk = foyer_fiscal('fhvk', period)  # 2021
+        fhvl = foyer_fiscal('fhvl', period)  # 2022
+        fhvm = foyer_fiscal('fhvm', period)  # 2023
+        fhvn = foyer_fiscal('fhvn', period)  # 2024
+
+        ri_avant_2011 = (fhqb + fhqc + fhql + fhqt + fhqm + fhqd + fhoa + fhob + fhoc
+                        + fhol + fhom + fhon + fhod + fhua + fhuh + fhuo + fhva)
+
+        ri_2011 = (fhoh + fhoi + fhoj + fhok + fhoo + fhop + fhoq + fhor + fhoe + fhof
+                + fhub + fhuc + fhui + fhuj + fhup + fhuq + fhvb + fhvc)
+
+        ri_apres_2011 = (fhos + fhot + fhou + fhov + fhow + fhog + fhox + fhoy + fhoz
+                        + fhud + fhue + fhuf + fhug + fhuk + fhul + fhum + fhun + fhur
+                        + fhus + fhut + fhuu + fhvd + fhve + fhvf + fhvg + fhvh + fhvi
+                        + fhvj + fhvk + fhvl + fhvm + fhvn)
+
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
+
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+
+        ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
+
+        return ri_abs
+
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité (art. 199 undecies A du CGI)
+        '''
+
+        # --- Bloc 1 ---
+        fhoa = foyer_fiscal('fhoa', period)  # 2011
+        fhob = foyer_fiscal('fhob', period)  # 2011
+        fhoc = foyer_fiscal('fhoc', period)  # 2011
+        fhol = foyer_fiscal('fhol', period)  # 2012
+        fhom = foyer_fiscal('fhom', period)  # 2012
+        fhon = foyer_fiscal('fhon', period)  # 2012
+        fhod = foyer_fiscal('fhod', period)  # 2013
+        fhua = foyer_fiscal('fhua', period)  # 2014
+        fhuh = foyer_fiscal('fhuh', period)  # 2015
+        fhuo = foyer_fiscal('fhuo', period)  # 2016
+        fhva = foyer_fiscal('fhva', period)  # 2017
+
+        # --- Bloc 2 ---
+        fhoh = foyer_fiscal('fhoh', period)  # 2011
+        fhoi = foyer_fiscal('fhoi', period)  # 2011
+        fhoj = foyer_fiscal('fhoj', period)  # 2011
+        fhok = foyer_fiscal('fhok', period)  # 2011
+        fhoo = foyer_fiscal('fhoo', period)  # 2012
+        fhop = foyer_fiscal('fhop', period)  # 2012
+        fhoq = foyer_fiscal('fhoq', period)  # 2012
+        fhor = foyer_fiscal('fhor', period)  # 2012
+        fhoe = foyer_fiscal('fhoe', period)  # 2013
+        fhof = foyer_fiscal('fhof', period)  # 2013
+        fhub = foyer_fiscal('fhub', period)  # 2014
+        fhuc = foyer_fiscal('fhuc', period)  # 2014
+        fhui = foyer_fiscal('fhui', period)  # 2015
+        fhuj = foyer_fiscal('fhuj', period)  # 2015
+        fhup = foyer_fiscal('fhup', period)  # 2016
+        fhuq = foyer_fiscal('fhuq', period)  # 2016
+        fhvb = foyer_fiscal('fhvb', period)  # 2017
+        fhvc = foyer_fiscal('fhvc', period)  # 2017
+
+        # --- Bloc 3 ---
+        fhos = foyer_fiscal('fhos', period)  # 2012
+        fhot = foyer_fiscal('fhot', period)  # 2012
+        fhou = foyer_fiscal('fhou', period)  # 2012
+        fhov = foyer_fiscal('fhov', period)  # 2012
+        fhow = foyer_fiscal('fhow', period)  # 2012
+        fhog = foyer_fiscal('fhog', period)  # 2013
+        fhox = foyer_fiscal('fhox', period)  # 2013
+        fhoy = foyer_fiscal('fhoy', period)  # 2013
+        fhoz = foyer_fiscal('fhoz', period)  # 2013
+        fhud = foyer_fiscal('fhud', period)  # 2014
+        fhue = foyer_fiscal('fhue', period)  # 2014
+        fhuf = foyer_fiscal('fhuf', period)  # 2014
+        fhug = foyer_fiscal('fhug', period)  # 2014
+        fhuk = foyer_fiscal('fhuk', period)  # 2015
+        fhul = foyer_fiscal('fhul', period)  # 2015
+        fhum = foyer_fiscal('fhum', period)  # 2015
+        fhun = foyer_fiscal('fhun', period)  # 2015
+        fhur = foyer_fiscal('fhur', period)  # 2016
+        fhus = foyer_fiscal('fhus', period)  # 2016
+        fhut = foyer_fiscal('fhut', period)  # 2016
+        fhuu = foyer_fiscal('fhuu', period)  # 2016
+        fhvd = foyer_fiscal('fhvd', period)  # 2017
+        fhve = foyer_fiscal('fhve', period)  # 2017
+        fhvf = foyer_fiscal('fhvf', period)  # 2017
+        fhvg = foyer_fiscal('fhvg', period)  # 2017
+        fhvh = foyer_fiscal('fhvh', period)  # 2018
+        fhvi = foyer_fiscal('fhvi', period)  # 2019
+        fhvj = foyer_fiscal('fhvj', period)  # 2020
+        fhvk = foyer_fiscal('fhvk', period)  # 2021
+        fhvl = foyer_fiscal('fhvl', period)  # 2022
+        fhvm = foyer_fiscal('fhvm', period)  # 2023
+        fhvn = foyer_fiscal('fhvn', period)  # 2024
+        fhvo = foyer_fiscal('fhvo', period)  # 2025
+
+        ri_avant_2011 = (fhqb + fhqc + fhql + fhqt + fhqm + fhqd + fhoa + fhob + fhoc
+                        + fhol + fhom + fhon + fhod + fhua + fhuh + fhuo + fhva)
+
+        ri_2011 = (fhoh + fhoi + fhoj + fhok + fhoo + fhop + fhoq + fhor + fhoe + fhof
+                + fhub + fhuc + fhui + fhuj + fhup + fhuq + fhvb + fhvc)
+
+        ri_apres_2011 = (fhos + fhot + fhou + fhov + fhow + fhog + fhox + fhoy + fhoz
+                        + fhud + fhue + fhuf + fhug + fhuk + fhul + fhum + fhun + fhur
+                        + fhus + fhut + fhuu + fhvd + fhve + fhvf + fhvg + fhvh + fhvi
+                        + fhvj + fhvk + fhvl + fhvm + fhvn + fhvo)
+
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
+
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+
+        ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
+
+        return ri_abs
 
     def formula_2022_01_01(foyer_fiscal, period, parameters):
         '''
