@@ -1,11 +1,11 @@
 description: Majoration du plafond des réductions pour les investissements d'outremer pour les entreprises - rétrocessions au taux 2
 values:
   2009-01-01:
-    value: 1
+    value: 1.5
   2011-01-01:
-    value: 1.11
+    value: 1.1111
   2015-01-01:
-    value: 1.27
+    value: 1.2727
 metadata:
   short_label: Majoration 2ème taux
   last_value_still_valid_on: "2024-04-26"

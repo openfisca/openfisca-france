@@ -1,7 +1,6 @@
 import logging
 from numpy import around
 from openfisca_france.model.base import *
-from openfisca_france.model.prelevements_obligatoires.impot_revenu.variables_reductions_credits import fhes
 
 
 log = logging.getLogger(__name__)
@@ -1827,7 +1826,7 @@ class doment(Variable):
         # vous rétrocédez la réduction d’impôt
 
         # Réduction à hauteur de 52,63%
-        fhdi = foyer_fiscal('fhdi', period) # demande en 2012, investissement en 2017
+        fhdi = foyer_fiscal('fhdi', period)  # demande en 2012, investissement en 2017
 
         fhdn = foyer_fiscal('fhdn', period) # demande en 2013 ou 2014, investissement en 2017
         fhen = foyer_fiscal('fhen', period) # Report 2018
@@ -1837,7 +1836,7 @@ class doment(Variable):
 
 
         # Réduction à hauteur de 62,5%
-        fhdj = foyer_fiscal('fhdj', period) # demande en 2012, investissement en 2017
+        fhdj = foyer_fiscal('fhdj', period)  # demande en 2012, investissement en 2017
 
         fhdo = foyer_fiscal('fhdo', period) # demande en 2013 ou 2014, investissement en 2017
         fheo = foyer_fiscal('fheo', period) # Report 2018
@@ -1845,57 +1844,53 @@ class doment(Variable):
 
         inv_625_306_51 = (fhdj + fhdo + fheo + fhfo)
 
-
         # Réduction à hauteur de 56%
-        fhds = foyer_fiscal('fhds', period) # demande en 2013 ou 2014, investissement en 2017
-        fhes = foyer_fiscal('fhes', period) # Report 2018
-        fhfs = foyer_fiscal('fhfs', period) # Report 2019
-        fhgs = foyer_fiscal('fhgs', period) # Report 2020
-        fhhs = foyer_fiscal('fhhs', period) # Report 2021
-        fhis = foyer_fiscal('fhis', period) # Nouveau 2022
+        fhds = foyer_fiscal('fhds', period)  # demande en 2013 ou 2014, investissement en 2017
+        fhes = foyer_fiscal('fhes', period)  # Report 2018
+        fhfs = foyer_fiscal('fhfs', period)  # Report 2019
+        fhgs = foyer_fiscal('fhgs', period)  # Report 2020
+        fhhs = foyer_fiscal('fhhs', period)  # Report 2021
+        fhis = foyer_fiscal('fhis', period)  # Nouveau 2022
 
         inv_56_306_38945 = (fhds + fhes + fhfs + fhgs + fhhs + fhis)
 
-
         # Réduction à hauteur de 66%
-        fhdt = foyer_fiscal('fhdt', period) # demande en 2013 ou 2014, investissement en 2017
-        fhet = foyer_fiscal('fhet', period) # Report 2018
-        fhft = foyer_fiscal('fhft', period) # Report 2019
-        fhgt = foyer_fiscal('fhgt', period) # Report 2020
-        fhht = foyer_fiscal('fhht', period) # Report 2021
-        fhit = foyer_fiscal('fhit', period) # Nouveau 2022
+        fhdt = foyer_fiscal('fhdt', period)  # demande en 2013 ou 2014, investissement en 2017
+        fhet = foyer_fiscal('fhet', period)  # Report 2018
+        fhft = foyer_fiscal('fhft', period)  # Report 2019
+        fhgt = foyer_fiscal('fhgt', period)  # Report 2020
+        fhht = foyer_fiscal('fhht', period)  # Report 2021
+        fhit = foyer_fiscal('fhit', period)  # Nouveau 2022
 
         inv_66_306_594 = (fhdt + fhet + fhft + fhgt + fhht + fhit)
 
-
         # - investissements dans votre entreprise
-        fhdk = foyer_fiscal('fhdk', period) # demande en 2012, investissement en 2017
+        fhdk = foyer_fiscal('fhdk', period)  # demande en 2012, investissement en 2017
 
-        fhdp = foyer_fiscal('fhdp', period) # demande en 2013 ou 2014, investissement en 2017
-        fhep = foyer_fiscal('fhep', period) # Report 2018
-        fhfp = foyer_fiscal('fhfp', period) # Report 2019
-        fhdu = foyer_fiscal('fhdu', period) # demande en 2013 ou 2014, investissement en 2017
-        fheu = foyer_fiscal('fheu', period) # Report 2018
-        fhfu = foyer_fiscal('fhfu', period) # Report 2019
-        fhgu = foyer_fiscal('fhgu', period) # Report 2020
-        fhhu = foyer_fiscal('fhhu', period) # Report 2021
-        fhiu = foyer_fiscal('fhiu', period) # Nouveau 2022
+        fhdp = foyer_fiscal('fhdp', period)  # demande en 2013 ou 2014, investissement en 2017
+        fhep = foyer_fiscal('fhep', period)  # Report 2018
+        fhfp = foyer_fiscal('fhfp', period)  # Report 2019
+        fhdu = foyer_fiscal('fhdu', period)  # demande en 2013 ou 2014, investissement en 2017
+        fheu = foyer_fiscal('fheu', period)  # Report 2018
+        fhfu = foyer_fiscal('fhfu', period)  # Report 2019
+        fhgu = foyer_fiscal('fhgu', period)  # Report 2020
+        fhhu = foyer_fiscal('fhhu', period)  # Report 2021
+        fhiu = foyer_fiscal('fhiu', period)  # Nouveau 2022
 
         # - investissements dans votre entreprise vaec exploitation directe
-        fhdm = foyer_fiscal('fhdm', period) # demande en 2012, investissement en 2017
+        fhdm = foyer_fiscal('fhdm', period)  # demande en 2012, investissement en 2017
 
-        fhdr = foyer_fiscal('fhdr', period) # demande en 2013 ou 2014, investissement en 2017
-        fher = foyer_fiscal('fher', period) # Report 2018
-        fhfr = foyer_fiscal('fhfr', period) # Report 2019
-        fhdw = foyer_fiscal('fhdw', period) # demande en 2013 ou 2014, investissement en 2017
-        fhew = foyer_fiscal('fhew', period) # Report 2018
-        fhfw = foyer_fiscal('fhfw', period) # Report 2019
-        fhgw = foyer_fiscal('fhgw', period) # Report 2020
-        fhhw = foyer_fiscal('fhhw', period) # Report 2021
-        fhiw = foyer_fiscal('fhiw', period) # Nouveau 2022
+        fhdr = foyer_fiscal('fhdr', period)  # demande en 2013 ou 2014, investissement en 2017
+        fher = foyer_fiscal('fher', period)  # Report 2018
+        fhfr = foyer_fiscal('fhfr', period)  # Report 2019
+        fhdw = foyer_fiscal('fhdw', period)  # demande en 2013 ou 2014, investissement en 2017
+        fhew = foyer_fiscal('fhew', period)  # Report 2018
+        fhfw = foyer_fiscal('fhfw', period)  # Report 2019
+        fhgw = foyer_fiscal('fhgw', period)  # Report 2020
+        fhhw = foyer_fiscal('fhhw', period)  # Report 2021
+        fhiw = foyer_fiscal('fhiw', period)  # Nouveau 2022
 
         # Calcul de la réduction d'impôt (Article 199 undecies D du CGI)
-
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
         nr_625_306_51 = min_(inv_625_306_51 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
         nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
@@ -1958,7 +1953,6 @@ class doment(Variable):
         inv_66_306_594 = (fhet + fhft + fhgt + fhht + fhit + fhjt)
 
         # Calcul de la réduction d'impôt (Article 199 undecies D du CGI)
-
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
         nr_625_306_51 = min_(inv_625_306_51 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
         nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
@@ -1983,7 +1977,7 @@ class doment(Variable):
         fhfp = foyer_fiscal('fhfp', period)  # Report 2019
         fhfu = foyer_fiscal('fhfu', period)  # Report 2019
         fhgu = foyer_fiscal('fhgu', period)  # Report 2020
-        fhhu = foyer_fiscal('fhhu', period)  # Report 2021 (
+        fhhu = foyer_fiscal('fhhu', period)  # Report 2021
         fhiu = foyer_fiscal('fhiu', period)  # Report 2022
         fhju = foyer_fiscal('fhju', period)  # Nouveaux investissements 2023
 
@@ -2026,7 +2020,7 @@ class doment(Variable):
         fhis = foyer_fiscal('fhis', period)  # Report 2022
         fhjs = foyer_fiscal('fhjs', period)  # Report 2023
         fhks = foyer_fiscal('fhks', period)  # Nouveau 2024
-        inv_56_306_38945 = ( fhfs + fhgs + fhhs + fhis + fhjs + fhks)
+        inv_56_306_38945 = (fhfs + fhgs + fhhs + fhis + fhjs + fhks)
 
         fhft = foyer_fiscal('fhft', period)  # Report 2019
         fhgt = foyer_fiscal('fhgt', period)  # Report 2020
@@ -2034,10 +2028,9 @@ class doment(Variable):
         fhit = foyer_fiscal('fhit', period)  # Report 2022
         fhjt = foyer_fiscal('fhjt', period)  # Report 2023
         fhkt = foyer_fiscal('fhkt', period)  # Nouveau 2024
-        inv_66_306_594 = ( fhft + fhgt + fhht + fhit + fhjt + fhkt)
+        inv_66_306_594 = (fhft + fhgt + fhht + fhit + fhjt + fhkt)
 
         # Calcul de la réduction d'impôt (Article 199 undecies D du CGI)
-
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
         nr_625_306_51 = min_(inv_625_306_51 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
         nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
@@ -2065,7 +2058,7 @@ class doment(Variable):
         fhju = foyer_fiscal('fhju', period)  # Report 2023
         fhku = foyer_fiscal('fhku', period)  # Nouveau 2024
 
-        propre_306 = ( fhfp + fhfu + fhgu + fhhu + fhiu + fhju + fhku)
+        propre_306 = (fhfp + fhfu + fhgu + fhhu + fhiu + fhju + fhku)
 
 
         fhfr = foyer_fiscal('fhfr', period)  # Report 2019
