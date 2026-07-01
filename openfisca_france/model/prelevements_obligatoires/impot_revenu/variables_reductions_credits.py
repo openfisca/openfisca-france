@@ -7338,6 +7338,7 @@ class fhqb(Variable):
     cerfa_field = 'HQB'
     value_type = int
     unit = 'currency'
+    label = 'DomLog'
     entity = FoyerFiscal
     definition_period = YEAR
 
