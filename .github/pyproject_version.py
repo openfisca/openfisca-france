@@ -28,7 +28,7 @@ def get_versions():
     version = re.search(r'"openfisca-core\[web-api\]\s*(>=\s*[\d.]+,\s*<\s*[\d.]+)"', content, re.MULTILINE)
     if version:
         openfisca_core_api = version.group(1)
-    version = re.search(r'numpy\s*(>=\s*[\d\.]*,\s*<\d*)"', content, re.MULTILINE)
+    version = re.search(r'numpy\s*(>=\s*[\d\.]*,\s*<[\d.]*)"', content, re.MULTILINE)
     if version:
         numpy = version.group(1)
     if not openfisca_core_api or not numpy:
