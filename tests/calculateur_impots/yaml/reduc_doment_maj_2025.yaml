@@ -12,35 +12,35 @@
       caseW: false
       declarants:
       - ind0
-      fhgs: 3000
-      fhgt: 4000
-      fhgu: 2000
-      fhgw: 5000
+      fhgs: 300
+      fhgt: 400
+      fhgu: 200
+      fhgw: 500
 
-      fhhs: 4000
-      fhht: 6000
-      fhhu: 2000
-      fhhw: 7000
+      fhhs: 400
+      fhht: 600
+      fhhu: 200
+      fhhw: 700
 
-      fhis: 2000
-      fhit: 3000
-      fhiu: 1000
-      fhiw: 4000
+      fhis: 200
+      fhit: 300
+      fhiu: 100
+      fhiw: 400
 
-      fhjs: 2000
-      fhjt: 3000
-      fhju: 2000
-      fhjw: 5000
+      fhjs: 200
+      fhjt: 300
+      fhju: 200
+      fhjw: 500
 
-      fhks: 4000
-      fhkt: 6000
-      fhku: 3000
-      fhkw: 8000
+      fhks: 400
+      fhkt: 600
+      fhku: 300
+      fhkw: 800
 
-      fhls: 10000
-      fhlt: 15000
-      fhlu: 8000
-      fhlw: 20000
+      fhls: 1000
+      fhlt: 1500
+      fhlu: 800
+      fhlw: 2000
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -59,9 +59,9 @@
     menage:
       personne_de_reference: ind0
   output:
-    reductions: 59974.0
-    iai: 21971.0
-    impot_revenu_restant_a_payer: -21971.0
+    reductions: 12900.0
+    iai: 47074.0
+    impot_revenu_restant_a_payer: -47074.0
     rbg: 185445.0
     rfr: 185445.0
     rni: 185445.0
