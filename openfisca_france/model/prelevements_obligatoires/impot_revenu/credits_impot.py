@@ -2341,7 +2341,7 @@ class quaenv(Variable):
         f7wf = foyer_fiscal('f7wf_2012', period)
         f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
         n = nb_pac_majoration_plafond
         max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * (n >= 1) + pg.pac_2 * (n >= 2) + pg.pac_3 * (max_(n - 2, 0))
@@ -2371,7 +2371,7 @@ class quaenv(Variable):
         f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wq = foyer_fiscal('f7wq', period)
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
         max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
 
@@ -2404,14 +2404,13 @@ class quaenv(Variable):
         f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wk = foyer_fiscal('f7wk', period)
-        f7wq = foyer_fiscal('f7wq', period)
         f7sb = foyer_fiscal('f7sb_2011', period)
         f7sc = foyer_fiscal('f7sc_2009', period)
         f7sd = foyer_fiscal('f7sd_2015', period)
         f7se = foyer_fiscal('f7se_2015', period)
         rfr = foyer_fiscal('rfr', period)
-        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_ressources_ecopret.foyer_fiscal
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_ressources_ecopret.foyer_fiscal
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
         max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
 
@@ -2422,7 +2421,6 @@ class quaenv(Variable):
         max5 = max_(0, max4 - f7wg)
         max6 = max_(0, max5 - f7sc)
         max7 = max_(0, max6 - f7wh)
-        max8 = max_(0, max7 - f7sb)
 
         # Paniers de cases : taux déduits du barème par geste (voir cite_taux_panier_cases).
         # 7WQ n'est pas une case QE en 2009 (le taux de 15 % relevait de l'aide aux
@@ -2461,8 +2459,8 @@ class quaenv(Variable):
         f7se = foyer_fiscal('f7se_2015', period)
         f7sh = foyer_fiscal('f7sh_2015', period)
         rfr = foyer_fiscal('rfr', period)
-        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_ressources_ecopret.foyer_fiscal
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_ressources_ecopret.foyer_fiscal
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
         max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
 
@@ -2529,8 +2527,8 @@ class quaenv(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
         rfr = foyer_fiscal('rfr', period)
-        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_ressources_ecopret.foyer_fiscal
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_ressources_ecopret.foyer_fiscal
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
         max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
         maxi1 = max_(0, max0 - f7ty)
@@ -2628,8 +2626,8 @@ class quaenv(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
         rfr = foyer_fiscal('rfr', period)
-        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_ressources_ecopret.foyer_fiscal
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_ressources_ecopret.foyer_fiscal
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
         max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
         max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
@@ -2730,7 +2728,7 @@ class quaenv(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
         # Taux général (non différencié par geste), déduit du barème par geste :
         # CIDD 15 % (mono-geste) / 25 % (bouquet) du 1.1 au 31.8.2014 ; CITE 30 % dès le 1.9.2014.
         taux_base = cite_taux_general('2014-01-01', parameters)
@@ -2888,7 +2886,7 @@ class quaenv(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
         # Taux général (non différencié par geste), déduit du barème par geste : le
         # report « bouquet sur 2 ans » des dépenses 2014 conserve les taux CIDD 2014
         # (15 % / 25 %) ; les dépenses 2015 relèvent du CITE à 30 %.
@@ -2940,7 +2938,7 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
         plafond = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac2
 
         cases = [
@@ -2959,7 +2957,7 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         personnes_a_charge = foyer_fiscal('nb_pac2', period)
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
         plafond = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * personnes_a_charge
 
         cases = [
@@ -2976,7 +2974,7 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         personnes_a_charge = foyer_fiscal('nb_pac2', period)
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
         plafond = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * personnes_a_charge
 
         # Le taux de chaque geste est lu sur le barème IPP : en 2018 l'isolation des
@@ -2996,7 +2994,7 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         personnes_a_charge = foyer_fiscal('nb_pac2', period)
-        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plafond_depenses.plafond_global
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
         plafond = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * personnes_a_charge
 
         # La dépose d'une cuve à fioul (7BQ) est à 50 % en 2019, les autres gestes à
