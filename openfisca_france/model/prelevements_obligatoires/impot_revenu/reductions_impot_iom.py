@@ -2073,64 +2073,64 @@ class doment(Variable):
         return ri_propre + inv
 
 
-def formula_2025_01_01(foyer_fiscal, period, parameters):
-    '''
-    Calcul de la réduction d'impôt pour investissements outre-mer dans le cadre d'une entreprise
-    '''
-    P15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
-    PP15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        '''
+        Calcul de la réduction d'impôt pour investissements outre-mer dans le cadre d'une entreprise
+        '''
+        P15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        PP15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement
 
-    fhgs = foyer_fiscal('fhgs', period)  # Report 2020
-    fhhs = foyer_fiscal('fhhs', period)  # Report 2021
-    fhis = foyer_fiscal('fhis', period)  # Report 2022
-    fhjs = foyer_fiscal('fhjs', period)  # Report 2023
-    fhks_2024 = foyer_fiscal('fhks_2024', period)  # Report 2024
-    fhls = foyer_fiscal('fhls', period)  # Nouveaux investissements réalisés en 2025
-    inv_56_306_38945 = (fhgs + fhhs + fhis + fhjs + fhks_2024 + fhls)
+        fhgs = foyer_fiscal('fhgs', period)  # Report 2020
+        fhhs = foyer_fiscal('fhhs', period)  # Report 2021
+        fhis = foyer_fiscal('fhis', period)  # Report 2022
+        fhjs = foyer_fiscal('fhjs', period)  # Report 2023
+        fhks_2024 = foyer_fiscal('fhks_2024', period)  # Report 2024
+        fhls = foyer_fiscal('fhls', period)  # Nouveaux investissements réalisés en 2025
+        inv_56_306_38945 = (fhgs + fhhs + fhis + fhjs + fhks_2024 + fhls)
 
-    fhgt = foyer_fiscal('fhgt', period)  # Report 2020
-    fhht = foyer_fiscal('fhht', period)  # Report 2021
-    fhit = foyer_fiscal('fhit', period)  # Report 2022
-    fhjt = foyer_fiscal('fhjt', period)  # Report 2023
-    fhkt_2024 = foyer_fiscal('fhkt_2024', period)  # Report 2024
-    fhlt = foyer_fiscal('fhlt', period)  # Nouveaux investissements réalisés en 2025
-    inv_66_306_594 = (fhgt + fhht + fhit + fhjt + fhkt_2024 + fhlt)
+        fhgt = foyer_fiscal('fhgt', period)  # Report 2020
+        fhht = foyer_fiscal('fhht', period)  # Report 2021
+        fhit = foyer_fiscal('fhit', period)  # Report 2022
+        fhjt = foyer_fiscal('fhjt', period)  # Report 2023
+        fhkt_2024 = foyer_fiscal('fhkt_2024', period)  # Report 2024
+        fhlt = foyer_fiscal('fhlt', period)  # Nouveaux investissements réalisés en 2025
+        inv_66_306_594 = (fhgt + fhht + fhit + fhjt + fhkt_2024 + fhlt)
 
-    nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
-    nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594))
-    nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
-    nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594))
 
-    r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
-    r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
-    r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
-    r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
 
-    inv = (r_66_306_594 + r_56_306_38945 + r_66_306_594 + r_56_306_38945 +
-        nr_66_306_594 + nr_56_306_38945 + nr_66_306_594 + nr_56_306_38945)
+        inv = (r_66_306_594 + r_56_306_38945 + r_66_306_594 + r_56_306_38945 +
+            nr_66_306_594 + nr_56_306_38945 + nr_66_306_594 + nr_56_306_38945)
 
-    fhgu = foyer_fiscal('fhgu', period)  # Report 2020
-    fhhu = foyer_fiscal('fhhu', period)  # Report 2021
-    fhiu = foyer_fiscal('fhiu', period)  # Report 2022
-    fhju = foyer_fiscal('fhju', period)  # Report 2023
-    fhku_2024 = foyer_fiscal('fhku_2024', period)  # Report 2024
-    fhlu = foyer_fiscal('fhlu', period)  # Nouveaux investissements 2025
+        fhgu = foyer_fiscal('fhgu', period)  # Report 2020
+        fhhu = foyer_fiscal('fhhu', period)  # Report 2021
+        fhiu = foyer_fiscal('fhiu', period)  # Report 2022
+        fhju = foyer_fiscal('fhju', period)  # Report 2023
+        fhku_2024 = foyer_fiscal('fhku_2024', period)  # Report 2024
+        fhlu = foyer_fiscal('fhlu', period)  # Nouveaux investissements 2025
 
-    propre_306 = (fhgu + fhhu + fhiu + fhju + fhku_2024 + fhlu)
+        propre_306 = (fhgu + fhhu + fhiu + fhju + fhku_2024 + fhlu)
 
-    fhgw = foyer_fiscal('fhgw', period)  # Report 2020
-    fhhw = foyer_fiscal('fhhw', period)  # Report 2021
-    fhiw = foyer_fiscal('fhiw', period)  # Report 2022
-    fhjw = foyer_fiscal('fhjw', period)  # Report 2023
-    fhkw = foyer_fiscal('fhkw', period)  # Report 2024
-    fhlw = foyer_fiscal('fhlw', period)  # Nouveaux investissements 2025
+        fhgw = foyer_fiscal('fhgw', period)  # Report 2020
+        fhhw = foyer_fiscal('fhhw', period)  # Report 2021
+        fhiw = foyer_fiscal('fhiw', period)  # Report 2022
+        fhjw = foyer_fiscal('fhjw', period)  # Report 2023
+        fhkw = foyer_fiscal('fhkw', period)  # Report 2024
+        fhlw = foyer_fiscal('fhlw', period)  # Nouveaux investissements 2025
 
-    propre_765 = (fhgw + fhhw + fhiw + fhjw + fhkw + fhlw)
+        propre_765 = (fhgw + fhhw + fhiw + fhjw + fhkw + fhlw)
 
-    ri_propre = (min_(PP15.plafond, propre_306)
-                 + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
+        ri_propre = (min_(PP15.plafond, propre_306)
+                    + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
-    return ri_propre + inv
+        return ri_propre + inv
 
 
 class domlog(Variable):
