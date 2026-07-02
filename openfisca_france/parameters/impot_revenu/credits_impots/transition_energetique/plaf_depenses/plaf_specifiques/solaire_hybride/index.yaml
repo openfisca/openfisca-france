@@ -2,8 +2,8 @@ description: Plafond de dépenses éligibles au crédit d'impôt pour les dépen
 metadata:
   short_label: Panneaux solaires hybrides
   order:
-  - circulation_air
-  - circulation_liquide
+  - circ_air
+  - circ_liquide
   documentation: |-
     Un plafond de dépenses spécifiques est introduit pour chaque type de panneaux solaires thermiques en 2016.
     Auparavant, un plafond de dépenses spécifiques pour les panneaux solaires thermiques sans distinction par type était appliqué (cf. "Panneau solaire thermique").

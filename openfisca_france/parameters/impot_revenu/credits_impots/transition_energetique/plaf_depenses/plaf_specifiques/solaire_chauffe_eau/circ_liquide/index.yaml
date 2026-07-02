@@ -2,5 +2,5 @@ description: Plafond de dépenses éligibles au crédit d'impôt pour les dépen
 metadata:
   short_label: à circulation liquide
   order:
-  - sans_condition_ressources
-  - sous_condition_ressources
+  - sans_cond_ress
+  - sous_cond_ress

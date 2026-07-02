@@ -4,10 +4,10 @@ metadata:
   short_label: Transition énergétique et développement durable
   order:
   - taux
-  - plafond_depenses
-  - plafond_credit
-  - plafond_ressources
-  - plafond_ressources_ecopret
+  - plaf_depenses
+  - plaf_credit
+  - plaf_ressources
+  - plaf_ressources_ecopret
   documentation: |-
     Le crédit d'impôt est introduit par la loi de finances pour 2000. 
     A l'origine, il n'a pas de dimension environnementale ou énergétique : il concerne les gros équipements fournis dans le cadre de travaux d'installation ou de remplacement du système de chauffage, des ascenseurs ou de l'installation sanitaire.
