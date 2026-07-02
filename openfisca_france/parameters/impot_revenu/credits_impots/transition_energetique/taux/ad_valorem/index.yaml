@@ -1,7 +1,7 @@
 description: Taux du crédit d'impôt pour différentes catégories de dépenses
 metadata:
   order:
-  - chauffage 
+  - chauffage
   - renouvelable_energie
   - renouvelable_chauffage
   - chaudiere_basse_temperature

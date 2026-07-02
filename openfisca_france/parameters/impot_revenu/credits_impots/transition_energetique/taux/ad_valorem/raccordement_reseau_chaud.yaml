@@ -47,7 +47,7 @@ metadata:
     2014-09-01: "2014-12-30"
     2020-01-01: "2019-12-29"
   notes:
-    2006-01-01: 
+    2006-01-01:
       - title: S'applique aux équipements de raccordement à un réseau de chaleur, alimenté majoritairement par des énergies renouvelables ou par une installation de cogénération.
     2011-01-01:
       - title: "Premier « coup de rabot » : réduction homothétique de 10 % des taux du crédit d'impôt (art. 105 de la LF 2011, décret n° 2011-520). La valeur stockée pour 2011 est le taux AVANT rabot ; le taux effectivement appliqué vaut plancher(taux x 0,90). En 2011, la majoration « bouquet » n'existe pas encore (instaurée par la LF 2012). Voir le paramètre `rabot`."

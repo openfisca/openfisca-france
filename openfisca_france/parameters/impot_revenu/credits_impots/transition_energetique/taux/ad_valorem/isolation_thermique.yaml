@@ -25,5 +25,5 @@ metadata:
     2005-01-01: "2004-12-31"
     2010-01-01: "2009-12-31"
   documentation: |-
-    Il s'agit ici du taux par défaut pour les dépenses d'acquisition de matériaux d'isolation thermique. 
+    Il s'agit ici du taux par défaut pour les dépenses d'acquisition de matériaux d'isolation thermique.
     Les valeurs spécifiques (pour l'isolation des parois opaques puis des parois vitrées) sont précisées au fur et à mesure de l'élaboration de la loi, et la mention explicite de cette valeur disparaît en 2010.

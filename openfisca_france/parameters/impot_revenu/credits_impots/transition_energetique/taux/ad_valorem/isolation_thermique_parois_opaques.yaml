@@ -1,4 +1,4 @@
-description: Taux du crédit d'impôt pour les dépenses au titre de la pose de matériaux d'isolation thermique des parois opaques 
+description: Taux du crédit d'impôt pour les dépenses au titre de la pose de matériaux d'isolation thermique des parois opaques
 values:
   2009-01-01:
     value: .25
