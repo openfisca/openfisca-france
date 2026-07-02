@@ -1,5 +1,13 @@
 # Changelog
 
+### 175.1.0 [#2782](https://github.com/openfisca/openfisca-france/pull/2782)
+
+* Modifications des dépendances.
+* Périodes concernées : toutes.
+* Zones impactées : `pyproject.toml`.
+* Détails :
+  - Restriction de la version de numpy pour permettre les tests en python 3.13.
+
 ### 175.0.45 [#2756](https://github.com/openfisca/openfisca-france/pull/2756)
 
 * Évolution du système socio-fiscal.
