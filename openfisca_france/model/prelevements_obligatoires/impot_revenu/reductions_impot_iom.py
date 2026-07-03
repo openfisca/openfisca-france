@@ -2098,16 +2098,10 @@ class doment(Variable):
 
         nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
         nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594))
-        nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594))
-
         r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
         r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
-        r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
-        r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
-
-        inv = (r_66_306_594 + r_56_306_38945 + r_66_306_594 + r_56_306_38945 +
-            nr_66_306_594 + nr_56_306_38945 + nr_66_306_594 + nr_56_306_38945)
+        inv = (r_66_306_594 + r_56_306_38945 +
+            nr_66_306_594 + nr_56_306_38945 )
 
         fhgu = foyer_fiscal('fhgu', period)  # Report 2020
         fhhu = foyer_fiscal('fhhu', period)  # Report 2021
