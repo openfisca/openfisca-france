@@ -7,6 +7,7 @@
 * Zones impactées : `pyproject.toml`.
 * Détails :
   - Restriction de la version de numpy pour permettre les tests en python 3.13.
+  - Reprend également [#2765](https://github.com/openfisca/openfisca-france/pull/2765) pour faire passer la CI : [#2760](https://github.com/openfisca/openfisca-france/pull/2760) a permis de considérer le CHANGELOG comme un fichier non-fonctionnel pour en permettre l'édition sans publication d'une nouvelle version, mais la détection de l'édition du CHANGELOG se reposait sur le fait qu'il soit un fichier fonctionnel, ce qui a eu pour conséquence d'empêcher toute détection de l'édition du CHANGELOG.
 
 ### 175.0.45 [#2756](https://github.com/openfisca/openfisca-france/pull/2756)
 
