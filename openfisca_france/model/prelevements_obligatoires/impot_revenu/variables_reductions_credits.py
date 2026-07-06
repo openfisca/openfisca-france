@@ -8833,6 +8833,7 @@ class fhoz(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+
 class fhvl(Variable):
     cerfa_field = 'HVL'
     value_type = int
@@ -8871,6 +8872,7 @@ class fhvo(Variable):
     label = 'DomLog'
     # start_date = date(2025, 1, 1)
     definition_period = YEAR
+
 
 class fhua(Variable):
     cerfa_field = 'HUA'

@@ -3313,6 +3313,7 @@ class domlog(Variable):
         #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
         return ri_abs
+
     def formula_2022_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité (art. 199 undecies A du CGI)
@@ -3489,7 +3490,7 @@ class domlog(Variable):
         fhvl = foyer_fiscal('fhvl', period)  # 2022
         fhvm = foyer_fiscal('fhvm', period)  # 2023
 
-        ri_avant_2011 = (fhqt + fhqm + fhqd + fhoa + fhob + fhoc
+        ri_avant_2011 = (fhqb + fhqc + fhql + fhqt + fhqm + fhqd + fhoa + fhob + fhoc
                         + fhol + fhom + fhon + fhod + fhua + fhuh + fhuo + fhva)
 
         ri_2011 = (fhoh + fhoi + fhoj + fhok + fhoo + fhop + fhoq + fhor + fhoe + fhof
