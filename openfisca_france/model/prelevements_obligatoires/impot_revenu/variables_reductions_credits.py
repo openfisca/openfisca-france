@@ -12,13 +12,34 @@ class f7ud(Variable):
 
 
 # Dons pour Notre-Dame
-class f7ue(Variable):
+class f7ue_2019(Variable):
     cerfa_field = '7UE'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Dons versés du 16.4 au 31.12.2019 pour la conservation et la restauration de la cathédrale Notre-Dame de Paris '
     # start_date = date(2019, 1, 1)
+    end = '2019-12-31'
+    definition_period = YEAR
+
+
+class f7ue(Variable):
+    cerfa_field = '7UE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier '
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7ug(Variable):
+    cerfa_field = '7UG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier '
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -142,7 +163,18 @@ class f7dr(Variable):
     definition_period = YEAR
 
 
-class f7dd(Variable):
+class f7da_2024(Variable):
+    cerfa_field = '7DA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7dd_2016(Variable):
     cerfa_field = '7DD'
     value_type = int
     unit = 'currency'
@@ -153,13 +185,101 @@ class f7dd(Variable):
     definition_period = YEAR
 
 
-class f7df(Variable):
+class f7dd_2024(Variable):
+    cerfa_field = '7DD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7de_2024(Variable):
+    cerfa_field = '7DE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7df_2016(Variable):
     cerfa_field = '7DF'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Sommes versées pour lemploi dun salarié à domicile par les personnes retraités, ou inactives lannée de perception des revenus déclarés'
     end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f7df_2024(Variable):
+    cerfa_field = '7DF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7dh_2024(Variable):
+    cerfa_field = '7DH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7dj_2024(Variable):
+    cerfa_field = '7DJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7dk_2024(Variable):
+    cerfa_field = '7DK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7dm_2024(Variable):
+    cerfa_field = '7DM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7dn_2024(Variable):
+    cerfa_field = '7DN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -206,7 +326,6 @@ class f7uh_2004(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Intérêts prêts consommation'
-    # start_date = date(2007, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
 
@@ -222,7 +341,7 @@ class f7uh_2009(Variable):
     definition_period = YEAR
 
 
-class f7vy(Variable):
+class f7vy_2013(Variable):
     cerfa_field = '7VY'
     value_type = int
     unit = 'currency'
@@ -233,7 +352,17 @@ class f7vy(Variable):
     definition_period = YEAR
 
 
-class f7vz(Variable):
+class f7vy(Variable):
+    cerfa_field = '7VY'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en outre-mer en 2024 avec engagement de 6 ans et critère QPV/performance'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7vz_2016(Variable):
     cerfa_field = '7VZ'
     value_type = int
     unit = 'currency'
@@ -244,12 +373,44 @@ class f7vz(Variable):
     definition_period = YEAR
 
 
-class f7vx(Variable):
+class f7vz(Variable):
+    cerfa_field = '7VZ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en outre-mer en 2024 avec engagement de 9 ans et critère QPV/performance'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7vx_2022(Variable):
     cerfa_field = '7VX'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs BBC acquis ou construits du 01/01/2009 au 30/09/2011"
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7vx(Variable):
+    cerfa_field = '7VX'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en métropole en 2024 avec engagement de 9 ans et critère QPV/performance'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7vw_2013(Variable):
+    cerfa_field = '7VW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: première annuité"
+    # start_date = date(2010, 1, 1)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -258,9 +419,8 @@ class f7vw(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: première annuité"
-    # start_date = date(2010, 1, 1)
-    end = '2013-12-31'
+    label = 'Investissements immobiliers Pinel en métropole en 2024 avec engagement de 6 ans et critère QPV/performance'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -439,13 +599,35 @@ class f7eg(Variable):
 
 
 # Intérêts des prêts étudiants
-class f7td(Variable):
+class f7td_2018(Variable):
     cerfa_field = '7TD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Intérêts des prêts étudiants versés avant l'année de perception des revenus déclarés"
     # start_date = date(2008, 1, 1)
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f7td(Variable):
+    cerfa_field = '7TD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7vo_2018(Variable):
+    cerfa_field = '7VO'
+    value_type = int
+    is_period_size_independent = True
+    entity = FoyerFiscal
+    label = "Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés"
+    # start_date = date(2006, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -454,9 +636,19 @@ class f7vo(Variable):
     value_type = int
     is_period_size_independent = True
     entity = FoyerFiscal
-    label = "Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés"
-    # start_date = date(2006, 1, 1)
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
+
+
+class f7uk_2018(Variable):
+    cerfa_field = '7UK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Intérêts des prêts étudiants versés durant l'année de perception des revenus déclarés"
+    definition_period = YEAR
+    end = '2018-12-31'
 
 
 class f7uk(Variable):
@@ -464,7 +656,8 @@ class f7uk(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Intérêts des prêts étudiants versés durant l'année de perception des revenus déclarés"
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -526,12 +719,23 @@ class f7we_2013(Variable):
     definition_period = YEAR
 
 
-class f7we(Variable):
+class f7we_2020(Variable):
     cerfa_field = '7WE'
     value_type = bool
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7we_2023(Variable):
+    cerfa_field = '7WE'
+    value_type = bool
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -557,7 +761,7 @@ class f7wg_2013(Variable):
     definition_period = YEAR
 
 
-class f7wg(Variable):
+class f7wg_2020(Variable):
     cerfa_field = '7WG'
     value_type = int
     unit = 'currency'
@@ -565,6 +769,17 @@ class f7wg(Variable):
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7wg_2023(Variable):
+    cerfa_field = '7WG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -578,13 +793,23 @@ class f7wa_2012(Variable):
     definition_period = YEAR
 
 
-class f7wa(Variable):
+class f7wa_2020(Variable):
     cerfa_field = '7WA'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7wa_2024(Variable):
+    cerfa_field = '7WA'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2014 en métropole avec engagement 9 ans'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -598,12 +823,23 @@ class f7wb_2015(Variable):
     definition_period = YEAR
 
 
-class f7wb(Variable):
+class f7wb_2020(Variable):
     cerfa_field = '7WB'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+    end = '2020-12-31'
+
+
+class f7wb_2024(Variable):
+    cerfa_field = '7WB'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2014 en outre-mer avec engagement 9 ans'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -617,16 +853,27 @@ class f7wc_2015(Variable):
     definition_period = YEAR
 
 
-class f7wc(Variable):
+class f7wc_2020(Variable):
     cerfa_field = '7WC'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
+    end = '2020-12-31'
     definition_period = YEAR
 
 
-class f7ve(Variable):
+class f7wc_2023(Variable):
+    cerfa_field = '7WC'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7ve_2012(Variable):
     cerfa_field = '7VE'
     value_type = int
     entity = FoyerFiscal
@@ -636,7 +883,16 @@ class f7ve(Variable):
     definition_period = YEAR
 
 
-class f7vf(Variable):
+class f7ve(Variable):
+    cerfa_field = '7VE'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en métropole en 2023 avec engagement de 9 ans et critère QPV/performance'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7vf_2012(Variable):
     cerfa_field = '7VF'
     value_type = int
     entity = FoyerFiscal
@@ -646,12 +902,31 @@ class f7vf(Variable):
     definition_period = YEAR
 
 
-class f7vg(Variable):
+class f7vf(Variable):
+    cerfa_field = '7VF'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en outre-mer en 2023 avec engagement de 6 ans et critère QPV/performance'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7vg_2015(Variable):
     cerfa_field = '7VG'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture"
     # start_date = date(2012, 1, 1)
+    definition_period = YEAR
+    end = '2015-12-31'
+
+
+class f7vg(Variable):
+    cerfa_field = '7VG'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en outre-mer en 2023 avec engagement de 9 ans et critère QPV/performance'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -684,12 +959,22 @@ class f7sg_2015(Variable):
     definition_period = YEAR
 
 
-class f7sg(Variable):
+class f7sg_2022(Variable):
     cerfa_field = '7SG'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7sg(Variable):
+    cerfa_field = '7SG'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Investissements locatifs Pinel en outre-mer en 2024 avec engagement 9 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -703,12 +988,22 @@ class f7sj_2015(Variable):
     definition_period = YEAR
 
 
-class f7sj(Variable):
+class f7sj_2022(Variable):
     cerfa_field = '7SJ'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2018, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7sj(Variable):
+    cerfa_field = '7SJ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -722,12 +1017,22 @@ class f7sk_2015(Variable):
     definition_period = YEAR
 
 
-class f7sk(Variable):
+class f7sk_2022(Variable):
     cerfa_field = '7SK'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2018, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7sk(Variable):
+    cerfa_field = '7SK'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -750,35 +1055,69 @@ class f7sl(Variable):
     definition_period = YEAR
 
 
-class f7ah(Variable):
+class f7ah_2020(Variable):
     cerfa_field = '7AH'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Matériaux d'isolation thermique des murs (acquisitionn et pose)"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class f7ak(Variable):
+class f7ah_2023(Variable):
+    cerfa_field = '7AH'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7ak_2018(Variable):
     cerfa_field = '7AK'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : travaux d'isolation thermique de toute la toiture"
     # start_date = date(2015, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
-class f7al(Variable):
+class f7ak_2024(Variable):
+    cerfa_field = '7AK'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7al_2018(Variable):
     cerfa_field = '7AL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)"
     # start_date = date(2015, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
-class f7am(Variable):
+class f7al_2024(Variable):
+    cerfa_field = '7AL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7am_2018(Variable):
     cerfa_field = '7AM'
     value_type = int
     entity = FoyerFiscal
@@ -788,13 +1127,33 @@ class f7am(Variable):
     definition_period = YEAR
 
 
-class f7an(Variable):
+class f7am_2024(Variable):
+    cerfa_field = '7AM'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7an_2018(Variable):
     cerfa_field = '7AN'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Volets isolants"
     # start_date = date(2015, 1, 1)
     end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f7an_2024(Variable):
+    cerfa_field = '7AN'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -818,12 +1177,22 @@ class f7vk_2015(Variable):
     end = '2015-12-31'
 
 
-class f7vk(Variable):
+class f7vk_2022(Variable):
     cerfa_field = '7VK'
     value_type = int
     entity = FoyerFiscal
     label = 'Inv. for.'
     # start_date = date(2019, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7vk(Variable):
+    cerfa_field = '7VK'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -837,12 +1206,22 @@ class f7vl_2015(Variable):
     end = '2015-12-31'
 
 
-class f7vl(Variable):
+class f7vl_2021(Variable):
     cerfa_field = '7VL'
     value_type = int
     entity = FoyerFiscal
     label = 'Inv. for.'
     # start_date = date(2018, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7vl(Variable):
+    cerfa_field = '7VL'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -933,12 +1312,22 @@ class f7sr_2015(Variable):
     definition_period = YEAR
 
 
-class f7sr(Variable):
+class f7sr_2022(Variable):
     cerfa_field = '7SR'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7sr(Variable):
+    cerfa_field = '7SR'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -1065,57 +1454,142 @@ class f7ts(Variable):
     definition_period = YEAR
 
 
-class f7ar(Variable):
+class f7ar_2019(Variable):
     cerfa_field = '7AR'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale en 2015 (hors bouquet sur 2 ans) : Appareils de chauffage au bois ou autres biomasses "
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2019-12-31'
 
 
-class f7av(Variable):
+class f7ar_2023(Variable):
+    cerfa_field = '7AR'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7av_2020(Variable):
     cerfa_field = '7AV'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale 2015 (hors bouquet sur 2 ans) : Pompes à chaleur autres que air/air dont la finalité essentielle est la production de chaleur"
     # start_date = date(2015, 1, 1)
+    end = '2020-12-31'
     definition_period = YEAR
 
 
-class f7ax(Variable):
+class f7av_2024(Variable):
+    cerfa_field = '7AV'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7aw_2024(Variable):
+    cerfa_field = '7AW'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7ax_2019(Variable):
     cerfa_field = '7AX'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale 2015 (hors bouquet sur 2 ans) : Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques)"
     # start_date = date(2015, 1, 1)
+    end = '2019-12-31'
     definition_period = YEAR
 
 
-class f7ay(Variable):
+class f7ax_2024(Variable):
+    cerfa_field = '7AX'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7ay_2020(Variable):
     cerfa_field = '7AY'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale 2015 (hors bouquet sur 2 ans) : Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires"
     # start_date = date(2015, 1, 1)
+    end = '2020-12-31'
     definition_period = YEAR
 
 
-class f7az(Variable):
+class f7ay_2024(Variable):
+    cerfa_field = '7AY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7az_2020(Variable):
     cerfa_field = '7AZ'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale 2015 (hors bouquet sur 2 ans) : Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie hydraulique"
     # start_date = date(2015, 1, 1)
+    end = '2020-12-31'
     definition_period = YEAR
+
+
+class f7az_2024(Variable):
+    cerfa_field = '7AZ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7bb_2020(Variable):
+    cerfa_field = '7BB'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Systèmes de production d'électricité utilisant une source d'énergie renouvelable (éolien, hydraulique)"
+    # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+    end = '2020-12-31'
+
+
+class f7bb_2023(Variable):
+    cerfa_field = '7BB'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
 
 
 class f7bb(Variable):
     cerfa_field = '7BB'
     value_type = int
     entity = FoyerFiscal
-    label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Systèmes de production d'électricité utilisant une source d'énergie renouvelable (éolien, hydraulique)"
-    # start_date = date(2015, 1, 1)
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -1138,12 +1612,63 @@ class f7bn(Variable):
     definition_period = YEAR
 
 
-class f7bq(Variable):
+class f7bq_2020(Variable):
     cerfa_field = '7BQ'
     value_type = int
     entity = FoyerFiscal
     label = 'Dépose d’une cuve à fioul'
     # start_date = date(2019, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7bq_2025(Variable):
+    cerfa_field = '7BQ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7bx_2025(Variable):
+    cerfa_field = '7BX'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7bp_2024(Variable):
+    cerfa_field = '7BP'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7br_2024(Variable):
+    cerfa_field = '7BR'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7bv_2024(Variable):
+    cerfa_field = '7BV'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -1174,12 +1699,62 @@ class f7sw(Variable):
     definition_period = YEAR
 
 
-class f7bc(Variable):
+class f7ba_2023(Variable):
+    cerfa_field = '7BA'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7bc_2020(Variable):
     cerfa_field = '7BC'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Diagnostic de performance énergétique"
     # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+    end = '2020-12-31'
+
+
+class f7bc_2023(Variable):
+    cerfa_field = '7BC'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Diagnostic de performance énergétique"
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7bc(Variable):
+    cerfa_field = '7BC'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class f7bd_2020(Variable):
+    cerfa_field = '7BD'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Équipements de raccordement à un réseau de chaleur"
+    # start_date = date(2015, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7bd_2023(Variable):
+    cerfa_field = '7BD'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -1187,35 +1762,88 @@ class f7bd(Variable):
     cerfa_field = '7BD'
     value_type = int
     entity = FoyerFiscal
-    label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Équipements de raccordement à un réseau de chaleur"
-    # start_date = date(2015, 1, 1)
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
-class f7be(Variable):
+class f7be_2020(Variable):
     cerfa_field = '7BE'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Compteurs individuels de chauffage ou d'eau chaude sanitaire dans immeuble collectif"
     # start_date = date(2015, 1, 1)
+    end = '2020-12-31'
     definition_period = YEAR
 
 
-class f7bf(Variable):
+class f7be_2023(Variable):
+    cerfa_field = '7BE'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7bf_2020(Variable):
     cerfa_field = '7BF'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Système de charge pour véhicules électriques "
     # start_date = date(2015, 1, 1)
+    end = '2020-12-31'
     definition_period = YEAR
 
 
-class f7bh(Variable):
+class f7bf_2023(Variable):
+    cerfa_field = '7BF'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7bg_2023(Variable):
+    cerfa_field = '7BG'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7bh_2020(Variable):
     cerfa_field = '7BH'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Equipements installés dans les DOM (raccordement à un réseau de froid) "
     # start_date = date(2015, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7bh_2023(Variable):
+    cerfa_field = '7BH'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7bj_2023(Variable):
+    cerfa_field = '7BJ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -1364,12 +1992,23 @@ class f7wf_2012(Variable):
 
 
 # Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale
-class f7wf(Variable):
+class f7wf_2020(Variable):
     cerfa_field = '7WF'
     value_type = bool
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = '2019-01-01'
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7wf_2023(Variable):
+    cerfa_field = '7WF'
+    value_type = bool
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = '2022-01-01'
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -1728,12 +2367,35 @@ class f7qe_2012(Variable):
     definition_period = YEAR
 
 
-class f7qe(Variable):
+class f7qe_2018(Variable):
     cerfa_field = '7QE'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Pinel'
+    # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+    end = '2018-12-31'
+
+
+class f7qe_2023(Variable):
+    cerfa_field = '7QE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7qe(Variable):
+    cerfa_field = '7QE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -1788,7 +2450,7 @@ class f7pf_2012(Variable):
     definition_period = YEAR
 
 
-class f7pf(Variable):
+class f7pf_2020(Variable):
     cerfa_field = '7PF'
     value_type = int
     unit = 'currency'
@@ -1797,6 +2459,16 @@ class f7pf(Variable):
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
     end = '2020-12-31'
+
+
+class f7pf(Variable):
+    cerfa_field = '7PF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs Denormandie en outre-mer en 2022 avec engagement de 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
 
 
 class fhpe(Variable):
@@ -1817,7 +2489,7 @@ class fhpf(Variable):
     definition_period = YEAR
 
 
-class f7pg(Variable):
+class f7pg_2020(Variable):
     cerfa_field = '7PG'
     value_type = int
     unit = 'currency'
@@ -1826,6 +2498,16 @@ class f7pg(Variable):
     # start_date = '2015-01-01'
     definition_period = YEAR
     end = '2020-12-31'
+
+
+class f7pg(Variable):
+    cerfa_field = '7PG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissement locatif Denormandie en outre-mer en 2022 avec engagement de location de 9 ans'
+    # start_date = '2022-01-01'
+    definition_period = YEAR
 
 
 class f7ph_2012(Variable):
@@ -1844,7 +2526,7 @@ class f7ph(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés en 2011 et achevés de 2012 à 2016)"
-    # start_date = '2015-01-01
+    # start_date = '2015-01-01'
     definition_period = YEAR
     end = '2020-12-31'
 
@@ -1868,7 +2550,7 @@ class f7pi_2012(Variable):
     definition_period = YEAR
 
 
-class f7pi(Variable):
+class f7pi_2020(Variable):
     cerfa_field = '7PI'
     value_type = int
     unit = 'currency'
@@ -1877,6 +2559,27 @@ class f7pi(Variable):
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
     end = '2020-12-31'
+
+
+class f7pi_2023(Variable):
+    cerfa_field = '7PI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7pi(Variable):
+    cerfa_field = '7PI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
 
 
 class fhpi(Variable):
@@ -1898,7 +2601,7 @@ class f7pj_2012(Variable):
     definition_period = YEAR
 
 
-class f7pj(Variable):
+class f7pj_2020(Variable):
     cerfa_field = '7PJ'
     value_type = int
     unit = 'currency'
@@ -1907,6 +2610,48 @@ class f7pj(Variable):
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
     end = '2020-12-31'
+
+
+class f7pj_2023(Variable):
+    cerfa_field = '7PJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7pj(Variable):
+    cerfa_field = '7PJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class f7au_2023(Variable):
+    cerfa_field = '7AU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7au(Variable):
+    cerfa_field = '7AU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
 
 
 class fhpj(Variable):
@@ -1918,13 +2663,35 @@ class fhpj(Variable):
     definition_period = YEAR
 
 
-class f7pk(Variable):
+class f7pk_2011(Variable):
     cerfa_field = '7PK'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    # end = '2011-12-31' changes meaning in 2016
+    end = '2011-12-31'
+    definition_period = YEAR
+
+
+class f7pk_2021(Variable):
+    cerfa_field = '7PK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Censi-Bouvard : Investissements réalisés en 2009 et achevés de 2009 à 2015; réalisés en 2010 avec engagement avant et achevés de 2010 à 2016. Année 2015'
+    end = '2021-12-31'
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7pk_2024(Variable):
+    cerfa_field = '7PK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 2022 investissement 2015 en métropole avec engagement de 6 ans'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -1938,13 +2705,25 @@ class f7pl_2012(Variable):
     definition_period = YEAR
 
 
-class f7pl(Variable):
+class f7pl_2021(Variable):
     cerfa_field = '7PL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Location Meublée Censi B'
     # start_date = '2016-01-01'
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7pl_2024(Variable):
+    cerfa_field = '7PL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 1 investissement 2015 en outre-mer avec engagement 6 ans'
+    # start_date = '2023-01-01'
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -1957,12 +2736,24 @@ class f7pm_2012(Variable):
     definition_period = YEAR
 
 
-class f7pm(Variable):
+class f7pm_2021(Variable):
     cerfa_field = '7PM'
     value_type = int
     entity = FoyerFiscal
     label = 'Location Meublée Censi B'
     # start_date = '2016-01-01'
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7pm_2024(Variable):
+    cerfa_field = '7PM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 1 investissement 2016 en métropole avec engagement 6 ans'
+    # start_date = '2023-01-01'
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -1975,12 +2766,24 @@ class f7pn_2012(Variable):
     definition_period = YEAR
 
 
-class f7pn(Variable):
+class f7pn_2021(Variable):
     cerfa_field = '7PN'
     value_type = int
     entity = FoyerFiscal
     label = 'Location Meublée Censi B'
     # start_date = '2016-01-01'
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7pn_2024(Variable):
+    cerfa_field = '7PN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 1 investissement 2016 en outre-mer avec engagement 6 ans'
+    # start_date = '2023-01-01'
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -2254,13 +3057,32 @@ class f7ri_2015(Variable):
     definition_period = YEAR
 
 
-class f7ri(Variable):
+class f7ri_2020(Variable):
     cerfa_field = '7RI'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7ri_2023(Variable):
+    cerfa_field = '7RI'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Report prorogation 2021, investissement en 2014 en métropole avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7ri(Variable):
+    cerfa_field = '7RI'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2019 en métropole avec engagement 6 ans'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -2284,13 +3106,32 @@ class f7rj_2015(Variable):
     definition_period = YEAR
 
 
-class f7rj(Variable):
+class f7rj_2020(Variable):
     cerfa_field = '7RJ'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7rj_2023(Variable):
+    cerfa_field = '7RJ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Report prorogation 2021, investissement en 2014 en outre-mer avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7rj(Variable):
+    cerfa_field = '7RJ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2019 en outre-mer avec engagement 6 ans'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -2350,13 +3191,22 @@ class f7rk_2015(Variable):
     definition_period = YEAR
 
 
-class f7rk(Variable):
+class f7rk_2020(Variable):
     cerfa_field = '7RK'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7rk(Variable):
+    cerfa_field = '7RK'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -2380,13 +3230,22 @@ class f7rl_2015(Variable):
     definition_period = YEAR
 
 
-class f7rl(Variable):
+class f7rl_2020(Variable):
     cerfa_field = '7RL'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7rl(Variable):
+    cerfa_field = '7RL'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -2400,13 +3259,22 @@ class f7rm_2012(Variable):
     definition_period = YEAR
 
 
-class f7rm(Variable):
+class f7rm_2020(Variable):
     cerfa_field = '7RM'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7rm(Variable):
+    cerfa_field = '7RM'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -2420,12 +3288,22 @@ class f7rn_2015(Variable):
     definition_period = YEAR
 
 
-class f7rn(Variable):
+class f7rn_2020(Variable):
     cerfa_field = '7RN'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+    end = '2020-12-31'
+
+
+class f7rn(Variable):
+    cerfa_field = '7RN'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -2439,13 +3317,22 @@ class f7ro_2012(Variable):
     definition_period = YEAR
 
 
-class f7ro(Variable):
+class f7ro_2020(Variable):
     cerfa_field = '7RO'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7ro(Variable):
+    cerfa_field = '7RO'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2016 en métropole avec engagement 6 ans'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -2469,13 +3356,32 @@ class f7rp_2015(Variable):
     definition_period = YEAR
 
 
+class f7rp_2020(Variable):
+    cerfa_field = '7RP'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier : investissement réalisé fin 2012 acquis en 2011 achevé en 2014 en outre-mer'
+    # start_date = date(2019, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7rp_2023(Variable):
+    cerfa_field = '7RP'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2016 en métropole avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
 class f7rp(Variable):
     cerfa_field = '7RP'
     value_type = int
     entity = FoyerFiscal
-    label = 'Scellier'
-    # start_date = date(2019, 1, 1)
-    end = '2020-12-31'
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2016 en outre-mer avec engagement 6 ans'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -2499,7 +3405,7 @@ class f7rq_2015(Variable):
     definition_period = YEAR
 
 
-class f7rq(Variable):
+class f7rq_2020(Variable):
     cerfa_field = '7RQ'
     value_type = int
     entity = FoyerFiscal
@@ -2507,6 +3413,16 @@ class f7rq(Variable):
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
     definition_period = YEAR
+
+
+class f7rq_2023(Variable):
+    cerfa_field = '7RQ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2016 en outre-mer avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
 
 
 class f7rr_2012(Variable):
@@ -2528,11 +3444,22 @@ class f7rr_2015(Variable):
     definition_period = YEAR
 
 
+class f7rr_2021(Variable):
+    cerfa_field = '7RR'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : prorogation année en cours, investissement 2014 en métropole avec engagement de 6 ans'
+    # start_date = date(2020, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
 class f7rr(Variable):
     cerfa_field = '7RR'
     value_type = int
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2016 en métropole avec engagement 6 ans'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -2565,11 +3492,22 @@ class f7rs_2015(Variable):
     definition_period = YEAR
 
 
+class f7rs_2021(Variable):
+    cerfa_field = '7RS'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2014 en outre-mer avec engagement 6 ans'
+    # start_date = date(2020, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
 class f7rs(Variable):
     cerfa_field = '7RS'
     value_type = int
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2016 en outre-mer avec engagement 6 ans'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -2613,7 +3551,7 @@ class f7rt(Variable):
 
 
 class fhkt(Variable):
-    cerfa_field = '7KT'
+    cerfa_field = 'HKT'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -2671,12 +3609,23 @@ class f7rv_2015(Variable):
     definition_period = YEAR
 
 
-class f7rv(Variable):
+class f7rv_2021(Variable):
     cerfa_field = '7RV'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7rv(Variable):
+    cerfa_field = '7RV'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 2 investissement 2014 en métropole avec engagement 6 ans'
+    # start_date = '2023-01-01'
     definition_period = YEAR
 
 
@@ -2710,21 +3659,42 @@ class f7rw_2015(Variable):
     definition_period = YEAR
 
 
-class f7rw(Variable):
+class f7rw_2021(Variable):
     cerfa_field = '7RW'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7rw(Variable):
+    cerfa_field = '7RW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 2 investissement 2014 en outre-mer avec engagement 6 ans'
+    # start_date = '2023-01-01'
+    definition_period = YEAR
+
+
+class f7rx_2014(Variable):
+    cerfa_field = '7RX'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
+    # start_date = date(2012, 1, 1)
+    definition_period = YEAR
+    end = '2014-12-31'
 
 
 class f7rx(Variable):
     cerfa_field = '7RX'
     value_type = int
     entity = FoyerFiscal
-    label = "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
-    # start_date = date(2012, 1, 1)
+    label = 'Pinel : prorogation 1 en 2024 investissement 2018 en métropole après engagement 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -2738,11 +3708,21 @@ class f7ry_2012(Variable):
     definition_period = YEAR
 
 
+class f7ry_2022(Variable):
+    cerfa_field = '7RY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : prorogation 1 en 2022 investissement 2015 en outre-mer après engagement 6 ans'
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
 class f7ry(Variable):
     cerfa_field = '7RY'
     value_type = int
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : prorogation 1 en 2024 investissement 2018 en outre-mer après engagement 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -2891,12 +3871,22 @@ class f7nu_2012(Variable):
     definition_period = YEAR
 
 
-class f7nu(Variable):
+class f7nu_2021(Variable):
     cerfa_field = '7NU'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7nu(Variable):
+    cerfa_field = '7NU'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -2919,12 +3909,22 @@ class f7nv_2012(Variable):
     definition_period = YEAR
 
 
-class f7nv(Variable):
+class f7nv_2021(Variable):
     cerfa_field = '7NV'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7nv(Variable):
+    cerfa_field = '7NV'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -3044,7 +4044,7 @@ class f7lh_2012(Variable):
     definition_period = YEAR
 
 
-class f7lh(Variable):
+class f7lh_2020(Variable):
     cerfa_field = '7LH'
     value_type = int
     unit = 'currency'
@@ -3052,15 +4052,16 @@ class f7lh(Variable):
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2014"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class fhlh(Variable):  # noqa 728
-    cerfa_field = 'HLH'
+class f7lh(Variable):
+    cerfa_field = '7LH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-    # start_date = date(2013, 1, 1)
+    label = 'Denormandie : report investissement 2021 métropole avec engagement 9 ans'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -3085,7 +4086,7 @@ class f7mb(Variable):
     definition_period = YEAR
 
 
-class f7kt(Variable):
+class f7kt_2012(Variable):
     cerfa_field = '7KT'
     value_type = int
     unit = 'currency'
@@ -3093,6 +4094,16 @@ class f7kt(Variable):
     label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise"
     # start_date = date(2011, 1, 1)
     end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7kt(Variable):
+    cerfa_field = '7KT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -3107,7 +4118,7 @@ class f7li_2012(Variable):
     definition_period = YEAR
 
 
-class f7li(Variable):
+class f7li_2020(Variable):
     cerfa_field = '7LI'
     value_type = int
     unit = 'currency'
@@ -3115,6 +4126,16 @@ class f7li(Variable):
     label = 'Scellier'
     # start_date = date(2015, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7li(Variable):
+    cerfa_field = '7LI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie : report investissement 2021 outre-mer avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -3149,7 +4170,7 @@ class f7mc(Variable):
     definition_period = YEAR
 
 
-class f7ku(Variable):
+class f7ku_2012(Variable):
     cerfa_field = '7KU'
     value_type = int
     unit = 'currency'
@@ -3157,6 +4178,26 @@ class f7ku(Variable):
     label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements dans votre entreprise"
     # start_date = date(2011, 1, 1)
     end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7ku(Variable):
+    cerfa_field = '7KU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7kv(Variable):
+    cerfa_field = '7KV'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -4533,7 +5574,7 @@ class fhsx(Variable):
 
 
 class fhsy(Variable):
-    cerfa_field = 'HS'
+    cerfa_field = 'HSY'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -4792,12 +5833,23 @@ class f7hy_2011(Variable):
     definition_period = YEAR
 
 
-class f7hy(Variable):
+class f7hy_2022(Variable):
     cerfa_field = '7HY'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7hy_2025(Variable):
+    cerfa_field = '7HY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -4815,7 +5867,7 @@ class f7ky(Variable):
     cerfa_field = '7KY'
     value_type = int
     entity = FoyerFiscal
-    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2018'
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2018 et 2022'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -4824,7 +5876,7 @@ class f7kz(Variable):
     cerfa_field = '7KZ'
     value_type = int
     entity = FoyerFiscal
-    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2017'
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2017 et 2021'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -4833,7 +5885,7 @@ class f7kx(Variable):
     cerfa_field = '7KX'
     value_type = int
     entity = FoyerFiscal
-    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2019'
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2019 et 2023'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -4842,7 +5894,7 @@ class f7kw(Variable):
     cerfa_field = '7KW'
     value_type = int
     entity = FoyerFiscal
-    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2020'
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2020 et 2024'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -4865,11 +5917,22 @@ class f7iy_2018(Variable):
     definition_period = YEAR
 
 
+class f7iy_2021(Variable):
+    cerfa_field = '7IY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
 class f7iy(Variable):
     cerfa_field = '7IY'
     value_type = int
     entity = FoyerFiscal
     label = 'Scellier'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -4990,7 +6053,8 @@ class f7sx_2022(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : report prorogation 1 en 2020 investissement 2014 en métropole pour 6 ans'
+    # start_date = date(2021, 1, 1)
     definition_period = YEAR
     end = '2022-12-31'
 
@@ -5015,13 +6079,24 @@ class f7sy_2017(Variable):
     definition_period = YEAR
 
 
+class f7sy_2022(Variable):
+    cerfa_field = '7SY'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 1 en 2020 investissement 2014 en outre-mer pour 6 ans'
+    # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
 class f7sy(Variable):
     cerfa_field = '7SY'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
-    # start_date = date(2021, 1, 1)
+    label = 'Pinel : report prorogation 2 en 2023 investissement 2014 en métropole pour 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -5075,13 +6150,23 @@ class f7gx_2004(Variable):
     definition_period = YEAR
 
 
-class f7gx(Variable):
+class f7gx_2016(Variable):
     cerfa_field = '7GX'
     value_type = int
     entity = FoyerFiscal
     label = "Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
     # start_date = date(2013, 1, 1)
     end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f7gx_2023(Variable):
+    cerfa_field = '7GX'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -5097,13 +6182,24 @@ class f7xa_2012(Variable):
     definition_period = YEAR
 
 
-class f7xa(Variable):
+class f7xa_2022(Variable):
     cerfa_field = '7XA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7xa(Variable):
+    cerfa_field = '7XA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2015 en métropole avec engagement 9 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -5118,13 +6214,35 @@ class f7xb_2012(Variable):
     definition_period = YEAR
 
 
-class f7xb(Variable):
+class f7xb_2015(Variable):
     cerfa_field = '7XB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: achat en 2015 de matériaux d'isolation des murs concernant au moins la moitié de la surface des murs"
     # start_date = date(2015, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7xb_2022(Variable):
+    cerfa_field = '7XB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Prorogation 2020 d'un investissement locatif Pinel en 2010"
+    # start_date = date(2021, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7xb(Variable):
+    cerfa_field = '7XB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : Prorogation 1 année en cours, investissement en 2015 en outre-mer avec engagement 9 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -5149,17 +6267,29 @@ class f7xc_2015(Variable):
     definition_period = YEAR
 
 
-class f7xc(Variable):
+class f7xc_2022(Variable):
     cerfa_field = '7XC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
-class f7xd(Variable):
+class f7xc_2025(Variable):
+    cerfa_field = '7XC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7xd_2012(Variable):
     cerfa_field = '7XD'
     value_type = bool
     entity = FoyerFiscal
@@ -5169,13 +6299,33 @@ class f7xd(Variable):
     definition_period = YEAR
 
 
-class f7xe(Variable):
+class f7xd_2025(Variable):
+    cerfa_field = '7XD'
+    value_type = bool
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7xe_2012(Variable):
     cerfa_field = '7XE'
     value_type = bool
     entity = FoyerFiscal
     label = "Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans"
     # start_date = date(2009, 1, 1)
     end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7xe_2025(Variable):
+    cerfa_field = '7XE'
+    value_type = bool
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -5199,7 +6349,7 @@ class f7xh_2012(Variable):
     definition_period = YEAR
 
 
-class f7xh(Variable):
+class f7xh_2020(Variable):
     cerfa_field = '7XH'
     value_type = int
     unit = 'currency'
@@ -5207,6 +6357,27 @@ class f7xh(Variable):
     label = 'Scellier'
     # start_date = '2019-01-01
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7xh_2023(Variable):
+    cerfa_field = '7XH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = '2022-01-01
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7xh(Variable):
+    cerfa_field = '7XH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel'
+    # start_date = '2025-01-01
     definition_period = YEAR
 
 
@@ -5221,7 +6392,7 @@ class f7xi_2015(Variable):
     definition_period = YEAR
 
 
-class f7xi(Variable):
+class f7xi_2020(Variable):
     cerfa_field = '7XI'
     value_type = int
     unit = 'currency'
@@ -5229,6 +6400,27 @@ class f7xi(Variable):
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7xi_2023(Variable):
+    cerfa_field = '7XI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7xi(Variable):
+    cerfa_field = '7XI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -5243,7 +6435,7 @@ class f7xj_2015(Variable):
     definition_period = YEAR
 
 
-class f7xj(Variable):
+class f7xj_2020(Variable):
     cerfa_field = '7XJ'
     value_type = int
     unit = 'currency'
@@ -5251,6 +6443,27 @@ class f7xj(Variable):
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7xj_2023(Variable):
+    cerfa_field = '7XJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7xj(Variable):
+    cerfa_field = '7XJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -5265,7 +6478,7 @@ class f7xk_2014(Variable):
     definition_period = YEAR
 
 
-class f7xk(Variable):
+class f7xk_2020(Variable):
     cerfa_field = '7XK'
     value_type = int
     unit = 'currency'
@@ -5273,6 +6486,27 @@ class f7xk(Variable):
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7xk_2023(Variable):
+    cerfa_field = '7XK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7xk(Variable):
+    cerfa_field = '7XK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -5287,13 +6521,25 @@ class f7xl_2012(Variable):
     definition_period = YEAR
 
 
-class f7xl(Variable):
+class f7xl_2025(Variable):
+    cerfa_field = '7XL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = '2024-01-01'
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7xl_2022(Variable):
     cerfa_field = '7XL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = '2021-01-01'
+    end = '2022-12-31'
     definition_period = YEAR
 
 
@@ -5308,7 +6554,7 @@ class f7xm_2013(Variable):
     definition_period = YEAR
 
 
-class f7xm(Variable):
+class f7xm_2022(Variable):
     cerfa_field = '7XM'
     value_type = int
     unit = 'currency'
@@ -5316,6 +6562,18 @@ class f7xm(Variable):
     label = 'Scellier'
     definition_period = YEAR
     # start_date = '2021-01-01'
+    end = '2022-12-31'
+
+
+class f7xm_2025(Variable):
+    cerfa_field = '7XM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    definition_period = YEAR
+    # start_date = '2024-01-01'
+    end = '2025-12-31'
 
 
 class f7xn_2017(Variable):
@@ -5329,13 +6587,25 @@ class f7xn_2017(Variable):
     definition_period = YEAR
 
 
-class f7xn(Variable):
+class f7xn_2022(Variable):
     cerfa_field = '7XN'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7xn_2025(Variable):
+    cerfa_field = '7XN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -5454,7 +6724,7 @@ class f7xz(Variable):
     definition_period = YEAR
 
 
-class f7uy(Variable):
+class f7uy_2018(Variable):
     cerfa_field = '7UY'
     value_type = int
     unit = 'currency'
@@ -5462,9 +6732,29 @@ class f7uy(Variable):
     label = "Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
+    end = '2018-12-31'
 
 
-class f7uz(Variable):
+class f7uy_2023(Variable):
+    cerfa_field = '7UY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Report prorogation 2021, investissement en 2015 en métropole avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7uy(Variable):
+    cerfa_field = '7UY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Report prorogation 2024, investissement en 2014 en métropole avec engagement 6 ans'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class f7uz_2018(Variable):
     cerfa_field = '7UZ'
     value_type = int
     unit = 'currency'
@@ -5472,15 +6762,47 @@ class f7uz(Variable):
     label = "Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
+    end = '2018-12-31'
+
+
+class f7uz_2023(Variable):
+    cerfa_field = '7UZ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Report prorogation 2021, investissement en 2015 en outre-mer avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7uz(Variable):
+    cerfa_field = '7UZ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel : Report prorogation 2024, investissement en 2014 en outre-mer avec engagement 6 ans'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
 
 
 # Souscriptions au capital des PME
-class f7cf(Variable):
+class f7cf_2021(Variable):
     cerfa_field = '7CF'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion"
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7cf_2024(Variable):
+    cerfa_field = '7CF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -5513,51 +6835,121 @@ class f7gw(Variable):
     definition_period = YEAR
 
 
-class f7cl(Variable):
+class f7cg_2024(Variable):
+    cerfa_field = '7CG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7ck_2024(Variable):
+    cerfa_field = '7CK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7cl_2020(Variable):
     cerfa_field = '7CL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -4"
+    end = '2020-12-31'
     definition_period = YEAR
 
 
-class f7cm(Variable):
+class f7cl_2024(Variable):
+    cerfa_field = '7CL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7cj_2024(Variable):
+    cerfa_field = '7CJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7cm_2019(Variable):
     cerfa_field = '7CM'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -3"
     definition_period = YEAR
+    end = '2019-12-31'
 
 
-class f7cn(Variable):
+class f7cm_2024(Variable):
+    cerfa_field = '7CM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7cn_2018(Variable):
     cerfa_field = '7CN'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -2"
     definition_period = YEAR
+    end = '2018-12-31'
 
 
-class f7cc(Variable):
+class f7cn_2024(Variable):
+    cerfa_field = '7CN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7cc_2018(Variable):
     cerfa_field = '7CC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1, remplace la case 7CQ à partir des revenus 2013"
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
-class f7cq_2012(Variable):
-    cerfa_field = '7CQ'
+class f7cc_2024(Variable):
+    cerfa_field = '7CC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1"
-    # start_date = date(2011, 1, 1)
-    end = '2012-01-01'
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -5567,8 +6959,7 @@ class f7cq(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Souscription au capital de petites entreprises en phase d'amorçage, de démarrage ou d'expansion"
-    # start_date = date(2011, 1, 1)
-    end = '2021-12-31'
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -5606,7 +6997,7 @@ class f7ua_2007(Variable):
     definition_period = YEAR
 
 
-class f7ua(Variable):
+class f7ua_2023(Variable):
     cerfa_field = '7UA'
     value_type = int
     unit = 'currency'
@@ -5614,6 +7005,16 @@ class f7ua(Variable):
     label = 'Investissements forestiers : travaux avec adhésion à une organisation de producteurs'
     # start_date = date(2014, 1, 1)
     end = '2023-12-31'  # Présent dans Brochure-IR-2023.pdf mais plus dans Brochure-IR-2024.pdf
+    definition_period = YEAR
+
+
+class f7ua(Variable):
+    cerfa_field = '7UA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -5627,13 +7028,24 @@ class f7ub_2007(Variable):
     definition_period = YEAR
 
 
-class f7ub(Variable):
+class f7ub_2022(Variable):
     cerfa_field = '7UB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs'
     # start_date = date(2014, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7ub(Variable):
+    cerfa_field = '7UB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -5669,13 +7081,24 @@ class f7ui_2008(Variable):
     definition_period = YEAR
 
 
-class f7ui(Variable):
+class f7ui_2022(Variable):
     cerfa_field = '7UI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs '
     # start_date = date(2014, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7ui(Variable):
+    cerfa_field = '7UI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -5878,6 +7301,7 @@ class f7qk(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs Pinel en outremer réalisés en 2021 avec engagement de location 6 ans'
+    # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
 
@@ -6006,6 +7430,49 @@ class f7ki(Variable):
     label = 'Location Meublée Censi B'
     # start_date = date(2022, 1, 1)
     definition_period = YEAR
+
+
+class f7kj_2023(Variable):
+    cerfa_field = '7KJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7kn_2023(Variable):
+    cerfa_field = '7KN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7kn(Variable):
+    cerfa_field = '7KN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class f7kq_2023(Variable):
+    cerfa_field = '7KQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
 
 
 class f7qj_2010(Variable):
@@ -6224,7 +7691,7 @@ class f7mm(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     # start_date = date(2020, 1, 1)
-    label = 'Pinel'
+    label = 'Pinel : report investissement 2019 outre-mer avec engagement 9 ans'
     definition_period = YEAR
 
 
@@ -6248,13 +7715,24 @@ class f7lg_2012(Variable):
     definition_period = YEAR
 
 
-class f7lg(Variable):
+class f7lg_2020(Variable):
     cerfa_field = '7LG'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+    end = '2020-12-31'
+
+
+class f7lg(Variable):
+    cerfa_field = '7LG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie : report investissement 2021 métropole avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -6267,12 +7745,35 @@ class fhlg(Variable):
     definition_period = YEAR
 
 
+class f7lk_2021(Variable):
+    cerfa_field = '7LK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2016, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
 class f7lk(Variable):
     cerfa_field = '7LK'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7ll_2021(Variable):
+    cerfa_field = '7LL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
     # start_date = date(2016, 1, 1)
+    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -6281,7 +7782,18 @@ class f7ll(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7lo_2021(Variable):
+    cerfa_field = '7LO'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
     # start_date = date(2016, 1, 1)
+    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -6290,7 +7802,7 @@ class f7lo(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    # start_date = date(2016, 1, 1)
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -6324,12 +7836,66 @@ class fhma(Variable):
     definition_period = YEAR
 
 
-class f7ks(Variable):
+class f7ks_2012(Variable):
     cerfa_field = '7KS'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     definition_period = YEAR
+    end = '2012-12-31'
+
+
+class f7ks_2023(Variable):
+    cerfa_field = '7KS'
+    value_type = int
+    unit = 'currency'
+    label = 'Scellier'
+    entity = FoyerFiscal
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7kl_2023(Variable):
+    cerfa_field = '7KL'
+    value_type = int
+    unit = 'currency'
+    label = 'Scellier'
+    entity = FoyerFiscal
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7ko_2023(Variable):
+    cerfa_field = '7KO'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    unit = 'currency'
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7ko(Variable):
+    cerfa_field = '7KO'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel'
+    # start_date = date(2025, 1, 1)
+    unit = 'currency'
+    definition_period = YEAR
+
+
+class f7kr_2023(Variable):
+    cerfa_field = '7KR'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
 
 
 class fhks(Variable):
@@ -6540,7 +8106,7 @@ class f7gs_2009(Variable):
     definition_period = YEAR
 
 
-class f7gs(Variable):
+class f7gs_2020(Variable):
     cerfa_field = '7GS'
     value_type = int
     unit = 'currency'
@@ -6548,6 +8114,17 @@ class f7gs(Variable):
     label = 'Scellier'
     # start_date = date(2013, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7gs_2023(Variable):
+    cerfa_field = '7GS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -6727,7 +8304,7 @@ class f7ov_2012(Variable):
     definition_period = YEAR
 
 
-class f7ov(Variable):
+class f7ov_2021(Variable):
     cerfa_field = '7OV'
     value_type = int
     unit = 'currency'
@@ -6736,6 +8313,16 @@ class f7ov(Variable):
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
     end = '2021-12-31'
+
+
+class f7ov(Variable):
+    cerfa_field = '7OV'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
 
 
 class f7ow_2012(Variable):
@@ -6749,13 +8336,24 @@ class f7ow_2012(Variable):
     definition_period = YEAR
 
 
-class f7ow(Variable):
+class f7ow_2022(Variable):
     cerfa_field = '7OW'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Location Meublée Censi B'
     # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7ow(Variable):
+    cerfa_field = '7OW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -7748,13 +9346,35 @@ class f7fl(Variable):
     definition_period = YEAR
 
 
-class f7hl(Variable):
+class f7hl_2020(Variable):
     cerfa_field = '7HL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer"
     # start_date = date(2020, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7hl_2023(Variable):
+    cerfa_field = '7HL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
+class f7hl(Variable):
+    cerfa_field = '7HL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie ancien'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -7845,13 +9465,25 @@ class f7ka_2013(Variable):
     definition_period = YEAR
 
 
-class f7ka(Variable):
+class f7ka_2021(Variable):
     cerfa_field = '7KA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7ka_2025(Variable):
+    cerfa_field = '7KA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -7866,13 +9498,36 @@ class f7kb_2016(Variable):
     definition_period = YEAR
 
 
-class f7kb(Variable):
+class f7kb_2021(Variable):
     cerfa_field = '7KB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7kb_2025(Variable):
+    cerfa_field = '7KB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7kk_2025(Variable):
+    cerfa_field = '7KK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -8216,7 +9871,7 @@ class f7um(Variable):
 
 
 # Investissements locatifs neufs : Dispositif Scellier:
-class f7hj(Variable):
+class f7hj_2016(Variable):
     cerfa_field = '7HJ'
     value_type = int
     unit = 'currency'
@@ -8227,7 +9882,18 @@ class f7hj(Variable):
     definition_period = YEAR
 
 
-class f7hk(Variable):
+class f7hj_2025(Variable):
+    cerfa_field = '7HJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7hk_2016(Variable):
     cerfa_field = '7HK'
     value_type = int
     unit = 'currency'
@@ -8238,7 +9904,18 @@ class f7hk(Variable):
     definition_period = YEAR
 
 
-class f7hn(Variable):
+class f7hk_2025(Variable):
+    cerfa_field = '7HK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7hn_2016(Variable):
     cerfa_field = '7HN'
     value_type = int
     unit = 'currency'
@@ -8246,6 +9923,17 @@ class f7hn(Variable):
     label = "Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier 2010"
     # start_date = date(2010, 1, 1)
     end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f7hn_2025(Variable):
+    cerfa_field = '7HN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -8282,7 +9970,28 @@ class f7hm_2010(Variable):
     definition_period = YEAR
 
 
+class f7hm_2023(Variable):
+    cerfa_field = '7HM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
+    definition_period = YEAR
+
+
 class f7hm(Variable):
+    cerfa_field = '7HM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie ancien'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class f7hm_2020(Variable):
     cerfa_field = '7HM'
     value_type = int
     unit = 'currency'
@@ -8290,6 +9999,17 @@ class f7hm(Variable):
     label = 'souscriptions_parts_fcpi_fip'
     # start_date = date(2020, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7hi_2023(Variable):
+    cerfa_field = '7HI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -8459,7 +10179,7 @@ class f7lm(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : report investissement 2019 outre-mer avec engagement 6 ans'
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
@@ -8606,13 +10326,35 @@ class f7mv(Variable):
     definition_period = YEAR
 
 
-class f7lj(Variable):
+class f7lj_2020(Variable):
     cerfa_field = '7LJ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés en 2012 et achevés de 2012 à 2014 : report du solde de réduction d'impôt de l'année 2014"
     # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+    end = '2020-12-31'
+
+
+class f7lj(Variable):
+    cerfa_field = '7LJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie : report investissement 2021 outre-mer avec engagement 9 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7lp_2021(Variable):
+    cerfa_field = '7LP'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés en 2012 et achevés de 2012 à 2015 : report du solde de réduction d'impôt de l'année 2015"
+    # start_date = date(2016, 1, 1)
+    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -8621,8 +10363,8 @@ class f7lp(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés en 2012 et achevés de 2012 à 2015 : report du solde de réduction d'impôt de l'année 2015"
-    # start_date = date(2016, 1, 1)
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -8708,7 +10450,7 @@ class f7nf(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Denormandie'
-    # start_date = date(2011, 1, 1)
+    # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
 
@@ -8729,7 +10471,7 @@ class f7ng(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Denormandie'
-    # start_date = date(2011, 1, 1)
+    # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
 
@@ -8749,7 +10491,7 @@ class f7nh(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Investissement locatif Denormandie en outre-mer en 2020 avec engagement de 9 ans'
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
@@ -8792,6 +10534,7 @@ class f7nj(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Denormandie'
+    # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
 
@@ -8822,7 +10565,7 @@ class f7nk(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Investissement locatif Denormandie en outre-mer en 2021 avec engagement de 6 ans'
     definition_period = YEAR
 
 
@@ -8831,11 +10574,11 @@ class f7nl(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Investissement locatif Denormandie en outre-mer en 2021 avec engagement de 9 ans'
     definition_period = YEAR
 
 
-class f7nm(Variable):
+class f7nm_2017(Variable):
     cerfa_field = '7NM'
     value_type = int
     unit = 'currency'
@@ -8843,9 +10586,20 @@ class f7nm(Variable):
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
+    end = '2017-12-31'
 
 
-class f7nn(Variable):
+class f7nm(Variable):
+    cerfa_field = '7NM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs Denormandie en 2022 avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7nn_2017(Variable):
     cerfa_field = '7NN'
     value_type = int
     unit = 'currency'
@@ -8853,9 +10607,20 @@ class f7nn(Variable):
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
+    end = '2017-12-31'
 
 
-class f7no(Variable):
+class f7nn(Variable):
+    cerfa_field = '7NN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Denormandie en métropole en 2022 avec engagement de 9 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7no_2021(Variable):
     cerfa_field = '7NO'
     value_type = int
     unit = 'currency'
@@ -8863,9 +10628,20 @@ class f7no(Variable):
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
+    end = '2021-12-31'
 
 
-class f7np(Variable):
+class f7no(Variable):
+    cerfa_field = '7NO'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs Denormandie en métropole avec engagement 6 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7np_2017(Variable):
     cerfa_field = '7NP'
     value_type = int
     unit = 'currency'
@@ -8873,9 +10649,30 @@ class f7np(Variable):
     label = 'Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna'
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
+    end = '2017-12-31'
 
 
-class f7nq(Variable):
+class f7np_2021(Variable):
+    cerfa_field = '7NP'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna'
+    # start_date = date(2020, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7np(Variable):
+    cerfa_field = '7NP'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7nq_2016(Variable):
     cerfa_field = '7NQ'
     value_type = int
     unit = 'currency'
@@ -8886,13 +10683,56 @@ class f7nq(Variable):
     definition_period = YEAR
 
 
-class f7nr(Variable):
+class f7nq_2021(Variable):
+    cerfa_field = '7NQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2010, promesse 2009, prorogation 1'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7nq(Variable):
+    cerfa_field = '7NQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs Denormandie en outre-mer en 2023 avec engagement de 6 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7nr_2021(Variable):
     cerfa_field = '7NR'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
     # start_date = date(2011, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7nr(Variable):
+    cerfa_field = '7NR'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs Denormandie en outre-mer en 2023 avec engagement de location de 9 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7ns_2021(Variable):
+    cerfa_field = '7NS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    # start_date = date(2011, 1, 1)
+    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -8901,8 +10741,19 @@ class f7ns(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7nt_2021(Variable):
+    cerfa_field = '7NT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
     # start_date = date(2011, 1, 1)
+    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -8911,8 +10762,8 @@ class f7nt(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    # start_date = date(2011, 1, 1)
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -8979,13 +10830,24 @@ class f7hx(Variable):
     definition_period = YEAR
 
 
-class f7hz(Variable):
+class f7hz_2018(Variable):
     cerfa_field = '7HZ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM avec promesse d'achat avant le 1.1.2010"
     # start_date = date(2011, 1, 1)
+    definition_period = YEAR
+    end = '2018-12-31'
+
+
+class f7hz(Variable):
+    cerfa_field = '7HZ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -9031,13 +10893,25 @@ class f7hu(Variable):
     definition_period = YEAR
 
 
-class f7ha(Variable):
+class f7ha_2022(Variable):
     cerfa_field = '7HA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011'
     # start_date = date(2012, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7ha_2025(Variable):
+    cerfa_field = '7HA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -9172,7 +11046,7 @@ class f7ja(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Denormandie : report investissement en métropole en 2019 avec engagement de 6 ans'
     definition_period = YEAR
 
 
@@ -9192,7 +11066,7 @@ class f7jb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Denormandie : report investissement en métropole en 2019 avec engagement de 9 ans'
     definition_period = YEAR
 
 
@@ -9212,12 +11086,12 @@ class f7jd(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Denormandie : report investissement en outre-mer en 2019 avec engagement de 9 ans'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
 
-class f7je(Variable):
+class f7je_2021(Variable):
     cerfa_field = '7JE'
     value_type = int
     unit = 'currency'
@@ -9225,9 +11099,20 @@ class f7je(Variable):
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, BBC "
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
+    end = '2021-12-31'
 
 
-class f7jf(Variable):
+class f7je(Variable):
+    cerfa_field = '7JE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie : report investissement en métropole en 2022 avec engagement de 6 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7jf_2021(Variable):
     cerfa_field = '7JF'
     value_type = int
     unit = 'currency'
@@ -9235,9 +11120,20 @@ class f7jf(Variable):
     label = 'Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, non-BBC'
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
+    end = '2021-12-31'
 
 
-class f7jg(Variable):
+class f7jf(Variable):
+    cerfa_field = '7JF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie : report investissement en métropole en 2022 avec engagement de 9 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7jg_2016(Variable):
     cerfa_field = '7JG'
     value_type = int
     unit = 'currency'
@@ -9248,7 +11144,28 @@ class f7jg(Variable):
     definition_period = YEAR
 
 
-class f7jh(Variable):
+class f7jg_2021(Variable):
+    cerfa_field = '7JG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés début 2011, réalisés en 2012, Polynésie, prorogation 2'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7jg(Variable):
+    cerfa_field = '7JG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie : report investissement en outre-mer en 2022 avec engagement de 6 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7jh_2021(Variable):
     cerfa_field = '7JH'
     value_type = int
     unit = 'currency'
@@ -9256,9 +11173,20 @@ class f7jh(Variable):
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, métropole, non-BBC"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
+    end = '2021-12-31'
 
 
-class f7jj(Variable):
+class f7jh(Variable):
+    cerfa_field = '7JH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie : report investissement en outre-mer en 2022 avec engagement de 9 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7jj_2020(Variable):
     cerfa_field = '7JJ'
     value_type = int
     unit = 'currency'
@@ -9266,15 +11194,38 @@ class f7jj(Variable):
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, non-BBC"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class f7wd(Variable):
+class f7jj(Variable):
+    cerfa_field = '7JJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report investissement en métropole en 2022 avec engagement de 9 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7wd_2020(Variable):
     cerfa_field = '7WD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2019, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7wd_2023(Variable):
+    cerfa_field = '7WD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -9328,47 +11279,179 @@ class f7md(Variable):
     definition_period = YEAR
 
 
-class f7za(Variable):
+class f7mi(Variable):
+    cerfa_field = '7MI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7mj(Variable):
+    cerfa_field = '7MJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7mk(Variable):
+    cerfa_field = '7MK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7ml(Variable):
+    cerfa_field = '7ML'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7za_2017(Variable):
     cerfa_field = '7ZA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier Inv. Prorogation'
     # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
-class f7zb(Variable):
+class f7za_2020(Variable):
+    cerfa_field = '7ZA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Prorogation'
+    # start_date = date(2019, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7za_2024(Variable):
+    cerfa_field = '7ZA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Prorogation'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7zb_2017(Variable):
     cerfa_field = '7ZB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier Inv. Prorogation'
     # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
-class f7zc(Variable):
+class f7zb_2020(Variable):
+    cerfa_field = '7ZB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Prorogation'
+    end = '2020-12-31'
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7zb_2024(Variable):
+    cerfa_field = '7ZB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Prorogation'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7zc_2017(Variable):
     cerfa_field = '7ZC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier Inv. Prorogation'
     # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
-class f7zd(Variable):
+class f7zc_2021(Variable):
+    cerfa_field = '7ZC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Prorogation'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7zc_2024(Variable):
+    cerfa_field = '7ZC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Prorogation'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7zd_2017(Variable):
     cerfa_field = '7ZD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier Inv. Prorogation'
     # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
-class f7zm(Variable):
+class f7zd_2021(Variable):
+    cerfa_field = '7ZD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Prorogation'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7zd_2024(Variable):
+    cerfa_field = '7ZD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7zm_2020(Variable):
     cerfa_field = '7ZM'
     value_type = int
     unit = 'currency'
@@ -9376,15 +11459,50 @@ class f7zm(Variable):
     label = 'Scellier Inv. Report'
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class f7zn(Variable):
+class f7zm_2023(Variable):
+    cerfa_field = '7ZM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Report'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7zn_2018(Variable):
     cerfa_field = '7ZN'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier Inv. Report'
     # start_date = date(2017, 1, 1)
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f7zn_2021(Variable):
+    cerfa_field = '7ZN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Report'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7zn_2024(Variable):
+    cerfa_field = '7ZN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier Inv. Report'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -9408,33 +11526,102 @@ class f7zo(Variable):
     definition_period = YEAR
 
 
-class f7zf(Variable):
+class f7zf_2018(Variable):
     cerfa_field = '7ZF'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2017, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
-class f7zg(Variable):
+class f7zf_2021(Variable):
+    cerfa_field = '7ZF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7zf_2024(Variable):
+    cerfa_field = '7ZF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7zg_2018(Variable):
     cerfa_field = '7ZG'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2017, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
-class f7zh(Variable):
+class f7zg_2021(Variable):
+    cerfa_field = '7ZG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7zg_2024(Variable):
+    cerfa_field = '7ZG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7zh_2018(Variable):
     cerfa_field = '7ZH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2017, 1, 1)
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f7zh_2021(Variable):
+    cerfa_field = '7ZH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7zh_2024(Variable):
+    cerfa_field = '7ZH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -9468,13 +11655,36 @@ class f7zk(Variable):
     definition_period = YEAR
 
 
-class f7ze(Variable):
+class f7ze_2018(Variable):
     cerfa_field = '7ZE'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2017, 1, 1)
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f7ze_2021(Variable):
+    cerfa_field = '7ZE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7ze_2024(Variable):
+    cerfa_field = '7ZE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -9548,13 +11758,46 @@ class f7zv(Variable):
     definition_period = YEAR
 
 
-class f7jk(Variable):
+class f7jk_2021(Variable):
     cerfa_field = '7JK'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon'
     # start_date = date(2012, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7jk(Variable):
+    cerfa_field = '7JK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report investissement en outre-mer en 2022 avec engagement de 6 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7jl_2016(Variable):
+    cerfa_field = '7JL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon'
+    # start_date = date(2012, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f7jl_2021(Variable):
+    cerfa_field = '7JL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés début 2012, réalisés en 2012, DOM, prorogation 2'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
     definition_period = YEAR
 
 
@@ -9563,9 +11806,8 @@ class f7jl(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon'
-    # start_date = date(2012, 1, 1)
-    end = '2016-12-31'
+    label = 'Pinel : report investissement en outre-mer en 2022 avec engagement de 9 ans'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -9612,7 +11854,7 @@ class f7jn(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : report investissement en métropole en 2020 avec engagement 6 ans'
     definition_period = YEAR
 
 
@@ -9632,7 +11874,7 @@ class f7jo(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : report investissement en métropole en 2020 avec engagement 9 ans'
     definition_period = YEAR
 
 
@@ -9652,7 +11894,7 @@ class f7jp(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : report investissement en outre-mer en 2020 avec engagement 6 ans'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
@@ -9673,7 +11915,7 @@ class f7jq(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : report investissement en outre-mer en 2020 avec engagement 9 ans'
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
@@ -9694,17 +11936,29 @@ class f7jr(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Denormandie : report investissement en métropole en 2020 avec engagement 6 ans'
     definition_period = YEAR
 
 
-class f7gj(Variable):
+class f7gj_2020(Variable):
     cerfa_field = '7GJ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon'
     # start_date = date(2013, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7gj_2024(Variable):
+    cerfa_field = '7GJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -9738,13 +11992,25 @@ class f7gp(Variable):
     definition_period = YEAR
 
 
-class f7fa(Variable):
+class f7fa_2017(Variable):
     cerfa_field = '7FA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, BBC'
     # start_date = date(2013, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+class f7fa_2025(Variable):
+    cerfa_field = '7FA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, BBC'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -9758,63 +12024,135 @@ class f7fb(Variable):
     definition_period = YEAR
 
 
-class f7fc(Variable):
+class f7fc_2017(Variable):
     cerfa_field = '7FC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon'
     # start_date = date(2013, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
-class f7fd(Variable):
+class f7fc_2025(Variable):
+    cerfa_field = '7FC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7fd_2025(Variable):
+    cerfa_field = '7FD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7fd_2017(Variable):
     cerfa_field = '7FD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna'
     # start_date = date(2013, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
-class f7ya(Variable):
+class f7ya_2022(Variable):
     cerfa_field = '7YA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
     # start_date = date(2014, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
-class f7yb(Variable):
+class f7ya_2025(Variable):
+    cerfa_field = '7YA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7yb_2021(Variable):
     cerfa_field = '7YB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon'
     # start_date = date(2014, 1, 1)
+    end = '2021-12-31'
     definition_period = YEAR
 
 
-class f7yc(Variable):
+class f7yb_2024(Variable):
+    cerfa_field = '7YB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7yc_2022(Variable):
     cerfa_field = '7YC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2012 avec promesse d'achat en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
     # start_date = date(2014, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
-class f7yd(Variable):
+class f7yc_2025(Variable):
+    cerfa_field = '7YC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7yd_2021(Variable):
     cerfa_field = '7YD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon'
     # start_date = date(2014, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7yd_2024(Variable):
+    cerfa_field = '7YD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -9828,13 +12166,25 @@ class f7ye(Variable):
     definition_period = YEAR
 
 
-class f7yf(Variable):
+class f7yf_2021(Variable):
     cerfa_field = '7YF'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon'
     # start_date = date(2014, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7yf_2024(Variable):
+    cerfa_field = '7YF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -9897,12 +12247,33 @@ class f7yl(Variable):
     definition_period = YEAR
 
 
-class f7ym(Variable):
+class f7ym_2022(Variable):
     cerfa_field = '7YM'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2014 en métropole et dans les DOM-COM"
     # start_date = date(2015, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7ym_2025(Variable):
+    cerfa_field = '7YM'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7yt_2023(Variable):
+    cerfa_field = '7YT'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2015 en métropole et dans les DOM-COM"
+    # start_date = date(2016, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -9910,26 +12281,48 @@ class f7yt(Variable):
     cerfa_field = '7YT'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2015 en métropole et dans les DOM-COM"
-    # start_date = date(2016, 1, 1)
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
-class f7wt(Variable):
+class f7wt_2024(Variable):
     cerfa_field = '7WT'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2016 en métropole et dans les DOM-COM"
     # start_date = date(2017, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
-class f7yn(Variable):
+class f7yn_2022(Variable):
     cerfa_field = '7YN'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2014 en métropole et dans les DOM-COM"
     # start_date = date(2015, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7yn_2025(Variable):
+    cerfa_field = '7YN'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7yu_2023(Variable):
+    cerfa_field = '7YU'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2015 en métropole et dans les DOM-COM"
+    # start_date = date(2016, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -9937,26 +12330,48 @@ class f7yu(Variable):
     cerfa_field = '7YU'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2015 en métropole et dans les DOM-COM"
-    # start_date = date(2016, 1, 1)
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
-class f7wu(Variable):
+class f7wu_2024(Variable):
     cerfa_field = '7WU'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2016 en métropole et dans les DOM-COM"
     # start_date = date(2017, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
-class f7yo(Variable):
+class f7yo_2022(Variable):
     cerfa_field = '7YO'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2014 en métropole et dans les DOM-COM"
     # start_date = date(2015, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7yo_2025(Variable):
+    cerfa_field = '7YO'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7yv_2023(Variable):
+    cerfa_field = '7YV'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en métropole et dans les DOM-COM"
+    # start_date = date(2017, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -9964,26 +12379,48 @@ class f7yv(Variable):
     cerfa_field = '7YV'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en métropole et dans les DOM-COM"
-    # start_date = date(2016, 1, 1)
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
-class f7wv(Variable):
+class f7wv_2024(Variable):
     cerfa_field = '7WV'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2016 en métropole et dans les DOM-COM"
     # start_date = date(2017, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
-class f7yp(Variable):
+class f7yp_2022(Variable):
     cerfa_field = '7YP'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2014 en métropole et dans les DOM-COM"
     # start_date = date(2015, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7yp_2025(Variable):
+    cerfa_field = '7YP'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7yw_2023(Variable):
+    cerfa_field = '7YW'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2015 en métropole et dans les DOM-COM"
+    # start_date = date(2016, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -9991,17 +12428,18 @@ class f7yw(Variable):
     cerfa_field = '7YW'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2015 en métropole et dans les DOM-COM"
-    # start_date = date(2016, 1, 1)
+    label = 'Scellier'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
-class f7ww(Variable):
+class f7ww_2024(Variable):
     cerfa_field = '7WW'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2016 en métropole et dans les DOM-COM"
     # start_date = date(2017, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -10014,22 +12452,44 @@ class f7yq(Variable):
     definition_period = YEAR
 
 
-class f7yx(Variable):
+class f7yx_2019(Variable):
     cerfa_field = '7YX'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
+    end = '2019-12-30'
 
 
-class f7wx(Variable):
+class f7yx_2023(Variable):
+    cerfa_field = '7YX'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-30'
+
+
+class f7wx_2020(Variable):
     cerfa_field = '7WX'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2016 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
+    end = '2020-12-30'
+
+
+class f7wx_2023(Variable):
+    cerfa_field = '7WX'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-30'
 
 
 class f7yr(Variable):
@@ -10041,21 +12501,52 @@ class f7yr(Variable):
     definition_period = YEAR
 
 
-class f7yy(Variable):
+class f7yy_2019(Variable):
     cerfa_field = '7YY'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
+    end = '2019-12-31'
+
+
+class f7yy_2023(Variable):
+    cerfa_field = '7YY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7wy_2020(Variable):
+    cerfa_field = '7WY'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2016 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+    end = '2020-12-31'
+
+
+class f7wy_2023(Variable):
+    cerfa_field = '7WY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
 
 
 class f7wy(Variable):
     cerfa_field = '7WY'
     value_type = int
     entity = FoyerFiscal
-    label = "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2016 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
-    # start_date = date(2017, 1, 1)
+    label = 'Pinel'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -10068,66 +12559,137 @@ class f7ys(Variable):
     definition_period = YEAR
 
 
-class f7yz(Variable):
+class f7yz_2019(Variable):
     cerfa_field = '7YZ'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
+    end = '2019-12-31'
 
 
-class f7wz(Variable):
+class f7yz_2023(Variable):
+    cerfa_field = '7YZ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7wz_2020(Variable):
     cerfa_field = '7WZ'
     value_type = int
     entity = FoyerFiscal
     label = "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2016 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
+
+
+class f7wz_2023(Variable):
+    cerfa_field = '7WZ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7wz(Variable):
+    cerfa_field = '7WZ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
 
 # Investissement dans l'immobilier ancien:
 
 
-class f7na(Variable):
+class f7na_2022(Variable):
     cerfa_field = '7NA'
     value_type = int
     entity = FoyerFiscal
     label = 'Denormandie: Investissements réalisés en 2019 en métropole avec engagement de location de 6 ans'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
+    end = '2022-12-31'
 
 
-class f7nb(Variable):
+class f7na(Variable):
+    cerfa_field = '7NA'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel: report prorogation 1 en 2023 investissement 2016 en métropole avec engagement de location de 6 ans'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7nb_2022(Variable):
     cerfa_field = '7NB'
     value_type = int
     entity = FoyerFiscal
     label = 'Denormandie: Investissements réalisés en 2019 en métropole avec engagement de location de 9 ans'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
+    end = '2022-12-31'
 
 
-class f7nc(Variable):
+class f7nb(Variable):
+    cerfa_field = '7NB'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel: report prorogation 1 en 2023 investissement 2016 en outre-mer avec engagement de location de 6 ans'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7nc_2022(Variable):
     cerfa_field = '7NC'
     value_type = int
     entity = FoyerFiscal
     label = 'Denormandie: Investissements réalisés en 2019 en outre-mer avec engagement de location de 6 ans'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
+    end = '2022-12-31'
 
 
-class f7nd(Variable):
+class f7nc(Variable):
+    cerfa_field = '7NC'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel: report prorogation 1 en 2023 investissement 2017 en métropole avec engagement de location de 6 ans'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7nd_2022(Variable):
     cerfa_field = '7ND'
     value_type = int
     entity = FoyerFiscal
     label = 'Denormandie: Investissements réalisés en 2019 en outre-mer avec engagement de location de 9 ans'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7nd(Variable):
+    cerfa_field = '7ND'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel: report prorogation 1 en 2023 investissement 2017 en outre-mer avec engagement de location de 6 ans'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
 
 
 # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
 
 
-class f7ij(Variable):
+class f7ij_2017(Variable):
     cerfa_field = '7IJ'
     value_type = int
     unit = 'currency'
@@ -10135,6 +12697,17 @@ class f7ij(Variable):
     label = "Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, engagement de réalisation de l'investissement en 2011"
     # start_date = date(2009, 1, 1)
     end = '2017-12-31'
+    definition_period = YEAR
+
+
+class f7ij_2025(Variable):
+    cerfa_field = '7IJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, engagement de réalisation de l'investissement en 2011"
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -10149,7 +12722,7 @@ class f7il(Variable):
     definition_period = YEAR
 
 
-class f7im(Variable):
+class f7im_2016(Variable):
     cerfa_field = '7IM'
     value_type = int
     unit = 'currency'
@@ -10157,6 +12730,16 @@ class f7im(Variable):
     label = "Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 avec promesse d'achat en 2010"
     # start_date = date(2010, 1, 1)
     end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f7im(Variable):
+    cerfa_field = '7IM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10171,7 +12754,7 @@ class f7ik(Variable):
     definition_period = YEAR
 
 
-class f7in(Variable):
+class f7in_2016(Variable):
     cerfa_field = '7IN'
     value_type = int
     unit = 'currency'
@@ -10179,6 +12762,16 @@ class f7in(Variable):
     label = "Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.1.2011 au 31.3.2011"
     # start_date = date(2011, 1, 1)
     end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f7in(Variable):
+    cerfa_field = '7IN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.1.2011 au 31.3.2011"
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10193,13 +12786,24 @@ class f7iv_2016(Variable):
     definition_period = YEAR
 
 
-class f7iv(Variable):
+class f7iv_2021(Variable):
     cerfa_field = '7IV'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7iv(Variable):
+    cerfa_field = '7IV'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -10214,13 +12818,25 @@ class f7iw_2016(Variable):
     definition_period = YEAR
 
 
-class f7iw(Variable):
+class f7iw_2021(Variable):
     cerfa_field = '7IW'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7iw_2025(Variable):
+    cerfa_field = '7IW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -10235,13 +12851,24 @@ class f7io_2015(Variable):
     definition_period = YEAR
 
 
-class f7io(Variable):
+class f7io_2022(Variable):
     cerfa_field = '7IO'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7io(Variable):
+    cerfa_field = '7IO'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10256,13 +12883,24 @@ class f7ip_2018(Variable):
     definition_period = YEAR
 
 
+class f7ip_2022(Variable):
+    cerfa_field = '7IP'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2021, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
 class f7ip(Variable):
     cerfa_field = '7IP'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
-    # start_date = date(201, 1, 1)
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10277,13 +12915,25 @@ class f7ir_2018(Variable):
     definition_period = YEAR
 
 
-class f7ir(Variable):
+class f7ir_2021(Variable):
     cerfa_field = '7IR'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7ir_2024(Variable):
+    cerfa_field = '7IR'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -10298,13 +12948,25 @@ class f7iq_2018(Variable):
     definition_period = YEAR
 
 
-class f7iq(Variable):
+class f7iq_2022(Variable):
     cerfa_field = '7IQ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7iq_2025(Variable):
+    cerfa_field = '7IQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -10319,13 +12981,25 @@ class f7iu_2016(Variable):
     definition_period = YEAR
 
 
-class f7iu(Variable):
+class f7iu_2021(Variable):
     cerfa_field = '7IU'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7iu_2024(Variable):
+    cerfa_field = '7IU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -10340,13 +13014,25 @@ class f7it_2016(Variable):
     definition_period = YEAR
 
 
-class f7it(Variable):
+class f7it_2021(Variable):
     cerfa_field = '7IT'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7it_2024(Variable):
+    cerfa_field = '7IT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -10361,13 +13047,25 @@ class f7is_2015(Variable):
     definition_period = YEAR
 
 
-class f7is(Variable):
+class f7is_2021(Variable):
     cerfa_field = '7IS'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7is_2024(Variable):
+    cerfa_field = '7IS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -10382,13 +13080,24 @@ class f7ia_2019(Variable):
     definition_period = YEAR
 
 
+class f7ia_2021(Variable):
+    cerfa_field = '7IA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier : prorogation 1 2021 investissement 2011 achevé 2016'
+    # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
 class f7ia(Variable):
     cerfa_field = '7IA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011'
-    # start_date = date(2021, 1, 1)
+    label = 'Pinel : report investissement en métropole en 2023 avec engagement de 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10408,9 +13117,20 @@ class f7ib(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Scellier'
+    label = 'Pinel : report investissement en métropole en 2023 avec engagement de 9 ans'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7ib_2021(Variable):
+    cerfa_field = '7IB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier : prorogation 1 2021 investissement 2010 achevé 2016'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
+    end = '2022-12-31'
 
 
 class f7ic_2019(Variable):
@@ -10424,13 +13144,35 @@ class f7ic_2019(Variable):
     definition_period = YEAR
 
 
+class f7ic_2021(Variable):
+    cerfa_field = '7IC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier : investissement réalisé en janvier à mars 2011 achevé en 2016 en Polynésie'
+    # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
 class f7ic(Variable):
     cerfa_field = '7IC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Scellier'
-    # start_date = date(2021, 1, 1)
+    label = 'Pinel : report investissement en outre-mer en 2023 avec engagement de 6 ans'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7id_2018(Variable):
+    cerfa_field = '7ID'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Engagement de réalisation de l'investissement en 2012"
+    # start_date = date(2012, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -10439,9 +13181,8 @@ class f7id(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Engagement de réalisation de l'investissement en 2012"
-    # start_date = date(2012, 1, 1)
-    end = '2018-12-31'
+    label = 'Pinel : report investissement en outre-mer en 2023 avec engagement de 9 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10456,13 +13197,24 @@ class f7ie_2016(Variable):
     definition_period = YEAR
 
 
-class f7ie(Variable):
+class f7ie_2022(Variable):
     cerfa_field = '7IE'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7ie(Variable):
+    cerfa_field = '7IE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie : report investissement en métropole en 2023 avec engagement de 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10477,13 +13229,24 @@ class f7if_2016(Variable):
     definition_period = YEAR
 
 
+class f7if_2022(Variable):
+    cerfa_field = '7IF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier : prorogation en 2021 pour un investissement engagé en 2012, réalisé en 2012 et fini en 2016, outre-mer'
+    # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
 class f7if(Variable):
     cerfa_field = '7IF'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Scellier'
-    # start_date = date(2021, 1, 1)
+    label = 'Denormandie : report investissement en métropole en 2023 avec engagement de 9 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10498,13 +13261,24 @@ class f7ig_2016(Variable):
     definition_period = YEAR
 
 
+class f7ig_2022(Variable):
+    cerfa_field = '7IG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier : prorogation en 2021 pour un investissement engagé en 2011, réalisé en 2012 et fini en 2016, outre-mer'
+    # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
 class f7ig(Variable):
     cerfa_field = '7IG'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Scellier'
-    # start_date = date(2021, 1, 1)
+    label = 'Denormandie : report investissement en outre-mer en 2023 avec engagement de 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10519,13 +13293,24 @@ class f7ix_2017(Variable):
     definition_period = YEAR
 
 
-class f7ix(Variable):
+class f7ix_2021(Variable):
     cerfa_field = '7IX'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7ix(Variable):
+    cerfa_field = '7IX'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -10540,13 +13325,24 @@ class f7ih_2017(Variable):
     definition_period = YEAR
 
 
+class f7ih_2022(Variable):
+    cerfa_field = '7IH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier : achat 2011, réalisation début 2012, achèvement 2016, outre-mer'
+    # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
 class f7ih(Variable):
     cerfa_field = '7IH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Scellier'
-    # start_date = date(2021, 1, 1)
+    label = 'Denormandie : report investissement en outre-mer en 2023 avec engagement de 9 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -10561,13 +13357,24 @@ class f7iz_2017(Variable):
     definition_period = YEAR
 
 
-class f7iz(Variable):
+class f7iz_2021(Variable):
     cerfa_field = '7IZ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    end = '2021-12-31'
+    definition_period = YEAR
+
+
+class f7iz(Variable):
+    cerfa_field = '7IZ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -10587,7 +13394,7 @@ class f7jt(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Denormandie : report investissement en outre-mer en 2020 avec engagement 6 ans'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
@@ -10608,12 +13415,12 @@ class f7ju(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Denormandie : report investissement en outre-mer en 2020 avec engagement 9 ans'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
 
-class f7ou(Variable):
+class f7ou_2020(Variable):
     cerfa_field = '7OU'
     value_type = int
     unit = 'currency'
@@ -10621,9 +13428,20 @@ class f7ou(Variable):
     label = 'Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2014'
     # start_date = date(2014, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class f7jv(Variable):
+class f7ou(Variable):
+    cerfa_field = '7OU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7jv_2020(Variable):
     cerfa_field = '7JV'
     value_type = int
     unit = 'currency'
@@ -10634,7 +13452,17 @@ class f7jv(Variable):
     end = '2020-12-31'
 
 
-class f7jw(Variable):
+class f7jv(Variable):
+    cerfa_field = '7JV'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report investissement en métropole en 2021 avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7jw_2020(Variable):
     cerfa_field = '7JW'
     value_type = int
     unit = 'currency'
@@ -10645,7 +13473,17 @@ class f7jw(Variable):
     end = '2020-12-31'
 
 
-class f7jx(Variable):
+class f7jw(Variable):
+    cerfa_field = '7JW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report investissement en métropole en 2021 avec engagement 9 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7jx_2020(Variable):
     cerfa_field = '7JX'
     value_type = int
     unit = 'currency'
@@ -10654,6 +13492,16 @@ class f7jx(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
     end = '2020-12-31'
+
+
+class f7jx(Variable):
+    cerfa_field = '7JX'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report investissement en outre-mer en 2021 avec engagement 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
 
 
 class f7jy_2010(Variable):
@@ -10667,7 +13515,7 @@ class f7jy_2010(Variable):
     definition_period = YEAR
 
 
-class f7jy(Variable):
+class f7jy_2020(Variable):
     cerfa_field = '7JY'
     value_type = int
     unit = 'currency'
@@ -10676,6 +13524,16 @@ class f7jy(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
     end = '2020-12-31'
+
+
+class f7jy(Variable):
+    cerfa_field = '7JY'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report investissement en outre-mer en 2021 avec engagement 9 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
 
 
 class f7oa_2021(Variable):
@@ -10783,7 +13641,7 @@ class f7oe(Variable):
     definition_period = YEAR
 
 
-class f7of(Variable):
+class f7of_2022(Variable):
     cerfa_field = '7OF'
     value_type = int
     unit = 'currency'
@@ -10794,7 +13652,17 @@ class f7of(Variable):
     end = '2022-12-31'
 
 
-class f7og(Variable):
+class f7of(Variable):
+    cerfa_field = '7OF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 1 en 2023 investissement 2014 en métropole avec engagement 9 ans'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7og_2022(Variable):
     cerfa_field = '7OG'
     value_type = int
     unit = 'currency'
@@ -10803,6 +13671,16 @@ class f7og(Variable):
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
     end = '2022-12-31'
+
+
+class f7og(Variable):
+    cerfa_field = '7OG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 1 en 2023 investissement 2014 en outre-mer avec engagement 9 ans'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
 
 
 class f7oh(Variable):
@@ -10827,7 +13705,7 @@ class f7oi(Variable):
     end = '2022-12-31'
 
 
-class f7oj(Variable):
+class f7oj_2022(Variable):
     cerfa_field = '7OJ'
     value_type = int
     unit = 'currency'
@@ -10836,6 +13714,16 @@ class f7oj(Variable):
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
     end = '2022-12-31'
+
+
+class f7oj(Variable):
+    cerfa_field = '7OJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
 
 
 class f7op(Variable):
@@ -10954,7 +13842,7 @@ class f7jc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Denormandie : report investissement en outre-mer en 2019 avec engagement de 6 ans'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
@@ -10970,13 +13858,24 @@ class f7ji_2018(Variable):
     definition_period = YEAR
 
 
-class f7ji(Variable):
+class f7ji_2020(Variable):
     cerfa_field = '7JI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2020, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7ji(Variable):
+    cerfa_field = '7JI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report investissement en métropole en 2022 avec engagement de 6 ans'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -10996,7 +13895,7 @@ class f7js(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Denormandie'
+    label = 'Denormandie : report investissement en métropole en 2020 avec engagement 9 ans'
     definition_period = YEAR
 
 
@@ -11199,7 +14098,7 @@ class f7gu_2003(Variable):
     definition_period = YEAR
 
 
-class f7gu(Variable):
+class f7gu_2020(Variable):
     cerfa_field = '7GU'
     value_type = int
     unit = 'currency'
@@ -11207,6 +14106,17 @@ class f7gu(Variable):
     label = "Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009"
     # start_date = date(2013, 1, 1)
     end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7gu_2023(Variable):
+    cerfa_field = '7GU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009"
+    # start_date = date(2022, 1, 1)
+    end = '2023-12-31'
     definition_period = YEAR
 
 
@@ -11378,23 +14288,46 @@ class f7tb(Variable):
     definition_period = YEAR
 
 
-class f7tc(Variable):
+class f7tc_2015(Variable):
     cerfa_field = '7TC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 : appareils de régulation de chauffage'
     # start_date = date(2015, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
-class f7cb(Variable):
+class f7tc(Variable):
+    cerfa_field = '7TC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class f7cb_2019(Variable):
     cerfa_field = '7CB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location : chaudières à haute performance energétique '
     # start_date = date(2016, 1, 1)
+    end = '2019-12-31'
+    definition_period = YEAR
+
+
+class f7cb_2024(Variable):
+    cerfa_field = '7CB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier '
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -11419,7 +14352,7 @@ class f7aa(Variable):
     definition_period = YEAR
 
 
-class f7ab(Variable):
+class f7ab_2020(Variable):
     cerfa_field = '7AB'
     value_type = int
     unit = 'currency'
@@ -11427,9 +14360,21 @@ class f7ab(Variable):
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location : Chaudières à micro-cogénération gaz'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class f7ad(Variable):
+class f7ab_2023(Variable):
+    cerfa_field = '7AB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7ad_2020(Variable):
     cerfa_field = '7AD'
     value_type = int
     unit = 'currency'
@@ -11437,9 +14382,21 @@ class f7ad(Variable):
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : chaudières à micro-génération gaz'
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class f7af(Variable):
+class f7ad_2023(Variable):
+    cerfa_field = '7AD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7af_2020(Variable):
     cerfa_field = '7AF'
     value_type = int
     unit = 'currency'
@@ -11447,9 +14404,21 @@ class f7af(Variable):
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : appareils de régulation de chauffage'
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class f7ao(Variable):
+class f7af_2023(Variable):
+    cerfa_field = '7AF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7ao_2018(Variable):
     cerfa_field = '7AO'
     value_type = int
     unit = 'currency'
@@ -11457,6 +14426,17 @@ class f7ao(Variable):
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location : Chaudières à très haute performance énergétique utilisant le fioul : dépenses payées du 1.1.2018 au 30.6.2018 et dépenses payées du 1.7.2018 au 31.12.2018 avec acceptation d’un devis et versement d’un acompte au plus tard le 30.6.2018.'
     # start_date = date(2018, 1, 1)
     end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f7ao_2024(Variable):
+    cerfa_field = '7AO'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -11470,7 +14450,29 @@ class f7ap(Variable):
     definition_period = YEAR
 
 
-class f7as(Variable):
+class f7ap_2018(Variable):
+    cerfa_field = '7AP'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location : Matériaux d’isolation thermique des parois vitrées (fenêtres, portes-fenêtres…) venant en remplacement de simples vitrages.'
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+    end = '2018-12-31'
+
+
+class f7ap_2023(Variable):
+    cerfa_field = '7AP'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7as_2019(Variable):
     cerfa_field = '7AS'
     value_type = int
     unit = 'currency'
@@ -11478,6 +14480,29 @@ class f7as(Variable):
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location : Pompes à chaleur (autres que air/air) dédiées à la production d’eau chaude sanitaire (chauffe-eaux thermodynamiques); dépenses payées en 2018 avec acceptation d’un devis et versement d’un acompte au plus tard le 31.12.2017'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
+    end = '2019-12-31'
+
+
+class f7as_2023(Variable):
+    cerfa_field = '7AS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7at_2023(Variable):
+    cerfa_field = '7AT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
 
 
 class f7bm(Variable):
@@ -11505,13 +14530,24 @@ class f7sd_2015(Variable):
     definition_period = YEAR
 
 
-class f7sd(Variable):
+class f7sd_2022(Variable):
     cerfa_field = '7SD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7sd(Variable):
+    cerfa_field = '7SD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en métropole en 2024 avec engagement de 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -11526,13 +14562,24 @@ class f7se_2015(Variable):
     definition_period = YEAR
 
 
-class f7se(Variable):
+class f7se_2022(Variable):
     cerfa_field = '7SE'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7se(Variable):
+    cerfa_field = '7SE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en métropole en 2024 avec engagement de 9 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -11547,13 +14594,24 @@ class f7sh_2015(Variable):
     definition_period = YEAR
 
 
-class f7sh(Variable):
+class f7sh_2022(Variable):
     cerfa_field = '7SH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7sh(Variable):
+    cerfa_field = '7SH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : prorogation 2 en 2024 investissement 2015 en métropole avec engagement 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -11690,13 +14748,24 @@ class f7sf_2015(Variable):
     definition_period = YEAR
 
 
-class f7sf(Variable):
+class f7sf_2022(Variable):
     cerfa_field = '7SF'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = '2018-01-01'
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7sf(Variable):
+    cerfa_field = '7SF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en outre-mer en 2024 avec engagement de 6 ans'
+    # start_date = '2024-01-01'
     definition_period = YEAR
 
 
@@ -11711,13 +14780,24 @@ class f7si_2015(Variable):
     definition_period = YEAR
 
 
-class f7si(Variable):
+class f7si_2022(Variable):
     cerfa_field = '7SI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Scellier'
     # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+    end = '2022-12-31'
+
+
+class f7si(Variable):
+    cerfa_field = '7SI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : prorogation 2 en 2024 investissement 2015 en outre-mer avec engagement 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -11752,13 +14832,24 @@ class f7vs(Variable):
     definition_period = YEAR
 
 
-class f7vj(Variable):
+class f7vj_2022(Variable):
     cerfa_field = '7VJ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Inv. forestiers: Report des dépenses de travaux des années antérieures 2018 avec adhésion à une organisation de producteurs'
     # start_date = date(2019, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7vj(Variable):
+    cerfa_field = '7VJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -11902,23 +14993,47 @@ class f7tw(Variable):
 
 # Réduction d'impôts sur les investissements locatifs intermédiaires (loi Duflot)
 
-class f7gh(Variable):
+class f7gh_2018(Variable):
     cerfa_field = '7GH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs intermédiaires en métropole'
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
-class f7gi(Variable):
+class f7gh_2024(Variable):
+    cerfa_field = '7GH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
+    definition_period = YEAR
+
+
+class f7gi_2018(Variable):
     cerfa_field = '7GI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs intermédiaires outre-mer'
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f7gi_2024(Variable):
+    cerfa_field = '7GI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2023, 1, 1)
+    end = '2024-12-31'
     definition_period = YEAR
 
 
@@ -11932,7 +15047,7 @@ class f7ek(Variable):
     definition_period = YEAR
 
 
-class f7el(Variable):
+class f7el_2015(Variable):
     cerfa_field = '7EL'
     value_type = int
     unit = 'currency'
@@ -11940,6 +15055,84 @@ class f7el(Variable):
     label = 'Investissements locatifs intermÃ©diaires du 1.1 au 31.8.2014 en outre-mer'
     # start_date = date(2014, 1, 1)
     definition_period = YEAR
+    end = '2018-12-31'  # Au plus tard
+
+
+class f7el_2025(Variable):
+    cerfa_field = '7EL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+    end = '2025-12-31'
+
+
+class f7em_2025(Variable):
+    cerfa_field = '7EM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+    end = '2025-12-31'
+
+
+class f7eq_2025(Variable):
+    cerfa_field = '7EQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+    end = '2025-12-31'
+
+
+class f7er_2025(Variable):
+    cerfa_field = '7ER'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+    end = '2025-12-31'
+
+
+class f7ev_2025(Variable):
+    cerfa_field = '7EV'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+    end = '2025-12-31'
+
+
+class f7ew_2025(Variable):
+    cerfa_field = '7EW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+    end = '2025-12-31'
+
+
+class f7ex_2025(Variable):
+    cerfa_field = '7EX'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+    end = '2025-12-31'
 
 
 class f7fi(Variable):
@@ -12024,7 +15217,7 @@ class f7qa(Variable):
     definition_period = YEAR
 
 
-class f7ai(Variable):
+class f7ai_2019(Variable):
     cerfa_field = '7AI'
     value_type = int
     unit = 'currency'
@@ -12032,15 +15225,50 @@ class f7ai(Variable):
     label = 'Report concernant les investissements locatifs intermédiaires en métropole 2014 avec engagement de location 6 ans'
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
+    end = '2019-12-31'
 
 
-class f7bi(Variable):
+class f7ai_2023(Variable):
+    cerfa_field = '7AI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+    end = '2023-12-31'
+
+
+class f7bi_2022(Variable):
     cerfa_field = '7BI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Report concernant les investissements locatifs intermédiaires en métropole réalisés 2014 avec engagement de location 9 ans'
     # start_date = date(2015, 1, 1)
+    end = '2022-12-31'
+    definition_period = YEAR
+
+
+class f7bi_2025(Variable):
+    cerfa_field = '7BI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7by_2025(Variable):
+    cerfa_field = '7BY'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -12054,23 +15282,80 @@ class f7ci_2019(Variable):
     definition_period = YEAR
 
 
-class f7di(Variable):
+class f7di_2022(Variable):
     cerfa_field = '7DI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Report concernant les investissements locatifs intermédiaires en outre-mer 2014 avec engagement de location 9 ans'
     # start_date = date(2015, 1, 1)
+    end = '2022-12-31'
     definition_period = YEAR
 
 
-class f7bz(Variable):
+class f7di_2025(Variable):
+    cerfa_field = '7DI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7du_2025(Variable):
+    cerfa_field = '7DU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7bz_2020(Variable):
     cerfa_field = '7BZ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Report concernant les investissements locatifs intermédiaires en métropole 2015 avec engagement de location 6 ans'
     # start_date = date(2016, 1, 1)
+    end = '2020-12-31'
+    definition_period = YEAR
+
+
+class f7bz_2025(Variable):
+    cerfa_field = '7BZ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7dv_2025(Variable):
+    cerfa_field = '7DV'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
+    definition_period = YEAR
+
+
+class f7dx_2025(Variable):
+    cerfa_field = '7DX'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Scellier'
+    # start_date = date(2024, 1, 1)
+    end = '2025-12-31'
     definition_period = YEAR
 
 
@@ -12104,7 +15389,7 @@ class f7ez(Variable):
     definition_period = YEAR
 
 
-class f7qm(Variable):
+class f7qm_2020(Variable):
     cerfa_field = '7QM'
     value_type = int
     unit = 'currency'
@@ -12112,9 +15397,30 @@ class f7qm(Variable):
     label = 'Investissements locatifs intermédiaires en métropole réalisés en 2017 avec engagement de location 6 ans'
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class f7qn(Variable):
+class f7qm(Variable):
+    cerfa_field = '7QM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en métropole réalisés en 2022 avec engagement de location 6 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7vd(Variable):
+    cerfa_field = '7VD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en métropole réalisés en 2023 avec engagement de location 6 ans et critère QPV/performance'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7qn_2020(Variable):
     cerfa_field = '7QN'
     value_type = int
     unit = 'currency'
@@ -12122,9 +15428,20 @@ class f7qn(Variable):
     label = 'Investissements locatifs intermédiaires en métropole réalisés en 2017 avec engagement de location 9 ans'
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
 
 
-class f7qo(Variable):
+class f7qn(Variable):
+    cerfa_field = '7QN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements immobiliers Pinel en métropole en 2022 avec engagement de 9 ans'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class f7qo_2020(Variable):
     cerfa_field = '7QO'
     value_type = int
     unit = 'currency'
@@ -12132,6 +15449,28 @@ class f7qo(Variable):
     label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2017 avec engagement de location 6 ans'
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
+    end = '2020-12-31'
+
+
+class f7qo(Variable):
+    cerfa_field = '7QO'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2022 avec engagement de location 6 ans'
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7qp_2021(Variable):
+    cerfa_field = '7QP'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2017 avec engagement de location 9 ans'
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
 
 
 class f7qp(Variable):
@@ -12139,8 +15478,8 @@ class f7qp(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2017 avec engagement de location 9 ans'
-    # start_date = date(2017, 1, 1)
+    label = 'Investissements locatifs Pinel en outre-mer réalisés en 2022 avec engagement de location 9 ans'
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -12154,7 +15493,7 @@ class f7qq(Variable):
     definition_period = YEAR
 
 
-class f7qr(Variable):
+class f7qr_2021(Variable):
     cerfa_field = '7QR'
     value_type = int
     unit = 'currency'
@@ -12162,9 +15501,20 @@ class f7qr(Variable):
     label = 'Investissements locatifs intermédiaires en métropole réalisés en 2018 avec engagement de location 6 ans'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
+    end = '2021-12-31'
 
 
-class f7qs(Variable):
+class f7qr(Variable):
+    cerfa_field = '7QR'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en métropole réalisés en 2023 avec engagement de location 6 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7qs_2021(Variable):
     cerfa_field = '7QS'
     value_type = int
     unit = 'currency'
@@ -12172,9 +15522,20 @@ class f7qs(Variable):
     label = 'Investissements locatifs intermédiaires en métropole réalisés en 2018 avec engagement de location 9 ans'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
+    end = '2021-12-31'
 
 
-class f7qt(Variable):
+class f7qs(Variable):
+    cerfa_field = '7QS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en métropole réalisés en 2023 avec engagement de location 9 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7qt_2021(Variable):
     cerfa_field = '7QT'
     value_type = int
     unit = 'currency'
@@ -12182,6 +15543,28 @@ class f7qt(Variable):
     label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2018 avec engagement de location 6 ans'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7qt(Variable):
+    cerfa_field = '7QT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2023 avec engagement de location 6 ans'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class f7qu_2021(Variable):
+    cerfa_field = '7QU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2018 avec engagement de location 9 ans'
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
 
 
 class f7qu(Variable):
@@ -12189,8 +15572,8 @@ class f7qu(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2018 avec engagement de location 9 ans'
-    # start_date = date(2018, 1, 1)
+    label = 'Investissements locatifs intermédiaires en outre-mer réalisés en 2023 avec engagement de location 9 ans'
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -12244,13 +15627,24 @@ class f7rz(Variable):
     definition_period = YEAR
 
 
-class f7sz(Variable):
+class f7sz_2021(Variable):
     cerfa_field = '7SZ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Report concernant les investissements locatifs intermédiaires en outre-mer en 2016 avec engagement de location 6 ans'
     # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+    end = '2021-12-31'
+
+
+class f7sz(Variable):
+    cerfa_field = '7SZ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : report prorogation 2 en 2023 investissement 2014 en outre-mer avec engagement 6 ans'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 

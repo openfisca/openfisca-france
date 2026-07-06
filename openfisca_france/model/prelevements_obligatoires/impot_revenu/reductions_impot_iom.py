@@ -107,7 +107,7 @@ class doment(Variable):
         f7mm = foyer_fiscal('f7mm_2012', period)
         f7ma = foyer_fiscal('f7ma_2012', period)
         f7lg = foyer_fiscal('f7lg_2012', period)
-        f7ks = foyer_fiscal('f7ks', period)
+        f7ks = foyer_fiscal('f7ks_2012', period)
         f7ls = foyer_fiscal('f7ls_2010', period)
 
         return (
@@ -124,9 +124,9 @@ class doment(Variable):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
-        f7ks = foyer_fiscal('f7ks', period)
-        f7kt = foyer_fiscal('f7kt', period)
-        f7ku = foyer_fiscal('f7ku', period)
+        f7ks = foyer_fiscal('f7ks_2012', period)
+        f7kt = foyer_fiscal('f7kt_2012', period)
+        f7ku = foyer_fiscal('f7ku_2012', period)
         f7lg = foyer_fiscal('f7lg_2012', period)
         f7lh = foyer_fiscal('f7lh_2012', period)
         f7li = foyer_fiscal('f7li_2012', period)
@@ -169,9 +169,9 @@ class doment(Variable):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
-        f7ks = foyer_fiscal('f7ks', period)
-        f7kt = foyer_fiscal('f7kt', period)
-        f7ku = foyer_fiscal('f7ku', period)
+        f7ks = foyer_fiscal('f7ks_2012', period)
+        f7kt = foyer_fiscal('f7kt_2012', period)
+        f7ku = foyer_fiscal('f7ku_2012', period)
         f7lg = foyer_fiscal('f7lg_2012', period)
         f7lh = foyer_fiscal('f7lh_2012', period)
         f7li = foyer_fiscal('f7li_2012', period)
