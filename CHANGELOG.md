@@ -1,6 +1,16 @@
 # Changelog
 
-### 175.1.0 [#2782](https://github.com/openfisca/openfisca-france/pull/2782)
+### 175.1.1 [#2654](https://github.com/openfisca/openfisca-france/pull/2654)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées :
+  - parameters/impot_revenu/calcul_reductions_impot/investissements_immobiliers/duflot_pinel_denormandie
+  - model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py
+* Détails :
+- Met à jour les dernières années de la réduction duflot-pinel-denormandie, Scellier et Malraux.
+
+## 175.1.0 [#2782](https://github.com/openfisca/openfisca-france/pull/2782)
 
 * Modifications des dépendances.
 * Périodes concernées : toutes.
