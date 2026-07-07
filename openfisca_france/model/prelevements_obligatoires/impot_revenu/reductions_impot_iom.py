@@ -3596,7 +3596,7 @@ class domlog(Variable):
 
         ri_apres_2011 = (fhos + fhot + fhou + fhov + fhow + fhog + fhox + fhoy + fhoz
                         + fhud + fhue + fhuf + fhug + fhuk + fhul + fhum + fhun + fhur
-                        + fhus + fhut + fhuu + fhvd + fhve + fhvf + fhvg + fhvh + fhvi
+                        + fhus + fhut + fhuu + fhvd + fhve + fhvf + fhvg
                         + fhvj + fhvk + fhvl + fhvm + fhvn)
 
         P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
