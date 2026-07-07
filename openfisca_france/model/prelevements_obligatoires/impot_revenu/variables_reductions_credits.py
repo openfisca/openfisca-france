@@ -3557,7 +3557,7 @@ class fhkt(Variable):
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise"
     # start_date = date(2010, 1, 1)
-    end_date = '2015-31-12'
+    end = '2015-12-31'
     definition_period = YEAR
 
 

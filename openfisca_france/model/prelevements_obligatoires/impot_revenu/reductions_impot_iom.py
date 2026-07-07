@@ -1822,7 +1822,7 @@ class doment(Variable):
         # Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier
         # ou d’un acompte d'au moins 50% :
 
-        # -Investissements donnés en location à une entreprise exploitante 
+        # -Investissements donnés en location à une entreprise exploitante
         # vous rétrocédez la réduction d’impôt
 
         # Réduction à hauteur de 52,63%
