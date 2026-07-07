@@ -1,0 +1,194 @@
+- name: Salaire_net_base
+  description: Montant cotisations sociales celibataire public titulaire etat
+  period: 2024
+  absolute_error_margin: 0.01
+  input:
+    menage:
+      personne_de_reference: ind0
+    famille:
+      parents:
+      - ind0
+    foyer_fiscal:
+      declarants:
+      - ind0
+    individus:
+      ind0:
+        age: 31
+        salaire_de_base:
+          2024-01: 21088/12
+        categorie_salarie:
+          2024: prive_non_cadre
+
+  output:
+    salaire_net:
+      2024-01: 16693/12 # 1932
+
+
+- name: Salaire_net_base
+  description: Montant cotisations sociales celibataire public titulaire etat
+  period: 2004
+  absolute_error_margin: 0.01
+  input:
+    menage:
+      personne_de_reference: ind0
+    famille:
+      parents:
+      - ind0
+    foyer_fiscal:
+      declarants:
+      - ind0
+    individus:
+      ind0:
+        age: 31
+        salaire_de_base:
+          2004-01: 21088/12
+  output:
+    salaire_net:
+      2004-01: 16693/12 # 1932
+
+
+
+- name: RSA
+  description: Montant cotisations sociales celibataire public titulaire etat
+  period: 2025-10
+  absolute_error_margin: 0.01
+  input:
+    menage:
+      personne_de_reference: ind0
+      conjoint: ind1
+      enfants: ind3
+    famille:
+      parents:
+      - ind0
+      - ind1
+      enfants:
+      - ind3
+    foyer_fiscal:
+      declarants:
+      - ind0
+      - ind1
+      personnes_a_charge:
+      - ind3
+    individus:
+      ind0:
+        age: 31
+        salaire_de_base:
+          2025-10: 200
+      ind1:
+        age: 31
+        aah:
+          2025-10: 1033
+      ind3:
+        age: 3
+  output:
+    rsa:
+      2025-10: 1163.736 # 1932
+
+- name: IR Celibataire p50 an
+  description: Montant cotisations sociales celibataire public titulaire etat
+  period: 2024
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '1982-01-01'
+    loyer: 765 * 12
+    salaire_de_base: 28674
+    f7ac: 209
+    f7uf: 149
+    frais_reels: 50*56 * 0.394 + 1515 + 1080 + 281
+
+  output:
+    csg: -2591.84 # 1932
+    crds: -143.59 #823.92 Somme CSG/CRDS OK
+    irpp_economique: -208 #-208 frais reels, -468 avec 10 %
+
+# Frais professionnels : (70 * 2.40 | 1000 + 80) + 281
+#https://www.impots.gouv.fr/particulier/questions/comment-declarer-mes-frais-engages-au-titre-du-teletravail-domicile-en-2020
+#frais kilometrique : 150*56 * 0.394 + 1515
+
+- name: IR - Celibataire p50 mois
+  description: Montant cotisations sociales celibataire public titulaire etat
+  period: 2024-01
+  absolute_error_margin: 1
+  input:
+    date_naissance: '1982-01-01'
+    loyer: 765
+    salaire_de_base: 28674/12
+
+  output:
+    #agirc_arrco_salarie: -75.27 #-1978.56/12
+    vieillesse_plafonnee_salarie: -1978.56/12
+    vieillesse_deplafonnee_salarie: -114.72/12
+    csg_imposable_salaire: (-823.92 + 143.59)/12
+    #agirc_arrco_salarie: -1149.84/12
+    #retraite_supplementaire: 1149.84
+
+
+- name: IR - Celibataire p 75 an
+  description: Montant cotisations sociales celibataire public titulaire etat
+  period: 2024
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '1982-01-01'
+    loyer: 765 * 12
+    salaire_de_base: 40456
+    f7ac: 259
+    f7uf: 178
+    frais_reels: 50*58 * 0.394 + 1515 + 1081 + 368
+
+  output:
+    csg: -3656.82
+    crds: -198.74 #1159.68 Somme CSG/CRDS OK
+    irpp_economique: -1720
+
+# Frais professionnels : (70 * 2.40 | 1000 + 80) + 281
+#https://www.impots.gouv.fr/particulier/questions/comment-declarer-mes-frais-engages-au-titre-du-teletravail-domicile-en-2020
+- name: IR - Celibataire p75 mois
+  description: Montant cotisations sociales celibataire public titulaire etat
+  period: 2024-01
+  absolute_error_margin: 1
+  input:
+    date_naissance: '1982-01-01'
+    loyer: 765
+    salaire_de_base: 40456/12
+    #f7ac: 209
+    #f7uf: 149
+
+  output:
+    vieillesse_plafonnee_salarie: -2791.44/12
+    vieillesse_deplafonnee_salarie: -161.88/12
+    csg_imposable_salaire: (-1159.68 + 198.74)/12
+    #agirc_arrco_salarie: -1622.28/12
+    #retraite_supplementaire: 1149.84
+
+- name: IR - Celibataire p 90 an
+  description: Montant cotisations sociales celibataire public titulaire etat
+  period: 2024
+  absolute_error_margin: 0.01
+  input:
+    date_naissance: '1982-01-01'
+    salaire_de_base: 58206
+    f7ac: 279
+    f7uf: 233
+    frais_reels: 50*58 * 0.394 + 1515 + 1087 + 489 # C'est le 10% qui est pris en compte
+
+  output:
+    csg: -5261.25
+    crds: -285.94 #1159.68 Somme CSG/CRDS OK
+    irpp_economique: -5853
+
+# Frais professionnels : (70 * 2.40 | 1000 + 80) + 281
+#https://www.impots.gouv.fr/particulier/questions/comment-declarer-mes-frais-engages-au-titre-du-teletravail-domicile-en-2020
+- name: IR - Celibataire p90 mois
+  description: Montant cotisations sociales celibataire public titulaire etat
+  period: 2024-01
+  absolute_error_margin: 1
+  input:
+    date_naissance: '1982-01-01'
+    salaire_de_base: 58206/12
+
+  output:
+    vieillesse_plafonnee_salarie: -266.62 #-3249.96/12
+    vieillesse_deplafonnee_salarie: -232.8/12
+    csg_imposable_salaire: (-1665.36 + 285.94)/12
+    #agirc_arrco_salarie: -3049.68/12
+    #retraite_supplementaire: 1149.84

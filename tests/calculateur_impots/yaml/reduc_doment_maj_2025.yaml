@@ -1,0 +1,67 @@
+- name: reduc_doment_maj_2025
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      fhgs: 300
+      fhgt: 400
+      fhgu: 200
+      fhgw: 500
+
+      fhhs: 400
+      fhht: 600
+      fhhu: 200
+      fhhw: 700
+
+      fhis: 200
+      fhit: 300
+      fhiu: 100
+      fhiw: 400
+
+      fhjs: 200
+      fhjt: 300
+      fhju: 200
+      fhjw: 500
+
+      fhks: 400
+      fhkt: 600
+      fhku: 300
+      fhkw: 800
+
+      fhls: 1000
+      fhlt: 1500
+      fhlu: 800
+      fhlw: 2000
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1976-01-01'
+        salaire_imposable: 200000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    reductions: 8850.0
+    iai: 47074.0
+    impot_revenu_restant_a_payer: -47074.0
+    rbg: 185445.0
+    rfr: 185445.0
+    rni: 185445.0
