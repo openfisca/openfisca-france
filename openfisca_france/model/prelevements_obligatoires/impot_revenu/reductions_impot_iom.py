@@ -3483,7 +3483,6 @@ class domlog(Variable):
         fhve = foyer_fiscal('fhve', period)  # 2017
         fhvf = foyer_fiscal('fhvf', period)  # 2017
         fhvg = foyer_fiscal('fhvg', period)  # 2017
-        fhvh = foyer_fiscal('fhvh', period)  # 2018
         fhvi = foyer_fiscal('fhvi', period)  # 2019
         fhvj = foyer_fiscal('fhvj', period)  # 2020
         fhvk = foyer_fiscal('fhvk', period)  # 2021
