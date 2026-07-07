@@ -270,7 +270,7 @@ class doment(Variable):
         fhtb = foyer_fiscal('fhtb', period)
         fhtd = foyer_fiscal('fhtd', period)
         fhks = foyer_fiscal('fhks', period)
-        fhkt = foyer_fiscal('fhkt', period)
+        fhkt_2015 = foyer_fiscal('fhkt_2015', period)
         fhku = foyer_fiscal('fhku', period)
         fhlg = foyer_fiscal('fhlg', period)
         fhlh = foyer_fiscal('fhlh', period)
@@ -331,7 +331,7 @@ class doment(Variable):
 
         return (
             fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso
-            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt + fhku + fhlg + fhlh + fhli + fhma
+            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt_2015 + fhku + fhlg + fhlh + fhli + fhma
             + fhmb + fhmc + fhmm + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi
             + fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf
             + fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhqz + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp
@@ -367,7 +367,7 @@ class doment(Variable):
         fhbe = foyer_fiscal('fhbe', period)
         fhbg = foyer_fiscal('fhbg', period)
         fhks = foyer_fiscal('fhks', period)
-        fhkt = foyer_fiscal('fhkt', period)
+        fhkt_2015 = foyer_fiscal('fhkt_2015', period)
         fhku = foyer_fiscal('fhku', period)
         fhlg = foyer_fiscal('fhlg', period)
         fhlh = foyer_fiscal('fhlh', period)
@@ -452,7 +452,7 @@ class doment(Variable):
             fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar
             + fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg
             + fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso
-            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt + fhku + fhlg + fhlh + fhli + fhma
+            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt_2015 + fhku + fhlg + fhlh + fhli + fhma
             + fhmb + fhmc + fhmm + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi
             + fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf
             + fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp
@@ -507,7 +507,7 @@ class doment(Variable):
         fhcd = foyer_fiscal('fhcd', period)
         fhce = foyer_fiscal('fhce', period)
         fhcg = foyer_fiscal('fhcg', period)
-        fhkt = foyer_fiscal('fhkt', period)
+        fhkt_2015 = foyer_fiscal('fhkt_2015', period)
         fhku = foyer_fiscal('fhku', period)
         fhlh = foyer_fiscal('fhlh', period)
         fhli = foyer_fiscal('fhli', period)
@@ -591,7 +591,7 @@ class doment(Variable):
             + fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar
             + fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg
             + fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso
-            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhkt + fhku + fhlh + fhli
+            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhkt_2015 + fhku + fhlh + fhli
             + fhmb + fhmc + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi
             + fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf
             + fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp
