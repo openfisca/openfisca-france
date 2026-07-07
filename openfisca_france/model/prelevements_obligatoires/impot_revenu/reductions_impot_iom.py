@@ -3675,9 +3675,7 @@ class domlog(Variable):
         fhve = foyer_fiscal('fhve', period)  # 2017
         fhvf = foyer_fiscal('fhvf', period)  # 2017
         fhvg = foyer_fiscal('fhvg', period)  # 2017
-        fhvh = foyer_fiscal('fhvh', period)  # 2018
-        fhvi = foyer_fiscal('fhvi', period)  # 2019
-        fhvj = foyer_fiscal('fhvj', period)  # 2020
+
         fhvk = foyer_fiscal('fhvk', period)  # 2021
         fhvl = foyer_fiscal('fhvl', period)  # 2022
         fhvm = foyer_fiscal('fhvm', period)  # 2023
@@ -3691,9 +3689,8 @@ class domlog(Variable):
 
         ri_apres_2011 = (fhos + fhot + fhou + fhov + fhow + fhog + fhox + fhoy + fhoz
                         + fhud + fhue + fhuf + fhug + fhuk + fhul + fhum + fhun + fhur
-                        + fhus + fhut + fhuu + fhvd + fhve + fhvf + fhvg + fhvh + fhvi
-                        + fhvj + fhvk + fhvl + fhvm + fhvn + fhvo)
-
+                        + fhus + fhut + fhuu + fhvd + fhve + fhvf + fhvg + fhvk + fhvl
+                        + fhvm + fhvn + fhvo)
         P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
         P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
         P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
