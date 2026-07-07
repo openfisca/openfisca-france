@@ -1,4 +1,11 @@
 # Changelog
+### 175.1.2 [#2761](https://github.com/openfisca/openfisca-france/pull/2761)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : À partir du 01/01/2007.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/tp_taux/tf_taille_famille/metropole/avec_6_enfants`
+* Détails :
+  - Correction de la valeur du paramètre TF pour les ménages avec 6 enfants dans les aides au logement.
 
 ### 175.1.1 [#2654](https://github.com/openfisca/openfisca-france/pull/2654)
 
