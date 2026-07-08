@@ -5475,6 +5475,46 @@ class fhyd(Variable):
     definition_period = YEAR
 
 
+class fhyg(Variable):
+    cerfa_field = 'HYG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomSoc'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class fhyh(Variable):
+    cerfa_field = 'HYH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomSoc'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class fhyi(Variable):
+    cerfa_field = 'HYI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomSoc'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class fhyj(Variable):
+    cerfa_field = 'HYJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomSoc'
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
 class fhye(Variable):
     cerfa_field = 'HYE'
     value_type = int
@@ -7338,6 +7378,7 @@ class fhqb(Variable):
     cerfa_field = 'HQB'
     value_type = int
     unit = 'currency'
+    label = 'DomLog'
     entity = FoyerFiscal
     definition_period = YEAR
 
@@ -8830,6 +8871,46 @@ class fhoz(Variable):
     entity = FoyerFiscal
     label = 'Investissements outre-mer dans le logement : Investissements réalisés en 2013, Autres investissements'
     # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class fhvl(Variable):
+    cerfa_field = 'HVL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class fhvm(Variable):
+    cerfa_field = 'HVM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class fhvn(Variable):
+    cerfa_field = 'HVN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class fhvo(Variable):
+    cerfa_field = 'HVO'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
