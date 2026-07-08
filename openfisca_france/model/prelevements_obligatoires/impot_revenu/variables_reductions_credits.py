@@ -3550,13 +3550,14 @@ class f7rt(Variable):
     definition_period = YEAR
 
 
-class fhkt(Variable):
+class fhkt_2015(Variable):
     cerfa_field = 'HKT'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise"
-    # start_date = date(2013, 1, 1)
+    # start_date = date(2010, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -4207,7 +4208,8 @@ class fhku(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements dans votre entreprise"
-    # start_date = date(2013, 1, 1)
+    # start_date = date(2010, 1, 1)
+    # end-date = date(2015, 31,12) la dernière brochure qui les prend en compte est celle de 2016 sur les revenus de 2015 et à partir des revenus de 2024, ce nom de variable est utilisé à nouveau. (cf fhku_2024)
     definition_period = YEAR
 
 
@@ -5230,6 +5232,166 @@ class fhdw(Variable):
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise"
     # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhis(Variable):
+    cerfa_field = 'HIS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class fhit(Variable):
+    cerfa_field = 'HIT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class fhiu(Variable):
+    cerfa_field = 'HIU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class fhiw(Variable):
+    cerfa_field = 'HIW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2022, 1, 1)
+    definition_period = YEAR
+
+
+class fhjs(Variable):
+    cerfa_field = 'HJS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class fhjt(Variable):
+    cerfa_field = 'HJT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class fhju(Variable):
+    cerfa_field = 'HJU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class fhjw(Variable):
+    cerfa_field = 'HJW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2023, 1, 1)
+    definition_period = YEAR
+
+
+class fhks_2024(Variable):
+    cerfa_field = 'HKS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class fhkt_2024(Variable):
+    cerfa_field = 'HKT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class fhku_2024(Variable):
+    cerfa_field = 'HKU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise, réalisés en 2024 dans votre entreprise"
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class fhkw(Variable):
+    cerfa_field = 'HKW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2024, 1, 1)
+    definition_period = YEAR
+
+
+class fhls(Variable):
+    cerfa_field = 'HLS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class fhlt(Variable):
+    cerfa_field = 'HLT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class fhlu(Variable):
+    cerfa_field = 'HLU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2025, 1, 1)
+    definition_period = YEAR
+
+
+class fhlw(Variable):
+    cerfa_field = 'HLW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements outre-mer dans le cadre de l'entreprise"
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -7903,6 +8065,8 @@ class fhks(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
+    # start_date = date(2009, 1, 1)
+    # end-date = date(2014, 31, 12) la dernière brochure qui les prend en compte est celle de 2015 sur les revenus de 2014 et à partir des revenus de 2024, ce nom de variable est utilisé à nouveau. (cf fhks_2024)
     definition_period = YEAR
 
 
