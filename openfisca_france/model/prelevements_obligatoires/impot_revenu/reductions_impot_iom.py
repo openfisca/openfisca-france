@@ -4655,7 +4655,7 @@ class domsoc(Variable):
         rc_65 = base_65 * P2010.retrocession_taux / (1 - P2010.retrocession_taux)
 
         return base_70 + base_65 + rc_70 + rc_65
-        
+
     def formula_2022_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
