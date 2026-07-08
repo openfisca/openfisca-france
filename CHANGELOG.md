@@ -1,7 +1,17 @@
 # Changelog
 
+### 175.1.4 [#2781](https://github.com/openfisca/openfisca-france/pull/2781)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/01/2022.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_iom.py` et `openfisca_france/model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
+* Détails :
+- ajout de la formule de calcul de doment sur 2022, 23, 24, 25
+- création des variables nécessaire
+
 ### 175.1.3 [#2780](https://github.com/openfisca/openfisca-france/pull/2780)
 
+* Évolution du système socio-fiscal
 * Périodes concernées : jusqu'au 31/12/2025. | à partir du 01/01/2021.
 * Zones impactées : `openfisca_france\model\prelevements_obligatoires\impot_revenu\variables_reductions_credits.py`. et `openfisca_france\model\prelevements_obligatoires\impot_revenu\reductions_impot_iom.py`
 * Détails :
