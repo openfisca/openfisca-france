@@ -718,14 +718,12 @@ class ci_investissement_forestier(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         ci_trav_adh = min_(
-            P.travaux.plafond * (maries_ou_pacses + 1), 
-            f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu
-        )
-        
+            P.travaux.plafond * (maries_ou_pacses + 1),
+            f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu)
+
         ci_trav = min_(
-            P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, 
-            f7vp + f7vt + f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th + f7vv + f7tj
-        )
+            P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh,
+            f7vp + f7vt + f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th + f7vv + f7tj)
 
         ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
