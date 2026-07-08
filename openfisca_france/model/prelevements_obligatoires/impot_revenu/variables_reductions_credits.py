@@ -5473,42 +5473,7 @@ class fhyd(Variable):
     label = 'DomSoc'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
-
-class fhyg(Variable):
-    cerfa_field = 'HYG'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = 'DomSoc'
-    # start_date = date(2022, 1, 1)
-    definition_period = YEAR
-
-class fhyh(Variable):
-    cerfa_field = 'HYH'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = 'DomSoc'
-    # start_date = date(2023, 1, 1)
-    definition_period = YEAR
-
-class fhyi(Variable):
-    cerfa_field = 'HYI'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = 'DomSoc'
-    # start_date = date(2024, 1, 1)
-    definition_period = YEAR
-
-class fhyj(Variable):
-    cerfa_field = 'HYJ'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = 'DomSoc'
-    # start_date = date(2025, 1, 1)
-    definition_period = YEAR
+    
 
 class fhyg(Variable):
     cerfa_field = 'HYG'
