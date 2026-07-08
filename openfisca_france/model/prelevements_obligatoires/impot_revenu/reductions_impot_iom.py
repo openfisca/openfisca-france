@@ -4263,7 +4263,6 @@ class domsoc(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
         P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
-
         base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_taux))
         base_65 = min_(P2010.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P2010.retrocession_taux))
 
@@ -4271,3 +4270,73 @@ class domsoc(Variable):
         rc_65 = base_65 * P2010.retrocession_taux / (1 - P2010.retrocession_taux)
 
         return base_70 + base_65 + rc_70 + rc_65
+    
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2022
+        '''
+        fhyb = foyer_fiscal('fhyb', period)  # 2017
+        fhyc = foyer_fiscal('fhyc', period)  # 2018
+        fhyd = foyer_fiscal('fhyd', period)  # 2019
+        fhye = foyer_fiscal('fhye', period)  # 2020
+        fhyf = foyer_fiscal('fhyf', period)  # 2021
+        fhyg = foyer_fiscal('fhyg', period)  # 2022 (Année en cours)
+
+        total_brut_soc = fhyb + fhyc + fhyd + fhye + fhyf + fhyg
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        return min_(total_brut_soc, P.plafond)
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2023
+        '''
+        fhyc = foyer_fiscal('fhyc', period)  # 2018
+        fhyd = foyer_fiscal('fhyd', period)  # 2019
+        fhye = foyer_fiscal('fhye', period)  # 2020
+        fhyf = foyer_fiscal('fhyf', period)  # 2021
+        fhyg = foyer_fiscal('fhyg', period)  # 2022
+        fhyh = foyer_fiscal('fhyh', period)  # 2023 (Année en cours)
+
+        total_brut_soc = fhyc + fhyd + fhye + fhyf + fhyg + fhyh
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        return min_(total_brut_soc, P.plafond)
+
+    def formula_2024_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2024
+        '''
+        fhyd = foyer_fiscal('fhyd', period)  # 2019
+        fhye = foyer_fiscal('fhye', period)  # 2020
+        fhyf = foyer_fiscal('fhyf', period)  # 2021
+        fhyg = foyer_fiscal('fhyg', period)  # 2022
+        fhyh = foyer_fiscal('fhyh', period)  # 2023
+        fhyi = foyer_fiscal('fhyi', period)  # 2024 (Année en cours)
+
+        total_brut_soc = fhyd + fhye + fhyf + fhyg + fhyh + fhyi
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        return min_(total_brut_soc, P.plafond)
+    
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2025
+        '''
+        fhye = foyer_fiscal('fhye', period)  # 2020
+        fhyf = foyer_fiscal('fhyf', period)  # 2021
+        fhyg = foyer_fiscal('fhyg', period)  # 2022
+        fhyh = foyer_fiscal('fhyh', period)  # 2023
+        fhyi = foyer_fiscal('fhyi', period)  # 2024
+        fhyj = foyer_fiscal('fhyj', period)  # 2025 (Année en cours)
+
+        total_brut_soc = fhye + fhyf + fhyg + fhyh + fhyi + fhyj
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        ri_soc_plafonne = min_(total_brut_soc, P.plafond)
+
+        return ri_soc_plafonne
