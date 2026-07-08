@@ -5473,7 +5473,7 @@ class fhyd(Variable):
     label = 'DomSoc'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
-    
+
 
 class fhyg(Variable):
     cerfa_field = 'HYG'
