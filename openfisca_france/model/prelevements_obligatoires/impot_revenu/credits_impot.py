@@ -679,6 +679,58 @@ class ci_investissement_forestier(Variable):
 
         return ci_travaux
 
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2025
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        # Nouvelles variables de l'année en cours (2025)
+        f7vp = foyer_fiscal('f7vp', period)
+        f7vt = foyer_fiscal('f7vt', period)
+
+        # Reports des années précédentes
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+        f7tp = foyer_fiscal('f7tp', period)
+        f7tq = foyer_fiscal('f7tq', period)
+        f7tr = foyer_fiscal('f7tr', period)
+        f7ts = foyer_fiscal('f7ts', period)
+        f7tt = foyer_fiscal('f7tt', period)
+        f7tu = foyer_fiscal('f7tu', period)
+        f7tv = foyer_fiscal('f7tv', period)
+        f7tw = foyer_fiscal('f7tw', period)
+        f7vm = foyer_fiscal('f7vm', period)
+        f7ta = foyer_fiscal('f7ta', period)
+        f7vn = foyer_fiscal('f7vn', period)
+        f7tb = foyer_fiscal('f7tb', period)
+        f7vq = foyer_fiscal('f7vq', period)
+        f7te = foyer_fiscal('f7te', period)
+        f7vr = foyer_fiscal('f7vr', period)
+        f7tf = foyer_fiscal('f7tf', period)
+        f7vs = foyer_fiscal('f7vs', period)
+        f7th = foyer_fiscal('f7th', period)
+        f7vu = foyer_fiscal('f7vu', period)
+        f7ti = foyer_fiscal('f7ti', period)
+        f7vv = foyer_fiscal('f7vv', period)
+        f7tj = foyer_fiscal('f7tj', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+
+        ci_trav_adh = min_(
+            P.travaux.plafond * (maries_ou_pacses + 1), 
+            f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu
+        )
+        
+        ci_trav = min_(
+            P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, 
+            f7vp + f7vt + f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th + f7vv + f7tj
+        )
+
+        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
+
+        return ci_travaux
+
 
 class acqgpl(Variable):
     value_type = float
