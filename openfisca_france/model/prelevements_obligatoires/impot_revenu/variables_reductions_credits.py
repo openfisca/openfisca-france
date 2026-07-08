@@ -3550,7 +3550,7 @@ class f7rt(Variable):
     definition_period = YEAR
 
 
-class fhkt(Variable):
+class fhkt_2015(Variable):
     cerfa_field = 'HKT'
     value_type = int
     unit = 'currency'

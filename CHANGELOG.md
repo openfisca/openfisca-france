@@ -1,4 +1,17 @@
 # Changelog
+
+### 175.1.3 [#2780](https://github.com/openfisca/openfisca-france/pull/2780)
+
+* Périodes concernées : jusqu'au 31/12/2025. | à partir du 01/01/2021.
+* Zones impactées : `openfisca_france\model\prelevements_obligatoires\impot_revenu\variables_reductions_credits.py`. et `openfisca_france\model\prelevements_obligatoires\impot_revenu\reductions_impot_iom.py`
+* Détails :
+- Dans class(doment) de reductions_impot_iom.py :
+- correction des formules de calculs de taux dans les formules de 2020 et 2021, les valeurs avant 2015 sont toujours effectives jusqu'en 2024
+- ajout dans la formule 2021 du doment des variables d'investissements de 2021
+- création des formules de 2022 à 2025
+- Dans variables_reductions_credits.py
+- ajout des nouvelles variables
+
 ### 175.1.2 [#2761](https://github.com/openfisca/openfisca-france/pull/2761)
 
 * Évolution du système socio-fiscal
