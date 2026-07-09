@@ -1121,7 +1121,12 @@ class aide_logement_loyer_plafond(Variable):
             )
 
         coeff_coloc = where(coloc, plafonds_loyers_coef_chambre_coloc.coef_colocation, 1)
-        coeff_chambre = where(chambre, plafonds_loyers_coef_chambre_coloc.coef_chambre, 1)
+        coeff_chambre = select(
+            (and_(chambre, hebergement_onereux_personne_agee_ou_handicapee), chambre),
+            (plafonds_loyers_coef_chambre_coloc.coef_chambre_hebergement_onereux_personne_agee_ou_handicapee,
+             plafonds_loyers_coef_chambre_coloc.coef_chambre),
+            default = 1
+            )
 
         return round_(plafond * coeff_coloc * coeff_chambre, 2)
 
