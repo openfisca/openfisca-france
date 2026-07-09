@@ -1,5 +1,17 @@
 # Changelog
 
+### 175.1.9 [#2773](https://github.com/openfisca/openfisca-france/pull/2773)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Jusqu'au 31/12/2022 pour le plafonnement ; à partir du 01/01/2023 pour sa suppression.
+* Zones impactées :
+    - `openfisca_france/model/prestations/aides_logement`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - Plafonnement du `R0` DOM à six personnes à charge jusqu'en 2022
+    - Correction de la fin du plafonnement du loyer de référence DOM
+    - Suppression du plafonnement à partir de 2023 lorsque le barème ne le prévoit plus
+
 ### 175.1.8 [#2772](https://github.com/openfisca/openfisca-france/pull/2772)
 
 * Évolution du système socio-fiscal.
