@@ -3,7 +3,7 @@
 ### 175.1.8 [#2772](https://github.com/openfisca/openfisca-france/pull/2772)
 
 * Évolution du système socio-fiscal.
-* Périodes concernées : À partir du 01/01/2020.
+* Périodes concernées : À partir du 01/07/1994.
 * Zones impactées :
     - `openfisca_france/model/prestations/aides_logement`
     - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/c_forfait_charges/*`
