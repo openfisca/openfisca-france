@@ -164,7 +164,7 @@
       f7ct: 1000
       f7ca: 500
       f7dc: 1000
-      f7bs: 500
+      f7bs_2021: 500
 
       # 2022
       f7cu: 1000
@@ -173,7 +173,7 @@
 
       # 2023
       f7cp: 500
-      f7cq: 1000
+      f7cq_2023: 1000
       f7bu: 500
 
       # 2024
@@ -183,19 +183,19 @@
       f7bw: 500
 
       # 2025
-      f7ci: 1000
+      f7ci_2023: 1000
       f7co: 500
       f7cr: 1000
-      f7dz: 500
+      f7dz_2025: 500
       f7gw: 1000
 
       # PLAFOND GÉNÉRAL
       f7ek: 50
       f7cy: 100
       f7dy: 50
-      f7ey: 100
-      f7fy: 50
-      f7gy: 100
+      f7ey_2022: 100
+      f7fy_2023: 50
+      f7gy_2022: 100
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -214,8 +214,8 @@
     menage:
       personne_de_reference: ind0
   output:
-    impot_revenu_restant_a_payer: -62624
+    impot_revenu_restant_a_payer: -62714
     rbg: 200000.0
-    reductions: 3900.0
+    reductions: 3810.0
     rfr: 200000.0
     rni: 200000.0
