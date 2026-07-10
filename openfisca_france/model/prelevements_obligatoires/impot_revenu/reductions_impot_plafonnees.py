@@ -2398,6 +2398,123 @@ class cappme(Variable):
                 + base_pme_2021_apres0805))
 
 
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        '''
+        Souscriptions au capital des PME, ESUS, SFS, JEI et JEIR, 2025
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        # année courante
+        f7ci = foyer_fiscal('f7ci', period)  # 2025
+        f7co = foyer_fiscal('f7co', period)  # 2025
+        f7cr = foyer_fiscal('f7cr', period)  # 2025
+        f7dz = foyer_fiscal('f7dz', period)  # 2025
+        f7gw = foyer_fiscal('f7gw', period)  # 2025
+
+        # Reports
+        f7ct = foyer_fiscal('f7ct', period)  # 2021
+        f7ca = foyer_fiscal('f7ca', period)  # 2021
+        f7dc = foyer_fiscal('f7dc', period)  # 2021
+        f7bs = foyer_fiscal('f7bs', period)  # 2021
+
+        f7cu = foyer_fiscal('f7cu', period)  # 2022
+        f7cw = foyer_fiscal('f7cw', period)  # 2022
+        f7bt = foyer_fiscal('f7bt', period)  # 2022
+
+        f7cp = foyer_fiscal('f7cp', period)  # 2023
+        f7cq = foyer_fiscal('f7cq', period)  # 2023
+        f7bu = foyer_fiscal('f7bu', period)  # 2023
+
+        f7cv = foyer_fiscal('f7cv', period)  # 2024
+        f7do = foyer_fiscal('f7do', period)  # 2024
+        f7dp = foyer_fiscal('f7dp', period)  # 2024
+        f7bw = foyer_fiscal('f7bw', period)  # 2024
+
+        # Plafond général
+        f7ek = foyer_fiscal('f7ek', period)  # 2021 (SFS / ESUS)
+        f7cy = foyer_fiscal('f7cy', period)  # 2020
+        f7dy = foyer_fiscal('f7dy', period)  # 2021
+        f7ey = foyer_fiscal('f7ey', period)  # 2022
+        f7fy = foyer_fiscal('f7fy', period)  # 2023
+        f7gy = foyer_fiscal('f7gy', period)  # 2024
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
+        plafond_PME = P.seuil * (maries_ou_pacses + 1)
+
+        # imputation du plus ancien au plus récent
+        # Reports 2021
+        base_report_pme_esus_2021_avant0805 = min_(f7ct, plafond_PME)
+        base_report_pme_2021_apres0805 = max_(0, min_(f7ca, plafond_PME - base_report_pme_esus_2021_avant0805))
+        base_report_esus_2021_apres0805 = max_(0, min_(f7dc, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805))
+        base_report_sfs_2021 = max_(0, min_(f7bs, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805))
+
+        # Reports 2022
+        base_report_pme_esus_2022_avant1803 = max_(0, min_(f7cu, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021))
+        base_report_pme_esus_2022_apres1803 = max_(0, min_(f7cw, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803))
+        base_report_sfs_2022 = max_(0, min_(f7bt, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803))
+
+        # Reports 2023
+        base_report_pme_esus_2023_avant1103 = max_(0, min_(f7cp, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022))
+        base_report_pme_esus_2023_apres1103 = max_(0, min_(f7cq, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103))
+        base_report_sfs_2023 = max_(0, min_(f7bu, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103))
+
+        # Reports 2024
+        base_report_pme_2024 = max_(0, min_(f7cv, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023))
+        base_report_esus_2024_avant2706 = max_(0, min_(f7do, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024))
+        base_report_esus_2024_apres2706 = max_(0, min_(f7dp, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024 - base_report_esus_2024_avant2706))
+        base_report_sfs_2024 = max_(0, min_(f7bw, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024 - base_report_esus_2024_avant2706 - base_report_esus_2024_apres2706))
+
+        # année de calcul
+        
+        # PME (7CI), ESUS (7CO) et SFS (7GW) de 2025 sont au plafond PME classique
+        base_pme_2025 = max_(0, min_(f7ci, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024 - base_report_esus_2024_avant2706 - base_report_esus_2024_apres2706 - base_report_sfs_2024))
+        
+        base_esus_2025 = max_(0, min_(f7co, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024 - base_report_esus_2024_avant2706 - base_report_esus_2024_apres2706 - base_report_sfs_2024 - base_pme_2025))
+        
+        base_sfs_2025 = max_(0, min_(f7gw, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024 - base_report_esus_2024_avant2706 - base_report_esus_2024_apres2706 - base_report_sfs_2024 - base_pme_2025 - base_esus_2025))
+
+        # JEI et JEIR de 2025 ont des plafonds autonomes (distincts du plafond PME classique)
+        plafond_JEI = 75000 * (maries_ou_pacses + 1)
+        base_jei_2025 = min_(f7cr, plafond_JEI)
+
+        plafond_JEIR = 50000 * (maries_ou_pacses + 1)
+        base_jeir_2025 = min_(f7dz, plafond_JEIR)
+
+        
+        reports_plaf_general = f7cy + f7dy + f7ey + f7fy + f7gy + f7ek
+
+        return (
+            reports_plaf_general
+            # Bloc de réduction au taux de base (18 %)
+            + P.taux * (
+                base_report_pme_esus_2021_avant0805
+                + base_report_pme_esus_2022_avant1803
+                + base_report_pme_esus_2023_avant1103
+                + base_report_pme_2024
+                + base_report_esus_2024_avant2706
+                + base_pme_2025
+            )
+            # Bloc de réduction au taux bonifié (25 %)
+            + P.taux25 * (
+                base_report_pme_2021_apres0805
+                + base_report_esus_2021_apres0805
+                + base_report_sfs_2021
+                + base_report_pme_esus_2022_apres1803
+                + base_report_sfs_2022
+                + base_report_pme_esus_2023_apres1103
+                + base_report_sfs_2023
+                + base_report_esus_2024_apres2706
+                + base_report_sfs_2024
+                + base_esus_2025
+                + base_sfs_2025
+            )
+            # Bloc JEI / JEU (Taux de 30 %)
+            + P.taux_jei * base_jei_2025
+            # Bloc JEIR (Taux de 50 %)
+            + P.taux_jeir * base_jeir_2025
+        )
+
+
 class cappme_esus_sfs(Variable):
     value_type = float
     entity = FoyerFiscal
