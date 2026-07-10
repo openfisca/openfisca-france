@@ -1,5 +1,14 @@
 # Changelog
 
+### 175.1.6 [#2768](https://github.com/openfisca/openfisca-france/pull/2768)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 01/01/2023
+* Zones impactées : `openfisca_france/model/prestations/aides_logement`
+* Détails :
+    - Corrige le taux `TF` en métropole pour les ménages ayant au moins 4 personnes à charge
+    - L'erreur sommait le taux pour 4, 5, et ≥6 personnes à charge
+
 ### 175.1.5 [#2766](https://github.com/openfisca/openfisca-france/pull/2766)
 
 * Évolution du système socio-fiscal.
