@@ -27,7 +27,7 @@ class logement_chambre(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class hebergement_onereux_personne_agee_ou_handicapee(Variable):
+class personne_agee_handicapee(Variable):
     value_type = bool
     entity = Menage
     label = 'Personne agee ou handicapee hebergee a titre onereux chez un particulier'

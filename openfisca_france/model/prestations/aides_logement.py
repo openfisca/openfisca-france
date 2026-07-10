@@ -1101,8 +1101,8 @@ class aide_logement_loyer_plafond(Variable):
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
         chambre = famille.demandeur.menage('logement_chambre', period)
-        hebergement_onereux_personne_agee_ou_handicapee = famille.demandeur.menage(
-            'hebergement_onereux_personne_agee_ou_handicapee', period
+        personne_agee_handicapee = famille.demandeur.menage(
+            'personne_agee_handicapee', period
             )
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
@@ -1122,8 +1122,8 @@ class aide_logement_loyer_plafond(Variable):
 
         coeff_coloc = where(coloc, plafonds_loyers_coef_chambre_coloc.coef_colocation, 1)
         coeff_chambre = select(
-            (and_(chambre, hebergement_onereux_personne_agee_ou_handicapee), chambre),
-            (plafonds_loyers_coef_chambre_coloc.coef_chambre_hebergement_onereux_personne_agee_ou_handicapee,
+            (and_(chambre, personne_agee_handicapee), chambre),
+            (plafonds_loyers_coef_chambre_coloc.personne_agee_handicapee,
              plafonds_loyers_coef_chambre_coloc.coef_chambre),
             default = 1
             )
