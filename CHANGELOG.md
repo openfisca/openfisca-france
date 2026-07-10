@@ -1,5 +1,17 @@
 # Changelog
 
+### 175.1.7 [#2770](https://github.com/openfisca/openfisca-france/pull/2770)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 01/01/2002.
+* Zones impactées :
+    - `openfisca_france/model/prestations/aides_logement.py`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/l_plafonds_loyers/coef_chambre_et_colocation`
+    - `openfisca_france/model/caracteristiques_socio_demographiques/logement.py`
+* Détails :
+    - Prend en compte du cas d'hébergement onéreux des personnes âgées ou handicapées dans le coefficient `chambre`.
+    - Création de la variables nécessaires, et utilisation pour calculer le coefficient applicable
+
 ### 175.1.6 [#2768](https://github.com/openfisca/openfisca-france/pull/2768)
 
 * Évolution du système socio-fiscal.
