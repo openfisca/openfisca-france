@@ -146,3 +146,76 @@
     reductions: 7850.0
     rfr: 45000.0
     rni: 45000.0
+- name: reduc_cappme
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      # 2021
+      f7ct: 1000
+      f7ca: 500
+      f7dc: 1000
+      f7bs: 500
+
+      # 2022
+      f7cu: 1000
+      f7cw: 500
+      f7bt: 1000
+
+      # 2023
+      f7cp: 500
+      f7cq: 1000
+      f7bu: 500
+
+      # 2024
+      f7cv: 1000
+      f7do: 500
+      f7dp: 1000
+      f7bw: 500
+
+      # 2025
+      f7ci: 1000
+      f7co: 500
+      f7cr: 1000
+      f7dz: 500
+      f7gw: 1000
+
+      # PLAFOND GÉNÉRAL
+      f7ek: 50
+      f7cy: 100
+      f7dy: 50
+      f7ey: 100
+      f7fy: 50
+      f7gy: 100
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        abic_impn: 200000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    impot_revenu_restant_a_payer: -62624
+    rbg: 200000.0
+    reductions: 3900.0
+    rfr: 200000.0
+    rni: 200000.0
