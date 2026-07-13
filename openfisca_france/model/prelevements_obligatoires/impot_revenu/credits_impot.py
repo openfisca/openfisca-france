@@ -694,7 +694,6 @@ class ci_investissement_forestier(Variable):
         # Reports des années précédentes
         f7vt = foyer_fiscal('f7vt', period)
         f7tk = foyer_fiscal('f7tk', period)
-        f7tp = foyer_fiscal('f7tp', period)
         f7tq = foyer_fiscal('f7tq', period)
         f7tr = foyer_fiscal('f7tr', period)
         f7ts = foyer_fiscal('f7ts', period)
@@ -702,9 +701,7 @@ class ci_investissement_forestier(Variable):
         f7tu = foyer_fiscal('f7tu', period)
         f7tv = foyer_fiscal('f7tv', period)
         f7tw = foyer_fiscal('f7tw', period)
-        f7vm = foyer_fiscal('f7vm', period)
         f7ta = foyer_fiscal('f7ta', period)
-        f7vn = foyer_fiscal('f7vn', period)
         f7tb = foyer_fiscal('f7tb', period)
         f7vq = foyer_fiscal('f7vq', period)
         f7te = foyer_fiscal('f7te', period)
@@ -721,11 +718,11 @@ class ci_investissement_forestier(Variable):
 
         ci_trav_adh = min_(
             P.travaux.plafond * (maries_ou_pacses + 1),
-            f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu)
+            f7ts + f7tu + f7tw + f7tb + f7vr + f7tf + f7ti + f7vu)
 
         ci_trav = min_(
             P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh,
-            f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th + f7vv + f7tj)
+            f7up + f7ut + f7tr + f7tt + f7tv + f7ta + f7vq + f7te + f7vs + f7th + f7vv + f7tj)
 
         ci_acquisition = P.acquisition.taux * min_(
             P.acquisition.plafond * (maries_ou_pacses + 1),
