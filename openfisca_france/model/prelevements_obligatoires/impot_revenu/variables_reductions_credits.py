@@ -7119,17 +7119,7 @@ class f7dc(Variable):
     label = 'Souscription au capital de PME'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
-
-
-class f7bs_2021(Variable):
-    cerfa_field = '7BS'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = 'Souscription au capital de PME'
-    # start_date = date(2021, 1, 1)
-    definition_period = YEAR
-
+    
 
 class f7ct(Variable):
     cerfa_field = '7CT'
@@ -7281,13 +7271,13 @@ class f7co(Variable):
     definition_period = YEAR
 
 
-class f7dz_2025(Variable):
+class f7dz_2024(Variable):
     cerfa_field = '7DZ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2025, 1, 1)
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
