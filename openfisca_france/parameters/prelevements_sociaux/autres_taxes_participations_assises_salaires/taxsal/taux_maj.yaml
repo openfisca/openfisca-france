@@ -81,6 +81,8 @@ brackets:
       value: 8985
     2025-01-01:
       value: 9147
+    2026-01-01:
+      value: 9229
   rate:
     1968-11-01:
       value: 0.0425
@@ -159,6 +161,8 @@ brackets:
       value: 17936
     2025-01-01:
       value: 18259
+    2026-01-01:
+      value: 18423
   rate:
     1968-11-01:
       value: 0.0935
@@ -291,6 +295,11 @@ metadata:
     - title: Article 231 du CGI
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622885
       note: "8.50% - 4.25% = 0.0425 ; 13.60% - 4.25% = 0.0935"
+    2026-01-01:
+    - title: Décret n° 2026-562 du 29/06/2026, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054341109
+    - title: Article 231 du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622885
   official_journal_date:
     1968-11-01: 1968-10-10
     1979-01-01: 1978-12-30
@@ -308,12 +317,13 @@ metadata:
     2022-01-01: 2022-05-06
     2023-01-01: 2023-06-02
     2024-01-01: 2024-06-01
+    2026-01-01: 2026-06-30
   notes:
     2021-01-01:
     - title: BOFIP non mis à jour
   rate_unit: /1
   threshold_unit: currency
-  last_value_still_valid_on: "2026-03-27"
+  last_value_still_valid_on: "2026-07-15"
 documentation: |-
   Notes :
   Le taux applicable entre le plafond 1 et le plafond 2 (resp. entre les plafonds 2 et 3 et au dessus du plafond 3) est égal au (taux 1 + majoration 1) (resp. au (taux 1 + majoration2) et (taux1 + majoration3)), soit 8,50% (resp. 13,60% et 20%).
