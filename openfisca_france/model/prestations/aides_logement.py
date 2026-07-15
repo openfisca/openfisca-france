@@ -417,8 +417,8 @@ class al_nb_personnes_a_charge(Variable):
             return famille.sum(adulte_handicape, role = Famille.ENFANT)
 
         nb_pac = al_nb_enfants() + al_nb_adultes_handicapes()
-        nb_pac = where(residence_dom, min_(nb_pac, 6), nb_pac)
-        # Dans les DOMs, le barème est fixe à partir de 6 enfants.
+        limitation_six_pac_dom = residence_dom * (period.start.year < 2023)
+        nb_pac = where(limitation_six_pac_dom, min_(nb_pac, 6), nb_pac)
 
         return nb_pac
 
@@ -1288,6 +1288,10 @@ class aide_logement_R0(Variable):
         al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif.formule.pp_particip_perso.r0_abattement
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        nb_pac_supp = max_(al_nb_pac - 6, 0)
+        if period.start.date < date(2023, 1, 1):
+            nb_pac_supp = where(residence_dom, 0, nb_pac_supp)
 
         R0 = (
             al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
@@ -1298,7 +1302,7 @@ class aide_logement_R0(Variable):
             + al_r0.cas_general.taux4pac * (al_nb_pac == 4)
             + al_r0.cas_general.taux5pac * (al_nb_pac == 5)
             + al_r0.cas_general.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
-            + al_r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            + al_r0.cas_general.taux_pac_supp * nb_pac_supp
             )
 
         return R0
@@ -1393,12 +1397,19 @@ class aide_logement_taux_loyer(Variable):
         L = famille('aide_logement_loyer_retenu', period)
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        limitation_six_pac_dom = residence_dom * (period.start.year < 2023)
+        al_nb_pac_reference = where(
+            limitation_six_pac_dom,
+            min_(al_nb_pac, 6),
+            al_nb_pac,
+            )
 
         loyer_reference = (
             al_plafonds_z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0)
             + al_plafonds_z2.couples * (couple) * (al_nb_pac == 0)
             + al_plafonds_z2.un_enfant * (al_nb_pac >= 1)
-            + al_plafonds_z2.majoration_par_enf_supp * (al_nb_pac > 1) * (al_nb_pac - 1)
+            + al_plafonds_z2.majoration_par_enf_supp * (al_nb_pac_reference > 1) * (al_nb_pac_reference - 1)
             )
 
         RL = L / loyer_reference
