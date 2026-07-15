@@ -16,6 +16,10 @@ values:
     value: 3520
   2025-06-19:
     value: 3583
+2025-06-19:
+  value: 3583
+2026-07-01:
+  value: 3615
 metadata:
   short_label: Première demi-part
   reference:
