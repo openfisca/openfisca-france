@@ -1,5 +1,16 @@
 # Changelog
 
+### 175.1.8 [#2772](https://github.com/openfisca/openfisca-france/pull/2772)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 01/07/1994.
+* Zones impactées :
+    - `openfisca_france/model/prestations/aides_logement`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/c_forfait_charges/*`
+* Détails :
+    - Ajoute des forfaits de charges outre-mer pour le calcul des aides au logement, cas général et colocation
+    - Création de la variables nécessaires, et utilisation dans le calcul
+
 ### 175.1.7 [#2770](https://github.com/openfisca/openfisca-france/pull/2770)
 
 * Évolution du système socio-fiscal.

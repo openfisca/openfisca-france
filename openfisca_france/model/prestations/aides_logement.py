@@ -1179,16 +1179,32 @@ class aide_logement_charges(Variable):
         forfait_charges = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif.formule.c_forfait_charges
         forfait_charges_cas_general = forfait_charges.cas_general
         forfait_charges_cas_colocataires = forfait_charges.cas_colocataires
+        forfait_charges_dom = forfait_charges.dom
+        forfait_charges_dom_colocataires = forfait_charges.dom_colocataires
 
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
 
         montant_cas_general = forfait_charges_cas_general.cas_general + al_nb_pac * forfait_charges_cas_general.majoration_par_enfant
 
         montant_coloc = where(couple, forfait_charges_cas_colocataires.couple_sans_enfant, forfait_charges_cas_colocataires.beneficiaire_isole) + al_nb_pac * forfait_charges_cas_colocataires.majoration_par_enfant
 
-        return where(coloc, montant_coloc, montant_cas_general)
+        nb_pac_dom_general = min_(al_nb_pac, 6) if period.start.date < date(2022, 7, 1) else al_nb_pac
+        nb_pac_dom_coloc = min_(al_nb_pac, 6) if period.start.date < date(2023, 1, 1) else al_nb_pac
+
+        montant_dom = forfait_charges_dom.cas_general + nb_pac_dom_general * forfait_charges_dom.majoration_par_enfant
+
+        montant_dom_coloc = (
+            where(couple, forfait_charges_dom_colocataires.couple_sans_enfant, forfait_charges_dom_colocataires.beneficiaire_isole)
+            + nb_pac_dom_coloc * forfait_charges_dom_colocataires.majoration_par_enfant
+            )
+
+        montant_hors_dom = where(coloc, montant_coloc, montant_cas_general)
+        montant_dom_total = where(coloc, montant_dom_coloc, montant_dom)
+
+        return where(residence_dom, montant_dom_total, montant_hors_dom)
 
 
 class aide_logement_R0(Variable):
