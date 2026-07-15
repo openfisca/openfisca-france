@@ -1378,6 +1378,7 @@ class aide_logement_taux_famille(Variable):
 
         return where(residence_dom, TF_dom, TF_metropole)
 
+
 class aide_logement_taux_loyer(Variable):
     value_type = float
     entity = Famille
