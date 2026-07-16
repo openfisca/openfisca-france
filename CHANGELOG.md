@@ -13,6 +13,13 @@
     - borne de ce barème a sa période légale d'application
     - utilisation du bareme outre-mer à partir de 2022
     - suppression de l'annulation du montant locatif à Mayotte
+    - `aide_logement_montant_brut_avant_degressivite` est découpé en `aide_logement_montant_selectionne_avant_seuil` puis `aide_logement_montant_brut_avant_degressivite`.
+    - `aide_logement_participation_personnelle` est découpé en :
+        + `aide_logement_ressources_apres_abattement` (`Rp`),
+        + `aide_logement_taux_participation_personnelle` (`Tp`),
+        + `aide_logement_participation_ressources` (`Rp*Tp`),
+        + `aide_logement_participation_minimale` (`P0`),
+        + `aide_logement_participation_personnelle` (`aide_logement_participation_personnelle`).
 
 ### 175.1.10 [#2785](https://github.com/openfisca/openfisca-france/pull/2785)
 
