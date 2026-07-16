@@ -1316,9 +1316,9 @@ class aide_logement_R0(Variable):
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
-        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_outre_mer = famille.demandeur.menage('residence_aides_logement_outre_mer', period)
         nb_pac_supp = max_(al_nb_pac - 6, 0)
-        nb_pac_supp = where(residence_dom, 0, nb_pac_supp)
+        nb_pac_supp = where(residence_outre_mer, 0, nb_pac_supp)
 
         return (
             al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
@@ -1338,9 +1338,9 @@ class aide_logement_R0(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
-        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_outre_mer = famille.demandeur.menage('residence_aides_logement_outre_mer', period)
         nb_pac_supp = max_(al_nb_pac - 6, 0)
-        nb_pac_supp = where(residence_dom, 0, nb_pac_supp)
+        nb_pac_supp = where(residence_outre_mer, 0, nb_pac_supp)
 
         R0_cas_general = (
             al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
@@ -1366,7 +1366,7 @@ class aide_logement_R0(Variable):
             )
 
         return select(
-            (residence_mayotte, residence_dom * (al_nb_pac == 1)),
+            (residence_mayotte, residence_outre_mer * (al_nb_pac == 1)),
             (R0_mayotte, al_r0.outre_mer.taux1pac),
             default=R0_cas_general,
             )
@@ -1376,10 +1376,10 @@ class aide_logement_R0(Variable):
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
-        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_outre_mer = famille.demandeur.menage('residence_aides_logement_outre_mer', period)
         nb_pac_supp = max_(al_nb_pac - 6, 0)
         if period.start.date < date(2023, 1, 1):
-            nb_pac_supp = where(residence_dom, 0, nb_pac_supp)
+            nb_pac_supp = where(residence_outre_mer, 0, nb_pac_supp)
 
         R0_cas_general = (
             al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
@@ -1394,7 +1394,7 @@ class aide_logement_R0(Variable):
             )
 
         return where(
-            residence_dom * (al_nb_pac == 1),
+            residence_outre_mer * (al_nb_pac == 1),
             al_r0.outre_mer.taux1pac,
             R0_cas_general,
             )
