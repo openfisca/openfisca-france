@@ -139,3 +139,4 @@ metadata:
     - title: La circulaire Cnav 2009/9 du 03/02/2009 met en œuvre de l'article 73 de la loi 2008-1330 du 17/12/2008 concernant la déconnexion de la revalorisation des montants et des plafonds de ressources de l'ASI de ceux de l'ASPA.
     2020-04-01:
     - title: Depuis le 01/04/2020, l'ASI cesse d'être une allocation forfaitaire.
+  inflator: inflateurs.inflateur_prestations_avril
