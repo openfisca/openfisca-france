@@ -2408,10 +2408,10 @@ class cappme(Variable):
         f7ch = foyer_fiscal('f7ch', period)
         f7gw = foyer_fiscal('f7gw', period)
 
-        # Reports de versements (Bases)
+        # Reports de versements
         f7cr = foyer_fiscal('f7cr', period)  # 2018
         f7cv = foyer_fiscal('f7cv', period)  # 2019
-        
+
         f7cx = foyer_fiscal('f7cx', period)  # 2020
         f7cs = foyer_fiscal('f7cs', period)  # 2020
         f7bs = foyer_fiscal('f7bs', period)  # 2020
@@ -2421,10 +2421,10 @@ class cappme(Variable):
         f7dc = foyer_fiscal('f7dc', period)  # 2021
         f7bt = foyer_fiscal('f7bt', period)  # 2021
 
-        # Plafond général (Reports de réductions d'impôt au titre du plafonnement global)
+        # Plafond général
         f7cy = foyer_fiscal('f7cy', period)  # 2017
         f7dy = foyer_fiscal('f7dy', period)  # 2018
-        f7ey = foyer_fiscal('f7ey', period)  # 2019
+        f7ey_2022 = foyer_fiscal('f7ey_2022', period)  # 2019
         f7fy = foyer_fiscal('f7fy', period)  # 2020
         f7gy_2022 = foyer_fiscal('f7gy_2022', period)  # 2021
         f7ek = foyer_fiscal('f7ek', period)  # 2021
@@ -2435,10 +2435,10 @@ class cappme(Variable):
         # Imputation du plus ancien au plus récent
         # Reports 2018
         base_report_pme_esus_2018 = min_(f7cr, plafond_PME)
-        
+
         # Reports 2019
         base_report_pme_esus_2019 = max_(0, min_(f7cv, plafond_PME - base_report_pme_esus_2018))
-        
+
         # Reports 2020
         base_report_pme_esus_2020_avant1008 = max_(0, min_(f7cx, plafond_PME - base_report_pme_esus_2018 - base_report_pme_esus_2019))
         base_report_pme_esus_2020_apres1008 = max_(0, min_(f7cs, plafond_PME - base_report_pme_esus_2018 - base_report_pme_esus_2019 - base_report_pme_esus_2020_avant1008))
@@ -2456,7 +2456,7 @@ class cappme(Variable):
         base_sfs_2022 = max_(0, min_(f7gw, plafond_PME - base_report_pme_esus_2018 - base_report_pme_esus_2019 - base_report_pme_esus_2020_avant1008 - base_report_pme_esus_2020_apres1008 - base_report_sfs_2020 - base_report_pme_esus_2021_avant0905 - base_report_pme_2021_apres0905 - base_report_esus_2021_apres0905 - base_report_sfs_2021 - base_pme_esus_2022_avant1803 - base_pme_esus_2022_apres1803))
 
         # Récapitulatif des reports au titre du plafonnement global
-        reports_plaf_general = f7cy + f7dy + f7ey + f7fy + f7gy_2022 + f7ek
+        reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy + f7gy_2022 + f7ek
 
         return (
             reports_plaf_general
@@ -2475,9 +2475,8 @@ class cappme(Variable):
                 + base_report_esus_2021_apres0905
                 + base_report_sfs_2021
                 + base_pme_esus_2022_apres1803
-                + base_sfs_2022)
-        )
-                
+                + base_sfs_2022))
+
     def formula_2023_01_01(foyer_fiscal, period, parameters):
         '''
         Souscriptions au capital des PME, ESUS, SFS pour 2023
@@ -2508,7 +2507,7 @@ class cappme(Variable):
         f7ek = foyer_fiscal('f7ek', period)
         f7cy = foyer_fiscal('f7cy', period)
         f7dy = foyer_fiscal('f7dy', period)
-        f7ey = foyer_fiscal('f7ey', period)
+        f7ey_2022 = foyer_fiscal('f7ey_2022', period)
         f7fy = foyer_fiscal('f7fy', period)
         f7gy_2022 = foyer_fiscal('f7gy_2022', period)
 
@@ -2541,7 +2540,7 @@ class cappme(Variable):
         base_sfs_2023 = max_(0, min_(f7gw, plafond_PME - base_report_pme_esus_2019 - base_report_pme_esus_2020_avant0908 - base_report_pme_esus_2020_apres0908 - base_report_sfs_2020 - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1703 - base_report_pme_esus_2022_apres1703 - base_report_sfs_2022 - base_pme_esus_2023_avant1103 - base_pme_esus_2023_apres1103))
 
         # Reports de réductions d'impôt
-        reports_plaf_general = f7ek + f7cy + f7dy + f7ey + f7fy + f7gy_2022
+        reports_plaf_general = f7ek + f7cy + f7dy + f7ey_2022 + f7fy + f7gy_2022
 
         return (
             reports_plaf_general
@@ -2551,8 +2550,7 @@ class cappme(Variable):
                 + base_report_pme_esus_2020_avant0908
                 + base_report_pme_esus_2021_avant0805
                 + base_report_pme_esus_2022_avant1703
-                + base_pme_esus_2023_avant1103
-            )
+                + base_pme_esus_2023_avant1103)
             # Bloc de réduction au taux bonifié (25 %)
             + P.taux25 * (
                 base_report_pme_esus_2020_apres0908
@@ -2563,9 +2561,7 @@ class cappme(Variable):
                 + base_report_pme_esus_2022_apres1703
                 + base_report_sfs_2022
                 + base_pme_esus_2023_apres1103
-                + base_sfs_2023
-            )
-        )
+                + base_sfs_2023))
 
     def formula_2024_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2677,7 +2673,6 @@ class cappme(Variable):
             # Bloc JEIR (Taux de 50 %)
             + P.taux_jeir * base_jeir_2024)
 
-
     def formula_2025_01_01(foyer_fiscal, period, parameters):
         '''
         Souscriptions au capital des PME, ESUS, SFS, JEI et JEIR, 2025
@@ -2701,7 +2696,7 @@ class cappme(Variable):
         f7cw = foyer_fiscal('f7cw', period)  # 2022
         f7bt = foyer_fiscal('f7bt', period)  # 2022
 
-        f7ci_2023 = foyer_fiscal('f7ci_2023', period)  # 2023 (Base PME/ESUS avant 12/03)
+        f7cp = foyer_fiscal('f7cp', period)  # 2023 (Base PME/ESUS avant 12/03)
         f7cq_2023 = foyer_fiscal('f7cq_2023', period)  # 2023 (Base PME/ESUS après 12/03)
         f7bu = foyer_fiscal('f7bu', period)  # 2023
 
@@ -2732,8 +2727,8 @@ class cappme(Variable):
         base_report_pme_emus_2022_apres1803 = max_(0, min_(f7cw, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803))
         base_report_sfs_2022 = max_(0, min_(f7bt, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_emus_2022_apres1803))
 
-        # Reports 2023 (CORRECTION ICI : f7ci_2023 et f7cq_2023 doivent bien être consommés !)
-        base_report_pme_emus_2023_avant1103 = max_(0, min_(f7ci_2023, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_emus_2022_apres1803 - base_report_sfs_2022))
+        # Reports 2023
+        base_report_pme_emus_2023_avant1103 = max_(0, min_(f7cp, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_emus_2022_apres1803 - base_report_sfs_2022))
         base_report_pme_emus_2023_apres1103 = max_(0, min_(f7cq_2023, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_emus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_emus_2023_avant1103))
         base_report_sfs_2023 = max_(0, min_(f7bu, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_emus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_emus_2023_avant1103 - base_report_pme_emus_2023_apres1103))
 

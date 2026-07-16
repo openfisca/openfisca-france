@@ -7013,7 +7013,7 @@ class f7ci(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Versements ESUS effectués du 9.5 au 31.12.2021'
+    label = 'Versements ESUS'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
@@ -7119,7 +7119,7 @@ class f7dc(Variable):
     label = 'Souscription au capital de PME'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
-    
+
 
 class f7ct(Variable):
     cerfa_field = '7CT'
@@ -7248,16 +7248,6 @@ class f7gy_2022(Variable):
     entity = FoyerFiscal
     label = 'Souscription au capital de PME, report plaf'
     # start_date = date(2022, 1, 1)
-    definition_period = YEAR
-
-
-class f7ci_2023(Variable):
-    cerfa_field = '7CI'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = 'Souscription au capital de PME'
-    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
