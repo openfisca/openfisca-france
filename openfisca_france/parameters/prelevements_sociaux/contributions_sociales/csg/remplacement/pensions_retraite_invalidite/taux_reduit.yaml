@@ -1,17 +1,22 @@
 description: Taux réduit global de la contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
-values:
-  1991-02-01:
-    value: null
-  1997-01-01:
-    value: 0.01
-  1998-01-01:
-    value: 0.038
+brackets:
+- threshold:
+    1991-02-01:
+      value: 0
+  rate:
+    1991-02-01:
+      value: null
+    1997-01-01:
+      value: 0.01
+    1998-01-01:
+      value: 0.038
 metadata:
   short_label: Taux réduit global
   last_value_still_valid_on: "2024-07-24"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_pens_red
-  unit: /1
+  rate_unit: /1
+  threshold_unit: currency
   reference:
     1991-02-01:
       title: Loi 90-1168 du 29/12/90, art. 127 à 135 (LF pour 1991)
