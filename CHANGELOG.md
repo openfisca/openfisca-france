@@ -1,5 +1,19 @@
 # Changelog
 
+# 176.0.0 [#2775](https://github.com/openfisca/openfisca-france/pull/2775)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : du 01/01/2020 au 31/12/2021 pour le barème specifique, puis articulation avec le bareme outre-mer a partir du 01/01/2022.
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/r0_abattement/mayotte/*`
+* Détails :
+    - correction des valeurs du `R0` spécifique à Mayotte en 2020 et 2021
+    - prise en compte du barème mahorais dans la formule de calcul
+    - borne de ce barème a sa période légale d'application
+    - utilisation du bareme outre-mer à partir de 2022
+    - suppression de l'annulation du montant locatif à Mayotte
+
 ### 175.1.10 [#2785](https://github.com/openfisca/openfisca-france/pull/2785)
 
 * Évolution du système socio-fiscal.
