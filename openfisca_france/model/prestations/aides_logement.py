@@ -1300,6 +1300,10 @@ class aide_logement_R0(Variable):
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        nb_pac_supp = max_(al_nb_pac - 6, 0)
+        nb_pac_supp = where(residence_dom, 0, nb_pac_supp)
+
         return (
             al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
             + al_r0.cas_general.taux_couple * couple * (al_nb_pac == 0)
@@ -1309,7 +1313,7 @@ class aide_logement_R0(Variable):
             + al_r0.cas_general.taux4pac * (al_nb_pac == 4)
             + al_r0.cas_general.taux5pac * (al_nb_pac == 5)
             + al_r0.cas_general.taux6pac * (al_nb_pac >= 6)  # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
-            + al_r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            + al_r0.cas_general.taux_pac_supp * nb_pac_supp
             )
 
     def formula_2020_01_01(famille, period, parameters):
@@ -1317,6 +1321,10 @@ class aide_logement_R0(Variable):
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        nb_pac_supp = max_(al_nb_pac - 6, 0)
+        nb_pac_supp = where(residence_dom, 0, nb_pac_supp)
 
         R0_cas_general = (
             al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
@@ -1327,7 +1335,7 @@ class aide_logement_R0(Variable):
             + al_r0.cas_general.taux4pac * (al_nb_pac == 4)
             + al_r0.cas_general.taux5pac * (al_nb_pac == 5)
             + al_r0.cas_general.taux6pac * (al_nb_pac >= 6)
-            + al_r0.cas_general.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            + al_r0.cas_general.taux_pac_supp * nb_pac_supp
             )
 
         R0_mayotte = (
