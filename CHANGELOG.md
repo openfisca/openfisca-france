@@ -1,5 +1,17 @@
 # Changelog
 
+### 167.0.2 [#2777](https://github.com/openfisca/openfisca-france/pull/2777)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - ajout de Saint-Barthelemy et Saint-Martin dans le champ du barème outre-mer des aides au logement
+    - la variable dédiée est `residence_aides_logement_outre_mer`
+    - correction des composantes TF, R0 et des montants dérivés pour les ménages concernés
+
 ### 167.0.1 [#2776](https://github.com/openfisca/openfisca-france/pull/2776)
 
 * Évolution du système socio-fiscal.
