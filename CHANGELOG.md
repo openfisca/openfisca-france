@@ -1,5 +1,17 @@
 # Changelog
 
+### 167.0.1 [#2776](https://github.com/openfisca/openfisca-france/pull/2776)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2020.
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/r0_abattement/outre_mer/*`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - ajout du barème `R0` outre-mer pour les ménages avec une personne à charge
+    - ajout de la valeur 2022 et correction des périodes 2020-2021
+
 # 176.0.0 [#2775](https://github.com/openfisca/openfisca-france/pull/2775)
 
 * Évolution du système socio-fiscal.
