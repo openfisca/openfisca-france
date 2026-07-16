@@ -1,5 +1,16 @@
 # Changelog
 
+### 175.1.10 [#2785](https://github.com/openfisca/openfisca-france/pull/2785)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2025.
+* Zones impactées :
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables`
+  - `openfisca_france/parameters/prelevements_sociaux`
+  - `openfisca_france/parameters/taxation_capital/epargne/livret_epargne_populaire`
+* Détails :
+  - Mise à jours de paramètres d'impôt et de prélèvements sociaux
+
 ### 175.1.9 [#2773](https://github.com/openfisca/openfisca-france/pull/2773)
 
 * Évolution du système socio-fiscal.
