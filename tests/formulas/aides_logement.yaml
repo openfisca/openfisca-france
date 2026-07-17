@@ -268,6 +268,23 @@
   output:
     aide_logement_R0: 9008
 
+- name: Aides logements - absence de CRDS à Saint-Pierre-et-Miquelon
+  period: 2023-01
+  input:
+    famille:
+      parents: [parent1]
+      aide_logement_montant_brut_crds: 389.24
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+      depcom: "97500"
+    individus:
+      parent1:
+        age: 40
+  output:
+    crds_logement: 0
+
 - name: Aides logements - les enfants de plus de 21 ans handicapés (>80%) sont considérés à charge
   description: Nombre de personnes à charge pour les AL
   period: 2015-01
