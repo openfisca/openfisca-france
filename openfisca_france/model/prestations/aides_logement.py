@@ -1348,7 +1348,12 @@ class aide_logement_R0(Variable):
             + al_r0.mayotte.taux5pac * (al_nb_pac == 5)
             + al_r0.mayotte.taux6pac * (al_nb_pac >= 6)
             )
-        return where(residence_mayotte, R0_mayotte, R0_cas_general)
+
+        return select(
+            (residence_mayotte, residence_dom * (al_nb_pac == 1)),
+            (R0_mayotte, al_r0.outre_mer.taux1pac),
+            default=R0_cas_general,
+            )
 
     def formula_2022_01_01(famille, period, parameters):
         al_r0 = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif.formule.pp_particip_perso.r0_abattement
@@ -1360,7 +1365,7 @@ class aide_logement_R0(Variable):
         if period.start.date < date(2023, 1, 1):
             nb_pac_supp = where(residence_dom, 0, nb_pac_supp)
 
-        return (
+        R0_cas_general = (
             al_r0.cas_general.taux_seul * not_(couple) * (al_nb_pac == 0)
             + al_r0.cas_general.taux_couple * couple * (al_nb_pac == 0)
             + al_r0.cas_general.taux1pac * (al_nb_pac == 1)
@@ -1370,6 +1375,12 @@ class aide_logement_R0(Variable):
             + al_r0.cas_general.taux5pac * (al_nb_pac == 5)
             + al_r0.cas_general.taux6pac * (al_nb_pac >= 6)
             + al_r0.cas_general.taux_pac_supp * nb_pac_supp
+            )
+
+        return where(
+            residence_dom * (al_nb_pac == 1),
+            al_r0.outre_mer.taux1pac,
+            R0_cas_general,
             )
 
 
