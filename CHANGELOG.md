@@ -1,5 +1,17 @@
 # Changelog
 
+### 176.0.5 [#2779](https://github.com/openfisca/openfisca-france/pull/2779)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - arrondi de la CRDS au centime d'euro inférieur
+    - arrondi de l'AL à l'euro inférieur
+    - annulation de la CRDS à Saint-Pierre-et-Miquelon
+
 ### 176.0.4 [#2786](https://github.com/openfisca/openfisca-france/pull/2786)
 
 * Changement mineur
