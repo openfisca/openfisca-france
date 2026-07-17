@@ -1,6 +1,14 @@
 # Changelog
 
-### 167.0.3 [#2778](https://github.com/openfisca/openfisca-france/pull/2778)
+### 176.0.4 [#2786](https://github.com/openfisca/openfisca-france/pull/2786)
+
+* Changement mineur
+* Périodes concernées : à partir du 01/01/2025
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/deductions/abatpro/max.yaml`.
+* Détails :
+  - Corrige une typo sur une date
+
+### 176.0.3 [#2778](https://github.com/openfisca/openfisca-france/pull/2778)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/07/2022
@@ -12,7 +20,7 @@
     - ajout du barème R0 applicable a Saint-Pierre-et-Miquelon
     - application de la montée en charge specifique au territoire
 
-### 167.0.2 [#2777](https://github.com/openfisca/openfisca-france/pull/2777)
+### 176.0.2 [#2777](https://github.com/openfisca/openfisca-france/pull/2777)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2019.
@@ -24,7 +32,7 @@
     - la variable dédiée est `residence_aides_logement_outre_mer`
     - correction des composantes TF, R0 et des montants dérivés pour les ménages concernés
 
-### 167.0.1 [#2776](https://github.com/openfisca/openfisca-france/pull/2776)
+### 176.0.1 [#2776](https://github.com/openfisca/openfisca-france/pull/2776)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2020.
