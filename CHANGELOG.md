@@ -1,5 +1,17 @@
 # Changelog
 
+### 167.0.3 [#2778](https://github.com/openfisca/openfisca-france/pull/2778)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2022
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/r0_abattement/saint_pierre_et_miquelon/*`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - ajout du barème R0 applicable a Saint-Pierre-et-Miquelon
+    - application de la montée en charge specifique au territoire
+
 ### 167.0.2 [#2777](https://github.com/openfisca/openfisca-france/pull/2777)
 
 * Évolution du système socio-fiscal.
