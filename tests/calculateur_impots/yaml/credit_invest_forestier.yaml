@@ -758,35 +758,32 @@
       caseW: false
       declarants:
       - ind0
-      
-      # Nouvelles variables pour 2025
-      f7un: 0
-      f7ul: 0
-      f7up: 200
-      f7ut: 200
-      
-      # Reports des années antérieures 
-      f7ts: 150  
-      f7tu: 200  
-      f7tw: 300  
-      f7tb: 200  
-      f7vr: 200  
-      f7tf: 200  
-      f7ti: 200
-      f7vu: 200
-      f7vt: 200
-      f7tk: 200
-      f7tr: 100  
-      f7tt: 50  
-      f7tv: 400  
-      f7ta: 300  
-      f7vq: 100
+
+      f7un: 100
+      f7ul: 100
+      f7up: 300
+      f7ut: 300
+
+      f7tr: 200
+      f7ts: 200
+      f7tt: 200
+      f7tu: 200
+      f7tv: 200
+      f7tw: 200
+      f7ta: 200
+      f7tb: 200
+      f7vq: 200
       f7te: 200
+      f7vr: 200
+      f7tf: 200
       f7vs: 200
       f7th: 200
+      f7vu: 200
+      f7ti: 200
       f7vv: 200
       f7tj: 200
-      
+      f7vt: 200
+      f7tk: 200
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -797,7 +794,7 @@
       ind0:
         activite: actif
         date_naissance: '1970-01-01'
-        salaire_imposable: 50000.0
+        abic_impn: 200000.0
         statut_marital: celibataire
     famille:
       parents:
@@ -805,4 +802,4 @@
     menage:
       personne_de_reference: ind0
   output:
-    ci_investissement_forestier: 992 #erreur de 8. encore a régler
+    ci_investissement_forestier: 1139
