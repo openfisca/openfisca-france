@@ -792,7 +792,7 @@
       - parent1
   output:
     aide_logement_montant_brut: 47.08
-    aide_logement_montant: 46.84
+    aide_logement_montant: 46
 
 - name: Le patrimoine composé uniquement d'épargne générant des revenus imposables n'augmente pas la base ressources des ALs
   period: 2017-10
