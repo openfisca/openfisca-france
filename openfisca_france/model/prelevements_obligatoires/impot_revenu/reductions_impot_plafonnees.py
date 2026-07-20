@@ -2574,8 +2574,6 @@ class cappme(Variable):
         f7ci = foyer_fiscal('f7ci', period)  # 2024 (PME de l'année)
         f7ch = foyer_fiscal('f7ch', period)  # 2024 (ESUS avant 27/06)
         f7co = foyer_fiscal('f7co', period)  # 2024 (ESUS après 27/06)
-        f7cr = foyer_fiscal('f7cr', period)  # 2024 (JEI / JEU / JEIC)
-        f7dz_2024 = foyer_fiscal('f7dz_2024', period)  # 2024 (JEIR)
         f7gw = foyer_fiscal('f7gw', period)  # 2024 (SFS de l'année)
 
         # Reports
@@ -2610,8 +2608,6 @@ class cappme(Variable):
 
         # Imputation du plus ancien au plus récent
 
-        # Imputation du plus ancien au plus récent
-
         # Reports 2020
         base_report_pme_2020 = min_(f7cx, plafond_PME)
         base_report_esus_2020 = max_(0, min_(f7cs, plafond_PME - base_report_pme_2020))
@@ -2641,13 +2637,6 @@ class cappme(Variable):
         base_esus_2024_apres2706 = max_(0, min_(f7co, plafond_PME - base_report_pme_2020 - base_report_esus_2020 - base_report_sfs_2020 - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_pme_2024 - base_esus_2024_avant2706))
         base_sfs_2024 = max_(0, min_(f7gw, plafond_PME - base_report_pme_2020 - base_report_esus_2020 - base_report_sfs_2020 - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_pme_2024 - base_esus_2024_avant2706 - base_esus_2024_apres2706))
 
-        # JEI et JEIR
-        plafond_JEI = P.plafond_jei * (maries_ou_pacses + 1)
-        base_jei_2024 = min_(f7cr, plafond_JEI)
-
-        plafond_JEIR = P.plafond_jeir * (maries_ou_pacses + 1)
-        base_jeir_2024 = min_(f7dz_2024, plafond_JEIR)
-
         reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy_2023 + f7gy_2022 + f7ek
 
         return (
@@ -2672,11 +2661,7 @@ class cappme(Variable):
                 + base_report_pme_esus_2023_apres1103
                 + base_report_sfs_2023
                 + base_esus_2024_apres2706
-                + base_sfs_2024)
-            # Bloc JEI / JEU (Taux de 30 %)
-            + P.taux_jei * base_jei_2024
-            # Bloc JEIR (Taux de 50 %)
-            + P.taux_jeir * base_jeir_2024)
+                + base_sfs_2024))
 
     def formula_2025_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2687,8 +2672,6 @@ class cappme(Variable):
         # année courante (2025)
         f7ci = foyer_fiscal('f7ci', period)  # 2025
         f7co = foyer_fiscal('f7co', period)  # 2025
-        f7cr = foyer_fiscal('f7cr', period)  # 2025
-        f7dz_2024 = foyer_fiscal('f7dz_2024', period)  # 2025 (JEIR)
         f7gw = foyer_fiscal('f7gw', period)  # 2025
 
         # Reports de versements (Bases)
@@ -2748,13 +2731,6 @@ class cappme(Variable):
         base_esus_2025 = max_(0, min_(f7co, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_emus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_emus_2023_avant1103 - base_report_pme_emus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024 - base_report_esus_2024_avant2706 - base_report_esus_2024_apres2706 - base_report_sfs_2024 - base_pme_2025))
         base_sfs_2025 = max_(0, min_(f7gw, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_emus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_emus_2023_avant1103 - base_report_pme_emus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024 - base_report_esus_2024_avant2706 - base_report_esus_2024_apres2706 - base_report_sfs_2024 - base_pme_2025 - base_esus_2025))
 
-        # JEI et JEIR
-        plafond_JEI = P.plafond_jei * (maries_ou_pacses + 1)
-        base_jei_2025 = min_(f7cr, plafond_JEI)
-
-        plafond_JEIR = P.plafond_jeir * (maries_ou_pacses + 1)
-        base_jeir_2025 = min_(f7dz_2024, plafond_JEIR)
-
         reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy_2023 + f7gy_2022 + f7ek
 
         return (
@@ -2779,11 +2755,7 @@ class cappme(Variable):
                 + base_report_esus_2024_apres2706
                 + base_report_sfs_2024
                 + base_esus_2025
-                + base_sfs_2025)
-            # Bloc JEI (Taux de 30 %)
-            + P.taux_jei * base_jei_2025
-            # Bloc JEIR (Taux de 50 %)
-            + P.taux_jeir * base_jeir_2025)
+                + base_sfs_2025))
 
 
 class cappme_esus_sfs(Variable):
