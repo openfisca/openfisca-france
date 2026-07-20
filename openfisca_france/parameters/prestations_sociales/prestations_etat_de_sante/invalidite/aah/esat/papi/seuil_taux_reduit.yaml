@@ -1,0 +1,6 @@
+description: Deuxième seuil annuel de rémunération ESAT pour l'application du PAPI.
+values:
+  2025-01-01:
+    value: 28170
+metadata:
+  unit: currency-EUR

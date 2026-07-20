@@ -1,0 +1,6 @@
+description: Abattement forfaitaire sur la rémunération garantie des travailleurs ESAT.
+values:
+  2025-01-01:
+    value: 0.035
+metadata:
+  unit: /1
