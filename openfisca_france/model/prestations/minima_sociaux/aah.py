@@ -79,9 +79,8 @@ class aah_base_ressources_conjugalisee(Variable):
             three_previous_months = Period(
                 ('month', period.first_month.start, 3)).offset(-3)
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu(
-                'aah_base_ressources_activite_milieu_protege', three_previous_months, options=[ADD])
-            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu(
-                'aah_base_ressources_activite_milieu_protege', three_previous_months, options=[ADD])
+                'remuneration_esat', three_previous_months, options=[ADD])
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period)
 
             base_ressource_demandeur = max_(0, assiette_revenu_activite_demandeur(
                 base_ressource_activite) + base_ressource_hors_activite)
@@ -152,9 +151,8 @@ class aah_base_ressources_conjugalisee(Variable):
             three_previous_months = Period(
                 ('month', period.first_month.start, 3)).offset(-3)
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu(
-                'aah_base_ressources_activite_milieu_protege', three_previous_months, options=[ADD])
-            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu(
-                'aah_base_ressources_activite_milieu_protege', three_previous_months, options=[ADD])
+                'remuneration_esat', three_previous_months, options=[ADD])
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period)
 
             base_ressource_demandeur = max_(0, assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite)
 
@@ -207,9 +205,8 @@ class aah_base_ressources_conjugalisee(Variable):
             three_previous_months = Period(
                 ('month', period.first_month.start, 3)).offset(-3)
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu(
-                'aah_base_ressources_activite_milieu_protege', three_previous_months, options=[ADD])
-            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu(
-                'aah_base_ressources_activite_milieu_protege', three_previous_months, options=[ADD])
+                'remuneration_esat', three_previous_months, options=[ADD])
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period)
 
             base_ressource_demandeur = max_(0, assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite)
 
@@ -341,9 +338,8 @@ class aah_base_ressources_deconjugalisee(Variable):
             three_previous_months = Period(
                 ('month', period.first_month.start, 3)).offset(-3)
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu(
-                'aah_base_ressources_activite_milieu_protege', three_previous_months, options=[ADD])
-            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu(
-                'aah_base_ressources_activite_milieu_protege', three_previous_months, options=[ADD])
+                'remuneration_esat', three_previous_months, options=[ADD])
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period)
 
             base_ressource_demandeur = max_(0, assiette_revenu_activite_demandeur(
                 base_ressource_activite) + base_ressource_hors_activite)
@@ -426,13 +422,137 @@ class aah_base_ressources_activite_eval_trimestrielle(Variable):
         return (ressources + revenus_tns()) * 4
 
 
-class aah_base_ressources_activite_milieu_protege(Variable):
+class travailleur_esat(Variable):
+    value_type = bool
+    default_value = False
+    label = "L'individu est travailleur en ESAT"
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+class remuneration_esat(Variable):
     value_type = float
-    label = "Base de ressources de l'AAH des revenus d'activité en milieu protégé pour un individu"
+    default_value = 0
+    label = "Remuneration en ESAT (établissements et services d'aide par le travail)"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+class remuneration_esat_reference(Variable):
+    value_type = float
+    label = "Rémunération mensuelle de référence ESAT (moyenne des 3 derniers mois, trimestre de référence)"
+    entity = Individu
+    definition_period = MONTH
+
+    def formula_2026_07(individu, period):
+        three_previous_months = Period(('month', period.first_month.start, 3)).offset(-3)
+        remuneration_trimestre = individu('remuneration_esat', three_previous_months, options=[ADD])
+        return remuneration_trimestre / 3
+
+class remuneration_esat_reference_annuelle(Variable):
+    value_type = float
+    label = "Rémunération ESAT annuelle de référence pour le calcul du PAPI"
+    entity = Individu
+    definition_period = MONTH
+
+    def formula_2026_07(individu, period):
+        remuneration_totale = 0
+        nb_mois_remuneres = 0
+
+        for i in range(12):
+            mois = period.first_month.offset(-i - 1)
+            remuneration = individu('remuneration_esat', mois)
+            remuneration_totale += remuneration
+            nb_mois_remuneres += remuneration > 0
+
+        remuneration_moyenne = where(
+            nb_mois_remuneres > 0,
+            remuneration_totale / nb_mois_remuneres,
+            0
+        )
+
+        return remuneration_moyenne * 12
+
+class remuneration_esat_abattue(Variable):
+    value_type = float
+    label = "Rémunération ESAT après application des abattements prévus pour le calcul de l'AAH"
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2026_07(individu, period, parameters):
+
+        parameters = parameters(period)
+        parameters_aah = (
+            parameters.prestations_sociales
+            .prestations_etat_de_sante
+            .invalidite
+            .aah
+        )
+
+        esat = parameters_aah.esat
+        travailleur_esat = individu('travailleur_esat', period)
+        remuneration = individu('remuneration_esat_reference', period)
+        papi_mensuel = individu('aah_papi_mensuel', period)
+        taux_incapacite = individu('taux_incapacite', period)
+
+        taux_incapacite_supp_50 = (
+            taux_incapacite
+            >= parameters_aah.taux_capacite.taux_incapacite_rsdae
+        )
+
+        remuneration_abattue = remuneration
+        remuneration_abattue *= (1 - esat.abattement_remuneration_garantie)
+        remuneration_abattue *= (1 - esat.abattement_10)
+        remuneration_abattue *= (1 - esat.abattement_20)
+        remuneration_abattue = max_(0, remuneration_abattue - papi_mensuel)
+
+        remuneration_abattue = where(
+            taux_incapacite_supp_50 * travailleur_esat,
+            remuneration_abattue,
+            remuneration
+        )
+
+        return remuneration_abattue
+
+
+class aah_papi_mensuel(Variable):
+    value_type = float
+    label = "Abattement mensuel PAPI appliqué aux travailleurs ESAT"
+    entity = Individu
+    definition_period = MONTH
+
+    def formula_2026_07(individu, period, parameters):
+        parameters = parameters(period)
+        parameters_aah = (
+            parameters.prestations_sociales
+            .prestations_etat_de_sante
+            .invalidite
+            .aah
+        )
+
+        esat = parameters_aah.esat
+
+        travailleur_esat = individu('travailleur_esat', period)
+        taux_incapacite = individu('taux_incapacite', period)
+        taux_incapacite_supp_80 = (taux_incapacite >= parameters_aah.taux_capacite.taux_incapacite)
+        remuneration_annuelle = individu('remuneration_esat_reference_annuelle', period)
+
+        papi = where(
+            remuneration_annuelle < esat.papi.seuil_taux_plein,
+            esat.papi.montant_taux_plein,
+            where(
+                remuneration_annuelle < esat.papi.seuil_taux_reduit,
+                esat.papi.montant_taux_reduit,
+                0
+            )
+        )
+
+        return (
+                travailleur_esat
+                * taux_incapacite_supp_80
+                * papi / 12
+        )
 
 class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
     value_type = float
@@ -766,8 +886,10 @@ class aah_base(Variable):
             'aah_base_ressources_deconjugalisee', period)
         plaf_ress_aah_deconjugalise = individu(
             'aah_plafond_ressources_deconjugalise', period)
+        remuneration_esat_abattue = individu(
+            'remuneration_esat_abattue', period)
         montant_aah_deconjugalise = min_(montant_max, max_(
-            0, plaf_ress_aah_deconjugalise - aah_base_ressources_deconjugalisee))
+            0, plaf_ress_aah_deconjugalise - aah_base_ressources_deconjugalisee - remuneration_esat_abattue))
         aah_deconjugalise = aah_eligible * \
             min_(max_(0, montant_aah_deconjugalise), max_(
                 0, montant_max - aah_base_non_cumulable))
