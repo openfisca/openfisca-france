@@ -1,6 +1,6 @@
 description: Premier seuil annuel de rémunération ESAT pour l'application du PAPI.
 values:
-  2025-01-01:
+  2026-07-01:
     value: 17510
 metadata:
   unit: currency-EUR

@@ -1,6 +1,6 @@
 description: Abattement forfaitaire de 20 % appliqué à la rémunération ESAT.
 values:
-  2025-01-01:
+  2026-07-01:
     value: 0.20
 metadata:
   unit: /1
