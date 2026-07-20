@@ -1,0 +1,6 @@
+description: Montant annuel du PAPI lorsque la rémunération annuelle ESAT est comprise entre les deux plafonds.
+values:
+  2025-01-01:
+    value: 1398
+metadata:
+  unit: currency-EUR
