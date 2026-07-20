@@ -591,16 +591,16 @@ class ci_investissement_forestier(Variable):
     def formula_2023_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2023
-        Voir https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_integral/Brochure-IR-2024.pdf page 24
-        - Fin du plafond de dépenses de contrat de gestion (CGA) de dépenses d'investissement forestier
-        - Comme pour les autres années, les cases sont attachés à une même année d'investissements et "roulent"
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
+        # Nouvelles variables
+        f7un = foyer_fiscal('f7un', period)
+        f7ul = foyer_fiscal('f7ul', period)
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        # Reports des années précédentes
+        # Reports
         f7tm = foyer_fiscal('f7tm', period)
         f7to = foyer_fiscal('f7to', period)
         f7tp = foyer_fiscal('f7tp', period)
@@ -627,14 +627,31 @@ class ci_investissement_forestier(Variable):
         f7ti = foyer_fiscal('f7ti', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        taux_25 = P.travaux.taux_adhesion_org_producteurs
+        P_2022 = parameters('2022-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        taux_18 = P_2022.travaux.taux
 
-        # travaux année N
-        ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7to + f7tq + f7ts + f7tu + f7vi + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu)
-        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th)
+        plafond_acq_ass = P.acquisition.plafond * (maries_ou_pacses + 1)
 
-        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
+        base_assurance = min_(f7ul, plafond_acq_ass)
+        base_acquisition = min_(f7un, plafond_acq_ass - base_assurance)
 
-        return ci_travaux
+        ci_assurance = base_assurance * P.assurance.taux
+        ci_acquisition = base_acquisition * P.acquisition.taux
+
+        base_25 = (
+            f7to + f7tq + f7ts + f7tu + f7vi + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu + f7up + f7ut)
+
+        base_18 = (
+            f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th)
+
+        plafond_travaux = P.travaux.plafond * (maries_ou_pacses + 1)
+
+        ci_trav_adh = min_(plafond_travaux, base_25)
+        ci_trav = min_(plafond_travaux - ci_trav_adh, base_18)
+        ci_travaux = (taux_25 * ci_trav_adh) + (taux_18 * ci_trav)
+
+        return ci_travaux + ci_acquisition + ci_assurance
 
     def formula_2024_01_01(foyer_fiscal, period, parameters):
         '''
@@ -678,23 +695,18 @@ class ci_investissement_forestier(Variable):
         taux_18 = P_2022.travaux.taux
 
         plafond_acq_ass = P.acquisition.plafond * (maries_ou_pacses + 1)
-        
+
         base_assurance = min_(f7ul, plafond_acq_ass)
         base_acquisition = min_(f7un, plafond_acq_ass - base_assurance)
-        
+
         ci_assurance = base_assurance * P.assurance.taux
         ci_acquisition = base_acquisition * P.acquisition.taux
 
-        # Variables à 25% :
-        base_25 = (
-            f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu + 
-            f7vv + f7tj + f7up + f7ut
-        )
-        
-        # Variables à 18% :
-        base_18 = (
-            f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th
-        )
+        # Variables à 25%
+        base_25 = (f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu + f7vv + f7tj + f7up + f7ut)
+
+        # Variables à 18%
+        base_18 = (f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th)
 
         plafond_travaux = P.travaux.plafond * (maries_ou_pacses + 1)
 
