@@ -1,0 +1,182 @@
+- name: AAH2 ESAT - sans PAPI
+  period: 2026-07
+  absolute_error_margin: 0.01
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.65
+    af_nbenf: 0
+    aah_restriction_substantielle_durable_acces_emploi: true
+    remuneration_esat:
+      2026-04: 900
+      2026-05: 900
+      2026-06: 900
+  output:
+    remuneration_esat_reference: 900
+    remuneration_esat_reference_annuelle: 10800
+    aah_papi_mensuel: 0
+    remuneration_esat_abattue: 625.32
+    aah: 416.27
+
+- name: AAH1 ESAT - PAPI plein
+  period: 2026-07
+  absolute_error_margin: 0.01
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.85
+    af_nbenf: 0
+    remuneration_esat:
+      2026-04: 900
+      2026-05: 900
+      2026-06: 900
+  output:
+    remuneration_esat_reference: 900
+    remuneration_esat_reference_annuelle: 10800
+    aah_papi_mensuel: 233
+    remuneration_esat_abattue: 392.32
+    aah: 649.27
+
+- name: AAH1 ESAT - PAPI réduit
+  period: 2026-07
+  absolute_error_margin: 0.01
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.85
+    af_nbenf: 0
+    remuneration_esat:
+      2026-04: 1600
+      2026-05: 1600
+      2026-06: 1600
+  output:
+    remuneration_esat_reference: 1600
+    remuneration_esat_reference_annuelle: 19200
+    aah_papi_mensuel: 116.5
+    remuneration_esat_abattue: 995.18
+    aah: 46.41
+
+- name: AAH1 ESAT - sans PAPI
+  period: 2026-07
+  absolute_error_margin: 0.01
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.85
+    af_nbenf: 0
+    remuneration_esat:
+      2026-04: 2500
+      2026-05: 2500
+      2026-06: 2500
+  output:
+    remuneration_esat_reference: 2500
+    remuneration_esat_reference_annuelle: 30000
+    aah_papi_mensuel: 0
+    remuneration_esat_abattue: 1737
+    aah: 0
+
+- name: AAH2 ESAT - entrée en ESAT en mai
+  period: 2026-07
+  absolute_error_margin: 0.01
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.65
+    af_nbenf: 0
+    aah_restriction_substantielle_durable_acces_emploi: true
+    remuneration_esat:
+      2026-04: 0
+      2026-05: 900
+      2026-06: 900
+  output:
+    remuneration_esat_reference: 600
+    remuneration_esat_reference_annuelle: 10800
+    aah_papi_mensuel: 0
+    remuneration_esat_abattue: 416.88
+    aah: 624.71
+
+- name: AAH2 ESAT - entrée en ESAT en juin
+  period: 2026-07
+  absolute_error_margin: 0.01
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.65
+    af_nbenf: 0
+    aah_restriction_substantielle_durable_acces_emploi: true
+    remuneration_esat:
+      2026-04: 0
+      2026-05: 0
+      2026-06: 900
+  output:
+    remuneration_esat_reference: 300
+    remuneration_esat_reference_annuelle: 10800
+    aah_papi_mensuel: 0
+    remuneration_esat_abattue: 208.44
+    aah: 833.15
+
+- name: AAH1 ESAT - seuil PAPI plein (17510 €)
+  period: 2026-07
+  absolute_error_margin: 0.02
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.85
+    af_nbenf: 0
+    remuneration_esat:
+      2026-04: 1459.17
+      2026-05: 1459.17
+      2026-06: 1459.17
+  output:
+    remuneration_esat_reference: 1459.17
+    remuneration_esat_reference_annuelle: 17510.04
+    aah_papi_mensuel: 116.5
+    remuneration_esat_abattue: 897.33
+    aah: 144.25
+
+- name: AAH1 ESAT - seuil sans PAPI (28170 €)
+  period: 2026-07
+  absolute_error_margin: 0.02
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.85
+    af_nbenf: 0
+    remuneration_esat:
+      2026-04: 2347.50
+      2026-05: 2347.50
+      2026-06: 2347.50
+  output:
+    remuneration_esat_reference: 2347.5
+    remuneration_esat_reference_annuelle: 28170
+    aah_papi_mensuel: 0
+    remuneration_esat_abattue: 1631.04
+    aah: 0
+
+- name: AAH1 ESAT - un enfant
+  period: 2026-07
+  absolute_error_margin: 0.02
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.85
+    af_nbenf: 1
+    remuneration_esat:
+      2026-04: 900
+      2026-05: 900
+      2026-06: 900
+  output:
+    remuneration_esat_reference: 900
+    remuneration_esat_reference_annuelle: 10800
+    aah_papi_mensuel: 233
+    remuneration_esat_abattue: 392.32
+    aah: 1041.59
+
+- name: AAH1 ESAT - deux enfants
+  period: 2026-07
+  absolute_error_margin: 0.02
+  input:
+    travailleur_esat: true
+    taux_incapacite: 0.85
+    af_nbenf: 2
+    remuneration_esat:
+      2026-04: 900
+      2026-05: 900
+      2026-06: 900
+  output:
+    remuneration_esat_reference: 900
+    remuneration_esat_reference_annuelle: 10800
+    aah_papi_mensuel: 233
+    remuneration_esat_abattue: 392.32
+    aah: 1041.59
