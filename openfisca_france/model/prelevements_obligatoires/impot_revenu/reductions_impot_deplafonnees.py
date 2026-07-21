@@ -54,6 +54,7 @@ class reductions_deplafonnees(Variable):
             'reduction_enfants_scolarises',
             'accult',
             'rente_survie',
+            'cappme_jei_jeir',
             ]
 
         # Step 4: Get other uncapped reductions
