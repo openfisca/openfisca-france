@@ -591,16 +591,16 @@ class ci_investissement_forestier(Variable):
     def formula_2023_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2023
-        Voir https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_integral/Brochure-IR-2024.pdf page 24
-        - Fin du plafond de dépenses de contrat de gestion (CGA) de dépenses d'investissement forestier
-        - Comme pour les autres années, les cases sont attachés à une même année d'investissements et "roulent"
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
+        # Nouvelles variables
+        f7un = foyer_fiscal('f7un', period)
+        f7ul = foyer_fiscal('f7ul', period)
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        # Reports des années précédentes
+        # Reports
         f7tm = foyer_fiscal('f7tm', period)
         f7to = foyer_fiscal('f7to', period)
         f7tp = foyer_fiscal('f7tp', period)
@@ -627,25 +627,45 @@ class ci_investissement_forestier(Variable):
         f7ti = foyer_fiscal('f7ti', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        taux_25 = P.travaux.taux_adhesion_org_producteurs
+        P_2022 = parameters('2022-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        taux_18 = P_2022.travaux.taux
 
-        # travaux année N
-        ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7to + f7tq + f7ts + f7tu + f7vi + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu)
-        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th)
+        plafond_acq_ass = P.acquisition.plafond * (maries_ou_pacses + 1)
 
-        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
+        base_assurance = min_(f7ul, plafond_acq_ass)
+        base_acquisition = min_(f7un, plafond_acq_ass - base_assurance)
 
-        return ci_travaux
+        ci_assurance = base_assurance * P.assurance.taux
+        ci_acquisition = base_acquisition * P.acquisition.taux
+
+        base_25 = (
+            f7to + f7tq + f7ts + f7tu + f7vi + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu + f7up + f7ut)
+
+        base_18 = (
+            f7tm + f7tp + f7tr + f7tt + f7vh + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th)
+
+        plafond_travaux = P.travaux.plafond * (maries_ou_pacses + 1)
+
+        ci_trav_adh = min_(plafond_travaux, base_25)
+        ci_trav = min_(plafond_travaux - ci_trav_adh, base_18)
+        ci_travaux = (taux_25 * ci_trav_adh) + (taux_18 * ci_trav)
+
+        return ci_travaux + ci_acquisition + ci_assurance
 
     def formula_2024_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements forestiers pour 2024
+        Investissements forestiers pour l'année 2024
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
+        # Nouvelles variables
+        f7un = foyer_fiscal('f7un', period)
+        f7ul = foyer_fiscal('f7ul', period)
         f7up = foyer_fiscal('f7up', period)
         f7ut = foyer_fiscal('f7ut', period)
 
-        # Reports des années précédentes
+        # Reports
         f7tp = foyer_fiscal('f7tp', period)
         f7tq = foyer_fiscal('f7tq', period)
         f7tr = foyer_fiscal('f7tr', period)
@@ -655,8 +675,8 @@ class ci_investissement_forestier(Variable):
         f7tv = foyer_fiscal('f7tv', period)
         f7tw = foyer_fiscal('f7tw', period)
         f7vm = foyer_fiscal('f7vm', period)
-        f7ta = foyer_fiscal('f7ta', period)
         f7vn = foyer_fiscal('f7vn', period)
+        f7ta = foyer_fiscal('f7ta', period)
         f7tb = foyer_fiscal('f7tb', period)
         f7vq = foyer_fiscal('f7vq', period)
         f7te = foyer_fiscal('f7te', period)
@@ -670,14 +690,110 @@ class ci_investissement_forestier(Variable):
         f7tj = foyer_fiscal('f7tj', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        taux_25 = P.travaux.taux_adhesion_org_producteurs
+        P_2022 = parameters('2022-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        taux_18 = P_2022.travaux.taux
 
-        # travaux année N
-        ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu)
-        ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th + f7vv + f7tj)
+        plafond_acq_ass = P.acquisition.plafond * (maries_ou_pacses + 1)
 
-        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
+        base_assurance = min_(f7ul, plafond_acq_ass)
+        base_acquisition = min_(f7un, plafond_acq_ass - base_assurance)
 
-        return ci_travaux
+        ci_assurance = base_assurance * P.assurance.taux
+        ci_acquisition = base_acquisition * P.acquisition.taux
+
+        # Variables à 25%
+        base_25 = (f7tq + f7ts + f7tu + f7tw + f7vn + f7tb + f7vr + f7tf + f7ti + f7vu + f7vv + f7tj + f7up + f7ut)
+
+        # Variables à 18%
+        base_18 = (f7tp + f7tr + f7tt + f7tv + f7vm + f7ta + f7vq + f7te + f7vs + f7th)
+
+        plafond_travaux = P.travaux.plafond * (maries_ou_pacses + 1)
+
+        ci_trav_adh = min_(plafond_travaux, base_25)
+        ci_trav = min_(plafond_travaux - ci_trav_adh, base_18)
+
+        ci_travaux = (taux_25 * ci_trav_adh) + (taux_18 * ci_trav)
+        return ci_travaux + ci_acquisition + ci_assurance
+
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédit d'impôt pour les investissements forestiers (2025)
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        # 2025
+        f7un = foyer_fiscal('f7un', period)
+        f7ul = foyer_fiscal('f7ul', period)
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+        # 2024
+        f7vt = foyer_fiscal('f7vt', period)
+        f7tk = foyer_fiscal('f7tk', period)
+        # 2023
+        f7vv = foyer_fiscal('f7vv', period)
+        f7tj = foyer_fiscal('f7tj', period)
+        # 2022
+        f7vs = foyer_fiscal('f7vs', period)
+        f7th = foyer_fiscal('f7th', period)
+        f7vu = foyer_fiscal('f7vu', period)
+        f7ti = foyer_fiscal('f7ti', period)
+        # 2021
+        f7vq = foyer_fiscal('f7vq', period)
+        f7te = foyer_fiscal('f7te', period)
+        f7vr = foyer_fiscal('f7vr', period)
+        f7tf = foyer_fiscal('f7tf', period)
+        # 2020
+        f7ta = foyer_fiscal('f7ta', period)
+        f7tb = foyer_fiscal('f7tb', period)
+        # 2019
+        f7tv = foyer_fiscal('f7tv', period)
+        f7tw = foyer_fiscal('f7tw', period)
+        # 2018
+        f7tt = foyer_fiscal('f7tt', period)
+        f7tu = foyer_fiscal('f7tu', period)
+        # 2017
+        f7tr = foyer_fiscal('f7tr', period)
+        f7ts = foyer_fiscal('f7ts', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        taux_25 = P.travaux.taux_adhesion_org_producteurs
+        P_2022 = parameters('2022-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        taux_18 = P_2022.travaux.taux
+
+        plafond_acq_ass = P.acquisition.plafond * (maries_ou_pacses + 1)
+        base_assurance = min_(f7ul, plafond_acq_ass)
+        base_acquisition = min_(f7un, plafond_acq_ass - base_assurance)
+
+        ci_assurance = base_assurance * P.assurance.taux
+        ci_acquisition = base_acquisition * P.acquisition.taux
+
+        # Calcul du plafond en cascade
+        reste_plafond_travaux = P.travaux.plafond * (maries_ou_pacses + 1)
+        ci_travaux = 0
+        # Format : (Dépenses éligibles à 25%, Dépenses éligibles à 18%)
+        annees_travaux = [
+            (f7ts, f7tr),  # 2017
+            (f7tu, f7tt),  # 2018
+            (f7tw, f7tv),  # 2019
+            (f7tb, f7ta),  # 2020
+            (f7vr + f7tf, f7vq + f7te),  # 2021
+            (f7vu + f7ti, f7vs + f7th),  # 2022
+            (f7vv + f7tj, 0),  # 2023 (Taux unique 25% à partir d ici)
+            (f7vt + f7tk, 0),  # 2024
+            (f7up + f7ut, 0)]  # 2025
+
+        for depense_25, depense_18 in annees_travaux:
+            # Pour une même année, on impute le taux de 25% en priorité
+            base_25 = min_(depense_25, reste_plafond_travaux)
+            ci_travaux += base_25 * taux_25
+            reste_plafond_travaux -= base_25
+
+            # Puis on impute le taux à 18% s'il reste du plafond
+            base_18 = min_(depense_18, reste_plafond_travaux)
+            ci_travaux += base_18 * taux_18
+            reste_plafond_travaux -= base_18
+
+        return ci_assurance + ci_acquisition + ci_travaux
 
 
 class acqgpl(Variable):

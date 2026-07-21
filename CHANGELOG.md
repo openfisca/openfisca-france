@@ -1,5 +1,14 @@
 # Changelog
 
+### 176.0.5 [#2783](https://github.com/openfisca/openfisca-france/pull/2783)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py` et `tests/calculateur_impots/yaml/credit_invest_forestier.yaml` 
+* Détails :
+  - Mise à jour de la formule pour 2025 corrections sur 2024 et 2023
+  - ajout et correction des tests sur la période
+
 ### 176.0.4 [#2786](https://github.com/openfisca/openfisca-france/pull/2786)
 
 * Changement mineur
