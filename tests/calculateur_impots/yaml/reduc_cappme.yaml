@@ -185,9 +185,8 @@
       f7gw: 1000
 
       # PLAFOND GÉNÉRAL
-      f7ek: 50
       f7cy: 100
-      f7dy: 50
+      f7dy: 55
       f7ey_2022: 100
       f7fy: 50
       f7gy_2022: 100
@@ -211,7 +210,7 @@
       personne_de_reference: ind0
   output:
     rbg: 200000.0
-    reductions: 2545.0
+    reductions: 2500.0
     rfr: 200000.0
     rni: 200000.0
 
@@ -255,7 +254,6 @@
       f7gw: 500
 
       # PLAFOND GÉNÉRAL
-      f7ek: 50
       f7cy: 100
       f7dy: 50
       f7ey_2022: 100
@@ -281,7 +279,7 @@
       personne_de_reference: ind0
   output:
     rbg: 200000.0
-    reductions: 2795.0
+    reductions: 2745.0
     rfr: 200000.0
     rni: 200000.0
 
@@ -329,7 +327,6 @@
       f7gw: 1000
 
       # PLAFOND GÉNÉRAL
-      f7ek: 500
       f7cy: 1000
       f7dy: 500
       f7ey_2022: 1000
@@ -355,8 +352,7 @@
       personne_de_reference: ind0
   output:
     rbg: 200000.0
-    reductions: 7713.0
-    impot_revenu_restant_a_payer: -59020
+    reductions: 7213.0
     rfr: 200000.0
     rni: 200000.0
 
@@ -403,7 +399,6 @@
       f7gw: 1000
 
       # PLAFOND GÉNÉRAL
-      f7ek: 50
       f7cy: 100
       f7dy: 50
       f7ey_2022: 100
@@ -427,8 +422,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    impot_revenu_restant_a_payer: -62714
     rbg: 200000.0
-    reductions: 3810.0
+    reductions: 3760.0
     rfr: 200000.0
     rni: 200000.0

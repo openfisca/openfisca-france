@@ -2427,7 +2427,6 @@ class cappme(Variable):
         f7ey_2022 = foyer_fiscal('f7ey_2022', period)  # 2019
         f7fy = foyer_fiscal('f7fy', period)  # 2020
         f7gy_2022 = foyer_fiscal('f7gy_2022', period)  # 2021
-        f7ek = foyer_fiscal('f7ek', period)  # 2021
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
@@ -2456,7 +2455,7 @@ class cappme(Variable):
         base_sfs_2022 = max_(0, min_(f7gw, plafond_PME - base_report_pme_esus_2018 - base_report_pme_esus_2019 - base_report_pme_esus_2020_avant1008 - base_report_pme_esus_2020_apres1008 - base_report_sfs_2020 - base_report_pme_esus_2021_avant0905 - base_report_pme_2021_apres0905 - base_report_esus_2021_apres0905 - base_report_sfs_2021 - base_pme_esus_2022_avant1803 - base_pme_esus_2022_apres1803))
 
         # Récapitulatif des reports au titre du plafonnement global
-        reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy + f7gy_2022 + f7ek
+        reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy + f7gy_2022
 
         return (
             reports_plaf_general
@@ -2504,7 +2503,6 @@ class cappme(Variable):
         f7bu = foyer_fiscal('f7bu', period)  # 2022
 
         # Plafond général
-        f7ek = foyer_fiscal('f7ek', period)
         f7cy = foyer_fiscal('f7cy', period)
         f7dy = foyer_fiscal('f7dy', period)
         f7ey_2022 = foyer_fiscal('f7ey_2022', period)
@@ -2540,7 +2538,7 @@ class cappme(Variable):
         base_sfs_2023 = max_(0, min_(f7gw, plafond_PME - base_report_pme_esus_2019 - base_report_pme_esus_2020_avant0908 - base_report_pme_esus_2020_apres0908 - base_report_sfs_2020 - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1703 - base_report_pme_esus_2022_apres1703 - base_report_sfs_2022 - base_pme_esus_2023_avant1103 - base_pme_esus_2023_apres1103))
 
         # Reports de réductions d'impôt
-        reports_plaf_general = f7ek + f7cy + f7dy + f7ey_2022 + f7fy + f7gy_2022
+        reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy + f7gy_2022
 
         return (
             reports_plaf_general
@@ -2601,8 +2599,6 @@ class cappme(Variable):
         f7fy_2023 = foyer_fiscal('f7fy_2023', period)  # 2022
         f7gy_2022 = foyer_fiscal('f7gy_2022', period)  # 2023
 
-        f7ek = foyer_fiscal('f7ek', period)  # Report spécifique ESUS/SFS 2021
-
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
 
@@ -2637,7 +2633,7 @@ class cappme(Variable):
         base_esus_2024_apres2706 = max_(0, min_(f7co, plafond_PME - base_report_pme_2020 - base_report_esus_2020 - base_report_sfs_2020 - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_pme_2024 - base_esus_2024_avant2706))
         base_sfs_2024 = max_(0, min_(f7gw, plafond_PME - base_report_pme_2020 - base_report_esus_2020 - base_report_sfs_2020 - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_esus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_esus_2023_avant1103 - base_report_pme_esus_2023_apres1103 - base_report_sfs_2023 - base_pme_2024 - base_esus_2024_avant2706 - base_esus_2024_apres2706))
 
-        reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy_2023 + f7gy_2022 + f7ek
+        reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy_2023 + f7gy_2022
 
         return (
             reports_plaf_general
@@ -2693,7 +2689,6 @@ class cappme(Variable):
         f7dp = foyer_fiscal('f7dp', period)  # 2024
         f7bw = foyer_fiscal('f7bw', period)  # 2024
         # Plafond général (Reports de réductions d'impôt RICI)
-        f7ek = foyer_fiscal('f7ek', period)
         f7cy = foyer_fiscal('f7cy', period)
         f7dy = foyer_fiscal('f7dy', period)
         f7ey_2022 = foyer_fiscal('f7ey_2022', period)
@@ -2731,7 +2726,7 @@ class cappme(Variable):
         base_esus_2025 = max_(0, min_(f7co, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_emus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_emus_2023_avant1103 - base_report_pme_emus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024 - base_report_esus_2024_avant2706 - base_report_esus_2024_apres2706 - base_report_sfs_2024 - base_pme_2025))
         base_sfs_2025 = max_(0, min_(f7gw, plafond_PME - base_report_pme_esus_2021_avant0805 - base_report_pme_2021_apres0805 - base_report_esus_2021_apres0805 - base_report_sfs_2021 - base_report_pme_esus_2022_avant1803 - base_report_pme_emus_2022_apres1803 - base_report_sfs_2022 - base_report_pme_emus_2023_avant1103 - base_report_pme_emus_2023_apres1103 - base_report_sfs_2023 - base_report_pme_2024 - base_report_esus_2024_avant2706 - base_report_esus_2024_apres2706 - base_report_sfs_2024 - base_pme_2025 - base_esus_2025))
 
-        reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy_2023 + f7gy_2022 + f7ek
+        reports_plaf_general = f7cy + f7dy + f7ey_2022 + f7fy_2023 + f7gy_2022
 
         return (
             reports_plaf_general
@@ -2808,6 +2803,15 @@ class cappme_esus_sfs(Variable):
         base_esus_sfs = P.taux25 * (base_esus_2021_apres0805 + base_sfs_2021)
 
         return base_esus_sfs
+
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Report de réduction d’impôt SFS et ESUS de l’année 2021 
+        Applicable au plafond spécial augmenté de 3 000 € (total 13 000 €)
+        '''
+        f7ek = foyer_fiscal('f7ek', period)
+
+        return f7ek
 
 
 class defense_forets_contre_incendies(Variable):
