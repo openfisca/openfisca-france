@@ -2321,23 +2321,6 @@ class rpns_micro_entreprise_revenus_net(Variable):
 
     def formula(individu, period, parameters):
         rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period, options = [DIVIDE])
-        bareme_cs_me = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
-        rpns_micro_entreprise_charges_sociales = (
-            (rpns_micro_entreprise_CA_bic_vente_imp * (bareme_cs_me.formation_professionnelle.ventecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.vente))
-            + (rpns_micro_entreprise_CA_bnc_imp * (bareme_cs_me.formation_professionnelle.artisans_hors_alsace_chiffre_affaires + bareme_cs_me.cotisations_prestations.cipav))
-            + (rpns_micro_entreprise_CA_bic_service_imp * (bareme_cs_me.formation_professionnelle.servicecom_chiffre_affaires + bareme_cs_me.cotisations_prestations.service))
-            )
-        revenus = rpns_micro_entreprise_benefice - rpns_micro_entreprise_charges_sociales
-
-class rpns_micro_entreprise_revenus_net(Variable):
-    value_type = float
-    label = "Revenu d'un TNS dans une micro-entreprise"
-    entity = Individu
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(individu, period, parameters):
-        rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period, options = [DIVIDE])
         rpns_micro_entreprise_CA_bic_vente_imp = individu('rpns_micro_entreprise_CA_bic_vente_imp', period, options = [DIVIDE])
         rpns_micro_entreprise_CA_bnc_imp = individu('rpns_micro_entreprise_CA_bnc_imp', period, options = [DIVIDE])
         rpns_micro_entreprise_CA_bic_service_imp = individu('rpns_micro_entreprise_CA_bic_service_imp', period, options = [DIVIDE])
