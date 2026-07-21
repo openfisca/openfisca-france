@@ -95,33 +95,6 @@ class cappme_jei_jeir(Variable):
 
         return reduction_jei + reduction_jeir
 
-    def formula_2025_01_01(foyer_fiscal, period, parameters):
-        '''
-        Calcul des réductions pour souscriptions JEI/JEU/JEIC (30 %) et JEIR (50 %).
-        Ces réductions sont exclues du plafonnement global des niches fiscales de 10 000 €.
-        '''
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-
-        f7cr = foyer_fiscal('f7cr', period)
-        f7dz_2024 = foyer_fiscal('f7dz_2024', period)
-
-        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
-
-        plafond_jei_celib = P.plafond_jei
-
-        plafond_jei = plafond_jei_celib * (maries_ou_pacses + 1)
-        base_jei_2025 = min_(f7cr, plafond_jei)
-        plafond_jeir_celib = P.plafond_jeir
-
-        plafond_jeir = plafond_jeir_celib * (maries_ou_pacses + 1)
-        base_jeir_2025 = min_(f7dz_2024, plafond_jeir)
-
-        reduction_jei = base_jei_2025 * P.taux_jei
-        reduction_jeir = base_jeir_2025 * P.taux_jeir
-
-        return reduction_jei + reduction_jeir
-
-
 class accult(Variable):
     value_type = float
     entity = FoyerFiscal
