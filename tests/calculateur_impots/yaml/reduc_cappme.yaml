@@ -352,7 +352,7 @@
       personne_de_reference: ind0
   output:
     rbg: 200000.0
-    reductions: 7213.0
+    reductions: 6662.0
     rfr: 200000.0
     rni: 200000.0
 
@@ -384,6 +384,7 @@
       # 2023
       f7cq_2023: 1000
       f7bu: 500
+      f7cp: 1000
 
       # 2024
       f7cv: 1000
@@ -392,10 +393,8 @@
       f7bw: 500
 
       # 2025
-      f7cp: 1000
+      f7ci: 1000
       f7co: 500
-      f7cr: 1000
-      f7dz_2024: 500
       f7gw: 1000
 
       # PLAFOND GÉNÉRAL
@@ -423,6 +422,6 @@
       personne_de_reference: ind0
   output:
     rbg: 200000.0
-    reductions: 3760.0
+    reductions: 3390.0
     rfr: 200000.0
     rni: 200000.0

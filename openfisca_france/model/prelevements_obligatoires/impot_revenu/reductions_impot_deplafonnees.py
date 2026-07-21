@@ -95,6 +95,7 @@ class cappme_jei_jeir(Variable):
 
         return reduction_jei + reduction_jeir
 
+
 class accult(Variable):
     value_type = float
     entity = FoyerFiscal
