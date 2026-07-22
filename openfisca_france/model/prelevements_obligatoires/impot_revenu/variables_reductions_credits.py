@@ -6262,7 +6262,7 @@ class f7sx_2022(Variable):
 
 
 class f7sx(Variable):
-    cerfa_field = '7Sx'
+    cerfa_field = '7SX'
     value_type = int
     entity = FoyerFiscal
     label = 'Location Meublée Censi B'
