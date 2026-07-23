@@ -1,5 +1,24 @@
 # Changelog
 
+### 176.0.6 [#2784](https://github.com/openfisca/openfisca-france/pull/2784)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : partir du 01/01/2022
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/taux_jei.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/taux_jeir.yaml`
+  - `tests/calculateur_impots/yaml/reduc_cappme.yaml`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_deplafonnees.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/plafond_jei.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/plafond_jeir.yaml`
+* Détails :
+  - Création de la formule sur 2021-2025
+  - Ajout des paramètres pour les JEI et JEIR (plafond et taux)
+  - Mise à jour du test cappme
+  - Ajout des variables nécessaires
+
 ### 176.0.5 [#2783](https://github.com/openfisca/openfisca-france/pull/2783)
 
 * Évolution du système socio-fiscal.
