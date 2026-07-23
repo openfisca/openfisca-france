@@ -7107,7 +7107,7 @@ class f7ca(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2021, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -7117,7 +7117,7 @@ class f7dc(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2021, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -7127,7 +7127,7 @@ class f7ct(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2021, 1, 1)
+    # start_date = date(2022, 1, 1)
     definition_period = YEAR
 
 
@@ -7137,7 +7137,7 @@ class f7cu(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2022, 1, 1)
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
@@ -7147,22 +7147,12 @@ class f7cw(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2022, 1, 1)
+    # start_date = date(2023, 1, 1)
     definition_period = YEAR
 
 
 class f7bt(Variable):
     cerfa_field = '7BT'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = 'Souscription au capital de PME'
-    # start_date = date(2022, 1, 1)
-    definition_period = YEAR
-
-
-class f7ey_2022(Variable):
-    cerfa_field = '7EY'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -7177,32 +7167,22 @@ class f7cp(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2023, 1, 1)
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
-class f7cq_2023(Variable):
+class f7cq_2024(Variable):
     cerfa_field = '7CQ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2023, 1, 1)
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
 class f7bu(Variable):
     cerfa_field = '7BU'
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = 'Souscription au capital de PME'
-    # start_date = date(2023, 1, 1)
-    definition_period = YEAR
-
-
-class f7fy_2023(Variable):
-    cerfa_field = '7FY'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -7217,7 +7197,7 @@ class f7do(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2024, 1, 1)
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -7227,7 +7207,7 @@ class f7dp(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME'
-    # start_date = date(2024, 1, 1)
+    # start_date = date(2025, 1, 1)
     definition_period = YEAR
 
 
@@ -7241,13 +7221,13 @@ class f7bw(Variable):
     definition_period = YEAR
 
 
-class f7gy_2022(Variable):
+class f7gy_2018(Variable):
     cerfa_field = '7GY'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Souscription au capital de PME, report plaf'
-    # start_date = date(2022, 1, 1)
+    # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
 
@@ -7256,8 +7236,8 @@ class f7co(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Souscription au capital de PME'
-    # start_date = date(2025, 1, 1)
+    label = 'Versements ESUS'
+    # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
 
@@ -7266,7 +7246,7 @@ class f7dz_2024(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Souscription au capital de PME'
+    label = 'versements JEIR'
     # start_date = date(2024, 1, 1)
     definition_period = YEAR
 
@@ -8452,7 +8432,7 @@ class f7ey(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2015"
+    label = "Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global"
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
