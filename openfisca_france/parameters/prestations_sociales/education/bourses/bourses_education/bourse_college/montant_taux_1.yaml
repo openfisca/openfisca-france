@@ -11,7 +11,7 @@ values:
 metadata:
   last_value_still_valid_on: "2025-11-02"
   short_label: Montant échelon 1
-  unit: /1
+  unit: BMAF
   reference:
     1998-08-30:
       title: "Article 9 du décret n°98-762 du 28 août 1998 fixant les conditions d'attribution des bourses de collège"

@@ -3,7 +3,7 @@ values:
   2016-07-01:
     value: 2560.2
 metadata:
-  unit: /1
+  unit: smic_horaire_brut
   last_value_still_valid_on: "2025-11-03"
   reference:
     2024-09-01:
