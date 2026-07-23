@@ -122,3 +122,8 @@ metadata:
       href: "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006443174/2008-07-31"
     - title: Article 9 du décret n°98-762 du 28 août 1998
       href: "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006443175/1998-08-30/#LEGIARTI000006443175"
+documentation: |-
+  Après 2016, le plafond du foyer avec 8 enfants à charge s'applique aussi aux foyers de 8 enfants ou plus.
+  Ce paramètre est stocké comme un COEFFICIENT appliqué au SMIC horaire brut : le plafond en euros s'obtient en multipliant ce coefficient par le SMIC horaire brut de référence (arrêté du 22 mars 2016).
+  Référence SMIC : 1er juillet de l'avant-dernière année civile (n-2) jusqu'en 2019, puis 1er juillet de l'année n-1 à partir de 2020.
+  Les montants en euros qui en découlent sont confirmés et publiés chaque année par circulaire ; ces circulaires annuelles sont conservées dans les références datées ci-dessus (une par rentrée scolaire).

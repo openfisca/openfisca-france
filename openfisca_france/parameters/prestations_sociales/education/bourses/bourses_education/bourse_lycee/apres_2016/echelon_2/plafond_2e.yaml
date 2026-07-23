@@ -75,3 +75,8 @@ metadata:
     2009-05-21:
     - title: "Article D531-21 du code de l'éducation"
       href: "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000020743161/2009-05-21/"
+documentation: |-
+  Après 2016, le plafond du foyer avec 8 enfants à charge s'applique aussi aux foyers de 8 enfants ou plus.
+  Ce paramètre est stocké comme un COEFFICIENT appliqué au SMIC horaire brut : le plafond en euros s'obtient en multipliant ce coefficient par le SMIC horaire brut de référence (arrêté du 22 mars 2016).
+  Référence SMIC : 1er juillet de l'avant-dernière année civile (n-2) jusqu'en 2019, 1er juillet de l'année n-1 de 2020 à 2022, puis 1er janvier de l'année n-1 à partir de 2023.
+  Les montants en euros qui en découlent sont confirmés et publiés chaque année par circulaire ; ces circulaires annuelles sont conservées dans les références datées ci-dessus (une par rentrée scolaire).
