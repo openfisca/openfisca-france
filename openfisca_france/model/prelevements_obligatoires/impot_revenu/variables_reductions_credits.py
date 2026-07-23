@@ -14764,16 +14764,6 @@ class f7bm(Variable):
 # '''
 
 
-class quaenv_chaudiere_condensation(Variable):
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = "Dépenses pour chaudières à condensation ouvrant droit au crédit d'impôt transition énergétique / développement durable"
-    definition_period = YEAR
-    # Geste-level expense base. Semantic name, no date suffix; the cerfa box is
-    # recorded as metadata on the cerfa-cell aggregate (f7sd_2015) below.
-
-
 class f7sd_2015(Variable):
     cerfa_field = '7SD'
     value_type = int
@@ -14783,10 +14773,6 @@ class f7sd_2015(Variable):
     # start_date = date(2009, 1, 1)
     end = '2015-12-31'
     definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        # Cerfa cell 7SD = sum of its geste(s); still overridable via direct input.
-        return foyer_fiscal('quaenv_chaudiere_condensation', period)
 
 
 class f7sd_2022(Variable):
