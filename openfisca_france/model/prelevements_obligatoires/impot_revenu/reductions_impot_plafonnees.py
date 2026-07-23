@@ -1876,7 +1876,7 @@ class cappme(Variable):
         f7cl = foyer_fiscal('f7cl_2020', period)
         f7cm = foyer_fiscal('f7cm_2019', period)
         f7cn = foyer_fiscal('f7cn_2018', period)
-        f7cu = foyer_fiscal('f7cu', period)
+        f7cu = foyer_fiscal('f7cu_2016', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm + f7cn + f7cu
@@ -1895,7 +1895,7 @@ class cappme(Variable):
         f7cm = foyer_fiscal('f7cm_2019', period)
         f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq', period)
-        f7cu = foyer_fiscal('f7cu', period)
+        f7cu = foyer_fiscal('f7cu_2016', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
         base = f7cl + f7cm + f7cn + f7cq
@@ -1914,7 +1914,7 @@ class cappme(Variable):
         f7cm = foyer_fiscal('f7cm_2019', period)
         f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq', period)
-        f7cu = foyer_fiscal('f7cu', period)
+        f7cu = foyer_fiscal('f7cu_2016', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
         # TODO: gérer les changements de situation familiale
@@ -1941,7 +1941,7 @@ class cappme(Variable):
         f7cm = foyer_fiscal('f7cm_2019', period)
         f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq', period)
-        f7cu = foyer_fiscal('f7cu', period)
+        f7cu = foyer_fiscal('f7cu_2016', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
         base = f7cl + f7cm
@@ -1968,7 +1968,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
-        f7cu = foyer_fiscal('f7cu', period)
+        f7cu = foyer_fiscal('f7cu_2016', period)
         report_cappme_2013_plaf_general = foyer_fiscal('f7cy', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
 
@@ -2017,7 +2017,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn_2018', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
-        f7cu = foyer_fiscal('f7cu', period)
+        f7cu = foyer_fiscal('f7cu_2016', period)
         f7cv = foyer_fiscal('f7cv', period)
         f7cy = foyer_fiscal('f7cy', period)
         f7dy = foyer_fiscal('f7dy', period)
@@ -2073,7 +2073,7 @@ class cappme(Variable):
         f7cm = foyer_fiscal('f7cm_2019', period)
         f7cn = foyer_fiscal('f7cn_2018', period)
         f7cc = foyer_fiscal('f7cc_2018', period)
-        f7cu = foyer_fiscal('f7cu', period)
+        f7cu = foyer_fiscal('f7cu_2016', period)
 
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
