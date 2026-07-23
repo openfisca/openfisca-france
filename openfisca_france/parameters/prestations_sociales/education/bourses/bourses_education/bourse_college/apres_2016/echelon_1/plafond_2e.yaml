@@ -1,4 +1,4 @@
-description: Plafond de référence pour l'échelon 1, pour une famille avec 2 enfants, en multiple du Smic horaire brut
+description: "Plafond de référence pour l'échelon 1, pour une famille avec 2 enfants, en multiple du Smic horaire brut"
 values:
   2016-07-01:
     value: 1915.3
@@ -6,6 +6,119 @@ metadata:
   unit: /1
   last_value_still_valid_on: "2025-11-03"
   reference:
+    2024-09-02:
+    - title: Arrêté du 22 mars 2016
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032325018/"
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039017949"
+    - title: "Circulaire du 21-5-2024 publiée dans le Bulletin officiel de l'éducation nationale n°23 du 6 juin 2024"
+      href: "https://www.education.gouv.fr/bo/2024/Hebdo23/MENE2413111C"
+    2023-09-02:
+    - title: Arrêté du 22 mars 2016
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032325018/"
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039017949"
+    - title: "Circulaire du 17-8-2023 publiée au Bulletin officiel de l'éducation nationale n°34 du 14 septembre 2023"
+      href: "https://www.education.gouv.fr/bo/2023/Hebdo34/MENE2322825C"
+    2022-09-02:
+    - title: Arrêté du 22 mars 2016
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032325018/"
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039017949"
+    - title: "Circulaire du 21-9-2022 publiée au Bulletin officiel de l'éducation nationale n°36 du 30 septembre 2022"
+      href: "https://www.education.gouv.fr/bo/22/Hebdo36/MENE2214583C.htm"
+    2021-09-02:
+    - title: Arrêté du 22 mars 2016
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032325018/"
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039017949"
+    - title: "Circulaire du 12-8-2021 du Bulletin officiel de l'éducation nationale n°31 du 26 août 2021"
+      href: "https://www.education.gouv.fr/bo/21/Hebdo31/MENE2123714C.htm"
+    2020-09-02:
+    - title: Arrêté du 22 mars 2016
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032325018/"
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039017949/2020-01-01/"
+    - title: Décret 2017-1719 du 20/12/2017
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000036240563"
+    2019-09-02:
+    - title: Arrêté du 22 mars 2016
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032325018/"
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039019567/2019-09-02/"
+    - title: Décret 2016-1818 du 22/12/2016
+      href: "https://www.legifrance.gouv.fr/eli/decret/2016/12/22/2016-1818/jo/texte"
+    2018-09-02:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032262918/2016-09-01/"
+    - title: Arrêté du 22 mars 2016
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032325018/"
+    - title: "Circulaire n° 2018-086 du 24-7-2018 du Bulletin officiel de l'éducation nationale n°30 du 26 juillet 2018"
+      href: "https://www.education.gouv.fr/bo/18/Hebdo30/MENE1818323C.htm"
+    2017-09-02:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032262918/2016-09-01/"
+    - title: Arrêté du 22 mars 2016
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032325018/"
+    - title: Décret 2014-1569 du 22/12/2014
+      href: "https://www.legifrance.gouv.fr/eli/decret/2014/12/22/2014-1569/jo/texte"
+    2016-09-01:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032262918/2016-09-01/"
+    - title: Arrêté du 22 mars 2016
+      href: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032325018/"
+    - title: "Circulaire n° 2016-093 du 20-6-2016 du Bulletin officiel de l'éducation nationale n°25 du 23 juin 2016"
+      href: "https://www.education.gouv.fr/bo/16/Hebdo25/MENE1616710C.htm"
     2016-07-01:
     - title: "Article 1 de l'arrêté du 22/03/2016 fixant les plafonds de ressources ouvrant droit à l'attribution d'une bourse nationale de collège à compter de l'année scolaire 2016-2017"
       href: "https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000032325020"
+    2015-09-01:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020743201/2009-05-21/"
+    - title: "Circulaire n° 2015-089 du 12-6-2015 publiée dans le Bulletin offociel de l'éducation nationale n°25 du 18 juin 2015"
+      href: "https://www.education.gouv.fr/bo/15/Hebdo25/MENE1513475C.htm"
+    2014-09-01:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020743201/2009-05-21/"
+    - title: "Circulaire n° 2014-095 du 21-7-2014 publiée au Bulletin officiel de l'éducation nationale n°30 du 24 juillet 2014"
+      href: "https://www.education.gouv.fr/bo/14/Hebdo30/MENE1417252C.htm"
+    2013-09-01:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020743201/2009-05-21/"
+    - title: "Circulaire n° 2013-108 du 17-7-2013 publiée dans le Bulletin officiel de l'éducation nationale n°30 du 25 juillet 2013"
+      href: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1317357C.htm"
+    2012-09-01:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020743201/2009-05-21/"
+    - title: "Circulaire n° 2012-122 du 20-8-2012 publiée dans le Bulletin officiel de l'éducation nationale n°30 du 23 août 2012"
+      href: "https://www.education.gouv.fr/bo/12/Hebdo30/MENE1230331C.htm"
+    2011-09-01:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020743201/2009-05-21/"
+    - title: "Application des articles R. 531-1 à D. 531-12 et D. 531-42 à D. 531-43 du code de l'Éducation, publié dans le bulletin officiel de l'éducation nationale n°29 du 21 juillet 2011"
+      href: "https://www.education.gouv.fr/bo/2011/29/mene1118038c.htm"
+    2010-09-01:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020743201/2009-05-21/"
+    - title: "Bourses de collège publié dabs le Bulletin officiel de l'éducation nationale n°29 du 22 juillet 2010"
+      href: "https://www.education.gouv.fr/bo/2010/29/mene1017673c.htm"
+    2009-05-21:
+    - title: "Article D531-5 du code de l'éducation"
+      href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020743201/2009-05-21/"
+    - title: "Bourses de collège publié dans le Bulletin officiel de l'éducation nationale n°32 du 3 septembre 2009"
+      href: "https://www.education.gouv.fr/bo/2009/31/mene0917764c.htm"
+    2008-07-31:
+    - title: Article 8 du décret n°98-762 du 28 août 1998
+      href: "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006443174/2008-07-31"
+    - title: Article 9 du décret n°98-762 du 28 août 1998
+      href: "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000019268343/2008-07-31"
+    2007-05-16:
+    - title: Article 8 du décret n°98-762 du 28 août 1998
+      href: "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006443174/2008-07-31"
+    - title: Article 9 du décret n°98-762 du 28 août 1998
+      href: "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006443176/2007-05-16"
+    1998-08-30:
+    - title: Article 8 du décret n°98-762 du 28 août 1998
+      href: "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006443174/2008-07-31"
+    - title: Article 9 du décret n°98-762 du 28 août 1998
+      href: "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006443175/1998-08-30/#LEGIARTI000006443175"
