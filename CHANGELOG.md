@@ -1,5 +1,14 @@
 # Changelog
 
+### 176.0.7 [#2712](https://github.com/openfisca/openfisca-france/pull/2712)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+* Détails :
+  - Correction doublon dans allègements de hausse de csg du capital
+
 ### 176.0.6 [#2784](https://github.com/openfisca/openfisca-france/pull/2784)
 
 * Évolution du système socio-fiscal
