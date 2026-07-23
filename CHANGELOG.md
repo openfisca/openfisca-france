@@ -11,7 +11,7 @@
   - `tests/calculateur_impots/yaml/reduc_cappme.yaml`
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_deplafonnees.py`
-  - `penfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/plafond_jei.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/plafond_jei.yaml`
   - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/plafond_jeir.yaml`
 * Détails :
   - Création de la formule sur 2021-2025
