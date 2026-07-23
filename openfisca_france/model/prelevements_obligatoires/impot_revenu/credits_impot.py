@@ -2192,6 +2192,137 @@ class prlire(Variable):
         return parameters(period).impot_revenu.credits_impots.prlire.taux * min_(f2dh, plaf_resid)
 
 
+# Crédit d'impôt pour la transition énergétique (CITE).
+# NB : le « crédit d'impôt en faveur de la qualité environnementale » (CIDD, crédit
+# d'impôt développement durable), le CIDD et le CITE désignent un seul et même
+# dispositif — un unique crédit d'impôt, dont l'appellation et le paramétrage ont
+# évolué dans le temps (variable `quaenv`). On préfixe `cite_` les fonctions qui le
+# calculent, OpenFisca-France couvrant de nombreux autres impôts et prestations.
+def cite_taux_panier_cases(gestes, period, parameters, avec_bouquet=False):
+    '''
+    Taux d'une case de la déclaration déduit du barème par geste (2005-2013).
+
+    - En 2005-2011, la déclaration regroupe les dépenses par TAUX (chaque case est
+      un « panier » de gestes partageant un même taux) ; en 2012-2013, les taux
+      « bouquet » sont eux-mêmes une combinaison du taux par geste et de la
+      majoration. Dans les deux cas, ce taux effectif n'est pas une donnée légale
+      en soi (la loi fixe un taux par geste) mais une agrégation propre au
+      formulaire ; on le déduit donc du barème par geste
+      (transition_energetique.taux.ad_valorem).
+    - On prend le taux commun (maximum) des gestes fournis, on ajoute le cas
+      échéant la majoration « bouquet de travaux » (+10 points, gestes éligibles),
+      puis on applique le rabot en vigueur (réduction homothétique, LF 2011 art. 105
+      puis LF 2012 art. 83 : troncature au point de pourcentage).
+    '''
+    av = parameters(period).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
+    valeurs = [getattr(av, geste) for geste in gestes]
+    valeurs = [float(v) for v in valeurs if v is not None]
+    nominal = max(valeurs) if valeurs else 0.0
+    if avec_bouquet:
+        majoration = av.majoration_bouquet
+        if majoration is not None:
+            nominal = nominal + float(majoration)
+    coefficient_rabot = 1.0
+    if period.start.year >= 2011:
+        rabot = av.rabot
+        if rabot is not None:
+            coefficient_rabot = float(rabot)
+    return int(nominal * coefficient_rabot * 100 + 1e-9) / 100
+
+
+def cite_taux_general(instant, parameters, avec_bouquet=False):
+    '''
+    Taux général (non différencié par geste) du crédit d'impôt en 2014-2015.
+
+    En 2014, le crédit cesse d'être différencié par geste : un taux général
+    s'applique à toutes les dépenses éligibles (15 % en régime CIDD du 1.1 au
+    31.8.2014, 30 % en régime CITE à compter du 1.9.2014), majoré de 10 points en
+    cas de « bouquet de travaux » (régime CIDD). Comme tous les gestes partagent
+    alors ce taux, on le lit sur un geste de référence du barème par geste à la
+    date d'engagement `instant`, sans créer de paramètre agrégé.
+    '''
+    av = parameters(instant).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
+    taux = av.chaudiere_condensation
+    if avec_bouquet:
+        taux = taux + av.majoration_bouquet
+    return taux
+
+
+def cite_credit_par_geste(foyer_fiscal, period, parameters, cases_gestes, plafond, carryover=None):
+    '''
+    Crédit d'impôt transition énergétique (CITE) calculé en sourçant le taux de
+    chaque case cerfa depuis le barème IPP par geste
+    (impot_revenu.credits_impots.transition_energetique.taux.ad_valorem).
+
+    Les dépenses sont regroupées par taux, puis le plafond est imputé en
+    commençant par les taux les plus élevés (imputation identique à l'historique).
+
+    - cases_gestes : dict {case_cerfa: nom_du_geste_IPP} (taux lu sur la période).
+    - carryover : dict {case_cerfa: nom_du_geste_IPP} pour les dépenses engagées
+      l'année précédente (taux lu sur l'année précédente, ex. report « bouquet sur
+      2 ans »).
+    '''
+    av = parameters(period).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
+    bases_par_taux = {}
+
+    def ajoute(cases, av_instant):
+        for case, geste in cases.items():
+            taux = getattr(av_instant, geste)
+            if taux is None:
+                continue
+            bases_par_taux[taux] = bases_par_taux.get(taux, 0) + foyer_fiscal(case, period)
+
+    ajoute(cases_gestes, av)
+    if carryover:
+        av_prec = parameters(period.last_year).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
+        ajoute(carryover, av_prec)
+
+    credit = 0
+    plafond_restant = plafond
+    for taux in sorted(bases_par_taux, reverse=True):
+        depense_imputee = min_(plafond_restant, bases_par_taux[taux])
+        credit = credit + taux * depense_imputee
+        plafond_restant = max_(plafond_restant - depense_imputee, 0)
+    return credit
+
+
+# Correspondance case cerfa -> geste IPP pour le CITE (2016-2019). Le taux effectif
+# (général 30 %, ou exceptions : parois vitrées 15 % dès 2018, dépose cuve fioul 50 %
+# en 2019, THPE fioul 15 % en 2018) est lu sur le barème par geste.
+CITE_CASES_GESTES = {
+    'f7ad_2020': 'chaudiere_microcogeneration',
+    'f7af_2020': 'regulation',
+    'f7ah_2020': 'isolation_thermique_parois_opaques',
+    'f7ak_2018': 'isolation_thermique_parois_opaques',
+    'f7al_2018': 'isolation_thermique_parois_opaques',
+    'f7am_2018': 'isolation_thermique_parois_vitrees',
+    'f7an_2018': 'volets_isolants',
+    'f7ao_2018': 'chaudiere_thpe',
+    'f7ap_2018': 'isolation_thermique_parois_vitrees',
+    'f7aq': 'porte_entree',
+    'f7ar_2019': 'renouvelable_chauffage',
+    'f7as_2019': 'pac_eau_chaude',
+    'f7av_2020': 'pac_autres',
+    'f7ax_2019': 'pac_eau_chaude',
+    'f7ay_2020': 'solaire_chauffe_eau',
+    'f7az_2020': 'electricite_hydraulique_biomasse',
+    'f7bb_2020': 'electricite_hydraulique_biomasse',
+    'f7bc_2020': 'diagnostic_performance_energetique',
+    'f7bd_2020': 'raccordement_reseau_chaud',
+    'f7be_2020': 'compteurs_individuels',
+    'f7bf_2020': 'systeme_charge_vehicule_electrique',
+    'f7bh_2020': 'raccordement_reseau_froid',
+    'f7bk': 'protection_vitres_rayonnement',
+    'f7bl': 'ventilation',
+    'f7bm': 'audit_energetique',
+    'f7bm_2016': 'electricite_hydraulique_biomasse',
+    'f7bn': 'renouvelable_chauffage',
+    'f7bq_2020': 'depose_cuve_fioul',
+    'f7aa': 'chaudiere_hpe',
+    'f7cb_2019': 'chaudiere_hpe',
+    }
+
+
 class quaenv(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -2210,17 +2341,22 @@ class quaenv(Variable):
         f7wf = foyer_fiscal('f7wf_2012', period)
         f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
         n = nb_pac_majoration_plafond
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac2 * (max_(n - 2, 0))
+        max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * (n >= 1) + pg.pac_2 * (n >= 2) + pg.pac_3 * (max_(n - 2, 0))
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7wg)
+
+        # Paniers de cases : taux déduits du barème par geste (voir cite_taux_panier_cases).
+        taux_wf = cite_taux_panier_cases(['renouvelable_energie'], period, parameters)
+        taux_wg = cite_taux_panier_cases(['chaudiere_condensation', 'isolation_thermique'], period, parameters)
+        taux_wh = cite_taux_panier_cases(['chaudiere_basse_temperature'], period, parameters)
         return (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_wg * min_(f7wg, max1)
-            + P.taux_wh * min_(f7wh, max2)
+            taux_wf * min_(f7wf, max0)
+            + taux_wg * min_(f7wg, max1)
+            + taux_wh * min_(f7wh, max2)
             )
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -2235,18 +2371,24 @@ class quaenv(Variable):
         f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wq = foyer_fiscal('f7wq', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
+        max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7wg)
         max3 = max_(0, max2 - f7wh)
+
+        # Paniers de cases : taux déduits du barème par geste (voir cite_taux_panier_cases).
+        taux_wf = cite_taux_panier_cases(['renouvelable_energie'], period, parameters)
+        taux_wg = cite_taux_panier_cases(['chaudiere_condensation_ancien', 'isolation_thermique_ancien', 'regulation_ancien'], period, parameters)
+        taux_wh = cite_taux_panier_cases(['chaudiere_condensation', 'isolation_thermique', 'regulation'], period, parameters)
+        taux_wq = cite_taux_panier_cases(['chaudiere_basse_temperature'], period, parameters)
         return (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_wg * min_(f7wg, max1)
-            + P.taux_wh * min_(f7wh, max2)
-            + P.taux_wq * min_(f7wq, max3)
+            taux_wf * min_(f7wf, max0)
+            + taux_wg * min_(f7wg, max1)
+            + taux_wh * min_(f7wh, max2)
+            + taux_wq * min_(f7wq, max3)
             )
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -2262,15 +2404,15 @@ class quaenv(Variable):
         f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wk = foyer_fiscal('f7wk', period)
-        f7wq = foyer_fiscal('f7wq', period)
         f7sb = foyer_fiscal('f7sb_2011', period)
         f7sc = foyer_fiscal('f7sc_2009', period)
         f7sd = foyer_fiscal('f7sd_2015', period)
         f7se = foyer_fiscal('f7se_2015', period)
         rfr = foyer_fiscal('rfr', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_ressources_ecopret.foyer_fiscal
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
+        max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7se)
@@ -2279,18 +2421,23 @@ class quaenv(Variable):
         max5 = max_(0, max4 - f7wg)
         max6 = max_(0, max5 - f7sc)
         max7 = max_(0, max6 - f7wh)
-        max8 = max_(0, max7 - f7sb)
 
-        return or_(not_(f7we), rfr < P.max_rfr) * (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_se * min_(f7se, max1)
-            + P.taux_wk * min_(f7wk, max2)
-            + P.taux_sd * min_(f7sd, max3)
-            + P.taux_wg * min_(f7wg, max4)
-            + P.taux_sc * min_(f7sc, max5)
-            + P.taux_wh * min_(f7wh, max6)
-            + P.taux_sb * min_(f7sb, max7)
-            + P.taux_wq * min_(f7wq, max8)
+        # Paniers de cases : taux déduits du barème par geste (voir cite_taux_panier_cases).
+        # 7WQ n'est pas une case QE en 2009 (le taux de 15 % relevait de l'aide aux
+        # personnes, case 7WI, cf. notice DGFiP) : elle ne donne pas droit au crédit ici.
+        taux_50 = cite_taux_panier_cases(['renouvelable_energie'], period, parameters)
+        taux_40_enr = cite_taux_panier_cases(['chaudiere_bois', 'pac_geothermie_air_eau', 'pac_eau_chaude'], period, parameters)
+        taux_40_ancien = cite_taux_panier_cases(['chaudiere_condensation_ancien', 'pac_ancien', 'isolation_thermique_parois_opaques_ancien'], period, parameters)
+        taux_25 = cite_taux_panier_cases(['chaudiere_condensation', 'regulation', 'isolation_thermique_parois_opaques', 'raccordement_reseau_chaud'], period, parameters)
+        return or_(not_(f7we), rfr < plafond_rfr_ecopret) * (
+            taux_50 * min_(f7wf, max0)
+            + taux_50 * min_(f7se, max1)
+            + taux_40_enr * min_(f7wk, max2)
+            + taux_40_enr * min_(f7sd, max3)
+            + taux_40_ancien * min_(f7wg, max4)
+            + taux_40_ancien * min_(f7sc, max5)
+            + taux_25 * min_(f7wh, max6)
+            + taux_25 * min_(f7sb, max7)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -2312,9 +2459,10 @@ class quaenv(Variable):
         f7se = foyer_fiscal('f7se_2015', period)
         f7sh = foyer_fiscal('f7sh_2015', period)
         rfr = foyer_fiscal('rfr', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_ressources_ecopret.foyer_fiscal
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
+        max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7se)
@@ -2323,15 +2471,21 @@ class quaenv(Variable):
         max5 = max_(0, max4 - f7wh)
         max6 = max_(0, max5 - f7sb)
         max7 = max_(0, max6 - f7wq)
-        return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_se * min_(f7se, max1)
-            + P.taux_wk * min_(f7wk, max2)
-            + P.taux_sd * min_(f7sd, max3)
-            + P.taux_wh * min_(f7wh, max4)
-            + P.taux_sb * min_(f7sb, max5)
-            + P.taux_wq * min_(f7wq, max6)
-            + P.taux_sh * min_(f7sh, max7)
+        # Paniers de cases : taux déduits du barème par geste (voir cite_taux_panier_cases).
+        # Le rabot de 2011 (LF 2011 art. 105) est appliqué par cite_taux_panier_cases.
+        taux_50 = cite_taux_panier_cases(['renouvelable_energie'], period, parameters)
+        taux_40 = cite_taux_panier_cases(['chaudiere_bois_remplacement', 'pac_geothermie_air_eau', 'pac_eau_chaude'], period, parameters)
+        taux_25 = cite_taux_panier_cases(['regulation', 'calorifugeage', 'chaudiere_bois', 'pac_autres', 'isolation_thermique_parois_opaques', 'raccordement_reseau_chaud'], period, parameters)
+        taux_15 = cite_taux_panier_cases(['chaudiere_condensation', 'isolation_thermique_parois_vitrees', 'volets_isolants', 'porte_entree'], period, parameters)
+        return not_(f7wg) * or_(not_(f7we), (rfr < plafond_rfr_ecopret)) * (
+            taux_50 * min_(f7wf, max0)
+            + taux_50 * min_(f7se, max1)
+            + taux_40 * min_(f7wk, max2)
+            + taux_40 * min_(f7sd, max3)
+            + taux_25 * min_(f7wh, max4)
+            + taux_25 * min_(f7sb, max5)
+            + taux_15 * min_(f7wq, max6)
+            + taux_15 * min_(f7sh, max7)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -2373,21 +2527,37 @@ class quaenv(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
         rfr = foyer_fiscal('rfr', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_ressources_ecopret.foyer_fiscal
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
+        max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
         maxi1 = max_(0, max0 - f7ty)
         maxi2 = max_(0, maxi1 - f7tx)
         maxi3 = max_(0, maxi2 - f7tw)
         maxi4 = max_(0, maxi3 - f7tv)
         maxi5 = max_(0, maxi4 - f7tu)
+        # Taux effectifs déduits du barème par geste : floor((taux_geste [+ majoration
+        # bouquet]) x rabot). En 2012-2013 le rabot vaut 0,85 (LF 2012 art. 83).
+        taux_condensation = cite_taux_panier_cases(['chaudiere_condensation'], period, parameters)
+        taux_solaire = cite_taux_panier_cases(['electricite_solaire'], period, parameters)
+        taux_iso = cite_taux_panier_cases(['isolation_thermique_parois_opaques'], period, parameters)
+        taux_microcogen = cite_taux_panier_cases(['chaudiere_microcogeneration'], period, parameters)
+        taux_bois = cite_taux_panier_cases(['chaudiere_bois_remplacement'], period, parameters)
+        taux_renouvelable = cite_taux_panier_cases(['renouvelable_energie'], period, parameters)
+        taux_condensation_bouquet = cite_taux_panier_cases(['chaudiere_condensation'], period, parameters, avec_bouquet=True)
+        taux_iso_bouquet = cite_taux_panier_cases(['isolation_thermique_parois_opaques'], period, parameters, avec_bouquet=True)
+        taux_microcogen_bouquet = cite_taux_panier_cases(['chaudiere_microcogeneration'], period, parameters, avec_bouquet=True)
+        taux_bois_bouquet = cite_taux_panier_cases(['chaudiere_bois_remplacement'], period, parameters, avec_bouquet=True)
+        taux_renouvelable_bouquet = cite_taux_panier_cases(['renouvelable_energie'], period, parameters, avec_bouquet=True)
+
+        # Logements collectifs : mêmes taux (par geste) que l'individuel, sans bouquet.
         collectif = (
-            P.taux_ty * min_(f7ty, max0)
-            + P.taux_tx * min_(f7tx, maxi1)
-            + P.taux_tw * min_(f7tw, maxi2)
-            + P.taux_tv * min_(f7tv, maxi3)
-            + P.taux_tu * min_(f7tu, maxi4)
-            + P.taux_tt * min_(f7tt, maxi5)
+            taux_renouvelable * min_(f7ty, max0)
+            + taux_bois * min_(f7tx, maxi1)
+            + taux_microcogen * min_(f7tw, maxi2)
+            + taux_iso * min_(f7tv, maxi3)
+            + taux_solaire * min_(f7tu, maxi4)
+            + taux_condensation * min_(f7tt, maxi5)
             )
 
         max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
@@ -2401,27 +2571,27 @@ class quaenv(Variable):
 
         montant = (
             quaenv_bouquet * (
-                P.taux10 * min_(max8, f7sk + f7sl)
-                + P.taux11 * min_(max7, f7sm)
-                + P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw)
-                + P.taux18 * min_(max5, f7sd + f7sj)
-                + P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp)
-                + P.taux26 * min_(max3, f7se)
-                + P.taux32 * min_(max2, f7sv)
-                + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
-                + P.taux40 * min_(max0, f7ss + f7st)
+                taux_condensation * min_(max8, f7sk + f7sl)
+                + taux_solaire * min_(max7, f7sm)
+                + taux_iso * min_(max6, f7sf + f7si + f7su + f7sw)
+                + taux_condensation_bouquet * min_(max5, f7sd + f7sj)
+                + taux_iso_bouquet * min_(max4, f7sg + f7sh + f7so + f7sp)
+                + taux_microcogen_bouquet * min_(max3, f7se)
+                + taux_renouvelable * min_(max2, f7sv)
+                + taux_bois_bouquet * min_(max1, f7sn + f7sr + f7sq)
+                + taux_renouvelable_bouquet * min_(max0, f7ss + f7st)
                 )
             + not_(quaenv_bouquet) * (
-                P.taux32 * min_(max0, f7ss + f7st + f7sv)
-                + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
-                + P.taux17 * min_(max2, f7se)
-                + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
-                + P.taux11 * min_(max4, f7sm)
-                + P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))
+                taux_renouvelable * min_(max0, f7ss + f7st + f7sv)
+                + taux_bois * min_(max1, f7sn + f7sq + f7sr)
+                + taux_microcogen * min_(max2, f7se)
+                + taux_iso * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
+                + taux_solaire * min_(max4, f7sm)
+                + taux_condensation * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))
                 )
             )
 
-        return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (montant + collectif) + f7sz
+        return not_(f7wg) * or_(not_(f7we), (rfr < plafond_rfr_ecopret)) * (montant + collectif) + f7sz
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2456,9 +2626,10 @@ class quaenv(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
         rfr = foyer_fiscal('rfr', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        plafond_rfr_ecopret = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_ressources_ecopret.foyer_fiscal
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
+        max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac_majoration_plafond
         max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
         max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - not_(quaenv_bouquet) * (f7sn + f7sq + f7sr))
         max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - not_(quaenv_bouquet) * (f7se))
@@ -2468,28 +2639,42 @@ class quaenv(Variable):
         max7 = max_(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
         max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
 
+        # Taux effectifs déduits du barème par geste : floor((taux_geste [+ majoration
+        # bouquet]) x rabot). En 2012-2013 le rabot vaut 0,85 (LF 2012 art. 83).
+        taux_condensation = cite_taux_panier_cases(['chaudiere_condensation'], period, parameters)
+        taux_solaire = cite_taux_panier_cases(['electricite_solaire'], period, parameters)
+        taux_iso = cite_taux_panier_cases(['isolation_thermique_parois_opaques'], period, parameters)
+        taux_microcogen = cite_taux_panier_cases(['chaudiere_microcogeneration'], period, parameters)
+        taux_bois = cite_taux_panier_cases(['chaudiere_bois_remplacement'], period, parameters)
+        taux_renouvelable = cite_taux_panier_cases(['renouvelable_energie'], period, parameters)
+        taux_condensation_bouquet = cite_taux_panier_cases(['chaudiere_condensation'], period, parameters, avec_bouquet=True)
+        taux_iso_bouquet = cite_taux_panier_cases(['isolation_thermique_parois_opaques'], period, parameters, avec_bouquet=True)
+        taux_microcogen_bouquet = cite_taux_panier_cases(['chaudiere_microcogeneration'], period, parameters, avec_bouquet=True)
+        taux_bois_bouquet = cite_taux_panier_cases(['chaudiere_bois_remplacement'], period, parameters, avec_bouquet=True)
+        taux_renouvelable_bouquet = cite_taux_panier_cases(['renouvelable_energie'], period, parameters, avec_bouquet=True)
+
         montant = (
             quaenv_bouquet * (
-                P.taux10 * min_(max8, f7sk + f7sl)
-                + P.taux11 * min_(max7, f7sm)
-                + P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw)
-                + P.taux18 * min_(max5, f7sd + f7sj)
-                + P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp)
-                + P.taux26 * min_(max3, f7se)
-                + P.taux32 * min_(max2, f7sv)
-                + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
-                + P.taux40 * min_(max0, f7ss + f7st)
+                taux_condensation * min_(max8, f7sk + f7sl)
+                + taux_solaire * min_(max7, f7sm)
+                + taux_iso * min_(max6, f7sf + f7si + f7su + f7sw)
+                + taux_condensation_bouquet * min_(max5, f7sd + f7sj)
+                + taux_iso_bouquet * min_(max4, f7sg + f7sh + f7so + f7sp)
+                + taux_microcogen_bouquet * min_(max3, f7se)
+                + taux_renouvelable * min_(max2, f7sv)
+                + taux_bois_bouquet * min_(max1, f7sn + f7sr + f7sq)
+                + taux_renouvelable_bouquet * min_(max0, f7ss + f7st)
                 )
             + not_(quaenv_bouquet) * (
-                + P.taux32 * min_(max0, f7ss + f7st + f7sv)
-                + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
-                + P.taux17 * min_(max2, f7se)
-                + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
-                + P.taux11 * min_(max4, f7sm)
-                + P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))
+                taux_renouvelable * min_(max0, f7ss + f7st + f7sv)
+                + taux_bois * min_(max1, f7sn + f7sq + f7sr)
+                + taux_microcogen * min_(max2, f7se)
+                + taux_iso * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
+                + taux_solaire * min_(max4, f7sm)
+                + taux_condensation * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))
                 )
             )
-        return or_(not_(or_(f7we, f7wg)), (rfr < P.max_rfr)) * montant + f7sz  # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
+        return or_(not_(or_(f7we, f7wg)), (rfr < plafond_rfr_ecopret)) * montant + f7sz  # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2543,7 +2728,12 @@ class quaenv(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
+        # Taux général (non différencié par geste), déduit du barème par geste :
+        # CIDD 15 % (mono-geste) / 25 % (bouquet) du 1.1 au 31.8.2014 ; CITE 30 % dès le 1.9.2014.
+        taux_base = cite_taux_general('2014-01-01', parameters)
+        taux_bouquet = cite_taux_general('2014-01-01', parameters, avec_bouquet=True)
+        taux_transition_energetique = cite_taux_general('2014-09-01', parameters)
 
         depenses_transition_energetique = (
             f7sa
@@ -2572,8 +2762,8 @@ class quaenv(Variable):
             )
 
         max0 = (
-            P.max * (1 + maries_ou_pacses)
-            + P.pac1 * nb_pac2
+            pg.personne_seule * (1 + maries_ou_pacses)
+            + pg.pac * nb_pac2
             )
 
         max00 = max_(0, max0 - depenses_transition_energetique)
@@ -2581,12 +2771,12 @@ class quaenv(Variable):
         max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - not_(quaenv_bouquet) * (max00))
 
         credit_quaenv = (
-            quaenv_bouquet * (P.taux25 * (min_(max00,
+            quaenv_bouquet * (taux_bouquet * (min_(max00,
                 f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st))
-                + P.taux15 * min_(max1,
+                + taux_base * min_(max1,
                     f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
                               )
-            + not_(quaenv_bouquet) * P.taux15 * (min_(max00,
+            + not_(quaenv_bouquet) * taux_base * (min_(max00,
                 f7se + f7wc + f7vg + f7sn + f7sp + f7sr + f7ss + f7sq + f7st + f7sf + f7sg
                 + f7sh + f7si + f7sv + f7sw + f7sd + not_(f7wk) * (f7wt + f7sj + f7sk + f7sl)))
             )
@@ -2596,7 +2786,7 @@ class quaenv(Variable):
         # TODO : inclure la condition de bouquet sur 2 périodes (si pas de bouquet avec les dépenses du 1.1 au 31.8, le bouquet peut s'apprécier
         #          sur la base des dépenses faites du 1.1 au 31.12 mais le taux sera de 25% pour la 1ère moitié de l'année et 30% l'autre)
 
-        return P.taux30 * min_(max0, depenses_transition_energetique) + min_(max_(0, max0 - depenses_transition_energetique), credit_quaenv)
+        return taux_transition_energetique * min_(max0, depenses_transition_energetique) + min_(max_(0, max0 - depenses_transition_energetique), credit_quaenv)
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2696,7 +2886,13 @@ class quaenv(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
+        # Taux général (non différencié par geste), déduit du barème par geste : le
+        # report « bouquet sur 2 ans » des dépenses 2014 conserve les taux CIDD 2014
+        # (15 % / 25 %) ; les dépenses 2015 relèvent du CITE à 30 %.
+        taux_base = cite_taux_general('2014-01-01', parameters)
+        taux_bouquet = cite_taux_general('2014-01-01', parameters, avec_bouquet=True)
+        taux_transition_energetique = cite_taux_general(period, parameters)
 
         depenses_transition_energetique_bouquet_2ans_2014_part2 = (
             f7sa + f7sb + f7sc + f7wb + f7rg + f7vh + f7rh + f7ri + f7wu + f7rj + f7rk + f7rl
@@ -2716,14 +2912,14 @@ class quaenv(Variable):
             + depenses_transition_energetique_2015
             )
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max0 = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac2
         max00 = max_(0, max0 - depenses_transition_energetique)
         max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - not_(quaenv_bouquet) * (max00))
         credit_quaenv_bouquet_2ans = (
             quaenv_bouquet * (
-                P.taux25 * (min_(max00,
+                taux_bouquet * (min_(max00,
                     f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st))
-                + P.taux15 * min_(max1,
+                + taux_base * min_(max1,
                     f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
                 )
             )
@@ -2731,7 +2927,7 @@ class quaenv(Variable):
         # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
 
         return (
-            P.taux30 * min_(max0, depenses_transition_energetique)
+            taux_transition_energetique * min_(max0, depenses_transition_energetique)
             + min_(max_(0, max0 - depenses_transition_energetique), credit_quaenv_bouquet_2ans)
             )
 
@@ -2742,16 +2938,17 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
+        plafond = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * nb_pac2
 
-        cases_depenses = [
-            'f7aa_2016', 'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7am_2018', 'f7an_2018', 'f7aq', 'f7ar_2019', 'f7av_2020', 'f7ax_2019',
+        cases = [
+            'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7am_2018', 'f7an_2018', 'f7aq', 'f7ar_2019', 'f7av_2020', 'f7ax_2019',
             'f7ay_2020', 'f7az_2020', 'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7bm_2016', 'f7cb_2019',
             ]
-        depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
-
-        return P.taux30 * min_(max0, depenses_transition_energetique)
+        cases_gestes = {case: CITE_CASES_GESTES[case] for case in cases}
+        # 7AA (2016) : dépenses 2015 de chaudières à condensation reportées (taux 2015).
+        carryover = {'f7aa_2016': 'chaudiere_condensation'}
+        return cite_credit_par_geste(foyer_fiscal, period, parameters, cases_gestes, plafond, carryover)
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2760,16 +2957,15 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         personnes_a_charge = foyer_fiscal('nb_pac2', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
+        plafond = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * personnes_a_charge
 
-        cases_depenses = [
+        cases = [
             'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7am_2018', 'f7an_2018', 'f7aq', 'f7ar_2019', 'f7av_2020', 'f7ax_2019', 'f7ay_2020', 'f7az_2020',
             'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7cb_2019',
             ]
-        depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
-        plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
-
-        return P.taux30 * min_(plafond_depenses_energetiques, depenses_transition_energetique)
+        cases_gestes = {case: CITE_CASES_GESTES[case] for case in cases}
+        return cite_credit_par_geste(foyer_fiscal, period, parameters, cases_gestes, plafond)
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2778,23 +2974,18 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         personnes_a_charge = foyer_fiscal('nb_pac2', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
+        plafond = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * personnes_a_charge
 
-        cases_depenses = [
-            'f7aa', 'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7am_2018', 'f7an_2018', 'f7aq', 'f7ar_2019', 'f7as_2019', 'f7av_2020', 'f7ax_2019', 'f7ay_2020', 'f7az_2020',
-            'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7bm', 'f7cb_2019',
+        # Le taux de chaque geste est lu sur le barème IPP : en 2018 l'isolation des
+        # parois vitrées (7AM/7AP) et les chaudières THPE fioul (7AO) sont à 15 %,
+        # les autres gestes à 30 %. Le plafond est imputé d'abord sur les taux élevés.
+        cases = [
+            'f7aa', 'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7am_2018', 'f7an_2018', 'f7ao_2018', 'f7ap_2018', 'f7aq', 'f7ar_2019', 'f7as_2019',
+            'f7av_2020', 'f7ax_2019', 'f7ay_2020', 'f7az_2020', 'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7bm', 'f7cb_2019',
             ]
-        depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
-        cases_depense_taux_reduit = ['f7ao_2018', 'f7ap_2018']
-        depenses_transition_energetique_taux_reduit = sum([foyer_fiscal(case, period) for case in cases_depense_taux_reduit])
-
-        plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
-        plafond_depenses_energetiques_taux_reduit = max_(0, plafond_depenses_energetiques - depenses_transition_energetique)
-
-        return (
-            P.taux30 * min_(plafond_depenses_energetiques, depenses_transition_energetique)
-            + P.taux15 * min_(plafond_depenses_energetiques_taux_reduit, depenses_transition_energetique_taux_reduit)
-            )
+        cases_gestes = {case: CITE_CASES_GESTES[case] for case in cases}
+        return cite_credit_par_geste(foyer_fiscal, period, parameters, cases_gestes, plafond)
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2803,23 +2994,17 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         personnes_a_charge = foyer_fiscal('nb_pac2', period)
-        P = parameters(period).impot_revenu.credits_impots.quaenv
+        pg = parameters(period).impot_revenu.credits_impots.transition_energetique.plaf_depenses.plaf_global
+        plafond = pg.personne_seule * (1 + maries_ou_pacses) + pg.pac * personnes_a_charge
 
-        cases_depenses = [
+        # La dépose d'une cuve à fioul (7BQ) est à 50 % en 2019, les autres gestes à
+        # 30 %. Le plafond est imputé d'abord sur le taux le plus élevé (7BQ).
+        cases = [
             'f7aa', 'f7ad_2020', 'f7af_2020', 'f7ah_2020', 'f7ak_2018', 'f7al_2018', 'f7ar_2019', 'f7as_2019', 'f7av_2020', 'f7ax_2019', 'f7ay_2020', 'f7az_2020',
-            'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7bm', 'f7cb_2019', 'f7bn',
+            'f7bb_2020', 'f7bc_2020', 'f7bd_2020', 'f7be_2020', 'f7bf_2020', 'f7bh_2020', 'f7bk', 'f7bl', 'f7bm', 'f7cb_2019', 'f7bn', 'f7bq_2020',
             ]
-        depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
-        f7bq = foyer_fiscal('f7bq_2020', period)
-
-        plafond = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
-        plafondint = min_(plafond, f7bq)
-        plafond_ordinaire = (plafond - plafondint)
-
-        return (
-            P.taux30 * min_(plafond_ordinaire, depenses_transition_energetique)
-            + P.taux50 * plafondint
-            )
+        cases_gestes = {case: CITE_CASES_GESTES[case] for case in cases}
+        return cite_credit_par_geste(foyer_fiscal, period, parameters, cases_gestes, plafond)
 
 
 class quaenv_bouquet(Variable):
