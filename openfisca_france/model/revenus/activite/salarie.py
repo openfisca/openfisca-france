@@ -61,6 +61,24 @@ class frais_reels(Variable):
 
 
 class hsup(Variable):
+    '''
+    Heures supplémentaires exonérées d'IR au titre du dispositif TEPA
+    (article 1er de la loi n° 2007-1223 du 21 août 2007 en faveur du
+    travail, de l'emploi et du pouvoir d'achat), supprimé fin 2012 par
+    l'article 3 de la loi n° 2012-958 du 16 août 2012 et clôturé ici
+    le 13/12/2013 sur les déclarations 2013.
+
+    Cette variable reste référencée par les modules de cotisations
+    sociales, d'aides au logement et de prestations familiales qui en
+    consomment l'historique via `period.n_2`. Pour le dispositif
+    post-2019 rétabli par l'article 7 de la loi n° 2018-1213, voir la
+    variable `heures_supplementaires_exonerees` (cases 1GH/1HH/1IH/1JH
+    de la 2042) qui alimente la nouvelle formule du `rfr`.
+
+    Refs #1893 : la clarification complète du périmètre de `hsup` reste
+    à mener, mais la séparation entre les deux dispositifs élimine au
+    moins l'ambiguïté côté IR.
+    '''
     cerfa_field = {
         0: '1AU',
         1: '1BU',
@@ -70,12 +88,35 @@ class hsup(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = 'Heures supplémentaires : revenus exonérés connus'
+    label = 'Heures supplémentaires : revenus exonérés connus (dispositif TEPA, 2007-2012)'
     # start_date = date(2007, 1, 1)
     end = '2013-12-13'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
+
+
+class heures_supplementaires_exonerees(Variable):
+    '''
+    Heures supplémentaires et complémentaires exonérées d'impôt sur le
+    revenu depuis la loi n° 2018-1213 (article 7), à hauteur d'un
+    plafond annuel. Le montant déclaré sur les cases 1GH/1HH/1IH/1JH
+    de la 2042 alimente directement le revenu fiscal de référence via
+    la formule `rfr`, sans entrer dans le revenu net imposable.
+    '''
+    cerfa_field = {
+        0: '1GH',
+        1: '1HH',
+        2: '1IH',
+        3: '1JH',
+        }
+    value_type = float
+    unit = 'currency'
+    entity = Individu
+    label = "Heures supplémentaires et complémentaires exonérées d'impôt sur le revenu"
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038589734'
+    definition_period = YEAR
+    end = None
 
 
 class ppe_du_sa(Variable):

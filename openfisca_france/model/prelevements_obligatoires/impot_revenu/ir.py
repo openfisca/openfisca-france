@@ -2546,6 +2546,58 @@ class rfr(Variable):
 
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
 
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Comme la formule de base, plus la réintégration des heures
+        supplémentaires et complémentaires exonérées (loi n° 2018-1213)
+        dans la limite du plafond annuel par déclarant (article 81 quater
+        du CGI, plafond relevé par l'article 4 de la LFR 2022).
+        '''
+        abattements_plus_values = foyer_fiscal('abattements_plus_values', period)
+        f2dm = foyer_fiscal('f2dm', period)
+        microentreprise = foyer_fiscal('microentreprise', period)
+        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer', period)
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
+        rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
+        rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
+        rni = foyer_fiscal('rni', period)
+        imposition_au_bareme = foyer_fiscal('f2op', period)
+        f3sb = foyer_fiscal('f3sb', period)
+        rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
+        rpns_info_i = foyer_fiscal.members('rpns_info', period)
+
+        rpns_info = foyer_fiscal.sum(rpns_info_i)
+        rpns_exon = foyer_fiscal.sum(rpns_exon_i)
+
+        prime_partage_valeur_exoneree_exceptionnelle_i = foyer_fiscal.members('prime_partage_valeur_exoneree_exceptionnelle', period)
+        prime_partage_valeur_exoneree_exceptionnelle = (foyer_fiscal.sum(prime_partage_valeur_exoneree_exceptionnelle_i) * 0.9)
+
+        # Réintégration des heures supplémentaires exonérées au RFR,
+        # plafonnée individuellement par déclarant et après application
+        # de l'abattement forfaitaire de 10 % pour frais professionnels
+        # (cohérent avec le traitement de la PPV exonérée ci-dessus, et
+        # avec ce qui figure sur l'avis : ligne "Nets" = 0,9 × ligne
+        # "Déclarés"). TODO : tenir compte des frais réels le cas
+        # échéant, comme pour la PPV.
+        plafond = parameters(period).impot_revenu.calcul_revenus_imposables.heures_supplementaires_exonerees.plafond_annuel
+        heures_supplementaires_exonerees_i = foyer_fiscal.members('heures_supplementaires_exonerees', period)
+        heures_supplementaires_exonerees_rfr = foyer_fiscal.sum(
+            min_(heures_supplementaires_exonerees_i, plafond) * 0.9
+            )
+
+        f3sb = where(imposition_au_bareme, f3sb, 0)
+
+        return (
+            max_(0, rni - f3sb)
+            + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rpns_exon + rpns_info
+            + abattements_plus_values
+            + f2dm + microentreprise
+            + prime_partage_valeur_exoneree_exceptionnelle
+            + heures_supplementaires_exonerees_rfr
+            )
+
 
 class glo_taxation_ir_forfaitaire_taux2(Variable):
     value_type = float
