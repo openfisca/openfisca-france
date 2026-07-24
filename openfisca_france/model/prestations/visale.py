@@ -61,13 +61,13 @@ class visale_montant_max(Variable):
         minimum_etudiant = where(
             residence_ile_de_france,
             parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.hors_ile_de_france,
+            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.autres_communes,
             )
 
         plafond_loyer = where(
             residence_ile_de_france,
             parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.hors_ile_de_france,
+            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.autres_communes,
             )
 
         moitie_des_ressources = menage('visale_base_ressources', period) / 2
