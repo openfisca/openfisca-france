@@ -2,10 +2,10 @@ description: Montant maximum du loyer éligible à la caution Visale dans le cas
 values:
   2018-06-19:
     value: 1300
-  2026-01-06: 
+  2026-01-06:
     value: 1575
 metadata:
-  short_label: Agglomeration de plus de 100 000 habitants, la Corse, les DROM et Saint Martin 
+  short_label: Agglomeration de plus de 100 000 habitants, la Corse, les DROM et Saint Martin
   unit: currency
   reference:
     2018-06-19:

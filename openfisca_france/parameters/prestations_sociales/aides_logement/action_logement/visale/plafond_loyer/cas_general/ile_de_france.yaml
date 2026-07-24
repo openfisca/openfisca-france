@@ -2,7 +2,7 @@ description: Montant maximum du loyer éligible à la caution Visale dans le cas
 values:
   2018-06-19:
     value: 1500
-  2026-01-06: 
+  2026-01-06:
     value: 1940
 metadata:
   short_label: En Île-de-France

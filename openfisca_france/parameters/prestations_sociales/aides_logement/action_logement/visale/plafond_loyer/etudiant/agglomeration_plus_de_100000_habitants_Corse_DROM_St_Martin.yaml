@@ -4,10 +4,10 @@ values:
     value: 425
   2018-06-19:
     value: 600
-  2026-01-06: 
+  2026-01-06:
     value: 840
 metadata:
-  short_label: Agglomeration de plus de 100 000 habitants, la Corse, les DROM et Saint Martin 
+  short_label: Agglomeration de plus de 100 000 habitants, la Corse, les DROM et Saint Martin
   unit: currency
   reference:
     2016-01-01:
