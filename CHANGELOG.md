@@ -1,5 +1,17 @@
 # Changelog
 
+### 176.0.8 [#2792](https://github.com/openfisca/openfisca-france/pull/2792)
+
+* Changement mineur
+* Périodes concernées : du 01/01/2025 au 31/12/2025.
+* Zones impactées :
+  - `tests/formulas/ars`
+* Détails :
+  - Ajout de tests sur l'allocation de rentrée scolaire (`ars`, `ars_nette_crds`) pour la rentrée scolaire 2025
+  - Les trois tranches d'âge de l'article D543-1 du Code de la sécurité sociale (89,72 %, 94,67 % et 97,95 % de la BMAF) sont vérifiées contre les montants publiés pour la rentrée 2025, soit 423,48 €, 446,85 € et 462,32 € nets de CRDS
+  - Le plafond de ressources d'un enfant à charge (28 444 €) et l'absence de droit avant six ans sont également couverts
+  - _Aucun changement de calcul : `ars` n'était jusqu'ici vérifiée que par les tests de non-régression `tests/leximpact/2024`._
+
 ### 176.0.7 [#2712](https://github.com/openfisca/openfisca-france/pull/2712)
 
 * Évolution du système socio-fiscal.
