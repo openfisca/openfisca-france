@@ -1,0 +1,169 @@
+# Allocation de rentrée scolaire (ARS) - barème de la rentrée scolaire 2025.
+#
+# Montant : art. D543-1 du Code de la sécurité sociale
+#   https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000026087214
+#   89,72 % de la BMAF pour l'enfant de moins de 11 ans au 31 décembre,
+#   94,67 % pour l'enfant de 11 ans à moins de 15 ans au 31 décembre,
+#   97,95 % pour l'enfant de 15 ans et plus au 31 décembre.
+# BMAF au 01/04/2025 : 474,37 euros
+#   Instruction interministérielle N° DSS/2A/2C/2025/32 du 07/03/2025
+#   https://sante.gouv.fr/fichiers/bo/2025/2025.6.sante.pdf#page=9
+# Conditions d'âge : art. R543-2 du Code de la sécurité sociale
+#   https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019281627
+# Condition de ressources : art. L543-1 du Code de la sécurité sociale. Plafond
+#   de base au 01/01/2025 de 21 880 euros, majoré de 30 % par enfant à charge,
+#   soit 28 444 euros pour un enfant à charge à la rentrée 2025 (ressources 2023).
+#   Arrêté du 20/12/2024, art. 3
+#   https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050842452
+#
+# Les montants attendus ci-dessous sont les montants nets de CRDS effectivement
+# versés, tels que publiés pour la rentrée 2025 :
+#   423,48 euros (6-10 ans), 446,85 euros (11-14 ans), 462,32 euros (15-18 ans).
+#   https://www.service-public.gouv.fr/particuliers/actualites/A16342
+# La marge de 0,02 euro absorbe l'arrondi au centime pratiqué par la Cnaf.
+#
+# Les dates de naissance retenues se situent toutes en mai, afin de rester à
+# l'écart du cas limite de l'enfant atteignant six ans en janvier de l'année
+# suivant la rentrée : la formule documente explicitement le fait de ne pas
+# couvrir ce cas, et ces tests ne préjugent donc pas de son traitement.
+
+- name: "ARS 2025 - un enfant de 8 ans au 31/12, montant de la 1ère tranche d'âge"
+  description: >-
+    Enfant né en 2017, donc âgé de 8 ans au 31/12/2025 : première tranche d'âge
+    (moins de 11 ans au 31 décembre), soit 89,72 % de la BMAF.
+    Ressources 2023 inférieures au plafond de 28 444 euros.
+  period: 2025
+  absolute_error_margin: 0.02
+  input:
+    familles:
+      famille:
+        parents: [parent1]
+        enfants: [enfant1]
+        prestations_familiales_base_ressources:
+          2025-01: 25000
+    individus:
+      parent1:
+        date_naissance:
+          ETERNITY: 1985-04-12
+      enfant1:
+        date_naissance:
+          ETERNITY: 2017-05-10
+  output:
+    familles:
+      famille:
+        ars:
+          2025: 423.48 / (1 - 0.005)
+        ars_nette_crds:
+          2025: 423.48
+
+- name: "ARS 2025 - un enfant de 12 ans au 31/12, montant de la 2ème tranche d'âge"
+  description: >-
+    Enfant né en 2013, donc âgé de 12 ans au 31/12/2025 : deuxième tranche d'âge
+    (11 ans à moins de 15 ans au 31 décembre), soit 94,67 % de la BMAF.
+  period: 2025
+  absolute_error_margin: 0.02
+  input:
+    familles:
+      famille:
+        parents: [parent1]
+        enfants: [enfant1]
+        prestations_familiales_base_ressources:
+          2025-01: 25000
+    individus:
+      parent1:
+        date_naissance:
+          ETERNITY: 1985-04-12
+      enfant1:
+        date_naissance:
+          ETERNITY: 2013-05-10
+  output:
+    familles:
+      famille:
+        ars:
+          2025: 446.85 / (1 - 0.005)
+        ars_nette_crds:
+          2025: 446.85
+
+- name: "ARS 2025 - un enfant de 16 ans au 31/12, montant de la 3ème tranche d'âge"
+  description: >-
+    Enfant né en 2009, donc âgé de 16 ans au 31/12/2025 : troisième tranche
+    d'âge (15 ans et plus au 31 décembre), soit 97,95 % de la BMAF.
+  period: 2025
+  absolute_error_margin: 0.02
+  input:
+    familles:
+      famille:
+        parents: [parent1]
+        enfants: [enfant1]
+        prestations_familiales_base_ressources:
+          2025-01: 25000
+    individus:
+      parent1:
+        date_naissance:
+          ETERNITY: 1985-04-12
+      enfant1:
+        date_naissance:
+          ETERNITY: 2009-05-10
+  output:
+    familles:
+      famille:
+        ars:
+          2025: 462.32 / (1 - 0.005)
+        ars_nette_crds:
+          2025: 462.32
+
+- name: "ARS 2025 - ressources égales au plafond d'un enfant à charge, ARS entière"
+  description: >-
+    Le plafond de ressources pour un enfant à charge à la rentrée 2025 est de
+    28 444 euros. L'ARS reste due en totalité lorsque les ressources n'excèdent
+    pas ce plafond.
+  period: 2025
+  absolute_error_margin: 0.02
+  input:
+    familles:
+      famille:
+        parents: [parent1]
+        enfants: [enfant1]
+        prestations_familiales_base_ressources:
+          2025-01: 28444
+    individus:
+      parent1:
+        date_naissance:
+          ETERNITY: 1985-04-12
+      enfant1:
+        date_naissance:
+          ETERNITY: 2017-05-10
+  output:
+    familles:
+      famille:
+        ars_nette_crds:
+          2025: 423.48
+
+- name: "ARS 2025 - enfant de 5 ans au 31/12, pas de droit à l'ARS"
+  description: >-
+    Enfant né en mai 2020 : son sixième anniversaire tombe le 10/05/2026, donc
+    après le 1er février 2026. Il n'ouvre pas droit à l'ARS au titre de la
+    rentrée 2025 (art. R543-2 du Code de la sécurité sociale).
+  period: 2025
+  absolute_error_margin: 0.02
+  input:
+    familles:
+      famille:
+        parents: [parent1]
+        enfants: [enfant1]
+        prestations_familiales_base_ressources:
+          2025-01: 25000
+    individus:
+      parent1:
+        date_naissance:
+          ETERNITY: 1985-04-12
+      enfant1:
+        date_naissance:
+          ETERNITY: 2020-05-10
+  output:
+    familles:
+      famille:
+        ars:
+          2025: 0
+        ars_nette_crds:
+          2025: 0
