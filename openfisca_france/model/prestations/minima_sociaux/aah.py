@@ -433,7 +433,7 @@ class travailleur_esat(Variable):
 class remuneration_esat(Variable):
     value_type = float
     default_value = 0
-    label = "Remuneration en ESAT (établissements et services d'aide par le travail)"
+    label = "Rémunération en ESAT (établissements et services d'aide par le travail)"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
