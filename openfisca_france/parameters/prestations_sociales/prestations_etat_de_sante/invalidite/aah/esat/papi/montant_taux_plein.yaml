@@ -1,0 +1,6 @@
+description: Montant annuel du PAPI lorsque la rémunération annuelle ESAT est inférieure au premier plafond.
+values:
+  2026-07-01:
+    value: 2796
+metadata:
+  unit: currency-EUR
