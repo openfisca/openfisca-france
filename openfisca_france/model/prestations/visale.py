@@ -1,5 +1,4 @@
 from openfisca_france.model.base import *
-from openfisca_france.model.prestations.aides_logement import TypesZoneApl
 from numpy import datetime64
 
 
@@ -84,6 +83,7 @@ class visale_montant_max(Variable):
     set_input = set_input_divide_by_period
     reference = 'https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13'
 
+    # Jusqu'au 18/06/2018, le plafond de loyer garanti sans justification de ressources aux étudiants est unique sur tout le territoire. Le lancement du 19/06/2018 introduit la différenciation Île-de-France / hors Île-de-France, et le 06/01/2026 scinde le hors Île-de-France en deux zones.
     def formula_2016_01_01(menage, period, parameters):
         '''
         Attention, un montant non nul pour cette variable ne signifie pas nécessairement que l'entité est éligible à Visale : d'autres conditions peuvent ne pas être remplies. Pour déterminer l'éligibilité à la caution Visale au loyer actuellement renseigné pour le ménage, il faut utiliser la variable `visale_eligibilite`.
@@ -91,19 +91,40 @@ class visale_montant_max(Variable):
         Cette modélisation est impossible à réaliser telle quelle dans OpenFisca, car cela correspondrait à une variable de Ménage pour 1 à 2 personnes, et une variable d'Individu à partir de 3 personnes en colocation, mais pour laquelle le montant du loyer serait différent (ou en tous cas, serait la quote-part du loyer total du logement loué).
         Par conséquent, le calcul de cette variable fait l'hypothèse d'une déclaration des Ménages avec un Ménage par personne inscrite sur le bail pour 3 personnes ou plus, et avec un seul Ménage pour une colocation (ou un bail solidaire) de 2 personnes.
         '''
+        plafond_loyer_parameters = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer
+
+        etudiant = menage.personne_de_reference('etudiant', period)
+        minimum_etudiant = plafond_loyer_parameters.etudiant.toutes_communes
+
+        plafond_loyer = where(  # le cas général n'est paramétré qu'à partir du 19/06/2018 : cette branche lève une `ParameterNotFoundError` avant cette date, faute de source sur le plafond applicable aux non-étudiants entre 2016 et 2018
+            menage('residence_ile_de_france', period),
+            plafond_loyer_parameters.cas_general.ile_de_france,
+            plafond_loyer_parameters.cas_general.hors_ile_de_france,
+            )
+
+        moitie_des_ressources = menage('visale_base_ressources', period) / 2
+
+        return max_(etudiant * minimum_etudiant, min_(moitie_des_ressources, plafond_loyer))
+
+    def formula_2018_06_19(menage, period, parameters):
+        '''
+        Le lancement du 19/06/2018 ouvre Visale à tous les étudiants et introduit la différenciation entre l'Île-de-France et le reste du territoire.
+        '''
+        plafond_loyer_parameters = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer
+
         residence_ile_de_france = menage('residence_ile_de_france', period)
 
         etudiant = menage.personne_de_reference('etudiant', period)
         minimum_etudiant = where(
             residence_ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.hors_ile_de_france,
+            plafond_loyer_parameters.etudiant.ile_de_france,
+            plafond_loyer_parameters.etudiant.hors_ile_de_france,
             )
 
         plafond_loyer = where(
             residence_ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.hors_ile_de_france,
+            plafond_loyer_parameters.cas_general.ile_de_france,
+            plafond_loyer_parameters.cas_general.hors_ile_de_france,
             )
 
         moitie_des_ressources = menage('visale_base_ressources', period) / 2
@@ -112,51 +133,34 @@ class visale_montant_max(Variable):
 
     def formula_2026_01_06(menage, period, parameters):
         '''
-        À compter du 6 janvier 2026, les plafonds de loyers garantis par Visale évoluent.
-        Les montants maximums de loyers garantis tiennent désormais compte des spécificités des grandes agglomérations de plus de 100 000 habitants.
+        À compter du 6 janvier 2026, les plafonds de loyers garantis par Visale évoluent et le hors Île-de-France est scindé en deux.
         Le zonage distingue désormais trois catégories :
         - Île-de-France
-        - Grandes agglomérations (> 100 000 habitants, DROM, Corse, Saint-Martin)
-        - Reste du territoire
+        - Agglomérations de plus de 100 000 habitants, Corse, DROM et Saint-Martin
+        - Autres communes
+        Le critère est alternatif : la Corse, les DROM et Saint-Martin relèvent de la deuxième catégorie dans leur intégralité, indépendamment de la taille de leur agglomération.
         '''
-        residence_ile_de_france = menage('residence_ile_de_france', period)
-        zone_apl = menage('zone_apl', period)
+        plafond_loyer_parameters = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer
 
-        # TODO: Ce zonage APL sert ici de contournement pour approcher le zonage Visale 2026.
-        # Il ne recouvre pas exactement les grandes agglomérations > 100 000 habitants,
-        # les DROM, la Corse et Saint-Martin dans tous les cas.
-        grandes_agglomerations = (zone_apl == TypesZoneApl.zone_1) + (zone_apl == TypesZoneApl.zone_2)
-        residence_grande_agglomeration = grandes_agglomerations * not_(residence_ile_de_france)
+        residence_ile_de_france = menage('residence_ile_de_france', period)
+        residence_grande_agglomeration = (
+            menage('residence_agglomeration_plus_100000_habitants', period)
+            + menage('residence_corse', period)
+            + menage('residence_dom', period)
+            + menage('residence_saint_martin', period)
+            ) > 0
+
+        def plafond_par_zone(plafonds):
+            return select(
+                [residence_ile_de_france, residence_grande_agglomeration],  # l'Île-de-France prime : ses communes appartiennent aussi à une agglomération de plus de 100 000 habitants
+                [plafonds.ile_de_france, plafonds.grandes_agglomerations_DROM_Corse_SaintMartin],
+                default = plafonds.autres_communes,
+                )
 
         etudiant = menage.personne_de_reference('etudiant', period)
+        minimum_etudiant = plafond_par_zone(plafond_loyer_parameters.etudiant)
 
-        minimum_etudiant_idf = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.ile_de_france
-        minimum_etudiant_agglomeration = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.grandes_agglomerations_DROM_Corse_SaintMartin
-        minimum_etudiant_reste = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.hors_ile_de_france
-
-        minimum_etudiant = where(
-            etudiant * residence_ile_de_france,
-            minimum_etudiant_idf,
-            where(
-                etudiant * residence_grande_agglomeration,
-                minimum_etudiant_agglomeration,
-                minimum_etudiant_reste,
-                ),
-            )
-
-        plafond_loyer_idf = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.ile_de_france
-        plafond_loyer_agglomeration = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.grandes_agglomerations_DROM_Corse_SaintMartin
-        plafond_loyer_reste = parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.hors_ile_de_france
-
-        plafond_loyer = where(
-            residence_ile_de_france,
-            plafond_loyer_idf,
-            where(
-                residence_grande_agglomeration,
-                plafond_loyer_agglomeration,
-                plafond_loyer_reste,
-                ),
-            )
+        plafond_loyer = plafond_par_zone(plafond_loyer_parameters.cas_general)
 
         moitie_des_ressources = menage('visale_base_ressources', period) / 2
 
