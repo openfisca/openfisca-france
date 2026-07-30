@@ -2,6 +2,8 @@ description: Montant maximum du loyer éligible à la caution Visale pour les pe
 metadata:
   short_label: Étudiants
   order:
-  - hors_ile_de_france
+  - toutes_communes
   - ile_de_france
+  - hors_ile_de_france
   - grandes_agglomerations_DROM_Corse_SaintMartin
+  - autres_communes
