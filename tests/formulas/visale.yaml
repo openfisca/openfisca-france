@@ -412,3 +412,52 @@
     loyer: [ 600 ]
   output:
     visale_eligibilite: [ false ]
+
+- name: Le zonage Visale 2026 est un critère alternatif
+  description: >-
+    La Corse, les DROM et Saint-Martin relèvent de la catégorie intermédiaire dans leur intégralité,
+    indépendamment de la taille de leur agglomération. Ce test fige cette lecture, que le zonage APL
+    utilisé par défaut pour approcher le critère « plus de 100 000 habitants » ne garantit pas à lui seul.
+  period: 2026-02
+  input:
+    age: [ 18, 18, 18, 18 ]
+    date_entree_logement: [2026-03-01, 2026-03-01, 2026-03-01, 2026-03-01]
+    etudiant: [ true, true, true, true ]
+    depcom: [ "2B002", "97101", "97801", "23001" ]  # petite commune de Haute-Corse ; Guadeloupe ; Saint-Martin (~35 000 habitants) ; commune rurale de la Creuse
+    salaire_net:
+      2026-01: [ 0, 0, 0, 0 ]
+  output:
+    residence_corse: [ true, false, false, false ]
+    residence_dom: [ false, true, false, false ]
+    residence_saint_martin: [ false, false, true, false ]
+    visale_montant_max: [ 840, 840, 840, 680 ]
+
+- name: Le zonage Visale 2026 est corrigible sans altérer le zonage APL
+  description: >-
+    `residence_agglomeration_plus_100000_habitants` est déduite du zonage APL faute de table des unités
+    urbaines, mais reste renseignable en entrée. La renseigner corrige le classement Visale sans modifier
+    la zone APL du ménage, dont dépendent les allocations logement.
+  period: 2026-02
+  input:
+    age: [ 18, 18 ]
+    date_entree_logement: [2026-03-01, 2026-03-01]
+    etudiant: [ true, true ]
+    depcom: [ "23001", "23001" ]
+    residence_agglomeration_plus_100000_habitants: [ false, true ]
+    salaire_net:
+      2026-01: [ 0, 0 ]
+  output:
+    zone_apl: [ zone_3, zone_3 ]
+    visale_montant_max: [ 680, 840 ]
+
+- name: Le zonage Visale à trois catégories ne s'applique pas avant le 06/01/2026
+  period: 2025-12
+  input:
+    age: [ 18, 18, 18 ]
+    date_entree_logement: [2026-01-01, 2026-01-01, 2026-01-01]
+    etudiant: [ true, true, true ]
+    depcom: [ "75112", "06088", "23001" ]
+    salaire_net:
+      2025-11: [ 0, 0, 0 ]
+  output:
+    visale_montant_max: [ 800, 600, 600 ]

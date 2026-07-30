@@ -1,6 +1,7 @@
 from numpy import char
 
 from openfisca_france.model.base import *
+from openfisca_france.model.prestations.aides_logement import TypesZoneApl
 
 
 class coloc(Variable):
@@ -146,6 +147,43 @@ class residence_ile_de_france(Variable):
     def formula(menage, period, parameters):
         depcom = menage('depcom', period).astype(str)
         return sum([char.startswith(depcom, departement_idf) for departement_idf in parameters(period).geopolitique.regions.ile_de_france.departements])
+
+
+class residence_corse(Variable):
+    label = 'Le logement est situé dans la région Corse'
+    value_type = bool
+    entity = Menage
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period).astype(str)
+        return sum([char.startswith(depcom, departement_corse) for departement_corse in parameters(period).geopolitique.regions.corse.departements])
+
+
+class residence_agglomeration_plus_100000_habitants(Variable):
+    label = 'Le logement est situé dans une agglomération de plus de 100 000 habitants'
+    value_type = bool
+    entity = Menage
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period):
+        '''
+        OpenFisca-France n'embarque pas la table des unités urbaines de l'INSEE : la taille de
+        l'agglomération n'est donc pas déductible du seul `depcom`. Le zonage APL est retenu comme
+        approximation, faute de mieux, car sa zone II est définie comme « les agglomérations de plus
+        de 100 000 habitants » (la zone I étant l'agglomération parisienne). L'approximation est
+        imparfaite : le zonage APL classe en réalité les communes selon la tension du marché locatif,
+        de sorte que des communes de zone II n'atteignent pas 100 000 habitants et qu'inversement
+        certaines communes plus peuplées peuvent être en zone III.
+        Attention également : `zone_apl` vaut `zone_2` par défaut pour un `depcom` absent de la table
+        ou non renseigné, ce qui classe par défaut le ménage en grande agglomération.
+        La variable est renseignable en entrée pour permettre un classement exact quand il est connu.
+        '''
+        zone_apl = menage('zone_apl', period)
+
+        return (zone_apl == TypesZoneApl.zone_1) + (zone_apl == TypesZoneApl.zone_2)
 
 
 class residence_dom(Variable):
