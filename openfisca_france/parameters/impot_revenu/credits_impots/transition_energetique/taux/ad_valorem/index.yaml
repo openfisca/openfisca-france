@@ -12,6 +12,7 @@ metadata:
   - chaudiere_microcogeneration
   - chaudiere_hpe
   - chaudiere_thpe
+  - pac_ancien
   - pac_autres
   - pac_geothermie_air_eau
   - pac_eau_chaude

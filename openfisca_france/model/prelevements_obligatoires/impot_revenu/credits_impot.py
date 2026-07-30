@@ -2198,6 +2198,20 @@ class prlire(Variable):
 # dispositif — un unique crédit d'impôt, dont l'appellation et le paramétrage ont
 # évolué dans le temps (variable `quaenv`). On préfixe `cite_` les fonctions qui le
 # calculent, OpenFisca-France couvrant de nombreux autres impôts et prestations.
+def cite_taux_geste(bareme_par_geste, geste):
+    '''
+    Taux d'un geste du barème par geste, ou `None` lorsque le geste n'est pas
+    subventionné à la date demandée.
+
+    Lorsqu'une valeur est `null` à un instant donné, openfisca-core ne rattache pas
+    le paramètre au nœud : y accéder lève une `ParameterNotFoundError`, et ne renvoie
+    donc pas `None`. Cette exception dérivant d'`AttributeError`, `getattr` avec une
+    valeur par défaut est l'idiome prévu pour lire « ce geste n'est pas subventionné
+    à cette date », cas dans lequel la dépense n'ouvre droit à aucun crédit.
+    '''
+    return getattr(bareme_par_geste, geste, None)
+
+
 def cite_taux_panier_cases(gestes, period, parameters, avec_bouquet=False):
     '''
     Taux d'une case de la déclaration déduit du barème par geste (2005-2013).
@@ -2215,16 +2229,16 @@ def cite_taux_panier_cases(gestes, period, parameters, avec_bouquet=False):
       puis LF 2012 art. 83 : troncature au point de pourcentage).
     '''
     av = parameters(period).impot_revenu.credits_impots.transition_energetique.taux.ad_valorem
-    valeurs = [getattr(av, geste) for geste in gestes]
-    valeurs = [float(v) for v in valeurs if v is not None]
+    valeurs = [cite_taux_geste(av, geste) for geste in gestes]
+    valeurs = [float(v) for v in valeurs if v is not None]  # un geste éteint à cette date ne contribue pas au panier
     nominal = max(valeurs) if valeurs else 0.0
     if avec_bouquet:
-        majoration = av.majoration_bouquet
+        majoration = cite_taux_geste(av, 'majoration_bouquet')
         if majoration is not None:
             nominal = nominal + float(majoration)
     coefficient_rabot = 1.0
     if period.start.year >= 2011:
-        rabot = av.rabot
+        rabot = cite_taux_geste(av, 'rabot')
         if rabot is not None:
             coefficient_rabot = float(rabot)
     return int(nominal * coefficient_rabot * 100 + 1e-9) / 100
@@ -2267,8 +2281,8 @@ def cite_credit_par_geste(foyer_fiscal, period, parameters, cases_gestes, plafon
 
     def ajoute(cases, av_instant):
         for case, geste in cases.items():
-            taux = getattr(av_instant, geste)
-            if taux is None:
+            taux = cite_taux_geste(av_instant, geste)
+            if taux is None:  # geste non subventionné cette année-là : la dépense n'ouvre droit à rien
                 continue
             bases_par_taux[taux] = bases_par_taux.get(taux, 0) + foyer_fiscal(case, period)
 
