@@ -1,0 +1,10 @@
+description: Coefficient de conjoncture modulant la durée maximale d'indemnisation ARE
+metadata:
+  reference:
+    2023-02-01:
+      title: Décret n° 2023-33 du 26 janvier 2023 relatif au régime d'assurance chômage
+      href: https://www.legifrance.gouv.fr/eli/decret/2023/1/26/2023-33/jo/texte
+
+values:
+  2023-02-01:
+    value: 0.75

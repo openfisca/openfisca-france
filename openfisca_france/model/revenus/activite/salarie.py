@@ -307,6 +307,67 @@ class contrat_de_travail_fin(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class fin_dernier_contrat(Variable):
+    value_type = date
+    default_value = date(2099, 12, 31)
+    entity = Individu
+    label = "Date de départ de l'entreprise du dernier contrat connu"
+    definition_period = MONTH
+
+    def formula(individu, period):
+        holder = individu.get_holder('contrat_de_travail_fin')
+        fin_default_value = datetime64(date(2099, 12, 31))
+        past_periods = sorted(
+            [p for p in holder.get_known_periods() if p.start <= period.start],
+            key=lambda p: p.start
+            )
+        if not past_periods:
+            return individu.get_holder('fin_dernier_contrat').default_array()
+        # Iterate forward so the last non-default value wins (most recent contract end)
+        result = individu.get_holder('fin_dernier_contrat').default_array()
+        for p in past_periods:
+            val = individu('contrat_de_travail_fin', p)
+            result = where(val != fin_default_value, val, result)
+        return result
+
+
+class TypesMotifFinContrat(Enum):
+    licenciement = 'Licenciement (dont inaptitude)'
+    fin_cdd = 'Fin de CDD'
+    rupture_conventionnelle = 'Rupture conventionnelle'
+    demission_legitime = 'Démission pour motif légitime'
+    demission = 'Démission'
+    autre = 'Autre'
+
+
+class motif_fin_contrat(Variable):
+    value_type = Enum
+    possible_values = TypesMotifFinContrat
+    default_value = TypesMotifFinContrat.autre
+    entity = Individu
+    label = 'Motif de fin du contrat de travail'
+    definition_period = MONTH
+
+
+class motif_fin_dernier_contrat(Variable):
+    value_type = Enum
+    possible_values = TypesMotifFinContrat
+    default_value = TypesMotifFinContrat.autre
+    entity = Individu
+    label = 'Motif de fin du dernier contrat de travail'
+    definition_period = MONTH
+
+    def formula(individu, period):
+        holder = individu.get_holder('motif_fin_contrat')
+        past_periods = sorted(
+            [p for p in holder.get_known_periods() if p.start <= period.start],
+            key=lambda p: p.start
+            )
+        if not past_periods:
+            return individu.get_holder('motif_fin_dernier_contrat').default_array()
+        return individu('motif_fin_contrat', past_periods[-1])
+
+
 class TypesContrat(Enum):
     __order__ = 'aucun cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
     aucun = 'Aucun contrat'
@@ -1130,7 +1191,7 @@ class depense_cantine_titre_restaurant_employeur(Variable):
 class nombre_jours_calendaires(Variable):
     value_type = float
     entity = Individu
-    label = 'Nombre de jours calendaires travaillés'
+    label = 'Nombre de jours calendaires travaillés sur un mois'
     definition_period = MONTH
     default_value = 30
     set_input = set_input_divide_by_period
@@ -1143,6 +1204,33 @@ class nombre_jours_calendaires(Variable):
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month'))
         jours_travailles = max_(
+            busday_count(
+                max_(contrat_de_travail_debut, debut_mois),
+                min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
+                ),
+            0,
+            )
+
+        return jours_travailles
+
+
+class nombre_jours_travailles(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Nombre de jours travaillés sur un mois'
+    definition_period = MONTH
+    default_value = 30
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        quotite = individu('quotite_de_travail', period)
+
+        busday_count = partial(original_busday_count, weekmask = '1111100')
+        debut_mois = datetime64(period.start.offset('first-of', 'month'))
+        fin_mois = datetime64(period.start.offset('last-of', 'month'))
+        jours_travailles = quotite * max_(
             busday_count(
                 max_(contrat_de_travail_debut, debut_mois),
                 min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
