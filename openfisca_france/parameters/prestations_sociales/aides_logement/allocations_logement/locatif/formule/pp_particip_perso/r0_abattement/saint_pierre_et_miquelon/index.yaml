@@ -1,0 +1,14 @@
+description: Abattement forfaitaire « R0 » applicable à Saint-Pierre-et-Miquelon
+metadata:
+  short_label: Saint-Pierre-et-Miquelon
+  order:
+  - taux_seul
+  - taux_couple
+  - taux1pac
+  - taux2pac
+  - taux3pac
+  - taux4pac
+  - taux5pac
+  - taux6pac
+  - taux_pac_supp
+documentation: Mentionné à l'article 47 de l'arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement.

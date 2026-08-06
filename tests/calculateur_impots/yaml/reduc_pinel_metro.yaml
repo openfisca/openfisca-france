@@ -54,11 +54,11 @@
       caseW: false
       declarants:
       - ind0
-      f7ai: 500
-      f7bi: 500
+      f7ai_2019: 500
+      f7bi_2022: 500
       f7qa_2018: 100000
       f7qb_2018: 100000
-      f7qe: 100000
+      f7qe_2018: 100000
       f7qf: 100000
       nbF: 0.0
       nbG: 0.0
@@ -98,13 +98,13 @@
       caseW: false
       declarants:
       - ind0
-      f7ai: 500
-      f7bi: 500
-      f7bz: 500
+      f7ai_2019: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7qa_2018: 10000
       f7qb_2018: 10000
-      f7qe: 10000
+      f7qe_2018: 10000
       f7qf: 10000
       f7qi_2019: 10000
       f7qj_2019: 10000
@@ -147,18 +147,18 @@
       caseW: false
       declarants:
       - ind0
-      f7ai: 500
-      f7bi: 500
-      f7bz: 500
+      f7ai_2019: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7qa_2018: 10000
       f7qb_2018: 10000
-      f7qe: 10000
+      f7qe_2018: 10000
       f7qf: 10000
       f7qi_2019: 10000
       f7qj_2019: 10000
-      f7qm: 10000
-      f7qn: 10000
+      f7qm_2020: 10000
+      f7qn_2020: 10000
       f7rz: 500
       nbF: 0.0
       nbG: 0.0
@@ -199,22 +199,22 @@
       caseW: false
       declarants:
       - ind0
-      f7ai: 500
-      f7bi: 500
-      f7bz: 500
+      f7ai_2019: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7ra: 300
       f7rb: 200
       f7qa_2018: 0
       f7qb_2018: 10000
-      f7qe: 10000
+      f7qe_2018: 10000
       f7qf: 0
       f7qi_2019: 10000
       f7qj_2019: 10000
-      f7qm: 10000
-      f7qn: 10000
-      f7qr: 5000
-      f7qs: 15000
+      f7qm_2020: 10000
+      f7qn_2020: 10000
+      f7qr_2021: 5000
+      f7qs_2021: 15000
       f7rz: 500
       nbF: 0.0
       nbG: 0.0
@@ -255,23 +255,23 @@
       caseW: false
       declarants:
       - ind0
-      f7ai: 500
-      f7bi: 500
-      f7bz: 500
+      f7ai_2019: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7ra: 300
       f7rb: 200
       f7qi_2019: 10000
       f7qj_2019: 10000
-      f7qm: 10000
-      f7qn: 10000
-      f7qr: 5000
-      f7qs: 15000
+      f7qm_2020: 10000
+      f7qn_2020: 10000
+      f7qr_2021: 5000
+      f7qs_2021: 15000
       f7qw: 0
       f7qx: 0
       f7rz: 500
-      f7na: 10000
-      f7nb: 10000
+      f7na_2022: 10000
+      f7nb_2022: 10000
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -311,23 +311,23 @@
       caseW: false
       declarants:
       - ind0
-      f7bi: 500
-      f7bz: 500
+      f7bi_2022: 500
+      f7bz_2020: 500
       f7cz: 500
       f7ra: 300
       f7rb: 200
       f7jm: 400
       f7km: 400
       f7fi: 10000
-      f7qm: 10000
-      f7qn: 10000
-      f7qr: 5000
-      f7qs: 15000
+      f7qm_2020: 10000
+      f7qn_2020: 10000
+      f7qr_2021: 5000
+      f7qs_2021: 15000
       f7qw: 0
       f7qx: 0
-      f7rr: 500
-      f7na: 10000
-      f7nb: 10000
+      f7rr_2021: 500
+      f7na_2022: 10000
+      f7nb_2022: 10000
       f7ne: 5000
       f7nf: 15000
       f7ja: 1000
@@ -371,20 +371,20 @@
       caseW: false
       declarants:
       - ind0
-      f7bi: 500
+      f7bi_2022: 500
       f7cz: 500
       f7ra: 300
       f7rb: 200
       f7jm: 400
       f7km: 400
       f7fi: 10000
-      f7qr: 5000
-      f7qs: 15000
+      f7qr_2021: 5000
+      f7qs_2021: 15000
       f7qw: 0
       f7qx: 0
-      f7rr: 500
-      f7na: 10000
-      f7nb: 10000
+      f7rr_2021: 500
+      f7na_2022: 10000
+      f7nb_2022: 10000
       f7ne: 5000
       f7nf: 15000
       f7ni: 7500

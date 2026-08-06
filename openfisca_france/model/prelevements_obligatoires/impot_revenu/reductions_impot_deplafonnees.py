@@ -54,12 +54,47 @@ class reductions_deplafonnees(Variable):
             'reduction_enfants_scolarises',
             'accult',
             'rente_survie',
+            'cappme_jei_jeir',
             ]
 
         # Step 4: Get other uncapped reductions
         red_deplaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_sans_plafond])
 
         return red_deplaf
+
+
+class cappme_jei_jeir(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    definition_period = YEAR
+    label = "Réduction d'impôt pour souscription au capital de JEI, JEIC et JEIR (Hors plafonnement global)"
+    reference = 'Article 199 terdecies-0 A bis et 199 terdecies-0 A ter du Code général des impôts'
+
+    def formula_2024_01_01(foyer_fiscal, period, parameters):
+        '''
+        Calcul des réductions pour souscriptions JEI/JEU/JEIC (30 %) et JEIR (50 %).
+        Ces réductions sont exclues du plafonnement global des niches fiscales de 10 000 €.
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7cr = foyer_fiscal('f7cr', period)
+        f7dz_2024 = foyer_fiscal('f7dz_2024', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.pme.souscription_capital
+        plafond_jei_celib = P.plafond_jei
+
+        plafond_jei = plafond_jei_celib * (maries_ou_pacses + 1)
+        base_jei_2024 = min_(f7cr, plafond_jei)
+
+        plafond_jeir_celib = P.plafond_jeir
+
+        plafond_jeir = plafond_jeir_celib * (maries_ou_pacses + 1)
+        base_jeir_2024 = min_(f7dz_2024, plafond_jeir)
+
+        reduction_jei = base_jei_2024 * P.taux_jei
+        reduction_jeir = base_jeir_2024 * P.taux_jeir
+
+        return reduction_jei + reduction_jeir
 
 
 class accult(Variable):
@@ -398,7 +433,7 @@ class dfppce(Variable):
         rni = foyer_fiscal('rni', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7uh = foyer_fiscal('f7uh', period)
-        f7ue = foyer_fiscal('f7ue', period)
+        f7ue = foyer_fiscal('f7ue_2019', period)
         f7xs = foyer_fiscal('f7xs', period)
         f7xt = foyer_fiscal('f7xt', period)
         f7xu = foyer_fiscal('f7xu', period)
@@ -980,6 +1015,81 @@ class restauration_patrimoine_bati(Variable):
         base_ty = min_(P.plafond - f7tx, f7ty)
 
         ri = (f7ky + f7kx + f7kw
+            + P.taux_30 * (base_tx)
+            + P.taux_22 * (base_ty))
+
+        return ri
+
+    def formula_2022_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2022
+        '''
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7kx = foyer_fiscal('f7kx', period)
+        f7kw = foyer_fiscal('f7kw', period)
+        f7kz = foyer_fiscal('f7kz', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+
+        base_tx = min_(P.plafond, f7tx)
+        base_ty = min_(P.plafond - f7tx, f7ty)
+
+        ri = (f7kz + f7kx + f7kw
+            + P.taux_30 * (base_tx)
+            + P.taux_22 * (base_ty))
+
+        return ri
+
+    def formula_2023_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2023
+        '''
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7ky = foyer_fiscal('f7ky', period)
+        f7kw = foyer_fiscal('f7kw', period)
+        f7kz = foyer_fiscal('f7kz', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+
+        base_tx = min_(P.plafond, f7tx)
+        base_ty = min_(P.plafond - f7tx, f7ty)
+
+        ri = (f7kz + f7ky + f7kw
+            + P.taux_30 * (base_tx)
+            + P.taux_22 * (base_ty))
+
+        return ri
+
+    def formula_2024_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2024
+        '''
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7ky = foyer_fiscal('f7ky', period)
+        f7kx = foyer_fiscal('f7kx', period)
+        f7kz = foyer_fiscal('f7kz', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+
+        base_tx = min_(P.plafond, f7tx)
+        base_ty = min_(P.plafond - f7tx, f7ty)
+
+        ri = (f7kz + f7ky + f7kx
             + P.taux_30 * (base_tx)
             + P.taux_22 * (base_ty))
 

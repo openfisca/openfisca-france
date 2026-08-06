@@ -1,0 +1,136 @@
+description: Majoration forfaitaire au titre des charges du logement applicable en outre-mer par personne a charge
+values:
+  1994-07-01:
+    value: 24
+  1997-07-01:
+    value: 25
+  1998-07-01:
+    value: 25
+  1999-07-01:
+    value: 25
+  2000-07-01:
+    value: 25
+  2001-07-01:
+    value: 26
+  2002-01-01:
+    value: 3.96
+  2002-07-01:
+    value: 4.00
+  2007-01-01:
+    value: 4.07
+  2008-01-01:
+    value: 4.18
+  2009-01-01:
+    value: 5.59
+  2010-01-01:
+    value: 8.75
+  2011-01-01:
+    value: 8.85
+  2012-01-01:
+    value: 8.94
+  2013-01-01:
+    value: 9.13
+  2014-10-01:
+    value: 9.18
+  2015-10-01:
+    value: 9.19
+  2017-10-01:
+    value: 9.26
+  2019-10-01:
+    value: 9.29
+  2020-01-01:
+    value: 9.29
+  2020-10-01:
+    value: 9.32
+  2021-10-01:
+    value: 9.36
+  2022-07-01:
+    value: 9.69
+  2023-10-01:
+    value: 10.03
+  2024-10-01:
+    value: 10.36
+  2025-10-01:
+    value: 10.47
+metadata:
+  short_label: Majoration par personne a charge outre-mer
+  unit: currency
+  reference:
+    1994-07-01:
+      title: Arrêté du 14/11/1994, art. 5
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006789675
+    1997-07-01:
+      title: Arrêté du 10/09/1997, art. 5
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006790948
+    1998-07-01:
+      title: Arrêté du 11/09/1998, art. 5
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006791312
+    1999-07-01:
+      title: Arrêté du 28/06/1999, art. 6
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006791628
+    2000-07-01:
+      title: Arrêté du 01/08/2000, art. 6
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006791734
+    2001-07-01:
+      title: Arrêté du 31/07/2001, art. 6
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000762135
+    2002-01-01:
+      title: Arrêté du 31/07/2001, art. 6
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000762135
+    2002-07-01:
+      title: Arrêté du 20/12/2002, art. 6
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000001658002
+    2007-01-01:
+      title: Arrêté du 23/12/2006, art. 6
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002473554
+    2008-01-01:
+      title: Arrêté du 26/12/2007, art. 6
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000017788723
+    2009-01-01:
+      title: Arrêté du 31/12/2008, art. 6
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000020084079
+    2010-01-01:
+      title: Arrêté du 30/12/2009, art. 6
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000021676785
+    2011-01-01:
+      title: Arrêté du 30/12/2010, art. 6
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000023443548
+    2012-01-01:
+      title: Arrêté du 30/12/2011, art. 6
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025061492
+    2013-01-01:
+      title: Arrêté du 14/01/2013, art. 5
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000026943409
+    2014-10-01:
+      title: Arrêté du 27/10/2014, art. 6
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000029641406
+    2015-10-01:
+      title: Arrêté du 16/10/2015, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031345763
+    2017-10-01:
+      title: Arrêté du 28/09/2017, art. 12
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000035665906
+    2019-10-01:
+      title: Arrêté du 27/09/2019, art. 46
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039160391
+    2020-01-01:
+      title: Arrêté du 27/09/2019, art. 46
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000052233795/2020-01-01
+    2020-10-01:
+      title: Arrêté du 27/09/2019, art. 46
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000052233795/2020-10-01
+    2021-10-01:
+      title: Arrêté du 27/09/2019, art. 46
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000052233795/2021-10-01
+    2022-07-01:
+      title: Arrêté du 27/09/2019, art. 46
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000052233795/2022-07-01
+    2023-10-01:
+      title: Arrêté du 27/09/2019, art. 46
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000052233795/2023-10-01
+    2024-10-01:
+      title: Arrêté du 27/09/2019, art. 46
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286587/2024-10-01
+    2025-10-01:
+      title: Arrêté du 27/09/2019, art. 46
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286587/2025-10-01

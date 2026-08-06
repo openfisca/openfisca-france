@@ -52,9 +52,11 @@ values:
     value: 125419
   2025-01-01:
     value: 127677
+  2026-01-01:
+    value: 128826
 metadata:
   short_label: Plafond (déficits agricoles)
-  last_value_still_valid_on: "2026-03-27"
+  last_value_still_valid_on: "2026-07-15"
   ipp_csv_id: plaf_defba
   unit: currency_next_year
   reference:
@@ -150,6 +152,11 @@ metadata:
     - title: Décret n° 2025-547 du 17 juin 2025, art. 2
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051754167
       note: "au premier alinéa du 1° du I, le montant : « 125 419 € » est remplacé par le montant : « 127 677 € »"
+    2026-01-01:
+    - title: Art. 156 du Code général des impôts, premier alinéa du 1° du I
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051765216/2026-07-15
+    - title: Décret n° 2026-562 du 29/06/2026, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054341109
   official_journal_date:
     1979-01-01: "1980-01-19"
     1988-01-01: "1988-12-28"
@@ -176,6 +183,7 @@ metadata:
     2022-01-01: "2023-06-02"
     2023-01-01: "2024-06-01"
     2025-01-01: "2025-06-18"
+    2026-01-01: "2026-07-15"
   notes:
     1994-01-01:
     - title: Cf. article 156 du Code Général des Impôt pour le plafonnement du déficit foncier global

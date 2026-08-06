@@ -60,9 +60,11 @@ values:
     value: 442
   2024-01-01:
     value: 450
+  2025-01-01:
+    value: 454
 metadata:
   short_label: Montant minimum de l'abattement, par pensionné
-  last_value_still_valid_on: "2025-02-25"
+  last_value_still_valid_on: "2026-07-15"
   ipp_csv_id: min_abtpen
   unit: currency_next_year
   reference:
@@ -153,6 +155,11 @@ metadata:
     2024-01-01:
     - title: Article 158, 5.a. du Code général des impôts
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042909707/
+    2025-01-01:
+    - title: Article 158, 5.a. du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042909707/
+    - title: Décret n° 2026-562 du 29/06/2026, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054341109
   official_journal_date:
     1978-01-01: "1978-12-30"
     1992-01-01: "1992-12-31"
@@ -181,6 +188,7 @@ metadata:
     2020-01-01: "2020-12-30"
     2022-01-01: "2023-06-02"
     2023-01-01: "2024-06-01"
+    2025-01-01: "2026-06-30"
   notes:
     1978-01-01:
     - title: Le maximum sur les pensions est pris en compte par foyer fiscal pour l'imposition des revenus de 1977 et 1978.

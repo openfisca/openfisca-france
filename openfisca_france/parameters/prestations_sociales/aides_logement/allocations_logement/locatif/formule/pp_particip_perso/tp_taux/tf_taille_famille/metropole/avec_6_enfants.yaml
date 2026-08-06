@@ -1,7 +1,7 @@
 description: Taux « TF » des personnes seules ou couple ayant six personnes à charge, pris en compte dans le taux de participation personnel du ménage « Tp » pour le calcul des allocations logement
 values:
   2007-07-01:
-    value: 0.0179
+    value: 0.0173
 metadata:
   short_label: Personnes seules ou couple ayant six personnes à charge
   last_value_still_valid_on: "2025-03-11"

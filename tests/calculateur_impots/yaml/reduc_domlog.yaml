@@ -1,5 +1,5 @@
 - name: reduc_domlog
-  period: 2020
+  period: 2025
   absolute_error_margin: 1
   input:
     foyer_fiscal:
@@ -12,18 +12,86 @@
       caseW: false
       declarants:
       - ind0
-      fhqb: 200
-      fhqd: 450
-      fhua: 400
-      fhva: 150
-      fhoj: 300
-      fhoe: 200
-      fhuj: 600
-      fhuq: 100
-      fhot: 500
-      fhoy: 350
-      fhul: 200
-      fhvg: 100
+      # 2011
+      fhoa: 100
+      fhob: 200
+      fhoc: 100
+      fhoh: 200
+      fhoi: 100
+      fhoj: 200
+      fhok: 100
+
+      # 2012
+      fhol: 20
+      fhom: 10
+      fhon: 20
+      fhoo: 10
+      fhop: 20
+      fhoq: 10
+      fhor: 20
+      fhos: 10
+      fhot: 20
+      fhou: 10
+      fhov: 20
+      fhow: 10
+
+      # 2013
+      fhod: 20
+      fhoe: 10
+      fhof: 20
+      fhog: 10
+      fhox: 20
+      fhoy: 10
+      fhoz: 20
+
+      # 2014
+      fhua: 10
+      fhub: 20
+      fhuc: 10
+      fhud: 20
+      fhue: 10
+      fhuf: 20
+      fhug: 10
+
+      # 2015
+      fhuh: 20
+      fhui: 10
+      fhuj: 20
+      fhuk: 10
+      fhul: 20
+      fhum: 10
+      fhun: 20
+
+      # 2016
+      fhuo: 10
+      fhup: 20
+      fhuq: 10
+      fhur: 20
+      fhus: 10
+      fhut: 20
+      fhuu: 10
+
+      # 2017
+      fhva: 20
+      fhvb: 10
+      fhvc: 20
+      fhvd: 10
+      fhve: 20
+      fhvf: 10
+      fhvg: 20
+
+      fhvk: 100
+
+      fhvl: 200
+
+      # 2023
+      fhvm: 100
+
+      # 2024
+      fhvn: 200
+
+      # 2025
+      fhvo: 100
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -33,8 +101,8 @@
     individus:
       ind0:
         activite: actif
-        date_naissance: '1970-01-01'
-        salaire_imposable: 50000.0
+        date_naissance: '1976-01-01'
+        abic_impn: 200000.0
         statut_marital: celibataire
     famille:
       parents:
@@ -42,9 +110,9 @@
     menage:
       personne_de_reference: ind0
   output:
-    reductions: 3550.0
-    iai: 3956.0
-    impot_revenu_restant_a_payer: -3956.0
-    rbg: 45000.0
-    rfr: 45000.0
-    rni: 45000.0
+    reductions: 2410
+    iai: 64114.0
+    impot_revenu_restant_a_payer: -64114.0
+    rbg: 200000.0
+    rfr: 200000.0
+    rni: 200000.0

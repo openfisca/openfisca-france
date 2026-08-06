@@ -1,6 +1,6 @@
 # Changelog
 
-### 175.0.46 [#2763](https://github.com/openfisca/openfisca-france/pull/2763)
+### 176.0.8 [#2763](https://github.com/openfisca/openfisca-france/pull/2763)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/02/2023.
@@ -14,6 +14,223 @@
   - Ajout des variables `fin_dernier_contrat`, `motif_fin_contrat`, `motif_fin_dernier_contrat` dans `salarie.py`.
   - Ajout de paramètres ARE dans `parameters/chomage/allocations_assurance_chomage/are/`.
   - Ajout de 6 tests dans `tests/chomage/are.yaml`.
+
+### 176.0.7 [#2712](https://github.com/openfisca/openfisca-france/pull/2712)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+* Détails :
+  - Correction doublon dans allègements de hausse de csg du capital
+
+### 176.0.6 [#2784](https://github.com/openfisca/openfisca-france/pull/2784)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : partir du 01/01/2022
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/taux_jei.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/taux_jeir.yaml`
+  - `tests/calculateur_impots/yaml/reduc_cappme.yaml`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_deplafonnees.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/plafond_jei.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/plafond_jeir.yaml`
+* Détails :
+  - Création de la formule sur 2021-2025
+  - Ajout des paramètres pour les JEI et JEIR (plafond et taux)
+  - Mise à jour du test cappme
+  - Ajout des variables nécessaires
+
+### 176.0.5 [#2783](https://github.com/openfisca/openfisca-france/pull/2783)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py` et `tests/calculateur_impots/yaml/credit_invest_forestier.yaml` 
+* Détails :
+  - Mise à jour de la formule pour 2025 corrections sur 2024 et 2023
+  - ajout et correction des tests sur la période
+
+### 176.0.4 [#2786](https://github.com/openfisca/openfisca-france/pull/2786)
+
+* Changement mineur
+* Périodes concernées : à partir du 01/01/2025
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/deductions/abatpro/max.yaml`.
+* Détails :
+  - Corrige une typo sur une date
+
+### 176.0.3 [#2778](https://github.com/openfisca/openfisca-france/pull/2778)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2022
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/r0_abattement/saint_pierre_et_miquelon/*`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - ajout du barème R0 applicable a Saint-Pierre-et-Miquelon
+    - application de la montée en charge specifique au territoire
+
+### 176.0.2 [#2777](https://github.com/openfisca/openfisca-france/pull/2777)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - ajout de Saint-Barthelemy et Saint-Martin dans le champ du barème outre-mer des aides au logement
+    - la variable dédiée est `residence_aides_logement_outre_mer`
+    - correction des composantes TF, R0 et des montants dérivés pour les ménages concernés
+
+### 176.0.1 [#2776](https://github.com/openfisca/openfisca-france/pull/2776)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2020.
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/r0_abattement/outre_mer/*`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - ajout du barème `R0` outre-mer pour les ménages avec une personne à charge
+    - ajout de la valeur 2022 et correction des périodes 2020-2021
+
+# 176.0.0 [#2775](https://github.com/openfisca/openfisca-france/pull/2775)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : du 01/01/2020 au 31/12/2021 pour le barème specifique, puis articulation avec le bareme outre-mer a partir du 01/01/2022.
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/r0_abattement/mayotte/*`
+* Détails :
+    - correction des valeurs du `R0` spécifique à Mayotte en 2020 et 2021
+    - prise en compte du barème mahorais dans la formule de calcul
+    - borne de ce barème a sa période légale d'application
+    - utilisation du bareme outre-mer à partir de 2022
+    - suppression de l'annulation du montant locatif à Mayotte
+    - `aide_logement_montant_brut_avant_degressivite` est découpé en `aide_logement_montant_selectionne_avant_seuil` puis `aide_logement_montant_brut_avant_degressivite`.
+    - `aide_logement_participation_personnelle` est découpé en :
+        + `aide_logement_ressources_apres_abattement` (`Rp`),
+        + `aide_logement_taux_participation_personnelle` (`Tp`),
+        + `aide_logement_participation_ressources` (`Rp*Tp`),
+        + `aide_logement_participation_minimale` (`P0`),
+        + `aide_logement_participation_personnelle` (`aide_logement_participation_personnelle`).
+
+### 175.1.10 [#2785](https://github.com/openfisca/openfisca-france/pull/2785)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2025.
+* Zones impactées :
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables`
+  - `openfisca_france/parameters/prelevements_sociaux`
+  - `openfisca_france/parameters/taxation_capital/epargne/livret_epargne_populaire`
+* Détails :
+  - Mise à jours de paramètres d'impôt et de prélèvements sociaux
+
+### 175.1.9 [#2773](https://github.com/openfisca/openfisca-france/pull/2773)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Jusqu'au 31/12/2022 pour le plafonnement ; à partir du 01/01/2023 pour sa suppression.
+* Zones impactées :
+    - `openfisca_france/model/prestations/aides_logement`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - Plafonnement du `R0` DOM à six personnes à charge jusqu'en 2022
+    - Correction de la fin du plafonnement du loyer de référence DOM
+    - Suppression du plafonnement à partir de 2023 lorsque le barème ne le prévoit plus
+
+### 175.1.8 [#2772](https://github.com/openfisca/openfisca-france/pull/2772)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 01/07/1994.
+* Zones impactées :
+    - `openfisca_france/model/prestations/aides_logement`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/c_forfait_charges/*`
+* Détails :
+    - Ajoute des forfaits de charges outre-mer pour le calcul des aides au logement, cas général et colocation
+    - Création de la variables nécessaires, et utilisation dans le calcul
+
+### 175.1.7 [#2770](https://github.com/openfisca/openfisca-france/pull/2770)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 01/01/2002.
+* Zones impactées :
+    - `openfisca_france/model/prestations/aides_logement.py`
+    - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/l_plafonds_loyers/coef_chambre_et_colocation`
+    - `openfisca_france/model/caracteristiques_socio_demographiques/logement.py`
+* Détails :
+    - Prend en compte du cas d'hébergement onéreux des personnes âgées ou handicapées dans le coefficient `chambre`.
+    - Création de la variables nécessaires, et utilisation pour calculer le coefficient applicable
+
+### 175.1.6 [#2768](https://github.com/openfisca/openfisca-france/pull/2768)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 01/01/2023
+* Zones impactées : `openfisca_france/model/prestations/aides_logement`
+* Détails :
+    - Corrige le taux `TF` en métropole pour les ménages ayant au moins 4 personnes à charge
+    - L'erreur sommait le taux pour 4, 5, et ≥6 personnes à charge
+
+### 175.1.5 [#2766](https://github.com/openfisca/openfisca-france/pull/2766)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : du 01/07/2022 au 31/12/2022.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/r0_abattement/cas_general/*`.
+* Détails :
+  - Ajout des valeurs du forfait `R0` applicables au 1er juillet 2022.
+  - Mise à jour des valeurs pour les personnes seules, les couples et les ménages avec une à six personnes à charge.
+  - Ajout de la majoration applicable par personne à charge au-delà de six.
+  - Valeurs fixées par l'article 1 de l'arrêté du 29 juillet 2022 (https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046114998).
+
+### 175.1.4 [#2781](https://github.com/openfisca/openfisca-france/pull/2781)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/01/2022.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_iom.py` et `openfisca_france/model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
+* Détails :
+- ajout de la formule de calcul de doment sur 2022, 23, 24, 25
+- création des variables nécessaire
+
+### 175.1.3 [#2780](https://github.com/openfisca/openfisca-france/pull/2780)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : jusqu'au 31/12/2025. | à partir du 01/01/2021.
+* Zones impactées : `openfisca_france\model\prelevements_obligatoires\impot_revenu\variables_reductions_credits.py`. et `openfisca_france\model\prelevements_obligatoires\impot_revenu\reductions_impot_iom.py`
+* Détails :
+- Dans class(doment) de reductions_impot_iom.py :
+- correction des formules de calculs de taux dans les formules de 2020 et 2021, les valeurs avant 2015 sont toujours effectives jusqu'en 2024
+- ajout dans la formule 2021 du doment des variables d'investissements de 2021
+- création des formules de 2022 à 2025
+- Dans variables_reductions_credits.py
+- ajout des nouvelles variables
+
+### 175.1.2 [#2761](https://github.com/openfisca/openfisca-france/pull/2761)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : À partir du 01/01/2007.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/tp_taux/tf_taille_famille/metropole/avec_6_enfants`
+* Détails :
+  - Correction de la valeur du paramètre TF pour les ménages avec 6 enfants dans les aides au logement.
+
+### 175.1.1 [#2654](https://github.com/openfisca/openfisca-france/pull/2654)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées :
+  - parameters/impot_revenu/calcul_reductions_impot/investissements_immobiliers/duflot_pinel_denormandie
+  - model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py
+* Détails :
+- Met à jour les dernières années de la réduction duflot-pinel-denormandie, Scellier et Malraux.
+
+## 175.1.0 [#2782](https://github.com/openfisca/openfisca-france/pull/2782)
+
+* Modifications des dépendances.
+* Périodes concernées : toutes.
+* Zones impactées : `pyproject.toml`.
+* Détails :
+  - Restriction de la version de numpy pour permettre les tests en python 3.13.
+  - Reprend également [#2765](https://github.com/openfisca/openfisca-france/pull/2765) pour faire passer la CI : [#2760](https://github.com/openfisca/openfisca-france/pull/2760) a permis de considérer le CHANGELOG comme un fichier non-fonctionnel pour en permettre l'édition sans publication d'une nouvelle version, mais la détection de l'édition du CHANGELOG se reposait sur le fait qu'il soit un fichier fonctionnel, ce qui a eu pour conséquence d'empêcher toute détection de l'édition du CHANGELOG.
 
 ### 175.0.45 [#2756](https://github.com/openfisca/openfisca-france/pull/2756)
 

@@ -12,7 +12,7 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000
+      f7fa_2017: 100000
       f7la_2016: 500
       f7lb_2016: 500
       f7lc_2016: 500
@@ -27,7 +27,7 @@
       f7lz: 500
       f7mg: 500
       f7mh: 500
-      f7ya: 500
+      f7ya_2022: 500
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -68,7 +68,7 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000
+      f7fa_2017: 100000
       f7hl_2010: 500
       f7la_2016: 500
       f7lb_2016: 500
@@ -76,10 +76,10 @@
       f7ld: 500
       f7le: 500
       f7lf: 500
-      f7lg: 500
-      f7lh: 500
-      f7li: 500
-      f7lj: 500
+      f7lg_2020: 500
+      f7lh_2020: 500
+      f7li_2020: 500
+      f7lj_2020: 500
       f7lm_2018: 500
       f7ln: 500
       f7ls: 500
@@ -127,22 +127,22 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000
+      f7fa_2017: 100000
       f7lb_2016: 500
       f7lc_2016: 500
       f7ld: 500
       f7le: 500
       f7lf: 500
-      f7lg: 500
-      f7lh: 500
-      f7li: 500
-      f7lj: 500
-      f7lk: 500
-      f7ll: 500
+      f7lg_2020: 500
+      f7lh_2020: 500
+      f7li_2020: 500
+      f7lj_2020: 500
+      f7lk_2021: 500
+      f7ll_2021: 500
       f7lm_2018: 500
       f7ln: 500
-      f7lo: 500
-      f7lp: 500
+      f7lo_2021: 500
+      f7lp_2021: 500
       f7ls: 500
       f7lt: 500
       f7lx: 500

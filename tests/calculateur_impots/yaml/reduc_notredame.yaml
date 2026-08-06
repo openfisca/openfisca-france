@@ -5,7 +5,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7ue: 400.0
+      f7ue_2019: 400.0
     individus:
       ind0:
         activite: actif
@@ -34,7 +34,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7ue: 1500.0
+      f7ue_2019: 1500.0
     individus:
       ind0:
         activite: actif

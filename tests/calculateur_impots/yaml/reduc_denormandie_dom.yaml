@@ -5,7 +5,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7nd: 150000.0
+      f7nd_2022: 150000.0
     individus:
       ind0:
         activite: actif
@@ -34,7 +34,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7nc: 200000.0
+      f7nc_2022: 200000.0
     individus:
       ind0:
         activite: actif
@@ -56,14 +56,14 @@
     rfr: 45000.0
     rni: 45000.0
 
-- name: Test plafond commun Pinel et Denormandie ave investissements différents (OM et métropole)
+- name: Test plafond commun Pinel et Denormandie avec investissements différents (OM et métropole)
   period: 2019
   absolute_error_margin: 1
   input:
     foyer_fiscal:
       declarants:
       - ind0
-      f7nc: 150000.0
+      f7nc_2022: 150000.0
       f7qx: 200000.0
     individus:
       ind0:
@@ -93,7 +93,7 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7nc: 150000.0
+      f7nc_2022: 150000.0
       f7qy: 200000.0
     individus:
       ind0:
@@ -123,8 +123,8 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7nc: 0.0
-      f7nd: 250000.0
+      f7nc_2022: 0.0
+      f7nd_2022: 250000.0
       f7qq: 100000.0
     individus:
       ind0:
