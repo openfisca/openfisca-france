@@ -1,0 +1,20 @@
+description: Incréments par demi-part fiscale pour la détermination du plafond de revenus déterminant l'éligibilité au crédit d'impôt
+metadata:
+  order:
+  - demi_part_1
+  - demi_part_2_et_plus
+  - demi_part_1_2
+  - demi_part_3_et_plus
+  - demi_part_1_mgr
+  - demi_part_2_mgr
+  - demi_part_3_et_plus_mgr
+  - demi_part_1_2_gm
+  - demi_part_3_gm
+  - demi_part_4_et_plus_gm
+  documentation: |-
+    Le plafond de 2014 comprend, pour la France métropolitaine, une valeur pour la première part, puis un incrément pour la première demi-part supplémentaire, puis un autre pour les demi-parts supplémentaires à partir de la deuxième.
+    Pour la Martinique, la Guadeloupe et la Réunion, il comprend une valeur pour la première part, puis un incrément pour la première demi-part supplémentaire, un autre pour la deuxième demi-part supplémentaire, puis un autre pour les demi-parts supplémentaires à partir de la troisième.
+    Pour la Guyanne et Mayotte, il comprend une valeur pour la première part, puis un incrément pour les deux demi-parts supplémentaires suivantes, un autre pour la troisième demi-part supplémentaire, puis un autre pour les demi-parts supplémentaires à partir de la quatrième.
+    Le plafond de revenus appliqué en 2020 et 2021 (pour les dépenses engagées en 2020 au plus tard) comprend une valeur pour la première part, puis un incrément pour les *deux* premières demi-parts supplémentaires, puis un autre pour les demi-parts supplémentaires à partir de la troisième.
+    Ce plafond détermine la limite entre les foyers considérés "modestes" (et "très modestes") et les foyers considérés "intermédiaires" (et "supérieurs").
+    A partir des dépenses payées en 2021, le dispositif Ma Prime Rénov', et donc ses seuils de revenus, s'applique à tous les ménages.

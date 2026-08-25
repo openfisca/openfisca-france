@@ -1,0 +1,23 @@
+description: Plafond de revenu pour l'éligibilité au crédit d'impôt pour une personne seule ayant souscrit un éco-prêt à taux zéro
+values:
+  2014-01-01:
+    value: 25000
+  2016-03-01:
+    value: null
+metadata:
+  short_label: Personne seule
+  last_value_still_valid_on: "2025-08-18"
+  unit: currency
+  reference:
+    2014-01-01:
+      title: LOI n° 2013-1278 du 29 décembre 2013 de finances pour 2014, art. 74
+      href: https://www.legifrance.gouv.fr/eli/loi/2013/12/29/EFIX1323580L/jo/texte
+    2016-03-01:
+      title: LOI n° 2016-1917 du 29 décembre 2016 de finances pour 2017, art. 23
+      href: https://www.legifrance.gouv.fr/eli/loi/2016/12/29/ECFX1623958L/jo/texte
+  official_journal_date:
+    2014-01-01: "2013-12-30"
+    2016-03-01: "2016-12-30"
+  notes:
+    2016-03-01:
+    - title: S'applique pour les avances accordées à partir du 1er mars 2016 ; on part ainsi du principe que toutes les dépenses ultérieures sont concernées.
