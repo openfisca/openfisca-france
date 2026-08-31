@@ -1,5 +1,15 @@
 # Changelog
 
+### 176.1.4 [#2806](https://github.com/openfisca/openfisca-france/pull/2806)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prestations/aides_logement.py`
+* Détails:
+  - Corrige définition rapport loyers
+
+
 ## 176.1.0 [#2800](https://github.com/openfisca/openfisca-france/pull/XXXX)
 
 * Évolution du système socio-fiscal.

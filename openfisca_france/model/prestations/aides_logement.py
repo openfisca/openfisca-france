@@ -1536,7 +1536,6 @@ class aide_logement_rapport_loyers(Variable):
     def formula(famille, period):
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         loyer_reference = famille('aide_logement_loyer_reference', period)
-
         return loyer_retenu / loyer_reference
 
 
@@ -1546,6 +1545,7 @@ class aide_logement_rapport_loyers_arrondi_pourcent(Variable):
     label = 'Rapport entre le loyer retenu et le loyer de référence, arrondi en pourcentage'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+    reference = ['https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137420/2022-01-01'] # arrondi
 
     def formula(famille, period):
         rapport_loyers = famille('aide_logement_rapport_loyers', period)
@@ -1615,7 +1615,7 @@ class aide_logement_taux_loyer(Variable):
             + al_plafonds_z2.majoration_par_enf_supp * (al_nb_pac_reference > 1) * (al_nb_pac_reference - 1)
             )
 
-        RL = round_(L / loyer_reference * 100, 2) / 100
+        RL = famille('aide_logement_rapport_loyers_arrondi_pourcent', period) / 100
 
         TL = where(RL >= al_tl_seuils.seuil_2,
             al_tl_taux.tl_taux_3 * (RL - al_tl_seuils.seuil_2)
@@ -1650,7 +1650,6 @@ class aide_logement_taux_participation_personnelle(Variable):
     def formula(famille, period):
         taux_famille = famille('aide_logement_taux_famille', period)
         taux_loyer = famille('aide_logement_taux_loyer', period)
-
         return taux_famille + taux_loyer
 
 
