@@ -16,11 +16,13 @@ brackets:
     2023-01-01:
       value: 13460
     2024-01-01:
-      value: 13814
+      value: 13970
     2025-01-01:
-      value: 14189
+      value: 14249
     2026-01-01:
-      value: 14402
+      value: 14563
+    2027-01-01:
+      value: 14883
   rate:
     2017-01-01:
       value: 1
@@ -40,11 +42,13 @@ brackets:
     2023-01-01:
       value: 16990
     2024-01-01:
-      value: 17479
+      value: 17700
     2025-01-01:
-      value: 17887
+      value: 18054
     2026-01-01:
-      value: 18179
+      value: 18451
+    2027-01-01:
+      value: 18857
   rate:
     2017-01-01:
       value: 2
@@ -64,11 +68,13 @@ brackets:
     2023-01-01:
       value: 20200
     2024-01-01:
-      value: 20637
+      value: 20980
     2025-01-01:
-      value: 21114
+      value: 21400
     2026-01-01:
-      value: 21614
+      value: 21870
+    2027-01-01:
+      value: 22351
   rate:
     2017-01-01:
       value: 3
@@ -88,11 +94,13 @@ brackets:
     2023-01-01:
       value: 23030
     2024-01-01:
-      value: 23368
+      value: 23880
     2025-01-01:
-      value: 23849
+      value: 24358
     2026-01-01:
-      value: 24642
+      value: 24894
+    2027-01-01:
+      value: 25442
   rate:
     2017-01-01:
       value: 4
@@ -112,11 +120,13 @@ brackets:
     2023-01-01:
       value: 25760
     2024-01-01:
-      value: 26032
+      value: 26740
     2025-01-01:
-      value: 26617
+      value: 27275
     2026-01-01:
-      value: 27563
+      value: 27875
+    2027-01-01:
+      value: 28488
   rate:
     2017-01-01:
       value: 5
@@ -136,11 +146,13 @@ brackets:
     2023-01-01:
       value: 28660
     2024-01-01:
-      value: 29044
+      value: 29880
     2025-01-01:
-      value: 29691
+      value: 30478
     2026-01-01:
-      value: 30666
+      value: 31149
+    2027-01-01:
+      value: 31834
   rate:
     2017-01-01:
       value: 6
@@ -160,11 +172,13 @@ brackets:
     2023-01-01:
       value: 32270
     2024-01-01:
-      value: 32484
+      value: 33680
     2025-01-01:
-      value: 33400
+      value: 34354
     2026-01-01:
-      value: 34529
+      value: 35110
+    2027-01-01:
+      value: 35882
   rate:
     2017-01-01:
       value: 7
@@ -184,11 +198,13 @@ brackets:
     2023-01-01:
       value: 37430
     2024-01-01:
-      value: 37587
+      value: 38780
     2025-01-01:
-      value: 38607
+      value: 39556
     2026-01-01:
-      value: 40050
+      value: 40426
+    2027-01-01:
+      value: 41315
   rate:
     2017-01-01:
       value: 8
@@ -208,17 +224,19 @@ brackets:
     2023-01-01:
       value: 46960
     2024-01-01:
-      value: 47062
+      value: 48580
     2025-01-01:
-      value: 47961
+      value: 49552
     2026-01-01:
-      value: 50247
+      value: 50642
+    2027-01-01:
+      value: 51756
   rate:
     2017-01-01:
       value: 9
 metadata:
   short_label: déciles de niveau de vie
-  last_value_still_valid_on: "2024-04-22"
+  last_value_still_valid_on: "2026-09-07"
   reference:
     2017-01-01:
       title: Distribution des niveaux de vie, données annuelles de 1996 à 2021, INSEE
@@ -239,17 +257,17 @@ metadata:
       title: Distribution des niveaux de vie, données annuelles de 1996 à 2022, INSEE
       href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
     2023-01-01:
-      title: Distribution des niveaux de vie, données annuelles de 1996 à 2022, INSEE, consulté le 16/09.2025
+      title: Distribution des niveaux de vie, données annuelles de 1996 à 2023, INSEE, consulté le 16/09.2025
+      href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
+    2024-01-01:
+      title: Distribution des niveaux de vie, données annuelles de 1996 à 2024, INSEE, consulté le 16/09.2025
       href: https://www.insee.fr/fr/statistiques/2416808#tableau-figure1
   notes:
-    2020-01-01:
-    - title: données provisoires en date de avril 2024. Pour l'année 2020 deux séries sont présentées mais uniquement la deuxième est reportée ici.
-    2021-01-01:
-    - title: données provisoires en date de avril 2024
-    2024-01-01:
-     - title: les valeurs 2024 sont des projections à partir des données 2021, dernière année connue début 2024. Les valeurs 2021 ont été augmentées de 12,4 % qui est l'évolution moyenne du SMPT économique cumulées pour les années 2022 (3,7%), 2023 (5.1%), 2024 (3.1%) telles que prévues dans le Rapport économique social et financier (RESF) attaché au PLF pour 2024, p54
     2025-01-01:
-     - title: les valeurs 2025 sont des projections à partir des données 2022, dernière année connue début 2025. Les valeurs 2022 ont été augmentées de 9,4 % qui est l'évolution moyenne du SMPT économique (retraité du chômage partiel pendant la crise sanitaire) cumulées pour les années 2023 (3.9%), 2024 (2.8%), 2025 (2.7%) telles que prévues dans le Rapport économique social et financier (RESF) attaché au PLF pour 2025, p45 pour les années 2024 et 2025 et de la note de conjoncture de l'INSEE de juillet 2024 p40 pour l'année 2024
+     - title: les valeurs 2025 sont des projections à partir des données 2024, dernière année connue début septembre 2026. Les valeurs 2024 ont été augmentées de 2.0 % qui est l'évolution moyenne du SMPT économique (retraité du chômage partiel pendant la crise sanitaire) pour l'année 2025 prévue dans la note de conjoncture de l'INSEE de juin 2026
     2026-01-01:
-     - title: les valeurs 2026 sont des projections à partir des données 2023, dernière année connue en septembre 2025. Les valeurs 2023 ont été augmentées de 7 % qui est l'évolution moyenne du SMPT économique cumulées pour les années 2024 (2.6%), 2025 (2.1%) telles que prévues dans la note de conjoncture de l'INSEE de septembre 2025. Pour 2026 la valeur de 2,1 est reprise en copie de la valeur 2025, à actualiser avec les projections du PLF.
+     - title: les valeurs 2026 sont des projections à partir des données 2024, dernière année connue début septembre 2026. Les valeurs 2024 ont été augmentées de 4.2 % qui est l'évolution moyenne du SMPT économique cumulées pour les années 2025 (2.0%), 2026 (2.2%) telles que prévues dans la note de conjoncture de l'INSEE de juin 2026.
+    2027-01-01:
+     - title: les valeurs 2026 sont des projections à partir des données 2024, dernière année connue début septembre 2026. Les valeurs 2024 ont été augmentées de 4.2 % qui est l'évolution moyenne du SMPT économique cumulées pour les années 2025 (2.0%), 2026 (2.2%), 2027 (2.2%) telles que prévues dans la note de conjoncture de l'INSEE de juin 2026. Le montant 2027 est une copie du taux pour 2026
+
 documentation: Attention les valeurs de l'INSEE sont renseignées en euros constant de la dernière année reportée. Les valeurs des année précédentes sont donc mises à jour chaque année
