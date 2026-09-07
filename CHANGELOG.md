@@ -1,5 +1,14 @@
 # Changelog
 
+### 176.0.9 [#2799](https://github.com/openfisca/openfisca-france/pull/2799)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prestations/aides_logement.py`
+* Détails :
+  - Applique les règles d'arrondi de Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement (NOR : LOGL1925404A) Article 14: RL est exprimé en pourcentage et arrondi à la deuxième décimale / TL est exprimé en pourcentage et arrondi à la troisième décimale
+
 ### 176.0.8 [#2796](https://github.com/openfisca/openfisca-france/pull/2796)
 
 * Évolution du système socio-fiscal.
@@ -41,7 +50,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
-* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py` et `tests/calculateur_impots/yaml/credit_invest_forestier.yaml` 
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py` et `tests/calculateur_impots/yaml/credit_invest_forestier.yaml`
 * Détails :
   - Mise à jour de la formule pour 2025 corrections sur 2024 et 2023
   - ajout et correction des tests sur la période
