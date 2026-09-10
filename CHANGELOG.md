@@ -1,5 +1,19 @@
 # Changelog
 
+### 176.0.10 [#2739](https://github.com/openfisca/openfisca-france/pull/2739) [#2795](https://github.com/openfisca/openfisca-france/pull/2795)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2016.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/action_logement/visale/*`
+  - `openfisca_france/model/prestations/visale.py`
+  - `openfisca_france/model/caracteristiques_socio_demographiques/logement.py`
+* Détails :
+  - Étend l'éligibilité Visale aux salariés de plus de 30 ans à compter du 06/01/2026, sous condition de ressources (nouveau paramètre `plafond_ressources_salaries_plus_30_ans`).
+  - Met à jour les plafonds de loyer Visale au 06/01/2026 et introduit le zonage à trois catégories : Île-de-France, agglomérations de plus de 100 000 habitants / Corse / DROM / Saint-Martin, autres communes.
+  - Modélise chaque tranche de plafond de loyer à partir de sa date d'entrée en vigueur (`etudiant/toutes_communes` jusqu'au 18/06/2018, `hors_ile_de_france` clos au 06/01/2026, `autres_communes` ouvert à cette date).
+  - Ajoute les variables `residence_corse` et `residence_agglomeration_plus_100000_habitants` (approchée par le zonage APL, renseignable en entrée).
+
 ### 176.0.9 [#2799](https://github.com/openfisca/openfisca-france/pull/2799)
 
 * Changement mineur.
