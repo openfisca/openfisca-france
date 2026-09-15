@@ -1615,7 +1615,7 @@ class aide_logement_taux_loyer(Variable):
             + al_plafonds_z2.majoration_par_enf_supp * (al_nb_pac_reference > 1) * (al_nb_pac_reference - 1)
             )
 
-        RL = L / loyer_reference
+        RL = round_(L / loyer_reference * 100, 2) / 100
 
         TL = where(RL >= al_tl_seuils.seuil_2,
             al_tl_taux.tl_taux_3 * (RL - al_tl_seuils.seuil_2)
@@ -1623,7 +1623,7 @@ class aide_logement_taux_loyer(Variable):
             max_(0, al_tl_taux.tl_taux_2 * (RL - al_tl_seuils.seuil_1))
             )
 
-        return TL
+        return round_(TL, 5)
 
 
 class aide_logement_ressources_apres_abattement(Variable):

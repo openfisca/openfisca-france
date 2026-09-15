@@ -542,6 +542,35 @@
     aide_logement_participation_personnelle: 34.73 + (0.0283 + 0.00405) * 7438  # 275.35
     aide_logement_montant_brut: 292.85 + 53.27 - 275.35 # 70.77 brut CRDS
 
+- name: Personne isolée 2026-08
+  period: 2026-08
+  absolute_error_margin: 0.00001
+  input:
+    famille:
+      parents: [parent1]
+      aide_logement_base_ressources: 9900
+      reduction_loyer_solidarite: 35.99
+    menage:
+      personne_de_reference: parent1
+      zone_apl: zone_1
+      loyer: 200
+      statut_occupation_logement: locataire_hlm
+    individus:
+      parent1:
+        age: 36
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    # Loyer de Reference: 290.34
+    # R_L: 0.6888
+    aide_logement_taux_loyer: round(0.0045 * (0.6888 - 0.45), 5) # 0.00107; sans arrondi: 0.001074814
+    # taux de participation T_p : 0.02937
+    aide_logement_taux_participation_personnelle: 0.0283 + 0.00107
+    aide_logement_participation_personnelle: 39.56 + (0.0283 + 0.00107) * 4665
+    aide_logement_montant_brut: round(200 + 60.59 - 176.57105, 2) - 5 # 79.02; sans arrondi: 79.00
+    aide_logement_montant_brut_crds: round(200 + 60.59 - 176.57105, 2) - 5 - 35.99 * 0.98 # 43.7498; sans arrondi: 43.7298
+    aide_logement_montant: round(43.7498 * (1 - 0.005), 2) # 43.53; sans arrondi: 43.51
+
 - name: Personne isolée, avant degressivité
   period: 2016-06
   relative_error_margin: 0.01

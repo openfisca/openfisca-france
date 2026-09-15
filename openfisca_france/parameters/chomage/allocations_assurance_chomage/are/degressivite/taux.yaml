@@ -1,0 +1,11 @@
+description: Taux appliqué à l'allocation pleine si dégressivité possible
+unit: /1
+metadata:
+  reference:
+    2019-11-01:
+      title: Article 17bis du règlement annexé au décret n° 2019-797 du 26 juillet 2019 relatif au régime d'assurance chômage
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038869230
+
+values:
+  2019-11-01:
+    value: 0.7

@@ -1,10 +1,72 @@
 # Changelog
 
+### 176.0.10 [#2763](https://github.com/openfisca/openfisca-france/pull/2763)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/02/2023.
+* Zones impactées :
+  - `openfisca_france/model/revenus/remplacement/are.py`
+  - `openfisca_france/model/revenus/activite/salarie.py`
+  - `openfisca_france/parameters/chomage/allocations_assurance_chomage/are/`
+  - `tests/chomage/are.yaml`
+* Détails :
+  - Modélisation de l'Allocation de Retour à l'Emploi (ARE) : éligibilité à l'ouverture de droits, durée d'indemnisation (brute, nette, avec coefficient de conjoncture), calcul du SJR et de la PRC, allocation journalière super brute et brute (taux plein et dégressif), prélèvements sociaux (PRC, CSG déductible, CSG non déductible, CRDS), allocation nette journalière et mensuelle.
+  - Ajout des variables `fin_dernier_contrat`, `motif_fin_contrat`, `motif_fin_dernier_contrat` dans `salarie.py`.
+  - Ajout de paramètres ARE dans `parameters/chomage/allocations_assurance_chomage/are/`.
+  - Ajout de 6 tests dans `tests/chomage/are.yaml`.
+
+### 176.0.9 [#2799](https://github.com/openfisca/openfisca-france/pull/2799)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prestations/aides_logement.py`
+* Détails :
+  - Applique les règles d'arrondi de Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement (NOR : LOGL1925404A) Article 14: RL est exprimé en pourcentage et arrondi à la deuxième décimale / TL est exprimé en pourcentage et arrondi à la troisième décimale
+
+### 176.0.8 [#2796](https://github.com/openfisca/openfisca-france/pull/2796)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/08/2026
+* Zones impactées :
+  - `openfisca_france/parameters/taxation_capital/epargne/livret_a/taux.yaml`
+* Détails :
+  - Mise à jour du taux d'intérêts du livret A
+>>>>>>> upstream/master
+
+### 176.0.7 [#2712](https://github.com/openfisca/openfisca-france/pull/2712)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+* Détails :
+  - Correction doublon dans allègements de hausse de csg du capital
+
+### 176.0.6 [#2784](https://github.com/openfisca/openfisca-france/pull/2784)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : partir du 01/01/2022
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/taux_jei.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/taux_jeir.yaml`
+  - `tests/calculateur_impots/yaml/reduc_cappme.yaml`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_plafonnees.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot_deplafonnees.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/plafond_jei.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_reductions_impots/souscriptions/pme/souscription_capital/plafond_jeir.yaml`
+* Détails :
+  - Création de la formule sur 2021-2025
+  - Ajout des paramètres pour les JEI et JEIR (plafond et taux)
+  - Mise à jour du test cappme
+  - Ajout des variables nécessaires
+
 ### 176.0.5 [#2783](https://github.com/openfisca/openfisca-france/pull/2783)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
-* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py` et `tests/calculateur_impots/yaml/credit_invest_forestier.yaml` 
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py` et `tests/calculateur_impots/yaml/credit_invest_forestier.yaml`
 * Détails :
   - Mise à jour de la formule pour 2025 corrections sur 2024 et 2023
   - ajout et correction des tests sur la période
