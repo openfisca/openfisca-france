@@ -8,6 +8,8 @@ values:
     value: 1
   2021-09-01:
     value: 3.3
+  2026-05-04:
+    value: 1
 metadata:
   short_label: Etudiant non-boursier et hors situation de précarité
   unit: currency
@@ -24,3 +26,6 @@ metadata:
     2021-09-01:
       title: Délibération du CA du CNOUS du 12/07/2021
       href: https://cnous-my.sharepoint.com/personal/vu_cnous_fr/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fvu%5Fcnous%5Ffr%2FDocuments%2FCA%2FCA%20du%2029%20juillet%2F202107136%20D%C3%A9lib%C3%A9ration%20Avis%20pris%20repas%20social%202021%2Epdf&parent=%2Fpersonal%2Fvu%5Fcnous%5Ffr%2FDocuments%2FCA%2FCA%20du%2029%20juillet
+    2026-05-04:
+      title: Rapport d'information de l'Assemblée nationale n° 3008 sur la mise en œuvre des repas CROUS à 1 euro (généralisation à tous les étudiants)
+      href: https://www.assemblee-nationale.fr/dyn/17/rapports/cion_fin/l17b3008_rapport-information

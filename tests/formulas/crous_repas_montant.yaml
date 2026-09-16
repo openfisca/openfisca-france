@@ -5,3 +5,11 @@
     boursier: [false, false, true]
   output:
     crous_repas_montant: [0, 3.30, 1]
+
+- name: Montant du repas au restaurant universitaire à 1 € pour tous les étudiants depuis le 04/05/2026
+  period: 2026-06
+  input:
+    scolarite: [inconnue, enseignement_superieur, enseignement_superieur]
+    boursier: [false, false, true]
+  output:
+    crous_repas_montant: [0, 1, 1]
