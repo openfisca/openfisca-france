@@ -1,0 +1,71 @@
+description: Allocation journalière minimale (ARE) - Mayotte
+unit: currency
+metadata:
+  reference:
+    2025-07-01:
+      title: CIRCULAIRE n° 2025-06 du 1er juillet 2025
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2025-06_du_1er_juillet_2025.pdf
+    2024-07-01:
+      title: CIRCULAIRE n° 2024-05 du 1er juillet 2024
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2024-05_du_1er_juillet_2024.pdf
+    2023-07-01:
+      title: CIRCULAIRE n° 2023-07 du 3 juillet 2023
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2023-07_du_3_juillet_2023.pdf
+    2023-04-01:
+      title: CIRCULAIRE n° 2023-04 du 1er avril 2023
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2023-04_du_1er_avril_2023.pdf
+    2022-07-01:
+      title: CIRCULAIRE n° 2022-10 du 1er juillet 2022
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2022-10_du_1er_juillet_2022.pdf
+    2021-07-01:
+      title: CIRCULAIRE n° 2021-09 du 1er juillet 2021
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2021-09_du_1er_juillet_2021.pdf
+    2020-07-01:
+      title: CIRCULAIRE n° 2020-10 du 1er juillet 2020
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n_2020-10_du_1er_juillet_2020.pdf
+    2019-07-01:
+      title: CIRCULAIRE n° 2019-09 du 27 juin 2019
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_n2019-09_du_27_juin_2019.pdf
+    2018-07-01:
+      title: CIRCULAIRE n° 2018-15 du 16 juillet 2018
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Circulaire_2018-15_du_16_juillet_2018.pdf
+    2017-04-01:
+      title: CIRCULAIRE n° 2017-15 du 29 juin 2017
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-Ci2017-15.pdf
+    2015-07-01:
+      title: CIRCULAIRE n° 2015-13 du 1er juillet 2015
+      href: https://www.unedic.org/ged/documents/circulars/pdf/PRE-CIRC-1445354672765.pdf
+    2014-07-01:
+      title: CIRCULAIRE n° 2014-21 du 1er juillet 2014
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201421.pdf
+    2013-07-01:
+      title: CIRCULAIRE n° 2013-12 du 1er juillet 2013
+      href: https://www.unedic.org/ged/documents/circulars/pdf/ci201312.pdf
+
+values:
+  2025-07-01:
+    value: 16.05
+  2024-07-01:
+    value: 15.97
+  2023-07-01:
+    value: 15.78
+  2023-04-01:
+    value: 15.49
+  2022-07-01:
+    value: 15.2
+  2021-07-01:
+    value: 14.77
+  2020-07-01:
+    value: 14.68
+  2019-07-01:
+    value: 14.62
+  2018-07-01:
+    value: 14.52
+  2017-07-01:
+    value: 14.42
+  2015-07-01:
+    value: 14.33
+  2014-07-01:
+    value: 8.11
+  2013-07-01:
+    value: 8.05
