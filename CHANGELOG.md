@@ -1,5 +1,14 @@
 # Changelog
 
+## 176.1.0 [#2800](https://github.com/openfisca/openfisca-france/pull/XXXX)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 04/05/2026.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/education/alimentation/montant_repas_non_boursier.yaml`
+* Détails :
+  - Le repas au Crous à 1 € est désormais accessible à tous les étudiants, qu'ils soient boursiers ou non, depuis le 04/05/2026 : mise à jour du montant du repas pour les étudiants non-boursiers, qui passe de 3,30 € à 1 €.
+
 ### 176.0.10 [#2763](https://github.com/openfisca/openfisca-france/pull/2763)
 
 * Évolution du système socio-fiscal.
