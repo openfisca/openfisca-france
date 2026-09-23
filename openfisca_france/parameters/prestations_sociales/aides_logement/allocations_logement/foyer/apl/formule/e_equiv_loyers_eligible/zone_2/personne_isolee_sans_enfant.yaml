@@ -16,7 +16,7 @@ values:
     value: 451.45
   2025-10-01:
     value: 456.15
-2026-10-01:
+  2026-10-01:
     value: 461.4
 metadata:
   short_label: Personne isolée sans enfant
