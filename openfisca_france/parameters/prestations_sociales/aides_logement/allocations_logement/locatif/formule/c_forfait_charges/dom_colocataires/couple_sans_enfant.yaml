@@ -52,6 +52,8 @@ values:
     value: 40.26
   2025-10-01:
     value: 40.68
+  2026-10-01:
+    value: 41.15
 metadata:
   short_label: Couple sans enfant outre-mer
   unit: currency
@@ -134,3 +136,5 @@ metadata:
     2025-10-01:
       title: Arrêté du 27/09/2019, art. 46
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286587/2025-10-01
+    2026-10-01:
+      title: Revalorisation appliquée chaque année en fonction de l’évolution de l’indice de référence des loyers (IRL) conformément au Code de la construction et de l’habitation
