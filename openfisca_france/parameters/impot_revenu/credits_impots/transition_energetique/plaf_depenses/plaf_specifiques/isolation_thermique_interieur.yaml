@@ -1,0 +1,20 @@
+description: Plafond de dépenses éligibles au crédit d'impôt pour les dépenses de matériaux d'isolation thermique des murs en façade ou pignon par l'intérieur, des rampants de toiture et plafonds de combles aménagés ou aménageables
+values:
+  2011-01-01:
+    value: 100
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Isolation thermique intérieur
+  last_value_still_valid_on: "2025-08-18"
+  unit: currency_per_sqm
+  reference:
+    2011-01-01:
+      title: Arrêté du 30 décembre 2010 pris pour l'application de l'article 200 quater du code général des impôts relatif au crédit d'impôt sur le revenu en faveur des dépenses d'équipement de l'habitation principale au titre des économies d'énergie et du développement durable et modifiant l'article 18 bis de l'annexe IV à ce code
+      href: https://www.legifrance.gouv.fr/eli/arrete/2010/12/30/INDE1032628A/jo/texte
+    2020-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000039683923&idArticle=LEGIARTI000039793071&dateTexte=20200623&categorieLien=id#LEGIARTI000039793071
+  official_journal_date:
+    2011-01-01: "2010-12-31"
+    2020-01-01: "2019-12-29"

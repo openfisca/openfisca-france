@@ -1,0 +1,26 @@
+description: Montants forfaitaires du Crédit d'impôt transition énergétique pour les ménages intermédiaires
+metadata:
+  order:
+    - isolation_thermique_parois_vitrees
+    - isolation_thermique_interieur_combles
+    - isolation_thermique_exterieur_toit_terrasse
+    - chaudiere_bois_automatique
+    - chaudiere_bois_manuelle
+    - solaire_combine
+    - solaire_chauffe_eau
+    - poele_granules
+    - poele_buches
+    - foyers_inserts
+    - solaire_hybride
+    - pac_geothermie
+    - pac_air_eau
+    - pac_eau_chaude
+    - raccordement_reseau
+    - systeme_charge_vehicule_electrique
+    - audit_energetique
+    - depose_cuve_fioul
+    - vmc_double_flux
+    - protection_vitres_rayonnement
+    - majoration_bouquet
+  documentation: |-
+    En 2020, la structure du CITE (dont la disparition était prévue après 2019, prolongé exceptionnellement d'un an) ressemble à celle de Ma Prime Renov', avec un barème par forfait pour chaque geste subventionné remplaçant le taux préexistant.

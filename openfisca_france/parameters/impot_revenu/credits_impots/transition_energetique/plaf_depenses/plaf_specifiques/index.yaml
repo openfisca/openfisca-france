@@ -1,0 +1,14 @@
+description: Plafonds de dépenses spécifiques pour différents gestes éligible au crédit d'impôt
+metadata:
+  short_label: Plafonds de dépenses spécifiques
+  order:
+  - chaudiere_thpe
+  - chaudiere_microcogeneration
+  - isolation_thermique_interieur
+  - isolation_thermique_exterieur
+  - isolation_thermique_parois_vitrees
+  - pac_eau_chaude
+  - solaire_thermique
+  - solaire_chauffe_eau
+  - solaire_hybride
+  - panneaux_photovoltaiques

@@ -1,0 +1,10 @@
+description: Plafond du crédit d'impôt
+metadata:
+  short_label: Plafond du crédit
+  order:
+  - personne_seule
+  - couple
+  - pac
+  documentation: |-
+    Jusqu'en 2020, le crédit d'impôt est limité par un plafond de dépenses éligibles (à la fois spécifique à chaque dépense, et global au niveau du ménage).
+    En 2020 (et 2021 pour les dépenses engagées jusqu'en 2020), il est limité par un plafond de crédit d'impôt, qui prend en compte la somme des crédits d'impôts obtenus au titre des cinq années précédentes (de 2016 à 2020).

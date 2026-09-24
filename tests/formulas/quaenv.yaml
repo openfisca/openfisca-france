@@ -1,0 +1,117 @@
+- name: CITE 2018 — les parois vitrées sont au taux réduit de 15 %
+  description: >-
+    L'article 79 de la LF 2018 ramène le taux à 15 % pour les matériaux d'isolation
+    thermique des parois vitrées (case 7AM), le taux général restant à 30 % (case 7AK
+    en témoin).
+  period: 2018
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      declarants: [ind0]
+      f7am_2018: 1000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    quaenv: 150
+
+- name: CITE 2018 — le taux général reste à 30 %
+  period: 2018
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      declarants: [ind0]
+      f7ak_2018: 1000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    quaenv: 300
+
+- name: CITE 2019 — la dépose d'une cuve à fioul est au taux majoré de 50 %
+  period: 2019
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      declarants: [ind0]
+      f7bq_2020: 1000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    quaenv: 500
+
+- name: CITE 2016 — le report 7AA est pris au taux de l'année d'engagement
+  description: >-
+    La case 7AA de la déclaration 2017 porte les dépenses de chaudière à condensation
+    engagées en 2015, dernière année où ce geste ouvrait droit au crédit. Le taux
+    retenu est donc celui de 2015 (30 %), et non celui de l'année de déclaration —
+    où le geste n'est plus subventionné et où lire le barème de 2016 donnerait 0.
+  period: 2016
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      declarants: [ind0]
+      f7aa_2016: 1000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    quaenv: 300
+
+- name: CITE 2017 — le report 7AA ne s'applique plus
+  description: Le report « bouquet sur 2 ans » ne vaut que pour la déclaration 2016.
+  period: 2017
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      declarants: [ind0]
+      f7aa_2016: 1000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    quaenv: 0
+
+- name: CITE 2016-2019 — le plafond s'impute en commençant par le taux le plus élevé
+  description: >-
+    Pour une personne seule le plafond de dépenses est de 8 000 €. Avec 6 000 € de
+    dépose de cuve à fioul (50 %) et 6 000 € au taux général (30 %), le plafond est
+    saturé par le taux le plus élevé d'abord : 6 000 × 50 % + 2 000 × 30 % = 3 600 €.
+    L'ordre inverse donnerait 6 000 × 30 % + 2 000 × 50 % = 2 800 €.
+  period: 2019
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      declarants: [ind0]
+      f7bq_2020: 6000
+      f7ar_2019: 6000
+    individus:
+      ind0:
+        date_naissance: '1970-01-01'
+    famille:
+      parents: [ind0]
+    menage:
+      personne_de_reference: ind0
+  output:
+    quaenv: 3600
