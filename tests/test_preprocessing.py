@@ -78,7 +78,7 @@ cotisations_salarie_by_name = {
         'start_non_null_date': '2004-07-01'
         },
     'vieillesse_plafonnee': {
-        'start_non_null_date': '1993-07-01',
+        'start_non_null_date': '1967-10-01',
         },
     }
 

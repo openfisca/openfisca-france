@@ -2,5 +2,6 @@ description: Montant maximum du loyer éligible à la caution Visale dans le cas
 metadata:
   short_label: Cas Général
   order:
-  - hors_ile_de_france
   - ile_de_france
+  - agglomeration_plus_de_100000_habitants_Corse_DROM_St_Martin
+  - autres_communes
