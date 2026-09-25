@@ -1,14 +1,15 @@
 description: Nombre de mois maximum entre la date d'entrée dans un logement et la date courante pour être éligible à l'aide locapass
 values:
-  2021-01-01:
+  2018-01-01:
     value: 2
 metadata:
   short_label: Délai max
+  last_value_still_valid_on: "2026-07-24"
   unit: month
   reference:
-    2021-01-01:
-      title: Décret 2016-1769 du 19/12/2016
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000033652118#JORFARTI000033652118
+    2018-01-01:
+      title: Directive AVANCE LOCA-PASS d'Action Logement (validée par le conseil d'administration du 20 décembre 2017, applicable aux offres émises à compter du 1er janvier 2018)
+      href: https://groupe.actionlogement.fr/directive-avance-loca-passr
 documentation: |-
   https://www.actionlogement.fr/aide-mon-job-mon-logement
   https://www.service-public.fr/particuliers/vosdroits/F18490
