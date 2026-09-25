@@ -1,9 +1,10 @@
 import logging
+from openfisca_core.simulations import SimulationBuilder
 
 log = logging.getLogger(__name__)
 
 
-def init_single_entity(scenario, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None, parent1 = None, parent2 = None, period = None):
+def init_single_entity(tax_benefit_system, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None, parent1 = None, parent2 = None, period = None):
     if enfants is None:
         enfants = []
     assert parent1 is not None
@@ -45,7 +46,6 @@ def init_single_entity(scenario, axes = None, enfants = None, famille = None, fo
         menages['m{}'.format(nth)] = menage_nth
 
     test_data = {
-        'period': period,
         'familles': familles,
         'foyers_fiscaux': foyers_fiscaux,
         'menages': menages,
@@ -53,5 +53,7 @@ def init_single_entity(scenario, axes = None, enfants = None, famille = None, fo
         }
     if axes:
         test_data['axes'] = axes
-    scenario.init_from_dict(test_data)
-    return scenario
+
+    simulation_builder = SimulationBuilder()
+    simulation_builder.default_period = period
+    return simulation_builder.build_from_dict(tax_benefit_system, test_data)

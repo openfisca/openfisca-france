@@ -8,7 +8,7 @@ from .cache import tax_benefit_system
 def test_average_tax_rate():
     year = 2013
     simulation = init_single_entity(
-        tax_benefit_system.new_scenario(),
+        tax_benefit_system,
         axes=[
             [
                 dict(
@@ -21,7 +21,8 @@ def test_average_tax_rate():
             ],
         period=year,
         parent1=dict(age=40),
-        ).new_simulation()
+        )
+
     assert (
         average_rate(
             target=simulation.calculate('revenu_disponible', period=year),
@@ -34,7 +35,7 @@ def test_average_tax_rate():
 def test_marginal_tax_rate():
     year = 2013
     simulation = init_single_entity(
-        tax_benefit_system.new_scenario(),
+        tax_benefit_system,
         axes=[
             [
                 dict(
@@ -47,7 +48,7 @@ def test_marginal_tax_rate():
             ],
         period=year,
         parent1=dict(age=40),
-        ).new_simulation()
+        )
     assert (
         marginal_rate(
             target=simulation.calculate('revenu_disponible', period=year),

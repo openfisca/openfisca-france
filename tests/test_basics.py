@@ -36,9 +36,7 @@ def test_basics(scenario_arguments):
     Args:
         scenario_arguments (dict): Arguments to initialize scenario.
     '''
-    scenario = tax_benefit_system.new_scenario()
-    init_single_entity(scenario, **scenario_arguments)
-    simulation = scenario.new_simulation(debug = False)
+    simulation = init_single_entity(tax_benefit_system, **scenario_arguments)
     period = scenario_arguments['period']
     assert simulation.calculate('revenu_disponible', period = period) is not None, "Can't compute revenu_disponible on period {}".format(period)
     assert simulation.calculate_add('salaire_super_brut', period = period) is not None, "Can't compute salaire_super_brut on period {}".format(period)
