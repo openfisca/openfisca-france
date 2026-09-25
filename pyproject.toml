@@ -19,10 +19,10 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Information Analysis",
 ]
-requires-python = ">= 3.9"
+requires-python = ">=3.11"
 dependencies = [
     "numpy >=1.24.3, <2.4",
-    "openfisca-core[web-api] >=43, <45",
+    "openfisca-core[web-api]>=43,<45",
 ]
 
 [project.urls]
@@ -75,7 +75,7 @@ ignore       = ["E128", "E251","F403","F405","E501","W503"]
 in-place     = true
 
 [tool.pytest.ini_options]
-addopts      = "--showlocals --exitfirst --doctest-modules --disable-pytest-warnings"
+addopts      = "--showlocals --doctest-modules --disable-pytest-warnings"
 testpaths    = "tests"
 python_files = "**/*.py"
 filterwarnings = [
@@ -86,3 +86,6 @@ filterwarnings = [
     "ignore:invalid value encountered in multiply:RuntimeWarning",
     "ignore:divide by zero encountered in divide:RuntimeWarning",
 ]
+
+[tool.uv.sources]
+openfisca-core = { git = "https://github.com/openfisca/openfisca-core.git", branch = "more_relationships" }
