@@ -430,6 +430,7 @@ class travailleur_esat(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+
 class remuneration_esat(Variable):
     value_type = float
     default_value = 0
@@ -438,9 +439,10 @@ class remuneration_esat(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+
 class remuneration_esat_reference(Variable):
     value_type = float
-    label = "Rémunération mensuelle de référence ESAT (moyenne des 3 derniers mois, trimestre de référence)"
+    label = 'Rémunération mensuelle de référence ESAT (moyenne des 3 derniers mois, trimestre de référence)'
     entity = Individu
     definition_period = MONTH
 
@@ -449,9 +451,10 @@ class remuneration_esat_reference(Variable):
         remuneration_trimestre = individu('remuneration_esat', three_previous_months, options=[ADD])
         return remuneration_trimestre / 3
 
+
 class remuneration_esat_reference_annuelle(Variable):
     value_type = float
-    label = "Rémunération ESAT annuelle de référence pour le calcul du PAPI"
+    label = 'Rémunération ESAT annuelle de référence pour le calcul du PAPI'
     entity = Individu
     definition_period = MONTH
 
@@ -469,9 +472,10 @@ class remuneration_esat_reference_annuelle(Variable):
             nb_mois_remuneres > 0,
             remuneration_totale / nb_mois_remuneres,
             0
-        )
+            )
 
         return remuneration_moyenne * 12
+
 
 class remuneration_esat_abattue(Variable):
     value_type = float
@@ -488,7 +492,7 @@ class remuneration_esat_abattue(Variable):
             .prestations_etat_de_sante
             .invalidite
             .aah
-        )
+            )
 
         esat = parameters_aah.esat
         travailleur_esat = individu('travailleur_esat', period)
@@ -499,7 +503,7 @@ class remuneration_esat_abattue(Variable):
         taux_incapacite_supp_50 = (
             taux_incapacite
             >= parameters_aah.taux_capacite.taux_incapacite_rsdae
-        )
+            )
 
         remuneration_abattue = remuneration
         remuneration_abattue *= (1 - esat.abattement_remuneration_garantie)
@@ -511,14 +515,14 @@ class remuneration_esat_abattue(Variable):
             taux_incapacite_supp_50 * travailleur_esat,
             remuneration_abattue,
             remuneration
-        )
+            )
 
         return remuneration_abattue
 
 
 class aah_papi_mensuel(Variable):
     value_type = float
-    label = "Abattement mensuel PAPI appliqué aux travailleurs ESAT"
+    label = 'Abattement mensuel PAPI appliqué aux travailleurs ESAT'
     entity = Individu
     definition_period = MONTH
 
@@ -529,7 +533,7 @@ class aah_papi_mensuel(Variable):
             .prestations_etat_de_sante
             .invalidite
             .aah
-        )
+            )
 
         esat = parameters_aah.esat
 
@@ -545,14 +549,15 @@ class aah_papi_mensuel(Variable):
                 remuneration_annuelle < esat.papi.seuil_taux_reduit,
                 esat.papi.montant_taux_reduit,
                 0
+                )
             )
-        )
 
         return (
-                travailleur_esat
-                * taux_incapacite_supp_80
-                * papi / 12
-        )
+            travailleur_esat
+            * taux_incapacite_supp_80
+            * papi / 12
+            )
+
 
 class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
     value_type = float
