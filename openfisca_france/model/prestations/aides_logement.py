@@ -1231,7 +1231,7 @@ class aide_logement_charges(Variable):
 
         montant_coloc = where(couple, forfait_charges_cas_colocataires.couple_sans_enfant, forfait_charges_cas_colocataires.beneficiaire_isole) + al_nb_pac * forfait_charges_cas_colocataires.majoration_par_enfant
 
-        nb_pac_dom_general = min_(al_nb_pac, 6) if period.start.date < date(2022, 7, 1) else al_nb_pac
+        nb_pac_dom_general = min_(al_nb_pac, 6) if period.start.date < date(2023, 1, 1) else al_nb_pac
         nb_pac_dom_coloc = min_(al_nb_pac, 6) if period.start.date < date(2023, 1, 1) else al_nb_pac
 
         montant_dom = forfait_charges_dom.cas_general + nb_pac_dom_general * forfait_charges_dom.majoration_par_enfant
