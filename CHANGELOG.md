@@ -1,5 +1,14 @@
 # Changelog
 
+### 176.1.6 [#2808](https://github.com/openfisca/openfisca-france/pull/2808)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Après janvier 2023.
+* Zones impactées : 
+  - `openfisca_france/model/prestations/aides_logement.py`
+* Détails:
+  - Supprime majoration personnes à charger outre mer après 2023
+
 ## 176.1.0 [#2800](https://github.com/openfisca/openfisca-france/pull/XXXX)
 
 * Évolution du système socio-fiscal.
