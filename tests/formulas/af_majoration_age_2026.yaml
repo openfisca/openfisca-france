@@ -1,0 +1,116 @@
+- name: Allocations familiales - Majoration pour âge - maintien à 14 ans pour les enfants dont le 14e anniversaire précède le 1er mars 2026
+  description: Un enfant né avant le 1er mars 2012 relève de l'ancien régime et ouvre droit à la majoration dès 14 ans.
+  period: 2026-03
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        date_naissance: '1980-01-01'
+      parent2:
+        date_naissance: '1980-01-01'
+      enfant1:
+        date_naissance: '2012-02-28'
+      enfant2:
+        date_naissance: '2014-01-01'
+      enfant3:
+        date_naissance: '2016-01-01'
+  output:
+    af_majoration: 474.37 * 0.16
+
+- name: Allocations familiales - Majoration pour âge - passage à 18 ans pour les enfants dont le 14e anniversaire intervient à compter du 1er mars 2026
+  description: Un enfant né le 1er mars 2012 relève du nouveau régime et n'ouvre pas droit à la majoration à 14 ans.
+  period: 2026-03
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        date_naissance: '1980-01-01'
+      parent2:
+        date_naissance: '1980-01-01'
+      enfant1:
+        date_naissance: '2012-03-01'
+      enfant2:
+        date_naissance: '2014-01-01'
+      enfant3:
+        date_naissance: '2016-01-01'
+  output:
+    af_majoration: 0
+
+
+- name: Allocations familiales - Majoration pour âge - fallback age seul - nouveau régime approximé à 14 ans en mars 2026
+  description: Lorsque date_naissance n'est pas renseignée, un enfant de 14 ans en mars 2026 est rattaché au nouveau régime par approximation et n'ouvre pas droit à la majoration.
+  period: 2026-03
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        age: 46
+      parent2:
+        age: 46
+      enfant1:
+        age: 14
+      enfant2:
+        age: 12
+      enfant3:
+        age: 10
+  output:
+    af_majoration: 0
+
+- name: Allocations familiales - Majoration pour âge - fallback age seul - ancien régime approximé à 15 ans en mars 2026
+  description: Lorsque date_naissance n'est pas renseignée, un enfant de 15 ans en mars 2026 est rattaché à l'ancien régime par approximation et ouvre droit à la majoration.
+  period: 2026-03
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        age: 46
+      parent2:
+        age: 46
+      enfant1:
+        age: 15
+      enfant2:
+        age: 12
+      enfant3:
+        age: 10
+  output:
+    af_majoration: 474.37 * 0.16

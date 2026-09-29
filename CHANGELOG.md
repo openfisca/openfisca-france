@@ -4,7 +4,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2026
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/marche_travail/salaire_minimum/smic/smic_b_horaire.yaml`
 * Détails :
   - Revalorisation du SMIC horaire de janvier 2026.
@@ -13,7 +13,7 @@
 
 * Changement mineur.
 * Périodes concernées : 2009 à maintenant
-* Zones impactées : 
+* Zones impactées :
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/decote_montant.yaml`
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/decote_taux.yaml`
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/taxsal/franchise.yaml`
@@ -34,7 +34,7 @@
 
 * Changement mineur.
 * Périodes concernées : 2009 à maintenant
-* Zones impactées : 
+* Zones impactées :
   - `impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati.*`
 * Détails :
   - Ajoute des références aux paramètres.
