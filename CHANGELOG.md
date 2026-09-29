@@ -1,5 +1,15 @@
 # Changelog
 
+### 176.1.1 [#2803](https://github.com/openfisca/openfisca-france/pull/2803)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prestations/aides_logement.py`
+* Détails:
+  - Outre-mer oubliés dans le calcul de loyer de référence
+  - Ajout condition limitation six personnes à charge outre mer avant 2023
+
 ## 176.1.0 [#2800](https://github.com/openfisca/openfisca-france/pull/XXXX)
 
 * Évolution du système socio-fiscal.
