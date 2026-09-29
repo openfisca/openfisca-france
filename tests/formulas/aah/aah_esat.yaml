@@ -31,9 +31,9 @@
   output:
     remuneration_esat_reference: 900
     remuneration_esat_reference_annuelle: 10800
-    aah_papi_mensuel: 233
-    remuneration_esat_abattue: 392.32
-    aah: 649.27
+    aah_papi_mensuel: 240.25
+    remuneration_esat_abattue: 385.07
+    aah: 656.52
 
 - name: AAH1 ESAT - PAPI réduit
   period: 2026-07
@@ -49,9 +49,9 @@
   output:
     remuneration_esat_reference: 1600
     remuneration_esat_reference_annuelle: 19200
-    aah_papi_mensuel: 116.5
-    remuneration_esat_abattue: 995.18
-    aah: 46.41
+    aah_papi_mensuel: 120.17
+    remuneration_esat_abattue: 991.51
+    aah: 50.08
 
 - name: AAH1 ESAT - sans PAPI
   period: 2026-07
@@ -109,7 +109,7 @@
     remuneration_esat_abattue: 208.44
     aah: 833.15
 
-- name: AAH1 ESAT - seuil PAPI plein (17510 €)
+- name: AAH1 ESAT - seuil PAPI plein (18057 €)
   period: 2026-07
   absolute_error_margin: 0.02
   input:
@@ -117,17 +117,17 @@
     taux_incapacite: 0.85
     af_nbenf: 0
     remuneration_esat:
-      2026-04: 1459.17
-      2026-05: 1459.17
-      2026-06: 1459.17
+      2026-04: 1504.75
+      2026-05: 1504.75
+      2026-06: 1504.75
   output:
-    remuneration_esat_reference: 1459.17
-    remuneration_esat_reference_annuelle: 17510.04
-    aah_papi_mensuel: 116.5
-    remuneration_esat_abattue: 897.33
-    aah: 144.25
+    remuneration_esat_reference: 1504.75
+    remuneration_esat_reference_annuelle: 18057
+    aah_papi_mensuel: 120.17
+    remuneration_esat_abattue: 925.33
+    aah: 116.26
 
-- name: AAH1 ESAT - seuil sans PAPI (28170 €)
+- name: AAH1 ESAT - seuil sans PAPI (29050 €)
   period: 2026-07
   absolute_error_margin: 0.02
   input:
@@ -135,14 +135,14 @@
     taux_incapacite: 0.85
     af_nbenf: 0
     remuneration_esat:
-      2026-04: 2347.50
-      2026-05: 2347.50
-      2026-06: 2347.50
+      2026-04: 2420.84
+      2026-05: 2420.84
+      2026-06: 2420.84
   output:
-    remuneration_esat_reference: 2347.5
-    remuneration_esat_reference_annuelle: 28170
+    remuneration_esat_reference: 2420.84
+    remuneration_esat_reference_annuelle: 29050.08
     aah_papi_mensuel: 0
-    remuneration_esat_abattue: 1631.04
+    remuneration_esat_abattue: 1682
     aah: 0
 
 - name: AAH1 ESAT - un enfant
@@ -159,8 +159,8 @@
   output:
     remuneration_esat_reference: 900
     remuneration_esat_reference_annuelle: 10800
-    aah_papi_mensuel: 233
-    remuneration_esat_abattue: 392.32
+    aah_papi_mensuel: 240.25
+    remuneration_esat_abattue: 385.07
     aah: 1041.59
 
 - name: AAH1 ESAT - deux enfants
@@ -177,6 +177,6 @@
   output:
     remuneration_esat_reference: 900
     remuneration_esat_reference_annuelle: 10800
-    aah_papi_mensuel: 233
-    remuneration_esat_abattue: 392.32
+    aah_papi_mensuel: 240.25
+    remuneration_esat_abattue: 385.07
     aah: 1041.59
