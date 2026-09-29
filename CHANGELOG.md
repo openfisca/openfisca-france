@@ -1,5 +1,14 @@
 # Changelog
 
+### 176.1.10 [#2808](https://github.com/openfisca/openfisca-france/pull/2808)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Après janvier 2023.
+* Zones impactées :
+  - `openfisca_france/model/prestations/aides_logement.py`
+* Détails:
+  - Supprime majoration personnes à charger outre mer après 2023
+
 ### 176.1.9 [#2807](https://github.com/openfisca/openfisca-france/pull/2807)
 
 * Évolution du système socio-fiscal.
@@ -102,7 +111,6 @@
 * Détails :
   - Actualisation des paramètres des aides personnelles au logement au 1er octobre 2026, conformément à l’arrêté du 28 septembre 2026, portant une revalorisation de +1,15 %.
   - Ajout des forfaits de charges des copropriétaires en secteur accession.
-
 
 ## 176.1.0 [#2800](https://github.com/openfisca/openfisca-france/pull/XXXX)
 
