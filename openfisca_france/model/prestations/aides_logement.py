@@ -1516,7 +1516,7 @@ class aide_logement_loyer_reference(Variable):
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom', period)
-        al_nb_pac_reference = where(residence_dom, min_(al_nb_pac, 6), al_nb_pac)
+        al_nb_pac_reference = where(residence_dom * (period.start.year < 2023), min_(al_nb_pac, 6), al_nb_pac)
 
         return (
             al_plafonds_z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0)
