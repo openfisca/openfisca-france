@@ -62,6 +62,10 @@
         other: Euros
       name: currency-EUR
       short_label: €
+- name: day
+  label:
+    one: jour
+    other: jours
 - name: hour
   label:
     one: heure
