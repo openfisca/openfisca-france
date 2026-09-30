@@ -42,9 +42,11 @@ values:
     value: 39.15
   2025-10-01:
     value: 39.56
+  2026-10-01:
+    value: 40.01
 metadata:
   short_label: Montant forfaitaire de la participation minimale « P0 »
-  last_value_still_valid_on: "2025-03-04"
+  last_value_still_valid_on: "2026-09-30"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_enf1_z2
   unit: currency
@@ -124,6 +126,11 @@ metadata:
     2025-10-01:
     - title: Arrêté du 05/09/2025 relatif au calcul des aides personnelles au logement et de l'aide à l'accession sociale et à la sortie de l'insalubrité spécifique à l'outre-mer
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052212770
+    2026-10-01:
+    - title: Arrêté du 28/09/2026, art. 1, 4°
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054913928
+    - title: Arrêté du 27/09/2019, art. 13
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039160329
   official_journal_date:
     2001-01-01: "2000-12-28"
     2002-01-01: "2001-08-02"
@@ -143,6 +150,7 @@ metadata:
     2023-10-01: "2023-09-27"
     2024-10-01: "2024-09-28"
     2025-10-01: "2025-09-09"
+    2026-10-01: "2026-09-30"
   notes:
     2001-01-01:
     - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
@@ -170,4 +178,6 @@ metadata:
     - title: Idem en 2017
     2017-10-01:
     - title: Actualisation paramètres + baisse de 5 euros des aides au logement
+    2026-10-01:
+    - title: Augmentation de +1,15%
 documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"
