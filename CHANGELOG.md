@@ -1,5 +1,25 @@
 # Changelog
 
+### 176.1.1 [#2809](https://github.com/openfisca/openfisca-france/pull/2809)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2026
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/l_plafonds_loyers/par_zone/zone_{1,2,3}/{personnes_seules,couples,un_enfant,majoration_par_enf_supp}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/l_plafonds_loyers/coef_chambre_et_colocation/{coef_chambre,coef_colocation,personne_agee_handicapee}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/c_forfait_charges/{cas_general,dom}/{cas_general,majoration_par_enfant}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/c_forfait_charges/{cas_colocataires,dom_colocataires}/{beneficiaire_isole,couple_sans_enfant,majoration_par_enfant}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/p0_particip_min/p0_forfait.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/accession/formule/c_forfait_charges/{cas_general,par_personne_supplementaire}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/accession/formule/c_forfait_charges/cas_coproprietaires/{beneficiaire_isole,couple_sans_enfant,majoration_par_personne_a_charge,index}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/apl/formule/e_equiv_loyers_eligible/zone_{1,2,3}/{personne_isolee_sans_enfant,menage_seul,menage_ou_isole_avec_1_enfant,menage_ou_isole_avec_{2,3,4}_enfants,menage_ou_isole_par_enfant_en_plus}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al/formule/c_forfait_charges/{cas_general,par_personne_supplementaire}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al/formule/l_plafonds_loyers/{etudiants_en_chambre,etudiants_en_chambre_rehabilitee,personnes_agees,autres_personnes}/{personne_isolee,couple}.yaml`
+* Détails :
+  - Actualisation des paramètres des aides personnelles au logement au 1er octobre 2026, conformément à l’arrêté du 28 septembre 2026, portant une revalorisation de +1,15 %.
+  - Ajout des forfaits de charges des copropriétaires en secteur accession.
+
+
 ## 176.1.0 [#2800](https://github.com/openfisca/openfisca-france/pull/XXXX)
 
 * Évolution du système socio-fiscal.
