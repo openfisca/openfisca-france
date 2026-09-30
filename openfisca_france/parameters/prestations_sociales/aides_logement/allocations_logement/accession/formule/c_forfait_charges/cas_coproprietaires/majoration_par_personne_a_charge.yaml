@@ -1,0 +1,19 @@
+description: Majoration forfaitaire au titre des charges par personne à charge pour les copropriétaires, aide personnalisée au logement en secteur accession
+values:
+  2026-10-01:
+    value: 13.90
+metadata:
+  short_label: Majoration par personne à charge
+  last_value_still_valid_on: "2026-09-30"
+  unit: currency
+  reference:
+    2026-10-01:
+    - title: Arrêté du 28/09/2026, art. 1, 8°
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054913928
+    - title: Arrêté du 27/09/2019, art. 24, 2°
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039160329/2026-10-01/
+  official_journal_date:
+    2026-10-01: "2026-09-30"
+  notes:
+    2026-10-01:
+    - title: Augmentation de +1,15%
