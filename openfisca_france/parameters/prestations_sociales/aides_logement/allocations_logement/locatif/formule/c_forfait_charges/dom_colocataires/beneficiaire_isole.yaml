@@ -52,8 +52,11 @@ values:
     value: 20.71
   2025-10-01:
     value: 20.93
+  2026-10-01:
+    value: 21.17
 metadata:
   short_label: Beneficiaire isole outre-mer
+  last_value_still_valid_on: "2026-09-30"
   unit: currency
   reference:
     1994-07-01:
@@ -134,3 +137,13 @@ metadata:
     2025-10-01:
       title: Arrêté du 27/09/2019, art. 46
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286587/2025-10-01
+    2026-10-01:
+    - title: Arrêté du 28/09/2026, art. 1, 14° b)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054913928
+    - title: Arrêté du 27/09/2019, art. 46, 2° b)
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039160329/2026-10-01/
+  official_journal_date:
+    2026-10-01: "2026-09-30"
+  notes:
+    2026-10-01:
+    - title: Augmentation de +1,15%
