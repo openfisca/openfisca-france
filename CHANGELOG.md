@@ -1,5 +1,18 @@
 # Changelog
 
+### 176.1.2 [#2810](https://github.com/openfisca/openfisca-france/pull/2810)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/06/2026.
+* Zones impactées :
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/smic_reference.yaml`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/index.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/plafond.yaml`
+* Détails :
+  - Correction du smic pris en compte dans la réduction générale : le SMIC a été revalorisé en juin 2026, mais le décret n° 2026-509 prévoit que, pour le calcul de la réduction générale au titre de 2026, le SMIC à retenir reste celui applicable au 1er janvier 2026.
+
+
 ### 176.1.1 [#2809](https://github.com/openfisca/openfisca-france/pull/2809)
 
 * Évolution du système socio-fiscal.
