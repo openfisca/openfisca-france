@@ -3,6 +3,7 @@ from numpy import round, floor, datetime64, timedelta64, maximum
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 from openfisca_core.periods import Instant
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds_bareme
 
 
 # Prestations familiales
@@ -944,7 +945,12 @@ class crds_ape(Variable):
 
         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 
-        return -(ape) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = ape,
+            law_node = taux_crds,
+            )
+
+        return montant_crds
 
 
 class ape_nette_crds(Variable):
@@ -993,7 +999,12 @@ class crds_apje(Variable):
 
         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 
-        return -(apje) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = apje,
+            law_node = taux_crds,
+            )
+
+        return montant_crds
 
 
 class apje_nette_crds(Variable):
@@ -1171,7 +1182,12 @@ class crds_paje(Variable):
 
         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 
-        return -(paje) * taux_crds
+        montant_crds = montant_csg_crds_bareme(
+            base_sans_abattement = paje,
+            law_node = taux_crds,
+            )
+
+        return montant_crds
 
 
 class paje_nette_crds(Variable):
