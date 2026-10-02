@@ -129,7 +129,7 @@ def test_combination_projections():
     test_case = deepcopy(TEST_CASE_AGES)
     simulation = new_simulation(test_case)
 
-    individu = simulation.persons
+    individu = simulation.individu
 
     age_parent1 = individu.famille.demandeur('age', period='2013-01')
 
