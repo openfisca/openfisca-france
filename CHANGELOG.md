@@ -4,7 +4,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prestations/aides_logement.py`
 * Détails:
   - Outre-mer oubliés dans le calcul de loyer plafond
