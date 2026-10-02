@@ -1545,7 +1545,7 @@ class aide_logement_rapport_loyers_arrondi_pourcent(Variable):
     label = 'Rapport entre le loyer retenu et le loyer de référence, arrondi en pourcentage'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = ['https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137420/2022-01-01'] # arrondi
+    reference = ['https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137420/2022-01-01']  # arrondi
 
     def formula(famille, period):
         rapport_loyers = famille('aide_logement_rapport_loyers', period)
@@ -1592,28 +1592,8 @@ class aide_logement_taux_loyer(Variable):
     def formula(famille, period, parameters):
         al_locatif = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif
 
-        al_plafonds_z2 = al_locatif.formule.l_plafonds_loyers.par_zone.zone_2
-
         al_tl_seuils = al_locatif.formule.pp_particip_perso.tp_taux.tl_loyer.seuils
         al_tl_taux = al_locatif.formule.pp_particip_perso.tp_taux.tl_loyer.taux
-
-        L = famille('aide_logement_loyer_retenu', period)
-        couple = famille('al_couple', period)
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        residence_dom = famille.demandeur.menage('residence_dom', period)
-        limitation_six_pac_dom = residence_dom * (period.start.year < 2023)
-        al_nb_pac_reference = where(
-            limitation_six_pac_dom,
-            min_(al_nb_pac, 6),
-            al_nb_pac,
-            )
-
-        loyer_reference = (
-            al_plafonds_z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0)
-            + al_plafonds_z2.couples * (couple) * (al_nb_pac == 0)
-            + al_plafonds_z2.un_enfant * (al_nb_pac >= 1)
-            + al_plafonds_z2.majoration_par_enf_supp * (al_nb_pac_reference > 1) * (al_nb_pac_reference - 1)
-            )
 
         RL = famille('aide_logement_rapport_loyers_arrondi_pourcent', period) / 100
 
