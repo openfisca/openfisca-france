@@ -4,7 +4,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : Avant 2023.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prestations/aides_logement.py`
 * Détails:
   - Majoration personnes à charge outre mer jusqu'au 01/01/2023
