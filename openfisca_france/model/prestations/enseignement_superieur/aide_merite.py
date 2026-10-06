@@ -89,11 +89,14 @@ class aide_merite_montant(Variable):
     documentation = '''
     Aide versée en 9 mensualités.
 
+    Modélisé à partir de 2015 (montant annuel de 900€ pour un premier demandeur).
     Non modélisé :
-    Pour un baccalauréat obtenu avant 2015, quelques conditions d'attribution diffèrent
-    et le montant de l'aide est de 1800€/an.
+    - Pour un baccalauréat obtenu avant 2015, le montant maintenu est de 1800€/an
+      (conditions d'attribution différentes).
+    - Avant 2015, le barème antérieur (1800€/an de 2010 à 2014, 200€/mois en 2008-2009)
+      est conservé dans le paramètre montant_annuel mais n'est pas consommé par la formule.
     '''
 
-    def formula(individu, period, parameters):
+    def formula_2015_05_11(individu, period, parameters):
         aide_merite_eligibilite = individu('aide_merite_eligibilite', period.first_month)
         return aide_merite_eligibilite * parameters(period).prestations_sociales.education.bourses.enseignement_superieur.aide_merite.montant_annuel
