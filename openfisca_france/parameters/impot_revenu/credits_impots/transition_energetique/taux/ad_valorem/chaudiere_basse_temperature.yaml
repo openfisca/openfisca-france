@@ -1,0 +1,20 @@
+description: Taux du crédit d'impôt pour les dépenses d'acquisition de chaudières à basse température
+values:
+  2005-01-01:
+    value: .15
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Chaudière basse température
+  last_value_still_valid_on: "2025-08-18"
+  unit: /1
+  reference:
+    2005-01-01:
+      title: LOI n° 2004-1484 du 30 décembre 2004 de finances pour 2005, art. 90
+      href: https://www.legifrance.gouv.fr/eli/loi/2004/12/30/ECOX0400222L/jo/texte
+    2009-01-01:
+      title: LOI n° 2008-1425 du 27 décembre 2008 de finances pour 2009, art. 109
+      href: https://www.legifrance.gouv.fr/eli/loi/2008/12/27/BCFX0821595L/jo/texte
+  official_journal_date:
+    2005-01-01: "2004-12-31"
+    2009-01-01: "2008-12-28"

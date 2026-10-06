@@ -1,0 +1,13 @@
+description: Plafond global de dépenses éligibles au crédit d'impôt, par période quinquennale
+metadata:
+  short_label: Plafond de dépenses
+  order:
+  - personne_seule
+  - couple
+  - pac
+  - pac_2
+  - pac_3
+  - location
+  documentation: |-
+    Le plafond global de dépenses éligibles est calculé en fonction de la composition du foyer fiscal.
+    Un plafond spécifique s'applique aux dépenses réalisées (par le propriétaire) pour les logements mis en location, pour les périodes où ces dépenses ouvrent droit à un crédit d'impôt.

@@ -1,0 +1,22 @@
+description: Taux du crédit d'impôt pour les dépenses au titre de l'acquisition de chaudières à bois dans un logement achevé avant 1977
+values:
+  2009-01-01:
+    value: .40
+  2010-01-01:
+    value: null
+metadata:
+  short_label: Pompe à chaleur (ancien)
+  last_value_still_valid_on: "2025-08-18"
+  unit: /1
+  reference:
+    2009-01-01:
+      title: LOI n° 2008-1425 du 27 décembre 2008 de finances pour 2009, art. 109
+      href: https://www.legifrance.gouv.fr/eli/loi/2008/12/27/BCFX0821595L/jo/texte
+    2010-01-01:
+      title: LOI n° 2009-1674 du 30 décembre 2009 de finances rectificative pour 2009, art. 58
+      href: https://www.legifrance.gouv.fr/eli/loi/2009/12/30/BCFX0924140L/jo/texte
+  official_journal_date:
+    2009-01-01: "2008-12-28"
+    2010-01-01: "2009-12-31"
+  documentation: |-
+    Ce taux s'applique ces appareils sont installés dans un logement achevé avant le 1er janvier 1977 et que les dépenses sont réalisées au plus tard le 31 décembre de la deuxième année suivant celle de son acquisition à titre onéreux ou gratuit.

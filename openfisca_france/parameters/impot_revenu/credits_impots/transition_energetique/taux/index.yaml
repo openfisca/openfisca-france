@@ -1,0 +1,7 @@
+description: Tarif du crédit d'impôt
+metadata:
+  order:
+    - ad_valorem
+    - forfaitaire
+  documentation: |-
+    Le crédit d'impôt est un pourcentage du coût des travaux jusqu'en 2020, où il devient forfaitaire.

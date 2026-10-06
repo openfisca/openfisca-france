@@ -1,0 +1,23 @@
+description: Plafond de dépenses éligibles au crédit d'impôt pour les ménages modestes au titre des dépenses d'équipements solaires hybrides (produisant de la chaleur et de l'électricité) à circulation air
+values:
+  2019-01-01:
+    value: 260
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Sous condition de ressources
+  last_value_still_valid_on: "2025-08-18"
+  unit: currency_per_sqm
+  reference:
+    2019-01-01:
+      title: Arrêté du 1er mars 2019 pris pour l'application de l'article 200 quater du code général des impôts relatif au crédit d'impôt sur le revenu pour la transition énergétique
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/3/1/CPAE1836042A/jo/texte
+    2020-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000039683923&idArticle=LEGIARTI000039793071&dateTexte=20200623&categorieLien=id#LEGIARTI000039793071
+  official_journal_date:
+    2019-01-01: "2019-03-07"
+    2020-01-01: "2019-12-29"
+  notes:
+    2019-01-01:
+      - title: Plafond applicable aux dépenses payées du 8.3 au 31.12.2019 pour les foyers remplissant la condition de ressources.

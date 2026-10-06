@@ -1,0 +1,6 @@
+description: Plafond de revenus déterminant l'éligibilité au crédit d'impôt
+metadata:
+  order:
+  - metropole
+  - mgr
+  - gm

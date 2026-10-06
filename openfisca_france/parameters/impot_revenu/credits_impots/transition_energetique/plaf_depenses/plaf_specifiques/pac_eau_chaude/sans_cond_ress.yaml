@@ -1,0 +1,31 @@
+description: Plafond de dépenses éligibles au crédit d'impôt pour les dépenses d'équipement en pompes à chaleur (autres que air/air) destinées à la production d'eau chaude sanitaire
+values:
+  2018-01-01:
+    value: 3000
+  2019-01-01:
+    value: 3000
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Sans condition
+  last_value_still_valid_on: "2025-08-18"
+  unit: currency
+  reference:
+    2018-01-01:
+      title: Arrêté du 30 décembre 2017 pris pour l'application de l'article 200 quater du code général des impôts relatif au crédit d'impôt sur le revenu pour la transition énergétique
+      href: https://www.legifrance.gouv.fr/eli/arrete/2017/12/30/CPAE1736285A/jo/texte
+    2019-01-01:
+      title: Arrêté du 1er mars 2019 pris pour l'application de l'article 200 quater du code général des impôts relatif au crédit d'impôt sur le revenu pour la transition énergétique
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/3/1/CPAE1836042A/jo/texte
+    2020-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000039683923&idArticle=LEGIARTI000039793071&dateTexte=20200623&categorieLien=id#LEGIARTI000039793071
+  official_journal_date:
+    2018-01-01: "2017-12-31"
+    2019-01-01: "2019-03-07"
+    2020-01-01: "2019-12-29"
+  notes:
+    2018-01-01:
+      - title: Plafond applicable aux dépenses payées en 2018, sauf si elles ont été engagées avant le 31.12.2017.
+    2019-01-01:
+      - title: Plafond applicable aux dépenses payées du 1.1 au 7.3.2019, et aux dépenses payées du 8.3 au 31.12.2019 pour les foyers ne remplissant pas la condition de ressources

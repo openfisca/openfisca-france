@@ -1,0 +1,46 @@
+description: "Coefficient de « rabot » (réduction homothétique) appliqué ex post aux taux du crédit d'impôt développement durable / transition énergétique. Deux « coups de rabot » successifs : 10 % en 2011, puis 15 % en 2012-2013."
+values:
+  2011-01-01:
+    value: .9
+  2012-01-01:
+    value: .85
+  2014-01-01:
+    value: null
+metadata:
+  short_label: Rabot (réduction homothétique)
+  last_value_still_valid_on: "2025-08-18"
+  unit: /1
+  reference:
+    2011-01-01:
+    - title: LOI n° 2010-1657 du 29 décembre 2010 de finances pour 2011, art. 105 (réduction homothétique de 10 %)
+      href: https://www.legifrance.gouv.fr/eli/loi/2010/12/29/BCRX1023155L/jo/article_105
+    - title: Décret n° 2011-520 du 13 mai 2011 pris pour l'application de l'article 105 de la loi n° 2010-1657 du 29 décembre 2010 de finances pour 2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/5/13/EFIE1100731D/jo/texte
+    2012-01-01:
+    - title: LOI n° 2011-1977 du 28 décembre 2011 de finances pour 2012, art. 83 (réduction homothétique de 15 %)
+      href: https://www.legifrance.gouv.fr/eli/loi/2011/12/28/BCRX1125684L/jo/texte
+    - title: Décret n° 2012-547 du 23 avril 2012 pris pour l'application de l'article 83 de la loi n° 2011-1977 du 28 décembre 2011 de finances pour 2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/4/23/EFIE1204479D/jo/texte
+    2014-01-01:
+      title: LOI n° 2013-1278 du 29 décembre 2013 de finances pour 2014, art. 74
+      href: https://www.legifrance.gouv.fr/eli/loi/2013/12/29/EFIX1323580L/jo/texte
+  official_journal_date:
+    2011-01-01: 2010-12-30; 2011-05-15
+    2012-01-01: 2011-12-29; 2012-04-25
+    2014-01-01: "2013-12-30"
+  documentation: |-
+    Ce paramètre modélise les « coups de rabot » (réductions homothétiques) appliqués ex post aux taux du crédit d'impôt (CIDD puis CITE). Principe : les taux votés (« taux faciaux ») sont multipliés par un coefficient inférieur à 1, le résultat étant arrondi à l'unité inférieure (troncature au point de pourcentage entier). Les taux stockés dans `ad_valorem` — et la majoration `majoration_bouquet` — pour les années concernées sont donc les taux AVANT rabot ; le taux effectivement appliqué s'obtient en appliquant ce coefficient.
+
+    Deux rabots successifs ont existé.
+
+    1) 2011 — premier « coup de rabot » de 10 % (art. 105 de la LF 2011, décret n° 2011-520), coefficient 0,90. En 2011, la majoration « bouquet de travaux » n'existe pas encore (elle est instituée par la LF 2012). Le taux appliqué vaut donc simplement :
+        taux_appliqué = plancher(taux_avant_rabot x 0,90)
+    Reconstruction (taux en vigueur fin 2010 → taux 2011 publié) : 40 %→36, 25 %→22, 15 %→13, 50 %→45. Les troncatures 22,5→22 et 13,5→13 confirment l'arrondi à l'unité inférieure. Cas particulier du photovoltaïque : la base 2011 est 25 % (après la réduction propre au PV du 29.9.2010), d'où 25 %→22.
+
+    2) 2012-2013 — second « coup de rabot » de 15 % (art. 83 de la LF 2012, décret n° 2012-547), coefficient 0,85. À partir de 2012 coexiste la majoration « bouquet » (+10 points) qui s'ajoute AVANT le rabot :
+        taux_appliqué = plancher((taux_avant_rabot + majoration_bouquet_si_bouquet) x 0,85)
+    Exemple (chaudière à micro-cogénération, taux avant rabot 21 %) : geste seul = plancher(21 % x 0,85) = 17 % ; bouquet = plancher((21 % + 10 pts) x 0,85) = 26 %. L'ajout de la majoration AVANT le rabot explique que l'écart geste seul / bouquet soit, après rabot et troncature, de +8 ou +9 points selon les gestes (et non un +8 uniforme).
+
+    Les deux rabots ne se cumulent PAS l'un sur l'autre : le coefficient de 2012 (0,85) s'applique aux taux faciaux votés par la LF 2012 (art. 81), et non aux taux déjà rabotés de 2011. Pour une année donnée, on utilise le coefficient en vigueur cette année-là.
+
+    À partir de 2014, le rabot est supprimé (valeur nulle) : les taux d'`ad_valorem` sont directement les taux appliqués. De même, avant 2011, aucun rabot homothétique n'existe : les taux stockés y sont déjà les taux appliqués.
