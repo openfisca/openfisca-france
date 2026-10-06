@@ -1,7 +1,7 @@
 description: Crédit d'impôt sur les intérêts d'emprunt pour l'habitation principale pour les opérations réalisées du 6 mai 2007 au 31 décembre 2010 (réforme Sarkozy)
 metadata:
   documentation_start: true
-  short_label: Intérêts d'emprunt pour l'habitation principale (opérations réalisées du 6 mai 2007 au 31 décembre 2010)
+  short_label: Intérêts d'emprunt pour l'habitation principale
   order:
   - cas_base
   - logements_performants_energie
