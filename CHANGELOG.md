@@ -1,5 +1,13 @@
 # Changelog
 
+### 177.0.1 [#2814](https://github.com/openfisca/openfisca-france/pull/2814)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/units.yaml`.
+* Détails :
+  - Ajoute le unit "day" suite à l'introduction de cette unité dans des variables de calcul de l'ARE
+
 # 177.0.0 [#2833](https://github.com/openfisca/openfisca-france/pull/2833)
 
 * Amélioration technique.
@@ -100,7 +108,6 @@
   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/plafond.yaml`
 * Détails :
   - Correction du smic pris en compte dans la réduction générale : le SMIC a été revalorisé en juin 2026, mais le décret n° 2026-509 prévoit que, pour le calcul de la réduction générale au titre de 2026, le SMIC à retenir reste celui applicable au 1er janvier 2026.
-
 
 ### 176.1.1 [#2809](https://github.com/openfisca/openfisca-france/pull/2809)
 
