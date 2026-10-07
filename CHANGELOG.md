@@ -1,5 +1,12 @@
 # Changelog
 
+### 176.1.2 [#2814](https://github.com/openfisca/openfisca-france/pull/2814)
+* Changement mineur.
+ * Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/units.yaml`.
+* Détails :
+  - Ajoute le unit "day" suite à l'introduction de cette unité dans des variables de calcul de l'ARE
+
 ### 176.1.1 [#2809](https://github.com/openfisca/openfisca-france/pull/2809)
 
 * Évolution du système socio-fiscal.
