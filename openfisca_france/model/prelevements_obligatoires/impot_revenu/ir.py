@@ -475,7 +475,21 @@ class revenu_assimile_pension_apres_abattements(Variable):
         return max_(0, revenu_assimile_pension - round_(max_(parameters_deductions.abatpen.taux * revenu_assimile_pension, parameters_deductions.abatpen.min)))
 
 
-#    return max_(0, revenu_assimile_pension - min_(round_(max_(parameters_deductions.abatpen.taux*revenu_assimile_pension , parameters_deductions.abatpen.min)), parameters_deductions.abatpen.max))  le max se met au niveau du foyer
+class abattement_pensions_retraites(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = 'Abattement de 10% sur les pensions et les retraites'
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        revenu_assimile_pension_i = foyer_fiscal.members('revenu_assimile_pension', period)
+        parameters_deductions = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
+
+        abattement_retraite_non_plafonne_i = revenu_assimile_pension_i - max_(0, revenu_assimile_pension_i - round_(max_(parameters_deductions.abatpen.taux * revenu_assimile_pension_i, parameters_deductions.abatpen.min)))
+        abattement_retraite_plafonne = min_(foyer_fiscal.sum(abattement_retraite_non_plafonne_i), parameters_deductions.abatpen.max)
+
+        return abattement_retraite_plafonne
+
 
 class indu_plaf_abat_pen(Variable):
     value_type = float
@@ -654,12 +668,23 @@ class revenu_categoriel_tspr(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        tspr_i = foyer_fiscal.members('traitements_salaires_pensions_rentes', period)
-        indu_plaf_abat_pen = foyer_fiscal('indu_plaf_abat_pen', period)
 
-        traitements_salaires_pensions_rentes = foyer_fiscal.sum(tspr_i)
+        revenu_assimile_salaire_apres_abattements_i = foyer_fiscal.members('revenu_assimile_salaire_apres_abattements', period)
+        abattement_pensions_retraites = foyer_fiscal('abattement_pensions_retraites', period)
+        revenu_assimile_pension_i = foyer_fiscal.members('revenu_assimile_pension', period)
+        abattement_pensions_retraites = foyer_fiscal('abattement_pensions_retraites', period)
+        revenu_assimile_salaire_apres_abattements = foyer_fiscal.sum(revenu_assimile_salaire_apres_abattements_i)
+        revenu_assimile_pension = foyer_fiscal.sum(revenu_assimile_pension_i)
 
-        return traitements_salaires_pensions_rentes + indu_plaf_abat_pen
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period.offset('first-of'))
+
+        return (
+            + revenu_assimile_salaire_apres_abattements
+            + revenu_assimile_pension
+            + rente_viagere_titre_onereux_net
+            - abattement_pensions_retraites
+            - abattement_pensions_retraites
+            )
 
 
 class deficit_rcm(Variable):
