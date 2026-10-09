@@ -1,7 +1,7 @@
-'''Test scenarios.'''
+'''Test simulations.'''
 
 
-from openfisca_france.scenarios import init_single_entity
+from openfisca_france.simulations import init_single_entity
 
 from .cache import tax_benefit_system
 
@@ -9,7 +9,7 @@ import pytest
 
 
 def test_init_single_entity_parallel_axes():
-    '''Test parallel axes scenario initialisation.'''
+    '''Test parallel axes simulation initialisation.'''
     year = 2019
     count = 3
     indexes = [0, 1, 2]
@@ -27,7 +27,7 @@ def test_init_single_entity_parallel_axes():
 
     axes = [salaire_de_base_axes]
 
-    scenario_kwargs = dict(
+    simulation_kwargs = dict(
         parent1 = dict(age = 40),
         parent2 = dict(age = 40),
         enfants = [dict(age = 20)],
@@ -35,5 +35,5 @@ def test_init_single_entity_parallel_axes():
         period = year
         )
 
-    simulation = init_single_entity(tax_benefit_system.new_scenario(), **scenario_kwargs).new_simulation()
+    simulation = init_single_entity(tax_benefit_system, **simulation_kwargs)
     assert simulation.calculate_add('salaire_de_base', year) == pytest.approx([0, 0, 0, 7500, 7500, 7500, 15000, 15000, 15000])

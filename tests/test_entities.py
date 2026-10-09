@@ -1,5 +1,6 @@
 from copy import deepcopy
 
+from openfisca_core.simulations import SimulationBuilder
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 from openfisca_core.tools import assert_near
 
@@ -80,8 +81,9 @@ reference_period = 2013
 
 
 def new_simulation(test_case):
-    test_case['period'] = reference_period
-    return tax_benefit_system.new_scenario().init_from_dict(test_case).new_simulation()
+    simulation_builder = SimulationBuilder()
+    simulation_builder.default_period = reference_period
+    return simulation_builder.build_from_dict(tax_benefit_system, test_case)
 
 
 def test_transpose():
@@ -129,7 +131,7 @@ def test_combination_projections():
     test_case = deepcopy(TEST_CASE_AGES)
     simulation = new_simulation(test_case)
 
-    individu = simulation.persons
+    individu = simulation.individu
 
     age_parent1 = individu.famille.demandeur('age', period='2013-01')
 
