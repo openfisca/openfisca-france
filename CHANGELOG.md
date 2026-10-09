@@ -1,5 +1,10 @@
 # Changelog
 
+### LexImpact — Unités des variables IR (non publié)
+
+* Changement mineur : métadonnées, sans modification des formules.
+* `nb_pac` est exprimé en personnes (`people`), `nbptr` en parts de quotient familial (`part_quotient_familial`) et `abattement_pensions_retraites` en monnaie (`currency`).
+
 ### 176.1.2 [#2810](https://github.com/openfisca/openfisca-france/pull/2810)
 
 * Évolution du système socio-fiscal.

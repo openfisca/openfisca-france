@@ -189,6 +189,7 @@ class nb_adult(Variable):
 
 class nb_pac(Variable):
     value_type = float
+    unit = 'people'
     entity = FoyerFiscal
     label = 'Nombre de personnes à charge dans le foyer fiscal'
     definition_period = YEAR
@@ -477,6 +478,7 @@ class revenu_assimile_pension_apres_abattements(Variable):
 
 class abattement_pensions_retraites(Variable):
     value_type = float
+    unit = 'currency'
     entity = FoyerFiscal
     label = 'Abattement de 10% sur les pensions et les retraites'
     definition_period = YEAR
@@ -3800,6 +3802,7 @@ class taux_moyen_imposition(Variable):
 
 class nbptr(Variable):
     value_type = float
+    unit = 'part_quotient_familial'
     entity = FoyerFiscal
     label = 'Nombre de parts'
     reference = 'http://vosdroits.service-public.fr/particuliers/F2705.xhtml'
