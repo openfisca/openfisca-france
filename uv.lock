@@ -801,7 +801,7 @@ web-api = [
 
 [[package]]
 name = "openfisca-france"
-version = "175.1.8"
+version = "177.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },

@@ -1,5 +1,12 @@
 # Changelog
 
+# 177.0.0 [#2815](https://github.com/openfisca/openfisca-france/pull/2815)
+
+* Amélioration technique.
+* Zones impactées : `scenarios` -> `simulations`.
+* Détails :
+  - `from openfisca_france.scenarios import init_single_entity` est désormais `from openfisca_france.simulations import init_single_entity` et il prends un tax benefit system comme premier paramètre;
+
 ### 176.1.4 [#2779](https://github.com/openfisca/openfisca-france/pull/2779)
 
 * Évolution du système socio-fiscal.
@@ -34,7 +41,6 @@
   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/plafond.yaml`
 * Détails :
   - Correction du smic pris en compte dans la réduction générale : le SMIC a été revalorisé en juin 2026, mais le décret n° 2026-509 prévoit que, pour le calcul de la réduction générale au titre de 2026, le SMIC à retenir reste celui applicable au 1er janvier 2026.
-
 
 ### 176.1.1 [#2809](https://github.com/openfisca/openfisca-france/pull/2809)
 
@@ -5596,7 +5602,7 @@ montants.yaml`
 - Périodes concernées : toutes.
 - Zones impactées : `model/caracteristiques_socio_demographiques/capacite_travail.py`.
 - Détails :
-  - Ajoute `is_period_size_independent` pour `taux_capacite_travail` et `taux_incapacite`: sans cet argument, on avait des problèmes dans nos survey scenarios quand on rentrait cette variable en input. Ex: si on entrait 0.8, pour chaque mois de l'année des années, on avait 12*0.8, pour les mois de l'année d'après, on avait 12*12\*0.8, etc. Et ce malgré le `set_input_dispatch_by_period`.
+  - Ajoute `is_period_size_independent` pour `taux_capacite_travail` et `taux_incapacite`: sans cet argument, on avait des problèmes dans nos survey simulations quand on rentrait cette variable en input. Ex: si on entrait 0.8, pour chaque mois de l'année des années, on avait 12*0.8, pour les mois de l'année d'après, on avait 12*12\*0.8, etc. Et ce malgré le `set_input_dispatch_by_period`.
 
 ### 116.7.1 [#1847](https://github.com/openfisca/openfisca-france/pull/1847)
 
@@ -11741,7 +11747,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 - Amélioration technique
 - Détails :
   - Cette évolution est a priori transparente pour les utilisateurs.
-  - Déplace la transformation du JSON en test case du module `scenarios` de `france` vers `core`
+  - Déplace la transformation du JSON en test case du module `simulations` de `france` vers `core`
   - Adapte `france` à la version `5.0.0` de `core`.
 
 ### 13.1.5 [#684](https://github.com/openfisca/openfisca-france/pull/684)
