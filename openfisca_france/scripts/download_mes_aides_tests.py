@@ -128,8 +128,8 @@ def main():
 
         # Verify YAML syntax of generated file.
         with open(yaml_file_path, 'r') as yaml_file:
-            simulation = yaml.load(yaml_file)
-        assert isinstance(simulation, dict), (yaml_file_path, simulation, test_json)
+            scenario = yaml.load(yaml_file)
+        assert isinstance(scenario, dict), (yaml_file_path, scenario, test_json)
 
     if args.test_ids is None:
         for file_name in sorted(existing_yaml_files_name):
