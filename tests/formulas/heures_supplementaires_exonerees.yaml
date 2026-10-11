@@ -1,0 +1,110 @@
+- name: Heures supplémentaires exonérées sous plafond entrent dans le RFR
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    salaire_imposable:
+      2024: 30000
+    heures_supplementaires_exonerees:
+      2024: 3000
+  output:
+    rfr:
+      2024: 29700
+
+# Salaire net imposable : 30 000 × 0,9 = 27 000.
+# Heures supplémentaires (3 000 € ≤ plafond 7 500 €) écrêtées au
+# plafond puis réduites par l'abattement forfaitaire de 10 % :
+# 3 000 × 0,9 = 2 700, ajoutées au RFR.
+# RFR attendu : 27 000 + 2 700 = 29 700 €.
+
+
+- name: Heures supplémentaires exonérées au-dessus du plafond sont écrêtées
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    salaire_imposable:
+      2024: 30000
+    heures_supplementaires_exonerees:
+      2024: 10000
+  output:
+    rfr:
+      2024: 33750
+
+# Plafond 2024 : 7 500 €. Sur 10 000 € déclarés, seuls 7 500 €
+# entrent dans le calcul ; après abattement 10 % : 6 750 € au RFR.
+# RFR attendu : 27 000 + 6 750 = 33 750 €.
+
+
+- name: Heures supplémentaires inactives avant 2019 - aucun effet RFR
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    salaire_imposable:
+      2018: 30000
+    heures_supplementaires_exonerees:
+      2018: 3000
+  output:
+    rfr:
+      2018: 27000
+
+# L'exonération a été rétablie par la loi du 24 décembre 2018 à effet
+# du 1er janvier 2019 ; la formule rfr d'avant cette date ignore les
+# heures supplémentaires exonérées.
+
+
+- name: Couple - plafond appliqué individuellement à chaque déclarant
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    individus:
+      decl1:
+        salaire_imposable:
+          2024: 30000
+        heures_supplementaires_exonerees:
+          2024: 8000
+      decl2:
+        salaire_imposable:
+          2024: 20000
+        heures_supplementaires_exonerees:
+          2024: 6000
+    familles:
+      famille_0:
+        parents:
+        - decl1
+        - decl2
+    foyers_fiscaux:
+      foyer_0:
+        declarants:
+        - decl1
+        - decl2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - decl1
+        conjoint:
+        - decl2
+  output:
+    rfr:
+      2024: 57150
+
+# Salaire imposable couple : (30 000 + 20 000) × 0,9 = 45 000.
+# Plafond par déclarant 7 500 € : decl1 écrêté à 7 500, decl2 conserve
+# 6 000. Après abattement 10 % : 7 500 × 0,9 + 6 000 × 0,9 =
+# 6 750 + 5 400 = 12 150 ajoutés au RFR.
+# RFR attendu : 45 000 + 12 150 = 57 150 €.
+
+
+- name: Cas combiné - salaire et heures supplémentaires sous plafond
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    salaire_imposable:
+      2024: 50000
+    heures_supplementaires_exonerees:
+      2024: 4000
+  output:
+    rfr:
+      2024: 48600
+
+# Salaire net imposable : 50 000 × 0,9 = 45 000.
+# Heures supplémentaires nets : 4 000 × 0,9 = 3 600.
+# RFR attendu : 45 000 + 3 600 = 48 600 €.
