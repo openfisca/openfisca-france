@@ -81,7 +81,6 @@
 * Détails :
   - Mise à jour de la formule pour 2025 corrections sur 2024 et 2023
   - ajout et correction des tests sur la période
->>>>>>> upstream/master
 
 ### 176.0.4 [#2786](https://github.com/openfisca/openfisca-france/pull/2786)
 

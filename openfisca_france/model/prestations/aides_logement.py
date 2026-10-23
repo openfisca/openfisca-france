@@ -18,12 +18,6 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 log = logging.getLogger(__name__)
 
 
-def _centimes_stables(montant):
-    # Stabilise les flottants quand le montant est deja cense etre au centime,
-    # afin d'eviter qu'un 317.579987 soit replancher a 317.57.
-    return floor(montant * 100 + 0.5)
-
-
 class aide_logement(Variable):
     value_type = float
     entity = Famille
@@ -101,7 +95,7 @@ class aide_logement_montant(Variable):
 
     def formula(famille, period):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
-        aide_logement_montant_brut_centimes = _centimes_stables(aide_logement_montant_brut)
+        aide_logement_montant_brut_centimes = 100 * aide_logement_montant_brut
         crds_logement = famille('crds_logement', period)
 
         # Arrondi à l'euro inférieur du montant net de CRDS
@@ -1746,7 +1740,7 @@ class crds_logement(Variable):
 
     def formula(famille, period, parameters):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
-        aide_logement_montant_brut_centimes = _centimes_stables(aide_logement_montant_brut)
+        aide_logement_montant_brut_centimes = 100 * aide_logement_montant_brut
         crds = parameters(period).prelevements_sociaux.contributions_sociales.crds
 
         # La CRDS est arrondie au centime d'euro inférieur
