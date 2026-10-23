@@ -142,7 +142,7 @@ metadata:
     2026-01-01: "2025-12-24"
   rate_unit: /1
   threshold_unit: PSS
-documentation: -|
-  Le taux de cotisation appelé s'obtient en multipliant le taux théorique par le taux d'appel : 125 % jusqu'au 31 décembre 2025, puis 127 % à compter du 1er janvier 2026. La hausse porte sur le taux d'appel, et non sur les taux théoriques.
+documentation: - |
+  Le taux de cotisation appelé s'obtient en multipliant le taux théorique par le taux d'appel (125 % jusqu'au 31 décembre 2025, puis 127 % à compter du 1er janvier 2026). La hausse porte sur le taux d'appel, et non sur les taux théoriques.
   L'arrêté du 19 décembre 2025 modifie l'article 9 bis de l'arrêté du 30 décembre 1970 et porte le taux d'appel de 125 % à 127 % à compter du 1er janvier 2026.
   Voir https://www.ircantec.retraites.fr/employeur/parametres-utilises-ircantec
