@@ -586,7 +586,7 @@
     aide_logement_participation_personnelle: 39.56 + (0.0283 + 0.00107) * 4665
     aide_logement_montant_brut: round(200 + 60.59 - 176.57105, 2) - 5 # 79.02; sans arrondi: 79.00
     aide_logement_montant_brut_crds: round(200 + 60.59 - 176.57105, 2) - 5 - 35.99 * 0.98 # 43.7498; sans arrondi: 43.7298
-    aide_logement_montant: round(43.7498 * (1 - 0.005), 2) # 43.53; sans arrondi: 43.51
+    aide_logement_montant: floor(43.7498 * (1 - 0.005)) # 43.53; sans arrondi: 43.51
 
 - name: Personne isolée, avant degressivité
   period: 2016-06
