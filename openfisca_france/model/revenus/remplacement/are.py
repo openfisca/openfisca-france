@@ -289,8 +289,10 @@ class are_duree_nette_indemnisation(Variable):
         fin_contrat_default = datetime64(date(2099, 12, 31))
         avec_contrat = fin_contrat != fin_contrat_default
 
+        # Article 9 §4 : le plafond (730, 913 ou 1 095 jours selon l'âge) s'applique à la durée
+        # calculée avant le coefficient de 0,75 ; les maxima après coefficient sont 548, 685 et 822 jours.
         return max_(
-            min_(ceil(duree_brute * coef_conjoncture).astype(int), duree_max),
+            ceil(min_(duree_brute, duree_max) * coef_conjoncture).astype(int),
             duree_min) * avec_contrat
 
     def formula(individu, period, parameters):
