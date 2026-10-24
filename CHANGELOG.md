@@ -1,5 +1,17 @@
 # Changelog
 
+### 176.1.4 [#2826](https://github.com/openfisca/openfisca-france/pull/2826)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2025.
+* Zones impactées :
+  - `parameters/chomage/allocations_assurance_chomage/are/duree_indemnisation/categorie_age`
+  - `revenus/remplacement/are`
+* Détails :
+  - Les bornes d'âge de la durée maximale d'indemnisation de l'ARE passent de 53 et 55 ans à 55 et 57 ans pour les fins de contrat de travail intervenues à compter du 1er avril 2025 (article 9 §4 du règlement général annexé à la convention du 15 novembre 2024, entré en vigueur à cette date par l'article 11 §1er de la convention, agréée par arrêté du 19 décembre 2024). Les valeurs antérieures sont conservées.
+  - Le plafond de durée (730, 913 ou 1 095 jours selon l'âge) est désormais appliqué à la durée calculée avant le coefficient de 0,75, comme le prévoit le 1° du §4 ; les maxima après coefficient sont donc 548, 685 et 822 jours (2° du même §4). _Auparavant, le plafond était comparé à la durée déjà réduite, et ne mordait jamais : un salarié de 55 ans licencié après 36 mois d'emploi obtenait 822 jours au lieu de 685._
+  - Trois cas de test (54, 55 et 57 ans à la fin du contrat, 36 mois d'emploi) couvrent les trois tranches d'âge.
+
 ### 176.1.3 [#2824](https://github.com/openfisca/openfisca-france/pull/2824)
 
 * Évolution du système socio-fiscal.
