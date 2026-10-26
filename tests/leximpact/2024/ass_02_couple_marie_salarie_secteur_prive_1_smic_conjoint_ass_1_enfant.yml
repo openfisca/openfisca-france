@@ -351,7 +351,7 @@ output:
         2024-11: 15649.27
         2024-12: 15649.27
       prestations_sociales:
-        2024: 9868.07
+        2024: 9862.04
       rsa_base_ressources:
         2024-01: 1943.78
         2024-02: 1943.78
@@ -376,9 +376,9 @@ output:
   menages:
     logement_principal_n_1:
       niveau_de_vie:
-        2024: 13326.1
+        2024: 13323.08
       revenu_disponible:
-        2024: 26652.21
+        2024: 26646.18
       unites_consommation:
         2024: 2
       zone_apl:

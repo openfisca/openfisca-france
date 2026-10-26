@@ -281,4 +281,4 @@ input:
     personne_de_reference: 54d4951fd4e3b0d74454c76f
     statut_occupation_logement: locataire_vide
 output:
-  aide_logement: 88.06
+  aide_logement: 85

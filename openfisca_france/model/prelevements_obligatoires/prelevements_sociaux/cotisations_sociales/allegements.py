@@ -360,16 +360,23 @@ class taux_allegement_general(Variable):
 
     def formula_2026_01_01(individu, period, parameters):
         assiette = individu('assiette_allegement', period)
-        smic_proratise = individu('smic_proratise', period)
+        coefficient_proratisation = individu('coefficient_proratisation', period)
+        params = parameters(period)
+        params_reduction_generale = params.prelevements_sociaux.reductions_cotisations_sociales.allegement_general
+        smic_reference = params_reduction_generale.ensemble_des_entreprises.smic_reference
+        nombre_heures_smic_mensuel = params.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
+        smic_proratise = (
+            coefficient_proratisation
+            * smic_reference
+            * nombre_heures_smic_mensuel
+            )
         effectif_entreprise = individu('effectif_entreprise', period)
 
-        allegement_general = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_general
-
-        seuil_taille_entreprise = allegement_general.ensemble_des_entreprises.seuil_taille_entreprise
-        t_delta = where(effectif_entreprise < seuil_taille_entreprise, allegement_general.ensemble_des_entreprises.t_delta_petites_entreprises, allegement_general.ensemble_des_entreprises.t_delta_grandes_entreprises)
-        t_min = allegement_general.ensemble_des_entreprises.t_min
-        seuil_sortie = allegement_general.ensemble_des_entreprises.plafond
-        puissance = allegement_general.ensemble_des_entreprises.puissance
+        seuil_taille_entreprise = params_reduction_generale.ensemble_des_entreprises.seuil_taille_entreprise
+        t_delta = where(effectif_entreprise < seuil_taille_entreprise, params_reduction_generale.ensemble_des_entreprises.t_delta_petites_entreprises, params_reduction_generale.ensemble_des_entreprises.t_delta_grandes_entreprises)
+        t_min = params_reduction_generale.ensemble_des_entreprises.t_min
+        seuil_sortie = params_reduction_generale.ensemble_des_entreprises.plafond
+        puissance = params_reduction_generale.ensemble_des_entreprises.puissance
         remuneration = (assiette + 1e-16)
         ratio_salaire_smic = remuneration / smic_proratise
         condition_sortie_seuil = ratio_salaire_smic < seuil_sortie
