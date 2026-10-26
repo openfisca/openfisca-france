@@ -1209,10 +1209,8 @@ class aide_logement_loyer_reel(Variable):
         locataire_meuble = statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble
 
         # Coeff de 2/3 pour les logements meublés
-        coeff_meuble_al = where(locataire_meuble, 2 / 3, 1)
-        # Coeff de 2/3 applique egalement en APL pour les logements meublés
-        coeff_meuble_apl = where(locataire_meuble, 2 / 3, 1)
-        return where(categorie_apl, loyer * coeff_meuble_apl, round_(loyer * coeff_meuble_al))
+        coeff_meuble = where(locataire_meuble, 2 / 3, 1)
+        return loyer * coeff_meuble
 
 
 class aide_logement_loyer_retenu(Variable):
