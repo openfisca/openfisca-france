@@ -3,9 +3,9 @@ values:
   2009-01-01:
     value: 1.5
   2011-01-01:
-    value: 1.67
+    value: 1.6667
   2015-01-01:
-    value: 1.94
+    value: 1.9412
 metadata:
   short_label: Majoration 1er taux
   last_value_still_valid_on: "2024-04-26"

@@ -36,7 +36,7 @@ then
     exit 2
 fi
 
-if ! $(dirname "$BASH_SOURCE")/has-functional-changes.sh | grep --quiet CHANGELOG.md
+if ! git diff-index `git describe --tags --abbrev=0 --first-parent` | grep --quiet CHANGELOG.md
 then
     echo "CHANGELOG.md has not been modified, while functional changes were made."
     echo "Explain what you changed before merging this branch into master."

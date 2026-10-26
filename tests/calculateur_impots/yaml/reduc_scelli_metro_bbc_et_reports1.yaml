@@ -12,15 +12,15 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 1000
-      f7gj: 500
+      f7fa_2017: 1000
+      f7gj_2020: 500
       f7gk: 500
       f7gl: 500
       f7gp: 500
-      f7gs: 500
+      f7gs_2020: 500
       f7gt: 500
-      f7gu: 500
-      f7ha: 500
+      f7gu_2020: 500
+      f7ha_2022: 500
       f7hb: 500
       f7hd_2019: 500  # 'Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, réalisés en 2010, en métropole et dans les DOM-COM'
       f7he_2014: 500  # "Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, en métropole et dans les DOM-COM avec promesse d'achat avant le 1.1.2010"
@@ -29,12 +29,12 @@
       f7ht_2018: 500  # "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques"
       f7hv_2018: 500  # 'Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole'
       f7hx_2018: 500  # "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole avec promesse d'achat avant le 1.1.2010"
-      f7ya: 200
-      f7yb: 200
-      f7yc: 200
-      f7yd: 200
+      f7ya_2022: 200
+      f7yb_2021: 200
+      f7yc_2022: 200
+      f7yd_2021: 200
       f7ye: 500
-      f7yf: 500
+      f7yf_2021: 500
       f7yg: 500
       f7yh: 500
       nbF: 0.0
@@ -77,12 +77,12 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000
-      f7gj: 500
+      f7fa_2017: 100000
+      f7gj_2020: 500
       f7gl: 500
-      f7gs: 500
-      f7gu: 500
-      f7ha: 500
+      f7gs_2020: 500
+      f7gu_2020: 500
+      f7ha_2022: 500
       f7hd_2019: 500
       f7hf_2019: 500
       f7hl_2010: 500
@@ -90,14 +90,14 @@
       f7ht_2018: 500
       f7hv_2018: 500
       f7hx_2018: 500
-      f7yb: 500
-      f7yd: 500
-      f7yf: 500
+      f7yb_2021: 500
+      f7yd_2021: 500
+      f7yf_2021: 500
       f7yh: 500
-      f7ym: 500
-      f7yn: 500
-      f7yo: 500
-      f7yp: 500
+      f7ym_2022: 500
+      f7yn_2022: 500
+      f7yo_2022: 500
+      f7yp_2022: 500
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -137,30 +137,30 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 10000
-      f7gj: 500
+      f7fa_2017: 10000
+      f7gj_2020: 500
       f7gl: 500
-      f7gs: 500
-      f7gu: 500
-      f7ha: 500
+      f7gs_2020: 500
+      f7gu_2020: 500
+      f7ha_2022: 500
       f7hd_2019: 500
       f7hf_2019: 500
       f7hr_2017: 500
       f7ht_2018: 500
       f7hv_2018: 500
       f7hx_2018: 500
-      f7yb: 200
-      f7yd: 500
-      f7yf: 200
+      f7yb_2021: 200
+      f7yd_2021: 500
+      f7yf_2021: 200
       f7yh: 500
-      f7ym: 200
-      f7yn: 500
-      f7yo: 200
-      f7yp: 500
-      f7yt: 200
-      f7yu: 500
-      f7yv: 200
-      f7yw: 500
+      f7ym_2022: 200
+      f7yn_2022: 500
+      f7yo_2022: 200
+      f7yp_2022: 500
+      f7yt_2023: 200
+      f7yu_2023: 500
+      f7yv_2023: 200
+      f7yw_2023: 500
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -200,19 +200,19 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 1000
-      f7ym: 2000
-      f7yn: 500
-      f7yo: 200
-      f7yp: 500
-      f7yt: 2000
-      f7yu: 500
-      f7yv: 2000
-      f7yw: 5000
-      f7wt: 200
-      f7wu: 500
-      f7wv: 2000
-      f7ww: 500
+      f7fa_2017: 1000
+      f7ym_2022: 2000
+      f7yn_2022: 500
+      f7yo_2022: 200
+      f7yp_2022: 500
+      f7yt_2023: 2000
+      f7yu_2023: 500
+      f7yv_2023: 2000
+      f7yw_2023: 5000
+      f7wt_2024: 200
+      f7wu_2024: 500
+      f7wv_2024: 2000
+      f7ww_2024: 500
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0

@@ -1,0 +1,6 @@
+description: Abattement forfaitaire « R0 » spécifique à l'outre-mer appliqué aux ressources du ménage en fonction de sa composition familiale
+metadata:
+  short_label: Outre-mer
+  order:
+  - taux1pac
+documentation: Mentionné à l'article 46 de l'arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement.

@@ -1,0 +1,11 @@
+description: participation au financement des retraites complémentaires égale (% allo super brute)
+unit: /1
+metadata:
+  reference:
+    2025-01-01:
+      title: Article 14 du règlement général annexé à la convention du 15 novembre 2024
+      href: https://www.unedic.org/ged/documents/regulatory_texts/pdf/TXT-RG-Reglement_general_annexe_a_la_convention.pdf
+
+values:
+  2006-01-18:
+    value: 0.03

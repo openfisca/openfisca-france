@@ -4,8 +4,8 @@
   input:
     chomage_imposable: 0
     salaire_imposable: 20000
-    f7uk: 4000
-    f7vo: 1
+    f7uk_2018: 4000
+    f7vo_2018: 1
   output:
     impot_revenu_restant_a_payer: -1137
 
@@ -15,8 +15,8 @@
   input:
     chomage_imposable: 0
     salaire_imposable: 20000
-    f7uk: 4000
-    f7vo: 1
+    f7uk_2018: 4000
+    f7vo_2018: 1
   output:
     impot_revenu_restant_a_payer: -759
 
@@ -26,8 +26,8 @@
   input:
     chomage_imposable: 0
     salaire_imposable: 20000
-    f7uk: 4000
-    f7vo: 1
+    f7uk_2018: 4000
+    f7vo_2018: 1
   output:
     impot_revenu_restant_a_payer: -743
 
@@ -37,9 +37,9 @@
   input:
     chomage_imposable: 0
     salaire_imposable: 20000
-    f7td: 2000
-    f7uk: 4000
-    f7vo: 1
+    f7td_2018: 2000
+    f7uk_2018: 4000
+    f7vo_2018: 1
   output:
     impot_revenu_restant_a_payer: -706
 
@@ -49,9 +49,9 @@
   input:
     chomage_imposable: 0
     salaire_imposable: 20000
-    f7td: 2000
-    f7uk: 4000
-    f7vo: 1
+    f7td_2018: 2000
+    f7uk_2018: 4000
+    f7vo_2018: 1
   output:
     impot_revenu_restant_a_payer: -701
 
@@ -61,9 +61,9 @@
   input:
     chomage_imposable: 0
     salaire_imposable: 20000
-    f7td: 2000
-    f7uk: 4000
-    f7vo: 1
+    f7td_2018: 2000
+    f7uk_2018: 4000
+    f7vo_2018: 1
   output:
     impot_revenu_restant_a_payer: -681
 
@@ -73,9 +73,9 @@
   input:
     chomage_imposable: 0
     salaire_imposable: 20000
-    f7td: 2000
-    f7uk: 4000
-    f7vo: 1
+    f7td_2018: 2000
+    f7uk_2018: 4000
+    f7vo_2018: 1
   output:
     impot_revenu_restant_a_payer: -681
 
@@ -85,9 +85,9 @@
   input:
     chomage_imposable: 0
     salaire_imposable: 20000
-    f7td: 2000
-    f7uk: 4000
-    f7vo: 1
+    f7td_2018: 2000
+    f7uk_2018: 4000
+    f7vo_2018: 1
   output:
     impot_revenu_restant_a_payer: -681
 
@@ -97,8 +97,8 @@
   input:
     chomage_imposable: 0
     salaire_imposable: 20000
-    f7td: 2000
-    f7uk: 4000
-    f7vo: 1
+    f7td_2018: 2000
+    f7uk_2018: 4000
+    f7vo_2018: 1
   output:
     impot_revenu_restant_a_payer: -670

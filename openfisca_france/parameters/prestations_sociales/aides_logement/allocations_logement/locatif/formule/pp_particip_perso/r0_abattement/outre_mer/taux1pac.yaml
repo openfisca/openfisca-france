@@ -1,0 +1,26 @@
+description: Abattement forfaitaire « R0 » en outre-mer pour une personne seule ou un couple ayant une personne à charge
+values:
+  2020-01-01:
+    value: 7584
+  2022-01-01:
+    value: 7742
+  2022-07-01:
+    value: 8051
+  2023-01-01:
+    value: 8181
+metadata:
+  short_label: Personne seule ou couple ayant une personne à charge
+  unit: currency
+  reference:
+    2020-01-01:
+      title: Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement, article 46
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000041489188/2020-01-01
+    2022-01-01:
+      title: Arrêté du 20 décembre 2021 relatif au calcul des aides personnelles au logement pour l'année 2022, article 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044572819
+    2022-07-01:
+      title: Arrêté du 29 juillet 2022 relatif au calcul des aides personnelles au logement, article 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046114992/#JORFARTI000046115002
+    2023-01-01:
+      title: Arrêté du 26 décembre 2022 relatif au calcul des aides personnelles au logement pour l'année 2023, article 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046829583

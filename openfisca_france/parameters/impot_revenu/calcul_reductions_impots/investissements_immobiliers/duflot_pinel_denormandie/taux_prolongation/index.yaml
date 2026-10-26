@@ -2,6 +2,6 @@ description: Taux de prolongation de la réduction d'impôt dits Duflot / Pinel 
 metadata:
   short_label: Taux de prolongation
   order:
-  - taux_prolong_9ans
+  - taux_prolong1_9ans
   - taux_prolong1_6ans
   - taux_prolong2_6ans

@@ -3,6 +3,7 @@ metadata:
   short_label: Réduction générale dégressive unique
   label_en: General SSC reductions, so-called Fillon reductions
   order:
+  - smic_reference
   - plafond
   - seuil_taille_entreprise
   - t_min

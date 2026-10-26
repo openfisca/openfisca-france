@@ -1,5 +1,5 @@
 - name: reduc_doment
-  period: 2019
+  period: 2025
   absolute_error_margin: 1
   input:
     foyer_fiscal:
@@ -12,29 +12,23 @@
       caseW: false
       declarants:
       - ind0
-      fhyc: 200
-      fhya: 230
-      fhxa: 450
-      fhxb: 400
-      fhxc: 150
-      fhxe: 300
-      fhxf: 200
-      fhxg: 600
-      fhxh: 100
-      fhxi: 500
-      fhxl: 350
-      fhxm: 200
-      fhxn: 100
-      fhxo: 100
-      fhxq: 500
-      fhxr: 350
-      fhxs: 200
-      fhxt: 100
-      fhyd: 100
-      fhxk: 500
-      fhxp: 350
-      fhxu: 200
-      fhyb: 100
+      # 2020
+      fhye: 100
+
+      # 2021
+      fhyf: 200
+
+      # 2022
+      fhyg: 100
+
+      # 2023
+      fhyh: 200
+
+      # 2024
+      fhyi: 100
+
+      # 2025 (Année en cours)
+      fhyj: 200
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -44,8 +38,8 @@
     individus:
       ind0:
         activite: actif
-        date_naissance: '1970-01-01'
-        salaire_imposable: 50000.0
+        date_naissance: '1976-01-01'
+        abic_impn: 200000.0
         statut_marital: celibataire
     famille:
       parents:
@@ -53,9 +47,9 @@
     menage:
       personne_de_reference: ind0
   output:
-    reductions: 6280.0
-    iai: 1364.0
-    impot_revenu_restant_a_payer: -1364.0
-    rbg: 45000.0
-    rfr: 45000.0
-    rni: 45000.0
+    reductions: 900.0
+    iai: 65624.0
+    impot_revenu_restant_a_payer: -65624.0
+    rbg: 200000.0
+    rfr: 200000.0
+    rni: 200000.0

@@ -4,5 +4,7 @@ metadata:
   label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   order:
   - cas_general
+  - outre_mer
   - mayotte
+  - saint_pierre_et_miquelon
   - avant_2015

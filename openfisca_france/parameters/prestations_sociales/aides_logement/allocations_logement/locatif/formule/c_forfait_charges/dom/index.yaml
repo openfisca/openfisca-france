@@ -1,0 +1,7 @@
+description: Montant forfaitaire comptabilise pour le calcul des aides au logement au titre des charges du logement dans les departements et collectivites d'outre-mer
+metadata:
+  short_label: Cas general outre-mer
+  order:
+  - cas_general
+  - majoration_par_enfant
+documentation: Montant forfaitaire au titre des charges applicable en outre-mer dans le cas general pour le secteur locatif.
