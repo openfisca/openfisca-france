@@ -1205,7 +1205,6 @@ class aide_logement_loyer_reel(Variable):
     def formula_2020_01_11(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         loyer = famille.demandeur.menage('loyer', period)
-        categorie_apl = famille.demandeur.menage('logement_conventionne', period)
         locataire_meuble = statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble
 
         # Coeff de 2/3 pour les logements meublés
