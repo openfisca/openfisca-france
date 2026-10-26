@@ -1,5 +1,12 @@
 # Changelog
 
+# 177.0.0 [#2815](https://github.com/openfisca/openfisca-france/pull/2815)
+
+* Amélioration technique.
+* Zones impactées : `scenarios` -> `simulations`.
+* Détails :
+  - `from openfisca_france.scenarios import init_single_entity` est désormais `from openfisca_france.simulations import init_single_entity` et il prends un tax benefit system comme premier paramètre;
+
 ### 176.1.4 [#2779](https://github.com/openfisca/openfisca-france/pull/2779)
 
 * Évolution du système socio-fiscal.
@@ -34,7 +41,6 @@
   - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/plafond.yaml`
 * Détails :
   - Correction du smic pris en compte dans la réduction générale : le SMIC a été revalorisé en juin 2026, mais le décret n° 2026-509 prévoit que, pour le calcul de la réduction générale au titre de 2026, le SMIC à retenir reste celui applicable au 1er janvier 2026.
-
 
 ### 176.1.1 [#2809](https://github.com/openfisca/openfisca-france/pull/2809)
 
