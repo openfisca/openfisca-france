@@ -11,6 +11,17 @@
   - correction des montants retenus dans le secteur locatif.
 * Ces changements :
   - corrigent ou ameliorent un calcul deja existant.
+### 176.1.4 [#2779](https://github.com/openfisca/openfisca-france/pull/2779)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - arrondi de la CRDS au centime d'euro inférieur
+    - arrondi de l'AL à l'euro inférieur
+    - annulation de la CRDS à Saint-Pierre-et-Miquelon
 
 ### 176.1.3 [#2824](https://github.com/openfisca/openfisca-france/pull/2824)
 
@@ -97,7 +108,6 @@
   - `openfisca_france/parameters/taxation_capital/epargne/livret_a/taux.yaml`
 * Détails :
   - Mise à jour du taux d'intérêts du livret A
->>>>>>> upstream/master
 
 ### 176.0.7 [#2712](https://github.com/openfisca/openfisca-france/pull/2712)
 
