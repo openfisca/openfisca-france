@@ -1181,8 +1181,8 @@ class aide_logement_loyer_reel(Variable):
     entity = Famille
     label = 'Loyer réel dans le calcul des aides au logement'
     reference = [
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737243/2026-10-26",
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878685"]
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737243/2026-10-26',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878685']
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
