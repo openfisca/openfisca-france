@@ -3292,13 +3292,13 @@ class aacc_timp(Variable):
                 + (aacc_gits - min_(aacc_gits, max_(
                     micro.microentreprise.montant_minimum,
                     aacc_gits * (micro.microentreprise.regime_micro_bic.marchandises.taux)))
-                )
+                    )
                 + (aacc_imps - min_(aacc_imps, max_(
                     micro.microentreprise.montant_minimum,
                     aacc_imps * (micro.microentreprise.regime_micro_bic.services.taux)))
-                )
+                    )
                 + max_(0, - alnp_defs) - aacc_defn
-                )
+                    )
                 )
             )
         return aacc_timp
@@ -3319,15 +3319,15 @@ class aacc_timp(Variable):
                 + (aacc_gits - min_(aacc_gits, max_(
                     micro.microentreprise.montant_minimum,
                     aacc_gits * (micro.microentreprise.regime_micro_bic.marchandises.taux)))
-                )
+                    )
                 + (aacc_imps - min_(aacc_imps, max_(
                     micro.microentreprise.montant_minimum,
                     aacc_imps * (micro.microentreprise.regime_micro_bic.services.taux)))
-                )
+                    )
                 + (nacc_meup - min_(nacc_meup, max_(
                     micro.microentreprise.montant_minimum,
-                    nacc_meup * (micro.microentreprise.regime_micro_bic.marchandises.taux)))
-                )
+                   nacc_meup * (micro.microentreprise.regime_micro_bic.marchandises.taux)))
+                    )
                 + max_(0, nacc_pres - alnp_defs) - aacc_defn
                 )
             )
@@ -3351,19 +3351,19 @@ class aacc_timp(Variable):
                 + (aacc_gits - min_(aacc_gits, max_(
                     micro.microentreprise.montant_minimum,
                     aacc_gits * (micro.microentreprise.regime_micro_bic.services.taux)))
-                )
+                    )
                 + (aacc_imps - min_(aacc_imps, max_(
                     micro.microentreprise.montant_minimum,
                     aacc_imps * (micro.microentreprise.regime_micro_bic.services.taux)))
-                )
+                    )
                 + (nacc_meup - min_(nacc_meup, max_(
                     micro.microentreprise.montant_minimum,
                     nacc_meup * (micro.microentreprise.regime_micro_bic.marchandises.taux)))
-                )
+                    )
                 + (nacc_meuc - min_(nacc_meuc, max_(
                     micro.microentreprise.montant_minimum,
                     nacc_meuc * (micro.microentreprise.regime_micro_bic.services.taux)))
-                )
+                    )
                 + max_(0, nacc_pres - alnp_defs) - aacc_defn
                 )
             )
@@ -3391,27 +3391,27 @@ class aacc_timp(Variable):
                 + (aacc_gits - min_(aacc_gits, max_(
                     micro.microentreprise.montant_minimum,
                     aacc_gits * (micro.microentreprise.regime_micro_bic.services.taux)))
-                )
+                    )
                 + (tourisme_non_classes - min_(tourisme_non_classes, max_(
                     micro.microentreprise.montant_minimum,
                     tourisme_non_classes * (micro.microentreprise.regime_micro_bic.meubles_tourisme.taux)))
-                )
+                    )
                 + (nacc_meup - min_(nacc_meup, max_(
                     micro.microentreprise.montant_minimum,
                     nacc_meup * (micro.microentreprise.regime_micro_bic.services.taux)))
-                )
+                    )
                 + (nacc_meup_non_classes - min_(nacc_meup_non_classes, max_(
                     micro.microentreprise.montant_minimum,
                     nacc_meup_non_classes * (micro.microentreprise.regime_micro_bic.meubles_tourisme.taux)))
-                )
+                    )
                 + (autres_location_meublees_micro - min_(autres_location_meublees_micro, max_(
                     micro.microentreprise.montant_minimum,
                     autres_location_meublees_micro * (micro.microentreprise.regime_micro_bic.services.taux)))
-                )
+                    )
                 + (autres_location_meublees_micro_prelev - min_(autres_location_meublees_micro_prelev, max_(
                     micro.microentreprise.montant_minimum,
                     autres_location_meublees_micro_prelev * (micro.microentreprise.regime_micro_bic.services.taux)))
-                )
+                    )
                 + max_(0, alnp_imps - alnp_defs) + max_(0, nacc_pres - nacc_defs)
                 )
             )
