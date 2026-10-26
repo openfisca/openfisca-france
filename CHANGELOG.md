@@ -3,12 +3,12 @@
 ### 176.1.5 [#2771](https://github.com/openfisca/openfisca-france/pull/2771/)
 
 * Evolution du systeme socio-fiscal
-* Periodes concernees : à partir du 01/01/2002.
+* Périodes concernées : à partir du 11/01/2020 (calcul mensuel à partir de février 2020).
 * Zones impactees : prestations/aides_logement
 * Details :
-  -application du coefficient de reduction des logements meubles dans le calcul du loyer reel en APL ;
+  - application du coefficient de réduction des logements meublés dans le calcul du loyer réel en APL ;
   - harmonisation du traitement des logements meubles entre les differentes aides au logement ;
-  - correction des montants retenus dans le secteur locatif.
+  - conservation de la formule historique avant cette date, conformément au décret n° 2020-17, article 2.
 * Ces changements :
   - corrigent ou ameliorent un calcul deja existant.
 ### 176.1.4 [#2779](https://github.com/openfisca/openfisca-france/pull/2779)

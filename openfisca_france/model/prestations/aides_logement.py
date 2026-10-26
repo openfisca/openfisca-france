@@ -1181,12 +1181,28 @@ class aide_logement_loyer_reel(Variable):
     entity = Famille
     label = 'Loyer réel dans le calcul des aides au logement'
     reference = [
-        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737243/2026-10-26',
-        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878685']
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737243/2018-11-01',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878685',
+        'https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039804009',
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period):
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        loyer = famille.demandeur.menage('loyer', period)
+        categorie_apl = famille.demandeur.menage('logement_conventionne', period)
+        logement_chambre = famille.demandeur.menage('logement_chambre', period)
+        locataire_meuble = statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble
+
+        # Coeff de 2/3 pour les logements meublés pour l'AL
+        coeff_meuble_al = where(locataire_meuble, 2 / 3, 1)
+        # Coeff de 2/3 pour les seules chambres meublées pour l'APL
+        coeff_meuble_apl = where(locataire_meuble * logement_chambre, 2 / 3, 1)
+        return where(categorie_apl, round_(loyer * coeff_meuble_apl), round_(loyer * coeff_meuble_al))
+
+    # Décret n° 2020-17, article 2, en vigueur le 11 janvier 2020.
+    def formula_2020_01_11(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         loyer = famille.demandeur.menage('loyer', period)
         categorie_apl = famille.demandeur.menage('logement_conventionne', period)

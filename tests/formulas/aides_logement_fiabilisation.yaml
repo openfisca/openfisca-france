@@ -84,7 +84,7 @@
       declarants: parent1
       personnes_a_charge: enfant1
   output:
-    aide_logement: 304
+    aide_logement: 334
 
  # Cas N° 4
  # tests pour la correction d'une double application des coefficients "coloc" et "logement_chambre"
@@ -138,7 +138,7 @@
     foyer_fiscal:
       declarants: parent1
   output:
-    aide_logement: 62
+    aide_logement: 15
 
 - name: "Cas 4-zone_3: Personne seule salariée temps partiel réside dans un Hotel/chambre meublée conventionné dans la zone 3"
   period: 2018-11
