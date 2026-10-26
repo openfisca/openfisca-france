@@ -1180,7 +1180,11 @@ class aide_logement_loyer_reel(Variable):
     value_type = float
     entity = Famille
     label = 'Loyer réel dans le calcul des aides au logement'
-    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2CE61DFFD9BD9F08700031784123828.tplgfr28s_2?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte='
+    reference = [
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737243/2018-11-01',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878685',
+        'https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039804009',
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1196,6 +1200,16 @@ class aide_logement_loyer_reel(Variable):
         # Coeff de 2/3 pour les seules chambres meublées pour l'APL
         coeff_meuble_apl = where(locataire_meuble * logement_chambre, 2 / 3, 1)
         return where(categorie_apl, round_(loyer * coeff_meuble_apl), round_(loyer * coeff_meuble_al))
+
+    # Décret n° 2020-17, article 2, en vigueur le 11 janvier 2020.
+    def formula_2020_01_11(famille, period):
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        loyer = famille.demandeur.menage('loyer', period)
+        locataire_meuble = statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble
+
+        # Coeff de 2/3 pour les logements meublés
+        coeff_meuble = where(locataire_meuble, 2 / 3, 1)
+        return loyer * coeff_meuble
 
 
 class aide_logement_loyer_retenu(Variable):
