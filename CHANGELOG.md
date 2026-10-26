@@ -1,6 +1,6 @@
 # Changelog
 
-### 176.1.3 [#2779](https://github.com/openfisca/openfisca-france/pull/2779)
+### 176.1.4 [#2779](https://github.com/openfisca/openfisca-france/pull/2779)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2019
@@ -11,6 +11,17 @@
     - arrondi de la CRDS au centime d'euro inférieur
     - arrondi de l'AL à l'euro inférieur
     - annulation de la CRDS à Saint-Pierre-et-Miquelon
+
+### 176.1.3 [#2824](https://github.com/openfisca/openfisca-france/pull/2824)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026.
+* Zones impactées :
+  - `parameters/prelevements_sociaux/cotisations_secteur_public/ircantec/taux_cotisations_appeles/employeur/ircantec.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/ircantec/taux_cotisations_appeles/salarie/ircantec.yaml`
+  - `parameters/prelevements_sociaux/cotisations_secteur_public/ircantec/taux_appel.yaml`
+* Détails :
+  - Met à jour le taux d'appel de cotisation IRCANTEC et les taux appelés
 
 ### 176.1.2 [#2810](https://github.com/openfisca/openfisca-france/pull/2810)
 
