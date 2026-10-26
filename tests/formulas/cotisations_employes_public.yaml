@@ -43,6 +43,18 @@
     ircantec_salarie: 0
     ircantec_employeur: 0
 
+- name: ircantec_taux_appel_2026
+  description: Les taux appelés IRCANTEC intègrent le taux d'appel de 127 % à compter de 2026
+  period: 2026-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_non_titulaire
+    assiette_cotisations_sociales: 5000
+  output:
+    plafond_securite_sociale: 4005
+    ircantec_salarie: -(0.0284*4005 + 0.0706*(5000-4005))
+    ircantec_employeur: -(0.0427*4005 + 0.1275*(5000-4005))
+
 - name: cotisation_retraite_base_public_1
   description: Cotisations retraite obligatoire fonction publique d'Etat
   period: 2021-01
