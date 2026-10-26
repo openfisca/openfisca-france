@@ -8,6 +8,14 @@
   - `openfisca_france/model/prestations/aides_logement.py`
 * Détails:
   - Majoration personnes à charge outre mer jusqu'au 01/01/2023
+### 176.1.6 [#2804](https://github.com/openfisca/openfisca-france/pull/2804)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prestations/aides_logement.py`
+* Détails:
+  - Outre-mer oubliés dans le calcul de loyer plafond
 
 ### 176.1.5 [#2771](https://github.com/openfisca/openfisca-france/pull/2771/)
 
@@ -20,6 +28,7 @@
   - conservation de la formule historique avant cette date, conformément au décret n° 2020-17, article 2.
 * Ces changements :
   - corrigent ou ameliorent un calcul deja existant.
+
 ### 176.1.4 [#2779](https://github.com/openfisca/openfisca-france/pull/2779)
 
 * Évolution du système socio-fiscal.
