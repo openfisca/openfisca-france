@@ -87,4 +87,4 @@
     aide_logement_montant: 295 - 300 * 0.005
     aide_logement: 295 - 300 * 0.005
     aides_logement:
-      2018: (295 - 300 * 0.005) * 12
+      2018: floor(295 - 300 * 0.005) * 12

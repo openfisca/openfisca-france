@@ -1,6 +1,6 @@
 # Changelog
 
-### 176.1.2 [#2804](https://github.com/openfisca/openfisca-france/pull/2804)
+### 176.1.5 [#2804](https://github.com/openfisca/openfisca-france/pull/2804)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -8,6 +8,61 @@
   - `openfisca_france/model/prestations/aides_logement.py`
 * Détails:
   - Outre-mer oubliés dans le calcul de loyer plafond
+
+### 176.1.4 [#2779](https://github.com/openfisca/openfisca-france/pull/2779)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019
+* Zones impactées :
+    - `openfisca_france/prestations/aides_logement`
+    - `tests/formulas/aides_logement`
+* Détails :
+    - arrondi de la CRDS au centime d'euro inférieur
+    - arrondi de l'AL à l'euro inférieur
+    - annulation de la CRDS à Saint-Pierre-et-Miquelon
+
+### 176.1.3 [#2824](https://github.com/openfisca/openfisca-france/pull/2824)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2026.
+* Zones impactées :
+  - `parameters/prelevements_sociaux/cotisations_secteur_public/ircantec/taux_cotisations_appeles/employeur/ircantec.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public/ircantec/taux_cotisations_appeles/salarie/ircantec.yaml`
+  - `parameters/prelevements_sociaux/cotisations_secteur_public/ircantec/taux_appel.yaml`
+* Détails :
+  - Met à jour le taux d'appel de cotisation IRCANTEC et les taux appelés
+
+### 176.1.2 [#2810](https://github.com/openfisca/openfisca-france/pull/2810)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/06/2026.
+* Zones impactées :
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/smic_reference.yaml`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/index.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_general/ensemble_des_entreprises/plafond.yaml`
+* Détails :
+  - Correction du smic pris en compte dans la réduction générale : le SMIC a été revalorisé en juin 2026, mais le décret n° 2026-509 prévoit que, pour le calcul de la réduction générale au titre de 2026, le SMIC à retenir reste celui applicable au 1er janvier 2026.
+
+
+### 176.1.1 [#2809](https://github.com/openfisca/openfisca-france/pull/2809)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2026
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/l_plafonds_loyers/par_zone/zone_{1,2,3}/{personnes_seules,couples,un_enfant,majoration_par_enf_supp}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/l_plafonds_loyers/coef_chambre_et_colocation/{coef_chambre,coef_colocation,personne_agee_handicapee}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/c_forfait_charges/{cas_general,dom}/{cas_general,majoration_par_enfant}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/c_forfait_charges/{cas_colocataires,dom_colocataires}/{beneficiaire_isole,couple_sans_enfant,majoration_par_enfant}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/locatif/formule/pp_particip_perso/p0_particip_min/p0_forfait.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/accession/formule/c_forfait_charges/{cas_general,par_personne_supplementaire}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/accession/formule/c_forfait_charges/cas_coproprietaires/{beneficiaire_isole,couple_sans_enfant,majoration_par_personne_a_charge,index}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/apl/formule/e_equiv_loyers_eligible/zone_{1,2,3}/{personne_isolee_sans_enfant,menage_seul,menage_ou_isole_avec_1_enfant,menage_ou_isole_avec_{2,3,4}_enfants,menage_ou_isole_par_enfant_en_plus}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al/formule/c_forfait_charges/{cas_general,par_personne_supplementaire}.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/foyer/al/formule/l_plafonds_loyers/{etudiants_en_chambre,etudiants_en_chambre_rehabilitee,personnes_agees,autres_personnes}/{personne_isolee,couple}.yaml`
+* Détails :
+  - Actualisation des paramètres des aides personnelles au logement au 1er octobre 2026, conformément à l’arrêté du 28 septembre 2026, portant une revalorisation de +1,15 %.
+  - Ajout des forfaits de charges des copropriétaires en secteur accession.
 
 
 ## 176.1.0 [#2800](https://github.com/openfisca/openfisca-france/pull/XXXX)
@@ -51,7 +106,6 @@
   - `openfisca_france/parameters/taxation_capital/epargne/livret_a/taux.yaml`
 * Détails :
   - Mise à jour du taux d'intérêts du livret A
->>>>>>> upstream/master
 
 ### 176.0.7 [#2712](https://github.com/openfisca/openfisca-france/pull/2712)
 

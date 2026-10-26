@@ -197,7 +197,7 @@ output:
       prestations_familiales:
         2024: 2763.78
       prestations_sociales:
-        2024: 16219.39
+        2024: 16212.88
       reduction_loyer_solidarite:
         2024-01: 66.06
         2024-02: 66.06
@@ -244,9 +244,9 @@ output:
   menages:
     logement_principal_n_1:
       niveau_de_vie:
-        2024: 12476.45
+        2024: 12471.44
       revenu_disponible:
-        2024: 16219.39
+        2024: 16212.88
       unites_consommation:
         2024: 1.3
       zone_apl:

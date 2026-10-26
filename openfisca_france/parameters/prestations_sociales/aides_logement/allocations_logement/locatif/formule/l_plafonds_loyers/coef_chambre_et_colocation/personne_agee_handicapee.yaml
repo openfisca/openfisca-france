@@ -1,6 +1,7 @@
 description: Coefficient applique aux loyers plafonds pour une chambre occupee par une personne agee ou handicapee hebergee a titre onereux
 metadata:
   short_label: Coef chambre hebergement onereux
+  last_value_still_valid_on: "2026-09-30"
   unit: /1
   reference:
     2002-01-01:
@@ -8,6 +9,9 @@ metadata:
         href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286643/2026-07-03
       - title: Article D823-16 du code de la construction et de l'habitation
         href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878905
+  notes:
+    2026-10-01:
+      - title: Le coefficient de 0,75 s'applique aux montants des plafonds de loyers pour une personne seule, qui ont augmenté de +1,15% en octobre 2026.
 values:
   2002-01-01:
     value: 0.75
