@@ -1,5 +1,17 @@
 # Changelog
 
+### 176.1.5 [#2771](https://github.com/openfisca/openfisca-france/pull/2771/)
+
+* Evolution du systeme socio-fiscal
+* Periodes concernees : à partir du 01/01/2002.
+* Zones impactees : prestations/aides_logement
+* Details :
+  -application du coefficient de reduction des logements meubles dans le calcul du loyer reel en APL ;
+  - harmonisation du traitement des logements meubles entre les differentes aides au logement ;
+  - correction des montants retenus dans le secteur locatif.
+* Ces changements :
+  - corrigent ou ameliorent un calcul deja existant.
+
 ### 176.1.3 [#2824](https://github.com/openfisca/openfisca-france/pull/2824)
 
 * Évolution du système socio-fiscal.
