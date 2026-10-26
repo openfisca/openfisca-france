@@ -330,13 +330,13 @@
       2017: 5000
   output:
     apl:
-      2017-12: 99.5
+      2017-12: 99
     revenu_disponible:
-      2017: 5099.5
+      2017: 5099
     prestations_sociales:
-      2017: 5099.5
+      2017: 5099
     aides_logement:
-      2017: 99.5
+      2017: 99
 
 - name: Revenu disponible avec APL après RLS
   absolute_error_margin: 0.1
@@ -351,11 +351,11 @@
     minima_sociaux:
       2018: 5000
   output:
-    apl: 68.45
+    apl: 68
     reduction_loyer_solidarite: 31.83
     revenu_disponible:
-      2018: 5100.28
+      2018: 5099.83
     prestations_sociales:
-      2018: 5100.28
+      2018: 5099.83
     aides_logement:
-      2018: 68.45
+      2018: 68

@@ -268,6 +268,23 @@
   output:
     aide_logement_R0: 9008
 
+- name: Aides logements - absence de CRDS à Saint-Pierre-et-Miquelon
+  period: 2023-01
+  input:
+    famille:
+      parents: [parent1]
+      aide_logement_montant_brut_crds: 389.24
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+      depcom: "97500"
+    individus:
+      parent1:
+        age: 40
+  output:
+    crds_logement: 0
+
 - name: Aides logements - les enfants de plus de 21 ans handicapés (>80%) sont considérés à charge
   description: Nombre de personnes à charge pour les AL
   period: 2015-01
@@ -569,7 +586,7 @@
     aide_logement_participation_personnelle: 39.56 + (0.0283 + 0.00107) * 4665
     aide_logement_montant_brut: round(200 + 60.59 - 176.57105, 2) - 5 # 79.02; sans arrondi: 79.00
     aide_logement_montant_brut_crds: round(200 + 60.59 - 176.57105, 2) - 5 - 35.99 * 0.98 # 43.7498; sans arrondi: 43.7298
-    aide_logement_montant: round(43.7498 * (1 - 0.005), 2) # 43.53; sans arrondi: 43.51
+    aide_logement_montant: floor(43.7498 * (1 - 0.005)) # 43.53; sans arrondi: 43.51
 
 - name: Personne isolée, avant degressivité
   period: 2016-06
@@ -804,7 +821,7 @@
       - parent1
   output:
     aide_logement_montant_brut: 47.08
-    aide_logement_montant: 46.84
+    aide_logement_montant: 46
 
 - name: Le patrimoine composé uniquement d'épargne générant des revenus imposables n'augmente pas la base ressources des ALs
   period: 2017-10
