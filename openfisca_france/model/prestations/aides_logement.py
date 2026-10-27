@@ -1144,7 +1144,7 @@ class aide_logement_loyer_plafond(Variable):
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
         chambre = famille.demandeur.menage('logement_chambre', period)
-        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_aides_logement_outre_mer = famille.demandeur.menage('residence_aides_logement_outre_mer', period)
         personne_agee_handicapee = famille.demandeur.menage(
             'personne_agee_handicapee', period
             )
@@ -1156,7 +1156,7 @@ class aide_logement_loyer_plafond(Variable):
 
         plafond_personne_seule = plafonds_loyers_par_zone.personnes_seules
         plafond_couple = plafonds_loyers_par_zone.couples
-        al_nb_pac_plafond = where(residence_dom, min_(al_nb_pac, 6), al_nb_pac)
+        al_nb_pac_plafond = where(residence_aides_logement_outre_mer, min_(al_nb_pac, 6), al_nb_pac)
         plafond_famille = plafonds_loyers_par_zone.un_enfant + (al_nb_pac_plafond > 1) * (al_nb_pac_plafond - 1) * plafonds_loyers_par_zone.majoration_par_enf_supp
 
         plafond = select(
@@ -1250,7 +1250,7 @@ class aide_logement_charges(Variable):
 
         montant_coloc = where(couple, forfait_charges_cas_colocataires.couple_sans_enfant, forfait_charges_cas_colocataires.beneficiaire_isole) + al_nb_pac * forfait_charges_cas_colocataires.majoration_par_enfant
 
-        nb_pac_dom_general = min_(al_nb_pac, 6) if period.start.date < date(2022, 7, 1) else al_nb_pac
+        nb_pac_dom_general = min_(al_nb_pac, 6) if period.start.date < date(2023, 1, 1) else al_nb_pac
         nb_pac_dom_coloc = min_(al_nb_pac, 6) if period.start.date < date(2023, 1, 1) else al_nb_pac
 
         montant_dom = forfait_charges_dom.cas_general + nb_pac_dom_general * forfait_charges_dom.majoration_par_enfant
