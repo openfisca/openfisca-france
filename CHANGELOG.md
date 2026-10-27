@@ -1,5 +1,13 @@
 # Changelog
 
+### 177.0.2 [#2840](https://github.com/openfisca/openfisca-france/pull/2840)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Toutes.
+* Zones impactées : `prestations/aides_logement`.
+* Détails :
+  - Applique le forfait de charges outre-mer à Saint-Barthélemy et Saint-Martin.
+
 # 177.0.0 [#2833](https://github.com/openfisca/openfisca-france/pull/2833)
 
 * Amélioration technique.

@@ -1,0 +1,35 @@
+- name: Couple avec huit personnes à charge à Saint-Barthélemy
+  period: 2022-12
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents:
+      - personne1
+      - personne2
+      al_nb_personnes_a_charge: 8
+      aide_logement_base_ressources: 9816.0
+      reduction_loyer_solidarite: 0.0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      depcom: '97700'
+      zone_apl: zone_2
+      personne_agee_handicapee: true
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 0.0
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+        handicap: true
+      personne2:
+        date_naissance: 2003-01-01
+    foyer_fiscal:
+      declarants:
+      - personne1
+      - personne2
+  output:
+    apl: 53.0
+    aide_logement_charges: 95.81

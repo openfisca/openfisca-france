@@ -1244,7 +1244,7 @@ class aide_logement_charges(Variable):
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_outre_mer = famille.demandeur.menage('residence_aides_logement_outre_mer', period)
 
         montant_cas_general = forfait_charges_cas_general.cas_general + al_nb_pac * forfait_charges_cas_general.majoration_par_enfant
 
@@ -1263,7 +1263,7 @@ class aide_logement_charges(Variable):
         montant_hors_dom = where(coloc, montant_coloc, montant_cas_general)
         montant_dom_total = where(coloc, montant_dom_coloc, montant_dom)
 
-        return where(residence_dom, montant_dom_total, montant_hors_dom)
+        return where(residence_outre_mer, montant_dom_total, montant_hors_dom)
 
 
 class aide_logement_R0(Variable):
