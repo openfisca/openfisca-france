@@ -1,5 +1,13 @@
 # Changelog
 
+### 176.1.9 [#2807](https://github.com/openfisca/openfisca-france/pull/2807)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Toutes.
+* Zones impactées :
+    - `openfisca_france/model/prestations/aides_logement.py`
+* Détails:
+    - Corrige inexactitude dom vs outer-mer calcul loyer référence aide logement
 
 ### 176.1.8 [#2806](https://github.com/openfisca/openfisca-france/pull/2806)
 
