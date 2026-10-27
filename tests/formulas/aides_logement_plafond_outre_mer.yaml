@@ -1,0 +1,29 @@
+- name: Colocataire en Guadeloupe avec dix personnes à charge en octobre 2023
+  period: 2023-10
+  absolute_error_margin: 0
+  input:
+    famille:
+      parents:
+      - personne1
+      al_nb_personnes_a_charge: 10
+      aide_logement_base_ressources: 11286.71
+      reduction_loyer_solidarite: 0.0
+    menage:
+      personne_de_reference: personne1
+      depcom: '97100'
+      zone_apl: zone_2
+      personne_agee_handicapee: true
+      statut_occupation_logement: locataire_meuble
+      logement_conventionne: true
+      loyer: 996.07
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+        handicap: true
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    apl: 709.0

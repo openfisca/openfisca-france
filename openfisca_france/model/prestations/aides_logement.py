@@ -1156,7 +1156,7 @@ class aide_logement_loyer_plafond(Variable):
 
         plafond_personne_seule = plafonds_loyers_par_zone.personnes_seules
         plafond_couple = plafonds_loyers_par_zone.couples
-        al_nb_pac_plafond = where(residence_aides_logement_outre_mer, min_(al_nb_pac, 6), al_nb_pac)
+        al_nb_pac_plafond = where(residence_aides_logement_outre_mer * (period.start.year < 2023), min_(al_nb_pac, 6), al_nb_pac)
         plafond_famille = plafonds_loyers_par_zone.un_enfant + (al_nb_pac_plafond > 1) * (al_nb_pac_plafond - 1) * plafonds_loyers_par_zone.majoration_par_enf_supp
 
         plafond = select(
