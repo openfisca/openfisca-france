@@ -1004,7 +1004,7 @@ class assloy(Variable):
         2005-2016
         '''
         f4bf = foyer_fiscal('f4bf', period)
-        assloy = parameters(period).impot_revenu.credits_impots.assloy
+        assloy = parameters(period).impot_revenu.credits_impots.assloy.taux
 
         return assloy * f4bf
 
@@ -1707,7 +1707,7 @@ class drbail(Variable):
         2002-2017
         '''
         f4tq = foyer_fiscal('f4tq', period)
-        drbail = parameters(period).impot_revenu.credits_impots.drbail
+        drbail = parameters(period).impot_revenu.credits_impots.drbail.taux
 
         return drbail * f4tq
 
@@ -3092,7 +3092,7 @@ class ci_saldom(Variable):
             where(
                 annee1,
                 min_(P.plafond.plafond_max.plafond_maximum_1ere_annee, P.plafond.plafond_base.plafond_1ere_annee + P.plafond.increment_plafond * (nb_pac_majoration_plafond + f7dl)),
-                min_(P.plafond.plafond_max.plafond_maximum, P.plafond + P.plafond.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                min_(P.plafond.plafond_max.plafond_maximum, P.plafond.plafond_base.plafond + P.plafond.increment_plafond * (nb_pac_majoration_plafond + f7dl))
                 )
             )
 
