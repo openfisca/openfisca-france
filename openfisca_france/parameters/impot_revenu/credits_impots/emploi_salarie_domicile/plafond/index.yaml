@@ -3,6 +3,6 @@ metadata:
   label_en: Tax credits for personal care assistant employment
   order:
   - plafond_base
-  - plafond_additionnel
+  - increment_plafond
   - plafond_max
-  - plafond_invalide
+  - plafond_invalides
