@@ -1,6 +1,6 @@
 import logging
 
-from numpy import char, datetime64, timedelta64, logical_xor as xor_, round as round_, around, invert
+from numpy import char, datetime64, timedelta64, floor, logical_xor as xor_, round as round_, around, invert
 # TODO: L'utilisation de round/around ne semble pas conforme aux règles fiscales
 # Cependant cette modification ne doit pas être faite à la légère : https://github.com/openfisca/openfisca-france/issues/1430
 from openfisca_france.model.prelevements_obligatoires.impot_revenu import arrondi_fiscal
@@ -1625,7 +1625,7 @@ class decote(Variable):
         return around(max_(0, decote.seuil - ir_plaf_qf) * decote.taux)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
-        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        ir_plaf_qf = floor(ir_plaf_qf + 0.5)
         nb_adult = foyer_fiscal('nb_adult', period)
         taux_decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.taux
         decote_seuil_celib = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
@@ -1633,7 +1633,7 @@ class decote(Variable):
         decote_celib = max_(0, decote_seuil_celib - taux_decote * ir_plaf_qf)
         decote_couple = max_(0, decote_seuil_couple - taux_decote * ir_plaf_qf)
 
-        return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
+        return floor((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple + 0.5)
 
 
 class decote_gain_fiscal(Variable):
@@ -1647,7 +1647,7 @@ class decote_gain_fiscal(Variable):
         Renvoie le gain fiscal du à la décote
         '''
         decote = foyer_fiscal('decote', period)
-        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        ir_plaf_qf = floor(ir_plaf_qf + 0.5)
 
         return around(min_(decote, ir_plaf_qf))
 
@@ -2443,7 +2443,7 @@ class correction_ir_seuils_recouvrement(Variable):
         impots_totaux_avant_imputations = iai + cehr + pfu - pfl
         impots_totaux_apres_imputations = iai + cehr + pfu - pfl - credits_impot - acomptes_ir
 
-        condition_1 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations > 0)
+        condition_1 = (impots_totaux_avant_imputations < seuil_avant_imputations) * (impots_totaux_apres_imputations > 0)
         condition_2 = (impots_totaux_avant_imputations > seuil_avant_imputations) * (impots_totaux_apres_imputations > 0) * (impots_totaux_apres_imputations <= seuil_apres_imputations)
 
         condition_correction_seuils_mise_recouvrement = (condition_1 | condition_2)
