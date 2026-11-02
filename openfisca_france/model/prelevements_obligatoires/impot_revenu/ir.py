@@ -3253,7 +3253,7 @@ class rpns_revenus_microBA_agricole(Variable):
 class aacc_timp(Variable):
     value_type = float
     entity = Individu
-    label = 'Revenus des professions non salariées individuels avec abattement CGA'
+    label = 'Revenus des professions non salariées individuels avec abattement (CGA avant 2023)'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -3288,15 +3288,14 @@ class aacc_timp(Variable):
         aacc_timp = (
             max_(
                 0,
-                (aacc_impn + (aacc_gits > 0) * max_(
+                (aacc_impn +
+                + (aacc_gits - min_(aacc_gits, max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_gits * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
-                    ))
-                + (aacc_imps > 0) * max_(
+                    aacc_gits * (micro.microentreprise.regime_micro_bic.marchandises.taux))))
+                + (aacc_imps - min_(aacc_imps, max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_imps * (1 - micro.microentreprise.regime_micro_bic.services.taux)
-                    )
-                + max_(0, - alnp_defs) - aacc_defn
+                    aacc_imps * (micro.microentreprise.regime_micro_bic.services.taux))))
+                + max_(0, - alnp_defs) - aacc_defn)
                 )
             )
         return aacc_timp
@@ -3313,19 +3312,17 @@ class aacc_timp(Variable):
         aacc_timp = (
             max_(
                 0,
-                (aacc_impn + (aacc_gits > 0) * max_(
+                (aacc_impn
+                + (aacc_gits - min_(aacc_gits, max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_gits * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
-                    ))
-                + (aacc_imps > 0) * max_(
+                    aacc_gits * (micro.microentreprise.regime_micro_bic.marchandises.taux))))
+                + (aacc_imps - min_(aacc_imps, max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_imps * (1 - micro.microentreprise.regime_micro_bic.services.taux)
-                    )
-                + (nacc_meup > 0) * max_(
+                    aacc_imps * (micro.microentreprise.regime_micro_bic.services.taux))))
+                + (nacc_meup - min_(nacc_meup, max_(
                     micro.microentreprise.montant_minimum,
-                    nacc_meup * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
-                    )
-                + max_(0, nacc_pres - alnp_defs) - aacc_defn
+                   nacc_meup * (micro.microentreprise.regime_micro_bic.marchandises.taux))))
+                + max_(0, nacc_pres - alnp_defs) - aacc_defn)
                 )
             )
         return aacc_timp
@@ -3343,23 +3340,62 @@ class aacc_timp(Variable):
         aacc_timp = (
             max_(
                 0,
-                (aacc_impn + (aacc_gits > 0) * max_(
+                aacc_impn
+                + (aacc_gits - min_(aacc_gits, max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_gits * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
-                    ))
-                + (aacc_imps > 0) * max_(
+                    aacc_gits * (micro.microentreprise.regime_micro_bic.services.taux))))
+                + (aacc_imps - min_(aacc_imps, max_(
                     micro.microentreprise.montant_minimum,
-                    aacc_imps * (1 - micro.microentreprise.regime_micro_bic.services.taux)
-                    )
-                + (nacc_meup > 0) * max_(
+                    aacc_imps * (micro.microentreprise.regime_micro_bic.services.taux))))
+                + (nacc_meup - min_(nacc_meup, max_(
                     micro.microentreprise.montant_minimum,
-                    nacc_meup * (1 - micro.microentreprise.regime_micro_bic.marchandises.taux)
-                    )
-                + (nacc_meuc > 0) * max_(
+                    nacc_meup * (micro.microentreprise.regime_micro_bic.marchandises.taux))))
+                + (nacc_meuc - min_(nacc_meuc, max_(
                     micro.microentreprise.montant_minimum,
-                    nacc_meuc * (1 - micro.microentreprise.regime_micro_bic.services.taux)
-                    )
+                    nacc_meuc * (micro.microentreprise.regime_micro_bic.services.taux))))
                 + max_(0, nacc_pres - alnp_defs) - aacc_defn
+                )
+            )
+        return aacc_timp
+
+    def formula_2025_01_01(individu, period, parameters):
+        # LMNP micro-bic + bénéfices réels
+        aacc_impn = individu('aacc_impn', period)
+        aacc_gits = individu('aacc_gits', period)
+        tourisme_non_classes = individu('tourisme_non_classes', period)
+        nacc_meup = individu('nacc_meup', period)
+        nacc_meup_non_classes = individu('nacc_meup_non_classes', period)
+        autres_location_meublees_micro = individu('autres_location_meublees_micro', period)
+        autres_location_meublees_micro_prelev = individu('autres_location_meublees_micro_prelev', period)
+
+        nacc_pres = individu('nacc_pres', period)
+        alnp_defs = individu('alnp_defs', period)
+        alnp_imps = individu('alnp_imps', period)
+        nacc_defs = individu('nacc_defs', period)
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+        aacc_timp = (
+            max_(
+                0,
+                aacc_impn
+                + (aacc_gits - min_(aacc_gits, max_(
+                    micro.microentreprise.montant_minimum,
+                    aacc_gits * (micro.microentreprise.regime_micro_bic.services.taux))))
+                + (tourisme_non_classes - min_(tourisme_non_classes, max_(
+                    micro.microentreprise.montant_minimum,
+                    tourisme_non_classes * (micro.microentreprise.regime_micro_bic.meubles_tourisme.taux))))
+                + (nacc_meup - min_(nacc_meup, max_(
+                    micro.microentreprise.montant_minimum,
+                    nacc_meup * (micro.microentreprise.regime_micro_bic.services.taux))))
+                + (nacc_meup_non_classes - min_(nacc_meup_non_classes, max_(
+                    micro.microentreprise.montant_minimum,
+                    nacc_meup_non_classes * (micro.microentreprise.regime_micro_bic.meubles_tourisme.taux))))
+                + (autres_location_meublees_micro - min_(autres_location_meublees_micro, max_(
+                    micro.microentreprise.montant_minimum,
+                    autres_location_meublees_micro * (micro.microentreprise.regime_micro_bic.services.taux))))
+                + (autres_location_meublees_micro_prelev - min_(autres_location_meublees_micro_prelev, max_(
+                    micro.microentreprise.montant_minimum,
+                    autres_location_meublees_micro_prelev * (micro.microentreprise.regime_micro_bic.services.taux))))
+                + max_(0, alnp_imps - alnp_defs) + max_(0, nacc_pres - nacc_defs)
                 )
             )
         return aacc_timp
