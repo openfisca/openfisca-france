@@ -1,60 +1,84 @@
 from openfisca_france.model.base import *
 
 
+def bourse_college_echelon_selon_annee_reference(famille, period, parameters, annee_reference):
+    '''
+    Échelon de la bourse de collège, les ressources et le Smic de référence étant
+    ceux de `annee_reference`.
+
+    Les plafonds de ressources sont fixés en multiples du Smic horaire brut par
+    l'arrêté du 22 mars 2016 ; le Smic retenu est celui en vigueur au 1er juillet
+    de l'année de référence des ressources.
+    '''
+    rfr = famille.demandeur.foyer_fiscal('rfr', annee_reference)
+    age_i = famille.members('age', period)
+    nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
+    P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_college.apres_2016
+
+    juillet_annee_reference = annee_reference.first_month.offset(6, MONTH)
+    smic_horaire = parameters(juillet_annee_reference).marche_travail.salaire_minimum.smic.smic_b_horaire
+
+    P_e3 = P.echelon_3
+    plafonds_echelon_3_en_pourcent_smic = select(
+        [nb_enfants <= i for i in range(1, 8)],
+        [P_e3.plafond_1e, P_e3.plafond_2e, P_e3.plafond_3e, P_e3.plafond_4e, P_e3.plafond_5e, P_e3.plafond_6e, P_e3.plafond_7e],
+        P_e3.plafond_8e
+        )
+    P_e2 = P.echelon_2
+    plafonds_echelon_2_en_pourcent_smic = select(
+        [nb_enfants <= i for i in range(1, 8)],
+        [P_e2.plafond_1e, P_e2.plafond_2e, P_e2.plafond_3e, P_e2.plafond_4e, P_e2.plafond_5e, P_e2.plafond_6e, P_e2.plafond_7e],
+        P_e2.plafond_8e
+        )
+    P_e1 = P.echelon_1
+    plafonds_echelon_1_en_pourcent_smic = select(
+        [nb_enfants <= i for i in range(1, 8)],
+        [P_e1.plafond_1e, P_e1.plafond_2e, P_e1.plafond_3e, P_e1.plafond_4e, P_e1.plafond_5e, P_e1.plafond_6e, P_e1.plafond_7e],
+        P_e1.plafond_8e
+        )
+
+    plafonds_echelon_3 = round_(plafonds_echelon_3_en_pourcent_smic * smic_horaire)
+    plafonds_echelon_2 = round_(plafonds_echelon_2_en_pourcent_smic * smic_horaire)
+    plafonds_echelon_1 = round_(plafonds_echelon_1_en_pourcent_smic * smic_horaire)
+
+    return apply_thresholds(
+        rfr,
+        thresholds = [
+            plafonds_echelon_3,
+            plafonds_echelon_2,
+            plafonds_echelon_1,
+            ],
+        choices = [3, 2, 1]
+        )
+
+
 class bourse_college_echelon(Variable):
     value_type = int
     label = 'Échelon de la bourse de collège attribuée'
     entity = Famille
     definition_period = MONTH
 
+    def formula_2020_09_01(famille, period, parameters):
+        '''
+        Depuis la rentrée scolaire 2020, les ressources retenues sont celles de la
+        dernière année civile, et non plus de l'avant-dernière.
+
+        Article D. 531-5 du code de l'éducation dans sa rédaction issue du
+        décret n° 2019-918 du 30 août 2019 (art. 3 et 4), en vigueur au 1er janvier 2020.
+        https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039017949/2020-01-01/
+        '''
+        return bourse_college_echelon_selon_annee_reference(famille, period, parameters, period.last_year)
+
     def formula_2016_07_01(famille, period, parameters):
         '''
         Références législatives :
         Arrêté du 22 mars 2016 fixant les plafonds de ressources...
         https://www.legifrance.gouv.fr/eli/arrete/2016/3/22/MENE1606428A/jo
+
+        Jusqu'à la rentrée scolaire 2019 incluse, les ressources retenues sont celles
+        de l'avant-dernière année civile (art. D. 531-5, version du 1er septembre 2016).
         '''
-
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
-        age_i = famille.members('age', period)
-        nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
-        P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_college.apres_2016
-
-        # Les plafonds sont estimés en multiples du Smic au 1er juillet de l'année n_2
-        juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
-        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic.smic_b_horaire
-
-        P_e3 = P.echelon_3
-        plafonds_echelon_3_en_pourcent_smic = select(
-            [nb_enfants <= i for i in range(1, 8)],
-            [P_e3.plafond_1e, P_e3.plafond_2e, P_e3.plafond_3e, P_e3.plafond_4e, P_e3.plafond_5e, P_e3.plafond_6e, P_e3.plafond_7e],
-            P_e3.plafond_8e
-            )
-        P_e2 = P.echelon_2
-        plafonds_echelon_2_en_pourcent_smic = select(
-            [nb_enfants <= i for i in range(1, 8)],
-            [P_e2.plafond_1e, P_e2.plafond_2e, P_e2.plafond_3e, P_e2.plafond_4e, P_e2.plafond_5e, P_e2.plafond_6e, P_e2.plafond_7e],
-            P_e2.plafond_8e
-            )
-        P_e1 = P.echelon_1
-        plafonds_echelon_1_en_pourcent_smic = select(
-            [nb_enfants <= i for i in range(1, 8)],
-            [P_e1.plafond_1e, P_e1.plafond_2e, P_e1.plafond_3e, P_e1.plafond_4e, P_e1.plafond_5e, P_e1.plafond_6e, P_e1.plafond_7e],
-            P_e1.plafond_8e
-            )
-
-        plafonds_echelon_3 = round_(plafonds_echelon_3_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_2 = round_(plafonds_echelon_2_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_1 = round_(plafonds_echelon_1_en_pourcent_smic * smic_juillet_n_2)
-
-        return apply_thresholds(
-            rfr,
-            thresholds = [
-                plafonds_echelon_3,
-                plafonds_echelon_2,
-                plafonds_echelon_1,
-                ],
-            choices = [3, 2, 1]
-            )
+        return bourse_college_echelon_selon_annee_reference(famille, period, parameters, period.n_2)
 
     def formula(famille, period, parameters):
         rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
@@ -165,85 +189,109 @@ class bourse_lycee_nombre_parts(Variable):
         return nombre_parts
 
 
+def bourse_lycee_echelon_selon_annee_reference(famille, period, parameters, annee_reference):
+    '''
+    Échelon de la bourse de lycée, les ressources et le Smic de référence étant
+    ceux de `annee_reference`.
+
+    Les plafonds de ressources sont fixés en multiples du Smic horaire brut par
+    l'arrêté du 22 mars 2016 ; le Smic retenu est celui en vigueur au 1er juillet
+    de l'année de référence des ressources.
+    '''
+    rfr = famille.demandeur.foyer_fiscal('rfr', annee_reference)
+    age_i = famille.members('age', period)
+    nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
+    P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_lycee.apres_2016
+
+    juillet_annee_reference = annee_reference.first_month.offset(6, MONTH)
+    smic_horaire = parameters(juillet_annee_reference).marche_travail.salaire_minimum.smic.smic_b_horaire
+
+    P_e6 = P.echelon_6
+    plafonds_echelon_6_en_pourcent_smic = select(
+        [nb_enfants <= i for i in range(1, 8)],
+        [P_e6.plafond_1e, P_e6.plafond_2e, P_e6.plafond_3e, P_e6.plafond_4e, P_e6.plafond_5e, P_e6.plafond_6e, P_e6.plafond_7e],
+        P_e6.plafond_8e
+        )
+    P_e5 = P.echelon_5
+    plafonds_echelon_5_en_pourcent_smic = select(
+        [nb_enfants <= i for i in range(1, 8)],
+        [P_e5.plafond_1e, P_e5.plafond_2e, P_e5.plafond_3e, P_e5.plafond_4e, P_e5.plafond_5e, P_e5.plafond_6e, P_e5.plafond_7e],
+        P_e5.plafond_8e
+        )
+    P_e4 = P.echelon_4
+    plafonds_echelon_4_en_pourcent_smic = select(
+        [nb_enfants <= i for i in range(1, 8)],
+        [P_e4.plafond_1e, P_e4.plafond_2e, P_e4.plafond_3e, P_e4.plafond_4e, P_e4.plafond_5e, P_e4.plafond_6e, P_e4.plafond_7e],
+        P_e4.plafond_8e
+        )
+    P_e3 = P.echelon_3
+    plafonds_echelon_3_en_pourcent_smic = select(
+        [nb_enfants <= i for i in range(1, 8)],
+        [P_e3.plafond_1e, P_e3.plafond_2e, P_e3.plafond_3e, P_e3.plafond_4e, P_e3.plafond_5e, P_e3.plafond_6e, P_e3.plafond_7e],
+        P_e3.plafond_8e
+        )
+    P_e2 = P.echelon_2
+    plafonds_echelon_2_en_pourcent_smic = select(
+        [nb_enfants <= i for i in range(1, 8)],
+        [P_e2.plafond_1e, P_e2.plafond_2e, P_e2.plafond_3e, P_e2.plafond_4e, P_e2.plafond_5e, P_e2.plafond_6e, P_e2.plafond_7e],
+        P_e2.plafond_8e
+        )
+    P_e1 = P.echelon_1
+    plafonds_echelon_1_en_pourcent_smic = select(
+        [nb_enfants <= i for i in range(1, 8)],
+        [P_e1.plafond_1e, P_e1.plafond_2e, P_e1.plafond_3e, P_e1.plafond_4e, P_e1.plafond_5e, P_e1.plafond_6e, P_e1.plafond_7e],
+        P_e1.plafond_8e
+        )
+
+    plafonds_echelon_6 = round_(plafonds_echelon_6_en_pourcent_smic * smic_horaire)
+    plafonds_echelon_5 = round_(plafonds_echelon_5_en_pourcent_smic * smic_horaire)
+    plafonds_echelon_4 = round_(plafonds_echelon_4_en_pourcent_smic * smic_horaire)
+    plafonds_echelon_3 = round_(plafonds_echelon_3_en_pourcent_smic * smic_horaire)
+    plafonds_echelon_2 = round_(plafonds_echelon_2_en_pourcent_smic * smic_horaire)
+    plafonds_echelon_1 = round_(plafonds_echelon_1_en_pourcent_smic * smic_horaire)
+
+    return apply_thresholds(
+        rfr,
+        thresholds = [
+            plafonds_echelon_6,
+            plafonds_echelon_5,
+            plafonds_echelon_4,
+            plafonds_echelon_3,
+            plafonds_echelon_2,
+            plafonds_echelon_1,
+            ],
+        choices = [6, 5, 4, 3, 2, 1]
+        )
+
+
 class bourse_lycee_echelon(Variable):
     value_type = int
-    label = 'Échelon de la bourse de collège attribuée'
+    label = 'Échelon de la bourse de lycée attribuée'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+    def formula_2020_09_01(famille, period, parameters):
+        '''
+        Depuis la rentrée scolaire 2020, les ressources retenues sont celles de la
+        dernière année civile, et non plus de l'avant-dernière.
+
+        Article D. 531-20 du code de l'éducation dans sa rédaction issue du
+        décret n° 2019-918 du 30 août 2019 (art. 3 et 4), en vigueur au 1er janvier 2020.
+        https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039017954/2020-01-01/
+        '''
+        return bourse_lycee_echelon_selon_annee_reference(famille, period, parameters, period.last_year)
 
     def formula(famille, period, parameters):
         '''
         Références législatives :
         Arrêté du 22 mars 2016 fixant les modalités de détermination des plafonds de ressources ouvrant droit...
         https://www.legifrance.gouv.fr/eli/arrete/2016/3/22/MENE1606432A/jo
+
+        Jusqu'à la rentrée scolaire 2019 incluse, les ressources retenues sont celles
+        de l'avant-dernière année civile (art. D. 531-20, version du 1er septembre 2016).
         '''
-
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
-        age_i = famille.members('age', period)
-        nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
-        P = parameters(period).prestations_sociales.education.bourses.bourses_education.bourse_lycee.apres_2016
-
-        # Les plafonds sont estimés en multiples du Smic au 1er juillet de l'année n_2
-        juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
-        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic.smic_b_horaire
-
-        P_e6 = P.echelon_6
-        plafonds_echelon_6_en_pourcent_smic = select(
-            [nb_enfants <= i for i in range(1, 8)],
-            [P_e6.plafond_1e, P_e6.plafond_2e, P_e6.plafond_3e, P_e6.plafond_4e, P_e6.plafond_5e, P_e6.plafond_6e, P_e6.plafond_7e],
-            P_e6.plafond_8e
-            )
-        P_e5 = P.echelon_5
-        plafonds_echelon_5_en_pourcent_smic = select(
-            [nb_enfants <= i for i in range(1, 8)],
-            [P_e5.plafond_1e, P_e5.plafond_2e, P_e5.plafond_3e, P_e5.plafond_4e, P_e5.plafond_5e, P_e5.plafond_6e, P_e5.plafond_7e],
-            P_e5.plafond_8e
-            )
-        P_e4 = P.echelon_4
-        plafonds_echelon_4_en_pourcent_smic = select(
-            [nb_enfants <= i for i in range(1, 8)],
-            [P_e4.plafond_1e, P_e4.plafond_2e, P_e4.plafond_3e, P_e4.plafond_4e, P_e4.plafond_5e, P_e4.plafond_6e, P_e4.plafond_7e],
-            P_e4.plafond_8e
-            )
-        P_e3 = P.echelon_3
-        plafonds_echelon_3_en_pourcent_smic = select(
-            [nb_enfants <= i for i in range(1, 8)],
-            [P_e3.plafond_1e, P_e3.plafond_2e, P_e3.plafond_3e, P_e3.plafond_4e, P_e3.plafond_5e, P_e3.plafond_6e, P_e3.plafond_7e],
-            P_e3.plafond_8e
-            )
-        P_e2 = P.echelon_2
-        plafonds_echelon_2_en_pourcent_smic = select(
-            [nb_enfants <= i for i in range(1, 8)],
-            [P_e2.plafond_1e, P_e2.plafond_2e, P_e2.plafond_3e, P_e2.plafond_4e, P_e2.plafond_5e, P_e2.plafond_6e, P_e2.plafond_7e],
-            P_e2.plafond_8e
-            )
-        P_e1 = P.echelon_1
-        plafonds_echelon_1_en_pourcent_smic = select(
-            [nb_enfants <= i for i in range(1, 8)],
-            [P_e1.plafond_1e, P_e1.plafond_2e, P_e1.plafond_3e, P_e1.plafond_4e, P_e1.plafond_5e, P_e1.plafond_6e, P_e1.plafond_7e],
-            P_e1.plafond_8e
-            )
-
-        plafonds_echelon_6 = round_(plafonds_echelon_6_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_5 = round_(plafonds_echelon_5_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_4 = round_(plafonds_echelon_4_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_3 = round_(plafonds_echelon_3_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_2 = round_(plafonds_echelon_2_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_1 = round_(plafonds_echelon_1_en_pourcent_smic * smic_juillet_n_2)
-
-        return apply_thresholds(
-            rfr,
-            thresholds = [
-                plafonds_echelon_6,
-                plafonds_echelon_5,
-                plafonds_echelon_4,
-                plafonds_echelon_3,
-                plafonds_echelon_2,
-                plafonds_echelon_1,
-                ],
-            choices = [6, 5, 4, 3, 2, 1]
-            )
+        return bourse_lycee_echelon_selon_annee_reference(famille, period, parameters, period.n_2)
 
 
 class bourse_lycee(Variable):
