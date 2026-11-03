@@ -28,3 +28,18 @@
     date_entree_logement: [2021-11-01, 2021-08-01, 2020-10-01]
   output:
     locapass_eligibilite: [true, true, false]
+
+- name: L'avance Loca-Pass est modélisée à partir du 01/01/2018
+  description: >-
+    Les conditions d'âge et de délai sont issues de la directive AVANCE LOCA-PASS d'Action Logement
+    du 20/12/2017, applicable aux offres émises à compter du 01/01/2018. Avant cette correction, les
+    paramètres n'existaient qu'à partir du 01/01/2021 et le calcul échouait sur les périodes antérieures.
+  period: 2018-03
+  input:
+    age: [29, 31]
+    activite: [chomeur, chomeur]
+    alternant: [false, false]
+    statut_occupation_logement: [locataire_vide, locataire_vide]
+    date_entree_logement: [2018-04-01, 2018-04-01]
+  output:
+    locapass_eligibilite: [true, false]
