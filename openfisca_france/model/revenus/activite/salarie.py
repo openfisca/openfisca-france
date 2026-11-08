@@ -790,6 +790,34 @@ class ppv_eligibilite_exceptionnelle(Variable):
             )
 
 
+class ppv_eligibilite(Variable):
+    '''
+    Cette variable détermine si la part de la PPV exonérée de cotisations est
+    aussi exonérée d'impôt sur le revenu, de CSG et de CRDS : pour les primes
+    versées jusqu'au 31 décembre 2023, cette exonération s'applique aux
+    salariés dont la rémunération des douze derniers mois est inférieure
+    à trois Smic. Au-dessus de 3 Smic, la prime reste exonérée de cotisations
+    mais elle est imposable.
+    '''
+
+    value_type = float
+    entity = Individu
+    label = "Eligibilité à l'exonération d'impôt sur le revenu, de CSG et de CRDS pour la PPV"
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+    end = '2023-12-31'
+
+    def formula_2022_07_01(individu, period, parameters):
+        annee_glissante = Period(('year', period.start, 1)).offset(-1)
+        salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
+        smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
+        quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
+        plafond_salaire = parameters(period).marche_travail.primes_exceptionnelles.prime_partage_valeur.plafond_salaire
+        return (salaire_de_base_annuel) < (
+            smic_b_annuel * plafond_salaire * quotite_de_travail
+            )
+
+
 class prime_partage_valeur_exoneree(Variable):
     value_type = float
     entity = Individu
@@ -817,6 +845,37 @@ class prime_partage_valeur_exoneree(Variable):
             ppv_parameters.plafond_exoneration,
             )
         return min_(prime_partage_valeur, plafond_ppv_exoneree)
+
+
+class prime_partage_valeur_non_imposable(Variable):
+    value_type = float
+    entity = Individu
+    label = "Prime pérenne de partage de la valeur (PPV), partie exonérée d'impôt sur le revenu, de CSG et de CRDS"
+    definition_period = YEAR
+    reference = [
+        'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18',
+        'https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/protection-pouvoir-dachat.html',
+        ]
+    set_input = set_input_divide_by_period
+    end = '2023-12-31'
+
+    def formula_2022_07_01(individu, period, parameters):
+        '''
+        Pour les primes versées jusqu'au 31 décembre 2023 aux bénéficiaires
+        percevant, au cours des douze mois précédant leur versement, une
+        rémunération inférieure à trois fois la valeur annuelle du Smic, la
+        part de la PPV exonérée de cotisations est totalement exonérée
+        d'impôt sur le revenu (article 81 du CGI) ainsi que des contributions
+        sociales prévues à l'article L. 136-1 du code de la sécurité sociale
+        (CSG) et à l'article 14 de l'ordonnance n° 96-50 du 24 janvier 1996
+        (CRDS). Elle n'est pas déclarée dans la rémunération nette fiscale
+        (DSN type 904) mais reste prise en compte dans le revenu fiscal de
+        référence.
+        '''
+
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period)
+        ppv_eligibilite = individu('ppv_eligibilite', period)
+        return prime_partage_valeur_exoneree * ppv_eligibilite
 
 
 class prime_partage_valeur_non_exoneree(Variable):

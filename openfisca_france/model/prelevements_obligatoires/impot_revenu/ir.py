@@ -2533,6 +2533,11 @@ class rfr(Variable):
         # TODO: On applique ici l'abattement de 10% mais idéalement il faudrait tenir compte des frais réels le cas échéant.
         prime_partage_valeur_exoneree_exceptionnelle = (foyer_fiscal.sum(prime_partage_valeur_exoneree_exceptionnelle_i) * 0.9)
 
+        # La part de la PPV non imposable (primes versées jusqu'au 31/12/2023, rémunération < 3 Smic)
+        # est exclue du RNI (article 81 du CGI) : elle est réintégrée ici, nette de l'abattement de 10 %.
+        prime_partage_valeur_non_imposable_i = foyer_fiscal.members('prime_partage_valeur_non_imposable', period)
+        prime_partage_valeur_non_imposable = (foyer_fiscal.sum(prime_partage_valeur_non_imposable_i) * 0.9)
+
         f3sb = where(imposition_au_bareme, f3sb, 0)
 
         return (
@@ -2542,6 +2547,7 @@ class rfr(Variable):
             + abattements_plus_values
             + f2dm + microentreprise
             + prime_partage_valeur_exoneree_exceptionnelle
+            + prime_partage_valeur_non_imposable
             )
 
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
