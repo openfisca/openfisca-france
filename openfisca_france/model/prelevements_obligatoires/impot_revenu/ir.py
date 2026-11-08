@@ -674,7 +674,6 @@ class revenu_categoriel_tspr(Variable):
         revenu_assimile_salaire_apres_abattements_i = foyer_fiscal.members('revenu_assimile_salaire_apres_abattements', period)
         abattement_pensions_retraites = foyer_fiscal('abattement_pensions_retraites', period)
         revenu_assimile_pension_i = foyer_fiscal.members('revenu_assimile_pension', period)
-        abattement_pensions_retraites = foyer_fiscal('abattement_pensions_retraites', period)
         revenu_assimile_salaire_apres_abattements = foyer_fiscal.sum(revenu_assimile_salaire_apres_abattements_i)
         revenu_assimile_pension = foyer_fiscal.sum(revenu_assimile_pension_i)
 
@@ -684,7 +683,6 @@ class revenu_categoriel_tspr(Variable):
             + revenu_assimile_salaire_apres_abattements
             + revenu_assimile_pension
             + rente_viagere_titre_onereux_net
-            - abattement_pensions_retraites
             - abattement_pensions_retraites
             )
 
