@@ -3657,10 +3657,16 @@ class abat_spe(Variable):
         # Abattement pour rattachement d'enfants mari·é·s
         abattement_enfant_marie = abattements.enfant_marie
 
-        # Vecteur de foyers eligibles aux abattements spéciaux
+        # Nombre de personnes remplissant la condition d'âge ou d'invalidité
+        # (0, 1 ou 2) : l'abattement est doublé lorsque les deux membres du
+        # couple soumis à imposition commune remplissent les mêmes conditions
+        # (CGI, art. 157 bis ; BOI-IR-BASE-40). La conversion en entier est
+        # nécessaire car la somme de deux booléens numpy reste booléenne
+        # (True + True = True), ce qui comptait un couple éligible comme
+        # un seul contribuable et empêchait le doublement.
         foyers_eligibles = (
-            (((age_declarant >= 65) | declarant_invalide) & (age_declarant > 0))
-            + (((age_conjoint >= 65) | conjoint_invalide) & (age_conjoint > 0))
+            (((age_declarant >= 65) | declarant_invalide) & (age_declarant > 0)).astype(int)
+            + (((age_conjoint >= 65) | conjoint_invalide) & (age_conjoint > 0)).astype(int)
             )
 
         # Vecteur de montants d'abattement pour personnes âges ou invalides
