@@ -1,0 +1,166 @@
+# Abattement spécial personnes âgées ou invalides (CGI, art. 157 bis) :
+# l'abattement est doublé lorsque les deux membres du couple soumis à
+# imposition commune remplissent les conditions d'âge (65 ans ou plus au
+# 31 décembre) ou d'invalidité. Échelle 2023 (contribuable_age_invalide) :
+# 2 746 € si le revenu net global n'excède pas 17 200 €, 1 373 € s'il est
+# compris entre 17 200 € et 27 670 €, aucun au-delà.
+# Attendus vérifiés contre le programme officiel de référence DGFiP
+# (millésime 2023, sources2023m_8_0) et la doctrine (BOI-IR-BASE-40-20240618,
+# § 60 ; brochure « Calcul de l'impôt 2024 »).
+
+- name: "abat_spe - Couple marié dont les deux membres ont 65 ans ou plus, revenu net global entre 17 200 € et 27 670 € (cas d'un foyer de retraités à 14 936 € chacun : l'abattement est doublé, 2 × 1 373 €)"
+  period: 2023
+  absolute_error_margin: 0.5
+  input:
+    foyer_fiscal:
+      declarants: [1, 2]
+    individus:
+      1:
+        date_naissance: '1950-12-24'
+        retraite_imposable: 14936
+        statut_marital: marie
+      2:
+        date_naissance: '1948-05-11'
+        retraite_imposable: 14936
+        statut_marital: marie
+    familles:
+      famille_0:
+        parents: [1, 2]
+    menages:
+      menage_0:
+        personne_de_reference: [1]
+        conjoint: [2]
+  output:
+    abat_spe: 2746
+    rni: 24138
+    impot_revenu_restant_a_payer: 0
+
+- name: "abat_spe - Couple marié dont les deux membres ont 65 ans ou plus, revenu net global entre 17 200 € et 27 670 € (retraites 22 404 € et 0 € : le conjoint sans revenu ouvre droit au doublement)"
+  period: 2023
+  absolute_error_margin: 0.5
+  input:
+    foyer_fiscal:
+      declarants: [1, 2]
+    individus:
+      1:
+        date_naissance: '1950-12-24'
+        retraite_imposable: 22404
+        statut_marital: marie
+      2:
+        date_naissance: '1948-05-11'
+        retraite_imposable: 0
+        statut_marital: marie
+    familles:
+      famille_0:
+        parents: [1, 2]
+    menages:
+      menage_0:
+        personne_de_reference: [1]
+        conjoint: [2]
+  output:
+    abat_spe: 2746
+    rni: 17418
+    impot_revenu_restant_a_payer: 0
+
+- name: "abat_spe - Couple marié dont les deux membres ont 65 ans ou plus, revenu net global n'excédant pas 17 200 € (retraites 9 000 € chacun : l'abattement est doublé, 2 × 2 746 €)"
+  period: 2023
+  absolute_error_margin: 0.5
+  input:
+    foyer_fiscal:
+      declarants: [1, 2]
+    individus:
+      1:
+        date_naissance: '1950-12-24'
+        retraite_imposable: 9000
+        statut_marital: marie
+      2:
+        date_naissance: '1948-05-11'
+        retraite_imposable: 9000
+        statut_marital: marie
+    familles:
+      famille_0:
+        parents: [1, 2]
+    menages:
+      menage_0:
+        personne_de_reference: [1]
+        conjoint: [2]
+  output:
+    abat_spe: 5492
+    rni: 10708
+    impot_revenu_restant_a_payer: 0
+
+- name: "abat_spe - Couple marié dont un seul membre a 65 ans ou plus, revenu net global entre 17 200 € et 27 670 € (l'abattement n'est pas doublé)"
+  period: 2023
+  absolute_error_margin: 0.5
+  input:
+    foyer_fiscal:
+      declarants: [1, 2]
+    individus:
+      1:
+        date_naissance: '1950-12-24'
+        retraite_imposable: 22404
+        statut_marital: marie
+      2:
+        date_naissance: '1970-06-15'
+        retraite_imposable: 0
+        statut_marital: marie
+    familles:
+      famille_0:
+        parents: [1, 2]
+    menages:
+      menage_0:
+        personne_de_reference: [1]
+        conjoint: [2]
+  output:
+    abat_spe: 1373
+    rni: 18791
+    impot_revenu_restant_a_payer: 0
+
+- name: "abat_spe - Célibataire de 65 ans ou plus, revenu net global n'excédant pas 17 200 € (abattement de base, 2 746 €, non doublé : une personne seule n'ouvre pas droit au doublement)"
+  period: 2023
+  absolute_error_margin: 0.5
+  input:
+    foyer_fiscal:
+      declarants: [1]
+    individus:
+      1:
+        date_naissance: '1950-12-24'
+        retraite_imposable: 10306
+        statut_marital: celibataire
+    familles:
+      famille_0:
+        parents: [1]
+    menages:
+      menage_0:
+        personne_de_reference: [1]
+  output:
+    abat_spe: 2746
+    rni: 6529
+    impot_revenu_restant_a_payer: 0
+
+- name: "abat_spe - Couple marié dont les deux membres ont 65 ans ou plus, revenu net global supérieur à 27 670 € (salaires 30 000 € chacun : aucun abattement, impôt non nul)"
+  period: 2023
+  absolute_error_margin: 0.5
+  input:
+    foyer_fiscal:
+      declarants: [1, 2]
+    individus:
+      1:
+        date_naissance: '1950-12-24'
+        salaire_imposable: 30000
+        statut_marital: marie
+      2:
+        date_naissance: '1948-05-11'
+        salaire_imposable: 30000
+        statut_marital: marie
+    familles:
+      famille_0:
+        parents: [1, 2]
+    menages:
+      menage_0:
+        personne_de_reference: [1]
+        conjoint: [2]
+  output:
+    abat_spe: 0
+    rni: 54000
+    impot_revenu_restant_a_payer: -3455
