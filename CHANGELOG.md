@@ -1,5 +1,17 @@
 # Changelog
 
+### 177.0.1 [#2836](https://github.com/openfisca/openfisca-france/pull/2836)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2025.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants`
+* Détails :
+  - Cotisation maladie-maternité des artisans et commerçants : applique le barème issu du décret n° 2024-688 (articles D621-1 et D621-2 du code de la sécurité sociale) au lieu du barème de 2020 codé en dur. Le taux moyen est interpolé linéairement entre 20 %, 40 %, 60 %, 110 %, 200 % et 300 % du PSS (0 % ; 1,5 % ; 4 % ; 6,5 % ; 7,7 % ; 8,5 %) ; au-delà de trois PSS, 8,5 % sur la fraction n'excédant pas trois PSS et 6,5 % sur l'excédent. Nouveaux paramètres dans `mmid/maladie_maternite_2025`. Contribue à #1775.
+  - Cotisation de retraite complémentaire des artisans et commerçants : depuis le 01/01/2025, le premier taux (8,1 %) s'applique jusqu'au PSS et non plus jusqu'au plafond RCI (article D635-7 du code de la sécurité sociale).
+  - _L'assiette reste `rpns_imposables` : l'assiette unique de l'article L131-6 (revenu brut après abattement de 26 %) n'est pas encore modélisée._
+
 # 177.0.0 [#2833](https://github.com/openfisca/openfisca-france/pull/2833)
 
 * Amélioration technique.

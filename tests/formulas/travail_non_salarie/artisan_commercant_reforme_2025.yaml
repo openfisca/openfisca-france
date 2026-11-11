@@ -1,0 +1,53 @@
+# Cotisations maladie-maternité et retraite complémentaire des artisans et commerçants
+# depuis la réforme de 2025 (décret n° 2024-688 ; articles D621-1, D621-2 et D635-7 du code de la sécurité sociale).
+# L'assiette retenue est rpns_imposables (l'assiette unique de l'article L131-6 n'est pas encore modélisée).
+
+- name: Commercant 2025, revenu de 100000 €
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 100000
+    categorie_non_salarie: commercant
+  output:
+    maladie_maternite_artisan_commercant: -7798.51
+    retraite_complementaire_artisan_commercant: -8629.0
+
+- name: Commercant 2026, revenu de 8000 €
+  period: 2026
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 8000
+    categorie_non_salarie: commercant
+  output:
+    maladie_maternite_artisan_commercant: 0
+    retraite_complementaire_artisan_commercant: -648.0
+
+- name: Artisan 2026, revenu de 30000 €
+  period: 2026
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 30000
+    categorie_non_salarie: artisan
+  output:
+    maladie_maternite_artisan_commercant: -1236.33
+    retraite_complementaire_artisan_commercant: -2430.0
+
+- name: Commercant 2026, revenu de 125000 €
+  period: 2026
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 125000
+    categorie_non_salarie: commercant
+  output:
+    maladie_maternite_artisan_commercant: -10225.92
+    retraite_complementaire_artisan_commercant: -10894.4
+
+- name: Commercant 2026, revenu de 200000 €
+  period: 2026
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 200000
+    categorie_non_salarie: commercant
+  output:
+    maladie_maternite_artisan_commercant: -15883.6
+    retraite_complementaire_artisan_commercant: -17013.24
