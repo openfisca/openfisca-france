@@ -1,5 +1,14 @@
 # Changelog
 
+# 177.0.0 [#2833](https://github.com/openfisca/openfisca-france/pull/2833)
+
+* Amélioration technique.
+* Détails :
+  - Met à jour les dépendances avec `uv sync --upgrade`
+  - **Supprime le support de Python**
+    - 3.9 qui n'a [aucune mise à jour de sécurité depuis le 31/20/2025](https://www.python.org/downloads/release/python-3925/) et
+    - 3.10 qui n'en a pas depuis [01/10/2026](https://www.python.org/downloads/release/python-31022/).
+
 ### 176.1.10 [#2808](https://github.com/openfisca/openfisca-france/pull/2808)
 
 * Évolution du système socio-fiscal.
