@@ -8,7 +8,7 @@ on:
 env:
   # Versions disponibles visibles sur  https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
   DEFAULT_PYTHON_VERSION: &upper_pyver 3.13.11
-  MIN_PYTHON_VERSION: &min_pyver 3.10.11
+  MIN_PYTHON_VERSION: &min_pyver 3.11.0
 
 jobs:
   build:
