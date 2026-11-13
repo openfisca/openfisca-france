@@ -475,7 +475,21 @@ class revenu_assimile_pension_apres_abattements(Variable):
         return max_(0, revenu_assimile_pension - round_(max_(parameters_deductions.abatpen.taux * revenu_assimile_pension, parameters_deductions.abatpen.min)))
 
 
-#    return max_(0, revenu_assimile_pension - min_(round_(max_(parameters_deductions.abatpen.taux*revenu_assimile_pension , parameters_deductions.abatpen.min)), parameters_deductions.abatpen.max))  le max se met au niveau du foyer
+class abattement_pensions_retraites(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = 'Abattement de 10% sur les pensions et les retraites'
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        revenu_assimile_pension_i = foyer_fiscal.members('revenu_assimile_pension', period)
+        parameters_deductions = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
+
+        abattement_retraite_non_plafonne_i = revenu_assimile_pension_i - max_(0, revenu_assimile_pension_i - round_(max_(parameters_deductions.abatpen.taux * revenu_assimile_pension_i, parameters_deductions.abatpen.min)))
+        abattement_retraite_plafonne = min_(foyer_fiscal.sum(abattement_retraite_non_plafonne_i), parameters_deductions.abatpen.max)
+
+        return abattement_retraite_plafonne
+
 
 class indu_plaf_abat_pen(Variable):
     value_type = float
@@ -654,12 +668,23 @@ class revenu_categoriel_tspr(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        tspr_i = foyer_fiscal.members('traitements_salaires_pensions_rentes', period)
-        indu_plaf_abat_pen = foyer_fiscal('indu_plaf_abat_pen', period)
 
-        traitements_salaires_pensions_rentes = foyer_fiscal.sum(tspr_i)
+        revenu_assimile_salaire_apres_abattements_i = foyer_fiscal.members('revenu_assimile_salaire_apres_abattements', period)
+        abattement_pensions_retraites = foyer_fiscal('abattement_pensions_retraites', period)
+        revenu_assimile_pension_i = foyer_fiscal.members('revenu_assimile_pension', period)
+        abattement_pensions_retraites = foyer_fiscal('abattement_pensions_retraites', period)
+        revenu_assimile_salaire_apres_abattements = foyer_fiscal.sum(revenu_assimile_salaire_apres_abattements_i)
+        revenu_assimile_pension = foyer_fiscal.sum(revenu_assimile_pension_i)
 
-        return traitements_salaires_pensions_rentes + indu_plaf_abat_pen
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period.offset('first-of'))
+
+        return (
+            + revenu_assimile_salaire_apres_abattements
+            + revenu_assimile_pension
+            + rente_viagere_titre_onereux_net
+            - abattement_pensions_retraites
+            - abattement_pensions_retraites
+            )
 
 
 class deficit_rcm(Variable):
@@ -2451,12 +2476,51 @@ class correction_ir_seuils_recouvrement(Variable):
         return condition_correction_seuils_mise_recouvrement * impots_avant_seuils_mise_recouvrement
 
 
+class autres_impositions_forfaitaires(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = 'Autres impositions forfaitaires'
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        # on déplace ici l'ir sur les plus values immo et le prelevement sur les micro pour plus de clarté sur la décomposition
+        ir_pv_immo = foyer_fiscal('ir_pv_immo', period)
+        prelevement_liberatoire_autoentrepreneur = foyer_fiscal('microsocial', period)
+        taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
+        tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
+        indemnite_compensatrice_agents_assurance = foyer_fiscal('indemnite_compensatrice_agents_assurance', period)
+
+        return (
+            ir_pv_immo
+            + prelevement_liberatoire_autoentrepreneur
+            + taxation_plus_values_hors_bareme
+            + prelevement_forfaitaire_liberatoire
+            + cont_rev_loc
+            + tax_rvcm_forfaitaire
+            + indemnite_compensatrice_agents_assurance
+            )
+
+
 class impot_revenu_restant_a_payer(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Impôt sur le revenu des personnes physiques restant à payer, après prise en compte des éventuels acomptes et des seuils de mise en recouvrement'
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464766'
     definition_period = YEAR
+
+    def formula_2025_01_01(foyer_fiscal, period, parameters):
+        iaidrdi = foyer_fiscal('iaidrdi', period)
+        cehr = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
+        pfu = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        credits_impot = foyer_fiscal('credits_impot', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)
+
+        autres_impositions_forfaitaires = foyer_fiscal('autres_impositions_forfaitaires', period)
+        correction_seuils_recouvrement = foyer_fiscal('correction_ir_seuils_recouvrement', period)
+
+        return -(iaidrdi + cehr + pfu + autres_impositions_forfaitaires - credits_impot - acomptes_ir) - correction_seuils_recouvrement
 
     def formula(foyer_fiscal, period, parameters):
         impots_avant_seuils_recouvrement = foyer_fiscal('impot_revenu_avant_seuils_mise_recouvrement', period)

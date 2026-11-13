@@ -120,6 +120,69 @@ class coefficient_proratisation(Variable):
         return (jours_ouvres_ce_mois_incomplet > 0) * coefficient
 
 
+class cotisations_allegement_general(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisations sociales employeur concernées par l allègement général'
+    set_input = set_input_divide_by_period
+    definition_period = MONTH
+    calculate_output = calculate_output_add
+
+    def formula_2019_01_01(individu, period, parameters):
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
+        chomage_employeur = individu('chomage_employeur', period)
+        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period, options = [ADD])
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period, options = [ADD])
+        accident_du_travail = individu('accident_du_travail', period, options = [ADD])
+        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
+        famille_net_allegement = individu('famille_net_allegement', period)
+        mmid_employeur_net_allegement = individu('mmid_employeur_net_allegement', period, options = [ADD])
+        fnal = individu('fnal', period, options = [ADD])
+
+        cotisations = (
+            agirc_arrco_employeur
+            + chomage_employeur
+            + contribution_equilibre_general_employeur
+            + vieillesse_deplafonnee_employeur
+            + vieillesse_plafonnee_employeur
+            + accident_du_travail
+            + contribution_solidarite_autonomie
+            + famille_net_allegement
+            + mmid_employeur_net_allegement
+            + fnal
+            )
+
+        return cotisations
+
+    def formula_2026_01_01(individu, period, parameters):
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
+        chomage_employeur = individu('chomage_employeur', period)
+        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period, options = [ADD])
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period, options = [ADD])
+        accident_du_travail = individu('accident_du_travail', period, options = [ADD])
+        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
+        famille = individu('famille', period)
+        mmid_employeur = individu('mmid_employeur', period, options = [ADD])
+        fnal = individu('fnal', period, options = [ADD])
+
+        cotisations = (
+            agirc_arrco_employeur
+            + chomage_employeur
+            + contribution_equilibre_general_employeur
+            + vieillesse_deplafonnee_employeur
+            + vieillesse_plafonnee_employeur
+            + accident_du_travail
+            + contribution_solidarite_autonomie
+            + famille
+            + mmid_employeur
+            + fnal
+            )
+
+        return cotisations
+
+
 class credit_impot_competitivite_emploi(Variable):
     value_type = float
     entity = Individu
