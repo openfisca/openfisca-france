@@ -222,6 +222,37 @@ class maladie_maternite_artisan_commercant_taux(Variable):
     label = 'Cotisation maladie et maternité des artisans et des commercants'
     definition_period = YEAR
 
+    def formula_2025_01_01(individu, period, parameters):
+        '''
+        Taux moyen issu du décret n° 2024-688 (articles D621-1 et D621-2 du code de la sécurité sociale) :
+        - sous trois PSS, taux moyen interpolé linéairement entre les seuils et appliqué à toute l'assiette ;
+        - au-delà, taux de base sur la fraction n'excédant pas trois PSS et 6,5 % sur la part excédentaire.
+        L'assiette reste ici rpns_imposables : l'assiette unique de l'article L131-6 (revenu brut après
+        abattement) n'est pas encore modélisée.
+        '''
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+        maladie_maternite = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.mmid.maladie_maternite_2025
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        artisan_ou_commercant = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+            )
+        assiette = artisan_ou_commercant * individu('rpns_imposables', period)
+        seuil = maladie_maternite.seuil_taux_base * plafond_securite_sociale_annuel
+        bareme_reduit = maladie_maternite.taux_moyen_reduit.multiply_thresholds(plafond_securite_sociale_annuel, inplace = False)
+        cotisation = where(
+            assiette < seuil,
+            bareme_reduit.calc(max_(assiette, 0)),
+            maladie_maternite.taux_base * seuil + maladie_maternite.taux_au_dela_seuil * (assiette - seuil),
+            )
+        taux = np.divide(
+            cotisation,
+            assiette,
+            out = np.zeros(len(categorie_non_salarie)),
+            where = assiette > 0,
+            )
+        return artisan_ou_commercant * taux
+
     def formula_2020_01_01(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         categorie_non_salarie = individu('categorie_non_salarie', period)
@@ -315,6 +346,24 @@ class retraite_complementaire_artisan_commercant(Variable):
         bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
         bareme.add_bracket(0, retraite_complementaire.sous_plafond_rci)
         bareme.add_bracket(montant_du_plafond_rci, retraite_complementaire.entre_1_plafond_rci_et_4_plafonds_pss)
+        bareme.add_bracket(4 * plafond_securite_sociale_annuel, 0)
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        assiette = (
+            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+            ) * individu('rpns_imposables', period)
+        return -bareme.calc(assiette)
+
+    def formula_2025_01_01(individu, period, parameters):
+        '''
+        Depuis le 1er janvier 2025, le premier taux s'applique jusqu'au plafond annuel de la sécurité sociale
+        et non plus jusqu'au plafond RCI (article D635-7 du code de la sécurité sociale, décret n° 2024-688).
+        '''
+        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+        retraite_complementaire = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.ret_comp_ac.art_ind_com
+        bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
+        bareme.add_bracket(0, retraite_complementaire.sous_plafond_rci)
+        bareme.add_bracket(plafond_securite_sociale_annuel, retraite_complementaire.entre_1_plafond_rci_et_4_plafonds_pss)
         bareme.add_bracket(4 * plafond_securite_sociale_annuel, 0)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
