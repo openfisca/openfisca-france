@@ -6,3 +6,4 @@ metadata:
   - cas_colocataires
   - dom
   - dom_colocataires
+  inflator: inflateurs.inflateur_aides_logement_loyer
