@@ -1175,6 +1175,31 @@ class aide_logement_loyer_plafond(Variable):
 
         return round_(plafond * coeff_coloc * coeff_chambre, 2)
 
+    def formula_2022_07_01(famille, period, parameters):
+        # Article 16 de l'arrêté du 27 septembre 2019, dans sa version du 1er juillet 2022.
+        plafond_calcule = aide_logement_loyer_plafond.formula(famille, period, parameters)
+        menage = famille.demandeur.menage
+        zone_apl = menage('zone_apl', period)
+        coloc = menage('coloc', period)
+        chambre = menage('logement_chambre', period)
+        couple = famille('al_couple', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        outre_mer = menage('residence_aides_logement_outre_mer', period)
+        al_nb_pac_plafond = where(outre_mer * (period.start.year < 2023), min_(al_nb_pac, 6), al_nb_pac)
+
+        zone_1 = zone_apl == TypesZoneApl.zone_1
+        zone_2 = zone_apl == TypesZoneApl.zone_2
+        isole = select([zone_1, zone_2], [231.38, 201.65], default=189.00)
+        couple_coloc = select([zone_1, zone_2], [279.05, 246.83], default=229.11)
+        premier_enfant = select([zone_1, zone_2], [315.39, 277.74], default=256.89)
+        supplement = select([zone_1, zone_2], [45.76, 40.43], default=36.82)
+        famille_coloc = premier_enfant + (al_nb_pac_plafond - 1) * supplement
+        plafond_coloc = where(al_nb_pac > 0, famille_coloc, where(couple, couple_coloc, isole))
+        return where(coloc * not_(chambre), plafond_coloc, plafond_calcule)
+
+    def formula_2023_10_01(famille, period, parameters):
+        return aide_logement_loyer_plafond.formula(famille, period, parameters)
+
 
 class aide_logement_loyer_reel(Variable):
     value_type = float

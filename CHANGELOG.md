@@ -1,5 +1,12 @@
 # Changelog
 
+### 177.0.4 [#2842](https://github.com/openfisca/openfisca-france/pull/2842)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Du 01/07/2022 au 30/09/2023.
+* Zones impactées : `prestations/aides_logement`.
+* Applique le barème publié des plafonds de loyer en colocation.
+
 # 177.0.0 [#2833](https://github.com/openfisca/openfisca-france/pull/2833)
 
 * Amélioration technique.
