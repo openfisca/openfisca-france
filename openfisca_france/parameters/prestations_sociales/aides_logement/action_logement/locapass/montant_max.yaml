@@ -1,0 +1,18 @@
+description: Montant maximum (sauf salariés du secteur privé non agricole) de l'aide locapass
+values:
+  2018-01-01:
+    value: 1200
+metadata:
+  short_label: Montant
+  last_value_still_valid_on: "2026-07-24"
+  unit: currency
+  reference:
+    2018-01-01:
+      title: Directive AVANCE LOCA-PASS d'Action Logement (validée par le conseil d'administration du 20 décembre 2017, applicable aux offres émises à compter du 1er janvier 2018)
+      href: https://groupe.actionlogement.fr/directive-avance-loca-passr
+  notes:
+    2018-01-01:
+    - title: "Relèvement du plafond de l'avance de 500 € à 1 200 € au 1er janvier 2018 (directive Action Logement du 20 décembre 2017). La valeur antérieure de 500 €, en vigueur jusqu'au 31 décembre 2017, n'est pas reprise ici faute de source primaire datant son introduction : elle est postérieure à la recommandation de l'UESL du 2 décembre 2009 (applicable au 1er janvier 2010), qui ne plafonnait pas encore l'avance à ce montant."
+documentation: |-
+  https://www.actionlogement.fr/aide-mon-job-mon-logement
+  https://www.service-public.fr/particuliers/vosdroits/F18490
