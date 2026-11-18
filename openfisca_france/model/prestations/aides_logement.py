@@ -5,7 +5,7 @@ import logging
 import importlib
 import sys
 
-from numpy import ceil, floor, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
+from numpy import ceil, floor, datetime64, float64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
 
 from openfisca_core.periods import Instant, Period
 
@@ -1233,6 +1233,11 @@ class aide_logement_charges(Variable):
     label = 'Charges retenues dans le calcul des aides au logement'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+    def __init__(self, baseline_variable=None):
+        super().__init__(baseline_variable)
+        # Conserver la précision du forfait lors du calcul avant l'arrondi à l'euro inférieur.
+        self.dtype = float64
 
     def formula(famille, period, parameters):
         forfait_charges = parameters(period).prestations_sociales.aides_logement.allocations_logement.locatif.formule.c_forfait_charges
