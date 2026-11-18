@@ -1,5 +1,18 @@
 # Changelog
 
+### 177.0.2 [#2838](https://github.com/openfisca/openfisca-france/pull/2838)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : du 01/01/2018 au 31/12/2024.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants/mmid/maladie_maternite`
+* Détails :
+  - Cotisation maladie-maternité des artisans et commerçants : les barèmes 2018-2021 (décret n° 2017-1894) et 2022-2024 (décret n° 2022-1529, applicable aux périodes courant à compter du 01/01/2022) sont désormais des barèmes de taux moyens interpolés linéairement dans `mmid/maladie_maternite`, au lieu de formules codées en dur.
+  - Corrige `formula_2020_01_01`, qui divisait un taux par l'assiette exprimée en PSS (par exemple 3,6 % au lieu de 7,2 % pour une assiette de 2 PSS) et n'appliquait pas le barème 2022.
+  - Corrige le taux à 40 % du PSS de 2018 à 2021 : 4,02 % selon l'article D621-2 (4,1 % auparavant). Le test 2018 existant est mis à jour en conséquence.
+  - Une seule fonction calcule le taux depuis 2018 ; seule la règle au-delà de cinq PSS diffère avant 2020 (6,5 % sur l'ensemble du revenu, puis sur la seule fraction excédentaire).
+
 ### 177.0.1 [#2836](https://github.com/openfisca/openfisca-france/pull/2836)
 
 * Évolution du système socio-fiscal.

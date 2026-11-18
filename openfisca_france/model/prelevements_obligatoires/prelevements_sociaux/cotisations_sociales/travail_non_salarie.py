@@ -216,89 +216,64 @@ class formation_artisan_commercant(Variable):
         return -bareme_artisan.calc(assiette * artisan) - bareme_commercant.calc(assiette * commercant)
 
 
+def taux_maladie_maternite_artisan_commercant(individu, period, parameters, au_dela_sur_fraction):
+    '''
+    Taux moyen de la cotisation maladie-maternité des artisans et commerçants depuis 2018 :
+    - sous le dernier seuil du barème taux_moyen_reduit (110 % du PSS jusqu'en 2024, trois PSS depuis 2025),
+      taux moyen interpolé linéairement entre les seuils (art. D621-2 CSS) et appliqué à toute l'assiette ;
+    - de ce seuil à seuil_taux_base, taux de base (art. D621-1 CSS) ;
+    - au-delà, taux_au_dela_seuil, sur la seule fraction excédentaire ou sur toute l'assiette selon au_dela_sur_fraction.
+    L'assiette reste rpns_imposables : l'assiette minimale (jusqu'en 2024) et l'assiette unique de
+    l'article L131-6 (depuis 2025) ne sont pas modélisées.
+    '''
+    plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
+    maladie_maternite = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.mmid.maladie_maternite
+    categorie_non_salarie = individu('categorie_non_salarie', period)
+    artisan_ou_commercant = (
+        (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+        + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+        )
+    assiette = artisan_ou_commercant * individu('rpns_imposables', period)
+    bareme_reduit = maladie_maternite.taux_moyen_reduit.multiply_thresholds(plafond_securite_sociale_annuel, inplace = False)
+    fin_reduction = bareme_reduit.thresholds[-1]
+    seuil = maladie_maternite.seuil_taux_base * plafond_securite_sociale_annuel
+    if au_dela_sur_fraction:
+        cotisation_au_dela = maladie_maternite.taux_base * seuil + maladie_maternite.taux_au_dela_seuil * (assiette - seuil)
+    else:
+        cotisation_au_dela = maladie_maternite.taux_au_dela_seuil * assiette
+    cotisation = select(
+        [assiette < fin_reduction, assiette <= seuil],
+        [bareme_reduit.calc(max_(assiette, 0)), maladie_maternite.taux_base * assiette],
+        default = cotisation_au_dela,
+        )
+    taux = np.divide(
+        cotisation,
+        assiette,
+        out = np.zeros(len(categorie_non_salarie)),
+        where = assiette > 0,
+        )
+    return artisan_ou_commercant * taux
+
+
 class maladie_maternite_artisan_commercant_taux(Variable):
     value_type = float
     entity = Individu
     label = 'Cotisation maladie et maternité des artisans et des commercants'
     definition_period = YEAR
 
-    def formula_2025_01_01(individu, period, parameters):
-        '''
-        Taux moyen issu du décret n° 2024-688 (articles D621-1 et D621-2 du code de la sécurité sociale) :
-        - sous trois PSS, taux moyen interpolé linéairement entre les seuils et appliqué à toute l'assiette ;
-        - au-delà, taux de base sur la fraction n'excédant pas trois PSS et 6,5 % sur la part excédentaire.
-        L'assiette reste ici rpns_imposables : l'assiette unique de l'article L131-6 (revenu brut après
-        abattement) n'est pas encore modélisée.
-        '''
-        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        maladie_maternite = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.mmid.maladie_maternite
-        categorie_non_salarie = individu('categorie_non_salarie', period)
-        artisan_ou_commercant = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            )
-        assiette = artisan_ou_commercant * individu('rpns_imposables', period)
-        seuil = maladie_maternite.seuil_taux_base * plafond_securite_sociale_annuel
-        bareme_reduit = maladie_maternite.taux_moyen_reduit.multiply_thresholds(plafond_securite_sociale_annuel, inplace = False)
-        cotisation = where(
-            assiette < seuil,
-            bareme_reduit.calc(max_(assiette, 0)),
-            maladie_maternite.taux_base * seuil + maladie_maternite.taux_au_dela_seuil * (assiette - seuil),
-            )
-        taux = np.divide(
-            cotisation,
-            assiette,
-            out = np.zeros(len(categorie_non_salarie)),
-            where = assiette > 0,
-            )
-        return artisan_ou_commercant * taux
-
     def formula_2020_01_01(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        categorie_non_salarie = individu('categorie_non_salarie', period)
-        artisan = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            )
-        assiette = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_imposables', period)
-        assiette_pss = assiette / plafond_securite_sociale_annuel
-
-        taux_nul = np.zeros(len(categorie_non_salarie))
-        taux = np.divide(
-            (
-                0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
-                + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
-                - (0.007 * (assiette_pss > 5) * (assiette_pss - 5))
-                ),
-            assiette_pss,
-            out = taux_nul,
-            where=assiette_pss != 0
-            )
-
-        return artisan * taux
+        '''
+        Articles D621-1 et D621-2 du code de la sécurité sociale. Depuis 2020, le taux applicable au-delà
+        de seuil_taux_base ne porte que sur la fraction de l'assiette qui dépasse ce seuil.
+        '''
+        return taux_maladie_maternite_artisan_commercant(individu, period, parameters, au_dela_sur_fraction = True)
 
     def formula_2018_01_01(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        categorie_non_salarie = individu('categorie_non_salarie', period)
-        artisan = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            )
-        assiette = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_imposables', period)
-        assiette_pss = assiette / plafond_securite_sociale_annuel
-        taux = (
-            0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
-            + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
-            - (0.007 * (assiette_pss > 5))
-            )
-
-        return artisan * where(assiette_pss != 0, taux, 0)
+        '''
+        Articles D621-1 et D621-2 du code de la sécurité sociale (décret n° 2017-1894). En 2018 et 2019,
+        le taux applicable au-delà de seuil_taux_base porte sur l'ensemble de l'assiette.
+        '''
+        return taux_maladie_maternite_artisan_commercant(individu, period, parameters, au_dela_sur_fraction = False)
 
     def formula_2017_01_01(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel

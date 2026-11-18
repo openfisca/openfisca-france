@@ -1,15 +1,23 @@
-description: Cotisation d'assurance maladie et maternité des travailleurs indépendants non agricoles (barème issu du décret n° 2024-688)
+description: Cotisation d'assurance maladie et maternité des travailleurs indépendants non agricoles (barème des articles D621-1 et D621-2 du code de la sécurité sociale)
 metadata:
-  short_label: Maladie-maternité (depuis 2025)
-  label_en: Sickness and maternity contribution of self-employed workers (since 2025)
+  short_label: Maladie-maternité (depuis 2018)
+  label_en: Sickness and maternity contribution of self-employed workers (since 2018)
   reference:
+    2018-01-01:
+    - title: Décret n° 2017-1894 du 30 décembre 2017
+      href: https://www.legifrance.gouv.fr/loda/id/LEGITEXT000036456524
+    2022-01-01:
+    - title: Décret n° 2022-1529 du 7 décembre 2022
+      href: https://www.legifrance.gouv.fr/loda/id/LEGITEXT000046712234
     2025-01-01:
+    - title: Décret n° 2024-688 du 5 juillet 2024, art. 6 (entrée en vigueur au titre des périodes courant à compter du 1er janvier 2025)
     - title: Article D621-1 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610/2024-07-07
     - title: Article D621-2 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592/2024-07-07
-    - title: Décret n° 2024-688 du 5 juillet 2024, art. 6 (entrée en vigueur au titre des périodes courant à compter du 1er janvier 2025)
   official_journal_date:
+    2018-01-01: "2017-12-31"
+    2022-01-01: "2022-12-09"
     2025-01-01: "2024-07-06"
   order:
   - taux_moyen_reduit
@@ -17,7 +25,7 @@ metadata:
   - taux_base
   - taux_au_dela_seuil
 documentation: |-
-  Sous trois PSS, le taux de base fait l'objet d'une réduction : le taux moyen appliqué à toute
-  l'assiette varie linéairement entre les seuils (art. D621-2). Au-delà de trois PSS, le taux de
-  base s'applique à la fraction n'excédant pas trois PSS et le taux de 6,5 % à la part excédentaire
-  (art. D621-1).
+  Sous le dernier seuil du barème taux_moyen_reduit (110 % du PSS jusqu'en 2024, trois PSS depuis 2025), le taux de base
+  fait l'objet d'une réduction : le taux moyen appliqué à toute l'assiette varie linéairement entre les seuils (art. D621-2).
+  Au-delà, le taux de base s'applique jusqu'à seuil_taux_base (cinq PSS jusqu'en 2024, trois PSS depuis 2025), puis
+  taux_au_dela_seuil (6,5 %) s'applique (art. D621-1). L'assiette minimale de 40 % du PSS prévue jusqu'en 2024 n'est pas modélisée.
