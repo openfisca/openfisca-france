@@ -1,0 +1,83 @@
+# Cotisation maladie-maternité des artisans et commerçants de 2018 à 2024 (articles D621-1 et D621-2 du code de la sécurité sociale :
+# décret n° 2017-1894, puis décret n° 2022-1529 pour les périodes courant à compter du 1er janvier 2022).
+# Cas fictifs ; r = rpns_imposables, PSS = plafond annuel de la sécurité sociale de l'année.
+
+- name: Commerçant 2019 au-delà de cinq PSS (6,5 % sur l'ensemble du revenu)
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 250000
+    categorie_non_salarie: commercant
+  output:
+    # 250 000 > 5 × 40 524 : 6,5 % × 250 000
+    maladie_maternite_artisan_commercant: -16250
+
+- name: Commerçant 2020 au-delà de cinq PSS (6,5 % sur la seule fraction excédentaire)
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 250000
+    categorie_non_salarie: commercant
+  output:
+    # 7,2 % × 5 × 41 136 + 6,5 % × (250 000 - 5 × 41 136)
+    maladie_maternite_artisan_commercant: -17689.76
+
+- name: Artisan 2021 sous 40 % du PSS
+  period: 2021
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 8000
+    categorie_non_salarie: artisan
+  output:
+    # taux = (7,2 % - 2,2 %) × r / (1,1 × PSS) + (2,2 % - 0,85 %) × r / (0,4 × PSS) + 0,85 %, avec PSS = 41 136
+    maladie_maternite_artisan_commercant: -191.23
+
+- name: Commerçant 2021 entre 40 % et 110 % du PSS
+  period: 2021
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 30000
+    categorie_non_salarie: commercant
+  output:
+    # taux = (7,2 % - 2,2 %) × r / (1,1 × PSS) + 2,2 %
+    maladie_maternite_artisan_commercant: -1654.48
+
+- name: Commerçant 2022 sous 40 % du PSS
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 12000
+    categorie_non_salarie: commercant
+  output:
+    # taux de 0,5 %
+    maladie_maternite_artisan_commercant: -60
+
+- name: Artisan 2023 entre 40 % et 60 % du PSS
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 22000
+    categorie_non_salarie: artisan
+  output:
+    # taux = (4,5 % - 0,5 %) × (r - 0,4 × PSS) / (0,2 × PSS) + 0,5 %, avec PSS = 43 992
+    maladie_maternite_artisan_commercant: -550.40
+
+- name: Commerçant 2023 entre 60 % et 110 % du PSS
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 35000
+    categorie_non_salarie: commercant
+  output:
+    # taux = (7,2 % - 4,5 %) × (r - 0,6 × PSS) / (0,5 × PSS) + 4,5 %
+    maladie_maternite_artisan_commercant: -1944.68
+
+- name: Commerçant 2024 entre 110 % du PSS et cinq PSS
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    rpns_imposables: 100000
+    categorie_non_salarie: commercant
+  output:
+    # taux de base de 7,2 %
+    maladie_maternite_artisan_commercant: -7200
