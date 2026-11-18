@@ -1,5 +1,12 @@
 # Changelog
 
+### 177.0.3 [#2841](https://github.com/openfisca/openfisca-france/pull/2841)
+
+* Évolution du système socio-fiscal.
+* Zones impactées : `prestations/aides_logement`.
+* Supprime l’arrondi intermédiaire du montant brut de l’aide au logement.
+* L’article D. 823-16 du CCH prévoit l’arrondi à l’euro inférieur après déduction des contributions sociales. La brochure ministérielle d’avril 2024 (section 4, p. 59) précise la règle applicable aux arrondis intermédiaires.
+
 # 177.0.0 [#2833](https://github.com/openfisca/openfisca-france/pull/2833)
 
 * Amélioration technique.
