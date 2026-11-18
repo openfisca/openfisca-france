@@ -3,5 +3,6 @@ metadata:
   short_label: Plafonds de loyer « L »
   order:
   - par_zone
+  - par_zone_colocation
   - coef_chambre_et_colocation
   - avant_2001
