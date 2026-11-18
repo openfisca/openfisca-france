@@ -78,11 +78,3 @@ in-place     = true
 addopts      = "--showlocals --exitfirst --doctest-modules --disable-pytest-warnings"
 testpaths    = "tests"
 python_files = "**/*.py"
-filterwarnings = [
-    "error",
-    "ignore::UserWarning",
-    'ignore:function ham\(\) is deprecated:DeprecationWarning',
-    "ignore:invalid value encountered in divide:RuntimeWarning",
-    "ignore:invalid value encountered in multiply:RuntimeWarning",
-    "ignore:divide by zero encountered in divide:RuntimeWarning",
-]
