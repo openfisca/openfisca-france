@@ -1,5 +1,13 @@
 # Changelog
 
+### 177.0.1 [#2839](https://github.com/openfisca/openfisca-france/pull/2839)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 01/01/2023.
+* Zones impactées : `prestations/aides_logement`.
+* Détails :
+  - Supprime la limite de six personnes à charge pour le plafond de loyer outre-mer.
+
 # 177.0.0 [#2833](https://github.com/openfisca/openfisca-france/pull/2833)
 
 * Amélioration technique.
