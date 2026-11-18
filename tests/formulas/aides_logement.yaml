@@ -584,9 +584,9 @@
     # taux de participation T_p : 0.02937
     aide_logement_taux_participation_personnelle: 0.0283 + 0.00107
     aide_logement_participation_personnelle: 39.56 + (0.0283 + 0.00107) * 4665
-    aide_logement_montant_brut: round(200 + 60.59 - 176.57105, 2) - 5 # 79.02; sans arrondi: 79.00
-    aide_logement_montant_brut_crds: round(200 + 60.59 - 176.57105, 2) - 5 - 35.99 * 0.98 # 43.7498; sans arrondi: 43.7298
-    aide_logement_montant: floor(43.7498 * (1 - 0.005)) # 43.53; sans arrondi: 43.51
+    aide_logement_montant_brut: 200 + 60.59 - 176.57105 - 5 # 79.01895, sans arrondi intermédiaire (D823-16)
+    aide_logement_montant_brut_crds: 200 + 60.59 - 176.57105 - 5 - 35.99 * 0.98 # 43.74875
+    aide_logement_montant: floor(43.74875 - floor(43.74875 * 0.005 * 100) / 100) # 43 euros nets
 
 - name: Personne isolée, avant degressivité
   period: 2016-06
