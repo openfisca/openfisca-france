@@ -231,7 +231,7 @@ class maladie_maternite_artisan_commercant_taux(Variable):
         abattement) n'est pas encore modélisée.
         '''
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        maladie_maternite = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.mmid.maladie_maternite_2025
+        maladie_maternite = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.mmid.maladie_maternite
         categorie_non_salarie = individu('categorie_non_salarie', period)
         artisan_ou_commercant = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
