@@ -1,4 +1,4 @@
-description: Taux entre 1 plafond RCI et 4 plafonds PSS de la cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans-commerçants
+description: Taux entre 1 plafond RCI (1 PSS depuis 2025) et 4 plafonds PSS de la cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans-commerçants
 values:
   2013-01-01:
     value: 0.08
@@ -15,6 +15,13 @@ metadata:
     - title: Décret 2012-443 du 03/04/2012
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025626696
     - title: Circulaire RSI 2013-004 du 17/01/2013
+      href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_rsi_2013_004_17012013.pdf
+    2025-01-01:
+    - title: Décret n° 2024-688 du 5 juillet 2024
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049888581
+      note: "2° 9,1 % pour la part de l'assiette de cotisations excédant le seuil fixé au 1°, dans la limite de quatre fois le plafond"
+    - title: Article D635-7 du CSS
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904623/2024-07-07
   official_journal_date:
     2013-01-01: "2012-04-04"
     2025-01-01: "2024-07-06"
@@ -22,8 +29,8 @@ metadata:
     2013-01-01:
     - title: Depuis le 1er janvier 2013, le taux de cotisations est unifié pour les différentes catégories d'independants.
     2025-01-01:
-    - title: Décret n° 2024-688 du 5 juillet 2024
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049888581
-      note: "2° 9,1 % pour la part de l'assiette de cotisations excédant le seuil fixé au 1°, dans la limite de de quatre fois le plafond"
-    - title: Article D635-7 du CSS
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904623/2024-07-07
+    - title: Depuis le 1er janvier 2025, la borne inférieure de cette tranche est le plafond annuel de la sécurité sociale et non plus le plafond RCI.
+documentation: |-
+  Le nom du paramètre renvoie à la borne en vigueur jusqu'au 31/12/2024.
+  Jusqu'en 2024, ce taux s'applique à la part de l'assiette comprise entre le plafond RCI (montant_du_plafond_rci) et quatre plafonds annuels de la sécurité sociale (PSS).
+  Depuis le 1er janvier 2025, il s'applique à la part comprise entre un et quatre PSS (article D635-7 du code de la sécurité sociale, décret n° 2024-688 du 5 juillet 2024).
