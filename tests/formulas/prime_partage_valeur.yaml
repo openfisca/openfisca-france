@@ -177,7 +177,11 @@
 
 - name: Prime pérenne de partage de la valeur pour salaire < 3 Smic
 # ! Limite du test : test sensible aux revalorisations du Smic et des prestations sociales (PPA) sur 2023.
-# On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
+# Pour les primes versées jusqu'au 31/12/2023 aux salariés dont la rémunération des 12 derniers mois
+# est inférieure à 3 Smic, la part de la PPV exonérée de cotisations est aussi exonérée d'IR, de CSG
+# et de CRDS (article 81 du CGI) : elle n'est pas déclarée dans le net imposable (DSN type 904) et
+# reste prise en compte dans le RFR. On fait varier le fait d'avoir un accord d'intéressement ou non
+# et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : avec le montant de la prime dans le salaire
 # 3 : Sans accord, Prime au plafond
@@ -215,57 +219,65 @@
       # La partie supérieure au plafond n'est pas exonérée,
       # On la traite donc comme une prime classique.
       2023-09: [0, 0, 0, 100, 0, 0, 0, 100]
+    ppv_eligibilite:
+      # Tous les salaires du test sont inférieurs à 3 Smic :
+      # la part exonérée de cotisations est aussi exonérée d'IR, de CSG et de CRDS.
+      2023: [1, 1, 1, 1, 1, 1, 1, 1]
     ppv_eligibilite_exceptionnelle:
       2023: [1, 1, 1, 1, 1, 1, 1, 1]
+    prime_partage_valeur_non_imposable:
+      # La part exonérée de cotisations est non imposable (< 3 Smic, primes versées
+      # jusqu'au 31/12/2023). Le dépassement du plafond (individus 4 et 8) reste imposable.
+      2023: [0, 0, 3_000, 3_000, 3_000, 3_000, 6_000, 6_000]
     assiette_csg_abattue:
-      # Prime soumise en totalité à la CSG
-      # 2 000 + 6 000 / 12 + 1 200 / 12 = 2 600
-      2023-09: [2000, 2250, 2250, 2350, 2250, 2250, 2500, 2600]
+      # La part non imposable est exclue de la CSG/CRDS (identique au témoin sans prime) ;
+      # seule la partie qui dépasse le plafond reste soumise :
+      # 2 000 + 1 200 / 12 = 2 100
+      2023-09: [2000, 2250, 2000, 2100, 2000, 2000, 2000, 2100]
     crds_salaire: # 0.5% après abattement de 1.75%
-      # Prime soumise en totalité à la CRDS
-      # ((3000÷12)×(1−0,0175))×0,005 = 1.228
-      # 11.05-9.825=1.225
-      # 1.225 ~= 1.228 => OK
-      2023-09: [-9.825, -11.0531, -11.0531, -11.54435, -11.0531, -11.0531, -12.28125, -12.7725]
+      # Versement uniquement sur la partie qui dépasse l'exonération :
+      # 1 200/12 = 100 € → 98,25 × 0,005 = 0,491 € de CRDS en plus du témoin.
+      2023-09: [-9.825, -11.0531, -9.825, -10.3162, -9.825, -9.825, -9.825, -10.3162]
     csg_imposable_salaire:
-      # Prime soumise en totalité à la CSG
-      2023-09: [-47.16, -53.05488, -53.05488, -55.41288, -53.05488, -53.05488, -58.95, -61.308]
+      # Versement uniquement sur la partie qui dépasse l'exonération.
+      2023-09: [-47.16, -53.0549, -47.16, -49.518, -47.16, -47.16, -47.16, -49.518]
     csg_deductible_salaire:
-      # Prime soumise en totalité à la CSG
-      # csg_deductible_salaire = ((prime/12) - abattement 1.75%) * taux CSG
-      # ((3000÷12)×(1−0,0175))×0,068 = 16.70
-      # 150.32 - 133.62 = 16.699 €
-      # 16.699 ~= 16.70 => OK
-      2023-09: [-133.62, -150.32216, -150.32216, -157.00316, -150.32216, -150.32216, -167.025, -173.7]
+      # Versement uniquement sur la partie qui dépasse l'exonération :
+      # 98,25 × 0,068 = 6,681 € de CSG déductible en plus du témoin.
+      2023-09: [-133.62, -150.3222, -133.62, -140.301, -133.62, -133.62, -133.62, -140.301]
     forfait_social:
       # Pas d'exonération du forfait social pour la prime pérenne dans les entreprises > 250 salariés
       2023-09: [-0, 0, -50, -70, -50, -50, -100, -120]
     #salaire_super_brut: On ne peut pas le demander car OF ne sait pas remonter dans le Waterfall pour inclure la CSG de la prime.
     salaire_imposable:
-      # La prime pérenne est imposable en totalité
-      # salaire_imposable sans prime + prime - csg_deductible_salaire = salaire_imposable avec prime
-      # 1_640.18 + 250 + -16.699 = 1_873.481
-      2023-09: [1640.18, 1845.1978, 1873.4778, 1955.4868, 1873.4778, 1873.4778, 2106.7751, 2188.784]
+      # La part non imposable ne se déclare pas dans le net imposable (DSN 904) :
+      # seuls le dépassement du plafond (individus 4 et 8 : 1 200/12 = 100 €) et la
+      # baisse de CSG déductible associée font varier le salaire imposable.
+      # 1_640.18 + 100 - 18.00 = 1_722.19 pour les individus 4 et 8 ; sinon témoin.
+      2023-09: [1640.18, 1845.1978, 1640.18, 1722.189, 1640.18, 1640.18, 1640.18, 1722.189]
     salaire_net:
-      # salaire_net = salaire_imposable + crds_salaire + csg_imposable_salaire
-      # 1845.1978 + -11.0531 + -53.05488 = 1781.08 => OK
-      2023-09: [1583.1951, 1781.08, 1809.3699, 1888.5297, 1809.3699, 1809.3699, 2035.5438, 2114.7036]
+      # salaire_net = salaire_imposable + crds_salaire + csg_imposable_salaire + part non imposable
+      # Individu 3 : 1_640.18 - 9.825 - 47.16 + 250 = 1_833.20 (la prime est intégralement perçue en net).
+      2023-09: [1583.1951, 1781.0897, 1833.1951, 1912.3547, 1833.1951, 1833.1951, 2083.1951, 2162.3547]
     revenu_assimile_salaire:
       # C'est le salaire imposable * 12
-      # 1_873.4778*12=22_481.7336
-      2023: [19682.16, 22_142.37, 22_481.7336, 23465.8416, 22481.7336, 22481.7336, 25281.3012, 26265.408]
+      # 1_640.18*12=19_682.16
+      2023: [19682.16, 22_142.37, 19682.16, 20666.27, 19682.16, 19682.16, 19682.16, 20666.27]
     rfr:
-      # rfr = revenu_assimile_salaire * 0.9 (abattement pro)
-      # 22_481 ×,09 = 20_233
-      2023: [17714.158, 19_928.37, 20233.734, 21118.838, 20233.734, 20233.734, 22753.303, 23638.404]
+      # La part non imposable est prise en compte au RFR, nette de l'abattement de 10 % :
+      # individu 3 : 19_682.16 × 0,9 + 3_000 × 0,9 = 20_414.16 (= rfr du témoin + 2_700).
+      2023: [17714.158, 19_928.37, 20414.158, 21299.271, 20414.158, 20414.158, 23114.158, 23999.271]
     impot_revenu_restant_a_payer:
-      2023: [-153, -507, -555, -697, -555, -555, -958, -1099]
+      # La part non imposable ne change pas l'impôt : individus 3, 5, 6 et 7
+      # paient le même impôt que le témoin sans prime (−153 €). Seuls les individus
+      # 4 et 8 (dépassement du plafond imposable) paient plus (−295 €).
+      2023: [-153, -507, -153, -295, -153, -153, -153, -295]
     prestations_sociales:
-      2023: [1745.3168, 823.8001, 867.64594, 560.46655, 867.64594, 867.64594, 277.37405, 277.37405]
+      2023: [1745.3168, 823.8001, 775.192, 442.2387, 775.192, 775.192, 277.3741, 277.3741]
     revenu_disponible:
       # revenu_disponible = salaire_net*12 - impot_revenu_restant_a_payer + prestations_sociales
-      # 1_781 * 12 - 507 + 823.8001 = 21_565.8001 ~= 21689.877 OK
-      2023: [20590.658, 21689.877, 22025.084, 22525.82, 22025.084, 22025.084, 23745.898, 24554.814]
+      # Individu 3 : 1_833.1951*12 - 153 + 775.192 = 22_620.53
+      2023: [20590.658, 21689.877, 22620.533, 23095.496, 22620.533, 22620.533, 25122.717, 25930.635]
 
 
 - name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 pour salaire >= 3 Smic
@@ -364,20 +376,29 @@
     accord_interessement:
       month:2021-01:36: [false, false]
   output:
+    ppv_eligibilite:
+      # Salaire 60 000 € < 3 Smic annuels 2023 (62 899,20 €) : la part exonérée de
+      # cotisations de la PPV est aussi exonérée d'IR, de CSG et de CRDS.
+      2023: [1, 1]
+    prime_partage_valeur_non_imposable:
+      2023: [0, 1_000]
     assiette_csg_abattue:
-      # La totalité de la prime est soumise à la CSG
-      2023-09: [5083.3335, 5083.3335]
+      # La prime classique reste soumise à la CSG ; la part non imposable de la PPV
+      # (rémunération < 3 Smic, primes versées jusqu'au 31/12/2023) en est exclue.
+      2023-09: [5083.3335, 5000]
     salaire_net:
-      # L'exonération de charge sociale fait monter le salaire_net
-      2023-09: [4033.70, 4042.25]
+      # L'exonération de charges sociales et de CSG/CRDS fait monter le salaire_net :
+      # la PPV est intégralement perçue en net.
+      2023-09: [4033.70, 4050.19]
     rfr:
-      # La totalité de la prime est dans le RFR
-      2023: [45130.34, 45222.94]
+      # La part non imposable de la PPV est prise en compte au RFR (nette de 10 %) :
+      # 45 283,75 = RNI sans la prime + 1 000 × 0,9.
+      2023: [45130.34, 45283.75]
     impot_revenu_restant_a_payer:
-      # La totalité de la prime est soumise à l'IR
-      2023: [-6825, -6853]
+      # La part non imposable de la PPV ne change pas l'impôt ; la prime classique reste imposable.
+      2023: [-6825, -6601]
     revenu_disponible:
-      2023: [42333.29, 42407.90]
+      2023: [42333.29, 42755.19]
 
 - name: Prime exceptionnelle de partage de la valeur pour un salarié à temps partiel < 3*Smic mais dont l'équivalent temps plein est > 3*Smic
   period: 2023

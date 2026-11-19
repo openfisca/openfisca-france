@@ -1,0 +1,238 @@
+# Exonération d'impôt sur le revenu, de CSG et de CRDS de la prime de partage
+# de la valeur (PPV) pour les primes versées jusqu'au 31 décembre 2023 aux
+# bénéficiaires dont la rémunération des douze derniers mois est inférieure à
+# trois fois la valeur annuelle du Smic (article 81 du CGI ; loi n° 2022-1158
+# du 16 août 2022, art. 1.V ; BOSS, « mesures exceptionnelles / protection du
+# pouvoir d'achat »). La part non imposable n'est pas déclarée dans la
+# rémunération nette fiscale (DSN type 904) : elle est déclarée en case 1AD
+# de la déclaration 2042 et prise en compte pour le revenu fiscal de référence.
+# Au-dessus de 3 Smic, la prime reste exonérée de cotisations mais imposable
+# (DSN type 905, déclarée dans le net imposable) : comportement inchangé.
+#
+# Reproduction (2023, salaire 20 966,40 €/an, PPV 3 000 €) : avant correctif la
+# prime entrait dans le salaire imposable (1AJ 19 993,77 € au lieu de
+# 17 194,20 €), l'impôt était de 198 € au lieu de 0 et le RNI gonflé de
+# 2 520 €. Vérifié contre la calculette DGFiP (oracle Mlang, millésime 2023) :
+# sur la déclaration doctrinale (1AJ sans la prime, case 1AD), IRN = 0 € et
+# RNI = 15 475 € pour PPV 780 € et 3 000 € sous 3 Smic ; au-dessus de 3 Smic
+# (66 000 €/an), la prime reste imposable et l'IRN est inchangé (8 143 €).
+
+- name: PPV 780 € sous 3 Smic en 2023 — exonérée d'IR, de CSG et de CRDS, prise en compte au RFR
+  period: 2023
+  absolute_error_margin: 0.05
+  input:
+    individus:
+      adulte_1:
+        categorie_salarie:
+          2022: prive_non_cadre
+          2023: prive_non_cadre
+        contrat_de_travail:
+          2022: temps_plein
+          2023: temps_plein
+        activite:
+          2022: actif
+          2023: actif
+        salaire_de_base:
+          2022: 20_966.4
+          2023: 20_966.4
+        prime_partage_valeur:
+          2023: 780
+    foyers_fiscaux:
+      foyer_1:
+        declarants:
+          - adulte_1
+    familles:
+      famille_1:
+        parents:
+          - adulte_1
+    menages:
+      menage_1:
+        personne_de_reference:
+          - adulte_1
+  output:
+    ppv_eligibilite:
+      2023: 1
+    prime_partage_valeur_exoneree:
+      2023: 780
+    prime_partage_valeur_non_imposable:
+      2023: 780
+    salaire_imposable:
+      # La prime ne se déclare pas dans le net imposable (DSN 904) :
+      # salaire imposable identique au témoin sans prime (17 194,20 €/an).
+      2023-01: 1432.85
+    assiette_csg_abattue:
+      # La prime n'est pas soumise à la CSG/CRDS (identique au témoin sans prime).
+      2023-01: 1747.2
+    crds_salaire:
+      2023-01: -8.58
+    csg_imposable_salaire:
+      2023-01: -41.2
+    csg_deductible_salaire:
+      2023-01: -116.73
+    salaire_net:
+      # La prime est intégralement perçue en net (hors cotisations, CSG, CRDS, IR).
+      2023-01: 1448.07
+    revenu_assimile_salaire:
+      2023: 17194.2
+    rni:
+      2023: 15475.2
+    rfr:
+      # La prime non imposable est prise en compte, nette de l'abattement de 10 % :
+      # 15 475,20 + 780 × 0,9 = 16 177,20.
+      2023: 16177.2
+    impot_revenu_restant_a_payer:
+      2023: 0
+
+- name: PPV 3 000 € (au plafond) sous 3 Smic en 2023 — exonérée d'IR, de CSG et de CRDS
+  period: 2023
+  absolute_error_margin: 0.05
+  input:
+    individus:
+      adulte_1:
+        categorie_salarie:
+          2022: prive_non_cadre
+          2023: prive_non_cadre
+        contrat_de_travail:
+          2022: temps_plein
+          2023: temps_plein
+        activite:
+          2022: actif
+          2023: actif
+        salaire_de_base:
+          2022: 20_966.4
+          2023: 20_966.4
+        prime_partage_valeur:
+          2023: 3_000
+    foyers_fiscaux:
+      foyer_1:
+        declarants:
+          - adulte_1
+    familles:
+      famille_1:
+        parents:
+          - adulte_1
+    menages:
+      menage_1:
+        personne_de_reference:
+          - adulte_1
+  output:
+    ppv_eligibilite:
+      2023: 1
+    prime_partage_valeur_exoneree:
+      2023: 3_000
+    prime_partage_valeur_non_imposable:
+      2023: 3_000
+    salaire_imposable:
+      # Avant correctif : 1 666,15 €/mois (1AJ 19 993,77 €) et 198 € d'impôt.
+      2023-01: 1432.85
+    salaire_net:
+      2023-01: 1633.07
+    revenu_assimile_salaire:
+      2023: 17194.2
+    rni:
+      2023: 15475.2
+    rfr:
+      # 15 475,20 + 3 000 × 0,9 = 18 175,20.
+      2023: 18175.2
+    impot_revenu_restant_a_payer:
+      # Avant correctif : -198 € (impôt dû) alors que la déclaration doctrinale
+      # donne un IRN de 0 € (oracle Mlang).
+      2023: 0
+
+- name: Témoin sans PPV — 1 Smic en 2023
+  period: 2023
+  absolute_error_margin: 0.05
+  input:
+    individus:
+      adulte_1:
+        categorie_salarie:
+          2022: prive_non_cadre
+          2023: prive_non_cadre
+        contrat_de_travail:
+          2022: temps_plein
+          2023: temps_plein
+        activite:
+          2022: actif
+          2023: actif
+        salaire_de_base:
+          2022: 20_966.4
+          2023: 20_966.4
+    foyers_fiscaux:
+      foyer_1:
+        declarants:
+          - adulte_1
+    familles:
+      famille_1:
+        parents:
+          - adulte_1
+    menages:
+      menage_1:
+        personne_de_reference:
+          - adulte_1
+  output:
+    prime_partage_valeur_non_imposable:
+      2023: 0
+    salaire_imposable:
+      2023-01: 1432.85
+    revenu_assimile_salaire:
+      2023: 17194.2
+    rni:
+      2023: 15475.2
+    rfr:
+      2023: 15475.2
+    impot_revenu_restant_a_payer:
+      2023: 0
+
+- name: PPV 780 € au-dessus de 3 Smic en 2023 — prime exonérée de cotisations mais imposable
+  period: 2023
+  absolute_error_margin: 0.05
+  input:
+    individus:
+      adulte_1:
+        categorie_salarie:
+          2022: prive_non_cadre
+          2023: prive_non_cadre
+        contrat_de_travail:
+          2022: temps_plein
+          2023: temps_plein
+        activite:
+          2022: actif
+          2023: actif
+        salaire_de_base:
+          2022: 66_000
+          2023: 66_000
+        prime_partage_valeur:
+          2023: 780
+    foyers_fiscaux:
+      foyer_1:
+        declarants:
+          - adulte_1
+    familles:
+      famille_1:
+        parents:
+          - adulte_1
+    menages:
+      menage_1:
+        personne_de_reference:
+          - adulte_1
+  output:
+    ppv_eligibilite:
+      2023: 0
+    prime_partage_valeur_exoneree:
+      # Exonérée de cotisations à tout niveau de rémunération.
+      2023: 780
+    prime_partage_valeur_non_imposable:
+      # Au-dessus de 3 Smic, la prime reste imposable (DSN 905).
+      2023: 0
+    salaire_imposable:
+      # La prime reste déclarée dans le net imposable, comme avant le correctif.
+      2023-01: 4585.27
+    assiette_csg_abattue:
+      2023-01: 5565
+    revenu_assimile_salaire:
+      2023: 55026.19
+    rfr:
+      2023: 49523.19
+    impot_revenu_restant_a_payer:
+      # IRN inchangé : 8 143 € (oracle Mlang, déclaration dans le net imposable).
+      2023: -8143
