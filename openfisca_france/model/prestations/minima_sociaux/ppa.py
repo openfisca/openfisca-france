@@ -501,6 +501,9 @@ class ppa(Variable):
     # Prime pour l'Activité sur service-public.fr
     reference = 'https://www.service-public.fr/particuliers/vosdroits/F2882'
 
+    def formula_2026_01_01(famille, period, parameters):
+        return ppa_mois_courant_formula(famille=famille, parameters=parameters, period=period)
+
     def formula_2024_10(famille, period, parameters):
         departement_experimentation_rsa = famille('departement_experimentation_rsa', period)
         experimentation = ppa_base_formula(famille=famille, parameters=parameters, period=period, three_months_of_reference=last_3_months_offset_minus_1(period))
@@ -595,3 +598,11 @@ def ppa_base_formula(famille, parameters, period, three_months_of_reference):
     ppa = ppa * ppa_eligibilite_apprenants * (ppa >= seuil_non_versement)
 
     return ppa
+
+
+def ppa_mois_courant_formula(famille, parameters, period):
+    seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_minimum_verse
+    ppa_eligibilite_apprenants = famille('ppa_eligibilite_apprenants', period)
+    ppa = famille('ppa_fictive', period)
+
+    return ppa * ppa_eligibilite_apprenants * (ppa >= seuil_non_versement)
