@@ -1,5 +1,18 @@
 # Changelog
 
+### 177.0.2 [#2845](https://github.com/openfisca/openfisca-france/pull/2845)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/ressources/personnes_a_charge`
+* Détails :
+  - Corrige la date du décret n° 2018-227 dans les références légales : 30 mars 2018 au lieu du 30 avril 2018.
+  - Corrige le titre de la référence du paramètre `majoration_ressources_revenus_activite` au 01/04/2025 : le lien pointe vers le décret n° 2025-292 du 29 mars 2025, et non vers le décret n° 2018-836.
+  - Contribue à #2825 (points 1 et 3).
+
 ### 177.0.1 [#2836](https://github.com/openfisca/openfisca-france/pull/2836)
 
 * Évolution du système socio-fiscal.
