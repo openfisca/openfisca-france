@@ -1,5 +1,12 @@
 # Changelog
 
+### 177.0.3 [#2814](https://github.com/openfisca/openfisca-france/pull/2814)
+
+* Amélioration technique.
+* Détails :
+  - Évite la surcharge des erreurs et avertissements filtrés pour rendre plus robuste les tests. Plus d'info sur la [page dédiée](https://docs.pytest.org/en/4.6.x/warnings.html\#deprecationwarning-and-pendingdeprecationwarning) de la documentation de pytest.
+
+
 ### 177.0.2 [#2844](https://github.com/openfisca/openfisca-france/pull/2844)
 
 * Amélioration technique.
