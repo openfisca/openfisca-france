@@ -61,6 +61,22 @@
   output:
     ppa: 0
 
+- name: PPA calculée sur les ressources du mois courant à partir de 2026
+  period: 2026-01
+  input:
+    age: 40
+    salaire_net:
+      2025-12: 1
+      2025-11: 1
+      2025-10: 1
+      2026-01: 500
+  output:
+    ppa:
+      2025-12: 0
+      2026-01: 299.25
+    ppa_fictive:
+      2026-01: 299.25
+
 - name: PPA personne seule, pas de bonification
   period: 2016-01
   absolute_error_margin: 0.005
