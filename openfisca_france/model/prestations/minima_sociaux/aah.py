@@ -336,12 +336,12 @@ class aah_base_ressources_activite_eval_trimestrielle(Variable):
         last_year = period.last_year
 
         ressources_a_inclure = [
-            'chomage_net',
+            'chomage_imposable',
             'indemnites_chomage_partiel',
             'indemnites_journalieres_imposables',
             'indemnites_stage',
             'revenus_stage_formation_pro',
-            'salaire_net',
+            'salaire_imposable',
             ]
 
         ressources = sum(
