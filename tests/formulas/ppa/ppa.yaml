@@ -617,6 +617,26 @@
     ppa_eligibilite_apprenants: false
     ppa: 0
 
+- name: "PPA: étudiant non éligible lorsque seule l'AAH permet de dépasser le plancher"
+  period: 2016-01
+  input:
+    salaire_net:
+      2015-12: 890
+      2015-11: 890
+      2015-10: 890
+    aah:
+      2015-12: 100
+      2015-11: 100
+      2015-10: 100
+    etudiant: true
+  output:
+    ppa_revenu_activite_individu_hors_aah:
+      2015-12: 890
+    ppa_revenu_activite_individu:
+      2015-12: 990
+    ppa_eligibilite_apprenants: false
+    ppa: 0
+
 - name: 'PPA: stagiaire non éligible (ressources < plancher)'
   period: 2016-01
   input:

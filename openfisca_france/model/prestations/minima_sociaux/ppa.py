@@ -44,6 +44,30 @@ class ppa_plancher_revenu_activite_apprenant(Variable):
             )
 
 
+class ppa_revenu_activite_individu_hors_aah(Variable):
+    value_type = float
+    entity = Individu
+    label = "Revenu d'activité pris en compte pour l'éligibilité à la PPA en tant qu'apprenant, hors AAH"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
+
+    def formula(individu, period):
+        ressources = [
+            'salaire_net',
+            'revenus_stage_formation_pro',
+            'remuneration_apprenti',
+            'bourse_recherche',
+            'indemnites_chomage_partiel',
+            'rpns_auto_entrepreneur_benefice',
+            'rsa_indemnites_journalieres_activite'
+            ]
+        revenus_mensualises = sum(individu(ressource, period) for ressource in ressources)
+        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', period.this_year)
+
+        return revenus_mensualises + revenus_tns_annualises
+
+
 class ppa_eligibilite_apprenants(Variable):
     value_type = bool
     entity = Famille
@@ -64,7 +88,7 @@ class ppa_eligibilite_apprenants(Variable):
         plancher_apprenant = famille.members('ppa_plancher_revenu_activite_apprenant', period)
 
         def condition_ressource(period2, plancher):
-            revenu_activite = famille.members('ppa_revenu_activite_individu', period2)
+            revenu_activite = famille.members('ppa_revenu_activite_individu_hors_aah', period2)
             return plancher < revenu_activite
 
         m_1 = period.offset(-1, 'month')
