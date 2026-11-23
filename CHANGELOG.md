@@ -1,5 +1,25 @@
 # Changelog
 
+### 177.0.5 [#2829](https://github.com/openfisca/openfisca-france/pull/2829)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes (seuil) ; à partir du 01/01/2014 (décote).
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `tests/formulas/recouvrement_seuil_61.yaml`
+  - `tests/formulas/prime_partage_valeur.yaml`
+* Détails :
+  - Seuil de mise en recouvrement : la cotisation initiale n'est plus annulée
+    lorsqu'elle est exactement égale à 61 € (CGI, art. 1657, 1 bis ;
+    BOI-IR-LIQ-20-20-40-20180704, § 60). Le second minimum de 12 € après
+    crédits est inchangé.
+  - Décote (formule depuis 2014) : calcul sur le barème plafonné arrondi à
+    l'euro le plus proche, demi-euro compté pour un (BOI-IR-LIQ-20-20-40-20180704,
+    § 50) ; le demi-euro de la décote est départagé vers le haut au lieu de
+    l'arrondi bancaire.
+  - Les attendus d'impôt de `tests/formulas/prime_partage_valeur.yaml` sont
+    actualisés d'un euro en conséquence (par exemple −153 € → −152 €).
+
 ### 177.0.4 [#2847](https://github.com/openfisca/openfisca-france/pull/2847/changes)
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
