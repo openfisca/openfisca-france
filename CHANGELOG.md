@@ -1,5 +1,19 @@
 # Changelog
 
+### 177.1.1 [#2835](https://github.com/openfisca/openfisca-france/pull/2835)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `tests/formulas/abattement_spe_personnes_agees.yaml`
+  - `tests/leximpact/2024/Z_couple_retraites_pension_1.5_SMIC_d3.yml`
+* Détails :
+  - L'abattement spécial des personnes âgées ou invalides (CGI, art. 157 bis) n'était jamais doublé pour un couple : l'éligibilité de chaque conjoint était additionnée comme un booléen (`True + True = True`), si bien que le compteur d'éligibles ne dépassait jamais 1. Un foyer dont les deux membres ont 65 ans ou plus et dont le revenu net imposable est inférieur à 27 670 € (millésime 2023) reçoit désormais 2 × 2 746 € s'il est sous 17 200 € et 2 × 1 373 € au-delà, comme la calculette de référence DGFiP et la doctrine (BOI-IR-BASE-40-20240618, § 60).
+  - Les foyers comptant un seul conjoint éligible et les personnes seules sont inchangés.
+  - Le scénario de régression `tests/leximpact/2024/Z_couple_retraites_pension_1.5_SMIC_d3.yml` (couple de retraités) porte de ce fait de nouvelles valeurs attendues : `ir_plaf_qf` 333,33 € → 179,55 €, `decote_gain_fiscal` 333 € → 180 € et `rfr`/`rni` 26 024,31 € → 24 626,31 €.
+
+
 ## 177.1.0 [#2834](https://github.com/openfisca/openfisca-france/pull/2834)
 
 * Évolution du système socio-fiscal.
