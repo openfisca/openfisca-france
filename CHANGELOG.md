@@ -1,5 +1,12 @@
 # Changelog
 
+### 177.0.4 [#2847](https://github.com/openfisca/openfisca-france/pull/2847/changes)
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/minima_sociaux/ppa.py`.
+* Détails :
+  - Pour déterminer l'éligibilité d'un étudiant à la prime d'activité uniquement ses revenus d'activités sont pris en compte. Or la variable qui était utilisée comprenait également l'AAH.
+
 ### 177.0.3 [#2814](https://github.com/openfisca/openfisca-france/pull/2814)
 
 * Amélioration technique.
