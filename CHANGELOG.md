@@ -1,5 +1,22 @@
 # Changelog
 
+## 177.1.0 [#2834](https://github.com/openfisca/openfisca-france/pull/2834)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : jusqu'au 31/12/2023 (à partir du 01/01/2024, l'exonération d'impôt sur le revenu dépend de la taille de l'entreprise, non modélisée).
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
+  - `openfisca_france/model/revenus/activite/salarie.py`
+  - `tests/formulas/prime_partage_valeur.yaml`
+  - `tests/formulas/prime_partage_valeur_non_imposable.yaml`
+* Détails :
+  - La part de la prime de partage de la valeur (PPV) exonérée de cotisations sociales, versée à un salarié dont la rémunération des 12 derniers mois est inférieure à 3 Smic, n'est plus soumise à l'impôt sur le revenu, à la CSG et à la CRDS pour les primes versées jusqu'au 31/12/2023 (CGI, art. 81 ; loi n° 2022-1158 du 16/08/2022, art. 1.V ; BOSS, « mesures exceptionnelles / protection du pouvoir d'achat »). Elle se déclare en case 1AD de la déclaration 2042 et ne contribue au revenu fiscal de référence que par ce canal.
+  - Deux variables datées jusqu'au 31/12/2023 sont ajoutées : `ppv_eligibilite` (rémunération des 12 derniers mois inférieure à 3 Smic, symétrique de `ppv_eligibilite_exceptionnelle`) et `prime_partage_valeur_non_imposable` (part exonérée de cotisations × éligibilité). Cette part est retirée du `salaire_imposable` et de l'`assiette_csg_abattue`, et ajoutée au `salaire_net` et au revenu fiscal de référence (× 0,9, comme la part exceptionnelle).
+  - Cas de reproduction corrigé (2023, salaire de 20 966,40 € sur l'année, PPV de 3 000 €) : le montant du 1AJ passe de 19 993,77 € à 17 194,20 € et l'impôt de 198 € à 0 €. Au-delà de 3 Smic de rémunération, le comportement est inchangé (prime imposable).
+  - Les attendus d'impôt de `tests/formulas/prime_partage_valeur.yaml` sont alignés sur l'arrondi de la décote introduit par #2829 (par exemple −153 € → −152 €).
+
+
 ### 177.0.5 [#2829](https://github.com/openfisca/openfisca-france/pull/2829)
 
 * Évolution du système socio-fiscal.

@@ -162,7 +162,7 @@
       2023: [17714.158, 20414.158, 21299.271, 20414.158, 20414.158, 23114.158, 23999.271]
     impot_revenu_restant_a_payer:
       2022: [-275, -275, -275, -275, -275, -275, -275]
-      2023: [-153, -153, -295, -153, -153, -153, -295]
+      2023: [-152, -152, -295, -152, -152, -152, -295]
     ppa:
       # Le premier cas-type touche la PPA toute l'année, les autres partiellement.
       2023-01: [139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394]
@@ -171,8 +171,8 @@
       2023: [1745.3168, 775.19183, 442.2387, 775.19183, 775.19183, 277.37405, 277.37405]
     revenu_disponible:
       # revenu_disponible = (salaire_net*12) - impot_revenu_restant_a_payer + prestations_sociales
-      # Pour le 2e individu : 1833.1951*12-153+694.1191 = 22620.46 => C'est bon !
-      2023: [20590.658, 22620.533, 23095.496, 22620.533, 22620.533, 25122.717, 25930.635]
+      # Pour le 2e individu : 1833.1951*12-152+694.1191 = 22621.46 => C'est bon !
+      2023: [20591.658, 22621.533, 23095.496, 22621.533, 22621.533, 25123.717, 25930.635]
 
 
 - name: Prime pérenne de partage de la valeur pour salaire < 3 Smic
@@ -269,15 +269,15 @@
       2023: [17714.158, 19_928.37, 20414.158, 21299.271, 20414.158, 20414.158, 23114.158, 23999.271]
     impot_revenu_restant_a_payer:
       # La part non imposable ne change pas l'impôt : individus 3, 5, 6 et 7
-      # paient le même impôt que le témoin sans prime (−153 €). Seuls les individus
+      # paient le même impôt que le témoin sans prime (−152 €). Seuls les individus
       # 4 et 8 (dépassement du plafond imposable) paient plus (−295 €).
-      2023: [-153, -507, -153, -295, -153, -153, -153, -295]
+      2023: [-152, -507, -152, -295, -152, -152, -152, -295]
     prestations_sociales:
       2023: [1745.3168, 823.8001, 775.192, 442.2387, 775.192, 775.192, 277.3741, 277.3741]
     revenu_disponible:
       # revenu_disponible = salaire_net*12 - impot_revenu_restant_a_payer + prestations_sociales
-      # Individu 3 : 1_833.1951*12 - 153 + 775.192 = 22_620.53
-      2023: [20590.658, 21689.877, 22620.533, 23095.496, 22620.533, 22620.533, 25122.717, 25930.635]
+      # Individu 3 : 1_833.1951*12 - 152 + 775.192 = 22_621.53
+      2023: [20591.658, 21689.877, 22621.533, 23095.496, 22621.533, 22621.533, 25123.717, 25930.635]
 
 
 - name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 pour salaire >= 3 Smic
