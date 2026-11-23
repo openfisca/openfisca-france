@@ -1,0 +1,136 @@
+# Recouvrement à la frontière du seuil de 61 € et arrondis de la décote démontrés
+# (CGI, art. 1657, 1 bis ; BOI-IR-LIQ-20-20-40-20180704, § 60 et § 50) :
+# - la cotisation initiale n'est pas mise en recouvrement que si son montant global,
+#   avant imputation de tout crédit d'impôt, est strictement inférieur à 61 € ;
+# - la décote est calculée sur le barème plafonné arrondi à l'euro le plus proche
+#   (le demi-euro compté pour un), et son propre demi-euro est départagé vers le haut.
+#
+# Valeurs produites par exécutions réelles conservées (dossier de préparation,
+# preuves/collecte-patch/summary.json : candidat composé « seuil + décote sur barème
+# arrondi + demi-euro vers le haut », millésimes 2019-2023, situations figées des
+# panneaux d'étude, comparées étape par étape au moteur de référence DGFiP) :
+# impot_revenu_restant_a_payer = -(cotisation due) ; décote identique à la référence.
+#
+# Sans le patch, les cas 17 043 € (2020), 31 797 € (2020), 17 040 € (2019),
+# 51 888 € (2021) et 57 321 € (2023) échouent : ils matérialisent les corrections.
+- name: impot_revenu_restant_a_payer - 2020 - Célibataire avec un salaire imposable (1AJ) de 17 043 €, impôt exactement égal au seuil de recouvrement de 61 €
+  period: 2020
+  absolute_error_margin: 0.5
+  input:
+    famille:
+      parents: [vous]
+    foyer_fiscal:
+      declarants: [vous]
+    menage:
+      personne_de_reference: [vous]
+    individus:
+      vous:
+        salaire_imposable: 17043
+        statut_marital: celibataire
+        date_naissance: 1980-01-01
+  output:
+    impot_revenu_restant_a_payer: -61
+- name: impot_revenu_restant_a_payer - 2020 - Célibataire avec un salaire imposable (1AJ) de 17 037 €, impôt strictement inférieur au seuil de recouvrement
+  period: 2020
+  absolute_error_margin: 0.5
+  input:
+    famille:
+      parents: [vous]
+    foyer_fiscal:
+      declarants: [vous]
+    menage:
+      personne_de_reference: [vous]
+    individus:
+      vous:
+        salaire_imposable: 17037
+        statut_marital: celibataire
+        date_naissance: 1980-01-01
+  output:
+    impot_revenu_restant_a_payer: 0
+- name: impot_revenu_restant_a_payer - 2020 - Couple marié avec un salaire imposable (1AJ) de 31 797 €, décote calculée sur le barème plafonné arrondi
+  period: 2020
+  absolute_error_margin: 0.5
+  input:
+    famille:
+      parents: [vous, conjoint]
+    foyer_fiscal:
+      declarants: [vous, conjoint]
+    menage:
+      personne_de_reference: [vous]
+      conjoint: [conjoint]
+    individus:
+      vous:
+        salaire_imposable: 31797
+        statut_marital: marie
+        date_naissance: 1980-01-01
+      conjoint:
+        salaire_imposable: 0
+        statut_marital: marie
+        date_naissance: 1981-02-03
+  output:
+    impot_revenu_restant_a_payer: 0
+    decote_gain_fiscal: 869
+- name: impot_revenu_restant_a_payer - 2019 - Célibataire avec un salaire imposable (1AJ) de 17 040 €, demi-euro de la décote départagé vers le haut
+  period: 2019
+  absolute_error_margin: 0.5
+  input:
+    famille:
+      parents: [vous]
+    foyer_fiscal:
+      declarants: [vous]
+    menage:
+      personne_de_reference: [vous]
+    individus:
+      vous:
+        salaire_imposable: 17040
+        statut_marital: celibataire
+        date_naissance: 1980-01-01
+  output:
+    impot_revenu_restant_a_payer: -66
+    decote_gain_fiscal: 655
+- name: impot_revenu_restant_a_payer - 2021 - Couple marié avec un salaire imposable (1AJ) de 51 888 €, décote calculée sur le barème plafonné arrondi
+  period: 2021
+  absolute_error_margin: 0.5
+  input:
+    famille:
+      parents: [vous, conjoint]
+    foyer_fiscal:
+      declarants: [vous, conjoint]
+    menage:
+      personne_de_reference: [vous]
+      conjoint: [conjoint]
+    individus:
+      vous:
+        salaire_imposable: 51888
+        statut_marital: marie
+        date_naissance: 1980-01-01
+      conjoint:
+        salaire_imposable: 0
+        statut_marital: marie
+        date_naissance: 1981-02-03
+  output:
+    impot_revenu_restant_a_payer: -2886
+    decote_gain_fiscal: 1
+- name: impot_revenu_restant_a_payer - 2023 - Couple marié avec un salaire imposable (1AJ) de 57 321 €, décote calculée sur le barème plafonné arrondi
+  period: 2023
+  absolute_error_margin: 0.5
+  input:
+    famille:
+      parents: [vous, conjoint]
+    foyer_fiscal:
+      declarants: [vous, conjoint]
+    menage:
+      personne_de_reference: [vous]
+      conjoint: [conjoint]
+    individus:
+      vous:
+        salaire_imposable: 57321
+        statut_marital: marie
+        date_naissance: 1980-01-01
+      conjoint:
+        salaire_imposable: 0
+        statut_marital: marie
+        date_naissance: 1981-02-03
+  output:
+    impot_revenu_restant_a_payer: -3189
+    decote_gain_fiscal: 1
