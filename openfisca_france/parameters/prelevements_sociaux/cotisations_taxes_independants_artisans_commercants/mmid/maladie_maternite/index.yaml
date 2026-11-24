@@ -1,0 +1,23 @@
+description: Cotisation d'assurance maladie et maternité des travailleurs indépendants non agricoles (barème issu du décret n° 2024-688)
+metadata:
+  short_label: Maladie-maternité (depuis 2025)
+  label_en: Sickness and maternity contribution of self-employed workers (since 2025)
+  reference:
+    2025-01-01:
+    - title: Article D621-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610/2024-07-07
+    - title: Article D621-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592/2024-07-07
+    - title: Décret n° 2024-688 du 5 juillet 2024, art. 6 (entrée en vigueur au titre des périodes courant à compter du 1er janvier 2025)
+  official_journal_date:
+    2025-01-01: "2024-07-06"
+  order:
+  - taux_moyen_reduit
+  - seuil_taux_base
+  - taux_base
+  - taux_au_dela_seuil
+documentation: |-
+  Sous trois PSS, le taux de base fait l'objet d'une réduction : le taux moyen appliqué à toute
+  l'assiette varie linéairement entre les seuils (art. D621-2). Au-delà de trois PSS, le taux de
+  base s'applique à la fraction n'excédant pas trois PSS et le taux de 6,5 % à la part excédentaire
+  (art. D621-1).

@@ -24,9 +24,12 @@ class assiette_csg_abattue(Variable):
         '''
         Assiette CSG - CRDS
             - 01/07/2022 : Ajout de la PPV à partir du 1er août 2022
+            - La part de la PPV exonérée d'impôt sur le revenu, de CSG et de CRDS
+              (primes versées jusqu'au 31/12/2023, rémunération < 3 Smic) en est exclue
         '''
         primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
         prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+        prime_partage_valeur_non_imposable = individu('prime_partage_valeur_non_imposable', period, options=[DIVIDE])
 
         salaire_de_base = individu('salaire_de_base', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
@@ -48,6 +51,7 @@ class assiette_csg_abattue(Variable):
             + primes_fonction_publique
             + primes_salaires_non_exonerees
             + prime_partage_valeur_exoneree
+            - prime_partage_valeur_non_imposable
             + remuneration_principale
             + salaire_de_base
             + stage_gratification_reintegration
@@ -271,10 +275,13 @@ class salaire_imposable(Variable):
         '''
         Salaires imposables
             - 01/07/2022 : Ajout PPV : prime_partage_valeur
+            - La part de la PPV non imposable (primes versées jusqu'au 31/12/2023,
+              rémunération < 3 Smic, article 81 du CGI) en est exclue
         '''
         salaire_de_base = individu('salaire_de_base', period)
         primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
         prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+        prime_partage_valeur_non_imposable = individu('prime_partage_valeur_non_imposable', period, options=[DIVIDE])
 
         primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
@@ -291,6 +298,7 @@ class salaire_imposable(Variable):
             salaire_de_base
             + primes_salaires_non_exonerees
             + prime_partage_valeur_exoneree
+            - prime_partage_valeur_non_imposable
             + remuneration_principale
             + primes_fonction_publique
             + indemnite_residence
@@ -346,11 +354,17 @@ class salaire_net(Variable):
             period,
             options=[DIVIDE],
             )
+        prime_partage_valeur_non_imposable = individu(
+            'prime_partage_valeur_non_imposable',
+            period,
+            options=[DIVIDE],
+            )
         return (
-            salaire_imposable  # La prime pérenne est dans le salaire_imposable
+            salaire_imposable  # Seule la partie imposable de la prime pérenne est dans le salaire_imposable
             + crds_salaire
             + csg_imposable_salaire
             + prime_partage_valeur_exoneree_exceptionnelle
+            + prime_partage_valeur_non_imposable
             )
 
 

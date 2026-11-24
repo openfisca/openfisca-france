@@ -235,15 +235,15 @@ output:
   foyers_fiscaux:
     declaration_d_impots_n_1:
       decote_gain_fiscal:
-        2024: 333
+        2024: 180
       ir_plaf_qf:
-        2024: 333.33
+        2024: 179.55
       nbptr:
         2024: 2
       rfr:
-        2024: 26024.31
+        2024: 24626.31
       rni:
-        2024: 26024.31
+        2024: 24626.31
   menages:
     logement_principal_n_1:
       niveau_de_vie:

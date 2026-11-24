@@ -1,6 +1,6 @@
 import logging
 
-from numpy import char, datetime64, timedelta64, logical_xor as xor_, round as round_, around, invert
+from numpy import char, datetime64, timedelta64, floor, logical_xor as xor_, round as round_, around, invert
 # TODO: L'utilisation de round/around ne semble pas conforme aux règles fiscales
 # Cependant cette modification ne doit pas être faite à la légère : https://github.com/openfisca/openfisca-france/issues/1430
 from openfisca_france.model.prelevements_obligatoires.impot_revenu import arrondi_fiscal
@@ -1626,6 +1626,8 @@ class decote(Variable):
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        # Barème plafonné arrondi à l'euro le plus proche, demi-euro compté pour un
+        ir_plaf_qf = floor(ir_plaf_qf + 0.5)
         nb_adult = foyer_fiscal('nb_adult', period)
         taux_decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.taux
         decote_seuil_celib = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
@@ -1633,7 +1635,7 @@ class decote(Variable):
         decote_celib = max_(0, decote_seuil_celib - taux_decote * ir_plaf_qf)
         decote_couple = max_(0, decote_seuil_couple - taux_decote * ir_plaf_qf)
 
-        return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
+        return floor((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple + 0.5)
 
 
 class decote_gain_fiscal(Variable):
@@ -1648,6 +1650,7 @@ class decote_gain_fiscal(Variable):
         '''
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        ir_plaf_qf = floor(ir_plaf_qf + 0.5)
 
         return around(min_(decote, ir_plaf_qf))
 
@@ -2443,7 +2446,7 @@ class correction_ir_seuils_recouvrement(Variable):
         impots_totaux_avant_imputations = iai + cehr + pfu - pfl
         impots_totaux_apres_imputations = iai + cehr + pfu - pfl - credits_impot - acomptes_ir
 
-        condition_1 = (impots_totaux_avant_imputations <= seuil_avant_imputations) * (impots_totaux_apres_imputations > 0)
+        condition_1 = (impots_totaux_avant_imputations < seuil_avant_imputations) * (impots_totaux_apres_imputations > 0)
         condition_2 = (impots_totaux_avant_imputations > seuil_avant_imputations) * (impots_totaux_apres_imputations > 0) * (impots_totaux_apres_imputations <= seuil_apres_imputations)
 
         condition_correction_seuils_mise_recouvrement = (condition_1 | condition_2)
@@ -2533,6 +2536,11 @@ class rfr(Variable):
         # TODO: On applique ici l'abattement de 10% mais idéalement il faudrait tenir compte des frais réels le cas échéant.
         prime_partage_valeur_exoneree_exceptionnelle = (foyer_fiscal.sum(prime_partage_valeur_exoneree_exceptionnelle_i) * 0.9)
 
+        # La part de la PPV non imposable (primes versées jusqu'au 31/12/2023, rémunération < 3 Smic)
+        # est exclue du RNI (article 81 du CGI) : elle est réintégrée ici, nette de l'abattement de 10 %.
+        prime_partage_valeur_non_imposable_i = foyer_fiscal.members('prime_partage_valeur_non_imposable', period)
+        prime_partage_valeur_non_imposable = (foyer_fiscal.sum(prime_partage_valeur_non_imposable_i) * 0.9)
+
         f3sb = where(imposition_au_bareme, f3sb, 0)
 
         return (
@@ -2542,6 +2550,7 @@ class rfr(Variable):
             + abattements_plus_values
             + f2dm + microentreprise
             + prime_partage_valeur_exoneree_exceptionnelle
+            + prime_partage_valeur_non_imposable
             )
 
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
@@ -3657,10 +3666,16 @@ class abat_spe(Variable):
         # Abattement pour rattachement d'enfants mari·é·s
         abattement_enfant_marie = abattements.enfant_marie
 
-        # Vecteur de foyers eligibles aux abattements spéciaux
+        # Nombre de personnes remplissant la condition d'âge ou d'invalidité
+        # (0, 1 ou 2) : l'abattement est doublé lorsque les deux membres du
+        # couple soumis à imposition commune remplissent les mêmes conditions
+        # (CGI, art. 157 bis ; BOI-IR-BASE-40). La conversion en entier est
+        # nécessaire car la somme de deux booléens numpy reste booléenne
+        # (True + True = True), ce qui comptait un couple éligible comme
+        # un seul contribuable et empêchait le doublement.
         foyers_eligibles = (
-            (((age_declarant >= 65) | declarant_invalide) & (age_declarant > 0))
-            + (((age_conjoint >= 65) | conjoint_invalide) & (age_conjoint > 0))
+            (((age_declarant >= 65) | declarant_invalide) & (age_declarant > 0)).astype(int)
+            + (((age_conjoint >= 65) | conjoint_invalide) & (age_conjoint > 0)).astype(int)
             )
 
         # Vecteur de montants d'abattement pour personnes âges ou invalides

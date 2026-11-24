@@ -1,12 +1,95 @@
 # Changelog
 
-### 177.0.1 [#2839](https://github.com/openfisca/openfisca-france/pull/2839)
+### 177.1.2 [#2839](https://github.com/openfisca/openfisca-france/pull/2839)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : À partir du 01/01/2023.
 * Zones impactées : `prestations/aides_logement`.
 * Détails :
   - Supprime la limite de six personnes à charge pour le plafond de loyer outre-mer.
+
+### 177.1.1 [#2835](https://github.com/openfisca/openfisca-france/pull/2835)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `tests/formulas/abattement_spe_personnes_agees.yaml`
+  - `tests/leximpact/2024/Z_couple_retraites_pension_1.5_SMIC_d3.yml`
+* Détails :
+  - L'abattement spécial des personnes âgées ou invalides (CGI, art. 157 bis) n'était jamais doublé pour un couple : l'éligibilité de chaque conjoint était additionnée comme un booléen (`True + True = True`), si bien que le compteur d'éligibles ne dépassait jamais 1. Un foyer dont les deux membres ont 65 ans ou plus et dont le revenu net imposable est inférieur à 27 670 € (millésime 2023) reçoit désormais 2 × 2 746 € s'il est sous 17 200 € et 2 × 1 373 € au-delà, comme la calculette de référence DGFiP et la doctrine (BOI-IR-BASE-40-20240618, § 60).
+  - Les foyers comptant un seul conjoint éligible et les personnes seules sont inchangés.
+  - Le scénario de régression `tests/leximpact/2024/Z_couple_retraites_pension_1.5_SMIC_d3.yml` (couple de retraités) porte de ce fait de nouvelles valeurs attendues : `ir_plaf_qf` 333,33 € → 179,55 €, `decote_gain_fiscal` 333 € → 180 € et `rfr`/`rni` 26 024,31 € → 24 626,31 €.
+
+
+## 177.1.0 [#2834](https://github.com/openfisca/openfisca-france/pull/2834)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : jusqu'au 31/12/2023 (à partir du 01/01/2024, l'exonération d'impôt sur le revenu dépend de la taille de l'entreprise, non modélisée).
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
+  - `openfisca_france/model/revenus/activite/salarie.py`
+  - `tests/formulas/prime_partage_valeur.yaml`
+  - `tests/formulas/prime_partage_valeur_non_imposable.yaml`
+* Détails :
+  - La part de la prime de partage de la valeur (PPV) exonérée de cotisations sociales, versée à un salarié dont la rémunération des 12 derniers mois est inférieure à 3 Smic, n'est plus soumise à l'impôt sur le revenu, à la CSG et à la CRDS pour les primes versées jusqu'au 31/12/2023 (CGI, art. 81 ; loi n° 2022-1158 du 16/08/2022, art. 1.V ; BOSS, « mesures exceptionnelles / protection du pouvoir d'achat »). Elle se déclare en case 1AD de la déclaration 2042 et ne contribue au revenu fiscal de référence que par ce canal.
+  - Deux variables datées jusqu'au 31/12/2023 sont ajoutées : `ppv_eligibilite` (rémunération des 12 derniers mois inférieure à 3 Smic, symétrique de `ppv_eligibilite_exceptionnelle`) et `prime_partage_valeur_non_imposable` (part exonérée de cotisations × éligibilité). Cette part est retirée du `salaire_imposable` et de l'`assiette_csg_abattue`, et ajoutée au `salaire_net` et au revenu fiscal de référence (× 0,9, comme la part exceptionnelle).
+  - Cas de reproduction corrigé (2023, salaire de 20 966,40 € sur l'année, PPV de 3 000 €) : le montant du 1AJ passe de 19 993,77 € à 17 194,20 € et l'impôt de 198 € à 0 €. Au-delà de 3 Smic de rémunération, le comportement est inchangé (prime imposable).
+  - Les attendus d'impôt de `tests/formulas/prime_partage_valeur.yaml` sont alignés sur l'arrondi de la décote introduit par #2829 (par exemple −153 € → −152 €).
+
+
+### 177.0.5 [#2829](https://github.com/openfisca/openfisca-france/pull/2829)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes (seuil) ; à partir du 01/01/2014 (décote).
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `tests/formulas/recouvrement_seuil_61.yaml`
+  - `tests/formulas/prime_partage_valeur.yaml`
+* Détails :
+  - Seuil de mise en recouvrement : la cotisation initiale n'est plus annulée
+    lorsqu'elle est exactement égale à 61 € (CGI, art. 1657, 1 bis ;
+    BOI-IR-LIQ-20-20-40-20180704, § 60). Le second minimum de 12 € après
+    crédits est inchangé.
+  - Décote (formule depuis 2014) : calcul sur le barème plafonné arrondi à
+    l'euro le plus proche, demi-euro compté pour un (BOI-IR-LIQ-20-20-40-20180704,
+    § 50) ; le demi-euro de la décote est départagé vers le haut au lieu de
+    l'arrondi bancaire.
+  - Les attendus d'impôt de `tests/formulas/prime_partage_valeur.yaml` sont
+    actualisés d'un euro en conséquence (par exemple −153 € → −152 €).
+
+### 177.0.4 [#2847](https://github.com/openfisca/openfisca-france/pull/2847/changes)
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/minima_sociaux/ppa.py`.
+* Détails :
+  - Pour déterminer l'éligibilité d'un étudiant à la prime d'activité uniquement ses revenus d'activités sont pris en compte. Or la variable qui était utilisée comprenait également l'AAH.
+
+### 177.0.3 [#2814](https://github.com/openfisca/openfisca-france/pull/2814)
+
+* Amélioration technique.
+* Détails :
+  - Évite la surcharge des erreurs et avertissements filtrés pour rendre plus robuste les tests. Plus d'info sur la [page dédiée](https://docs.pytest.org/en/4.6.x/warnings.html\#deprecationwarning-and-pendingdeprecationwarning) de la documentation de pytest.
+
+
+### 177.0.2 [#2844](https://github.com/openfisca/openfisca-france/pull/2844)
+
+* Amélioration technique.
+* Détails :
+  - Évite la surcharge des erreurs et avertissements filtrés pour rendre plus robuste les tests. Plus d'info sur la [page dédiée](https://docs.pytest.org/en/4.6.x/warnings.html\#deprecationwarning-and-pendingdeprecationwarning) de la documentation de pytest.
+
+### 177.0.1 [#2836](https://github.com/openfisca/openfisca-france/pull/2836)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2025.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie`
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants`
+* Détails :
+  - Cotisation maladie-maternité des artisans et commerçants : applique le barème issu du décret n° 2024-688 (articles D621-1 et D621-2 du code de la sécurité sociale) au lieu du barème de 2020 codé en dur. Le taux moyen est interpolé linéairement entre 20 %, 40 %, 60 %, 110 %, 200 % et 300 % du PSS (0 % ; 1,5 % ; 4 % ; 6,5 % ; 7,7 % ; 8,5 %) ; au-delà de trois PSS, 8,5 % sur la fraction n'excédant pas trois PSS et 6,5 % sur l'excédent. Nouveaux paramètres dans `mmid/maladie_maternite`. Contribue à #1775.
+  - Cotisation de retraite complémentaire des artisans et commerçants : depuis le 01/01/2025, le premier taux (8,1 %) s'applique jusqu'au PSS et non plus jusqu'au plafond RCI (article D635-7 du code de la sécurité sociale). Les paramètres `sous_plafond_rci` et `entre_1_plafond_rci_et_4_plafonds_pss` gardent leur nom ; leur documentation précise le changement de borne en 2025.
+  - _L'assiette reste `rpns_imposables` : l'assiette unique de l'article L131-6 (revenu brut après abattement de 26 %) n'est pas encore modélisée._
 
 # 177.0.0 [#2833](https://github.com/openfisca/openfisca-france/pull/2833)
 

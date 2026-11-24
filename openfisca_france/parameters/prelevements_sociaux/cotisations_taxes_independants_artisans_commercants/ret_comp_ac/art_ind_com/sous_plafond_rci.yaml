@@ -1,4 +1,4 @@
-description: Taux sous plafond RCI de la cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans-commerçants
+description: Taux sous plafond RCI (sous 1 PSS depuis 2025) de la cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans-commerçants
 values:
   2013-01-01:
     value: 0.07
@@ -28,3 +28,9 @@ metadata:
   notes:
     2013-01-01:
     - title: Depuis le 1er janvier 2013, le taux de cotisations est unifié pour les différentes catégories d'independants.
+    2025-01-01:
+    - title: Depuis le 1er janvier 2025, la borne supérieure de cette tranche est le plafond annuel de la sécurité sociale et non plus le plafond RCI.
+documentation: |-
+  Le nom du paramètre renvoie à la borne en vigueur jusqu'au 31/12/2024.
+  Jusqu'en 2024, ce taux s'applique à la part de l'assiette n'excédant pas le plafond RCI (montant_du_plafond_rci).
+  Depuis le 1er janvier 2025, il s'applique à la part n'excédant pas le plafond annuel de la sécurité sociale (article D635-7 du code de la sécurité sociale, décret n° 2024-688 du 5 juillet 2024).
