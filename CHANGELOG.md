@@ -1,6 +1,6 @@
 # Changelog
 
-### 177.1.2 [#2833](https://github.com/openfisca/openfisca-france/pull/2833)
+### 177.1.2 [#2848](https://github.com/openfisca/openfisca-france/pull/2848)
 
 * Amélioration technique.
 * Détails :
