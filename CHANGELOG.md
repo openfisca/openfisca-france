@@ -1,5 +1,12 @@
 # Changelog
 
+### 177.1.2 [#2848](https://github.com/openfisca/openfisca-france/pull/2848)
+
+* Amélioration technique.
+* Détails :
+  - Met à jour les dépendances avec `uv sync --upgrade`
+  - Accepte les versions `<2.6` de `numpy`
+
 ### 177.1.1 [#2835](https://github.com/openfisca/openfisca-france/pull/2835)
 
 * Évolution du système socio-fiscal.
