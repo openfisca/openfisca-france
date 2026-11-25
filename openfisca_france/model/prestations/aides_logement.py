@@ -1136,6 +1136,10 @@ class aide_logement_loyer_plafond(Variable):
     value_type = float
     entity = Famille
     label = 'Loyer plafond dans le calcul des aides au logement (L2)'
+    reference = [
+        'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206217/2022-12-30',
+        'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206205/2022-12-30',
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1157,7 +1161,7 @@ class aide_logement_loyer_plafond(Variable):
 
         plafond_personne_seule = plafonds_loyers_par_zone.personnes_seules
         plafond_couple = plafonds_loyers_par_zone.couples
-        al_nb_pac_plafond = where(residence_aides_logement_outre_mer * (period.start.year < 2023), min_(al_nb_pac, 6), al_nb_pac)
+        al_nb_pac_plafond = where(residence_aides_logement_outre_mer, min_(al_nb_pac, 6), al_nb_pac)
         plafond_famille = plafonds_loyers_par_zone.un_enfant + (al_nb_pac_plafond > 1) * (al_nb_pac_plafond - 1) * plafonds_loyers_par_zone.majoration_par_enf_supp
 
         plafond = select(
@@ -1173,8 +1177,107 @@ class aide_logement_loyer_plafond(Variable):
              plafonds_loyers_coef_chambre_coloc.coef_chambre),
             default = 1
             )
-
         return round_(plafond * coeff_coloc * coeff_chambre, 2)
+
+    def formula_2019_10_01(famille, period, parameters):
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+        coloc = famille.demandeur.menage('coloc', period)
+        chambre = famille.demandeur.menage('logement_chambre', period)
+        residence_aides_logement_outre_mer = famille.demandeur.menage('residence_aides_logement_outre_mer', period)
+        personne_agee_handicapee = famille.demandeur.menage(
+            'personne_agee_handicapee', period
+            )
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+
+        plafonds_loyers = al.locatif.formule.l_plafonds_loyers
+        plafonds_loyers_par_zone = plafonds_loyers.par_zone[zone_apl]
+        plafonds_loyers_coef_chambre_coloc = plafonds_loyers.coef_chambre_et_colocation
+
+        plafond_personne_seule = plafonds_loyers_par_zone.personnes_seules
+        plafond_couple = plafonds_loyers_par_zone.couples
+        al_nb_pac_plafond = where(residence_aides_logement_outre_mer, min_(al_nb_pac, 6), al_nb_pac)
+        nombre_enfants_supplementaires = (al_nb_pac_plafond > 1) * (al_nb_pac_plafond - 1)
+        plafond_famille = plafonds_loyers_par_zone.un_enfant + nombre_enfants_supplementaires * plafonds_loyers_par_zone.majoration_par_enf_supp
+
+        plafond = select(
+            [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
+            [plafond_personne_seule, plafond_famille],
+            default = plafond_couple
+            )
+
+        coeff_chambre = select(
+            (and_(chambre, personne_agee_handicapee), chambre),
+            (plafonds_loyers_coef_chambre_coloc.personne_agee_handicapee,
+             plafonds_loyers_coef_chambre_coloc.coef_chambre),
+            default = 1
+            )
+
+        plafonds_loyers_colocation = plafonds_loyers.par_zone_colocation[zone_apl]
+        plafond_coloc_sans_majoration = select(
+            [not_(couple) * (al_nb_pac == 0), al_nb_pac > 0],
+            [plafonds_loyers_colocation.personnes_seules, plafonds_loyers_colocation.un_enfant],
+            default = plafonds_loyers_colocation.couples
+            )
+        plafond_coloc = (
+            plafond_coloc_sans_majoration
+            + nombre_enfants_supplementaires * plafonds_loyers_colocation.majoration_par_enf_supp
+            )
+        return where(
+            coloc,
+            plafond_coloc,
+            round_(plafond * coeff_chambre, 2)
+            )
+
+    def formula_2023_01_01(famille, period, parameters):
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+        coloc = famille.demandeur.menage('coloc', period)
+        chambre = famille.demandeur.menage('logement_chambre', period)
+        personne_agee_handicapee = famille.demandeur.menage(
+            'personne_agee_handicapee', period
+            )
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+
+        plafonds_loyers = al.locatif.formule.l_plafonds_loyers
+        plafonds_loyers_par_zone = plafonds_loyers.par_zone[zone_apl]
+        plafonds_loyers_coef_chambre_coloc = plafonds_loyers.coef_chambre_et_colocation
+
+        plafond_personne_seule = plafonds_loyers_par_zone.personnes_seules
+        plafond_couple = plafonds_loyers_par_zone.couples
+        nombre_enfants_supplementaires = (al_nb_pac > 1) * (al_nb_pac - 1)
+        plafond_famille = plafonds_loyers_par_zone.un_enfant + nombre_enfants_supplementaires * plafonds_loyers_par_zone.majoration_par_enf_supp
+
+        plafond = select(
+            [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
+            [plafond_personne_seule, plafond_famille],
+            default = plafond_couple
+            )
+
+        coeff_chambre = select(
+            (and_(chambre, personne_agee_handicapee), chambre),
+            (plafonds_loyers_coef_chambre_coloc.personne_agee_handicapee,
+             plafonds_loyers_coef_chambre_coloc.coef_chambre),
+            default = 1
+            )
+
+        plafonds_loyers_colocation = plafonds_loyers.par_zone_colocation[zone_apl]
+        plafond_coloc_sans_majoration = select(
+            [not_(couple) * (al_nb_pac == 0), al_nb_pac > 0],
+            [plafonds_loyers_colocation.personnes_seules, plafonds_loyers_colocation.un_enfant],
+            default = plafonds_loyers_colocation.couples
+            )
+        plafond_coloc = (
+            plafond_coloc_sans_majoration
+            + nombre_enfants_supplementaires * plafonds_loyers_colocation.majoration_par_enf_supp
+            )
+        return where(
+            coloc,
+            plafond_coloc,
+            round_(plafond * coeff_chambre, 2)
+            )
 
 
 class aide_logement_loyer_reel(Variable):

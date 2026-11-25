@@ -1,0 +1,242 @@
+- name: Test_56945
+  period: 2022-12
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1, personne2]
+      al_nb_personnes_a_charge: 6
+      aide_logement_base_ressources: 38916.0
+      reduction_loyer_solidarite: 0.0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      depcom: "97600"
+      zone_apl: zone_2
+      personne_agee_handicapee: true
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 479.90
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+        handicap: true
+      personne2:
+        date_naissance: 2003-01-01
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    apl: 11.0
+    aide_logement_loyer_plafond: 479.89
+
+- name: Test_44558
+  period: 2023-01
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1, personne2]
+      al_nb_personnes_a_charge: 6
+      aide_logement_base_ressources: 39326.0
+      reduction_loyer_solidarite: 0.0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      depcom: "97500"
+      zone_apl: zone_2
+      personne_agee_handicapee: true
+      statut_occupation_logement: locataire_meuble
+      logement_conventionne: true
+      loyer: 719.85
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+        handicap: true
+      personne2:
+        date_naissance: 2003-01-01
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    apl: 12.0
+    aide_logement_loyer_plafond: 479.89
+
+- name: Test_colocation_personne_seule_table_2022
+  period: 2022-07
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1]
+      al_nb_personnes_a_charge: 0
+    menage:
+      personne_de_reference: personne1
+      depcom: "75001"
+      zone_apl: zone_1
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 231.39
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+  output:
+    aide_logement_loyer_plafond: 231.38
+
+- name: Test_colocation_couple_sans_pac_table_2026
+  period: 2026-10
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1, personne2]
+      al_nb_personnes_a_charge: 0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      depcom: "75001"
+      zone_apl: zone_3
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 250.26
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+      personne2:
+        date_naissance: 2003-01-01
+  output:
+    aide_logement_loyer_plafond: 250.25
+
+- name: Test_colocation_personne_seule_table_2019
+  period: 2019-10
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1]
+      al_nb_personnes_a_charge: 0
+    menage:
+      personne_de_reference: personne1
+      depcom: "75001"
+      zone_apl: zone_1
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 221.96
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+  output:
+    aide_logement_loyer_plafond: 221.95
+
+- name: Test_colocation_personne_seule_table_2020
+  period: 2020-10
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1]
+      al_nb_personnes_a_charge: 0
+    menage:
+      personne_de_reference: personne1
+      depcom: "75001"
+      zone_apl: zone_1
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 222.63
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+  output:
+    aide_logement_loyer_plafond: 222.62
+
+- name: Test_colocation_personne_seule_table_2021
+  period: 2021-10
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1]
+      al_nb_personnes_a_charge: 0
+    menage:
+      personne_de_reference: personne1
+      depcom: "75001"
+      zone_apl: zone_1
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 223.56
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+  output:
+    aide_logement_loyer_plafond: 223.55
+
+- name: Test_colocation_personne_seule_table_2023
+  period: 2023-10
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1]
+      al_nb_personnes_a_charge: 0
+    menage:
+      personne_de_reference: personne1
+      depcom: "75001"
+      zone_apl: zone_1
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 239.49
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+  output:
+    aide_logement_loyer_plafond: 239.48
+
+- name: Test_colocation_personne_seule_table_2024
+  period: 2024-10
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1]
+      al_nb_personnes_a_charge: 0
+    menage:
+      personne_de_reference: personne1
+      depcom: "75001"
+      zone_apl: zone_1
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 247.29
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+  output:
+    aide_logement_loyer_plafond: 247.28
+
+- name: Test_colocation_personne_seule_table_2025
+  period: 2025-10
+  absolute_error_margin: 0.0001
+  input:
+    famille:
+      parents: [personne1]
+      al_nb_personnes_a_charge: 0
+    menage:
+      personne_de_reference: personne1
+      depcom: "75001"
+      zone_apl: zone_1
+      statut_occupation_logement: locataire_hlm
+      logement_conventionne: true
+      loyer: 247.29
+      logement_chambre: false
+      coloc: true
+    individus:
+      personne1:
+        date_naissance: 2003-01-01
+  output:
+    aide_logement_loyer_plafond: 247.28

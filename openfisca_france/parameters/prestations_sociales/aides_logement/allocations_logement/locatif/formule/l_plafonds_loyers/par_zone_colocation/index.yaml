@@ -1,0 +1,7 @@
+description: Plafonds de loyers applicables aux colocataires selon leur zone
+metadata:
+  short_label: Plafonds de colocation par zone
+  order:
+  - zone_1
+  - zone_2
+  - zone_3

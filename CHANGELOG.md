@@ -1,5 +1,12 @@
 # Changelog
 
+### 177.1.5 [#2842](https://github.com/openfisca/openfisca-france/pull/2842)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 1er octobre 2019.
+* Zones impactées : `prestations/aides_logement`.
+* Utilise les montants publiés à l’article 16 de l’arrêté du 27 septembre 2019 pour les plafonds de loyer des colocataires.
+
 ### 177.1.4 [#2841](https://github.com/openfisca/openfisca-france/pull/2841)
 
 * Évolution du système socio-fiscal.
