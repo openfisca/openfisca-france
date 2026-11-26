@@ -1394,13 +1394,17 @@ class ir_ss_qf(Variable):
     def formula(foyer_fiscal, period, parameters):
         '''
         Impôt sans quotient familial
+
+        En cas d'application de la règle du taux effectif, cet impôt est calculé
+        comme ir_brut : sur l'ensemble des revenus, puis proratisé.
         '''
-        rni = foyer_fiscal('rni', period)
+        base_taux_effectif = foyer_fiscal('base_taux_effectif', period)
+        prorata_taux_effectif = foyer_fiscal('prorata_taux_effectif', period)
         nb_adult = foyer_fiscal('nb_adult', period)
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
 
-        A = bareme.calc(rni / nb_adult)
-        return nb_adult * A
+        A = bareme.calc(base_taux_effectif / nb_adult)
+        return prorata_taux_effectif * nb_adult * A
 
 
 class ir_plaf_qf(Variable):
@@ -1437,6 +1441,7 @@ class ir_plaf_qf(Variable):
         nbH = foyer_fiscal('nbH', period)
         nbI = foyer_fiscal('nbI', period)
         nbR = foyer_fiscal('nbR', period)
+        prorata_taux_effectif = foyer_fiscal('prorata_taux_effectif', period)
         plafond_qf = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf
 
         A = ir_ss_qf
@@ -1455,6 +1460,12 @@ class ir_plaf_qf(Variable):
         B = B1 * condition61 +\
             B2 * (not_(condition61 | condition63)) +\
             B3 * (condition63 & not_(condition61))
+        # Règle du taux effectif : le plafonnement s'applique à la cotisation de base,
+        # calculée sur l'ensemble des revenus, qui est ensuite proratisée
+        # (BOI-IR-LIQ-20-30-30, § 690 et 700). I et A étant déjà proratisés,
+        # les montants du plafonnement et de la réduction complémentaire (D)
+        # le sont aussi (prorata égal à 1 sinon).
+        B = prorata_taux_effectif * B
         C = max_(0, A - B)
 
         IP0 = max_(I, C)  # Impôt après plafonnement
@@ -1477,7 +1488,7 @@ class ir_plaf_qf(Variable):
 
         # plus de 590 euros si on a des plus de
         condition62cb = ((nbG + nbR + nbI) > 0) | caseP | caseF
-        D = plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * (condition62ca + ~condition62ca * condition62cb * (
+        D = prorata_taux_effectif * plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * (condition62ca + ~condition62ca * condition62cb * (
             1 * caseP + 1 * caseF + nbG + nbR + nbI / 2))
 
         E = max_(0, A - I - B)
@@ -1528,6 +1539,7 @@ class ir_plaf_qf(Variable):
         nbJ = foyer_fiscal('nbI', period)  # noqa F841
         nbN = foyer_fiscal('nbJ', period)  # noqa F841
         nbR = foyer_fiscal('nbR', period)
+        prorata_taux_effectif = foyer_fiscal('prorata_taux_effectif', period)
 
         plafond_qf = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf
 
@@ -1548,6 +1560,13 @@ class ir_plaf_qf(Variable):
         B = B1 * condition61 +\
             B2 * (not_(condition61 | condition63)) +\
             B3 * (condition63 & not_(condition61))
+        # Règle du taux effectif : le plafonnement s'applique à la cotisation de base,
+        # calculée sur l'ensemble des revenus, qui est ensuite proratisée
+        # (BOI-IR-LIQ-20-30-30, § 690 et 700). I et A étant déjà proratisés,
+        # les montants du plafonnement et de la réduction complémentaire le sont
+        # aussi (prorata égal à 1 sinon). L'abattement DOM (PART3) s'applique
+        # ensuite à l'impôt proratisé, sans proratiser son plafond.
+        B = prorata_taux_effectif * B
 
         C = max_(0, A - B)
 
@@ -1575,7 +1594,7 @@ class ir_plaf_qf(Variable):
 
         D = condition62b * condition62d * plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond_veuf
 
-        F = D + E
+        F = prorata_taux_effectif * (D + E)
         G = max_(0, A - I - B)
         H = F * (F <= G) + G * (G < F)
         impot_apres_reduction_complementaire = impot_apres_plaf_qf - H
@@ -3694,6 +3713,57 @@ class abat_spe(Variable):
         return min_(revenu_net_global, as_inv + as_enf)
 
 
+class base_taux_effectif(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Revenu ayant servi au calcul de l'impôt théorique pour la règle du taux effectif"
+    definition_period = YEAR
+    reference = 'https://bofip.impots.gouv.fr/bofip/4616-PGP.html/identifiant=BOI-IR-LIQ-20-30-30-20120912'
+    documentation = '''
+        Revenu net imposable augmenté des revenus retenus pour le seul calcul du taux effectif
+        (bénéfices de micro-entreprise soumis au versement libératoire, honoraires de prospection
+        commerciale). Égal au revenu net imposable en l'absence de tels revenus.
+        '''
+
+    def formula(foyer_fiscal, period, parameters):
+        return foyer_fiscal('rni', period)
+
+    def formula_2009_01_01(foyer_fiscal, period, parameters):
+        rni = foyer_fiscal('rni', period)
+        microentreprise = foyer_fiscal('microentreprise', period)
+        abnc_proc_i = foyer_fiscal.members('abnc_proc', period)
+        nbnc_proc_i = foyer_fiscal.members('nbnc_proc', period)
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+        abnc_proc = foyer_fiscal.sum(abnc_proc_i)
+        nbnc_proc = foyer_fiscal.sum(nbnc_proc_i)
+        return rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        rni = foyer_fiscal('rni', period)
+        microentreprise = foyer_fiscal('microentreprise', period)
+        abnc_proc_i = foyer_fiscal.members('abnc_proc', period)
+        abnc_proc = foyer_fiscal.sum(abnc_proc_i)
+        return rni + microentreprise + abnc_proc
+
+
+class prorata_taux_effectif(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Rapport entre le revenu net imposable et le revenu ayant servi au calcul de l'impôt théorique (règle du taux effectif)"
+    definition_period = YEAR
+    reference = 'https://bofip.impots.gouv.fr/bofip/4616-PGP.html/identifiant=BOI-IR-LIQ-20-30-30-20120912'
+    documentation = '''
+        L'impôt exigible est égal à la cotisation de base (impôt sur l'ensemble des revenus,
+        plafonnement du quotient familial compris) multipliée par ce rapport (BOI-IR-LIQ-20-30-30, § 700).
+        Égal à 1 en l'absence de revenus retenus pour le seul calcul du taux effectif.
+        '''
+
+    def formula(foyer_fiscal, period, parameters):
+        rni = foyer_fiscal('rni', period)
+        base_taux_effectif = foyer_fiscal('base_taux_effectif', period)
+        return where(base_taux_effectif > rni, rni / max_(1, base_taux_effectif), 1)
+
+
 class taux_effectif(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -3705,30 +3775,30 @@ class taux_effectif(Variable):
         - aux salariés détachés à l'étranger
         - aux fonctionnaires des organisations internationales
         - aux contribuables soumis au régime micro-entreprise
+
+        Taux moyen avant plafonnement du quotient familial : le plafonnement est appliqué
+        à la cotisation de base dans ir_plaf_qf (BOI-IR-LIQ-20-30-30, § 690).
         '''
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
-        rni = foyer_fiscal('rni', period)
         nbptr = foyer_fiscal('nbptr', period)
         microentreprise = foyer_fiscal('microentreprise', period)
         abnc_proc_i = foyer_fiscal.members('abnc_proc', period)
         nbnc_proc_i = foyer_fiscal.members('nbnc_proc', period)
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
-        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
         abnc_proc = foyer_fiscal.sum(abnc_proc_i)
         nbnc_proc = foyer_fiscal.sum(nbnc_proc_i)
-        base_fictive = rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
+        base_fictive = foyer_fiscal('base_taux_effectif', period)
         trigger = (microentreprise != 0) | (abnc_proc != 0) | (nbnc_proc != 0)
         return trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        rni = foyer_fiscal('rni', period)
         nbptr = foyer_fiscal('nbptr', period)
         microentreprise = foyer_fiscal('microentreprise', period)
         abnc_proc_i = foyer_fiscal.members('abnc_proc', period)
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
         abnc_proc = foyer_fiscal.sum(abnc_proc_i)
-        base_fictive = rni + microentreprise + abnc_proc
+        base_fictive = foyer_fiscal('base_taux_effectif', period)
         trigger = (microentreprise != 0) | (abnc_proc != 0)
         return trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
 

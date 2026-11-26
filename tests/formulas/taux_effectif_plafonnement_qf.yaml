@@ -1,0 +1,174 @@
+# Règle du taux effectif et plafonnement des effets du quotient familial
+# (CGI, art. 197 C ; BOI-IR-LIQ-20-30-30-20120912, § 40, 470, 490, 690 et 700) :
+# la cotisation de base est l'impôt calculé sur l'ensemble des revenus, y compris
+# les bénéfices de micro-entreprise soumis au versement libératoire,
+# « et éventuellement plafonnement des effets du quotient familial » (§ 690) ;
+# l'impôt exigible est cette cotisation multipliée par le rapport entre le revenu
+# effectivement imposable et le revenu ayant servi à la calculer (§ 700).
+#
+# Cas de l'issue #2811 (revenus 2025) : 120 000 € de revenus fonciers (4BA) et
+# 70 000 € de chiffre d'affaires en prestations de services BIC, soit 35 000 € de
+# bénéfice après l'abattement de 50 %. Valeurs attendues : simulateur officiel
+# (https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/complet/index.htm),
+# telles que relevées dans l'issue.
+#
+# Sans le correctif, les cas avec plafonnement donnent 26 932 € et 14 980 € : le
+# plafonnement était appliqué à l'impôt déjà proratisé, en comparaison avec un impôt
+# sans quotient familial calculé sur le seul revenu net imposable.
+- name: ip_net - 2025 - Parent isolé (case T), 2 enfants, 4BA 120 000 €, 5TB 70 000 € (versement libératoire), plafonnement
+  # Impôt sur 155 000 € avec 2,5 parts, plafonnement compris : 41 282 € (cas suivant).
+  # 41 282 × 120 000 / 155 000 = 31 960 €
+  period: 2025
+  absolute_error_margin: 0.5
+  input:
+    famille:
+      parents: [parent]
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [parent]
+      personnes_a_charge: [enfant1, enfant2]
+      caseT: true
+      f4ba: 120000
+    menage:
+      personne_de_reference: [parent]
+      enfants: [enfant1, enfant2]
+    individus:
+      parent:
+        date_naissance: 1985-01-01
+        ebic_imps: 70000
+      enfant1:
+        date_naissance: 2015-01-01
+      enfant2:
+        date_naissance: 2015-01-01
+  output:
+    nbptr: 2.5
+    microentreprise: 35000
+    ip_net: 31960
+- name: ip_net - 2025 - Parent isolé (case T), 2 enfants, 4BA 120 000 €, 5KP 70 000 € (micro-BIC sans versement libératoire), plafonnement
+  # Pas de taux effectif : le bénéfice est imposé au barème avec les autres revenus.
+  period: 2025
+  absolute_error_margin: 0.5
+  input:
+    famille:
+      parents: [parent]
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [parent]
+      personnes_a_charge: [enfant1, enfant2]
+      caseT: true
+      f4ba: 120000
+    menage:
+      personne_de_reference: [parent]
+      enfants: [enfant1, enfant2]
+    individus:
+      parent:
+        date_naissance: 1985-01-01
+        mbic_imps: 70000
+      enfant1:
+        date_naissance: 2015-01-01
+      enfant2:
+        date_naissance: 2015-01-01
+  output:
+    rni: 155000
+    ip_net: 41282
+- name: ip_net - 2025 - Couple marié, 3 enfants, 4BA 120 000 €, 5TB 70 000 € (versement libératoire), plafonnement
+  period: 2025
+  absolute_error_margin: 0.5
+  input:
+    famille:
+      parents: [declarant, conjoint]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [declarant, conjoint]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+      f4ba: 120000
+    menage:
+      personne_de_reference: [declarant]
+      conjoint: [conjoint]
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      declarant:
+        date_naissance: 1985-01-01
+        statut_marital: marie
+        ebic_imps: 70000
+      conjoint:
+        date_naissance: 1985-01-01
+        statut_marital: marie
+      enfant1:
+        date_naissance: 2015-01-01
+      enfant2:
+        date_naissance: 2015-01-01
+      enfant3:
+        date_naissance: 2015-01-01
+  output:
+    nbptr: 4
+    ip_net: 19726
+- name: ip_net - 2025 - Personne seule sans enfant, 4BA 120 000 €, 5TB 70 000 € (versement libératoire), sans plafonnement
+  # Sans plafonnement, le calcul est inchangé par le correctif (36 658 € avant et après).
+  # Le simulateur officiel donne 36 659 € : il arrondit à l'euro l'impôt sur
+  # l'ensemble des revenus (47 350,52 €, soit 47 351 €) avant le prorata, d'où l'écart
+  # d'un euro, sans lien avec le plafonnement.
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [declarant]
+    foyer_fiscal:
+      declarants: [declarant]
+      f4ba: 120000
+    menage:
+      personne_de_reference: [declarant]
+    individus:
+      declarant:
+        date_naissance: 1985-01-01
+        ebic_imps: 70000
+  output:
+    nbptr: 1
+    ip_net: 36659
+- name: base_taux_effectif et prorata_taux_effectif - 2025 - Parent isolé (case T), 2 enfants, 4BA 120 000 €, 5TB 70 000 € (versement libératoire)
+  # Cotisation de base calculée sur 155 000 €, proratisée par 120 000 / 155 000.
+  period: 2025
+  relative_error_margin: 0.0001
+  input:
+    famille:
+      parents: [parent]
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [parent]
+      personnes_a_charge: [enfant1, enfant2]
+      caseT: true
+      f4ba: 120000
+    menage:
+      personne_de_reference: [parent]
+      enfants: [enfant1, enfant2]
+    individus:
+      parent:
+        date_naissance: 1985-01-01
+        ebic_imps: 70000
+      enfant1:
+        date_naissance: 2015-01-01
+      enfant2:
+        date_naissance: 2015-01-01
+  output:
+    rni: 120000
+    base_taux_effectif: 155000
+    prorata_taux_effectif: 120000 / 155000
+    # 41 281,52 € (impôt sur 155 000 €, plafonnement compris) × 120 000 / 155 000
+    ir_plaf_qf: 41281.52 * 120000 / 155000
+- name: base_taux_effectif et prorata_taux_effectif - 2025 - Sans revenus soumis au taux effectif
+  period: 2025
+  relative_error_margin: 0.0001
+  input:
+    famille:
+      parents: [declarant]
+    foyer_fiscal:
+      declarants: [declarant]
+      f4ba: 120000
+    menage:
+      personne_de_reference: [declarant]
+    individus:
+      declarant:
+        date_naissance: 1985-01-01
+  output:
+    base_taux_effectif: 120000
+    prorata_taux_effectif: 1
