@@ -1,5 +1,32 @@
 # Changelog
 
+## 177.2.0 [#2849](https://github.com/openfisca/openfisca-france/pull/2849)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2009.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `tests/formulas/taux_effectif_plafonnement_qf.yaml`
+* Détails :
+  - Règle du taux effectif (bénéfices de micro-entreprise soumis au versement
+    libératoire, honoraires de prospection commerciale) : le plafonnement des
+    effets du quotient familial s'applique désormais à la cotisation de base,
+    calculée sur l'ensemble des revenus, avant le prorata (CGI, art. 197 C ;
+    BOI-IR-LIQ-20-30-30-20120912, § 690 et 700). Il était appliqué à l'impôt déjà
+    proratisé, par comparaison avec un impôt sans quotient familial calculé sur le
+    seul revenu net imposable, ce qui sous-estimait l'impôt dès que le plafonnement
+    jouait (#2811).
+  - Exemple (revenus 2025) : parent isolé, 2 enfants, 120 000 € de revenus fonciers
+    et 70 000 € de chiffre d'affaires en prestations de services BIC au versement
+    libératoire : `ip_net` passe de 26 932 € à 31 960 €, comme le simulateur officiel.
+  - Nouvelles variables `base_taux_effectif` (revenu ayant servi au calcul de
+    l'impôt théorique) et `prorata_taux_effectif` (rapport entre le revenu net
+    imposable et cette base, égal à 1 sans revenus soumis au taux effectif).
+    `taux_effectif` et `ir_brut` sont inchangés ; `ir_ss_qf` est désormais calculé
+    comme `ir_brut`, sur l'ensemble des revenus puis proratisé.
+  - Les foyers sans revenus soumis au taux effectif, ou pour lesquels le
+    plafonnement ne joue pas, sont inchangés.
+
 ### 177.1.4 [#2841](https://github.com/openfisca/openfisca-france/pull/2841)
 
 * Évolution du système socio-fiscal.
