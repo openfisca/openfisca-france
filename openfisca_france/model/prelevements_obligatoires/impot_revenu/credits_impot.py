@@ -1004,7 +1004,7 @@ class assloy(Variable):
         2005-2016
         '''
         f4bf = foyer_fiscal('f4bf', period)
-        assloy = parameters(period).impot_revenu.credits_impots.assloy
+        assloy = parameters(period).impot_revenu.credits_impots.assloy.taux
 
         return assloy * f4bf
 
@@ -1707,7 +1707,7 @@ class drbail(Variable):
         2002-2017
         '''
         f4tq = foyer_fiscal('f4tq', period)
-        drbail = parameters(period).impot_revenu.credits_impots.drbail
+        drbail = parameters(period).impot_revenu.credits_impots.drbail.taux
 
         return drbail * f4tq
 
@@ -3036,10 +3036,10 @@ class ci_saldom(Variable):
 
         isinvalid = f7dg
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.plafond
-        maxDuMaxNonInv = P.plafond_maximum
-        maxNonInv = min_(maxBase + P.increment_plafond * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.plafond_invalides * isinvalid
+        maxBase = P.plafond.plafond_base.plafond
+        maxDuMaxNonInv = P.plafond.plafond_max.plafond_maximum
+        maxNonInv = min_(maxBase + P.plafond.increment_plafond * nbpacmin, maxDuMaxNonInv)
+        maxEffectif = maxNonInv * not_(isinvalid) + P.plafond.plafond_invalides * isinvalid
 
         return P.taux * min_(f7db, maxEffectif)
 
@@ -3058,10 +3058,10 @@ class ci_saldom(Variable):
         isinvalid = f7dg
         annee1 = f7dq
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.plafond * not_(annee1) + P.plafond_1ere_annee * annee1
-        maxDuMaxNonInv = P.plafond_maximum * not_(annee1) + P.plafond_maximum_1ere_annee * annee1
-        maxNonInv = min_(maxBase + P.increment_plafond * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.plafond_invalides * isinvalid
+        maxBase = P.plafond.plafond_base.plafond * not_(annee1) + P.plafond.plafond_base.plafond_1ere_annee * annee1
+        maxDuMaxNonInv = P.plafond.plafond_max.plafond_maximum * not_(annee1) + P.plafond.plafond_max.plafond_maximum_1ere_annee * annee1
+        maxNonInv = min_(maxBase + P.plafond.increment_plafond * nbpacmin, maxDuMaxNonInv)
+        maxEffectif = maxNonInv * not_(isinvalid) + P.plafond.plafond_invalides * isinvalid
 
         return P.taux * min_(f7db, maxEffectif)
 
@@ -3088,11 +3088,11 @@ class ci_saldom(Variable):
 
         plaf = where(
             invalide,
-            P.plafond_invalides,
+            P.plafond.plafond_invalides,
             where(
                 annee1,
-                min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl)),
-                min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                min_(P.plafond.plafond_max.plafond_maximum_1ere_annee, P.plafond.plafond_base.plafond_1ere_annee + P.plafond.increment_plafond * (nb_pac_majoration_plafond + f7dl)),
+                min_(P.plafond.plafond_max.plafond_maximum, P.plafond.plafond_base.plafond + P.plafond.increment_plafond * (nb_pac_majoration_plafond + f7dl))
                 )
             )
 
@@ -3120,11 +3120,11 @@ class ci_saldom(Variable):
         # détérminer le plafond
         plaf = where(
             invalide,
-            P.plafond_invalides,
+            P.plafond.plafond_invalides,
             where(
                 annee1,
-                min_(P.plafond_maximum_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl)),
-                min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
+                min_(P.plafond.plafond_max.plafond_maximum_1ere_annee, P.plafond.plafond_base.plafond_1ere_annee + P.plafond.increment_plafond * (nb_pac_majoration_plafond + f7dl)),
+                min_(P.plafond.plafond_max.plafond_maximum, P.plafond.plafond_base.plafond + P.plafond.increment_plafond * (nb_pac_majoration_plafond + f7dl))
                 )
             )
 

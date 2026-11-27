@@ -4,7 +4,7 @@ values:
     value: 1_500
 metadata:
   last_value_still_valid_on: "2026-02-23"
-  short_label: Majoration par personne à charge de l'impôt pris en compte avant calcul du différentiel
+  short_label: Majoration par personne à charge de l'impôt pris en compte
   reference:
     2025-01-01:
     - title: Loi de finances pour 2025, Article 10
