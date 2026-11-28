@@ -574,3 +574,43 @@
     agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [85, 0, 0]
+
+
+- name: Test 15 - Famille éligible à l'AGEPI avec 2 enfants éligibles dont un de moins de 1 an
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [ Jean, Marie ]
+      residence_mayotte: false
+    individus:
+      Camille:
+        age: 29
+        agepi:
+          month:2021-01:12: 0
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: false
+        contrat_aide: false
+        lieu_emploi_ou_formation: metropole_hors_corse
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi_journaliere: 0
+        contrat_de_travail_type: cdd
+        contrat_de_travail_duree: 3
+        type_intensite_activite: mensuelle
+        agepi_temps_travail_en_heure: 64
+      Jean:
+        age: 9
+      Marie:
+        age: 0
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [ Jean, Marie ]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [ Jean, Marie ]
+  output:
+    agepi_eligible: [ true, false, false ]
+    agepi_nbenf: 2
+    agepi: [ 460, 0, 0 ]
